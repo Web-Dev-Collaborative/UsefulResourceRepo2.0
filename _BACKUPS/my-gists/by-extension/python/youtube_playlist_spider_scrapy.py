@@ -24,10 +24,7 @@ class QuotesSpider(scrapy.Spider):
 
     name = "Watch Later"
     start_urls = ["file:///tmp/wl.html"]
-    custom_settings = {
-        "LOG_ENABLED": False,
-        "LOG_LEVEL": "ERROR",
-    }
+    custom_settings = {"LOG_ENABLED": False, "LOG_LEVEL": "ERROR"}
 
     def parse(self, response):
         """Parse the response to print a JSON file of all videos in /tmp/wl.html"""

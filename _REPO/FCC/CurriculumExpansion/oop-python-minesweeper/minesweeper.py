@@ -98,11 +98,7 @@ class Board:
 
     def checkTile(self, index):
         """Checks a tile in the grid to determine if it contains a mine"""
-        status = {
-            "boardClear": False,
-            "containsMine": False,
-            "isCovered": True,
-        }
+        status = {"boardClear": False, "containsMine": False, "isCovered": True}
 
         if self.grid[index].containsMine:
             status["containsMine"] = True

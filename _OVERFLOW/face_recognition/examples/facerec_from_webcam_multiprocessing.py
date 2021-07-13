@@ -165,14 +165,7 @@ if __name__ == "__main__":
 
     # Create a thread to capture frames (if uses subprocess, it will crash on Mac)
     p.append(
-        threading.Thread(
-            target=capture,
-            args=(
-                read_frame_list,
-                Global,
-                worker_num,
-            ),
-        )
+        threading.Thread(target=capture, args=(read_frame_list, Global, worker_num))
     )
     p[0].start()
 
@@ -193,13 +186,7 @@ if __name__ == "__main__":
         p.append(
             Process(
                 target=process,
-                args=(
-                    worker_id,
-                    read_frame_list,
-                    write_frame_list,
-                    Global,
-                    worker_num,
-                ),
+                args=(worker_id, read_frame_list, write_frame_list, Global, worker_num),
             )
         )
         p[worker_id].start()

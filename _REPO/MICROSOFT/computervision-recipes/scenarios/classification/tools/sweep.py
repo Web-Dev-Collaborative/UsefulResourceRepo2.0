@@ -5,9 +5,7 @@ import sys
 import os
 
 sys.path.append(
-    os.path.dirname(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    )
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 )
 import argparse
 import time
@@ -189,9 +187,7 @@ def _get_parser(default_params: Dict[str, List[Any]]) -> Namespace:
     parser.add_argument(
         "--output", "-o", dest="output", help="The path of the output file."
     )
-    parser.set_defaults(
-        repeat=3, early_stopping=False, inputs=None, benchmark=False
-    )
+    parser.set_defaults(repeat=3, early_stopping=False, inputs=None, benchmark=False)
     args = parser.parse_args()
 
     # if discriminative lr is on, we cannot have a 'head_only'
@@ -207,9 +203,7 @@ def _get_parser(default_params: Dict[str, List[Any]]) -> Namespace:
     # get mapping of training enum: ex. "head_only" -->
     # TrainingSchedule.head_only --> 0
     if args.training_schedules is not None:
-        args.training_schedules = [
-            TrainingSchedule[t] for t in args.training_schedules
-        ]
+        args.training_schedules = [TrainingSchedule[t] for t in args.training_schedules]
 
     return args
 

@@ -88,9 +88,7 @@ def clean_sweeper_df(df: pd.DataFrame) -> pd.DataFrame:
     return pd.read_html(html, index_col=[0, 1, 2])[0]
 
 
-def add_value_labels(
-    ax: Axes, spacing: int = 5, percentage: bool = False
-) -> None:
+def add_value_labels(ax: Axes, spacing: int = 5, percentage: bool = False) -> None:
     """ Add labels to the end of each bar in a bar chart.
 
     Overwrite labels on axes if they already exist.
@@ -109,9 +107,7 @@ def add_value_labels(
         x_value = rect.get_x() + rect.get_width() / 2
 
         label = (
-            "{:.2f}%".format(y_value * 100)
-            if percentage
-            else "{:.1f}".format(y_value)
+            "{:.2f}%".format(y_value * 100) if percentage else "{:.1f}".format(y_value)
         )
 
         ax.annotate(
@@ -152,23 +148,19 @@ def plot_sweeper_df(
         raise ValueError("values of {show_cols} is not found {df}.")
 
     if sort_by is not None and sort_by not in cols:
-        raise ValueError(
-            "{sort_by} must be in {show_cols} if {show_cols} is used."
-        )
+        raise ValueError("{sort_by} must be in {show_cols} if {show_cols} is used.")
 
     if sort_by:
         df = df.sort_values(by=sort_by)
 
-    axes = df[cols].plot.bar(
-        rot=90, subplots=True, legend=False, figsize=figsize
-    )
+    axes = df[cols].plot.bar(rot=90, subplots=True, legend=False, figsize=figsize)
 
     assert len(cols) == len(axes)
 
     for col, ax in zip(cols, axes):
         top_val = df[col].max()
         min_val = df[col].min()
-        ax.set_ylim(bottom = min_val/1.01, top=top_val * 1.01)
+        ax.set_ylim(bottom=min_val / 1.01, top=top_val * 1.01)
         add_value_labels(ax)
 
         if col in ["accuracy"]:
@@ -269,7 +261,11 @@ class ParameterSweeper:
 
     @staticmethod
     def _get_data_bunch_segmentationitemlist(
-        path: Union[Path, str], transform: bool, im_size: int, bs: int, classes:List[str]
+        path: Union[Path, str],
+        transform: bool,
+        im_size: int,
+        bs: int,
+        classes: List[str],
     ) -> ImageDataBunch:
         """
         Create ImageDataBunch and return it. TODO in future version is to allow
@@ -295,11 +291,12 @@ class ParameterSweeper:
             SegmentationItemList.from_folder(im_path)
             .split_by_rand_pct(valid_pct=0.33)
             .label_from_func(get_gt_filename, classes=classes)
-            .transform(tfms=tfms, resize_method = ResizeMethod.CROP, size=im_size, tfm_y=True)
+            .transform(
+                tfms=tfms, resize_method=ResizeMethod.CROP, size=im_size, tfm_y=True
+            )
             .databunch(bs=bs, num_workers=db_num_workers())
             .normalize(imagenet_stats)
         )
-
 
     @staticmethod
     def _early_stopping_callback(
@@ -352,19 +349,13 @@ class ParameterSweeper:
             architecture=params[self.param_order.index("architecture")],
             dropout=params[self.param_order.index("dropout")],
             weight_decay=params[self.param_order.index("weight_decay")],
-            discriminative_lr=params[
-                self.param_order.index("discriminative_lr")
-            ],
-            training_schedule=params[
-                self.param_order.index("training_schedule")
-            ],
-            one_cycle_policy=params[
-                self.param_order.index("one_cycle_policy")
-            ],
+            discriminative_lr=params[self.param_order.index("discriminative_lr")],
+            training_schedule=params[self.param_order.index("training_schedule")],
+            one_cycle_policy=params[self.param_order.index("one_cycle_policy")],
         )
 
     def _learn(
-        self, data_path: Path, params: Tuple[Any], stop_early: bool, learner_type = "cnn"
+        self, data_path: Path, params: Tuple[Any], stop_early: bool, learner_type="cnn"
     ) -> Tuple[Learner, Time]:
         """
         Given a set of permutations, create a learner to train and validate on
@@ -393,14 +384,15 @@ class ParameterSweeper:
         one_cycle_policy = params["one_cycle_policy"]
         weight_decay = params["weight_decay"]
 
-
         callbacks = list()
         if stop_early:
             callbacks.append(ParameterSweeper._early_stopping_callback())
 
         # Initialize CNN learner
         if learner_type == "cnn":
-            data = self._get_data_bunch_imagelist(data_path, transform, im_size, batch_size)
+            data = self._get_data_bunch_imagelist(
+                data_path, transform, im_size, batch_size
+            )
             learn = cnn_learner(
                 data,
                 architecture.value,
@@ -412,7 +404,9 @@ class ParameterSweeper:
         # Initialize UNet learner
         elif learner_type == "unet":
             classes = read_classes(os.path.join(data_path, "classes.txt"))
-            data = self._get_data_bunch_segmentationitemlist(data_path, transform, im_size, batch_size, classes)
+            data = self._get_data_bunch_segmentationitemlist(
+                data_path, transform, im_size, batch_size, classes
+            )
             metric = get_ratio_correct_metric(classes)
             metric.__name__ = "ratio_correct"
             learn = unet_learner(
@@ -426,15 +420,12 @@ class ParameterSweeper:
         else:
             print(f"Mode learner_type={learner_type} not supported.")
 
-
         head_learning_rate = learning_rate
         body_learning_rate = (
             slice(learning_rate, 3e-3) if discriminative_lr else learning_rate
         )
 
-        def fit(
-            learn: Learner, e: int, lr: Union[slice, float], wd=float
-        ) -> partial:
+        def fit(learn: Learner, e: int, lr: Union[slice, float], wd=float) -> partial:
             """ Returns a partial func for either fit_one_cycle or fit
             depending on <one_cycle_policy> """
             return (
@@ -459,9 +450,7 @@ class ParameterSweeper:
             head_epochs = epochs // 4
             fit(learn, head_epochs, head_learning_rate, weight_decay)()
             learn.unfreeze()
-            fit(
-                learn, epochs - head_epochs, body_learning_rate, weight_decay
-            )()
+            fit(learn, epochs - head_epochs, body_learning_rate, weight_decay)()
 
         end = time.time()
         duration = end - start
@@ -489,7 +478,7 @@ class ParameterSweeper:
         reps: int = 3,
         early_stopping: bool = False,
         metric_fct=None,
-        learner_type = "cnn"
+        learner_type="cnn",
     ) -> pd.DataFrame:
         """ Performs the experiment.
         Iterates through the number of specified <reps>, the list permutations
@@ -515,13 +504,13 @@ class ParameterSweeper:
             res[rep] = dict()
 
             for i, permutation in enumerate(self.permutations):
-                stringified_permutation = self._serialize_permutations(
-                    permutation
-                )
+                stringified_permutation = self._serialize_permutations(permutation)
 
                 res[rep][stringified_permutation] = dict()
                 for ii, dataset in enumerate(datasets):
-                    percent_done = round(100.0 * count / (reps * len(self.permutations) * len(datasets)))
+                    percent_done = round(
+                        100.0 * count / (reps * len(self.permutations) * len(datasets))
+                    )
                     print(
                         f"Percentage done: {percent_done}%. "
                         f"Currently processing repeat {rep+1} of {reps}, "
@@ -539,21 +528,16 @@ class ParameterSweeper:
 
                     if metric_fct is None and learner_type == "cnn":
                         _, metric = learn.validate(
-                            learn.data.valid_dl,
-                            metrics=[accuracy]
+                            learn.data.valid_dl, metrics=[accuracy]
                         )
 
                     elif learner_type == "unet":
-                        _, metric = learn.validate(
-                            learn.data.valid_dl
-                        )
+                        _, metric = learn.validate(learn.data.valid_dl)
 
                     else:
                         metric = metric_fct(learn)
 
-                    res[rep][stringified_permutation][data_name][
-                        "duration"
-                    ] = duration
+                    res[rep][stringified_permutation][data_name]["duration"] = duration
 
                     res[rep][stringified_permutation][data_name][
                         self.metric_name
@@ -561,6 +545,6 @@ class ParameterSweeper:
 
                     learn.destroy()
 
-                    count+=1
+                    count += 1
 
         return self._make_df_from_dict(res)

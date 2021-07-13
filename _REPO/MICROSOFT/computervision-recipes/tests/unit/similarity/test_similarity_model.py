@@ -21,9 +21,7 @@ def test_compute_feature(tiny_ic_databunch):
 def test_compute_features(tiny_ic_databunch):
     learn = cnn_learner(tiny_ic_databunch, models.resnet18)
     embedding_layer = learn.model[1][6]
-    features = compute_features(
-        tiny_ic_databunch.valid_ds, learn, embedding_layer
-    )
+    features = compute_features(tiny_ic_databunch.valid_ds, learn, embedding_layer)
     im_paths = tiny_ic_databunch.valid_ds.x.items
     assert len(features) == len(im_paths)
     assert len(features[str(im_paths[1])]) == 512

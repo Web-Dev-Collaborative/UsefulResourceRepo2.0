@@ -58,9 +58,7 @@ def test_plot_boxes(od_cup_path, od_cup_anno_bboxes, basic_plot_settings):
     plot_boxes(im=im, bboxes=od_cup_anno_bboxes)
 
     # with update plot_settings
-    plot_boxes(
-        im=im, bboxes=od_cup_anno_bboxes, plot_settings=basic_plot_settings
-    )
+    plot_boxes(im=im, bboxes=od_cup_anno_bboxes, plot_settings=basic_plot_settings)
 
 
 def test_plot_masks(od_mask_rects):
@@ -95,9 +93,7 @@ def test_plot_keypoints(basic_plot_settings):
     plot_keypoints(im, keypoints, keypoint_meta)
 
     # with update plot_settings
-    plot_keypoints(
-        im, keypoints, keypoint_meta, plot_settings=basic_plot_settings
-    )
+    plot_keypoints(im, keypoints, keypoint_meta, plot_settings=basic_plot_settings)
 
 
 def test_plot_detections(
@@ -171,10 +167,7 @@ def test_plot_grid(
     plot_grid(plot_detections, iterator_args(), rows=1, cols=2)
 
     def iterator_args():
-        for detection in [
-            od_sample_keypoint_detection,
-            od_sample_keypoint_detection,
-        ]:
+        for detection in [od_sample_keypoint_detection, od_sample_keypoint_detection]:
             yield (
                 detection,
                 tiny_od_detection_keypoint_dataset,
@@ -220,6 +213,4 @@ def test_plot_pr_curves(od_detection_eval, od_detection_mask_eval):
 @pytest.mark.gpu
 def test_plot_counts_curves(od_detection_dataset, od_detections):
     """ Test that `plot_counts_curves` works. """
-    plot_counts_curves(
-        od_detections, od_detection_dataset.test_ds, od_detections
-    )
+    plot_counts_curves(od_detections, od_detection_dataset.test_ds, od_detections)

@@ -39,43 +39,51 @@ def to_string(code: str, language: str) -> str:
     formatter = TerminalFormatter(linenos=True)
     return highlight(code, lexer, formatter)
 
+
 def run(arguments) -> None:
-    azure_info_path = arguments.get('--azure-info', None)
-    data_path = RichPath.create(arguments['DATA_PATH'], azure_info_path)
+    azure_info_path = arguments.get("--azure-info", None)
+    data_path = RichPath.create(arguments["DATA_PATH"], azure_info_path)
     assert data_path.is_dir(), "%s is not a folder" % (data_path,)
 
-    hypers_override = arguments.get('--hypers-override')
+    hypers_override = arguments.get("--hypers-override")
     if hypers_override is not None:
         hypers_override = json.loads(hypers_override)
     else:
         hypers_override = {}
 
-    model_path = RichPath.create(arguments['MODEL_PATH'], azure_info_path=azure_info_path)
+    model_path = RichPath.create(
+        arguments["MODEL_PATH"], azure_info_path=azure_info_path
+    )
 
     model = model_restore_helper.restore(
-        path=model_path,
-        is_train=False,
-        hyper_overrides=hypers_override)
+        path=model_path, is_train=False, hyper_overrides=hypers_override
+    )
 
-    num_elements_to_take = int(arguments['--max-num-items'])
-    data = chain(*chain(list(f.read_by_file_suffix()) for f in data_path.iterate_filtered_files_in_dir('*.jsonl.gz')))
+    num_elements_to_take = int(arguments["--max-num-items"])
+    data = chain(
+        *chain(
+            list(f.read_by_file_suffix())
+            for f in data_path.iterate_filtered_files_in_dir("*.jsonl.gz")
+        )
+    )
     if num_elements_to_take == 0:  # Take all
         data = list(data)
     else:
         assert num_elements_to_take > 0
         data = take(num_elements_to_take, data)
 
+    num_nns = int(arguments["--num-nns"])
 
-    num_nns = int(arguments['--num-nns'])
-
-    if arguments['--code']:
+    if arguments["--code"]:
         representations = model.get_code_representations(data)
-    elif arguments['--query']:
+    elif arguments["--query"]:
         representations = model.get_query_representations(data)
     else:
         code_representations = model.get_code_representations(data)
         query_representations = model.get_query_representations(data)
-        representations = np.concatenate([code_representations, query_representations], axis=-1)
+        representations = np.concatenate(
+            [code_representations, query_representations], axis=-1
+        )
 
     filtered_representations = []
     filtered_data = []  # type: List[Dict[str, Any]]
@@ -86,28 +94,43 @@ def run(arguments) -> None:
         filtered_data.append(data[i])
 
     filtered_representations = np.stack(filtered_representations, axis=0)
-    flat_distances = pdist(filtered_representations, arguments['--distance-metric'])
+    flat_distances = pdist(filtered_representations, arguments["--distance-metric"])
 
     for i, data in enumerate(filtered_data):
         distance_from_i = np.fromiter(
-            (flat_distances[square_to_condensed(i, j, len(filtered_data))] if i != j else float('inf') for j in
-             range(len(filtered_data))), dtype=np.float)
+            (
+                flat_distances[square_to_condensed(i, j, len(filtered_data))]
+                if i != j
+                else float("inf")
+                for j in range(len(filtered_data))
+            ),
+            dtype=np.float,
+        )
 
-        nns = [int(k) for k in np.argsort(distance_from_i)[:num_nns]]  # The first two NNs
+        nns = [
+            int(k) for k in np.argsort(distance_from_i)[:num_nns]
+        ]  # The first two NNs
 
-        if distance_from_i[nns[0]] > float(arguments['--distance-threshold']):
+        if distance_from_i[nns[0]] > float(arguments["--distance-threshold"]):
             continue
 
-        print('===============================================================')
+        print("===============================================================")
         print(f"{data['repo']}:{data['path']}:{data['lineno']}")
-        print(to_string(data['original_string'], language=data['language']))
+        print(to_string(data["original_string"], language=data["language"]))
 
         for j in range(num_nns):
             print()
-            print(f'Nearest Neighbour {j+1}: {filtered_data[nns[j]]["repo"]}:{filtered_data[nns[j]]["path"]}:{filtered_data[nns[j]]["lineno"]} (distance {distance_from_i[nns[j]]})')
-            print(to_string(filtered_data[nns[j]]['original_string'], language=filtered_data[nns[j]]['language']))
+            print(
+                f'Nearest Neighbour {j+1}: {filtered_data[nns[j]]["repo"]}:{filtered_data[nns[j]]["path"]}:{filtered_data[nns[j]]["lineno"]} (distance {distance_from_i[nns[j]]})'
+            )
+            print(
+                to_string(
+                    filtered_data[nns[j]]["original_string"],
+                    language=filtered_data[nns[j]]["language"],
+                )
+            )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     args = docopt(__doc__)
-    run_and_debug(lambda: run(args), args.get('--debug', False))
+    run_and_debug(lambda: run(args), args.get("--debug", False))

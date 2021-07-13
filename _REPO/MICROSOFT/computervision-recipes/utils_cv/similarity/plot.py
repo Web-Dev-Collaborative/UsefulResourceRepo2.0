@@ -100,9 +100,7 @@ def plot_comparative_set(
         plt.subplot(1, num_cols, num + 3)
         plt.axis("off")
         im = Image.open(neg_im_path)
-        title = (
-            f"Negative:\n{cs.pos_label}: {os.path.basename(cs.query_im_path)}"
-        )
+        title = f"Negative:\n{cs.pos_label}: {os.path.basename(cs.query_im_path)}"
         plt.title(title, fontsize=im_info_font_size, color="black")
         plt.imshow(im)
 
@@ -130,9 +128,7 @@ def plot_recalls(ranks: List[int], figsize: Tuple[int, int] = None):
 
 
 def plot_ranks_distribution(
-    ranks: List[int],
-    x_axis_max: int = None,
-    figsize: Tuple[int, int] = (15, 6),
+    ranks: List[int], x_axis_max: int = None, figsize: Tuple[int, int] = (15, 6)
 ):
     """Displays the distribution of rank of the positive image
     across comparative sets.

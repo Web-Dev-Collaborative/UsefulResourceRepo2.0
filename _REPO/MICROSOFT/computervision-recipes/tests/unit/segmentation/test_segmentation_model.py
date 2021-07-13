@@ -28,9 +28,7 @@ def test_predict(seg_im_mask_paths, seg_learner):
 
 
 def test_confusion_matrix(seg_learner, tiny_seg_databunch):
-    cmat, cmat_norm = confusion_matrix(
-        seg_learner, tiny_seg_databunch.valid_dl
-    )
+    cmat, cmat_norm = confusion_matrix(seg_learner, tiny_seg_databunch.valid_dl)
     assert type(cmat) == np.ndarray
     assert type(cmat_norm) == np.ndarray
     assert cmat.max() > 1.0

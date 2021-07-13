@@ -8,13 +8,7 @@ class TrackingBbox(_Bbox):
     """Inherits from _Bbox"""
 
     def __init__(
-        self,
-        left: int,
-        top: int,
-        right: int,
-        bottom: int,
-        frame_id: int,
-        track_id: int,
+        self, left: int, top: int, right: int, bottom: int, frame_id: int, track_id: int
     ):
         """ Initialize TrackingBbox """
         super().__init__(left, top, right, bottom)

@@ -6,8 +6,8 @@ import tensorflow as tf
 
 
 class QueryType(Enum):
-    DOCSTRING = 'docstring_as_query'
-    FUNCTION_NAME = 'func_name_as_query'
+    DOCSTRING = "docstring_as_query"
+    FUNCTION_NAME = "func_name_as_query"
 
 
 class Encoder(ABC):
@@ -22,7 +22,9 @@ class Encoder(ABC):
         """
         return {}
 
-    def __init__(self, label: str, hyperparameters: Dict[str, Any], metadata: Dict[str, Any]):
+    def __init__(
+        self, label: str, hyperparameters: Dict[str, Any], metadata: Dict[str, Any]
+    ):
         """
         Args:
             label: Label for the encoder, used in names of hyperparameters.
@@ -65,19 +67,18 @@ class Encoder(ABC):
         Returns:
             self.hyperparameters['%s_%s' % (self.label, hyper_name)]
         """
-        return self.hyperparameters['%s_%s' % (self.label, hyper_name)]
+        return self.hyperparameters["%s_%s" % (self.label, hyper_name)]
 
     def _make_placeholders(self):
         """
         Creates placeholders for encoders.
         """
-        self.__placeholders['dropout_keep_rate'] = \
-            tf.placeholder(tf.float32,
-                           shape=(),
-                           name='dropout_keep_rate')
+        self.__placeholders["dropout_keep_rate"] = tf.placeholder(
+            tf.float32, shape=(), name="dropout_keep_rate"
+        )
 
     @abstractmethod
-    def make_model(self, is_train: bool=False) -> tf.Tensor:
+    def make_model(self, is_train: bool = False) -> tf.Tensor:
         """
         Create the actual encoder model, including necessary placeholders and parameters.
 
@@ -102,8 +103,13 @@ class Encoder(ABC):
 
     @classmethod
     @abstractmethod
-    def load_metadata_from_sample(cls, data_to_load: Any, raw_metadata: Dict[str, Any],
-                                  use_subtokens: bool=False, mark_subtoken_end: bool=False) -> None:
+    def load_metadata_from_sample(
+        cls,
+        data_to_load: Any,
+        raw_metadata: Dict[str, Any],
+        use_subtokens: bool = False,
+        mark_subtoken_end: bool = False,
+    ) -> None:
         """
         Called to load metadata from a single sample.
 
@@ -118,7 +124,12 @@ class Encoder(ABC):
 
     @classmethod
     @abstractmethod
-    def finalise_metadata(cls, encoder_label: str, hyperparameters: Dict[str, Any], raw_metadata_list: List[Dict[str, Any]]) -> Dict[str, Any]:
+    def finalise_metadata(
+        cls,
+        encoder_label: str,
+        hyperparameters: Dict[str, Any],
+        raw_metadata_list: List[Dict[str, Any]],
+    ) -> Dict[str, Any]:
         """
         Called to finalise the metadata after looking at actual data (i.e., compute vocabularies, ...)
 
@@ -134,14 +145,16 @@ class Encoder(ABC):
 
     @classmethod
     @abstractmethod
-    def load_data_from_sample(cls,
-                              encoder_label: str,
-                              hyperparameters: Dict[str, Any],
-                              metadata: Dict[str, Any],
-                              data_to_load: Any,
-                              function_name: Optional[str],
-                              result_holder: Dict[str, Any],
-                              is_test: bool=True) -> bool:
+    def load_data_from_sample(
+        cls,
+        encoder_label: str,
+        hyperparameters: Dict[str, Any],
+        metadata: Dict[str, Any],
+        data_to_load: Any,
+        function_name: Optional[str],
+        result_holder: Dict[str, Any],
+        is_test: bool = True,
+    ) -> bool:
         """
         Called to convert a raw sample into the internal format, allowing for preprocessing.
         Result will eventually be fed again into the split_data_into_minibatches pipeline.
@@ -172,8 +185,13 @@ class Encoder(ABC):
         pass
 
     @abstractmethod
-    def extend_minibatch_by_sample(self, batch_data: Dict[str, Any], sample: Dict[str, Any], is_train: bool=False,
-                                   query_type: QueryType=QueryType.DOCSTRING.value) -> bool:
+    def extend_minibatch_by_sample(
+        self,
+        batch_data: Dict[str, Any],
+        sample: Dict[str, Any],
+        is_train: bool = False,
+        query_type: QueryType = QueryType.DOCSTRING.value,
+    ) -> bool:
         """
         Extend a minibatch under construction by one sample. This is where the data may be randomly perturbed in each
         epoch for data augmentation.
@@ -190,7 +208,12 @@ class Encoder(ABC):
         return True
 
     @abstractmethod
-    def minibatch_to_feed_dict(self, batch_data: Dict[str, Any], feed_dict: Dict[tf.Tensor, Any], is_train: bool) -> None:
+    def minibatch_to_feed_dict(
+        self,
+        batch_data: Dict[str, Any],
+        feed_dict: Dict[tf.Tensor, Any],
+        is_train: bool,
+    ) -> None:
         """
         Take a collected minibatch and add it to a feed dict that can be fed directly to the constructed model.
 
@@ -199,7 +222,9 @@ class Encoder(ABC):
             feed_dict: The feed dictionary that we will send to tensorflow.
             is_train: Flag indicating if we are in training mode.
         """
-        feed_dict[self.placeholders['dropout_keep_rate']] = self.hyperparameters['dropout_keep_rate'] if is_train else 1.0
+        feed_dict[self.placeholders["dropout_keep_rate"]] = (
+            self.hyperparameters["dropout_keep_rate"] if is_train else 1.0
+        )
 
     @abstractmethod
     def get_token_embeddings(self) -> Tuple[tf.Tensor, List[str]]:

@@ -49,13 +49,7 @@ create_tables()
 
 def add_log(text, user):
     sql = "INSERT INTO logs(text, user) VALUES (%s, %s)"
-    cursor.execute(
-        sql,
-        (
-            text,
-            user,
-        ),
-    )
+    cursor.execute(sql, (text, user))
     db.commit()
     log_id = cursor.lastrowid
     print("Added log {}".format(log_id))

@@ -55,9 +55,7 @@ class PlotSettings:
         return dark_color, bright_color
 
 
-def plot_boxes_stats(
-    data, show: bool = True, figsize: tuple = (18, 3)
-) -> None:
+def plot_boxes_stats(data, show: bool = True, figsize: tuple = (18, 3)) -> None:
     """Plot statistics such as number of annotations for class, or
         distribution of width/height of the annotations.
 
@@ -137,19 +135,15 @@ def plot_boxes(
 
             # pick rectangle and text color if set to None
             text_color = (
-                plot_settings.text_color
-                or plot_settings.get_colors(bbox.label_idx)[0]
+                plot_settings.text_color or plot_settings.get_colors(bbox.label_idx)[0]
             )
             rect_color = (
-                plot_settings.rect_color
-                or plot_settings.get_colors(bbox.label_idx)[1]
+                plot_settings.rect_color or plot_settings.get_colors(bbox.label_idx)[1]
             )
 
             # draw rect
             box = [(bbox.left, bbox.top), (bbox.right, bbox.bottom)]
-            draw.rectangle(
-                box, outline=rect_color, width=plot_settings.rect_th
-            )
+            draw.rectangle(box, outline=rect_color, width=plot_settings.rect_th)
 
             # write prediction class
             text_offset = plot_settings.text_size + plot_settings.rect_th
@@ -188,14 +182,11 @@ def plot_masks(
     # colorise masks
     binary_masks = binarise_mask(mask)
     colored_masks = [
-        colorise_binary_mask(bmask, plot_settings.mask_color)
-        for bmask in binary_masks
+        colorise_binary_mask(bmask, plot_settings.mask_color) for bmask in binary_masks
     ]
     # merge masks into img one by one
     for cmask in colored_masks:
-        tmask = Image.fromarray(
-            transparentise_mask(cmask, plot_settings.mask_alpha)
-        )
+        tmask = Image.fromarray(transparentise_mask(cmask, plot_settings.mask_alpha))
         im = Image.alpha_composite(im, tmask)
 
     return im
@@ -227,8 +218,7 @@ def plot_keypoints(
         ), "Malformed keypoints array"
         if keypoint_meta:
             assert (
-                np.max(np.array(keypoint_meta["skeleton"]))
-                < keypoints.shape[1]
+                np.max(np.array(keypoint_meta["skeleton"])) < keypoints.shape[1]
             ), "Skeleton index out of range"
 
         draw = ImageDraw.Draw(im)
@@ -270,7 +260,7 @@ def plot_detections(
     ax: plt.axes = None,
     text_size: int = None,
     rect_th: int = None,
-    keypoint_th = None,
+    keypoint_th=None,
 ) -> PIL.Image.Image:
     """ Put mask onto image.
 
@@ -290,9 +280,12 @@ def plot_detections(
     im = Image.open(detection["im_path"])
 
     default_plot_settings = PlotSettings()
-    if not text_size: text_size = default_plot_settings.text_size
-    if not rect_th: rect_th = default_plot_settings.rect_th
-    if not keypoint_th: keypoint_th = default_plot_settings.keypoint_th
+    if not text_size:
+        text_size = default_plot_settings.text_size
+    if not rect_th:
+        rect_th = default_plot_settings.rect_th
+    if not keypoint_th:
+        keypoint_th = default_plot_settings.keypoint_th
 
     # Adjust the rectangle thickness etc. to the image resolution
     scale = max(im.size) / 500.0
@@ -312,9 +305,7 @@ def plot_detections(
         mask_path = data.mask_paths[idx]
         if mask_path:
             im = plot_masks(
-                im,
-                mask_path,
-                plot_settings=PlotSettings(mask_color=(0, 128, 0)),
+                im, mask_path, plot_settings=PlotSettings(mask_color=(0, 128, 0))
             )
 
     # Plot predicted masks
@@ -520,9 +511,7 @@ def _plot_pr_curve_iou_mean(
     )
     avg_arr = np.mean(  # mean over K labels
         np.mean(  # mean over iou thresholds
-            coco_eval.eval["precision"][
-                _get_precision_recall_settings(slice(0, None))
-            ],
+            coco_eval.eval["precision"][_get_precision_recall_settings(slice(0, None))],
             axis=0,
         ),
         axis=1,
@@ -561,12 +550,8 @@ def plot_pr_curves(
     nrows = len(evaluator.coco_eval)
     fig, axes = plt.subplots(nrows, 2, figsize=figsize)
     for i, (k, coco_eval) in enumerate(evaluator.coco_eval.items()):
-        _plot_pr_curve_iou_range(
-            axes[i, 0] if nrows > 1 else axes[0], coco_eval, k
-        )
-        _plot_pr_curve_iou_mean(
-            axes[i, 1] if nrows > 1 else axes[1], coco_eval, k
-        )
+        _plot_pr_curve_iou_range(axes[i, 0] if nrows > 1 else axes[0], coco_eval, k)
+        _plot_pr_curve_iou_mean(axes[i, 1] if nrows > 1 else axes[1], coco_eval, k)
 
     plt.show()
 

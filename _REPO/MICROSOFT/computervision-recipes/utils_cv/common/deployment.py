@@ -8,10 +8,7 @@ from azureml.core.conda_dependencies import CondaDependencies
 
 
 def generate_yaml(
-    directory: str,
-    ref_filename: str,
-    needed_libraries: list,
-    conda_filename: str,
+    directory: str, ref_filename: str, needed_libraries: list, conda_filename: str
 ):
     """
     Creates a deployment-specific yaml file as a subset of
@@ -74,9 +71,7 @@ def generate_yaml(
     print(conda_env.serialize_to_string())
 
     # Save the file to disk
-    conda_env.save_to_file(
-        base_directory=os.getcwd(), conda_file_path=conda_filename
-    )
+    conda_env.save_to_file(base_directory=os.getcwd(), conda_file_path=conda_filename)
 
     # Note: For users interested in creating their own environments,
     # the only commands needed are:

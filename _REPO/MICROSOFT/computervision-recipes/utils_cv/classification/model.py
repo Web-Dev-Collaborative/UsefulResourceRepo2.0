@@ -32,10 +32,7 @@ IMAGENET_IM_SIZE = 224
 
 
 def hamming_accuracy(
-    y_pred: Tensor,
-    y_true: Tensor,
-    threshold: float = 0.2,
-    sigmoid: bool = False,
+    y_pred: Tensor, y_true: Tensor, threshold: float = 0.2, sigmoid: bool = False
 ) -> Tensor:
     """ Callback for using hamming accuracy as a evaluation metric.
 
@@ -55,16 +52,11 @@ def hamming_accuracy(
         y_pred = y_pred.sigmoid()
     if threshold:
         y_pred = y_pred > threshold
-    return 1 - (
-        (y_pred.float() != y_true).sum() / torch.ones(y_pred.shape).sum()
-    )
+    return 1 - ((y_pred.float() != y_true).sum() / torch.ones(y_pred.shape).sum())
 
 
 def zero_one_accuracy(
-    y_pred: Tensor,
-    y_true: Tensor,
-    threshold: float = 0.2,
-    sigmoid: bool = False,
+    y_pred: Tensor, y_true: Tensor, threshold: float = 0.2, sigmoid: bool = False
 ) -> Tensor:
     """ Callback for using zero-one accuracy as a evaluation metric.
 
@@ -88,9 +80,7 @@ def zero_one_accuracy(
     zero_one_preds = (y_pred.float() != y_true).sum(dim=1)
     zero_one_preds[zero_one_preds >= 1] = 1
     num_labels = y_pred.shape[-1]
-    return 1 - (
-        zero_one_preds.sum().float() / len(y_pred.reshape(-1, num_labels))
-    )
+    return 1 - (zero_one_preds.sum().float() / len(y_pred.reshape(-1, num_labels)))
 
 
 def get_optimal_threshold(
@@ -123,9 +113,7 @@ def get_optimal_threshold(
     return optimal_threshold
 
 
-def model_to_learner(
-    model: nn.Module, im_size: int = IMAGENET_IM_SIZE
-) -> Learner:
+def model_to_learner(model: nn.Module, im_size: int = IMAGENET_IM_SIZE) -> Learner:
     """Create Learner based on pyTorch ImageNet model.
 
     Args:
@@ -191,9 +179,7 @@ def get_preds(
 class TrainMetricsRecorder(LearnerCallback):
     _order = -20  # Needs to run before the recorder
 
-    def __init__(
-        self, learn: Learner, n_batch: int = None, show_graph: bool = False
-    ):
+    def __init__(self, learn: Learner, n_batch: int = None, show_graph: bool = False):
         """Fastai Train hook to evaluate metrics on train and validation set for every epoch.
 
         This class works with the metrics functions whose signature is fn(input:Tensor, targs:Tensor),
@@ -238,9 +224,7 @@ class TrainMetricsRecorder(LearnerCallback):
         self.n_batch = n_batch
         self.show_graph = show_graph
 
-    def on_train_begin(
-        self, pbar: PBar, metrics: List, n_epochs: int, **kwargs: Any
-    ):
+    def on_train_begin(self, pbar: PBar, metrics: List, n_epochs: int, **kwargs: Any):
         self.has_metrics = metrics and len(metrics) > 0
         self.has_val = hasattr(self.learn.data, "valid_ds")
 
@@ -307,8 +291,7 @@ class TrainMetricsRecorder(LearnerCallback):
         if self.has_metrics:
             # Evaluate metrics on the training set
             tr_lm = [
-                m_fn(torch.stack(self.out), torch.stack(self.y))
-                for m_fn in metrics
+                m_fn(torch.stack(self.out), torch.stack(self.y)) for m_fn in metrics
             ]
             self.train_metrics.append(tr_lm)
 
@@ -353,9 +336,7 @@ class TrainMetricsRecorder(LearnerCallback):
                 figsize=(6, 4 * len(self.train_metrics[0])),
             )
             self._axes = (
-                self._axes.flatten()
-                if len(self.train_metrics[0]) > 1
-                else [self._axes]
+                self._axes.flatten() if len(self.train_metrics[0]) > 1 else [self._axes]
             )
             plt.close(self._fig)
 
@@ -369,12 +350,7 @@ class TrainMetricsRecorder(LearnerCallback):
             ax.plot(x_axis, tr_m, label="Train")
 
             # Plot validation set results
-            maybe_y_bounds = [
-                -0.05,
-                1.05,
-                min(Tensor(tr_m)),
-                max(Tensor(tr_m)),
-            ]
+            maybe_y_bounds = [-0.05, 1.05, min(Tensor(tr_m)), max(Tensor(tr_m))]
             if len(self.valid_metrics) > 0:
                 vl_m = [met[i] for met in self.valid_metrics]
                 ax.plot(x_axis, vl_m, label="Validation")

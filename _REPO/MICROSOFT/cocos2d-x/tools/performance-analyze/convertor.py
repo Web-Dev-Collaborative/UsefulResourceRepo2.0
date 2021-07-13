@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#-*- coding: UTF-8 -*-
+# -*- coding: UTF-8 -*-
 # ----------------------------------------------------------------------------
 # Convert the performance test result from json files to excel.
 #
@@ -7,9 +7,9 @@
 #
 # License: MIT
 # ----------------------------------------------------------------------------
-'''
+"""
 Convert the performance test result from json files to excel.
-'''
+"""
 
 import xlwt
 import os
@@ -17,34 +17,29 @@ import json
 
 from argparse import ArgumentParser
 
-DEFAULT_STYLE = 'borders: left thin, right thin, top thin, bottom thin;'
-CONDITION_STYLE = 'pattern: pattern solid, fore_color light_green;'
-RESULT_STYLE = 'pattern: pattern solid, fore_color light_yellow;'
+DEFAULT_STYLE = "borders: left thin, right thin, top thin, bottom thin;"
+CONDITION_STYLE = "pattern: pattern solid, fore_color light_green;"
+RESULT_STYLE = "pattern: pattern solid, fore_color light_yellow;"
 
-BASE_KEYS = [
-    'osVersion',
-    'fileVersion',
-    'timeStamp',
-    'engineVersion',
-    'device'
-]
+BASE_KEYS = ["osVersion", "fileVersion", "timeStamp", "engineVersion", "device"]
 
 KEY_CONDITION_HEADERS = "conditionHeaders"
-KEY_RESULT_HEADERS    = "resultHeaders"
-KEY_RESULTS           = "results"
+KEY_RESULT_HEADERS = "resultHeaders"
+KEY_RESULTS = "results"
 
 START_COL_INDEX = 0
 START_ROW_INDEX = 0
 
+
 class KnownException(Exception):
     pass
 
-class Convertor:
 
+class Convertor:
     def __init__(self, src_path, output_path=None):
         self.src_path = self.change_to_abspath(src_path)
         if not os.path.exists(self.src_path):
-            raise KnownException('%s is not existed!' % self.src_path)
+            raise KnownException("%s is not existed!" % self.src_path)
 
         if output_path is None:
             # not specified output path, default use source path
@@ -76,7 +71,7 @@ class Convertor:
         if os.path.isfile(dst_file_path):
             os.remove(dst_file_path)
 
-        workbook = xlwt.Workbook(encoding = 'ascii')
+        workbook = xlwt.Workbook(encoding="ascii")
 
         default_style = xlwt.Style.easyxf(DEFAULT_STYLE)
         con_style = xlwt.Style.easyxf("%s%s" % (DEFAULT_STYLE, CONDITION_STYLE))
@@ -99,7 +94,7 @@ class Convertor:
             curCol = START_COL_INDEX
 
             col_widths = {}
-            for header in (condHeaders + retHeaders):
+            for header in condHeaders + retHeaders:
                 sheetObj.write(curRow, curCol, header, default_style)
                 col_width = self.get_col_width(header)
                 col_widths[curCol] = col_width
@@ -136,13 +131,21 @@ class Convertor:
             for f in os.listdir(self.src_path):
                 full_path = os.path.join(self.src_path, f)
                 ignore, ext = os.path.splitext(f)
-                if os.path.isfile(full_path) and ext == '.json':
+                if os.path.isfile(full_path) and ext == ".json":
                     self.convert_file(full_path)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     parser = ArgumentParser(description="Performance test data convertor.")
-    parser.add_argument('-s', dest='src_path', required=True, help='Specify the json file path or the folder path of json files.')
-    parser.add_argument('-o', dest='output_path', help='Specify the output path of excel files.')
+    parser.add_argument(
+        "-s",
+        dest="src_path",
+        required=True,
+        help="Specify the json file path or the folder path of json files.",
+    )
+    parser.add_argument(
+        "-o", dest="output_path", help="Specify the output path of excel files."
+    )
     (args, unknown) = parser.parse_known_args()
 
     try:
@@ -150,6 +153,6 @@ if __name__ == '__main__':
         convertor.do_convert()
     except Exception as e:
         if e.__class__.__name__ == "KnownException":
-            print(' '.join(e.args))
+            print(" ".join(e.args))
         else:
             raise

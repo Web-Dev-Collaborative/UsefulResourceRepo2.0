@@ -15,12 +15,8 @@ def test_VideoLearner(ar_milk_bottle_dataset) -> None:
     learner.evaluate()
 
 
-def test_VideoLearner_using_split_file(
-    ar_milk_bottle_dataset_with_split_file,
-) -> None:
+def test_VideoLearner_using_split_file(ar_milk_bottle_dataset_with_split_file,) -> None:
     """ Test VideoLearner Initialization. """
-    learner = VideoLearner(
-        ar_milk_bottle_dataset_with_split_file, num_classes=2
-    )
+    learner = VideoLearner(ar_milk_bottle_dataset_with_split_file, num_classes=2)
     learner.fit(lr=0.001, epochs=1)
     learner.evaluate()

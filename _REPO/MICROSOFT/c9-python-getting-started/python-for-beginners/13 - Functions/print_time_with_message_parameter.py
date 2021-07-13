@@ -8,13 +8,14 @@ def print_time(task_name):
     print(datetime.now())
     print()
 
-first_name = 'Susan'
-# Call print_time() function to display message and current time
-# pass in name of task completed
-print_time('first name assigned')
 
-for x in range(0,10):
-	print(x)
+first_name = "Susan"
 # Call print_time() function to display message and current time
 # pass in name of task completed
-print_time('loop completed')
+print_time("first name assigned")
+
+for x in range(0, 10):
+    print(x)
+# Call print_time() function to display message and current time
+# pass in name of task completed
+print_time("loop completed")

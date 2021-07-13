@@ -599,15 +599,9 @@ def main():
     train_data = (train_data - mean) / std
     dev_data = (dev_data - mean) / std
 
-    all_data = {
-        "train": train_data,
-        "dev": dev_data,
-    }
+    all_data = {"train": train_data, "dev": dev_data}
 
-    all_labels = {
-        "train": train_labels,
-        "dev": dev_labels,
-    }
+    all_labels = {"train": train_labels, "dev": dev_labels}
 
     run_train(all_data, all_labels, backward_prop)
 

@@ -13,7 +13,6 @@ import torch
 
 
 class GroupScale(object):
-
     def __init__(self, size, interpolation=Image.BILINEAR):
         self.worker = torchvision.transforms.Resize(size, interpolation)
 
@@ -39,7 +38,7 @@ class GroupRandomCrop(object):
         y1 = random.randint(0, h - th)
 
         for img in img_group:
-            assert(img.size[0] == w and img.size[1] == h)
+            assert img.size[0] == w and img.size[1] == h
             if w == tw and h == th:
                 out_images.append(img)
             else:
@@ -58,7 +57,6 @@ class GroupCenterCrop(object):
 
 
 class GroupRandomHorizontalFlip(object):
-
     def __call__(self, img_group):
         v = random.random()
         if v < 0.5:
@@ -69,8 +67,9 @@ class GroupRandomHorizontalFlip(object):
 
 
 class GroupNormalize(object):
-    
-    def __init__(self, modality, means=[0.485, 0.456, 0.406], stds=[0.229, 0.224, 0.225]):
+    def __init__(
+        self, modality, means=[0.485, 0.456, 0.406], stds=[0.229, 0.224, 0.225]
+    ):
         self.modality = modality
         self.means = means
         self.stds = stds
@@ -87,12 +86,13 @@ class GroupNormalize(object):
             # Convert images to numpy arrays
             img_arrays = [np.asarray(img).transpose([2, 0, 1]) for img in img_group]
             # Scale to [-1, 1] and convert to tensor
-            img_tensors = [torch.from_numpy((img / 255.) * 2 - 1) for img in img_arrays]
+            img_tensors = [
+                torch.from_numpy((img / 255.0) * 2 - 1) for img in img_arrays
+            ]
         return img_tensors
 
 
 class Stack(object):
-
     def __call__(self, img_tensors):
         # Stack tensors and permute from D x C x H x W to C x D x H x W
         return torch.stack(img_tensors, dim=0).permute(1, 0, 2, 3).float()

@@ -4,12 +4,7 @@
 import pytest
 from typing import List, Optional
 
-from utils_cv.detection.bbox import (
-    DetectionBbox,
-    AnnotationBbox,
-    _Bbox,
-    bboxes_iou,
-)
+from utils_cv.detection.bbox import DetectionBbox, AnnotationBbox, _Bbox, bboxes_iou
 
 
 @pytest.fixture(scope="function")
@@ -24,9 +19,7 @@ def anno_bbox() -> "AnnotationBbox":
 
 @pytest.fixture(scope="session")
 def det_bbox() -> "DetectionBbox":
-    return DetectionBbox(
-        left=0, top=10, right=100, bottom=1000, label_idx=0, score=0.5
-    )
+    return DetectionBbox(left=0, top=10, right=100, bottom=1000, label_idx=0, score=0.5)
 
 
 def validate_bbox(bbox: _Bbox, rect: Optional[List[int]] = None) -> None:
@@ -114,9 +107,7 @@ def test_annotation_bbox_init(anno_bbox):
 
 
 def test_annotation_bbox_from_array():
-    bbox_from_array = AnnotationBbox.from_array(
-        [0, 10, 100, 1000], label_idx=0
-    )
+    bbox_from_array = AnnotationBbox.from_array([0, 10, 100, 1000], label_idx=0)
     validate_anno_bbox(bbox_from_array, label_idx=0)
 
 
@@ -126,9 +117,7 @@ def test_detection_bbox_init(det_bbox):
 
 
 def test_detection_bbox_from_array(det_bbox):
-    bbox_from_array = DetectionBbox.from_array(
-        [0, 10, 100, 1000], label_idx=0, score=0
-    )
+    bbox_from_array = DetectionBbox.from_array([0, 10, 100, 1000], label_idx=0, score=0)
     validate_bbox(det_bbox)
     assert type(bbox_from_array) == DetectionBbox
 
@@ -141,6 +130,4 @@ def test_bboxes_iou():
 
     # test bboxes which overlap
     overlapping_bbox = _Bbox(left=10, top=500, right=300, bottom=2000)
-    assert bboxes_iou(basic_bbox, overlapping_bbox) == pytest.approx(
-        0.092, rel=1e-2
-    )
+    assert bboxes_iou(basic_bbox, overlapping_bbox) == pytest.approx(0.092, rel=1e-2)

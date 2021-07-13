@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#coding=utf-8
+# coding=utf-8
 """****************************************************************************
 Copyright (c) 2013 cocos2d-x.org
 
@@ -29,6 +29,7 @@ import sys
 import re
 import json
 
+
 class CocosFileList:
     """
     Function:
@@ -37,15 +38,25 @@ class CocosFileList:
     """
 
     def __init__(self):
-        self.excludeConfig=[]
-        self.inludeConfig=[]
+        self.excludeConfig = []
+        self.inludeConfig = []
         self.rootDir = ""
-        self.fileList_com=[]
-        self.fileList_lua=[]
-        self.fileList_js=[]
+        self.fileList_com = []
+        self.fileList_lua = []
+        self.fileList_js = []
 
-        self.luaPath = ["cocos/scripting/lua-bindings", "external/lua", "tools/bindings-generator", "tools/tolua"]
-        self.jsPath = ["cocos/scripting/js-bindings", "external/spidermonkey", "tools/bindings-generator", "tools/tojs" ]
+        self.luaPath = [
+            "cocos/scripting/lua-bindings",
+            "external/lua",
+            "tools/bindings-generator",
+            "tools/tolua",
+        ]
+        self.jsPath = [
+            "cocos/scripting/js-bindings",
+            "external/spidermonkey",
+            "tools/bindings-generator",
+            "tools/tojs",
+        ]
 
     def readIngoreFile(self, fileName):
         """
@@ -53,7 +64,7 @@ class CocosFileList:
         """
         pfile = ""
         try:
-            pfile = open(fileName, 'r')
+            pfile = open(fileName, "r")
         except IOError:
             return
 
@@ -62,10 +73,10 @@ class CocosFileList:
             if not line or line[0] == "#":
                 continue
 
-            #convert .gitingore regular expression to python's regular expression
-            line=line.replace('.', '\\.')
-            line=line.replace('*', '.*')
-            line="%s$" %line
+            # convert .gitingore regular expression to python's regular expression
+            line = line.replace(".", "\\.")
+            line = line.replace("*", ".*")
+            line = "%s$" % line
             if line[0] == "!":
                 self.inludeConfig.append(line[1:])
             else:
@@ -81,53 +92,49 @@ class CocosFileList:
         """
         for item in os.listdir(folderdir):
             path = os.path.join(folderdir, item)
-            relativePath = path[len(self.rootDir)+1:len(path)]
-            relativePath = relativePath.replace('\\', '/')
+            relativePath = path[len(self.rootDir) + 1 : len(path)]
+            relativePath = relativePath.replace("\\", "/")
             if os.path.isdir(path):
                 if (
-                      self.__bInclude("/%s" %relativePath) or
-                      self.__bInclude("/%s/" %relativePath) or
-                      self.__bInclude(item) or
-                      self.__bInclude("%s/" %item)
-                    ):
-                        foundLuaModule = False
-                        for luaPath in self.luaPath:
-                            if relativePath.upper().find(luaPath.upper()) == 0:
-                                foundLuaModule = True
-                                break
+                    self.__bInclude("/%s" % relativePath)
+                    or self.__bInclude("/%s/" % relativePath)
+                    or self.__bInclude(item)
+                    or self.__bInclude("%s/" % item)
+                ):
+                    foundLuaModule = False
+                    for luaPath in self.luaPath:
+                        if relativePath.upper().find(luaPath.upper()) == 0:
+                            foundLuaModule = True
+                            break
 
-                        foundJSModule = False
-                        for jsPath in self.jsPath:
-                            if relativePath.upper().find(jsPath.upper()) == 0:
-                                foundJSModule = True
-                                break
+                    foundJSModule = False
+                    for jsPath in self.jsPath:
+                        if relativePath.upper().find(jsPath.upper()) == 0:
+                            foundJSModule = True
+                            break
 
-                        if foundLuaModule:
-                            self.fileList_lua.append("%s/" %relativePath)
-                        elif foundJSModule:
-                            self.fileList_js.append("%s/" %relativePath)
-                        else:
-                            self.fileList_com.append("%s/" %relativePath)
-                        self.__parseFileList(path)
-                        continue
+                    if foundLuaModule:
+                        self.fileList_lua.append("%s/" % relativePath)
+                    elif foundJSModule:
+                        self.fileList_js.append("%s/" % relativePath)
+                    else:
+                        self.fileList_com.append("%s/" % relativePath)
+                    self.__parseFileList(path)
+                    continue
                 if (
-                     self.__bExclude("/%s" %relativePath) or
-                     self.__bExclude("/%s/" %relativePath) or
-                     self.__bExclude(item) or
-                     self.__bExclude("%s/" %item)
-                    ):
-                        continue
+                    self.__bExclude("/%s" % relativePath)
+                    or self.__bExclude("/%s/" % relativePath)
+                    or self.__bExclude(item)
+                    or self.__bExclude("%s/" % item)
+                ):
+                    continue
                 self.__parseFileList(path)
             else:
-                if (
-                    not self.__bInclude("/%s" %relativePath) and
-                    not self.__bInclude(item)
-                    ):
-                        if (
-                            self.__bExclude("/%s" %relativePath) or
-                            self.__bExclude(item)
-                        ):
-                            continue
+                if not self.__bInclude("/%s" % relativePath) and not self.__bInclude(
+                    item
+                ):
+                    if self.__bExclude("/%s" % relativePath) or self.__bExclude(item):
+                        continue
                 # print(relativePath)
                 foundLuaModule = False
                 for luaPath in self.luaPath:
@@ -164,29 +171,37 @@ class CocosFileList:
                 break
         return binclude
 
-    def writeFileList(self,fileName):
+    def writeFileList(self, fileName):
         """
             Save content to file with json format.
         """
-        f = open(fileName,"w")
+        f = open(fileName, "w")
         self.fileList_com.sort()
         self.fileList_lua.sort()
         self.fileList_js.sort()
-        content ={'common':self.fileList_com,'lua':self.fileList_lua,'js':self.fileList_js}
-        json.dump(content,f,sort_keys=True,indent=4)
+        content = {
+            "common": self.fileList_com,
+            "lua": self.fileList_lua,
+            "js": self.fileList_js,
+        }
+        json.dump(content, f, sort_keys=True, indent=4)
         f.close()
         return True
 
-# ------------ main --------------
-if __name__ == '__main__':
 
-    cocos_root =os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-    cocos_file_path =os.path.abspath(os.path.join(cocos_root, "templates", "cocos2dx_files.json"))
-    cocos_file_ingore =os.path.abspath(os.path.join(os.path.dirname(__file__), "config.gitingore"))
+# ------------ main --------------
+if __name__ == "__main__":
+
+    cocos_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+    cocos_file_path = os.path.abspath(
+        os.path.join(cocos_root, "templates", "cocos2dx_files.json")
+    )
+    cocos_file_ingore = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "config.gitingore")
+    )
     # print ("begin list files")
     cocosObj = CocosFileList()
     cocosObj.readIngoreFile(cocos_file_ingore)
     cocosObj.parseFileList(cocos_root)
     cocosObj.writeFileList(cocos_file_path)
     # print ("had list files to cocos_file_list.json")
-

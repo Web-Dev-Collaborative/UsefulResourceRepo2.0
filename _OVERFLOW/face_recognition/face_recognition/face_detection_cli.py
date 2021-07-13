@@ -45,10 +45,7 @@ def process_images_in_process_pool(images_to_check, number_of_cpus, model):
 
     pool = context.Pool(processes=processes)
 
-    function_parameters = zip(
-        images_to_check,
-        itertools.repeat(model),
-    )
+    function_parameters = zip(images_to_check, itertools.repeat(model))
 
     pool.starmap(test_image, function_parameters)
 

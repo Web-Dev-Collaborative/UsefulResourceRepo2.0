@@ -1,4 +1,4 @@
-names = ['Christopher', 'Susan']
+names = ["Christopher", "Susan"]
 scores = []
 scores.append(98)
 scores.append(99)

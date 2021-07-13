@@ -9,10 +9,7 @@ from .references.evaluate import evaluate_with_query_set
 
 
 def vector_distance(
-    vec1: np.ndarray,
-    vec2: np.ndarray,
-    method: str = "l2",
-    l2_normalize: bool = True,
+    vec1: np.ndarray, vec2: np.ndarray, method: str = "l2", l2_normalize: bool = True
 ) -> float:
     """Computes the distance between 2 vectors
     Inspired by https://github.com/Azure/ImageSimilarityUsingCntk=

@@ -27,9 +27,7 @@ setup(
     author="Adam Geitgey",
     author_email="ageitgey@gmail.com",
     url="https://github.com/ageitgey/face_recognition",
-    packages=[
-        "face_recognition",
-    ],
+    packages=["face_recognition"],
     package_dir={"face_recognition": "face_recognition"},
     package_data={"face_recognition": ["models/*.dat"]},
     entry_points={

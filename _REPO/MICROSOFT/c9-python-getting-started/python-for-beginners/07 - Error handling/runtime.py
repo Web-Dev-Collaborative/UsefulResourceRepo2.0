@@ -4,8 +4,8 @@ try:
     print(x / y)
 except ZeroDivisionError as e:
     # Optionally, log e somewhere
-    print('Sorry, something went wrong')
+    print("Sorry, something went wrong")
 except:
-    print('Something really went wrong')
+    print("Something really went wrong")
 finally:
-    print('This always runs on success or failure')
+    print("This always runs on success or failure")

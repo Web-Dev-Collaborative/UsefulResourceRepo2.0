@@ -8,9 +8,7 @@ from prompt_toolkit import print_formatted_text, HTML
 
 
 # variables
-UBUNTU_DSVM_IMAGE = (
-    "microsoft-dsvm:linux-data-science-vm-ubuntu:linuxdsvmubuntu:latest"
-)
+UBUNTU_DSVM_IMAGE = "microsoft-dsvm:linux-data-science-vm-ubuntu:linuxdsvmubuntu:latest"
 vm_options = dict(
     gpu=dict(size="Standard_NC6s_v3", family="NCSv3", cores=6),
     cpu=dict(size="Standard_DS3_v2", family="DSv2", cores=4),
@@ -28,8 +26,7 @@ provision_vm_cmd = (
     "--admin-username {} --admin-password {} --authentication-type password"
 )
 vm_ip_cmd = (
-    "az vm show -d --resource-group {}-rg --name {} "
-    '--query "publicIps" -o json'
+    "az vm show -d --resource-group {}-rg --name {} " '--query "publicIps" -o json'
 )
 quota_cmd = (
     "az vm list-usage --location {} --query "
@@ -37,8 +34,7 @@ quota_cmd = (
 )
 
 install_repo_cmd = (
-    "az vm run-command invoke -g {}-rg -n {} "
-    "--command-id RunShellScript --scripts"
+    "az vm run-command invoke -g {}-rg -n {} " "--command-id RunShellScript --scripts"
 )
 
 # install repo invoke script
@@ -99,9 +95,7 @@ def validate_password(password: str) -> bool:
 
     if len([c for c in password if c.isdigit()]) <= 0:
         print_formatted_text(
-            HTML(
-                "<ansired>Input must contain a digit. Please try again.</ansired>"
-            )
+            HTML("<ansired>Input must contain a digit. Please try again.</ansired>")
         )
         return False
 
@@ -176,9 +170,7 @@ def prompt_subscription_id() -> str:
     """ Prompt for subscription id. """
     subscription_id = None
     subscription_is_valid = False
-    results = subprocess.run(
-        sub_id_list_cmd.split(" "), stdout=subprocess.PIPE
-    )
+    results = subprocess.run(sub_id_list_cmd.split(" "), stdout=subprocess.PIPE)
     subscription_ids = results.stdout.decode("utf-8").strip().split("\n")
     while not subscription_is_valid:
         subscription_id = prompt(
@@ -203,9 +195,7 @@ def prompt_vm_name() -> str:
     vm_name = None
     vm_name_is_valid = False
     while not vm_name_is_valid:
-        vm_name = prompt(
-            f"Enter a name for your vm (ex. 'cv-datascience-vm'): "
-        )
+        vm_name = prompt(f"Enter a name for your vm (ex. 'cv-datascience-vm'): ")
         vm_name_is_valid = validate_vm_name(vm_name)
     return vm_name
 
@@ -214,9 +204,7 @@ def prompt_region() -> str:
     """ Prompt for region. """
     region = None
     region_is_valid = False
-    results = subprocess.run(
-        region_list_cmd.split(" "), stdout=subprocess.PIPE
-    )
+    results = subprocess.run(region_list_cmd.split(" "), stdout=subprocess.PIPE)
     valid_regions = results.stdout.decode("utf-8").strip().split("\n")
     while not region_is_valid:
         region = prompt(f"Enter a region for your vm (ex. 'eastus'): ")
@@ -267,9 +255,7 @@ def prompt_password() -> str:
         if not validate_password(password):
             continue
 
-        password_match = prompt(
-            "Enter your password again: ", is_password=True
-        )
+        password_match = prompt("Enter your password again: ", is_password=True)
         if password == password_match:
             password_is_valid = True
         else:
@@ -288,10 +274,7 @@ def prompt_password() -> str:
 def prompt_use_gpu() -> str:
     """ Prompt for GPU or CPU. """
     return yes_no_prompter(
-        (
-            "Do you want to use a GPU-enabled VM (It will incur a "
-            "higher cost) [y/n]: "
-        )
+        ("Do you want to use a GPU-enabled VM (It will incur a " "higher cost) [y/n]: ")
     )
 
 
@@ -379,9 +362,7 @@ def check_az_cli_installed():
 def check_logged_in() -> bool:
     print("Checking to see if you are logged in...")
     results = subprocess.run(
-        account_list_cmd.split(" "),
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
+        account_list_cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE
     )
     return False if "az login" in str(results.stderr) else True
 
@@ -392,20 +373,13 @@ def log_in(logged_in: bool):
         print("\n")
     else:
         print_formatted_text(
-            HTML(
-                (
-                    "<ansigreen>Looks like you're already logged "
-                    "in.</ansigreen>\n"
-                )
-            )
+            HTML(("<ansigreen>Looks like you're already logged " "in.</ansigreen>\n"))
         )
 
 
 def show_accounts():
     print("Here is a list of your subscriptions:")
-    results = subprocess.run(
-        account_list_cmd.split(" "), stdout=subprocess.PIPE
-    )
+    results = subprocess.run(account_list_cmd.split(" "), stdout=subprocess.PIPE)
     print_formatted_text(
         HTML(f"<ansigreen>{results.stdout.decode('utf-8')}</ansigreen>")
     )
@@ -468,12 +442,7 @@ def create_vm(vm_name: str, vm: dict, username: str, password: str):
     )
     subprocess.run(
         provision_vm_cmd.format(
-            f"{vm_name}-rg",
-            vm_name,
-            vm["size"],
-            UBUNTU_DSVM_IMAGE,
-            username,
-            password,
+            f"{vm_name}-rg", vm_name, vm["size"], UBUNTU_DSVM_IMAGE, username, password
         ).split(" "),
         stdout=subprocess.PIPE,
     )
@@ -488,16 +457,12 @@ def get_vm_ip(vm_name: str) -> str:
 
     vm_ip = results.stdout.decode("utf-8").strip().strip('"')
     if len(vm_ip) > 0:
-        print_formatted_text(
-            HTML("<ansigreen>VM creation succeeded.</ansigreen>\n")
-        )
+        print_formatted_text(HTML("<ansigreen>VM creation succeeded.</ansigreen>\n"))
     return vm_ip
 
 
 def install_repo(username: str, password: str, vm_ip: str, vm_name: str):
-    print_formatted_text(
-        HTML("<ansiyellow>Setting up your machine...</ansiyellow>")
-    )
+    print_formatted_text(HTML("<ansiyellow>Setting up your machine...</ansiyellow>"))
     invoke_cmd = install_repo_cmd.format(vm_name, vm_name)
     cmds = invoke_cmd.split(" ")
     cmds.append(

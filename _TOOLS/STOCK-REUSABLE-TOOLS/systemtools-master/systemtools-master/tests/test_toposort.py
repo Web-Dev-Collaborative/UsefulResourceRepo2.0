@@ -100,12 +100,7 @@ class TestTopologicalSort(object):
         assert "F" not in sorted
 
         # Check that all values are present in sorted list.
-        for v in (
-            "B",
-            "C",
-            "D",
-            "E",
-        ):
+        for v in ("B", "C", "D", "E"):
             assert v in sorted
 
     def test_exhaustive_topo_sort(self):

@@ -39,12 +39,12 @@ def test_11_notebook_run(segmentation_notebooks, tiny_seg_data_path):
         OUTPUT_NOTEBOOK,
         parameters=dict(
             PM_VERSION=pm.__version__,
-            REPS = 1,
+            REPS=1,
             EPOCHS=[1],
             IM_SIZE=[50],
-            LEARNING_RATES = [1e-4],
-            DATA_PATH=[tiny_seg_data_path]
-            ),
+            LEARNING_RATES=[1e-4],
+            DATA_PATH=[tiny_seg_data_path],
+        ),
         kernel_name=KERNEL_NAME,
     )
 

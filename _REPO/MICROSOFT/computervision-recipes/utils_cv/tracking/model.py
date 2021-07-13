@@ -23,11 +23,7 @@ from .dataset import TrackingDataset, boxes_to_mot
 from .opts import opts
 
 from .references.fairmot.datasets.dataset.jde import LoadImages, LoadVideo
-from .references.fairmot.models.model import (
-    create_model,
-    load_model,
-    save_model,
-)
+from .references.fairmot.models.model import create_model, load_model, save_model
 from .references.fairmot.tracker.multitracker import JDETracker
 from .references.fairmot.tracking_utils.evaluation import Evaluator
 from .references.fairmot.trains.train_factory import train_factory
@@ -109,9 +105,7 @@ def mot_summary(accumulators: list, exp_names: list) -> str:
 
     summary = Evaluator.get_summary(accumulators, exp_names, metrics)
     strsummary = mm.io.render_summary(
-        summary,
-        formatters=mh.formatters,
-        namemap=mm.io.motchallenge_metric_names,
+        summary, formatters=mh.formatters, namemap=mm.io.motchallenge_metric_names
     )
 
     return strsummary
@@ -158,9 +152,7 @@ class TrackingLearner(object):
         """
         if not model_path:
             model_path = osp.join(self.opt.root_dir, "models", "all_dla34.pth")
-        assert osp.isfile(
-            model_path
-        ), f"Model weights not found at {model_path}"
+        assert osp.isfile(model_path), f"Model weights not found at {model_path}"
 
         self.opt.load_model = model_path
 
@@ -190,16 +182,14 @@ class TrackingLearner(object):
         self.opt.lr = lr
         self.opt.lr_step = lr_step
         self.opt.num_epochs = num_epochs
-        opt = deepcopy(self.opt)  #to avoid fairMOT over-writing opt
+        opt = deepcopy(self.opt)  # to avoid fairMOT over-writing opt
 
         # update dataset options
         opt.update_dataset_info_and_set_heads(self.dataset.train_data)
 
         # initialize dataloader
         train_loader = self.dataset.train_dl
-        self.model = create_model(
-            opt.arch, opt.heads, opt.head_conv
-        )
+        self.model = create_model(opt.arch, opt.heads, opt.head_conv)
         self.model = load_model(self.model, opt.load_model)
         self.optimizer = torch.optim.Adam(self.model.parameters(), opt.lr)
         start_epoch = 0
@@ -212,14 +202,8 @@ class TrackingLearner(object):
         self.losses_dict = defaultdict(list)
 
         # training loop
-        for epoch in range(
-            start_epoch + 1, start_epoch + opt.num_epochs + 1
-        ):
-            print(
-                "=" * 5,
-                f" Epoch: {epoch}/{start_epoch + opt.num_epochs} ",
-                "=" * 5,
-            )
+        for epoch in range(start_epoch + 1, start_epoch + opt.num_epochs + 1):
+            print("=" * 5, f" Epoch: {epoch}/{start_epoch + opt.num_epochs} ", "=" * 5)
             self.epoch = epoch
             log_dict_train, _ = trainer.train(epoch, train_loader)
             for k, v in log_dict_train.items():
@@ -335,8 +319,7 @@ class TrackingLearner(object):
             # frame_rate is set from seqinfo.ini by frameRate
             frame_rate = int(
                 meta_info[
-                    meta_info.find("frameRate")
-                    + 10 : meta_info.find("\nseqLength")
+                    meta_info.find("frameRate") + 10 : meta_info.find("\nseqLength")
                 ]
             )
 
@@ -393,7 +376,7 @@ class TrackingLearner(object):
         self.opt.conf_thres = conf_thres
         self.opt.track_buffer = track_buffer
         self.opt.min_box_area = min_box_area
-        opt = deepcopy(self.opt)  #to avoid fairMOT over-writing opt
+        opt = deepcopy(self.opt)  # to avoid fairMOT over-writing opt
 
         # initialize tracker
         tracker = JDETracker(opt, frame_rate=frame_rate, model=self.model)
@@ -414,9 +397,7 @@ class TrackingLearner(object):
                 tid = t.track_id
                 vertical = tlwh[2] / tlwh[3] > 1.6
                 if tlwh[2] * tlwh[3] > opt.min_box_area and not vertical:
-                    bb = TrackingBbox(
-                        tlbr[0], tlbr[1], tlbr[2], tlbr[3], frame_id, tid
-                    )
+                    bb = TrackingBbox(tlbr[0], tlbr[1], tlbr[2], tlbr[3], frame_id, tid)
                     online_bboxes.append(bb)
             out[frame_id] = online_bboxes
             frame_id += 1

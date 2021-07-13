@@ -1,4 +1,4 @@
-person = {'first': 'Christopher'}
-person['last'] = 'Harrison'
+person = {"first": "Christopher"}
+person["last"] = "Harrison"
 print(person)
-print(person['first'])
+print(person["first"])

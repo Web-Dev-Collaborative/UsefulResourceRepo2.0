@@ -13,18 +13,20 @@ import random
 import math
 import csv
 
+
 def output_split(labels_list, output_file):
-    with open(output_file, 'a') as f:
+    with open(output_file, "a") as f:
         for label in labels_list:
-            f.write("\""+label[0]+"\""+" "+label[1]+"\n")
+            f.write('"' + label[0] + '"' + " " + label[1] + "\n")
+
 
 def main(
-        label_filepath,
-        train_proportion,
-        num_negatives_set,
-        num_negatives_test,
-        negative_label_id,
-    ):
+    label_filepath,
+    train_proportion,
+    num_negatives_set,
+    num_negatives_test,
+    negative_label_id,
+):
 
     labels = {}
     num_negative = 0
@@ -42,7 +44,9 @@ def main(
 
     if num_negatives_set:
         if num_negatives_set + num_negatives_test > num_negative:
-            raise Exception("Number of examples for negative candidate set and test set exceed number of negative examples")
+            raise Exception(
+                "Number of examples for negative candidate set and test set exceed number of negative examples"
+            )
 
         negative_label_ids = {}
         negative_test_labels = {}
@@ -53,34 +57,38 @@ def main(
             if (v == str(negative_label_id)) & (negatives_sampled < num_negatives_set):
                 negative_label_ids[k] = v
                 negatives_sampled += 1
-            elif (v == str(negative_label_id)) & (negatives_test_sampled < num_negatives_test):
+            elif (v == str(negative_label_id)) & (
+                negatives_test_sampled < num_negatives_test
+            ):
                 negative_test_labels[k] = v
                 negatives_test_sampled += 1
             else:
                 train_val_labels[k] = v
 
-        negatives_samples = random.sample(negative_label_ids.items(), k=len(negative_label_ids))
+        negatives_samples = random.sample(
+            negative_label_ids.items(), k=len(negative_label_ids)
+        )
         output_split(negatives_samples, "neg_set.txt")
-        negatives_test_samples = random.sample(negative_test_labels.items(), k=len(negative_test_labels))
+        negatives_test_samples = random.sample(
+            negative_test_labels.items(), k=len(negative_test_labels)
+        )
         output_split(negatives_test_samples, "neg_test.txt")
     else:
         train_val_labels = labels
 
     samples = random.sample(train_val_labels.items(), k=len(train_val_labels))
-    split_point = math.floor(train_proportion*len(samples))
+    split_point = math.floor(train_proportion * len(samples))
     train = samples[:split_point]
-    val = samples[(split_point+1):]
+    val = samples[(split_point + 1) :]
 
     output_split(train, "train.txt")
     output_split(val, "val.txt")
-    
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--label_filepath",
-        help="Path to the label file",
-        required=True,
+        "--label_filepath", help="Path to the label file", required=True
     )
     parser.add_argument(
         "--train_proportion",
@@ -101,8 +109,7 @@ if __name__ == "__main__":
         default=0,
     )
     parser.add_argument(
-        "--negative_label_id",
-        help="Label of the negative class if applicable"
+        "--negative_label_id", help="Label of the negative class if applicable"
     )
     args = parser.parse_args()
 
@@ -111,6 +118,5 @@ if __name__ == "__main__":
         train_proportion=args.train_proportion,
         num_negatives_set=args.num_negatives_set,
         num_negatives_test=args.num_negatives_test,
-        negative_label_id=args.negative_label_id
+        negative_label_id=args.negative_label_id,
     )
-

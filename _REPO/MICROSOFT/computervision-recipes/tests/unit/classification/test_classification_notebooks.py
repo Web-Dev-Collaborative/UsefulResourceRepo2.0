@@ -38,10 +38,7 @@ def test_01_notebook_run(classification_notebooks, tiny_ic_data_path):
         notebook_path,
         OUTPUT_NOTEBOOK,
         parameters=dict(
-            PM_VERSION=pm.__version__,
-            DATA_PATH=tiny_ic_data_path,
-            EPOCHS=1,
-            IM_SIZE=50,
+            PM_VERSION=pm.__version__, DATA_PATH=tiny_ic_data_path, EPOCHS=1, IM_SIZE=50
         ),
         kernel_name=KERNEL_NAME,
     )
@@ -98,8 +95,7 @@ def test_10_notebook_run(classification_notebooks, tiny_ic_data_path):
         notebook_path,
         OUTPUT_NOTEBOOK,
         parameters=dict(
-            PM_VERSION=pm.__version__,
-            IM_DIR=os.path.join(tiny_ic_data_path, "can"),
+            PM_VERSION=pm.__version__, IM_DIR=os.path.join(tiny_ic_data_path, "can")
         ),
         kernel_name=KERNEL_NAME,
     )

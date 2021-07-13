@@ -33,9 +33,7 @@ from ..common.gpu import torch_device
 
 
 def _extract_od_results(
-    pred: Dict[str, np.ndarray],
-    labels: List[str],
-    im_path: Union[str, Path] = None,
+    pred: Dict[str, np.ndarray], labels: List[str], im_path: Union[str, Path] = None
 ) -> Dict:
     """ Gets the bounding boxes, masks and keypoints from the prediction object.
 
@@ -56,11 +54,7 @@ def _extract_od_results(
     for label, box, score in zip(pred_labels, pred_boxes, pred_scores):
         label_name = labels[label - 1]
         det_bbox = DetectionBbox.from_array(
-            box,
-            score=score,
-            label_idx=label,
-            label_name=label_name,
-            im_path=im_path,
+            box, score=score, label_idx=label, label_name=label_name, im_path=im_path
         )
         det_bboxes.append(det_bbox)
 
@@ -160,9 +154,7 @@ def _tune_mask_predictor(model: nn.Module, num_classes: int) -> nn.Module:
     # get the number of input features of mask predictor from the pretrained model
     in_features = model.roi_heads.mask_predictor.conv5_mask.in_channels
     # replace the mask predictor with a new one
-    model.roi_heads.mask_predictor = MaskRCNNPredictor(
-        in_features, 256, num_classes
-    )
+    model.roi_heads.mask_predictor = MaskRCNNPredictor(in_features, 256, num_classes)
     return model
 
 
@@ -245,9 +237,7 @@ def get_pretrained_keypointrcnn(
     # tune keypoints predictor in the model
     if num_keypoints:
         # get the number of input features of keypoint predictor from the pretrained model
-        in_features = (
-            model.roi_heads.keypoint_predictor.kps_score_lowres.in_channels
-        )
+        in_features = model.roi_heads.keypoint_predictor.kps_score_lowres.in_channels
         # replace the keypoint predictor with a new one
         model.roi_heads.keypoint_predictor = KeypointRCNNPredictor(
             in_features, num_keypoints
@@ -257,9 +247,9 @@ def get_pretrained_keypointrcnn(
 
 
 def _calculate_ap(
-    e: CocoEvaluator, 
+    e: CocoEvaluator,
     iou_thres: float = None,
-    area_range: str ='all',
+    area_range: str = "all",
     max_detections: int = 100,
     mode: int = 1,
 ) -> Dict[str, float]:
@@ -273,7 +263,13 @@ def _calculate_ap(
     """
     ap = {}
     for key in e.coco_eval:
-        ap[key] = compute_ap(e.coco_eval[key], iouThr=iou_thres, areaRng=area_range, maxDets=max_detections, ap=mode)
+        ap[key] = compute_ap(
+            e.coco_eval[key],
+            iouThr=iou_thres,
+            areaRng=area_range,
+            maxDets=max_detections,
+            ap=mode,
+        )
 
     return ap
 
@@ -287,9 +283,7 @@ def _im_eval_detections(
     """ Count number of wrong detections and number of missed objects for a single image """
     # Remove all detections with confidence score below a certain threshold
     if score_threshold is not None:
-        det_bboxes = [
-            bbox for bbox in det_bboxes if bbox.score > score_threshold
-        ]
+        det_bboxes = [bbox for bbox in det_bboxes if bbox.score > score_threshold]
 
     # Image level statistics.
     # Store (i) if image has at least one missing ground truth; (ii) if image has at least one incorrect detection.
@@ -344,18 +338,13 @@ def ims_eval_detections(
 
     # get detection bounding boxes and corresponding ground truth for all images
     det_bboxes_list = [d["det_bboxes"] for d in detections]
-    gt_bboxes_list = [
-        data_ds.dataset.anno_bboxes[d["idx"]] for d in detections
-    ]
+    gt_bboxes_list = [data_ds.dataset.anno_bboxes[d["idx"]] for d in detections]
 
     # Get counts for test images
     out = [
         [
             _im_eval_detections(
-                iou_threshold,
-                score_threshold,
-                gt_bboxes_list[i],
-                det_bboxes_list[i],
+                iou_threshold, score_threshold, gt_bboxes_list[i], det_bboxes_list[i]
             )
             for i in range(len(det_bboxes_list))
         ]
@@ -372,9 +361,7 @@ def ims_eval_detections(
 
     # Get counts for negative images
     if detections_neg:
-        neg_scores = [
-            [box.score for box in d["det_bboxes"]] for d in detections_neg
-        ]
+        neg_scores = [[box.score for box in d["det_bboxes"]] for d in detections_neg]
         neg_scores = [scores for scores in neg_scores if scores != []]
         im_neg_det_counts = [
             np.sum([np.max(scores) > thres for scores in neg_scores])
@@ -385,9 +372,7 @@ def ims_eval_detections(
             for thres in score_thresholds
         ]
         assert (
-            len(im_neg_det_counts)
-            == len(obj_neg_det_counts)
-            == len(score_thresholds)
+            len(im_neg_det_counts) == len(obj_neg_det_counts) == len(score_thresholds)
         )
 
     else:
@@ -470,9 +455,7 @@ class DetectionLearner:
         # setup model, default to fasterrcnn
         if self.model is None:
             self.model = get_pretrained_fasterrcnn(
-                len(self.labels) + 1,
-                min_size=self.im_size,
-                max_size=self.im_size,
+                len(self.labels) + 1, min_size=self.im_size, max_size=self.im_size
             )
 
         self.model.to(self.device)
@@ -481,9 +464,7 @@ class DetectionLearner:
         if attr in self.__dict__:
             return self.__dict__[attr]
         raise AttributeError(
-            "'{}' object has no attribute '{}'".format(
-                type(self).__name__, attr
-            )
+            "'{}' object has no attribute '{}'".format(type(self).__name__, attr)
         )
 
     def fit(
@@ -544,13 +525,9 @@ class DetectionLearner:
             if not skip_evaluation:
                 e = self.evaluate(dl=self.dataset.test_dl)
                 self.ap.append(_calculate_ap(e))
-                self.ap_iou_point_5.append(
-                    _calculate_ap(e)
-                )
+                self.ap_iou_point_5.append(_calculate_ap(e))
 
-    def plot_precision_loss_curves(
-        self, figsize: Tuple[int, int] = (10, 5)
-    ) -> None:
+    def plot_precision_loss_curves(self, figsize: Tuple[int, int] = (10, 5)) -> None:
         """ Plot training loss from calling `fit` and average precision on the
         test set. """
         fig = plt.figure(figsize=figsize)
@@ -676,9 +653,7 @@ class DetectionLearner:
 
             yield results
 
-    def save(
-        self, name: str, path: str = None, overwrite: bool = True
-    ) -> None:
+    def save(self, name: str, path: str = None, overwrite: bool = True) -> None:
         """ Saves the model
 
         Save your model in the following format:
@@ -766,15 +741,11 @@ class DetectionLearner:
 
             pt_path = model_path / "model.pt"
             if not pt_path.exists():
-                raise Exception(
-                    f"No model file named model.pt exists in {model_path}"
-                )
+                raise Exception(f"No model file named model.pt exists in {model_path}")
 
             meta_path = model_path / "meta.json"
             if not meta_path.exists():
-                raise Exception(
-                    f"No model file named meta.txt exists in {model_path}"
-                )
+                raise Exception(f"No model file named meta.txt exists in {model_path}")
 
         # if no name is given, we assume there is only one model, otherwise we
         # throw an error
@@ -795,9 +766,7 @@ class DetectionLearner:
                 meta_path = Path(models[0]) / "meta.json"
 
         # load into model
-        self.model.load_state_dict(
-            torch.load(pt_path, map_location=torch_device())
-        )
+        self.model.load_state_dict(torch.load(pt_path, map_location=torch_device()))
 
         # load meta info
         with open(meta_path, "r") as meta_file:
@@ -805,7 +774,9 @@ class DetectionLearner:
             self.labels = meta_data["labels"]
 
     @classmethod
-    def from_saved_model(cls, name: str, path: str, mask: bool = False) -> "DetectionLearner":
+    def from_saved_model(
+        cls, name: str, path: str, mask: bool = False
+    ) -> "DetectionLearner":
         """ Create an instance of the DetectionLearner from a saved model.
 
         This function expects the format that is outputted in the `save`
@@ -832,11 +803,11 @@ class DetectionLearner:
 
         if mask:
             model = get_pretrained_maskrcnn(
-            len(labels) + 1, min_size=im_size, max_size=im_size
+                len(labels) + 1, min_size=im_size, max_size=im_size
             )
         else:
             model = get_pretrained_fasterrcnn(
-            len(labels) + 1, min_size=im_size, max_size=im_size
+                len(labels) + 1, min_size=im_size, max_size=im_size
             )
 
         detection_learner = DetectionLearner(model=model, labels=labels)

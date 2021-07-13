@@ -14,9 +14,9 @@ def test_comparative_set_builder(tiny_ic_databunch):
     assert len(comparative_sets) == 20
     for cs in comparative_sets:
         assert len(cs.neg_im_paths) == 50
-        neg_and_pos_label_identical = np.where(
-            np.array(cs.neg_labels) == cs.pos_label
-        )[0]
+        neg_and_pos_label_identical = np.where(np.array(cs.neg_labels) == cs.pos_label)[
+            0
+        ]
         assert (
             len(neg_and_pos_label_identical) == 0
         ), "Negative contains at least one image with same label as the positive"

@@ -97,9 +97,7 @@ def get_transforms(train: bool = True, tfms_config: Config = None) -> Trans:
     # 1. resize
     tfms = [
         transforms.ToTensorVideo(),
-        transforms.ResizeVideo(
-            tfms_config.im_scale, tfms_config.resize_keep_ratio
-        ),
+        transforms.ResizeVideo(tfms_config.im_scale, tfms_config.resize_keep_ratio),
     ]
 
     # 2. crop
@@ -207,16 +205,11 @@ class VideoDataset:
 
         if train_split_file:
             assert Path(train_split_file).exists()
-            assert (
-                test_split_file is not None and Path(test_split_file).exists()
-            )
+            assert test_split_file is not None and Path(test_split_file).exists()
 
         if test_split_file:
             assert Path(test_split_file).exists()
-            assert (
-                train_split_file is not None
-                and Path(train_split_file).exists()
-            )
+            assert train_split_file is not None and Path(train_split_file).exists()
 
         self.root = root
         self.seed = seed
@@ -236,8 +229,7 @@ class VideoDataset:
         # create training and validation datasets
         self.train_ds, self.test_ds = (
             self.split_with_file(
-                train_split_file=train_split_file,
-                test_split_file=test_split_file,
+                train_split_file=train_split_file, test_split_file=test_split_file
             )
             if train_split_file
             else self.split_by_folder(train_pct=train_pct)
@@ -246,9 +238,7 @@ class VideoDataset:
         # initialize dataloaders
         self.init_data_loaders()
 
-    def split_by_folder(
-        self, train_pct: float = 0.8
-    ) -> Tuple[Dataset, Dataset]:
+    def split_by_folder(self, train_pct: float = 0.8) -> Tuple[Dataset, Dataset]:
         """ Split this dataset into a training and testing set based on the
         folders that the videos are in.
 
@@ -313,9 +303,7 @@ class VideoDataset:
         return self.split_train_test(train_range, test_range)
 
     def split_with_file(
-        self,
-        train_split_file: Union[Path, str],
-        test_split_file: Union[Path, str],
+        self, train_split_file: Union[Path, str], test_split_file: Union[Path, str]
     ) -> Tuple[Dataset, Dataset]:
         """ Split this dataset into a training and testing set using a split file.
 
@@ -336,19 +324,13 @@ class VideoDataset:
 
         # add train records
         self.video_records.extend(
-            [
-                VideoRecord(row.strip().split(" "))
-                for row in open(train_split_file)
-            ]
+            [VideoRecord(row.strip().split(" ")) for row in open(train_split_file)]
         )
         train_len = len(self.video_records)
 
         # add validation records
         self.video_records.extend(
-            [
-                VideoRecord(row.strip().split(" "))
-                for row in open(test_split_file)
-            ]
+            [VideoRecord(row.strip().split(" ")) for row in open(test_split_file)]
         )
 
         # create indices
@@ -359,7 +341,7 @@ class VideoDataset:
         return self.split_train_test(train_range, test_range)
 
     def split_train_test(
-        self, train_range: torch.Tensor, test_range: torch.Tensor,
+        self, train_range: torch.Tensor, test_range: torch.Tensor
     ) -> Tuple[Dataset, Dataset]:
         """ Split this dataset into a training and testing set
 
@@ -374,9 +356,7 @@ class VideoDataset:
         train = copy.deepcopy(Subset(self, train_range))
         train.dataset.transforms = self.train_transforms
         train.dataset.sample_step = (
-            self.temporal_jitter_step
-            if self.temporal_jitter
-            else self.sample_step
+            self.temporal_jitter_step if self.temporal_jitter else self.sample_step
         )
         train.dataset.presample_length = self.sample_length * self.sample_step
 
@@ -453,7 +433,7 @@ class VideoDataset:
         return offsets
 
     def _get_frames(
-        self, video_reader: decord.VideoReader, offset: int,
+        self, video_reader: decord.VideoReader, offset: int
     ) -> List[np.ndarray]:
         """ Get frames at sample length.
 
@@ -506,9 +486,7 @@ class VideoDataset:
         """
         record = self.video_records[idx]
         video_reader = decord.VideoReader(
-            "{}.{}".format(
-                os.path.join(self.root, record.path), self.video_ext
-            ),
+            "{}.{}".format(os.path.join(self.root, record.path), self.video_ext),
             # TODO try to add `ctx=decord.ndarray.gpu(0) or .cuda(0)`
         )
         record._num_frames = len(video_reader)
@@ -526,9 +504,7 @@ class VideoDataset:
         else:
             return (
                 # [S, T, H, W, C] -> [S, C, T, H, W]
-                torch.stack(
-                    [self.transforms(torch.from_numpy(c)) for c in clips]
-                ),
+                torch.stack([self.transforms(torch.from_numpy(c)) for c in clips]),
                 record.label,
             )
 
@@ -553,9 +529,7 @@ class VideoDataset:
         batch_size = len(images)
         plt.tight_layout()
         fig, axs = plt.subplots(
-            batch_size,
-            sample_length,
-            figsize=(4 * sample_length, 3 * batch_size),
+            batch_size, sample_length, figsize=(4 * sample_length, 3 * batch_size)
         )
 
         for i, ax in enumerate(axs):
@@ -568,9 +542,7 @@ class VideoDataset:
                 ax = [ax]
             for j, a in enumerate(ax):
                 a.axis("off")
-                a.imshow(
-                    np.moveaxis(denormalize(clip[j], mean, std).numpy(), 0, -1)
-                )
+                a.imshow(np.moveaxis(denormalize(clip[j], mean, std).numpy(), 0, -1))
 
                 # display label/label_name on the first image
                 if j == 0:

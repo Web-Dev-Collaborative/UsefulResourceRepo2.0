@@ -44,13 +44,7 @@ def download(ways):
 
 async def async_downloader(ways, loop, success_files, failure_files):
     async with aiohttp.ClientSession() as session:
-        coroutines = [
-            download_file_by_url(
-                url,
-                session=session,
-            )
-            for url in ways
-        ]
+        coroutines = [download_file_by_url(url, session=session) for url in ways]
 
         for task in asyncio.as_completed(coroutines):
             fail, url = await task

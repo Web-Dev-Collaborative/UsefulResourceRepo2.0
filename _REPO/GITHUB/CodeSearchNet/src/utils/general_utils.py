@@ -4,12 +4,12 @@ import pandas as pd
 
 
 def save_file_pickle(fname: str, obj: Any) -> None:
-    with open(fname, 'wb') as f:
+    with open(fname, "wb") as f:
         pickle.dump(obj, f)
 
 
 def load_file_pickle(fname: str) -> None:
-    with open(fname, 'rb') as f:
+    with open(fname, "rb") as f:
         obj = pickle.load(f)
         return obj
 

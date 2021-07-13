@@ -6,7 +6,7 @@ import os
 import requests
 
 # Constants
-endpoint = 'https://api.github.com/graphql'
+endpoint = "https://api.github.com/graphql"
 
 # ID of the github/github repo
 github_repo_id = "MDEwOlJlcG9zaXRvcnkz"
@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 
 
 def find_open_prs_for_repo(repo_id: str, num_prs: int):
-  """Return data about a specified number of open PRs for a specified repo
+    """Return data about a specified number of open PRs for a specified repo
 
   Arguments:
   repo_id: The node ID of the repo to search
@@ -71,7 +71,7 @@ def find_open_prs_for_repo(repo_id: str, num_prs: int):
   }
   """
 
-  query = """query ($repo_id: ID!, $num_prs: Int!) {
+    query = """query ($repo_id: ID!, $num_prs: Int!) {
     node(id: $repo_id) {
       ... on Repository {
         pullRequests(last: $num_prs, states: OPEN) {
@@ -101,28 +101,26 @@ def find_open_prs_for_repo(repo_id: str, num_prs: int):
   }
   """
 
-  variables = {
-    "repo_id": github_repo_id,
-    "num_prs": num_prs
-  }
+    variables = {"repo_id": github_repo_id, "num_prs": num_prs}
 
-  response = requests.post(
-    endpoint, 
-    json={'query': query, 'variables': variables}, 
-    headers = {'Authorization': f"bearer {os.environ['TOKEN']}"}
+    response = requests.post(
+        endpoint,
+        json={"query": query, "variables": variables},
+        headers={"Authorization": f"bearer {os.environ['TOKEN']}"},
     )
 
-  response.raise_for_status()
+    response.raise_for_status()
 
-  json_response = json.loads(response.text)
+    json_response = json.loads(response.text)
 
-  if 'errors' in json_response:
-    raise RuntimeError(f'Error in GraphQL response: {json_response}')
+    if "errors" in json_response:
+        raise RuntimeError(f"Error in GraphQL response: {json_response}")
 
-  return json_response
+    return json_response
+
 
 def add_prs_to_board(prs_to_add: list, column_id: str):
-  """Adds PRs to a column of a project board
+    """Adds PRs to a column of a project board
 
   Arguments:
   prs_to_add: A list of PR node IDs
@@ -132,9 +130,9 @@ def add_prs_to_board(prs_to_add: list, column_id: str):
   Nothing
   """
 
-  logger.info(f"adding: {prs_to_add}")
+    logger.info(f"adding: {prs_to_add}")
 
-  mutation = """mutation($pr_id: ID!, $column_id: ID!) {
+    mutation = """mutation($pr_id: ID!, $column_id: ID!) {
                   addProjectCard(input:{contentId: $pr_id, projectColumnId: $column_id}) {
                     projectColumn {
                       name
@@ -142,27 +140,25 @@ def add_prs_to_board(prs_to_add: list, column_id: str):
                     }
   }"""
 
-  for pr_id in prs_to_add:
-    logger.info(f"Attempting to add {pr_id} to board")
+    for pr_id in prs_to_add:
+        logger.info(f"Attempting to add {pr_id} to board")
 
-    variables = {
-      "pr_id": pr_id,
-      "column_id": column_id
-    }
+        variables = {"pr_id": pr_id, "column_id": column_id}
 
-    response = requests.post(
-      endpoint, 
-      json={'query': mutation, 'variables': variables},
-      headers = {'Authorization': f"bearer {os.environ['TOKEN']}"}
-    )
+        response = requests.post(
+            endpoint,
+            json={"query": mutation, "variables": variables},
+            headers={"Authorization": f"bearer {os.environ['TOKEN']}"},
+        )
 
-    json_response = json.loads(response.text)
+        json_response = json.loads(response.text)
 
-    if 'errors' in json_response:
-      logger.info(f"GraphQL error when adding {pr_id}: {json_response}")
+        if "errors" in json_response:
+            logger.info(f"GraphQL error when adding {pr_id}: {json_response}")
+
 
 def filter_prs(data, reviewer_id: str, project_id):
-  """Given data about the draft state, reviewers, and project boards for PRs,
+    """Given data about the draft state, reviewers, and project boards for PRs,
   return just the PRs that are:
   - not draft
   - are requesting a review for the specified team
@@ -209,24 +205,34 @@ def filter_prs(data, reviewer_id: str, project_id):
   A list of node IDs of the PRs that met the requirements
   """
 
-  pr_data = data['data']['node']['pullRequests']['nodes']
+    pr_data = data["data"]["node"]["pullRequests"]["nodes"]
 
-  prs_to_add = []
+    prs_to_add = []
 
-  for pr in pr_data:
-    if (
-      not pr['isDraft'] and
-      reviewer_id in [req_rev['requestedReviewer']['id'] for req_rev in pr['reviewRequests']['nodes'] if req_rev['requestedReviewer']] and
-      project_id not in [proj_card['project']['id'] for proj_card in pr['projectCards']['nodes']]
-    ):
-      prs_to_add.append(pr['id'])
-  
-  return prs_to_add
+    for pr in pr_data:
+        if (
+            not pr["isDraft"]
+            and reviewer_id
+            in [
+                req_rev["requestedReviewer"]["id"]
+                for req_rev in pr["reviewRequests"]["nodes"]
+                if req_rev["requestedReviewer"]
+            ]
+            and project_id
+            not in [
+                proj_card["project"]["id"] for proj_card in pr["projectCards"]["nodes"]
+            ]
+        ):
+            prs_to_add.append(pr["id"])
+
+    return prs_to_add
+
 
 def main():
-  query_data = find_open_prs_for_repo(github_repo_id, num_prs_to_search)
-  prs_to_add = filter_prs(query_data, docs_reviewers_id, docs_project_id)
-  add_prs_to_board(prs_to_add, docs_column_id)
+    query_data = find_open_prs_for_repo(github_repo_id, num_prs_to_search)
+    prs_to_add = filter_prs(query_data, docs_reviewers_id, docs_project_id)
+    add_prs_to_board(prs_to_add, docs_column_id)
+
 
 if __name__ == "__main__":
     main()

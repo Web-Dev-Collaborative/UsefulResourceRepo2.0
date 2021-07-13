@@ -50,17 +50,13 @@ def colorise_binary_mask(
     return colored_mask
 
 
-def transparentise_mask(
-    colored_mask: np.ndarray, alpha: float = 0.5
-) -> np.ndarray:
+def transparentise_mask(colored_mask: np.ndarray, alpha: float = 0.5) -> np.ndarray:
     """ Return a mask with fully transparent background and alpha-transparent
     instances.
 
     Assume channel is the third dimension of mask, and no alpha channel.
     """
-    assert (
-        colored_mask.shape[2] == 3
-    ), "'colored_mask' should be of 3-channels RGB."
+    assert colored_mask.shape[2] == 3, "'colored_mask' should be of 3-channels RGB."
     # convert (0, 0, 0) to (0, 0, 0, 0) and
     # all other (x, y, z) to (x, y, z, alpha*255)
     binary_mask = (colored_mask != 0).any(axis=2)

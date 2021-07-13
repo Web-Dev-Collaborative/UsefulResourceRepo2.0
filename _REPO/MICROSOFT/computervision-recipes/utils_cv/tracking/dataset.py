@@ -91,12 +91,8 @@ class TrackingDataset:
         # All annotation files are assumed to be in the anno_dir directory,
         # and images in the im_dir directory
         self.im_filenames = sorted(os.listdir(self.root / self.im_dir))
-        im_paths = [
-            os.path.join(self.root / self.im_dir, s) for s in self.im_filenames
-        ]
-        anno_filenames = [
-            os.path.splitext(s)[0] + ".xml" for s in self.im_filenames
-        ]
+        im_paths = [os.path.join(self.root / self.im_dir, s) for s in self.im_filenames]
+        anno_filenames = [os.path.splitext(s)[0] + ".xml" for s in self.im_filenames]
 
         # Read all annotations
         self.im_paths = []
@@ -147,9 +143,7 @@ class TrackingDataset:
         ):
             im_width = float(im_size[0])
             im_height = float(im_size[1])
-            fairmot_anno_path = os.path.join(
-                fairmot_annos_dir, filename[:-4] + ".txt"
-            )
+            fairmot_anno_path = os.path.join(fairmot_annos_dir, filename[:-4] + ".txt")
 
             with open(fairmot_anno_path, "w") as f:
                 for bbox in bboxes:
@@ -169,9 +163,7 @@ class TrackingDataset:
                     f.write(label_str)
 
         # write all image filenames into a <name>.train file required by FairMOT
-        self.fairmot_imlist_path = osp.join(
-            self.root, "{}.train".format(self.name)
-        )
+        self.fairmot_imlist_path = osp.join(self.root, "{}.train".format(self.name))
         with open(self.fairmot_imlist_path, "w") as f:
             for im_filename in sorted(self.im_filenames):
                 f.write(osp.join(self.im_dir, im_filename) + "\n")
@@ -191,19 +183,10 @@ class TrackingDataset:
 
         def helper(im_paths):
             idx = random.randrange(len(im_paths))
-            detection = {
-                "idx": idx,
-                "im_path": im_paths[idx],
-                "det_bboxes": [],
-            }
+            detection = {"idx": idx, "im_path": im_paths[idx], "det_bboxes": []}
             return detection, self, None, None
 
-        plot_grid(
-            plot_detections,
-            partial(helper, self.im_paths),
-            rows=rows,
-            cols=cols,
-        )
+        plot_grid(plot_detections, partial(helper, self.im_paths), rows=rows, cols=cols)
 
 
 def boxes_to_mot(results: Dict[int, List[TrackingBbox]]) -> None:

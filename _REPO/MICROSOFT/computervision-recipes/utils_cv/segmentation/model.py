@@ -19,9 +19,7 @@ def ratio_correct(void_id, input, target):
     target = target.squeeze(1)
     if void_id:
         mask = target != void_id
-        ratio_correct = (
-            (input.argmax(dim=1)[mask] == target[mask]).float().mean()
-        )
+        ratio_correct = (input.argmax(dim=1)[mask] == target[mask]).float().mean()
     else:
         ratio_correct = (input.argmax(dim=1) == target).float().mean()
 
@@ -47,9 +45,7 @@ def get_ratio_correct_metric(classes: List[str]):
 
 
 def predict(
-    im_or_path: Union[np.ndarray, Union[str, Path]],
-    learn: Learner,
-    thres: float = None,
+    im_or_path: Union[np.ndarray, Union[str, Path]], learn: Learner, thres: float = None
 ) -> [np.ndarray, np.ndarray]:
     """ Run model inference.
 
@@ -76,9 +72,7 @@ def predict(
 
 
 def confusion_matrix(
-    learn: Learner, 
-    dl: DeviceDataLoader, 
-    thres: float = None
+    learn: Learner, dl: DeviceDataLoader, thres: float = None
 ) -> [np.ndarray, np.ndarray]:
     """ Compute confusion matrix.
 
@@ -99,9 +93,7 @@ def confusion_matrix(
 
         # load ground truth and resize to be same size as predited mask
         gt_mask = PIL.Image.open(gt_path)
-        gt_mask = gt_mask.resize(
-            pred_mask.shape[::-1], resample=PIL.Image.NEAREST
-        )
+        gt_mask = gt_mask.resize(pred_mask.shape[::-1], resample=PIL.Image.NEAREST)
         gt_mask = np.asarray(gt_mask)
 
         # Store predicted and ground truth labels

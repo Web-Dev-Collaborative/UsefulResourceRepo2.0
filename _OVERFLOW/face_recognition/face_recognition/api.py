@@ -233,11 +233,7 @@ def face_landmarks(face_image, face_locations=None, model="large"):
         ]
     elif model == "small":
         return [
-            {
-                "nose_tip": [points[4]],
-                "left_eye": points[2:4],
-                "right_eye": points[0:2],
-            }
+            {"nose_tip": [points[4]], "left_eye": points[2:4], "right_eye": points[0:2]}
             for points in landmarks_as_tuples
         ]
     else:

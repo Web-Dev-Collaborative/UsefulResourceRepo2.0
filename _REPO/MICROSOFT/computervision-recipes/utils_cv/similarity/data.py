@@ -16,9 +16,7 @@ class Urls:
     base = "https://cvbp-secondary.z19.web.core.windows.net/datasets/image_similarity/"
 
     # traditional datasets
-    fridge_objects_retrieval_path = urljoin(
-        base, "fridgeObjectsImageRetrieval.zip"
-    )
+    fridge_objects_retrieval_path = urljoin(base, "fridgeObjectsImageRetrieval.zip")
     fridge_objects_retrieval_tiny_path = urljoin(
         base, "fridgeObjectsImageRetrievalTiny.zip"
     )
@@ -122,9 +120,7 @@ def comparative_set_builder(
         positive_im_path = pos_candidates_paths[pos_index]
 
         # Randomly select negative images
-        neg_indices = np.random.randint(
-            len(neg_candidates_paths), size=num_negatives
-        )
+        neg_indices = np.random.randint(len(neg_candidates_paths), size=num_negatives)
         negative_im_paths = [neg_candidates_paths[i] for i in neg_indices]
         negative_labels = [neg_candidates_labels[i] for i in neg_indices]
 

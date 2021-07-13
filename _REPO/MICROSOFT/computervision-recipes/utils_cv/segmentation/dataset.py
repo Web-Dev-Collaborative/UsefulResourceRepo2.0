@@ -86,8 +86,7 @@ def mask_area_sizes(data: ImageDataBunch) -> collections.defaultdict:
 
             # Get all connected segments in image
             segments, _ = ndimage.label(
-                mask == class_id, 
-                structure=[[1, 1, 1], [1, 1, 1], [1, 1, 1]]
+                mask == class_id, structure=[[1, 1, 1], [1, 1, 1], [1, 1, 1]]
             )
 
             # Loop over each segment of a given label

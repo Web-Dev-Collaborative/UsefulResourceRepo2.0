@@ -60,9 +60,7 @@ class RandomHorizontalFlip(object):
                     "hflip_inds" in target
                 ), "To use random horizontal flipping, 'hflip_inds' needs to be specified"
                 keypoints = target["keypoints"]
-                keypoints = _flip_keypoints(
-                    keypoints, width, target["hflip_inds"]
-                )
+                keypoints = _flip_keypoints(keypoints, width, target["hflip_inds"])
                 target["keypoints"] = keypoints
         return im, target
 
@@ -105,9 +103,7 @@ def get_transform(train: bool) -> Trans:
     # transformations to apply before image is turned into a tensor
     if train:
         transforms.append(
-            ColorJitterTransform(
-                brightness=0.2, contrast=0.2, saturation=0.4, hue=0.05
-            )
+            ColorJitterTransform(brightness=0.2, contrast=0.2, saturation=0.4, hue=0.05)
         )
 
     # transform im to tensor
@@ -147,13 +143,9 @@ def parse_pascal_voc_anno(
     # get image path from annotation. Note that the path field might not be set.
     anno_dir = os.path.dirname(anno_path)
     if root.find("path") is not None:
-        im_path = os.path.realpath(
-            os.path.join(anno_dir, root.find("path").text)
-        )
+        im_path = os.path.realpath(os.path.join(anno_dir, root.find("path").text))
     else:
-        im_path = os.path.realpath(
-            os.path.join(anno_dir, root.find("filename").text)
-        )
+        im_path = os.path.realpath(os.path.join(anno_dir, root.find("filename").text))
 
     # extract bounding boxes, classification and keypoints
     objs = root.findall("object")
@@ -233,7 +225,7 @@ class DetectionDataset:
         seed: int = None,
         allow_negatives: bool = False,
         labels: List[str] = None,
-        max_num_images = None,
+        max_num_images=None,
     ):
         """ initialize dataset
 
@@ -280,9 +272,7 @@ class DetectionDataset:
         self._verify()
 
         # create training and validation datasets
-        self.train_ds, self.test_ds = self.split_train_test(
-            train_pct=train_pct
-        )
+        self.train_ds, self.test_ds = self.split_train_test(train_pct=train_pct)
 
         # create training and validation data loaders
         self.init_data_loaders()
@@ -290,9 +280,7 @@ class DetectionDataset:
     def _verify(self) -> None:
         """ Function to verify data is correct. """
         # Display warning if many of the images are large and hence slow down training.
-        highres_counts = np.sum(
-            (self.im_sizes[:, 0] * self.im_sizes[:, 1]) > 8000000
-        )
+        highres_counts = np.sum((self.im_sizes[:, 0] * self.im_sizes[:, 1]) > 8000000)
         highres_ratio = highres_counts / float(len(self.im_paths))
         if highres_ratio > 0.2:
             print(
@@ -312,16 +300,16 @@ class DetectionDataset:
             anno_filenames = sorted(os.listdir(self.root / self.anno_dir))
         else:
             im_filenames = sorted(os.listdir(self.root / self.im_dir))
-            im_paths = [
-                os.path.join(self.root / self.im_dir, s) for s in im_filenames
-            ]
-            anno_filenames = [
-                os.path.splitext(s)[0] + ".xml" for s in im_filenames
-            ]
+            im_paths = [os.path.join(self.root / self.im_dir, s) for s in im_filenames]
+            anno_filenames = [os.path.splitext(s)[0] + ".xml" for s in im_filenames]
 
         # Reduce number of images if max_num_images is set
         if self.max_num_images and len(anno_filenames) > self.max_num_images:
-            indices = np.unique(np.floor(np.linspace(0, len(anno_filenames)-1, self.max_num_images)).astype(int))
+            indices = np.unique(
+                np.floor(
+                    np.linspace(0, len(anno_filenames) - 1, self.max_num_images)
+                ).astype(int)
+            )
             anno_filenames = [anno_filenames[i] for i in indices]
             if im_paths:
                 im_paths = [im_paths[i] for i in indices]
@@ -355,10 +343,7 @@ class DetectionDataset:
             if len(anno_bboxes) == 0:
                 anno_bboxes = [
                     AnnotationBbox.from_array(
-                        [1, 1, 5, 5],
-                        label_name=None,
-                        label_idx=0,
-                        im_path=im_path,
+                        [1, 1, 5, 5], label_name=None, label_idx=0, im_path=im_path
                     )
                 ]
 
@@ -404,11 +389,11 @@ class DetectionDataset:
                 ):  # background rectangle is assigned id 0 by design
                     anno_bbox.label_idx = 0
                 else:
-                    #if not self.label_id_map:
+                    # if not self.label_id_map:
                     label = self.labels.index(anno_bbox.label_name) + 1
-                    #else:
+                    # else:
                     #    label = self.label_id_map[anno_bbox.label_name]
-                    anno_bbox.label_idx = (label)
+                    anno_bbox.label_idx = label
 
         # Get images sized. Note that Image.open() only loads the image header,
         # not the full images and is hence fast.
@@ -419,33 +404,21 @@ class DetectionDataset:
            distribution of width/height of the annotations.
         """
         # Compute statistics
-        anno_bboxes = list(
-            itertools.chain(*self.anno_bboxes)
-        )  # flatten list of lists
+        anno_bboxes = list(itertools.chain(*self.anno_bboxes))  # flatten list of lists
         box_widths = [bbox.width() for bbox in anno_bboxes]
         box_heights = [bbox.height() for bbox in anno_bboxes]
         labels_counts = Counter([bbox.label_name for bbox in anno_bboxes])
 
         box_rel_widths = []
         box_rel_heights = []
-        for (im_width, im_height), boxes in zip(
-            self.im_sizes, self.anno_bboxes
-        ):
+        for (im_width, im_height), boxes in zip(self.im_sizes, self.anno_bboxes):
             for box in boxes:
                 box_rel_widths += [box.width() / float(im_width)]
                 box_rel_heights += [box.height() / float(im_height)]
 
-        return (
-            labels_counts,
-            box_widths,
-            box_heights,
-            box_rel_widths,
-            box_rel_heights,
-        )
+        return (labels_counts, box_widths, box_heights, box_rel_widths, box_rel_heights)
 
-    def plot_boxes_stats(
-        self, show: bool = True, figsize: tuple = (18, 3)
-    ) -> None:
+    def plot_boxes_stats(self, show: bool = True, figsize: tuple = (18, 3)) -> None:
         """Plot statistics such as number of annotations for class, or
            distribution of width/height of the annotations.
 
@@ -506,9 +479,7 @@ class DetectionDataset:
             )
         )
 
-    def split_train_test(
-        self, train_pct: float = 0.8
-    ) -> Tuple[Dataset, Dataset]:
+    def split_train_test(self, train_pct: float = 0.8) -> Tuple[Dataset, Dataset]:
         """ Split this dataset into a training and testing set
 
         Args:
@@ -625,19 +596,10 @@ class DetectionDataset:
 
         def helper(im_paths):
             idx = random.randrange(len(im_paths))
-            detection = {
-                "idx": idx,
-                "im_path": im_paths[idx],
-                "det_bboxes": [],
-            }
+            detection = {"idx": idx, "im_path": im_paths[idx], "det_bboxes": []}
             return detection, self, None, None
 
-        plot_grid(
-            plot_detections,
-            partial(helper, self.im_paths),
-            rows=rows,
-            cols=cols,
-        )
+        plot_grid(plot_detections, partial(helper, self.im_paths), rows=rows, cols=cols)
 
     def show_im_transformations(
         self, idx: int = None, rows: int = 1, cols: int = 3

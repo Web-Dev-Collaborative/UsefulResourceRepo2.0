@@ -19,7 +19,7 @@ def test_set_random_seed(tiny_ic_data_path):
         .split_by_rand_pct()
         .label_from_folder()
         .transform()
-        .databunch(bs=5, num_workers = db_num_workers())
+        .databunch(bs=5, num_workers=db_num_workers())
         .normalize()
     )
     first_batch = first_data.one_batch()
@@ -30,7 +30,7 @@ def test_set_random_seed(tiny_ic_data_path):
         .split_by_rand_pct()
         .label_from_folder()
         .transform()
-        .databunch(bs=5, num_workers = db_num_workers())
+        .databunch(bs=5, num_workers=db_num_workers())
         .normalize()
     )
     second_batch = second_data.one_batch()
@@ -72,10 +72,7 @@ def test_copy_files(tmp):
 
 def test_get_font():
     font = get_font(size=12)
-    assert (
-        type(font) == ImageFont.FreeTypeFont
-        or type(font) == ImageFont.ImageFont
-    )
+    assert type(font) == ImageFont.FreeTypeFont or type(font) == ImageFont.ImageFont
 
 
 def test_Config():

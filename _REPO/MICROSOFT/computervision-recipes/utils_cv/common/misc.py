@@ -51,9 +51,7 @@ def copy_files(
 
     for fpath in fpaths:
         if infer_subdir:
-            dst = os.path.join(
-                dst_dir, os.path.basename(os.path.dirname(fpath))
-            )
+            dst = os.path.join(dst_dir, os.path.basename(os.path.dirname(fpath)))
         else:
             dst = dst_dir
 

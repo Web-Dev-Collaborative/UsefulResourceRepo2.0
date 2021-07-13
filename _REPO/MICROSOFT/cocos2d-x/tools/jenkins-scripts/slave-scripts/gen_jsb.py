@@ -4,12 +4,12 @@ import os
 import sys
 
 ret = 0
-genbindings_dirs = ['tolua', 'tojs']
+genbindings_dirs = ["tolua", "tojs"]
 for item in genbindings_dirs:
     os.chdir("tools/" + item)
-    ret = os.system('python genbindings.py')
+    ret = os.system("python genbindings.py")
     os.chdir("../..")
-    if(ret != 0):
+    if ret != 0:
         ret = 1
         break
 

@@ -1,4 +1,4 @@
-#To get current date and time we need to use the datetime library
+# To get current date and time we need to use the datetime library
 from datetime import datetime
 
 current_date = datetime.now()
@@ -6,4 +6,4 @@ current_date = datetime.now()
 
 # You must convert the datetime object to a string
 # before you can concatenate it to another string
-print('Today is: ' + str(current_date))
+print("Today is: " + str(current_date))

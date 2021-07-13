@@ -17,9 +17,7 @@ from .model import _get_frame
 
 
 def plot_single_frame(
-    input_video: str,
-    frame_id: int,
-    results: Dict[int, List[TrackingBbox]] = None
+    input_video: str, frame_id: int, results: Dict[int, List[TrackingBbox]] = None
 ) -> None:
     """
     Plot the bounding box and id on a wanted frame. Display as image to front end.
@@ -54,9 +52,7 @@ def plot_single_frame(
     IPython.display.display(im)
 
 
-def play_video(
-    results: Dict[int, List[TrackingBbox]], input_video: str
-) -> None:
+def play_video(results: Dict[int, List[TrackingBbox]], input_video: str) -> None:
     """
      Plot the predicted tracks on the input video. Displays to front-end as sequence of images stringed together in a video.
 
@@ -68,9 +64,7 @@ def play_video(
     results = OrderedDict(sorted(results.items()))
 
     # assign bbox color per id
-    unique_ids = list(
-        set([bb.track_id for frame in results.values() for bb in frame])
-    )
+    unique_ids = list(set([bb.track_id for frame in results.values() for bb in frame]))
     color_map = assign_colors(unique_ids)
 
     # read video and initialize new tracking video
@@ -114,14 +108,10 @@ def write_video(
     im_height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fourcc = cv2.VideoWriter_fourcc(*"MP4V")
     frame_rate = int(video.get(cv2.CAP_PROP_FPS))
-    writer = cv2.VideoWriter(
-        output_video, fourcc, frame_rate, (im_width, im_height)
-    )
+    writer = cv2.VideoWriter(output_video, fourcc, frame_rate, (im_width, im_height))
 
     # assign bbox color per id
-    unique_ids = list(
-        set([bb.track_id for frame in results.values() for bb in frame])
-    )
+    unique_ids = list(set([bb.track_id for frame in results.values() for bb in frame]))
     color_map = assign_colors(unique_ids)
 
     # create images and add to video writer, adapted from https://github.com/ZQPei/deep_sort_pytorch

@@ -4,13 +4,13 @@ first_num = 6
 second_num = 2
 
 # You can peform a variety of math operations on numeric values
-print('addition')
+print("addition")
 print(first_num + second_num)
-print('subtraction')
+print("subtraction")
 print(first_num - second_num)
-print('multiplication')
+print("multiplication")
 print(first_num * second_num)
-print('division')
+print("division")
 print(first_num / second_num)
-print ('exponent')
+print("exponent")
 print(first_num ** second_num)

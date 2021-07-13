@@ -19,11 +19,9 @@ def test_plot_segmentation(seg_im_and_mask, seg_prediction):
 
 def test_plot_mask_stats(tiny_seg_databunch, seg_classes):
     plot_mask_stats(tiny_seg_databunch, seg_classes)
-    plot_mask_stats(
-        tiny_seg_databunch, seg_classes, exclude_classes=["background"]
-    )
+    plot_mask_stats(tiny_seg_databunch, seg_classes, exclude_classes=["background"])
 
-   
-#def test_plot_confusion_matrix(seg_confusion_matrices, seg_classes):
+
+# def test_plot_confusion_matrix(seg_confusion_matrices, seg_classes):
 #    cmat, cmat_norm = seg_confusion_matrices
 #    plot_confusion_matrix(cmat, cmat_norm, seg_classes)

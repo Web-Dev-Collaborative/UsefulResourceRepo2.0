@@ -38,10 +38,7 @@ def test_11_notebook_integration_run(segmentation_notebooks):
     pm.execute_notebook(
         notebook_path,
         OUTPUT_NOTEBOOK,
-        parameters=dict(
-            PM_VERSION=pm.__version__,
-            REPS = 1,
-            ),
+        parameters=dict(PM_VERSION=pm.__version__, REPS=1),
         kernel_name=KERNEL_NAME,
     )
 

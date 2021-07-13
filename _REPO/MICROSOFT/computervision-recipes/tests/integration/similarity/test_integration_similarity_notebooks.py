@@ -53,7 +53,7 @@ def test_11_notebook_run(similarity_notebooks, tiny_ic_data_path):
             DATA_PATHS=[tiny_ic_data_path],
             REPS=1,
             IM_SIZES=[60, 70],
-            LEARNING_RATES=[1e-3, 1e-4]
+            LEARNING_RATES=[1e-3, 1e-4],
         ),
         kernel_name=KERNEL_NAME,
     )

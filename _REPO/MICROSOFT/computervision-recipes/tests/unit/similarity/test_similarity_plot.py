@@ -14,9 +14,7 @@ from utils_cv.similarity.plot import (
 
 def test_plot_distances(tiny_ic_data_path):
     im_root_path = os.path.join(tiny_ic_data_path, "can")
-    im_paths = [
-        os.path.join(im_root_path, s) for s in os.listdir(im_root_path)[:3]
-    ]
+    im_paths = [os.path.join(im_root_path, s) for s in os.listdir(im_root_path)[:3]]
     distances = [(im_path, 1.0) for im_path in im_paths]
     plot_distances(distances, num_rows=1, num_cols=7, figsize=(15, 5))
 

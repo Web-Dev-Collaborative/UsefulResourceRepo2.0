@@ -23,9 +23,7 @@ def test_vector_distance():
     )
     vec1 = vec1 / np.linalg.norm(vec1, 2)
     vec2 = vec2 / np.linalg.norm(vec2, 2)
-    assert vector_distance(vec1, vec2, "l2") == approx(
-        distance.euclidean(vec1, vec2)
-    )
+    assert vector_distance(vec1, vec2, "l2") == approx(distance.euclidean(vec1, vec2))
 
 
 def test_compute_distances():
@@ -34,9 +32,7 @@ def test_compute_distances():
     distances = compute_distances(query_feature, feature_dict)
     assert len(distances) == 3
     assert distances[1][0] == "b"
-    assert vector_distance(query_feature, feature_dict["b"]) == approx(
-        distances[1][1]
-    )
+    assert vector_distance(query_feature, feature_dict["b"]) == approx(distances[1][1])
 
 
 def test_positive_image_ranks(tiny_ic_databunch):
@@ -69,9 +65,7 @@ def test_recall_at_k():
 
 def test_evaluate(tiny_ic_databunch, tiny_ic_databunch_valid_features):
     (rank_accs, mAP) = evaluate(
-        tiny_ic_databunch.valid_ds,
-        tiny_ic_databunch_valid_features,
-        use_rerank=False,
+        tiny_ic_databunch.valid_ds, tiny_ic_databunch_valid_features, use_rerank=False
     )
     assert 0 <= mAP <= 1.0
     assert len(rank_accs) == 6

@@ -5,6 +5,4 @@ from __future__ import print_function
 from .mot import MotTrainer
 
 
-train_factory = {
-  'mot': MotTrainer,
-}
+train_factory = {"mot": MotTrainer}

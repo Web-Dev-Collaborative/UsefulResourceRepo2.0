@@ -13,9 +13,7 @@ def data_path() -> Path:
     """Get the data directory path"""
     data_dir = Path(
         os.path.realpath(
-            os.path.join(
-                os.path.dirname(__file__), os.pardir, os.pardir, "data"
-            )
+            os.path.join(os.path.dirname(__file__), os.pardir, os.pardir, "data")
         )
     )
     data_dir.mkdir(exist_ok=True)
@@ -25,14 +23,12 @@ def data_path() -> Path:
 def download(url: str, loc: str):
     """ Download contents of a url into 'loc'"""
     r = requests.get(url)
-    with open(loc, 'wb') as f:
+    with open(loc, "wb") as f:
         f.write(r.content)
     return loc
 
 
-def get_files_in_directory(
-    directory: str, suffixes: List[str] = None
-) -> List[str]:
+def get_files_in_directory(directory: str, suffixes: List[str] = None) -> List[str]:
     """Returns all filenames in a directory which optionally match one of multiple suffixes.
     Args:
         directory: directory to scan for files.
@@ -45,9 +41,7 @@ def get_files_in_directory(
         raise Exception(f"Directory '{directory}' does not exist.")
     filenames = [str(p) for p in Path(directory).iterdir() if p.is_file()]
     if suffixes and suffixes != "":
-        filenames = [
-            s for s in filenames if s.lower().endswith(tuple(suffixes))
-        ]
+        filenames = [s for s in filenames if s.lower().endswith(tuple(suffixes))]
     return sorted(filenames)
 
 
@@ -118,9 +112,7 @@ def unzip_url(
     return os.path.realpath(unzipped_dir)
 
 
-def unzip_urls(
-    urls: List[str], dest: Union[Path, str] = data_path()
-) -> List[str]:
+def unzip_urls(urls: List[str], dest: Union[Path, str] = data_path()) -> List[str]:
     """ Download and unzip all datasets in Urls to dest """
 
     # make dir if not exist
@@ -138,7 +130,5 @@ def unzip_urls(
 def root_path() -> Path:
     """Get path of root dir."""
     return Path(
-        os.path.realpath(
-            os.path.join(os.path.dirname(__file__), os.pardir, os.pardir)
-        )
+        os.path.realpath(os.path.join(os.path.dirname(__file__), os.pardir, os.pardir))
     )

@@ -28,9 +28,7 @@ except ImportError as e:
 
 
 def save_data(time_of_data, data, filename):
-    new_dict = {
-        time_of_data: data,
-    }
+    new_dict = {time_of_data: data}
     old_data = load_data(filename)
     old_data.update(new_dict)
     with open(filename, "w") as fp:
@@ -54,11 +52,7 @@ def get_data(names, locations, key, verbose=True):
         temperature_in_F = weather["currently"]["temperature"]
         temperature_in_C = round((temperature_in_F - 32) * (5 / 9), 1)
         data.append(
-            {
-                "name": name,
-                "location": location,
-                "temperature_in_C": temperature_in_C,
-            }
+            {"name": name, "location": location, "temperature_in_C": temperature_in_C}
         )
         if verbose:
             print(

@@ -24,13 +24,9 @@ def main(video_dir, output_dir):
         for video_file in os.listdir(video_dir):
             if video_file[-3:] == "asf":
                 video_path = os.path.join(video_dir, video_file)
-                output_file_name = video_file[:-4] + ".{}".format(
-                    output_format
-                )
+                output_file_name = video_file[:-4] + ".{}".format(output_format)
                 output_path = os.path.join(output_sub_dir, output_file_name)
-                video_format_conversion(
-                    video_path, output_path, h264_format=True
-                )
+                video_format_conversion(video_path, output_path, h264_format=True)
 
 
 if __name__ == "__main__":

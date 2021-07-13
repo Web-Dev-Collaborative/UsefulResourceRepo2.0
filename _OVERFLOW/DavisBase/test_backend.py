@@ -144,10 +144,7 @@ print("===============================================================")
 print("TABLE UPDATES")
 print("====================================================================")
 
-dict_new_values = {
-    "int_col": 1,
-    "text_col": "HARRISON",
-}
+dict_new_values = {"int_col": 1, "text_col": "HARRISON"}
 list_of_rowids = [randint(1, 100) for i in range(1, 30)]
 print("First five Rowids to update: ", list_of_rowids[:5])
 print("Update values", "int_col:1, text_col:HARRISON")

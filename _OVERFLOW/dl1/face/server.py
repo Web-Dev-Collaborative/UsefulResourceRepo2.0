@@ -27,11 +27,7 @@ data = ImageDataBunch.single_from_classes(
 learner = create_cnn(data, models.resnet34)
 learner.load("gokul-sentiment-stage-5n")
 
-app = Router(
-    routes=[
-        Mount("/static", app=StaticFiles(directory="static")),
-    ]
-)
+app = Router(routes=[Mount("/static", app=StaticFiles(directory="static"))])
 
 
 @app.route("/")

@@ -38,7 +38,12 @@ def evaluate_with_query_set(
         g_g_dist = np.dot(gallery_features, np.transpose(gallery_features))
         since = time.time()
         distances = re_ranking(
-            q_g_dist, q_q_dist, g_g_dist, k1=rerank_k1, k2=rerank_k2, lambda_value=rerank_lambda,
+            q_g_dist,
+            q_q_dist,
+            g_g_dist,
+            k1=rerank_k1,
+            k2=rerank_k2,
+            lambda_value=rerank_lambda,
         )
         time_elapsed = time.time() - since
         print(
@@ -74,7 +79,9 @@ def evaluate_with_query_set(
     CMC = CMC.float()
     CMC = CMC / norm
     print(
-        "Rank@1:{:.1f}, rank@5:{:.1f}, mAP:{:.2f}".format(100 * CMC[0], 100 * CMC[4], ap)
+        "Rank@1:{:.1f}, rank@5:{:.1f}, mAP:{:.2f}".format(
+            100 * CMC[0], 100 * CMC[4], ap
+        )
     )
 
     return (CMC, ap)

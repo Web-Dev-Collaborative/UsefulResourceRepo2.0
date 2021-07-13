@@ -418,10 +418,7 @@ def cloneBulkRepos(
         if threading.active_count() < (threads_limit + 1):
             t = threading.Thread(
                 target=cloneRepo,
-                args=(
-                    Q.get(),
-                    cloningPath,
-                ),
+                args=(Q.get(), cloningPath),
                 kwargs={
                     "username": username,
                     "token": token,

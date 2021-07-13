@@ -29,24 +29,16 @@ def test_hamming_accuracy(multilabel_result):
     """ Test the hamming loss evaluation metric function. """
     y_pred, y_true = multilabel_result
     assert hamming_accuracy(y_pred, y_true) == tensor(1.0 - 0.1875)
-    assert hamming_accuracy(y_pred, y_true, sigmoid=True) == tensor(
-        1.0 - 0.375
-    )
-    assert hamming_accuracy(y_pred, y_true, threshold=1.0) == tensor(
-        1.0 - 0.625
-    )
+    assert hamming_accuracy(y_pred, y_true, sigmoid=True) == tensor(1.0 - 0.375)
+    assert hamming_accuracy(y_pred, y_true, threshold=1.0) == tensor(1.0 - 0.625)
 
 
 def test_zero_one_accuracy(multilabel_result):
     """ Test the zero-one loss evaluation metric function. """
     y_pred, y_true = multilabel_result
     assert zero_one_accuracy(y_pred, y_true) == tensor(1.0 - 0.75)
-    assert zero_one_accuracy(y_pred, y_true, sigmoid=True) == tensor(
-        1.0 - 0.75
-    )
-    assert zero_one_accuracy(y_pred, y_true, threshold=1.0) == tensor(
-        1.0 - 1.0
-    )
+    assert zero_one_accuracy(y_pred, y_true, sigmoid=True) == tensor(1.0 - 0.75)
+    assert zero_one_accuracy(y_pred, y_true, threshold=1.0) == tensor(1.0 - 1.0)
 
 
 def test_get_optimal_threshold(multilabel_result):
@@ -77,9 +69,7 @@ def test_model_to_learner(tmp):
     assert isinstance(learn.model, models.ResNet)
 
     # Test if model can predict very simple image
-    IM_URL = (
-        "https://cvbp-secondary.z19.web.core.windows.net/images/cvbp_cup.jpg"
-    )
+    IM_URL = "https://cvbp-secondary.z19.web.core.windows.net/images/cvbp_cup.jpg"
     imagefile = os.path.join(tmp, "cvbp_cup.jpg")
     urllib.request.urlretrieve(IM_URL, imagefile)
 
@@ -124,9 +114,7 @@ def test_train_metrics_recorder(tiny_ic_databunch):
         return tmr
 
     # multiple metrics
-    learn = cnn_learner(
-        tiny_ic_databunch, model, metrics=[accuracy, error_rate]
-    )
+    learn = cnn_learner(tiny_ic_databunch, model, metrics=[accuracy, error_rate])
     cb = test_callback(learn)
     assert len(cb.train_metrics) == len(cb.valid_metrics) == epochs
     assert (

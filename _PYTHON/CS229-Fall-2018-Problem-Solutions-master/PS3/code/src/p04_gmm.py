@@ -198,12 +198,7 @@ def run_semi_supervised_em(x, x_tilde, z, w, phi, mu, sigma):
             phi[i] = (sum(w[:, i]) + alpha * sum(z == i)) / (
                 x.shape[0] + alpha * x_tilde.shape[0]
             )
-            x_tilde_i = x_tilde[
-                z.reshape(
-                    -1,
-                )
-                == i
-            ]
+            x_tilde_i = x_tilde[z.reshape(-1) == i]
             mu[i] = (x.T.dot(w[:, i]) + alpha * x_tilde_i.sum(axis=0)) / (
                 sum(w[:, i]) + alpha * sum(z == i)
             )

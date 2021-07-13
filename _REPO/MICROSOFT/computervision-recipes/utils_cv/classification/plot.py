@@ -235,9 +235,7 @@ def _plot_precision_recall_curve(y_true, y_score, ap, label=None):
     else:
         lw = 1
         prefix = (
-            "Precision-recall"
-            if label is None
-            else f"Precision-recall for {label}"
+            "Precision-recall" if label is None else f"Precision-recall for {label}"
         )
 
     plt.plot(

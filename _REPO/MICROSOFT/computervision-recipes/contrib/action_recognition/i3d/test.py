@@ -13,9 +13,7 @@ import torch.nn.functional as F
 import torchvision
 from torchvision import datasets, transforms
 
-from videotransforms import (
-    GroupScale, GroupCenterCrop, GroupNormalize, Stack
-)
+from videotransforms import GroupScale, GroupCenterCrop, GroupNormalize, Stack
 
 from models.pytorch_i3d import InceptionI3d
 
@@ -27,7 +25,8 @@ from default import update_config
 
 # to work with vscode debugger https://github.com/joblib/joblib/issues/864
 import multiprocessing
-multiprocessing.set_start_method('spawn', True)
+
+multiprocessing.set_start_method("spawn", True)
 
 
 def load_model(modality, state_dict_file):
@@ -59,8 +58,8 @@ def test(model, test_loader, modality):
             predictions_list.append(output)
 
             if step % config.TEST.PRINT_FREQ == 0:
-                print(('Step: [{0}/{1}]'.format(step, len(test_loader))))
-    
+                print(("Step: [{0}/{1}]".format(step, len(test_loader))))
+
     targets = torch.cat(target_list)
     predictions = torch.cat(predictions_list)
     return targets, predictions
@@ -93,17 +92,19 @@ def run(*options, cfg=None):
                 modality="RGB",
                 train_mode=False,
                 sample_frames_at_test=False,
-                transform=torchvision.transforms.Compose([
-                    GroupScale(config.TRAIN.RESIZE_MIN),
-                    GroupCenterCrop(config.TRAIN.INPUT_SIZE),
-                    GroupNormalize(modality="RGB"),
-                    Stack(),
-                ])
+                transform=torchvision.transforms.Compose(
+                    [
+                        GroupScale(config.TRAIN.RESIZE_MIN),
+                        GroupCenterCrop(config.TRAIN.INPUT_SIZE),
+                        GroupNormalize(modality="RGB"),
+                        Stack(),
+                    ]
+                ),
             ),
             batch_size=config.TEST.BATCH_SIZE,
             shuffle=False,
             num_workers=config.WORKERS,
-            pin_memory=config.PIN_MEMORY
+            pin_memory=config.PIN_MEMORY,
         )
 
         rgb_model_file = config.TEST.MODEL_RGB
@@ -115,11 +116,11 @@ def run(*options, cfg=None):
         targets, rgb_predictions = test(rgb_model, rgb_loader, "RGB")
 
         del rgb_model
-        
+
         targets = targets.cuda(non_blocking=True)
-        rgb_top1_accuracy = accuracy(rgb_predictions, targets, topk=(1, ))
+        rgb_top1_accuracy = accuracy(rgb_predictions, targets, topk=(1,))
         print("rgb top1 accuracy: ", rgb_top1_accuracy[0].cpu().numpy().tolist())
-    
+
     if (config.TEST.MODALITY == "flow") or (config.TEST.MODALITY == "combined"):
 
         flow_loader = torch.utils.data.DataLoader(
@@ -129,17 +130,19 @@ def run(*options, cfg=None):
                 modality="flow",
                 train_mode=False,
                 sample_frames_at_test=False,
-                transform=torchvision.transforms.Compose([
-                    GroupScale(config.TRAIN.RESIZE_MIN),
-                    GroupCenterCrop(config.TRAIN.INPUT_SIZE),
-                    GroupNormalize(modality="flow"),
-                    Stack(),
-                ])
+                transform=torchvision.transforms.Compose(
+                    [
+                        GroupScale(config.TRAIN.RESIZE_MIN),
+                        GroupCenterCrop(config.TRAIN.INPUT_SIZE),
+                        GroupNormalize(modality="flow"),
+                        Stack(),
+                    ]
+                ),
             ),
             batch_size=config.TEST.BATCH_SIZE,
             shuffle=False,
             num_workers=config.WORKERS,
-            pin_memory=config.PIN_MEMORY
+            pin_memory=config.PIN_MEMORY,
         )
 
         flow_model_file = config.TEST.MODEL_FLOW
@@ -153,13 +156,13 @@ def run(*options, cfg=None):
         del flow_model
 
         targets = targets.cuda(non_blocking=True)
-        flow_top1_accuracy = accuracy(flow_predictions, targets, topk=(1, ))
+        flow_top1_accuracy = accuracy(flow_predictions, targets, topk=(1,))
         print("flow top1 accuracy: ", flow_top1_accuracy[0].cpu().numpy().tolist())
 
     if config.TEST.MODALITY == "combined":
         predictions = torch.stack([rgb_predictions, flow_predictions])
         predictions_mean = torch.mean(predictions, dim=0)
-        top1accuracy = accuracy(predictions_mean, targets, topk=(1, ))
+        top1accuracy = accuracy(predictions_mean, targets, topk=(1,))
         print("combined top1 accuracy: ", top1accuracy[0].cpu().numpy().tolist())
 
 

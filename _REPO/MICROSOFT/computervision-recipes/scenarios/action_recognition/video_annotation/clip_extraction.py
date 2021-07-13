@@ -42,7 +42,7 @@ from video_annotation_utils import (
     get_clip_action_label,
     extract_clip,
     extract_contiguous_negative_clips,
-    extract_sampled_negative_clips
+    extract_sampled_negative_clips,
 )
 
 
@@ -70,14 +70,12 @@ def main(
     video_info_df = video_info_df.loc[video_info_df["metadata"] != "{}"]
 
     video_info_df["file_list"] = video_info_df.apply(
-        lambda x: parse_video_file_name(x),
-        axis=1,
+        lambda x: parse_video_file_name(x), axis=1
     )
 
     # create clip file name and label
     video_info_df["clip_file_name"] = video_info_df.apply(
-        lambda x: create_clip_file_name(x, clip_file_format=clip_format),
-        axis=1,
+        lambda x: create_clip_file_name(x, clip_file_format=clip_format), axis=1
     )
 
     video_info_df["clip_action_label"] = video_info_df.apply(
@@ -91,17 +89,25 @@ def main(
             raise Exception("no_action_class does not appear in list of classes.")
 
     # filter annotations to only include actions that appear in the classes file
-    video_info_df = video_info_df[video_info_df["clip_action_label"].isin(classes.keys())]
+    video_info_df = video_info_df[
+        video_info_df["clip_action_label"].isin(classes.keys())
+    ]
 
     # extract all positive examples
     video_info_df.apply(lambda x: extract_clip(x, video_dir, clip_dir), axis=1)
 
     # write the labels for positive examples
-    video_info_df["clip_file_path"] = video_info_df.apply(lambda row: os.path.join(row.clip_action_label, row.clip_file_name), axis=1)
-    video_info_df["clip_file_path"] = video_info_df["clip_file_path"].apply(lambda x: os.path.splitext(x)[0])
-    video_info_df["clip_class_id"] = video_info_df["clip_action_label"].apply(lambda x: classes[x])
+    video_info_df["clip_file_path"] = video_info_df.apply(
+        lambda row: os.path.join(row.clip_action_label, row.clip_file_name), axis=1
+    )
+    video_info_df["clip_file_path"] = video_info_df["clip_file_path"].apply(
+        lambda x: os.path.splitext(x)[0]
+    )
+    video_info_df["clip_class_id"] = video_info_df["clip_action_label"].apply(
+        lambda x: classes[x]
+    )
     video_info_df[["clip_file_path", "clip_class_id"]].to_csv(
-        label_filepath, header=None, index=False, sep=' '
+        label_filepath, header=None, index=False, sep=" "
     )
 
     # Extract negative samples if required
@@ -125,17 +131,24 @@ def main(
                     skip_clip_length=negative_clip_margin,
                 )
                 negative_sample_info_df = negative_sample_info_df.append(res_df)
-            with open(label_filepath, 'a') as f:
+            with open(label_filepath, "a") as f:
                 for index, row in negative_sample_info_df.iterrows():
-                    f.write("\""+row.negative_clip_file_name+"\""+" "+str(classes[no_action_class])+"\n")
-        
+                    f.write(
+                        '"'
+                        + row.negative_clip_file_name
+                        + '"'
+                        + " "
+                        + str(classes[no_action_class])
+                        + "\n"
+                    )
+
         else:
             # get list of original video files
             video_files = os.listdir(video_dir)
 
             if sample_annotated_only:
                 video_files = list(set(video_info_df["file_list"]) & set(video_files))
-            
+
             extract_sampled_negative_clips(
                 video_info_df,
                 num_negative_samples,
@@ -154,30 +167,28 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--annotation_filepath", help="CSV filepath from the annotator", required=True,
+        "--annotation_filepath", help="CSV filepath from the annotator", required=True
     )
-    parser.add_argument(
-        "--video_dir", help="Input video dirictory", required=True
-    )
+    parser.add_argument("--video_dir", help="Input video dirictory", required=True)
     parser.add_argument(
         "--clip_dir",
         help="Output directory where the extracted clips will be stored",
         required=True,
     )
     parser.add_argument(
-        "--classes_filepath", help="Path to file defining classes and class IDs", required=True
+        "--classes_filepath",
+        help="Path to file defining classes and class IDs",
+        required=True,
     )
     parser.add_argument(
         "--label_filepath",
         help="Path where the label file will be stored",
         required=True,
     )
-    parser.add_argument(
-        "--clip_format", default="mp4"
-    )
+    parser.add_argument("--clip_format", default="mp4")
     parser.add_argument(
         "--no_action_class",
-        help="Label for the no action class. Provide this argument to create negative examples."
+        help="Label for the no action class. Provide this argument to create negative examples.",
     )
     parser.add_argument(
         "--contiguous",
@@ -207,7 +218,7 @@ if __name__ == "__main__":
         "--num_negative_samples",
         type=float,
         help="The number of negative clips to sample. This only applies to non-contiguous sampling.",
-        default=0.0
+        default=0.0,
     )
     args = parser.parse_args()
 
@@ -223,5 +234,5 @@ if __name__ == "__main__":
         negative_clip_length=args.negative_clip_length,
         negative_clip_margin=args.negative_clip_margin,
         sample_annotated_only=args.sample_annotated_only,
-        num_negative_samples=args.num_negative_samples
+        num_negative_samples=args.num_negative_samples,
     )

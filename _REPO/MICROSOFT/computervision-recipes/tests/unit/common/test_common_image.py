@@ -15,9 +15,9 @@ from utils_cv.common.image import (
 
 def test_im_width(tiny_ic_data_path):
     im_path = Path(tiny_ic_data_path) / "can" / "1.jpg"
-    assert (
-        im_width(im_path) == 499
-    ), "Expected image width of 499, but got {}".format(im_width(im_path))
+    assert im_width(im_path) == 499, "Expected image width of 499, but got {}".format(
+        im_width(im_path)
+    )
     im = np.zeros((100, 50))
     assert im_width(im) == 50, "Expected image width of 50, but got ".format(
         im_width(im)
@@ -26,13 +26,13 @@ def test_im_width(tiny_ic_data_path):
 
 def test_im_height(tiny_ic_data_path):
     im_path = Path(tiny_ic_data_path) / "can" / "1.jpg"
-    assert (
-        im_height(im_path) == 665
-    ), "Expected image height of 665, but got ".format(im_width(60))
+    assert im_height(im_path) == 665, "Expected image height of 665, but got ".format(
+        im_width(60)
+    )
     im = np.zeros((100, 50))
-    assert (
-        im_height(im) == 100
-    ), "Expected image height of 100, but got ".format(im_width(im))
+    assert im_height(im) == 100, "Expected image height of 100, but got ".format(
+        im_width(im)
+    )
 
 
 def test_im_width_height(tiny_ic_data_path):

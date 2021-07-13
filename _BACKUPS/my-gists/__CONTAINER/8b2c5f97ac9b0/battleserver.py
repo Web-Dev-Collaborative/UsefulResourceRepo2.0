@@ -26,13 +26,7 @@ import numpy as np
 DEFAULT_X = DEFAULT_Y = 5
 
 ships = OrderedDict(
-    {
-        "Carrier": 5,
-        "Battleship": 4,
-        "cRuiser": 3,
-        "Submarine": 3,
-        "Destroyer": 2,
-    }
+    {"Carrier": 5, "Battleship": 4, "cRuiser": 3, "Submarine": 3, "Destroyer": 2}
 )
 max_length = max(l for l in ships.values())
 

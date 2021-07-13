@@ -137,9 +137,7 @@ def test_detection_dataset_init_basic(
     assert data.test_dl.dataset.indices == data2.test_dl.dataset.indices
 
     # test mask data
-    data = DetectionDataset(
-        tiny_od_mask_data_path, mask_dir="segmentation-masks"
-    )
+    data = DetectionDataset(tiny_od_mask_data_path, mask_dir="segmentation-masks")
     validate_detection_dataset(data, od_data_path_labels)
     assert len(data.test_ds) == 15
     assert len(data.train_ds) == 16
@@ -156,15 +154,7 @@ def test_detection_dataset_init_basic(
                 "left_bottom",
                 "right_bottom",
             ],
-            "skeleton": [
-                [0, 1],
-                [0, 2],
-                [1, 3],
-                [2, 3],
-                [2, 4],
-                [3, 5],
-                [4, 5],
-            ],
+            "skeleton": [[0, 1], [0, 2], [1, 3], [2, 3], [2, 4], [3, 5], [4, 5]],
             "hflip_inds": [1, 0, 3, 2, 5, 4],
         },
     )
@@ -206,15 +196,7 @@ def test_detection_dataset_init_train_pct(
                 "left_bottom",
                 "right_bottom",
             ],
-            "skeleton": [
-                [0, 1],
-                [0, 2],
-                [1, 3],
-                [2, 3],
-                [2, 4],
-                [3, 5],
-                [4, 5],
-            ],
+            "skeleton": [[0, 1], [0, 2], [1, 3], [2, 3], [2, 4], [3, 5], [4, 5]],
             "hflip_inds": [1, 0, 3, 2, 5, 4],
         },
     )

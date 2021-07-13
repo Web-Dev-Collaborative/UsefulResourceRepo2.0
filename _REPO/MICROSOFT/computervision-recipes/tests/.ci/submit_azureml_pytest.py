@@ -100,9 +100,7 @@ def setup_workspace(
     return ws
 
 
-def setup_persistent_compute_target(
-    workspace, cluster_name, vm_size, max_nodes
-):
+def setup_persistent_compute_target(workspace, cluster_name, vm_size, max_nodes):
     """
     Set up a persistent compute target on AzureML.
     A persistent compute target runs noticeably faster than a
@@ -137,9 +135,7 @@ def setup_persistent_compute_target(
             vm_size=vm_size, max_nodes=max_nodes
         )
 
-        cpu_cluster = ComputeTarget.create(
-            workspace, cluster_name, compute_config
-        )
+        cpu_cluster = ComputeTarget.create(workspace, cluster_name, compute_config)
     cpu_cluster.wait_for_completion(show_output=True)
     return cpu_cluster
 
@@ -305,10 +301,7 @@ def create_arg_parser():
     )
     # AzureML workspace Name
     parser.add_argument(
-        "--wsname",
-        action="store",
-        default="cvws",
-        help="AzureML workspace name",
+        "--wsname", action="store", default="cvws", help="AzureML workspace name"
     )
     # AzureML clustername
     parser.add_argument(
@@ -333,10 +326,7 @@ def create_arg_parser():
     )
     # Azure subscription id, when used in a pipeline, it is stored in keyvault
     parser.add_argument(
-        "--subid",
-        action="store",
-        default="123456",
-        help="Azure Subscription ID",
+        "--subid", action="store", default="123456", help="Azure Subscription ID"
     )
     parser.add_argument(
         "--condafile",
@@ -385,9 +375,9 @@ if __name__ == "__main__":
     logger.setLevel(logging.INFO)
     # logging.basicConfig(level=logging.DEBUG)
     args = create_arg_parser()
-    
+
     # Allow snapshots of more than 300MB
-    azureml._restclient.snapshots_client. SNAPSHOT_MAX_SIZE_BYTES = 1000*(1024*1024)
+    azureml._restclient.snapshots_client.SNAPSHOT_MAX_SIZE_BYTES = 1000 * (1024 * 1024)
 
     if args.dockerproc == "cpu":
         from azureml.core.runconfig import DEFAULT_CPU_IMAGE
@@ -421,9 +411,7 @@ if __name__ == "__main__":
         conda_env_file=args.condafile,
     )
 
-    logger.info(
-        "exp: In Azure, look for experiment named {}".format(args.expname)
-    )
+    logger.info("exp: In Azure, look for experiment named {}".format(args.expname))
 
     # create new or use existing experiment
     experiment = Experiment(workspace=workspace, name=args.expname)

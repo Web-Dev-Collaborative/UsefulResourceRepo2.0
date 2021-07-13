@@ -34,10 +34,7 @@ def test_00_notebook_run(action_recognition_notebooks):
 
 
 @pytest.mark.notebooks
-def test_01_notebook_run(
-    action_recognition_notebooks,
-    ar_milk_bottle_path
-):
+def test_01_notebook_run(action_recognition_notebooks, ar_milk_bottle_path):
     notebook_path = action_recognition_notebooks["01"]
     pm.execute_notebook(
         notebook_path,

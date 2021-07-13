@@ -53,9 +53,7 @@ def multiclass_result():
     return np.array(MULTI_Y_TRUE), np.array(MULTI_Y_SCORE), MULTI_CLASSES
 
 
-def test_plot_roc_curve(
-    binaryclass_result_1, binaryclass_result_2, multiclass_result
-):
+def test_plot_roc_curve(binaryclass_result_1, binaryclass_result_2, multiclass_result):
     # Binary-class plot
     y_true, y_score, classes = binaryclass_result_1
     plot_roc_curve(y_true, y_score, classes, False)

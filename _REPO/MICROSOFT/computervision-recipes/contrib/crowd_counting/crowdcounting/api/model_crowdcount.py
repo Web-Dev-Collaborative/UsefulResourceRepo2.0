@@ -26,7 +26,7 @@ from abc import ABC, abstractmethod
 
 class CrowdCounting(ABC):
     @abstractmethod
-    def score(self): # pragma: no cover
+    def score(self):  # pragma: no cover
         raise NotImplementedError
 
 
@@ -229,7 +229,7 @@ def init_model(gpu_id, model, w, h, config):
     # if w == 0 or h == 0:
     #     w, h = 432, 368
 
-    if gpu_id == -1: # pragma: no cover
+    if gpu_id == -1:  # pragma: no cover
         os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
         e = TfPoseEstimator(get_graph_path(model), target_size=(w, h), tf_config=config)
     else:

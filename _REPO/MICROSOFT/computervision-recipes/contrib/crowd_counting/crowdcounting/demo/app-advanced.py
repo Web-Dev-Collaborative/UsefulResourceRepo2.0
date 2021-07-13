@@ -60,6 +60,7 @@ mcnn_model_path = args.path  # "./data/models/mcnn_shtechA_660.h5"
 # model = CrowdCountModelMCNN(gpu_id, model_path=mcnn_model_path)
 model = Router(gpu_id, mcnn_model_path=mcnn_model_path, cutoff_pose=20, cutoff_mcnn=50)
 
+
 @app.route("/", methods=["GET"])
 def load():
     return render_template(

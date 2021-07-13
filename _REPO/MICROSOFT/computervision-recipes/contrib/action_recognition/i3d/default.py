@@ -54,6 +54,7 @@ _C.TEST.MODALITY = "combined"
 _C.TEST.MODEL_RGB = "pretrained_models/rgb_hmdb_split1.pt"
 _C.TEST.MODEL_FLOW = "pretrained_models/flow_hmdb_split1.pt"
 
+
 def update_config(cfg, options=None, config_file=None):
     cfg.defrost()
 

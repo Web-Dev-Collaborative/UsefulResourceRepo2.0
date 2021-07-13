@@ -76,13 +76,9 @@ bottom={self.bottom}]\
             return None
         else:
             # TODO think about whether this actually works for classes that inherit _Bbox
-            return _Bbox(
-                overlap_left, overlap_top, overlap_right, overlap_bottom
-            )
+            return _Bbox(overlap_left, overlap_top, overlap_right, overlap_bottom)
 
-    def standardize(
-        self
-    ) -> None:  # NOTE: every setter method should call standardize
+    def standardize(self) -> None:  # NOTE: every setter method should call standardize
         left_new = min(self.left, self.right)
         top_new = min(self.top, self.bottom)
         right_new = max(self.left, self.right)
@@ -130,9 +126,7 @@ class AnnotationBbox(_Bbox):
         super().__init__(left, top, right, bottom)
         self.set_meta(label_idx, im_path, label_name)
 
-    def set_meta(
-        self, label_idx: int, im_path: str = None, label_name: str = None
-    ):
+    def set_meta(self, label_idx: int, im_path: str = None, label_name: str = None):
         self.label_idx = label_idx
         self.im_path = im_path
         self.label_name = label_name
@@ -146,12 +140,10 @@ class AnnotationBbox(_Bbox):
         return bbox
 
     def __repr__(self):
-        name = (
-            "None"
-            if self.label_name == str(self.label_idx)
-            else self.label_name
+        name = "None" if self.label_name == str(self.label_idx) else self.label_name
+        return (
+            f"{{{str(self)} | <{name}> | label:{self.label_idx} | path:{self.im_path}}}"
         )
-        return f"{{{str(self)} | <{name}> | label:{self.label_idx} | path:{self.im_path}}}"
 
 
 class DetectionBbox(AnnotationBbox):
@@ -170,13 +162,7 @@ class DetectionBbox(AnnotationBbox):
     ):
         """ Initialize DetectionBbox """
         super().__init__(
-            left,
-            top,
-            right,
-            bottom,
-            label_idx,
-            im_path=im_path,
-            label_name=label_name,
+            left, top, right, bottom, label_idx, im_path=im_path, label_name=label_name
         )
         self.score = score
 
@@ -211,9 +197,7 @@ def bboxes_iou(bbox1: DetectionBbox, bbox2: DetectionBbox):
         bbox1_area = bbox1.surface_area()
         bbox2_area = bbox2.surface_area()
         overlap_box_area = overlap_box.surface_area()
-        iou = overlap_box_area / float(
-            bbox1_area + bbox2_area - overlap_box_area
-        )
+        iou = overlap_box_area / float(bbox1_area + bbox2_area - overlap_box_area)
     else:
         iou = 0
     assert iou >= 0

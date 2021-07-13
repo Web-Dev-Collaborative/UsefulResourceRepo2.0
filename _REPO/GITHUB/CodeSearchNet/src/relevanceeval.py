@@ -31,32 +31,43 @@ import pandas as pd
 from docopt import docopt
 from dpu_utils.utils import run_and_debug
 
+
 def load_relevances(filepath: str) -> Dict[str, Dict[str, Dict[str, float]]]:
     relevance_annotations = pd.read_csv(filepath)
     per_query_language = relevance_annotations.pivot_table(
-        index=['Query', 'Language', 'GitHubUrl'], values='Relevance', aggfunc=np.mean)
+        index=["Query", "Language", "GitHubUrl"], values="Relevance", aggfunc=np.mean
+    )
 
     # Map language -> query -> url -> float
-    relevances = defaultdict(lambda: defaultdict(dict))  # type: Dict[str, Dict[str, Dict[str, float]]]
-    for (query, language, url), relevance in per_query_language['Relevance'].items():
+    relevances = defaultdict(
+        lambda: defaultdict(dict)
+    )  # type: Dict[str, Dict[str, Dict[str, float]]]
+    for (query, language, url), relevance in per_query_language["Relevance"].items():
         relevances[language.lower()][query.lower()][url] = relevance
     return relevances
 
-def load_predictions(filepath: str, max_urls_per_language: int=300) -> Dict[str, Dict[str, List[str]]]:
+
+def load_predictions(
+    filepath: str, max_urls_per_language: int = 300
+) -> Dict[str, Dict[str, List[str]]]:
     prediction_data = pd.read_csv(filepath)
 
     # Map language -> query -> Ranked List of URL
     predictions = defaultdict(lambda: defaultdict(list))
     for _, row in prediction_data.iterrows():
-        predictions[row['language'].lower()][row['query'].lower()].append(row['url'])
+        predictions[row["language"].lower()][row["query"].lower()].append(row["url"])
     for query_data in predictions.values():
         for query, ranked_urls in query_data.items():
             query_data[query] = ranked_urls[:max_urls_per_language]
 
     return predictions
 
-def coverage_per_language(predictions: Dict[str, List[str]],
-                          relevance_scores: Dict[str, Dict[str, float]], with_positive_relevance: bool=False) -> float:
+
+def coverage_per_language(
+    predictions: Dict[str, List[str]],
+    relevance_scores: Dict[str, Dict[str, float]],
+    with_positive_relevance: bool = False,
+) -> float:
     """
     Compute the % of annotated URLs that appear in the algorithm's predictions.
     """
@@ -72,8 +83,12 @@ def coverage_per_language(predictions: Dict[str, List[str]],
 
     return num_covered / num_annotations
 
-def ndcg(predictions: Dict[str, List[str]], relevance_scores: Dict[str, Dict[str, float]],
-         ignore_rank_of_non_annotated_urls: bool=True) -> float:
+
+def ndcg(
+    predictions: Dict[str, List[str]],
+    relevance_scores: Dict[str, Dict[str, float]],
+    ignore_rank_of_non_annotated_urls: bool = True,
+) -> float:
     num_results = 0
     ndcg_sum = 0
 
@@ -82,13 +97,17 @@ def ndcg(predictions: Dict[str, List[str]], relevance_scores: Dict[str, Dict[str
         query_dcg = 0
         for url in predictions[query]:
             if url in query_relevance_annotations:
-                query_dcg += (2**query_relevance_annotations[url] - 1) / np.log2(current_rank + 1)
+                query_dcg += (2 ** query_relevance_annotations[url] - 1) / np.log2(
+                    current_rank + 1
+                )
                 current_rank += 1
             elif not ignore_rank_of_non_annotated_urls:
                 current_rank += 1
 
         query_idcg = 0
-        for i, ideal_relevance in enumerate(sorted(query_relevance_annotations.values(), reverse=True), start=1):
+        for i, ideal_relevance in enumerate(
+            sorted(query_relevance_annotations.values(), reverse=True), start=1
+        ):
             query_idcg += (2 ** ideal_relevance - 1) / np.log2(i + 1)
         if query_idcg == 0:
             # We have no positive annotations for the given query, so we should probably not penalize anyone about this.
@@ -98,32 +117,40 @@ def ndcg(predictions: Dict[str, List[str]], relevance_scores: Dict[str, Dict[str
     return ndcg_sum / num_results
 
 
-
 def run(arguments):
-    relevance_scores = load_relevances(arguments['RELEVANCE_ANNOTATIONS_CSV_PATH'])
-    predictions = load_predictions(arguments['MODEL_PREDICTIONS_CSV'])
+    relevance_scores = load_relevances(arguments["RELEVANCE_ANNOTATIONS_CSV_PATH"])
+    predictions = load_predictions(arguments["MODEL_PREDICTIONS_CSV"])
 
     languages_predicted = sorted(set(predictions.keys()))
 
     # Now Compute the various evaluation results
-    print('% of URLs in predictions that exist in the annotation dataset:')
+    print("% of URLs in predictions that exist in the annotation dataset:")
     for language in languages_predicted:
-        print(f'\t{language}: {coverage_per_language(predictions[language], relevance_scores[language])*100:.2f}%')
+        print(
+            f"\t{language}: {coverage_per_language(predictions[language], relevance_scores[language])*100:.2f}%"
+        )
 
-    print('% of URLs in predictions that exist in the annotation dataset (avg relevance > 0):')
+    print(
+        "% of URLs in predictions that exist in the annotation dataset (avg relevance > 0):"
+    )
     for language in languages_predicted:
-        print(f'\t{language}: {coverage_per_language(predictions[language], relevance_scores[language], with_positive_relevance=True) * 100:.2f}%')
+        print(
+            f"\t{language}: {coverage_per_language(predictions[language], relevance_scores[language], with_positive_relevance=True) * 100:.2f}%"
+        )
 
-    print('NDCG:')
+    print("NDCG:")
     for language in languages_predicted:
-        print(f'\t{language}: {ndcg(predictions[language], relevance_scores[language]):.3f}')
+        print(
+            f"\t{language}: {ndcg(predictions[language], relevance_scores[language]):.3f}"
+        )
 
-    print('NDCG (full ranking):')
+    print("NDCG (full ranking):")
     for language in languages_predicted:
-        print(f'\t{language}: {ndcg(predictions[language], relevance_scores[language], ignore_rank_of_non_annotated_urls=False):.3f}')
+        print(
+            f"\t{language}: {ndcg(predictions[language], relevance_scores[language], ignore_rank_of_non_annotated_urls=False):.3f}"
+        )
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     args = docopt(__doc__)
-    run_and_debug(lambda: run(args), args['--debug'])
+    run_and_debug(lambda: run(args), args["--debug"])

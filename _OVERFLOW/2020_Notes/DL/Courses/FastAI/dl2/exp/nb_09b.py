@@ -143,8 +143,9 @@ class Learner:
 
 class AvgStatsCallback(Callback):
     def __init__(self, metrics):
-        self.train_stats, self.valid_stats = AvgStats(metrics, True), AvgStats(
-            metrics, False
+        self.train_stats, self.valid_stats = (
+            AvgStats(metrics, True),
+            AvgStats(metrics, False),
         )
 
     def begin_epoch(self):

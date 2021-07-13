@@ -53,9 +53,7 @@ def center_crop(clip, crop_size):
     assert _is_tensor_video_clip(clip), "clip should be a 4D torch.tensor"
     h, w = clip.size(-2), clip.size(-1)
     th, tw = crop_size
-    assert (
-        h >= th and w >= tw
-    ), "height and width must be no smaller than crop_size"
+    assert h >= th and w >= tw, "height and width must be no smaller than crop_size"
 
     i = int(round((h - th) / 2.0))
     j = int(round((w - tw) / 2.0))

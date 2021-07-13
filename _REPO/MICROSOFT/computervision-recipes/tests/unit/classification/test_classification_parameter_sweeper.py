@@ -48,9 +48,7 @@ def test_default_sweeper_benchmark_dataset(tiny_ic_multidata_path):
 
     # assert min accuracy for each dataset
     assert df.mean(level=(2)).loc["fridgeObjectsTiny", "accuracy"] > 0.0
-    assert (
-        df.mean(level=(2)).loc["fridgeObjectsWatermarkTiny", "accuracy"] > 0.0
-    )
+    assert df.mean(level=(2)).loc["fridgeObjectsWatermarkTiny", "accuracy"] > 0.0
 
 
 def test_update_parameters_01(tiny_ic_data_path):
@@ -59,9 +57,7 @@ def test_update_parameters_01(tiny_ic_data_path):
 
     # at this point there should only be 1 permutation of the default params
     assert len(sweeper.permutations) == 1
-    sweeper.update_parameters(
-        learning_rate=[1e-4], im_size=[50, 55], epochs=[1]
-    )
+    sweeper.update_parameters(learning_rate=[1e-4], im_size=[50, 55], epochs=[1])
     # assert that there are not 6 permutations
     assert len(sweeper.permutations) == 2
     df = sweeper.run([tiny_ic_data_path], reps=1)

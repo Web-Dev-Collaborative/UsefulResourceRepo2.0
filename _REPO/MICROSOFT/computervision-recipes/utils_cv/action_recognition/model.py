@@ -41,7 +41,9 @@ from .references.metrics import accuracy, AverageMeter
 
 # These paramaters are set so that we can use torch hub to download pretrained
 # models from the specified repo
-TORCH_R2PLUS1D = "moabitcoin/ig65m-pytorch"  # From https://github.com/moabitcoin/ig65m-pytorch
+TORCH_R2PLUS1D = (
+    "moabitcoin/ig65m-pytorch"
+)  # From https://github.com/moabitcoin/ig65m-pytorch
 MODELS = {
     # Model name followed by the number of output classes.
     "r2plus1d_34_32_ig65m": 359,
@@ -86,7 +88,7 @@ class VideoLearner(object):
             self.sample_length = sample_length
 
         self.model, self.model_name = self.init_model(
-            self.sample_length, base_model, num_classes,
+            self.sample_length, base_model, num_classes
         )
 
     @staticmethod
@@ -116,10 +118,7 @@ class VideoLearner(object):
         print(f"Loading {model_name} model")
 
         model = torch.hub.load(
-            TORCH_R2PLUS1D,
-            model_name,
-            num_classes=MODELS[model_name],
-            pretrained=True,
+            TORCH_R2PLUS1D, model_name, num_classes=MODELS[model_name], pretrained=True
         )
 
         # Replace head
@@ -233,13 +232,11 @@ class VideoLearner(object):
         else:
             # Simple step-decay
             scheduler = torch.optim.lr_scheduler.StepLR(
-                optimizer, step_size=lr_step_size, gamma=lr_gamma,
+                optimizer, step_size=lr_step_size, gamma=lr_gamma
             )
 
         # DataParallel after amp.initialize
-        model = (
-            nn.DataParallel(self.model) if count_devices > 1 else self.model
-        )
+        model = nn.DataParallel(self.model) if count_devices > 1 else self.model
 
         criterion = nn.CrossEntropyLoss().to(device)
 
@@ -274,7 +271,7 @@ class VideoLearner(object):
                     os.path.join(
                         model_dir,
                         "{model_name}_{epoch}.pt".format(
-                            model_name=model_name, epoch=str(e).zfill(3),
+                            model_name=model_name, epoch=str(e).zfill(3)
                         ),
                     )
                 )
@@ -362,9 +359,7 @@ class VideoLearner(object):
                         loss = loss / grad_steps
 
                         if mixed_prec:
-                            with amp.scale_loss(
-                                loss, optimizer
-                            ) as scaled_loss:
+                            with amp.scale_loss(loss, optimizer) as scaled_loss:
                                 scaled_loss.backward()
                         else:
                             loss.backward()
@@ -391,9 +386,7 @@ class VideoLearner(object):
 
         return result
 
-    def plot_precision_loss_curves(
-        self, figsize: Tuple[int, int] = (10, 5)
-    ) -> None:
+    def plot_precision_loss_curves(self, figsize: Tuple[int, int] = (10, 5)) -> None:
         """ Plot training loss and accuracy from calling `fit` on the test set. """
         assert len(self.results) > 0
 
@@ -440,11 +433,7 @@ class VideoLearner(object):
         self.model.eval()
 
         # set train or test
-        ds = (
-            self.dataset.test_ds
-            if train_or_test == "test"
-            else self.dataset.train_ds
-        )
+        ds = self.dataset.test_ds if train_or_test == "test" else self.dataset.train_ds
 
         # set num_samples
         ds.dataset.num_samples = num_samples
@@ -454,11 +443,7 @@ class VideoLearner(object):
 
         # Loop over all examples in the test set and compute accuracies
         ret = dict(
-            infer_times=[],
-            video_preds=[],
-            video_trues=[],
-            clip_preds=[],
-            clip_trues=[],
+            infer_times=[], video_preds=[], video_trues=[], clip_preds=[], clip_trues=[]
         )
         report_every = 100
 
@@ -468,9 +453,7 @@ class VideoLearner(object):
                 1, len(ds)
             ):  # [::10]:  # Skip some examples to speed up accuracy computation
                 if i % report_every == 0:
-                    print(
-                        f"Processsing {i} of {len(self.dataset.test_ds)} samples.."
-                    )
+                    print(f"Processsing {i} of {len(self.dataset.test_ds)} samples..")
 
                 # Get model inputs
                 inputs, label = ds[i]
@@ -590,9 +573,7 @@ class VideoLearner(object):
 
             top5_id_score_dict = {
                 i: scores_avg[i]
-                for i in (-scores_avg).argpartition(num_labels - 1)[
-                    :num_labels
-                ]
+                for i in (-scores_avg).argpartition(num_labels - 1)[:num_labels]
             }
             top5_label_score_dict = self._filter_labels(
                 top5_id_score_dict,

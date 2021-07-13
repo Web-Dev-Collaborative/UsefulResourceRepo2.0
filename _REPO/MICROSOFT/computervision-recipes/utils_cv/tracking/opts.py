@@ -189,9 +189,7 @@ class opts(object):
 
     def set_gpus(self, value):
         gpus_list = [int(gpu) for gpu in value.split(",")]
-        self.gpus = (
-            [i for i in range(len(gpus_list))] if gpus_list[0] >= 0 else [-1]
-        )
+        self.gpus = [i for i in range(len(gpus_list))] if gpus_list[0] >= 0 else [-1]
         self.gpus_str = value
 
     def set_head_conv(self, value):

@@ -18,11 +18,7 @@ class AnnotationWidget(object):
     IM_WIDTH = 500  # pixels
 
     def __init__(
-        self,
-        labels: list,
-        im_dir: str,
-        anno_path: str,
-        im_filenames: list = None,
+        self, labels: list, im_dir: str, anno_path: str, im_filenames: list = None
     ):
         """Widget class to annotate images.
 
@@ -65,9 +61,7 @@ class AnnotationWidget(object):
         self.annos = pd.DataFrame()
         for im_filename in self.im_filenames:
             if im_filename not in self.annos:
-                self.annos[im_filename] = pd.Series(
-                    {"exclude": False, "labels": []}
-                )
+                self.annos[im_filename] = pd.Series({"exclude": False, "labels": []})
         if os.path.exists(self.anno_path):
             print(f"Loading existing annotation from {self.anno_path}.")
             with open(self.anno_path, "r") as f:
@@ -164,11 +158,7 @@ class AnnotationWidget(object):
             # Test if call is coming from the user having clicked on a checkbox to change its state,
             # rather than a change of state when e.g. the checkbox value was updated programatically. This is a bit
             # of hack, but necessary since widgets.Checkbox() does not support a on_click() callback or similar.
-            if (
-                "new" in obj
-                and isinstance(obj["new"], dict)
-                and len(obj["new"]) == 0
-            ):
+            if "new" in obj and isinstance(obj["new"], dict) and len(obj["new"]) == 0:
                 # If single-label annotation then unset all checkboxes except the one which the user just clicked
                 if not self.w_multi_class.value:
                     for w in self.label_widgets:
@@ -184,17 +174,11 @@ class AnnotationWidget(object):
 
                 # Write to disk as tab-separated file.
                 with open(self.anno_path, "w") as f:
-                    f.write(
-                        "{}\t{}\t{}\n".format(
-                            "IM_FILENAME", "EXCLUDE", "LABELS"
-                        )
-                    )
+                    f.write("{}\t{}\t{}\n".format("IM_FILENAME", "EXCLUDE", "LABELS"))
                     for k, v in self.annos.items():
                         if v.labels != [] or v.exclude:
                             f.write(
-                                "{}\t{}\t{}\n".format(
-                                    k, v.exclude, ",".join(v.labels)
-                                )
+                                "{}\t{}\t{}\n".format(k, v.exclude, ",".join(v.labels))
                             )
 
         # ------------
@@ -248,13 +232,10 @@ class AnnotationWidget(object):
         )
 
         # Label checkboxes widgets
-        self.exclude_widget = widgets.Checkbox(
-            value=False, description="EXCLUDE IMAGE"
-        )
+        self.exclude_widget = widgets.Checkbox(value=False, description="EXCLUDE IMAGE")
         self.exclude_widget.observe(anno_changed)
         self.label_widgets = [
-            widgets.Checkbox(value=False, description=label)
-            for label in self.labels
+            widgets.Checkbox(value=False, description=label) for label in self.labels
         ]
         for label_widget in self.label_widgets:
             label_widget.observe(anno_changed)
@@ -274,10 +255,7 @@ class AnnotationWidget(object):
         self.ui = widgets.Tab(
             children=[
                 widgets.VBox(
-                    children=[
-                        w_header,
-                        widgets.HBox(children=[self.w_img, w_info]),
-                    ]
+                    children=[w_header, widgets.HBox(children=[self.w_img, w_info])]
                 )
             ]
         )
@@ -335,18 +313,12 @@ class ResultsWidget(object):
 
         self.w_img.value = im._repr_png_()
         # Fix the width of the image widget and adjust the height
-        self.w_img.layout.height = (
-            f"{int(self.IM_WIDTH * (im.size[0]/im.size[1]))}px"
-        )
+        self.w_img.layout.height = f"{int(self.IM_WIDTH * (im.size[0]/im.size[1]))}px"
 
         self.w_gt_label.value = str(self.dataset.y[self.vis_image_index])
 
-        self.w_filename.value = str(
-            self.dataset.items[self.vis_image_index].name
-        )
-        self.w_path.value = str(
-            self.dataset.items[self.vis_image_index].parent
-        )
+        self.w_filename.value = str(self.dataset.items[self.vis_image_index].name)
+        self.w_path.value = str(self.dataset.items[self.vis_image_index].parent)
         bqpyplot.clear()
         bqpyplot.bar(
             self.labels,
@@ -468,12 +440,7 @@ class ResultsWidget(object):
         self.w_scores = bqpyplot.figure()
         self.w_scores.layout.height = "250px"
         self.w_scores.layout.width = "370px"
-        self.w_scores.fig_margin = {
-            "top": 5,
-            "bottom": 80,
-            "left": 30,
-            "right": 5,
-        }
+        self.w_scores.fig_margin = {"top": 5, "bottom": 80, "left": 30, "right": 5}
 
         # Combine UIs into tab widget
         w_info = widgets.VBox(
@@ -493,10 +460,7 @@ class ResultsWidget(object):
         self.ui = widgets.Tab(
             children=[
                 widgets.VBox(
-                    children=[
-                        w_header,
-                        widgets.HBox(children=[self.w_img, w_info]),
-                    ]
+                    children=[w_header, widgets.HBox(children=[self.w_img, w_info])]
                 )
             ]
         )

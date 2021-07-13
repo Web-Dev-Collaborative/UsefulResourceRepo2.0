@@ -59,7 +59,7 @@ from utils_cv.action_recognition.data import Urls as ar_urls
 from utils_cv.action_recognition.dataset import (
     VideoDataset,
     get_transforms as ar_get_transforms,
-    get_default_tfms_config
+    get_default_tfms_config,
 )
 
 storage_url = "https://cvbp-secondary.z19.web.core.windows.net/"
@@ -69,10 +69,7 @@ def path_classification_notebooks():
     """ Returns the path of the classification notebooks folder. """
     return os.path.abspath(
         os.path.join(
-            os.path.dirname(__file__),
-            os.path.pardir,
-            "scenarios",
-            "classification",
+            os.path.dirname(__file__), os.path.pardir, "scenarios", "classification"
         )
     )
 
@@ -81,10 +78,7 @@ def path_similarity_notebooks():
     """ Returns the path of the similarity notebooks folder. """
     return os.path.abspath(
         os.path.join(
-            os.path.dirname(__file__),
-            os.path.pardir,
-            "scenarios",
-            "similarity",
+            os.path.dirname(__file__), os.path.pardir, "scenarios", "similarity"
         )
     )
 
@@ -102,10 +96,7 @@ def path_action_recognition_notebooks():
     """ Returns the path of the action recognition notebooks folder. """
     return os.path.abspath(
         os.path.join(
-            os.path.dirname(__file__),
-            os.path.pardir,
-            "scenarios",
-            "action_recognition",
+            os.path.dirname(__file__), os.path.pardir, "scenarios", "action_recognition"
         )
     )
 
@@ -114,10 +105,7 @@ def path_segmentation_notebooks():
     """ Returns the path of the similarity notebooks folder. """
     return os.path.abspath(
         os.path.join(
-            os.path.dirname(__file__),
-            os.path.pardir,
-            "scenarios",
-            "segmentation",
+            os.path.dirname(__file__), os.path.pardir, "scenarios", "segmentation"
         )
     )
 
@@ -133,30 +121,19 @@ def classification_notebooks():
     paths = {
         "00": os.path.join(folder_notebooks, "00_webcam.ipynb"),
         "01": os.path.join(folder_notebooks, "01_training_introduction.ipynb"),
-        "02": os.path.join(
-            folder_notebooks, "02_multilabel_classification.ipynb"
-        ),
-        "03": os.path.join(
-            folder_notebooks, "03_training_accuracy_vs_speed.ipynb"
-        ),
+        "02": os.path.join(folder_notebooks, "02_multilabel_classification.ipynb"),
+        "03": os.path.join(folder_notebooks, "03_training_accuracy_vs_speed.ipynb"),
         "10": os.path.join(folder_notebooks, "10_image_annotation.ipynb"),
-        "11": os.path.join(
-            folder_notebooks, "11_exploring_hyperparameters.ipynb"
-        ),
-        "12": os.path.join(
-            folder_notebooks, "12_hard_negative_sampling.ipynb"
-        ),
+        "11": os.path.join(folder_notebooks, "11_exploring_hyperparameters.ipynb"),
+        "12": os.path.join(folder_notebooks, "12_hard_negative_sampling.ipynb"),
         "20": os.path.join(folder_notebooks, "20_azure_workspace_setup.ipynb"),
         "21": os.path.join(
-            folder_notebooks,
-            "21_deployment_on_azure_container_instances.ipynb",
+            folder_notebooks, "21_deployment_on_azure_container_instances.ipynb"
         ),
         "22": os.path.join(
             folder_notebooks, "22_deployment_on_azure_kubernetes_service.ipynb"
         ),
-        "23": os.path.join(
-            folder_notebooks, "23_aci_aks_web_service_testing.ipynb"
-        ),
+        "23": os.path.join(folder_notebooks, "23_aci_aks_web_service_testing.ipynb"),
         "24": os.path.join(
             folder_notebooks, "24_exploring_hyperparameters_on_azureml.ipynb"
         ),
@@ -175,9 +152,7 @@ def similarity_notebooks():
             folder_notebooks, "01_training_and_evaluation_introduction.ipynb"
         ),
         "02": os.path.join(folder_notebooks, "02_state_of_the_art.ipynb"),
-        "11": os.path.join(
-            folder_notebooks, "11_exploring_hyperparameters.ipynb"
-        ),
+        "11": os.path.join(folder_notebooks, "11_exploring_hyperparameters.ipynb"),
         "12": os.path.join(folder_notebooks, "12_fast_retrieval.ipynb"),
     }
     return paths
@@ -193,18 +168,12 @@ def detection_notebooks():
         "01": os.path.join(folder_notebooks, "01_training_introduction.ipynb"),
         "02": os.path.join(folder_notebooks, "02_mask_rcnn.ipynb"),
         "03": os.path.join(folder_notebooks, "03_keypoint_rcnn.ipynb"),
-        "04": os.path.join(
-            folder_notebooks, "04_coco_accuracy_vs_speed.ipynb"
-        ),
+        "04": os.path.join(folder_notebooks, "04_coco_accuracy_vs_speed.ipynb"),
         "11": os.path.join(
             folder_notebooks, "11_exploring_hyperparameters_on_azureml.ipynb"
         ),
-        "12": os.path.join(
-            folder_notebooks, "12_hard_negative_sampling.ipynb"
-        ),
-        "20": os.path.join(
-            folder_notebooks, "20_deployment_on_kubernetes.ipynb"
-        ),
+        "12": os.path.join(folder_notebooks, "12_hard_negative_sampling.ipynb"),
+        "20": os.path.join(folder_notebooks, "20_deployment_on_kubernetes.ipynb"),
     }
     return paths
 
@@ -399,9 +368,9 @@ def testing_im_list(tmp_session):
         exist_ok=True,
     )
     can_im_paths = os.listdir(os.path.join(im_paths, "can"))
-    can_im_paths = [
-        os.path.join(im_paths, "can", im_name) for im_name in can_im_paths
-    ][0:5]
+    can_im_paths = [os.path.join(im_paths, "can", im_name) for im_name in can_im_paths][
+        0:5
+    ]
     return can_im_paths
 
 
@@ -417,9 +386,9 @@ def testing_databunch(tmp_session):
         exist_ok=True,
     )
     can_im_paths = os.listdir(os.path.join(im_paths, "can"))
-    can_im_paths = [
-        os.path.join(im_paths, "can", im_name) for im_name in can_im_paths
-    ][0:5]
+    can_im_paths = [os.path.join(im_paths, "can", im_name) for im_name in can_im_paths][
+        0:5
+    ]
     random.seed(642)
     data = (
         ImageList.from_folder(im_paths)
@@ -558,11 +527,7 @@ def od_data_path_labels() -> List[str]:
 
 @pytest.fixture(scope="session")
 def od_sample_raw_preds():
-    device = (
-        torch.device("cuda")
-        if torch.cuda.is_available()
-        else torch.device("cpu")
-    )
+    device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 
     boxes = [
         [109.0, 190.0, 205.0, 408.0],
@@ -593,9 +558,7 @@ def od_sample_raw_preds():
     return [
         {
             "boxes": tensor(boxes, device=device, dtype=torch.float),
-            "labels": tensor(
-                [3, 3, 3, 2, 1], device=device, dtype=torch.int64
-            ),
+            "labels": tensor([3, 3, 3, 2, 1], device=device, dtype=torch.int64),
             "scores": tensor(
                 [0.9985, 0.9979, 0.9945, 0.1470, 0.0903],
                 device=device,
@@ -644,9 +607,7 @@ def od_detection_dataset(tiny_od_data_path):
 @pytest.fixture(scope="session")
 def od_detection_mask_dataset(tiny_od_mask_data_path):
     """ returns a basic detection mask dataset. """
-    return DetectionDataset(
-        tiny_od_mask_data_path, mask_dir="segmentation-masks"
-    )
+    return DetectionDataset(tiny_od_mask_data_path, mask_dir="segmentation-masks")
 
 
 @pytest.fixture(scope="session")
@@ -663,15 +624,7 @@ def tiny_od_detection_keypoint_dataset(tiny_od_keypoint_data_path):
                 "left_bottom",
                 "right_bottom",
             ],
-            "skeleton": [
-                [0, 1],
-                [0, 2],
-                [1, 3],
-                [2, 3],
-                [2, 4],
-                [3, 5],
-                [4, 5],
-            ],
+            "skeleton": [[0, 1], [0, 2], [1, 3], [2, 3], [2, 4], [3, 5], [4, 5]],
             "hflip_inds": [1, 0, 3, 2, 5, 4],
         },
     )
@@ -719,9 +672,7 @@ def od_detection_keypoint_learner(tiny_od_detection_keypoint_dataset):
     """ returns a keypoint detection learner that has been trained for one epoch. """
     model = get_pretrained_keypointrcnn(
         num_classes=len(tiny_od_detection_keypoint_dataset.labels) + 1,
-        num_keypoints=len(
-            tiny_od_detection_keypoint_dataset.keypoint_meta["labels"]
-        ),
+        num_keypoints=len(tiny_od_detection_keypoint_dataset.keypoint_meta["labels"]),
         min_size=100,
         max_size=200,
         rpn_pre_nms_top_n_train=500,
@@ -811,7 +762,7 @@ def ar_milk_bottle_split_files(tmp_session) -> VideoDataset:
 
 @pytest.fixture(scope="session")
 def ar_milk_bottle_dataset_with_split_file(
-    ar_milk_bottle_path, ar_milk_bottle_split_files,
+    ar_milk_bottle_path, ar_milk_bottle_split_files
 ) -> VideoDataset:
     """ Returns an instance of a VideoDataset built using the milk bottle
     dataset and custom split files. """
@@ -825,7 +776,7 @@ def ar_milk_bottle_dataset_with_split_file(
         ar_milk_bottle_path,
         train_split_file=train_split_file_path,
         test_split_file=test_split_file_path,
-        train_transforms=train_tfms
+        train_transforms=train_tfms,
     )
 
 
@@ -843,8 +794,7 @@ def coco_sample_path(tmpdir_factory) -> str:
 # TODO i can't find where this function is being used
 def pytest_addoption(parser):
     parser.addoption(
-        "--subscription_id",
-        help="Azure Subscription Id to create resources in",
+        "--subscription_id", help="Azure Subscription Id to create resources in"
     )
     parser.addoption("--resource_group", help="Name of the resource group")
     parser.addoption("--workspace_name", help="Name of Azure ML Workspace")
@@ -934,9 +884,7 @@ def tiny_seg_data_path(tmp_session, seg_classes) -> str:
 @pytest.fixture(scope="session")
 def tiny_seg_databunch(tiny_seg_data_path, seg_classes):
     """ Returns a databunch object for the segmentation tiny fridge objects dataset. """
-    get_gt_filename = (
-        lambda x: f"{tiny_seg_data_path}/segmentation-masks/{x.stem}.png"
-    )
+    get_gt_filename = lambda x: f"{tiny_seg_data_path}/segmentation-masks/{x.stem}.png"
     return (
         SegmentationItemList.from_folder(tiny_seg_data_path)
         .split_by_rand_pct(valid_pct=0.1, seed=10)

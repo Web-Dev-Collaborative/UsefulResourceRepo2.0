@@ -114,17 +114,15 @@ def plot_mask_stats(
         exclude_classes: list of classes to ignore, e.g. ["background"]
     """
     areas, pixel_counts = mask_area_sizes(data)
-    class_names = [classes[k] for k,v in areas.items()]
-    values_list = [v for k,v in areas.items()]
+    class_names = [classes[k] for k, v in areas.items()]
+    values_list = [v for k, v in areas.items()]
     seg_counts = [len(v) for v in values_list]
     pixel_counts = [np.sum(v) for v in pixel_counts.values()]
     assert exclude_classes is None or type(exclude_classes) == list
 
     # Remove specified classes
     if exclude_classes:
-        keep_indices = np.where(
-            [c not in set(exclude_classes) for c in class_names]
-        )[0]
+        keep_indices = np.where([c not in set(exclude_classes) for c in class_names])[0]
         class_names = [class_names[i] for i in keep_indices]
         values_list = [values_list[i] for i in keep_indices]
         seg_counts = [seg_counts[i] for i in keep_indices]
@@ -149,9 +147,7 @@ def plot_mask_stats(
 
     # Right plot
     plt.subplot(1, 3, 3)
-    plt.hist(
-        values_list, nr_bins, label=class_names, histtype="barstacked",
-    )
+    plt.hist(values_list, nr_bins, label=class_names, histtype="barstacked")
     plt.title("Distribution of segment sizes (stacked bar chart)")
     plt.legend()
     plt.ylabel("Number of segments")
@@ -179,10 +175,7 @@ def plot_confusion_matrix(
     """
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=figsize)
     ConfusionMatrixDisplay(cmat, classes).plot(
-        ax=ax1,
-        cmap=cm.get_cmap("Blues"),
-        xticks_rotation="vertical",
-        values_format="d",
+        ax=ax1, cmap=cm.get_cmap("Blues"), xticks_rotation="vertical", values_format="d"
     )
     ConfusionMatrixDisplay(cmat_norm, classes).plot(
         ax=ax2, cmap=cm.get_cmap("Blues"), xticks_rotation="vertical"

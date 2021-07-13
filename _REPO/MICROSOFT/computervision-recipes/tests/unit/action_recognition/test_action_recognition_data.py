@@ -3,10 +3,7 @@
 
 import os
 import requests
-from utils_cv.action_recognition.data import (
-    _DatasetSpec,
-    Urls,
-)
+from utils_cv.action_recognition.data import _DatasetSpec, Urls
 from utils_cv.common.data import data_path
 
 

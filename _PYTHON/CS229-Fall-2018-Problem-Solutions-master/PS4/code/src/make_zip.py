@@ -4,11 +4,7 @@ import os
 import zipfile
 
 # List of relative paths of files to include in the zip
-FILE_PATHS = [
-    os.path.join("output", ".gitkeep"),
-    "p1_nn.py",
-    "p4_ica.py",
-]
+FILE_PATHS = [os.path.join("output", ".gitkeep"), "p1_nn.py", "p4_ica.py"]
 
 
 def make_zip():

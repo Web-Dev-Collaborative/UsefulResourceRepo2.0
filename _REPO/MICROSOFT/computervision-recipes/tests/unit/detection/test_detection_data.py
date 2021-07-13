@@ -48,11 +48,7 @@ def test_coco_labels():
 
 def test_coco2voc(coco_sample_path):
     output_dir = "coco2voc_output"
-    coco2voc(
-        anno_path=coco_sample_path,
-        output_dir=output_dir,
-        download_images=False,
-    )
+    coco2voc(anno_path=coco_sample_path, output_dir=output_dir, download_images=False)
     filenames = os.listdir(os.path.join(output_dir, "annotations"))
     assert len(filenames) == 3
 
@@ -126,12 +122,7 @@ def labelbox_export_data(tmp_session):
         "size": {"width": "500", "height": "500", "depth": "3"},
         "object": {
             "milk_bottle": {
-                "bndbox": {
-                    "xmin": "100",
-                    "ymin": "100",
-                    "xmax": "199",
-                    "ymax": "199",
-                },
+                "bndbox": {"xmin": "100", "ymin": "100", "xmax": "199", "ymax": "199"},
                 "keypoints": {
                     "p1": {"x": "320", "y": "320"},
                     "p2": {"x": "350", "y": "350"},
@@ -139,12 +130,7 @@ def labelbox_export_data(tmp_session):
                 },
             },
             "carton": {
-                "bndbox": {
-                    "xmin": "300",
-                    "ymin": "300",
-                    "xmax": "399",
-                    "ymax": "399",
-                },
+                "bndbox": {"xmin": "300", "ymin": "300", "xmax": "399", "ymax": "399"},
                 "keypoints": {
                     "p1": {"x": "130", "y": "130"},
                     "p2": {"x": "190", "y": "190"},
@@ -185,9 +171,7 @@ def labelbox_export_data(tmp_session):
     return data_dir, mask_json_path, keypoint_json_path, keypoint_truth_dict
 
 
-def test_extract_keypoints_from_labelbox_json(
-    labelbox_export_data, tmp_session
-):
+def test_extract_keypoints_from_labelbox_json(labelbox_export_data, tmp_session):
     data_dir, _, keypoint_json_path, keypoint_truth_dict = labelbox_export_data
     keypoint_data_dir = Path(tmp_session) / "labelbox_test_keypoint_data"
     keypoint_data_dir.mkdir(parents=True, exist_ok=True)

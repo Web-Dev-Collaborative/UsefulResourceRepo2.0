@@ -20,10 +20,7 @@ from my_or_tools import ObjVal, SolVal, newSolver
 
 def solve_model(C, D=None, Z=False):
     s = newSolver("Multi-commodity mincost flow problem", Z)
-    K, n = (
-        len(C),
-        len(C[0]) - 1,
-    )
+    K, n = (len(C), len(C[0]) - 1)
     B = [sum(C[k][-1][j] for j in range(n)) for k in range(K)]
     x = [
         [

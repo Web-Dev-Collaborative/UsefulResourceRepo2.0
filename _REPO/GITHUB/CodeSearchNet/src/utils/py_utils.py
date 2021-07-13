@@ -6,10 +6,12 @@ JobType = TypeVar("JobType")
 ResultType = TypeVar("ResultType")
 
 
-def __parallel_queue_worker(worker_id: int,
-                            job_queue: multiprocessing.Queue,
-                            result_queue: multiprocessing.Queue,
-                            worker_fn: Callable[[int, JobType], Iterable[ResultType]]):
+def __parallel_queue_worker(
+    worker_id: int,
+    job_queue: multiprocessing.Queue,
+    result_queue: multiprocessing.Queue,
+    worker_fn: Callable[[int, JobType], Iterable[ResultType]],
+):
     while True:
         job = job_queue.get()
 
@@ -23,11 +25,13 @@ def __parallel_queue_worker(worker_id: int,
     result_queue.put(None)
 
 
-def run_jobs_in_parallel(all_jobs: List[JobType],
-                         worker_fn: Callable[[int, JobType], Iterable[ResultType]],
-                         received_result_callback: Callable[[ResultType], None],
-                         finished_callback: Callable[[], None],
-                         result_queue_size: int=100) -> None:
+def run_jobs_in_parallel(
+    all_jobs: List[JobType],
+    worker_fn: Callable[[int, JobType], Iterable[ResultType]],
+    received_result_callback: Callable[[ResultType], None],
+    finished_callback: Callable[[], None],
+    result_queue_size: int = 100,
+) -> None:
     """
     Runs jobs in parallel and uses callbacks to collect results.
     :param all_jobs: Job descriptions; one at a time will be parsed into worker_fn.
@@ -46,9 +50,13 @@ def run_jobs_in_parallel(all_jobs: List[JobType],
 
     # Create workers:
     num_workers = multiprocessing.cpu_count() - 1
-    workers = [multiprocessing.Process(target=__parallel_queue_worker,
-                                       args=(worker_id, job_queue, result_queue, worker_fn))
-               for worker_id in range(num_workers)]
+    workers = [
+        multiprocessing.Process(
+            target=__parallel_queue_worker,
+            args=(worker_id, job_queue, result_queue, worker_fn),
+        )
+        for worker_id in range(num_workers)
+    ]
     for worker in workers:
         worker.start()
 

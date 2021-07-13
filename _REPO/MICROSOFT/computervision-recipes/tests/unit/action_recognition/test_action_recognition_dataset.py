@@ -105,7 +105,7 @@ def test_VideoDataset(ar_milk_bottle_path) -> None:
 
 
 def test_VideoDataset_split_file(
-    ar_milk_bottle_path, ar_milk_bottle_split_files,
+    ar_milk_bottle_path, ar_milk_bottle_split_files
 ) -> None:
     """ Tests VideoDataset initializing using split file. """
     dataset = VideoDataset(

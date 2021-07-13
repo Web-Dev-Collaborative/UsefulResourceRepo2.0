@@ -26,7 +26,5 @@ class TestProcessInboundMessage(TestCase):
         )
         assert resp.status_code == 201
         process_inbound_email.delay.assert_called_once_with(
-            self.user.email,
-            self.group.id,
-            body_plain,
+            self.user.email, self.group.id, body_plain
         )

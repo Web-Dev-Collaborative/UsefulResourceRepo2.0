@@ -223,7 +223,7 @@ latex_documents = [
         u"Face Recognition Documentation",
         u"Adam Geitgey",
         "manual",
-    ),
+    )
 ]
 
 # The name of an image file (relative to this directory) to place at
@@ -279,7 +279,7 @@ texinfo_documents = [
         "face_recognition",
         "One line description of project.",
         "Miscellaneous",
-    ),
+    )
 ]
 
 # Documents to append as an appendix to all manuals.

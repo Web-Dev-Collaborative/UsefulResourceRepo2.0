@@ -1,1 +1,5 @@
-from crowdcounting.api.model_crowdcount import Router, CrowdCountModelMCNN, CrowdCountModelPose
+from crowdcounting.api.model_crowdcount import (
+    Router,
+    CrowdCountModelMCNN,
+    CrowdCountModelPose,
+)

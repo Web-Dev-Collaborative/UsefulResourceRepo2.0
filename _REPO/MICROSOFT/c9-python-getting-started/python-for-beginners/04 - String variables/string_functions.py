@@ -1,6 +1,6 @@
 # There are a number of string functions you can use
 # on string variables
-sentence = 'The dog is named Sammy'
+sentence = "The dog is named Sammy"
 
 # upper will return the string in uppercase letters
 print(sentence.upper())
@@ -14,4 +14,4 @@ print(sentence.capitalize())
 
 # count will count the number of occurrences of the value specified
 # in the string, in this case how many times the letter 'a' appears
-print(sentence.count('a'))
+print(sentence.count("a"))

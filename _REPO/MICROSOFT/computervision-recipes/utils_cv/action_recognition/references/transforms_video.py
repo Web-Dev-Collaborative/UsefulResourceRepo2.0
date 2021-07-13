@@ -38,8 +38,7 @@ class ResizeVideo(object):
         else:
             if self.keep_ratio:
                 scale = min(
-                    self.size[0] / clip.shape[-2],
-                    self.size[1] / clip.shape[-1],
+                    self.size[0] / clip.shape[-2], self.size[1] / clip.shape[-1]
                 )
             else:
                 size = self.size
@@ -122,9 +121,7 @@ class RandomResizedCropVideo(object):
                 size is (C, T, H, W)
         """
         i, j, h, w = self.get_params(clip, self.scale, self.ratio)
-        return F.resized_crop(
-            clip, i, j, h, w, self.size, self.interpolation_mode
-        )
+        return F.resized_crop(clip, i, j, h, w, self.size, self.interpolation_mode)
 
     def __repr__(self):
         return (
@@ -222,11 +219,8 @@ class NormalizeVideo(object):
         return F.normalize(clip, self.mean, self.std, self.inplace)
 
     def __repr__(self):
-        return (
-            self.__class__.__name__
-            + "(mean={0}, std={1}, inplace={2})".format(
-                self.mean, self.std, self.inplace
-            )
+        return self.__class__.__name__ + "(mean={0}, std={1}, inplace={2})".format(
+            self.mean, self.std, self.inplace
         )
 
 

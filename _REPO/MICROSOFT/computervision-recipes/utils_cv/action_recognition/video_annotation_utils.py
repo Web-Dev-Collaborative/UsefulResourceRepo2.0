@@ -26,21 +26,10 @@ def video_format_conversion(video_path, output_path, h264_format=False):
 
     if not h264_format:
         subprocess.run(
-            [
-                "ffmpeg",
-                "-i",
-                video_path,
-                "-c",
-                "copy",
-                "-map",
-                "0",
-                output_path,
-            ]
+            ["ffmpeg", "-i", video_path, "-c", "copy", "-map", "0", output_path]
         )
     else:
-        subprocess.run(
-            ["ffmpeg", "-i", video_path, "-vcodec", "libx264", output_path]
-        )
+        subprocess.run(["ffmpeg", "-i", video_path, "-vcodec", "libx264", output_path])
 
 
 def parse_video_file_name(row):
@@ -108,9 +97,7 @@ def get_clip_action_label(row):
     return label_dict[track_key]
 
 
-def _extract_clip_ffmpeg(
-    start_time, duration, video_path, clip_path, ffmpeg_path=None
-):
+def _extract_clip_ffmpeg(start_time, duration, video_path, clip_path, ffmpeg_path=None):
     """
     Using ffmpeg to extract clip from the video based on the start time and duration of the clip.
 
@@ -198,14 +185,10 @@ def extract_clip(row, video_dir, clip_dir, ffmpeg_path=None):
         return
 
     if not os.path.exists(video_path):
-        raise ValueError(
-            "The video path '{}' is not valid.".format(video_path)
-        )
+        raise ValueError("The video path '{}' is not valid.".format(video_path))
 
     # ffmpeg -ss 9.222 -i youtube.mp4 -t 0.688 tmp.mp4 -codec copy -y
-    _extract_clip_ffmpeg(
-        start_time, duration, video_path, clip_path, ffmpeg_path
-    )
+    _extract_clip_ffmpeg(start_time, duration, video_path, clip_path, ffmpeg_path)
 
 
 def get_video_length(video_file_path):
@@ -227,9 +210,7 @@ def get_video_length(video_file_path):
         "default=noprint_wrappers=1:nokey=1",
         video_file_path,
     ]
-    result = subprocess.run(
-        cmd_list, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-    )
+    result = subprocess.run(cmd_list, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     if len(result.stderr) > 0:
         raise RuntimeError(result.stderr)
 
@@ -268,9 +249,7 @@ def _merge_temporal_interval(temporal_interval_list):
         The merged temporal interval list.
     """
     # sort by the temporal interval start
-    temporal_interval_list_sorted = sorted(
-        temporal_interval_list, key=lambda x: x[0]
-    )
+    temporal_interval_list_sorted = sorted(temporal_interval_list, key=lambda x: x[0])
     i = 0
 
     while i < len(temporal_interval_list_sorted) - 1:
@@ -319,9 +298,7 @@ def _split_interval(
     if new_right - new_left < clip_length:
         return []
 
-    interval_start_list = np.arange(
-        new_left, new_right, clip_length + skip_clip_length
-    )
+    interval_start_list = np.arange(new_left, new_right, clip_length + skip_clip_length)
     interval_end_list = interval_start_list + clip_length
 
     if interval_end_list[-1] > new_right:
@@ -433,14 +410,11 @@ def extract_contiguous_negative_clips(
         raise Exception("There is no temporal information in the csv.")
 
     if not all(
-        len(temporal_interval) % 2 == 0
-        for temporal_interval in temporal_interval_list
+        len(temporal_interval) % 2 == 0 for temporal_interval in temporal_interval_list
     ):
         raise ValueError(
             "There is at least one time interval "
-            "in {} having only one end point.".format(
-                str(temporal_interval_list)
-            )
+            "in {} having only one end point.".format(str(temporal_interval_list))
         )
 
     temporal_interval_list = _merge_temporal_interval(temporal_interval_list)
@@ -451,10 +425,7 @@ def extract_contiguous_negative_clips(
     )
 
     negative_sample_interval_list = [
-        [
-            negative_sample_interval_list[2 * i],
-            negative_sample_interval_list[2 * i + 1],
-        ]
+        [negative_sample_interval_list[2 * i], negative_sample_interval_list[2 * i + 1]]
         for i in range(len(negative_sample_interval_list) // 2)
     ]
 
@@ -549,9 +520,7 @@ def extract_sampled_negative_clips(
     clips_sampled = 0
     while clips_sampled < num_negative_samples:
         # pick random file in list of videos
-        negative_sample_file = video_files[
-            random.randint(0, len(video_files) - 1)
-        ]
+        negative_sample_file = video_files[random.randint(0, len(video_files) - 1)]
         # get video duration
         duration = video_len[negative_sample_file]
         # pick random start time for clip
@@ -562,9 +531,7 @@ def extract_sampled_negative_clips(
         # check to ensure negative clip doesn't overlap a positive clip or pick another file
         if negative_sample_file in positive_intervals.keys():
             clip_positive_intervals = positive_intervals[negative_sample_file]
-            if check_interval_overlaps(
-                clip_start, clip_end, clip_positive_intervals
-            ):
+            if check_interval_overlaps(clip_start, clip_end, clip_positive_intervals):
                 continue
         video_path = os.path.join(video_dir, negative_sample_file)
         video_fname = os.path.splitext(negative_sample_file)[0]

@@ -1209,7 +1209,9 @@ def insert_into(command):
     """values would be a list of length self.columns, NULL represented as None"""
     """Parser needs to return "table_name", [[col1,col2,col3],[col1,col2,col3],[col1,col2,col3]]"""
     table_name, values = parse_insert_into(command)
-    violation_flag = False  # , violating_row = FUNCTION_TO_CHECK_CONSTRAINTS_THAT_WE_DONT_HAVE_YET(table_name, values) -> Tejas didnt do this
+    violation_flag = (
+        False
+    )  # , violating_row = FUNCTION_TO_CHECK_CONSTRAINTS_THAT_WE_DONT_HAVE_YET(table_name, values) -> Tejas didnt do this
     if violation_flag:  # if violation fail insert
         print("Constraint violated for row {}".format(violating_row))
         return None
@@ -1408,7 +1410,9 @@ def index_interior_split_page(
         update_cell_lpointer(file_name, split_page_num, 0, lchild_num)
         update_page_header(file_name, split_page_num, rsibling_rchild=rchild_num)
         print_it("table_name_column1.ndx", page_format=True)
-        return rchild_num  # return so we can update headers of pages that couldnt fit in the old page
+        return (
+            rchild_num
+        )  # return so we can update headers of pages that couldnt fit in the old page
 
     else:
         rsibling = write_new_page(
@@ -1738,7 +1742,9 @@ def table_interior_split_page(
         page_insert_cell(file_name, split_page_num, middle_cell_binary)
         update_cell_lpointer(file_name, split_page_num, 0, lchild_num)
         update_page_header(file_name, split_page_num, rsibling_rchild=rchild_num)
-        return rchild_num  # return so we can update headers of pages that couldnt fit in the old page
+        return (
+            rchild_num
+        )  # return so we can update headers of pages that couldnt fit in the old page
 
     else:
         rsibling = write_new_page(

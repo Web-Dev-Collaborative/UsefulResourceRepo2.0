@@ -19,17 +19,22 @@ from default import _C as config
 from default import update_config
 
 from videotransforms import (
-    GroupRandomCrop, GroupRandomHorizontalFlip,
-    GroupScale, GroupCenterCrop, GroupNormalize, Stack
+    GroupRandomCrop,
+    GroupRandomHorizontalFlip,
+    GroupScale,
+    GroupCenterCrop,
+    GroupNormalize,
+    Stack,
 )
 from models.pytorch_i3d import InceptionI3d
 from metrics import accuracy, AverageMeter
-from dataset import I3DDataSet 
+from dataset import I3DDataSet
 
 
 # to work with vscode debugger https://github.com/joblib/joblib/issues/864
 import multiprocessing
-multiprocessing.set_start_method('spawn', True)
+
+multiprocessing.set_start_method("spawn", True)
 
 
 def train(train_loader, model, criterion, optimizer, epoch, writer=None):
@@ -56,13 +61,13 @@ def train(train_loader, model, criterion, optimizer, epoch, writer=None):
         loss = criterion(output, target)
 
         # measure accuracy and record loss
-        prec1, prec5 = accuracy(output, target, topk=(1,5))
+        prec1, prec5 = accuracy(output, target, topk=(1, 5))
         losses.update(loss.item(), input.size(0))
         top1.update(prec1[0], input.size(0))
         top5.update(prec5[0], input.size(0))
 
         loss = loss / config.TRAIN.GRAD_ACCUM_STEPS
-        
+
         loss.backward()
 
         if step % config.TRAIN.GRAD_ACCUM_STEPS == 0:
@@ -74,19 +79,31 @@ def train(train_loader, model, criterion, optimizer, epoch, writer=None):
         end = time.time()
 
         if step % config.TRAIN.PRINT_FREQ == 0:
-            print(('Epoch: [{0}][{1}/{2}], lr: {lr:.5f}\t'
-                  'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-                  'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
-                  'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-                  'Prec@1 {top1.val:.3f} ({top1.avg:.3f})\t'
-                  'Prec@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
-                   epoch, step, len(train_loader), batch_time=batch_time,
-                   data_time=data_time, loss=losses, top1=top1, top5=top5, lr=optimizer.param_groups[-1]['lr'])))
-        
+            print(
+                (
+                    "Epoch: [{0}][{1}/{2}], lr: {lr:.5f}\t"
+                    "Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t"
+                    "Data {data_time.val:.3f} ({data_time.avg:.3f})\t"
+                    "Loss {loss.val:.4f} ({loss.avg:.4f})\t"
+                    "Prec@1 {top1.val:.3f} ({top1.avg:.3f})\t"
+                    "Prec@5 {top5.val:.3f} ({top5.avg:.3f})".format(
+                        epoch,
+                        step,
+                        len(train_loader),
+                        batch_time=batch_time,
+                        data_time=data_time,
+                        loss=losses,
+                        top1=top1,
+                        top5=top5,
+                        lr=optimizer.param_groups[-1]["lr"],
+                    )
+                )
+            )
+
         if writer:
-            writer.add_scalar('train/loss', losses.avg, epoch+1)
-            writer.add_scalar('train/top1', top1.avg, epoch+1)
-            writer.add_scalar('train/top5', top5.avg, epoch+1)
+            writer.add_scalar("train/loss", losses.avg, epoch + 1)
+            writer.add_scalar("train/top1", top1.avg, epoch + 1)
+            writer.add_scalar("train/top5", top5.avg, epoch + 1)
 
 
 def validate(val_loader, model, criterion, epoch, writer=None):
@@ -110,7 +127,7 @@ def validate(val_loader, model, criterion, epoch, writer=None):
             loss = criterion(output, target)
 
             # measure accuracy and record loss
-            prec1, prec5 = accuracy(output, target, topk=(1,5))
+            prec1, prec5 = accuracy(output, target, topk=(1, 5))
 
             losses.update(loss.item(), input.size(0))
             top1.update(prec1[0], input.size(0))
@@ -121,21 +138,35 @@ def validate(val_loader, model, criterion, epoch, writer=None):
             end = time.time()
 
             if step % config.TEST.PRINT_FREQ == 0:
-                print(('Test: [{0}/{1}]\t'
-                    'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-                    'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-                    'Prec@1 {top1.val:.3f} ({top1.avg:.3f})\t'
-                    'Prec@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
-                    step, len(val_loader), batch_time=batch_time, loss=losses,
-                    top1=top1, top5=top5)))
+                print(
+                    (
+                        "Test: [{0}/{1}]\t"
+                        "Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t"
+                        "Loss {loss.val:.4f} ({loss.avg:.4f})\t"
+                        "Prec@1 {top1.val:.3f} ({top1.avg:.3f})\t"
+                        "Prec@5 {top5.val:.3f} ({top5.avg:.3f})".format(
+                            step,
+                            len(val_loader),
+                            batch_time=batch_time,
+                            loss=losses,
+                            top1=top1,
+                            top5=top5,
+                        )
+                    )
+                )
 
-        print(('Testing Results: Prec@1 {top1.avg:.3f} Prec@5 {top5.avg:.3f} Loss {loss.avg:.5f}'
-            .format(top1=top1, top5=top5, loss=losses)))
+        print(
+            (
+                "Testing Results: Prec@1 {top1.avg:.3f} Prec@5 {top5.avg:.3f} Loss {loss.avg:.5f}".format(
+                    top1=top1, top5=top5, loss=losses
+                )
+            )
+        )
 
         if writer:
-            writer.add_scalar('val/loss', losses.avg, epoch+1)
-            writer.add_scalar('val/top1', top1.avg, epoch+1)
-            writer.add_scalar('val/top5', top5.avg, epoch+1)
+            writer.add_scalar("val/loss", losses.avg, epoch + 1)
+            writer.add_scalar("val/top1", top1.avg, epoch + 1)
+            writer.add_scalar("val/top5", top5.avg, epoch + 1)
 
     return losses.avg
 
@@ -156,7 +187,12 @@ def run(*options, cfg=None):
     update_config(config, options=options, config_file=cfg)
 
     print("Training ", config.TRAIN.MODALITY, " model.")
-    print("Batch size:", config.TRAIN.BATCH_SIZE, " Gradient accumulation steps:", config.TRAIN.GRAD_ACCUM_STEPS)
+    print(
+        "Batch size:",
+        config.TRAIN.BATCH_SIZE,
+        " Gradient accumulation steps:",
+        config.TRAIN.GRAD_ACCUM_STEPS,
+    )
 
     torch.backends.cudnn.benchmark = config.CUDNN.BENCHMARK
 
@@ -175,18 +211,20 @@ def run(*options, cfg=None):
             split=config.DATASET.SPLIT,
             sample_frames=config.TRAIN.SAMPLE_FRAMES,
             modality=config.TRAIN.MODALITY,
-            transform=torchvision.transforms.Compose([
-                GroupScale(config.TRAIN.RESIZE_MIN),
-                GroupRandomCrop(config.TRAIN.INPUT_SIZE),
-                GroupRandomHorizontalFlip(),
-                GroupNormalize(modality=config.TRAIN.MODALITY),
-                Stack(),
-            ])
+            transform=torchvision.transforms.Compose(
+                [
+                    GroupScale(config.TRAIN.RESIZE_MIN),
+                    GroupRandomCrop(config.TRAIN.INPUT_SIZE),
+                    GroupRandomHorizontalFlip(),
+                    GroupNormalize(modality=config.TRAIN.MODALITY),
+                    Stack(),
+                ]
+            ),
         ),
         batch_size=config.TRAIN.BATCH_SIZE,
         shuffle=True,
         num_workers=config.WORKERS,
-        pin_memory=config.PIN_MEMORY
+        pin_memory=config.PIN_MEMORY,
     )
 
     val_loader = torch.utils.data.DataLoader(
@@ -195,17 +233,19 @@ def run(*options, cfg=None):
             split=config.DATASET.SPLIT,
             modality=config.TRAIN.MODALITY,
             train_mode=False,
-            transform=torchvision.transforms.Compose([
-                GroupScale(config.TRAIN.RESIZE_MIN),
-                GroupCenterCrop(config.TRAIN.INPUT_SIZE),
-                GroupNormalize(modality=config.TRAIN.MODALITY),
-                Stack(),
-            ]),
+            transform=torchvision.transforms.Compose(
+                [
+                    GroupScale(config.TRAIN.RESIZE_MIN),
+                    GroupCenterCrop(config.TRAIN.INPUT_SIZE),
+                    GroupNormalize(modality=config.TRAIN.MODALITY),
+                    Stack(),
+                ]
+            ),
         ),
         batch_size=config.TEST.BATCH_SIZE,
         shuffle=False,
         num_workers=config.WORKERS,
-        pin_memory=config.PIN_MEMORY
+        pin_memory=config.PIN_MEMORY,
     )
 
     # Setup model
@@ -227,21 +267,13 @@ def run(*options, cfg=None):
     criterion = torch.nn.CrossEntropyLoss().cuda()
 
     optimizer = optim.SGD(
-       i3d_model.parameters(), 
-       lr=0.1,
-       momentum=0.9, 
-       weight_decay=0.0000001
+        i3d_model.parameters(), lr=0.1, momentum=0.9, weight_decay=0.0000001
     )
 
     i3d_model = i3d_model.cuda()
 
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(
-        optimizer,
-        factor=0.1,
-        patience=2,
-        verbose=True,
-        threshold=1e-4,
-        min_lr=1e-4
+        optimizer, factor=0.1, patience=2, verbose=True, threshold=1e-4, min_lr=1e-4
     )
 
     # Data-parallel
@@ -252,23 +284,26 @@ def run(*options, cfg=None):
 
     if not os.path.exists(config.MODEL.CHECKPOINT_DIR):
         os.makedirs(config.MODEL.CHECKPOINT_DIR)
-    
+
     for epoch in range(config.TRAIN.MAX_EPOCHS):
 
-        train(train_loader,
-            i3d_model,
-            criterion,
-            optimizer,
-            epoch,
-            writer
-        )
+        train(train_loader, i3d_model, criterion, optimizer, epoch, writer)
 
-        if (epoch + 1) % config.TEST.EVAL_FREQ == 0 or epoch == config.TRAIN.MAX_EPOCHS - 1:
+        if (
+            epoch + 1
+        ) % config.TEST.EVAL_FREQ == 0 or epoch == config.TRAIN.MAX_EPOCHS - 1:
             val_loss = validate(val_loader, i3d_model, criterion, epoch, writer)
             scheduler.step(val_loss)
             torch.save(
                 i3d_model.module.state_dict(),
-                config.MODEL.CHECKPOINT_DIR+'/'+config.MODEL.NAME+'_split'+str(config.DATASET.SPLIT)+'_epoch'+str(epoch).zfill(3)+'.pt'
+                config.MODEL.CHECKPOINT_DIR
+                + "/"
+                + config.MODEL.NAME
+                + "_split"
+                + str(config.DATASET.SPLIT)
+                + "_epoch"
+                + str(epoch).zfill(3)
+                + ".pt",
             )
 
     writer.close()

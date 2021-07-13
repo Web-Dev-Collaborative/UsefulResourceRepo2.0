@@ -2,12 +2,14 @@ from timeit import default_timer
 import aiohttp
 import asyncio
 
+
 async def load_data(session, delay):
-    print(f'Starting {delay} second timer')
-    async with session.get(f'http://httpbin.org/delay/{delay}') as resp:
+    print(f"Starting {delay} second timer")
+    async with session.get(f"http://httpbin.org/delay/{delay}") as resp:
         text = await resp.text()
-        print(f'Completed {delay} second timer')
+        print(f"Completed {delay} second timer")
         return text
+
 
 async def main():
     # Start the timer
@@ -21,7 +23,7 @@ async def main():
 
         # Simulate other processing
         await asyncio.sleep(1)
-        print('Doing other work')
+        print("Doing other work")
 
         # Let's go get our values
         two_result = await two_task
@@ -29,6 +31,7 @@ async def main():
 
         # Print our results
         elapsed_time = default_timer() - start_time
-        print(f'The operation took {elapsed_time:.2} seconds')
+        print(f"The operation took {elapsed_time:.2} seconds")
+
 
 asyncio.run(main())

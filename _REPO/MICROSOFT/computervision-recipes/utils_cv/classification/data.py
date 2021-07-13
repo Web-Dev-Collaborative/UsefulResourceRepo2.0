@@ -15,7 +15,9 @@ from tqdm import tqdm
 
 class Urls:
     # for now hardcoding base url into Urls class
-    base = "https://cvbp-secondary.z19.web.core.windows.net/datasets/image_classification/"
+    base = (
+        "https://cvbp-secondary.z19.web.core.windows.net/datasets/image_classification/"
+    )
 
     # ImageNet labels Keras is using
     imagenet_labels_json = "https://s3.amazonaws.com/deep-learning-models/image-models/imagenet_class_index.json"
@@ -24,18 +26,12 @@ class Urls:
     fridge_objects_path = urljoin(base, "fridgeObjects.zip")
     fridge_objects_watermark_path = urljoin(base, "fridgeObjectsWatermark.zip")
     fridge_objects_tiny_path = urljoin(base, "fridgeObjectsTiny.zip")
-    fridge_objects_watermark_tiny_path = urljoin(
-        base, "fridgeObjectsWatermarkTiny.zip"
-    )
+    fridge_objects_watermark_tiny_path = urljoin(base, "fridgeObjectsWatermarkTiny.zip")
     fridge_objects_negatives_path = urljoin(base, "fridgeObjectsNegative.zip")
-    fridge_objects_negatives_tiny_path = urljoin(
-        base, "fridgeObjectsNegativeTiny.zip"
-    )
+    fridge_objects_negatives_tiny_path = urljoin(base, "fridgeObjectsNegativeTiny.zip")
 
     # multilabel datasets
-    multilabel_fridge_objects_path = urljoin(
-        base, "multilabelFridgeObjects.zip"
-    )
+    multilabel_fridge_objects_path = urljoin(base, "multilabelFridgeObjects.zip")
     multilabel_fridge_objects_watermark_path = urljoin(
         base, "multilabelFridgeObjectsWatermark.zip"
     )
@@ -61,9 +57,7 @@ def imagenet_labels() -> list:
     return [labels[str(k)][1] for k in range(len(labels))]
 
 
-def downsize_imagelist(
-    im_list: ItemList, out_dir: Union[Path, str], dim: int = 500
-):
+def downsize_imagelist(im_list: ItemList, out_dir: Union[Path, str], dim: int = 500):
     """Aspect-ratio preserving down-sizing of each image in the ImageList {im_list}
     so that min(width,height) is at most {dim} pixels.
     Writes each image to the directory {out_dir} while preserving the original
@@ -74,9 +68,7 @@ def downsize_imagelist(
         out_dir: Output root location.
         dim: maximum image dimension (width/height) after resize
     """
-    assert (
-        len(im_list.items) > 0
-    ), "Input ImageList does not contain any images."
+    assert len(im_list.items) > 0, "Input ImageList does not contain any images."
 
     # Find parent directory which all images have in common
     im_paths = [str(s) for s in im_list.items]

@@ -21,9 +21,7 @@ class Urls:
 
     # traditional datasets
     fridge_objects_path = urljoin(base, "odFridgeObjects.zip")
-    fridge_objects_watermark_path = urljoin(
-        base, "odFridgeObjectsWatermark.zip"
-    )
+    fridge_objects_watermark_path = urljoin(base, "odFridgeObjectsWatermark.zip")
     fridge_objects_tiny_path = urljoin(base, "odFridgeObjectsTiny.zip")
     fridge_objects_watermark_tiny_path = urljoin(
         base, "odFridgeObjectsWatermarkTiny.zip"
@@ -31,9 +29,7 @@ class Urls:
 
     # mask datasets
     fridge_objects_mask_path = urljoin(base, "odFridgeObjectsMask.zip")
-    fridge_objects_mask_tiny_path = urljoin(
-        base, "odFridgeObjectsMaskTiny.zip"
-    )
+    fridge_objects_mask_tiny_path = urljoin(base, "odFridgeObjectsMaskTiny.zip")
 
     # keypoint datasets
     fridge_objects_keypoint_milk_bottle_path = urljoin(
@@ -296,8 +292,7 @@ def extract_masks_from_labelbox_json(
         labels = [obj["value"] for obj in anno["Label"]["objects"]]
         binary_masks = np.array(
             [
-                np.array(Image.open(urllib.request.urlopen(url)))[..., 0]
-                == 255
+                np.array(Image.open(urllib.request.urlopen(url)))[..., 0] == 255
                 for url in mask_urls
             ]
         )
@@ -328,9 +323,7 @@ def extract_masks_from_labelbox_json(
                 if non_overlap < min_overlap:
                     match = i
                     min_overlap = non_overlap
-            assert label == labels[match], "{}: {}".format(
-                label, labels[match]
-            )
+            assert label == labels[match], "{}: {}".format(label, labels[match])
             matches.append(match)
 
         assert len(set(matches)) == len(matches), "{}: {}".format(

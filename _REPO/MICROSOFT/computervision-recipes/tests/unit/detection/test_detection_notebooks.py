@@ -83,9 +83,7 @@ def test_02_notebook_run(detection_notebooks, tiny_od_mask_data_path):
 
 @pytest.mark.gpu
 @pytest.mark.notebooks
-def test_03_notebook_run(
-    detection_notebooks, tiny_od_keypoint_data_path, tmp_session
-):
+def test_03_notebook_run(detection_notebooks, tiny_od_keypoint_data_path, tmp_session):
     notebook_path = detection_notebooks["03"]
     data_path2 = unzip_url(
         Urls.fridge_objects_keypoint_top_bottom_tiny_path,
@@ -122,7 +120,8 @@ def test_04_notebook_run(detection_notebooks, tiny_od_data_path):
         parameters=dict(
             PM_VERSION=pm.__version__,
             DATA_PATH=tiny_od_data_path,
-            LABELS=["can", "carton", "milk_bottle", "water_bottle"]*21 #coco model was pre-trained on 80 classes 
+            LABELS=["can", "carton", "milk_bottle", "water_bottle"]
+            * 21,  # coco model was pre-trained on 80 classes
         ),
         kernel_name=KERNEL_NAME,
     )

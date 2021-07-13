@@ -42,11 +42,7 @@ def is_binder():
 
 def torch_device():
     """ Gets the torch device. Try gpu first, otherwise gpu. """
-    return (
-        torch.device("cuda")
-        if torch.cuda.is_available()
-        else torch.device("cpu")
-    )
+    return torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 
 
 def num_devices():
@@ -77,4 +73,3 @@ def system_info():
             print(f"{i}: {cuda.get_device_name(i)}")
     else:
         print("CPUs only, no GPUs found")
-

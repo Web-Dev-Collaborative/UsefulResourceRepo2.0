@@ -64,28 +64,41 @@ from wandb.apis import InternalApi
 from dataextraction.python.parse_python_data import tokenize_docstring_from_string
 import model_restore_helper
 
+
 def query_model(query, model, indices, language, topk=100):
-    query_embedding = model.get_query_representations([{'docstring_tokens': tokenize_docstring_from_string(query),
-                                                        'language': language}])[0]
-    idxs, distances = indices.get_nns_by_vector(query_embedding, topk, include_distances=True)
+    query_embedding = model.get_query_representations(
+        [
+            {
+                "docstring_tokens": tokenize_docstring_from_string(query),
+                "language": language,
+            }
+        ]
+    )[0]
+    idxs, distances = indices.get_nns_by_vector(
+        query_embedding, topk, include_distances=True
+    )
     return idxs, distances
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     args = docopt(__doc__)
-    
-    queries = pd.read_csv('../resources/queries.csv')
-    queries = list(queries['query'].values)
+
+    queries = pd.read_csv("../resources/queries.csv")
+    queries = list(queries["query"].values)
 
     run_id = None
-    args_wandb_run_id = args.get('--wandb_run_id')
-    local_model_path = args.get('--model_file')
-    predictions_csv = args.get('--predictions_csv')
+    args_wandb_run_id = args.get("--wandb_run_id")
+    local_model_path = args.get("--model_file")
+    predictions_csv = args.get("--predictions_csv")
 
     if args_wandb_run_id:
         # validate format of runid:
-        if len(args_wandb_run_id.split('/')) != 3:
-            print("ERROR: Invalid wandb_run_id format: %s (Expecting: user/project/hash)" % args_wandb_run_id, file=sys.stderr)
+        if len(args_wandb_run_id.split("/")) != 3:
+            print(
+                "ERROR: Invalid wandb_run_id format: %s (Expecting: user/project/hash)"
+                % args_wandb_run_id,
+                file=sys.stderr,
+            )
             sys.exit(1)
         wandb_api = wandb.Api()
         # retrieve saved model from W&B for this run
@@ -93,33 +106,42 @@ if __name__ == '__main__':
         try:
             run = wandb_api.run(args_wandb_run_id)
         except wandb.CommError as e:
-            print("ERROR: Problem querying W&B for wandb_run_id: %s" % args_wandb_run_id, file=sys.stderr)
+            print(
+                "ERROR: Problem querying W&B for wandb_run_id: %s" % args_wandb_run_id,
+                file=sys.stderr,
+            )
             sys.exit(1)
 
         print("Fetching run files from W&B...")
-        gz_run_files = [f for f in run.files() if f.name.endswith('gz')]
+        gz_run_files = [f for f in run.files() if f.name.endswith("gz")]
         if not gz_run_files:
             print("ERROR: Run contains no model-like files")
             sys.exit(1)
         model_file = gz_run_files[0].download(replace=True)
         local_model_path = model_file.name
-        run_id = args_wandb_run_id.split('/')[-1]
+        run_id = args_wandb_run_id.split("/")[-1]
 
     model_path = RichPath.create(local_model_path, None)
     print("Restoring model from %s" % model_path)
     model = model_restore_helper.restore(
-        path=model_path,
-        is_train=False,
-        hyper_overrides={})
-    
+        path=model_path, is_train=False, hyper_overrides={}
+    )
+
     predictions = []
-    for language in ('python', 'go', 'javascript', 'java', 'php', 'ruby'):
+    for language in ("python", "go", "javascript", "java", "php", "ruby"):
         print("Evaluating language: %s" % language)
-        definitions = pickle.load(open('../resources/data/{}_dedupe_definitions_v2.pkl'.format(language), 'rb'))
-        indexes = [{'code_tokens': d['function_tokens'], 'language': d['language']} for d in tqdm(definitions)]
+        definitions = pickle.load(
+            open(
+                "../resources/data/{}_dedupe_definitions_v2.pkl".format(language), "rb"
+            )
+        )
+        indexes = [
+            {"code_tokens": d["function_tokens"], "language": d["language"]}
+            for d in tqdm(definitions)
+        ]
         code_representations = model.get_code_representations(indexes)
 
-        indices = AnnoyIndex(code_representations[0].shape[0], 'angular')
+        indices = AnnoyIndex(code_representations[0].shape[0], "angular")
         for index, vector in tqdm(enumerate(code_representations)):
             if vector is not None:
                 indices.add_item(index, vector)
@@ -127,18 +149,24 @@ if __name__ == '__main__':
 
         for query in queries:
             for idx, _ in zip(*query_model(query, model, indices, language)):
-                predictions.append((query, language, definitions[idx]['identifier'], definitions[idx]['url']))
+                predictions.append(
+                    (
+                        query,
+                        language,
+                        definitions[idx]["identifier"],
+                        definitions[idx]["url"],
+                    )
+                )
 
-    df = pd.DataFrame(predictions, columns=['query', 'language', 'identifier', 'url'])
+    df = pd.DataFrame(predictions, columns=["query", "language", "identifier", "url"])
     df.to_csv(predictions_csv, index=False)
 
-
     if run_id:
-        print('Uploading predictions to W&B')
+        print("Uploading predictions to W&B")
         # upload model predictions CSV file to W&B
 
         # we checked that there are three path components above
-        entity, project, name = args_wandb_run_id.split('/')
+        entity, project, name = args_wandb_run_id.split("/")
 
         # make sure the file is in our cwd, with the correct name
         predictions_base_csv = "model_predictions.csv"
@@ -146,4 +174,6 @@ if __name__ == '__main__':
 
         # Using internal wandb API. TODO: Update when available as a public API
         internal_api = InternalApi()
-        internal_api.push([predictions_base_csv], run=name, entity=entity, project=project)
+        internal_api.push(
+            [predictions_base_csv], run=name, entity=entity, project=project
+        )

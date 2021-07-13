@@ -11,11 +11,12 @@ def get_initial(name, force_uppercase):
         initial = name[0:1]
     return initial
 
-#Ask for someone's name and return the initial
-first_name = input('Enter your first name: ')
+
+# Ask for someone's name and return the initial
+first_name = input("Enter your first name: ")
 
 # Call get_initial function to retrieve first letter of name
 # Alwasy return initial in uppercase
 first_name_initial = get_initial(first_name, False)
 
-print('Your initial is: ' + first_name_initial)
+print("Your initial is: " + first_name_initial)
