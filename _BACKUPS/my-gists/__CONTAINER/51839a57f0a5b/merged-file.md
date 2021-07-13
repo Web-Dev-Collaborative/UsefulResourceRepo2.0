@@ -1,6 +1,5 @@
 # Authoring
 
-
 ## Internal links
 
 All tutorial links should start from the root, not including the domain.
@@ -67,11 +66,9 @@ b. **Adapter's License** means the license You apply to Your Copyright and Simil
 
 c. **Copyright and Similar Rights** means copyright and/or similar rights closely related to copyright including, without limitation, performance, broadcast, sound recording, and Sui Generis Database Rights, without regard to how the rights are labeled or categorized. For purposes of this Public License, the rights specified in Section 2(b)(1)-(2) are not Copyright and Similar Rights.
 
-
 e. **Exceptions and Limitations** means fair use, fair dealing, and/or any other exception or limitation to Copyright and Similar Rights that applies to Your use of the Licensed Material.
 
 f. **Licensed Material** means the artistic or literary work, database, or other material to which the Licensor applied this Public License.
-
 
 h. **Licensor** means the individual(s) or entity(ies) granting rights under this Public License.
 
@@ -97,14 +94,13 @@ a. **_License grant._**
 
 3.  **Term.** The term of this Public License is specified in Section 6(a).
 
-
-5.  **Downstream recipients.**
+4.  **Downstream recipients.**
 
     A. **Offer from the Licensor – Licensed Material.** Every recipient of the Licensed Material automatically receives an offer from the Licensor to exercise the Licensed Rights under the terms and conditions of this Public License.
 
     B. **No downstream restrictions.** You may not offer or impose any additional or different terms or conditions on, or apply any Effective Technological Measures to, the Licensed Material if doing so restricts exercise of the Licensed Rights by any recipient of the Licensed Material.
 
-6.  **No endorsement.** Nothing in this Public License constitutes or may be construed as permission to assert or imply that You are, or that Your use of the Licensed Material is, connected with, or sponsored, endorsed, or granted official status by, the Licensor or others designated to receive attribution as provided in Section 3(a)(1)(A)(i).
+5.  **No endorsement.** Nothing in this Public License constitutes or may be construed as permission to assert or imply that You are, or that Your use of the Licensed Material is, connected with, or sponsored, endorsed, or granted official status by, the Licensor or others designated to receive attribution as provided in Section 3(a)(1)(A)(i).
 
 b. **_Other rights._**
 
@@ -193,7 +189,6 @@ a. For the avoidance of doubt, this Public License does not, and shall not be in
 b. To the extent possible, if any provision of this Public License is deemed unenforceable, it shall be automatically reformed to the minimum extent necessary to make it enforceable. If the provision cannot be reformed, it shall be severed from this Public License without affecting the enforceability of the remaining terms and conditions.
 
 c. No term or condition of this Public License will be waived and no failure to comply consented to unless expressly agreed to by the Licensor.
-
 
 # The Modern JavaScript Tutorial
 
@@ -7478,7 +7473,6 @@ Popups exist from really ancient times. The initial idea was to show another con
 
 Also, popups are tricky on mobile devices, that don't show multiple windows simultaneously.
 
-
 1. A popup is a separate window which has its own independent JavaScript environment. So opening a popup from a third-party, non-trusted site is safe.
 2. It's very easy to open a popup.
 3. A popup can navigate (change URL) and send messages to the opener window.
@@ -8167,7 +8161,6 @@ The full demo of the attack:
 
 Here we have a half-transparent `<iframe src="facebook.html">`, and in the example we can see it hovering over the button. A click on the button actually clicks on the iframe, but that's not visible to the user, because the iframe is transparent.
 
-
 Here's the same example, but closer to reality, with `opacity:0` for `<iframe>`:
 
 [codetabs src="clickjacking" height=160]
@@ -8312,6 +8305,7 @@ A cookie with such attribute is only sent to a website if it's opened directly, 
 If the site, such as Facebook, had `samesite` attribute on its authentication cookie, like this:
 
 ```
+
 ```
 
 ...Then such cookie wouldn't be sent when Facebook is open in iframe from another site. So the attack would fail.
@@ -9381,8 +9375,7 @@ Or, the same without `await`, using pure promises syntax:
 ```js run
 fetch(
   "https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits"
-)
-  .then((response) => response.json())
+).then((response) => response.json());
 ```
 
 To get the response text, `await response.text()` instead of `.json()`:
@@ -11387,7 +11380,6 @@ Here's a real-life example: file upload with progress indication:
 
 `XMLHttpRequest` can make cross-origin requests, using the same CORS policy as [fetch](info:fetch-crossorigin).
 
-
 ```js
 let xhr = new XMLHttpRequest();
 *!*
@@ -12942,7 +12934,6 @@ If a script sets a cookie, then no matter where the script came from -- the cook
 This topic is not related to JavaScript at all, just something to keep in mind when setting cookies.
 
 There's a legislation in Europe called GDPR, that enforces a set of rules for websites to respect the users' privacy. One of these rules is to require an explicit permission for tracking cookies from the user.
-
 
 So, if we set a cookie that just saves some information, but neither tracks nor identifies the user, then we are free to do it.
 
@@ -17082,8 +17073,8 @@ When CSS properties conflict, normally document styles have precedence, unless t
 CSS custom properties pierce through shadow DOM. They are used as "hooks" to style the component:
 
 1. The component uses a custom CSS property to style key elements, such as `var(--component-name-title, <default value>)`.
-3. When a developer wants to style a title, they assign `--component-name-title` CSS property for the shadow host or above.
-4. Profit!
+2. When a developer wants to style a title, they assign `--component-name-title` CSS property for the shadow host or above.
+3. Profit!
 
 # Shadow DOM and events
 
@@ -22797,7 +22788,6 @@ Here are some well-known linting tools:
 - [JSHint](http://www.jshint.com/) -- more settings than JSLint.
 - [ESLint](http://eslint.org/) -- probably the newest one.
 
-
 Most linters are integrated with many popular editors: just enable the plugin in the editor and configure the style.
 
 For instance, for ESLint you should do the following:
@@ -23022,7 +23012,8 @@ Comments are also used for auto-documenting tools like JSDoc3: they read them an
 # Ninja code
 
 Learning without thought is labor lost; thought without learning is perilous.
-```
+
+````
 
 Programmer ninjas of the past used these tricks to sharpen the mind of code maintainers.
 
@@ -23034,7 +23025,7 @@ Read them carefully and find out who you are -- a ninja, a novice, or maybe a co
 
 ```warn header="Irony detected"
 Many try to follow ninja paths. Few succeed.
-```
+````
 
 ## Brevity is the soul of wit
 
@@ -23057,6 +23048,7 @@ Tell them that shorter is always better. Initiate them into the paths of ninja.
 
 The Dao hides in wordlessness. Only the Dao is well begun and well
 completed.
+
 ```
 
 Another way to code shorter is to use single-letter variable names everywhere. Like `a`, `b` or `c`.
@@ -23119,6 +23111,7 @@ A quick read of such code becomes impossible. And when there's a typo... Ummm...
 ## Smart synonyms
 
 The Tao that can be told is not the eternal Tao. The name that can be named is not the eternal name.
+
 ```
 
 Using _similar_ names for _same_ things makes life more interesting and shows your creativity to the public.
@@ -23187,7 +23180,8 @@ Indeed, from one hand, something is written: `super..`, `mega..`, `nice..` But f
 
 When in the light, can't see anything in the darkness.<br>
 When in the darkness, can see everything in the light.
-```
+
+````
 
 Use same names for variables inside and outside a function. As simple. No efforts to invent new names.
 
@@ -23202,7 +23196,7 @@ function render() {
   ... // <-- a programmer wants to work with user here and...
   ...
 }
-```
+````
 
 A programmer who jumps inside the `render` will probably fail to notice that there's a local `user` shadowing the outer one.
 
@@ -23226,7 +23220,8 @@ Those developers who try to write `if (checkPermission(..))`, will wonder why it
 
 The great Tao flows everywhere,<br>
 both to the left and to the right.
-```
+
+````
 
 Don't limit the function by what's written in its name. Be broader.
 
@@ -23292,7 +23287,7 @@ describe("pow", function () {
     assert.equal(pow(2, 3), 8);
   });
 });
-```
+````
 
 A spec has three main building blocks that you can see above:
 
@@ -36322,8 +36317,9 @@ All methods that return object properties (like `Object.keys` and others) -- ret
 
 # Class basic syntax
 
-In object-oriented programming, a *class* is an extensible program-code-template for creating objects, providing initial values for state (member variables) and implementations of behavior (member functions or methods).
-```
+In object-oriented programming, a _class_ is an extensible program-code-template for creating objects, providing initial values for state (member variables) and implementations of behavior (member functions or methods).
+
+````
 
 In practice, we often need to create many objects of the same kind, like users, or goods or whatever.
 
@@ -36344,7 +36340,7 @@ class MyClass {
   method3() { ... }
   ...
 }
-```
+````
 
 Then use `new MyClass()` to create a new object with all the listed methods.
 
@@ -42816,7 +42812,6 @@ More explanations about how it works:
    - The next page URL may look like `https://api.github.com/repositories/93253246/commits?page=2`. It's generated by GitHub itself.
 4. Then we yield the received commits one by one, and when they finish, the next `while(url)` iteration will trigger, making one more request.
 
-
 ```js run
 (async () => {
   let count = 0;
@@ -42824,7 +42819,6 @@ More explanations about how it works:
   for await (const commit of fetchCommits(
     "javascript-tutorial/en.javascript.info"
   )) {
-
     if (++count == 100) {
       // let's stop at 100 commits
       break;

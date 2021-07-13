@@ -8427,11 +8427,9 @@ In this step, we want to do a simple exercise on object composition.
 
 First of all, what is object composition?
 
-
 In this step, we'll create a custom class called `Review`. In the `Book` class, we will have a `list` of `Reviews`. This is called **object composition**.
 
 Let's look at the solution.
-
 
 ```py
 class Book(object):

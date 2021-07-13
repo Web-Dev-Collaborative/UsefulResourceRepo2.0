@@ -96,8 +96,8 @@ Here is a Go source file before adding `?ts=4`:
 
 ### Commit History by Author
 
-
 ```
+
 ```
 
 ![DHH commit history](http://i.imgur.com/S7AE29b.png)

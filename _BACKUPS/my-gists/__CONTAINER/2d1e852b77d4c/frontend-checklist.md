@@ -112,7 +112,6 @@ _The next 3 meta tags (Charset, X-UA Compatible and Viewport) need to come first
 />
 ```
 
-
 - [ ] **Favicons:** ![Medium][medium_img] Each favicon has been created and displays correctly. If you have only a `favicon.ico`, put it at the root of your site. Normally you won't need to use any markup. However, it's still good practice to link to it using the example below. Today, **PNG format is recommended** over `.ico` format (dimensions: 32x32px).
 
 ```html

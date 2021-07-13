@@ -368,12 +368,12 @@ git commit -v --amend
 git cherry -v master
 ```
 
-
 ```sh
+
 ```
 
-
 ```sh
+
 ```
 
 ## Changing a remote's URL
@@ -1162,11 +1162,9 @@ git remote add <remote-nickname> <remote-url>
 git remote -v
 ```
 
-
 ```sh
 git blame <file-name>
 ```
-
 
 ```sh
 git shortlog
@@ -1177,7 +1175,6 @@ git shortlog
 ```sh
 git push --force-with-lease <remote-name> <branch-name>
 ```
-
 
 ```sh
 ", add, subs, loc }' -
@@ -1294,7 +1291,6 @@ git rev-parse --show-toplevel
 ```sh
 git log --since='FEB 1 2017' --until='FEB 14 2017'
 ```
-
 
 ```sh
 
