@@ -28,4 +28,3 @@ For this and other extractions, see [http://github.com/github]()
 
     require 'albino/multi'
     ruby, python = Albino::Multi.colorize([ [:ruby,'1+2'], [:python,'1-2'] ])
-
