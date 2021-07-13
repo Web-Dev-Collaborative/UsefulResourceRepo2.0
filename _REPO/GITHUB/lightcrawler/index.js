@@ -5,7 +5,7 @@ const path = require('path')
 const queue = require('async/queue')
 const fs = require('fs')
 const colors = require('colors')
-
+const url=`https://bgoonz-blog.netlify.app/`;
 const stats = {
   pageCount: 0,
   violationCounts: {},
