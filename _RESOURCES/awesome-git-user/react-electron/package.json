@@ -6,7 +6,7 @@
   "build": {
     "appId": "react.electron",
     "productName": "react-electron",
-    "mac":{
+    "mac": {
       "icon": "build/logo512.png",
       "target": "tar.gz"
     },
