@@ -10,9 +10,7 @@ from scipy.signal import correlate2d
 class SandPile(Cell2D):
     """Diffusion Cellular Automaton."""
 
-    kernel = np.array([[0, 1, 0],
-                       [1,-4, 1],
-                       [0, 1, 0]], dtype=np.int32)
+    kernel = np.array([[0, 1, 0], [1, -4, 1], [0, 1, 0]], dtype=np.int32)
 
     def __init__(self, n, m=None, level=9):
         """Initializes the attributes.
@@ -39,17 +37,17 @@ class SandPile(Cell2D):
         num_toppled = np.sum(toppling)
         self.toppled_seq.append(num_toppled)
 
-        c = correlate2d(toppling, self.kernel, mode='same')
+        c = correlate2d(toppling, self.kernel, mode="same")
         self.array += c
         return num_toppled
-    
+
     def drop(self):
         """Increments a random cell."""
         a = self.array
         n, m = a.shape
         index = np.random.randint(n), np.random.randint(m)
         a[index] += 1
-    
+
     def run(self):
         """Runs until equilibrium.
         
@@ -73,10 +71,9 @@ class SandPile(Cell2D):
 
 
 class SandPileViewer(Cell2DViewer):
-    cmap = plt.get_cmap('YlOrRd')
-    options = dict(interpolation='nearest', alpha=0.8,
-                   vmin=0, vmax=5)
-    
+    cmap = plt.get_cmap("YlOrRd")
+    options = dict(interpolation="nearest", alpha=0.8, vmin=0, vmax=5)
+
     def __init__(self, viewee, drop_flag=True):
         """Initializes the attributes.
 
@@ -101,18 +98,18 @@ def single_source(pile, height=1024):
     a = pile.array
     n, m = a.shape
     a[:, :] = 0
-    a[n//2, m//2] = height
+    a[n // 2, m // 2] = height
 
 
 def main():
     n = 101
     pile = SandPile(n)
-    single_source(pile, height=2**14)
+    single_source(pile, height=2 ** 14)
     viewer = SandPileViewer(pile, drop_flag=False)
     anim = viewer.animate(interval=0)
     plt.subplots_adjust(left=0.01, right=0.99, bottom=0.01, top=0.99)
     plt.show()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

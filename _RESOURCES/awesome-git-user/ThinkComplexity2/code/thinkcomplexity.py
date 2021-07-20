@@ -9,10 +9,20 @@ import random
 
 
 # colors from our friends at http://colorbrewer2.org
-COLORS = ['#8dd3c7','#ffffb3','#bebada','#fb8072','#80b1d3','#fdb462',
-          '#b3de69','#fccde5','#d9d9d9','#bc80bd','#ccebc5','#ffed6f']
-
-
+COLORS = [
+    "#8dd3c7",
+    "#ffffb3",
+    "#bebada",
+    "#fb8072",
+    "#80b1d3",
+    "#fdb462",
+    "#b3de69",
+    "#fccde5",
+    "#d9d9d9",
+    "#bc80bd",
+    "#ccebc5",
+    "#ffed6f",
+]
 
 
 def all_pairs(nodes):
@@ -23,7 +33,6 @@ def all_pairs(nodes):
                 yield u, v
 
 
-
 def make_complete_graph(n):
     """Makes a complete graph with `n` nodes."""
     G = nx.Graph()
@@ -31,8 +40,6 @@ def make_complete_graph(n):
     G.add_nodes_from(nodes)
     G.add_edges_from(all_pairs(nodes))
     return G
-
-
 
 
 def flip(p):
@@ -47,18 +54,17 @@ def random_pairs(nodes, p):
     """
     for i, u in enumerate(nodes):
         for j, v in enumerate(nodes):
-            if i<j and flip(p):
+            if i < j and flip(p):
                 yield u, v
 
 
 def make_random_graph(n, p):
-    """Makes a random graph where each edge exists with probability 'p'.""" 
+    """Makes a random graph where each edge exists with probability 'p'."""
     G = nx.Graph()
     nodes = range(n)
     G.add_nodes_from(nodes)
     G.add_edges_from(random_pairs(nodes, p))
     return G
-
 
 
 def reachable_nodes(G, start):
@@ -73,13 +79,11 @@ def reachable_nodes(G, start):
     return seen
 
 
-
 def is_connected(G):
     """Returns True if the graph is connected."""
     start = next(G.nodes_iter())
     reachable = reachable_nodes(G, start)
     return len(reachable) == len(G)
-
 
 
 def prob_connected(n, p, iters=100):
@@ -88,8 +92,7 @@ def prob_connected(n, p, iters=100):
         random_graph = make_random_graph(n, p)
         if is_connected(random_graph):
             count += 1
-    return count/iters
-
+    return count / iters
 
 
 def reachable_nodes_precheck(G, start):
@@ -99,29 +102,26 @@ def reachable_nodes_precheck(G, start):
         node = stack.pop()
         if node not in seen:
             seen.add(node)
-            neighbors = set(G[node]) 
+            neighbors = set(G[node])
             neighbors -= seen
             stack.extend(neighbors)
     return seen
 
 
-
 def adjacent_edges(nodes, halfk):
     n = len(nodes)
     for i, u in enumerate(nodes):
-        for j in range(i+1, i+halfk+1):
+        for j in range(i + 1, i + halfk + 1):
             v = nodes[j % n]
             yield u, v
-
 
 
 def make_ring_lattice(n, k):
     G = nx.Graph()
     nodes = range(n)
     G.add_nodes_from(nodes)
-    G.add_edges_from(adjacent_edges(nodes, k//2))
+    G.add_edges_from(adjacent_edges(nodes, k // 2))
     return G
-
 
 
 def make_ws_graph(n, k, p):
@@ -141,18 +141,17 @@ def rewire(G, p):
             G.add_edge(u, new_v)
 
 
-
 def node_clustering(G, u):
     neighbors = G[u]
     k = len(neighbors)
     if k < 2:
         return 0
-        
-    total = k * (k-1) / 2
-    exist = 0    
+
+    total = k * (k - 1) / 2
+    exist = 0
     for v, w in all_pairs(neighbors):
         if G.has_edge(v, w):
-            exist +=1
+            exist += 1
     return exist / total
 
 
@@ -161,16 +160,14 @@ def clustering_coefficient(G):
     return cc
 
 
-
 def node_clustering(G, u):
     neighbors = G[u]
     k = len(neighbors)
     if k < 2:
         return 0
-        
+
     edges = [G.has_edge(v, w) for v, w in all_pairs(neighbors)]
     return sum(edges) / len(edges)
-
 
 
 def path_lengths(G):
@@ -179,19 +176,16 @@ def path_lengths(G):
     return lengths
 
 
-
 def characteristic_path_length(G):
     return np.mean(path_lengths(G))
 
 
-
 def run_one_graph(n, k, p):
-    ws = make_ws_graph(n, k, p)    
+    ws = make_ws_graph(n, k, p)
     mpl = characteristic_path_length(ws)
     cc = clustering_coefficient(ws)
     print(mpl, cc)
     return mpl, cc
-
 
 
 def run_experiment(ps, n=1000, k=10, iters=20):
@@ -204,8 +198,8 @@ def run_experiment(ps, n=1000, k=10, iters=20):
     return res
 
 
-
 from collections import deque
+
 
 def reachable_nodes_bfs(G, start):
     seen = set()
@@ -218,7 +212,6 @@ def reachable_nodes_bfs(G, start):
     return seen
 
 
-
 def reachable_nodes_bfs(G, start):
     seen = set()
     queue = deque([start])
@@ -226,7 +219,7 @@ def reachable_nodes_bfs(G, start):
         node = queue.popleft()
         if node not in seen:
             seen.add(node)
-            neighbors = set(G[node]) 
+            neighbors = set(G[node])
             neighbors -= seen
             queue.extend(neighbors)
     return seen
@@ -242,17 +235,16 @@ def shortest_path_dijkstra(G, start):
         neighbors = set(G[node]) - set(dist)
         for n in neighbors:
             dist[n] = new_dist
-        
+
         queue.extend(neighbors)
     return dist
-
 
 
 def opposite_edges(nodes):
     """Enumerates edges that connect opposite nodes."""
     n = len(nodes)
     for i, u in enumerate(nodes):
-        j = i + n//2
+        j = i + n // 2
         v = nodes[j % n]
         yield u, v
 
@@ -265,20 +257,19 @@ def make_regular_graph(n, k):
     # a is the number of adjacent edges
     # b is the number of opposite edges (0 or 1)
     a, b = divmod(k, 2)
-    
+
     G = nx.Graph()
     nodes = range(n)
     G.add_nodes_from(nodes)
     G.add_edges_from(adjacent_edges(nodes, a))
-    
+
     # if k is odd, add opposite edges
     if b:
-        if n%2:
+        if n % 2:
             msg = "Can't make a regular graph if n and k are odd."
             raise ValueError(msg)
         G.add_edges_from(opposite_edges(nodes))
     return G
-
 
 
 def plain_bfs(G, source):
@@ -293,7 +284,6 @@ def plain_bfs(G, source):
                 seen.add(v)
                 nextlevel.update(G[v])
     return seen
-
 
 
 def plain_shortest_path(G, source):
@@ -312,20 +302,19 @@ def plain_shortest_path(G, source):
     return dist
 
 
-
 def bfs(top_node, visit):
     """Breadth-first search on a graph, starting at top_node."""
     visited = set()
     queue = [top_node]
     while len(queue):
-        curr_node = queue.pop(0)    # Dequeue
-        visit(curr_node)            # Visit the node
+        curr_node = queue.pop(0)  # Dequeue
+        visit(curr_node)  # Visit the node
         visited.add(curr_node)
 
         # Enqueue non-visited and non-enqueued children
-        queue.extend(c for c in curr_node.children
-                     if c not in visited and c not in queue)
-
+        queue.extend(
+            c for c in curr_node.children if c not in visited and c not in queue
+        )
 
 
 def shortest_path_dfs(G, start):
@@ -338,6 +327,6 @@ def shortest_path_dfs(G, start):
         neighbors = set(G[node]) - set(dist)
         for n in neighbors:
             dist[n] = new_dist
-        
+
         queue.extend(neighbors)
     return dist

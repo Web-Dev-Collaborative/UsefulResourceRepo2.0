@@ -17,6 +17,7 @@ class CircularCA(CA):
     """A variation of CA that wraps around so that the cells are
     arranged in a ring.
     """
+
     def __init__(self, rule, n=100, ratio=2):
         """n, m are the number of rows, columns.
         array is the numpy array that contains the data.
@@ -25,7 +26,7 @@ class CircularCA(CA):
         self.table = self.make_table(rule)
         self.n = n
         # allocate two extra cells for ghosts
-        self.m = ratio*n + 1 + 2
+        self.m = ratio * n + 1 + 2
         self.array = numpy.zeros((self.n, self.m), dtype=numpy.int8)
         self.next = 0
 
@@ -43,20 +44,20 @@ class CircularCA(CA):
         t = self.table
 
         # copy the ghost cells
-        a[i-1,0] = a[i-1,self.m-2]
-        a[i-1,self.m-1] = a[i-1,1]
+        a[i - 1, 0] = a[i - 1, self.m - 2]
+        a[i - 1, self.m - 1] = a[i - 1, 1]
 
-        for j in xrange(1,self.m-1):
-            a[i,j] = t[tuple(a[i-1, j-1:j+2])]
+        for j in xrange(1, self.m - 1):
+            a[i, j] = t[tuple(a[i - 1, j - 1 : j + 2])]
 
     def get_array(self, start=0, end=None):
         """get a slice of columns from the CA, with slice indices
         (start, end).  We need to add one to avoid ghost cells.
         """
-        if end==None:
-            return self.array[:, start+1:self.m-1]
+        if end == None:
+            return self.array[:, start + 1 : self.m - 1]
         else:
-            return self.array[:, start+1:end+1]
+            return self.array[:, start + 1 : end + 1]
 
 
 def main(script, rule=30, n=100, *args):
@@ -65,28 +66,29 @@ def main(script, rule=30, n=100, *args):
 
     ca = CircularCA(rule, n)
 
-    if 'random' in args:
+    if "random" in args:
         ca.start_random()
     else:
         ca.start_single()
 
-    ca.loop(n-1)
+    ca.loop(n - 1)
 
-    if 'eps' in args:
+    if "eps" in args:
         drawer = CADrawer.EPSDrawer()
-    elif 'pil' in args:
+    elif "pil" in args:
         drawer = CADrawer.PILDrawer()
     else:
         drawer = CADrawer.PyplotDrawer()
 
-    if 'trim' in args:
-        drawer.draw(ca, start=n/2, end=3*n/2+1)
+    if "trim" in args:
+        drawer.draw(ca, start=n / 2, end=3 * n / 2 + 1)
     else:
         drawer.draw(ca)
 
     drawer.show()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import sys
+
     main(*sys.argv)

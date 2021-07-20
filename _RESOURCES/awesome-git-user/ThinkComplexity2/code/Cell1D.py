@@ -9,6 +9,7 @@ MIT License: https://opensource.org/licenses/MIT
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def make_table(rule):
     """Makes the CA table for a given rule.
 
@@ -38,14 +39,14 @@ class Cell1D:
         """
         self.table = make_table(rule)
         self.n = n
-        self.m = 2*n + 1 if m is None else m
+        self.m = 2 * n + 1 if m is None else m
 
         self.array = np.zeros((n, self.m), dtype=np.int8)
         self.next = 0
 
     def start_single(self):
         """Starts with one cell in the middle of the top row."""
-        self.array[0, self.m//2] = 1
+        self.array[0, self.m // 2] = 1
         self.next += 1
 
     def start_random(self):
@@ -69,7 +70,7 @@ class Cell1D:
         a = self.array
         i = self.next
         window = [4, 2, 1]
-        c = np.correlate(a[i-1], window, mode='same')
+        c = np.correlate(a[i - 1], window, mode="same")
         a[i] = self.table[c]
         self.next += 1
 
@@ -83,7 +84,7 @@ class Cell1D:
         """
         # TODO: Not sure it makes sense to make selecting the
         # whole array into a special case.
-        if start==0 and end==None:
+        if start == 0 and end == None:
             return self.array
         else:
             return self.array[:, start:end]
@@ -97,7 +98,7 @@ class Wrap1D(Cell1D):
         Cell1D.step(self)
 
         # fix the first and last cells by copying from the other end
-        i = self.next-1
+        i = self.next - 1
         row = self.array[i]
         row[0], row[-1] = row[-2], row[1]
 
@@ -105,8 +106,8 @@ class Wrap1D(Cell1D):
 class Cell1DViewer:
     """Draws a CA object using matplotlib."""
 
-    cmap = plt.get_cmap('Blues')
-    options = dict(alpha=0.7, interpolation='none')
+    cmap = plt.get_cmap("Blues")
+    options = dict(alpha=0.7, interpolation="none")
 
     def __init__(self, ca):
         self.ca = ca
@@ -123,24 +124,24 @@ class Cell1DViewer:
         plt.xticks([])
         plt.yticks([])
 
-        self.options['extent'] = [0, m, 0, n]
+        self.options["extent"] = [0, m, 0, n]
         plt.imshow(a, cmap=self.cmap, **self.options)
 
 
 def print_table(table):
     """Prints the rule table in LaTeX format."""
-    print('\\beforefig')
-    print('\\centerline{')
-    print('\\begin{tabular}{|c|c|c|c|c|c|c|c|c|}')
-    print('\\hline')
+    print("\\beforefig")
+    print("\\centerline{")
+    print("\\begin{tabular}{|c|c|c|c|c|c|c|c|c|}")
+    print("\\hline")
 
-    res = ['prev'] + ['{0:03b}'.format(i) for i in range(8)]
-    print(' & '.join(res) + ' \\\\ \n\\hline')
+    res = ["prev"] + ["{0:03b}".format(i) for i in range(8)]
+    print(" & ".join(res) + " \\\\ \n\\hline")
 
-    res = ['next'] + [str(x) for x in table]
-    print(' &   '.join(res) + ' \\\\ \n\\hline')
+    res = ["next"] + [str(x) for x in table]
+    print(" &   ".join(res) + " \\\\ \n\\hline")
 
-    print('\\end{tabular}}')
+    print("\\end{tabular}}")
 
 
 class EPSDrawer:
@@ -161,12 +162,12 @@ class EPSDrawer:
                 if a[i, j]:
                     self.cells.append((i, j))
 
-    def save(self, filename='ca.eps'):
+    def save(self, filename="ca.eps"):
         """Saves the representation of the CA.
 
         filename: string
         """
-        with open(filename, 'w') as fp:
+        with open(filename, "w") as fp:
             self.print_header(fp)
             self.print_outline(fp)
             self.print_cells(fp)
@@ -174,33 +175,35 @@ class EPSDrawer:
 
     def print_header(self, fp, size=0.9, border=2):
         """Writes the EPS header and defines /c."""
-        fp.write('%!PS-Adobe-3.0 EPSF-3.0\n')
-        fp.write('%%%%BoundingBox: %d %d %d %d\n' %
-                 (border, border, self.m+border, self.n+border))
+        fp.write("%!PS-Adobe-3.0 EPSF-3.0\n")
+        fp.write(
+            "%%%%BoundingBox: %d %d %d %d\n"
+            % (border, border, self.m + border, self.n + border)
+        )
 
-        fp.write('1 -1 scale\n')
-        fp.write('0 %d translate\n' % -self.n)
-        fp.write('/c {\n')
-        fp.write('   newpath moveto\n')
-        fp.write('   0 %g rlineto\n' % size)
-        fp.write('   %g 0 rlineto\n' % size)
-        fp.write('   0 -%g rlineto\n' % size)
-        fp.write('   closepath fill\n')
-        fp.write('} def\n')
+        fp.write("1 -1 scale\n")
+        fp.write("0 %d translate\n" % -self.n)
+        fp.write("/c {\n")
+        fp.write("   newpath moveto\n")
+        fp.write("   0 %g rlineto\n" % size)
+        fp.write("   %g 0 rlineto\n" % size)
+        fp.write("   0 -%g rlineto\n" % size)
+        fp.write("   closepath fill\n")
+        fp.write("} def\n")
 
     def print_outline(self, fp):
         """Writes the code that draws the outline."""
-        fp.write('newpath 0.1 setlinewidth 0 0 moveto\n')
-        fp.write('0 %d rlineto\n' % self.n)
-        fp.write('%d 0 rlineto\n' % self.m)
-        fp.write('0 -%d rlineto\n' % self.n)
-        fp.write('closepath stroke\n')
+        fp.write("newpath 0.1 setlinewidth 0 0 moveto\n")
+        fp.write("0 %d rlineto\n" % self.n)
+        fp.write("%d 0 rlineto\n" % self.m)
+        fp.write("0 -%d rlineto\n" % self.n)
+        fp.write("closepath stroke\n")
 
     def print_cells(self, fp):
         """Writes the code that draws the cells."""
         for i, j in self.cells:
-            fp.write('%d %d c\n' % (j, i))
+            fp.write("%d %d c\n" % (j, i))
 
     def print_footer(self, fp):
         """Writes the footer code."""
-        fp.write('%%EOF\n')
+        fp.write("%%EOF\n")

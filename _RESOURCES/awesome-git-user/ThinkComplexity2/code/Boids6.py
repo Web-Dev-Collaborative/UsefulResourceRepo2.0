@@ -25,7 +25,7 @@ r_center = 1.0
 r_copy = 0.5
 
 # viewing angle for different rules, in radians
-a_avoid = 2*np.pi
+a_avoid = 2 * np.pi
 a_center = 2
 a_copy = 2
 
@@ -41,7 +41,7 @@ dt = 0.1
 
 def random_vector(a, b):
     """Create a vector with each element uniformly distributed in [a, b)."""
-    t = [np.random.uniform(a,b) for i in range(3)]
+    t = [np.random.uniform(a, b) for i in range(3)]
     return visual.vector(t)
 
 
@@ -52,7 +52,7 @@ def limit_vector(vect):
     return vect
 
 
-null_vector = visual.vector(0,0,0)
+null_vector = visual.vector(0, 0, 0)
 
 
 class Boid(visual.cone):
@@ -68,11 +68,12 @@ class Boid(visual.cone):
         """Return the list of neighbors within the given radius and angle."""
         boids = []
         for other in others:
-            if other is self: continue
+            if other is self:
+                continue
             offset = other.pos - self.pos
-            
+
             # if not in range, skip it
-            if offset.mag > radius: 
+            if offset.mag > radius:
                 continue
 
             # if not within viewing angle, skip it
@@ -81,7 +82,7 @@ class Boid(visual.cone):
 
             # otherwise add it to the list
             boids.append(other)
-            
+
         return boids
 
     def avoid(self, others, carrot):
@@ -92,7 +93,7 @@ class Boid(visual.cone):
         close = self.get_neighbors(others, r_avoid, a_avoid)
         t = [other.pos for other in close]
         if t:
-            center = np.sum(t)/len(t)
+            center = np.sum(t) / len(t)
             away = visual.vector(self.pos - center)
             away.mag = r_avoid / away.mag
             return limit_vector(away)
@@ -105,7 +106,7 @@ class Boid(visual.cone):
         close = self.get_neighbors(others, r_center, a_center)
         t = [other.pos for other in close]
         if t:
-            center = np.sum(t)/len(t)
+            center = np.sum(t) / len(t)
             toward = visual.vector(center - self.pos)
             return limit_vector(toward)
         else:
@@ -120,7 +121,7 @@ class Boid(visual.cone):
         t = [other.vel for other in close]
         if t:
             # TODO: replace this with mean
-            center = np.sum(t)/len(t)
+            center = np.sum(t) / len(t)
             away = visual.vector(self.pos - center)
             return limit_vector(away)
         else:
@@ -133,22 +134,24 @@ class Boid(visual.cone):
 
     def set_goal(self, boids, carrot):
         """Sets the goal to be the weighted sum of the goal vectors."""
-        self.goal = (w_avoid * self.avoid(boids, carrot) + 
-                     w_center * self.center(boids) +
-                     w_copy * self.copy(boids) + 
-                     w_love * self.love(carrot))
+        self.goal = (
+            w_avoid * self.avoid(boids, carrot)
+            + w_center * self.center(boids)
+            + w_copy * self.copy(boids)
+            + w_love * self.love(carrot)
+        )
         self.goal.mag = 1
-        
+
     def move(self, mu=0.1):
         """Update the velocity, position and axis vectors.
         mu controls how fast the boids can turn (maneuverability)."""
 
-        self.vel = (1-mu) * self.vel + mu * self.goal
+        self.vel = (1 - mu) * self.vel + mu * self.goal
         self.vel.mag = 1
 
         self.pos += dt * self.vel
         self.axis = b_length * self.vel.norm()
-        
+
 
 class World(object):
     def __init__(self, n=10):
@@ -157,9 +160,9 @@ class World(object):
         tracking: indicates whether the carrot follows the mouse
         """
         self.boids = [Boid() for i in range(n)]
-        self.carrot = visual.sphere(pos=(1,0,0), radius=0.1, color=(1,0,0))
+        self.carrot = visual.sphere(pos=(1, 0, 0), radius=0.1, color=(1, 0, 0))
         self.tracking = False
-        
+
     def step(self):
         """Compute one time step."""
         # move the boids
@@ -175,25 +178,27 @@ class World(object):
         # if we're tracking, move the carrot
         if self.tracking:
             self.carrot.pos = scene.mouse.pos
-    
+
 
 def main(script, n=20):
     global scene
 
     n = int(n)
     size = 5
-    scene = visual.display(title='Boids', width=800, height=600,
-                           range=(size, size, size))
+    scene = visual.display(
+        title="Boids", width=800, height=600, range=(size, size, size)
+    )
     world = World(n)
     scene.center = world.carrot.pos
     scene.autoscale = False
 
     while 1:
         # update the screen once per time step
-        visual.rate(1/dt)
+        visual.rate(1 / dt)
         world.step()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import sys
+
     main(*sys.argv)

@@ -26,14 +26,17 @@ ffmpeg.  On Ubuntu and Linux Mint, the following should work.
     sudo apt-get install ffmpeg
 """
 
+
 class Turmite:
     """Implements Langton's Ant"""
 
     # map from orientation to (di, dj)
-    move = {0: (-1, 0),  # north
-            1: (0, 1),   # east
-            2: (1, 0),   # south
-            3: (0, -1)}  # west
+    move = {
+        0: (-1, 0),  # north
+        1: (0, 1),  # east
+        2: (1, 0),  # south
+        3: (0, -1),
+    }  # west
 
     def __init__(self, n, m=None):
         """Initializes the attributes.
@@ -45,7 +48,7 @@ class Turmite:
         self.n = n
         self.m = m
         self.array = np.zeros((n, m), np.uint8)
-        self.loc = (n//2, m//2)
+        self.loc = (n // 2, m // 2)
         self.state = 0
 
     def step(self):
@@ -72,7 +75,7 @@ class Turmite:
 class TurmiteViewer(Cell2DViewer):
     """Generates an animated view of the grid."""
 
-    cmap = plt.get_cmap('Oranges')
+    cmap = plt.get_cmap("Oranges")
 
     def __init__(self, viewee):
         Cell2DViewer.__init__(self, viewee)
@@ -89,8 +92,9 @@ class TurmiteViewer(Cell2DViewer):
     def draw_arrow(self):
         """Draws the arrow."""
         center, angle = self.arrow_specs()
-        self.arrow = RegularPolygon(center, 3, color='orange',
-                                    radius=0.4, orientation=angle)
+        self.arrow = RegularPolygon(
+            center, 3, color="orange", radius=0.4, orientation=angle
+        )
         ax = plt.gca()
         ax.add_patch(self.arrow)
 
@@ -99,7 +103,7 @@ class TurmiteViewer(Cell2DViewer):
         a = self.viewee.array
         n, m = a.shape
         i, j = self.viewee.loc
-        center = j+0.5, n-i-0.5
+        center = j + 0.5, n - i - 0.5
         angle = -np.pi / 2 * self.viewee.state
         return center, angle
 
@@ -126,19 +130,17 @@ def main(script, *args):
     viewer = TurmiteViewer(turmite)
 
     # run a few steps and draw the end condition
-    #for i in range(5):
+    # for i in range(5):
     #    turmite.step()
-    #viewer.draw(grid=True)
+    # viewer.draw(grid=True)
 
     # run a short animation
-    #anim = viewer.animate(frames=5, interval=1000, grid=True)
+    # anim = viewer.animate(frames=5, interval=1000, grid=True)
 
     anim = viewer.animate(frames=10700, interval=0)
     plt.subplots_adjust(left=0.01, right=0.99, bottom=0.01, top=0.99)
     plt.show()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main(*sys.argv)
-
-

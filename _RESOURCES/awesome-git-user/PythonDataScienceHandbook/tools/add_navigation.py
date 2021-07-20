@@ -9,7 +9,7 @@ from generate_contents import NOTEBOOK_DIR, REG, iter_notebooks, get_notebook_ti
 
 
 def prev_this_next(it):
-    a, b, c = itertools.tee(it,3)
+    a, b, c = itertools.tee(it, 3)
     next(c)
     return zip(itertools.chain([None], a), b, itertools.chain(c, [None]))
 
@@ -29,15 +29,17 @@ def iter_navbars():
     for prev_nb, nb, next_nb in prev_this_next(iter_notebooks()):
         navbar = NAV_COMMENT
         if prev_nb:
-            navbar += PREV_TEMPLATE.format(title=get_notebook_title(prev_nb),
-                                           url=prev_nb)
+            navbar += PREV_TEMPLATE.format(
+                title=get_notebook_title(prev_nb), url=prev_nb
+            )
         navbar += CONTENTS
         if next_nb:
-            navbar += NEXT_TEMPLATE.format(title=get_notebook_title(next_nb),
-                                           url=next_nb)
+            navbar += NEXT_TEMPLATE.format(
+                title=get_notebook_title(next_nb), url=next_nb
+            )
 
         navbar += COLAB_LINK.format(notebook_filename=os.path.basename(nb))
-            
+
         yield os.path.join(NOTEBOOK_DIR, nb), navbar
 
 
@@ -61,5 +63,5 @@ def write_navbars():
         nbformat.write(nb, nb_name)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     write_navbars()

@@ -25,6 +25,7 @@ ffmpeg.  On Ubuntu and Linux Mint, the following should work.
     sudo apt-get install ffmpeg
 """
 
+
 class Cell2D:
     """Implements Conway's Game of Life."""
 
@@ -45,7 +46,7 @@ class Cell2D:
         strings: list of strings of 0s and 1s
         """
         for i, s in enumerate(strings):
-            self.array[row+i, col:col+len(s)] = np.array([int(b) for b in s])
+            self.array[row + i, col : col + len(s)] = np.array([int(b) for b in s])
 
     def step(self):
         """Executes one time step."""
@@ -55,9 +56,8 @@ class Cell2D:
 class Cell2DViewer:
     """Generates an animated view of an array image."""
 
-    cmap = plt.get_cmap('Greens')
-    options = dict(interpolation='nearest', alpha=0.8,
-                   vmin=0, vmax=1, origin='upper')
+    cmap = plt.get_cmap("Greens")
+    options = dict(interpolation="nearest", alpha=0.8, vmin=0, vmax=1, origin="upper")
 
     def __init__(self, viewee):
         self.viewee = viewee
@@ -95,7 +95,7 @@ class Cell2DViewer:
         plt.yticks([])
 
         options = self.options.copy()
-        options['extent'] = [0, m, 0, n]
+        options["extent"] = [0, m, 0, n]
         options.update(kwds)
         self.im = plt.imshow(a, cmap, **options)
 
@@ -104,7 +104,7 @@ class Cell2DViewer:
         a = self.viewee.array
         n, m = a.shape
         lw = 2 if m < 7 else 1
-        options = dict(color='white', linewidth=lw)
+        options = dict(color="white", linewidth=lw)
 
         # the shift is a hack to get the grid to line up with the cells
         shift = 0.005 * n
@@ -122,9 +122,13 @@ class Cell2DViewer:
         """
         fig = plt.gcf()
         self.draw(grid)
-        anim = animation.FuncAnimation(fig, self.animate_func,
-                                       init_func=self.init_func,
-                                       frames=frames, interval=interval)
+        anim = animation.FuncAnimation(
+            fig,
+            self.animate_func,
+            init_func=self.init_func,
+            frames=frames,
+            interval=interval,
+        )
         return anim
 
     def init_func(self):

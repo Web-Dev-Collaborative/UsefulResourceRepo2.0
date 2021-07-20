@@ -16,12 +16,13 @@ except:
     print("install VPython by running the following on the command line:")
     print("conda install -c vpython vpython")
     import sys
+
     sys.exit()
 
 import numpy as np
 
 
-null_vector = vector(0,0,0)
+null_vector = vector(0, 0, 0)
 
 
 def random_vector(a, b):
@@ -128,10 +129,12 @@ class Boid(cone):
         w_align = 1
         w_love = 10
 
-        self.goal = (w_center * self.center(boids) +
-                     w_avoid * self.avoid(boids, carrot) +
-                     w_align * self.align(boids) +
-                     w_love * self.love(carrot))
+        self.goal = (
+            w_center * self.center(boids)
+            + w_avoid * self.avoid(boids, carrot)
+            + w_align * self.align(boids)
+            + w_love * self.love(carrot)
+        )
         self.goal.mag = 1
 
     def move(self, mu=0.1, dt=0.1):
@@ -141,23 +144,20 @@ class Boid(cone):
         dt: time step
         """
 
-        self.vel = (1-mu) * self.vel + mu * self.goal
+        self.vel = (1 - mu) * self.vel + mu * self.goal
         self.vel.mag = 1
         self.pos += dt * self.vel
         self.axis = self.length * self.vel
 
 
 class World(object):
-
     def __init__(self, n=10):
         """Create n Boids and one carrot.
 
         tracking: indicates whether the carrot follows the mouse
         """
         self.boids = [Boid() for i in range(n)]
-        self.carrot = sphere(pos=vector(1,0,0),
-                             radius=0.1,
-                             color=vector(1,0,0))
+        self.carrot = sphere(pos=vector(1, 0, 0), radius=0.1, color=vector(1, 0, 0))
         self.tracking = False
 
     def step(self):
@@ -179,13 +179,15 @@ world = World(n)
 scene.center = world.carrot.pos
 scene.autoscale = False
 
+
 def toggle_tracking(evt):
     """If we're currently tracking, turn it off, and vice versa.
     """
     world.tracking = not world.tracking
 
+
 # when the user clicks, toggle tracking.
-scene.bind('click', toggle_tracking)
+scene.bind("click", toggle_tracking)
 
 while 1:
     rate(10)

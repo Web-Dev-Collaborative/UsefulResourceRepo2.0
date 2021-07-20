@@ -110,5 +110,5 @@ def main():
         print(k, m.get(k))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
