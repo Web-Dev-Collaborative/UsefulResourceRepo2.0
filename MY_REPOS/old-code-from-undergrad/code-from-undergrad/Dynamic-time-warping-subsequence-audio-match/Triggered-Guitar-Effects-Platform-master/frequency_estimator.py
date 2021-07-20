@@ -5,6 +5,7 @@ from matplotlib.mlab import find
 from scipy.signal import blackmanharris, fftconvolve
 from time import time
 import sys
+
 try:
     import soundfile as sf
 except ImportError:
@@ -25,7 +26,7 @@ def freq_from_crossings(sig, fs):
 
     # More accurate, using linear interpolation to find intersample
     # zero-crossings (Measures 1000.000129 Hz for 1000 Hz, for instance)
-    crossings = [i - sig[i] / (sig[i+1] - sig[i]) for i in indices]
+    crossings = [i - sig[i] / (sig[i + 1] - sig[i]) for i in indices]
 
     # Some other interpolation based on neighboring points might be better.
     # Spline, cubic, whatever
@@ -55,8 +56,8 @@ def freq_from_autocorr(sig, fs):
     """
     # Calculate autocorrelation (same thing as convolution, but with
     # one input reversed in time), and throw away the negative lags
-    corr = fftconvolve(sig, sig[::-1], mode='full')
-    corr = corr[len(corr)//2:]
+    corr = fftconvolve(sig, sig[::-1], mode="full")
+    corr = corr[len(corr) // 2 :]
 
     # Find the first low point
     d = diff(corr)
@@ -89,39 +90,40 @@ def freq_from_HPS(sig, fs):
     for x in range(2, maxharms):
         a = copy(c[::x])  # Should average or maximum instead of decimating
         # max(c[::x],c[1::x],c[2::x],...)
-        c = c[:len(a)]
+        c = c[: len(a)]
         i = argmax(abs(c))
         true_i = parabolic(abs(c), i)[0]
-        print ('Pass %d: %f Hz' % (x, fs * true_i / len(windowed)))
+        print("Pass %d: %f Hz" % (x, fs * true_i / len(windowed)))
         c *= a
         subplot(maxharms, 1, x)
         plot(log(c))
     show()
 
-filename = '440.wav'
 
-print ('Reading file "%s"\n' % filename)
+filename = "440.wav"
+
+print('Reading file "%s"\n' % filename)
 try:
     signal, fs = sf.read(filename)
 except NameError:
     signal, fs, enc = flacread(filename)
 
-print ('Calculating frequency from FFT:'),
+print("Calculating frequency from FFT:"),
 start_time = time()
-print ('%f Hz' % freq_from_fft(signal, fs))
-print ('Time elapsed: %.3f s\n' % (time() - start_time))
+print("%f Hz" % freq_from_fft(signal, fs))
+print("Time elapsed: %.3f s\n" % (time() - start_time))
 
-print ('Calculating frequency from zero crossings:'),
+print("Calculating frequency from zero crossings:"),
 start_time = time()
-print ('%f Hz' % freq_from_crossings(signal, fs))
-print ('Time elapsed: %.3f s\n' % (time() - start_time))
+print("%f Hz" % freq_from_crossings(signal, fs))
+print("Time elapsed: %.3f s\n" % (time() - start_time))
 
-print ('Calculating frequency from autocorrelation:'),
+print("Calculating frequency from autocorrelation:"),
 start_time = time()
-print ('%f Hz' % freq_from_autocorr(signal, fs))
-print ('Time elapsed: %.3f s\n' % (time() - start_time))
+print("%f Hz" % freq_from_autocorr(signal, fs))
+print("Time elapsed: %.3f s\n" % (time() - start_time))
 
-print ('Calculating frequency from harmonic product spectrum:')
+print("Calculating frequency from harmonic product spectrum:")
 start_time = time()
 # freq_from_HPS(signal, fs)
-print ('Time elapsed: %.3f s\n' % (time() - start_time))
+print("Time elapsed: %.3f s\n" % (time() - start_time))

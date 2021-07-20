@@ -15,4 +15,4 @@ year_counts = dict((year, matches.count(year)) for year in set(matches))
 
 # Print the dict sorted in descending order
 for year in sorted(year_counts, key=year_counts.get, reverse=True):
-  print(year, year_counts[year])
+    print(year, year_counts[year])

@@ -5,6 +5,7 @@ from matplotlib.mlab import find
 from scipy.signal import blackmanharris, fftconvolve
 from time import time
 import sys
+
 try:
     import soundfile as sf
 except ImportError:
@@ -25,7 +26,7 @@ def freq_from_crossings(sig, fs):
 
     # More accurate, using linear interpolation to find intersample
     # zero-crossings (Measures 1000.000129 Hz for 1000 Hz, for instance)
-    crossings = [i - sig[i] / (sig[i+1] - sig[i]) for i in indices]
+    crossings = [i - sig[i] / (sig[i + 1] - sig[i]) for i in indices]
 
     # Some other interpolation based on neighboring points might be better.
     # Spline, cubic, whatever
@@ -49,25 +50,22 @@ def freq_from_fft(sig, fs):
     return fs * true_i / len(windowed)
 
 
+filename = "440.wav"
 
-
-filename = '440.wav'
-
-print ('Reading file "%s"\n' % filename)
+print('Reading file "%s"\n' % filename)
 try:
     signal, fs = sf.read(filename)
 except NameError:
     signal, fs, enc = flacread(filename)
 
 
-print ('Calculating frequency from FFT:'),
+print("Calculating frequency from FFT:"),
 start_time = time()
-print ('%f Hz' % freq_from_fft(signal, fs))
-print ('Time elapsed: %.3f s\n' % (time() - start_time))
+print("%f Hz" % freq_from_fft(signal, fs))
+print("Time elapsed: %.3f s\n" % (time() - start_time))
 
 
-print ('Calculating frequency from zero crossings:'),
+print("Calculating frequency from zero crossings:"),
 start_time = time()
-print ('%f Hz' % freq_from_crossings(signal, fs))
-print ('Time elapsed: %.3f s\n' % (time() - start_time))
-
+print("%f Hz" % freq_from_crossings(signal, fs))
+print("Time elapsed: %.3f s\n" % (time() - start_time))
