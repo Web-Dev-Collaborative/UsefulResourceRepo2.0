@@ -1,17 +1,4 @@
- .gitattributes
-
-git add         _TEMPLATES/
-git add         _TOOLS/
-git add         _config.yml
-git add         backup.html
-git add         commands.txt
-git add         dir.html
-git add         favicon.ico
-git add         index.html
-git add         listing-path.md
-git add         makefile
-git add         out2.md
-git add         renovate.json
-git add         result.png
-git add         robots.txt
-git add         scrap.md
+git add        ./David Flanagan - JavaScript_ The Definitive Guide_ Master the World's Most-Used Programming Language-O'Reilly Media (2020).pdf
+git add        ./MY_REPOS/bgoonz/
+git add        ./MY_REPOS/blog-2.o-versions/
+git add        ./_REPO/
