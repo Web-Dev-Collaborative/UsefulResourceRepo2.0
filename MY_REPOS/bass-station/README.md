@@ -30,5 +30,3 @@ You will also see any lint errors in the console.
 
 Bass Station II is currently deployed on Firebase: https://bass-station-ii.web.app/
 
-
-
