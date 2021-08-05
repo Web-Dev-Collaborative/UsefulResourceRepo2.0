@@ -1,8 +1,8 @@
-import React from 'react';
-import Title from 'react-title-component';
+import React from "react";
+import Title from "react-title-component";
 
-import MarkdownElement from '../../MarkdownElement';
-import installationText from './installation.md';
+import MarkdownElement from "../../MarkdownElement";
+import installationText from "./installation.md";
 
 const Installation = () => (
   <div>

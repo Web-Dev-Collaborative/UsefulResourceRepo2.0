@@ -1,15 +1,14 @@
-import React from 'react';
-import Snackbar from 'material-ui/Snackbar';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import React from "react";
+import Snackbar from "material-ui/Snackbar";
+import TextField from "material-ui/TextField";
+import RaisedButton from "material-ui/RaisedButton";
 
 export default class SnackbarExampleSimple extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       autoHideDuration: 4000,
-      message: 'Event added to your calendar',
+      message: "Event added to your calendar",
       open: false,
     };
   }
@@ -24,7 +23,7 @@ export default class SnackbarExampleSimple extends React.Component {
     this.setState({
       open: false,
     });
-    alert('Event removed from your calendar.');
+    alert("Event removed from your calendar.");
   };
 
   handleChangeDuration = (event) => {

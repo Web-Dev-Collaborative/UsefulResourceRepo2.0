@@ -1,22 +1,22 @@
-import React, {Component, PropTypes} from 'react';
-import TableRowColumn from './TableRowColumn';
+import React, { Component, PropTypes } from "react";
+import TableRowColumn from "./TableRowColumn";
 
 function getStyles(props, context) {
-  const {tableFooter} = context.muiTheme;
+  const { tableFooter } = context.muiTheme;
 
   return {
     cell: {
       borderTop: `1px solid ${tableFooter.borderColor}`,
-      verticalAlign: 'bottom',
+      verticalAlign: "bottom",
       padding: 20,
-      textAlign: 'left',
-      whiteSpace: 'nowrap',
+      textAlign: "left",
+      whiteSpace: "nowrap",
     },
   };
 }
 
 class TableFooter extends Component {
-  static muiName = 'TableFooter';
+  static muiName = "TableFooter";
 
   static propTypes = {
     /**
@@ -53,15 +53,10 @@ class TableFooter extends Component {
   };
 
   render() {
-    const {
-      adjustForCheckbox,
-      children,
-      className,
-      style,
-      ...other
-    } = this.props;
+    const { adjustForCheckbox, children, className, style, ...other } =
+      this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     const footerRows = React.Children.map(children, (child, rowNumber) => {
@@ -76,7 +71,7 @@ class TableFooter extends Component {
 
       if (adjustForCheckbox) {
         newDescendants = [
-          <TableRowColumn key={`fpcb${rowNumber}`} style={{width: 24}} />,
+          <TableRowColumn key={`fpcb${rowNumber}`} style={{ width: 24 }} />,
           ...React.Children.toArray(child.props.children),
         ];
       } else {
@@ -87,7 +82,11 @@ class TableFooter extends Component {
     });
 
     return (
-      <tfoot className={className} style={prepareStyles(Object.assign({}, style))} {...other}>
+      <tfoot
+        className={className}
+        style={prepareStyles(Object.assign({}, style))}
+        {...other}
+      >
         {footerRows}
       </tfoot>
     );

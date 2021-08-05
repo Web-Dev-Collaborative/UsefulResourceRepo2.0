@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import {createChildFragment} from '../utils/childUtils';
-import Events from '../utils/events';
-import keycode from 'keycode';
-import FocusRipple from './FocusRipple';
-import TouchRipple from './TouchRipple';
+import React, { Component, PropTypes } from "react";
+import { createChildFragment } from "../utils/childUtils";
+import Events from "../utils/events";
+import keycode from "keycode";
+import FocusRipple from "./FocusRipple";
+import TouchRipple from "./TouchRipple";
 
 let styleInjected = false;
 let listening = false;
@@ -12,7 +12,7 @@ let tabPressed = false;
 function injectStyle() {
   if (!styleInjected) {
     // Remove inner padding and border in Firefox 4+.
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.innerHTML = `
       button::-moz-focus-inner,
       input::-moz-focus-inner {
@@ -28,8 +28,8 @@ function injectStyle() {
 
 function listenForTabPresses() {
   if (!listening) {
-    Events.on(window, 'keydown', (event) => {
-      tabPressed = keycode(event) === 'tab';
+    Events.on(window, "keydown", (event) => {
+      tabPressed = keycode(event) === "tab";
     });
     listening = true;
   }
@@ -72,7 +72,7 @@ class EnhancedButton extends Component {
   };
 
   static defaultProps = {
-    containerElement: 'button',
+    containerElement: "button",
     onBlur: () => {},
     onClick: () => {},
     onFocus: () => {},
@@ -87,19 +87,19 @@ class EnhancedButton extends Component {
     onTouchStart: () => {},
     onTouchTap: () => {},
     tabIndex: 0,
-    type: 'button',
+    type: "button",
   };
 
   static contextTypes = {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  state = {isKeyboardFocused: false};
+  state = { isKeyboardFocused: false };
 
   componentWillMount() {
-    const {disabled, disableKeyboardFocus, keyboardFocused} = this.props;
+    const { disabled, disableKeyboardFocus, keyboardFocused } = this.props;
     if (!disabled && keyboardFocused && !disableKeyboardFocus) {
-      this.setState({isKeyboardFocused: true});
+      this.setState({ isKeyboardFocused: true });
     }
   }
 
@@ -113,9 +113,11 @@ class EnhancedButton extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if ((nextProps.disabled || nextProps.disableKeyboardFocus) &&
-      this.state.isKeyboardFocused) {
-      this.setState({isKeyboardFocused: false});
+    if (
+      (nextProps.disabled || nextProps.disableKeyboardFocus) &&
+      this.state.isKeyboardFocused
+    ) {
+      this.setState({ isKeyboardFocused: false });
       if (nextProps.onKeyboardFocus) {
         nextProps.onKeyboardFocus(null, false);
       }
@@ -132,14 +134,14 @@ class EnhancedButton extends Component {
 
   removeKeyboardFocus(event) {
     if (this.state.isKeyboardFocused) {
-      this.setState({isKeyboardFocused: false});
+      this.setState({ isKeyboardFocused: false });
       this.props.onKeyboardFocus(event, false);
     }
   }
 
   setKeyboardFocus(event) {
     if (!this.state.isKeyboardFocused) {
-      this.setState({isKeyboardFocused: true});
+      this.setState({ isKeyboardFocused: true });
       this.props.onKeyboardFocus(event, true);
     }
   }
@@ -164,27 +166,32 @@ class EnhancedButton extends Component {
       touchRippleColor,
       touchRippleOpacity,
     } = this.props;
-    const {isKeyboardFocused} = this.state;
+    const { isKeyboardFocused } = this.state;
 
     // Focus Ripple
-    const focusRipple = isKeyboardFocused && !disabled && !disableFocusRipple && !disableKeyboardFocus ? (
-      <FocusRipple
-        color={focusRippleColor}
-        opacity={focusRippleOpacity}
-        show={isKeyboardFocused}
-      />
-    ) : undefined;
+    const focusRipple =
+      isKeyboardFocused &&
+      !disabled &&
+      !disableFocusRipple &&
+      !disableKeyboardFocus ? (
+        <FocusRipple
+          color={focusRippleColor}
+          opacity={focusRippleOpacity}
+          show={isKeyboardFocused}
+        />
+      ) : undefined;
 
     // Touch Ripple
-    const touchRipple = !disabled && !disableTouchRipple ? (
-      <TouchRipple
-        centerRipple={centerRipple}
-        color={touchRippleColor}
-        opacity={touchRippleOpacity}
-      >
-        {children}
-      </TouchRipple>
-    ) : undefined;
+    const touchRipple =
+      !disabled && !disableTouchRipple ? (
+        <TouchRipple
+          centerRipple={centerRipple}
+          color={touchRippleColor}
+          opacity={touchRippleOpacity}
+        >
+          {children}
+        </TouchRipple>
+      ) : undefined;
 
     return createChildFragment({
       focusRipple,
@@ -195,10 +202,10 @@ class EnhancedButton extends Component {
 
   handleKeyDown = (event) => {
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
-      if (keycode(event) === 'enter' && this.state.isKeyboardFocused) {
+      if (keycode(event) === "enter" && this.state.isKeyboardFocused) {
         this.handleTouchTap(event);
       }
-      if (keycode(event) === 'esc' && this.state.isKeyboardFocused) {
+      if (keycode(event) === "esc" && this.state.isKeyboardFocused) {
         this.removeKeyboardFocus(event);
       }
     }
@@ -207,7 +214,7 @@ class EnhancedButton extends Component {
 
   handleKeyUp = (event) => {
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
-      if (keycode(event) === 'space' && this.state.isKeyboardFocused) {
+      if (keycode(event) === "space" && this.state.isKeyboardFocused) {
         this.handleTouchTap(event);
       }
     }
@@ -281,46 +288,43 @@ class EnhancedButton extends Component {
       ...other
     } = this.props;
 
-    const {
-      prepareStyles,
-      enhancedButton,
-    } = this.context.muiTheme;
+    const { prepareStyles, enhancedButton } = this.context.muiTheme;
 
-    const mergedStyles = Object.assign({
-      border: 10,
-      boxSizing: 'border-box',
-      display: 'inline-block',
-      fontFamily: this.context.muiTheme.baseTheme.fontFamily,
-      WebkitTapHighlightColor: enhancedButton.tapHighlightColor, // Remove mobile color flashing (deprecated)
-      cursor: disabled ? 'default' : 'pointer',
-      textDecoration: 'none',
-      margin: 0,
-      padding: 0,
-      outline: 'none',
-      fontSize: 'inherit',
-      fontWeight: 'inherit',
-      /**
-       * This is needed so that ripples do not bleed
-       * past border radius.
-       * See: http://stackoverflow.com/questions/17298739/
-       * css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
-       */
-      transform: disableTouchRipple && disableFocusRipple ? null : 'translate(0, 0)',
-      verticalAlign: href ? 'middle' : null,
-    }, style);
-
+    const mergedStyles = Object.assign(
+      {
+        border: 10,
+        boxSizing: "border-box",
+        display: "inline-block",
+        fontFamily: this.context.muiTheme.baseTheme.fontFamily,
+        WebkitTapHighlightColor: enhancedButton.tapHighlightColor, // Remove mobile color flashing (deprecated)
+        cursor: disabled ? "default" : "pointer",
+        textDecoration: "none",
+        margin: 0,
+        padding: 0,
+        outline: "none",
+        fontSize: "inherit",
+        fontWeight: "inherit",
+        /**
+         * This is needed so that ripples do not bleed
+         * past border radius.
+         * See: http://stackoverflow.com/questions/17298739/
+         * css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
+         */
+        transform:
+          disableTouchRipple && disableFocusRipple ? null : "translate(0, 0)",
+        verticalAlign: href ? "middle" : null,
+      },
+      style
+    );
 
     // Passing both background:none & backgroundColor can break due to object iteration order
     if (!mergedStyles.backgroundColor && !mergedStyles.background) {
-      mergedStyles.background = 'none';
+      mergedStyles.background = "none";
     }
 
     if (disabled && href) {
       return (
-        <span
-          {...other}
-          style={mergedStyles}
-        >
+        <span {...other} style={mergedStyles}>
           {children}
         </span>
       );
@@ -329,7 +333,7 @@ class EnhancedButton extends Component {
     const buttonProps = {
       ...other,
       style: prepareStyles(mergedStyles),
-      ref: 'enhancedButton',
+      ref: "enhancedButton",
       disabled: disabled,
       href: href,
       onBlur: this.handleBlur,
@@ -347,7 +351,11 @@ class EnhancedButton extends Component {
       return React.cloneElement(containerElement, buttonProps, buttonChildren);
     }
 
-    return React.createElement(href ? 'a' : containerElement, buttonProps, buttonChildren);
+    return React.createElement(
+      href ? "a" : containerElement,
+      buttonProps,
+      buttonChildren
+    );
   }
 }
 

@@ -1,33 +1,36 @@
-import React from 'react';
-import Title from 'react-title-component';
+import React from "react";
+import Title from "react-title-component";
 
-import CodeExample from '../../../CodeExample';
-import PropTypeDescription from '../../../PropTypeDescription';
-import MarkdownElement from '../../../MarkdownElement';
+import CodeExample from "../../../CodeExample";
+import PropTypeDescription from "../../../PropTypeDescription";
+import MarkdownElement from "../../../MarkdownElement";
 
-import tabsReadmeText from './README';
-import tabsExampleSimpleCode from '!raw!./ExampleSimple';
-import TabsExampleSimple from './ExampleSimple';
-import tabsExampleControlledCode from '!raw!./ExampleControlled';
-import TabsExampleControlled from './ExampleControlled';
-import tabsExampleSwipeableCode from '!raw!./ExampleSwipeable';
-import TabsExampleSwipeable from './ExampleSwipeable';
-import tabsExampleIconCode from '!raw!./ExampleIcon';
-import TabsExampleIcon from './ExampleIcon';
-import tabsExampleIconTextCode from '!raw!./ExampleIconText';
-import TabsExampleIconText from './ExampleIconText';
-import tabsCode from '!raw!material-ui/Tabs/Tabs';
-import tabCode from '!raw!material-ui/Tabs/Tab';
+import tabsReadmeText from "./README";
+import tabsExampleSimpleCode from "!raw!./ExampleSimple";
+import TabsExampleSimple from "./ExampleSimple";
+import tabsExampleControlledCode from "!raw!./ExampleControlled";
+import TabsExampleControlled from "./ExampleControlled";
+import tabsExampleSwipeableCode from "!raw!./ExampleSwipeable";
+import TabsExampleSwipeable from "./ExampleSwipeable";
+import tabsExampleIconCode from "!raw!./ExampleIcon";
+import TabsExampleIcon from "./ExampleIcon";
+import tabsExampleIconTextCode from "!raw!./ExampleIconText";
+import TabsExampleIconText from "./ExampleIconText";
+import tabsCode from "!raw!material-ui/Tabs/Tabs";
+import tabCode from "!raw!material-ui/Tabs/Tab";
 
 const descriptions = {
-  simple: 'A simple example of Tabs. The third tab demonstrates the `onActive` property of `Tab`.',
-  controlled: 'An example of controlled tabs. The selected tab is handled through state and callbacks in the parent ' +
-  '(example) component.',
-  swipeable: 'This example integrates the [react-swipeable-views]' +
-  '(https://github.com/oliviertassinari/react-swipeable-views) component with Tabs, animating the Tab transition, ' +
-  'and allowing tabs to be swiped on touch devices.',
-  icon: 'An example of tabs with icon.',
-  iconText: 'An example of tabs with icon and text.',
+  simple:
+    "A simple example of Tabs. The third tab demonstrates the `onActive` property of `Tab`.",
+  controlled:
+    "An example of controlled tabs. The selected tab is handled through state and callbacks in the parent " +
+    "(example) component.",
+  swipeable:
+    "This example integrates the [react-swipeable-views]" +
+    "(https://github.com/oliviertassinari/react-swipeable-views) component with Tabs, animating the Tab transition, " +
+    "and allowing tabs to be swiped on touch devices.",
+  icon: "An example of tabs with icon.",
+  iconText: "An example of tabs with icon and text.",
 };
 
 const TabsPage = () => (

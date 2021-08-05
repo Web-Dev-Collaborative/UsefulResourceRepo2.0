@@ -1,9 +1,9 @@
-import React from 'react';
-import Avatar from 'material-ui/Avatar';
-import FileFolder from 'material-ui/svg-icons/file/folder';
-import FontIcon from 'material-ui/FontIcon';
-import List from 'material-ui/List/List';
-import ListItem from 'material-ui/List/ListItem';
+import React from "react";
+import Avatar from "material-ui/Avatar";
+import FileFolder from "material-ui/svg-icons/file/folder";
+import FontIcon from "material-ui/FontIcon";
+import List from "material-ui/List/List";
+import ListItem from "material-ui/List/ListItem";
 
 import {
   blue300,
@@ -12,9 +12,9 @@ import {
   deepOrange300,
   pink400,
   purple500,
-} from 'material-ui/styles/colors';
+} from "material-ui/styles/colors";
 
-const style = {margin: 5};
+const style = { margin: 5 };
 
 /**
  * Examples of `Avatar` using an image, [Font Icon](/#/components/font-icon), [SVG Icon](/#/components/svg-icon)
@@ -24,28 +24,22 @@ const AvatarExampleSimple = () => (
   <List>
     <ListItem
       disabled={true}
-      leftAvatar={
-        <Avatar src="images/uxceo-128.jpg" />
-      }
+      leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
     >
       Image Avatar
     </ListItem>
     <ListItem
       disabled={true}
-      leftAvatar={
-        <Avatar
-          src="images/uxceo-128.jpg"
-          size={30}
-          style={style}
-        />
-      }
+      leftAvatar={<Avatar src="images/uxceo-128.jpg" size={30} style={style} />}
     >
       Image Avatar with custom size
     </ListItem>
     <ListItem
       disabled={true}
       leftAvatar={
-        <Avatar icon={<FontIcon className="muidocs-icon-communication-voicemail" />} />
+        <Avatar
+          icon={<FontIcon className="muidocs-icon-communication-voicemail" />}
+        />
       }
     >
       FontIcon Avatar
@@ -64,12 +58,7 @@ const AvatarExampleSimple = () => (
     >
       FontIcon Avatar with custom colors and size
     </ListItem>
-    <ListItem
-      disabled={true}
-      leftAvatar={
-        <Avatar icon={<FileFolder />} />
-      }
-    >
+    <ListItem disabled={true} leftAvatar={<Avatar icon={<FileFolder />} />}>
       SvgIcon Avatar
     </ListItem>
     <ListItem
@@ -86,10 +75,7 @@ const AvatarExampleSimple = () => (
     >
       SvgIcon Avatar with custom colors and size
     </ListItem>
-    <ListItem
-      disabled={true}
-      leftAvatar={<Avatar>A</Avatar>}
-    >
+    <ListItem disabled={true} leftAvatar={<Avatar>A</Avatar>}>
       Letter Avatar
     </ListItem>
     <ListItem

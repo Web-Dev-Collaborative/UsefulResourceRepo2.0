@@ -9,16 +9,15 @@ author:
   image: "images/filip.jpg"
 draft: false
 tags:
-- swift
-- development
-- programming
+  - swift
+  - development
+  - programming
 categories:
-- mobile development
+  - mobile development
 series:
-- how to implement this
+  - how to implement this
 ---
 
 command: hugo new posts/my-first-post.md
 
 Drafts do not get deployed; once you finish a post, update the header of the post to say draft: false. More info here.
-

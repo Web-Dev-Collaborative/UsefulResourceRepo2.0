@@ -1,8 +1,8 @@
-import React from 'react';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import DatePicker from 'material-ui/DatePicker';
+import React from "react";
+import Dialog from "material-ui/Dialog";
+import FlatButton from "material-ui/FlatButton";
+import RaisedButton from "material-ui/RaisedButton";
+import DatePicker from "material-ui/DatePicker";
 
 /**
  * Dialogs can be nested. This example opens a Date Picker from within a Dialog.
@@ -13,11 +13,11 @@ export default class DialogExampleDialogDatePicker extends React.Component {
   };
 
   handleOpen = () => {
-    this.setState({open: true});
+    this.setState({ open: true });
   };
 
   handleClose = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
   };
 
   render() {
@@ -32,7 +32,10 @@ export default class DialogExampleDialogDatePicker extends React.Component {
 
     return (
       <div>
-        <RaisedButton label="Dialog With Date Picker" onTouchTap={this.handleOpen} />
+        <RaisedButton
+          label="Dialog With Date Picker"
+          onTouchTap={this.handleOpen}
+        />
         <Dialog
           title="Dialog With Date Picker"
           actions={actions}

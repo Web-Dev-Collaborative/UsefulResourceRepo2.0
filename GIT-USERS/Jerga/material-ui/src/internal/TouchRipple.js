@@ -1,8 +1,8 @@
-import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
-import ReactTransitionGroup from 'react-addons-transition-group';
-import Dom from '../utils/dom';
-import CircleRipple from './CircleRipple';
+import React, { Component, PropTypes } from "react";
+import ReactDOM from "react-dom";
+import ReactTransitionGroup from "react-addons-transition-group";
+import Dom from "../utils/dom";
+import CircleRipple from "./CircleRipple";
 
 // Remove the first element of the array
 const shift = ([, ...newArray]) => newArray;
@@ -53,15 +53,16 @@ class TouchRipple extends Component {
     let ripples = this.state.ripples;
 
     // Add a ripple to the ripples array
-    ripples = [...ripples, (
+    ripples = [
+      ...ripples,
       <CircleRipple
         key={this.state.nextKey}
         style={!this.props.centerRipple ? this.getRippleStyle(event) : {}}
         color={this.props.color || theme.color}
         opacity={this.props.opacity}
         touchGenerated={isRippleTouchGenerated}
-      />
-    )];
+      />,
+    ];
 
     this.ignoreNextMouseDown = isRippleTouchGenerated;
     this.setState({
@@ -129,11 +130,11 @@ class TouchRipple extends Component {
       const ripple = currentRipples[0];
       // This clone will replace the ripple in ReactTransitionGroup with a
       // version that will disappear immediately when removed from the DOM
-      const abortedRipple = React.cloneElement(ripple, {aborted: true});
+      const abortedRipple = React.cloneElement(ripple, { aborted: true });
       // Remove the old ripple and replace it with the new updated one
       currentRipples = shift(currentRipples);
       currentRipples = [...currentRipples, abortedRipple];
-      this.setState({ripples: currentRipples}, () => {
+      this.setState({ ripples: currentRipples }, () => {
         // Call end after we've set the ripple to abort otherwise the setState
         // in end() merges with this and the ripple abort fails
         this.end();
@@ -147,11 +148,11 @@ class TouchRipple extends Component {
     // Note that when scolling Chrome throttles this event to every 200ms
     // Also note we don't listen for scroll events directly as there's no general
     // way to cover cases like scrolling within containers on the page
-    document.body.addEventListener('touchmove', this.handleTouchMove);
+    document.body.addEventListener("touchmove", this.handleTouchMove);
   }
 
   stopListeningForScrollAbort() {
-    document.body.removeEventListener('touchmove', this.handleTouchMove);
+    document.body.removeEventListener("touchmove", this.handleTouchMove);
   }
 
   getRippleStyle(event) {
@@ -169,7 +170,10 @@ class TouchRipple extends Component {
     const botRightDiag = this.calcDiag(elWidth - pointerX, elHeight - pointerY);
     const botLeftDiag = this.calcDiag(pointerX, elHeight - pointerY);
     const rippleRadius = Math.max(
-      topLeftDiag, topRightDiag, botRightDiag, botLeftDiag
+      topLeftDiag,
+      topRightDiag,
+      botRightDiag,
+      botLeftDiag
     );
     const rippleSize = rippleRadius * 2;
     const left = pointerX - rippleRadius;
@@ -185,25 +189,28 @@ class TouchRipple extends Component {
   }
 
   calcDiag(a, b) {
-    return Math.sqrt((a * a) + (b * b));
+    return Math.sqrt(a * a + b * b);
   }
 
   render() {
-    const {children, style} = this.props;
-    const {hasRipples, ripples} = this.state;
-    const {prepareStyles} = this.context.muiTheme;
+    const { children, style } = this.props;
+    const { hasRipples, ripples } = this.state;
+    const { prepareStyles } = this.context.muiTheme;
 
     let rippleGroup;
 
     if (hasRipples) {
-      const mergedStyles = Object.assign({
-        height: '100%',
-        width: '100%',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        overflow: 'hidden',
-      }, style);
+      const mergedStyles = Object.assign(
+        {
+          height: "100%",
+          width: "100%",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          overflow: "hidden",
+        },
+        style
+      );
 
       rippleGroup = (
         <ReactTransitionGroup style={prepareStyles(mergedStyles)}>

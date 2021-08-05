@@ -5,7 +5,7 @@ import { Rental } from "src/app/models/rental.model";
 @Component({
   selector: "app-rental-list",
   templateUrl: "./rental-list.component.html",
-  styleUrls: ["./rental-list.component.scss"]
+  styleUrls: ["./rental-list.component.scss"],
 })
 export class RentalListComponent implements OnInit {
   constructor(private rentalService: RentalService) {}
@@ -26,7 +26,7 @@ export class RentalListComponent implements OnInit {
       (rentals: Rental[]) => {
         this.rentals = rentals;
       },
-      error => {},
+      (error) => {},
 
       () => {}
     );

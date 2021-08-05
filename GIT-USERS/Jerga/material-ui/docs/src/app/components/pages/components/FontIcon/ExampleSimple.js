@@ -1,6 +1,6 @@
-import React from 'react';
-import FontIcon from 'material-ui/FontIcon';
-import {blue500, red500, greenA200} from 'material-ui/styles/colors';
+import React from "react";
+import FontIcon from "material-ui/FontIcon";
+import { blue500, red500, greenA200 } from "material-ui/styles/colors";
 
 const iconStyles = {
   marginRight: 24,
@@ -8,10 +8,7 @@ const iconStyles = {
 
 const FontIconExampleSimple = () => (
   <div>
-    <FontIcon
-      className="muidocs-icon-action-home"
-      style={iconStyles}
-    />
+    <FontIcon className="muidocs-icon-action-home" style={iconStyles} />
 
     <FontIcon
       className="muidocs-icon-action-home"
@@ -29,4 +26,3 @@ const FontIconExampleSimple = () => (
 );
 
 export default FontIconExampleSimple;
-

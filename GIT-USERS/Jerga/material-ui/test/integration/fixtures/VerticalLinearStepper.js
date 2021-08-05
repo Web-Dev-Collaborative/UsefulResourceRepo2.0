@@ -1,16 +1,10 @@
-import React, {Component, PropTypes} from 'react';
-import {
-  Step,
-  Stepper,
-  StepLabel,
-  StepContent,
-} from 'src/Stepper';
-import RaisedButton from 'src/RaisedButton';
-import FlatButton from 'src/FlatButton';
+import React, { Component, PropTypes } from "react";
+import { Step, Stepper, StepLabel, StepContent } from "src/Stepper";
+import RaisedButton from "src/RaisedButton";
+import FlatButton from "src/FlatButton";
 
 class VerticalLinearStepper extends Component {
-
-  static contextTypes = {muiTheme: PropTypes.object.isRequired};
+  static contextTypes = { muiTheme: PropTypes.object.isRequired };
 
   state = {
     finished: false,
@@ -18,27 +12,27 @@ class VerticalLinearStepper extends Component {
   };
 
   handleNext = () => {
-    const {stepIndex} = this.state;
-    this.setState({stepIndex: stepIndex + 1});
+    const { stepIndex } = this.state;
+    this.setState({ stepIndex: stepIndex + 1 });
   };
 
   handlePrev = () => {
-    const {stepIndex} = this.state;
-    this.setState({stepIndex: stepIndex - 1});
+    const { stepIndex } = this.state;
+    this.setState({ stepIndex: stepIndex - 1 });
   };
 
   renderStepActions(step) {
-    const {stepIndex} = this.state;
+    const { stepIndex } = this.state;
 
     return (
-      <div style={{margin: '12px 0'}}>
+      <div style={{ margin: "12px 0" }}>
         <RaisedButton
-          label={stepIndex === 2 ? 'Finish' : 'Next'}
+          label={stepIndex === 2 ? "Finish" : "Next"}
           disableTouchRipple={true}
           disableFocusRipple={true}
           primary={true}
           onTouchTap={this.handleNext}
-          style={{marginRight: 12}}
+          style={{ marginRight: 12 }}
         />
         {step > 0 && (
           <FlatButton
@@ -54,10 +48,14 @@ class VerticalLinearStepper extends Component {
   }
 
   render() {
-    const {stepIndex} = this.state;
+    const { stepIndex } = this.state;
 
     return (
-      <Stepper activeStep={stepIndex} orientation="vertical" style={{width: 380, margin: 'auto'}}>
+      <Stepper
+        activeStep={stepIndex}
+        orientation="vertical"
+        style={{ width: 380, margin: "auto" }}
+      >
         <Step>
           <StepLabel>Select campaign settings</StepLabel>
           <StepContent transitionDuration={10}>
@@ -72,7 +70,10 @@ class VerticalLinearStepper extends Component {
         <Step>
           <StepLabel>Create an ad group</StepLabel>
           <StepContent transitionDuration={10}>
-            <p data-test-content={1}>An ad group contains one or more ads which target a shared set of keywords.</p>
+            <p data-test-content={1}>
+              An ad group contains one or more ads which target a shared set of
+              keywords.
+            </p>
             {this.renderStepActions(1)}
           </StepContent>
         </Step>
@@ -80,10 +81,11 @@ class VerticalLinearStepper extends Component {
           <StepLabel>Create an ad</StepLabel>
           <StepContent transitionDuration={10}>
             <p data-test-content={2}>
-              Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.
+              Try out different ad text to see what brings in the most
+              customers, and learn how to enhance your ads using features like
+              ad extensions. If you run into any problems with your ads, find
+              out how to tell if they're running and how to resolve approval
+              issues.
             </p>
             {this.renderStepActions(2)}
           </StepContent>

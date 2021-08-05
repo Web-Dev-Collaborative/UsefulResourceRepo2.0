@@ -4,7 +4,7 @@
   background-color: white;
   margin-bottom: 40px;
   padding: 0;
-  border-bottom: 3px solid #4690FC;
+  border-bottom: 3px solid #4690fc;
 
   &-nav {
     .nav-link {
@@ -13,7 +13,7 @@
       font-size: 14px;
 
       &.active {
-       color: #4690FC;
+        color: #4690fc;
       }
     }
   }
@@ -28,21 +28,18 @@
   }
 
   .register-btn {
-
     &:hover {
       color: black;
     }
   }
 
   .login-btn {
-
     &:hover {
       color: black;
     }
   }
 
   .logout-btn {
-
     &:hover {
       color: black;
     }

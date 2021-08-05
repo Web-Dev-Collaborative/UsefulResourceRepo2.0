@@ -6,37 +6,42 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 
 Please familiarise yourself with these if you plan on contributing! :+1:
 
- - [enzyme](https://github.com/airbnb/enzyme)
- - [mocha](https://mochajs.org)
- - [chai](http://chaijs.com)
- - [jsdom](https://github.com/tmpvar/jsdom)
-
+- [enzyme](https://github.com/airbnb/enzyme)
+- [mocha](https://mochajs.org)
+- [chai](http://chaijs.com)
+- [jsdom](https://github.com/tmpvar/jsdom)
 
 ## Commands
 
 ##### Run unit and integration tests in node
+
 `npm run test`
 
 ##### Run unit tests
+
 `npm run test unit` or `npm run test:unit`
 
 ##### Watch unit tests
+
 `npm run test:unit:watch`
 
 ##### Unit test a specific Component (also works with `:watch`)
+
 `-c` / `--component`  
 `npm run test:unit -- -c Avatar`
 
 ##### Unit test with a mocha grep (also works with `:watch`)
+
 `-g` / `--grep`  
 `npm run test:unit -- -g "Grep this"`
 
 ##### Integration tests
+
 Same as unit tests but with `:integration`
 
 ##### Run all tests using Karma (if you like waiting for webpack)
-`npm run test:karma`
 
+`npm run test:karma`
 
 ## Writing Tests
 

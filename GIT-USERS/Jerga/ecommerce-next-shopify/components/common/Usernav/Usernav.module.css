@@ -1,6 +1,3 @@
-
-
-
 .list {
   @apply flex;
 }
@@ -9,9 +6,9 @@
   @apply relative mr-6 cursor-pointer transition flex
          items-center outline-none text-primary;
 
- &:hover {
-   @apply text-accents-6 scale-110;
- }
+  &:hover {
+    @apply text-accents-6 scale-110;
+  }
 }
 
 .bagCount {

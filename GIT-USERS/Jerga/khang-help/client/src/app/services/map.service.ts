@@ -3,7 +3,7 @@ import { Observable, of } from "rxjs";
 import { CamelizePipe } from "ngx-pipes";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class MapService {
   private geoCoder;
@@ -23,7 +23,7 @@ export class MapService {
   }
 
   private geocodeLocation(location: string): Observable<any> {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       this.geoCoder.geocode({ address: location }, (result, status) => {
         if (status === "OK") {
           const geometry = result[0].geometry.location;

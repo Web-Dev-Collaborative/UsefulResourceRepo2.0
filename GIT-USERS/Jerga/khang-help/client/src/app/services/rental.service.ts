@@ -4,7 +4,7 @@ import { Rental } from "../models/rental.model";
 import { HttpClient } from "@angular/common/http";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class RentalService {
   private readonly rootURL = "https://khang-test.herokuapp.com/api/rentals";

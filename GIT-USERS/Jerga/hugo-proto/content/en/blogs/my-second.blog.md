@@ -9,13 +9,13 @@ author:
   image: "images/filip.jpg"
 draft: false
 tags:
-- js
-- react
-- programming
+  - js
+  - react
+  - programming
 categories:
-- web development
+  - web development
 series:
-- JAMStack
+  - JAMStack
 ---
 
 ## Table of contents:
@@ -56,8 +56,8 @@ There are 2 functions we can use to fetch data on the server-side when using Nex
 
 The framework calls these functions at different times:
 
-*   getStaticProps = gets called at **BUILD TIME** = Static Site Generation approach.
-*   getServerSideProps = gets called at **REQUEST TIME** = Server Side Rendering on-demand approach.
+- getStaticProps = gets called at **BUILD TIME** = Static Site Generation approach.
+- getServerSideProps = gets called at **REQUEST TIME** = Server Side Rendering on-demand approach.
 
 So, pages are served differently depending on the functions we use to fetch data. If not specified, all pages are pre-rendered at BUILD TIME and served statically. E.g., a page with just:
 
@@ -341,5 +341,3 @@ Alternatively, the fresh data can be fetched on the server-side at request time,
 Finally, we can say that the focus of web apps on the server and client-side has reached maturity, and we can make hybrid apps that can satisfy the demands of the current times.
 
 If you want to learn more about Next js and create your own applications, check the full course at [https://academy.eincode.com/next.js](https://academy.eincode.com/courses/complete-next-js-with-react-node-beautiful-portfolio-app)
-
-

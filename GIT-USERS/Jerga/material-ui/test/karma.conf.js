@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require("path");
 const argv = process.argv.slice(2);
 const opts = {
   grep: undefined,
@@ -6,55 +6,55 @@ const opts = {
 
 argv.forEach((arg) => {
   if (/^--grep=/.test(arg)) {
-    opts.grep = arg.replace('--grep=', '').trim();
+    opts.grep = arg.replace("--grep=", "").trim();
     opts.coverage = false; // disable if grepping
   }
 });
 
 // Karma configuration
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
     autoWatch: false,
-    basePath: '../',
-    browsers: ['PhantomJS_Sized'],
+    basePath: "../",
+    browsers: ["PhantomJS_Sized"],
     client: {
       mocha: {
         grep: opts.grep,
       },
     },
     colors: true,
-    frameworks: ['mocha'],
+    frameworks: ["mocha"],
     files: [
-      'node_modules/babel-polyfill/dist/polyfill.js',
+      "node_modules/babel-polyfill/dist/polyfill.js",
       {
-        pattern: 'test/karma.tests.js',
+        pattern: "test/karma.tests.js",
         watched: false,
         served: true,
         included: true,
       },
     ],
     plugins: [
-      'karma-phantomjs-launcher',
-      'karma-mocha',
-      'karma-sourcemap-loader',
-      'karma-webpack',
-      'karma-mocha-reporter',
+      "karma-phantomjs-launcher",
+      "karma-mocha",
+      "karma-sourcemap-loader",
+      "karma-webpack",
+      "karma-mocha-reporter",
     ],
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
     port: 9876,
     preprocessors: {
-      'test/karma.tests.js': ['webpack', 'sourcemap'],
+      "test/karma.tests.js": ["webpack", "sourcemap"],
     },
-    reporters: ['dots'],
+    reporters: ["dots"],
     singleRun: false,
     webpack: {
-      devtool: 'inline-source-map',
+      devtool: "inline-source-map",
       module: {
         loaders: [
           {
             test: /\.js$/,
-            loader: 'babel',
+            loader: "babel",
             exclude: /node_modules/,
             query: {
               cacheDirectory: true,
@@ -62,40 +62,36 @@ module.exports = function(config) {
           },
           {
             test: /\.json$/,
-            loader: 'json',
+            loader: "json",
           },
         ],
-        noParse: [
-          /node_modules\/sinon\//,
-        ],
+        noParse: [/node_modules\/sinon\//],
       },
       resolve: {
         alias: {
-          'material-ui': path.resolve(__dirname, '../src'),
-          sinon: 'sinon/pkg/sinon.js',
+          "material-ui": path.resolve(__dirname, "../src"),
+          sinon: "sinon/pkg/sinon.js",
         },
-        extensions: ['', '.js', '.jsx', '.json'],
-        modulesDirectories: [
-          'node_modules',
-          './',
-        ],
+        extensions: ["", ".js", ".jsx", ".json"],
+        modulesDirectories: ["node_modules", "./"],
       },
       externals: {
-        'jsdom': 'window',
-        'react/lib/ExecutionEnvironment': true,
-        'react/lib/ReactContext': 'window',
-        'text-encoding': 'window',
-        'react/addons': true, // For enzyme
+        jsdom: "window",
+        "react/lib/ExecutionEnvironment": true,
+        "react/lib/ReactContext": "window",
+        "text-encoding": "window",
+        "react/addons": true, // For enzyme
       },
     },
     webpackServer: {
       noInfo: true,
     },
     customLaunchers: {
-      'PhantomJS_Sized': {
-        base: 'PhantomJS',
+      PhantomJS_Sized: {
+        base: "PhantomJS",
         options: {
-          viewportSize: { // Matches JSDom size.
+          viewportSize: {
+            // Matches JSDom size.
             width: 1024,
             height: 768,
           },

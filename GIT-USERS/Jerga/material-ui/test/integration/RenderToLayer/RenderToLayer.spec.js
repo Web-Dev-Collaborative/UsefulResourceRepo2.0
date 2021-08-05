@@ -1,11 +1,11 @@
 /* eslint-env mocha */
-import {assert} from 'chai';
-import React, {Component, PropTypes} from 'react';
-import {mount} from 'enzyme';
-import RenderToLayer from 'src/internal/RenderToLayer';
+import { assert } from "chai";
+import React, { Component, PropTypes } from "react";
+import { mount } from "enzyme";
+import RenderToLayer from "src/internal/RenderToLayer";
 
-describe('<RenderToLayer />', () => {
-  it('should pass updated muiTheme context if muiTheme context changes', () => {
+describe("<RenderToLayer />", () => {
+  it("should pass updated muiTheme context if muiTheme context changes", () => {
     class Child extends Component {
       static contextTypes = {
         muiTheme: PropTypes.object.isRequired,
@@ -26,7 +26,7 @@ describe('<RenderToLayer />', () => {
           zIndex: {
             layer: 1,
           },
-          foo: 'initial',
+          foo: "initial",
         },
       };
 
@@ -48,15 +48,15 @@ describe('<RenderToLayer />', () => {
     const instance = mount(<Parent />);
     const portal = document.body.lastChild;
 
-    assert.strictEqual(portal.firstChild.innerHTML, 'initial');
+    assert.strictEqual(portal.firstChild.innerHTML, "initial");
     instance.setState({
       muiTheme: {
         zIndex: {
           layer: 1,
         },
-        foo: 'changed',
+        foo: "changed",
       },
     });
-    assert.strictEqual(portal.firstChild.innerHTML, 'changed');
+    assert.strictEqual(portal.firstChild.innerHTML, "changed");
   });
 });

@@ -1,21 +1,22 @@
-const mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+const mongoose = require("mongoose"),
+  Schema = mongoose.Schema;
 
 const HeroesSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
 
-    name: {
+  relationships: [
+    {
+      name: {
         type: String,
-        required: true
+      },
+      relationship: {
+        type: String,
+      },
     },
-
-        relationships: [{
-        name: {
-            type: String
-        },
-        relationship: {
-            type: String
-        }
-    }]
+  ],
 });
 
-module.exports = mongoose.model('Heroes', HeroesSchema);
+module.exports = mongoose.model("Heroes", HeroesSchema);

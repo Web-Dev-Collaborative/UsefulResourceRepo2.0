@@ -1,18 +1,18 @@
-import React, {Component, PropTypes} from 'react';
-import Drawer from 'material-ui/Drawer';
-import {List, ListItem, makeSelectable} from 'material-ui/List';
-import Divider from 'material-ui/Divider';
-import Subheader from 'material-ui/Subheader';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
-import {spacing, typography, zIndex} from 'material-ui/styles';
-import {cyan500} from 'material-ui/styles/colors';
+import React, { Component, PropTypes } from "react";
+import Drawer from "material-ui/Drawer";
+import { List, ListItem, makeSelectable } from "material-ui/List";
+import Divider from "material-ui/Divider";
+import Subheader from "material-ui/Subheader";
+import DropDownMenu from "material-ui/DropDownMenu";
+import MenuItem from "material-ui/MenuItem";
+import { spacing, typography, zIndex } from "material-ui/styles";
+import { cyan500 } from "material-ui/styles/colors";
 
 const SelectableList = makeSelectable(List);
 
 const styles = {
   logo: {
-    cursor: 'pointer',
+    cursor: "pointer",
     fontSize: 24,
     color: typography.textFullWhite,
     lineHeight: `${spacing.desktopKeylineIncrement}px`,
@@ -48,10 +48,10 @@ class AppNavDrawer extends Component {
 
   componentDidMount() {
     const self = this;
-    const url = '/versions.json';
+    const url = "/versions.json";
     const request = new XMLHttpRequest();
 
-    request.onreadystatechange = function() {
+    request.onreadystatechange = function () {
       if (request.readyState === 4 && request.status === 200) {
         self.setState({
           muiVersions: JSON.parse(request.responseText),
@@ -60,7 +60,7 @@ class AppNavDrawer extends Component {
       }
     };
 
-    request.open('GET', url, true);
+    request.open("GET", url, true);
     request.send();
   }
 
@@ -69,7 +69,7 @@ class AppNavDrawer extends Component {
     for (let i = 0; i < this.state.muiVersions.length; i++) {
       version = this.state.muiVersions[i];
       // If the version doesn't contain '-' and isn't 'HEAD'
-      if (!/-/.test(version) && version !== 'HEAD') {
+      if (!/-/.test(version) && version !== "HEAD") {
         break;
       }
     }
@@ -78,18 +78,19 @@ class AppNavDrawer extends Component {
 
   handleVersionChange = (event, index, value) => {
     if (value === this.firstNonPreReleaseVersion()) {
-      window.location = 'http://www.material-ui.com/';
+      window.location = "http://www.material-ui.com/";
     } else {
       window.location = `http://www.material-ui.com/${value}`;
     }
   };
 
   currentVersion() {
-    if (window.location.hostname === 'localhost') return this.state.muiVersions[0];
-    if (window.location.pathname === '/') {
+    if (window.location.hostname === "localhost")
+      return this.state.muiVersions[0];
+    if (window.location.pathname === "/") {
       return this.firstNonPreReleaseVersion();
     } else {
-      return window.location.pathname.replace(/\//g, '');
+      return window.location.pathname.replace(/\//g, "");
     }
   }
 
@@ -98,7 +99,7 @@ class AppNavDrawer extends Component {
   };
 
   handleTouchTapHeader = () => {
-    this.context.router.push('/');
+    this.context.router.push("/");
     this.props.onRequestChangeNavDrawer(false);
   };
 
@@ -118,7 +119,7 @@ class AppNavDrawer extends Component {
         docked={docked}
         open={open}
         onRequestChange={onRequestChangeNavDrawer}
-        containerStyle={{zIndex: zIndex.drawer - 100}}
+        containerStyle={{ zIndex: zIndex.drawer - 100 }}
       >
         <div style={styles.logo} onTouchTap={this.handleTouchTapHeader}>
           Material-UI
@@ -128,28 +129,30 @@ class AppNavDrawer extends Component {
           value={this.currentVersion()}
           onChange={this.handleVersionChange}
           maxHeight={300}
-          style={{width: 181}}
+          style={{ width: 181 }}
         >
           {this.state.muiVersions.map((version) => (
-            <MenuItem
-              key={version}
-              value={version}
-              primaryText={version}
-            />
+            <MenuItem key={version} value={version} primaryText={version} />
           ))}
         </DropDownMenu>
-        <SelectableList
-          value={location.pathname}
-          onChange={onChangeList}
-        >
+        <SelectableList value={location.pathname} onChange={onChangeList}>
           <ListItem
             primaryText="Get Started"
             primaryTogglesNestedList={true}
             nestedItems={[
-              <ListItem primaryText="Required Knowledge" value="/get-started/required-knowledge" />,
-              <ListItem primaryText="Installation" value="/get-started/installation" />,
+              <ListItem
+                primaryText="Required Knowledge"
+                value="/get-started/required-knowledge"
+              />,
+              <ListItem
+                primaryText="Installation"
+                value="/get-started/installation"
+              />,
               <ListItem primaryText="Usage" value="/get-started/usage" />,
-              <ListItem primaryText="Server Rendering" value="/get-started/server-rendering" />,
+              <ListItem
+                primaryText="Server Rendering"
+                value="/get-started/server-rendering"
+              />,
               <ListItem primaryText="Examples" value="/get-started/examples" />,
             ]}
           />
@@ -402,21 +405,36 @@ class AppNavDrawer extends Component {
             primaryText="Discover More"
             primaryTogglesNestedList={true}
             nestedItems={[
-              <ListItem primaryText="Community" value="/discover-more/community" />,
-              <ListItem primaryText="Contributing" value="/discover-more/contributing" />,
-              <ListItem primaryText="Showcase" value="/discover-more/showcase" />,
-              <ListItem primaryText="Related projects" value="/discover-more/related-projects" />,
+              <ListItem
+                primaryText="Community"
+                value="/discover-more/community"
+              />,
+              <ListItem
+                primaryText="Contributing"
+                value="/discover-more/contributing"
+              />,
+              <ListItem
+                primaryText="Showcase"
+                value="/discover-more/showcase"
+              />,
+              <ListItem
+                primaryText="Related projects"
+                value="/discover-more/related-projects"
+              />,
             ]}
           />
         </SelectableList>
         <Divider />
-        <SelectableList
-          value=""
-          onChange={this.handleRequestChangeLink}
-        >
+        <SelectableList value="" onChange={this.handleRequestChangeLink}>
           <Subheader>Resources</Subheader>
-          <ListItem primaryText="GitHub" value="https://github.com/callemall/material-ui" />
-          <ListItem primaryText="React" value="http://facebook.github.io/react" />
+          <ListItem
+            primaryText="GitHub"
+            value="https://github.com/callemall/material-ui"
+          />
+          <ListItem
+            primaryText="React"
+            value="http://facebook.github.io/react"
+          />
           <ListItem
             primaryText="Material Design"
             value="https://www.google.com/design/spec/material-design/introduction.html"

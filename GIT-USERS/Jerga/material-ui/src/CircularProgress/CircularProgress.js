@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import autoPrefix from '../utils/autoPrefix';
-import transitions from '../styles/transitions';
+import React, { Component, PropTypes } from "react";
+import autoPrefix from "../utils/autoPrefix";
+import transitions from "../styles/transitions";
 
 function getRelativeValue(value, min, max) {
   const clampedValue = Math.min(Math.max(min, value), max);
@@ -12,45 +12,45 @@ function getArcLength(fraction, props) {
 }
 
 function getStyles(props, context) {
-  const {
-    max,
-    min,
-    size,
-    value,
-  } = props;
+  const { max, min, size, value } = props;
 
-  const {baseTheme: {palette}} = context.muiTheme;
+  const {
+    baseTheme: { palette },
+  } = context.muiTheme;
 
   const styles = {
     root: {
-      position: 'relative',
-      display: 'inline-block',
+      position: "relative",
+      display: "inline-block",
       width: size,
       height: size,
     },
     wrapper: {
       width: size,
       height: size,
-      display: 'inline-block',
-      transition: transitions.create('transform', '20s', null, 'linear'),
-      transitionTimingFunction: 'linear',
+      display: "inline-block",
+      transition: transitions.create("transform", "20s", null, "linear"),
+      transitionTimingFunction: "linear",
     },
     svg: {
       width: size,
       height: size,
-      position: 'relative',
+      position: "relative",
     },
     path: {
       stroke: props.color || palette.primary1Color,
-      strokeLinecap: 'round',
-      transition: transitions.create('all', '1.5s', null, 'ease-in-out'),
+      strokeLinecap: "round",
+      transition: transitions.create("all", "1.5s", null, "ease-in-out"),
     },
   };
 
-  if (props.mode === 'determinate') {
+  if (props.mode === "determinate") {
     const relVal = getRelativeValue(value, min, max);
-    styles.path.transition = transitions.create('all', '0.3s', null, 'linear');
-    styles.path.strokeDasharray = `${getArcLength(relVal, props)}, ${getArcLength(1, props)}`;
+    styles.path.transition = transitions.create("all", "0.3s", null, "linear");
+    styles.path.strokeDasharray = `${getArcLength(
+      relVal,
+      props
+    )}, ${getArcLength(1, props)}`;
   }
 
   return styles;
@@ -78,7 +78,7 @@ class CircularProgress extends Component {
      * The mode of show your progress, indeterminate
      * for when there is no value for progress.
      */
-    mode: PropTypes.oneOf(['determinate', 'indeterminate']),
+    mode: PropTypes.oneOf(["determinate", "indeterminate"]),
     /**
      * The diameter of the progress in pixels.
      */
@@ -98,7 +98,7 @@ class CircularProgress extends Component {
   };
 
   static defaultProps = {
-    mode: 'indeterminate',
+    mode: "indeterminate",
     value: 0,
     min: 0,
     max: 100,
@@ -121,57 +121,69 @@ class CircularProgress extends Component {
   }
 
   scalePath(path, step = 0) {
-    if (this.props.mode !== 'indeterminate') return;
+    if (this.props.mode !== "indeterminate") return;
 
     step %= 3;
 
     if (step === 0) {
-      path.style.strokeDasharray = `${getArcLength(0, this.props)}, ${getArcLength(1, this.props)}`;
+      path.style.strokeDasharray = `${getArcLength(
+        0,
+        this.props
+      )}, ${getArcLength(1, this.props)}`;
       path.style.strokeDashoffset = 0;
-      path.style.transitionDuration = '0ms';
+      path.style.transitionDuration = "0ms";
     } else if (step === 1) {
-      path.style.strokeDasharray = `${getArcLength(0.7, this.props)}, ${getArcLength(1, this.props)}`;
+      path.style.strokeDasharray = `${getArcLength(
+        0.7,
+        this.props
+      )}, ${getArcLength(1, this.props)}`;
       path.style.strokeDashoffset = getArcLength(-0.3, this.props);
-      path.style.transitionDuration = '750ms';
+      path.style.transitionDuration = "750ms";
     } else {
-      path.style.strokeDasharray = `${getArcLength(0.7, this.props)}, ${getArcLength(1, this.props)}`;
+      path.style.strokeDasharray = `${getArcLength(
+        0.7,
+        this.props
+      )}, ${getArcLength(1, this.props)}`;
       path.style.strokeDashoffset = getArcLength(-1, this.props);
-      path.style.transitionDuration = '850ms';
+      path.style.transitionDuration = "850ms";
     }
 
-    this.scalePathTimer = setTimeout(() => this.scalePath(path, step + 1), step ? 750 : 250);
+    this.scalePathTimer = setTimeout(
+      () => this.scalePath(path, step + 1),
+      step ? 750 : 250
+    );
   }
 
   rotateWrapper(wrapper) {
-    if (this.props.mode !== 'indeterminate') return;
+    if (this.props.mode !== "indeterminate") return;
 
-    autoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
-    autoPrefix.set(wrapper.style, 'transitionDuration', '0ms');
+    autoPrefix.set(wrapper.style, "transform", "rotate(0deg)");
+    autoPrefix.set(wrapper.style, "transitionDuration", "0ms");
 
     setTimeout(() => {
-      autoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)');
-      autoPrefix.set(wrapper.style, 'transitionDuration', '10s');
-      autoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
+      autoPrefix.set(wrapper.style, "transform", "rotate(1800deg)");
+      autoPrefix.set(wrapper.style, "transitionDuration", "10s");
+      autoPrefix.set(wrapper.style, "transitionTimingFunction", "linear");
     }, 50);
 
-    this.rotateWrapperTimer = setTimeout(() => this.rotateWrapper(wrapper), 10050);
+    this.rotateWrapperTimer = setTimeout(
+      () => this.rotateWrapper(wrapper),
+      10050
+    );
   }
 
   render() {
-    const {
-      style,
-      innerStyle,
-      size,
-      thickness,
-      ...other
-    } = this.props;
+    const { style, innerStyle, size, thickness, ...other } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     return (
-      <div {...other} style={prepareStyles(Object.assign(styles.root, style))} >
-        <div ref="wrapper" style={prepareStyles(Object.assign(styles.wrapper, innerStyle))} >
+      <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
+        <div
+          ref="wrapper"
+          style={prepareStyles(Object.assign(styles.wrapper, innerStyle))}
+        >
           <svg
             viewBox={`0 0 ${size} ${size}`}
             style={prepareStyles(styles.svg)}

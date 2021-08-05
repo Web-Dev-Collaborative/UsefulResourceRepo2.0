@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.scss"]
+  styleUrls: ["./register.component.scss"],
 })
 export class RegisterComponent implements OnInit {
   formData: any = {};
@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
       () => {
         this.router.navigate(["login", { registered: "success" }]);
       },
-      error => {
+      (error) => {
         this.errors = error.error.err;
       },
       () => {}

@@ -1,13 +1,13 @@
-import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
-import Events from '../utils/events';
-import propTypes from '../utils/propTypes';
-import Menu from '../Menu/Menu';
-import Popover from '../Popover/Popover';
-import warning from 'warning';
+import React, { Component, PropTypes } from "react";
+import ReactDOM from "react-dom";
+import Events from "../utils/events";
+import propTypes from "../utils/propTypes";
+import Menu from "../Menu/Menu";
+import Popover from "../Popover/Popover";
+import warning from "warning";
 
 class IconMenu extends Component {
-  static muiName = 'IconMenu';
+  static muiName = "IconMenu";
 
   static propTypes = {
     /**
@@ -120,8 +120,8 @@ class IconMenu extends Component {
 
   static defaultProps = {
     anchorOrigin: {
-      vertical: 'top',
-      horizontal: 'left',
+      vertical: "top",
+      horizontal: "left",
     },
     animated: true,
     multiple: false,
@@ -135,8 +135,8 @@ class IconMenu extends Component {
     onRequestChange: () => {},
     onTouchTap: () => {},
     targetOrigin: {
-      vertical: 'top',
-      horizontal: 'left',
+      vertical: "top",
+      horizontal: "left",
     },
     touchTapCloseDelay: 200,
     useLayerForClickAway: false,
@@ -177,7 +177,7 @@ class IconMenu extends Component {
       this.props.onRequestChange(false, reason);
     }
 
-    this.setState({open: false}, () => {
+    this.setState({ open: false }, () => {
       // Set focus on the icon button when the menu close
       if (isKeyboard) {
         const iconButton = this.refs.iconButton;
@@ -207,10 +207,13 @@ class IconMenu extends Component {
   }
 
   handleItemTouchTap = (event, child) => {
-    if (this.props.touchTapCloseDelay !== 0 && !child.props.hasOwnProperty('menuItems')) {
+    if (
+      this.props.touchTapCloseDelay !== 0 &&
+      !child.props.hasOwnProperty("menuItems")
+    ) {
       const isKeyboard = Events.isKeyboard(event);
       this.timerCloseId = setTimeout(() => {
-        this.close(isKeyboard ? 'enter' : 'itemTap', isKeyboard);
+        this.close(isKeyboard ? "enter" : "itemTap", isKeyboard);
       }, this.props.touchTapCloseDelay);
     }
 
@@ -222,7 +225,7 @@ class IconMenu extends Component {
   };
 
   handleEscKeyDownMenu = (event) => {
-    this.close('escape', event);
+    this.close("escape", event);
   };
 
   render() {
@@ -249,38 +252,40 @@ class IconMenu extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
-    const {open, anchorEl} = this.state;
+    const { prepareStyles } = this.context.muiTheme;
+    const { open, anchorEl } = this.state;
 
     const styles = {
       root: {
-        display: 'inline-block',
-        position: 'relative',
+        display: "inline-block",
+        position: "relative",
       },
       menu: {
-        position: 'relative',
+        position: "relative",
       },
     };
 
     const mergedRootStyles = Object.assign(styles.root, style);
     const mergedMenuStyles = Object.assign(styles.menu, menuStyle);
 
-    warning(iconButtonElement.type.muiName !== 'SvgIcon',
+    warning(
+      iconButtonElement.type.muiName !== "SvgIcon",
       `Material-UI: You shoud not provide an <SvgIcon /> to the 'iconButtonElement' property of <IconMenu />.
-You should wrapped it with an <IconButton />.`);
+You should wrapped it with an <IconButton />.`
+    );
 
     const iconButton = React.cloneElement(iconButtonElement, {
       onKeyboardFocus: onKeyboardFocus,
-      iconStyle: iconStyle ?
-        Object.assign({}, iconStyle, iconButtonElement.props.iconStyle) :
-        iconButtonElement.props.iconStyle,
+      iconStyle: iconStyle
+        ? Object.assign({}, iconStyle, iconButtonElement.props.iconStyle)
+        : iconButtonElement.props.iconStyle,
       onTouchTap: (event) => {
-        this.open(Events.isKeyboard(event) ? 'keyboard' : 'iconTap', event);
+        this.open(Events.isKeyboard(event) ? "keyboard" : "iconTap", event);
         if (iconButtonElement.props.onTouchTap) {
           iconButtonElement.props.onTouchTap(event);
         }
       },
-      ref: 'iconButton',
+      ref: "iconButton",
     });
 
     const menu = (

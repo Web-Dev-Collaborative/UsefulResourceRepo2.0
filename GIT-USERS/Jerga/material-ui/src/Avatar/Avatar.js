@@ -1,24 +1,20 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from "react";
 
 function getStyles(props, context) {
-  const {
-    backgroundColor,
-    color,
-    size,
-  } = props;
+  const { backgroundColor, color, size } = props;
 
-  const {avatar} = context.muiTheme;
+  const { avatar } = context.muiTheme;
 
   const styles = {
     root: {
       color: color || avatar.color,
       backgroundColor: backgroundColor || avatar.backgroundColor,
-      userSelect: 'none',
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
+      userSelect: "none",
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
       fontSize: size / 2,
-      borderRadius: '50%',
+      borderRadius: "50%",
       height: size,
       width: size,
     },
@@ -35,7 +31,7 @@ function getStyles(props, context) {
 }
 
 class Avatar extends Component {
-  static muiName = 'Avatar';
+  static muiName = "Avatar";
 
   static propTypes = {
     /**
@@ -90,7 +86,7 @@ class Avatar extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     if (src) {
@@ -109,10 +105,11 @@ class Avatar extends Component {
           style={prepareStyles(Object.assign(styles.root, style))}
           className={className}
         >
-          {icon && React.cloneElement(icon, {
-            color: styles.icon.color,
-            style: Object.assign(styles.icon, icon.props.style),
-          })}
+          {icon &&
+            React.cloneElement(icon, {
+              color: styles.icon.color,
+              style: Object.assign(styles.icon, icon.props.style),
+            })}
           {this.props.children}
         </div>
       );

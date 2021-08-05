@@ -1,14 +1,13 @@
-import React, {Component, PropTypes} from 'react';
-import {Link} from 'react-router';
-import withWidth, {MEDIUM, LARGE} from 'material-ui/utils/withWidth';
-import spacing from 'material-ui/styles/spacing';
-import transitions from 'material-ui/styles/transitions';
-import typography from 'material-ui/styles/typography';
-import {grey200} from 'material-ui/styles/colors';
-import Paper from 'material-ui/Paper';
+import React, { Component, PropTypes } from "react";
+import { Link } from "react-router";
+import withWidth, { MEDIUM, LARGE } from "material-ui/utils/withWidth";
+import spacing from "material-ui/styles/spacing";
+import transitions from "material-ui/styles/transitions";
+import typography from "material-ui/styles/typography";
+import { grey200 } from "material-ui/styles/colors";
+import Paper from "material-ui/Paper";
 
 class HomeFeature extends Component {
-
   static propTypes = {
     firstChild: PropTypes.bool,
     heading: PropTypes.string,
@@ -33,12 +32,12 @@ class HomeFeature extends Component {
     const styles = {
       root: {
         transition: transitions.easeOut(),
-        maxWidth: '300px',
+        maxWidth: "300px",
         margin: `0 auto ${desktopGutter}px auto`,
       },
       rootWhenMedium: {
-        float: 'left',
-        width: '33%',
+        float: "left",
+        width: "33%",
         marginRight: 4,
         marginBottom: 0,
       },
@@ -54,7 +53,7 @@ class HomeFeature extends Component {
         fontWeight: typography.fontWeightMedium,
         color: typography.textDarkBlack,
         backgroundColor: grey200,
-        textAlign: 'center',
+        textAlign: "center",
         margin: 0,
         padding: 0,
         lineHeight: `${desktopKeylineIncrement}px`,

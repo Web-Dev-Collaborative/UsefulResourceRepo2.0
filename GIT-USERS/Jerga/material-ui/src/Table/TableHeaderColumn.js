@@ -1,24 +1,24 @@
-import React, {Component, PropTypes} from 'react';
-import Tooltip from '../internal/Tooltip';
+import React, { Component, PropTypes } from "react";
+import Tooltip from "../internal/Tooltip";
 
 function getStyles(props, context) {
-  const {tableHeaderColumn} = context.muiTheme;
+  const { tableHeaderColumn } = context.muiTheme;
 
   return {
     root: {
-      fontWeight: 'normal',
+      fontWeight: "normal",
       fontSize: 12,
       paddingLeft: tableHeaderColumn.spacing,
       paddingRight: tableHeaderColumn.spacing,
       height: tableHeaderColumn.height,
-      textAlign: 'left',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
+      textAlign: "left",
+      whiteSpace: "nowrap",
+      textOverflow: "ellipsis",
       color: tableHeaderColumn.textColor,
-      position: 'relative',
+      position: "relative",
     },
     tooltip: {
-      boxSizing: 'border-box',
+      boxSizing: "border-box",
       marginTop: tableHeaderColumn.height / 2,
     },
   };
@@ -78,13 +78,13 @@ class TableHeaderColumn extends Component {
 
   onMouseEnter = () => {
     if (this.props.tooltip !== undefined) {
-      this.setState({hovered: true});
+      this.setState({ hovered: true });
     }
   };
 
   onMouseLeave = () => {
     if (this.props.tooltip !== undefined) {
-      this.setState({hovered: false});
+      this.setState({ hovered: false });
     }
   };
 
@@ -109,7 +109,7 @@ class TableHeaderColumn extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     const handlers = {

@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import FlatButton from '../FlatButton';
+import React, { Component, PropTypes } from "react";
+import FlatButton from "../FlatButton";
 
 class CalendarActionButton extends Component {
   static propTypes = {
@@ -11,20 +11,20 @@ class CalendarActionButton extends Component {
   };
 
   render() {
-    const {cancelLabel, okLabel} = this.props;
+    const { cancelLabel, okLabel } = this.props;
 
     const styles = {
       root: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-end",
         margin: 0,
         maxHeight: 48,
         padding: 0,
       },
       flatButtons: {
         fontsize: 14,
-        margin: '4px 8px 8px 0px',
+        margin: "4px 8px 8px 0px",
         maxHeight: 36,
         minWidth: 64,
         padding: 0,
@@ -32,22 +32,25 @@ class CalendarActionButton extends Component {
     };
 
     return (
-      <div style={styles.root} >
+      <div style={styles.root}>
         <FlatButton
           label={cancelLabel}
           onTouchTap={this.props.onTouchTapCancel}
           primary={true}
           style={styles.flatButtons}
         />
-        {!this.props.autoOk &&
+        {!this.props.autoOk && (
           <FlatButton
-            disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
+            disabled={
+              this.refs.calendar !== undefined &&
+              this.refs.calendar.isSelectedDateDisabled()
+            }
             label={okLabel}
             onTouchTap={this.props.onTouchTapOk}
             primary={true}
             style={styles.flatButtons}
           />
-        }
+        )}
       </div>
     );
   }

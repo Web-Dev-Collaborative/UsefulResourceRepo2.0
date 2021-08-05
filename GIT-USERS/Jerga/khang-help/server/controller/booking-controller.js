@@ -3,11 +3,11 @@ const Rental = require("../models/rental");
 const { normalizeErrors } = require("../helpers/mongoose");
 const moment = require("moment");
 const User = require("../models/user");
-const config = require('../config/dev')
-const stripe = require('stripe')(config.STRIPE_SK)
+const config = require("../config/dev");
+const stripe = require("stripe")(config.STRIPE_SK);
 
-const CUSTOMER_SHARE = 0.8
-const Payment = require('../models/payment')
+const CUSTOMER_SHARE = 0.8;
+const Payment = require("../models/payment");
 exports.getUserBookings = (req, res) => {
   const user = res.locals.user;
 
@@ -22,10 +22,9 @@ exports.getUserBookings = (req, res) => {
     });
 };
 
-
-
 exports.create = (req, res) => {
-  const { startAt, endAt, totalPrice, guests, days, rental, paymentToken } = req.body;
+  const { startAt, endAt, totalPrice, guests, days, rental, paymentToken } =
+    req.body;
   const user = res.locals.user;
 
   const booking = new Booking({
@@ -33,7 +32,7 @@ exports.create = (req, res) => {
     endAt,
     totalPrice,
     guests,
-    days
+    days,
   });
   Rental.findById(rental._id)
     .populate("bookings")
@@ -41,7 +40,7 @@ exports.create = (req, res) => {
     .exec(async (err, foundRental) => {
       if (err) {
         return res.status(422).send({
-          errors: normalizeErrors(err.errors)
+          errors: normalizeErrors(err.errors),
         });
       }
 
@@ -50,31 +49,34 @@ exports.create = (req, res) => {
           err: [
             {
               title: "Invalid User!",
-              detail: "Can't create a booking in your own Rental"
-            }
-          ]
+              detail: "Can't create a booking in your own Rental",
+            },
+          ],
         });
       }
       if (isValidBooking(booking, foundRental)) {
         booking.user = user;
         booking.rental = foundRental;
         foundRental.bookings.push(booking);
-        const { payment, error } = await createPayment(booking, foundRental.user, paymentToken)
+        const { payment, error } = await createPayment(
+          booking,
+          foundRental.user,
+          paymentToken
+        );
 
         if (payment) {
+          booking.payment = booking.payment;
 
-          booking.payment = booking.payment
-
-          booking.save(err => {
+          booking.save((err) => {
             if (err) {
               return res.status(422).send({
-                errors: normalizeErrors(err.errors)
+                errors: normalizeErrors(err.errors),
               });
             }
             foundRental.save();
             User.update(
               { _id: user.id },
-              { $push: { bookings: booking }, function() { } }
+              { $push: { bookings: booking }, function() {} }
             );
             return res.json({ startAt: booking.startAt, endAt: booking.endAt });
           });
@@ -83,9 +85,9 @@ exports.create = (req, res) => {
             err: [
               {
                 title: "Invalid Payment",
-                detail: error
-              }
-            ]
+                detail: error,
+              },
+            ],
           });
         }
         // UPDATE rental update user
@@ -94,21 +96,18 @@ exports.create = (req, res) => {
           err: [
             {
               title: "Invalid Booking!",
-              detail: "Choosen dates are already taken"
-            }
-          ]
+              detail: "Choosen dates are already taken",
+            },
+          ],
         });
       }
     });
 };
 
 isValidBooking = (proposedBooking, rental) => {
-
-
-
   let isValid = true;
   if (rental.bookings && rental.bookings.length > 0) {
-    isValid = rental.bookings.every(booking => {
+    isValid = rental.bookings.every((booking) => {
       const proposedStart = moment(proposedBooking.startAt);
       const proposedEnd = moment(proposedBooking.endAt);
 
@@ -128,22 +127,22 @@ isValidBooking = (proposedBooking, rental) => {
 createPayment = async (booking, toUser, token) => {
   const { user } = booking;
 
-
-
-
   const customer = await stripe.customers.create({
     source: token.id,
-    email: user.email
-  })
+    email: user.email,
+  });
 
   if (customer) {
     // user that we want to charge
-    User.update({ _id: user._id }, {
-      $set: {
-        stripeCustomerId:
-          customer.id
-      }
-    }, () => { })
+    User.update(
+      { _id: user._id },
+      {
+        $set: {
+          stripeCustomerId: customer.id,
+        },
+      },
+      () => {}
+    );
 
     const payment = new Payment({
       fromUser: user,
@@ -152,16 +151,16 @@ createPayment = async (booking, toUser, token) => {
       booking,
       tokenId: token.id,
       // we just want to give the user 80%, we keep the 20%
-      amount: booking.totalPrice * 100 * CUSTOMER_SHARE
+      amount: booking.totalPrice * 100 * CUSTOMER_SHARE,
     });
 
     try {
-      const savedPayment = await payment.save()
-      return { payment: savedPayment }
+      const savedPayment = await payment.save();
+      return { payment: savedPayment };
     } catch (error) {
-      return { error: error.message }
+      return { error: error.message };
     }
   } else {
-    return { err: 'Cannot process Payment!' }
+    return { err: "Cannot process Payment!" };
   }
-}
+};

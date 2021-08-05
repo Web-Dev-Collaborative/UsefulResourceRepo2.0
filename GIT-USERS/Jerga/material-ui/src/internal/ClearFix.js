@@ -1,19 +1,19 @@
-import React, {PropTypes} from 'react';
-import BeforeAfterWrapper from './BeforeAfterWrapper';
+import React, { PropTypes } from "react";
+import BeforeAfterWrapper from "./BeforeAfterWrapper";
 
 const styles = {
   before: {
     content: "' '",
-    display: 'table',
+    display: "table",
   },
   after: {
     content: "' '",
-    clear: 'both',
-    display: 'table',
+    clear: "both",
+    display: "table",
   },
 };
 
-const ClearFix = ({style, children, ...other}) => (
+const ClearFix = ({ style, children, ...other }) => (
   <BeforeAfterWrapper
     {...other}
     beforeStyle={styles.before}
@@ -24,7 +24,7 @@ const ClearFix = ({style, children, ...other}) => (
   </BeforeAfterWrapper>
 );
 
-ClearFix.muiName = 'ClearFix';
+ClearFix.muiName = "ClearFix";
 
 ClearFix.propTypes = {
   children: PropTypes.node,

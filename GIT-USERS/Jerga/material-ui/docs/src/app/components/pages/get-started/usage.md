@@ -5,11 +5,12 @@ Beginning with v0.15.0, Material-UI components require a theme to be provided. T
 Here is a quick example to get you started:
 
 **./App.js**
+
 ```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import MyAwesomeReactComponent from './MyAwesomeReactComponent';
+import React from "react";
+import ReactDOM from "react-dom";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import MyAwesomeReactComponent from "./MyAwesomeReactComponent";
 
 const App = () => (
   <MuiThemeProvider>
@@ -17,20 +18,16 @@ const App = () => (
   </MuiThemeProvider>
 );
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('app')
-);
+ReactDOM.render(<App />, document.getElementById("app"));
 ```
 
 **./MyAwesomeReactComponent.js**
-```jsx
-import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
 
-const MyAwesomeReactComponent = () => (
-  <RaisedButton label="Default" />
-);
+```jsx
+import React from "react";
+import RaisedButton from "material-ui/RaisedButton";
+
+const MyAwesomeReactComponent = () => <RaisedButton label="Default" />;
 
 export default MyAwesomeReactComponent;
 ```
@@ -38,13 +35,15 @@ export default MyAwesomeReactComponent;
 Please refer to each component's documentation page to see how they should be imported.
 
 Notice that in the above example, we used:
+
 ```js
-import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButton from "material-ui/RaisedButton";
 ```
 
 instead of
+
 ```js
-import {RaisedButton} from 'material-ui';
+import { RaisedButton } from "material-ui";
 ```
 
 This will make your build process faster and your build output smaller.
@@ -56,6 +55,7 @@ see `/index.js` inside the Material-UI npm package root directory.
 We have implemented a default theme to render all Material-UI components.
 Styling components to your liking is simple and hassle-free.
 This can be achieved in the following two ways:
+
 - [With the theme](#/customization/themes), you can use a custom theme to style components.
 - [With the inline style](#/customization/styles), you can override individual
-component styles via the style property.
+  component styles via the style property.

@@ -1,15 +1,14 @@
-import {PropTypes} from 'react';
+import { PropTypes } from "react";
 
-const horizontal = PropTypes.oneOf(['left', 'middle', 'right']);
-const vertical = PropTypes.oneOf(['top', 'center', 'bottom']);
+const horizontal = PropTypes.oneOf(["left", "middle", "right"]);
+const vertical = PropTypes.oneOf(["top", "center", "bottom"]);
 
 export default {
-
   corners: PropTypes.oneOf([
-    'bottom-left',
-    'bottom-right',
-    'top-left',
-    'top-right',
+    "bottom-left",
+    "bottom-right",
+    "top-left",
+    "top-right",
   ]),
 
   horizontal: horizontal,
@@ -22,19 +21,15 @@ export default {
   }),
 
   cornersAndCenter: PropTypes.oneOf([
-    'bottom-center',
-    'bottom-left',
-    'bottom-right',
-    'top-center',
-    'top-left',
-    'top-right',
+    "bottom-center",
+    "bottom-left",
+    "bottom-right",
+    "top-center",
+    "top-left",
+    "top-right",
   ]),
 
-  stringOrNumber: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  stringOrNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
   zDepth: PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
-
 };

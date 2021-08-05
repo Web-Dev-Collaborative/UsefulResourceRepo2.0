@@ -14,11 +14,17 @@ a:hover {
 }
 
 html {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-body, h1, h2, h3, h4, h5, h6 {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
 }
 
@@ -31,6 +37,6 @@ body {
 .styles-overriding-css-example {
   width: 50% !important;
   margin: 0 auto !important;
-  border: 2px solid #FF9800 !important;
+  border: 2px solid #ff9800 !important;
   background-color: #ffd699 !important;
 }

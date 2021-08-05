@@ -1,54 +1,58 @@
-import React, {Component, PropTypes} from 'react';
-import transitions from '../styles/transitions';
-import SlideInTransitionGroup from '../internal/SlideIn';
+import React, { Component, PropTypes } from "react";
+import transitions from "../styles/transitions";
+import SlideInTransitionGroup from "../internal/SlideIn";
 
 function getStyles(props, context, state) {
-  const {datePicker} = context.muiTheme;
-  const {selectedYear} = state;
-  const isLandscape = props.mode === 'landscape';
+  const { datePicker } = context.muiTheme;
+  const { selectedYear } = state;
+  const isLandscape = props.mode === "landscape";
 
   const styles = {
     root: {
-      width: isLandscape ? 165 : '100%',
-      height: isLandscape ? 330 : 'auto',
-      float: isLandscape ? 'left' : 'none',
+      width: isLandscape ? 165 : "100%",
+      height: isLandscape ? 330 : "auto",
+      float: isLandscape ? "left" : "none",
       fontWeight: 700,
-      display: 'inline-block',
+      display: "inline-block",
       backgroundColor: datePicker.selectColor,
       borderTopLeftRadius: 2,
       borderTopRightRadius: isLandscape ? 0 : 2,
       borderBottomLeftRadius: isLandscape ? 2 : 0,
       color: datePicker.textColor,
       padding: 20,
-      boxSizing: 'border-box',
+      boxSizing: "border-box",
     },
     monthDay: {
-      display: 'block',
+      display: "block",
       fontSize: 36,
-      lineHeight: '36px',
-      height: props.mode === 'landscape' ? '100%' : 38,
+      lineHeight: "36px",
+      height: props.mode === "landscape" ? "100%" : 38,
       opacity: selectedYear ? 0.7 : 1,
       transition: transitions.easeOut(),
-      width: '100%',
-      fontWeight: '500',
+      width: "100%",
+      fontWeight: "500",
     },
     monthDayTitle: {
-      cursor: !selectedYear ? 'default' : 'pointer',
-      width: '100%',
-      display: 'block',
+      cursor: !selectedYear ? "default" : "pointer",
+      width: "100%",
+      display: "block",
     },
     year: {
       margin: 0,
       fontSize: 16,
-      fontWeight: '500',
-      lineHeight: '16px',
+      fontWeight: "500",
+      lineHeight: "16px",
       height: 16,
       opacity: selectedYear ? 1 : 0.7,
       transition: transitions.easeOut(),
       marginBottom: 10,
     },
     yearTitle: {
-      cursor: props.disableYearSelection ? 'not-allowed' : (!selectedYear ? 'pointer' : 'default'),
+      cursor: props.disableYearSelection
+        ? "not-allowed"
+        : !selectedYear
+        ? "pointer"
+        : "default",
     },
   };
 
@@ -60,7 +64,7 @@ class DateDisplay extends Component {
     DateTimeFormat: PropTypes.func.isRequired,
     disableYearSelection: PropTypes.bool,
     locale: PropTypes.string.isRequired,
-    mode: PropTypes.oneOf(['portrait', 'landscape']),
+    mode: PropTypes.oneOf(["portrait", "landscape"]),
     monthDaySelected: PropTypes.bool,
     onTouchTapMonthDay: PropTypes.func,
     onTouchTapYear: PropTypes.func,
@@ -79,18 +83,19 @@ class DateDisplay extends Component {
 
   state = {
     selectedYear: false,
-    transitionDirection: 'up',
+    transitionDirection: "up",
   };
 
   componentWillMount() {
     if (!this.props.monthDaySelected) {
-      this.setState({selectedYear: true});
+      this.setState({ selectedYear: true });
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedDate !== this.props.selectedDate) {
-      const direction = nextProps.selectedDate > this.props.selectedDate ? 'up' : 'down';
+      const direction =
+        nextProps.selectedDate > this.props.selectedDate ? "up" : "down";
       this.setState({
         transitionDirection: direction,
       });
@@ -108,16 +113,20 @@ class DateDisplay extends Component {
       this.props.onTouchTapMonthDay();
     }
 
-    this.setState({selectedYear: false});
+    this.setState({ selectedYear: false });
   };
 
   handleTouchTapYear = () => {
-    if (this.props.onTouchTapYear && !this.props.disableYearSelection && !this.state.selectedYear) {
+    if (
+      this.props.onTouchTapYear &&
+      !this.props.disableYearSelection &&
+      !this.state.selectedYear
+    ) {
       this.props.onTouchTapYear();
     }
 
     if (!this.props.disableYearSelection) {
-      this.setState({selectedYear: true});
+      this.setState({ selectedYear: true });
     }
   };
 
@@ -135,27 +144,37 @@ class DateDisplay extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
 
     const year = new DateTimeFormat(locale, {
-      year: 'numeric',
+      year: "numeric",
     }).format(selectedDate);
 
     const dateTime = new DateTimeFormat(locale, {
-      month: 'short',
-      weekday: 'short',
-      day: '2-digit',
+      month: "short",
+      weekday: "short",
+      day: "2-digit",
     }).format(selectedDate);
 
     return (
       <div {...other} style={prepareStyles(styles.root, style)}>
-        <SlideInTransitionGroup style={styles.year} direction={this.state.transitionDirection}>
-          <div key={year} style={styles.yearTitle} onTouchTap={this.handleTouchTapYear}>
+        <SlideInTransitionGroup
+          style={styles.year}
+          direction={this.state.transitionDirection}
+        >
+          <div
+            key={year}
+            style={styles.yearTitle}
+            onTouchTap={this.handleTouchTapYear}
+          >
             {year}
           </div>
         </SlideInTransitionGroup>
-        <SlideInTransitionGroup style={styles.monthDay} direction={this.state.transitionDirection}>
+        <SlideInTransitionGroup
+          style={styles.monthDay}
+          direction={this.state.transitionDirection}
+        >
           <div
             key={dateTime}
             onTouchTap={this.handleTouchTapMonthDay}

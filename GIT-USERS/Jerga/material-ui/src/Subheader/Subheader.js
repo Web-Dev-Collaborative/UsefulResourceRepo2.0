@@ -1,27 +1,19 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from "react";
 
 const Subheader = (props, context) => {
-  const {
-    children,
-    inset,
-    style,
-    ...other
-  } = props;
+  const { children, inset, style, ...other } = props;
 
-  const {
-    prepareStyles,
-    subheader,
-  } = context.muiTheme;
+  const { prepareStyles, subheader } = context.muiTheme;
 
   const styles = {
     root: {
-      boxSizing: 'border-box',
+      boxSizing: "border-box",
       color: subheader.color,
       fontSize: 14,
       fontWeight: subheader.fontWeight,
-      lineHeight: '48px',
+      lineHeight: "48px",
       paddingLeft: inset ? 72 : 16,
-      width: '100%',
+      width: "100%",
     },
   };
 
@@ -32,7 +24,7 @@ const Subheader = (props, context) => {
   );
 };
 
-Subheader.muiName = 'Subheader';
+Subheader.muiName = "Subheader";
 
 Subheader.propTypes = {
   /**

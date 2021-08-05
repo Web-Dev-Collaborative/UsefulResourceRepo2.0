@@ -1,10 +1,10 @@
-import React from 'react';
-import Divider from 'material-ui/Divider';
-import {Menu, MenuItem} from 'material-ui/Menu';
+import React from "react";
+import Divider from "material-ui/Divider";
+import { Menu, MenuItem } from "material-ui/Menu";
 
 const style = {
   // Without this, the menu overflows the CodeExample container.
-  float: 'left',
+  float: "left",
 };
 
 const DividerExampleMenu = () => (

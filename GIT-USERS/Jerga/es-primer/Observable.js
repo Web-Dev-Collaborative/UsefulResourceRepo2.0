@@ -49,11 +49,11 @@ class Observable {
 
     observer._unsubscribe = this._subscribe(observer);
 
-    return ({
+    return {
       unsubscribe() {
         observer.unsubscribe();
-      }
-    });
+      },
+    };
   }
 }
 

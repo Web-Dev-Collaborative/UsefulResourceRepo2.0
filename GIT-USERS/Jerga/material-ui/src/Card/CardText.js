@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from "react";
 
 function getStyles(props, context) {
-  const {cardText} = context.muiTheme;
+  const { cardText } = context.muiTheme;
 
   return {
     root: {
@@ -13,7 +13,7 @@ function getStyles(props, context) {
 }
 
 class CardText extends Component {
-  static muiName = 'CardText';
+  static muiName = "CardText";
 
   static propTypes = {
     /**
@@ -52,7 +52,7 @@ class CardText extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
     const rootStyle = Object.assign(styles.root, style);
 

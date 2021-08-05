@@ -1,6 +1,3 @@
+const Services = () => <div>Services page</div>;
 
-
-
-const Services = () => <div>Services page</div>
-
-export default Services
+export default Services;

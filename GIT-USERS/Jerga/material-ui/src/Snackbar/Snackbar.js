@@ -1,35 +1,35 @@
-import React, {PropTypes, Component} from 'react';
-import transitions from '../styles/transitions';
-import ClickAwayListener from '../internal/ClickAwayListener';
-import SnackbarBody from './SnackbarBody';
+import React, { PropTypes, Component } from "react";
+import transitions from "../styles/transitions";
+import ClickAwayListener from "../internal/ClickAwayListener";
+import SnackbarBody from "./SnackbarBody";
 
 function getStyles(props, context, state) {
   const {
     muiTheme: {
       baseTheme: {
-        spacing: {
-          desktopSubheaderHeight,
-        },
+        spacing: { desktopSubheaderHeight },
       },
       zIndex,
     },
   } = context;
 
-  const {open} = state;
+  const { open } = state;
 
   const styles = {
     root: {
-      position: 'fixed',
-      left: '50%',
-      display: 'flex',
+      position: "fixed",
+      left: "50%",
+      display: "flex",
       bottom: 0,
       zIndex: zIndex.snackbar,
-      visibility: open ? 'visible' : 'hidden',
-      transform: open ?
-        'translate(-50%, 0)' :
-        `translate(-50%, ${desktopSubheaderHeight}px)`,
-      transition: `${transitions.easeOut('400ms', 'transform')}, ${
-        transitions.easeOut('400ms', 'visibility')}`,
+      visibility: open ? "visible" : "hidden",
+      transform: open
+        ? "translate(-50%, 0)"
+        : `translate(-50%, ${desktopSubheaderHeight}px)`,
+      transition: `${transitions.easeOut(
+        "400ms",
+        "transform"
+      )}, ${transitions.easeOut("400ms", "visibility")}`,
     },
   };
 
@@ -118,8 +118,12 @@ class Snackbar extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.open && nextProps.open &&
-        (nextProps.message !== this.props.message || nextProps.action !== this.props.action)) {
+    if (
+      this.props.open &&
+      nextProps.open &&
+      (nextProps.message !== this.props.message ||
+        nextProps.action !== this.props.action)
+    ) {
       this.setState({
         open: false,
       });
@@ -167,9 +171,9 @@ class Snackbar extends Component {
     }
 
     if (this.props.open !== null && this.props.onRequestClose) {
-      this.props.onRequestClose('clickaway');
+      this.props.onRequestClose("clickaway");
     } else {
-      this.setState({open: false});
+      this.setState({ open: false });
     }
   };
 
@@ -181,9 +185,9 @@ class Snackbar extends Component {
       clearTimeout(this.timerAutoHideId);
       this.timerAutoHideId = setTimeout(() => {
         if (this.props.open !== null && this.props.onRequestClose) {
-          this.props.onRequestClose('timeout');
+          this.props.onRequestClose("timeout");
         } else {
-          this.setState({open: false});
+          this.setState({ open: false });
         }
       }, autoHideDuration);
     }
@@ -208,18 +212,17 @@ class Snackbar extends Component {
       ...other
     } = this.props;
 
-    const {
-      action,
-      message,
-      open,
-    } = this.state;
+    const { action, message, open } = this.state;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
 
     return (
       <ClickAwayListener onClickAway={open ? this.componentClickAway : null}>
-        <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
+        <div
+          {...other}
+          style={prepareStyles(Object.assign(styles.root, style))}
+        >
           <SnackbarBody
             action={action}
             contentStyle={contentStyle}

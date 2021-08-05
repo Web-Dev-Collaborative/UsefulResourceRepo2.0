@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import React, { Component } from "react";
+import SelectField from "material-ui/SelectField";
+import MenuItem from "material-ui/MenuItem";
 
 /**
  * With a `label` applied to each `MenuItem`, `SelectField` displays
@@ -11,7 +11,7 @@ export default class SelectFieldExampleCustomLabel extends Component {
     value: 1,
   };
 
-  handleChange = (event, index, value) => this.setState({value});
+  handleChange = (event, index, value) => this.setState({ value });
 
   render() {
     return (

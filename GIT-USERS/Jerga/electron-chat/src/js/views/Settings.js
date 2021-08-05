@@ -1,19 +1,17 @@
-
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { withBaseLayout } from '../layouts/Base';
-import { updateSettings } from '../actions/settings';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { withBaseLayout } from "../layouts/Base";
+import { updateSettings } from "../actions/settings";
 
 function Settings() {
   const dispatch = useDispatch();
-  const {
-    isDarkTheme,
-    showNotifications,
-    playSound } = useSelector(({settings}) => settings)
+  const { isDarkTheme, showNotifications, playSound } = useSelector(
+    ({ settings }) => settings
+  );
 
-  const handleChange = ({target: {checked, name}}) => {
-    dispatch(updateSettings(name, checked))
-  }
+  const handleChange = ({ target: { checked, name } }) => {
+    dispatch(updateSettings(name, checked));
+  };
 
   return (
     <div className="centered-view">
@@ -28,7 +26,8 @@ function Settings() {
                   onChange={handleChange}
                   name="isDarkTheme"
                   type="checkbox"
-                  className="form-check-input" />
+                  className="form-check-input"
+                />
                 <label className="form-check-label">Dark Theme</label>
               </div>
               <div className="form-check">
@@ -37,7 +36,8 @@ function Settings() {
                   onChange={handleChange}
                   name="showNotifications"
                   type="checkbox"
-                  className="form-check-input" />
+                  className="form-check-input"
+                />
                 <label className="form-check-label">Enable Notification</label>
               </div>
               <div className="form-check">
@@ -46,23 +46,23 @@ function Settings() {
                   onChange={handleChange}
                   name="playSound"
                   type="checkbox"
-                  className="form-check-input" />
+                  className="form-check-input"
+                />
                 <label className="form-check-label">Sound notification</label>
               </div>
             </div>
             <button
               type="button"
               onClick={() => electron.appApi.quitApp()}
-              className="btn btn-danger">
+              className="btn btn-danger"
+            >
               Quit App
             </button>
           </div>
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-
-export default withBaseLayout(Settings, {canGoBack: true});
-
+export default withBaseLayout(Settings, { canGoBack: true });

@@ -6,7 +6,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"]
+  styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.initForm();
 
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       if (params["registered"] === "success") {
         this.notifyMessage =
           "You have been successfuly registered, you can login now!";
@@ -39,10 +39,10 @@ export class LoginComponent implements OnInit {
           Validators.required,
           Validators.pattern(
             "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$"
-          )
-        ]
+          ),
+        ],
       ],
-      password: ["", Validators.required]
+      password: ["", Validators.required],
     });
   }
 
@@ -63,11 +63,11 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth.login(this.loginForm.value).subscribe(
-      token => {
+      (token) => {
         this.router.navigate(["rentals"]);
       },
 
-      errorResponse => {
+      (errorResponse) => {
         console.log(errorResponse);
         this.errors = errorResponse.error.err;
       },

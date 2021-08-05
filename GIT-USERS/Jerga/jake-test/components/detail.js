@@ -1,17 +1,15 @@
-
-import { useRouter } from 'next/router'
-import { getActivityById, deleteActivity } from '../actions'
-import Link from 'next/link'
+import { useRouter } from "next/router";
+import { getActivityById, deleteActivity } from "../actions";
+import Link from "next/link";
 
 const Details = (props) => {
-
   return (
     <div>
       <div className="details-card">
         <div className="card-header">
           <h1>{props.name}</h1>
           <div id="back-btn" onClick={props.closeModal}>
-            <img id="arrow-left" src="/arrow-left.svg" alt="Go Back" /> 
+            <img id="arrow-left" src="/arrow-left.svg" alt="Go Back" />
             <span className="back">BACK</span>
           </div>
         </div>
@@ -19,74 +17,105 @@ const Details = (props) => {
         <div className="card-banner">
           <div id="location">
             <p className="banner-label">Location /</p>
-            <p className="banner-info">{ props.city }</p>
+            <p className="banner-info">{props.city}</p>
           </div>
           <div id="price-range">
             <p className="banner-label">Price Range /</p>
-            <p className="banner-info">{ props.price }</p>
+            <p className="banner-info">{props.price}</p>
           </div>
           <div id="age-range">
             <p className="banner-label">Age Range /</p>
-            <p className="banner-info">{ props.ageFrom } - { props.ageTo } years</p>
+            <p className="banner-info">
+              {props.ageFrom} - {props.ageTo} years
+            </p>
           </div>
           <div id="icons">
-            <img className="banner-icon" src="/favorite.svg" alt="Add to favorites" />
+            <img
+              className="banner-icon"
+              src="/favorite.svg"
+              alt="Add to favorites"
+            />
             <img className="banner-icon" src="/share.svg" alt="Share" />
           </div>
         </div>
 
         <div className="card-content">
-
           <div className="info-section">
-            <p className="description">{ props.description }</p>
-            {props.address.length > 0 &&
+            <p className="description">{props.description}</p>
+            {props.address.length > 0 && (
               <span>
                 <p className="info">
-                <a href={'https://www.google.com/maps/search/?api=1&query=' + props.address} target="_blank">
-                <img className="map-icon" align="top" src="/place.svg" alt="Map pin" />
-                { props.address }
-                </a></p>
+                  <a
+                    href={
+                      "https://www.google.com/maps/search/?api=1&query=" +
+                      props.address
+                    }
+                    target="_blank"
+                  >
+                    <img
+                      className="map-icon"
+                      align="top"
+                      src="/place.svg"
+                      alt="Map pin"
+                    />
+                    {props.address}
+                  </a>
+                </p>
               </span>
-            }
+            )}
 
-            {props.phone.length > 0 &&
+            {props.phone.length > 0 && (
               <span>
                 <p className="info">
-                <a href={'tel:' + props.phoneFormatted}>
-                <img className="map-icon" align="top" src="/phone.svg" alt="Phone icon" /> 
-                { props.phone }
-                </a></p>
+                  <a href={"tel:" + props.phoneFormatted}>
+                    <img
+                      className="map-icon"
+                      align="top"
+                      src="/phone.svg"
+                      alt="Phone icon"
+                    />
+                    {props.phone}
+                  </a>
+                </p>
               </span>
-            }
+            )}
 
-            {props.website.length > 0 &&
+            {props.website.length > 0 && (
               <span>
                 <p className="info">
-                <a href={'http://' + props.website} target="_blank">
-                <img className="map-icon" align="top" src="/right-arrow.svg" alt="Right arrow" />
-                { props.website }
-                </a></p>
+                  <a href={"http://" + props.website} target="_blank">
+                    <img
+                      className="map-icon"
+                      align="top"
+                      src="/right-arrow.svg"
+                      alt="Right arrow"
+                    />
+                    {props.website}
+                  </a>
+                </p>
               </span>
-            }
+            )}
 
             <p className="info">
-            <img className="map-icon" align="top" src="/tags.svg" alt="Tags icon" />
-            { props.category }
+              <img
+                className="map-icon"
+                align="top"
+                src="/tags.svg"
+                alt="Tags icon"
+              />
+              {props.category}
             </p>
-
           </div>
           <img className="image-section" src={props.image} alt={props.name} />
-        
-        {/* <button onClick={() => handleDelete(id)} href="#" role="button">Delete</button>
+
+          {/* <button onClick={() => handleDelete(id)} href="#" role="button">Delete</button>
         <Link href="/activities/[id]/edit" as={`/activities/${id}/edit`}>
           <button 
           role="button">Edit</button>
         </Link>
 
         <p className="desc-text">{ activity.longDesc }</p> */}
-
         </div>
-
       </div>
 
       <style jsx>{`
@@ -121,7 +150,9 @@ const Details = (props) => {
         .details-card {
           width: 1140px;
           background: #fff;
-          box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 5px 8px 0px rgba(0,0,0,0.14), 0px 1px 14px 0px rgba(0,0,0,0.12);
+          box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+            0px 5px 8px 0px rgba(0, 0, 0, 0.14),
+            0px 1px 14px 0px rgba(0, 0, 0, 0.12);
         }
 
         .card-banner {
@@ -147,12 +178,12 @@ const Details = (props) => {
         }
 
         .info {
-          color: #0097A7;
+          color: #0097a7;
           margin: 5px 0;
         }
 
         a {
-          color: #0097A7;
+          color: #0097a7;
           text-decoration: none;
         }
 
@@ -189,8 +220,8 @@ const Details = (props) => {
         }
 
         .image-section {
-            width: 700px;
-            display: block!important;
+          width: 700px;
+          display: block !important;
         }
 
         .info-section {
@@ -201,15 +232,14 @@ const Details = (props) => {
         .description {
           margin-bottom: 30px;
         }
-
       `}</style>
     </div>
-  )
-}
+  );
+};
 
 // Details.getInitialProps = async ({ id }) => {
 //   const activity = await getActivityById(id)
 //   return { activity }
 // }
 
-export default Details
+export default Details;

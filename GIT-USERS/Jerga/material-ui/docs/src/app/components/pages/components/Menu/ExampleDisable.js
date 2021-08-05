@@ -1,12 +1,12 @@
-import React from 'react';
-import Paper from 'material-ui/Paper';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
-import Divider from 'material-ui/Divider';
+import React from "react";
+import Paper from "material-ui/Paper";
+import Menu from "material-ui/Menu";
+import MenuItem from "material-ui/MenuItem";
+import Divider from "material-ui/Divider";
 
 const style = {
-  display: 'inline-block',
-  margin: '16px 32px 16px 0',
+  display: "inline-block",
+  margin: "16px 32px 16px 0",
 };
 
 const MenuExampleDisable = () => (

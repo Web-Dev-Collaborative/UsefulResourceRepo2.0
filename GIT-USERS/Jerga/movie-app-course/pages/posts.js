@@ -1,33 +1,28 @@
-
-
-import React from 'react'
-import { getPosts } from '../actions'
+import React from "react";
+import { getPosts } from "../actions";
 
 class Posts extends React.Component {
-
   static async getInitialProps() {
-    const posts = await getPosts()
+    const posts = await getPosts();
 
-    return { posts }
+    return { posts };
   }
 
   render() {
-    const { posts } = this.props
+    const { posts } = this.props;
     return (
       <div className="container">
         <h1>I am posts page</h1>
         <ul>
-          {
-            posts.map(p => (
-                <li key={p.id}>
-                  <span>{p.id}: </span> <span>{p.title}</span>
-                </li>
-            ))
-          }
+          {posts.map((p) => (
+            <li key={p.id}>
+              <span>{p.id}: </span> <span>{p.title}</span>
+            </li>
+          ))}
         </ul>
       </div>
-    )
+    );
   }
 }
 
-export default Posts
+export default Posts;

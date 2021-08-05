@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import React, { Component } from "react";
+import SelectField from "material-ui/SelectField";
+import MenuItem from "material-ui/MenuItem";
 
 const items = [];
-for (let i = 0; i < 100; i++ ) {
+for (let i = 0; i < 100; i++) {
   items.push(<MenuItem value={i} key={i} primaryText={`Item ${i}`} />);
 }
 
@@ -17,7 +17,7 @@ export default class DropDownMenuLongMenuExample extends Component {
   };
 
   handleChange = (event, index, value) => {
-    this.setState({value});
+    this.setState({ value });
   };
 
   render() {

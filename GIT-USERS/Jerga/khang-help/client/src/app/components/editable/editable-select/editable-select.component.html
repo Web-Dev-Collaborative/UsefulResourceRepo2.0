@@ -7,9 +7,9 @@
     (keyup.enter)="updateEntity()"
   >
     <option [selected]="entity[entityField] === undefined" disabled>---</option>
-    <option *ngFor="let option of options" [ngValue]="option">{{
-      option
-    }}</option>
+    <option *ngFor="let option of options" [ngValue]="option">
+      {{ option }}
+    </option>
   </select>
   <span *ngIf="!isActiveInput" class="{{ className }}inline">{{
     entity[entityField]

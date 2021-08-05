@@ -1,10 +1,10 @@
-import React from 'react';
-import MobileTearSheet from '../../../MobileTearSheet';
-import {List, ListItem} from 'material-ui/List';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
-import Divider from 'material-ui/Divider';
-import Avatar from 'material-ui/Avatar';
-import {pinkA200, transparent} from 'material-ui/styles/colors';
+import React from "react";
+import MobileTearSheet from "../../../MobileTearSheet";
+import { List, ListItem } from "material-ui/List";
+import ActionGrade from "material-ui/svg-icons/action/grade";
+import Divider from "material-ui/Divider";
+import Avatar from "material-ui/Avatar";
+import { pinkA200, transparent } from "material-ui/styles/colors";
 
 const ListExampleContacts = () => (
   <MobileTearSheet>
@@ -36,8 +36,9 @@ const ListExampleContacts = () => (
         primaryText="Adelle Charles"
         leftAvatar={
           <Avatar
-            color={pinkA200} backgroundColor={transparent}
-            style={{left: 8}}
+            color={pinkA200}
+            backgroundColor={transparent}
+            style={{ left: 8 }}
           >
             A
           </Avatar>

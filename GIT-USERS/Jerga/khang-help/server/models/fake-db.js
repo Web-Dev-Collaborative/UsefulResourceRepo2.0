@@ -21,7 +21,7 @@ class Fakedb {
     const user = new User(this.users[0]);
     const user2 = new User(this.users[1]);
 
-    this.rentals.forEach(rental => {
+    this.rentals.forEach((rental) => {
       const newRental = new Rental(rental);
       newRental.user = user;
 

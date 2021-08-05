@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import transitions from '../styles/transitions';
-import Paper from '../Paper';
-import EnhancedSwitch from '../internal/EnhancedSwitch';
+import React, { Component, PropTypes } from "react";
+import transitions from "../styles/transitions";
+import Paper from "../Paper";
+import EnhancedSwitch from "../internal/EnhancedSwitch";
 
 function getStyles(props, context, state) {
   const {
@@ -16,17 +16,14 @@ function getStyles(props, context, state) {
     labelStyle,
   } = props;
 
-  const {
-    baseTheme,
-    toggle,
-  } = context.muiTheme;
+  const { baseTheme, toggle } = context.muiTheme;
 
   const toggleSize = 20;
   const toggleTrackWidth = 36;
   const styles = {
     icon: {
       width: 36,
-      padding: '4px 0px 6px 2px',
+      padding: "4px 0px 6px 2px",
     },
     ripple: {
       top: -10,
@@ -38,20 +35,20 @@ function getStyles(props, context, state) {
     },
     track: {
       transition: transitions.easeOut(),
-      width: '100%',
+      width: "100%",
       height: 14,
       borderRadius: 30,
       backgroundColor: toggle.trackOffColor,
     },
     thumb: {
       transition: transitions.easeOut(),
-      position: 'absolute',
+      position: "absolute",
       top: 1,
       left: 0,
       width: toggleSize,
       height: toggleSize,
-      lineHeight: '24px',
-      borderRadius: '50%',
+      lineHeight: "24px",
+      borderRadius: "50%",
       backgroundColor: toggle.thumbOffColor,
     },
     trackWhenSwitched: {
@@ -59,7 +56,7 @@ function getStyles(props, context, state) {
     },
     thumbWhenSwitched: {
       backgroundColor: toggle.thumbOnColor,
-      left: '100%',
+      left: "100%",
     },
     trackWhenDisabled: {
       backgroundColor: toggle.trackDisabledColor,
@@ -69,18 +66,20 @@ function getStyles(props, context, state) {
     },
     label: {
       color: disabled ? toggle.labelDisabledColor : toggle.labelColor,
-      width: `calc(100% - ${(toggleTrackWidth + 10)}px)`,
+      width: `calc(100% - ${toggleTrackWidth + 10}px)`,
     },
   };
 
-  Object.assign(styles.track,
+  Object.assign(
+    styles.track,
     trackStyle,
     state.switched && styles.trackWhenSwitched,
     state.switched && trackSwitchedStyle,
     disabled && styles.trackWhenDisabled
   );
 
-  Object.assign(styles.thumb,
+  Object.assign(
+    styles.thumb,
     thumbStyle,
     state.switched && styles.thumbWhenSwitched,
     state.switched && thumbSwitchedStyle,
@@ -134,7 +133,7 @@ class Toggle extends Component {
     /**
      * Where the label will be placed next to the toggle.
      */
-    labelPosition: PropTypes.oneOf(['left', 'right']),
+    labelPosition: PropTypes.oneOf(["left", "right"]),
     /**
      * Overrides the inline-styles of the Toggle element label.
      */
@@ -156,8 +155,8 @@ class Toggle extends Component {
      */
     thumbStyle: PropTypes.object,
     /**
-    * Override the inline styles for thumb when the toggle switch is toggled on.
-    */
+     * Override the inline styles for thumb when the toggle switch is toggled on.
+     */
     thumbSwitchedStyle: PropTypes.object,
     /**
      * Toggled if set to true.
@@ -168,8 +167,8 @@ class Toggle extends Component {
      */
     trackStyle: PropTypes.object,
     /**
-    * Override the inline styles for track when the toggle switch is toggled on.
-    */
+     * Override the inline styles for track when the toggle switch is toggled on.
+     */
     trackSwitchedStyle: PropTypes.object,
     /**
      * ValueLink prop for when using controlled toggle.
@@ -180,7 +179,7 @@ class Toggle extends Component {
   static defaultProps = {
     defaultToggled: false,
     disabled: false,
-    labelPosition: 'left',
+    labelPosition: "left",
   };
 
   static contextTypes = {
@@ -192,7 +191,7 @@ class Toggle extends Component {
   };
 
   componentWillMount() {
-    const {toggled, defaultToggled, valueLink} = this.props;
+    const { toggled, defaultToggled, valueLink } = this.props;
 
     if (toggled || defaultToggled || (valueLink && valueLink.value)) {
       this.setState({
@@ -232,7 +231,7 @@ class Toggle extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
 
     const toggleElement = (
@@ -243,8 +242,8 @@ class Toggle extends Component {
     );
 
     const enhancedSwitchProps = {
-      ref: 'enhancedSwitch',
-      inputType: 'checkbox',
+      ref: "enhancedSwitch",
+      inputType: "checkbox",
       switchElement: toggleElement,
       rippleStyle: styles.ripple,
       rippleColor: styles.ripple.color,
@@ -258,18 +257,13 @@ class Toggle extends Component {
       labelPosition: this.props.labelPosition,
     };
 
-    if (this.props.hasOwnProperty('toggled')) {
+    if (this.props.hasOwnProperty("toggled")) {
       enhancedSwitchProps.checked = toggled;
-    } else if (this.props.hasOwnProperty('defaultToggled')) {
+    } else if (this.props.hasOwnProperty("defaultToggled")) {
       enhancedSwitchProps.defaultChecked = defaultToggled;
     }
 
-    return (
-      <EnhancedSwitch
-        {...other}
-        {...enhancedSwitchProps}
-      />
-    );
+    return <EnhancedSwitch {...other} {...enhancedSwitchProps} />;
   }
 }
 

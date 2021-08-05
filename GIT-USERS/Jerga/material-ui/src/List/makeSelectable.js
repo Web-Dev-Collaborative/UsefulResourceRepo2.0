@@ -1,5 +1,5 @@
-import React, {Component, Children, PropTypes} from 'react';
-import {fade} from '../utils/colorManipulator';
+import React, { Component, Children, PropTypes } from "react";
+import { fade } from "../utils/colorManipulator";
 
 export const makeSelectable = (MyComponent) => {
   return class extends Component {
@@ -15,14 +15,18 @@ export const makeSelectable = (MyComponent) => {
     };
 
     extendChild(child, styles, selectedItemStyle) {
-      if (child && child.type && child.type.muiName === 'ListItem') {
+      if (child && child.type && child.type.muiName === "ListItem") {
         const selected = this.isChildSelected(child, this.props);
         let selectedChildrenStyles;
         if (selected) {
           selectedChildrenStyles = Object.assign({}, styles, selectedItemStyle);
         }
 
-        const mergedChildrenStyles = Object.assign({}, child.props.style, selectedChildrenStyles);
+        const mergedChildrenStyles = Object.assign(
+          {},
+          child.props.style,
+          selectedChildrenStyles
+        );
 
         this.keyIndex += 1;
 
@@ -35,7 +39,9 @@ export const makeSelectable = (MyComponent) => {
           },
           key: this.keyIndex,
           style: mergedChildrenStyles,
-          nestedItems: child.props.nestedItems.map((child) => this.extendChild(child, styles, selectedItemStyle)),
+          nestedItems: child.props.nestedItems.map((child) =>
+            this.extendChild(child, styles, selectedItemStyle)
+          ),
           initiallyOpen: this.isInitiallyOpen(child),
         });
       } else {
@@ -51,8 +57,15 @@ export const makeSelectable = (MyComponent) => {
     }
 
     hasSelectedDescendant = (previousValue, child) => {
-      if (React.isValidElement(child) && child.props.nestedItems && child.props.nestedItems.length > 0) {
-        return child.props.nestedItems.reduce(this.hasSelectedDescendant, previousValue);
+      if (
+        React.isValidElement(child) &&
+        child.props.nestedItems &&
+        child.props.nestedItems.length > 0
+      ) {
+        return child.props.nestedItems.reduce(
+          this.hasSelectedDescendant,
+          previousValue
+        );
       }
       return previousValue || this.isChildSelected(child, this.props);
     };
@@ -70,11 +83,7 @@ export const makeSelectable = (MyComponent) => {
     };
 
     render() {
-      const {
-        children,
-        selectedItemStyle,
-        ...other
-      } = this.props;
+      const { children, selectedItemStyle, ...other } = this.props;
 
       this.keyIndex = 0;
       const styles = {};
@@ -86,8 +95,8 @@ export const makeSelectable = (MyComponent) => {
 
       return (
         <MyComponent {...other} {...this.state}>
-          {Children.map(children, (child) => (
-            this.extendChild(child, styles, selectedItemStyle))
+          {Children.map(children, (child) =>
+            this.extendChild(child, styles, selectedItemStyle)
           )}
         </MyComponent>
       );

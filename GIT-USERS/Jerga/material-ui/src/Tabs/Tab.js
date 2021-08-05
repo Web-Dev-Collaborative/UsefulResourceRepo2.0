@@ -1,8 +1,8 @@
-import React, {Component, PropTypes} from 'react';
-import EnhancedButton from '../internal/EnhancedButton';
+import React, { Component, PropTypes } from "react";
+import EnhancedButton from "../internal/EnhancedButton";
 
 function getStyles(props, context) {
-  const {tabs} = context.muiTheme;
+  const { tabs } = context.muiTheme;
 
   return {
     root: {
@@ -10,21 +10,21 @@ function getStyles(props, context) {
       fontWeight: 500,
       fontSize: 14,
       width: props.width,
-      textTransform: 'uppercase',
+      textTransform: "uppercase",
       padding: 0,
     },
     button: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: (props.label && props.icon) ? 72 : 48,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      height: props.label && props.icon ? 72 : 48,
     },
   };
 }
 
 class Tab extends Component {
-  static muiName = 'Tab';
+  static muiName = "Tab";
 
   static propTypes = {
     /**
@@ -113,7 +113,7 @@ class Tab extends Component {
         },
       };
       // If it's svg icon set color via props
-      if (icon.type.muiName !== 'FontIcon') {
+      if (icon.type.muiName !== "FontIcon") {
         iconProps.color = styles.root.color;
       }
       iconElement = React.cloneElement(icon, iconProps);
@@ -132,7 +132,7 @@ class Tab extends Component {
         touchRippleOpacity={rippleOpacity}
         onTouchTap={this.handleTouchTap}
       >
-        <div style={styles.button} >
+        <div style={styles.button}>
           {iconElement}
           {label}
         </div>

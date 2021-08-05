@@ -3,16 +3,11 @@ import React, {
   PropTypes,
   isValidElement,
   cloneElement,
-} from 'react';
-import List from './List';
+} from "react";
+import List from "./List";
 
 const NestedList = (props) => {
-  const {
-    children,
-    open,
-    nestedLevel,
-    style,
-  } = props;
+  const { children, open, nestedLevel, style } = props;
 
   if (!open) {
     return null;
@@ -21,11 +16,11 @@ const NestedList = (props) => {
   return (
     <List style={style}>
       {Children.map(children, (child) => {
-        return isValidElement(child) ? (
-          cloneElement(child, {
-            nestedLevel: nestedLevel + 1,
-          })
-        ) : child;
+        return isValidElement(child)
+          ? cloneElement(child, {
+              nestedLevel: nestedLevel + 1,
+            })
+          : child;
       })}
     </List>
   );

@@ -1,9 +1,9 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { AboutPage } from './about.page';
+import { AboutPage } from "./about.page";
 
-describe('AboutPage', () => {
+describe("AboutPage", () => {
   let component: AboutPage;
   let fixture: ComponentFixture<AboutPage>;
 
@@ -20,7 +20,7 @@ describe('AboutPage', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

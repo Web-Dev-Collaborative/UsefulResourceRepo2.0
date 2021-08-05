@@ -1,8 +1,8 @@
-import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
-import shallowEqual from 'recompose/shallowEqual';
-import autoPrefix from '../utils/autoPrefix';
-import transitions from '../styles/transitions';
+import React, { Component, PropTypes } from "react";
+import ReactDOM from "react-dom";
+import shallowEqual from "recompose/shallowEqual";
+import autoPrefix from "../utils/autoPrefix";
+import transitions from "../styles/transitions";
 
 class CircleRipple extends Component {
   static propTypes = {
@@ -57,16 +57,18 @@ class CircleRipple extends Component {
 
   animate() {
     const style = ReactDOM.findDOMNode(this).style;
-    const transitionValue = `${transitions.easeOut('2s', 'opacity')}, ${
-      transitions.easeOut('1s', 'transform')}`;
-    autoPrefix.set(style, 'transition', transitionValue);
-    autoPrefix.set(style, 'transform', 'scale(1)');
+    const transitionValue = `${transitions.easeOut(
+      "2s",
+      "opacity"
+    )}, ${transitions.easeOut("1s", "transform")}`;
+    autoPrefix.set(style, "transition", transitionValue);
+    autoPrefix.set(style, "transform", "scale(1)");
   }
 
   initializeAnimation(callback) {
     const style = ReactDOM.findDOMNode(this).style;
     style.opacity = this.props.opacity;
-    autoPrefix.set(style, 'transform', 'scale(0)');
+    autoPrefix.set(style, "transform", "scale(0)");
     this.leaveTimer = setTimeout(callback, 0);
   }
 
@@ -80,21 +82,22 @@ class CircleRipple extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
 
-    const mergedStyles = Object.assign({
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      height: '100%',
-      width: '100%',
-      borderRadius: '50%',
-      backgroundColor: color,
-    }, style);
-
-    return (
-      <div {...other} style={prepareStyles(mergedStyles)} />
+    const mergedStyles = Object.assign(
+      {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        height: "100%",
+        width: "100%",
+        borderRadius: "50%",
+        backgroundColor: color,
+      },
+      style
     );
+
+    return <div {...other} style={prepareStyles(mergedStyles)} />;
   }
 }
 

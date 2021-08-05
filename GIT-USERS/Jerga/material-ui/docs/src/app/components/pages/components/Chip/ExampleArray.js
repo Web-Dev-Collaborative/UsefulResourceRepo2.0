@@ -1,5 +1,5 @@
-import React from 'react';
-import Chip from 'material-ui/Chip';
+import React from "react";
+import Chip from "material-ui/Chip";
 
 /**
  * An example of rendering multiple Chips from an array of values. Deleting a chip removes it from the array.
@@ -7,36 +7,37 @@ import Chip from 'material-ui/Chip';
  * while clicked or touched.
  */
 export default class ChipExampleArray extends React.Component {
-
   constructor(props) {
     super(props);
-    this.state = {chipData: [
-      {key: 0, label: 'Angular'},
-      {key: 1, label: 'JQuery'},
-      {key: 2, label: 'Polymer'},
-      {key: 3, label: 'ReactJS'},
-    ]};
+    this.state = {
+      chipData: [
+        { key: 0, label: "Angular" },
+        { key: 1, label: "JQuery" },
+        { key: 2, label: "Polymer" },
+        { key: 3, label: "ReactJS" },
+      ],
+    };
     this.styles = {
       chip: {
         margin: 4,
       },
       wrapper: {
-        display: 'flex',
-        flexWrap: 'wrap',
+        display: "flex",
+        flexWrap: "wrap",
       },
     };
   }
 
   handleRequestDelete = (key) => {
     if (key === 3) {
-      alert('Why would you want to delete React?! :)');
+      alert("Why would you want to delete React?! :)");
       return;
     }
 
     this.chipData = this.state.chipData;
     const chipToDelete = this.chipData.map((chip) => chip.key).indexOf(key);
     this.chipData.splice(chipToDelete, 1);
-    this.setState({chipData: this.chipData});
+    this.setState({ chipData: this.chipData });
   };
 
   renderChip(data) {

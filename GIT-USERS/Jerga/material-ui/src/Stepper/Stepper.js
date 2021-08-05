@@ -1,21 +1,20 @@
-import React, {Component, Children, PropTypes} from 'react';
-import StepConnector from './StepConnector';
+import React, { Component, Children, PropTypes } from "react";
+import StepConnector from "./StepConnector";
 
 const getStyles = (props) => {
-  const {orientation} = props;
+  const { orientation } = props;
   return {
     root: {
-      display: 'flex',
-      flexDirection: orientation === 'horizontal' ? 'row' : 'column',
-      alignContent: 'center',
-      alignItems: orientation === 'horizontal' ? 'center' : 'stretch',
-      justifyContent: 'space-between',
+      display: "flex",
+      flexDirection: orientation === "horizontal" ? "row" : "column",
+      alignContent: "center",
+      alignItems: orientation === "horizontal" ? "center" : "stretch",
+      justifyContent: "space-between",
     },
   };
 };
 
 class Stepper extends Component {
-
   static propTypes = {
     /**
      * Set the active step (zero based index). This will enable `Step` control helpers.
@@ -32,7 +31,7 @@ class Stepper extends Component {
     /**
      * The stepper orientation (layout flow direction)
      */
-    orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+    orientation: PropTypes.oneOf(["horizontal", "vertical"]),
     /**
      * Override the inline-style of the root element.
      */
@@ -40,28 +39,23 @@ class Stepper extends Component {
   };
 
   static defaultProps = {
-    orientation: 'horizontal',
+    orientation: "horizontal",
     linear: true,
   };
 
-  static contextTypes = {muiTheme: PropTypes.object.isRequired};
+  static contextTypes = { muiTheme: PropTypes.object.isRequired };
 
-  static childContextTypes = {stepper: PropTypes.object};
+  static childContextTypes = { stepper: PropTypes.object };
 
   getChildContext() {
-    const {orientation} = this.props;
-    return {stepper: {orientation}};
+    const { orientation } = this.props;
+    return { stepper: { orientation } };
   }
 
   render() {
-    const {
-      activeStep,
-      children,
-      linear,
-      style,
-    } = this.props;
+    const { activeStep, children, linear, style } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     /**
@@ -72,7 +66,7 @@ class Stepper extends Component {
      */
     const numChildren = Children.count(children);
     const steps = Children.map(children, (step, index) => {
-      const controlProps = {index};
+      const controlProps = { index };
 
       if (activeStep === index) {
         controlProps.active = true;

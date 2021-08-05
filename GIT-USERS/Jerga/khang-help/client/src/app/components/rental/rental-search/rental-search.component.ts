@@ -7,7 +7,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 @Component({
   selector: "app-rental-search",
   templateUrl: "./rental-search.component.html",
-  styleUrls: ["./rental-search.component.scss"]
+  styleUrls: ["./rental-search.component.scss"],
 })
 export class RentalSearchComponent implements OnInit {
   city: string;
@@ -20,7 +20,7 @@ export class RentalSearchComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       this.city = params["city"];
       this.getRentals();
     });

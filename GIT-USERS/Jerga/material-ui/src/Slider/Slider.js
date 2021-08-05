@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import keycode from 'keycode';
-import warning from 'warning';
-import transitions from '../styles/transitions';
-import FocusRipple from '../internal/FocusRipple';
-import deprecated from '../utils/deprecatedPropType';
+import React, { Component, PropTypes } from "react";
+import keycode from "keycode";
+import warning from "warning";
+import transitions from "../styles/transitions";
+import FocusRipple from "../internal/FocusRipple";
+import deprecated from "../utils/deprecatedPropType";
 
 /**
  * Verifies min/max range.
@@ -19,7 +19,10 @@ const minMaxPropType = (props, propName, componentName, ...rest) => {
   }
 
   if (props.min >= props.max) {
-    const errorMsg = (propName === 'min') ? 'min should be less than max' : 'max should be greater than min';
+    const errorMsg =
+      propName === "min"
+        ? "min should be less than max"
+        : "max should be greater than min";
     return new Error(errorMsg);
   }
 };
@@ -39,74 +42,76 @@ const valueInRangePropType = (props, propName, componentName, ...rest) => {
 
   const value = props[propName];
   if (value < props.min || props.max < value) {
-    return new Error(`${propName} should be within the range specified by min and max`);
+    return new Error(
+      `${propName} should be within the range specified by min and max`
+    );
   }
 };
 
 const crossAxisProperty = {
-  x: 'height',
-  'x-reverse': 'height',
-  y: 'width',
-  'y-reverse': 'width',
+  x: "height",
+  "x-reverse": "height",
+  y: "width",
+  "y-reverse": "width",
 };
 
 const crossAxisOffsetProperty = {
-  x: 'top',
-  'x-reverse': 'top',
-  y: 'left',
-  'y-reverse': 'left',
+  x: "top",
+  "x-reverse": "top",
+  y: "left",
+  "y-reverse": "left",
 };
 
 const mainAxisProperty = {
-  x: 'width',
-  'x-reverse': 'width',
-  y: 'height',
-  'y-reverse': 'height',
+  x: "width",
+  "x-reverse": "width",
+  y: "height",
+  "y-reverse": "height",
 };
 
 const mainAxisMarginFromEnd = {
-  x: 'marginRight',
-  'x-reverse': 'marginLeft',
-  y: 'marginTop',
-  'y-reverse': 'marginBottom',
+  x: "marginRight",
+  "x-reverse": "marginLeft",
+  y: "marginTop",
+  "y-reverse": "marginBottom",
 };
 
 const mainAxisMarginFromStart = {
-  x: 'marginLeft',
-  'x-reverse': 'marginRight',
-  y: 'marginBottom',
-  'y-reverse': 'marginTop',
+  x: "marginLeft",
+  "x-reverse": "marginRight",
+  y: "marginBottom",
+  "y-reverse": "marginTop",
 };
 
 const mainAxisOffsetProperty = {
-  x: 'left',
-  'x-reverse': 'right',
-  y: 'bottom',
-  'y-reverse': 'top',
+  x: "left",
+  "x-reverse": "right",
+  y: "bottom",
+  "y-reverse": "top",
 };
 
 const mainAxisClientProperty = {
-  x: 'clientWidth',
-  'x-reverse': 'clientWidth',
-  y: 'clientHeight',
-  'y-reverse': 'clientHeight',
+  x: "clientWidth",
+  "x-reverse": "clientWidth",
+  y: "clientHeight",
+  "y-reverse": "clientHeight",
 };
 
 const mainAxisClientOffsetProperty = {
-  x: 'clientX',
-  'x-reverse': 'clientX',
-  y: 'clientY',
-  'y-reverse': 'clientY',
+  x: "clientX",
+  "x-reverse": "clientX",
+  y: "clientY",
+  "y-reverse": "clientY",
 };
 
 const reverseMainAxisOffsetProperty = {
-  x: 'right',
-  'x-reverse': 'left',
-  y: 'top',
-  'y-reverse': 'bottom',
+  x: "right",
+  "x-reverse": "left",
+  y: "top",
+  "y-reverse": "bottom",
 };
 
-const isMouseControlInverted = (axis) => axis === 'x-reverse' || axis === 'y';
+const isMouseControlInverted = (axis) => axis === "x-reverse" || axis === "y";
 
 function getPercent(value, min, max) {
   let percent = (value - min) / (max - min);
@@ -118,12 +123,7 @@ function getPercent(value, min, max) {
 }
 
 const getStyles = (props, context, state) => {
-  const {
-    axis,
-    disabled,
-    max,
-    min,
-  } = props;
+  const { axis, disabled, max, min } = props;
 
   const {
     slider: {
@@ -142,82 +142,88 @@ const getStyles = (props, context, state) => {
 
   const fillGutter = handleSize / 2;
   const disabledGutter = trackSize + handleSizeDisabled / 2;
-  const calcDisabledSpacing = disabled ? ` - ${disabledGutter}px` : '';
+  const calcDisabledSpacing = disabled ? ` - ${disabledGutter}px` : "";
   const percent = getPercent(state.value, min, max);
 
   const styles = {
     slider: {
-      touchCallout: 'none',
-      userSelect: 'none',
-      cursor: 'default',
+      touchCallout: "none",
+      userSelect: "none",
+      cursor: "default",
       [crossAxisProperty[axis]]: handleSizeActive,
-      [mainAxisProperty[axis]]: '100%',
-      position: 'relative',
+      [mainAxisProperty[axis]]: "100%",
+      position: "relative",
       marginTop: 24,
       marginBottom: 48,
     },
     track: {
-      position: 'absolute',
+      position: "absolute",
       [crossAxisOffsetProperty[axis]]: (handleSizeActive - trackSize) / 2,
       [mainAxisOffsetProperty[axis]]: 0,
-      [mainAxisProperty[axis]]: '100%',
+      [mainAxisProperty[axis]]: "100%",
       [crossAxisProperty[axis]]: trackSize,
     },
     filledAndRemaining: {
-      position: 'absolute',
+      position: "absolute",
       [crossAxisOffsetProperty]: 0,
-      [crossAxisProperty[axis]]: '100%',
-      transition: transitions.easeOut(null, 'margin'),
+      [crossAxisProperty[axis]]: "100%",
+      transition: transitions.easeOut(null, "margin"),
     },
     handle: {
-      boxSizing: 'border-box',
-      position: 'absolute',
-      cursor: 'pointer',
-      pointerEvents: 'inherit',
+      boxSizing: "border-box",
+      position: "absolute",
+      cursor: "pointer",
+      pointerEvents: "inherit",
       [crossAxisOffsetProperty[axis]]: 0,
-      [mainAxisOffsetProperty[axis]]: percent === 0 ? '0%' : `${(percent * 100)}%`,
+      [mainAxisOffsetProperty[axis]]:
+        percent === 0 ? "0%" : `${percent * 100}%`,
       zIndex: 1,
-      margin: ({
-        x: `${(trackSize / 2)}px 0 0 0`,
-        'x-reverse': `${(trackSize / 2)}px 0 0 0`,
-        y: `0 0 0 ${(trackSize / 2)}px`,
-        'y-reverse': `0 0 0 ${(trackSize / 2)}px`,
-      })[axis],
+      margin: {
+        x: `${trackSize / 2}px 0 0 0`,
+        "x-reverse": `${trackSize / 2}px 0 0 0`,
+        y: `0 0 0 ${trackSize / 2}px`,
+        "y-reverse": `0 0 0 ${trackSize / 2}px`,
+      }[axis],
       width: handleSize,
       height: handleSize,
       backgroundColor: selectionColor,
-      backgroundClip: 'padding-box',
-      border: '0px solid transparent',
-      borderRadius: '50%',
-      transform: ({
-        x: 'translate(-50%, -50%)',
-        'x-reverse': 'translate(50%, -50%)',
-        y: 'translate(-50%, 50%)',
-        'y-reverse': 'translate(-50%, -50%)',
-      })[axis],
-      transition:
-        `${transitions.easeOut('450ms', 'background')}, ${
-        transitions.easeOut('450ms', 'border-color')}, ${
-        transitions.easeOut('450ms', 'width')}, ${
-        transitions.easeOut('450ms', 'height')}`,
-      overflow: 'visible',
-      outline: 'none',
+      backgroundClip: "padding-box",
+      border: "0px solid transparent",
+      borderRadius: "50%",
+      transform: {
+        x: "translate(-50%, -50%)",
+        "x-reverse": "translate(50%, -50%)",
+        y: "translate(-50%, 50%)",
+        "y-reverse": "translate(-50%, -50%)",
+      }[axis],
+      transition: `${transitions.easeOut(
+        "450ms",
+        "background"
+      )}, ${transitions.easeOut(
+        "450ms",
+        "border-color"
+      )}, ${transitions.easeOut("450ms", "width")}, ${transitions.easeOut(
+        "450ms",
+        "height"
+      )}`,
+      overflow: "visible",
+      outline: "none",
     },
     handleWhenDisabled: {
-      boxSizing: 'content-box',
-      cursor: 'not-allowed',
+      boxSizing: "content-box",
+      cursor: "not-allowed",
       backgroundColor: trackColor,
       width: handleSizeDisabled,
       height: handleSizeDisabled,
-      border: 'none',
+      border: "none",
     },
     handleWhenPercentZero: {
       border: `${trackSize}px solid ${handleColorZero}`,
       backgroundColor: handleFillColor,
-      boxShadow: 'none',
+      boxShadow: "none",
     },
     handleWhenPercentZeroAndDisabled: {
-      cursor: 'not-allowed',
+      cursor: "not-allowed",
       width: handleSizeDisabled,
       height: handleSizeDisabled,
     },
@@ -231,15 +237,15 @@ const getStyles = (props, context, state) => {
     ripple: {
       height: handleSize,
       width: handleSize,
-      overflow: 'visible',
+      overflow: "visible",
     },
     rippleWhenPercentZero: {
       top: -trackSize,
       left: -trackSize,
     },
     rippleInner: {
-      height: '300%',
-      width: '300%',
+      height: "300%",
+      width: "300%",
       top: -handleSize,
       left: -handleSize,
     },
@@ -251,14 +257,18 @@ const getStyles = (props, context, state) => {
     [mainAxisOffsetProperty[axis]]: 0,
     backgroundColor: disabled ? trackColor : selectionColor,
     [mainAxisMarginFromEnd[axis]]: fillGutter,
-    [mainAxisProperty[axis]]: `calc(${(percent * 100)}%${calcDisabledSpacing})`,
+    [mainAxisProperty[axis]]: `calc(${percent * 100}%${calcDisabledSpacing})`,
   });
   styles.remaining = Object.assign({}, styles.filledAndRemaining, {
     [reverseMainAxisOffsetProperty[axis]]: 0,
-    backgroundColor: (state.hovered || state.focused) &&
-      !disabled ? trackColorSelected : trackColor,
+    backgroundColor:
+      (state.hovered || state.focused) && !disabled
+        ? trackColorSelected
+        : trackColor,
     [mainAxisMarginFromStart[axis]]: fillGutter,
-    [mainAxisProperty[axis]]: `calc(${((1 - percent) * 100)}%${calcDisabledSpacing})`,
+    [mainAxisProperty[axis]]: `calc(${
+      (1 - percent) * 100
+    }%${calcDisabledSpacing})`,
   });
 
   return styles;
@@ -269,7 +279,7 @@ class Slider extends Component {
     /**
      * The axis on which the slider will slide.
      */
-    axis: PropTypes.oneOf(['x', 'x-reverse', 'y', 'y-reverse']),
+    axis: PropTypes.oneOf(["x", "x-reverse", "y", "y-reverse"]),
     /**
      * The default value of the slider.
      */
@@ -277,7 +287,10 @@ class Slider extends Component {
     /**
      * Describe the slider.
      */
-    description: deprecated(PropTypes.node, 'Use a sibling node element instead. It will be removed with v0.17.0.'),
+    description: deprecated(
+      PropTypes.node,
+      "Use a sibling node element instead. It will be removed with v0.17.0."
+    ),
     /**
      * Disables focus ripple if set to true.
      */
@@ -289,7 +302,10 @@ class Slider extends Component {
     /**
      * An error message for the slider.
      */
-    error: deprecated(PropTypes.node, 'Use a sibling node element instead. It will be removed with v0.17.0.'),
+    error: deprecated(
+      PropTypes.node,
+      "Use a sibling node element instead. It will be removed with v0.17.0."
+    ),
     /**
      * The maximum value the slider can slide to on
      * a scale from 0 to 1 inclusive. Cannot be equal to min.
@@ -344,7 +360,7 @@ class Slider extends Component {
   };
 
   static defaultProps = {
-    axis: 'x',
+    axis: "x",
     disabled: false,
     disableFocusRipple: false,
     max: 1,
@@ -367,12 +383,7 @@ class Slider extends Component {
   };
 
   componentWillMount() {
-    const {
-      value: valueProp,
-      defaultValue,
-      min,
-      max,
-    } = this.props;
+    const { value: valueProp, defaultValue, min, max } = this.props;
 
     let value = valueProp;
     if (value === undefined) {
@@ -402,51 +413,46 @@ class Slider extends Component {
   handle = null;
 
   handleKeyDown = (event) => {
-    const {
-      axis,
-      min,
-      max,
-      step,
-    } = this.props;
+    const { axis, min, max, step } = this.props;
 
     let action;
 
     switch (keycode(event)) {
-      case 'page down':
-      case 'down':
-        if (axis === 'y-reverse') {
-          action = 'increase';
+      case "page down":
+      case "down":
+        if (axis === "y-reverse") {
+          action = "increase";
         } else {
-          action = 'decrease';
+          action = "decrease";
         }
         break;
-      case 'left':
-        if (axis === 'x-reverse') {
-          action = 'increase';
+      case "left":
+        if (axis === "x-reverse") {
+          action = "increase";
         } else {
-          action = 'decrease';
+          action = "decrease";
         }
         break;
-      case 'page up':
-      case 'up':
-        if (axis === 'y-reverse') {
-          action = 'decrease';
+      case "page up":
+      case "up":
+        if (axis === "y-reverse") {
+          action = "decrease";
         } else {
-          action = 'increase';
+          action = "increase";
         }
         break;
-      case 'right':
-        if (axis === 'x-reverse') {
-          action = 'decrease';
+      case "right":
+        if (axis === "x-reverse") {
+          action = "decrease";
         } else {
-          action = 'increase';
+          action = "increase";
         }
         break;
-      case 'home':
-        action = 'min';
+      case "home":
+        action = "min";
         break;
-      case 'end':
-        action = 'max';
+      case "end":
+        action = "max";
         break;
     }
 
@@ -457,16 +463,16 @@ class Slider extends Component {
       event.preventDefault();
 
       switch (action) {
-        case 'decrease':
+        case "decrease":
           newValue = this.state.value - step;
           break;
-        case 'increase':
+        case "increase":
           newValue = this.state.value + step;
           break;
-        case 'min':
+        case "min":
           newValue = min;
           break;
-        case 'max':
+        case "max":
           newValue = max;
           break;
       }
@@ -494,41 +500,47 @@ class Slider extends Component {
   };
 
   handleDragMouseMove = (event) => {
-    this.onDragUpdate(event, 'mouse');
+    this.onDragUpdate(event, "mouse");
   };
 
   handleTouchMove = (event) => {
-    this.onDragUpdate(event, 'touch');
+    this.onDragUpdate(event, "touch");
   };
 
   handleMouseEnd = (event) => {
-    document.removeEventListener('mousemove', this.handleDragMouseMove);
-    document.removeEventListener('mouseup', this.handleMouseEnd);
+    document.removeEventListener("mousemove", this.handleDragMouseMove);
+    document.removeEventListener("mouseup", this.handleMouseEnd);
 
     this.onDragStop(event);
   };
 
   handleTouchEnd = (event) => {
-    document.removeEventListener('touchmove', this.handleTouchMove);
-    document.removeEventListener('touchup', this.handleTouchEnd);
-    document.removeEventListener('touchend', this.handleTouchEnd);
-    document.removeEventListener('touchcancel', this.handleTouchEnd);
+    document.removeEventListener("touchmove", this.handleTouchMove);
+    document.removeEventListener("touchup", this.handleTouchEnd);
+    document.removeEventListener("touchend", this.handleTouchEnd);
+    document.removeEventListener("touchcancel", this.handleTouchEnd);
 
     this.onDragStop(event);
   };
 
   getValue() {
-    warning(false, `Material-UI Slider: getValue() method is deprecated.
+    warning(
+      false,
+      `Material-UI Slider: getValue() method is deprecated.
       Use the onChange callbacks instead.
-      It will be removed with v0.17.0.`);
+      It will be removed with v0.17.0.`
+    );
 
     return this.state.value;
   }
 
   clearValue() {
-    warning(false, `Material-UI Slider: clearValue() method is deprecated.
+    warning(
+      false,
+      `Material-UI Slider: clearValue() method is deprecated.
       Use the value property to control the component instead.
-      It will be removed with v0.17.0.`);
+      It will be removed with v0.17.0.`
+    );
 
     this.setState({
       value: this.props.min,
@@ -542,16 +554,20 @@ class Slider extends Component {
 
     let position;
     if (isMouseControlInverted(this.props.axis)) {
-      position = this.getTrackOffset() - event.touches[0][mainAxisClientOffsetProperty[this.props.axis]];
+      position =
+        this.getTrackOffset() -
+        event.touches[0][mainAxisClientOffsetProperty[this.props.axis]];
     } else {
-      position = event.touches[0][mainAxisClientOffsetProperty[this.props.axis]] - this.getTrackOffset();
+      position =
+        event.touches[0][mainAxisClientOffsetProperty[this.props.axis]] -
+        this.getTrackOffset();
     }
     this.setValueFromPosition(event, position);
 
-    document.addEventListener('touchmove', this.handleTouchMove);
-    document.addEventListener('touchup', this.handleTouchEnd);
-    document.addEventListener('touchend', this.handleTouchEnd);
-    document.addEventListener('touchcancel', this.handleTouchEnd);
+    document.addEventListener("touchmove", this.handleTouchMove);
+    document.addEventListener("touchup", this.handleTouchEnd);
+    document.addEventListener("touchend", this.handleTouchEnd);
+    document.addEventListener("touchcancel", this.handleTouchEnd);
 
     this.onDragStart(event);
 
@@ -587,14 +603,18 @@ class Slider extends Component {
 
     let position;
     if (isMouseControlInverted(this.props.axis)) {
-      position = this.getTrackOffset() - event[mainAxisClientOffsetProperty[this.props.axis]];
+      position =
+        this.getTrackOffset() -
+        event[mainAxisClientOffsetProperty[this.props.axis]];
     } else {
-      position = event[mainAxisClientOffsetProperty[this.props.axis]] - this.getTrackOffset();
+      position =
+        event[mainAxisClientOffsetProperty[this.props.axis]] -
+        this.getTrackOffset();
     }
     this.setValueFromPosition(event, position);
 
-    document.addEventListener('mousemove', this.handleDragMouseMove);
-    document.addEventListener('mouseup', this.handleMouseEnd);
+    document.addEventListener("mousemove", this.handleDragMouseMove);
+    document.addEventListener("mouseup", this.handleMouseEnd);
 
     // Cancel text selection
     event.preventDefault();
@@ -626,7 +646,9 @@ class Slider extends Component {
   };
 
   getTrackOffset() {
-    return this.track.getBoundingClientRect()[mainAxisOffsetProperty[this.props.axis]];
+    return this.track.getBoundingClientRect()[
+      mainAxisOffsetProperty[this.props.axis]
+    ];
   }
 
   onDragStart(event) {
@@ -649,13 +671,17 @@ class Slider extends Component {
     requestAnimationFrame(() => {
       this.dragRunning = false;
 
-      const source = type === 'touch' ? event.touches[0] : event;
+      const source = type === "touch" ? event.touches[0] : event;
 
       let position;
       if (isMouseControlInverted(this.props.axis)) {
-        position = this.getTrackOffset() - source[mainAxisClientOffsetProperty[this.props.axis]];
+        position =
+          this.getTrackOffset() -
+          source[mainAxisClientOffsetProperty[this.props.axis]];
       } else {
-        position = source[mainAxisClientOffsetProperty[this.props.axis]] - this.getTrackOffset();
+        position =
+          source[mainAxisClientOffsetProperty[this.props.axis]] -
+          this.getTrackOffset();
       }
 
       if (!this.props.disabled) {
@@ -683,14 +709,10 @@ class Slider extends Component {
       position = positionMax;
     }
 
-    const {
-      step,
-      min,
-      max,
-    } = this.props;
+    const { step, min, max } = this.props;
 
     let value;
-    value = position / positionMax * (max - min);
+    value = (position / positionMax) * (max - min);
     value = Math.round(value / step) * step + min;
     value = parseFloat(value.toFixed(5));
 
@@ -733,14 +755,9 @@ class Slider extends Component {
       ...other
     } = this.props;
 
-    const {
-      active,
-      focused,
-      hovered,
-      value,
-    } = this.state;
+    const { active, focused, hovered, value } = this.state;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
     const percent = getPercent(value, min, max);
 
@@ -751,8 +768,9 @@ class Slider extends Component {
         styles.handle,
         styles.handleWhenPercentZero,
         active && styles.handleWhenActive,
-        (hovered || focused) && !disabled &&
-        styles.handleWhenPercentZeroAndFocused,
+        (hovered || focused) &&
+          !disabled &&
+          styles.handleWhenPercentZeroAndFocused,
         disabled && styles.handleWhenPercentZeroAndDisabled
       );
     } else {
@@ -785,11 +803,14 @@ class Slider extends Component {
           onTouchStart={this.handleTouchStart}
           onKeyDown={!disabled && this.handleKeyDown}
         >
-          <div ref={(node) => this.track = node} style={prepareStyles(styles.track)}>
+          <div
+            ref={(node) => (this.track = node)}
+            style={prepareStyles(styles.track)}
+          >
             <div style={prepareStyles(styles.filled)} />
             <div style={prepareStyles(styles.remaining)} />
             <div
-              ref={(node) => this.handle = node}
+              ref={(node) => (this.handle = node)}
               style={prepareStyles(handleStyles)}
               tabIndex={0}
             >

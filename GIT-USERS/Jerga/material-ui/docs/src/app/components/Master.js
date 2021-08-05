@@ -1,13 +1,13 @@
-import React, {Component, PropTypes} from 'react';
-import Title from 'react-title-component';
-import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
-import spacing from 'material-ui/styles/spacing';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import {darkWhite, lightWhite, grey900} from 'material-ui/styles/colors';
-import AppNavDrawer from './AppNavDrawer';
-import FullWidthSection from './FullWidthSection';
-import withWidth, {MEDIUM, LARGE} from 'material-ui/utils/withWidth';
+import React, { Component, PropTypes } from "react";
+import Title from "react-title-component";
+import AppBar from "material-ui/AppBar";
+import IconButton from "material-ui/IconButton";
+import spacing from "material-ui/styles/spacing";
+import getMuiTheme from "material-ui/styles/getMuiTheme";
+import { darkWhite, lightWhite, grey900 } from "material-ui/styles/colors";
+import AppNavDrawer from "./AppNavDrawer";
+import FullWidthSection from "./FullWidthSection";
+import withWidth, { MEDIUM, LARGE } from "material-ui/utils/withWidth";
 
 class Master extends Component {
   static propTypes = {
@@ -41,7 +41,9 @@ class Master extends Component {
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    const newMuiTheme = nextContext.muiTheme
+      ? nextContext.muiTheme
+      : this.state.muiTheme;
     this.setState({
       muiTheme: newMuiTheme,
     });
@@ -50,7 +52,7 @@ class Master extends Component {
   getStyles() {
     const styles = {
       appBar: {
-        position: 'fixed',
+        position: "fixed",
         // Needed to overlap the examples
         zIndex: this.state.muiTheme.zIndex.appBar + 1,
         top: 0,
@@ -67,29 +69,29 @@ class Master extends Component {
       },
       footer: {
         backgroundColor: grey900,
-        textAlign: 'center',
+        textAlign: "center",
       },
       a: {
         color: darkWhite,
       },
       p: {
-        margin: '0 auto',
+        margin: "0 auto",
         padding: 0,
         color: lightWhite,
         maxWidth: 356,
       },
       browserstack: {
-        display: 'flex',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        margin: '25px 15px 0',
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "center",
+        margin: "25px 15px 0",
         padding: 0,
         color: lightWhite,
-        lineHeight: '25px',
+        lineHeight: "25px",
         fontSize: 12,
       },
       browserstackLogo: {
-        margin: '0 3px',
+        margin: "0 3px",
       },
       iconButton: {
         color: darkWhite,
@@ -129,31 +131,28 @@ class Master extends Component {
   };
 
   render() {
-    const {
-      location,
-      children,
-    } = this.props;
+    const { location, children } = this.props;
 
-    let {
-      navDrawerOpen,
-    } = this.state;
+    let { navDrawerOpen } = this.state;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
+    const { prepareStyles } = this.state.muiTheme;
 
     const router = this.context.router;
     const styles = this.getStyles();
-    const title =
-      router.isActive('/get-started') ? 'Get Started' :
-      router.isActive('/customization') ? 'Customization' :
-      router.isActive('/components') ? 'Components' :
-      router.isActive('/discover-more') ? 'Discover More' : '';
+    const title = router.isActive("/get-started")
+      ? "Get Started"
+      : router.isActive("/customization")
+      ? "Customization"
+      : router.isActive("/components")
+      ? "Components"
+      : router.isActive("/discover-more")
+      ? "Discover More"
+      : "";
 
     let docked = false;
     let showMenuIconButton = true;
 
-    if (this.props.width === LARGE && title !== '') {
+    if (this.props.width === LARGE && title !== "") {
       docked = true;
       navDrawerOpen = true;
       showMenuIconButton = false;
@@ -181,16 +180,17 @@ class Master extends Component {
           style={styles.appBar}
           showMenuIconButton={showMenuIconButton}
         />
-        {title !== '' ?
+        {title !== "" ? (
           <div style={prepareStyles(styles.root)}>
             <div style={prepareStyles(styles.content)}>
               {React.cloneElement(children, {
                 onChangeMuiTheme: this.handleChangeMuiTheme,
               })}
             </div>
-          </div> :
+          </div>
+        ) : (
           children
-        }
+        )}
         <AppNavDrawer
           style={styles.navDrawer}
           location={location}
@@ -201,17 +201,18 @@ class Master extends Component {
         />
         <FullWidthSection style={styles.footer}>
           <p style={prepareStyles(styles.p)}>
-            {'Hand crafted with love by the engineers at '}
+            {"Hand crafted with love by the engineers at "}
             <a style={styles.a} href="http://www.call-em-all.com/Careers">
               Call-Em-All
             </a>
-            {' and our awesome '}
+            {" and our awesome "}
             <a
               style={prepareStyles(styles.a)}
               href="https://github.com/callemall/material-ui/graphs/contributors"
             >
               contributors
-            </a>.
+            </a>
+            .
           </p>
           <IconButton
             iconStyle={styles.iconButton}
@@ -219,11 +220,19 @@ class Master extends Component {
             href="https://github.com/callemall/material-ui"
           />
           <p style={prepareStyles(styles.browserstack)}>
-            {'Thank you to '}
-            <a href="https://www.browserstack.com" style={prepareStyles(styles.browserstackLogo)} target="_blank">
-              <img src="http://www.browserstack.com/images/layout/logo.png" height="25" width="auto" />
+            {"Thank you to "}
+            <a
+              href="https://www.browserstack.com"
+              style={prepareStyles(styles.browserstackLogo)}
+              target="_blank"
+            >
+              <img
+                src="http://www.browserstack.com/images/layout/logo.png"
+                height="25"
+                width="auto"
+              />
             </a>
-            {' for providing real browser testing infrastructure.'}
+            {" for providing real browser testing infrastructure."}
           </p>
         </FullWidthSection>
       </div>

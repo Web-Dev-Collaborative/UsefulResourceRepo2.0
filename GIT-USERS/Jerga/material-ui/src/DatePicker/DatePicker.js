@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import {dateTimeFormat, formatIso, isEqualDate} from './dateUtils';
-import DatePickerDialog from './DatePickerDialog';
-import TextField from '../TextField';
+import React, { Component, PropTypes } from "react";
+import { dateTimeFormat, formatIso, isEqualDate } from "./dateUtils";
+import DatePickerDialog from "./DatePickerDialog";
+import TextField from "../TextField";
 
 class DatePicker extends Component {
   static propTypes = {
@@ -31,7 +31,7 @@ class DatePicker extends Component {
      * `dialog` (default) displays the DatePicker as a dialog with a modal.
      * `inline` displays the DatePicker below the input field (similar to auto complete).
      */
-    container: PropTypes.oneOf(['dialog', 'inline']),
+    container: PropTypes.oneOf(["dialog", "inline"]),
     /**
      * This is the initial date value of the component.
      * If either `value` or `valueLink` is provided they will override this
@@ -83,7 +83,7 @@ class DatePicker extends Component {
     /**
      * Tells the component to display the picker in portrait or landscape mode.
      */
-    mode: PropTypes.oneOf(['portrait', 'landscape']),
+    mode: PropTypes.oneOf(["portrait", "landscape"]),
     /**
      * Override the default text of the 'OK' button.
      */
@@ -137,7 +137,7 @@ class DatePicker extends Component {
 
   static defaultProps = {
     autoOk: false,
-    container: 'dialog',
+    container: "dialog",
     disabled: false,
     disableYearSelection: false,
     firstDayOfWeek: 1,
@@ -154,7 +154,9 @@ class DatePicker extends Component {
 
   componentWillMount() {
     this.setState({
-      date: this.isControlled() ? this.getControlledDate() : this.props.defaultDate,
+      date: this.isControlled()
+        ? this.getControlledDate()
+        : this.props.defaultDate,
     });
   }
 
@@ -183,13 +185,19 @@ class DatePicker extends Component {
      * else set it to the currently selected date
      */
     if (this.state.date !== undefined) {
-      this.setState({
-        dialogDate: this.getDate(),
-      }, this.refs.dialogWindow.show);
+      this.setState(
+        {
+          dialogDate: this.getDate(),
+        },
+        this.refs.dialogWindow.show
+      );
     } else {
-      this.setState({
-        dialogDate: new Date(),
-      }, this.refs.dialogWindow.show);
+      this.setState(
+        {
+          dialogDate: new Date(),
+        },
+        this.refs.dialogWindow.show
+      );
     }
   }
 
@@ -231,7 +239,7 @@ class DatePicker extends Component {
   };
 
   isControlled() {
-    return this.props.hasOwnProperty('value');
+    return this.props.hasOwnProperty("value");
   }
 
   getControlledDate(props = this.props) {
@@ -244,9 +252,9 @@ class DatePicker extends Component {
     if (this.props.locale) {
       const DateTimeFormat = this.props.DateTimeFormat || dateTimeFormat;
       return new DateTimeFormat(this.props.locale, {
-        day: 'numeric',
-        month: 'numeric',
-        year: 'numeric',
+        day: "numeric",
+        month: "numeric",
+        year: "numeric",
       }).format(date);
     } else {
       return formatIso(date);
@@ -280,18 +288,21 @@ class DatePicker extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const formatDate = formatDateProp || this.formatDate;
 
     return (
-      <div className={className} style={prepareStyles(Object.assign({}, style))}>
+      <div
+        className={className}
+        style={prepareStyles(Object.assign({}, style))}
+      >
         <TextField
           {...other}
           onFocus={this.handleFocus}
           onTouchTap={this.handleTouchTap}
           ref="input"
           style={textFieldStyle}
-          value={this.state.date ? formatDate(this.state.date) : ''}
+          value={this.state.date ? formatDate(this.state.date) : ""}
         />
         <DatePickerDialog
           DateTimeFormat={DateTimeFormat}

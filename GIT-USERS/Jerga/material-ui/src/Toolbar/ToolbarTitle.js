@@ -1,10 +1,7 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from "react";
 
 function getStyles(props, context) {
-  const {
-    baseTheme,
-    toolbar,
-  } = context.muiTheme;
+  const { baseTheme, toolbar } = context.muiTheme;
 
   return {
     root: {
@@ -12,16 +9,16 @@ function getStyles(props, context) {
       lineHeight: `${toolbar.height}px`,
       fontSize: toolbar.titleFontSize,
       fontFamily: baseTheme.fontFamily,
-      position: 'relative',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
+      position: "relative",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
     },
   };
 }
 
 class ToolbarTitle extends Component {
-  static muiName = 'ToolbarTitle';
+  static muiName = "ToolbarTitle";
 
   static propTypes = {
     /**
@@ -43,18 +40,17 @@ class ToolbarTitle extends Component {
   };
 
   render() {
-    const {
-      className,
-      style,
-      text,
-      ...other
-    } = this.props;
+    const { className, style, text, ...other } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     return (
-      <span {...other} className={className} style={prepareStyles(Object.assign({}, styles.root, style))}>
+      <span
+        {...other}
+        className={className}
+        style={prepareStyles(Object.assign({}, styles.root, style))}
+      >
         {text}
       </span>
     );

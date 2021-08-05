@@ -13,7 +13,7 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TokenInterceptor } from "./token.interceptor";
 const routes: Routes = [
   { path: "login", component: LoginComponent, canActivate: [AuthGuard] },
-  { path: "register", component: RegisterComponent, canActivate: [AuthGuard] }
+  { path: "register", component: RegisterComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
@@ -23,7 +23,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     AuthService,
@@ -31,8 +31,8 @@ const routes: Routes = [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class AuthModule {}

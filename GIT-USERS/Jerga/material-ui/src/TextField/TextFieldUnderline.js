@@ -1,5 +1,5 @@
-import React, {PropTypes} from 'react';
-import transitions from '../styles/transitions';
+import React, { PropTypes } from "react";
+import transitions from "../styles/transitions";
 
 const propTypes = {
   /**
@@ -59,51 +59,51 @@ const TextFieldUnderline = (props) => {
     style,
   } = props;
 
-  const {color: errorStyleColor} = errorStyle;
+  const { color: errorStyleColor } = errorStyle;
 
   const {
     prepareStyles,
-    textField: {
-      borderColor,
-      disabledTextColor,
-      errorColor,
-      focusColor,
-    },
+    textField: { borderColor, disabledTextColor, errorColor, focusColor },
   } = muiTheme;
 
   const styles = {
     root: {
-      border: 'none',
-      borderBottom: 'solid 1px',
+      border: "none",
+      borderBottom: "solid 1px",
       borderColor: borderColor,
       bottom: 8,
-      boxSizing: 'content-box',
+      boxSizing: "content-box",
       margin: 0,
-      position: 'absolute',
-      width: '100%',
+      position: "absolute",
+      width: "100%",
     },
     disabled: {
-      borderBottom: 'dotted 2px',
+      borderBottom: "dotted 2px",
       borderColor: disabledTextColor,
     },
     focus: {
-      borderBottom: 'solid 2px',
+      borderBottom: "solid 2px",
       borderColor: focusColor,
-      transform: 'scaleX(0)',
+      transform: "scaleX(0)",
       transition: transitions.easeOut(),
     },
     error: {
       borderColor: errorStyleColor ? errorStyleColor : errorColor,
-      transform: 'scaleX(1)',
+      transform: "scaleX(1)",
     },
   };
 
   let underline = Object.assign({}, styles.root, style);
   let focusedUnderline = Object.assign({}, underline, styles.focus, focusStyle);
 
-  if (disabled) underline = Object.assign({}, underline, styles.disabled, disabledStyle);
-  if (focus) focusedUnderline = Object.assign({}, focusedUnderline, {transform: 'scaleX(1)'});
-  if (error) focusedUnderline = Object.assign({}, focusedUnderline, styles.error);
+  if (disabled)
+    underline = Object.assign({}, underline, styles.disabled, disabledStyle);
+  if (focus)
+    focusedUnderline = Object.assign({}, focusedUnderline, {
+      transform: "scaleX(1)",
+    });
+  if (error)
+    focusedUnderline = Object.assign({}, focusedUnderline, styles.error);
 
   return (
     <div>

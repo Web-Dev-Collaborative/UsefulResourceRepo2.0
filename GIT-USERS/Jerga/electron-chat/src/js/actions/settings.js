@@ -1,16 +1,11 @@
-
-
-
-
-
 export const updateSettings = (setting, value) => {
   return {
-    type: 'SETTINGS_UPDATE',
+    type: "SETTINGS_UPDATE",
     setting,
-    value
-  }
-}
+    value,
+  };
+};
 
 export const loadInitialSettings = () => ({
-  type: 'SETTINGS_INITIAL_LOAD'
-})
+  type: "SETTINGS_INITIAL_LOAD",
+});

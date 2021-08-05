@@ -1,11 +1,11 @@
-import React, {Component, PropTypes} from 'react';
-import TimeDisplay from './TimeDisplay';
-import ClockHours from './ClockHours';
-import ClockMinutes from './ClockMinutes';
+import React, { Component, PropTypes } from "react";
+import TimeDisplay from "./TimeDisplay";
+import ClockHours from "./ClockHours";
+import ClockMinutes from "./ClockMinutes";
 
 class Clock extends Component {
   static propTypes = {
-    format: PropTypes.oneOf(['ampm', '24hr']),
+    format: PropTypes.oneOf(["ampm", "24hr"]),
     initialTime: PropTypes.object,
     onChangeHours: PropTypes.func,
     onChangeMinutes: PropTypes.func,
@@ -21,7 +21,7 @@ class Clock extends Component {
 
   state = {
     selectedTime: null,
-    mode: 'hour',
+    mode: "hour",
   };
 
   componentWillMount() {
@@ -43,7 +43,7 @@ class Clock extends Component {
 
     const hours = this.state.selectedTime.getHours();
 
-    if (affix === 'am') {
+    if (affix === "am") {
       this.handleChangeHours(hours - 12, affix);
       return;
     }
@@ -52,28 +52,28 @@ class Clock extends Component {
   };
 
   getAffix() {
-    if (this.props.format !== 'ampm') return '';
+    if (this.props.format !== "ampm") return "";
 
     const hours = this.state.selectedTime.getHours();
     if (hours < 12) {
-      return 'am';
+      return "am";
     }
 
-    return 'pm';
+    return "pm";
   }
 
   handleChangeHours = (hours, finished) => {
     const time = new Date(this.state.selectedTime);
     let affix;
 
-    if ( typeof finished === 'string' ) {
+    if (typeof finished === "string") {
       affix = finished;
       finished = undefined;
     }
     if (!affix) {
       affix = this.getAffix();
     }
-    if (affix === 'pm' && hours < 12) {
+    if (affix === "pm" && hours < 12) {
       hours += 12;
     }
 
@@ -85,10 +85,10 @@ class Clock extends Component {
     if (finished) {
       setTimeout(() => {
         this.setState({
-          mode: 'minute',
+          mode: "minute",
         });
 
-        const {onChangeHours} = this.props;
+        const { onChangeHours } = this.props;
         if (onChangeHours) {
           onChangeHours(time);
         }
@@ -103,7 +103,7 @@ class Clock extends Component {
       selectedTime: time,
     });
 
-    const {onChangeMinutes} = this.props;
+    const { onChangeMinutes } = this.props;
     if (onChangeMinutes && finished) {
       setTimeout(() => {
         onChangeMinutes(time);
@@ -118,32 +118,29 @@ class Clock extends Component {
   render() {
     let clock = null;
 
-    const {
-      prepareStyles,
-      timePicker,
-    } = this.context.muiTheme;
+    const { prepareStyles, timePicker } = this.context.muiTheme;
 
     const styles = {
       root: {
-        userSelect: 'none',
+        userSelect: "none",
       },
       container: {
         height: 280,
         padding: 10,
-        position: 'relative',
-        boxSizing: 'content-box',
+        position: "relative",
+        boxSizing: "content-box",
       },
       circle: {
-        position: 'absolute',
+        position: "absolute",
         top: 20,
         width: 260,
         height: 260,
-        borderRadius: '100%',
+        borderRadius: "100%",
         backgroundColor: timePicker.clockCircleColor,
       },
     };
 
-    if (this.state.mode === 'hour') {
+    if (this.state.mode === "hour") {
       clock = (
         <ClockHours
           key="hours"
@@ -170,10 +167,10 @@ class Clock extends Component {
           format={this.props.format}
           affix={this.getAffix()}
           onSelectAffix={this.handleSelectAffix}
-          onSelectHour={this.setMode.bind(this, 'hour')}
-          onSelectMin={this.setMode.bind(this, 'minute')}
+          onSelectHour={this.setMode.bind(this, "hour")}
+          onSelectMin={this.setMode.bind(this, "minute")}
         />
-        <div style={prepareStyles(styles.container)} >
+        <div style={prepareStyles(styles.container)}>
           <div style={prepareStyles(styles.circle)} />
           {clock}
         </div>

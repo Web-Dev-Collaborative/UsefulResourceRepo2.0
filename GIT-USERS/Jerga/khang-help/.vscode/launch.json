@@ -11,7 +11,7 @@
       "runtimeExecutable": "nodemon",
       "program": "${workspaceFolder}/server/index.js",
       "restart": true,
-      "console": "integratedTerminal",
+      "console": "integratedTerminal"
     },
     {
       "type": "node",

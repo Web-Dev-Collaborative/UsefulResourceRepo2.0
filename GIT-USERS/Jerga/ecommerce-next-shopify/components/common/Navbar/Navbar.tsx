@@ -1,10 +1,8 @@
-
-
-import { FC } from "react"
-import { Container } from "@components/ui"
-import Link from "next/link"
-import s from "./Navbar.module.css"
-import { Usernav } from "@components/common"
+import { FC } from "react";
+import { Container } from "@components/ui";
+import Link from "next/link";
+import s from "./Navbar.module.css";
+import { Usernav } from "@components/common";
 
 const Navbar: FC = () => {
   return (
@@ -12,9 +10,7 @@ const Navbar: FC = () => {
       <div className={s.root}>
         <div className="flex flex-1 items-center">
           <Link href="/">
-            <a className={s.logo}>
-              NEXT_STORE
-            </a>
+            <a className={s.logo}>NEXT_STORE</a>
           </Link>
           <nav className="ml-6 space-x-6">
             <Link href="/">
@@ -36,7 +32,7 @@ const Navbar: FC = () => {
         </div>
       </div>
     </Container>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

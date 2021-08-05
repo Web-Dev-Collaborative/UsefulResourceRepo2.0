@@ -13,8 +13,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrModule } from "ngx-toastr";
 import { ManageModule } from "./components/manage/manage.module";
-import { UserModule } from './components/user/user.module';
-import { StarRatingModule } from 'angular-star-rating';
+import { UserModule } from "./components/user/user.module";
+import { StarRatingModule } from "angular-star-rating";
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
@@ -30,9 +30,9 @@ import { StarRatingModule } from 'angular-star-rating';
     BrowserAnimationsModule,
     ManageModule,
     UserModule,
-    StarRatingModule.forRoot()
+    StarRatingModule.forRoot(),
   ],
   providers: [HttpClient],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,10 +1,10 @@
-import React, {Component, PropTypes} from 'react';
-import Checkbox from '../Checkbox';
-import TableRowColumn from './TableRowColumn';
-import ClickAwayListener from '../internal/ClickAwayListener';
+import React, { Component, PropTypes } from "react";
+import Checkbox from "../Checkbox";
+import TableRowColumn from "./TableRowColumn";
+import ClickAwayListener from "../internal/ClickAwayListener";
 
 class TableBody extends Component {
-  static muiName = 'TableBody';
+  static muiName = "TableBody";
 
   static propTypes = {
     /**
@@ -125,14 +125,16 @@ class TableBody extends Component {
   };
 
   componentWillMount() {
-    this.setState({selectedRows: this.calculatePreselectedRows(this.props)});
+    this.setState({ selectedRows: this.calculatePreselectedRows(this.props) });
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
       this.setState({
-        selectedRows: this.state.selectedRows.length > 0 ?
-          [this.state.selectedRows[this.state.selectedRows.length - 1]] : [],
+        selectedRows:
+          this.state.selectedRows.length > 0
+            ? [this.state.selectedRows[this.state.selectedRows.length - 1]]
+            : [],
       });
       // TODO: should else be conditional, not run any time props other than allRowsSelected change?
     } else {
@@ -170,7 +172,7 @@ class TableBody extends Component {
         const props = {
           hoverable: this.props.showRowHover,
           selected: this.isRowSelected(rowNumber),
-          striped: this.props.stripedRows && (rowNumber % 2 === 0),
+          striped: this.props.stripedRows && rowNumber % 2 === 0,
           rowNumber: rowNumber++,
         };
 
@@ -178,15 +180,13 @@ class TableBody extends Component {
           props.displayBorder = false;
         }
 
-        const children = [
-          this.createRowCheckboxColumn(props),
-        ];
+        const children = [this.createRowCheckboxColumn(props)];
 
         React.Children.forEach(child.props.children, (child) => {
           children.push(child);
         });
 
-        return React.cloneElement(child, {...props, ...handlers}, children);
+        return React.cloneElement(child, { ...props, ...handlers }, children);
       }
     });
   }
@@ -214,7 +214,7 @@ class TableBody extends Component {
         columnNumber={0}
         style={{
           width: 24,
-          cursor: disabled ? 'not-allowed' : 'inherit',
+          cursor: disabled ? "not-allowed" : "inherit",
         }}
       >
         {checkbox}
@@ -230,7 +230,10 @@ class TableBody extends Component {
       let index = 0;
       React.Children.forEach(props.children, (child) => {
         if (React.isValidElement(child)) {
-          if (child.props.selected && (preSelectedRows.length === 0 || props.multiSelectable)) {
+          if (
+            child.props.selected &&
+            (preSelectedRows.length === 0 || props.multiSelectable)
+          ) {
             preSelectedRows.push(index);
           }
 
@@ -250,7 +253,7 @@ class TableBody extends Component {
     for (let i = 0; i < this.state.selectedRows.length; i++) {
       const selection = this.state.selectedRows[i];
 
-      if (typeof selection === 'object') {
+      if (typeof selection === "object") {
         if (this.isValueInRange(rowNumber, selection)) return true;
       } else {
         if (selection === rowNumber) return true;
@@ -263,7 +266,10 @@ class TableBody extends Component {
   isValueInRange(value, range) {
     if (!range) return false;
 
-    if ((range.start <= value && value <= range.end) || (range.end <= value && value <= range.start)) {
+    if (
+      (range.start <= value && value <= range.end) ||
+      (range.end <= value && value <= range.start)
+    ) {
       return true;
     }
 
@@ -287,18 +293,25 @@ class TableBody extends Component {
       const lastIndex = selectedRows.length - 1;
       const lastSelection = selectedRows[lastIndex];
 
-      if (typeof lastSelection === 'object') {
+      if (typeof lastSelection === "object") {
         lastSelection.end = rowNumber;
       } else {
-        selectedRows.splice(lastIndex, 1, {start: lastSelection, end: rowNumber});
+        selectedRows.splice(lastIndex, 1, {
+          start: lastSelection,
+          end: rowNumber,
+        });
       }
-    } else if (((event.ctrlKey && !event.metaKey) || (event.metaKey && !event.ctrlKey)) && this.props.multiSelectable) {
+    } else if (
+      ((event.ctrlKey && !event.metaKey) ||
+        (event.metaKey && !event.ctrlKey)) &&
+      this.props.multiSelectable
+    ) {
       const idx = selectedRows.indexOf(rowNumber);
       if (idx < 0) {
         let foundRange = false;
         for (let i = 0; i < selectedRows.length; i++) {
           const range = selectedRows[i];
-          if (typeof range !== 'object') continue;
+          if (typeof range !== "object") continue;
 
           if (this.isValueInRange(rowNumber, range)) {
             foundRange = true;
@@ -319,8 +332,9 @@ class TableBody extends Component {
       }
     }
 
-    this.setState({selectedRows: selectedRows});
-    if (this.props.onRowSelection) this.props.onRowSelection(this.flattenRanges(selectedRows));
+    this.setState({ selectedRows: selectedRows });
+    if (this.props.onRowSelection)
+      this.props.onRowSelection(this.flattenRanges(selectedRows));
   }
 
   splitRange(range, splitPoint) {
@@ -339,7 +353,7 @@ class TableBody extends Component {
 
   genRangeOfValues(start, offset) {
     const values = [];
-    const dir = (offset > 0) ? -1 : 1; // This forces offset to approach 0 from either direction.
+    const dir = offset > 0 ? -1 : 1; // This forces offset to approach 0 from either direction.
     while (offset !== 0) {
       values.push(start + offset);
       offset += dir;
@@ -351,8 +365,11 @@ class TableBody extends Component {
   flattenRanges(selectedRows) {
     const rows = [];
     for (const selection of selectedRows) {
-      if (typeof selection === 'object') {
-        const values = this.genRangeOfValues(selection.end, selection.start - selection.end);
+      if (typeof selection === "object") {
+        const values = this.genRangeOfValues(
+          selection.end,
+          selection.start - selection.end
+        );
         rows.push(selection.end, ...values);
       } else {
         rows.push(selection);
@@ -378,7 +395,11 @@ class TableBody extends Component {
 
   onCellHoverExit = (event, rowNumber, columnNumber) => {
     if (this.props.onCellHoverExit) {
-      this.props.onCellHoverExit(rowNumber, this.getColumnId(columnNumber), event);
+      this.props.onCellHoverExit(
+        rowNumber,
+        this.getColumnId(columnNumber),
+        event
+      );
     }
     this.onRowHoverExit(event, rowNumber);
   };
@@ -405,16 +426,16 @@ class TableBody extends Component {
   }
 
   render() {
-    const {
-      className,
-      style,
-    } = this.props;
+    const { className, style } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
 
     return (
       <ClickAwayListener onClickAway={this.handleClickAway}>
-        <tbody className={className} style={prepareStyles(Object.assign({}, style))}>
+        <tbody
+          className={className}
+          style={prepareStyles(Object.assign({}, style))}
+        >
           {this.createRows()}
         </tbody>
       </ClickAwayListener>

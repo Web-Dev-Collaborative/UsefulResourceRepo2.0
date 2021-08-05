@@ -1,36 +1,32 @@
-import React, {Component, PropTypes} from 'react';
-import CheckCircle from '../svg-icons/action/check-circle';
-import SvgIcon from '../SvgIcon';
+import React, { Component, PropTypes } from "react";
+import CheckCircle from "../svg-icons/action/check-circle";
+import SvgIcon from "../SvgIcon";
 
-const getStyles = ({active, completed, disabled}, {muiTheme, stepper}) => {
-  const {
-    textColor,
-    disabledTextColor,
-    iconColor,
-    inactiveIconColor,
-  } = muiTheme.stepper;
-  const {orientation} = stepper;
+const getStyles = ({ active, completed, disabled }, { muiTheme, stepper }) => {
+  const { textColor, disabledTextColor, iconColor, inactiveIconColor } =
+    muiTheme.stepper;
+  const { orientation } = stepper;
 
   const styles = {
     root: {
-      height: orientation === 'horizontal' ? 72 : 64,
+      height: orientation === "horizontal" ? 72 : 64,
       color: textColor,
-      display: 'flex',
-      alignItems: 'center',
+      display: "flex",
+      alignItems: "center",
       fontSize: 14,
       paddingLeft: 14,
       paddingRight: 14,
     },
     icon: {
       color: iconColor,
-      display: 'block',
+      display: "block",
       fontSize: 24,
       width: 24,
       height: 24,
     },
     iconContainer: {
-      display: 'flex',
-      alignItems: 'center',
+      display: "flex",
+      alignItems: "center",
       paddingRight: 8,
       width: 24,
     },
@@ -47,14 +43,14 @@ const getStyles = ({active, completed, disabled}, {muiTheme, stepper}) => {
   if (disabled) {
     styles.icon.color = inactiveIconColor;
     styles.root.color = disabledTextColor;
-    styles.root.cursor = 'not-allowed';
+    styles.root.cursor = "not-allowed";
   }
 
   return styles;
 };
 
 class StepLabel extends Component {
-  static muiName = 'StepLabel';
+  static muiName = "StepLabel";
 
   static propTypes = {
     /**
@@ -103,26 +99,15 @@ class StepLabel extends Component {
   renderIcon(completed, icon, styles) {
     const iconType = typeof icon;
 
-    if (iconType === 'number' || iconType === 'string') {
+    if (iconType === "number" || iconType === "string") {
       if (completed) {
-        return (
-          <CheckCircle
-            color={styles.icon.color}
-            style={styles.icon}
-          />
-        );
+        return <CheckCircle color={styles.icon.color} style={styles.icon} />;
       }
 
       return (
         <SvgIcon color={styles.icon.color} style={styles.icon}>
           <circle cx="12" cy="12" r="10" />
-          <text
-            x="12"
-            y="16"
-            textAnchor="middle"
-            fontSize="12"
-            fill="#fff"
-          >
+          <text x="12" y="16" textAnchor="middle" fontSize="12" fill="#fff">
             {icon}
           </text>
         </SvgIcon>
@@ -144,14 +129,18 @@ class StepLabel extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
     const icon = this.renderIcon(completed, userIcon, styles);
 
     return (
       <span style={prepareStyles(Object.assign(styles.root, style))} {...other}>
         {icon && (
-          <span style={prepareStyles(Object.assign(styles.iconContainer, iconContainerStyle))}>
+          <span
+            style={prepareStyles(
+              Object.assign(styles.iconContainer, iconContainerStyle)
+            )}
+          >
             {icon}
           </span>
         )}

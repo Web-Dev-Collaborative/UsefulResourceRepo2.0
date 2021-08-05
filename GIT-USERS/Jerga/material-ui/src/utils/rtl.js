@@ -1,5 +1,6 @@
 const reTranslate = /((^|\s)translate(3d|X)?\()(\-?[\d]+)/;
-const reSkew = /((^|\s)skew(x|y)?\()\s*(\-?[\d]+)(deg|rad|grad)(,\s*(\-?[\d]+)(deg|rad|grad))?/;
+const reSkew =
+  /((^|\s)skew(x|y)?\()\s*(\-?[\d]+)(deg|rad|grad)(,\s*(\-?[\d]+)(deg|rad|grad))?/;
 
 /**
  * This function ensures that `style` supports both ltr and rtl directions by
@@ -15,19 +16,19 @@ export default function rtl(muiTheme) {
 
       const flippedAttributes = {
         // Keys and their replacements.
-        right: 'left',
-        left: 'right',
-        marginRight: 'marginLeft',
-        marginLeft: 'marginRight',
-        paddingRight: 'paddingLeft',
-        paddingLeft: 'paddingRight',
-        borderRight: 'borderLeft',
-        borderLeft: 'borderRight',
+        right: "left",
+        left: "right",
+        marginRight: "marginLeft",
+        marginLeft: "marginRight",
+        paddingRight: "paddingLeft",
+        paddingLeft: "paddingRight",
+        borderRight: "borderLeft",
+        borderLeft: "borderRight",
       };
 
       const newStyle = {};
 
-      Object.keys(style).forEach(function(attribute) {
+      Object.keys(style).forEach(function (attribute) {
         let value = style[attribute];
         let key = attribute;
 
@@ -36,42 +37,48 @@ export default function rtl(muiTheme) {
         }
 
         switch (attribute) {
-          case 'float':
-          case 'textAlign':
-            if (value === 'right') {
-              value = 'left';
-            } else if (value === 'left') {
-              value = 'right';
+          case "float":
+          case "textAlign":
+            if (value === "right") {
+              value = "left";
+            } else if (value === "left") {
+              value = "right";
             }
             break;
 
-          case 'direction':
-            if (value === 'ltr') {
-              value = 'rtl';
-            } else if (value === 'rtl') {
-              value = 'ltr';
+          case "direction":
+            if (value === "ltr") {
+              value = "rtl";
+            } else if (value === "rtl") {
+              value = "ltr";
             }
             break;
 
-          case 'transform':
+          case "transform":
             if (!value) break;
             let matches;
             if ((matches = value.match(reTranslate))) {
-              value = value.replace(matches[0], matches[1] + (-parseFloat(matches[4])) );
+              value = value.replace(
+                matches[0],
+                matches[1] + -parseFloat(matches[4])
+              );
             }
             if ((matches = value.match(reSkew))) {
-              value = value.replace(matches[0], matches[1] + (-parseFloat(matches[4])) + matches[5] +
-                matches[6] ? `, ${(-parseFloat(matches[7])) + matches[8]}` : ''
+              value = value.replace(
+                matches[0],
+                matches[1] + -parseFloat(matches[4]) + matches[5] + matches[6]
+                  ? `, ${-parseFloat(matches[7]) + matches[8]}`
+                  : ""
               );
             }
             break;
 
-          case 'transformOrigin':
+          case "transformOrigin":
             if (!value) break;
-            if (value.indexOf('right') > -1) {
-              value = value.replace('right', 'left');
-            } else if (value.indexOf('left') > -1) {
-              value = value.replace('left', 'right');
+            if (value.indexOf("right") > -1) {
+              value = value.replace("right", "left");
+            } else if (value.indexOf("left") > -1) {
+              value = value.replace("left", "right");
             }
             break;
         }
@@ -83,4 +90,3 @@ export default function rtl(muiTheme) {
     };
   }
 }
-

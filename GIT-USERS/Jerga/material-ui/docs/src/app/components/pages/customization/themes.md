@@ -8,11 +8,11 @@ is the default so you will not need to do anything to use it other than using `M
 For the [`darkBaseTheme`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/darkBaseTheme.js) you can use this snippet:
 
 ```js
-import React from 'react';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import AppBar from 'material-ui/AppBar';
+import React from "react";
+import darkBaseTheme from "material-ui/styles/baseThemes/darkBaseTheme";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import getMuiTheme from "material-ui/styles/getMuiTheme";
+import AppBar from "material-ui/AppBar";
 
 const Main = () => (
   <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
@@ -31,15 +31,16 @@ By default, this `muiTheme` object is based on the
 [`lightBaseTheme`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/lightBaseTheme.js).
 
 The `muiTheme` object contains the following keys:
- - `spacing`: can be used to change the spacing of components.
- - `fontFamily` can be used to change the default font family.
- - `palette` can be used to change the color of components.
- - `zIndex` can be used to change the level of each component.
- - `isRtl` can be used to enable the right to left mode.
- - There is also one key for each component so you can use to customize them individually:
-  - `appBar`
-  - `avatar`
-  - ...
+
+- `spacing`: can be used to change the spacing of components.
+- `fontFamily` can be used to change the default font family.
+- `palette` can be used to change the color of components.
+- `zIndex` can be used to change the level of each component.
+- `isRtl` can be used to enable the right to left mode.
+- There is also one key for each component so you can use to customize them individually:
+- `appBar`
+- `avatar`
+- ...
 
 ### Customizing the theme
 
@@ -48,11 +49,11 @@ and providing an object containing the keys you wish to customize.
 Then, you can use `<MuiThemeProvider />` to provide it down the tree to components.
 
 ```js
-import React from 'react';
-import {cyan500} from 'material-ui/styles/colors';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import AppBar from 'material-ui/AppBar';
+import React from "react";
+import { cyan500 } from "material-ui/styles/colors";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import getMuiTheme from "material-ui/styles/getMuiTheme";
+import AppBar from "material-ui/AppBar";
 
 // This replaces the textColor value on the palette
 // and then update the keys for each component that depends on it.
@@ -89,13 +90,11 @@ To do so, we expose a higher-order component: `muiThemeable`.
 Here is an example:
 
 ```js
-import React from 'react';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import React from "react";
+import muiThemeable from "material-ui/styles/muiThemeable";
 
 const DeepDownTheTree = (props) => (
-  <span style={{color: props.muiTheme.palette.textColor}}>
-    Hello World!
-  </span>
+  <span style={{ color: props.muiTheme.palette.textColor }}>Hello World!</span>
 );
 
 export default muiThemeable()(DeepDownTheTree);
@@ -121,17 +120,23 @@ The `lightBaseTheme` object looks like this (these are the defaults):
 
 ```js
 import {
-  cyan500, cyan700,
+  cyan500,
+  cyan700,
   pinkA200,
-  grey100, grey300, grey400, grey500,
-  white, darkBlack, fullBlack,
-} from '../colors';
-import {fade} from '../../utils/colorManipulator';
-import spacing from '../spacing';
+  grey100,
+  grey300,
+  grey400,
+  grey500,
+  white,
+  darkBlack,
+  fullBlack,
+} from "../colors";
+import { fade } from "../../utils/colorManipulator";
+import spacing from "../spacing";
 
 export default {
   spacing: spacing,
-  fontFamily: 'Roboto, sans-serif',
+  fontFamily: "Roboto, sans-serif",
   palette: {
     primary1Color: cyan500,
     primary2Color: cyan700,

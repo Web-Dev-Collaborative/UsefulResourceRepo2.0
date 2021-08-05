@@ -1,8 +1,8 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from "react";
 
 function getStyles(props, context) {
-  const {primary, secondary} = props;
-  const {badge} = context.muiTheme;
+  const { primary, secondary } = props;
+  const { badge } = context.muiTheme;
 
   let badgeBackgroundColor;
   let badgeTextColor;
@@ -23,25 +23,25 @@ function getStyles(props, context) {
 
   return {
     root: {
-      position: 'relative',
-      display: 'inline-block',
+      position: "relative",
+      display: "inline-block",
       padding: `${radius2x}px ${radius2x}px ${radius}px ${radius}px`,
     },
     badge: {
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      justifyContent: 'center',
-      alignContent: 'center',
-      alignItems: 'center',
-      position: 'absolute',
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "center",
+      alignContent: "center",
+      alignItems: "center",
+      position: "absolute",
       top: 0,
       right: 0,
       fontWeight: badge.fontWeight,
       fontSize: radius,
       width: radius2x,
       height: radius2x,
-      borderRadius: '50%',
+      borderRadius: "50%",
       backgroundColor: badgeBackgroundColor,
       color: badgeTextColor,
     },
@@ -100,13 +100,18 @@ class Badge extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     return (
-      <div {...other} style={prepareStyles(Object.assign({}, styles.root, style))}>
+      <div
+        {...other}
+        style={prepareStyles(Object.assign({}, styles.root, style))}
+      >
         {children}
-        <span style={prepareStyles(Object.assign({}, styles.badge, badgeStyle))}>
+        <span
+          style={prepareStyles(Object.assign({}, styles.badge, badgeStyle))}
+        >
           {badgeContent}
         </span>
       </div>

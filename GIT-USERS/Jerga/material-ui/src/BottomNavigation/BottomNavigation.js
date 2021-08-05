@@ -1,21 +1,19 @@
-import React, {PropTypes, Children, cloneElement} from 'react';
+import React, { PropTypes, Children, cloneElement } from "react";
 
 function getStyles(props, context) {
-  const {
-    bottomNavigation,
-  } = context.muiTheme;
+  const { bottomNavigation } = context.muiTheme;
 
   const styles = {
     root: {
-      position: 'relative',
-      width: '100%',
-      display: 'flex',
-      justifyContent: 'center',
+      position: "relative",
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
       backgroundColor: bottomNavigation.backgroundColor,
       height: bottomNavigation.height,
     },
     item: {
-      flex: '1',
+      flex: "1",
     },
   };
 
@@ -23,14 +21,9 @@ function getStyles(props, context) {
 }
 
 const BottomNavigation = (props, context) => {
-  const {
-    children,
-    style,
-    selectedIndex,
-    ...other
-  } = props;
+  const { children, style, selectedIndex, ...other } = props;
 
-  const {prepareStyles} = context.muiTheme;
+  const { prepareStyles } = context.muiTheme;
   const styles = getStyles(props, context);
 
   const preparedChildren = Children.map(children, (child, index) => {
@@ -41,7 +34,10 @@ const BottomNavigation = (props, context) => {
   });
 
   return (
-    <div {...other} style={prepareStyles(Object.assign({}, styles.root, style))}>
+    <div
+      {...other}
+      style={prepareStyles(Object.assign({}, styles.root, style))}
+    >
       {preparedChildren}
     </div>
   );

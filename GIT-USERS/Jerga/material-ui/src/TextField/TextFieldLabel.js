@@ -1,23 +1,28 @@
-import React, {PropTypes} from 'react';
-import transitions from '../styles/transitions';
+import React, { PropTypes } from "react";
+import transitions from "../styles/transitions";
 
 function getStyles(props) {
   const defaultStyles = {
-    position: 'absolute',
-    lineHeight: '22px',
+    position: "absolute",
+    lineHeight: "22px",
     top: 38,
     transition: transitions.easeOut(),
     zIndex: 1, // Needed to display label above Chrome's autocomplete field background
-    transform: 'scale(1) translate(0, 0)',
-    transformOrigin: 'left top',
-    pointerEvents: 'auto',
-    userSelect: 'none',
+    transform: "scale(1) translate(0, 0)",
+    transformOrigin: "left top",
+    pointerEvents: "auto",
+    userSelect: "none",
   };
 
-  const shrinkStyles = props.shrink ? Object.assign({
-    transform: 'scale(0.75) translate(0, -28px)',
-    pointerEvents: 'none',
-  }, props.shrinkStyle) : null;
+  const shrinkStyles = props.shrink
+    ? Object.assign(
+        {
+          transform: "scale(0.75) translate(0, -28px)",
+          pointerEvents: "none",
+        },
+        props.shrinkStyle
+      )
+    : null;
 
   return {
     root: Object.assign(defaultStyles, props.style, shrinkStyles),
@@ -25,15 +30,9 @@ function getStyles(props) {
 }
 
 const TextFieldLabel = (props) => {
-  const {
-    muiTheme,
-    className,
-    children,
-    htmlFor,
-    onTouchTap,
-  } = props;
+  const { muiTheme, className, children, htmlFor, onTouchTap } = props;
 
-  const {prepareStyles} = muiTheme;
+  const { prepareStyles } = muiTheme;
   const styles = getStyles(props);
 
   return (

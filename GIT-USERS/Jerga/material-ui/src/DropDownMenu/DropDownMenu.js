@@ -1,56 +1,57 @@
-import React, {Component, PropTypes} from 'react';
-import transitions from '../styles/transitions';
-import DropDownArrow from '../svg-icons/navigation/arrow-drop-down';
-import Menu from '../Menu/Menu';
-import ClearFix from '../internal/ClearFix';
-import Popover from '../Popover/Popover';
-import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
+import React, { Component, PropTypes } from "react";
+import transitions from "../styles/transitions";
+import DropDownArrow from "../svg-icons/navigation/arrow-drop-down";
+import Menu from "../Menu/Menu";
+import ClearFix from "../internal/ClearFix";
+import Popover from "../Popover/Popover";
+import PopoverAnimationVertical from "../Popover/PopoverAnimationVertical";
 
 const anchorOrigin = {
-  vertical: 'top',
-  horizontal: 'left',
+  vertical: "top",
+  horizontal: "left",
 };
 
 function getStyles(props, context) {
-  const {disabled} = props;
+  const { disabled } = props;
   const spacing = context.muiTheme.baseTheme.spacing;
   const palette = context.muiTheme.baseTheme.palette;
   const accentColor = context.muiTheme.dropDownMenu.accentColor;
   return {
     control: {
-      cursor: disabled ? 'not-allowed' : 'pointer',
-      height: '100%',
-      position: 'relative',
-      width: '100%',
+      cursor: disabled ? "not-allowed" : "pointer",
+      height: "100%",
+      position: "relative",
+      width: "100%",
     },
     icon: {
       fill: accentColor,
-      position: 'absolute',
+      position: "absolute",
       right: spacing.desktopGutterLess,
-      top: ((spacing.desktopToolbarHeight - 24) / 2),
+      top: (spacing.desktopToolbarHeight - 24) / 2,
     },
     label: {
       color: disabled ? palette.disabledColor : palette.textColor,
       lineHeight: `${spacing.desktopToolbarHeight}px`,
       opacity: 1,
-      position: 'relative',
+      position: "relative",
       paddingLeft: spacing.desktopGutter,
-      paddingRight: spacing.iconSize +
-      spacing.desktopGutterLess +
-      spacing.desktopGutterMini,
+      paddingRight:
+        spacing.iconSize +
+        spacing.desktopGutterLess +
+        spacing.desktopGutterMini,
       top: 0,
     },
     labelWhenOpen: {
       opacity: 0,
-      top: (spacing.desktopToolbarHeight / 8),
+      top: spacing.desktopToolbarHeight / 8,
     },
     root: {
-      display: 'inline-block',
+      display: "inline-block",
       fontSize: spacing.desktopDropDownMenuFontSize,
       height: spacing.desktopSubheaderHeight,
       fontFamily: context.muiTheme.baseTheme.fontFamily,
-      outline: 'none',
-      position: 'relative',
+      outline: "none",
+      position: "relative",
       transition: transitions.easeOut(),
     },
     rootWhenOpen: {
@@ -62,13 +63,13 @@ function getStyles(props, context) {
       left: 0,
       margin: `-1px ${spacing.desktopGutter}px`,
       right: 0,
-      position: 'absolute',
+      position: "absolute",
     },
   };
 }
 
 class DropDownMenu extends Component {
-  static muiName = 'DropDownMenu';
+  static muiName = "DropDownMenu";
 
   // The nested styles for drop-down-menu are modified by toolbar and possibly
   // other user components, so it will give full access to its js styles rather
@@ -171,11 +172,15 @@ class DropDownMenu extends Component {
     if (this.props.openImmediately) {
       // TODO: Temporary fix to make openImmediately work with popover.
       /* eslint-disable react/no-did-mount-set-state */
-      setTimeout(() => this.setState({open: true, anchorEl: this.refs.root}));
-      setTimeout(() => this.setState({
-        open: true,
-        anchorEl: this.refs.root,
-      }), 0);
+      setTimeout(() => this.setState({ open: true, anchorEl: this.refs.root }));
+      setTimeout(
+        () =>
+          this.setState({
+            open: true,
+            anchorEl: this.refs.root,
+          }),
+        0
+      );
       /* eslint-enable react/no-did-mount-set-state */
     }
   }
@@ -207,8 +212,8 @@ class DropDownMenu extends Component {
 
   setWidth() {
     const el = this.refs.root;
-    if (!this.props.style || !this.props.style.hasOwnProperty('width')) {
-      el.style.width = 'auto';
+    if (!this.props.style || !this.props.style.hasOwnProperty("width")) {
+      el.style.width = "auto";
     }
   }
 
@@ -231,13 +236,16 @@ class DropDownMenu extends Component {
 
   handleItemTouchTap = (event, child, index) => {
     event.persist();
-    this.setState({
-      open: false,
-    }, () => {
-      if (this.props.onChange) {
-        this.props.onChange(event, index, child.props.value);
+    this.setState(
+      {
+        open: false,
+      },
+      () => {
+        if (this.props.onChange) {
+          this.props.onChange(event, index, child.props.value);
+        }
       }
-    });
+    );
   };
 
   render() {
@@ -259,15 +267,12 @@ class DropDownMenu extends Component {
       ...other
     } = this.props;
 
-    const {
-      anchorEl,
-      open,
-    } = this.state;
+    const { anchorEl, open } = this.state;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
-    let displayValue = '';
+    let displayValue = "";
     React.Children.forEach(children, (child) => {
       if (child && value === child.props.value) {
         // This will need to be improved (in case primaryText is a node)
@@ -277,9 +282,12 @@ class DropDownMenu extends Component {
 
     let menuStyle;
     if (anchorEl && !autoWidth) {
-      menuStyle = Object.assign({
-        width: anchorEl.clientWidth,
-      }, menuStyleProp);
+      menuStyle = Object.assign(
+        {
+          width: anchorEl.clientWidth,
+        },
+        menuStyleProp
+      );
     } else {
       menuStyle = menuStyleProp;
     }
@@ -289,16 +297,32 @@ class DropDownMenu extends Component {
         {...other}
         ref="root"
         className={className}
-        style={prepareStyles(Object.assign({}, styles.root, open && styles.rootWhenOpen, style))}
+        style={prepareStyles(
+          Object.assign({}, styles.root, open && styles.rootWhenOpen, style)
+        )}
       >
-        <ClearFix style={styles.control} onTouchTap={this.handleTouchTapControl}>
+        <ClearFix
+          style={styles.control}
+          onTouchTap={this.handleTouchTapControl}
+        >
           <div
-            style={prepareStyles(Object.assign({}, styles.label, open && styles.labelWhenOpen, labelStyle))}
+            style={prepareStyles(
+              Object.assign(
+                {},
+                styles.label,
+                open && styles.labelWhenOpen,
+                labelStyle
+              )
+            )}
           >
             {displayValue}
           </div>
           <DropDownArrow style={Object.assign({}, styles.icon, iconStyle)} />
-          <div style={prepareStyles(Object.assign({}, styles.underline, underlineStyle))} />
+          <div
+            style={prepareStyles(
+              Object.assign({}, styles.underline, underlineStyle)
+            )}
+          />
         </ClearFix>
         <Popover
           anchorOrigin={anchorOrigin}

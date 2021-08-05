@@ -8,21 +8,21 @@ author:
   name: "Filip Jerga"
   image: "images/filip.jpg"
 tags:
-- js
-- gatsby
-- development
-- programming
+  - js
+  - gatsby
+  - development
+  - programming
 categories:
-- web development
+  - web development
 series:
-- JAMStack
+  - JAMStack
 draft: false
 ---
 
 {{<kokos name="Filipooo">}}
-  <span>
-      Hello World nanan
-  </span>
+<span>
+Hello World nanan
+</span>
 {{</kokos>}}
 
 ## Chapter 0 — Resources
@@ -52,18 +52,18 @@ First, open your coding editors and get ready for programming. Let’s create a 
 7.  create `main.js` with the following content : `console.log("Hello World");`
 
     {
-      "name": "your-electron-app",
-      "version": "1.0.0",
-      "description": "",
-      "main": "main.js",
-      "devDependencies": {
-        "electron": "^10.1.2",
-      },
-      "scripts": {
-        "start": "electron .",
-      },
-      "author": "",
-      "license": "ISC"
+    "name": "your-electron-app",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.js",
+    "devDependencies": {
+    "electron": "^10.1.2",
+    },
+    "scripts": {
+    "start": "electron .",
+    },
+    "author": "",
+    "license": "ISC"
     }package.json
 
     console.log("Hello World");
@@ -88,18 +88,18 @@ Open `main.js` file, and type the following code:
 const { BrowserWindow, app } = require('electron');
 
 function createWindow() {
-  const win = new BrowserWindow({
-    width: 1200,
-    height: 800,
-    backgroundColor: "white",
-    webPreferences: {
-      nodeIntegration: false,
-      worldSafeExecuteJavaScript: true,
-      contextIsolation: true
-    }
-  })
+const win = new BrowserWindow({
+width: 1200,
+height: 800,
+backgroundColor: "white",
+webPreferences: {
+nodeIntegration: false,
+worldSafeExecuteJavaScript: true,
+contextIsolation: true
+}
+})
 
-  win.loadFile('index.html')
+win.loadFile('index.html')
 }
 
 app.whenReady().then(createWindow);

@@ -5,4 +5,3 @@ The `<Stepper>` can also be controlled by interfacing directly with the `<Step>`
 You can also place completely custom components inside `<Step>` if required and they will be passed the same props as the other `<Step>` children.
 
 These features allows for all sorts of usage scenarios -- the world is your oyster.
-

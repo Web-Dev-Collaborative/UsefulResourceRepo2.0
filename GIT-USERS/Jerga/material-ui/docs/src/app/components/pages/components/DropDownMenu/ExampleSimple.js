@@ -1,6 +1,6 @@
-import React from 'react';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
+import React from "react";
+import DropDownMenu from "material-ui/DropDownMenu";
+import MenuItem from "material-ui/MenuItem";
 
 const styles = {
   customWidth: {
@@ -9,13 +9,12 @@ const styles = {
 };
 
 export default class DropDownMenuSimpleExample extends React.Component {
-
   constructor(props) {
     super(props);
-    this.state = {value: 1};
+    this.state = { value: 1 };
   }
 
-  handleChange = (event, index, value) => this.setState({value});
+  handleChange = (event, index, value) => this.setState({ value });
 
   render() {
     return (

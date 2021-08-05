@@ -1,6 +1,6 @@
-import React from 'react';
-import pure from 'recompose/pure';
-import SvgIcon from '../SvgIcon';
+import React from "react";
+import pure from "recompose/pure";
+import SvgIcon from "../SvgIcon";
 
 let NavigationArrowDropRight = (props) => (
   <SvgIcon {...props}>
@@ -9,7 +9,7 @@ let NavigationArrowDropRight = (props) => (
 );
 
 NavigationArrowDropRight = pure(NavigationArrowDropRight);
-NavigationArrowDropRight.displayName = 'NavigationArrowDropRight';
-NavigationArrowDropRight.muiName = 'SvgIcon';
+NavigationArrowDropRight.displayName = "NavigationArrowDropRight";
+NavigationArrowDropRight.muiName = "SvgIcon";
 
 export default NavigationArrowDropRight;

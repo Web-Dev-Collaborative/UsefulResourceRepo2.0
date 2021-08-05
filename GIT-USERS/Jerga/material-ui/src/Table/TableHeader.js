@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import Checkbox from '../Checkbox';
-import TableHeaderColumn from './TableHeaderColumn';
+import React, { Component, PropTypes } from "react";
+import Checkbox from "../Checkbox";
+import TableHeaderColumn from "./TableHeaderColumn";
 
 function getStyles(props, context) {
-  const {tableHeader} = context.muiTheme;
+  const { tableHeader } = context.muiTheme;
 
   return {
     root: {
@@ -13,7 +13,7 @@ function getStyles(props, context) {
 }
 
 class TableHeader extends Component {
-  static muiName = 'TableHeader';
+  static muiName = "TableHeader";
 
   static propTypes = {
     /**
@@ -105,7 +105,10 @@ class TableHeader extends Component {
 
   createBaseHeaderRow() {
     const numChildren = React.Children.count(this.props.children);
-    const child = (numChildren === 1) ? this.props.children : this.props.children[numChildren - 1];
+    const child =
+      numChildren === 1
+        ? this.props.children
+        : this.props.children[numChildren - 1];
     const props = {
       key: `h${numChildren}`,
       rowNumber: numChildren,
@@ -116,11 +119,7 @@ class TableHeader extends Component {
       children.push(child);
     });
 
-    return React.cloneElement(
-      child,
-      props,
-      children
-    );
+    return React.cloneElement(child, props, children);
   }
 
   getCheckboxPlaceholder(props) {
@@ -133,7 +132,7 @@ class TableHeader extends Component {
         key={key}
         style={{
           width: 24,
-          cursor: disabled ? 'not-allowed' : 'inherit',
+          cursor: disabled ? "not-allowed" : "inherit",
         }}
       />
     );
@@ -160,7 +159,7 @@ class TableHeader extends Component {
         key={key}
         style={{
           width: 24,
-          cursor: disabled ? 'not-allowed' : 'inherit',
+          cursor: disabled ? "not-allowed" : "inherit",
         }}
       >
         {checkbox}
@@ -173,18 +172,18 @@ class TableHeader extends Component {
   };
 
   render() {
-    const {
-      className,
-      style,
-    } = this.props;
+    const { className, style } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
     const superHeaderRows = this.createSuperHeaderRows();
     const baseHeaderRow = this.createBaseHeaderRow();
 
     return (
-      <thead className={className} style={prepareStyles(Object.assign(styles.root, style))}>
+      <thead
+        className={className}
+        style={prepareStyles(Object.assign(styles.root, style))}
+      >
         {superHeaderRows}
         {baseHeaderRow}
       </thead>

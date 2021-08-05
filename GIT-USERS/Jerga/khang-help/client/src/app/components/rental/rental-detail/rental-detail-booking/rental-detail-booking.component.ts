@@ -5,7 +5,7 @@ import {
   ViewContainerRef,
   ViewChild,
   ElementRef,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from "@angular/core";
 import { Booking } from "../../../../models/booking.model";
 import { HelperService } from "../../../../services/helper.service";
@@ -20,7 +20,7 @@ import { ToastrService } from "ngx-toastr";
   encapsulation: ViewEncapsulation.None,
   selector: "app-rental-detail-booking",
   templateUrl: "./rental-detail-booking.component.html",
-  styleUrls: ["./rental-detail-booking.component.scss"]
+  styleUrls: ["./rental-detail-booking.component.scss"],
 })
 export class RentalDetailBookingComponent implements OnInit {
   @Input() rental: Rental;
@@ -41,7 +41,7 @@ export class RentalDetailBookingComponent implements OnInit {
     alwaysShowCalendars: false,
     opens: "left",
     autoUpdateInput: false,
-    isInvalidDate: this.checkForInvalidDates.bind(this)
+    isInvalidDate: this.checkForInvalidDates.bind(this),
   };
 
   constructor(
@@ -50,7 +50,7 @@ export class RentalDetailBookingComponent implements OnInit {
     public authService: AuthService,
     private bookingService: BookingService,
     private toastr: ToastrService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.newBooking = new Booking();
@@ -104,7 +104,7 @@ export class RentalDetailBookingComponent implements OnInit {
   }
 
   onPaymentConfirmed(paymentToken: any) {
-    this.newBooking.paymentToken = paymentToken
+    this.newBooking.paymentToken = paymentToken;
   }
 
   createBooking() {

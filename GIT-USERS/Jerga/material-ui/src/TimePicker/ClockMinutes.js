@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import ClockNumber from './ClockNumber';
-import ClockPointer from './ClockPointer';
-import {getTouchEventOffsetValues, rad2deg} from './timeUtils';
+import React, { Component, PropTypes } from "react";
+import ClockNumber from "./ClockNumber";
+import ClockPointer from "./ClockPointer";
+import { getTouchEventOffsetValues, rad2deg } from "./timeUtils";
 
 class ClockMinutes extends Component {
   static propTypes = {
@@ -33,7 +33,7 @@ class ClockMinutes extends Component {
   }
 
   isMousePressed(event) {
-    if (typeof event.buttons === 'undefined') {
+    if (typeof event.buttons === "undefined") {
       return event.nativeEvent.which;
     }
     return event.buttons;
@@ -46,7 +46,7 @@ class ClockMinutes extends Component {
 
   handleMove = (event) => {
     event.preventDefault();
-    if (this.isMousePressed(event) !== 1 ) {
+    if (this.isMousePressed(event) !== 1) {
       return;
     }
     this.setClock(event.nativeEvent, false);
@@ -54,11 +54,11 @@ class ClockMinutes extends Component {
 
   handleTouch = (event) => {
     event.preventDefault();
-    this.setClock(event.changedTouches[0], event.type === 'touchend');
+    this.setClock(event.changedTouches[0], event.type === "touchend");
   };
 
   setClock(event, finish) {
-    if (typeof event.offsetX === 'undefined') {
+    if (typeof event.offsetX === "undefined") {
       const offset = getTouchEventOffsetValues(event);
 
       event.offsetX = offset.offsetX;
@@ -80,7 +80,7 @@ class ClockMinutes extends Component {
     const atan = Math.atan2(cx, cy) - Math.atan2(x, y);
 
     let deg = rad2deg(atan);
-    deg = Math.round(deg / step ) * step;
+    deg = Math.round(deg / step) * step;
     deg %= 360;
 
     const value = Math.floor(deg / step) || 0;
@@ -121,27 +121,31 @@ class ClockMinutes extends Component {
   render() {
     const styles = {
       root: {
-        height: '100%',
-        width: '100%',
-        borderRadius: '100%',
-        position: 'relative',
-        pointerEvents: 'none',
-        boxSizing: 'border-box',
+        height: "100%",
+        width: "100%",
+        borderRadius: "100%",
+        position: "relative",
+        pointerEvents: "none",
+        boxSizing: "border-box",
       },
 
       hitMask: {
-        height: '100%',
-        width: '100%',
-        pointerEvents: 'auto',
+        height: "100%",
+        width: "100%",
+        pointerEvents: "auto",
       },
     };
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const minutes = this.getMinuteNumbers();
 
     return (
-      <div ref="clock" style={prepareStyles(styles.root)} >
-        <ClockPointer value={minutes.selected} type="minute" hasSelected={minutes.hasSelected} />
+      <div ref="clock" style={prepareStyles(styles.root)}>
+        <ClockPointer
+          value={minutes.selected}
+          type="minute"
+          hasSelected={minutes.hasSelected}
+        />
         {minutes.numbers}
         <div
           ref="mask"

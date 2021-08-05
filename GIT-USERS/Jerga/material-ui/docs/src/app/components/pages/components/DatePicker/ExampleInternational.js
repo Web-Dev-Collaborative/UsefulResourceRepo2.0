@@ -1,19 +1,19 @@
-import React from 'react';
-import DatePicker from 'material-ui/DatePicker';
-import areIntlLocalesSupported from 'intl-locales-supported';
+import React from "react";
+import DatePicker from "material-ui/DatePicker";
+import areIntlLocalesSupported from "intl-locales-supported";
 
 let DateTimeFormat;
 
 /**
  * Use the native Intl.DateTimeFormat if available, or a polyfill if not.
  */
-if (areIntlLocalesSupported(['fr', 'fa-IR'])) {
+if (areIntlLocalesSupported(["fr", "fa-IR"])) {
   DateTimeFormat = global.Intl.DateTimeFormat;
 } else {
-  const IntlPolyfill = require('intl');
+  const IntlPolyfill = require("intl");
   DateTimeFormat = IntlPolyfill.DateTimeFormat;
-  require('intl/locale-data/jsonp/fr');
-  require('intl/locale-data/jsonp/fa-IR');
+  require("intl/locale-data/jsonp/fr");
+  require("intl/locale-data/jsonp/fa-IR");
 }
 
 /**
@@ -42,19 +42,17 @@ const DatePickerExampleInternational = () => (
       cancelLabel="لغو"
       locale="fa-IR"
     />
-    <DatePicker
-      hintText="en-US locale"
-      locale="en-US"
-      firstDayOfWeek={0}
-    />
+    <DatePicker hintText="en-US locale" locale="en-US" firstDayOfWeek={0} />
     <DatePicker
       hintText="Custom date format"
       firstDayOfWeek={0}
-      formatDate={new DateTimeFormat('en-US', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-      }).format}
+      formatDate={
+        new DateTimeFormat("en-US", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        }).format
+      }
     />
   </div>
 );

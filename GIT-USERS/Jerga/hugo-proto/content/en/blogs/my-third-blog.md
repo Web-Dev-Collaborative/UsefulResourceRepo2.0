@@ -9,17 +9,16 @@ author:
   image: "images/filip.jpg"
 draft: false
 tags:
-- js
-- next
-- development
-- programming
+  - js
+  - next
+  - development
+  - programming
 categories:
-- web development
+  - web development
 series:
-- SSR Frameworks
+  - SSR Frameworks
 ---
 
 command: hugo new posts/my-first-post.md
 
 Drafts do not get deployed; once you finish a post, update the header of the post to say draft: false. More info here.
-

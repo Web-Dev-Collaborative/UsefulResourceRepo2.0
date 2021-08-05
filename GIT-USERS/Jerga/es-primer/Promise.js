@@ -26,7 +26,7 @@ class Promise {
 
     try {
       this.promiseChain.forEach((nextFunction) => {
-         storedValue = nextFunction(storedValue);
+        storedValue = nextFunction(storedValue);
       });
     } catch (error) {
       this.promiseChain = [];

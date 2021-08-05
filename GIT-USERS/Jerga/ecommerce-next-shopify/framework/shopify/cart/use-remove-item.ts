@@ -1,51 +1,48 @@
+import useRemoveItem, { UseRemoveItem } from "@common/cart/use-remove-item";
+import { Cart } from "@common/types/cart";
+import { MutationHook } from "@common/types/hooks";
+import { CheckoutLineItemsRemovePayload } from "@framework/schema";
+import { checkoutToCart, getCheckoutId } from "@framework/utils";
+import { checkoutLineItemsRemoveMutation } from "@framework/utils/mutations";
+import useCart from "./use-cart";
 
-import useRemoveItem, { UseRemoveItem} from "@common/cart/use-remove-item"
-import { Cart } from "@common/types/cart"
-import { MutationHook } from "@common/types/hooks"
-import { CheckoutLineItemsRemovePayload } from "@framework/schema"
-import { checkoutToCart, getCheckoutId } from "@framework/utils"
-import { checkoutLineItemsRemoveMutation } from "@framework/utils/mutations"
-import useCart from "./use-cart"
-
-export default useRemoveItem as UseRemoveItem<typeof handler>
+export default useRemoveItem as UseRemoveItem<typeof handler>;
 
 export type RemoveItemDescriptor = {
   fetcherInput: {
-    id: string
-  },
+    id: string;
+  };
   fetcherOutput: {
-    checkoutLineItemsRemove: CheckoutLineItemsRemovePayload
-  },
-  data: Cart
-}
+    checkoutLineItemsRemove: CheckoutLineItemsRemovePayload;
+  };
+  data: Cart;
+};
 
 export const handler: MutationHook<RemoveItemDescriptor> = {
   fetcherOptions: {
-    query: checkoutLineItemsRemoveMutation
+    query: checkoutLineItemsRemoveMutation,
   },
-  async fetcher({
-    input: { id },
-    options,
-    fetch
-  }) {
+  async fetcher({ input: { id }, options, fetch }) {
     const { data } = await fetch({
       ...options,
       variables: {
         checkoutId: getCheckoutId(),
-        lineItemIds: [id]
-      }
-    })
+        lineItemIds: [id],
+      },
+    });
 
-    const cart = checkoutToCart(data.checkoutLineItemsRemove.checkout)
-    return cart
+    const cart = checkoutToCart(data.checkoutLineItemsRemove.checkout);
+    return cart;
   },
-  useHook: ({fetch}) => () => {
-    const { mutate: updateCart } = useCart()
+  useHook:
+    ({ fetch }) =>
+    () => {
+      const { mutate: updateCart } = useCart();
 
-    return async (input) => {
-      const data = await fetch(input)
-      updateCart(data, false)
-      return data
-    }
-  }
-}
+      return async (input) => {
+        const data = await fetch(input);
+        updateCart(data, false);
+        return data;
+      };
+    },
+};

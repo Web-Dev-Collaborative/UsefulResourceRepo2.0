@@ -1,27 +1,25 @@
+import React from "react";
+import Navbar from "../components/Navbar";
 
-import React from 'react';
-import Navbar from '../components/Navbar';
-
-export default function BaseLayout({children, ...props}) {
-
+export default function BaseLayout({ children, ...props }) {
   return (
     <>
-      <Navbar {...props}/>
+      <Navbar {...props} />
       {children}
     </>
-  )
+  );
 }
 
 function getDisplayName(Component) {
-  return Component.displayName || Component.name || 'Component';
+  return Component.displayName || Component.name || "Component";
 }
 
-export const withBaseLayout = (Component, config) => props => {
+export const withBaseLayout = (Component, config) => (props) => {
   const viewName = getDisplayName(Component);
   return (
     <>
       <Navbar {...config} view={viewName} />
       <Component {...props} />
     </>
-  )
-}
+  );
+};

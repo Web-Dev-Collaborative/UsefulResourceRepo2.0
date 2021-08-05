@@ -4,7 +4,7 @@ import { Booking } from "src/app/models/booking.model";
 @Component({
   selector: "app-manage-rental-booking",
   templateUrl: "./manage-rental-booking.component.html",
-  styleUrls: ["./manage-rental-booking.component.scss"]
+  styleUrls: ["./manage-rental-booking.component.scss"],
 })
 export class ManageRentalBookingComponent implements OnInit {
   @Input() bookings: Booking[];

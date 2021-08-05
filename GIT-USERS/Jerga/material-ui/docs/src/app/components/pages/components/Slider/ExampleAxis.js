@@ -1,12 +1,12 @@
-import React from 'react';
-import Slider from 'material-ui/Slider';
+import React from "react";
+import Slider from "material-ui/Slider";
 
 const styles = {
   root: {
-    display: 'flex',
+    display: "flex",
     height: 124,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
 };
 
@@ -15,9 +15,9 @@ const styles = {
  */
 const SliderExampleAxis = () => (
   <div style={styles.root}>
-    <Slider style={{height: 100}} axis="y" defaultValue={0.5} />
-    <Slider style={{width: 200}} axis="x-reverse" />
-    <Slider style={{height: 100}} axis="y-reverse" defaultValue={1} />
+    <Slider style={{ height: 100 }} axis="y" defaultValue={0.5} />
+    <Slider style={{ width: 200 }} axis="x-reverse" />
+    <Slider style={{ height: 100 }} axis="y-reverse" defaultValue={1} />
   </div>
 );
 

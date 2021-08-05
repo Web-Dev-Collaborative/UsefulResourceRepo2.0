@@ -1,19 +1,19 @@
-import React, {Component, PropTypes} from 'react';
-import transitions from '../styles/transitions';
-import propTypes from '../utils/propTypes';
-import EnhancedButton from '../internal/EnhancedButton';
-import FontIcon from '../FontIcon';
-import Tooltip from '../internal/Tooltip';
-import {extendChildren} from '../utils/childUtils';
+import React, { Component, PropTypes } from "react";
+import transitions from "../styles/transitions";
+import propTypes from "../utils/propTypes";
+import EnhancedButton from "../internal/EnhancedButton";
+import FontIcon from "../FontIcon";
+import Tooltip from "../internal/Tooltip";
+import { extendChildren } from "../utils/childUtils";
 
 function getStyles(props, context) {
-  const {baseTheme} = context.muiTheme;
+  const { baseTheme } = context.muiTheme;
 
   return {
     root: {
-      position: 'relative',
-      boxSizing: 'border-box',
-      overflow: 'visible',
+      position: "relative",
+      boxSizing: "border-box",
+      overflow: "visible",
       transition: transitions.easeOut(),
       padding: baseTheme.spacing.iconSize / 2,
       width: baseTheme.spacing.iconSize * 2,
@@ -21,25 +21,25 @@ function getStyles(props, context) {
       fontSize: 0,
     },
     tooltip: {
-      boxSizing: 'border-box',
+      boxSizing: "border-box",
     },
     overlay: {
-      position: 'relative',
+      position: "relative",
       top: 0,
-      width: '100%',
-      height: '100%',
+      width: "100%",
+      height: "100%",
       background: baseTheme.palette.disabledColor,
     },
     disabled: {
       color: baseTheme.palette.disabledColor,
       fill: baseTheme.palette.disabledColor,
-      cursor: 'not-allowed',
+      cursor: "not-allowed",
     },
   };
 }
 
 class IconButton extends Component {
-  static muiName = 'IconButton';
+  static muiName = "IconButton";
 
   static propTypes = {
     /**
@@ -116,7 +116,7 @@ class IconButton extends Component {
     disabled: false,
     disableTouchRipple: false,
     iconStyle: {},
-    tooltipPosition: 'bottom-center',
+    tooltipPosition: "bottom-center",
     touch: false,
   };
 
@@ -134,12 +134,12 @@ class IconButton extends Component {
 
   showTooltip() {
     if (this.props.tooltip) {
-      this.setState({tooltipShown: true});
+      this.setState({ tooltipShown: true });
     }
   }
 
   hideTooltip() {
-    if (this.props.tooltip) this.setState({tooltipShown: false});
+    if (this.props.tooltip) this.setState({ tooltipShown: false });
   }
 
   handleBlur = (event) => {
@@ -198,7 +198,7 @@ class IconButton extends Component {
     let fonticon;
 
     const styles = getStyles(this.props, this.context);
-    const tooltipPosition = tooltipPositionProp.split('-');
+    const tooltipPosition = tooltipPositionProp.split("-");
 
     const tooltipElement = tooltip ? (
       <Tooltip
@@ -213,10 +213,7 @@ class IconButton extends Component {
     ) : null;
 
     if (iconClassName) {
-      const {
-        iconHoverColor,
-        ...iconStyleFontIcon
-      } = iconStyle;
+      const { iconHoverColor, ...iconStyleFontIcon } = iconStyle;
 
       fonticon = (
         <FontIcon
@@ -234,7 +231,9 @@ class IconButton extends Component {
       );
     }
 
-    const childrenStyle = disabled ? Object.assign({}, iconStyle, styles.disabled) : iconStyle;
+    const childrenStyle = disabled
+      ? Object.assign({}, iconStyle, styles.disabled)
+      : iconStyle;
 
     return (
       <EnhancedButton

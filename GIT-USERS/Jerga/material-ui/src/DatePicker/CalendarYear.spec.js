@@ -1,19 +1,19 @@
 /* eslint-env mocha */
 
-import React from 'react';
-import {shallow} from 'enzyme';
-import {assert} from 'chai';
-import getMuiTheme from '../styles/getMuiTheme';
-import {dateTimeFormat, addYears} from './dateUtils';
-import CalendarYear from './CalendarYear';
-import YearButton from './YearButton';
+import React from "react";
+import { shallow } from "enzyme";
+import { assert } from "chai";
+import getMuiTheme from "../styles/getMuiTheme";
+import { dateTimeFormat, addYears } from "./dateUtils";
+import CalendarYear from "./CalendarYear";
+import YearButton from "./YearButton";
 
-describe('<CalendarYear />', () => {
+describe("<CalendarYear />", () => {
   const muiTheme = getMuiTheme();
-  const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
+  const shallowWithContext = (node) => shallow(node, { context: { muiTheme } });
 
-  describe('i18n', () => {
-    it('should format the year correctly', () => {
+  describe("i18n", () => {
+    it("should format the year correctly", () => {
       const date = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
       const minDate = addYears(date, -100);
       const maxDate = addYears(date, 100);
@@ -29,7 +29,10 @@ describe('<CalendarYear />', () => {
       );
 
       assert.strictEqual(wrapper.find(YearButton).length, 201);
-      assert.strictEqual(wrapper.find(YearButton).at(0).props().children, '1915');
+      assert.strictEqual(
+        wrapper.find(YearButton).at(0).props().children,
+        "1915"
+      );
     });
   });
 });

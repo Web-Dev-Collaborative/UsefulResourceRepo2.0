@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import React, { Component } from "react";
+import SelectField from "material-ui/SelectField";
+import MenuItem from "material-ui/MenuItem";
 
 const items = [
   <MenuItem key={1} value={1} primaryText="Never" />,
@@ -19,10 +19,10 @@ export default class SelectFieldExampleError extends Component {
     value: null,
   };
 
-  handleChange = (event, index, value) => this.setState({value});
+  handleChange = (event, index, value) => this.setState({ value });
 
   render() {
-    const {value} = this.state;
+    const { value } = this.state;
     const night = value === 2 || value === 3;
 
     return (
@@ -30,7 +30,7 @@ export default class SelectFieldExampleError extends Component {
         <SelectField
           value={value}
           onChange={this.handleChange}
-          errorText={!night && 'Should be Night'}
+          errorText={!night && "Should be Night"}
         >
           {items}
         </SelectField>
@@ -38,8 +38,8 @@ export default class SelectFieldExampleError extends Component {
         <SelectField
           value={value}
           onChange={this.handleChange}
-          errorText={night && 'Should not be Night (Custom error style)'}
-          errorStyle={{color: 'orange'}}
+          errorText={night && "Should not be Night (Custom error style)"}
+          errorStyle={{ color: "orange" }}
         >
           {items}
         </SelectField>

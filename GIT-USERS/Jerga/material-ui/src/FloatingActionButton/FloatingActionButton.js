@@ -1,15 +1,15 @@
-import React, {Component, PropTypes} from 'react';
-import transitions from '../styles/transitions';
-import {fade} from '../utils/colorManipulator';
-import EnhancedButton from '../internal/EnhancedButton';
-import FontIcon from '../FontIcon';
-import Paper from '../Paper';
-import {extendChildren} from '../utils/childUtils';
-import warning from 'warning';
-import propTypes from '../utils/propTypes';
+import React, { Component, PropTypes } from "react";
+import transitions from "../styles/transitions";
+import { fade } from "../utils/colorManipulator";
+import EnhancedButton from "../internal/EnhancedButton";
+import FontIcon from "../FontIcon";
+import Paper from "../Paper";
+import { extendChildren } from "../utils/childUtils";
+import warning from "warning";
+import propTypes from "../utils/propTypes";
 
 function getStyles(props, context) {
-  const {floatingActionButton} = context.muiTheme;
+  const { floatingActionButton } = context.muiTheme;
 
   let backgroundColor = props.backgroundColor || floatingActionButton.color;
   let iconColor = floatingActionButton.iconColor;
@@ -25,19 +25,19 @@ function getStyles(props, context) {
   return {
     root: {
       transition: transitions.easeOut(),
-      display: 'inline-block',
+      display: "inline-block",
     },
     container: {
       backgroundColor,
       transition: transitions.easeOut(),
-      position: 'relative',
+      position: "relative",
       height: floatingActionButton.buttonSize,
       width: floatingActionButton.buttonSize,
       padding: 0,
-      overflow: 'hidden',
-      borderRadius: '50%',
-      textAlign: 'center',
-      verticalAlign: 'bottom',
+      overflow: "hidden",
+      borderRadius: "50%",
+      textAlign: "center",
+      verticalAlign: "bottom",
     },
     containerWhenMini: {
       height: floatingActionButton.miniSize,
@@ -157,10 +157,12 @@ class FloatingActionButton extends Component {
   }
 
   componentDidMount() {
-    warning(!this.props.iconClassName || !this.props.children,
-      'Material-UI: You have set both an iconClassName and a child icon. ' +
-      'It is recommended you use only one method when adding ' +
-      'icons to FloatingActionButtons.');
+    warning(
+      !this.props.iconClassName || !this.props.children,
+      "Material-UI: You have set both an iconClassName and a child icon. " +
+        "It is recommended you use only one method when adding " +
+        "icons to FloatingActionButtons."
+    );
   }
 
   componentWillReceiveProps(nextProps) {
@@ -179,13 +181,13 @@ class FloatingActionButton extends Component {
   handleMouseDown = (event) => {
     // only listen to left clicks
     if (event.button === 0) {
-      this.setState({zDepth: this.props.zDepth + 1});
+      this.setState({ zDepth: this.props.zDepth + 1 });
     }
     if (this.props.onMouseDown) this.props.onMouseDown(event);
   };
 
   handleMouseUp = (event) => {
-    this.setState({zDepth: this.props.zDepth});
+    this.setState({ zDepth: this.props.zDepth });
     if (this.props.onMouseUp) {
       this.props.onMouseUp(event);
     }
@@ -193,7 +195,7 @@ class FloatingActionButton extends Component {
 
   handleMouseLeave = (event) => {
     if (!this.refs.container.isKeyboardFocused()) {
-      this.setState({zDepth: this.props.zDepth, hovered: false});
+      this.setState({ zDepth: this.props.zDepth, hovered: false });
     }
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(event);
@@ -202,7 +204,7 @@ class FloatingActionButton extends Component {
 
   handleMouseEnter = (event) => {
     if (!this.refs.container.isKeyboardFocused() && !this.state.touch) {
-      this.setState({hovered: true});
+      this.setState({ hovered: true });
     }
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(event);
@@ -231,12 +233,14 @@ class FloatingActionButton extends Component {
 
   handleKeyboardFocus = (event, keyboardFocused) => {
     if (keyboardFocused && !this.props.disabled) {
-      this.setState({zDepth: this.props.zDepth + 1});
-      this.refs.overlay.style.backgroundColor =
-        fade(getStyles(this.props, this.context).icon.color, 0.4);
+      this.setState({ zDepth: this.props.zDepth + 1 });
+      this.refs.overlay.style.backgroundColor = fade(
+        getStyles(this.props, this.context).icon.color,
+        0.4
+      );
     } else if (!this.state.hovered) {
-      this.setState({zDepth: this.props.zDepth});
-      this.refs.overlay.style.backgroundColor = 'transparent';
+      this.setState({ zDepth: this.props.zDepth });
+      this.refs.overlay.style.backgroundColor = "transparent";
     }
   };
 
@@ -254,7 +258,7 @@ class FloatingActionButton extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     let iconElement;
@@ -262,10 +266,12 @@ class FloatingActionButton extends Component {
       iconElement = (
         <FontIcon
           className={iconClassName}
-          style={Object.assign({},
+          style={Object.assign(
+            {},
             styles.icon,
             mini && styles.iconWhenMini,
-            iconStyle)}
+            iconStyle
+          )}
         />
       );
     }
@@ -274,23 +280,27 @@ class FloatingActionButton extends Component {
 
     if (childrenProp) {
       children = extendChildren(childrenProp, (child) => ({
-        style: Object.assign({},
+        style: Object.assign(
+          {},
           styles.icon,
           mini && styles.iconWhenMini,
           iconStyle,
-          child.props.style),
+          child.props.style
+        ),
       }));
     }
 
-    const buttonEventHandlers = disabled ? null : {
-      onMouseDown: this.handleMouseDown,
-      onMouseUp: this.handleMouseUp,
-      onMouseLeave: this.handleMouseLeave,
-      onMouseEnter: this.handleMouseEnter,
-      onTouchStart: this.handleTouchStart,
-      onTouchEnd: this.handleTouchEnd,
-      onKeyboardFocus: this.handleKeyboardFocus,
-    };
+    const buttonEventHandlers = disabled
+      ? null
+      : {
+          onMouseDown: this.handleMouseDown,
+          onMouseUp: this.handleMouseUp,
+          onMouseLeave: this.handleMouseLeave,
+          onMouseEnter: this.handleMouseEnter,
+          onTouchStart: this.handleTouchStart,
+          onTouchEnd: this.handleTouchEnd,
+          onKeyboardFocus: this.handleKeyboardFocus,
+        };
 
     return (
       <Paper
@@ -314,10 +324,14 @@ class FloatingActionButton extends Component {
         >
           <div
             ref="overlay"
-            style={prepareStyles(Object.assign(
-              styles.overlay,
-              (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
-            ))}
+            style={prepareStyles(
+              Object.assign(
+                styles.overlay,
+                this.state.hovered &&
+                  !this.props.disabled &&
+                  styles.overlayWhenHovered
+              )
+            )}
           >
             {iconElement}
             {children}

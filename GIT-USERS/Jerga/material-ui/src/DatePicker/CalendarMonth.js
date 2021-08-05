@@ -1,23 +1,23 @@
-import React, {Component, PropTypes} from 'react';
-import {isBetweenDates, isEqualDate, getWeekArray} from './dateUtils';
-import DayButton from './DayButton';
+import React, { Component, PropTypes } from "react";
+import { isBetweenDates, isEqualDate, getWeekArray } from "./dateUtils";
+import DayButton from "./DayButton";
 
 const styles = {
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
     fontWeight: 400,
     height: 228,
     lineHeight: 2,
-    position: 'relative',
-    textAlign: 'center',
+    position: "relative",
+    textAlign: "center",
     MozPaddingStart: 0,
   },
   week: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
     height: 34,
     marginBottom: 2,
   },
@@ -50,13 +50,17 @@ class CalendarMonth extends Component {
   shouldDisableDate(day) {
     if (day === null) return false;
     let disabled = !isBetweenDates(day, this.props.minDate, this.props.maxDate);
-    if (!disabled && this.props.shouldDisableDate) disabled = this.props.shouldDisableDate(day);
+    if (!disabled && this.props.shouldDisableDate)
+      disabled = this.props.shouldDisableDate(day);
 
     return disabled;
   }
 
   getWeekElements() {
-    const weekArray = getWeekArray(this.props.displayDate, this.props.firstDayOfWeek);
+    const weekArray = getWeekArray(
+      this.props.displayDate,
+      this.props.firstDayOfWeek
+    );
 
     return weekArray.map((week, i) => {
       return (
@@ -68,11 +72,7 @@ class CalendarMonth extends Component {
   }
 
   getDayElements(week, i) {
-    const {
-      DateTimeFormat,
-      locale,
-      selectedDate,
-    } = this.props;
+    const { DateTimeFormat, locale, selectedDate } = this.props;
 
     return week.map((day, j) => {
       const isSameDate = isEqualDate(selectedDate, day);
@@ -89,7 +89,7 @@ class CalendarMonth extends Component {
           locale={locale}
           date={day}
           disabled={disabled}
-          key={`db${(i + j)}`}
+          key={`db${i + j}`}
           onTouchTap={this.handleTouchTapDay}
           selected={selected}
         />
@@ -98,11 +98,7 @@ class CalendarMonth extends Component {
   }
 
   render() {
-    return (
-      <div style={styles.root}>
-        {this.getWeekElements()}
-      </div>
-    );
+    return <div style={styles.root}>{this.getWeekElements()}</div>;
   }
 }
 

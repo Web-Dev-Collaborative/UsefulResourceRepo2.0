@@ -1,16 +1,14 @@
-import React, {Component, PropTypes, cloneElement} from 'react';
-import IconButton from '../IconButton';
-import NavigationMenu from '../svg-icons/navigation/menu';
-import Paper from '../Paper';
-import propTypes from '../utils/propTypes';
-import warning from 'warning';
+import React, { Component, PropTypes, cloneElement } from "react";
+import IconButton from "../IconButton";
+import NavigationMenu from "../svg-icons/navigation/menu";
+import Paper from "../Paper";
+import propTypes from "../utils/propTypes";
+import warning from "warning";
 
 export function getStyles(props, context) {
   const {
     appBar,
-    button: {
-      iconButtonSize,
-    },
+    button: { iconButtonSize },
     zIndex,
   } = context.muiTheme;
 
@@ -18,18 +16,18 @@ export function getStyles(props, context) {
 
   const styles = {
     root: {
-      position: 'relative',
+      position: "relative",
       zIndex: zIndex.appBar,
-      width: '100%',
-      display: 'flex',
+      width: "100%",
+      display: "flex",
       backgroundColor: appBar.color,
       paddingLeft: appBar.padding,
       paddingRight: appBar.padding,
     },
     title: {
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
       margin: 0,
       paddingTop: 0,
       letterSpacing: 0,
@@ -41,7 +39,7 @@ export function getStyles(props, context) {
     },
     mainElement: {
       boxFlex: 1,
-      flex: '1',
+      flex: "1",
     },
     iconButtonStyle: {
       marginTop: (appBar.height - iconButtonSize) / 2,
@@ -62,7 +60,7 @@ export function getStyles(props, context) {
 }
 
 class AppBar extends Component {
-  static muiName = 'AppBar';
+  static muiName = "AppBar";
 
   static propTypes = {
     /**
@@ -144,7 +142,7 @@ class AppBar extends Component {
 
   static defaultProps = {
     showMenuIconButton: true,
-    title: '',
+    title: "",
     zDepth: 1,
   };
 
@@ -153,11 +151,17 @@ class AppBar extends Component {
   };
 
   componentDidMount() {
-    warning(!this.props.iconElementLeft || !this.props.iconClassNameLeft, `Material-UI: Properties iconElementLeft
-      and iconClassNameLeft cannot be simultaneously defined. Please use one or the other.`);
+    warning(
+      !this.props.iconElementLeft || !this.props.iconClassNameLeft,
+      `Material-UI: Properties iconElementLeft
+      and iconClassNameLeft cannot be simultaneously defined. Please use one or the other.`
+    );
 
-    warning(!this.props.iconElementRight || !this.props.iconClassNameRight, `Material-UI: Properties iconElementRight
-      and iconClassNameRight cannot be simultaneously defined. Please use one or the other.`);
+    warning(
+      !this.props.iconElementRight || !this.props.iconClassNameRight,
+      `Material-UI: Properties iconElementRight
+      and iconClassNameRight cannot be simultaneously defined. Please use one or the other.`
+    );
   }
 
   handleTouchTapLeftIconButton = (event) => {
@@ -199,7 +203,7 @@ class AppBar extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     let menuElementLeft;
@@ -207,39 +211,59 @@ class AppBar extends Component {
 
     // If the title is a string, wrap in an h1 tag.
     // If not, wrap in a div tag.
-    const titleComponent = typeof title === 'string' || title instanceof String ? 'h1' : 'div';
+    const titleComponent =
+      typeof title === "string" || title instanceof String ? "h1" : "div";
 
-    const titleElement = React.createElement(titleComponent, {
-      onTouchTap: this.handleTitleTouchTap,
-      style: prepareStyles(Object.assign(styles.title, styles.mainElement, titleStyle)),
-    }, title);
+    const titleElement = React.createElement(
+      titleComponent,
+      {
+        onTouchTap: this.handleTitleTouchTap,
+        style: prepareStyles(
+          Object.assign(styles.title, styles.mainElement, titleStyle)
+        ),
+      },
+      title
+    );
 
-    const iconLeftStyle = Object.assign({}, styles.iconButtonStyle, iconStyleLeft);
+    const iconLeftStyle = Object.assign(
+      {},
+      styles.iconButtonStyle,
+      iconStyleLeft
+    );
 
     if (showMenuIconButton) {
       if (iconElementLeft) {
         const iconElementLeftProps = {};
 
-        if (iconElementLeft.type.muiName === 'IconButton') {
+        if (iconElementLeft.type.muiName === "IconButton") {
           const iconElemLeftChildren = iconElementLeft.props.children;
           const iconButtonIconStyle = !(
             iconElemLeftChildren &&
             iconElemLeftChildren.props &&
             iconElemLeftChildren.props.color
-          ) ? styles.iconButtonIconStyle : null;
+          )
+            ? styles.iconButtonIconStyle
+            : null;
 
-          iconElementLeftProps.iconStyle = Object.assign({}, iconButtonIconStyle, iconElementLeft.props.iconStyle);
+          iconElementLeftProps.iconStyle = Object.assign(
+            {},
+            iconButtonIconStyle,
+            iconElementLeft.props.iconStyle
+          );
         }
 
-        if (!iconElementLeft.props.onTouchTap && this.props.onLeftIconButtonTouchTap) {
+        if (
+          !iconElementLeft.props.onTouchTap &&
+          this.props.onLeftIconButtonTouchTap
+        ) {
           iconElementLeftProps.onTouchTap = this.handleTouchTapLeftIconButton;
         }
 
         menuElementLeft = (
           <div style={prepareStyles(iconLeftStyle)}>
-            {Object.keys(iconElementLeftProps).length > 0 ?
-              cloneElement(iconElementLeft, iconElementLeftProps) :
-              iconElementLeft}
+            {Object.keys(iconElementLeftProps).length > 0
+              ? cloneElement(iconElementLeft, iconElementLeftProps)
+              : iconElementLeft}
           </div>
         );
       } else {
@@ -250,52 +274,73 @@ class AppBar extends Component {
             iconClassName={iconClassNameLeft}
             onTouchTap={this.handleTouchTapLeftIconButton}
           >
-            {iconClassNameLeft ?
-              '' :
-                <NavigationMenu style={Object.assign({}, styles.iconButtonIconStyle)} />
-            }
+            {iconClassNameLeft ? (
+              ""
+            ) : (
+              <NavigationMenu
+                style={Object.assign({}, styles.iconButtonIconStyle)}
+              />
+            )}
           </IconButton>
         );
       }
     }
 
-    const iconRightStyle = Object.assign({}, styles.iconButtonStyle, {
-      marginRight: -16,
-      marginLeft: 'auto',
-    }, iconStyleRight);
+    const iconRightStyle = Object.assign(
+      {},
+      styles.iconButtonStyle,
+      {
+        marginRight: -16,
+        marginLeft: "auto",
+      },
+      iconStyleRight
+    );
 
     if (iconElementRight) {
       const iconElementRightProps = {};
 
       switch (iconElementRight.type.muiName) {
-        case 'IconMenu':
-        case 'IconButton':
+        case "IconMenu":
+        case "IconButton":
           const iconElemRightChildren = iconElementRight.props.children;
           const iconButtonIconStyle = !(
             iconElemRightChildren &&
             iconElemRightChildren.props &&
             iconElemRightChildren.props.color
-          ) ? styles.iconButtonIconStyle : null;
+          )
+            ? styles.iconButtonIconStyle
+            : null;
 
-          iconElementRightProps.iconStyle = Object.assign({}, iconButtonIconStyle, iconElementRight.props.iconStyle);
+          iconElementRightProps.iconStyle = Object.assign(
+            {},
+            iconButtonIconStyle,
+            iconElementRight.props.iconStyle
+          );
           break;
 
-        case 'FlatButton':
-          iconElementRightProps.style = Object.assign({}, styles.flatButton, iconElementRight.props.style);
+        case "FlatButton":
+          iconElementRightProps.style = Object.assign(
+            {},
+            styles.flatButton,
+            iconElementRight.props.style
+          );
           break;
 
         default:
       }
 
-      if (!iconElementRight.props.onTouchTap && this.props.onRightIconButtonTouchTap) {
+      if (
+        !iconElementRight.props.onTouchTap &&
+        this.props.onRightIconButtonTouchTap
+      ) {
         iconElementRightProps.onTouchTap = this.handleTouchTapRightIconButton;
       }
 
       menuElementRight = (
         <div style={prepareStyles(iconRightStyle)}>
-          {Object.keys(iconElementRightProps).length > 0 ?
-            cloneElement(iconElementRight, iconElementRightProps) :
-            iconElementRight}
+          {Object.keys(iconElementRightProps).length > 0
+            ? cloneElement(iconElementRight, iconElementRightProps)
+            : iconElementRight}
         </div>
       );
     } else if (iconClassNameRight) {

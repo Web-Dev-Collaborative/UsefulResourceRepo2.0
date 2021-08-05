@@ -1,5 +1,5 @@
-import React from 'react';
-import Slider from 'material-ui/Slider';
+import React from "react";
+import Slider from "material-ui/Slider";
 
 /**
  * The `defaultValue` property sets the initial position of the slider.

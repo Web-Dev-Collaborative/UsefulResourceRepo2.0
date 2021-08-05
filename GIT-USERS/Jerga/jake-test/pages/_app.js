@@ -1,16 +1,15 @@
-import App from 'next/app'
-import Head from 'next/head'
-import Nav from '../components/nav'
+import App from "next/app";
+import Head from "next/head";
+import Nav from "../components/nav";
 
 class ActivityApp extends App {
-
   static async getInitialProps(appContext) {
-    const appProps = await App.getInitialProps(appContext)
-    return { ...appProps }
+    const appProps = await App.getInitialProps(appContext);
+    return { ...appProps };
   }
 
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps } = this.props;
     return (
       <div>
         <Head>
@@ -29,14 +28,10 @@ class ActivityApp extends App {
           <Component {...pageProps} />
           <div id="modal" />
         </div>
-        <style jsx>{`
-          
-        `}</style>
+        <style jsx>{``}</style>
 
         <style jsx global>{`
-
-
-        html,
+          html,
           body {
             height: 100%;
             width: 100%;
@@ -48,11 +43,10 @@ class ActivityApp extends App {
           }
 
           body {
-
-            font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
             font-size: 1rem;
 
-            background-color: #00BCD4;
+            background-color: #00bcd4;
             min-height: 100vh;
             position: relative;
             margin: 0;
@@ -66,25 +60,25 @@ class ActivityApp extends App {
 
           button {
             background-color: #ffffff;
-            color: #00BCD4;
+            color: #00bcd4;
             font-size: 1.1rem;
             font-weight: 500;
             cursor: pointer;
             border-radius: 4px;
-            border: 2px solid #00BCD4;
+            border: 2px solid #00bcd4;
             transition: 0.3s;
             text-transform: uppercase;
             margin-left: 20px;
           }
 
           button :hover {
-            background-color: #00BCD4;
+            background-color: #00bcd4;
             border: 2px solid white;
             color: white;
           }
 
           button.active {
-            background-color: #00BCD4;
+            background-color: #00bcd4;
             border: 2px solid white;
             color: white;
           }
@@ -97,14 +91,30 @@ class ActivityApp extends App {
             margin-bottom: 80px;
           }
 
-          .dark-primary-color    { background: #0097A7; }
-          .default-primary-color { background: #00BCD4; }
-          .light-primary-color   { background: #B2EBF2; }
-          .text-primary-color    { color: #FFFFFF; }
-          .accent-color          { background: #FF5722; }
-          .primary-text-color    { color: #212121; }
-          .secondary-text-color  { color: #727272; }
-          .divider-color         { border-color: #B6B6B6; }
+          .dark-primary-color {
+            background: #0097a7;
+          }
+          .default-primary-color {
+            background: #00bcd4;
+          }
+          .light-primary-color {
+            background: #b2ebf2;
+          }
+          .text-primary-color {
+            color: #ffffff;
+          }
+          .accent-color {
+            background: #ff5722;
+          }
+          .primary-text-color {
+            color: #212121;
+          }
+          .secondary-text-color {
+            color: #727272;
+          }
+          .divider-color {
+            border-color: #b6b6b6;
+          }
 
           h1 {
             font-size: 2rem;
@@ -130,51 +140,44 @@ class ActivityApp extends App {
             margin-left: auto;
           }
 
-
-
-
           .react-select-container {
             margin: 20px 0 20px 20px;
-            
           }
-
 
           .react-select-container:focus {
             outline: none;
-            
           }
 
           .react-select__control {
             width: 465px;
-            border: 0 solid #fff!important;
-            border-radius: 0!important;
-            border-bottom: 2px solid #fff!important;
-            background-color: #00BCD4!important;
-            color: #fff!important;
-            font-size: 1.9em!important;
-            font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif!important;
-            font-weight: 300!important;
-            cursor: pointer!important;
+            border: 0 solid #fff !important;
+            border-radius: 0 !important;
+            border-bottom: 2px solid #fff !important;
+            background-color: #00bcd4 !important;
+            color: #fff !important;
+            font-size: 1.9em !important;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
+            font-weight: 300 !important;
+            cursor: pointer !important;
           }
 
           .react-select__control--is-focused {
-            box-shadow: none!important;
-
+            box-shadow: none !important;
           }
 
-          .react-select__placeholder, 
-          .react-select__single-value, 
+          .react-select__placeholder,
+          .react-select__single-value,
           .react-select__indicator {
-            color: #fff!important;
+            color: #fff !important;
           }
 
           .react-select__indicator-separator {
-            background-color: #00BCD4!important;
+            background-color: #00bcd4 !important;
           }
 
           .react-select__menu {
-            margin-top: 0!important;
-            border-radius: 0!important;
+            margin-top: 0 !important;
+            border-radius: 0 !important;
           }
 
           .react-select__menu-list {
@@ -182,34 +185,33 @@ class ActivityApp extends App {
           }
 
           .react-select__option {
-            font-size: 1.3rem!important;
-            font-family: "Roboto","Helvetica","Arial",sans-serif;
+            font-size: 1.3rem !important;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
             font-weight: 400;
             line-height: 1;
             -webkit-letter-spacing: 0em;
             -moz-letter-spacing: 0em;
             -ms-letter-spacing: 0em;
             letter-spacing: 0em;
-            color: rgb(0,0,0,0.8);
+            color: rgb(0, 0, 0, 0.8);
             padding: 8px;
-            cursor: pointer!important;
+            cursor: pointer !important;
           }
 
           .react-select__option--is-selected {
-            background-color: #F8F8F8!important;
-            color: rgb(0,0,0,0.8)!important;
+            background-color: #f8f8f8 !important;
+            color: rgb(0, 0, 0, 0.8) !important;
           }
-
 
           @media (min-width: 576px) {
             .contain {
-                max-width: 540px;
+              max-width: 540px;
             }
           }
 
           @media (min-width: 768px) {
             .contain {
-                max-width: 720px;
+              max-width: 720px;
             }
 
             .grid-item {
@@ -221,7 +223,7 @@ class ActivityApp extends App {
 
           @media (min-width: 992px) {
             .contain {
-                max-width: 960px;
+              max-width: 960px;
             }
 
             .grid-item {
@@ -234,25 +236,26 @@ class ActivityApp extends App {
 
           @media (min-width: 1200px) {
             .contain {
-                max-width: 1140px;
+              max-width: 1140px;
             }
           }
 
           .rowz {
-              display: -ms-flexbox;
-              display: flex;
-              -ms-flex-wrap: wrap;
-              flex-wrap: wrap;
-              margin-right: -15px;
-              margin-left: -15px;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
           }
 
-          [hidden]{display:none!important}
-
-      `}</style>
+          [hidden] {
+            display: none !important;
+          }
+        `}</style>
       </div>
-    )
+    );
   }
 }
 
-export default ActivityApp
+export default ActivityApp;

@@ -42,6 +42,7 @@ Hence, everything that's necessary to provide a fluid, responsive, and fast web
 experience is present in the browser’s memory.
 This web programming architecture has gained tremendous traction in the last decade,
 with many popular JavaScript presentation frameworks geared towards SPAs:
+
 - [Angular](https://angularjs.org)
 - [Ember](http://emberjs.com/)
 - [Backbone](http://backbonejs.org)
@@ -66,6 +67,7 @@ JavaScript.
 This was somewhat radical since JavaScript has traditionally been restricted to the client.
 However, over time, web developers recognized the benefits of using Node for tooling and
 dependency management, and created projects like:
+
 - [Grunt](http://gruntjs.com/)
 - [Gulp](http://gulpjs.com/)
 - [Browserify](http://browserify.org)

@@ -1,11 +1,11 @@
-import React, {Component, PropTypes} from 'react';
-import EventListener from 'react-event-listener';
-import keycode from 'keycode';
-import Calendar from './Calendar';
-import Dialog from '../Dialog';
-import Popover from '../Popover/Popover';
-import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
-import {dateTimeFormat} from './dateUtils';
+import React, { Component, PropTypes } from "react";
+import EventListener from "react-event-listener";
+import keycode from "keycode";
+import Calendar from "./Calendar";
+import Dialog from "../Dialog";
+import Popover from "../Popover/Popover";
+import PopoverAnimationVertical from "../Popover/PopoverAnimationVertical";
+import { dateTimeFormat } from "./dateUtils";
 
 class DatePickerDialog extends Component {
   static propTypes = {
@@ -13,7 +13,7 @@ class DatePickerDialog extends Component {
     animation: PropTypes.func,
     autoOk: PropTypes.bool,
     cancelLabel: PropTypes.node,
-    container: PropTypes.oneOf(['dialog', 'inline']),
+    container: PropTypes.oneOf(["dialog", "inline"]),
     containerStyle: PropTypes.object,
     disableYearSelection: PropTypes.bool,
     firstDayOfWeek: PropTypes.number,
@@ -21,7 +21,7 @@ class DatePickerDialog extends Component {
     locale: PropTypes.string,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
-    mode: PropTypes.oneOf(['portrait', 'landscape']),
+    mode: PropTypes.oneOf(["portrait", "landscape"]),
     okLabel: PropTypes.node,
     onAccept: PropTypes.func,
     onDismiss: PropTypes.func,
@@ -33,10 +33,10 @@ class DatePickerDialog extends Component {
 
   static defaultProps = {
     DateTimeFormat: dateTimeFormat,
-    cancelLabel: 'Cancel',
-    container: 'dialog',
-    locale: 'en-US',
-    okLabel: 'OK',
+    cancelLabel: "Cancel",
+    container: "dialog",
+    locale: "en-US",
+    okLabel: "OK",
   };
 
   static contextTypes = {
@@ -93,7 +93,7 @@ class DatePickerDialog extends Component {
 
   handleWindowKeyUp = (event) => {
     switch (keycode(event)) {
-      case 'enter':
+      case "enter":
         this.handleTouchTapOk();
         break;
     }
@@ -123,20 +123,20 @@ class DatePickerDialog extends Component {
       ...other
     } = this.props;
 
-    const {open} = this.state;
+    const { open } = this.state;
 
     const styles = {
       dialogContent: {
-        width: mode === 'landscape' ? 479 : 310,
+        width: mode === "landscape" ? 479 : 310,
       },
       dialogBodyContent: {
         padding: 0,
-        minHeight: mode === 'landscape' ? 330 : 434,
-        minWidth: mode === 'landscape' ? 479 : 310,
+        minHeight: mode === "landscape" ? 330 : 434,
+        minWidth: mode === "landscape" ? 479 : 310,
       },
     };
 
-    const Container = (container === 'inline' ? Popover : Dialog);
+    const Container = container === "inline" ? Popover : Dialog;
 
     return (
       <div {...other} ref="root">
@@ -151,10 +151,7 @@ class DatePickerDialog extends Component {
           onRequestClose={this.handleRequestClose}
           style={Object.assign(styles.dialogBodyContent, containerStyle)}
         >
-          <EventListener
-            target="window"
-            onKeyUp={this.handleWindowKeyUp}
-          />
+          <EventListener target="window" onKeyUp={this.handleWindowKeyUp} />
           <Calendar
             autoOk={autoOk}
             DateTimeFormat={DateTimeFormat}

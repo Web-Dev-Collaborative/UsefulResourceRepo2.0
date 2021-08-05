@@ -17,12 +17,13 @@
   </div>
   <div class="outcome">
     <div *ngIf="error" class="error">
-      {{error}}
+      {{ error }}
     </div>
     <div *ngIf="token" class="success alert alert-success">
       Card Accepted Successfully!
     </div>
   </div>
-  <button [disabled]="!isCardValid()" (click)="onSubmit()" type="button">Submit, You will not be charged yet</button>
-
+  <button [disabled]="!isCardValid()" (click)="onSubmit()" type="button">
+    Submit, You will not be charged yet
+  </button>
 </form>

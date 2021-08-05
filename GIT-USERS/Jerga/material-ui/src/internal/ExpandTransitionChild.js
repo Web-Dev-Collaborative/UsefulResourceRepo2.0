@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
-import transitions from '../styles/transitions';
+import React, { Component, PropTypes } from "react";
+import ReactDOM from "react-dom";
+import transitions from "../styles/transitions";
 
 const reflow = (elem) => elem.offsetHeight;
 
@@ -39,7 +39,7 @@ class ExpandTransitionChild extends Component {
   }
 
   componentWillEnter(callback) {
-    const {enterDelay, transitionDelay, transitionDuration} = this.props;
+    const { enterDelay, transitionDelay, transitionDuration } = this.props;
     const element = ReactDOM.findDOMNode(this);
     element.style.height = 0;
     this.enterTimer = setTimeout(() => this.open(), enterDelay);
@@ -54,20 +54,23 @@ class ExpandTransitionChild extends Component {
   }
 
   componentWillLeave(callback) {
-    const {transitionDelay, transitionDuration} = this.props;
+    const { transitionDelay, transitionDuration } = this.props;
     const element = ReactDOM.findDOMNode(this);
     // Set fixed height first for animated property value
     element.style.height = `${this.refs.wrapper.clientHeight}px`;
     reflow(element);
     element.style.transitionDuration = `${transitionDuration}ms`;
     element.style.height = 0;
-    this.leaveTimer = setTimeout(() => callback(), transitionDelay + transitionDuration);
+    this.leaveTimer = setTimeout(
+      () => callback(),
+      transitionDelay + transitionDuration
+    );
   }
 
   setAutoHeight() {
-    const {style} = ReactDOM.findDOMNode(this);
+    const { style } = ReactDOM.findDOMNode(this);
     style.transitionDuration = 0;
-    style.height = 'auto';
+    style.height = "auto";
   }
 
   open() {
@@ -78,28 +81,31 @@ class ExpandTransitionChild extends Component {
   render() {
     const {
       children,
-      enterDelay,  // eslint-disable-line no-unused-vars
+      enterDelay, // eslint-disable-line no-unused-vars
       style,
       transitionDelay, // eslint-disable-line no-unused-vars
       transitionDuration,
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
 
-    const mergedRootStyles = Object.assign({
-      position: 'relative',
-      height: 0,
-      width: '100%',
-      top: 0,
-      left: 0,
-      overflow: 'hidden',
-      transition: transitions.easeOut(
-        `${transitionDuration}ms`,
-        ['height'],
-        `${transitionDelay}ms`
-      ),
-    }, style);
+    const mergedRootStyles = Object.assign(
+      {
+        position: "relative",
+        height: 0,
+        width: "100%",
+        top: 0,
+        left: 0,
+        overflow: "hidden",
+        transition: transitions.easeOut(
+          `${transitionDuration}ms`,
+          ["height"],
+          `${transitionDelay}ms`
+        ),
+      },
+      style
+    );
 
     return (
       <div {...other} style={prepareStyles(mergedRootStyles)}>

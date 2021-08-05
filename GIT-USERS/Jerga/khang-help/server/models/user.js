@@ -5,7 +5,7 @@ const userSchema = new Schema({
   username: {
     type: String,
     min: [4, "Too short, min is 4 characters"],
-    max: [32, "Too long, max is 32 characters"]
+    max: [32, "Too long, max is 32 characters"],
   },
   email: {
     type: String,
@@ -15,19 +15,19 @@ const userSchema = new Schema({
     lowercase: true,
     required: "Email is required",
     // validate email format
-    match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
   },
   password: {
     type: String,
     min: [4, "Too short, min is 4 characters"],
     max: [32, "Too long, max is 32 characters"],
-    required: "Password is required"
+    required: "Password is required",
   },
   stripeCustomerId: String,
   revenue: Number,
   // assign rental model in user
   rentals: [{ type: Schema.Types.ObjectId, ref: "Rental" }],
-  bookings: [{ type: Schema.Types.ObjectId, ref: "Booking" }]
+  bookings: [{ type: Schema.Types.ObjectId, ref: "Booking" }],
 });
 
 userSchema.methods.hasSamePassword = function (requestedPassword) {

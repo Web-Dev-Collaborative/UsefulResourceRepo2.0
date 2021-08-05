@@ -1,27 +1,27 @@
-
-
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { withBaseLayout } from '../layouts/Base';
-import { useDispatch, useSelector } from 'react-redux';
-import { createChat } from '../actions/chats';
-import { useHistory } from 'react-router-dom';
+import React from "react";
+import { useForm } from "react-hook-form";
+import { withBaseLayout } from "../layouts/Base";
+import { useDispatch, useSelector } from "react-redux";
+import { createChat } from "../actions/chats";
+import { useHistory } from "react-router-dom";
 
 function ChatCreate() {
   const { register, handleSubmit } = useForm();
-  const user = useSelector(({auth}) => auth.user);
+  const user = useSelector(({ auth }) => auth.user);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const onSubmit = data => {
-    dispatch(createChat(data, user.uid))
-      .then(_ => history.push('/home'))
-  }
+  const onSubmit = (data) => {
+    dispatch(createChat(data, user.uid)).then((_) => history.push("/home"));
+  };
 
   return (
     <div className="centered-view">
       <div className="centered-container">
-        <form onSubmit={handleSubmit(onSubmit)} className="centered-container-form">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="centered-container-form"
+        >
           <div className="header">Create chat now!</div>
           <div className="subheader">Chat with people you know</div>
           <div className="form-container">
@@ -41,8 +41,8 @@ function ChatCreate() {
                 ref={register}
                 name="description"
                 className="form-control"
-                id="description">
-              </textarea>
+                id="description"
+              ></textarea>
             </div>
             <div className="form-group">
               <label htmlFor="image">Image</label>
@@ -54,14 +54,14 @@ function ChatCreate() {
                 name="image"
               />
             </div>
-            <button
-              type="submit"
-              className="btn btn-outline-primary">Create</button>
+            <button type="submit" className="btn btn-outline-primary">
+              Create
+            </button>
           </div>
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default withBaseLayout(ChatCreate, {canGoBack: true});
+export default withBaseLayout(ChatCreate, { canGoBack: true });

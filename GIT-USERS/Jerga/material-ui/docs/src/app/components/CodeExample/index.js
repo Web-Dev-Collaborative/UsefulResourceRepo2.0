@@ -1,8 +1,8 @@
-import React, {Component, PropTypes} from 'react';
-import {parse} from 'react-docgen';
-import CodeBlock from './CodeBlock';
-import ClearFix from 'material-ui/internal/ClearFix';
-import Paper from 'material-ui/Paper';
+import React, { Component, PropTypes } from "react";
+import { parse } from "react-docgen";
+import CodeBlock from "./CodeBlock";
+import ClearFix from "material-ui/internal/ClearFix";
+import Paper from "material-ui/Paper";
 
 class CodeExample extends Component {
   static propTypes = {
@@ -24,13 +24,8 @@ class CodeExample extends Component {
   };
 
   render() {
-    const {
-      children,
-      code,
-      component,
-      exampleBlockStyle,
-      layoutSideBySide,
-    } = this.props;
+    const { children, code, component, exampleBlockStyle, layoutSideBySide } =
+      this.props;
 
     const palette = this.context.muiTheme.rawTheme.palette;
     const canvasColor = palette.canvasColor;
@@ -41,11 +36,11 @@ class CodeExample extends Component {
         marginBottom: 32,
       },
       exampleBlock: {
-        borderRadius: '0 0 2px 0',
-        padding: '14px 24px 24px',
+        borderRadius: "0 0 2px 0",
+        padding: "14px 24px 24px",
         margin: 0,
-        width: layoutSideBySide ? '45%' : null,
-        float: layoutSideBySide ? 'right' : null,
+        width: layoutSideBySide ? "45%" : null,
+        float: layoutSideBySide ? "right" : null,
       },
     };
 
@@ -59,7 +54,9 @@ class CodeExample extends Component {
         >
           {code}
         </CodeBlock>
-        <ClearFix style={Object.assign(styles.exampleBlock, exampleBlockStyle)}>{children}</ClearFix>
+        <ClearFix style={Object.assign(styles.exampleBlock, exampleBlockStyle)}>
+          {children}
+        </ClearFix>
       </Paper>
     );
   }

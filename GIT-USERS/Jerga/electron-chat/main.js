@@ -1,10 +1,17 @@
 // Main Process
-const { app, BrowserWindow, ipcMain, Notification, Menu, Tray } = require('electron');
-const path = require('path');
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  Notification,
+  Menu,
+  Tray,
+} = require("electron");
+const path = require("path");
 const isDev = !app.isPackaged;
 
-const dockIcon = path.join(__dirname, 'assets', 'images', 'react_app_logo.png');
-const trayIcon = path.join(__dirname, 'assets', 'images', 'react_icon.png');
+const dockIcon = path.join(__dirname, "assets", "images", "react_app_logo.png");
+const trayIcon = path.join(__dirname, "assets", "images", "react_icon.png");
 
 function createSplashWindow() {
   const win = new BrowserWindow({
@@ -16,10 +23,10 @@ function createSplashWindow() {
       nodeIntegration: false,
       worldSafeExecuteJavaScript: true,
       contextIsolation: true,
-    }
-  })
+    },
+  });
 
-  win.loadFile('splash.html')
+  win.loadFile("splash.html");
   return win;
 }
 
@@ -27,75 +34,72 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1200,
     height: 800,
-    backgroundColor: '#6e707e',
+    backgroundColor: "#6e707e",
     show: false,
     webPreferences: {
       nodeIntegration: false,
       worldSafeExecuteJavaScript: true,
       contextIsolation: true,
-      preload: path.join(__dirname, 'preload.js')
-    }
-  })
+      preload: path.join(__dirname, "preload.js"),
+    },
+  });
 
-  win.loadFile('index.html')
+  win.loadFile("index.html");
   isDev && win.webContents.openDevTools();
   return win;
 }
 
 if (isDev) {
-  require('electron-reload')(__dirname, {
-    electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
-  })
+  require("electron-reload")(__dirname, {
+    electron: path.join(__dirname, "node_modules", ".bin", "electron"),
+  });
 }
 
-if (process.platform === 'darwin') {
+if (process.platform === "darwin") {
   app.dock.setIcon(dockIcon);
 }
 
 let tray = null;
-app.whenReady()
-  .then(() => {
-    const template = require('./utils/Menu').createTemplate(app);
-    const menu = Menu.buildFromTemplate(template);
-    Menu.setApplicationMenu(menu);
+app.whenReady().then(() => {
+  const template = require("./utils/Menu").createTemplate(app);
+  const menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu);
 
-    tray = new Tray(trayIcon);
-    tray.setContextMenu(menu);
+  tray = new Tray(trayIcon);
+  tray.setContextMenu(menu);
 
-    const splash = createSplashWindow();
-    const mainApp = createWindow();
+  const splash = createSplashWindow();
+  const mainApp = createWindow();
 
-    mainApp.once('ready-to-show', () => {
-      // splash.destroy();
-      // mainApp.show();
-      setTimeout(() => {
-        splash.destroy();
-        mainApp.show();
-      }, 2000)
-    })
+  mainApp.once("ready-to-show", () => {
+    // splash.destroy();
+    // mainApp.show();
+    setTimeout(() => {
+      splash.destroy();
+      mainApp.show();
+    }, 2000);
   });
+});
 
-ipcMain.on('notify', (_, message) => {
-  new Notification({title: 'Notification', body: message}).show();
-})
+ipcMain.on("notify", (_, message) => {
+  new Notification({ title: "Notification", body: message }).show();
+});
 
-ipcMain.on('app-quit', () => {
+ipcMain.on("app-quit", () => {
   app.quit();
-})
+});
 
-
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
     app.quit();
   }
-})
+});
 
-app.on('activate', () => {
+app.on("activate", () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
-})
-
+});
 
 // Chromium -> web eingine for rendering the UI, full Chrome-like web browser
 // V8 -> engine that provides capabilities to execute, run, JS code in the browser

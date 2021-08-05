@@ -1,10 +1,10 @@
 /* eslint-env mocha */
 
-import rtl from './rtl';
-import {assert} from 'chai';
+import rtl from "./rtl";
+import { assert } from "chai";
 
-describe('./utils/rtl', () => {
-  it('should ignore the style if directionInvariant is true', () => {
+describe("./utils/rtl", () => {
+  it("should ignore the style if directionInvariant is true", () => {
     const actual = rtl({
       isRtl: true,
     })({

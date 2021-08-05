@@ -13,10 +13,10 @@
   width: 45px;
   padding: 10px;
   font-size: 25px;
-  -webkit-transition:  background .2s ease-in-out;
-  -moz-transition:  background .2s ease-in-out;
-  -o-transition:  background .2s ease-in-out;
-  transition:  background .2s ease-in-out;
+  -webkit-transition: background 0.2s ease-in-out;
+  -moz-transition: background 0.2s ease-in-out;
+  -o-transition: background 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out;
   background-color: rgba(255, 255, 255, 0.6);
   margin-bottom: 5px;
   border-radius: 50%;
@@ -42,7 +42,7 @@
       background-color: #3b5998 !important;
     }
     &.fa-linkedin {
-      background-color: #0077B5 !important;
+      background-color: #0077b5 !important;
     }
     &.fa-google {
       background-color: #dd4b39 !important;
@@ -52,4 +52,3 @@
     }
   }
 }
-

@@ -1,7 +1,7 @@
-import React from 'react';
-import FontIcon from 'material-ui/FontIcon';
-import IconButton from 'material-ui/IconButton';
-import ActionHome from 'material-ui/svg-icons/action/home';
+import React from "react";
+import FontIcon from "material-ui/FontIcon";
+import IconButton from "material-ui/IconButton";
+import ActionHome from "material-ui/svg-icons/action/home";
 
 const IconButtonExampleComplex = () => (
   <div>
@@ -13,10 +13,7 @@ const IconButtonExampleComplex = () => (
       <ActionHome />
     </IconButton>
 
-    <IconButton
-      iconClassName="material-icons"
-      tooltip="Ligature"
-    >
+    <IconButton iconClassName="material-icons" tooltip="Ligature">
       home
     </IconButton>
   </div>

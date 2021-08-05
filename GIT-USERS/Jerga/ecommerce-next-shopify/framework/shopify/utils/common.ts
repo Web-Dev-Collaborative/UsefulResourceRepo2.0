@@ -1,5 +1,3 @@
-
-
 export const checkoutDetailFragment = `
   id
   webUrl
@@ -57,4 +55,4 @@ export const checkoutDetailFragment = `
       }
     }
   }
-`
+`;

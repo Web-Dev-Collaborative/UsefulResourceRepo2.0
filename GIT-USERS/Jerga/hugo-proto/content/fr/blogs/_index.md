@@ -6,4 +6,3 @@ draft: false
 ---
 
 Generic List page!
-

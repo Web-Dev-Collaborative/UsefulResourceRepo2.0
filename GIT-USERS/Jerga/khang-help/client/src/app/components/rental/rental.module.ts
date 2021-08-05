@@ -12,7 +12,7 @@ import { RentalDetailComponent } from "../rental/rental-detail/rental-detail.com
 import {
   HttpClient,
   HttpHandler,
-  HttpClientModule
+  HttpClientModule,
 } from "@angular/common/http";
 
 import { NgPipesModule, UcWordsPipe } from "ngx-pipes";
@@ -31,7 +31,7 @@ import { EditableModule } from "../editable/editable.module";
 import { RentalGuard } from "./rental.guard";
 import { ImageUploadModule } from "../image-upload/image-upload.module";
 import { PaymentModule } from "../payment/payment.module";
-import { StarRatingModule } from 'angular-star-rating';
+import { StarRatingModule } from "angular-star-rating";
 const routes: Routes = [
   // we still have route on app-routing-module
   // we do redirecto , pathmatch on the approuting
@@ -43,20 +43,20 @@ const routes: Routes = [
       {
         path: "new",
         component: RentalCreateComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: ":rentalId/edit",
         component: RentalUpdateComponent,
-        canActivate: [AuthGuard, RentalGuard]
+        canActivate: [AuthGuard, RentalGuard],
       },
       {
         path: ":rentalId",
-        component: RentalDetailComponent
+        component: RentalDetailComponent,
       },
-      { path: ":city/homes", component: RentalSearchComponent }
-    ]
-  }
+      { path: ":city/homes", component: RentalSearchComponent },
+    ],
+  },
 ];
 
 @NgModule({
@@ -68,7 +68,7 @@ const routes: Routes = [
     RentalDetailBookingComponent,
     RentalSearchComponent,
     RentalCreateComponent,
-    RentalUpdateComponent
+    RentalUpdateComponent,
   ],
   imports: [
     CommonModule,
@@ -82,7 +82,7 @@ const routes: Routes = [
     EditableModule,
     ImageUploadModule,
     PaymentModule,
-    StarRatingModule
+    StarRatingModule,
   ],
 
   // service inside the providers:
@@ -92,7 +92,7 @@ const routes: Routes = [
     HelperService,
     BookingService,
     UcWordsPipe,
-    RentalGuard
-  ]
+    RentalGuard,
+  ],
 })
-export class RentalModule { }
+export class RentalModule {}

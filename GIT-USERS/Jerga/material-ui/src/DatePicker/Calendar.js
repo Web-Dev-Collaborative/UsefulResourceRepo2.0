@@ -1,13 +1,13 @@
-import React, {Component, PropTypes} from 'react';
-import EventListener from 'react-event-listener';
-import keycode from 'keycode';
-import transitions from '../styles/transitions';
-import CalendarActionButtons from './CalendarActionButtons';
-import CalendarMonth from './CalendarMonth';
-import CalendarYear from './CalendarYear';
-import CalendarToolbar from './CalendarToolbar';
-import DateDisplay from './DateDisplay';
-import SlideInTransitionGroup from '../internal/SlideIn';
+import React, { Component, PropTypes } from "react";
+import EventListener from "react-event-listener";
+import keycode from "keycode";
+import transitions from "../styles/transitions";
+import CalendarActionButtons from "./CalendarActionButtons";
+import CalendarMonth from "./CalendarMonth";
+import CalendarYear from "./CalendarYear";
+import CalendarToolbar from "./CalendarToolbar";
+import DateDisplay from "./DateDisplay";
+import SlideInTransitionGroup from "../internal/SlideIn";
 
 import {
   addDays,
@@ -20,7 +20,7 @@ import {
   getFirstDayOfMonth,
   localizedWeekday,
   monthDiff,
-} from './dateUtils';
+} from "./dateUtils";
 
 const daysArray = [...Array(7)];
 
@@ -35,7 +35,7 @@ class Calendar extends Component {
     locale: PropTypes.string.isRequired,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
-    mode: PropTypes.oneOf(['portrait', 'landscape']),
+    mode: PropTypes.oneOf(["portrait", "landscape"]),
     okLabel: PropTypes.node,
     onTouchTapCancel: PropTypes.func,
     onTouchTapDay: PropTypes.func,
@@ -48,7 +48,7 @@ class Calendar extends Component {
     DateTimeFormat: dateTimeFormat,
     disableYearSelection: false,
     initialDate: new Date(),
-    locale: 'en-US',
+    locale: "en-US",
     minDate: addYears(new Date(), -100),
     maxDate: addYears(new Date(), 100),
   };
@@ -61,7 +61,7 @@ class Calendar extends Component {
     displayDate: undefined,
     displayMonthDay: true,
     selectedDate: undefined,
-    transitionDirection: 'left',
+    transitionDirection: "left",
     transitionEnter: true,
   };
 
@@ -108,7 +108,8 @@ class Calendar extends Component {
 
   setDisplayDate(date, newSelectedDate) {
     const newDisplayDate = getFirstDayOfMonth(date);
-    const direction = newDisplayDate > this.state.displayDate ? 'left' : 'right';
+    const direction =
+      newDisplayDate > this.state.displayDate ? "left" : "right";
 
     if (newDisplayDate !== this.state.displayDate) {
       this.setState({
@@ -144,7 +145,7 @@ class Calendar extends Component {
 
   handleMonthChange = (months) => {
     this.setState({
-      transitionDirection: months >= 0 ? 'left' : 'right',
+      transitionDirection: months >= 0 ? "left" : "right",
       displayDate: addMonths(this.state.displayDate, months),
     });
   };
@@ -177,7 +178,7 @@ class Calendar extends Component {
   handleWindowKeyDown = (event) => {
     if (this.props.open) {
       switch (keycode(event)) {
-        case 'up':
+        case "up":
           if (event.altKey && event.shiftKey) {
             this.addSelectedYears(-1);
           } else if (event.shiftKey) {
@@ -187,7 +188,7 @@ class Calendar extends Component {
           }
           break;
 
-        case 'down':
+        case "down":
           if (event.altKey && event.shiftKey) {
             this.addSelectedYears(1);
           } else if (event.shiftKey) {
@@ -197,7 +198,7 @@ class Calendar extends Component {
           }
           break;
 
-        case 'right':
+        case "right":
           if (event.altKey && event.shiftKey) {
             this.addSelectedYears(1);
           } else if (event.shiftKey) {
@@ -207,7 +208,7 @@ class Calendar extends Component {
           }
           break;
 
-        case 'left':
+        case "left":
           if (event.altKey && event.shiftKey) {
             this.addSelectedYears(-1);
           } else if (event.shiftKey) {
@@ -237,49 +238,49 @@ class Calendar extends Component {
   }
 
   render() {
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const toolbarInteractions = this.getToolbarInteractions();
-    const isLandscape = this.props.mode === 'landscape';
-    const {calendarTextColor} = this.context.muiTheme.datePicker;
+    const isLandscape = this.props.mode === "landscape";
+    const { calendarTextColor } = this.context.muiTheme.datePicker;
 
     const styles = {
       root: {
         color: calendarTextColor,
-        userSelect: 'none',
+        userSelect: "none",
         width: isLandscape ? 479 : 310,
       },
       calendar: {
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
       },
       calendarContainer: {
-        display: 'flex',
-        alignContent: 'space-between',
-        justifyContent: 'space-between',
-        flexDirection: 'column',
+        display: "flex",
+        alignContent: "space-between",
+        justifyContent: "space-between",
+        flexDirection: "column",
         fontSize: 12,
         fontWeight: 400,
-        padding: '0px 8px',
+        padding: "0px 8px",
         transition: transitions.easeOut(),
       },
       yearContainer: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        flexDirection: 'column',
+        display: "flex",
+        justifyContent: "space-between",
+        flexDirection: "column",
         height: 272,
         marginTop: 10,
-        overflow: 'hidden',
+        overflow: "hidden",
         width: 310,
       },
       weekTitle: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        fontWeight: '500',
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        fontWeight: "500",
         height: 20,
-        lineHeight: '15px',
-        opacity: '0.5',
-        textAlign: 'center',
+        lineHeight: "15px",
+        opacity: "0.5",
+        textAlign: "center",
       },
       weekTitleDay: {
         width: 42,
@@ -305,10 +306,7 @@ class Calendar extends Component {
 
     return (
       <div style={prepareStyles(styles.root)}>
-        <EventListener
-          target="window"
-          onKeyDown={this.handleWindowKeyDown}
-        />
+        <EventListener target="window" onKeyDown={this.handleWindowKeyDown} />
         <DateDisplay
           DateTimeFormat={DateTimeFormat}
           disableYearSelection={this.props.disableYearSelection}
@@ -320,7 +318,7 @@ class Calendar extends Component {
           selectedDate={this.state.selectedDate}
         />
         <div style={prepareStyles(styles.calendar)}>
-          {this.state.displayMonthDay &&
+          {this.state.displayMonthDay && (
             <div style={prepareStyles(styles.calendarContainer)}>
               <CalendarToolbar
                 DateTimeFormat={DateTimeFormat}
@@ -333,11 +331,19 @@ class Calendar extends Component {
               <div style={prepareStyles(styles.weekTitle)}>
                 {daysArray.map((event, i) => (
                   <span key={i} style={weekTitleDayStyle}>
-                    {localizedWeekday(DateTimeFormat, locale, i, firstDayOfWeek)}
+                    {localizedWeekday(
+                      DateTimeFormat,
+                      locale,
+                      i,
+                      firstDayOfWeek
+                    )}
                   </span>
                 ))}
               </div>
-              <SlideInTransitionGroup direction={this.state.transitionDirection} style={styles.transitionSlide}>
+              <SlideInTransitionGroup
+                direction={this.state.transitionDirection}
+                style={styles.transitionSlide}
+              >
                 <CalendarMonth
                   DateTimeFormat={DateTimeFormat}
                   locale={locale}
@@ -353,13 +359,13 @@ class Calendar extends Component {
                 />
               </SlideInTransitionGroup>
             </div>
-          }
-          {!this.state.displayMonthDay &&
+          )}
+          {!this.state.displayMonthDay && (
             <div style={prepareStyles(styles.yearContainer)}>
               {this.yearSelector()}
             </div>
-          }
-          {okLabel &&
+          )}
+          {okLabel && (
             <CalendarActionButtons
               autoOk={this.props.autoOk}
               cancelLabel={cancelLabel}
@@ -367,7 +373,7 @@ class Calendar extends Component {
               onTouchTapCancel={onTouchTapCancel}
               onTouchTapOk={onTouchTapOk}
             />
-          }
+          )}
         </div>
       </div>
     );

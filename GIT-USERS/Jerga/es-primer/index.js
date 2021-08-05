@@ -1,8 +1,8 @@
-const Car = require('./Car');
-const FancyCar = require('./FancyCar');
-const CarService = require('./services/CarService');
+const Car = require("./Car");
+const FancyCar = require("./FancyCar");
+const CarService = require("./services/CarService");
 
-const carService = new CarService('SuperCars', 'Spain, Malaga');
+const carService = new CarService("SuperCars", "Spain, Malaga");
 
 // carService.getSecretDocuments().then((superSecretDocuments) => {
 //   console.log(superSecretDocuments);
@@ -19,9 +19,8 @@ docObservable.subscribe({
   error: (error) => {
     console.log(error);
   },
-  complete: () => {}
-})
-
+  complete: () => {},
+});
 
 // const car1 = new Car();
 // const car2 = new Car('ford', 'fiesta', 2000);
@@ -36,7 +35,6 @@ docObservable.subscribe({
 // carService.addCar(car3);
 // carService.addCar(car4);
 
-
 // [...rest] = carService.getAllCars();
 
 // const allCars = carService.getAllCars();
@@ -49,5 +47,3 @@ docObservable.subscribe({
 
 // const carBrand = car1.brand;
 // const carModel = car1.model;
-
-

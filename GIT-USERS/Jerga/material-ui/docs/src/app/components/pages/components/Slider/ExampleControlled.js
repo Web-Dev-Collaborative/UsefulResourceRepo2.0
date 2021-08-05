@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import Slider from 'material-ui/Slider';
+import React, { Component } from "react";
+import Slider from "material-ui/Slider";
 
 /**
  * The slider bar can have a set minimum and maximum, and the value can be
@@ -12,11 +12,11 @@ export default class SliderExampleControlled extends Component {
   };
 
   handleFirstSlider = (event, value) => {
-    this.setState({firstSlider: value});
+    this.setState({ firstSlider: value });
   };
 
   handleSecondSlider = (event, value) => {
-    this.setState({secondSlider: value});
+    this.setState({ secondSlider: value });
   };
 
   render() {
@@ -28,9 +28,9 @@ export default class SliderExampleControlled extends Component {
           onChange={this.handleFirstSlider}
         />
         <p>
-          <span>{'The value of this slider is: '}</span>
+          <span>{"The value of this slider is: "}</span>
           <span>{this.state.firstSlider}</span>
-          <span>{' from a range of 0 to 1 inclusive'}</span>
+          <span>{" from a range of 0 to 1 inclusive"}</span>
         </p>
         <Slider
           min={0}
@@ -41,9 +41,9 @@ export default class SliderExampleControlled extends Component {
           onChange={this.handleSecondSlider}
         />
         <p>
-          <span>{'The value of this slider is: '}</span>
+          <span>{"The value of this slider is: "}</span>
           <span>{this.state.secondSlider}</span>
-          <span>{' from a range of 0 to 100 inclusive'}</span>
+          <span>{" from a range of 0 to 100 inclusive"}</span>
         </p>
       </div>
     );

@@ -10,5 +10,4 @@ type will be "page"
 
 and page will be rendered as single in default or page folder
 
-
 I am FAQ

@@ -1,23 +1,23 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from "react";
 
 function getStyles(props, context) {
-  const {tableRowColumn} = context.muiTheme;
+  const { tableRowColumn } = context.muiTheme;
 
   const styles = {
     root: {
       paddingLeft: tableRowColumn.spacing,
       paddingRight: tableRowColumn.spacing,
       height: tableRowColumn.height,
-      textAlign: 'left',
+      textAlign: "left",
       fontSize: 13,
-      overflow: 'hidden',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
+      overflow: "hidden",
+      whiteSpace: "nowrap",
+      textOverflow: "ellipsis",
     },
   };
 
   if (React.Children.count(props.children) === 1 && !isNaN(props.children)) {
-    styles.textAlign = 'right';
+    styles.textAlign = "right";
   }
 
   return styles;
@@ -76,7 +76,7 @@ class TableRowColumn extends Component {
 
   onMouseEnter = (event) => {
     if (this.props.hoverable) {
-      this.setState({hovered: true});
+      this.setState({ hovered: true });
       if (this.props.onHover) {
         this.props.onHover(event, this.props.columnNumber);
       }
@@ -85,7 +85,7 @@ class TableRowColumn extends Component {
 
   onMouseLeave = (event) => {
     if (this.props.hoverable) {
-      this.setState({hovered: false});
+      this.setState({ hovered: false });
       if (this.props.onHoverExit) {
         this.props.onHoverExit(event, this.props.columnNumber);
       }
@@ -105,7 +105,7 @@ class TableRowColumn extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     const handlers = {

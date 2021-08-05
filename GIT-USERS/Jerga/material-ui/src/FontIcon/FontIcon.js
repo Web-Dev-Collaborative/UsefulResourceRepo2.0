@@ -1,30 +1,27 @@
-import React, {Component, PropTypes} from 'react';
-import transitions from '../styles/transitions';
+import React, { Component, PropTypes } from "react";
+import transitions from "../styles/transitions";
 
 function getStyles(props, context, state) {
-  const {
-    color,
-    hoverColor,
-  } = props;
+  const { color, hoverColor } = props;
 
-  const {baseTheme} = context.muiTheme;
+  const { baseTheme } = context.muiTheme;
   const offColor = color || baseTheme.palette.textColor;
   const onColor = hoverColor || offColor;
 
   return {
     root: {
       color: state.hovered ? onColor : offColor,
-      position: 'relative',
+      position: "relative",
       fontSize: baseTheme.spacing.iconSize,
-      display: 'inline-block',
-      userSelect: 'none',
+      display: "inline-block",
+      userSelect: "none",
       transition: transitions.easeOut(),
     },
   };
 }
 
 class FontIcon extends Component {
-  static muiName = 'FontIcon';
+  static muiName = "FontIcon";
 
   static propTypes = {
     /**
@@ -62,7 +59,7 @@ class FontIcon extends Component {
   handleMouseLeave = (event) => {
     // hover is needed only when a hoverColor is defined
     if (this.props.hoverColor !== undefined) {
-      this.setState({hovered: false});
+      this.setState({ hovered: false });
     }
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(event);
@@ -72,7 +69,7 @@ class FontIcon extends Component {
   handleMouseEnter = (event) => {
     // hover is needed only when a hoverColor is defined
     if (this.props.hoverColor !== undefined) {
-      this.setState({hovered: true});
+      this.setState({ hovered: true });
     }
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(event);
@@ -88,7 +85,7 @@ class FontIcon extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
 
     return (

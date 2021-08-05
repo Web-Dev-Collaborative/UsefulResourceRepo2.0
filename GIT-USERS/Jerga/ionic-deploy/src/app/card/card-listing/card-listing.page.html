@@ -8,11 +8,12 @@
 </ion-header>
 
 <ion-content padding>
-
-  <app-search (searchCompleted)="hydrateCards($event)"
-              (searchStarted)="handleSearch()"
-              [items]="copyOfCards"
-              [filteredProperty]="'name'">
+  <app-search
+    (searchCompleted)="hydrateCards($event)"
+    (searchStarted)="handleSearch()"
+    [items]="copyOfCards"
+    [filteredProperty]="'name'"
+  >
   </app-search>
   <ion-spinner text-center *ngIf="isLoading"> </ion-spinner>
 
@@ -25,16 +26,23 @@
         <ion-card-subtitle>
           {{card.cardSet}}
 
-          <ion-icon (click)="favoriteCard(card)" [ngClass]="card.favorite ? 'favorite' : 'normal'" name="flame" class="like-icon"> </ion-icon>
-
+          <ion-icon
+            (click)="favoriteCard(card)"
+            [ngClass]="card.favorite ? 'favorite' : 'normal'"
+            name="flame"
+            class="like-icon"
+          >
+          </ion-icon>
         </ion-card-subtitle>
-        <ion-card-title>
-          {{card.name}}
-        </ion-card-title>
+        <ion-card-title> {{card.name}} </ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <div [innerHTML]="card.text"></div>
-        <ion-button [href]="'/tabs/(card:card/' + card.cardId + ')'" size='medium' expand='full'>
+        <ion-button
+          [href]="'/tabs/(card:card/' + card.cardId + ')'"
+          size="medium"
+          expand="full"
+        >
           See Detail
         </ion-button>
       </ion-card-content>

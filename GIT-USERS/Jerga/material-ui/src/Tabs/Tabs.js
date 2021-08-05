@@ -1,23 +1,24 @@
-import React, {Component,
+import React, {
+  Component,
   createElement,
   cloneElement,
   Children,
   isValidElement,
   PropTypes,
-} from 'react';
-import warning from 'warning';
-import TabTemplate from './TabTemplate';
-import InkBar from './InkBar';
+} from "react";
+import warning from "warning";
+import TabTemplate from "./TabTemplate";
+import InkBar from "./InkBar";
 
 function getStyles(props, context) {
-  const {tabs} = context.muiTheme;
+  const { tabs } = context.muiTheme;
 
   return {
     tabItemContainer: {
-      width: '100%',
+      width: "100%",
       backgroundColor: tabs.backgroundColor,
-      whiteSpace: 'nowrap',
-      display: 'flex',
+      whiteSpace: "nowrap",
+      display: "flex",
     },
   };
 }
@@ -86,18 +87,19 @@ class Tabs extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  state = {selectedIndex: 0};
+  state = { selectedIndex: 0 };
 
   componentWillMount() {
     const valueLink = this.getValueLink(this.props);
     const initialIndex = this.props.initialSelectedIndex;
 
     this.setState({
-      selectedIndex: valueLink.value !== undefined ?
-        this.getSelectedIndex(this.props) :
-        initialIndex < this.getTabCount() ?
-        initialIndex :
-        0,
+      selectedIndex:
+        valueLink.value !== undefined
+          ? this.getSelectedIndex(this.props)
+          : initialIndex < this.getTabCount()
+          ? initialIndex
+          : 0,
     });
   }
 
@@ -132,10 +134,12 @@ class Tabs extends Component {
 
   // Do not use outside of this component, it will be removed once valueLink is deprecated
   getValueLink(props) {
-    return props.valueLink || {
-      value: props.value,
-      requestChange: props.onChange,
-    };
+    return (
+      props.valueLink || {
+        value: props.value,
+        requestChange: props.onChange,
+      }
+    );
   }
 
   getSelectedIndex(props) {
@@ -155,12 +159,14 @@ class Tabs extends Component {
     const valueLink = this.getValueLink(this.props);
     const index = tab.props.index;
 
-    if ((valueLink.value && valueLink.value !== value) ||
-      this.state.selectedIndex !== index) {
+    if (
+      (valueLink.value && valueLink.value !== value) ||
+      this.state.selectedIndex !== index
+    ) {
       valueLink.requestChange(value, event, tab);
     }
 
-    this.setState({selectedIndex: index});
+    this.setState({ selectedIndex: index });
 
     if (tab.props.onActive) {
       tab.props.onActive(tab);
@@ -169,8 +175,9 @@ class Tabs extends Component {
 
   getSelected(tab, index) {
     const valueLink = this.getValueLink(this.props);
-    return valueLink.value ? valueLink.value === tab.props.value :
-      this.state.selectedIndex === index;
+    return valueLink.value
+      ? valueLink.value === tab.props.value
+      : this.state.selectedIndex === index;
   }
 
   render() {
@@ -187,7 +194,7 @@ class Tabs extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
     const valueLink = this.getValueLink(this.props);
     const tabValue = valueLink.value;
@@ -195,21 +202,34 @@ class Tabs extends Component {
     const width = 100 / this.getTabCount();
 
     const tabs = this.getTabs().map((tab, index) => {
-      warning(tab.type && tab.type.muiName === 'Tab',
+      warning(
+        tab.type && tab.type.muiName === "Tab",
         `Material-UI: Tabs only accepts Tab Components as children.
-        Found ${tab.type.muiName || tab.type} as child number ${index + 1} of Tabs`);
+        Found ${tab.type.muiName || tab.type} as child number ${
+          index + 1
+        } of Tabs`
+      );
 
-      warning(!tabValue || tab.props.value !== undefined,
+      warning(
+        !tabValue || tab.props.value !== undefined,
         `Material-UI: Tabs value prop has been passed, but Tab ${index}
         does not have a value prop. Needs value if Tabs is going
-        to be a controlled component.`);
+        to be a controlled component.`
+      );
 
-      tabContent.push(tab.props.children ?
-        createElement(tabTemplate || TabTemplate, {
-          key: index,
-          selected: this.getSelected(tab, index),
-          style: tabTemplateStyle,
-        }, tab.props.children) : undefined);
+      tabContent.push(
+        tab.props.children
+          ? createElement(
+              tabTemplate || TabTemplate,
+              {
+                key: index,
+                selected: this.getSelected(tab, index),
+                style: tabTemplateStyle,
+              },
+              tab.props.children
+            )
+          : undefined
+      );
 
       return cloneElement(tab, {
         key: index,
@@ -220,28 +240,29 @@ class Tabs extends Component {
       });
     });
 
-    const inkBar = this.state.selectedIndex !== -1 ? (
-      <InkBar
-        left={`${width * this.state.selectedIndex}%`}
-        width={`${width}%`}
-        style={inkBarStyle}
-      />
-    ) : null;
+    const inkBar =
+      this.state.selectedIndex !== -1 ? (
+        <InkBar
+          left={`${width * this.state.selectedIndex}%`}
+          width={`${width}%`}
+          style={inkBarStyle}
+        />
+      ) : null;
 
-    const inkBarContainerWidth = tabItemContainerStyle ?
-      tabItemContainerStyle.width : '100%';
+    const inkBarContainerWidth = tabItemContainerStyle
+      ? tabItemContainerStyle.width
+      : "100%";
 
     return (
-      <div
-        style={prepareStyles(Object.assign({}, style))}
-        {...other}
-      >
-        <div style={prepareStyles(Object.assign(styles.tabItemContainer, tabItemContainerStyle))}>
+      <div style={prepareStyles(Object.assign({}, style))} {...other}>
+        <div
+          style={prepareStyles(
+            Object.assign(styles.tabItemContainer, tabItemContainerStyle)
+          )}
+        >
           {tabs}
         </div>
-        <div style={{width: inkBarContainerWidth}}>
-          {inkBar}
-        </div>
+        <div style={{ width: inkBarContainerWidth }}>{inkBar}</div>
         <div
           style={prepareStyles(Object.assign({}, contentContainerStyle))}
           className={contentContainerClassName}

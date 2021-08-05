@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import * as moment from "moment";
 import { Booking } from "../models/booking.model";
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class HelperService {
   constructor() {}

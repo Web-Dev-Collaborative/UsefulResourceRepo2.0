@@ -4,7 +4,8 @@
  * import the entire lib for coverage reporting
  */
 
-import {assert} from 'chai';
-import * as MaterialUI from './index';
+import { assert } from "chai";
+import * as MaterialUI from "./index";
 
-describe('Material UI', () => it('should have exports', () => assert.ok(MaterialUI)));
+describe("Material UI", () =>
+  it("should have exports", () => assert.ok(MaterialUI)));

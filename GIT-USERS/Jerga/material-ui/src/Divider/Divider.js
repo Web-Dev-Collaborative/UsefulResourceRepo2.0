@@ -1,16 +1,9 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from "react";
 
 const Divider = (props, context) => {
-  const {
-    inset,
-    style,
-    ...other
-  } = props;
+  const { inset, style, ...other } = props;
 
-  const {
-    baseTheme,
-    prepareStyles,
-  } = context.muiTheme;
+  const { baseTheme, prepareStyles } = context.muiTheme;
 
   const styles = {
     root: {
@@ -18,7 +11,7 @@ const Divider = (props, context) => {
       marginTop: -1,
       marginLeft: inset ? 72 : 0,
       height: 1,
-      border: 'none',
+      border: "none",
       backgroundColor: baseTheme.palette.borderColor,
     },
   };
@@ -28,7 +21,7 @@ const Divider = (props, context) => {
   );
 };
 
-Divider.muiName = 'Divider';
+Divider.muiName = "Divider";
 
 Divider.propTypes = {
   /**

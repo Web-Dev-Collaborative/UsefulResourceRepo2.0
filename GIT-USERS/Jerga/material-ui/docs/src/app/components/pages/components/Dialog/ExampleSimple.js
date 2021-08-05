@@ -1,7 +1,7 @@
-import React from 'react';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import React from "react";
+import Dialog from "material-ui/Dialog";
+import FlatButton from "material-ui/FlatButton";
+import RaisedButton from "material-ui/RaisedButton";
 
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
@@ -15,11 +15,11 @@ export default class DialogExampleSimple extends React.Component {
   };
 
   handleOpen = () => {
-    this.setState({open: true});
+    this.setState({ open: true });
   };
 
   handleClose = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
   };
 
   render() {
@@ -47,7 +47,8 @@ export default class DialogExampleSimple extends React.Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          The actions in this window were passed in as an array of React objects.
+          The actions in this window were passed in as an array of React
+          objects.
         </Dialog>
       </div>
     );

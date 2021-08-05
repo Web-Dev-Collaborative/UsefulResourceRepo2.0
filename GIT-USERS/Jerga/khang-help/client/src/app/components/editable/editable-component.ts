@@ -31,7 +31,7 @@ export class EditableComponent implements OnChanges {
 
     if (entityValue !== this.originEntityValue) {
       this.entityUpdated.emit({
-        [this.entityField]: this.entity[this.entityField]
+        [this.entityField]: this.entity[this.entityField],
       });
       this.setOriginValue();
     }

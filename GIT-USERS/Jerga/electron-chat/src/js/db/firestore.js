@@ -1,6 +1,5 @@
-
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import firebase from "firebase/app";
+import "firebase/firestore";
 
 const config = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -10,10 +9,9 @@ const config = {
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
-  measurementId: process.env.FIREBASE_MEASURMENT_ID
+  measurementId: process.env.FIREBASE_MEASURMENT_ID,
 };
 
 export const { Timestamp } = firebase.firestore;
 
 export default firebase.initializeApp(config).firestore();
-

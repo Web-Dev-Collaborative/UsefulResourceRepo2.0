@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 import { Link } from "gatsby";
 
 function Copyright() {
   return (
     <footer>
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" to="/">
         CODE_SPACE
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </footer>
   );
 }

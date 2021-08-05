@@ -1,31 +1,31 @@
-import React, {Component, PropTypes} from 'react';
-import {isInner} from './timeUtils';
+import React, { Component, PropTypes } from "react";
+import { isInner } from "./timeUtils";
 
 function getStyles(props, context) {
   const styles = {
     root: {
       directionInvariant: true,
-      display: 'inline-block',
-      position: 'absolute',
+      display: "inline-block",
+      position: "absolute",
       width: 32,
       height: 32,
-      borderRadius: '100%',
-      left: 'calc(50% - 16px)',
+      borderRadius: "100%",
+      left: "calc(50% - 16px)",
       top: 10,
-      textAlign: 'center',
+      textAlign: "center",
       paddingTop: 5,
-      userSelect: 'none', /* Chrome all / Safari all */
-      fontSize: '1.1em',
-      pointerEvents: 'none',
-      boxSizing: 'border-box',
+      userSelect: "none" /* Chrome all / Safari all */,
+      fontSize: "1.1em",
+      pointerEvents: "none",
+      boxSizing: "border-box",
     },
   };
 
-  const {muiTheme} = context;
+  const { muiTheme } = context;
 
   let pos = props.value;
 
-  if (props.type === 'hour') {
+  if (props.type === "hour") {
     pos %= 12;
   } else {
     pos = pos / 5;
@@ -71,7 +71,7 @@ function getStyles(props, context) {
   if (isInner(props)) {
     styles.root.width = 28;
     styles.root.height = 28;
-    styles.root.left = 'calc(50% - 14px)';
+    styles.root.left = "calc(50% - 14px)";
     transformPos = innerPositions[pos];
   }
 
@@ -86,13 +86,13 @@ class ClockNumber extends Component {
   static propTypes = {
     isSelected: PropTypes.bool,
     onSelected: PropTypes.func,
-    type: PropTypes.oneOf(['hour', 'minute']),
+    type: PropTypes.oneOf(["hour", "minute"]),
     value: PropTypes.number,
   };
 
   static defaultProps = {
     value: 0,
-    type: 'minute',
+    type: "minute",
     isSelected: false,
   };
 
@@ -101,13 +101,11 @@ class ClockNumber extends Component {
   };
 
   render() {
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
-    const clockNumber = this.props.value === 0 ? '00' : this.props.value;
+    const clockNumber = this.props.value === 0 ? "00" : this.props.value;
 
-    return (
-      <span style={prepareStyles(styles.root)}>{clockNumber}</span>
-    );
+    return <span style={prepareStyles(styles.root)}>{clockNumber}</span>;
   }
 }
 

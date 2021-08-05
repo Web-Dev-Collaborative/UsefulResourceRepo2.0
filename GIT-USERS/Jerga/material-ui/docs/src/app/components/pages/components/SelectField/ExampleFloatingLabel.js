@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import React, { Component } from "react";
+import SelectField from "material-ui/SelectField";
+import MenuItem from "material-ui/MenuItem";
 
 const items = [
   <MenuItem key={1} value={1} primaryText="Never" />,
@@ -20,7 +20,7 @@ export default class SelectFieldExampleFloatingLabel extends Component {
     value: null,
   };
 
-  handleChange = (event, index, value) => this.setState({value});
+  handleChange = (event, index, value) => this.setState({ value });
 
   render() {
     return (
@@ -47,7 +47,7 @@ export default class SelectFieldExampleFloatingLabel extends Component {
           value={this.state.value}
           onChange={this.handleChange}
           floatingLabelText="Styled Floating Label Text"
-          floatingLabelStyle={{color: 'red'}}
+          floatingLabelStyle={{ color: "red" }}
         >
           {items}
         </SelectField>

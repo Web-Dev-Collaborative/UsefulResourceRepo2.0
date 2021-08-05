@@ -1,13 +1,12 @@
-import React from 'react';
-import TextField from 'material-ui/TextField';
+import React from "react";
+import TextField from "material-ui/TextField";
 
 export default class TextFieldExampleControlled extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      value: 'Property Value',
+      value: "Property Value",
     };
   }
 

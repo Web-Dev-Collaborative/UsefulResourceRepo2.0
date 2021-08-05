@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import TextField from '../TextField';
-import DropDownMenu from '../DropDownMenu';
+import React, { Component, PropTypes } from "react";
+import TextField from "../TextField";
+import DropDownMenu from "../DropDownMenu";
 
 function getStyles(props) {
   return {
@@ -13,10 +13,10 @@ function getStyles(props) {
       top: props.floatingLabelText ? 22 : 14,
     },
     hideDropDownUnderline: {
-      borderTop: 'none',
+      borderTop: "none",
     },
     dropDownMenu: {
-      display: 'block',
+      display: "block",
     },
   };
 }
@@ -178,7 +178,7 @@ class SelectField extends Component {
         floatingLabelText={floatingLabelText}
         floatingLabelStyle={floatingLabelStyle}
         hintStyle={hintStyle}
-        hintText={(!hintText && !floatingLabelText) ? ' ' : hintText}
+        hintText={!hintText && !floatingLabelText ? " " : hintText}
         fullWidth={fullWidth}
         errorText={errorText}
         underlineStyle={underlineStyle}

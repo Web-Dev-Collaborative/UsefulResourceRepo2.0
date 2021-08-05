@@ -1,7 +1,7 @@
-import React from 'react';
-import Divider from 'material-ui/Divider';
-import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
+import React from "react";
+import Divider from "material-ui/Divider";
+import Paper from "material-ui/Paper";
+import TextField from "material-ui/TextField";
 
 const style = {
   marginLeft: 20,

@@ -1,12 +1,11 @@
-import React, {Component, PropTypes} from 'react';
-import ClearFix from 'material-ui/internal/ClearFix';
-import spacing from 'material-ui/styles/spacing';
-import withWidth, {SMALL, LARGE} from 'material-ui/utils/withWidth';
+import React, { Component, PropTypes } from "react";
+import ClearFix from "material-ui/internal/ClearFix";
+import spacing from "material-ui/styles/spacing";
+import withWidth, { SMALL, LARGE } from "material-ui/utils/withWidth";
 
 const desktopGutter = spacing.desktopGutter;
 
 class FullWidthSection extends Component {
-
   static propTypes = {
     children: PropTypes.node,
     contentStyle: PropTypes.object,
@@ -18,18 +17,18 @@ class FullWidthSection extends Component {
 
   static defaultProps = {
     useContent: false,
-    contentType: 'div',
+    contentType: "div",
   };
 
   getStyles() {
     return {
       root: {
         padding: desktopGutter,
-        boxSizing: 'border-box',
+        boxSizing: "border-box",
       },
       content: {
         maxWidth: 1200,
-        margin: '0 auto',
+        margin: "0 auto",
       },
       rootWhenSmall: {
         paddingTop: desktopGutter * 2,
@@ -43,25 +42,18 @@ class FullWidthSection extends Component {
   }
 
   render() {
-    const {
-      style,
-      useContent,
-      contentType,
-      contentStyle,
-      width,
-      ...other
-    } = this.props;
+    const { style, useContent, contentType, contentStyle, width, ...other } =
+      this.props;
 
     const styles = this.getStyles();
 
     let content;
     if (useContent) {
-      content =
-        React.createElement(
-          contentType,
-          {style: Object.assign(styles.content, contentStyle)},
-          this.props.children
-        );
+      content = React.createElement(
+        contentType,
+        { style: Object.assign(styles.content, contentStyle) },
+        this.props.children
+      );
     } else {
       content = this.props.children;
     }
@@ -73,7 +65,8 @@ class FullWidthSection extends Component {
           styles.root,
           style,
           width === SMALL && styles.rootWhenSmall,
-          width === LARGE && styles.rootWhenLarge)}
+          width === LARGE && styles.rootWhenLarge
+        )}
       >
         {content}
       </ClearFix>

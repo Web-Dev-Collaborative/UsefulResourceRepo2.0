@@ -1,4 +1,4 @@
 export interface Review {
-    text: string;
-    rating: number
+  text: string;
+  rating: number;
 }

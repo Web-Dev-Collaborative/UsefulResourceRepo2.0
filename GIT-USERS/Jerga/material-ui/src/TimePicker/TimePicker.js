@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import TimePickerDialog from './TimePickerDialog';
-import TextField from '../TextField';
-import {formatTime} from './timeUtils';
+import React, { Component, PropTypes } from "react";
+import TimePickerDialog from "./TimePickerDialog";
+import TextField from "../TextField";
+import { formatTime } from "./timeUtils";
 
 const emptyTime = new Date();
 emptyTime.setHours(0);
@@ -38,7 +38,7 @@ class TimePicker extends Component {
     /**
      * Tells the component to display the picker in `ampm` (12hr) format or `24hr` format.
      */
-    format: PropTypes.oneOf(['ampm', '24hr']),
+    format: PropTypes.oneOf(["ampm", "24hr"]),
     /**
      * Override the label of the 'OK' button.
      */
@@ -89,11 +89,11 @@ class TimePicker extends Component {
 
   static defaultProps = {
     autoOk: false,
-    cancelLabel: 'Cancel',
+    cancelLabel: "Cancel",
     defaultTime: null,
     disabled: false,
-    format: 'ampm',
-    okLabel: 'OK',
+    format: "ampm",
+    okLabel: "OK",
     pedantic: false,
     style: {},
     value: null,
@@ -110,7 +110,9 @@ class TimePicker extends Component {
 
   componentWillMount() {
     this.setState({
-      time: this.isControlled() ? this.getControlledTime() : this.props.defaultTime,
+      time: this.isControlled()
+        ? this.getControlledTime()
+        : this.props.defaultTime,
     });
   }
 
@@ -193,8 +195,8 @@ class TimePicker extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
-    const {time} = this.state;
+    const { prepareStyles } = this.context.muiTheme;
+    const { time } = this.state;
 
     return (
       <div style={prepareStyles(Object.assign({}, style))}>

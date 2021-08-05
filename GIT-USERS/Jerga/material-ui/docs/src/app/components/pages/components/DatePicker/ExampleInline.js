@@ -1,5 +1,5 @@
-import React from 'react';
-import DatePicker from 'material-ui/DatePicker';
+import React from "react";
+import DatePicker from "material-ui/DatePicker";
 
 /**
  * Inline Date Pickers are displayed below the input, rather than as a modal dialog.
@@ -7,7 +7,11 @@ import DatePicker from 'material-ui/DatePicker';
 const DatePickerExampleInline = () => (
   <div>
     <DatePicker hintText="Portrait Inline Dialog" container="inline" />
-    <DatePicker hintText="Landscape Inline Dialog" container="inline" mode="landscape" />
+    <DatePicker
+      hintText="Landscape Inline Dialog"
+      container="inline"
+      mode="landscape"
+    />
   </div>
 );
 

@@ -1,20 +1,21 @@
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-
+  document.addEventListener("DOMContentLoaded", function () {
     const themes = {
-      "light" : {
-        bgColor: "#f5f5f5"
+      light: {
+        bgColor: "#f5f5f5",
       },
-      "dark": {
-        bgColor: "#363636"
-      }
-    }
+      dark: {
+        bgColor: "#363636",
+      },
+    };
 
-    const selectThemeItemElem = document.querySelectorAll('.select-theme--item');
+    const selectThemeItemElem = document.querySelectorAll(
+      ".select-theme--item"
+    );
     const navbar = document.getElementsByClassName("navbar")[0];
     const body = document.getElementsByTagName("body")[0];
-    const rootEleme = document.getElementById('root');
-    const currentTheme = localStorage.getItem('theme');
+    const rootEleme = document.getElementById("root");
+    const currentTheme = localStorage.getItem("theme");
 
     if (currentTheme) {
       const themeItems = document.getElementsByClassName("has-theme");
@@ -29,11 +30,11 @@
     }
 
     selectThemeItemElem.forEach(function (element, i) {
-      element.addEventListener("click", function(e) {
+      element.addEventListener("click", function (e) {
         const themeType = e.target.text.trim().toLowerCase();
-        localStorage.setItem('theme', themeType);
+        localStorage.setItem("theme", themeType);
         location.reload();
-      })
-    })
-  })
+      });
+    });
+  });
 </script>

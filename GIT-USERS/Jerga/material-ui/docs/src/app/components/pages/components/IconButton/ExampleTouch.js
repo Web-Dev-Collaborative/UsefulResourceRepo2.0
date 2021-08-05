@@ -1,16 +1,28 @@
-import React from 'react';
-import IconButton from 'material-ui/IconButton';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
+import React from "react";
+import IconButton from "material-ui/IconButton";
+import ActionGrade from "material-ui/svg-icons/action/grade";
 
 const IconButtonExampleTouch = () => (
   <div>
-    <IconButton tooltip="bottom-right" touch={true} tooltipPosition="bottom-right">
+    <IconButton
+      tooltip="bottom-right"
+      touch={true}
+      tooltipPosition="bottom-right"
+    >
       <ActionGrade />
     </IconButton>
-    <IconButton tooltip="bottom-center" touch={true} tooltipPosition="bottom-center">
+    <IconButton
+      tooltip="bottom-center"
+      touch={true}
+      tooltipPosition="bottom-center"
+    >
       <ActionGrade />
     </IconButton>
-    <IconButton tooltip="bottom-left" touch={true} tooltipPosition="bottom-left">
+    <IconButton
+      tooltip="bottom-left"
+      touch={true}
+      tooltipPosition="bottom-left"
+    >
       <ActionGrade />
     </IconButton>
     <IconButton tooltip="top-right" touch={true} tooltipPosition="top-right">

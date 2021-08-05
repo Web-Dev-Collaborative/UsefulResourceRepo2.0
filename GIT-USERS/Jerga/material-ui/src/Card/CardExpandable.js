@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import OpenIcon from '../svg-icons/hardware/keyboard-arrow-up';
-import CloseIcon from '../svg-icons/hardware/keyboard-arrow-down';
-import IconButton from '../IconButton';
+import React, { Component, PropTypes } from "react";
+import OpenIcon from "../svg-icons/hardware/keyboard-arrow-up";
+import CloseIcon from "../svg-icons/hardware/keyboard-arrow-down";
+import IconButton from "../IconButton";
 
 function getStyles() {
   return {
@@ -9,8 +9,8 @@ function getStyles() {
       top: 0,
       bottom: 0,
       right: 4,
-      margin: 'auto',
-      position: 'absolute',
+      margin: "auto",
+      position: "absolute",
     },
   };
 }

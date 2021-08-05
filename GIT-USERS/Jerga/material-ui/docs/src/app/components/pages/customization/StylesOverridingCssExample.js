@@ -1,5 +1,5 @@
-import React from 'react';
-import Checkbox from 'material-ui/Checkbox';
+import React from "react";
+import Checkbox from "material-ui/Checkbox";
 
 const StylesOverridingCssExample = () => (
   <Checkbox

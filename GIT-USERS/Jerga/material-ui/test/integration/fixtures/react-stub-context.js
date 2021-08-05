@@ -1,23 +1,23 @@
 /* eslint-disable react/prefer-es6-class */
 // "react-stub-context": "^0.3.0",
 
-const React = require('react');
+const React = require("react");
 
 function stubContext(BaseComponent, context) {
-  if (typeof context === 'undefined' || context === null) context = {};
+  if (typeof context === "undefined" || context === null) context = {};
 
   const contextTypes = {};
 
   try {
-    Object.keys(context).forEach(function(key) {
+    Object.keys(context).forEach(function (key) {
       contextTypes[key] = React.PropTypes.any;
     });
   } catch (err) {
-    throw new TypeError('createdStubbedContextComponent requires an object');
+    throw new TypeError("createdStubbedContextComponent requires an object");
   }
 
   const StubbedContextParent = React.createClass({
-    displayName: 'StubbedContextParent',
+    displayName: "StubbedContextParent",
     propTypes: {
       children: React.PropTypes.node,
     },
@@ -32,7 +32,7 @@ function stubContext(BaseComponent, context) {
   });
 
   const StubbedContextHandler = React.createClass({
-    displayName: 'StubbedContextHandler',
+    displayName: "StubbedContextHandler",
     childContextTypes: contextTypes,
     getChildContext() {
       return context;
@@ -45,18 +45,24 @@ function stubContext(BaseComponent, context) {
     },
     render() {
       this.wrappedElement = <BaseComponent {...this.state} {...this.props} />;
-      this.wrappedParentElement = <StubbedContextParent>{this.wrappedElement}</StubbedContextParent>;
+      this.wrappedParentElement = (
+        <StubbedContextParent>{this.wrappedElement}</StubbedContextParent>
+      );
 
       return this.wrappedParentElement;
     },
   });
 
-  BaseComponent.contextTypes = Object.assign({}, BaseComponent.contextTypes, contextTypes);
+  BaseComponent.contextTypes = Object.assign(
+    {},
+    BaseComponent.contextTypes,
+    contextTypes
+  );
 
-  StubbedContextHandler.getWrappedComponent = function() {
+  StubbedContextHandler.getWrappedComponent = function () {
     return BaseComponent;
   };
-  StubbedContextHandler.getWrappedParentComponent = function() {
+  StubbedContextHandler.getWrappedParentComponent = function () {
     return StubbedContextParent;
   };
 

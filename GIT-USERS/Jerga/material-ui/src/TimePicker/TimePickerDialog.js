@@ -1,16 +1,16 @@
-import React, {Component, PropTypes} from 'react';
-import EventListener from 'react-event-listener';
-import keycode from 'keycode';
-import Clock from './Clock';
-import Dialog from '../Dialog';
-import FlatButton from '../FlatButton';
+import React, { Component, PropTypes } from "react";
+import EventListener from "react-event-listener";
+import keycode from "keycode";
+import Clock from "./Clock";
+import Dialog from "../Dialog";
+import FlatButton from "../FlatButton";
 
 class TimePickerDialog extends Component {
   static propTypes = {
     autoOk: PropTypes.bool,
     bodyStyle: PropTypes.object,
     cancelLabel: PropTypes.node,
-    format: PropTypes.oneOf(['ampm', '24hr']),
+    format: PropTypes.oneOf(["ampm", "24hr"]),
     initialTime: PropTypes.object,
     okLabel: PropTypes.node,
     onAccept: PropTypes.func,
@@ -20,8 +20,8 @@ class TimePickerDialog extends Component {
   };
 
   static defaultProps = {
-    okLabel: 'OK',
-    cancelLabel: 'Cancel',
+    okLabel: "OK",
+    cancelLabel: "Cancel",
   };
 
   static contextTypes = {
@@ -65,7 +65,7 @@ class TimePickerDialog extends Component {
 
   handleKeyUp = (event) => {
     switch (keycode(event)) {
-      case 'enter':
+      case "enter":
         this.handleTouchTapOK();
         break;
     }
@@ -112,7 +112,8 @@ class TimePickerDialog extends Component {
       />,
     ];
 
-    const onClockChangeMinutes = autoOk === true ? this.handleTouchTapOK : undefined;
+    const onClockChangeMinutes =
+      autoOk === true ? this.handleTouchTapOK : undefined;
     const open = this.state.open;
 
     return (
@@ -126,17 +127,15 @@ class TimePickerDialog extends Component {
         open={open}
         onRequestClose={this.handleRequestClose}
       >
-        {open &&
-          <EventListener target="window" onKeyUp={this.handleKeyUp} />
-        }
-        {open &&
+        {open && <EventListener target="window" onKeyUp={this.handleKeyUp} />}
+        {open && (
           <Clock
             ref="clock"
             format={format}
             initialTime={initialTime}
             onChangeMinutes={onClockChangeMinutes}
           />
-        }
+        )}
       </Dialog>
     );
   }

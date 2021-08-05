@@ -1,15 +1,14 @@
-import { Injectable } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { Injectable } from "@angular/core";
+import { ToastController } from "@ionic/angular";
 
 @Injectable()
 export class ToastService {
-
   constructor(public toastController: ToastController) {}
 
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message,
-      duration: 4000
+      duration: 4000,
     });
     toast.present();
   }
@@ -17,11 +16,10 @@ export class ToastService {
   async presentErrorToast(message: string) {
     const toast = await this.toastController.create({
       message,
-      position: 'top',
+      position: "top",
       duration: 3000,
-      cssClass: 'toast-error'
+      cssClass: "toast-error",
     });
     toast.present();
   }
-
 }

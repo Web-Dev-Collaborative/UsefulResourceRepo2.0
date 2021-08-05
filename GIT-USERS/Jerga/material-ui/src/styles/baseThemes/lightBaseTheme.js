@@ -3,13 +3,19 @@
  */
 
 import {
-  cyan500, cyan700,
+  cyan500,
+  cyan700,
   pinkA200,
-  grey100, grey300, grey400, grey500,
-  white, darkBlack, fullBlack,
-} from '../colors';
-import {fade} from '../../utils/colorManipulator';
-import spacing from '../spacing';
+  grey100,
+  grey300,
+  grey400,
+  grey500,
+  white,
+  darkBlack,
+  fullBlack,
+} from "../colors";
+import { fade } from "../../utils/colorManipulator";
+import spacing from "../spacing";
 
 /**
  *  Light Theme is the default theme used in material-ui. It is guaranteed to
@@ -18,7 +24,7 @@ import spacing from '../spacing';
  */
 export default {
   spacing: spacing,
-  fontFamily: 'Roboto, sans-serif',
+  fontFamily: "Roboto, sans-serif",
   palette: {
     primary1Color: cyan500,
     primary2Color: cyan700,

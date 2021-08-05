@@ -1,37 +1,37 @@
-import transitions from '../styles/transitions';
-import React, {Component, PropTypes} from 'react';
-import propTypes from '../utils/propTypes';
-import Paper from '../Paper';
+import transitions from "../styles/transitions";
+import React, { Component, PropTypes } from "react";
+import propTypes from "../utils/propTypes";
+import Paper from "../Paper";
 
 function getStyles(props, context, state) {
-  const {targetOrigin} = props;
-  const {open} = state;
-  const {muiTheme} = context;
-  const horizontal = targetOrigin.horizontal.replace('middle', 'vertical');
+  const { targetOrigin } = props;
+  const { open } = state;
+  const { muiTheme } = context;
+  const horizontal = targetOrigin.horizontal.replace("middle", "vertical");
 
   return {
     root: {
       opacity: open ? 1 : 0,
-      transform: open ? 'scale(1, 1)' : 'scale(0, 0)',
+      transform: open ? "scale(1, 1)" : "scale(0, 0)",
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
-      position: 'fixed',
+      position: "fixed",
       zIndex: muiTheme.zIndex.popover,
-      transition: transitions.easeOut('250ms', ['transform', 'opacity']),
-      maxHeight: '100%',
+      transition: transitions.easeOut("250ms", ["transform", "opacity"]),
+      maxHeight: "100%",
     },
     horizontal: {
-      maxHeight: '100%',
-      overflowY: 'auto',
-      transform: open ? 'scaleX(1)' : 'scaleX(0)',
+      maxHeight: "100%",
+      overflowY: "auto",
+      transform: open ? "scaleX(1)" : "scaleX(0)",
       opacity: open ? 1 : 0,
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
-      transition: transitions.easeOut('250ms', ['transform', 'opacity']),
+      transition: transitions.easeOut("250ms", ["transform", "opacity"]),
     },
     vertical: {
       opacity: open ? 1 : 0,
-      transform: open ? 'scaleY(1)' : 'scaleY(0)',
+      transform: open ? "scaleY(1)" : "scaleY(0)",
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
-      transition: transitions.easeOut('500ms', ['transform', 'opacity']),
+      transition: transitions.easeOut("500ms", ["transform", "opacity"]),
     },
   };
 }
@@ -66,7 +66,7 @@ class PopoverAnimationDefault extends Component {
   };
 
   componentDidMount() {
-    this.setState({open: true}); // eslint-disable-line react/no-did-mount-set-state
+    this.setState({ open: true }); // eslint-disable-line react/no-did-mount-set-state
   }
 
   componentWillReceiveProps(nextProps) {
@@ -76,13 +76,9 @@ class PopoverAnimationDefault extends Component {
   }
 
   render() {
-    const {
-      className,
-      style,
-      zDepth,
-    } = this.props;
+    const { className, style, zDepth } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
 
     return (

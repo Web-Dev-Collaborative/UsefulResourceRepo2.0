@@ -1,4 +1,4 @@
-import {Component, PropTypes} from 'react';
+import { Component, PropTypes } from "react";
 
 let originalBodyOverflow = null;
 let lockingCounter = 0;
@@ -41,9 +41,9 @@ class AutoLockScrolling extends Component {
 
     // only lock the first time the component is mounted.
     if (lockingCounter === 1) {
-      const body = document.getElementsByTagName('body')[0];
+      const body = document.getElementsByTagName("body")[0];
       originalBodyOverflow = body.style.overflow;
-      body.style.overflow = 'hidden';
+      body.style.overflow = "hidden";
     }
   }
 
@@ -54,8 +54,8 @@ class AutoLockScrolling extends Component {
     }
 
     if (lockingCounter === 0 && originalBodyOverflow !== null) {
-      const body = document.getElementsByTagName('body')[0];
-      body.style.overflow = originalBodyOverflow || '';
+      const body = document.getElementsByTagName("body")[0];
+      body.style.overflow = originalBodyOverflow || "";
       originalBodyOverflow = null;
     }
   }

@@ -1,41 +1,41 @@
-import React, {Component, PropTypes, isValidElement} from 'react';
-import Avatar from '../Avatar';
+import React, { Component, PropTypes, isValidElement } from "react";
+import Avatar from "../Avatar";
 
 function getStyles(props, context) {
-  const {card} = context.muiTheme;
+  const { card } = context.muiTheme;
 
   return {
     root: {
       padding: 16,
       fontWeight: card.fontWeight,
-      boxSizing: 'border-box',
-      position: 'relative',
-      whiteSpace: 'nowrap',
+      boxSizing: "border-box",
+      position: "relative",
+      whiteSpace: "nowrap",
     },
     text: {
-      display: 'inline-block',
-      verticalAlign: 'top',
-      whiteSpace: 'normal',
-      paddingRight: '90px',
+      display: "inline-block",
+      verticalAlign: "top",
+      whiteSpace: "normal",
+      paddingRight: "90px",
     },
     avatar: {
       marginRight: 16,
     },
     title: {
       color: props.titleColor || card.titleColor,
-      display: 'block',
+      display: "block",
       fontSize: 15,
     },
     subtitle: {
       color: props.subtitleColor || card.subtitleColor,
-      display: 'block',
+      display: "block",
       fontSize: 14,
     },
   };
 }
 
 class CardHeader extends Component {
-  static muiName = 'CardHeader';
+  static muiName = "CardHeader";
 
   static propTypes = {
     /**
@@ -130,7 +130,7 @@ class CardHeader extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     let avatar = avatarProp;
@@ -150,7 +150,9 @@ class CardHeader extends Component {
           <span style={prepareStyles(Object.assign(styles.title, titleStyle))}>
             {title}
           </span>
-          <span style={prepareStyles(Object.assign(styles.subtitle, subtitleStyle))}>
+          <span
+            style={prepareStyles(Object.assign(styles.subtitle, subtitleStyle))}
+          >
             {subtitle}
           </span>
         </div>

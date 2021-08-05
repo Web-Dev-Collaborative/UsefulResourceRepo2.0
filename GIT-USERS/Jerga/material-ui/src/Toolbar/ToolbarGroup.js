@@ -1,51 +1,44 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from "react";
 
 function getStyles(props, context) {
-  const {
-    firstChild,
-    lastChild,
-  } = props;
+  const { firstChild, lastChild } = props;
 
-  const {
-    baseTheme,
-    button,
-    toolbar,
-  } = context.muiTheme;
+  const { baseTheme, button, toolbar } = context.muiTheme;
 
   const marginHorizontal = baseTheme.spacing.desktopGutter;
   const marginVertical = (toolbar.height - button.height) / 2;
 
   const styles = {
     root: {
-      position: 'relative',
+      position: "relative",
       marginLeft: firstChild ? -marginHorizontal : undefined,
       marginRight: lastChild ? -marginHorizontal : undefined,
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
     },
     dropDownMenu: {
       root: {
         color: toolbar.color, // removes hover color change, we want to keep it
         marginRight: baseTheme.spacing.desktopGutter,
         flex: 1,
-        whiteSpace: 'nowrap',
+        whiteSpace: "nowrap",
       },
       controlBg: {
         backgroundColor: toolbar.menuHoverColor,
         borderRadius: 0,
       },
       underline: {
-        display: 'none',
+        display: "none",
       },
     },
     button: {
       margin: `${marginVertical}px ${marginHorizontal}px`,
-      position: 'relative',
+      position: "relative",
     },
     icon: {
       root: {
-        cursor: 'pointer',
+        cursor: "pointer",
         lineHeight: `${toolbar.height}px`,
         paddingLeft: baseTheme.spacing.desktopGutter,
       },
@@ -96,7 +89,7 @@ class ToolbarGroup extends Component {
 
   handleMouseLeaveFontIcon(style) {
     return (event) => {
-      event.target.style.zIndex = 'auto';
+      event.target.style.zIndex = "auto";
       event.target.style.color = style.root.color;
     };
   }
@@ -111,45 +104,65 @@ class ToolbarGroup extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
-    const newChildren = React.Children.map(children, (currentChild) => {
-      if (!currentChild) {
-        return null;
-      }
-      if (!currentChild.type) {
-        return currentChild;
-      }
-      switch (currentChild.type.muiName) {
-        case 'DropDownMenu' :
-          return React.cloneElement(currentChild, {
-            style: Object.assign({}, styles.dropDownMenu.root, currentChild.props.style),
-            underlineStyle: styles.dropDownMenu.underline,
-          });
-        case 'RaisedButton' :
-        case 'FlatButton' :
-          return React.cloneElement(currentChild, {
-            style: Object.assign({}, styles.button, currentChild.props.style),
-          });
-        case 'FontIcon' :
-          return React.cloneElement(currentChild, {
-            style: Object.assign({}, styles.icon.root, currentChild.props.style),
-            color: currentChild.props.color || this.context.muiTheme.toolbar.iconColor,
-            hoverColor: currentChild.props.hoverColor || this.context.muiTheme.toolbar.hoverColor,
-          });
-        case 'ToolbarSeparator' :
-        case 'ToolbarTitle' :
-          return React.cloneElement(currentChild, {
-            style: Object.assign({}, styles.span, currentChild.props.style),
-          });
-        default:
+    const newChildren = React.Children.map(
+      children,
+      (currentChild) => {
+        if (!currentChild) {
+          return null;
+        }
+        if (!currentChild.type) {
           return currentChild;
-      }
-    }, this);
+        }
+        switch (currentChild.type.muiName) {
+          case "DropDownMenu":
+            return React.cloneElement(currentChild, {
+              style: Object.assign(
+                {},
+                styles.dropDownMenu.root,
+                currentChild.props.style
+              ),
+              underlineStyle: styles.dropDownMenu.underline,
+            });
+          case "RaisedButton":
+          case "FlatButton":
+            return React.cloneElement(currentChild, {
+              style: Object.assign({}, styles.button, currentChild.props.style),
+            });
+          case "FontIcon":
+            return React.cloneElement(currentChild, {
+              style: Object.assign(
+                {},
+                styles.icon.root,
+                currentChild.props.style
+              ),
+              color:
+                currentChild.props.color ||
+                this.context.muiTheme.toolbar.iconColor,
+              hoverColor:
+                currentChild.props.hoverColor ||
+                this.context.muiTheme.toolbar.hoverColor,
+            });
+          case "ToolbarSeparator":
+          case "ToolbarTitle":
+            return React.cloneElement(currentChild, {
+              style: Object.assign({}, styles.span, currentChild.props.style),
+            });
+          default:
+            return currentChild;
+        }
+      },
+      this
+    );
 
     return (
-      <div {...other} className={className} style={prepareStyles(Object.assign({}, styles.root, style))}>
+      <div
+        {...other}
+        className={className}
+        style={prepareStyles(Object.assign({}, styles.root, style))}
+      >
         {newChildren}
       </div>
     );

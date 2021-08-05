@@ -1,12 +1,12 @@
-import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
-import shallowEqual from 'recompose/shallowEqual';
-import transitions from '../styles/transitions';
-import EnhancedTextarea from './EnhancedTextarea';
-import TextFieldHint from './TextFieldHint';
-import TextFieldLabel from './TextFieldLabel';
-import TextFieldUnderline from './TextFieldUnderline';
-import warning from 'warning';
+import React, { Component, PropTypes } from "react";
+import ReactDOM from "react-dom";
+import shallowEqual from "recompose/shallowEqual";
+import transitions from "../styles/transitions";
+import EnhancedTextarea from "./EnhancedTextarea";
+import TextFieldHint from "./TextFieldHint";
+import TextFieldLabel from "./TextFieldLabel";
+import TextFieldUnderline from "./TextFieldUnderline";
+import warning from "warning";
 
 const getStyles = (props, context, state) => {
   const {
@@ -24,42 +24,42 @@ const getStyles = (props, context, state) => {
   const styles = {
     root: {
       fontSize: 16,
-      lineHeight: '24px',
-      width: props.fullWidth ? '100%' : 256,
+      lineHeight: "24px",
+      width: props.fullWidth ? "100%" : 256,
       height: (props.rows - 1) * 24 + (props.floatingLabelText ? 72 : 48),
-      display: 'inline-block',
-      position: 'relative',
+      display: "inline-block",
+      position: "relative",
       backgroundColor: backgroundColor,
       fontFamily: baseTheme.fontFamily,
-      transition: transitions.easeOut('200ms', 'height'),
-      cursor: props.disabled ? 'not-allowed' : 'auto',
+      transition: transitions.easeOut("200ms", "height"),
+      cursor: props.disabled ? "not-allowed" : "auto",
     },
     error: {
-      position: 'relative',
+      position: "relative",
       bottom: 2,
       fontSize: 12,
-      lineHeight: '12px',
+      lineHeight: "12px",
       color: errorColor,
       transition: transitions.easeOut(),
     },
     floatingLabel: {
       color: props.disabled ? disabledTextColor : floatingLabelColor,
-      pointerEvents: 'none',
+      pointerEvents: "none",
     },
     input: {
       padding: 0,
-      position: 'relative',
-      width: '100%',
-      border: 'none',
-      outline: 'none',
-      backgroundColor: 'rgba(0,0,0,0)',
+      position: "relative",
+      width: "100%",
+      border: "none",
+      outline: "none",
+      backgroundColor: "rgba(0,0,0,0)",
       color: props.disabled ? disabledTextColor : textColor,
-      cursor: 'inherit',
-      font: 'inherit',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated style).
+      cursor: "inherit",
+      font: "inherit",
+      WebkitTapHighlightColor: "rgba(0,0,0,0)", // Remove mobile color flashing (deprecated style).
     },
     inputNative: {
-      appearance: 'textfield', // Improve type search style.
+      appearance: "textfield", // Improve type search style.
     },
   };
 
@@ -68,19 +68,19 @@ const getStyles = (props, context, state) => {
   styles.textarea = Object.assign({}, styles.input, {
     marginTop: props.floatingLabelText ? 36 : 12,
     marginBottom: props.floatingLabelText ? -36 : -12,
-    boxSizing: 'border-box',
-    font: 'inherit',
+    boxSizing: "border-box",
+    font: "inherit",
   });
 
   // Do not assign a height to the textarea as he handles it on his own.
-  styles.input.height = '100%';
+  styles.input.height = "100%";
 
   if (state.isFocused) {
     styles.floatingLabel.color = focusColor;
   }
 
   if (props.floatingLabelText) {
-    styles.input.boxSizing = 'border-box';
+    styles.input.boxSizing = "border-box";
 
     if (!props.multiLine) {
       styles.input.marginTop = 14;
@@ -107,7 +107,7 @@ const getStyles = (props, context, state) => {
  * @returns True if the string provided is valid, false otherwise.
  */
 function isValid(value) {
-  return value !== '' && value !== undefined && value !== null;
+  return value !== "" && value !== undefined && value !== null;
 }
 
 class TextField extends Component {
@@ -241,7 +241,7 @@ class TextField extends Component {
     floatingLabelFixed: false,
     multiLine: false,
     fullWidth: false,
-    type: 'text',
+    type: "text",
     underlineShow: true,
     rows: 1,
   };
@@ -257,13 +257,7 @@ class TextField extends Component {
   };
 
   componentWillMount() {
-    const {
-      children,
-      name,
-      hintText,
-      floatingLabelText,
-      id,
-    } = this.props;
+    const { children, name, hintText, floatingLabelText, id } = this.props;
 
     const propsLeaf = children ? children.props : this.props;
 
@@ -272,12 +266,16 @@ class TextField extends Component {
       hasValue: isValid(propsLeaf.value) || isValid(propsLeaf.defaultValue),
     });
 
-    warning(name || hintText || floatingLabelText || id, `Material-UI: We don't have enough information
-      to build a robust unique id for the TextField component. Please provide an id or a name.`);
+    warning(
+      name || hintText || floatingLabelText || id,
+      `Material-UI: We don't have enough information
+      to build a robust unique id for the TextField component. Please provide an id or a name.`
+    );
 
-    const uniqueId = `${name}-${hintText}-${floatingLabelText}-${
-      Math.floor(Math.random() * 0xFFFF)}`;
-    this.uniqueId = uniqueId.replace(/[^A-Za-z0-9-]/gi, '');
+    const uniqueId = `${name}-${hintText}-${floatingLabelText}-${Math.floor(
+      Math.random() * 0xffff
+    )}`;
+    this.uniqueId = uniqueId.replace(/[^A-Za-z0-9-]/gi, "");
   }
 
   componentWillReceiveProps(nextProps) {
@@ -291,7 +289,7 @@ class TextField extends Component {
       nextProps = nextProps.children.props;
     }
 
-    if (nextProps.hasOwnProperty('value')) {
+    if (nextProps.hasOwnProperty("value")) {
       const hasValue = isValid(nextProps.value);
 
       this.setState({
@@ -325,17 +323,18 @@ class TextField extends Component {
   }
 
   getInputNode() {
-    return (this.props.children || this.props.multiLine) ?
-      this.input.getInputNode() : ReactDOM.findDOMNode(this.input);
+    return this.props.children || this.props.multiLine
+      ? this.input.getInputNode()
+      : ReactDOM.findDOMNode(this.input);
   }
 
   handleInputBlur = (event) => {
-    this.setState({isFocused: false});
+    this.setState({ isFocused: false });
     if (this.props.onBlur) this.props.onBlur(event);
   };
 
   handleInputChange = (event) => {
-    this.setState({hasValue: isValid(event.target.value)});
+    this.setState({ hasValue: isValid(event.target.value) });
     if (this.props.onChange) this.props.onChange(event, event.target.value);
   };
 
@@ -343,7 +342,7 @@ class TextField extends Component {
     if (this.props.disabled) {
       return;
     }
-    this.setState({isFocused: true});
+    this.setState({ isFocused: true });
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
@@ -358,7 +357,7 @@ class TextField extends Component {
   };
 
   _isControlled() {
-    return this.props.hasOwnProperty('value');
+    return this.props.hasOwnProperty("value");
   }
 
   render() {
@@ -393,7 +392,7 @@ class TextField extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
     const inputId = id || this.uniqueId;
 
@@ -410,7 +409,9 @@ class TextField extends Component {
           this.state.isFocused ? floatingLabelFocusStyle : null
         )}
         htmlFor={inputId}
-        shrink={this.state.hasValue || this.state.isFocused || floatingLabelFixed}
+        shrink={
+          this.state.hasValue || this.state.isFocused || floatingLabelFixed
+        }
         disabled={disabled}
       >
         {floatingLabelText}
@@ -419,7 +420,7 @@ class TextField extends Component {
 
     const inputProps = {
       id: inputId,
-      ref: (elem) => this.input = elem,
+      ref: (elem) => (this.input = elem),
       disabled: this.props.disabled,
       onBlur: this.handleInputBlur,
       onChange: this.handleInputChange,
@@ -430,17 +431,20 @@ class TextField extends Component {
 
     let inputElement;
     if (children) {
-      inputElement = React.cloneElement(children,
-        {
-          ...inputProps,
-          ...children.props,
-          style: Object.assign(childStyleMerged, children.props.style),
-        });
+      inputElement = React.cloneElement(children, {
+        ...inputProps,
+        ...children.props,
+        style: Object.assign(childStyleMerged, children.props.style),
+      });
     } else {
       inputElement = multiLine ? (
         <EnhancedTextarea
           style={childStyleMerged}
-          textareaStyle={Object.assign(styles.textarea, styles.inputNative, textareaStyle)}
+          textareaStyle={Object.assign(
+            styles.textarea,
+            styles.inputNative,
+            textareaStyle
+          )}
           rows={rows}
           rowsMax={rowsMax}
           {...other}
@@ -450,7 +454,9 @@ class TextField extends Component {
       ) : (
         <input
           type={type}
-          style={prepareStyles(Object.assign(styles.inputNative, childStyleMerged))}
+          style={prepareStyles(
+            Object.assign(styles.inputNative, childStyleMerged)
+          )}
           {...other}
           {...inputProps}
         />
@@ -470,18 +476,25 @@ class TextField extends Component {
         style={prepareStyles(Object.assign(styles.root, style))}
       >
         {floatingLabelTextElement}
-        {hintText ?
+        {hintText ? (
           <TextFieldHint
             muiTheme={this.context.muiTheme}
-            show={!(this.state.hasValue || (floatingLabelText && !this.state.isFocused)) ||
-                  (!this.state.hasValue && floatingLabelText && floatingLabelFixed && !this.state.isFocused)}
+            show={
+              !(
+                this.state.hasValue ||
+                (floatingLabelText && !this.state.isFocused)
+              ) ||
+              (!this.state.hasValue &&
+                floatingLabelText &&
+                floatingLabelFixed &&
+                !this.state.isFocused)
+            }
             style={hintStyle}
             text={hintText}
-          /> :
-          null
-        }
+          />
+        ) : null}
         {inputElement}
-        {underlineShow ?
+        {underlineShow ? (
           <TextFieldUnderline
             disabled={disabled}
             disabledStyle={underlineDisabledStyle}
@@ -491,9 +504,8 @@ class TextField extends Component {
             focusStyle={underlineFocusStyle}
             muiTheme={this.context.muiTheme}
             style={underlineStyle}
-          /> :
-          null
-        }
+          />
+        ) : null}
         {errorTextElement}
       </div>
     );

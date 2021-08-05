@@ -1,8 +1,8 @@
-import React from 'react';
-import Title from 'react-title-component';
+import React from "react";
+import Title from "react-title-component";
 
-import MarkdownElement from '../../MarkdownElement';
-import usageText from './usage.md';
+import MarkdownElement from "../../MarkdownElement";
+import usageText from "./usage.md";
 
 const Usage = () => (
   <div>

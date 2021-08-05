@@ -1,8 +1,8 @@
-import React from 'react';
-import FlatButton from 'material-ui/FlatButton';
-import FontIcon from 'material-ui/FontIcon';
-import ActionAndroid from 'material-ui/svg-icons/action/android';
-import {fullWhite} from 'material-ui/styles/colors';
+import React from "react";
+import FlatButton from "material-ui/FlatButton";
+import FontIcon from "material-ui/FontIcon";
+import ActionAndroid from "material-ui/svg-icons/action/android";
+import { fullWhite } from "material-ui/styles/colors";
 
 const style = {
   margin: 12,
@@ -10,10 +10,7 @@ const style = {
 
 const FlatButtonExampleIcon = () => (
   <div>
-    <FlatButton
-      icon={<ActionAndroid />}
-      style={style}
-    />
+    <FlatButton icon={<ActionAndroid />} style={style} />
     <FlatButton
       backgroundColor="#a4c639"
       hoverColor="#8AA62F"

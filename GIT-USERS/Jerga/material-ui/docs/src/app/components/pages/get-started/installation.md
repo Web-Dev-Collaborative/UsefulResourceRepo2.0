@@ -10,7 +10,7 @@ This dependency is temporary and will go away once the official React version is
 Until then, be sure to inject this plugin at the start of your app.
 
 ```js
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import injectTapEventPlugin from "react-tap-event-plugin";
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -30,4 +30,4 @@ on how to do so.
 
 ### ES Compiling
 
-The examples in this documentation use the ```stage-1``` features of the ECMAScript specification. Be sure if you are testing these examples in your own project that you have the proper plugins installed in your compiler. Here are [some instructions](http://babeljs.io/docs/plugins/preset-stage-1/) on how to install the plugin for Babel.   
+The examples in this documentation use the `stage-1` features of the ECMAScript specification. Be sure if you are testing these examples in your own project that you have the proper plugins installed in your compiler. Here are [some instructions](http://babeljs.io/docs/plugins/preset-stage-1/) on how to install the plugin for Babel.

@@ -1,23 +1,23 @@
-import React from 'react';
-import Title from 'react-title-component';
+import React from "react";
+import Title from "react-title-component";
 
-import CodeExample from '../../../CodeExample';
-import PropTypeDescription from '../../../PropTypeDescription';
-import MarkdownElement from '../../../MarkdownElement';
+import CodeExample from "../../../CodeExample";
+import PropTypeDescription from "../../../PropTypeDescription";
+import MarkdownElement from "../../../MarkdownElement";
 
-import subheaderReadmeText from './README';
-import listExampleChatCode from '!raw!../List/ExampleChat';
-import ListExampleChat from '../List/ExampleChat';
-import listExampleFoldersCode from '!raw!../List/ExampleFolders';
-import ListExampleFolders from '../List/ExampleFolders';
-import gridListExampleSimpleCode from '!raw!../GridList/ExampleSimple';
-import GridListExampleSimple from '../GridList/ExampleSimple';
-import subheaderCode from '!raw!material-ui/Subheader/Subheader';
+import subheaderReadmeText from "./README";
+import listExampleChatCode from "!raw!../List/ExampleChat";
+import ListExampleChat from "../List/ExampleChat";
+import listExampleFoldersCode from "!raw!../List/ExampleFolders";
+import ListExampleFolders from "../List/ExampleFolders";
+import gridListExampleSimpleCode from "!raw!../GridList/ExampleSimple";
+import GridListExampleSimple from "../GridList/ExampleSimple";
+import subheaderCode from "!raw!material-ui/Subheader/Subheader";
 
 const descriptions = {
-  simpleList: 'Subheader used in a simple [List](/#/components/list).',
-  inset: 'Inset Subheader used in a [List](/#/components/list).',
-  simpleGridList: 'Subheader used in a [GridList](/#/components/grid-list).',
+  simpleList: "Subheader used in a simple [List](/#/components/list).",
+  inset: "Inset Subheader used in a [List](/#/components/list).",
+  simpleGridList: "Subheader used in a [GridList](/#/components/grid-list).",
 };
 
 const SubheaderPage = () => (

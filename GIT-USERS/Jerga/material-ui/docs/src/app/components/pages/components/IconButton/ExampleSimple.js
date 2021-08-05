@@ -1,5 +1,5 @@
-import React from 'react';
-import IconButton from 'material-ui/IconButton';
+import React from "react";
+import IconButton from "material-ui/IconButton";
 
 const IconButtonExampleSimple = () => (
   <div>

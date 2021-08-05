@@ -1,14 +1,14 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from "react";
 
 function getStyles(props, context) {
-  const {baseTheme} = context.muiTheme;
+  const { baseTheme } = context.muiTheme;
 
   return {
     root: {
-      position: 'relative',
+      position: "relative",
       paddingLeft: baseTheme.spacing.desktopGutterLess,
       paddingRight: baseTheme.spacing.desktopGutterLess,
-      verticalAlign: 'middle',
+      verticalAlign: "middle",
     },
   };
 }
@@ -24,16 +24,15 @@ class FlatButtonLabel extends Component {
   };
 
   render() {
-    const {
-      label,
-      style,
-    } = this.props;
+    const { label, style } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     return (
-      <span style={prepareStyles(Object.assign(styles.root, style))}>{label}</span>
+      <span style={prepareStyles(Object.assign(styles.root, style))}>
+        {label}
+      </span>
     );
   }
 }

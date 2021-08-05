@@ -1,30 +1,27 @@
-import React, {Component, PropTypes} from 'react';
-import warning from 'warning';
+import React, { Component, PropTypes } from "react";
+import warning from "warning";
 
 function getStyles(props, context) {
-  const {
-    baseTheme,
-    table,
-  } = context.muiTheme;
+  const { baseTheme, table } = context.muiTheme;
 
   return {
     root: {
       backgroundColor: table.backgroundColor,
       padding: `0 ${baseTheme.spacing.desktopGutter}px`,
-      width: '100%',
-      borderCollapse: 'collapse',
+      width: "100%",
+      borderCollapse: "collapse",
       borderSpacing: 0,
-      tableLayout: 'fixed',
+      tableLayout: "fixed",
       fontFamily: baseTheme.fontFamily,
     },
     bodyTable: {
-      height: (props.fixedHeader || props.fixedFooter) ? props.height : 'auto',
-      overflowX: 'hidden',
-      overflowY: 'auto',
+      height: props.fixedHeader || props.fixedFooter ? props.height : "auto",
+      overflowX: "hidden",
+      overflowY: "auto",
     },
     tableWrapper: {
-      height: (props.fixedHeader || props.fixedFooter) ? 'auto' : props.height,
-      overflow: 'auto',
+      height: props.fixedHeader || props.fixedFooter ? "auto" : props.height,
+      overflow: "auto",
     },
   };
 }
@@ -130,7 +127,7 @@ class Table extends Component {
     allRowsSelected: false,
     fixedFooter: true,
     fixedHeader: true,
-    height: 'inherit',
+    height: "inherit",
     multiSelectable: false,
     selectable: true,
   };
@@ -145,7 +142,7 @@ class Table extends Component {
 
   componentWillMount() {
     if (this.props.allRowsSelected) {
-      this.setState({allRowsSelected: true});
+      this.setState({ allRowsSelected: true });
     }
   }
 
@@ -157,32 +154,29 @@ class Table extends Component {
   }
 
   createTableHeader(base) {
-    return React.cloneElement(
-      base,
-      {
-        enableSelectAll: base.props.enableSelectAll && this.props.selectable && this.props.multiSelectable,
-        onSelectAll: this.onSelectAll,
-        selectAllSelected: this.state.allRowsSelected,
-      }
-    );
+    return React.cloneElement(base, {
+      enableSelectAll:
+        base.props.enableSelectAll &&
+        this.props.selectable &&
+        this.props.multiSelectable,
+      onSelectAll: this.onSelectAll,
+      selectAllSelected: this.state.allRowsSelected,
+    });
   }
 
   createTableBody(base) {
-    return React.cloneElement(
-      base,
-      {
-        allRowsSelected: this.state.allRowsSelected,
-        multiSelectable: this.props.multiSelectable,
-        onCellClick: this.onCellClick,
-        onCellHover: this.onCellHover,
-        onCellHoverExit: this.onCellHoverExit,
-        onRowHover: this.onRowHover,
-        onRowHoverExit: this.onRowHoverExit,
-        onRowSelection: this.onRowSelection,
-        selectable: this.props.selectable,
-        style: Object.assign({height: this.props.height}, base.props.style),
-      }
-    );
+    return React.cloneElement(base, {
+      allRowsSelected: this.state.allRowsSelected,
+      multiSelectable: this.props.multiSelectable,
+      onCellClick: this.onCellClick,
+      onCellHover: this.onCellHover,
+      onCellHoverExit: this.onCellHoverExit,
+      onRowHover: this.onRowHover,
+      onRowHoverExit: this.onRowHoverExit,
+      onRowSelection: this.onRowSelection,
+      selectable: this.props.selectable,
+      style: Object.assign({ height: this.props.height }, base.props.style),
+    });
   }
 
   createTableFooter(base) {
@@ -190,15 +184,18 @@ class Table extends Component {
   }
 
   onCellClick = (rowNumber, columnNumber, event) => {
-    if (this.props.onCellClick) this.props.onCellClick(rowNumber, columnNumber, event);
+    if (this.props.onCellClick)
+      this.props.onCellClick(rowNumber, columnNumber, event);
   };
 
   onCellHover = (rowNumber, columnNumber, event) => {
-    if (this.props.onCellHover) this.props.onCellHover(rowNumber, columnNumber, event);
+    if (this.props.onCellHover)
+      this.props.onCellHover(rowNumber, columnNumber, event);
   };
 
   onCellHoverExit = (rowNumber, columnNumber, event) => {
-    if (this.props.onCellHoverExit) this.props.onCellHoverExit(rowNumber, columnNumber, event);
+    if (this.props.onCellHoverExit)
+      this.props.onCellHoverExit(rowNumber, columnNumber, event);
   };
 
   onRowHover = (rowNumber) => {
@@ -210,20 +207,20 @@ class Table extends Component {
   };
 
   onRowSelection = (selectedRows) => {
-    if (this.state.allRowsSelected) this.setState({allRowsSelected: false});
+    if (this.state.allRowsSelected) this.setState({ allRowsSelected: false });
     if (this.props.onRowSelection) this.props.onRowSelection(selectedRows);
   };
 
   onSelectAll = () => {
     if (this.props.onRowSelection) {
       if (!this.state.allRowsSelected) {
-        this.props.onRowSelection('all');
+        this.props.onRowSelection("all");
       } else {
-        this.props.onRowSelection('none');
+        this.props.onRowSelection("none");
       }
     }
 
-    this.setState({allRowsSelected: !this.state.allRowsSelected});
+    this.setState({ allRowsSelected: !this.state.allRowsSelected });
   };
 
   render() {
@@ -239,7 +236,7 @@ class Table extends Component {
       footerStyle,
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     let tHead;
@@ -249,17 +246,19 @@ class Table extends Component {
     React.Children.forEach(children, (child) => {
       if (!React.isValidElement(child)) return;
 
-      const {muiName} = child.type;
-      if (muiName === 'TableBody') {
+      const { muiName } = child.type;
+      if (muiName === "TableBody") {
         tBody = this.createTableBody(child);
-      } else if (muiName === 'TableHeader') {
+      } else if (muiName === "TableHeader") {
         tHead = this.createTableHeader(child);
-      } else if (muiName === 'TableFooter') {
+      } else if (muiName === "TableFooter") {
         tFoot = this.createTableFooter(child);
       } else {
-        warning(false,
+        warning(
+          false,
           `Material-UI: Children of the Table component must be TableBody or TableHeader or TableFooter.
-           Nothing is rendered.`);
+           Nothing is rendered.`
+        );
       }
     });
 
@@ -288,7 +287,10 @@ class Table extends Component {
       if (fixedFooter) {
         footerTable = (
           <div style={prepareStyles(Object.assign({}, footerStyle))}>
-            <table className={className} style={prepareStyles(mergedTableStyle)}>
+            <table
+              className={className}
+              style={prepareStyles(mergedTableStyle)}
+            >
               {tFoot}
             </table>
           </div>
@@ -299,9 +301,14 @@ class Table extends Component {
     }
 
     return (
-      <div style={prepareStyles(Object.assign(styles.tableWrapper, wrapperStyle))}>
+      <div
+        style={prepareStyles(Object.assign(styles.tableWrapper, wrapperStyle))}
+      >
         {headerTable}
-        <div style={prepareStyles(Object.assign(styles.bodyTable, bodyStyle))} ref="tableDiv">
+        <div
+          style={prepareStyles(Object.assign(styles.bodyTable, bodyStyle))}
+          ref="tableDiv"
+        >
           <table className={className} style={mergedTableStyle} ref="tableBody">
             {inlineHeader}
             {inlineFooter}

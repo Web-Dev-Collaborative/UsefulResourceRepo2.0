@@ -1,21 +1,22 @@
-import React from 'react';
-import Title from 'react-title-component';
+import React from "react";
+import Title from "react-title-component";
 
-import CodeExample from '../../../CodeExample';
-import PropTypeDescription from '../../../PropTypeDescription';
-import MarkdownElement from '../../../MarkdownElement';
+import CodeExample from "../../../CodeExample";
+import PropTypeDescription from "../../../PropTypeDescription";
+import MarkdownElement from "../../../MarkdownElement";
 
-import linearProgressReadmeText from './README';
-import LinearProgressExampleSimple from './ExampleSimple';
-import linearProgressExampleSimpleCode from '!raw!./ExampleSimple';
-import LinearProgressExampleDeterminate from './ExampleDeterminate';
-import linearProgressExampleDeterminateCode from '!raw!./ExampleDeterminate';
-import linearProgressCode from '!raw!material-ui/LinearProgress/LinearProgress';
+import linearProgressReadmeText from "./README";
+import LinearProgressExampleSimple from "./ExampleSimple";
+import linearProgressExampleSimpleCode from "!raw!./ExampleSimple";
+import LinearProgressExampleDeterminate from "./ExampleDeterminate";
+import linearProgressExampleDeterminateCode from "!raw!./ExampleDeterminate";
+import linearProgressCode from "!raw!material-ui/LinearProgress/LinearProgress";
 
 const descriptions = {
-  indeterminate: 'By default, the indicator animates continuously.',
-  determinate: 'In `determinate` mode, the indicator adjusts to show the percentage complete, ' +
-  'as a ratio of `value`: `max-min`.',
+  indeterminate: "By default, the indicator animates continuously.",
+  determinate:
+    "In `determinate` mode, the indicator adjusts to show the percentage complete, " +
+    "as a ratio of `value`: `max-min`.",
 };
 
 const LinearProgressPage = () => (

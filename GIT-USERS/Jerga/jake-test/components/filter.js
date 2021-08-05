@@ -1,27 +1,26 @@
-import React, { useState } from 'react';
-import Select from 'react-select';
-import { CATEGORY_LIST } from '../actions';
+import React, { useState } from "react";
+import Select from "react-select";
+import { CATEGORY_LIST } from "../actions";
 
 const Filter = (props) => {
-
-  const [category, setCategory] = useState('')
-  const [hideLabel, setLabel] = useState(false)
+  const [category, setCategory] = useState("");
+  const [hideLabel, setLabel] = useState(false);
   // const classes = useStyles();
 
-  const handleChange = event => {
-    props.changeCategory(event.target.value)
-    setCategory(event.target.value)
-    setLabel(true)
+  const handleChange = (event) => {
+    props.changeCategory(event.target.value);
+    setCategory(event.target.value);
+    setLabel(true);
   };
 
-  const onChange = value => {
-    console.log(value)
-    props.changeCategory(value.label)
+  const onChange = (value) => {
+    console.log(value);
+    props.changeCategory(value.label);
   };
 
   return (
     <>
-      <Select 
+      <Select
         className="react-select-container"
         maxMenuHeight={550}
         classNamePrefix="react-select"
@@ -33,18 +32,15 @@ const Filter = (props) => {
 
       <style jsx>{`
         .react-select-container {
-          display: none!important;
+          display: none !important;
         }
 
         .react-select__control {
-          width: 350px!important;
+          width: 350px !important;
         }
       `}</style>
-
-
-
     </>
   );
-}
+};
 
-export default Filter
+export default Filter;

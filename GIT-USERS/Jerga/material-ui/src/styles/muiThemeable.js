@@ -1,5 +1,5 @@
-import React, {PropTypes} from 'react';
-import getMuiTheme from './getMuiTheme';
+import React, { PropTypes } from "react";
+import getMuiTheme from "./getMuiTheme";
 
 let DEFAULT_THEME;
 
@@ -13,7 +13,7 @@ function getDefaultTheme() {
 export default function muiThemeable() {
   return (Component) => {
     const MuiComponent = (props, context) => {
-      const {muiTheme = getDefaultTheme()} = context;
+      const { muiTheme = getDefaultTheme() } = context;
 
       return <Component muiTheme={muiTheme} {...props} />;
     };

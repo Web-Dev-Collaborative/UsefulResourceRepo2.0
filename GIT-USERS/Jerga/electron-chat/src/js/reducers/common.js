@@ -1,12 +1,7 @@
-
-
-
-
-
-
-export const createErrorReducer = actionType =>
+export const createErrorReducer =
+  (actionType) =>
   (state = null, action) => {
-    switch(action.type) {
+    switch (action.type) {
       case `${actionType}_INIT`:
         return null;
       case `${actionType}_ERROR`:
@@ -14,12 +9,12 @@ export const createErrorReducer = actionType =>
       default:
         return state;
     }
-  }
+  };
 
-
-export const createIsFetchingReducer = actionType =>
+export const createIsFetchingReducer =
+  (actionType) =>
   (state = false, action) => {
-    switch(action.type) {
+    switch (action.type) {
       case `${actionType}_INIT`:
         return true;
       case `${actionType}_SUCCESS`:
@@ -28,4 +23,4 @@ export const createIsFetchingReducer = actionType =>
       default:
         return state;
     }
-  }
+  };

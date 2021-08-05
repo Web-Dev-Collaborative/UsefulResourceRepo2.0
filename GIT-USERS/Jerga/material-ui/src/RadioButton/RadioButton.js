@@ -1,11 +1,11 @@
-import React, {Component, PropTypes} from 'react';
-import transitions from '../styles/transitions';
-import EnhancedSwitch from '../internal/EnhancedSwitch';
-import RadioButtonOff from '../svg-icons/toggle/radio-button-unchecked';
-import RadioButtonOn from '../svg-icons/toggle/radio-button-checked';
+import React, { Component, PropTypes } from "react";
+import transitions from "../styles/transitions";
+import EnhancedSwitch from "../internal/EnhancedSwitch";
+import RadioButtonOff from "../svg-icons/toggle/radio-button-unchecked";
+import RadioButtonOn from "../svg-icons/toggle/radio-button-checked";
 
 function getStyles(props, context) {
-  const {radioButton} = context.muiTheme;
+  const { radioButton } = context.muiTheme;
 
   return {
     icon: {
@@ -14,26 +14,26 @@ function getStyles(props, context) {
     },
     target: {
       transition: transitions.easeOut(),
-      position: 'absolute',
+      position: "absolute",
       opacity: 1,
-      transform: 'scale(1)',
+      transform: "scale(1)",
       fill: radioButton.borderColor,
     },
     fill: {
-      position: 'absolute',
+      position: "absolute",
       opacity: 1,
-      transform: 'scale(0)',
-      transformOrigin: '50% 50%',
+      transform: "scale(0)",
+      transformOrigin: "50% 50%",
       transition: transitions.easeOut(),
       fill: radioButton.checkedColor,
     },
     targetWhenChecked: {
       opacity: 0,
-      transform: 'scale(0)',
+      transform: "scale(0)",
     },
     fillWhenChecked: {
       opacity: 1,
-      transform: 'scale(1)',
+      transform: "scale(1)",
     },
     targetWhenDisabled: {
       fill: radioButton.disabledColor,
@@ -42,7 +42,9 @@ function getStyles(props, context) {
       fill: radioButton.disabledColor,
     },
     label: {
-      color: props.disabled ? radioButton.labelDisabledColor : radioButton.labelColor,
+      color: props.disabled
+        ? radioButton.labelDisabledColor
+        : radioButton.labelColor,
     },
     ripple: {
       color: props.checked ? radioButton.checkedColor : radioButton.borderColor,
@@ -79,7 +81,7 @@ class RadioButton extends Component {
      * Used internally by `RadioButtonGroup`. Use the `labelPosition` property of `RadioButtonGroup` instead.
      * Where the label will be placed next to the radio button.
      */
-    labelPosition: PropTypes.oneOf(['left', 'right']),
+    labelPosition: PropTypes.oneOf(["left", "right"]),
     /**
      * Override the inline-styles of the label element.
      */
@@ -112,7 +114,7 @@ class RadioButton extends Component {
   static defaultProps = {
     checked: false,
     disabled: false,
-    labelPosition: 'right',
+    labelPosition: "right",
   };
 
   static contextTypes = {
@@ -169,17 +171,21 @@ class RadioButton extends Component {
       disabled && styles.fillWhenDisabled
     );
 
-    const uncheckedElement = React.isValidElement(uncheckedIcon) ?
+    const uncheckedElement = React.isValidElement(uncheckedIcon) ? (
       React.cloneElement(uncheckedIcon, {
         style: Object.assign(uncheckedStyles, uncheckedIcon.props.style),
-      }) :
-        <RadioButtonOff style={uncheckedStyles} />;
+      })
+    ) : (
+      <RadioButtonOff style={uncheckedStyles} />
+    );
 
-    const checkedElement = React.isValidElement(checkedIcon) ?
+    const checkedElement = React.isValidElement(checkedIcon) ? (
       React.cloneElement(checkedIcon, {
         style: Object.assign(checkedStyles, checkedIcon.props.style),
-      }) :
-        <RadioButtonOn style={checkedStyles} />;
+      })
+    ) : (
+      <RadioButtonOn style={checkedStyles} />
+    );
 
     const mergedIconStyle = Object.assign(styles.icon, iconStyle);
     const mergedLabelStyle = Object.assign(styles.label, labelStyle);
@@ -197,7 +203,12 @@ class RadioButton extends Component {
         labelStyle={mergedLabelStyle}
         labelPosition={labelPosition}
         onSwitch={this.handleSwitch}
-        switchElement={<div>{uncheckedElement}{checkedElement}</div>}
+        switchElement={
+          <div>
+            {uncheckedElement}
+            {checkedElement}
+          </div>
+        }
       />
     );
   }

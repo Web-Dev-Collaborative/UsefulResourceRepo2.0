@@ -1,13 +1,12 @@
-import React from 'react';
-import Snackbar from 'material-ui/Snackbar';
-import RaisedButton from 'material-ui/RaisedButton';
+import React from "react";
+import Snackbar from "material-ui/Snackbar";
+import RaisedButton from "material-ui/RaisedButton";
 
 export default class SnackbarExampleTwice extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      message: 'Event 1 added to your calendar',
+      message: "Event 1 added to your calendar",
       open: false,
     };
     this.timer = undefined;
@@ -24,7 +23,9 @@ export default class SnackbarExampleTwice extends React.Component {
 
     this.timer = setTimeout(() => {
       this.setState({
-        message: `Event ${Math.round(Math.random() * 100)} added to your calendar`,
+        message: `Event ${Math.round(
+          Math.random() * 100
+        )} added to your calendar`,
       });
     }, 1500);
   };

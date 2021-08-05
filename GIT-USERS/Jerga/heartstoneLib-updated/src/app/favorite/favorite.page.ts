@@ -1,26 +1,26 @@
-import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { FavoriteCardStore } from '../card/shared/card-favorite.store';
-import { Card } from '../card/shared/card.model';
+import { Component } from "@angular/core";
+import { Subscription } from "rxjs";
+import { FavoriteCardStore } from "../card/shared/card-favorite.store";
+import { Card } from "../card/shared/card.model";
 
 @Component({
-  selector: 'app-card-favorite',
-  templateUrl: './favorite.page.html'
+  selector: "app-card-favorite",
+  templateUrl: "./favorite.page.html",
 })
 export class CardFavoritePage {
-
   favoriteCardList: Card[] = [];
 
   favoriteCardSub: Subscription;
 
   constructor(private favoriteCardStore: FavoriteCardStore) {}
 
-  ionViewWillEnter () {
+  ionViewWillEnter() {
     this.favoriteCardSub = this.favoriteCardStore.favoriteCards.subscribe(
-    (favoriteCards: any) => {
-      this.favoriteCardList = this.getFavoriteCardList(favoriteCards);
-      console.log(this.favoriteCardList);
-    })
+      (favoriteCards: any) => {
+        this.favoriteCardList = this.getFavoriteCardList(favoriteCards);
+        console.log(this.favoriteCardList);
+      }
+    );
   }
 
   ionViewDidLeave() {
@@ -30,13 +30,12 @@ export class CardFavoritePage {
   }
 
   private getFavoriteCardList(favoriteCards: any): Card[] {
-      if (favoriteCards) {
-        return Object.keys(favoriteCards)
-          .filter(key => favoriteCards[key])
-          .map(key => favoriteCards[key])
-      }
-
-      return [];
+    if (favoriteCards) {
+      return Object.keys(favoriteCards)
+        .filter((key) => favoriteCards[key])
+        .map((key) => favoriteCards[key]);
     }
 
+    return [];
+  }
 }

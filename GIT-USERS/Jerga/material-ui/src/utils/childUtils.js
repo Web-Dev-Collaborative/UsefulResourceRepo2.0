@@ -1,5 +1,5 @@
-import React from 'react';
-import createFragment from 'react-addons-create-fragment';
+import React from "react";
+import createFragment from "react-addons-create-fragment";
 
 export function createChildFragment(fragments) {
   const newFragments = {};
@@ -28,14 +28,18 @@ export function extendChildren(children, extendedProps, extendedChildren) {
       return child;
     }
 
-    const newProps = typeof extendedProps === 'function' ?
-      extendedProps(child) : extendedProps;
+    const newProps =
+      typeof extendedProps === "function"
+        ? extendedProps(child)
+        : extendedProps;
 
-    const newChildren = typeof extendedChildren === 'function' ?
-      extendedChildren(child) : extendedChildren ?
-      extendedChildren : child.props.children;
+    const newChildren =
+      typeof extendedChildren === "function"
+        ? extendedChildren(child)
+        : extendedChildren
+        ? extendedChildren
+        : child.props.children;
 
     return React.cloneElement(child, newProps, newChildren);
   });
 }
-

@@ -1,21 +1,19 @@
-import React, {PropTypes, cloneElement} from 'react';
-import EnhancedButton from '../internal/EnhancedButton';
+import React, { PropTypes, cloneElement } from "react";
+import EnhancedButton from "../internal/EnhancedButton";
 
 function getStyles(props, context) {
-  const {selected} = props;
+  const { selected } = props;
   const {
-    muiTheme: {
-      bottomNavigation,
-    },
+    muiTheme: { bottomNavigation },
   } = context;
 
-  const color = selected ?
-    bottomNavigation.selectedColor :
-    bottomNavigation.unselectedColor;
+  const color = selected
+    ? bottomNavigation.selectedColor
+    : bottomNavigation.unselectedColor;
 
   const styles = {
     root: {
-      transition: 'padding-top 0.3s',
+      transition: "padding-top 0.3s",
       paddingTop: selected ? 6 : 8,
       paddingBottom: 10,
       paddingLeft: 12,
@@ -24,18 +22,18 @@ function getStyles(props, context) {
       maxWidth: 168,
     },
     label: {
-      fontSize: selected ?
-        bottomNavigation.selectedFontSize :
-        bottomNavigation.unselectedFontSize,
-      transition: 'color 0.3s, font-size 0.3s',
+      fontSize: selected
+        ? bottomNavigation.selectedFontSize
+        : bottomNavigation.unselectedFontSize,
+      transition: "color 0.3s, font-size 0.3s",
       color: color,
     },
     icon: {
-      display: 'block',
+      display: "block",
       /**
        * Used to ensure SVG icons are centered
        */
-      width: '100%',
+      width: "100%",
     },
     iconColor: color,
   };
@@ -44,14 +42,9 @@ function getStyles(props, context) {
 }
 
 const BottomNavigationItem = (props, context) => {
-  const {
-    label,
-    icon,
-    style,
-    ...other
-  } = props;
+  const { label, icon, style, ...other } = props;
 
-  const {prepareStyles} = context.muiTheme;
+  const { prepareStyles } = context.muiTheme;
   const styles = getStyles(props, context);
 
   const styledIcon = cloneElement(icon, {
@@ -62,9 +55,7 @@ const BottomNavigationItem = (props, context) => {
   return (
     <EnhancedButton {...other} style={Object.assign({}, styles.root, style)}>
       {styledIcon}
-      <div style={prepareStyles(styles.label)}>
-        {label}
-      </div>
+      <div style={prepareStyles(styles.label)}>{label}</div>
     </EnhancedButton>
   );
 };

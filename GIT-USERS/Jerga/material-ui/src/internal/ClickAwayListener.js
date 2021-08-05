@@ -1,6 +1,6 @@
-import {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
-import events from '../utils/events';
+import { Component, PropTypes } from "react";
+import ReactDOM from "react-dom";
+import events from "../utils/events";
 
 const isDescendant = (el, target) => {
   if (target !== null) {
@@ -9,9 +9,11 @@ const isDescendant = (el, target) => {
   return false;
 };
 
-const clickAwayEvents = ['mouseup', 'touchend'];
-const bind = (callback) => clickAwayEvents.forEach((event) => events.on(document, event, callback));
-const unbind = (callback) => clickAwayEvents.forEach((event) => events.off(document, event, callback));
+const clickAwayEvents = ["mouseup", "touchend"];
+const bind = (callback) =>
+  clickAwayEvents.forEach((event) => events.on(document, event, callback));
+const unbind = (callback) =>
+  clickAwayEvents.forEach((event) => events.off(document, event, callback));
 
 class ClickAwayListener extends Component {
   static propTypes = {
@@ -49,7 +51,10 @@ class ClickAwayListener extends Component {
     if (this.isCurrentlyMounted) {
       const el = ReactDOM.findDOMNode(this);
 
-      if (document.documentElement.contains(event.target) && !isDescendant(el, event.target)) {
+      if (
+        document.documentElement.contains(event.target) &&
+        !isDescendant(el, event.target)
+      ) {
         this.props.onClickAway(event);
       }
     }

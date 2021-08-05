@@ -7,11 +7,12 @@ mantainers of this project
 ## Getting Started
 
 In the file called:
+
 ```
 .env.local[duplicate]
 ```
 
-remove [duplicate] so file is called ```.env.local```
+remove [duplicate] so file is called `.env.local`
 
 Install the dependencies:
 

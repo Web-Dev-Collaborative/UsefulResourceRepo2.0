@@ -1,23 +1,19 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from "react";
 
 const styles = {
-  width: '100%',
-  position: 'relative',
-  textAlign: 'initial',
+  width: "100%",
+  position: "relative",
+  textAlign: "initial",
 };
 
-const TabTemplate = ({children, selected, style}) => {
+const TabTemplate = ({ children, selected, style }) => {
   const templateStyle = Object.assign({}, styles, style);
   if (!selected) {
     templateStyle.height = 0;
-    templateStyle.overflow = 'hidden';
+    templateStyle.overflow = "hidden";
   }
 
-  return (
-    <div style={templateStyle}>
-      {children}
-    </div>
-  );
+  return <div style={templateStyle}>{children}</div>;
 };
 
 TabTemplate.propTypes = {

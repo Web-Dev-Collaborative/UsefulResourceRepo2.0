@@ -1,8 +1,7 @@
-import React from 'react';
-import AutoComplete from 'material-ui/AutoComplete';
+import React from "react";
+import AutoComplete from "material-ui/AutoComplete";
 
 export default class AutoCompleteExampleSimple extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -13,11 +12,7 @@ export default class AutoCompleteExampleSimple extends React.Component {
 
   handleUpdateInput = (value) => {
     this.setState({
-      dataSource: [
-        value,
-        value + value,
-        value + value + value,
-      ],
+      dataSource: [value, value + value, value + value + value],
     });
   };
 

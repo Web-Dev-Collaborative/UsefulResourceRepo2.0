@@ -1,17 +1,16 @@
-import { Injectable } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { Injectable } from "@angular/core";
+import { LoadingController } from "@ionic/angular";
 
 @Injectable()
 export class LoaderService {
-
   private loader: HTMLIonLoadingElement;
 
   constructor(private loadingCtrl: LoadingController) {}
 
   public async presentLoading(): Promise<HTMLIonLoadingElement> {
     this.loader = await this.loadingCtrl.create({
-      content: 'Loading',
-      translucent: true
+      content: "Loading",
+      translucent: true,
     });
 
     this.loader.present();
@@ -24,5 +23,4 @@ export class LoaderService {
       this.loader.dismiss();
     }
   }
-
 }

@@ -6,10 +6,9 @@ import {
   fullWhite,
   darkWhite,
   lightWhite,
-} from './colors';
+} from "./colors";
 
 class Typography {
-
   constructor() {
     // text colors
     this.textFullBlack = fullBlack;

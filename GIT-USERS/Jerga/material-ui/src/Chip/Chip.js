@@ -1,11 +1,11 @@
-import React, {Component, PropTypes} from 'react';
-import keycode from 'keycode';
-import {fade, emphasize} from '../utils/colorManipulator';
-import EnhancedButton from '../internal/EnhancedButton';
-import DeleteIcon from '../svg-icons/navigation/cancel';
+import React, { Component, PropTypes } from "react";
+import keycode from "keycode";
+import { fade, emphasize } from "../utils/colorManipulator";
+import EnhancedButton from "../internal/EnhancedButton";
+import DeleteIcon from "../svg-icons/navigation/cancel";
 
 function getStyles(props, context, state) {
-  const {chip} = context.muiTheme;
+  const { chip } = context.muiTheme;
 
   const backgroundColor = props.backgroundColor || chip.backgroundColor;
   const focusColor = emphasize(backgroundColor, 0.08);
@@ -16,34 +16,39 @@ function getStyles(props, context, state) {
       marginRight: -4,
     },
     deleteIcon: {
-      color: (state.deleteHovered) ? fade(chip.deleteIconColor, 0.4) : chip.deleteIconColor,
-      cursor: 'pointer',
-      margin: '4px 4px 0px -8px',
+      color: state.deleteHovered
+        ? fade(chip.deleteIconColor, 0.4)
+        : chip.deleteIconColor,
+      cursor: "pointer",
+      margin: "4px 4px 0px -8px",
     },
     label: {
       color: props.labelColor || chip.textColor,
       fontSize: chip.fontSize,
       fontWeight: chip.fontWeight,
-      lineHeight: '32px',
+      lineHeight: "32px",
       paddingLeft: 12,
       paddingRight: 12,
-      userSelect: 'none',
-      whiteSpace: 'nowrap',
+      userSelect: "none",
+      whiteSpace: "nowrap",
     },
     root: {
-      backgroundColor: state.clicked ? pressedColor : (state.focused || state.hovered) ? focusColor : backgroundColor,
+      backgroundColor: state.clicked
+        ? pressedColor
+        : state.focused || state.hovered
+        ? focusColor
+        : backgroundColor,
       borderRadius: 16,
       boxShadow: state.clicked ? chip.shadow : null,
-      cursor: props.onTouchTap ? 'pointer' : 'default',
-      display: 'flex',
-      whiteSpace: 'nowrap',
-      width: 'fit-content',
+      cursor: props.onTouchTap ? "pointer" : "default",
+      display: "flex",
+      whiteSpace: "nowrap",
+      width: "fit-content",
     },
   };
 }
 
 class Chip extends Component {
-
   static propTypes = {
     /**
      * Override the background color of the chip.
@@ -115,7 +120,7 @@ class Chip extends Component {
     onTouchStart: () => {},
   };
 
-  static contextTypes = {muiTheme: PropTypes.object.isRequired};
+  static contextTypes = { muiTheme: PropTypes.object.isRequired };
 
   state = {
     clicked: false,
@@ -125,13 +130,13 @@ class Chip extends Component {
   };
 
   handleBlur = (event) => {
-    this.setState({clicked: false, focused: false});
+    this.setState({ clicked: false, focused: false });
     this.props.onBlur(event);
   };
 
   handleFocus = (event) => {
     if (this.props.onTouchTap || this.props.onRequestDelete) {
-      this.setState({focused: true});
+      this.setState({ focused: true });
     }
     this.props.onFocus(event);
   };
@@ -148,7 +153,7 @@ class Chip extends Component {
   };
 
   handleKeyDown = (event) => {
-    if (keycode(event) === 'backspace') {
+    if (keycode(event) === "backspace") {
       event.preventDefault();
       if (this.props.onRequestDelete) {
         this.props.onRequestDelete(event);
@@ -162,7 +167,7 @@ class Chip extends Component {
     if (event.button === 0) {
       event.stopPropagation();
       if (this.props.onTouchTap) {
-        this.setState({clicked: true});
+        this.setState({ clicked: true });
       }
     }
     this.props.onMouseDown(event);
@@ -170,13 +175,13 @@ class Chip extends Component {
 
   handleMouseEnter = (event) => {
     if (this.props.onTouchTap) {
-      this.setState({hovered: true});
+      this.setState({ hovered: true });
     }
     this.props.onMouseEnter(event);
   };
 
   handleMouseEnterDeleteIcon = () => {
-    this.setState({deleteHovered: true});
+    this.setState({ deleteHovered: true });
   };
 
   handleMouseLeave = (event) => {
@@ -188,11 +193,11 @@ class Chip extends Component {
   };
 
   handleMouseLeaveDeleteIcon = () => {
-    this.setState({deleteHovered: false});
+    this.setState({ deleteHovered: false });
   };
 
   handleMouseUp = (event) => {
-    this.setState({clicked: false});
+    this.setState({ clicked: false });
     this.props.onMouseUp(event);
   };
 
@@ -203,14 +208,14 @@ class Chip extends Component {
   };
 
   handleTouchEnd = (event) => {
-    this.setState({clicked: false});
+    this.setState({ clicked: false });
     this.props.onTouchEnd(event);
   };
 
   handleTouchStart = (event) => {
     event.stopPropagation();
     if (this.props.onTouchTap) {
-      this.setState({clicked: true});
+      this.setState({ clicked: true });
     }
     this.props.onTouchStart(event);
   };
@@ -229,7 +234,7 @@ class Chip extends Component {
       onKeyboardFocus: this.handleKeyboardFocus,
     };
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
 
     const {
@@ -246,15 +251,15 @@ class Chip extends Component {
     const deletable = this.props.onRequestDelete;
     let avatar = null;
 
-    const deleteIcon = deletable ?
+    const deleteIcon = deletable ? (
       <DeleteIcon
         color={styles.deleteIcon.color}
         style={styles.deleteIcon}
         onTouchTap={this.handleTouchTapDeleteIcon}
         onMouseEnter={this.handleMouseEnterDeleteIcon}
         onMouseLeave={this.handleMouseLeaveDeleteIcon}
-      /> :
-      null;
+      />
+    ) : null;
 
     let children = childrenProp;
     const childCount = React.Children.count(children);
@@ -263,7 +268,10 @@ class Chip extends Component {
     if (childCount > 1) {
       children = React.Children.toArray(children);
 
-      if (React.isValidElement(children[0]) && children[0].type.muiName === 'Avatar') {
+      if (
+        React.isValidElement(children[0]) &&
+        children[0].type.muiName === "Avatar"
+      ) {
         avatar = children.shift();
 
         avatar = React.cloneElement(avatar, {

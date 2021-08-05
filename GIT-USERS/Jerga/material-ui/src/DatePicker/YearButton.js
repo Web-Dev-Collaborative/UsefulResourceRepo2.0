@@ -1,29 +1,29 @@
-import React, {Component, PropTypes} from 'react';
-import EnhancedButton from '../internal/EnhancedButton';
+import React, { Component, PropTypes } from "react";
+import EnhancedButton from "../internal/EnhancedButton";
 
 function getStyles(props, context, state) {
-  const {selected, year} = props;
-  const {baseTheme, datePicker} = context.muiTheme;
-  const {hover} = state;
+  const { selected, year } = props;
+  const { baseTheme, datePicker } = context.muiTheme;
+  const { hover } = state;
 
   return {
     root: {
-      boxSizing: 'border-box',
+      boxSizing: "border-box",
       color: year === new Date().getFullYear() && datePicker.color,
-      display: 'block',
+      display: "block",
       fontSize: 14,
-      margin: '0 auto',
-      position: 'relative',
-      textAlign: 'center',
-      lineHeight: 'inherit',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
+      margin: "0 auto",
+      position: "relative",
+      textAlign: "center",
+      lineHeight: "inherit",
+      WebkitTapHighlightColor: "rgba(0,0,0,0)", // Remove mobile color flashing (deprecated)
     },
     label: {
-      alignSelf: 'center',
+      alignSelf: "center",
       color: hover || selected ? datePicker.color : baseTheme.palette.textColor,
       fontSize: selected ? 26 : 17,
       fontWeight: hover ? 450 : selected ? 500 : 400,
-      position: 'relative',
+      position: "relative",
       top: -1,
     },
   };
@@ -54,11 +54,11 @@ class YearButton extends Component {
   };
 
   handleMouseEnter = () => {
-    this.setState({hover: true});
+    this.setState({ hover: true });
   };
 
   handleMouseLeave = () => {
-    this.setState({hover: false});
+    this.setState({ hover: false });
   };
 
   handleTouchTap = (event) => {
@@ -77,7 +77,7 @@ class YearButton extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
 
     return (
@@ -90,9 +90,7 @@ class YearButton extends Component {
         onTouchTap={this.handleTouchTap}
         style={styles.root}
       >
-        <span style={prepareStyles(styles.label)}>
-          {children}
-        </span>
+        <span style={prepareStyles(styles.label)}>{children}</span>
       </EnhancedButton>
     );
   }

@@ -1,13 +1,13 @@
-import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
-import EventListener from 'react-event-listener';
-import keycode from 'keycode';
-import transitions from '../styles/transitions';
-import Overlay from '../internal/Overlay';
-import RenderToLayer from '../internal/RenderToLayer';
-import Paper from '../Paper';
+import React, { Component, PropTypes } from "react";
+import ReactDOM from "react-dom";
+import EventListener from "react-event-listener";
+import keycode from "keycode";
+import transitions from "../styles/transitions";
+import Overlay from "../internal/Overlay";
+import RenderToLayer from "../internal/RenderToLayer";
+import Paper from "../Paper";
 
-import ReactTransitionGroup from 'react-addons-transition-group';
+import ReactTransitionGroup from "react-addons-transition-group";
 
 class TransitionItem extends Component {
   static propTypes = {
@@ -49,7 +49,7 @@ class TransitionItem extends Component {
     this.setState({
       style: {
         opacity: 0,
-        transform: 'translate(0, 0)',
+        transform: "translate(0, 0)",
       },
     });
 
@@ -57,16 +57,15 @@ class TransitionItem extends Component {
   }
 
   render() {
-    const {
-      style,
-      children,
-      ...other
-    } = this.props;
+    const { style, children, ...other } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
 
     return (
-      <div {...other} style={prepareStyles(Object.assign({}, this.state.style, style))}>
+      <div
+        {...other}
+        style={prepareStyles(Object.assign({}, this.state.style, style))}
+      >
         {children}
       </div>
     );
@@ -74,16 +73,10 @@ class TransitionItem extends Component {
 }
 
 function getStyles(props, context) {
-  const {
-    autoScrollBodyContent,
-    open,
-  } = props;
+  const { autoScrollBodyContent, open } = props;
 
   const {
-    baseTheme: {
-      spacing,
-      palette,
-    },
+    baseTheme: { spacing, palette },
     dialog,
     zIndex,
   } = context.muiTheme;
@@ -93,36 +86,36 @@ function getStyles(props, context) {
 
   return {
     root: {
-      position: 'fixed',
-      boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
+      position: "fixed",
+      boxSizing: "border-box",
+      WebkitTapHighlightColor: "rgba(0,0,0,0)", // Remove mobile color flashing (deprecated)
       zIndex: zIndex.dialog,
       top: 0,
       left: open ? 0 : -10000,
-      width: '100%',
-      height: '100%',
-      transition: open ?
-        transitions.easeOut('0ms', 'left', '0ms') :
-        transitions.easeOut('0ms', 'left', '450ms'),
+      width: "100%",
+      height: "100%",
+      transition: open
+        ? transitions.easeOut("0ms", "left", "0ms")
+        : transitions.easeOut("0ms", "left", "450ms"),
     },
     content: {
-      boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
+      boxSizing: "border-box",
+      WebkitTapHighlightColor: "rgba(0,0,0,0)", // Remove mobile color flashing (deprecated)
       transition: transitions.easeOut(),
-      position: 'relative',
-      width: '75%',
+      position: "relative",
+      width: "75%",
       maxWidth: spacing.desktopKeylineIncrement * 12,
-      margin: '0 auto',
+      margin: "0 auto",
       zIndex: zIndex.dialog,
     },
     actionsContainer: {
-      boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
+      boxSizing: "border-box",
+      WebkitTapHighlightColor: "rgba(0,0,0,0)", // Remove mobile color flashing (deprecated)
       padding: 8,
-      width: '100%',
-      textAlign: 'right',
+      width: "100%",
+      textAlign: "right",
       marginTop: autoScrollBodyContent ? -1 : 0,
-      borderTop: autoScrollBodyContent ? borderScroll : 'none',
+      borderTop: autoScrollBodyContent ? borderScroll : "none",
     },
     overlay: {
       zIndex: zIndex.dialogOverlay,
@@ -132,17 +125,17 @@ function getStyles(props, context) {
       padding: `${gutter}px ${gutter}px 20px ${gutter}px`,
       color: palette.textColor,
       fontSize: dialog.titleFontSize,
-      lineHeight: '32px',
+      lineHeight: "32px",
       fontWeight: 400,
       marginBottom: autoScrollBodyContent ? -1 : 0,
-      borderBottom: autoScrollBodyContent ? borderScroll : 'none',
+      borderBottom: autoScrollBodyContent ? borderScroll : "none",
     },
     body: {
       fontSize: dialog.bodyFontSize,
       color: dialog.bodyColor,
       padding: `${props.title ? 0 : gutter}px ${gutter}px ${gutter}px`,
-      boxSizing: 'border-box',
-      overflowY: autoScrollBodyContent ? 'auto' : 'hidden',
+      boxSizing: "border-box",
+      overflowY: autoScrollBodyContent ? "auto" : "hidden",
     },
   };
 }
@@ -199,18 +192,21 @@ class DialogInline extends Component {
       return;
     }
 
-    const clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    const clientHeight =
+      window.innerHeight ||
+      document.documentElement.clientHeight ||
+      document.body.clientHeight;
     const container = ReactDOM.findDOMNode(this);
     const dialogWindow = ReactDOM.findDOMNode(this.refs.dialogWindow);
     const dialogContent = ReactDOM.findDOMNode(this.refs.dialogContent);
     const minPaddingTop = 16;
 
     // Reset the height in case the window was resized.
-    dialogWindow.style.height = '';
-    dialogContent.style.height = '';
+    dialogWindow.style.height = "";
+    dialogContent.style.height = "";
 
     const dialogWindowHeight = dialogWindow.offsetHeight;
-    let paddingTop = ((clientHeight - dialogWindowHeight) / 2) - 64;
+    let paddingTop = (clientHeight - dialogWindowHeight) / 2 - 64;
     if (paddingTop < minPaddingTop) paddingTop = minPaddingTop;
 
     // Vertically center the dialog window, but make sure it doesn't
@@ -225,7 +221,8 @@ class DialogInline extends Component {
       styles.body = Object.assign(styles.body, bodyStyle);
       let maxDialogContentHeight = clientHeight - 2 * 64;
 
-      if (title) maxDialogContentHeight -= dialogContent.previousSibling.offsetHeight;
+      if (title)
+        maxDialogContentHeight -= dialogContent.previousSibling.offsetHeight;
 
       if (React.Children.count(actions)) {
         maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
@@ -250,7 +247,7 @@ class DialogInline extends Component {
   };
 
   handleKeyUp = (event) => {
-    if (keycode(event) === 'esc') {
+    if (keycode(event) === "esc") {
       this.requestClose(false);
     }
   };
@@ -279,18 +276,24 @@ class DialogInline extends Component {
       style,
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     styles.root = Object.assign(styles.root, style);
     styles.content = Object.assign(styles.content, contentStyle);
     styles.body = Object.assign(styles.body, bodyStyle);
-    styles.actionsContainer = Object.assign(styles.actionsContainer, actionsContainerStyle);
+    styles.actionsContainer = Object.assign(
+      styles.actionsContainer,
+      actionsContainerStyle
+    );
     styles.overlay = Object.assign(styles.overlay, overlayStyle);
     styles.title = Object.assign(styles.title, titleStyle);
 
     const actionsContainer = React.Children.count(actions) > 0 && (
-      <div className={actionsContainerClassName} style={prepareStyles(styles.actionsContainer)}>
+      <div
+        className={actionsContainerClassName}
+        style={prepareStyles(styles.actionsContainer)}
+      >
         {React.Children.toArray(actions)}
       </div>
     );
@@ -301,7 +304,7 @@ class DialogInline extends Component {
         className: title.props.className || titleClassName,
         style: prepareStyles(Object.assign(styles.title, title.props.style)),
       });
-    } else if (typeof title === 'string') {
+    } else if (typeof title === "string") {
       titleElement = (
         <h3 className={titleClassName} style={prepareStyles(styles.title)}>
           {title}
@@ -311,13 +314,13 @@ class DialogInline extends Component {
 
     return (
       <div className={className} style={prepareStyles(styles.root)}>
-        {open &&
+        {open && (
           <EventListener
             target="window"
             onKeyUp={this.handleKeyUp}
             onResize={this.handleResize}
           />
-        }
+        )}
         <ReactTransitionGroup
           component="div"
           ref="dialogWindow"
@@ -326,11 +329,8 @@ class DialogInline extends Component {
           transitionEnter={true}
           transitionEnterTimeout={450}
         >
-          {open &&
-            <TransitionItem
-              className={contentClassName}
-              style={styles.content}
-            >
+          {open && (
+            <TransitionItem className={contentClassName} style={styles.content}>
               <Paper zDepth={4}>
                 {titleElement}
                 <div
@@ -343,7 +343,7 @@ class DialogInline extends Component {
                 {actionsContainer}
               </Paper>
             </TransitionItem>
-          }
+          )}
         </ReactTransitionGroup>
         <Overlay
           show={open}
@@ -461,14 +461,16 @@ class Dialog extends Component {
   };
 
   renderLayer = () => {
-    return (
-      <DialogInline {...this.props} />
-    );
+    return <DialogInline {...this.props} />;
   };
 
   render() {
     return (
-      <RenderToLayer render={this.renderLayer} open={true} useLayerForClickAway={false} />
+      <RenderToLayer
+        render={this.renderLayer}
+        open={true}
+        useLayerForClickAway={false}
+      />
     );
   }
 }

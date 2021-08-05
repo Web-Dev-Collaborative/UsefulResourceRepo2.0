@@ -10,7 +10,9 @@ This is the documentation website and application of Material-UI.
 - [Android SDK](https://developer.android.com/sdk/) for Android development (optional)
 
 ## Installation
+
 After cloning the repository, install dependencies:
+
 ```sh
 cd <project folder>/material-ui
 npm install

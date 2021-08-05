@@ -1,20 +1,19 @@
-
-
 module.exports = {
   options: {
-    feeds: [{
-      serialize: ({ query: { allMarkdownRemark } }) => {
-        return allMarkdownRemark.edges.map(({node}) => {
-          const url = `${process.env.BASE_URL}/blogs/${node.frontmatter.slug}`
-          return Object.assign({}, node.frontmatter, {
-            description: node.frontmatter.subtitle,
-            url,
-            guid: url,
-            custom_elements: [{ "content:encoded": node.html }],
-          })
-        })
-      },
-      query: `
+    feeds: [
+      {
+        serialize: ({ query: { allMarkdownRemark } }) => {
+          return allMarkdownRemark.edges.map(({ node }) => {
+            const url = `${process.env.BASE_URL}/blogs/${node.frontmatter.slug}`;
+            return Object.assign({}, node.frontmatter, {
+              description: node.frontmatter.subtitle,
+              url,
+              guid: url,
+              custom_elements: [{ "content:encoded": node.html }],
+            });
+          });
+        },
+        query: `
         {
           allMarkdownRemark(
             sort: { order: DESC, fields: [frontmatter___date] },
@@ -33,9 +32,9 @@ module.exports = {
           }
         }
       `,
-      title: "Code Space News",
-      output: "/rss.xml"
+        title: "Code Space News",
+        output: "/rss.xml",
       },
-    ]
-  }
-}
+    ],
+  },
+};

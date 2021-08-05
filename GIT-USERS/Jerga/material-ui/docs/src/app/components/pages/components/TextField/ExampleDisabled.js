@@ -1,22 +1,22 @@
-import React from 'react';
-import TextField from 'material-ui/TextField';
+import React from "react";
+import TextField from "material-ui/TextField";
 
 const TextFieldExampleDisabled = () => (
   <div>
-    <TextField
-      disabled={true}
-      hintText="Disabled Hint Text"
-    /><br />
+    <TextField disabled={true} hintText="Disabled Hint Text" />
+    <br />
     <TextField
       disabled={true}
       id="text-field-disabled"
       defaultValue="Disabled Value"
-    /><br />
+    />
+    <br />
     <TextField
       disabled={true}
       hintText="Disabled Hint Text"
       floatingLabelText="Floating Label Text"
-    /><br />
+    />
+    <br />
     <TextField
       disabled={true}
       hintText="Disabled Hint Text"

@@ -1,20 +1,24 @@
-import React from 'react';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
-import IconButton from 'material-ui/IconButton';
-import Divider from 'material-ui/Divider';
-import Download from 'material-ui/svg-icons/file/file-download';
-import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import React from "react";
+import IconMenu from "material-ui/IconMenu";
+import MenuItem from "material-ui/MenuItem";
+import IconButton from "material-ui/IconButton";
+import Divider from "material-ui/Divider";
+import Download from "material-ui/svg-icons/file/file-download";
+import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
+import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
 
 /**
  * Example of nested menus within an IconMenu.
  */
 const IconMenuExampleNested = () => (
   <IconMenu
-    iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
-    anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-    targetOrigin={{horizontal: 'left', vertical: 'top'}}
+    iconButtonElement={
+      <IconButton>
+        <MoreVertIcon />
+      </IconButton>
+    }
+    anchorOrigin={{ horizontal: "left", vertical: "top" }}
+    targetOrigin={{ horizontal: "left", vertical: "top" }}
   >
     <MenuItem
       primaryText="Copy & Paste"
@@ -41,7 +45,6 @@ const IconMenuExampleNested = () => (
     <MenuItem primaryText="Download" leftIcon={<Download />} />
     <Divider />
     <MenuItem value="Del" primaryText="Delete" />
-
   </IconMenu>
 );
 

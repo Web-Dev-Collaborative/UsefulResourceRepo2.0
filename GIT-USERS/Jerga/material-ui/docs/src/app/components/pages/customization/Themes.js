@@ -1,13 +1,13 @@
-import React, {Component, PropTypes} from 'react';
-import Title from 'react-title-component';
-import MarkdownElement from '../../MarkdownElement';
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import withWidth, {SMALL} from 'material-ui/utils/withWidth';
-import typography from 'material-ui/styles/typography';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import themesText from './themes.md';
-import ClearFix from 'material-ui/internal/ClearFix';
+import React, { Component, PropTypes } from "react";
+import Title from "react-title-component";
+import MarkdownElement from "../../MarkdownElement";
+import muiThemeable from "material-ui/styles/muiThemeable";
+import getMuiTheme from "material-ui/styles/getMuiTheme";
+import withWidth, { SMALL } from "material-ui/utils/withWidth";
+import typography from "material-ui/styles/typography";
+import darkBaseTheme from "material-ui/styles/baseThemes/darkBaseTheme";
+import themesText from "./themes.md";
+import ClearFix from "material-ui/internal/ClearFix";
 
 import {
   Checkbox,
@@ -28,7 +28,7 @@ import {
   Tab,
   TextField,
   Toggle,
-} from 'material-ui';
+} from "material-ui";
 
 const markdownText = `
 ## Themes
@@ -54,72 +54,73 @@ class ThemesPage extends Component {
 
   componentWillMount() {
     this.setState({
-      valueTabs: this.props.muiTheme.name || 'light',
+      valueTabs: this.props.muiTheme.name || "light",
     });
   }
 
   getStyles() {
-    const {
-      muiTheme,
-      width,
-    } = this.props;
+    const { muiTheme, width } = this.props;
 
     const canvasColor = muiTheme.baseTheme.palette.canvasColor;
     const borderColor = muiTheme.baseTheme.palette.borderColor;
     const styles = {
       group: {
-        float: 'left',
-        width: width === SMALL ? '100%' : '33%',
-        marginTop: '16px',
-        padding: '0 50px',
-        boxSizing: 'border-box',
+        float: "left",
+        width: width === SMALL ? "100%" : "33%",
+        marginTop: "16px",
+        padding: "0 50px",
+        boxSizing: "border-box",
       },
       groupSlider: {
-        marginTop: '0px',
-        width: '100%',
+        marginTop: "0px",
+        width: "100%",
       },
       container: {
-        marginBottom: '16px',
-        minHeight: '24px',
-        textAlign: 'left',
+        marginBottom: "16px",
+        minHeight: "24px",
+        textAlign: "left",
       },
       containerCentered: {
-        textAlign: 'center',
+        textAlign: "center",
       },
       paper: {
-        height: '100px',
-        width: '100px',
-        margin: '0 auto',
-        marginBottom: '64px',
+        height: "100px",
+        width: "100px",
+        margin: "0 auto",
+        marginBottom: "64px",
       },
       textfield: {
-        width: '100%',
+        width: "100%",
       },
       slider: {
-        marginTop: '0px',
-        marginBottom: '0px',
+        marginTop: "0px",
+        marginBottom: "0px",
       },
       title: {
-        fontSize: '20px',
-        lineHeight: '28px',
-        paddingTop: '19px',
-        marginBottom: '13px',
-        letterSpacing: '0',
+        fontSize: "20px",
+        lineHeight: "28px",
+        paddingTop: "19px",
+        marginBottom: "13px",
+        letterSpacing: "0",
         fontWeight: typography.fontWeightMedium,
         color: typography.textDarkBlack,
       },
       liveExamplePaper: {
         backgroundColor: canvasColor,
         marginBottom: 32,
-        overflow: 'hidden',
+        overflow: "hidden",
       },
       bottomBorderWrapper: {
         borderBottom: `1px solid ${borderColor}`,
-        paddingBottom: '10px',
+        paddingBottom: "10px",
       },
     };
 
-    styles.containerCentered = Object.assign({}, styles.container, styles.containerCentered);
+    styles.containerCentered = Object.assign(
+      {},
+      styles.container,
+      styles.containerCentered
+    );
     styles.groupSlider = Object.assign({}, styles.group, styles.groupSlider);
 
     return styles;
@@ -132,7 +133,10 @@ class ThemesPage extends Component {
       <ClearFix>
         <div style={styles.group}>
           <div style={styles.containerCentered}>
-            <FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true} />
+            <FloatingActionButton
+              iconClassName="muidocs-icon-action-grade"
+              disabled={true}
+            />
           </div>
           <div style={styles.containerCentered}>
             <RaisedButton label="Secondary" secondary={true} />
@@ -159,30 +163,14 @@ class ThemesPage extends Component {
             />
           </div>
           <div style={styles.container}>
-            <RadioButtonGroup
-              name="shipSpeed"
-              defaultSelected="usd"
-            >
-              <RadioButton
-                value="usd"
-                label="USD"
-              />
-              <RadioButton
-                value="euro"
-                label="Euro"
-              />
-              <RadioButton
-                value="mxn"
-                label="MXN"
-                disabled={true}
-              />
+            <RadioButtonGroup name="shipSpeed" defaultSelected="usd">
+              <RadioButton value="usd" label="USD" />
+              <RadioButton value="euro" label="Euro" />
+              <RadioButton value="mxn" label="MXN" disabled={true} />
             </RadioButtonGroup>
           </div>
           <div style={styles.container}>
-            <Toggle
-              name="toggleName1"
-              label="toggle"
-            />
+            <Toggle name="toggleName1" label="toggle" />
             <Toggle
               name="toggleName2"
               label="disabled toggle"
@@ -191,27 +179,24 @@ class ThemesPage extends Component {
             />
           </div>
         </div>
-        <div style={Object.assign({}, styles.group, {marginTop: 0})}>
+        <div style={Object.assign({}, styles.group, { marginTop: 0 })}>
           <div style={styles.container}>
-            <TextField
-              style={styles.textfield}
-              hintText="TextField"
-            />
+            <TextField style={styles.textfield} hintText="TextField" />
           </div>
           <div style={styles.container}>
             <DatePicker
               hintText="Landscape Dialog"
               mode="landscape"
-              style={{width: '100%'}}
+              style={{ width: "100%" }}
             />
           </div>
           <div style={styles.container}>
-            <DropDownMenu value={3} style={{width: '100%'}}>
-              <MenuItem value={1} primaryText={'Never'} />
-              <MenuItem value={2} primaryText={'Every Night'} />
-              <MenuItem value={3} primaryText={'Weeknights'} />
-              <MenuItem value={4} primaryText={'Weekends'} />
-              <MenuItem value={5} primaryText={'Weekly'} />
+            <DropDownMenu value={3} style={{ width: "100%" }}>
+              <MenuItem value={1} primaryText={"Never"} />
+              <MenuItem value={2} primaryText={"Every Night"} />
+              <MenuItem value={3} primaryText={"Weeknights"} />
+              <MenuItem value={4} primaryText={"Weekends"} />
+              <MenuItem value={5} primaryText={"Weekly"} />
             </DropDownMenu>
           </div>
         </div>
@@ -220,7 +205,10 @@ class ThemesPage extends Component {
         </div>
         <div style={styles.group}>
           <div style={styles.containerCentered}>
-            <FlatButton label="View Dialog" onTouchTap={this.handleTouchTapDialog} />
+            <FlatButton
+              label="View Dialog"
+              onTouchTap={this.handleTouchTapDialog}
+            />
             <Dialog
               open={this.state.dialogOpen}
               title="Dialog With Standard Actions"
@@ -239,7 +227,8 @@ class ThemesPage extends Component {
               ]}
               onRequestClose={this.handleRequestCloseDialog}
             >
-              The actions in this window are created from tan array of element's that&#39;s passed in.
+              The actions in this window are created from tan array of element's
+              that&#39;s passed in.
             </Dialog>
           </div>
         </div>
@@ -250,7 +239,8 @@ class ThemesPage extends Component {
               label="View Drawer"
             />
             <Drawer
-              open={this.state.drawerOpen} docked={false}
+              open={this.state.drawerOpen}
+              docked={false}
               onRequestChange={this.handleRequestChangeDrawer}
             >
               <MenuItem>Menu Item</MenuItem>
@@ -280,7 +270,7 @@ class ThemesPage extends Component {
   handleChangeTabs = (valueTabs) => {
     let newMuiTheme = null;
 
-    if (valueTabs === 'light') {
+    if (valueTabs === "light") {
       newMuiTheme = getMuiTheme();
     } else {
       newMuiTheme = getMuiTheme(darkBaseTheme);
@@ -298,18 +288,9 @@ class ThemesPage extends Component {
   getThemeExamples() {
     return (
       <div>
-        <Tabs
-          value={this.state.valueTabs}
-          onChange={this.handleChangeTabs}
-        >
-          <Tab
-            label="Light Theme (Default)"
-            value="light"
-          />
-          <Tab
-            label="Dark Theme"
-            value="dark"
-          />
+        <Tabs value={this.state.valueTabs} onChange={this.handleChangeTabs}>
+          <Tab label="Light Theme (Default)" value="light" />
+          <Tab label="Dark Theme" value="dark" />
         </Tabs>
         {this.getComponentGroup()}
       </div>
@@ -360,7 +341,9 @@ class ThemesPage extends Component {
         <Title render={(previousTitle) => `Themes - ${previousTitle}`} />
         <MarkdownElement text={markdownText} />
         <Paper style={styles.liveExamplePaper}>
-          <ClearFix style={styles.liveExampleBlock}>{this.getThemeExamples()}</ClearFix>
+          <ClearFix style={styles.liveExampleBlock}>
+            {this.getThemeExamples()}
+          </ClearFix>
         </Paper>
         <div style={styles.bottomBorderWrapper}>
           <MarkdownElement text={themesText} />

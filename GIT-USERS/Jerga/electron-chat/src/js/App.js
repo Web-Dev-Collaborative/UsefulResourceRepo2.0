@@ -1,59 +1,61 @@
+import React, { useEffect } from "react";
 
-import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 
-import { useDispatch, useSelector } from 'react-redux';
+import StoreProvider from "./store/StoreProvider";
 
-import StoreProvider from './store/StoreProvider';
+import HomeView from "./views/Home";
+import ChatView from "./views/Chat";
+import ChatCreate from "./views/ChatCreate";
+import WelcomeView from "./views/Welcome";
+import SettingsView from "./views/Settings";
 
-import HomeView from './views/Home';
-import ChatView from './views/Chat';
-import ChatCreate from './views/ChatCreate';
-import WelcomeView from './views/Welcome';
-import SettingsView from './views/Settings';
+import LoadingView from "./components/shared/LoadingView";
 
-import LoadingView from './components/shared/LoadingView';
-
-import { listenToAuthChanges } from './actions/auth';
-import { listenToConnectionChanges } from './actions/app';
-import { checkUserConnection } from './actions/connection';
-import { loadInitialSettings } from './actions/settings';
+import { listenToAuthChanges } from "./actions/auth";
+import { listenToConnectionChanges } from "./actions/app";
+import { checkUserConnection } from "./actions/connection";
+import { loadInitialSettings } from "./actions/settings";
 
 import {
   HashRouter as Router,
   Switch,
   Route,
-  Redirect
-} from 'react-router-dom';
+  Redirect,
+} from "react-router-dom";
 
-function AuthRoute({children, ...rest}) {
-  const user = useSelector(({auth}) => auth.user)
+function AuthRoute({ children, ...rest }) {
+  const user = useSelector(({ auth }) => auth.user);
   const onlyChild = React.Children.only(children);
 
   return (
     <Route
       {...rest}
-      render={props =>
-          user ?
-            React.cloneElement(onlyChild, {...rest, ...props}) :
-            <Redirect to="/" />
+      render={(props) =>
+        user ? (
+          React.cloneElement(onlyChild, { ...rest, ...props })
+        ) : (
+          <Redirect to="/" />
+        )
       }
     />
-  )
+  );
 }
 
-
-const ContentWrapper = ({children}) => {
-  const isDarkTheme  = useSelector(({settings}) => settings.isDarkTheme);
+const ContentWrapper = ({ children }) => {
+  const isDarkTheme = useSelector(({ settings }) => settings.isDarkTheme);
   return (
-    <div className={`content-wrapper ${isDarkTheme ? 'dark' : 'light'}`}>{children}</div>
-  )
-}
+    <div className={`content-wrapper ${isDarkTheme ? "dark" : "light"}`}>
+      {children}
+    </div>
+  );
+};
 
 function ChatApp() {
   const dispatch = useDispatch();
-  const isChecking = useSelector(({auth}) => auth.isChecking);
-  const isOnline = useSelector(({app}) => app.isOnline);
-  const user = useSelector(({auth}) => auth.user);
+  const isChecking = useSelector(({ auth }) => auth.isChecking);
+  const isOnline = useSelector(({ app }) => app.isOnline);
+  const user = useSelector(({ auth }) => auth.user);
 
   useEffect(() => {
     dispatch(loadInitialSettings());
@@ -63,8 +65,8 @@ function ChatApp() {
     return () => {
       unsubFromAuth();
       unsubFromConnection();
-    }
-  }, [dispatch])
+    };
+  }, [dispatch]);
 
   useEffect(() => {
     let unsubFromUserConnection;
@@ -74,15 +76,17 @@ function ChatApp() {
 
     return () => {
       unsubFromUserConnection && unsubFromUserConnection();
-    }
-  }, [dispatch, user])
+    };
+  }, [dispatch, user]);
 
   if (!isOnline) {
-    return <LoadingView message="Application has been disconnected from the internet. Please reconnect..." />
+    return (
+      <LoadingView message="Application has been disconnected from the internet. Please reconnect..." />
+    );
   }
 
   if (isChecking) {
-    return <LoadingView />
+    return <LoadingView />;
   }
 
   return (
@@ -107,7 +111,7 @@ function ChatApp() {
         </Switch>
       </ContentWrapper>
     </Router>
-  )
+  );
 }
 
 export default function App() {
@@ -115,5 +119,5 @@ export default function App() {
     <StoreProvider>
       <ChatApp />
     </StoreProvider>
-  )
+  );
 }

@@ -1,17 +1,17 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from "react";
 
-const getStyles = ({index}, {stepper}) => {
-  const {orientation} = stepper;
+const getStyles = ({ index }, { stepper }) => {
+  const { orientation } = stepper;
   const styles = {
     root: {
-      flex: '0 0 auto',
+      flex: "0 0 auto",
     },
   };
 
   if (index > 0) {
-    if (orientation === 'horizontal') {
+    if (orientation === "horizontal") {
       styles.root.marginLeft = -6;
-    } else if (orientation === 'vertical') {
+    } else if (orientation === "vertical") {
       styles.root.marginTop = -14;
     }
   }
@@ -59,21 +59,15 @@ class Step extends Component {
   };
 
   renderChild = (child) => {
-    const {
-      active,
-      completed,
-      disabled,
-      index,
-      last,
-    } = this.props;
+    const { active, completed, disabled, index, last } = this.props;
 
     const icon = index + 1;
 
-    return React.cloneElement(child, Object.assign(
-      {active, completed, disabled, icon, last},
-      child.props
-    ));
-  }
+    return React.cloneElement(
+      child,
+      Object.assign({ active, completed, disabled, icon, last }, child.props)
+    );
+  };
 
   render() {
     const {
@@ -87,7 +81,7 @@ class Step extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     return (

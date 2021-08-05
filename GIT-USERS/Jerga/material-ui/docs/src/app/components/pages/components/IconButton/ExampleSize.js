@@ -1,6 +1,6 @@
-import React from 'react';
-import IconButton from 'material-ui/IconButton';
-import ActionHome from 'material-ui/svg-icons/action/home';
+import React from "react";
+import IconButton from "material-ui/IconButton";
+import ActionHome from "material-ui/svg-icons/action/home";
 
 const styles = {
   smallIcon: {
@@ -38,24 +38,15 @@ const IconButtonExampleSize = () => (
       <ActionHome />
     </IconButton>
 
-    <IconButton
-      iconStyle={styles.smallIcon}
-      style={styles.small}
-    >
+    <IconButton iconStyle={styles.smallIcon} style={styles.small}>
       <ActionHome />
     </IconButton>
 
-    <IconButton
-      iconStyle={styles.mediumIcon}
-      style={styles.medium}
-    >
+    <IconButton iconStyle={styles.mediumIcon} style={styles.medium}>
       <ActionHome />
     </IconButton>
 
-    <IconButton
-      iconStyle={styles.largeIcon}
-      style={styles.large}
-    >
+    <IconButton iconStyle={styles.largeIcon} style={styles.large}>
       <ActionHome />
     </IconButton>
   </div>

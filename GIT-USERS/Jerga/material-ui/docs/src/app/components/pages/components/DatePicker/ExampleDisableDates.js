@@ -1,5 +1,5 @@
-import React from 'react';
-import DatePicker from 'material-ui/DatePicker';
+import React from "react";
+import DatePicker from "material-ui/DatePicker";
 
 function disableWeekends(date) {
   return date.getDay() === 0 || date.getDay() === 6;
@@ -13,8 +13,14 @@ function disableRandomDates() {
  */
 const DatePickerExampleDisableDates = () => (
   <div>
-    <DatePicker hintText="Weekends Disabled" shouldDisableDate={disableWeekends} />
-    <DatePicker hintText="Random Dates Disabled" shouldDisableDate={disableRandomDates} />
+    <DatePicker
+      hintText="Weekends Disabled"
+      shouldDisableDate={disableWeekends}
+    />
+    <DatePicker
+      hintText="Random Dates Disabled"
+      shouldDisableDate={disableRandomDates}
+    />
   </div>
 );
 

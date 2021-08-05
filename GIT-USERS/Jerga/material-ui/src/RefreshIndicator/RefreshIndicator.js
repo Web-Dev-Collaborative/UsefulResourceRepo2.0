@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import autoPrefix from '../utils/autoPrefix';
-import transitions from '../styles/transitions';
-import Paper from '../Paper';
+import React, { Component, PropTypes } from "react";
+import autoPrefix from "../utils/autoPrefix";
+import transitions from "../styles/transitions";
+import Paper from "../Paper";
 
 const VIEWBOX_SIZE = 32;
 
@@ -9,7 +9,7 @@ function getStyles(props) {
   const padding = props.size * 0.1; // same implementation of `this.getPaddingSize()`
   return {
     root: {
-      position: 'absolute',
+      position: "absolute",
       zIndex: 2,
       width: props.size,
       height: props.size,
@@ -17,8 +17,11 @@ function getStyles(props) {
       top: -10000,
       left: -10000,
       transform: `translate(${10000 + props.left}px, ${10000 + props.top}px)`,
-      opacity: props.status === 'hide' ? 0 : 1,
-      transition: props.status === 'hide' ? transitions.create('all', '.3s', 'ease-out') : 'none',
+      opacity: props.status === "hide" ? 0 : 1,
+      transition:
+        props.status === "hide"
+          ? transitions.create("all", ".3s", "ease-out")
+          : "none",
     },
   };
 }
@@ -54,7 +57,7 @@ class RefreshIndicator extends Component {
      * the loading progress indicator. If the status is "hide",
      * the indicator will be hidden.
      */
-    status: PropTypes.oneOf(['ready', 'loading', 'hide']),
+    status: PropTypes.oneOf(["ready", "loading", "hide"]),
     /**
      * Override the inline-styles of the root element.
      */
@@ -68,7 +71,7 @@ class RefreshIndicator extends Component {
   static defaultProps = {
     percentage: 0,
     size: 40,
-    status: 'hide',
+    status: "hide",
   };
 
   static contextTypes = {
@@ -96,19 +99,19 @@ class RefreshIndicator extends Component {
   }
 
   renderChildren() {
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const paperSize = this.getPaperSize();
 
     let childrenCmp = null;
-    if (this.props.status !== 'ready') {
+    if (this.props.status !== "ready") {
       const circleStyle = this.getCircleStyle(paperSize);
       childrenCmp = (
         <div
           ref="wrapper"
           style={prepareStyles({
-            transition: transitions.create('transform', '20s', null, 'linear'),
-            width: '100%',
-            height: '100%',
+            transition: transitions.create("transform", "20s", null, "linear"),
+            width: "100%",
+            height: "100%",
           })}
         >
           <svg
@@ -120,9 +123,16 @@ class RefreshIndicator extends Component {
           >
             <circle
               ref="path"
-              style={prepareStyles(Object.assign(circleStyle.style, {
-                transition: transitions.create('all', '1.5s', null, 'ease-in-out'),
-              }))}
+              style={prepareStyles(
+                Object.assign(circleStyle.style, {
+                  transition: transitions.create(
+                    "all",
+                    "1.5s",
+                    null,
+                    "ease-in-out"
+                  ),
+                })
+              )}
               {...circleStyle.attr}
             />
           </svg>
@@ -192,27 +202,28 @@ class RefreshIndicator extends Component {
   }
 
   getCircleStyle() {
-    const isLoading = this.props.status === 'loading';
+    const isLoading = this.props.status === "loading";
     const p1 = isLoading ? 1 : this.getFactor();
     const circle = this.getCircleAttr();
     const perimeter = Math.PI * 2 * circle.radiu;
 
     const [beginDeg, endDeg] = this.getArcDeg();
-    const arcLen = (endDeg - beginDeg) * perimeter / 360;
-    const dashOffset = -beginDeg * perimeter / 360;
+    const arcLen = ((endDeg - beginDeg) * perimeter) / 360;
+    const dashOffset = (-beginDeg * perimeter) / 360;
 
     const theme = this.getTheme();
     return {
       style: {
-        strokeDasharray: `${arcLen}, ${(perimeter - arcLen)}`,
+        strokeDasharray: `${arcLen}, ${perimeter - arcLen}`,
         strokeDashoffset: dashOffset,
-        stroke: (isLoading || this.props.percentage === 100) ?
-          (this.props.loadingColor || theme.loadingStrokeColor) :
-          (this.props.color || theme.strokeColor),
-        strokeLinecap: 'round',
+        stroke:
+          isLoading || this.props.percentage === 100
+            ? this.props.loadingColor || theme.loadingStrokeColor
+            : this.props.color || theme.strokeColor,
+        strokeLinecap: "round",
         opacity: p1,
         strokeWidth: circle.strokeWidth * p1,
-        fill: 'none',
+        fill: "none",
       },
       attr: {
         cx: circle.originX,
@@ -228,18 +239,20 @@ class RefreshIndicator extends Component {
 
     const triangleCx = circle.originX + circle.radiu;
     const triangleCy = circle.originY;
-    const dx = (circle.strokeWidth * 7 / 4) * p1;
-    const trianglePath = `${(triangleCx - dx)},${triangleCy} ${(triangleCx + dx)},${
-      triangleCy} ${triangleCx},${(triangleCy + dx)}`;
+    const dx = ((circle.strokeWidth * 7) / 4) * p1;
+    const trianglePath = `${triangleCx - dx},${triangleCy} ${
+      triangleCx + dx
+    },${triangleCy} ${triangleCx},${triangleCy + dx}`;
 
     const [, endDeg] = this.getArcDeg();
 
     const theme = this.getTheme();
     return {
       style: {
-        fill: this.props.percentage === 100 ?
-          (this.props.loadingColor || theme.loadingStrokeColor) :
-          (this.props.color || theme.strokeColor),
+        fill:
+          this.props.percentage === 100
+            ? this.props.loadingColor || theme.loadingStrokeColor
+            : this.props.color || theme.strokeColor,
         transform: `rotate(${endDeg}deg)`,
         transformOrigin: `${circle.originX}px ${circle.originY}px`,
         opacity: p1,
@@ -251,7 +264,7 @@ class RefreshIndicator extends Component {
   }
 
   scalePath(path, step) {
-    if (this.props.status !== 'loading') return;
+    if (this.props.status !== "loading") return;
 
     const currStep = (step || 0) % 3;
 
@@ -264,40 +277,46 @@ class RefreshIndicator extends Component {
     let transitionDuration;
 
     if (currStep === 0) {
-      strokeDasharray = '1, 200';
+      strokeDasharray = "1, 200";
       strokeDashoffset = 0;
-      transitionDuration = '0ms';
+      transitionDuration = "0ms";
     } else if (currStep === 1) {
       strokeDasharray = `${arcLen}, 200`;
       strokeDashoffset = -15;
-      transitionDuration = '750ms';
+      transitionDuration = "750ms";
     } else {
       strokeDasharray = `${arcLen}, 200`;
       strokeDashoffset = -(perimeter - 1);
-      transitionDuration = '850ms';
+      transitionDuration = "850ms";
     }
 
-    autoPrefix.set(path.style, 'strokeDasharray', strokeDasharray);
-    autoPrefix.set(path.style, 'strokeDashoffset', strokeDashoffset);
-    autoPrefix.set(path.style, 'transitionDuration', transitionDuration);
+    autoPrefix.set(path.style, "strokeDasharray", strokeDasharray);
+    autoPrefix.set(path.style, "strokeDashoffset", strokeDashoffset);
+    autoPrefix.set(path.style, "transitionDuration", transitionDuration);
 
-    this.scalePathTimer = setTimeout(() => this.scalePath(path, currStep + 1), currStep ? 750 : 250);
+    this.scalePathTimer = setTimeout(
+      () => this.scalePath(path, currStep + 1),
+      currStep ? 750 : 250
+    );
   }
 
   rotateWrapper(wrapper) {
-    if (this.props.status !== 'loading') return;
+    if (this.props.status !== "loading") return;
 
-    autoPrefix.set(wrapper.style, 'transform', null);
-    autoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
-    autoPrefix.set(wrapper.style, 'transitionDuration', '0ms');
+    autoPrefix.set(wrapper.style, "transform", null);
+    autoPrefix.set(wrapper.style, "transform", "rotate(0deg)");
+    autoPrefix.set(wrapper.style, "transitionDuration", "0ms");
 
     this.rotateWrapperSecondTimer = setTimeout(() => {
-      autoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)');
-      autoPrefix.set(wrapper.style, 'transitionDuration', '10s');
-      autoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
+      autoPrefix.set(wrapper.style, "transform", "rotate(1800deg)");
+      autoPrefix.set(wrapper.style, "transitionDuration", "10s");
+      autoPrefix.set(wrapper.style, "transitionTimingFunction", "linear");
     }, 50);
 
-    this.rotateWrapperTimer = setTimeout(() => this.rotateWrapper(wrapper), 10050);
+    this.rotateWrapperTimer = setTimeout(
+      () => this.rotateWrapper(wrapper),
+      10050
+    );
   }
 
   render() {
@@ -314,11 +333,7 @@ class RefreshIndicator extends Component {
     const styles = getStyles(this.props, this.context);
 
     return (
-      <Paper
-        circle={true}
-        style={Object.assign(styles.root, style)}
-        {...other}
-      >
+      <Paper circle={true} style={Object.assign(styles.root, style)} {...other}>
         {this.renderChildren()}
       </Paper>
     );

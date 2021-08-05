@@ -1,29 +1,30 @@
-import React from 'react';
-import Title from 'react-title-component';
+import React from "react";
+import Title from "react-title-component";
 
-import CodeExample from '../../../CodeExample';
-import PropTypeDescription from '../../../PropTypeDescription';
-import MarkdownElement from '../../../MarkdownElement';
+import CodeExample from "../../../CodeExample";
+import PropTypeDescription from "../../../PropTypeDescription";
+import MarkdownElement from "../../../MarkdownElement";
 
-import textFieldReadmeText from './README';
-import TextFieldExampleSimple from './ExampleSimple';
-import textFieldExampleSimpleCode from '!raw!./ExampleSimple';
-import TextFieldExampleCustomize from './ExampleCustomize';
-import textFieldExampleCustomizeCode from '!raw!./ExampleCustomize';
-import TextFieldExampleError from './ExampleError';
-import textFieldExampleErrorCode from '!raw!./ExampleError';
-import TextFieldExampleDisabled from './ExampleDisabled';
-import textFieldExampleDisabledCode from '!raw!./ExampleDisabled';
-import TextFieldExampleControlled from './ExampleControlled';
-import textFieldExampleControlledCode from '!raw!./ExampleControlled';
-import textFieldCode from '!raw!material-ui/TextField/TextField';
+import textFieldReadmeText from "./README";
+import TextFieldExampleSimple from "./ExampleSimple";
+import textFieldExampleSimpleCode from "!raw!./ExampleSimple";
+import TextFieldExampleCustomize from "./ExampleCustomize";
+import textFieldExampleCustomizeCode from "!raw!./ExampleCustomize";
+import TextFieldExampleError from "./ExampleError";
+import textFieldExampleErrorCode from "!raw!./ExampleError";
+import TextFieldExampleDisabled from "./ExampleDisabled";
+import textFieldExampleDisabledCode from "!raw!./ExampleDisabled";
+import TextFieldExampleControlled from "./ExampleControlled";
+import textFieldExampleControlledCode from "!raw!./ExampleControlled";
+import textFieldCode from "!raw!material-ui/TextField/TextField";
 
 const descriptions = {
-  simple: 'Examples demonstrating key Text Field features.',
-  error: 'The `errorText` property used in combination with various other features.',
-  styled: 'Examples of styling various Text Field features.',
-  disabled: 'Various examples of `disabled` Text Fields.',
-  controlled: 'A controlled Text Field example.',
+  simple: "Examples demonstrating key Text Field features.",
+  error:
+    "The `errorText` property used in combination with various other features.",
+  styled: "Examples of styling various Text Field features.",
+  disabled: "Various examples of `disabled` Text Fields.",
+  controlled: "A controlled Text Field example.",
 };
 const TextFieldsPage = () => (
   <div>

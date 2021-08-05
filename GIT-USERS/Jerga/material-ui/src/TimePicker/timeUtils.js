@@ -27,27 +27,27 @@ function clone(d) {
  *
  * @return String A string representing the formatted time.
  */
-export function formatTime(date, format = 'ampm', pedantic = false) {
-  if (!date) return '';
+export function formatTime(date, format = "ampm", pedantic = false) {
+  if (!date) return "";
   let hours = date.getHours();
   let mins = date.getMinutes().toString();
 
-  if (format === 'ampm') {
+  if (format === "ampm") {
     const isAM = hours < 12;
     hours = hours % 12;
-    const additional = isAM ? ' am' : ' pm';
+    const additional = isAM ? " am" : " pm";
     hours = (hours || 12).toString();
 
-    if (mins.length < 2 ) mins = `0${mins}`;
+    if (mins.length < 2) mins = `0${mins}`;
 
     if (pedantic) {
       // Treat midday/midnight specially http://www.nist.gov/pml/div688/times.cfm
-      if (hours === '12' && mins === '00') {
-        return additional === ' pm' ? '12 noon' : '12 midnight';
+      if (hours === "12" && mins === "00") {
+        return additional === " pm" ? "12 noon" : "12 midnight";
       }
     }
 
-    return hours + (mins === '00' ? '' : `:${mins}`) + additional;
+    return hours + (mins === "00" ? "" : `:${mins}`) + additional;
   }
 
   hours = hours.toString();
@@ -73,8 +73,8 @@ export function getTouchEventOffsetValues(event) {
 }
 
 export function isInner(props) {
-  if (props.type !== 'hour' ) {
+  if (props.type !== "hour") {
     return false;
   }
-  return props.value < 1 || props.value > 12 ;
+  return props.value < 1 || props.value > 12;
 }

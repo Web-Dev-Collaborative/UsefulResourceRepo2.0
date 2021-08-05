@@ -35,9 +35,9 @@ exports.verifyUser = (req, res) => {
           err: [
             {
               title: "Invalid User!",
-              detail: "You're not the owner of this rental"
-            }
-          ]
+              detail: "You're not the owner of this rental",
+            },
+          ],
         });
       }
       return res.json({ status: "verified" });
@@ -52,7 +52,7 @@ exports.getId = (req, res) => {
     .exec((err, foundRental) => {
       if (err) {
         res.status(422).send({
-          err: [{ title: "Rental Error!", detail: "Couldn't find Rental" }]
+          err: [{ title: "Rental Error!", detail: "Couldn't find Rental" }],
         });
       }
       return res.json(foundRental);
@@ -69,7 +69,7 @@ exports.post = (req, res) => {
     shared,
     bedrooms,
     description,
-    dailyRate
+    dailyRate,
   } = req.body;
   const user = res.locals.user;
 
@@ -82,7 +82,7 @@ exports.post = (req, res) => {
     shared,
     bedrooms,
     description,
-    dailyRate
+    dailyRate,
   });
 
   rental.user = user;
@@ -107,8 +107,8 @@ exports.delete = (req, res) => {
       match: {
         // check only to delete the rental that only book in the FUTURE
         // not the one that ALREADY BOOKED
-        startAt: { $gt: new Date() }
-      }
+        startAt: { $gt: new Date() },
+      },
     })
     .exec((err, foundRental) => {
       if (err) {
@@ -119,9 +119,9 @@ exports.delete = (req, res) => {
           err: [
             {
               title: "Invalid User!",
-              detail: "You're not the owner of this rental"
-            }
-          ]
+              detail: "You're not the owner of this rental",
+            },
+          ],
         });
       }
 
@@ -130,13 +130,13 @@ exports.delete = (req, res) => {
           err: [
             {
               title: "Active Bookings!",
-              detail: "Cannot delete rental with active bookings"
-            }
-          ]
+              detail: "Cannot delete rental with active bookings",
+            },
+          ],
         });
       }
 
-      foundRental.remove(err => {
+      foundRental.remove((err) => {
         if (err) {
           return res.status(422).send({ errors: normalizeErrors(err.errors) });
         }
@@ -155,7 +155,7 @@ exports.get = (req, res) => {
     .exec((err, foundRental) => {
       if (err) {
         return res.status(422).send({
-          errors: normalizeErrors(err.errors)
+          errors: normalizeErrors(err.errors),
         });
       }
 
@@ -164,9 +164,9 @@ exports.get = (req, res) => {
           err: [
             {
               title: "No Rentals Found!",
-              detail: `There are no rentals for city ${city}`
-            }
-          ]
+              detail: `There are no rentals for city ${city}`,
+            },
+          ],
         });
       }
       return res.json(foundRental);
@@ -182,7 +182,7 @@ exports.edit = (req, res, next) => {
     .exec((err, foundRental) => {
       if (err) {
         return res.status(422).send({
-          errors: normalizeErrors(err.errors)
+          errors: normalizeErrors(err.errors),
         });
       }
       if (foundRental.user.id !== user.id) {
@@ -190,22 +190,22 @@ exports.edit = (req, res, next) => {
           err: [
             {
               title: "Invalid User!",
-              detail: "You're not the owner of this rental"
-            }
-          ]
+              detail: "You're not the owner of this rental",
+            },
+          ],
         });
       }
 
       foundRental.set(rentalData);
-      foundRental.save(err => {
+      foundRental.save((err) => {
         if (user.id !== foundRental.user.id) {
           res.status(422).send({
             err: [
               {
                 title: "Invalid User!",
-                detail: "You're not the owner of this rental"
-              }
-            ]
+                detail: "You're not the owner of this rental",
+              },
+            ],
           });
         }
         return res.status(200).json(foundRental);

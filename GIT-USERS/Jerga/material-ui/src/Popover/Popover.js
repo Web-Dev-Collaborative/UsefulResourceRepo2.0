@@ -1,11 +1,11 @@
-import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
-import EventListener from 'react-event-listener';
-import RenderToLayer from '../internal/RenderToLayer';
-import propTypes from '../utils/propTypes';
-import Paper from '../Paper';
-import throttle from 'lodash.throttle';
-import PopoverAnimationDefault from './PopoverAnimationDefault';
+import React, { Component, PropTypes } from "react";
+import ReactDOM from "react-dom";
+import EventListener from "react-event-listener";
+import RenderToLayer from "../internal/RenderToLayer";
+import propTypes from "../utils/propTypes";
+import Paper from "../Paper";
+import throttle from "lodash.throttle";
+import PopoverAnimationDefault from "./PopoverAnimationDefault";
 
 class Popover extends Component {
   static propTypes = {
@@ -86,8 +86,8 @@ class Popover extends Component {
 
   static defaultProps = {
     anchorOrigin: {
-      vertical: 'bottom',
-      horizontal: 'left',
+      vertical: "bottom",
+      horizontal: "left",
     },
     animated: true,
     autoCloseWhenOffScreen: true,
@@ -95,11 +95,11 @@ class Popover extends Component {
     onRequestClose: () => {},
     open: false,
     style: {
-      overflowY: 'auto',
+      overflowY: "auto",
     },
     targetOrigin: {
-      vertical: 'top',
-      horizontal: 'left',
+      vertical: "top",
+      horizontal: "left",
     },
     useLayerForClickAway: true,
     zDepth: 1,
@@ -135,13 +135,16 @@ class Popover extends Component {
       } else {
         if (nextProps.animated) {
           if (this.timeout !== null) return;
-          this.setState({closing: true});
+          this.setState({ closing: true });
           this.timeout = setTimeout(() => {
-            this.setState({
-              open: false,
-            }, () => {
-              this.timeout = null;
-            });
+            this.setState(
+              {
+                open: false,
+              },
+              () => {
+                this.timeout = null;
+              }
+            );
           }, 500);
         } else {
           this.setState({
@@ -188,7 +191,7 @@ class Popover extends Component {
 
     if (!animated) {
       styleRoot = {
-        position: 'fixed',
+        position: "fixed",
       };
 
       if (!this.state.open) {
@@ -223,7 +226,7 @@ class Popover extends Component {
   }
 
   componentClickAway = () => {
-    this.requestClose('clickAway');
+    this.requestClose("clickAway");
   };
 
   getAnchorPosition(el) {
@@ -241,8 +244,8 @@ class Popover extends Component {
 
     a.right = rect.right || a.left + a.width;
     a.bottom = rect.bottom || a.top + a.height;
-    a.middle = a.left + ((a.right - a.left) / 2);
-    a.center = a.top + ((a.bottom - a.top) / 2);
+    a.middle = a.left + (a.right - a.left) / 2;
+    a.center = a.top + (a.bottom - a.top) / 2;
 
     return a;
   }
@@ -272,7 +275,7 @@ class Popover extends Component {
       return;
     }
 
-    const {targetOrigin, anchorOrigin} = this.props;
+    const { targetOrigin, anchorOrigin } = this.props;
     const anchorEl = this.props.anchorEl || this.anchorEl;
 
     const anchor = this.getAnchorPosition(anchorEl);
@@ -289,7 +292,13 @@ class Popover extends Component {
 
     if (this.props.canAutoPosition) {
       target = this.getTargetPosition(targetEl); // update as height may have changed
-      targetPosition = this.applyAutoPositionIfNeeded(anchor, target, targetOrigin, anchorOrigin, targetPosition);
+      targetPosition = this.applyAutoPositionIfNeeded(
+        anchor,
+        target,
+        targetOrigin,
+        anchorOrigin,
+        targetPosition
+      );
     }
 
     targetEl.style.top = `${Math.max(0, targetPosition.top)}px`;
@@ -298,47 +307,49 @@ class Popover extends Component {
   };
 
   autoCloseWhenOffScreen(anchorPosition) {
-    if (anchorPosition.top < 0 ||
+    if (
+      anchorPosition.top < 0 ||
       anchorPosition.top > window.innerHeight ||
       anchorPosition.left < 0 ||
-      anchorPosition.left > window.innerWidth) {
-      this.requestClose('offScreen');
+      anchorPosition.left > window.innerWidth
+    ) {
+      this.requestClose("offScreen");
     }
   }
 
   getOverlapMode(anchor, target, median) {
-    if ([anchor, target].indexOf(median) >= 0) return 'auto';
-    if (anchor === target) return 'inclusive';
-    return 'exclusive';
+    if ([anchor, target].indexOf(median) >= 0) return "auto";
+    if (anchor === target) return "inclusive";
+    return "exclusive";
   }
 
   getPositions(anchor, target) {
-    const a = {...anchor};
-    const t = {...target};
+    const a = { ...anchor };
+    const t = { ...target };
 
     const positions = {
-      x: ['left', 'right'].filter((p) => p !== t.horizontal),
-      y: ['top', 'bottom'].filter((p) => p !== t.vertical),
+      x: ["left", "right"].filter((p) => p !== t.horizontal),
+      y: ["top", "bottom"].filter((p) => p !== t.vertical),
     };
 
     const overlap = {
-      x: this.getOverlapMode(a.horizontal, t.horizontal, 'middle'),
-      y: this.getOverlapMode(a.vertical, t.vertical, 'center'),
+      x: this.getOverlapMode(a.horizontal, t.horizontal, "middle"),
+      y: this.getOverlapMode(a.vertical, t.vertical, "center"),
     };
 
-    positions.x.splice(overlap.x === 'auto' ? 0 : 1, 0, 'middle');
-    positions.y.splice(overlap.y === 'auto' ? 0 : 1, 0, 'center');
+    positions.x.splice(overlap.x === "auto" ? 0 : 1, 0, "middle");
+    positions.y.splice(overlap.y === "auto" ? 0 : 1, 0, "center");
 
-    if (overlap.y !== 'auto') {
-      a.vertical = a.vertical === 'top' ? 'bottom' : 'top';
-      if (overlap.y === 'inclusive') {
+    if (overlap.y !== "auto") {
+      a.vertical = a.vertical === "top" ? "bottom" : "top";
+      if (overlap.y === "inclusive") {
         t.vertical = t.vertical;
       }
     }
 
-    if (overlap.x !== 'auto') {
-      a.horizontal = a.horizontal === 'left' ? 'right' : 'left';
-      if (overlap.y === 'inclusive') {
+    if (overlap.x !== "auto") {
+      a.horizontal = a.horizontal === "left" ? "right" : "left";
+      if (overlap.y === "inclusive") {
         t.horizontal = t.horizontal;
       }
     }
@@ -349,10 +360,22 @@ class Popover extends Component {
     };
   }
 
-  applyAutoPositionIfNeeded(anchor, target, targetOrigin, anchorOrigin, targetPosition) {
-    const {positions, anchorPos} = this.getPositions(anchorOrigin, targetOrigin);
+  applyAutoPositionIfNeeded(
+    anchor,
+    target,
+    targetOrigin,
+    anchorOrigin,
+    targetPosition
+  ) {
+    const { positions, anchorPos } = this.getPositions(
+      anchorOrigin,
+      targetOrigin
+    );
 
-    if (targetPosition.top < 0 || targetPosition.top + target.bottom > window.innerHeight) {
+    if (
+      targetPosition.top < 0 ||
+      targetPosition.top + target.bottom > window.innerHeight
+    ) {
       let newTop = anchor[anchorPos.vertical] - target[positions.y[0]];
       if (newTop + target.bottom <= window.innerHeight)
         targetPosition.top = Math.max(0, newTop);
@@ -362,7 +385,10 @@ class Popover extends Component {
           targetPosition.top = Math.max(0, newTop);
       }
     }
-    if (targetPosition.left < 0 || targetPosition.left + target.right > window.innerWidth) {
+    if (
+      targetPosition.left < 0 ||
+      targetPosition.left + target.right > window.innerWidth
+    ) {
       let newLeft = anchor[anchorPos.horizontal] - target[positions.x[0]];
       if (newLeft + target.right <= window.innerWidth)
         targetPosition.left = Math.max(0, newLeft);

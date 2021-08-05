@@ -1,11 +1,11 @@
-import React from 'react';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import React from "react";
+import Dialog from "material-ui/Dialog";
+import FlatButton from "material-ui/FlatButton";
+import RaisedButton from "material-ui/RaisedButton";
 
 const customContentStyle = {
-  width: '100%',
-  maxWidth: 'none',
+  width: "100%",
+  maxWidth: "none",
 };
 
 /**
@@ -17,11 +17,11 @@ export default class DialogExampleCustomWidth extends React.Component {
   };
 
   handleOpen = () => {
-    this.setState({open: true});
+    this.setState({ open: true });
   };
 
   handleClose = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
   };
 
   render() {
@@ -40,7 +40,10 @@ export default class DialogExampleCustomWidth extends React.Component {
 
     return (
       <div>
-        <RaisedButton label="Dialog With Custom Width" onTouchTap={this.handleOpen} />
+        <RaisedButton
+          label="Dialog With Custom Width"
+          onTouchTap={this.handleOpen}
+        />
         <Dialog
           title="Dialog With Custom Width"
           actions={actions}

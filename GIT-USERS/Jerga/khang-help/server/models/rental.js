@@ -7,7 +7,7 @@ const rentalSchema = new Schema({
   title: {
     type: String,
     required: true,
-    max: [128, "Too long, max is 128 characters"]
+    max: [128, "Too long, max is 128 characters"],
   },
 
   // in the UI it will convert to the lowercase to the db
@@ -15,7 +15,7 @@ const rentalSchema = new Schema({
   street: {
     type: String,
     required: true,
-    min: [4, "Too short, min is 4 characters"]
+    min: [4, "Too short, min is 4 characters"],
   },
   category: { type: String, required: true, lowercase: true },
   image: { type: String, required: true },
@@ -26,7 +26,7 @@ const rentalSchema = new Schema({
   createdAt: { type: Date, default: Date.now() },
   // just 1 user so it's an object here
   user: { type: Schema.Types.ObjectId, ref: "User" },
-  bookings: [{ type: Schema.Types.ObjectId, ref: "Booking" }]
+  bookings: [{ type: Schema.Types.ObjectId, ref: "Booking" }],
 });
 
 module.exports = mongoose.model("Rental", rentalSchema);

@@ -1,30 +1,30 @@
-import React, {Component, PropTypes} from 'react';
-import EventListener from 'react-event-listener';
+import React, { Component, PropTypes } from "react";
+import EventListener from "react-event-listener";
 
 const rowsHeight = 24;
 
 function getStyles(props, context, state) {
   return {
     root: {
-      position: 'relative', // because the shadow has position: 'absolute'
+      position: "relative", // because the shadow has position: 'absolute'
     },
     textarea: {
       height: state.height,
-      width: '100%',
-      resize: 'none',
-      font: 'inherit',
+      width: "100%",
+      resize: "none",
+      font: "inherit",
       padding: 0,
-      cursor: 'inherit',
+      cursor: "inherit",
     },
     shadow: {
-      resize: 'none',
+      resize: "none",
       // Overflow also needed to here to remove the extra row
       // added to textareas in Firefox.
-      overflow: 'hidden',
+      overflow: "hidden",
       // Visibility needed to hide the extra text area on ipads
-      visibility: 'hidden',
-      position: 'absolute',
-      height: 'initial',
+      visibility: "hidden",
+      position: "absolute",
+      height: "initial",
     },
   };
 }
@@ -121,7 +121,7 @@ class EnhancedTextarea extends Component {
   handleChange = (event) => {
     this.syncHeightWithShadow(event.target.value);
 
-    if (this.props.hasOwnProperty('valueLink')) {
+    if (this.props.hasOwnProperty("valueLink")) {
       this.props.valueLink.requestChange(event.target.value);
     }
 
@@ -143,13 +143,18 @@ class EnhancedTextarea extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
     const rootStyles = Object.assign(styles.root, style);
     const textareaStyles = Object.assign(styles.textarea, textareaStyle);
-    const shadowStyles = Object.assign({}, textareaStyles, styles.shadow, shadowStyle);
+    const shadowStyles = Object.assign(
+      {},
+      textareaStyles,
+      styles.shadow,
+      shadowStyle
+    );
 
-    if (this.props.hasOwnProperty('valueLink')) {
+    if (this.props.hasOwnProperty("valueLink")) {
       other.value = this.props.valueLink.value;
     }
 

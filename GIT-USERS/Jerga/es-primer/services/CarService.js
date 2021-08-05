@@ -1,9 +1,8 @@
-const Promise = require('../Promise');
-const Observable = require('../Observable');
+const Promise = require("../Promise");
+const Observable = require("../Observable");
 
 function forEach(array, callbackFunction) {
-
-  for(let i = 0; i < array.length; i++) {
+  for (let i = 0; i < array.length; i++) {
     const arrayElement = array[i];
 
     callbackFunction(arrayElement);
@@ -11,7 +10,6 @@ function forEach(array, callbackFunction) {
 }
 
 class CarService {
-
   constructor(name, country) {
     this.name = name;
     this.country = country;
@@ -20,15 +18,16 @@ class CarService {
   }
 
   addCar(car) {
-    car.brand === 'toyota' ? console.log('I cannot add toyota!!!!') : this.carsToRepair.push(car);
+    car.brand === "toyota"
+      ? console.log("I cannot add toyota!!!!")
+      : this.carsToRepair.push(car);
   }
 
   displayCustomName() {
-    console.log('I am custom name function');
+    console.log("I am custom name function");
   }
 
   displayAllCars() {
-
     forEach(this.carsToRepair, (car) => {
       this.displayCustomName();
       car.displayCarInformations();
@@ -53,20 +52,18 @@ class CarService {
     // });
 
     return new Observable((observer) => {
-      setTimeout(function() {
-        let secretDocs = 'SUPER SECRET DOCUMENTS, DONT SHARE';
+      setTimeout(function () {
+        let secretDocs = "SUPER SECRET DOCUMENTS, DONT SHARE";
         observer.next(secretDocs);
-        observer.next('secretDocs1');
+        observer.next("secretDocs1");
 
         observer.complete();
 
-        observer.next('secretDocs2');
-        observer.next('secretDocs3');
+        observer.next("secretDocs2");
+        observer.next("secretDocs3");
       }, 2000);
     });
   }
-
 }
-
 
 module.exports = CarService;

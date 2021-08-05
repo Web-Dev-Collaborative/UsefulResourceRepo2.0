@@ -1,20 +1,22 @@
-import React, {Component, PropTypes} from 'react';
-import transitions from '../styles/transitions';
-import {createChildFragment} from '../utils/childUtils';
-import {fade} from '../utils/colorManipulator';
-import EnhancedButton from '../internal/EnhancedButton';
-import FlatButtonLabel from './FlatButtonLabel';
+import React, { Component, PropTypes } from "react";
+import transitions from "../styles/transitions";
+import { createChildFragment } from "../utils/childUtils";
+import { fade } from "../utils/colorManipulator";
+import EnhancedButton from "../internal/EnhancedButton";
+import FlatButtonLabel from "./FlatButtonLabel";
 
 function validateLabel(props, propName, componentName) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!props.children && (props.label !== 0 && !props.label) && !props.icon) {
-      return new Error(`Required prop label or children or icon was not specified in ${componentName}.`);
+  if (process.env.NODE_ENV !== "production") {
+    if (!props.children && props.label !== 0 && !props.label && !props.icon) {
+      return new Error(
+        `Required prop label or children or icon was not specified in ${componentName}.`
+      );
     }
   }
 }
 
 class FlatButton extends Component {
-  static muiName = 'FlatButton';
+  static muiName = "FlatButton";
 
   static propTypes = {
     /**
@@ -54,10 +56,7 @@ class FlatButton extends Component {
     /**
      * Place label before or after the passed children.
      */
-    labelPosition: PropTypes.oneOf([
-      'before',
-      'after',
-    ]),
+    labelPosition: PropTypes.oneOf(["before", "after"]),
     /**
      * Override the inline-styles of the button's label element.
      */
@@ -98,7 +97,7 @@ class FlatButton extends Component {
   static defaultProps = {
     disabled: false,
     labelStyle: {},
-    labelPosition: 'after',
+    labelPosition: "after",
     onKeyboardFocus: () => {},
     onMouseEnter: () => {},
     onMouseLeave: () => {},
@@ -126,23 +125,23 @@ class FlatButton extends Component {
   }
 
   handleKeyboardFocus = (event, isKeyboardFocused) => {
-    this.setState({isKeyboardFocused: isKeyboardFocused});
+    this.setState({ isKeyboardFocused: isKeyboardFocused });
     this.props.onKeyboardFocus(event, isKeyboardFocused);
   };
 
   handleMouseEnter = (event) => {
     // Cancel hover styles for touch devices
-    if (!this.state.touch) this.setState({hovered: true});
+    if (!this.state.touch) this.setState({ hovered: true });
     this.props.onMouseEnter(event);
   };
 
   handleMouseLeave = (event) => {
-    this.setState({hovered: false});
+    this.setState({ hovered: false });
     this.props.onMouseLeave(event);
   };
 
   handleTouchStart = (event) => {
-    this.setState({touch: true});
+    this.setState({ touch: true });
     this.props.onTouchStart(event);
   };
 
@@ -178,81 +177,97 @@ class FlatButton extends Component {
         primaryTextColor,
         secondaryTextColor,
         textColor,
-        textTransform = buttonTextTransform || 'uppercase',
+        textTransform = buttonTextTransform || "uppercase",
       },
     } = this.context.muiTheme;
-    const defaultTextColor = disabled ? disabledTextColor :
-      primary ? primaryTextColor :
-      secondary ? secondaryTextColor :
-      textColor;
+    const defaultTextColor = disabled
+      ? disabledTextColor
+      : primary
+      ? primaryTextColor
+      : secondary
+      ? secondaryTextColor
+      : textColor;
 
     const defaultHoverColor = fade(buttonFilterColor, 0.2);
     const defaultRippleColor = buttonFilterColor;
     const buttonHoverColor = hoverColor || defaultHoverColor;
     const buttonRippleColor = rippleColor || defaultRippleColor;
     const buttonBackgroundColor = backgroundColor || buttonColor;
-    const hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
+    const hovered =
+      (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
 
-    const mergedRootStyles = Object.assign({}, {
-      height: buttonHeight,
-      lineHeight: `${buttonHeight}px`,
-      minWidth: buttonMinWidth,
-      color: defaultTextColor,
-      transition: transitions.easeOut(),
-      borderRadius: 2,
-      userSelect: 'none',
-      position: 'relative',
-      overflow: 'hidden',
-      backgroundColor: hovered ? buttonHoverColor : buttonBackgroundColor,
-      padding: 0,
-      margin: 0,
-      textAlign: 'center',
-    }, style);
+    const mergedRootStyles = Object.assign(
+      {},
+      {
+        height: buttonHeight,
+        lineHeight: `${buttonHeight}px`,
+        minWidth: buttonMinWidth,
+        color: defaultTextColor,
+        transition: transitions.easeOut(),
+        borderRadius: 2,
+        userSelect: "none",
+        position: "relative",
+        overflow: "hidden",
+        backgroundColor: hovered ? buttonHoverColor : buttonBackgroundColor,
+        padding: 0,
+        margin: 0,
+        textAlign: "center",
+      },
+      style
+    );
 
     let iconCloned;
     const labelStyleIcon = {};
 
     if (icon) {
-      const iconStyles = Object.assign({
-        verticalAlign: 'middle',
-        marginLeft: label && labelPosition !== 'before' ? 12 : 0,
-        marginRight: label && labelPosition === 'before' ? 12 : 0,
-      }, icon.props.style);
+      const iconStyles = Object.assign(
+        {
+          verticalAlign: "middle",
+          marginLeft: label && labelPosition !== "before" ? 12 : 0,
+          marginRight: label && labelPosition === "before" ? 12 : 0,
+        },
+        icon.props.style
+      );
       iconCloned = React.cloneElement(icon, {
         color: icon.props.color || mergedRootStyles.color,
         style: iconStyles,
       });
 
-      if (labelPosition === 'before') {
+      if (labelPosition === "before") {
         labelStyleIcon.paddingRight = 8;
       } else {
         labelStyleIcon.paddingLeft = 8;
       }
     }
 
-    const mergedLabelStyles = Object.assign({
-      letterSpacing: 0,
-      textTransform: textTransform,
-      fontWeight: fontWeight,
-      fontSize: fontSize,
-    }, labelStyleIcon, labelStyle);
+    const mergedLabelStyles = Object.assign(
+      {
+        letterSpacing: 0,
+        textTransform: textTransform,
+        fontWeight: fontWeight,
+        fontSize: fontSize,
+      },
+      labelStyleIcon,
+      labelStyle
+    );
 
     const labelElement = label ? (
       <FlatButtonLabel label={label} style={mergedLabelStyles} />
     ) : undefined;
 
     // Place label before or after children.
-    const childrenFragment = labelPosition === 'before' ?
-    {
-      labelElement,
-      iconCloned,
-      children,
-    } :
-    {
-      children,
-      iconCloned,
-      labelElement,
-    };
+    const childrenFragment =
+      labelPosition === "before"
+        ? {
+            labelElement,
+            iconCloned,
+            children,
+          }
+        : {
+            children,
+            iconCloned,
+            labelElement,
+          };
 
     const enhancedButtonChildren = createChildFragment(childrenFragment);
 

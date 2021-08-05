@@ -1,7 +1,5 @@
-
-
 const getAllProducts = async (): Promise<any> => {
-  return {}
-}
+  return {};
+};
 
-export default getAllProducts
+export default getAllProducts;

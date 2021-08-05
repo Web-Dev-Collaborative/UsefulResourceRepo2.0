@@ -1,15 +1,14 @@
-import React from 'react';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
+import React from "react";
+import DropDownMenu from "material-ui/DropDownMenu";
+import MenuItem from "material-ui/MenuItem";
 
 export default class DropDownMenuLabeledExample extends React.Component {
-
   constructor(props) {
     super(props);
-    this.state = {value: 2};
+    this.state = { value: 2 };
   }
 
-  handleChange = (event, index, value) => this.setState({value});
+  handleChange = (event, index, value) => this.setState({ value });
 
   render() {
     return (

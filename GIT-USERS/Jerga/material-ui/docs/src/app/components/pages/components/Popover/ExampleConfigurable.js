@@ -1,8 +1,8 @@
-import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import RadioButton from 'material-ui/RadioButton';
-import Popover from 'material-ui/Popover/Popover';
-import {Menu, MenuItem} from 'material-ui/Menu';
+import React from "react";
+import RaisedButton from "material-ui/RaisedButton";
+import RadioButton from "material-ui/RadioButton";
+import Popover from "material-ui/Popover/Popover";
+import { Menu, MenuItem } from "material-ui/Menu";
 
 const styles = {
   h3: {
@@ -10,7 +10,7 @@ const styles = {
     fontWeight: 400,
   },
   block: {
-    display: 'flex',
+    display: "flex",
   },
   block2: {
     margin: 10,
@@ -18,19 +18,18 @@ const styles = {
 };
 
 export default class PopoverExampleConfigurable extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
       open: false,
       anchorOrigin: {
-        horizontal: 'left',
-        vertical: 'bottom',
+        horizontal: "left",
+        vertical: "bottom",
       },
       targetOrigin: {
-        horizontal: 'left',
-        vertical: 'top',
+        horizontal: "left",
+        vertical: "top",
       },
     };
   }
@@ -51,7 +50,7 @@ export default class PopoverExampleConfigurable extends React.Component {
   };
 
   setAnchor = (positionElement, position) => {
-    const {anchorOrigin} = this.state;
+    const { anchorOrigin } = this.state;
     anchorOrigin[positionElement] = position;
 
     this.setState({
@@ -60,7 +59,7 @@ export default class PopoverExampleConfigurable extends React.Component {
   };
 
   setTarget = (positionElement, position) => {
-    const {targetOrigin} = this.state;
+    const { targetOrigin } = this.state;
     targetOrigin[positionElement] = position;
 
     this.setState({
@@ -71,10 +70,7 @@ export default class PopoverExampleConfigurable extends React.Component {
   render() {
     return (
       <div>
-        <RaisedButton
-          onTouchTap={this.handleTouchTap}
-          label="Click me"
-        />
+        <RaisedButton onTouchTap={this.handleTouchTap} label="Click me" />
         <h3 style={styles.h3}>Current Settings</h3>
         <pre>
           anchorOrigin: {JSON.stringify(this.state.anchorOrigin)}
@@ -82,37 +78,45 @@ export default class PopoverExampleConfigurable extends React.Component {
           targetOrigin: {JSON.stringify(this.state.targetOrigin)}
         </pre>
         <h3 style={styles.h3}>Position Options</h3>
-        <p>Use the settings below to toggle the positioning of the popovers above</p>
+        <p>
+          Use the settings below to toggle the positioning of the popovers above
+        </p>
         <h3 style={styles.h3}>Anchor Origin</h3>
         <div style={styles.block}>
           <div style={styles.block2}>
             <span>Vertical</span>
             <RadioButton
-              onClick={this.setAnchor.bind(this, 'vertical', 'top')}
-              label="Top" checked={this.state.anchorOrigin.vertical === 'top'}
+              onClick={this.setAnchor.bind(this, "vertical", "top")}
+              label="Top"
+              checked={this.state.anchorOrigin.vertical === "top"}
             />
             <RadioButton
-              onClick={this.setAnchor.bind(this, 'vertical', 'center')}
-              label="Center" checked={this.state.anchorOrigin.vertical === 'center'}
+              onClick={this.setAnchor.bind(this, "vertical", "center")}
+              label="Center"
+              checked={this.state.anchorOrigin.vertical === "center"}
             />
             <RadioButton
-              onClick={this.setAnchor.bind(this, 'vertical', 'bottom')}
-              label="Bottom" checked={this.state.anchorOrigin.vertical === 'bottom'}
+              onClick={this.setAnchor.bind(this, "vertical", "bottom")}
+              label="Bottom"
+              checked={this.state.anchorOrigin.vertical === "bottom"}
             />
           </div>
           <div style={styles.block2}>
             <span>Horizontal</span>
             <RadioButton
-              onClick={this.setAnchor.bind(this, 'horizontal', 'left')}
-              label="Left" checked={this.state.anchorOrigin.horizontal === 'left'}
+              onClick={this.setAnchor.bind(this, "horizontal", "left")}
+              label="Left"
+              checked={this.state.anchorOrigin.horizontal === "left"}
             />
             <RadioButton
-              onClick={this.setAnchor.bind(this, 'horizontal', 'middle')}
-              label="Middle" checked={this.state.anchorOrigin.horizontal === 'middle'}
+              onClick={this.setAnchor.bind(this, "horizontal", "middle")}
+              label="Middle"
+              checked={this.state.anchorOrigin.horizontal === "middle"}
             />
             <RadioButton
-              onClick={this.setAnchor.bind(this, 'horizontal', 'right')}
-              label="Right" checked={this.state.anchorOrigin.horizontal === 'right'}
+              onClick={this.setAnchor.bind(this, "horizontal", "right")}
+              label="Right"
+              checked={this.state.anchorOrigin.horizontal === "right"}
             />
           </div>
         </div>
@@ -121,31 +125,37 @@ export default class PopoverExampleConfigurable extends React.Component {
           <div style={styles.block2}>
             <span>Vertical</span>
             <RadioButton
-              onClick={this.setTarget.bind(this, 'vertical', 'top')}
-              label="Top" checked={this.state.targetOrigin.vertical === 'top'}
+              onClick={this.setTarget.bind(this, "vertical", "top")}
+              label="Top"
+              checked={this.state.targetOrigin.vertical === "top"}
             />
             <RadioButton
-              onClick={this.setTarget.bind(this, 'vertical', 'center')}
-              label="Center" checked={this.state.targetOrigin.vertical === 'center'}
+              onClick={this.setTarget.bind(this, "vertical", "center")}
+              label="Center"
+              checked={this.state.targetOrigin.vertical === "center"}
             />
             <RadioButton
-              onClick={this.setTarget.bind(this, 'vertical', 'bottom')}
-              label="Bottom" checked={this.state.targetOrigin.vertical === 'bottom'}
+              onClick={this.setTarget.bind(this, "vertical", "bottom")}
+              label="Bottom"
+              checked={this.state.targetOrigin.vertical === "bottom"}
             />
           </div>
           <div style={styles.block2}>
             <span>Horizontal</span>
             <RadioButton
-              onClick={this.setTarget.bind(this, 'horizontal', 'left')}
-              label="Left" checked={this.state.targetOrigin.horizontal === 'left'}
+              onClick={this.setTarget.bind(this, "horizontal", "left")}
+              label="Left"
+              checked={this.state.targetOrigin.horizontal === "left"}
             />
             <RadioButton
-              onClick={this.setTarget.bind(this, 'horizontal', 'middle')}
-              label="Middle" checked={this.state.targetOrigin.horizontal === 'middle'}
+              onClick={this.setTarget.bind(this, "horizontal", "middle")}
+              label="Middle"
+              checked={this.state.targetOrigin.horizontal === "middle"}
             />
             <RadioButton
-              onClick={this.setTarget.bind(this, 'horizontal', 'right')}
-              label="Right" checked={this.state.targetOrigin.horizontal === 'right'}
+              onClick={this.setTarget.bind(this, "horizontal", "right")}
+              label="Right"
+              checked={this.state.targetOrigin.horizontal === "right"}
             />
           </div>
         </div>

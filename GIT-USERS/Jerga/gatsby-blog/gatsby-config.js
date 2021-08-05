@@ -1,9 +1,8 @@
-
-const rss = require("./utils/rss-options")
+const rss = require("./utils/rss-options");
 
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
 
 module.exports = {
   siteMetadata: {
@@ -11,14 +10,14 @@ module.exports = {
     description: "The best resource to learn coding online",
     siteUrl: process.env.BASE_URL,
     body: {
-      content: "Just some SEO content"
-    }
+      content: "Just some SEO content",
+    },
   },
   plugins: [
     "gatsby-plugin-sass",
     {
       resolve: "gatsby-plugin-feed",
-      options: rss.options
+      options: rss.options,
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -35,12 +34,12 @@ module.exports = {
             resolve: "gatsby-remark-prismjs",
             options: {
               aliases: {
-                es6: "js"
-              }
-            }
-          }
-        ]
-      }
+                es6: "js",
+              },
+            },
+          },
+        ],
+      },
     },
     "gatsby-plugin-react-helmet",
   ],

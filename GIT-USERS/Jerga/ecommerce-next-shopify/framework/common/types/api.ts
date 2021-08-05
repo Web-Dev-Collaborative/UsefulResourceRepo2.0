@@ -1,28 +1,27 @@
-import { ApiHooks } from "./hooks"
+import { ApiHooks } from "./hooks";
 
 export type ApiFetcherOptions = {
-  query: string
-  variables?: Variables
-}
+  query: string;
+  variables?: Variables;
+};
 
-export type Variables = {[key: string]: string | any | undefined}
+export type Variables = { [key: string]: string | any | undefined };
 
 export type ApiFetcherResults<T> = {
-  data: T
-}
+  data: T;
+};
 
 export interface ApiConfig {
-  fetch<T>(options: ApiFetcherOptions): Promise<ApiFetcherResults<T>>
-  checkoutCookie: string
+  fetch<T>(options: ApiFetcherOptions): Promise<ApiFetcherResults<T>>;
+  checkoutCookie: string;
 }
-
 
 export type ApiFetcher<T = any> = (
   options: ApiFetcherOptions
-) => Promise<ApiFetcherResults<T>>
+) => Promise<ApiFetcherResults<T>>;
 
 export interface ApiProviderContext {
-  hooks: ApiHooks
-  fetcher: ApiFetcher
-  checkoutCookie: string
+  hooks: ApiHooks;
+  fetcher: ApiFetcher;
+  checkoutCookie: string;
 }

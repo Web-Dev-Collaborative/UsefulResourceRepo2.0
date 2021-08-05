@@ -1,20 +1,18 @@
-import React, {Component} from 'react';
-import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
-import FlatButton from 'material-ui/FlatButton';
-import Toggle from 'material-ui/Toggle';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import React, { Component } from "react";
+import AppBar from "material-ui/AppBar";
+import IconButton from "material-ui/IconButton";
+import IconMenu from "material-ui/IconMenu";
+import MenuItem from "material-ui/MenuItem";
+import FlatButton from "material-ui/FlatButton";
+import Toggle from "material-ui/Toggle";
+import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
+import NavigationClose from "material-ui/svg-icons/navigation/close";
 
 class Login extends Component {
-  static muiName = 'FlatButton';
+  static muiName = "FlatButton";
 
   render() {
-    return (
-      <FlatButton {...this.props} label="Login" />
-    );
+    return <FlatButton {...this.props} label="Login" />;
   }
 }
 
@@ -22,10 +20,12 @@ const Logged = (props) => (
   <IconMenu
     {...props}
     iconButtonElement={
-      <IconButton><MoreVertIcon /></IconButton>
+      <IconButton>
+        <MoreVertIcon />
+      </IconButton>
     }
-    targetOrigin={{horizontal: 'right', vertical: 'top'}}
-    anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+    targetOrigin={{ horizontal: "right", vertical: "top" }}
+    anchorOrigin={{ horizontal: "right", vertical: "top" }}
   >
     <MenuItem primaryText="Refresh" />
     <MenuItem primaryText="Help" />
@@ -33,7 +33,7 @@ const Logged = (props) => (
   </IconMenu>
 );
 
-Logged.muiName = 'IconMenu';
+Logged.muiName = "IconMenu";
 
 /**
  * This example is taking advantage of the composability of the `AppBar`
@@ -45,7 +45,7 @@ class AppBarExampleComposition extends Component {
   };
 
   handleChange = (event, logged) => {
-    this.setState({logged: logged});
+    this.setState({ logged: logged });
   };
 
   render() {
@@ -56,11 +56,15 @@ class AppBarExampleComposition extends Component {
           defaultToggled={true}
           onToggle={this.handleChange}
           labelPosition="right"
-          style={{margin: 20}}
+          style={{ margin: 20 }}
         />
         <AppBar
           title="Title"
-          iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+          iconElementLeft={
+            <IconButton>
+              <NavigationClose />
+            </IconButton>
+          }
           iconElementRight={this.state.logged ? <Logged /> : <Login />}
         />
       </div>

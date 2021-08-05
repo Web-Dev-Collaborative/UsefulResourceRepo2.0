@@ -1,11 +1,10 @@
-import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import {Popover, PopoverAnimationVertical} from 'material-ui/Popover';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
+import React from "react";
+import RaisedButton from "material-ui/RaisedButton";
+import { Popover, PopoverAnimationVertical } from "material-ui/Popover";
+import Menu from "material-ui/Menu";
+import MenuItem from "material-ui/MenuItem";
 
 export default class PopoverExampleAnimation extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -32,15 +31,12 @@ export default class PopoverExampleAnimation extends React.Component {
   render() {
     return (
       <div>
-        <RaisedButton
-          onTouchTap={this.handleTouchTap}
-          label="Click me"
-        />
+        <RaisedButton onTouchTap={this.handleTouchTap} label="Click me" />
         <Popover
           open={this.state.open}
           anchorEl={this.state.anchorEl}
-          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-          targetOrigin={{horizontal: 'left', vertical: 'top'}}
+          anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
+          targetOrigin={{ horizontal: "left", vertical: "top" }}
           onRequestClose={this.handleRequestClose}
           animation={PopoverAnimationVertical}
         >

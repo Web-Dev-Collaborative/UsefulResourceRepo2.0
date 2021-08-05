@@ -10,7 +10,7 @@ import { RentalService } from "src/app/services/rental.service";
 import { BookingService } from "src/app/services/booking.service";
 import { ManageRentalBookingComponent } from "./manage-rental/manage-rental-booking/manage-rental-booking.component";
 import { NgPipesModule } from "ngx-pipes";
-import { ReviewModule } from 'src/app/components/review/review.module';
+import { ReviewModule } from "src/app/components/review/review.module";
 
 const routes: Routes = [
   {
@@ -20,15 +20,15 @@ const routes: Routes = [
       {
         path: "rentals",
         component: ManageRentalComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: "bookings",
         component: ManageBookingComponent,
-        canActivate: [AuthGuard]
-      }
-    ]
-  }
+        canActivate: [AuthGuard],
+      },
+    ],
+  },
 ];
 
 @NgModule({
@@ -36,9 +36,14 @@ const routes: Routes = [
     ManageBookingComponent,
     ManageRentalComponent,
     ManageComponent,
-    ManageRentalBookingComponent
+    ManageRentalBookingComponent,
   ],
-  imports: [CommonModule, RouterModule.forChild(routes), NgPipesModule, ReviewModule],
-  providers: [AuthGuard, RentalService, BookingService]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    NgPipesModule,
+    ReviewModule,
+  ],
+  providers: [AuthGuard, RentalService, BookingService],
 })
-export class ManageModule { }
+export class ManageModule {}

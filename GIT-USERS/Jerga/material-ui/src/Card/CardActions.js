@@ -1,10 +1,10 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from "react";
 
 function getStyles() {
   return {
     root: {
       padding: 8,
-      position: 'relative',
+      position: "relative",
     },
     action: {
       marginRight: 8,
@@ -49,7 +49,7 @@ class CardActions extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     const styledChildren = React.Children.map(children, (child) => {

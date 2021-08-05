@@ -1,5 +1,4 @@
 export default {
-
   isDescendant(parent, child) {
     let node = child.parentNode;
 
@@ -18,5 +17,4 @@ export default {
       left: rect.left + document.body.scrollLeft,
     };
   },
-
 };

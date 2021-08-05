@@ -1,10 +1,7 @@
-
-
 export interface CardDeck {
   name: string;
   types: string[];
 }
-
 
 export interface Card {
   cardId: string;

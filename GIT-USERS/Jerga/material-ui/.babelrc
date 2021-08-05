@@ -19,7 +19,7 @@
     "release": {
       "plugins": [
         "transform-runtime",
-        ["transform-react-remove-prop-types", {"mode": "wrap"}]
+        ["transform-react-remove-prop-types", { "mode": "wrap" }]
       ]
     }
   }

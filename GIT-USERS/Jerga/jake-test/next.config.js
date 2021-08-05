@@ -1,9 +1,8 @@
-require('dotenv').config()
-const prod = process.env.NODE_ENV === 'production'
-
+require("dotenv").config();
+const prod = process.env.NODE_ENV === "production";
 
 module.exports = {
   env: {
-    BASE_URL: prod ? 'https://jake-test.now.sh' : 'http://localhost:3000'
+    BASE_URL: prod ? "https://jake-test.now.sh" : "http://localhost:3000",
   },
-}
+};

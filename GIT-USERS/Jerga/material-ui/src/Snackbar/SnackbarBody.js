@@ -1,28 +1,18 @@
-import React, {PropTypes} from 'react';
-import transitions from '../styles/transitions';
-import withWidth, {SMALL} from '../utils/withWidth';
-import FlatButton from '../FlatButton';
+import React, { PropTypes } from "react";
+import transitions from "../styles/transitions";
+import withWidth, { SMALL } from "../utils/withWidth";
+import FlatButton from "../FlatButton";
 
 function getStyles(props, context) {
-  const {
-    open,
-    width,
-  } = props;
+  const { open, width } = props;
 
   const {
     muiTheme: {
       baseTheme: {
-        spacing: {
-          desktopGutter,
-          desktopSubheaderHeight,
-        },
+        spacing: { desktopGutter, desktopSubheaderHeight },
         fontFamily,
       },
-      snackbar: {
-        backgroundColor,
-        textColor,
-        actionColor,
-      },
+      snackbar: { backgroundColor, textColor, actionColor },
     },
   } = context;
 
@@ -36,26 +26,26 @@ function getStyles(props, context) {
       height: desktopSubheaderHeight,
       lineHeight: `${desktopSubheaderHeight}px`,
       borderRadius: isSmall ? 0 : 2,
-      maxWidth: isSmall ? 'inherit' : 568,
-      minWidth: isSmall ? 'inherit' : 288,
-      width: isSmall ? `calc(100vw - ${desktopGutter * 2}px)` : 'auto',
+      maxWidth: isSmall ? "inherit" : 568,
+      minWidth: isSmall ? "inherit" : 288,
+      width: isSmall ? `calc(100vw - ${desktopGutter * 2}px)` : "auto",
       flexGrow: isSmall ? 1 : 0,
     },
     content: {
       fontSize: 14,
       color: textColor,
       opacity: open ? 1 : 0,
-      transition: open ?
-        transitions.easeOut('500ms', 'opacity', '100ms') :
-        transitions.easeOut('400ms', 'opacity'),
+      transition: open
+        ? transitions.easeOut("500ms", "opacity", "100ms")
+        : transitions.easeOut("400ms", "opacity"),
     },
     action: {
       color: actionColor,
-      float: 'right',
+      float: "right",
       marginTop: 6,
       marginRight: -16,
       marginLeft: desktopGutter,
-      backgroundColor: 'transparent',
+      backgroundColor: "transparent",
     },
   };
 
@@ -73,7 +63,7 @@ export const SnackbarBody = (props, context) => {
     ...other
   } = props;
 
-  const {prepareStyles} = context.muiTheme;
+  const { prepareStyles } = context.muiTheme;
   const styles = getStyles(props, context);
 
   const actionButton = action && (

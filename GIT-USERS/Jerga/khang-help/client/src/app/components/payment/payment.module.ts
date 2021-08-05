@@ -7,6 +7,6 @@ import { PaymentService } from "src/app/services/payment.service";
   declarations: [PaymentComponent],
   imports: [CommonModule],
   providers: [PaymentService],
-  exports: [PaymentComponent]
+  exports: [PaymentComponent],
 })
 export class PaymentModule {}

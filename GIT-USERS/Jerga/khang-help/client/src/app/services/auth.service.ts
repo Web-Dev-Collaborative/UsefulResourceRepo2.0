@@ -41,7 +41,7 @@ export class AuthService {
 
   public login(userData: any): Observable<any> {
     return this.httpClient.post(this.rootURL + "/login", userData).pipe(
-      map(token => {
+      map((token) => {
         return this.saveToken(token);
       })
     );

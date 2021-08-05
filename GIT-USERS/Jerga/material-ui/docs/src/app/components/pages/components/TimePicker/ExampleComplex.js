@@ -1,19 +1,18 @@
-import React from 'react';
-import TimePicker from 'material-ui/TimePicker';
+import React from "react";
+import TimePicker from "material-ui/TimePicker";
 
 export default class TimePickerExampleComplex extends React.Component {
-
   constructor(props) {
     super(props);
-    this.state = {value24: null, value12: null};
+    this.state = { value24: null, value12: null };
   }
 
   handleChangeTimePicker24 = (event, date) => {
-    this.setState({value24: date});
+    this.setState({ value24: date });
   };
 
   handleChangeTimePicker12 = (event, date) => {
-    this.setState({value12: date});
+    this.setState({ value12: date });
   };
 
   render() {

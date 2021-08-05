@@ -1,47 +1,47 @@
-import React, {Component, PropTypes} from 'react';
-import Transition from '../styles/transitions';
-import {isEqualDate} from './dateUtils';
-import EnhancedButton from '../internal/EnhancedButton';
+import React, { Component, PropTypes } from "react";
+import Transition from "../styles/transitions";
+import { isEqualDate } from "./dateUtils";
+import EnhancedButton from "../internal/EnhancedButton";
 
 function getStyles(props, context, state) {
-  const {date, disabled, selected} = props;
-  const {hover} = state;
-  const {baseTheme, datePicker} = context.muiTheme;
+  const { date, disabled, selected } = props;
+  const { hover } = state;
+  const { baseTheme, datePicker } = context.muiTheme;
 
   let labelColor = baseTheme.palette.textColor;
   let buttonStateOpacity = 0;
-  let buttonStateTransform = 'scale(0)';
+  let buttonStateTransform = "scale(0)";
 
   if (hover || selected) {
     labelColor = datePicker.selectTextColor;
     buttonStateOpacity = selected ? 1 : 0.6;
-    buttonStateTransform = 'scale(1)';
+    buttonStateTransform = "scale(1)";
   } else if (isEqualDate(date, new Date())) {
     labelColor = datePicker.color;
   }
 
   return {
     root: {
-      boxSizing: 'border-box',
-      fontWeight: '400',
-      opacity: disabled && '0.4',
-      padding: '4px 0px',
-      position: 'relative',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
+      boxSizing: "border-box",
+      fontWeight: "400",
+      opacity: disabled && "0.4",
+      padding: "4px 0px",
+      position: "relative",
+      WebkitTapHighlightColor: "rgba(0,0,0,0)", // Remove mobile color flashing (deprecated)
       width: 42,
     },
     label: {
       color: labelColor,
-      fontWeight: '400',
-      position: 'relative',
+      fontWeight: "400",
+      position: "relative",
     },
     buttonState: {
       backgroundColor: datePicker.selectColor,
-      borderRadius: '50%',
+      borderRadius: "50%",
       height: 34,
       left: 4,
       opacity: buttonStateOpacity,
-      position: 'absolute',
+      position: "absolute",
       top: 0,
       transform: buttonStateTransform,
       transition: Transition.easeOut(),
@@ -76,13 +76,13 @@ class DayButton extends Component {
 
   handleMouseEnter = () => {
     if (!this.props.disabled) {
-      this.setState({hover: true});
+      this.setState({ hover: true });
     }
   };
 
   handleMouseLeave = () => {
     if (!this.props.disabled) {
-      this.setState({hover: false});
+      this.setState({ hover: false });
     }
   };
 
@@ -109,7 +109,7 @@ class DayButton extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
 
     return date ? (
@@ -127,7 +127,7 @@ class DayButton extends Component {
         <div style={prepareStyles(styles.buttonState)} />
         <span style={prepareStyles(styles.label)}>
           {new DateTimeFormat(locale, {
-            day: 'numeric',
+            day: "numeric",
           }).format(date)}
         </span>
       </EnhancedButton>

@@ -1,7 +1,7 @@
-import React from 'react';
-import Title from 'react-title-component';
-import contributingText from '../../../../../../CONTRIBUTING.md';
-import MarkdownElement from '../../MarkdownElement';
+import React from "react";
+import Title from "react-title-component";
+import contributingText from "../../../../../../CONTRIBUTING.md";
+import MarkdownElement from "../../MarkdownElement";
 
 const Contributing = () => (
   <div>

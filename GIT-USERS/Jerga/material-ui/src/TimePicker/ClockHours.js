@@ -1,12 +1,12 @@
-import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
-import ClockNumber from './ClockNumber';
-import ClockPointer from './ClockPointer';
-import {getTouchEventOffsetValues, rad2deg} from './timeUtils';
+import React, { Component, PropTypes } from "react";
+import ReactDOM from "react-dom";
+import ClockNumber from "./ClockNumber";
+import ClockPointer from "./ClockPointer";
+import { getTouchEventOffsetValues, rad2deg } from "./timeUtils";
 
 class ClockHours extends Component {
   static propTypes = {
-    format: PropTypes.oneOf(['ampm', '24hr']),
+    format: PropTypes.oneOf(["ampm", "24hr"]),
     initialHours: PropTypes.number,
     onChange: PropTypes.func,
   };
@@ -14,7 +14,7 @@ class ClockHours extends Component {
   static defaultProps = {
     initialHours: new Date().getHours(),
     onChange: () => {},
-    format: 'ampm',
+    format: "ampm",
   };
 
   static contextTypes = {
@@ -36,7 +36,7 @@ class ClockHours extends Component {
   }
 
   isMousePressed(event) {
-    if (typeof event.buttons === 'undefined') {
+    if (typeof event.buttons === "undefined") {
       return event.nativeEvent.which;
     }
 
@@ -50,7 +50,7 @@ class ClockHours extends Component {
 
   handleMove = (event) => {
     event.preventDefault();
-    if (this.isMousePressed(event) !== 1 ) return;
+    if (this.isMousePressed(event) !== 1) return;
     this.setClock(event.nativeEvent, false);
   };
 
@@ -65,7 +65,7 @@ class ClockHours extends Component {
   };
 
   setClock(event, finish) {
-    if (typeof event.offsetX === 'undefined') {
+    if (typeof event.offsetX === "undefined") {
       const offset = getTouchEventOffsetValues(event);
 
       event.offsetX = offset.offsetX;
@@ -87,7 +87,7 @@ class ClockHours extends Component {
     const atan = Math.atan2(cx, cy) - Math.atan2(x, y);
 
     let deg = rad2deg(atan);
-    deg = Math.round(deg / step ) * step;
+    deg = Math.round(deg / step) * step;
     deg %= 360;
 
     let value = Math.floor(deg / step) || 0;
@@ -96,7 +96,7 @@ class ClockHours extends Component {
     const distance = Math.sqrt(delta);
 
     value = value || 12;
-    if (this.props.format === '24hr') {
+    if (this.props.format === "24hr") {
       if (distance < 90) {
         value += 12;
         value %= 24;
@@ -111,7 +111,7 @@ class ClockHours extends Component {
   getSelected() {
     let hour = this.props.initialHours;
 
-    if (this.props.format === 'ampm') {
+    if (this.props.format === "ampm") {
       hour %= 12;
       hour = hour || 12;
     }
@@ -121,9 +121,9 @@ class ClockHours extends Component {
 
   getHourNumbers() {
     const style = {
-      pointerEvents: 'none',
+      pointerEvents: "none",
     };
-    const hourSize = this.props.format === 'ampm' ? 12 : 24;
+    const hourSize = this.props.format === "ampm" ? 12 : 24;
 
     const hours = [];
     for (let i = 1; i <= hourSize; i++) {
@@ -147,32 +147,36 @@ class ClockHours extends Component {
   render() {
     const styles = {
       root: {
-        height: '100%',
-        width: '100%',
-        borderRadius: '100%',
-        position: 'relative',
-        pointerEvents: 'none',
-        boxSizing: 'border-box',
+        height: "100%",
+        width: "100%",
+        borderRadius: "100%",
+        position: "relative",
+        pointerEvents: "none",
+        boxSizing: "border-box",
       },
 
       hitMask: {
-        height: '100%',
-        width: '100%',
-        pointerEvents: 'auto',
+        height: "100%",
+        width: "100%",
+        pointerEvents: "auto",
       },
     };
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const hours = this.getSelected();
     const numbers = this.getHourNumbers();
 
     return (
-      <div ref="clock" style={prepareStyles(styles.root)} >
+      <div ref="clock" style={prepareStyles(styles.root)}>
         <ClockPointer hasSelected={true} value={hours} type="hour" />
         {numbers}
         <div
-          ref="mask" style={prepareStyles(styles.hitMask)} onTouchMove={this.handleTouchMove}
-          onTouchEnd={this.handleTouchEnd} onMouseUp={this.handleUp} onMouseMove={this.handleMove}
+          ref="mask"
+          style={prepareStyles(styles.hitMask)}
+          onTouchMove={this.handleTouchMove}
+          onTouchEnd={this.handleTouchEnd}
+          onMouseUp={this.handleUp}
+          onMouseMove={this.handleMove}
         />
       </div>
     );

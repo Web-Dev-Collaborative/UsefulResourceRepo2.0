@@ -1,14 +1,14 @@
-import React from 'react';
-import Title from 'react-title-component';
-import CodeExample from '../../CodeExample';
-import MarkdownElement from '../../MarkdownElement';
-import stylesText from './styles.md';
-import stylesOverridingInlineText from './styles-overriding-inline.md';
-import StylesOverridingInlineExample from './StylesOverridingInlineExample';
-import stylesOverridingInlineExampleCode from '!raw!./StylesOverridingInlineExample';
-import stylesOvveridingCssText from './styles-overriding-css.md';
-import StylesOverridingCssExample from './StylesOverridingCssExample';
-import stylesOvveridingCssExampleCode from '!raw!./StylesOverridingCssExample';
+import React from "react";
+import Title from "react-title-component";
+import CodeExample from "../../CodeExample";
+import MarkdownElement from "../../MarkdownElement";
+import stylesText from "./styles.md";
+import stylesOverridingInlineText from "./styles-overriding-inline.md";
+import StylesOverridingInlineExample from "./StylesOverridingInlineExample";
+import stylesOverridingInlineExampleCode from "!raw!./StylesOverridingInlineExample";
+import stylesOvveridingCssText from "./styles-overriding-css.md";
+import StylesOverridingCssExample from "./StylesOverridingCssExample";
+import stylesOvveridingCssExampleCode from "!raw!./StylesOverridingCssExample";
 
 const stylesOvveridingCssExampleCodeWithCss = `${stylesOvveridingCssExampleCode}
 /*

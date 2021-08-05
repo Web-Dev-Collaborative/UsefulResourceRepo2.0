@@ -1,25 +1,27 @@
-import React from 'react';
-import Title from 'react-title-component';
+import React from "react";
+import Title from "react-title-component";
 
-import CodeExample from '../../../CodeExample';
-import PropTypeDescription from '../../../PropTypeDescription';
-import MarkdownElement from '../../../MarkdownElement';
+import CodeExample from "../../../CodeExample";
+import PropTypeDescription from "../../../PropTypeDescription";
+import MarkdownElement from "../../../MarkdownElement";
 
-import dividerReadmeText from './README';
-import DividerExampleForm from './ExampleForm';
-import dividerExampleFormCode from '!raw!./ExampleForm';
-import DividerExampleList from './ExampleList';
-import dividerExampleListCode from '!raw!./ExampleList';
-import DividerExampleMenu from './ExampleMenu';
-import dividerExampleMenuCode from '!raw!./ExampleMenu';
-import dividerCode from '!raw!material-ui/Divider/Divider';
+import dividerReadmeText from "./README";
+import DividerExampleForm from "./ExampleForm";
+import dividerExampleFormCode from "!raw!./ExampleForm";
+import DividerExampleList from "./ExampleList";
+import dividerExampleListCode from "!raw!./ExampleList";
+import DividerExampleMenu from "./ExampleMenu";
+import dividerExampleMenuCode from "!raw!./ExampleMenu";
+import dividerCode from "!raw!material-ui/Divider/Divider";
 
 const descriptions = {
-  simple: 'Here, `Divider` is used to separate [TextField](/#/components/text-field) components. ' +
-  'It defaults to "full-bleed" (full width).',
-  inset: 'The `inset` parameter allows the divider to to align with inset content, ' +
-  'such as inset [List](/#/components/list) components.',
-  menu: '`Divider` can also be used in [Menus](/#/components/menu).',
+  simple:
+    "Here, `Divider` is used to separate [TextField](/#/components/text-field) components. " +
+    'It defaults to "full-bleed" (full width).',
+  inset:
+    "The `inset` parameter allows the divider to to align with inset content, " +
+    "such as inset [List](/#/components/list) components.",
+  menu: "`Divider` can also be used in [Menus](/#/components/menu).",
 };
 
 const DividerPage = () => {

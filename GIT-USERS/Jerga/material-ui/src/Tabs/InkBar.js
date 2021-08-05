@@ -1,20 +1,20 @@
-import React, {Component, PropTypes} from 'react';
-import transitions from '../styles/transitions';
+import React, { Component, PropTypes } from "react";
+import transitions from "../styles/transitions";
 
 function getStyles(props, context) {
-  const {inkBar} = context.muiTheme;
+  const { inkBar } = context.muiTheme;
 
   return {
     root: {
       left: props.left,
       width: props.width,
       bottom: 0,
-      display: 'block',
+      display: "block",
       backgroundColor: props.color || inkBar.backgroundColor,
       height: 2,
       marginTop: -2,
-      position: 'relative',
-      transition: transitions.easeOut('1s', 'left'),
+      position: "relative",
+      transition: transitions.easeOut("1s", "left"),
     },
   };
 }
@@ -35,13 +35,11 @@ class InkBar extends Component {
   };
 
   render() {
-    const {style} = this.props;
-    const {prepareStyles} = this.context.muiTheme;
+    const { style } = this.props;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
-    return (
-      <div style={prepareStyles(Object.assign(styles.root, style))} />
-    );
+    return <div style={prepareStyles(Object.assign(styles.root, style))} />;
   }
 }
 

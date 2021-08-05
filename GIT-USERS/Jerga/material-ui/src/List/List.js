@@ -1,5 +1,5 @@
-import React, {Component, PropTypes, Children, isValidElement} from 'react';
-import Subheader from '../Subheader';
+import React, { Component, PropTypes, Children, isValidElement } from "react";
+import Subheader from "../Subheader";
 
 class List extends Component {
   static propTypes = {
@@ -19,13 +19,9 @@ class List extends Component {
   };
 
   render() {
-    const {
-      children,
-      style,
-      ...other
-    } = this.props;
+    const { children, style, ...other } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
 
     let hasSubheader = false;
 

@@ -1,9 +1,9 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { Tab2Page } from './tab2.page';
+import { Tab2Page } from "./tab2.page";
 
-describe('Tab2Page', () => {
+describe("Tab2Page", () => {
   let component: Tab2Page;
   let fixture: ComponentFixture<Tab2Page>;
 
@@ -20,7 +20,7 @@ describe('Tab2Page', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -7,18 +7,34 @@
   <ng-container *ngIf="authService.isAuthenticated()">
     <form #bookingForm="ngForm">
       <label>Dates</label>
-      <input type="text" class="form-control daterangepicker-input" name="daterangeInput" daterangepicker [options]="options"
-        (selected)="selectedDate($event, daterange)" />
+      <input
+        type="text"
+        class="form-control daterangepicker-input"
+        name="daterangeInput"
+        daterangepicker
+        [options]="options"
+        (selected)="selectedDate($event, daterange)"
+      />
       <div class="form-group">
         <label for="guests">Guests</label>
-        <input type="number" class="form-control" id="guests" aria-describedby="emailHelp" [(ngModel)]="newBooking.guests"
-          name="guests" />
+        <input
+          type="number"
+          class="form-control"
+          id="guests"
+          aria-describedby="emailHelp"
+          [(ngModel)]="newBooking.guests"
+          name="guests"
+        />
       </div>
     </form>
 
-    <button class="btn btn-danger btn-confirm btn-block" (click)="openConfirmModal(content)" [disabled]="
+    <button
+      class="btn btn-danger btn-confirm btn-block"
+      (click)="openConfirmModal(content)"
+      [disabled]="
         !bookingForm.form.valid || !newBooking.startAt || !newBooking.endAt
-      ">
+      "
+    >
       Reserve place now
     </button>
 
@@ -43,7 +59,12 @@
       Confirm Booking
       <p>{{ newBooking.startAt }} to {{ newBooking.endAt }}</p>
     </h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -57,7 +78,7 @@
       Price: <em>{{ newBooking.totalPrice }} $</em>
     </p>
 
-    <app-payment (paymentConfirmed)='onPaymentConfirmed($event)'></app-payment>
+    <app-payment (paymentConfirmed)="onPaymentConfirmed($event)"></app-payment>
 
     <p>Please review and confirm the booking selected days</p>
   </div>
@@ -66,11 +87,20 @@
     <p *ngFor="let error of errors">{{ error.detail }}</p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn border" (click)="modal.close('Save click')">
+    <button
+      type="button"
+      class="btn border"
+      (click)="modal.close('Save click')"
+    >
       Close
     </button>
 
-    <button [disabled]="!newBooking.paymentToken" type="button" class="btn btn-success border" (click)="createBooking()">
+    <button
+      [disabled]="!newBooking.paymentToken"
+      type="button"
+      class="btn btn-success border"
+      (click)="createBooking()"
+    >
       Confirm
     </button>
   </div>

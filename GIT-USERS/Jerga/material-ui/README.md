@@ -1,6 +1,6 @@
 #### Note
 
-For *how-to* questions and other non-issues,
+For _how-to_ questions and other non-issues,
 please use [StackOverflow](http://stackoverflow.com/questions/tagged/material-ui)
 instead of Github issues. There is a StackOverflow tag called "material-ui"
 that you can use to tag your questions.
@@ -39,17 +39,18 @@ for a quick introduction before you read on.)
 Material-UI is available as an [npm package](https://www.npmjs.org/package/material-ui).
 
 **Stable channel**
+
 ```sh
 npm install material-ui
 ```
 
 **Pre-release channel**
+
 ```sh
 npm install material-ui@next
 ```
 
 Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
-
 
 ### React-Tap-Event-Plugin
 
@@ -60,7 +61,7 @@ _This dependency is temporary and will eventually go away._ Until then,
 be sure to inject this plugin at the start of your app.
 
 ```js
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import injectTapEventPlugin from "react-tap-event-plugin";
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -81,11 +82,12 @@ Beginning with v0.15.0, Material-UI components require a theme to be provided. T
 Here is a quick example to get you started:
 
 **./App.js**
+
 ```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import MyAwesomeReactComponent from './MyAwesomeReactComponent';
+import React from "react";
+import ReactDOM from "react-dom";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import MyAwesomeReactComponent from "./MyAwesomeReactComponent";
 
 const App = () => (
   <MuiThemeProvider>
@@ -93,20 +95,16 @@ const App = () => (
   </MuiThemeProvider>
 );
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('app')
-);
+ReactDOM.render(<App />, document.getElementById("app"));
 ```
 
 **./MyAwesomeReactComponent.js**
-```jsx
-import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
 
-const MyAwesomeReactComponent = () => (
-  <RaisedButton label="Default" />
-);
+```jsx
+import React from "react";
+import RaisedButton from "material-ui/RaisedButton";
+
+const MyAwesomeReactComponent = () => <RaisedButton label="Default" />;
 
 export default MyAwesomeReactComponent;
 ```
@@ -119,8 +117,8 @@ We have implemented a default theme to render all Material-UI components.
 Styling components to your liking is simple and hassle-free. This can be
 achieved in the following two ways:
 
-* [Use a custom theme to style components](http://material-ui.com/#/customization/themes)
-* [Override individual component styles via the `style` prop](http://www.material-ui.com/#/customization/inline-styles)
+- [Use a custom theme to style components](http://material-ui.com/#/customization/themes)
+- [Override individual component styles via the `style` prop](http://www.material-ui.com/#/customization/inline-styles)
 
 ## Examples
 
@@ -159,5 +157,6 @@ you make. :)
 Thank you to [BrowserStack](https://www.browserstack.com/) for providing the infrastructure that allows us to test `material-ui` in real browsers.
 
 ## License
+
 This project is licensed under the terms of the
 [MIT license](https://github.com/callemall/material-ui/blob/master/LICENSE)

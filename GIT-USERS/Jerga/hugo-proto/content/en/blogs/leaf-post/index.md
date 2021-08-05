@@ -8,21 +8,20 @@ author:
   name: "Filip Jerga"
   image: "images/filip.jpg"
 tags:
-- js
-- gatsby
-- development
-- programming
+  - js
+  - gatsby
+  - development
+  - programming
 categories:
-- web development
+  - web development
 series:
-- JAMStack
+  - JAMStack
 draft: false
 resources:
-- name: kokos
-  src: image.png
+  - name: kokos
+    src: image.png
 ---
 
 Nananananannaannananananananana
-
 
 ![profile](image.png)

@@ -1,6 +1,6 @@
 ---
 title: "{{ .Name }}"
-date: {{ .Date }}
+date: { { .Date } }
 draft: true
 ---
 

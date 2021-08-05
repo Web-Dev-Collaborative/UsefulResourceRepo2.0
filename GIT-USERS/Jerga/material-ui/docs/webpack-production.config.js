@@ -1,33 +1,33 @@
-const webpack = require('webpack');
-const path = require('path');
-const buildPath = path.resolve(__dirname, 'build');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const webpack = require("webpack");
+const path = require("path");
+const buildPath = path.resolve(__dirname, "build");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const config = {
   // Entry point to the project
   entry: [
-    './node_modules/babel-polyfill/lib/index.js',
-    path.resolve(__dirname, 'src/app/app.js'),
+    "./node_modules/babel-polyfill/lib/index.js",
+    path.resolve(__dirname, "src/app/app.js"),
   ],
   // Webpack config options on how to obtain modules
   resolve: {
     // When requiring, you don't need to add these extensions
-    extensions: ['', '.js', '.md', '.txt'],
+    extensions: ["", ".js", ".md", ".txt"],
     alias: {
       // material-ui requires will be searched in src folder, not in node_modules
-      'material-ui': path.resolve(__dirname, '../src'),
+      "material-ui": path.resolve(__dirname, "../src"),
     },
   },
   // Configuration for server
   devServer: {
-    contentBase: 'build',
+    contentBase: "build",
     // Required for webpack-dev-server
     outputPath: buildPath,
   },
   // Output file config
   output: {
     path: buildPath, // Path of output file
-    filename: 'app.js', // Name of output file
+    filename: "app.js", // Name of output file
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -41,8 +41,8 @@ const config = {
       },
     }),
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
+      "process.env": {
+        NODE_ENV: JSON.stringify("production"),
       },
     }),
 
@@ -50,10 +50,10 @@ const config = {
     new webpack.NoErrorsPlugin(),
     // Transfer Files
     new CopyWebpackPlugin([
-      {from: 'src/www/css', to: 'css'},
-      {from: 'src/www/images', to: 'images'},
-      {from: 'src/www/index.html'},
-      {from: 'src/www/versions.json'},
+      { from: "src/www/css", to: "css" },
+      { from: "src/www/images", to: "images" },
+      { from: "src/www/index.html" },
+      { from: "src/www/versions.json" },
     ]),
   ],
   module: {
@@ -61,30 +61,30 @@ const config = {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         exclude: /node_modules/,
       },
       {
         test: /\.json$/,
-        loader: 'json-loader',
+        loader: "json-loader",
       },
       {
         test: /\.txt$/,
-        loader: 'raw-loader',
-        include: path.resolve(__dirname, 'src/app/components/raw-code'),
+        loader: "raw-loader",
+        include: path.resolve(__dirname, "src/app/components/raw-code"),
       },
       {
         test: /\.md$/,
-        loader: 'raw-loader',
+        loader: "raw-loader",
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader',
+        loader: "style-loader!css-loader",
       },
     ],
   },
   eslint: {
-    configFile: '../.eslintrc',
+    configFile: "../.eslintrc",
   },
 };
 

@@ -4,7 +4,7 @@ import { Booking } from "../models/booking.model";
 import { HttpClient } from "@angular/common/http";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class BookingService {
   private readonly rootURL = "http://localhost:3001/api/bookings";

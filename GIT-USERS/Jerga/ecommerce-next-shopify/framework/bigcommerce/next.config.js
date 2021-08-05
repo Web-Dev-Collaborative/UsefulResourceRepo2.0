@@ -1,7 +1,3 @@
-
-
-
-
 module.exports = {
-  test: "bigcommerce-unique-settings"
-}
+  test: "bigcommerce-unique-settings",
+};

@@ -1,29 +1,27 @@
+import React, { useState, useEffect } from "react";
+import SideMenu from "../components/sideMenu";
+import Carousel from "../components/carousel";
+import MovieList from "../components/movieList";
 
-
-import React, { useState, useEffect } from 'react'
-import SideMenu from '../components/sideMenu'
-import Carousel from '../components/carousel'
-import MovieList from '../components/movieList'
-
-import { getMovies, getCategories } from '../actions'
+import { getMovies, getCategories } from "../actions";
 
 const Home = (props) => {
-  const { images, categories, movies } = props
-  const [ filter, setFilter ] = useState('all')
+  const { images, categories, movies } = props;
+  const [filter, setFilter] = useState("all");
 
-  const changeCategory = category => {
-    setFilter(category)
-  }
+  const changeCategory = (category) => {
+    setFilter(category);
+  };
 
-  const filterMovies = movies => {
-    if (filter === 'all') {
-      return movies
+  const filterMovies = (movies) => {
+    if (filter === "all") {
+      return movies;
     }
 
     return movies.filter((m) => {
-      return m.genre && m.genre.includes(filter)
-    })
-  }
+      return m.genre && m.genre.includes(filter);
+    });
+  };
 
   return (
     <div>
@@ -49,23 +47,24 @@ const Home = (props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 Home.getInitialProps = async () => {
-  const movies = await getMovies()
-  const categories = await getCategories()
-  const images = movies.map(movie => ({
-      id: `image-${movie.id}`,
-      url: movie.cover,
-      name: movie.name }))
+  const movies = await getMovies();
+  const categories = await getCategories();
+  const images = movies.map((movie) => ({
+    id: `image-${movie.id}`,
+    url: movie.cover,
+    name: movie.name,
+  }));
 
   return {
     movies,
     images,
-    categories
-  }
-}
+    categories,
+  };
+};
 
 // class Home extends React.Component {
 
@@ -147,12 +146,4 @@ Home.getInitialProps = async () => {
 //   }
 // }
 
-export default Home
-
-
-
-
-
-
-
-
+export default Home;

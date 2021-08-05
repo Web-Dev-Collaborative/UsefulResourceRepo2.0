@@ -1,18 +1,17 @@
-
-import { useRouter } from 'next/router'
-import { getActivityById, deleteActivity } from '../../../actions'
-import Link from 'next/link'
+import { useRouter } from "next/router";
+import { getActivityById, deleteActivity } from "../../../actions";
+import Link from "next/link";
 
 const DetailPage = (props) => {
-  const router = useRouter()
-  const { id } = router.query
-  const { activity } = props
+  const router = useRouter();
+  const { id } = router.query;
+  const { activity } = props;
 
   const handleDelete = (id) => {
     deleteActivity(id).then(() => {
-      router.push('/')
-    })
-  }
+      router.push("/");
+    });
+  };
 
   return (
     <div className="contain top-space">
@@ -20,7 +19,7 @@ const DetailPage = (props) => {
         <div className="card-header">
           <h1>{activity.name}</h1>
           <div id="back-btn">
-            <img id="arrow-left" src="/arrow-left.svg" alt="Go Back" /> 
+            <img id="arrow-left" src="/arrow-left.svg" alt="Go Back" />
             <span className="back">BACK</span>
           </div>
         </div>
@@ -28,81 +27,115 @@ const DetailPage = (props) => {
         <div className="card-banner">
           <div id="location">
             <p className="banner-label">Location /</p>
-            <p className="banner-info">{ activity.city }</p>
+            <p className="banner-info">{activity.city}</p>
           </div>
           <div id="price-range">
             <p className="banner-label">Price Range /</p>
-            <p className="banner-info">{ activity.price }</p>
+            <p className="banner-info">{activity.price}</p>
           </div>
           <div id="age-range">
             <p className="banner-label">Age Range /</p>
-            <p className="banner-info">{ activity.ageFrom } - { activity.ageTo } years</p>
+            <p className="banner-info">
+              {activity.ageFrom} - {activity.ageTo} years
+            </p>
           </div>
           <div id="icons">
-            <img className="banner-icon" src="/favorite.svg" alt="Add to favorites" />
+            <img
+              className="banner-icon"
+              src="/favorite.svg"
+              alt="Add to favorites"
+            />
             <img className="banner-icon" src="/share.svg" alt="Share" />
           </div>
         </div>
 
         <div className="card-content">
-
           <div className="info-section">
-            <p className="description">{ activity.description }</p>
-            {activity.address.length > 0 &&
+            <p className="description">{activity.description}</p>
+            {activity.address.length > 0 && (
               <span>
                 {/* <p className="label">Address /</p> */}
                 <p className="info">
-                <a href={'https://www.google.com/maps/search/?api=1&query=' + activity.address} target="_blank">
-                <img className="map-icon" align="top" src="/place.svg" alt="Map pin" />
-                { activity.address }
-                </a></p>
+                  <a
+                    href={
+                      "https://www.google.com/maps/search/?api=1&query=" +
+                      activity.address
+                    }
+                    target="_blank"
+                  >
+                    <img
+                      className="map-icon"
+                      align="top"
+                      src="/place.svg"
+                      alt="Map pin"
+                    />
+                    {activity.address}
+                  </a>
+                </p>
               </span>
-            }
+            )}
 
-            {activity.phone.length > 0 &&
+            {activity.phone.length > 0 && (
               <span>
                 {/* <p className="label">Phone /</p> */}
                 <p className="info">
-                <a href={'tel:' + activity.phoneFormatted}>
-                <img className="map-icon" align="top" src="/phone.svg" alt="Phone icon" /> 
-                { activity.phone }
-                </a></p>
+                  <a href={"tel:" + activity.phoneFormatted}>
+                    <img
+                      className="map-icon"
+                      align="top"
+                      src="/phone.svg"
+                      alt="Phone icon"
+                    />
+                    {activity.phone}
+                  </a>
+                </p>
               </span>
-            }
+            )}
 
-            {activity.website.length > 0 &&
+            {activity.website.length > 0 && (
               <span>
                 {/* <p className="label">Website /</p> */}
                 <p className="info">
-                <a href={'http://' + activity.website} target="_blank">
-                <img className="map-icon" align="top" src="/right-arrow.svg" alt="Right arrow" />
-                { activity.website }
-                </a></p>
+                  <a href={"http://" + activity.website} target="_blank">
+                    <img
+                      className="map-icon"
+                      align="top"
+                      src="/right-arrow.svg"
+                      alt="Right arrow"
+                    />
+                    {activity.website}
+                  </a>
+                </p>
               </span>
-            }
-
-            
+            )}
 
             {/* <p className="label">Filed in /</p> */}
             <p className="info">
-            <img className="map-icon" align="top" src="/tags.svg" alt="Tags icon" />
-            { activity.category }
+              <img
+                className="map-icon"
+                align="top"
+                src="/tags.svg"
+                alt="Tags icon"
+              />
+              {activity.category}
             </p>
 
             {/* <p className="categories">{ activity.category }</p> */}
           </div>
-          <img className="image-section" src={activity.image} alt={activity.name} />
-        
-        {/* <button onClick={() => handleDelete(id)} href="#" role="button">Delete</button>
+          <img
+            className="image-section"
+            src={activity.image}
+            alt={activity.name}
+          />
+
+          {/* <button onClick={() => handleDelete(id)} href="#" role="button">Delete</button>
         <Link href="/activities/[id]/edit" as={`/activities/${id}/edit`}>
           <button 
           role="button">Edit</button>
         </Link>
 
         <p className="desc-text">{ activity.longDesc }</p> */}
-
         </div>
-
       </div>
 
       <style jsx>{`
@@ -137,7 +170,9 @@ const DetailPage = (props) => {
         .details-card {
           width: 1140px;
           background: #fff;
-          box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 5px 8px 0px rgba(0,0,0,0.14), 0px 1px 14px 0px rgba(0,0,0,0.12);
+          box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+            0px 5px 8px 0px rgba(0, 0, 0, 0.14),
+            0px 1px 14px 0px rgba(0, 0, 0, 0.12);
         }
 
         .card-banner {
@@ -163,12 +198,12 @@ const DetailPage = (props) => {
         }
 
         .info {
-          color: #0097A7;
+          color: #0097a7;
           margin: 5px 0;
         }
 
         a {
-          color: #0097A7;
+          color: #0097a7;
           text-decoration: none;
         }
 
@@ -205,8 +240,8 @@ const DetailPage = (props) => {
         }
 
         .image-section {
-            width: 700px;
-            display: block!important;
+          width: 700px;
+          display: block !important;
         }
 
         .info-section {
@@ -217,15 +252,14 @@ const DetailPage = (props) => {
         .description {
           margin-bottom: 30px;
         }
-
       `}</style>
     </div>
-  )
-}
+  );
+};
 
 DetailPage.getInitialProps = async ({ query }) => {
-  const activity = await getActivityById(query.id)
-  return { activity }
-}
+  const activity = await getActivityById(query.id);
+  return { activity };
+};
 
-export default DetailPage
+export default DetailPage;

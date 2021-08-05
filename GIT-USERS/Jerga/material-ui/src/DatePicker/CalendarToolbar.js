@@ -1,24 +1,24 @@
-import React, {Component, PropTypes} from 'react';
-import IconButton from '../IconButton';
-import NavigationChevronLeft from '../svg-icons/navigation/chevron-left';
-import NavigationChevronRight from '../svg-icons/navigation/chevron-right';
-import SlideInTransitionGroup from '../internal/SlideIn';
+import React, { Component, PropTypes } from "react";
+import IconButton from "../IconButton";
+import NavigationChevronLeft from "../svg-icons/navigation/chevron-left";
+import NavigationChevronRight from "../svg-icons/navigation/chevron-right";
+import SlideInTransitionGroup from "../internal/SlideIn";
 
 const styles = {
   root: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    backgroundColor: 'inherit',
+    display: "flex",
+    justifyContent: "space-between",
+    backgroundColor: "inherit",
     height: 48,
   },
   titleDiv: {
     fontSize: 14,
-    fontWeight: '500',
-    textAlign: 'center',
-    width: '100%',
+    fontWeight: "500",
+    textAlign: "center",
+    width: "100%",
   },
   titleText: {
-    height: 'inherit',
+    height: "inherit",
     paddingTop: 12,
   },
 };
@@ -39,12 +39,13 @@ class CalendarToolbar extends Component {
   };
 
   state = {
-    transitionDirection: 'up',
+    transitionDirection: "up",
   };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.displayDate !== this.props.displayDate) {
-      const direction = nextProps.displayDate > this.props.displayDate ? 'left' : 'right';
+      const direction =
+        nextProps.displayDate > this.props.displayDate ? "left" : "right";
       this.setState({
         transitionDirection: direction,
       });
@@ -64,11 +65,11 @@ class CalendarToolbar extends Component {
   };
 
   render() {
-    const {DateTimeFormat, locale, displayDate} = this.props;
+    const { DateTimeFormat, locale, displayDate } = this.props;
 
     const dateTimeFormatted = new DateTimeFormat(locale, {
-      month: 'long',
-      year: 'numeric',
+      month: "long",
+      year: "numeric",
     }).format(displayDate);
 
     return (

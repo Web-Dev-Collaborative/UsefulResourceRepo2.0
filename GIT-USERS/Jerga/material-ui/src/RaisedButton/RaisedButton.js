@@ -1,24 +1,22 @@
-import React, {Component, cloneElement, PropTypes} from 'react';
-import transitions from '../styles/transitions';
-import {fade} from '../utils/colorManipulator';
-import {createChildFragment} from '../utils/childUtils';
-import EnhancedButton from '../internal/EnhancedButton';
-import Paper from '../Paper';
+import React, { Component, cloneElement, PropTypes } from "react";
+import transitions from "../styles/transitions";
+import { fade } from "../utils/colorManipulator";
+import { createChildFragment } from "../utils/childUtils";
+import EnhancedButton from "../internal/EnhancedButton";
+import Paper from "../Paper";
 
 function validateLabel(props, propName, componentName) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!props.children && (props.label !== 0 && !props.label) && !props.icon) {
-      return new Error(`Required prop label or children or icon was not specified in ${componentName}.`);
+  if (process.env.NODE_ENV !== "production") {
+    if (!props.children && props.label !== 0 && !props.label && !props.icon) {
+      return new Error(
+        `Required prop label or children or icon was not specified in ${componentName}.`
+      );
     }
   }
 }
 
 function getStyles(props, context, state) {
-  const {
-    baseTheme,
-    button,
-    raisedButton,
-  } = context.muiTheme;
+  const { baseTheme, button, raisedButton } = context.muiTheme;
 
   const {
     disabled,
@@ -33,7 +31,7 @@ function getStyles(props, context, state) {
     style,
   } = props;
 
-  const amount = (primary || secondary) ? 0.4 : 0.08;
+  const amount = primary || secondary ? 0.4 : 0.08;
 
   let backgroundColor = raisedButton.color;
   let labelColor = raisedButton.textColor;
@@ -56,49 +54,58 @@ function getStyles(props, context, state) {
     }
   }
 
-  const buttonHeight = style && style.height || button.height;
+  const buttonHeight = (style && style.height) || button.height;
   const borderRadius = 2;
 
   return {
     root: {
-      display: 'inline-block',
+      display: "inline-block",
       transition: transitions.easeOut(),
-      minWidth: fullWidth ? '100%' : button.minWidth,
+      minWidth: fullWidth ? "100%" : button.minWidth,
     },
     button: {
-      position: 'relative',
+      position: "relative",
       height: buttonHeight,
       lineHeight: `${buttonHeight}px`,
-      width: '100%',
+      width: "100%",
       padding: 0,
       borderRadius: borderRadius,
       transition: transitions.easeOut(),
       backgroundColor: backgroundColor,
       // That's the default value for a button but not a link
-      textAlign: 'center',
+      textAlign: "center",
     },
     label: {
-      position: 'relative',
+      position: "relative",
       opacity: 1,
       fontSize: raisedButton.fontSize,
       letterSpacing: 0,
-      textTransform: raisedButton.textTransform || button.textTransform || 'uppercase',
+      textTransform:
+        raisedButton.textTransform || button.textTransform || "uppercase",
       fontWeight: raisedButton.fontWeight,
       margin: 0,
-      userSelect: 'none',
-      paddingLeft: icon && labelPosition !== 'before' ? 8 : baseTheme.spacing.desktopGutterLess,
-      paddingRight: icon && labelPosition === 'before' ? 8 : baseTheme.spacing.desktopGutterLess,
+      userSelect: "none",
+      paddingLeft:
+        icon && labelPosition !== "before"
+          ? 8
+          : baseTheme.spacing.desktopGutterLess,
+      paddingRight:
+        icon && labelPosition === "before"
+          ? 8
+          : baseTheme.spacing.desktopGutterLess,
       color: labelColor,
     },
     icon: {
-      verticalAlign: 'middle',
-      marginLeft: label && labelPosition !== 'before' ? 12 : 0,
-      marginRight: label && labelPosition === 'before' ? 12 : 0,
+      verticalAlign: "middle",
+      marginLeft: label && labelPosition !== "before" ? 12 : 0,
+      marginRight: label && labelPosition === "before" ? 12 : 0,
     },
     overlay: {
       height: buttonHeight,
       borderRadius: borderRadius,
-      backgroundColor: (state.keyboardFocused || state.hovered) && !disabled &&
+      backgroundColor:
+        (state.keyboardFocused || state.hovered) &&
+        !disabled &&
         fade(labelColor, amount),
       transition: transitions.easeOut(),
       top: 0,
@@ -111,7 +118,7 @@ function getStyles(props, context, state) {
 }
 
 class RaisedButton extends Component {
-  static muiName = 'RaisedButton';
+  static muiName = "RaisedButton";
 
   static propTypes = {
     /**
@@ -172,10 +179,7 @@ class RaisedButton extends Component {
     /**
      * The position of the button's label relative to the button's `children`.
      */
-    labelPosition: PropTypes.oneOf([
-      'before',
-      'after',
-    ]),
+    labelPosition: PropTypes.oneOf(["before", "after"]),
     /**
      * Override the inline-styles of the button's label element.
      */
@@ -218,7 +222,7 @@ class RaisedButton extends Component {
 
   static defaultProps = {
     disabled: false,
-    labelPosition: 'after',
+    labelPosition: "after",
     fullWidth: false,
     primary: false,
     secondary: false,
@@ -325,7 +329,10 @@ class RaisedButton extends Component {
   };
 
   handleKeyboardFocus = (event, keyboardFocused) => {
-    const zDepth = (keyboardFocused && !this.props.disabled) ? this.state.initialZDepth + 1 : this.state.initialZDepth;
+    const zDepth =
+      keyboardFocused && !this.props.disabled
+        ? this.state.initialZDepth + 1
+        : this.state.initialZDepth;
 
     this.setState({
       zDepth: zDepth,
@@ -356,19 +363,21 @@ class RaisedButton extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
     const mergedRippleStyles = Object.assign({}, styles.ripple, rippleStyle);
 
-    const buttonEventHandlers = disabled ? {} : {
-      onMouseDown: this.handleMouseDown,
-      onMouseUp: this.handleMouseUp,
-      onMouseLeave: this.handleMouseLeave,
-      onMouseEnter: this.handleMouseEnter,
-      onTouchStart: this.handleTouchStart,
-      onTouchEnd: this.handleTouchEnd,
-      onKeyboardFocus: this.handleKeyboardFocus,
-    };
+    const buttonEventHandlers = disabled
+      ? {}
+      : {
+          onMouseDown: this.handleMouseDown,
+          onMouseUp: this.handleMouseUp,
+          onMouseLeave: this.handleMouseLeave,
+          onMouseEnter: this.handleMouseEnter,
+          onTouchStart: this.handleTouchStart,
+          onTouchEnd: this.handleTouchEnd,
+          onKeyboardFocus: this.handleKeyboardFocus,
+        };
 
     const labelElement = label && (
       <span style={prepareStyles(Object.assign(styles.label, labelStyle))}>
@@ -376,22 +385,26 @@ class RaisedButton extends Component {
       </span>
     );
 
-    const iconCloned = icon && cloneElement(icon, {
-      color: icon.props.color || styles.label.color,
-      style: Object.assign(styles.icon, icon.props.style),
-    });
+    const iconCloned =
+      icon &&
+      cloneElement(icon, {
+        color: icon.props.color || styles.label.color,
+        style: Object.assign(styles.icon, icon.props.style),
+      });
 
     // Place label before or after children.
-    const childrenFragment = labelPosition === 'before' ?
-    {
-      labelElement,
-      iconCloned,
-      children,
-    } : {
-      children,
-      iconCloned,
-      labelElement,
-    };
+    const childrenFragment =
+      labelPosition === "before"
+        ? {
+            labelElement,
+            iconCloned,
+            children,
+          }
+        : {
+            children,
+            iconCloned,
+            labelElement,
+          };
 
     const enhancedButtonChildren = createChildFragment(childrenFragment);
 

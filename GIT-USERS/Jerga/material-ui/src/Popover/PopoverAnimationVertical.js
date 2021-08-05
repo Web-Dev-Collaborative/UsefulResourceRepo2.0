@@ -1,23 +1,23 @@
-import React, {Component, PropTypes} from 'react';
-import Paper from '../Paper';
-import transitions from '../styles/transitions';
-import propTypes from '../utils/propTypes';
+import React, { Component, PropTypes } from "react";
+import Paper from "../Paper";
+import transitions from "../styles/transitions";
+import propTypes from "../utils/propTypes";
 
 function getStyles(props, context, state) {
-  const {targetOrigin} = props;
-  const {open} = state;
-  const {muiTheme} = context;
-  const horizontal = targetOrigin.horizontal.replace('middle', 'vertical');
+  const { targetOrigin } = props;
+  const { open } = state;
+  const { muiTheme } = context;
+  const horizontal = targetOrigin.horizontal.replace("middle", "vertical");
 
   return {
     root: {
       opacity: open ? 1 : 0,
-      transform: open ? 'scaleY(1)' : 'scaleY(0)',
+      transform: open ? "scaleY(1)" : "scaleY(0)",
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
-      position: 'fixed',
+      position: "fixed",
       zIndex: muiTheme.zIndex.popover,
-      transition: transitions.easeOut('450ms', ['transform', 'opacity']),
-      maxHeight: '100%',
+      transition: transitions.easeOut("450ms", ["transform", "opacity"]),
+      maxHeight: "100%",
     },
   };
 }
@@ -49,7 +49,7 @@ class PopoverAnimationVertical extends Component {
   };
 
   componentDidMount() {
-    this.setState({open: true}); // eslint-disable-line react/no-did-mount-set-state
+    this.setState({ open: true }); // eslint-disable-line react/no-did-mount-set-state
   }
 
   componentWillReceiveProps(nextProps) {
@@ -59,11 +59,7 @@ class PopoverAnimationVertical extends Component {
   }
 
   render() {
-    const {
-      className,
-      style,
-      zDepth,
-    } = this.props;
+    const { className, style, zDepth } = this.props;
 
     const styles = getStyles(this.props, this.context, this.state);
 

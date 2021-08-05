@@ -1,8 +1,7 @@
-import {Component, PropTypes} from 'react';
-import getMuiTheme from './getMuiTheme';
+import { Component, PropTypes } from "react";
+import getMuiTheme from "./getMuiTheme";
 
 class MuiThemeProvider extends Component {
-
   static propTypes = {
     children: PropTypes.element,
     muiTheme: PropTypes.object,

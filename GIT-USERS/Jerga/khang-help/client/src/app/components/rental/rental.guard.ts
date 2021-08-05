@@ -3,7 +3,7 @@ import {
   CanActivate,
   Router,
   ActivatedRouteSnapshot,
-  RouterStateSnapshot
+  RouterStateSnapshot,
 } from "@angular/router";
 import { RentalService } from "src/app/services/rental.service";
 import { Observable, of } from "rxjs";

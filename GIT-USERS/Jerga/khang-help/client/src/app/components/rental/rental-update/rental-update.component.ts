@@ -10,7 +10,7 @@ import { UcWordsPipe } from "ngx-pipes";
 @Component({
   selector: "app-rental-update",
   templateUrl: "./rental-update.component.html",
-  styleUrls: ["./rental-update.component.scss"]
+  styleUrls: ["./rental-update.component.scss"],
 })
 export class RentalUpdateComponent implements OnInit {
   currentId: string;
@@ -30,7 +30,7 @@ export class RentalUpdateComponent implements OnInit {
 
   ngOnInit() {
     // get the id
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       // console.log(params);
       this.getRental(params["rentalId"]);
     });
@@ -41,7 +41,7 @@ export class RentalUpdateComponent implements OnInit {
   }
 
   getRental(rentalId: string) {
-    this.rentalService.getRentalById(rentalId).subscribe(rental => {
+    this.rentalService.getRentalById(rentalId).subscribe((rental) => {
       this.rental = rental;
     });
   }

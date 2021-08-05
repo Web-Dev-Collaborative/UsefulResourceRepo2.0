@@ -1,10 +1,18 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy, Output, EventEmitter } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  OnDestroy,
+  Output,
+  EventEmitter,
+} from "@angular/core";
 import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-payment",
   templateUrl: "./payment.component.html",
-  styleUrls: ["./payment.component.scss"]
+  styleUrls: ["./payment.component.scss"],
 })
 export class PaymentComponent implements OnInit, OnDestroy {
   stripe: any;
@@ -14,7 +22,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   @ViewChild("cardExpiry") cardExpRef: ElementRef;
   @ViewChild("cardCvc") cardCvcRef: ElementRef;
 
-  @Output() paymentConfirmed = new EventEmitter
+  @Output() paymentConfirmed = new EventEmitter();
 
   cardNumber: any;
   cardExp: any;
@@ -22,7 +30,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   isValidatingCard: boolean = false;
 
-  error: string = '';
+  error: string = "";
   token: any;
 
   constructor() {
@@ -43,29 +51,27 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.cardCvc = this.elements.create("cardCvc", { style });
     this.cardCvc.mount(this.cardCvcRef.nativeElement);
 
-    this.cardNumber.addEventListener('change', this.onChange);
-    this.cardExp.addEventListener('change', this.onChange);
-    this.cardCvc.addEventListener('change', this.onChange);
+    this.cardNumber.addEventListener("change", this.onChange);
+    this.cardExp.addEventListener("change", this.onChange);
+    this.cardCvc.addEventListener("change", this.onChange);
   }
-
-
 
   onChange({ error }) {
     if (error) {
-    debugger
+      debugger;
       this.error = error.message;
     } else {
-      this.error = '';
+      this.error = "";
     }
   }
 
   async onSubmit() {
     this.isValidatingCard = true;
-    const { token, error } = await this.stripe.createToken(this.cardNumber)
+    const { token, error } = await this.stripe.createToken(this.cardNumber);
 
     this.isValidatingCard = false;
     if (error) {
-      console.error(error)
+      console.error(error);
     } else {
       this.token = token;
       this.paymentConfirmed.next(token);
@@ -73,13 +79,16 @@ export class PaymentComponent implements OnInit, OnDestroy {
   }
 
   isCardValid(): boolean {
-    return this.cardNumber._complete &&
-      this.cardExp._complete && this.cardCvc._complete
+    return (
+      this.cardNumber._complete &&
+      this.cardExp._complete &&
+      this.cardCvc._complete
+    );
   }
   ngOnDestroy() {
-    this.cardNumber.removeEventListener('change', this.onChange)
-    this.cardExp.removeEventListener('change', this.onChange)
-    this.cardCvc.removeEventListener('change', this.onChange)
+    this.cardNumber.removeEventListener("change", this.onChange);
+    this.cardExp.removeEventListener("change", this.onChange);
+    this.cardCvc.removeEventListener("change", this.onChange);
 
     this.cardNumber.destroy();
     this.cardExp.destroy();
@@ -97,7 +106,7 @@ const style = {
     fontSize: "15px",
 
     "::placeholder": {
-      color: "#CFD7E0"
-    }
-  }
+      color: "#CFD7E0",
+    },
+  },
 };

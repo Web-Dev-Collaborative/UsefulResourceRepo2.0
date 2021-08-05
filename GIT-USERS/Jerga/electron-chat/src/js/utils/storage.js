@@ -1,7 +1,3 @@
-
-
-
-
 class Storage {
   setItem(key, value) {
     if (!value) return null;

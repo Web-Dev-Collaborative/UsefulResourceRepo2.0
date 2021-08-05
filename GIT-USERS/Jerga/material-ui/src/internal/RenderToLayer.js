@@ -1,7 +1,10 @@
-import {Component, PropTypes} from 'react';
-import {unstable_renderSubtreeIntoContainer, unmountComponentAtNode} from 'react-dom';
+import { Component, PropTypes } from "react";
+import {
+  unstable_renderSubtreeIntoContainer,
+  unmountComponentAtNode,
+} from "react-dom";
 
-import Dom from '../utils/dom';
+import Dom from "../utils/dom";
 
 // heavily inspired by https://github.com/Khan/react-components/blob/master/js/layered-component-mixin.jsx
 class RenderToLayer extends Component {
@@ -46,8 +49,11 @@ class RenderToLayer extends Component {
     }
 
     const el = this.layer;
-    if (event.target !== el && event.target === window ||
-      (document.documentElement.contains(event.target) && !Dom.isDescendant(el, event.target))) {
+    if (
+      (event.target !== el && event.target === window) ||
+      (document.documentElement.contains(event.target) &&
+        !Dom.isDescendant(el, event.target))
+    ) {
       this.props.componentClickAway(event);
     }
   };
@@ -62,12 +68,12 @@ class RenderToLayer extends Component {
     }
 
     if (this.props.useLayerForClickAway) {
-      this.layer.style.position = 'relative';
-      this.layer.removeEventListener('touchstart', this.onClickAway);
-      this.layer.removeEventListener('click', this.onClickAway);
+      this.layer.style.position = "relative";
+      this.layer.removeEventListener("touchstart", this.onClickAway);
+      this.layer.removeEventListener("click", this.onClickAway);
     } else {
-      window.removeEventListener('touchstart', this.onClickAway);
-      window.removeEventListener('click', this.onClickAway);
+      window.removeEventListener("touchstart", this.onClickAway);
+      window.removeEventListener("click", this.onClickAway);
     }
 
     unmountComponentAtNode(this.layer);
@@ -82,20 +88,17 @@ class RenderToLayer extends Component {
    * entirely different part of the page.
    */
   renderLayer() {
-    const {
-      open,
-      render,
-    } = this.props;
+    const { open, render } = this.props;
 
     if (open) {
       if (!this.layer) {
-        this.layer = document.createElement('div');
+        this.layer = document.createElement("div");
         document.body.appendChild(this.layer);
 
         if (this.props.useLayerForClickAway) {
-          this.layer.addEventListener('touchstart', this.onClickAway);
-          this.layer.addEventListener('click', this.onClickAway);
-          this.layer.style.position = 'fixed';
+          this.layer.addEventListener("touchstart", this.onClickAway);
+          this.layer.addEventListener("click", this.onClickAway);
+          this.layer.style.position = "fixed";
           this.layer.style.top = 0;
           this.layer.style.bottom = 0;
           this.layer.style.left = 0;
@@ -103,14 +106,18 @@ class RenderToLayer extends Component {
           this.layer.style.zIndex = this.context.muiTheme.zIndex.layer;
         } else {
           setTimeout(() => {
-            window.addEventListener('touchstart', this.onClickAway);
-            window.addEventListener('click', this.onClickAway);
+            window.addEventListener("touchstart", this.onClickAway);
+            window.addEventListener("click", this.onClickAway);
           }, 0);
         }
       }
 
       const layerElement = render();
-      this.layerElement = unstable_renderSubtreeIntoContainer(this, layerElement, this.layer);
+      this.layerElement = unstable_renderSubtreeIntoContainer(
+        this,
+        layerElement,
+        this.layer
+      );
     } else {
       this.unrenderLayer();
     }

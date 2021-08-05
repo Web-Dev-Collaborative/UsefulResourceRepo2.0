@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
-import YearButton from './YearButton';
-import {cloneDate} from './dateUtils';
+import React, { Component, PropTypes } from "react";
+import ReactDOM from "react-dom";
+import YearButton from "./YearButton";
+import { cloneDate } from "./dateUtils";
 
 class CalendarYear extends Component {
   static propTypes = {
@@ -27,13 +27,8 @@ class CalendarYear extends Component {
   }
 
   getYears() {
-    const {
-      DateTimeFormat,
-      locale,
-      minDate,
-      maxDate,
-      selectedDate,
-    } = this.props;
+    const { DateTimeFormat, locale, minDate, maxDate, selectedDate } =
+      this.props;
 
     const minYear = minDate.getFullYear();
     const maxYear = maxDate.getFullYear();
@@ -45,11 +40,11 @@ class CalendarYear extends Component {
       const selected = selectedDate.getFullYear() === year;
       const selectedProps = {};
       if (selected) {
-        selectedProps.ref = 'selectedYearButton';
+        selectedProps.ref = "selectedYearButton";
       }
 
       const yearFormated = new DateTimeFormat(locale, {
-        year: 'numeric',
+        year: "numeric",
       }).format(dateCheck);
 
       const yearButton = (
@@ -81,7 +76,8 @@ class CalendarYear extends Component {
     const containerHeight = container.clientHeight;
     const yearButtonNodeHeight = yearButtonNode.clientHeight || 32;
 
-    const scrollYOffset = (yearButtonNode.offsetTop + yearButtonNodeHeight / 2) - containerHeight / 2;
+    const scrollYOffset =
+      yearButtonNode.offsetTop + yearButtonNodeHeight / 2 - containerHeight / 2;
     container.scrollTop = scrollYOffset;
   }
 
@@ -94,33 +90,29 @@ class CalendarYear extends Component {
   render() {
     const {
       prepareStyles,
-      datePicker: {
-        calendarYearBackgroundColor,
-      },
+      datePicker: { calendarYearBackgroundColor },
     } = this.context.muiTheme;
 
     const styles = {
       root: {
         backgroundColor: calendarYearBackgroundColor,
-        height: 'inherit',
-        lineHeight: '35px',
-        overflowX: 'hidden',
-        overflowY: 'scroll',
-        position: 'relative',
+        height: "inherit",
+        lineHeight: "35px",
+        overflowX: "hidden",
+        overflowY: "scroll",
+        position: "relative",
       },
       child: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        minHeight: '100%',
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        minHeight: "100%",
       },
     };
 
     return (
       <div style={prepareStyles(styles.root)}>
-        <div style={prepareStyles(styles.child)}>
-          {this.getYears()}
-        </div>
+        <div style={prepareStyles(styles.child)}>{this.getYears()}</div>
       </div>
     );
   }

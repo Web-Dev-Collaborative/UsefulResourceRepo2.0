@@ -1,8 +1,8 @@
-
 @import "pages/about";
 @import "pages/blog";
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -13,7 +13,7 @@ html, body {
 
     #all-taxonomies {
       > div > .is-text {
-        color: #f5f5f5
+        color: #f5f5f5;
       }
     }
 
@@ -24,7 +24,9 @@ html, body {
     .blog-item {
       color: #f5f5f5;
 
-      > .title, .subtitle, strong {
+      > .title,
+      .subtitle,
+      strong {
         color: #f5f5f5;
       }
     }
@@ -39,4 +41,3 @@ html, body {
     }
   }
 }
-

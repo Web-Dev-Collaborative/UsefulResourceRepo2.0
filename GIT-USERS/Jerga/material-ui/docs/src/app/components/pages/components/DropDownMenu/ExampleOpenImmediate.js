@@ -1,19 +1,22 @@
-import React from 'react';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
+import React from "react";
+import DropDownMenu from "material-ui/DropDownMenu";
+import MenuItem from "material-ui/MenuItem";
 
 export default class DropDownMenuOpenImmediateExample extends React.Component {
-
   constructor(props) {
     super(props);
-    this.state = {value: 2};
+    this.state = { value: 2 };
   }
 
-  handleChange = (event, index, value) => this.setState({value});
+  handleChange = (event, index, value) => this.setState({ value });
 
   render() {
     return (
-      <DropDownMenu value={this.state.value} onChange={this.handleChange} openImmediately={true}>
+      <DropDownMenu
+        value={this.state.value}
+        onChange={this.handleChange}
+        openImmediately={true}
+      >
         <MenuItem value={1} primaryText="Never" />
         <MenuItem value={2} primaryText="Every Night" />
         <MenuItem value={3} primaryText="Weeknights" />

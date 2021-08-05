@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import EventListener from 'react-event-listener';
+import React, { Component } from "react";
+import EventListener from "react-event-listener";
 
 export const SMALL = 1;
 export const MEDIUM = 2;
@@ -41,7 +41,8 @@ export default function withWidth(options = {}) {
           width = LARGE;
         } else if (innerWidth >= mediumWidth) {
           width = MEDIUM;
-        } else { // innerWidth < 768
+        } else {
+          // innerWidth < 768
           width = SMALL;
         }
 
@@ -71,10 +72,7 @@ export default function withWidth(options = {}) {
 
         return (
           <EventListener target="window" onResize={this.handleResize}>
-            <MyComponent
-              width={width}
-              {...this.props}
-            />
+            <MyComponent width={width} {...this.props} />
           </EventListener>
         );
       }

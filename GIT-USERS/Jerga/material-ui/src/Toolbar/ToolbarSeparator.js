@@ -1,15 +1,12 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from "react";
 
 function getStyles(props, context) {
-  const {
-    baseTheme,
-    toolbar,
-  } = context.muiTheme;
+  const { baseTheme, toolbar } = context.muiTheme;
 
   return {
     root: {
       backgroundColor: toolbar.separatorColor,
-      display: 'block',
+      display: "block",
       height: baseTheme.spacing.desktopGutterMore,
       marginLeft: baseTheme.spacing.desktopGutter,
       width: 1,
@@ -18,7 +15,7 @@ function getStyles(props, context) {
 }
 
 class ToolbarSeparator extends Component {
-  static muiName = 'ToolbarSeparator';
+  static muiName = "ToolbarSeparator";
 
   static propTypes = {
     /**
@@ -36,17 +33,17 @@ class ToolbarSeparator extends Component {
   };
 
   render() {
-    const {
-      className,
-      style,
-      ...other
-    } = this.props;
+    const { className, style, ...other } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     return (
-      <span {...other} className={className} style={prepareStyles(Object.assign({}, styles.root, style))} />
+      <span
+        {...other}
+        className={className}
+        style={prepareStyles(Object.assign({}, styles.root, style))}
+      />
     );
   }
 }

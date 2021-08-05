@@ -1,32 +1,32 @@
-import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
-import keycode from 'keycode';
-import TextField from '../TextField';
-import Menu from '../Menu';
-import MenuItem from '../MenuItem';
-import Divider from '../Divider';
-import Popover from '../Popover/Popover';
-import propTypes from '../utils/propTypes';
+import React, { Component, PropTypes } from "react";
+import ReactDOM from "react-dom";
+import keycode from "keycode";
+import TextField from "../TextField";
+import Menu from "../Menu";
+import MenuItem from "../MenuItem";
+import Divider from "../Divider";
+import Popover from "../Popover/Popover";
+import propTypes from "../utils/propTypes";
 
 function getStyles(props, context, state) {
-  const {anchorEl} = state;
-  const {fullWidth} = props;
+  const { anchorEl } = state;
+  const { fullWidth } = props;
 
   const styles = {
     root: {
-      display: 'inline-block',
-      position: 'relative',
-      width: fullWidth ? '100%' : 256,
+      display: "inline-block",
+      position: "relative",
+      width: fullWidth ? "100%" : 256,
     },
     menu: {
-      width: '100%',
+      width: "100%",
     },
     list: {
-      display: 'block',
-      width: fullWidth ? '100%' : 256,
+      display: "block",
+      width: fullWidth ? "100%" : 256,
     },
     innerDiv: {
-      overflow: 'hidden',
+      overflow: "hidden",
     },
   };
 
@@ -174,26 +174,27 @@ class AutoComplete extends Component {
 
   static defaultProps = {
     anchorOrigin: {
-      vertical: 'bottom',
-      horizontal: 'left',
+      vertical: "bottom",
+      horizontal: "left",
     },
     animated: true,
     dataSourceConfig: {
-      text: 'text',
-      value: 'value',
+      text: "text",
+      value: "value",
     },
     disableFocusRipple: true,
-    filter: (searchText, key) => searchText !== '' && key.indexOf(searchText) !== -1,
+    filter: (searchText, key) =>
+      searchText !== "" && key.indexOf(searchText) !== -1,
     fullWidth: false,
     open: false,
     openOnFocus: false,
     onUpdateInput: () => {},
     onNewRequest: () => {},
-    searchText: '',
+    searchText: "",
     menuCloseDelay: 300,
     targetOrigin: {
-      vertical: 'top',
-      horizontal: 'left',
+      vertical: "top",
+      horizontal: "left",
     },
   };
 
@@ -270,7 +271,7 @@ class AutoComplete extends Component {
   };
 
   chosenRequestText = (chosenRequest) => {
-    if (typeof chosenRequest === 'string') {
+    if (typeof chosenRequest === "string") {
       return chosenRequest;
     } else {
       return chosenRequest[this.props.dataSourceConfig.text];
@@ -285,19 +286,19 @@ class AutoComplete extends Component {
     if (this.props.onKeyDown) this.props.onKeyDown(event);
 
     switch (keycode(event)) {
-      case 'enter':
+      case "enter":
         this.close();
         const searchText = this.state.searchText;
-        if (searchText !== '') {
+        if (searchText !== "") {
           this.props.onNewRequest(searchText, -1);
         }
         break;
 
-      case 'esc':
+      case "esc":
         this.close();
         break;
 
-      case 'down':
+      case "down":
         event.preventDefault();
         this.setState({
           open: true,
@@ -320,13 +321,16 @@ class AutoComplete extends Component {
       return;
     }
 
-    this.setState({
-      searchText: searchText,
-      open: true,
-      anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
-    }, () => {
-      this.props.onUpdateInput(searchText, this.props.dataSource);
-    });
+    this.setState(
+      {
+        searchText: searchText,
+        open: true,
+        anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
+      },
+      () => {
+        this.props.onUpdateInput(searchText, this.props.dataSource);
+      }
+    );
   };
 
   handleBlur = (event) => {
@@ -393,26 +397,18 @@ class AutoComplete extends Component {
       ...other
     } = this.props;
 
-    const {
-      style: popoverStyle,
-      ...popoverOther
-    } = popoverProps || {};
+    const { style: popoverStyle, ...popoverOther } = popoverProps || {};
 
-    const {
-      open,
-      anchorEl,
-      searchText,
-      focusTextField,
-    } = this.state;
+    const { open, anchorEl, searchText, focusTextField } = this.state;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
 
     const requestsList = [];
 
     dataSource.every((item, index) => {
       switch (typeof item) {
-        case 'string':
+        case "string":
           if (filter(searchText, item, item)) {
             requestsList.push({
               text: item,
@@ -423,19 +419,26 @@ class AutoComplete extends Component {
                   primaryText={item}
                   disableFocusRipple={disableFocusRipple}
                   key={index}
-                />),
+                />
+              ),
             });
           }
           break;
 
-        case 'object':
-          if (item && typeof item[this.props.dataSourceConfig.text] === 'string') {
+        case "object":
+          if (
+            item &&
+            typeof item[this.props.dataSourceConfig.text] === "string"
+          ) {
             const itemText = item[this.props.dataSourceConfig.text];
             if (!this.props.filter(searchText, itemText, item)) break;
 
             const itemValue = item[this.props.dataSourceConfig.value];
-            if (itemValue.type && (itemValue.type.muiName === MenuItem.muiName ||
-               itemValue.type.muiName === Divider.muiName)) {
+            if (
+              itemValue.type &&
+              (itemValue.type.muiName === MenuItem.muiName ||
+                itemValue.type.muiName === Divider.muiName)
+            ) {
               requestsList.push({
                 text: itemText,
                 value: React.cloneElement(itemValue, {
@@ -452,17 +455,22 @@ class AutoComplete extends Component {
                     primaryText={itemText}
                     disableFocusRipple={disableFocusRipple}
                     key={index}
-                  />),
+                  />
+                ),
               });
             }
           }
           break;
 
         default:
-          // Do nothing
+        // Do nothing
       }
 
-      return !(maxSearchResults && maxSearchResults > 0 && requestsList.length === maxSearchResults);
+      return !(
+        maxSearchResults &&
+        maxSearchResults > 0 &&
+        requestsList.length === maxSearchResults
+      );
     });
 
     this.requestsList = requestsList;
@@ -485,7 +493,7 @@ class AutoComplete extends Component {
     );
 
     return (
-      <div style={prepareStyles(Object.assign(styles.root, style))} >
+      <div style={prepareStyles(Object.assign(styles.root, style))}>
         <TextField
           {...other}
           ref="searchTextField"
@@ -544,8 +552,11 @@ AutoComplete.levenshteinDistance = (searchText, key) => {
 
 AutoComplete.noFilter = () => true;
 
-AutoComplete.defaultFilter = AutoComplete.caseSensitiveFilter = (searchText, key) => {
-  return searchText !== '' && key.indexOf(searchText) !== -1;
+AutoComplete.defaultFilter = AutoComplete.caseSensitiveFilter = (
+  searchText,
+  key
+) => {
+  return searchText !== "" && key.indexOf(searchText) !== -1;
 };
 
 AutoComplete.caseInsensitiveFilter = (searchText, key) => {
@@ -555,8 +566,8 @@ AutoComplete.caseInsensitiveFilter = (searchText, key) => {
 AutoComplete.levenshteinDistanceFilter = (distanceLessThan) => {
   if (distanceLessThan === undefined) {
     return AutoComplete.levenshteinDistance;
-  } else if (typeof distanceLessThan !== 'number') {
-    throw 'Error: AutoComplete.levenshteinDistanceFilter is a filter generator, not a filter!';
+  } else if (typeof distanceLessThan !== "number") {
+    throw "Error: AutoComplete.levenshteinDistanceFilter is a filter generator, not a filter!";
   }
 
   return (s, k) => AutoComplete.levenshteinDistance(s, k) < distanceLessThan;

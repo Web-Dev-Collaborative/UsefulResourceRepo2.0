@@ -1,8 +1,8 @@
-import React, {Component, PropTypes} from 'react';
-import transitions from '../styles/transitions';
+import React, { Component, PropTypes } from "react";
+import transitions from "../styles/transitions";
 
 class SvgIcon extends Component {
-  static muiName = 'SvgIcon';
+  static muiName = "SvgIcon";
 
   static propTypes = {
     /**
@@ -41,7 +41,7 @@ class SvgIcon extends Component {
   static defaultProps = {
     onMouseEnter: () => {},
     onMouseLeave: () => {},
-    viewBox: '0 0 24 24',
+    viewBox: "0 0 24 24",
   };
 
   static contextTypes = {
@@ -53,12 +53,12 @@ class SvgIcon extends Component {
   };
 
   handleMouseLeave = (event) => {
-    this.setState({hovered: false});
+    this.setState({ hovered: false });
     this.props.onMouseLeave(event);
   };
 
   handleMouseEnter = (event) => {
-    this.setState({hovered: true});
+    this.setState({ hovered: true });
     this.props.onMouseEnter(event);
   };
 
@@ -74,23 +74,23 @@ class SvgIcon extends Component {
       ...other
     } = this.props;
 
-    const {
-      svgIcon,
-      prepareStyles,
-    } = this.context.muiTheme;
+    const { svgIcon, prepareStyles } = this.context.muiTheme;
 
-    const offColor = color ? color : 'currentColor';
+    const offColor = color ? color : "currentColor";
     const onColor = hoverColor ? hoverColor : offColor;
 
-    const mergedStyles = Object.assign({
-      display: 'inline-block',
-      color: svgIcon.color,
-      fill: this.state.hovered ? onColor : offColor,
-      height: 24,
-      width: 24,
-      userSelect: 'none',
-      transition: transitions.easeOut(),
-    }, style);
+    const mergedStyles = Object.assign(
+      {
+        display: "inline-block",
+        color: svgIcon.color,
+        fill: this.state.hovered ? onColor : offColor,
+        height: 24,
+        width: 24,
+        userSelect: "none",
+        transition: transitions.easeOut(),
+      },
+      style
+    );
 
     return (
       <svg

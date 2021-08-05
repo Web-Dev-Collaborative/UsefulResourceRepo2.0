@@ -1,15 +1,15 @@
-import React from 'react';
-import MobileTearSheet from '../../../MobileTearSheet';
-import {List, ListItem} from 'material-ui/List';
-import Subheader from 'material-ui/Subheader';
-import Divider from 'material-ui/Divider';
-import Checkbox from 'material-ui/Checkbox';
-import Toggle from 'material-ui/Toggle';
+import React from "react";
+import MobileTearSheet from "../../../MobileTearSheet";
+import { List, ListItem } from "material-ui/List";
+import Subheader from "material-ui/Subheader";
+import Divider from "material-ui/Divider";
+import Checkbox from "material-ui/Checkbox";
+import Toggle from "material-ui/Toggle";
 
 const styles = {
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap",
   },
 };
 

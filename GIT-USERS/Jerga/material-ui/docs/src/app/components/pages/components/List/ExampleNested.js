@@ -1,15 +1,14 @@
-import React from 'react';
-import MobileTearSheet from '../../../MobileTearSheet';
-import {List, ListItem} from 'material-ui/List';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
-import ContentInbox from 'material-ui/svg-icons/content/inbox';
-import ContentDrafts from 'material-ui/svg-icons/content/drafts';
-import ContentSend from 'material-ui/svg-icons/content/send';
-import Subheader from 'material-ui/Subheader';
-import Toggle from 'material-ui/Toggle';
+import React from "react";
+import MobileTearSheet from "../../../MobileTearSheet";
+import { List, ListItem } from "material-ui/List";
+import ActionGrade from "material-ui/svg-icons/action/grade";
+import ContentInbox from "material-ui/svg-icons/content/inbox";
+import ContentDrafts from "material-ui/svg-icons/content/drafts";
+import ContentSend from "material-ui/svg-icons/content/send";
+import Subheader from "material-ui/Subheader";
+import Toggle from "material-ui/Toggle";
 
 export default class ListExampleNested extends React.Component {
-
   state = {
     open: false,
   };
@@ -58,7 +57,11 @@ export default class ListExampleNested extends React.Component {
                   leftIcon={<ContentSend />}
                   disabled={true}
                   nestedItems={[
-                    <ListItem key={1} primaryText="Drafts" leftIcon={<ContentDrafts />} />,
+                    <ListItem
+                      key={1}
+                      primaryText="Drafts"
+                      leftIcon={<ContentDrafts />}
+                    />,
                   ]}
                 />,
                 <ListItem
@@ -68,7 +71,11 @@ export default class ListExampleNested extends React.Component {
                   open={this.state.open}
                   onNestedListToggle={this.handleNestedListToggle}
                   nestedItems={[
-                    <ListItem key={1} primaryText="Drafts" leftIcon={<ContentDrafts />} />,
+                    <ListItem
+                      key={1}
+                      primaryText="Drafts"
+                      leftIcon={<ContentDrafts />}
+                    />,
                   ]}
                 />,
               ]}

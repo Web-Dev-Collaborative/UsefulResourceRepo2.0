@@ -1,5 +1,4 @@
-.hero-form__main__base{
-
+.hero-form__main__base {
   & form {
     background-color: #284c61;
     padding-bottom: 2px;
@@ -23,7 +22,7 @@
     }
   }
 
-  &__input-select{
+  &__input-select {
     margin: 0 5px;
     width: 28%;
     display: inline-block;
@@ -36,7 +35,7 @@
     }
   }
 
-  & button{
+  & button {
     background-color: $c5-blue-200;
     color: white;
     padding: 14px 20px;

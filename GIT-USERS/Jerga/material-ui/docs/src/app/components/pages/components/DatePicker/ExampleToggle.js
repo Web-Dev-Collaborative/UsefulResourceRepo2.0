@@ -1,10 +1,10 @@
-import React from 'react';
-import DatePicker from 'material-ui/DatePicker';
-import Toggle from 'material-ui/Toggle';
+import React from "react";
+import DatePicker from "material-ui/DatePicker";
+import Toggle from "material-ui/Toggle";
 
 const optionsStyle = {
   maxWidth: 255,
-  marginRight: 'auto',
+  marginRight: "auto",
 };
 
 /**

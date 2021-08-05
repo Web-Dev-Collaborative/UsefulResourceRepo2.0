@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from "react";
 
 /**
  *  BeforeAfterWrapper
@@ -36,7 +36,7 @@ import React, {Component, PropTypes} from 'react';
 
 const styles = {
   box: {
-    boxSizing: 'border-box',
+    boxSizing: "border-box",
   },
 };
 
@@ -55,9 +55,9 @@ class BeforeAfterWrapper extends Component {
   };
 
   static defaultProps = {
-    beforeElementType: 'div',
-    afterElementType: 'div',
-    elementType: 'div',
+    beforeElementType: "div",
+    afterElementType: "div",
+    elementType: "div",
   };
 
   static contextTypes = {
@@ -74,25 +74,23 @@ class BeforeAfterWrapper extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
 
     let beforeElement;
     let afterElement;
 
     if (beforeStyle) {
-      beforeElement = React.createElement(this.props.beforeElementType,
-        {
-          style: prepareStyles(Object.assign({}, styles.box, beforeStyle)),
-          key: '::before',
-        });
+      beforeElement = React.createElement(this.props.beforeElementType, {
+        style: prepareStyles(Object.assign({}, styles.box, beforeStyle)),
+        key: "::before",
+      });
     }
 
     if (afterStyle) {
-      afterElement = React.createElement(this.props.afterElementType,
-        {
-          style: prepareStyles(Object.assign({}, styles.box, afterStyle)),
-          key: '::after',
-        });
+      afterElement = React.createElement(this.props.afterElementType, {
+        style: prepareStyles(Object.assign({}, styles.box, afterStyle)),
+        key: "::after",
+      });
     }
 
     const children = [beforeElement, this.props.children, afterElement];

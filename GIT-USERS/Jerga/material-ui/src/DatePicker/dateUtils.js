@@ -1,31 +1,68 @@
-import warning from 'warning';
+import warning from "warning";
 
-const dayAbbreviation = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
-  'Oct', 'Nov', 'Dec'];
-const monthLongList = ['January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'];
+const dayAbbreviation = ["S", "M", "T", "W", "T", "F", "S"];
+const dayList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const monthList = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+const monthLongList = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 export function dateTimeFormat(locale, options) {
-  warning(locale === 'en-US', `Material-UI: The ${locale} locale is not supported by the built-in DateTimeFormat.
-  Use the \`DateTimeFormat\` prop to supply an alternative implementation.`);
+  warning(
+    locale === "en-US",
+    `Material-UI: The ${locale} locale is not supported by the built-in DateTimeFormat.
+  Use the \`DateTimeFormat\` prop to supply an alternative implementation.`
+  );
 
-  this.format = function(date) {
-    if (options.month === 'short' && options.weekday === 'short' && options.day === '2-digit') {
-      return `${dayList[date.getDay()]}, ${monthList[date.getMonth()]} ${date.getDate()}`;
-    } else if (options.year === 'numeric' && options.month === 'numeric' && options.day === 'numeric') {
+  this.format = function (date) {
+    if (
+      options.month === "short" &&
+      options.weekday === "short" &&
+      options.day === "2-digit"
+    ) {
+      return `${dayList[date.getDay()]}, ${
+        monthList[date.getMonth()]
+      } ${date.getDate()}`;
+    } else if (
+      options.year === "numeric" &&
+      options.month === "numeric" &&
+      options.day === "numeric"
+    ) {
       return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-    } else if (options.year === 'numeric' && options.month === 'long') {
+    } else if (options.year === "numeric" && options.month === "long") {
       return `${monthLongList[date.getMonth()]} ${date.getFullYear()}`;
-    } else if (options.weekday === 'narrow') {
+    } else if (options.weekday === "narrow") {
       return dayAbbreviation[date.getDay()];
-    } else if (options.year === 'numeric') {
+    } else if (options.year === "numeric") {
       return date.getFullYear().toString();
-    } else if (options.day === 'numeric') {
+    } else if (options.day === "numeric") {
       return date.getDate();
     } else {
-      warning(false, 'Material-UI: Wrong usage of DateTimeFormat');
+      warning(false, "Material-UI: Wrong usage of DateTimeFormat");
     }
   };
 }
@@ -89,7 +126,7 @@ export function getWeekArray(d, firstDayOfWeek) {
   const addWeek = (week) => {
     const emptyDays = 7 - week.length;
     for (let i = 0; i < emptyDays; ++i) {
-      week[weekArray.length ? 'push' : 'unshift'](null);
+      week[weekArray.length ? "push" : "unshift"](null);
     }
     weekArray.push(week);
   };
@@ -109,7 +146,7 @@ export function getWeekArray(d, firstDayOfWeek) {
 }
 
 export function localizedWeekday(DateTimeFormat, locale, day, firstDayOfWeek) {
-  const weekdayFormatter = new DateTimeFormat(locale, {weekday: 'narrow'});
+  const weekdayFormatter = new DateTimeFormat(locale, { weekday: "narrow" });
   const firstDayDate = getFirstDayOfWeek();
 
   return weekdayFormatter.format(addDays(firstDayDate, day + firstDayOfWeek));
@@ -117,33 +154,39 @@ export function localizedWeekday(DateTimeFormat, locale, day, firstDayOfWeek) {
 
 // Convert date to ISO 8601 (YYYY-MM-DD) date string, accounting for current timezone
 export function formatIso(date) {
-  return (new Date(`${date.toDateString()} 12:00:00 +0000`)).toISOString().substring(0, 10);
+  return new Date(`${date.toDateString()} 12:00:00 +0000`)
+    .toISOString()
+    .substring(0, 10);
 }
 
 export function isEqualDate(d1, d2) {
-  return d1 && d2 &&
-    (d1.getFullYear() === d2.getFullYear()) &&
-    (d1.getMonth() === d2.getMonth()) &&
-    (d1.getDate() === d2.getDate());
+  return (
+    d1 &&
+    d2 &&
+    d1.getFullYear() === d2.getFullYear() &&
+    d1.getMonth() === d2.getMonth() &&
+    d1.getDate() === d2.getDate()
+  );
 }
 
 export function isBeforeDate(d1, d2) {
   const date1 = cloneAsDate(d1);
   const date2 = cloneAsDate(d2);
 
-  return (date1.getTime() < date2.getTime());
+  return date1.getTime() < date2.getTime();
 }
 
 export function isAfterDate(d1, d2) {
   const date1 = cloneAsDate(d1);
   const date2 = cloneAsDate(d2);
 
-  return (date1.getTime() > date2.getTime());
+  return date1.getTime() > date2.getTime();
 }
 
 export function isBetweenDates(dateToCheck, startDate, endDate) {
-  return (!(isBeforeDate(dateToCheck, startDate)) &&
-          !(isAfterDate(dateToCheck, endDate)));
+  return (
+    !isBeforeDate(dateToCheck, startDate) && !isAfterDate(dateToCheck, endDate)
+  );
 }
 
 export function monthDiff(d1, d2) {

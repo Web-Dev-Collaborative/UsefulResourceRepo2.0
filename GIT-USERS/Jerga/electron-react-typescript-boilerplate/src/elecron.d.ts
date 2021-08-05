@@ -1,3 +1,1 @@
-
-
 declare let electron: any;

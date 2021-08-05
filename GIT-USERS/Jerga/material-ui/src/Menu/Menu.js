@@ -1,37 +1,33 @@
-import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
-import shallowEqual from 'recompose/shallowEqual';
-import ClickAwayListener from '../internal/ClickAwayListener';
-import keycode from 'keycode';
-import propTypes from '../utils/propTypes';
-import List from '../List/List';
-import {HotKeyHolder} from './menuUtils';
+import React, { Component, PropTypes } from "react";
+import ReactDOM from "react-dom";
+import shallowEqual from "recompose/shallowEqual";
+import ClickAwayListener from "../internal/ClickAwayListener";
+import keycode from "keycode";
+import propTypes from "../utils/propTypes";
+import List from "../List/List";
+import { HotKeyHolder } from "./menuUtils";
 
 function getStyles(props, context) {
-  const {
-    desktop,
-    maxHeight,
-    width,
-  } = props;
+  const { desktop, maxHeight, width } = props;
 
-  const {muiTheme} = context;
+  const { muiTheme } = context;
 
   const styles = {
     root: {
       // Nested div bacause the List scales x faster than it scales y
       zIndex: muiTheme.zIndex.menu,
       maxHeight: maxHeight,
-      overflowY: maxHeight ? 'auto' : null,
+      overflowY: maxHeight ? "auto" : null,
     },
     divider: {
       marginTop: 7,
       marginBottom: 8,
     },
     list: {
-      display: 'table-cell',
+      display: "table-cell",
       paddingBottom: desktop ? 16 : 8,
       paddingTop: desktop ? 16 : 8,
-      userSelect: 'none',
+      userSelect: "none",
       width: width,
     },
     selectedMenuItem: {
@@ -161,7 +157,11 @@ class Menu extends Component {
     const selectedIndex = this.getSelectedIndex(props, filteredChildren);
 
     this.state = {
-      focusIndex: props.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0,
+      focusIndex: props.disableAutoFocus
+        ? -1
+        : selectedIndex >= 0
+        ? selectedIndex
+        : 0,
       isKeyboardFocused: props.initiallyKeyboardFocused,
       keyWidth: props.desktop ? 64 : 56,
     };
@@ -181,7 +181,11 @@ class Menu extends Component {
     const selectedIndex = this.getSelectedIndex(nextProps, filteredChildren);
 
     this.setState({
-      focusIndex: nextProps.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0,
+      focusIndex: nextProps.disableAutoFocus
+        ? -1
+        : selectedIndex >= 0
+        ? selectedIndex
+        : 0,
       keyWidth: nextProps.desktop ? 64 : 56,
     });
   }
@@ -208,10 +212,12 @@ class Menu extends Component {
 
   // Do not use outside of this component, it will be removed once valueLink is deprecated
   getValueLink(props) {
-    return props.valueLink || {
-      value: props.value,
-      requestChange: props.onChange,
-    };
+    return (
+      props.valueLink || {
+        value: props.value,
+        requestChange: props.onChange,
+      }
+    );
   }
 
   setKeyboardFocused(keyboardFocused) {
@@ -231,25 +237,30 @@ class Menu extends Component {
   }
 
   cloneMenuItem(child, childIndex, styles, index) {
-    const {
-      desktop,
-      selectedMenuItemStyle,
-    } = this.props;
+    const { desktop, selectedMenuItemStyle } = this.props;
 
     const selected = this.isChildSelected(child, this.props);
     let selectedChildrenStyles = {};
 
     if (selected) {
-      selectedChildrenStyles = Object.assign(styles.selectedMenuItem, selectedMenuItemStyle);
+      selectedChildrenStyles = Object.assign(
+        styles.selectedMenuItem,
+        selectedMenuItemStyle
+      );
     }
 
-    const mergedChildrenStyles = Object.assign({}, child.props.style, selectedChildrenStyles);
+    const mergedChildrenStyles = Object.assign(
+      {},
+      child.props.style,
+      selectedChildrenStyles
+    );
 
     const isFocused = childIndex === this.state.focusIndex;
-    let focusState = 'none';
+    let focusState = "none";
     if (isFocused) {
-      focusState = this.state.isKeyboardFocused ?
-        'keyboard-focused' : 'focused';
+      focusState = this.state.isKeyboardFocused
+        ? "keyboard-focused"
+        : "focused";
     }
 
     return React.cloneElement(child, {
@@ -259,7 +270,7 @@ class Menu extends Component {
         this.handleMenuItemTouchTap(event, child, index);
         if (child.props.onTouchTap) child.props.onTouchTap(event);
       },
-      ref: isFocused ? 'focusedMenuItem' : null,
+      ref: isFocused ? "focusedMenuItem" : null,
       style: mergedChildrenStyles,
     });
   }
@@ -276,7 +287,7 @@ class Menu extends Component {
   getMenuItemCount(filteredChildren) {
     let menuItemCount = 0;
     filteredChildren.forEach((child) => {
-      const childIsADivider = child.type && child.type.muiName === 'Divider';
+      const childIsADivider = child.type && child.type.muiName === "Divider";
       const childIsDisabled = child.props.disabled;
       if (!childIsADivider && !childIsDisabled) menuItemCount++;
     });
@@ -288,7 +299,7 @@ class Menu extends Component {
     let menuItemIndex = 0;
 
     filteredChildren.forEach((child) => {
-      const childIsADivider = child.type && child.type.muiName === 'Divider';
+      const childIsADivider = child.type && child.type.muiName === "Divider";
 
       if (this.isChildSelected(child, props)) selectedIndex = menuItemIndex;
       if (!childIsADivider) menuItemIndex++;
@@ -301,14 +312,14 @@ class Menu extends Component {
     const filteredChildren = this.getFilteredChildren(this.props.children);
     const key = keycode(event);
     switch (key) {
-      case 'down':
+      case "down":
         event.preventDefault();
         this.incrementKeyboardFocusIndex(filteredChildren);
         break;
-      case 'esc':
+      case "esc":
         this.props.onEscKeyDown(event);
         break;
-      case 'tab':
+      case "tab":
         event.preventDefault();
         if (event.shiftKey) {
           this.decrementKeyboardFocusIndex();
@@ -316,7 +327,7 @@ class Menu extends Component {
           this.incrementKeyboardFocusIndex(filteredChildren);
         }
         break;
-      case 'up':
+      case "up":
         event.preventDefault();
         this.decrementKeyboardFocusIndex();
         break;
@@ -337,8 +348,11 @@ class Menu extends Component {
       if (foundIndex >= 0) {
         return;
       }
-      const {primaryText} = child.props;
-      if (typeof primaryText === 'string' && new RegExp(`^${keys}`, 'i').test(primaryText)) {
+      const { primaryText } = child.props;
+      if (
+        typeof primaryText === "string" &&
+        new RegExp(`^${keys}`, "i").test(primaryText)
+      ) {
         foundIndex = index;
       }
     });
@@ -355,7 +369,9 @@ class Menu extends Component {
     const valueLink = this.getValueLink(this.props);
     const menuValue = valueLink.value;
     const itemValue = item.props.value;
-    const focusIndex = React.isValidElement(children) ? 0 : children.indexOf(item);
+    const focusIndex = React.isValidElement(children)
+      ? 0
+      : children.indexOf(item);
 
     this.setFocusIndex(focusIndex, false);
 
@@ -393,7 +409,7 @@ class Menu extends Component {
     if (props.multiple) {
       return menuValue.length && menuValue.indexOf(childValue) !== -1;
     } else {
-      return child.props.hasOwnProperty('value') && menuValue === childValue;
+      return child.props.hasOwnProperty("value") && menuValue === childValue;
     }
   }
 
@@ -458,7 +474,7 @@ class Menu extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     const mergedRootStyles = Object.assign(styles.root, style);
@@ -468,12 +484,14 @@ class Menu extends Component {
 
     let menuItemIndex = 0;
     const newChildren = React.Children.map(filteredChildren, (child, index) => {
-      const childIsADivider = child.type && child.type.muiName === 'Divider';
+      const childIsADivider = child.type && child.type.muiName === "Divider";
       const childIsDisabled = child.props.disabled;
 
-      const clonedChild = childIsADivider ? React.cloneElement(child, {style: styles.divider}) :
-        childIsDisabled ? React.cloneElement(child, {desktop: desktop}) :
-        this.cloneMenuItem(child, menuItemIndex, styles, index);
+      const clonedChild = childIsADivider
+        ? React.cloneElement(child, { style: styles.divider })
+        : childIsDisabled
+        ? React.cloneElement(child, { desktop: desktop })
+        : this.cloneMenuItem(child, menuItemIndex, styles, index);
 
       if (!childIsADivider && !childIsDisabled) {
         menuItemIndex++;
@@ -489,11 +507,7 @@ class Menu extends Component {
           style={prepareStyles(mergedRootStyles)}
           ref="scrollContainer"
         >
-          <List
-            {...other}
-            ref="list"
-            style={mergedListStyles}
-          >
+          <List {...other} ref="list" style={mergedListStyles}>
             {newChildren}
           </List>
         </div>

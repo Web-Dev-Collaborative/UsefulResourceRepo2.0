@@ -1,67 +1,71 @@
-import React, {Component, PropTypes} from 'react';
-import EventListener from 'react-event-listener';
-import keycode from 'keycode';
-import transitions from '../styles/transitions';
-import FocusRipple from './FocusRipple';
-import TouchRipple from './TouchRipple';
-import Paper from './../Paper';
-import warning from 'warning';
+import React, { Component, PropTypes } from "react";
+import EventListener from "react-event-listener";
+import keycode from "keycode";
+import transitions from "../styles/transitions";
+import FocusRipple from "./FocusRipple";
+import TouchRipple from "./TouchRipple";
+import Paper from "./../Paper";
+import warning from "warning";
 
 function getStyles(props, context) {
-  const {baseTheme} = context.muiTheme;
+  const { baseTheme } = context.muiTheme;
 
   return {
     root: {
-      cursor: props.disabled ? 'not-allowed' : 'pointer',
-      position: 'relative',
-      overflow: 'visible',
-      display: 'table',
-      height: 'auto',
-      width: '100%',
+      cursor: props.disabled ? "not-allowed" : "pointer",
+      position: "relative",
+      overflow: "visible",
+      display: "table",
+      height: "auto",
+      width: "100%",
     },
     input: {
-      position: 'absolute',
-      cursor: 'inherit',
-      pointerEvents: 'all',
+      position: "absolute",
+      cursor: "inherit",
+      pointerEvents: "all",
       opacity: 0,
-      width: '100%',
-      height: '100%',
+      width: "100%",
+      height: "100%",
       zIndex: 2,
       left: 0,
-      boxSizing: 'border-box',
+      boxSizing: "border-box",
       padding: 0,
       margin: 0,
     },
     controls: {
-      display: 'flex',
-      width: '100%',
-      height: '100%',
+      display: "flex",
+      width: "100%",
+      height: "100%",
     },
     label: {
-      float: 'left',
-      position: 'relative',
-      display: 'block',
-      width: 'calc(100% - 60px)',
-      lineHeight: '24px',
+      float: "left",
+      position: "relative",
+      display: "block",
+      width: "calc(100% - 60px)",
+      lineHeight: "24px",
       color: baseTheme.palette.textColor,
       fontFamily: baseTheme.fontFamily,
     },
     wrap: {
       transition: transitions.easeOut(),
-      float: 'left',
-      position: 'relative',
-      display: 'block',
+      float: "left",
+      position: "relative",
+      display: "block",
       flexShrink: 0,
       width: 60 - baseTheme.spacing.desktopGutterLess,
-      marginRight: (props.labelPosition === 'right') ?
-        baseTheme.spacing.desktopGutterLess : 0,
-      marginLeft: (props.labelPosition === 'left') ?
-        baseTheme.spacing.desktopGutterLess : 0,
+      marginRight:
+        props.labelPosition === "right"
+          ? baseTheme.spacing.desktopGutterLess
+          : 0,
+      marginLeft:
+        props.labelPosition === "left"
+          ? baseTheme.spacing.desktopGutterLess
+          : 0,
     },
     ripple: {
       color: props.rippleColor || baseTheme.palette.primary1Color,
-      height: '200%',
-      width: '200%',
+      height: "200%",
+      width: "200%",
       top: -12,
       left: -12,
     },
@@ -80,7 +84,7 @@ class EnhancedSwitch extends Component {
     inputStyle: PropTypes.object,
     inputType: PropTypes.string.isRequired,
     label: PropTypes.node,
-    labelPosition: PropTypes.oneOf(['left', 'right']),
+    labelPosition: PropTypes.oneOf(["left", "right"]),
     labelStyle: PropTypes.object,
     name: PropTypes.string,
     onBlur: PropTypes.func,
@@ -112,21 +116,27 @@ class EnhancedSwitch extends Component {
 
   componentDidMount() {
     const inputNode = this.refs.checkbox;
-    if ((!this.props.switched || inputNode.checked !== this.props.switched) &&
-      this.props.onParentShouldUpdate) {
+    if (
+      (!this.props.switched || inputNode.checked !== this.props.switched) &&
+      this.props.onParentShouldUpdate
+    ) {
       this.props.onParentShouldUpdate(inputNode.checked);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const hasCheckedProp = nextProps.hasOwnProperty('checked');
-    const hasToggledProp = nextProps.hasOwnProperty('toggled');
+    const hasCheckedProp = nextProps.hasOwnProperty("checked");
+    const hasToggledProp = nextProps.hasOwnProperty("toggled");
     const hasNewDefaultProp =
-      (nextProps.hasOwnProperty('defaultChecked') &&
-      (nextProps.defaultChecked !== this.props.defaultChecked));
+      nextProps.hasOwnProperty("defaultChecked") &&
+      nextProps.defaultChecked !== this.props.defaultChecked;
 
     if (hasCheckedProp || hasToggledProp || hasNewDefaultProp) {
-      const switched = nextProps.checked || nextProps.toggled || nextProps.defaultChecked || false;
+      const switched =
+        nextProps.checked ||
+        nextProps.toggled ||
+        nextProps.defaultChecked ||
+        false;
 
       this.setState({
         switched: switched,
@@ -144,13 +154,16 @@ class EnhancedSwitch extends Component {
 
   // no callback here because there is no event
   setSwitched(newSwitchedValue) {
-    if (!this.props.hasOwnProperty('checked') || this.props.checked === false) {
+    if (!this.props.hasOwnProperty("checked") || this.props.checked === false) {
       if (this.props.onParentShouldUpdate) {
         this.props.onParentShouldUpdate(newSwitchedValue);
       }
       this.refs.checkbox.checked = newSwitchedValue;
     } else {
-      warning(false, 'Material-UI: Cannot call set method while checked is defined as a property.');
+      warning(
+        false,
+        "Material-UI: Cannot call set method while checked is defined as a property."
+      );
     }
   }
 
@@ -166,7 +179,10 @@ class EnhancedSwitch extends Component {
 
     const isInputChecked = this.refs.checkbox.checked;
 
-    if (!this.props.hasOwnProperty('checked') && this.props.onParentShouldUpdate) {
+    if (
+      !this.props.hasOwnProperty("checked") &&
+      this.props.onParentShouldUpdate
+    ) {
       this.props.onParentShouldUpdate(isInputChecked);
     }
 
@@ -180,16 +196,16 @@ class EnhancedSwitch extends Component {
   handleKeyDown = (event) => {
     const code = keycode(event);
 
-    if (code === 'tab') {
+    if (code === "tab") {
       this.tabPressed = true;
     }
-    if (this.state.isKeyboardFocused && code === 'space') {
+    if (this.state.isKeyboardFocused && code === "space") {
       this.handleChange(event);
     }
   };
 
   handleKeyUp = (event) => {
-    if (this.state.isKeyboardFocused && keycode(event) === 'space') {
+    if (this.state.isKeyboardFocused && keycode(event) === "space") {
       this.handleChange(event);
     }
   };
@@ -282,7 +298,7 @@ class EnhancedSwitch extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
     const wrapStyles = Object.assign(styles.wrap, iconStyle);
     const mergedRippleStyle = Object.assign(styles.ripple, rippleStyle);
@@ -357,24 +373,32 @@ class EnhancedSwitch extends Component {
     ) : (
       <div style={prepareStyles(wrapStyles)}>
         <div style={prepareStyles(Object.assign({}, trackStyle))} />
-        <Paper style={thumbStyle} zDepth={1} circle={true}> {ripples} </Paper>
+        <Paper style={thumbStyle} zDepth={1} circle={true}>
+          {" "}
+          {ripples}{" "}
+        </Paper>
       </div>
     );
 
-    const elementsInOrder = labelPosition === 'right' ? (
-      <div style={styles.controls}>
-        {switchOrThumbElement}
-        {labelElement}
-      </div>
-    ) : (
-      <div style={styles.controls}>
-        {labelElement}
-        {switchOrThumbElement}
-      </div>
-    );
+    const elementsInOrder =
+      labelPosition === "right" ? (
+        <div style={styles.controls}>
+          {switchOrThumbElement}
+          {labelElement}
+        </div>
+      ) : (
+        <div style={styles.controls}>
+          {labelElement}
+          {switchOrThumbElement}
+        </div>
+      );
 
     return (
-      <div ref="root" className={className} style={prepareStyles(Object.assign(styles.root, style))}>
+      <div
+        ref="root"
+        className={className}
+        style={prepareStyles(Object.assign(styles.root, style))}
+      >
         <EventListener
           target="window"
           onKeyDown={this.handleKeyDown}

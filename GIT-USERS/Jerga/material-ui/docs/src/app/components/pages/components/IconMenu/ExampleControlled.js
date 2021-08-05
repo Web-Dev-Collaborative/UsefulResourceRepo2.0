@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
-import IconButton from 'material-ui/IconButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import ContentFilter from 'material-ui/svg-icons/content/filter-list';
-import FileFileDownload from 'material-ui/svg-icons/file/file-download';
+import React, { Component } from "react";
+import IconMenu from "material-ui/IconMenu";
+import MenuItem from "material-ui/MenuItem";
+import IconButton from "material-ui/IconButton";
+import RaisedButton from "material-ui/RaisedButton";
+import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
+import ContentFilter from "material-ui/svg-icons/content/filter-list";
+import FileFileDownload from "material-ui/svg-icons/file/file-download";
 
 /**
  * Three controlled examples, the first allowing a single selection, the second multiple selections,
@@ -13,8 +13,8 @@ import FileFileDownload from 'material-ui/svg-icons/file/file-download';
  */
 export default class IconMenuExampleControlled extends Component {
   state = {
-    valueSingle: '3',
-    valueMultiple: ['3', '5'],
+    valueSingle: "3",
+    valueMultiple: ["3", "5"],
   };
 
   handleChangeSingle = (event, value) => {
@@ -33,19 +33,23 @@ export default class IconMenuExampleControlled extends Component {
     this.setState({
       openMenu: true,
     });
-  }
+  };
 
   handleOnRequestChange = (value) => {
     this.setState({
       openMenu: value,
     });
-  }
+  };
 
   render() {
     return (
       <div>
         <IconMenu
-          iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+          iconButtonElement={
+            <IconButton>
+              <MoreVertIcon />
+            </IconButton>
+          }
           onChange={this.handleChangeSingle}
           value={this.state.valueSingle}
         >
@@ -56,7 +60,11 @@ export default class IconMenuExampleControlled extends Component {
           <MenuItem value="5" primaryText="Sign out" />
         </IconMenu>
         <IconMenu
-          iconButtonElement={<IconButton><ContentFilter /></IconButton>}
+          iconButtonElement={
+            <IconButton>
+              <ContentFilter />
+            </IconButton>
+          }
           onChange={this.handleChangeMultiple}
           value={this.state.valueMultiple}
           multiple={true}
@@ -69,7 +77,11 @@ export default class IconMenuExampleControlled extends Component {
           <MenuItem value="6" primaryText="Vinyl" />
         </IconMenu>
         <IconMenu
-          iconButtonElement={<IconButton><FileFileDownload /></IconButton>}
+          iconButtonElement={
+            <IconButton>
+              <FileFileDownload />
+            </IconButton>
+          }
           open={this.state.openMenu}
           onRequestChange={this.handleOnRequestChange}
         >

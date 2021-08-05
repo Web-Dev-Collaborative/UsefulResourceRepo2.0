@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
-import autoPrefix from '../utils/autoPrefix';
-import transitions from '../styles/transitions';
+import React, { Component, PropTypes } from "react";
+import ReactDOM from "react-dom";
+import autoPrefix from "../utils/autoPrefix";
+import transitions from "../styles/transitions";
 
 class ScaleInChild extends Component {
   static propTypes = {
@@ -46,8 +46,8 @@ class ScaleInChild extends Component {
   componentWillLeave(callback) {
     const style = ReactDOM.findDOMNode(this).style;
 
-    style.opacity = '0';
-    autoPrefix.set(style, 'transform', `scale(${this.props.minScale})`);
+    style.opacity = "0";
+    autoPrefix.set(style, "transform", `scale(${this.props.minScale})`);
 
     this.leaveTimer = setTimeout(callback, 450);
   }
@@ -55,15 +55,15 @@ class ScaleInChild extends Component {
   animate() {
     const style = ReactDOM.findDOMNode(this).style;
 
-    style.opacity = '1';
-    autoPrefix.set(style, 'transform', `scale(${this.props.maxScale})`);
+    style.opacity = "1";
+    autoPrefix.set(style, "transform", `scale(${this.props.maxScale})`);
   }
 
   initializeAnimation(callback) {
     const style = ReactDOM.findDOMNode(this).style;
 
-    style.opacity = '0';
-    autoPrefix.set(style, 'transform', 'scale(0)');
+    style.opacity = "0";
+    autoPrefix.set(style, "transform", "scale(0)");
 
     this.enterTimer = setTimeout(callback, this.props.enterDelay);
   }
@@ -78,16 +78,20 @@ class ScaleInChild extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const { prepareStyles } = this.context.muiTheme;
 
-    const mergedRootStyles = Object.assign({}, {
-      position: 'absolute',
-      height: '100%',
-      width: '100%',
-      top: 0,
-      left: 0,
-      transition: transitions.easeOut(null, ['transform', 'opacity']),
-    }, style);
+    const mergedRootStyles = Object.assign(
+      {},
+      {
+        position: "absolute",
+        height: "100%",
+        width: "100%",
+        top: 0,
+        left: 0,
+        transition: transitions.easeOut(null, ["transform", "opacity"]),
+      },
+      style
+    );
 
     return (
       <div {...other} style={prepareStyles(mergedRootStyles)}>

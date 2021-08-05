@@ -1,5 +1,5 @@
-import React from 'react';
-import Toggle from 'material-ui/Toggle';
+import React from "react";
+import Toggle from "material-ui/Toggle";
 
 const styles = {
   block: {
@@ -9,38 +9,31 @@ const styles = {
     marginBottom: 16,
   },
   thumbOff: {
-    backgroundColor: '#ffcccc',
+    backgroundColor: "#ffcccc",
   },
   trackOff: {
-    backgroundColor: '#ff9d9d',
+    backgroundColor: "#ff9d9d",
   },
   thumbSwitched: {
-    backgroundColor: 'red',
+    backgroundColor: "red",
   },
   trackSwitched: {
-    backgroundColor: '#ff9d9d',
+    backgroundColor: "#ff9d9d",
   },
   labelStyle: {
-    color: 'red',
+    color: "red",
   },
 };
 
 const ToggleExampleSimple = () => (
   <div style={styles.block}>
-    <Toggle
-      label="Simple"
-      style={styles.toggle}
-    />
+    <Toggle label="Simple" style={styles.toggle} />
     <Toggle
       label="Toggled by default"
       defaultToggled={true}
       style={styles.toggle}
     />
-    <Toggle
-      label="Disabled"
-      disabled={true}
-      style={styles.toggle}
-    />
+    <Toggle label="Disabled" disabled={true} style={styles.toggle} />
     <Toggle
       label="Label on the right"
       labelPosition="right"

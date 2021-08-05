@@ -1,44 +1,50 @@
-import React from 'react';
-import Title from 'react-title-component';
+import React from "react";
+import Title from "react-title-component";
 
-import CodeExample from '../../../CodeExample';
-import PropTypeDescription from '../../../PropTypeDescription';
-import MarkdownElement from '../../../MarkdownElement';
+import CodeExample from "../../../CodeExample";
+import PropTypeDescription from "../../../PropTypeDescription";
+import MarkdownElement from "../../../MarkdownElement";
 
-import listReadmeText from './README';
-import listExampleSimpleCode from '!raw!./ExampleSimple';
-import ListExampleSimple from './ExampleSimple';
-import listExampleChatCode from '!raw!./ExampleChat';
-import ListExampleChat from './ExampleChat';
-import listExampleContactsCode from '!raw!./ExampleContacts';
-import ListExampleContacts from './ExampleContacts';
-import listExampleFoldersCode from '!raw!./ExampleFolders';
-import ListExampleFolders from './ExampleFolders';
-import listExampleNestedCode from '!raw!./ExampleNested';
-import ListExampleNested from './ExampleNested';
-import listExampleSettingsCode from '!raw!./ExampleSettings';
-import ListExampleSettings from './ExampleSettings';
-import listExamplePhoneCode from '!raw!./ExamplePhone';
-import ListExamplePhone from './ExamplePhone';
-import listExampleMessagesCode from '!raw!./ExampleMessages';
-import ListExampleMessages from './ExampleMessages';
-import listExampleSelectableCode from '!raw!./ExampleSelectable';
-import ListExampleSelectable from './ExampleSelectable';
-import listCode from '!raw!material-ui/List/List';
-import listItemCode from '!raw!material-ui/List/ListItem';
+import listReadmeText from "./README";
+import listExampleSimpleCode from "!raw!./ExampleSimple";
+import ListExampleSimple from "./ExampleSimple";
+import listExampleChatCode from "!raw!./ExampleChat";
+import ListExampleChat from "./ExampleChat";
+import listExampleContactsCode from "!raw!./ExampleContacts";
+import ListExampleContacts from "./ExampleContacts";
+import listExampleFoldersCode from "!raw!./ExampleFolders";
+import ListExampleFolders from "./ExampleFolders";
+import listExampleNestedCode from "!raw!./ExampleNested";
+import ListExampleNested from "./ExampleNested";
+import listExampleSettingsCode from "!raw!./ExampleSettings";
+import ListExampleSettings from "./ExampleSettings";
+import listExamplePhoneCode from "!raw!./ExamplePhone";
+import ListExamplePhone from "./ExamplePhone";
+import listExampleMessagesCode from "!raw!./ExampleMessages";
+import ListExampleMessages from "./ExampleMessages";
+import listExampleSelectableCode from "!raw!./ExampleSelectable";
+import ListExampleSelectable from "./ExampleSelectable";
+import listCode from "!raw!material-ui/List/List";
+import listItemCode from "!raw!material-ui/List/ListItem";
 
 const descriptions = {
-  simple: 'A simple `List` with left and right [SVG icons](/#/components/svg-icon).',
-  chat: 'A chat list with Image [Avatars](/#/components/avatar) and [Subheader](/#/components/subheader).',
-  contacts: 'Similar to the Chat List example, but with Text [Avatars](/#/components/avatar) ' +
-  '(with transparent background) for section labeling, and an inset Divider. ',
-  folders: 'The folder list uses Icon [Avatars](/#/components/avatar), and introduces `secondaryText`.',
-  nested: 'This example introduces the ListItem `nestedItems` property. "Sent Mail" is `disabled`.',
-  settings: 'ListItem supports [Checkbox](/#/components/checkbox) and [Toggle](/#/components/toggle) switches.',
-  phone: '',
-  messages: 'Two examples showing formatted secondary text. The second example demonstrates an ' +
-  '[IconButton](/#/components/icon-button) with `tooltip`.',
-  selectable: 'The selectable list wraps List in a Higher Order Component.',
+  simple:
+    "A simple `List` with left and right [SVG icons](/#/components/svg-icon).",
+  chat: "A chat list with Image [Avatars](/#/components/avatar) and [Subheader](/#/components/subheader).",
+  contacts:
+    "Similar to the Chat List example, but with Text [Avatars](/#/components/avatar) " +
+    "(with transparent background) for section labeling, and an inset Divider. ",
+  folders:
+    "The folder list uses Icon [Avatars](/#/components/avatar), and introduces `secondaryText`.",
+  nested:
+    'This example introduces the ListItem `nestedItems` property. "Sent Mail" is `disabled`.',
+  settings:
+    "ListItem supports [Checkbox](/#/components/checkbox) and [Toggle](/#/components/toggle) switches.",
+  phone: "",
+  messages:
+    "Two examples showing formatted secondary text. The second example demonstrates an " +
+    "[IconButton](/#/components/icon-button) with `tooltip`.",
+  selectable: "The selectable list wraps List in a Higher Order Component.",
 };
 
 const ListPage = () => (
@@ -111,7 +117,6 @@ const ListPage = () => (
     <PropTypeDescription header="### List Properties" code={listCode} />
     <PropTypeDescription header="### ListItem Properties" code={listItemCode} />
   </div>
-
 );
 
 export default ListPage;
