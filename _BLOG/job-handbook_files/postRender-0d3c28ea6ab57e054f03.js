@@ -35422,27 +35422,25 @@
           if (0 === s.length) return;
           return {
             key: "recentSearches",
-            items: s
-              .slice(0, $t.MAX_RECENT_SEARCHES)
-              .map((e, i) => ({
-                key: i,
-                action: (t) => this.handleRecentSearch(e, t),
-                render: (s) =>
-                  o()(
-                    "li",
-                    {},
-                    s.key,
-                    u.a.createElement(
-                      W,
-                      n()({}, s, {
-                        isFirstInSection: 0 === i,
-                        parentStore: t,
-                        query: e,
-                        icon: this.searchIcon(),
-                      })
-                    )
-                  ),
-              })),
+            items: s.slice(0, $t.MAX_RECENT_SEARCHES).map((e, i) => ({
+              key: i,
+              action: (t) => this.handleRecentSearch(e, t),
+              render: (s) =>
+                o()(
+                  "li",
+                  {},
+                  s.key,
+                  u.a.createElement(
+                    W,
+                    n()({}, s, {
+                      isFirstInSection: 0 === i,
+                      parentStore: t,
+                      query: e,
+                      icon: this.searchIcon(),
+                    })
+                  )
+                ),
+            })),
             render: (t) =>
               o()(
                 Qe.a,
