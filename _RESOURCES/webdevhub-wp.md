@@ -5814,7 +5814,8 @@ Since a JSX element tree is one large expression, you cannot embed statements in
 For example, this won’t work:
 
 function App({ messages, isVisible }) {  
- return (  
+ return (
+
  <div>  
  if (messages.length > 0) {  
  <h2>You have {messages.length} unread messages.</h2>  
@@ -5831,7 +5832,8 @@ function App({ messages, isVisible }) {
 Logical AND `&&` and the ternary `? :` operator replace the `if`/`else` statements.
 
 function App({ messages, isVisible }) {  
- return (  
+ return (
+
  <div>  
  {messages.length > 0 ? (  
  <h2>You have {messages.length} unread messages.</h2>  
@@ -6455,7 +6457,8 @@ class User extends React.Component {
  }
 
 render() {  
- return (  
+ return (
+
  <h1>Welcome, {this.props.name}</h1>  
  <h2>Age, {this.props.age}  
  )  
@@ -21231,8 +21234,8 @@ client.end()
 
 The column names are retrieved with `res.fields` attribute. We also use the `catch` clause to output potential errors.
 
-node column_names.js  
-‘id’, ‘name’, ‘price’′_id_′,′_name_′,′_price_′
+node column*names.js  
+‘id’, ‘name’, ‘price’′\_id*′,′_name_′,′_price_′
 
 The output shows three column names of the `cars` table.
 
@@ -21877,7 +21880,7 @@ print(27e-5) # => 0.00027
 
 > **The** `**i**` **is switched to a** `**j**` **in programming.**
 
-T*his is because the letter i is common place as the de facto index for any and all enumerable entities so it just makes sense not to compete for name-***_space_** _when there’s another 25 letters that don’t get used for every loop under the sun. My most medium apologies to Leonhard Euler._
+T\*his is because the letter i is common place as the de facto index for any and all enumerable entities so it just makes sense not to compete for name-**\*_space_** _when there’s another 25 letters that don’t get used for every loop under the sun. My most medium apologies to Leonhard Euler._
 
 print(7j) # => 7j  
 print(5.1+7.7j)) # => 5.1+7.7j  
@@ -22202,15 +22205,21 @@ files = ('one.txt', 'two.txt', 'three.txt')
 
 \# simple loop  
 for filename in files:  
- try:  
- # open the file in read mode  
- f = open(filename, 'r')  
- except OSError:  
- # handle the case where file does not exist or permission is denied  
- print('cannot open file', filename)  
- else:  
- # do stuff with the file object (f)  
- print(filename, 'opened successfully')  
+ try:
+
+# open the file in read mode
+
+f = open(filename, 'r')  
+ except OSError:
+
+# handle the case where file does not exist or permission is denied
+
+print('cannot open file', filename)  
+ else:
+
+# do stuff with the file object (f)
+
+print(filename, 'opened successfully')  
  print('found', len(f.readlines()), 'lines')  
  f.close()
 
