@@ -1,6 +1,6 @@
 "use strict";
 
-var session = require("../../");
+var session = require("../..");
 var util = require("util");
 
 /* istanbul ignore next */
