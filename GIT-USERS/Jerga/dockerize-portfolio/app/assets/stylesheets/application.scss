@@ -16,7 +16,7 @@
   color: #333;
   text-shadow: none; /* Prevent inheritance from `body` */
   background-color: #fff;
-  border: .05rem solid #fff;
+  border: 0.05rem solid #fff;
 }
 
 .btn-portfolio {
@@ -24,7 +24,9 @@
   background-color: transparent !important;
   border: 1px solid #efefef !important;
 
-  &:hover, &:focus, &:active {
+  &:hover,
+  &:focus,
+  &:active {
     background-color: white !important;
     color: black !important;
     border: 1px solid black !important;
@@ -42,24 +44,23 @@ a:hover {
   color: #efefef;
 }
 
-
 /*
  * Base structure
  */
 
 @font-face {
-  font-family:'Lato';
-  src:font-url('Lato-Regular.ttf');
+  font-family: "Lato";
+  src: font-url("Lato-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'Roboto';
-  src:font-url('Roboto-Regular.ttf');
+  font-family: "Roboto";
+  src: font-url("Roboto-Regular.ttf");
 }
 
 html,
 body {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   height: 100%;
   margin: 0;
   color: #efefef;
@@ -70,8 +71,13 @@ body {
   margin-bottom: -60px; /* Margin bottom by footer height */
 }
 
-h1, h2, h3, h4, h5, h6 {
-font-family: 'Roboto', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto", sans-serif;
 }
 
 .body-wrapper {
@@ -96,14 +102,14 @@ font-family: 'Roboto', sans-serif;
   position: fixed;
   top: 50%;
   left: 50%;
-  min-width:100%;
+  min-width: 100%;
   min-height: 100%;
   width: auto;
   height: auto;
   z-index: -100;
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
-  background: image-url('cover.jpeg') no-repeat;
+  background: image-url("cover.jpeg") no-repeat;
   background-size: cover;
   background-color: black;
 }
@@ -128,12 +134,12 @@ font-family: 'Roboto', sans-serif;
 
   .card {
     &-portfolio {
-      background-color: rgba(0,0,0, 0.3);
+      background-color: rgba(0, 0, 0, 0.3);
       padding: 40px;
 
       .card-job {
-       padding: 15px;
-       background-color: rgba(0,0,0, 0.3);
+        padding: 15px;
+        background-color: rgba(0, 0, 0, 0.3);
       }
     }
 
@@ -185,7 +191,6 @@ font-family: 'Roboto', sans-serif;
   h1 {
     margin-bottom: 20px;
     font-size: 60px;
-
   }
 
   .home-p {
@@ -210,13 +215,3 @@ font-family: 'Roboto', sans-serif;
     margin: 10px 0;
   }
 }
-
-
-
-
-
-
-
-
-
-

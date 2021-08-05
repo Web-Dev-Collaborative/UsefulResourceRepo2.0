@@ -1,8 +1,8 @@
 ---
-title: 'How to Use a Gatsby Theme'
-tags: ["react", "gatsby", "graphql" ]
+title: "How to Use a Gatsby Theme"
+tags: ["react", "gatsby", "graphql"]
 published: true
-date: '2019-08-21'
+date: "2019-08-21"
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/wlu8q6Q3Hro" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -16,4 +16,3 @@ Recently, I made a Gatsby theme to see what all the fuss was about. I have to ad
 [Demo Source Code](https://github.com/willjw3/gatsby-theme-techblog)
 
 [Live Demo](https://gatsby-theme-techblog.netlify.com/)
-

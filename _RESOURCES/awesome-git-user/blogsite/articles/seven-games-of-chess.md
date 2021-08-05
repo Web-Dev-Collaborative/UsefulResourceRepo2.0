@@ -19,7 +19,7 @@ $$
 \binom{7}{3}\binom{4}{2}\binom{2}{2} \ = \ \frac{7!}{3!2!2!} \ = \ 210
 $$
 
-Keeping in mind that there are n! permutations of n distinct objects, and that each chess game can be thought of as a distinct object (maybe with a particular event ID number for record-keeping), we can say there are 7! permutations of 7 games to be played. For example if games 1 - 7 are given IDs sequentially starting from 1, one permutation of the 7-game tournament is 1234567. Another is 7123456. It would be tedious and demotivating to have to list all of the permutations, of course. 
+Keeping in mind that there are n! permutations of n distinct objects, and that each chess game can be thought of as a distinct object (maybe with a particular event ID number for record-keeping), we can say there are 7! permutations of 7 games to be played. For example if games 1 - 7 are given IDs sequentially starting from 1, one permutation of the 7-game tournament is 1234567. Another is 7123456. It would be tedious and demotivating to have to list all of the permutations, of course.
 
 Anyway, the middle term in the above equation $\frac{7!}{3!2!2!}$ can be read as the number of permutations of 7 games divided by the product of the number of permutations of games won by A, the number of games played to a draw, and the number of games lost by A.
 
@@ -36,7 +36,8 @@ Combining the possible results is straightforward.
 
 $$
 \frac{7!}{4!0!3!} \ + \ \frac{7!}{3!2!2!} \ + \ \frac{7!}{2!4!1!} \ + \ \frac{7!}{1!6!0!}
-$$ 
+$$
+
 $$
 \ = \ 357
 $$
@@ -46,26 +47,21 @@ $$
 The key to this problem is implementing the fact that A cannont have 4 points until the 7th game, or in other words, A cannot have won the tournament (by achieving 4 points) after 6 games have been played. Now, consider the ways in which A can win in the last game:
 
 - A finishes game 6 with a total of 3 points (needing a win in the 7th game to achieve 4 points)
-    - 3 wins, 0 draws, 3 losses (possible result 1)
-    - 2 wins, 2 draws, 2 losses (possible result 2)
-    - 1 win, 4 draws, 1 loss (possible result 3)
-    - 0 wins, 6 draws, 0 losses (possible result 4)
+  - 3 wins, 0 draws, 3 losses (possible result 1)
+  - 2 wins, 2 draws, 2 losses (possible result 2)
+  - 1 win, 4 draws, 1 loss (possible result 3)
+  - 0 wins, 6 draws, 0 losses (possible result 4)
 - A finishes game 6 with a total of 3.5 points (needing a draw in the 7th game to achieve 4 points)
-    - 3 wins, 1 draw, 2 losses (possible result 5)
-    - 2 wins, 3 draws, 1 loss (possible result 6)
-    - 1 win, 5 draws, 0 losses (possible result 7)
+  - 3 wins, 1 draw, 2 losses (possible result 5)
+  - 2 wins, 3 draws, 1 loss (possible result 6)
+  - 1 win, 5 draws, 0 losses (possible result 7)
 
 Combining the possible results gives:
 
 $$
 \frac{6!}{3!0!3!} \ + \frac{6!}{2!2!2!} \ + \frac{6!}{1!4!1!} \ + \frac{6!}{0!6!0!}
-$$ 
+$$
+
 $$
 \ + \ \frac{6!}{3!1!2!} \ + \frac{6!}{2!3!1!} \ + \frac{6!}{1!5!0!} \ = \ 267
 $$
-
-
-
-
-
-

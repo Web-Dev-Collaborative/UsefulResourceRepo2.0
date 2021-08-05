@@ -9,17 +9,18 @@
 @import "shared/social-links";
 
 @font-face {
-  font-family:'Lato';
-  src:font-url('Lato-Regular.ttf');
+  font-family: "Lato";
+  src: font-url("Lato-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'Roboto';
-  src:font-url('Roboto-Regular.ttf');
+  font-family: "Roboto";
+  src: font-url("Roboto-Regular.ttf");
 }
 
-html, body {
-  font-family: 'Lato', sans-serif;
+html,
+body {
+  font-family: "Lato", sans-serif;
 }
 
 .blog-header {
@@ -36,8 +37,13 @@ html, body {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
-font-family: 'Roboto', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto", sans-serif;
 }
 
 .display-4 {
@@ -76,9 +82,9 @@ font-family: 'Roboto', sans-serif;
 }
 
 .nav-scroller .nav-link {
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  font-size: .875rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 0.875rem;
 }
 
 .card-img-right {
@@ -92,15 +98,25 @@ font-family: 'Roboto', sans-serif;
   flex: 0 0 auto;
 }
 
-.h-250 { height: 250px; }
+.h-250 {
+  height: 250px;
+}
 @media (min-width: 768px) {
-  .h-md-250 { height: 250px; }
+  .h-md-250 {
+    height: 250px;
+  }
 }
 
-.border-top { border-top: 1px solid #e5e5e5; }
-.border-bottom { border-bottom: 1px solid #e5e5e5; }
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
 
-.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+.box-shadow {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
 
 /*
  * Blog name and description
@@ -136,7 +152,7 @@ font-family: 'Roboto', sans-serif;
   margin-bottom: 4rem;
 
   .blog-post-title {
-    margin-bottom: .25rem;
+    margin-bottom: 0.25rem;
     font-size: 2.5rem;
 
     a {
@@ -148,7 +164,7 @@ font-family: 'Roboto', sans-serif;
       }
     }
   }
-  .blog-body-p > p{
+  .blog-body-p > p {
     margin-bottom: 5px;
   }
 
@@ -166,7 +182,7 @@ font-family: 'Roboto', sans-serif;
   color: #999;
   text-align: center;
   background-color: #f9f9f9;
-  border-top: .05rem solid #e5e5e5;
+  border-top: 0.05rem solid #e5e5e5;
   margin-top: 20px;
 }
 .blog-footer p:last-child {
@@ -199,7 +215,7 @@ font-family: 'Roboto', sans-serif;
 }
 
 .comment-attribution {
-  font-size: .8em;
+  font-size: 0.8em;
   font-style: italic;
 }
 
@@ -211,7 +227,7 @@ font-family: 'Roboto', sans-serif;
   margin-left: auto !important;
 }
 
-.blogcrumb a{
+.blogcrumb a {
   font-size: 1.25em;
   margin: 0 10px;
 }
@@ -251,8 +267,9 @@ font-family: 'Roboto', sans-serif;
   margin-top: 30px;
 
   .disabled {
-    .form-control, input {
-      pointer-events:none;
+    .form-control,
+    input {
+      pointer-events: none;
     }
   }
 
@@ -261,5 +278,3 @@ font-family: 'Roboto', sans-serif;
     font-decoration: italic;
   }
 }
-
-

@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -13,8 +12,11 @@ const ActiveResource = () => {
       const axiosRes = await axios.get("/api/activeresource");
       const resource = axiosRes.data;
       const timeToFinish = parseInt(resource.timeToFinish, 10);
-      const elapsedTime = moment().diff(moment(resource.activationTime), "seconds");
-      const updatedTimeToFinish = (timeToFinish * 60) - elapsedTime;
+      const elapsedTime = moment().diff(
+        moment(resource.activationTime),
+        "seconds"
+      );
+      const updatedTimeToFinish = timeToFinish * 60 - elapsedTime;
 
       if (updatedTimeToFinish >= 0) {
         resource.timeToFinish = updatedTimeToFinish;
@@ -25,7 +27,7 @@ const ActiveResource = () => {
     }
 
     fetchResource();
-  }, [])
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -37,20 +39,19 @@ const ActiveResource = () => {
     }
 
     return () => clearInterval(interval);
-  }, [seconds])
+  }, [seconds]);
 
   const completeResource = () => {
-    axios.patch("/api/resources", {...resource, status: "complete"})
-      .then(_ => location.reload())
-      .catch(_ => alert("Cannot complete the resource!"))
-  }
+    axios
+      .patch("/api/resources", { ...resource, status: "complete" })
+      .then((_) => location.reload())
+      .catch((_) => alert("Cannot complete the resource!"));
+  };
 
   const hasResource = resource && resource.id;
   return (
     <div className="active-resource">
-      <h1 className="resource-name">
-        No Resource Active
-      </h1>
+      <h1 className="resource-name">No Resource Active</h1>
       {/* <div className="time-wrapper">
         { hasResource &&
           ( seconds > 0 ?
@@ -69,19 +70,17 @@ const ActiveResource = () => {
       </div> */}
       {/* {
         hasResource ? */}
-          {/* <Link href={`/resources/${resource.id}`}>
+      {/* <Link href={`/resources/${resource.id}`}>
             <a className="button">
               Go to resource
             </a>
           </Link> : */}
-          <Link href="/">
-            <a className="button">
-              Go to resources
-            </a>
-        </Link>
+      <Link href="/">
+        <a className="button">Go to resources</a>
+      </Link>
       {/* } */}
     </div>
-  )
-}
+  );
+};
 
 export default ActiveResource;

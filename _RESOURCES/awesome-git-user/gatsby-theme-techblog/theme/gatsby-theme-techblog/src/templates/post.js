@@ -1,16 +1,16 @@
-import React from "react"
-import { graphql } from "gatsby"
-import Layout from "../components/layout"
-import Post from "../components/post"
+import React from "react";
+import { graphql } from "gatsby";
+import Layout from "../components/layout";
+import Post from "../components/post";
 
 export const query = graphql`
-  query($postID: String!) {
+  query ($postID: String!) {
     mdx(id: { eq: $postID }) {
       frontmatter {
-        title 
-        tags 
+        title
+        tags
         date(formatString: "MMMM DD, YYYY")
-        published 
+        published
       }
       fields {
         slug
@@ -19,13 +19,14 @@ export const query = graphql`
       body
     }
   }
-`
+`;
 
 const PostTemplate = ({ data: { mdx } }) => {
-  return(
+  return (
     <Layout>
       <Post {...mdx} />
     </Layout>
-  )}
+  );
+};
 
-export default PostTemplate
+export default PostTemplate;

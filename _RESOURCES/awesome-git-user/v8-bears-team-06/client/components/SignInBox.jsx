@@ -22,12 +22,12 @@ const SignInBox = ({ setAuthFailed, apolloClient }) => {
     <>
       <form
         className="form-signin mt-5"
-        onSubmit={async event => {
+        onSubmit={async (event) => {
           event.preventDefault();
           try {
             const signinPromise = apolloClient.query({
               query: LOGIN,
-              variables: { email, password }
+              variables: { email, password },
             });
             setLoading(true);
             const { data } = await signinPromise;
@@ -50,7 +50,7 @@ const SignInBox = ({ setAuthFailed, apolloClient }) => {
           id="email"
           placeholder="Email"
           value={email}
-          onChange={event => {
+          onChange={(event) => {
             setEmail(event.target.value);
           }}
           autoFocus
@@ -62,7 +62,7 @@ const SignInBox = ({ setAuthFailed, apolloClient }) => {
           id="password"
           placeholder="Password"
           value={password}
-          onChange={event => {
+          onChange={(event) => {
             setPassword(event.target.value);
           }}
           required

@@ -8,8 +8,8 @@ class ProductModel extends DeferredMedia {
 
     Shopify.loadFeatures([
       {
-        name: 'model-viewer-ui',
-        version: '1.0',
+        name: "model-viewer-ui",
+        version: "1.0",
         onLoad: this.setupModelViewerUI.bind(this),
       },
     ]);
@@ -18,17 +18,19 @@ class ProductModel extends DeferredMedia {
   setupModelViewerUI(errors) {
     if (errors) return;
 
-    this.modelViewerUI = new Shopify.ModelViewerUI(this.querySelector('model-viewer'));
+    this.modelViewerUI = new Shopify.ModelViewerUI(
+      this.querySelector("model-viewer")
+    );
   }
 }
-customElements.define('product-model', ProductModel);
+customElements.define("product-model", ProductModel);
 
 window.ProductModel = {
   loadShopifyXR() {
     Shopify.loadFeatures([
       {
-        name: 'shopify-xr',
-        version: '1.0',
+        name: "shopify-xr",
+        version: "1.0",
         onLoad: this.setupShopifyXR.bind(this),
       },
     ]);
@@ -38,7 +40,7 @@ window.ProductModel = {
     if (errors) return;
 
     if (!window.ShopifyXR) {
-      document.addEventListener('shopify_xr_initialized', () =>
+      document.addEventListener("shopify_xr_initialized", () =>
         this.setupShopifyXR()
       );
       return;
@@ -52,4 +54,6 @@ window.ProductModel = {
   },
 };
 
-window.addEventListener('DOMContentLoaded', () => { window.ProductModel?.loadShopifyXR(); });
+window.addEventListener("DOMContentLoaded", () => {
+  window.ProductModel?.loadShopifyXR();
+});

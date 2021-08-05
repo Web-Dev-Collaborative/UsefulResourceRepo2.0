@@ -37,16 +37,16 @@ function create(initialState) {
         return {
           headers: {
             ...headers,
-            authorization: token ? `Bearer ${token}` : ""
-          }
+            authorization: token ? `Bearer ${token}` : "",
+          },
         };
       }),
       new HttpLink({
         uri: "/graphql",
-        credentials: "same-origin"
-      })
+        credentials: "same-origin",
+      }),
     ]),
-    cache: new InMemoryCache()
+    cache: new InMemoryCache(),
   });
 }
 

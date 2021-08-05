@@ -7,9 +7,9 @@ image: ../src/images/playing_cards.jpg
 pagetype: "article"
 ---
 
-Calculating the probability of a full house is shown in chapter 1 of Harvard's *Stat 110 (Probability)* [course](https://projects.iq.harvard.edu/stat110), and is pretty straightforward. First, get the number of ways to choose three of a kind, multiply it by the number of ways to choose a pair from the remaining cards, and divide that product by the total number of possible hands. The calculation is shown below.
+Calculating the probability of a full house is shown in chapter 1 of Harvard's _Stat 110 (Probability)_ [course](https://projects.iq.harvard.edu/stat110), and is pretty straightforward. First, get the number of ways to choose three of a kind, multiply it by the number of ways to choose a pair from the remaining cards, and divide that product by the total number of possible hands. The calculation is shown below.
 
-$$ 
+$$
 P(full \ house) = \frac{13\binom{4}{3}12\binom{4}{2}}{\binom{52}{5}}
 $$
 
@@ -21,15 +21,15 @@ $$
 \binom{n}{k} \ = \ \frac{n!}{k!(n-k)!}
 $$
 
-Now, let's look at the example of calculating the probability of holding a single pair if dealt a 5-card poker hand. 
+Now, let's look at the example of calculating the probability of holding a single pair if dealt a 5-card poker hand.
 
-There are 13 ranks in a deck of playing cards: *Ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King*. And there are 4 suits: *Hearts, Diamonds, Clubs, Spades*, with each suit being comprised of 13 cards, each one representing a rank. So, the total number in the deck is 
+There are 13 ranks in a deck of playing cards: _Ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King_. And there are 4 suits: _Hearts, Diamonds, Clubs, Spades_, with each suit being comprised of 13 cards, each one representing a rank. So, the total number in the deck is
 
 $$
 4 \ suits \ * \ \frac{13 \ cards}{suit} \ = \ 52 \ cards
 $$
 
-First, we think about the number of ways to choose any specific rank. There are 52 cards in a deck, so there are 52 ways to choose any card. Since each rank is repeated four times, there are 52/4 = 13 ways to choose a rank; If we were to consider a card of rank 7, we could pick any of the following four cards: 7 of hearts, 7 of diamonds, 7 of clubs, or 7 of spades. 
+First, we think about the number of ways to choose any specific rank. There are 52 cards in a deck, so there are 52 ways to choose any card. Since each rank is repeated four times, there are 52/4 = 13 ways to choose a rank; If we were to consider a card of rank 7, we could pick any of the following four cards: 7 of hearts, 7 of diamonds, 7 of clubs, or 7 of spades.
 
 Next, we think about the number of ways to choose two cards of a specific rank out of the four cards of that rank in the deck, which can be represented by the binomial coefficient $\binom{4}{2}$ (read "four choose two").
 

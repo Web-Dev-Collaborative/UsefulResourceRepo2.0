@@ -13,34 +13,34 @@ import Header from "./header/header"
 import "./layout.css"
 
 const Layout = ({ children }) => {
-
   return (
     <StaticQuery
       query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-            tagline
-            author
-            contacts {
-              linkedin
-              github
-              stackoverflow
-              freecodecamp
-              twitter
+        query SiteTitleQuery {
+          site {
+            siteMetadata {
+              title
+              tagline
+              author
+              contacts {
+                linkedin
+                github
+                stackoverflow
+                freecodecamp
+                twitter
+              }
             }
           }
         }
-      }
-    `}
-      render={data => (
+      `}
+      render={(data) => (
         <>
           <Header
             siteTitle={data.site.siteMetadata.title}
             tagline={data.site.siteMetadata.tagline}
             author={data.site.siteMetadata.author}
-            contacts={data.site.siteMetadata.contacts} />
+            contacts={data.site.siteMetadata.contacts}
+          />
           <div
             style={{
               margin: `0 auto`,
@@ -50,11 +50,23 @@ const Layout = ({ children }) => {
           >
             <main className="p-4">{children}</main>
             <footer className="text-center">
-              <hr/>
-              <p className="d-inline">© {new Date().getFullYear()} <a className="text-info" href="https://willjw3.github.io/">willjw3</a>, All Rights Reserved.</p>
-              <p className="mt-5 text-muted d-inline"><i> Built with
-                            {` `}
-                <a className="text-info" href="https://www.gatsbyjs.org">Gatsby</a></i>
+              <hr />
+              <p className="d-inline">
+                © {new Date().getFullYear()}{" "}
+                <a className="text-info" href="https://willjw3.github.io/">
+                  willjw3
+                </a>
+                , All Rights Reserved.
+              </p>
+              <p className="mt-5 text-muted d-inline">
+                <i>
+                  {" "}
+                  Built with
+                  {` `}
+                  <a className="text-info" href="https://www.gatsbyjs.org">
+                    Gatsby
+                  </a>
+                </i>
               </p>
             </footer>
           </div>

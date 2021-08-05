@@ -28,7 +28,8 @@ npm install react react-dom gatsby @willjw3/gatsby-theme-techblog
 
 In your project root, create a `gatsby-config.js` file and add the theme as a plugin.
 
-*gatsby-config.js*
+_gatsby-config.js_
+
 ```
 module.exports = {
     plugins: [`@willjw3/gatsby-theme-techblog`]
@@ -57,6 +58,3 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
 ```
 
 Run the dev server again (`gatsby develop`) and go to `http://localhost:8000/blog`. You should see your blog post.
-
-
-

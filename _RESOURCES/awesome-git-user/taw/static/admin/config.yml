@@ -10,7 +10,7 @@ collections:
     label: "News"
     folder: "news"
     create: true
-    fields: 
+    fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Image", name: "image", widget: "image" }
@@ -20,14 +20,14 @@ collections:
     label: "Beers"
     folder: "beers"
     create: true
-    fields: 
+    fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Show", name: "show", widget: "boolean"}
+      - { label: "Show", name: "show", widget: "boolean" }
   - name: "info-itabashi"
     label: "Info Itabashi"
     folder: "info/itabashi"
     create: true
-    fields: 
+    fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Page Type", name: "pagetype", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
@@ -35,8 +35,7 @@ collections:
     label: "Info Yurakucho"
     folder: "info/yurakucho"
     create: true
-    fields: 
+    fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Page Type", name: "pagetype", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
-

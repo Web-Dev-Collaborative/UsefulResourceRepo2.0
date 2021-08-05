@@ -38232,12 +38232,10 @@
               function stickAround() {
                 clearTimeout(intervalId);
                 progressBar.hideEta = 0;
-                $toastElement
-                  .stop(true, true)
-                  [options.showMethod]({
-                    duration: options.showDuration,
-                    easing: options.showEasing,
-                  });
+                $toastElement.stop(true, true)[options.showMethod]({
+                  duration: options.showDuration,
+                  easing: options.showEasing,
+                });
               }
 
               function updateProgress() {
@@ -40986,11 +40984,9 @@
                         i > 1 &&
                           toSelector(
                             // If the preceding token was a descendant combinator, insert an implicit any-element `*`
-                            tokens
-                              .slice(0, i - 1)
-                              .concat({
-                                value: tokens[i - 2].type === " " ? "*" : "",
-                              })
+                            tokens.slice(0, i - 1).concat({
+                              value: tokens[i - 2].type === " " ? "*" : "",
+                            })
                           ).replace(rtrim, "$1"),
                         matcher,
                         i < j && matcherFromTokens(tokens.slice(i, j)),

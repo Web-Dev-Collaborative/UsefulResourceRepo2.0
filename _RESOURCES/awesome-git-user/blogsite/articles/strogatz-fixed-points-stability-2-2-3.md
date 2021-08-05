@@ -7,11 +7,10 @@ image: ../src/images/butterfly_effect.jpg
 pagetype: "article"
 ---
 
-This exercise is from *Nonlinear Dynamics and Chaos, 2nd Edition* by Steven H. Strogatz
+This exercise is from _Nonlinear Dynamics and Chaos, 2nd Edition_ by Steven H. Strogatz
 
 - Part 1: One-Dimensional Flows
   - 2 Flows on the Line
-
 
 **Exercise 2.2.3**  
 Analyze the following equation graphically. Sketch the vector field on the real line, find all the fixed points, classify their stability, and sketch the graph of $x(t)$ for different initial conditions. Then try to obtain the analytical solution for $x(t)$.
@@ -45,4 +44,3 @@ $$x(t) = \pm \dfrac{\sqrt{k}e^{t}}{\sqrt{ke^{2t}+1}}$$
 Solutions tend toward $\pm \ 1$ as t goes to $\pm \infty $
 
 <iframe src="https://www.desmos.com/calculator/rylvicwlql?embed" width="500px" height="300px" style="border: 1px solid #ccc" frameborder=0></iframe>
-

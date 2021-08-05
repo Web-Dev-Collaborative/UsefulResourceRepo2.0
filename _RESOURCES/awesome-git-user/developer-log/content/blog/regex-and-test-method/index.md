@@ -1,16 +1,18 @@
 ---
-title: 'JavaScript Regular Expressions and the Test() Method'
+title: "JavaScript Regular Expressions and the Test() Method"
 tags: ["javascript"]
 published: true
-date: '2019-01-06'
+date: "2019-01-06"
 ---
 
 [Video at YouTube](https://youtu.be/vAP8NLDzGwc). <br>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/vAP8NLDzGwc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
----
+## <iframe width="560" height="315" src="https://www.youtube.com/embed/vAP8NLDzGwc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Using the `test()` method in JavaScript to check for matches between a regular expression and a string can lead to unexpected results for newcomers.<br> Consider the following code:
+
 ### noGlobalFlag.js
+
 ```
 let str1 = "The sun is out today.";
 let str2 = "Let's go for a run today."
@@ -25,7 +27,6 @@ console.log(unRegex.test(str3));
 
 console.log(unRegex.test(str4));
 ```
-
 
 When we run it and check the console, we see:
 
@@ -54,10 +55,13 @@ Even though we expected at least one match with `str4 = "A hot dog without a bun
 According to MDN Web Docs:
 
 > ### Using test() on a regex with the global flag
-> "If the regex has the global flag set, test() will advance the lastIndex of the regex. A subsequent use of test() will start the search  at the substring of str specified by lastIndex (exec() will also advance the lastIndex property). It is worth noting that the lastIndex will not reset when testing a different string."
+>
+> "If the regex has the global flag set, test() will advance the lastIndex of the regex. A subsequent use of test() will start the search at the substring of str specified by lastIndex (exec() will also advance the lastIndex property). It is worth noting that the lastIndex will not reset when testing a different string."
 
 So, let's modify our code in `globalFlag.js` to log the `lastIndex` value for each application of the `test()` method.
+
 ### globalFlag.js
+
 ```
 let str1 = "The sun is out today.";
 let str2 = "Let's go for a run today."

@@ -1,39 +1,24 @@
-import {users, projects, assignments} from '../data/seed';
+import { users, projects, assignments } from "../data/seed";
 
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 export const getUsers = async () => {
-    const result = await prisma.user.findMany({
-        include: { projects: { include: { project: true } } },
-      })
-      const allUsers = result.map(user => {
-        return { ...user, projects: user.projects.map(assignment => assignment.project) }
-      })
-    return allUsers
-}
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  const result = await prisma.user.findMany({
+    include: { projects: { include: { project: true } } },
+  });
+  const allUsers = result.map((user) => {
+    return {
+      ...user,
+      projects: user.projects.map((assignment) => assignment.project),
+    };
+  });
+  return allUsers;
+};
 
 // import { pool } from "../database/db";
 // import { v4 as uuidv4 } from 'uuid';
-
 
 // interface User {
 //     id: string
@@ -49,21 +34,21 @@ export const getUsers = async () => {
 //         return res.rows;
 //     } catch (err) {
 //         console.error(err);
-//     } 
+//     }
 // }
 
 // export const getUsersFromUsersTable = async () => {
 //     const query = `
 //     SELECT * FROM users;
 //     `;
-    
+
 //     return readQuery(query);
-    
+
 // }
 
 // export const getAssignments = async () => {
 //     const query = `
-//     SELECT assignments.user_id, users.name, assignments.project_id, projects.title, projects.status 
+//     SELECT assignments.user_id, users.name, assignments.project_id, projects.title, projects.status
 //     FROM ((users
 //     INNER JOIN assignments
 //     ON users.id = assignments.user_id)
@@ -94,16 +79,13 @@ export const getUsers = async () => {
 //     }]
 // }
 
-
-
 // export const addUser = async (name: string, email: string, password: string) => {
-    
+
 //     const query = {
 //         text: 'INSERT INTO users(id, name, email, password) VALUES($1, $2, $3, $4)',
 //         values: [uuidv4(), name, email, password],
 //     }
-    
-    
+
 //     const userQuery = await findUserByEmail(email);
 //     if (userQuery?.length === 0) {
 //         try {
@@ -128,7 +110,7 @@ export const getUsers = async () => {
 //         console.log("Project added.");
 //     } catch (err) {
 //         console.error(err);
-//     } 
+//     }
 // }
 
 // export const addAssignment = async (user_email: string, project_id: number, user_name: string) => {
@@ -137,7 +119,7 @@ export const getUsers = async () => {
 //     if (user?.length === 0) {
 //         console.log("User with that email not found.")
 //     } else {
-//       user_id = user[0].id;  
+//       user_id = user[0].id;
 //     }
 
 //     const query = {
@@ -150,7 +132,7 @@ export const getUsers = async () => {
 //         console.log('Assignment created.');
 //     } catch (err) {
 //         console.error(err);
-//     } 
+//     }
 // }
 
 // export const getUsers = async () => {
@@ -163,7 +145,7 @@ export const getUsers = async () => {
 //                 projects.push({
 //                    id: assignment.project_id,
 //                    title: assignment.title,
-//                    status: assignment.status 
+//                    status: assignment.status
 //                 });
 //             }
 //         })
@@ -174,7 +156,7 @@ export const getUsers = async () => {
 //             projects: projects,
 //         }
 //     })
-//     return users;   
+//     return users;
 // }
 
 // export const createUserTable = async () => {

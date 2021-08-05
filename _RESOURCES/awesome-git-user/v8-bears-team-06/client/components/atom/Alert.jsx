@@ -8,7 +8,7 @@ const VARIANTS = [
   "warning",
   "info",
   "light",
-  "dark"
+  "dark",
 ];
 
 const Alert = ({ children, variant = "primary", ...props }) => {

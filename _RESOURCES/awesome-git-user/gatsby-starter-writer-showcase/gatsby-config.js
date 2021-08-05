@@ -16,15 +16,15 @@ module.exports = {
         plugins: [
           `gatsby-remark-responsive-iframe`,
           `gatsby-plugin-netlify-cms-paths`,
-        ]
-      }
+        ],
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `articles`,
-        path: `${__dirname}/articles`
-      }
+        path: `${__dirname}/articles`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -35,86 +35,83 @@ module.exports = {
     },
     `gatsby-plugin-netlify-cms`,
     {
-      "resolve": "gatsby-plugin-excerpts",
-      "options": {
-          "sources": {
-              "snippetBlocks": {
-                  "type": "htmlQuery",
-                  "sourceField": "html",
-                  "excerptSelector": ".custom-block.snippet .custom-block-body",
-                  "stripSelector": "a",
-                  "elementReplacements": [
-                      {
-                          "selector": "h6",
-                          "replaceWith": "strong"
-                      },
-                      {
-                          "selector": "h5",
-                          "replaceWith": "h6"
-                      },
-                      {
-                          "selector": "h4",
-                          "replaceWith": "h5"
-                      },
-                      {
-                          "selector": "h3",
-                          "replaceWith": "h4"
-                      },
-                      {
-                          "selector": "h2",
-                          "replaceWith": "h3"
-                      },
-                  ],
+      resolve: "gatsby-plugin-excerpts",
+      options: {
+        sources: {
+          snippetBlocks: {
+            type: "htmlQuery",
+            sourceField: "html",
+            excerptSelector: ".custom-block.snippet .custom-block-body",
+            stripSelector: "a",
+            elementReplacements: [
+              {
+                selector: "h6",
+                replaceWith: "strong",
               },
-              "default": {
-                  "type": "htmlQuery",
-                  "sourceField": "html",
-                  "excerptSelector": "html > *",
-                  "ignoreSelector": "img, .gatsby-highlight",
-                  "stripSelector": "a",
-                  "elementReplacements": [
-                      {
-                          "selector": "h6",
-                          "replaceWith": "strong"
-                      },
-                      {
-                          "selector": "h5",
-                          "replaceWith": "h6"
-                      },
-                      {
-                          "selector": "h4",
-                          "replaceWith": "h5"
-                      },
-                      {
-                          "selector": "h3",
-                          "replaceWith": "h4"
-                      },
-                      {
-                          "selector": "h2",
-                          "replaceWith": "h3"
-                      },
-                  ],
-                  "truncate": {
-                      "length": 120,
-                      "byWords": true,
-                      "ellipsis": "…"
-                  },
-              }
+              {
+                selector: "h5",
+                replaceWith: "h6",
+              },
+              {
+                selector: "h4",
+                replaceWith: "h5",
+              },
+              {
+                selector: "h3",
+                replaceWith: "h4",
+              },
+              {
+                selector: "h2",
+                replaceWith: "h3",
+              },
+            ],
           },
-          "sourceSets": {
-              "markdownHtml": [
-                  "snippetBlocks",
-                  "default"
-              ]
+          default: {
+            type: "htmlQuery",
+            sourceField: "html",
+            excerptSelector: "html > *",
+            ignoreSelector: "img, .gatsby-highlight",
+            stripSelector: "a",
+            elementReplacements: [
+              {
+                selector: "h6",
+                replaceWith: "strong",
+              },
+              {
+                selector: "h5",
+                replaceWith: "h6",
+              },
+              {
+                selector: "h4",
+                replaceWith: "h5",
+              },
+              {
+                selector: "h3",
+                replaceWith: "h4",
+              },
+              {
+                selector: "h2",
+                replaceWith: "h3",
+              },
+            ],
+            truncate: {
+              length: 120,
+              byWords: true,
+              ellipsis: "…",
+            },
           },
-          "excerpts": {
-              "snippet": {
-                  "type": "html",
-                  "nodeTypeSourceSet": {
-                      "MarkdownRemark": "markdownHtml"
-                  }
-              }
-          }
+        },
+        sourceSets: {
+          markdownHtml: ["snippetBlocks", "default"],
+        },
+        excerpts: {
+          snippet: {
+            type: "html",
+            nodeTypeSourceSet: {
+              MarkdownRemark: "markdownHtml",
+            },
+          },
+        },
       },
     },
     {
@@ -126,11 +123,11 @@ module.exports = {
           `Raleway`,
           `Rubik`,
           `Orbitron`,
-          `source sans pro\:300,400,400i,700` // you can also specify font weights and styles
+          `source sans pro\:300,400,400i,700`, // you can also specify font weights and styles
         ],
-        display: 'swap'
-      }
-  },
+        display: "swap",
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

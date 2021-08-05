@@ -1,7 +1,8 @@
-## Sequelize With Typescript Tutorial  
-*Final code from the video tutorial*  
+## Sequelize With Typescript Tutorial
 
----  
+_Final code from the video tutorial_
+
+---
 
 <a href="https://sequelize.org/master/">
   <img width="30px" height="30px" src="https://raw.githubusercontent.com/willjw3/willjw3/main/icons/sequelize.svg" />

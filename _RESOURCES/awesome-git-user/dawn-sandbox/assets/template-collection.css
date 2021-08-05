@@ -264,7 +264,7 @@
 }
 
 .facets__item label,
-.facets__item input[type='checkbox'] {
+.facets__item input[type="checkbox"] {
   cursor: pointer;
 }
 
@@ -277,7 +277,7 @@
   word-break: break-word;
 }
 
-.facet-checkbox input[type='checkbox'] {
+.facet-checkbox input[type="checkbox"] {
   position: absolute;
   opacity: 1;
   width: 1.6rem;
@@ -303,7 +303,7 @@
   top: 1.4rem;
 }
 
-.facet-checkbox > input[type='checkbox']:checked ~ .icon-checkmark {
+.facet-checkbox > input[type="checkbox"]:checked ~ .icon-checkmark {
   visibility: visible;
 }
 
@@ -426,7 +426,7 @@ a.active-facets__button:focus {
 }
 
 .count-bubble--dot::before {
-  content: '';
+  content: "";
   width: 0.2rem;
   height: 0.2rem;
   display: block;
@@ -693,7 +693,7 @@ input.mobile-facets__checkbox {
   visibility: hidden;
 }
 
-.mobile-facets__label > input[type='checkbox']:checked ~ .icon-checkmark {
+.mobile-facets__label > input[type="checkbox"]:checked ~ .icon-checkmark {
   visibility: visible;
 }
 

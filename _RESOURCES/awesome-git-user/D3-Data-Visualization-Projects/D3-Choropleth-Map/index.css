@@ -1,8 +1,8 @@
-@import 'https://fonts.googleapis.com/css?family=Philosopher';
+@import "https://fonts.googleapis.com/css?family=Philosopher";
 
 body {
   font-family: "Philosopher";
-  background-color: #F8F8FF;
+  background-color: #f8f8ff;
 }
 
 #top-box {
@@ -11,7 +11,8 @@ body {
   justify-content: space-between;
 }
 
-#top-left, #top-right {
+#top-left,
+#top-right {
   align-items: center;
   width: 50%;
 }
@@ -33,7 +34,7 @@ h4 {
 }
 
 #map {
-  left: 50%
+  left: 50%;
 }
 
 .county {
@@ -46,7 +47,7 @@ div.tooltip {
   text-align: center;
   padding: 2px;
   font: 12px sans-serif;
-  background: #F0FFFF;
+  background: #f0ffff;
   border: 1px;
   border-style: solid;
   border-color: purple;

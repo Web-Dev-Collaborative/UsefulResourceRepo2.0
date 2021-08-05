@@ -10,7 +10,7 @@ const Login = () => {
 
   return (
     <ApolloConsumer>
-      {client => (
+      {(client) => (
         <Layout>
           <div className="box-container">
             <SignInBox apolloClient={client} setAuthFailed={setAuthFailed} />

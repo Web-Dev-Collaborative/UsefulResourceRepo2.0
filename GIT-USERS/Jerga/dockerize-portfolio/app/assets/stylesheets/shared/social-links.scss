@@ -12,9 +12,9 @@
   display: block;
 
   &:hover {
-  text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
   }
 }
 
@@ -22,8 +22,8 @@
   display: block;
 
   &:hover {
-  text-decoration: none;
-  border-radius: 50%;
+    text-decoration: none;
+    border-radius: 50%;
   }
 }
 
@@ -32,10 +32,10 @@
   width: 45px;
   padding: 10px;
   font-size: 25px;
-  -webkit-transition:  background .2s ease-in-out;
-  -moz-transition:  background .2s ease-in-out;
-  -o-transition:  background .2s ease-in-out;
-  transition:  background .2s ease-in-out;
+  -webkit-transition: background 0.2s ease-in-out;
+  -moz-transition: background 0.2s ease-in-out;
+  -o-transition: background 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out;
   background-color: rgba(255, 255, 255, 0.6);
   margin-bottom: 5px;
   border-radius: 50%;
@@ -57,11 +57,10 @@
       color: #3b5998;
     }
     &.fa-linkedin {
-      color: #0077B5;
+      color: #0077b5;
     }
     &.fa-google {
       color: #dd4b39;
     }
   }
 }
-

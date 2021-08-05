@@ -1,8 +1,8 @@
 ---
-title: 'Full Stack Apollo GraphQL Tutorial: Part 5 - Pagination'
-tags: ["react", "nodejs", "graphql" ]
+title: "Full Stack Apollo GraphQL Tutorial: Part 5 - Pagination"
+tags: ["react", "nodejs", "graphql"]
 published: true
-date: '2019-08-05'
+date: "2019-08-05"
 ---
 
 **Part 5 Prerequisites:** Successful completion of [part 4](https://developer-log.netlify.com/full-stack-apollo-graphql-tutorial-pt-4-hooking-up-data-sources-pt-2/).
@@ -18,7 +18,8 @@ Now that we have our data sources hooked up, let's deal with handling large data
 First, go to your `quakeAPI` file and update one of our custom data parameters. In the `quakeReducer`function, change the `time` property to `cursor`.
 <br>
 
-*server/datasources/quake.js*
+_server/datasources/quake.js_
+
 ```
 ...
 return {
@@ -29,15 +30,17 @@ return {
     id: quake.id
 };
 ```
+
 <br>
 
-Recall, we defined `timestamp` when building our custom data response; `const timestamp = quake.properties.time`. 
+Recall, we defined `timestamp` when building our custom data response; `const timestamp = quake.properties.time`.
 <br>
 
 Next, update your schema.
 <br>
 
-*server/schema.js*
+_server/schema.js_
+
 ```
 type Quake {
   id: ID!
@@ -47,12 +50,14 @@ type Quake {
   cursor: String
 }
 ```
+
 <br>
 
 From [Apollo Docs (Paginated Queries)](https://www.apollographql.com/docs/tutorial/resolvers/#paginated-queries), you can get the code we'll need to update our `Query` type's `quakes` query. Just change the bits about launches to quakes and you're good to go.
 <br>
 
-*server/schema.js*
+_server/schema.js_
+
 ```
   type Query {
     quakes( # replace the current quakes query with this one.
@@ -82,12 +87,14 @@ type QuakeConnection { # add this below the Query type as an additional type.
   quakes: [Quake]!
 }
 ```
+
 <br>
 
 After updating the schema, you'll need to update `server/utils.js` to include the pagination logic (below is the completely updated file).
 <br>
 
-*server/utils.js*
+_server/utils.js_
+
 ```
 const db = require("./db")
 
@@ -100,16 +107,16 @@ module.exports = {
         getCursor = () => null,
       }) => {
         if (pageSize < 1) return [];
-      
+
         if (!cursor) return results.slice(0, pageSize);
         const cursorIndex = results.findIndex(item => {
           // if an item has a `cursor` on it, use that, otherwise try to generate one
           let itemCursor = item.cursor ? item.cursor : getCursor(item);
-      
+
           // if there's still not a cursor, return false by default
           return itemCursor ? cursor === itemCursor : false;
         });
-      
+
         return cursorIndex >= 0
           ? cursorIndex === results.length - 1 // don't let us overflow
             ? []
@@ -127,6 +134,7 @@ module.exports = {
     }
 }
 ```
+
 <br>
 
 **What's going on?**
@@ -140,7 +148,8 @@ The function `paginateResults` takes in four parameters, `after`, `pageSize`, `r
 Finally, we update our `quakes` resolver.
 <br>
 
-*server/resolvers.js*
+_server/resolvers.js_
+
 ```
 ...
 quakes: async (_, { pageSize = 20, after }, { dataSources }) => {
@@ -164,6 +173,7 @@ quakes: async (_, { pageSize = 20, after }, { dataSources }) => {
     };
 },
 ```
+
 <br>
 
 **What's going on?**
@@ -173,8 +183,9 @@ We get the entire list of quakes, pass it into the function `paginateResults` as
 
 Now, in GraphQL Playground, you can run the following query:
 <br>
- 
-*GraphQL Playground*
+
+_GraphQL Playground_
+
 ```
 query {
   quakes {
@@ -189,12 +200,14 @@ query {
   }
 }
 ```
+
 <br>
 
 The first `cursor` value displayed (only one time and at the top of your query results) should match the `cursor` value attached to the last item displayed. There should only be twenty quakes displayed. If you pass the `cursor` value into your query as the `after` value, you should see the next twenty quakes in the overall list.
 <br>
 
-*GraphQL Playground*
+_GraphQL Playground_
+
 ```
 query {
   quakes (after: "1388540766560") {
@@ -209,6 +222,7 @@ query {
   }
 }
 ```
+
 <br>
 
 Of course, if your request to the Earthquake Catalog API is different than the one we've been using in this tutorial, you'll pass in a different cursor value.
@@ -217,7 +231,8 @@ Of course, if your request to the Earthquake Catalog API is different than the o
 So, that's it for pagination for now. The complete updated files for this part are given below.
 <br>
 
-*server/datasources/quake.js*
+_server/datasources/quake.js_
+
 ```
 const { RESTDataSource } = require('apollo-datasource-rest');
 
@@ -278,9 +293,11 @@ class QuakeAPI extends RESTDataSource {
 
 module.exports = QuakeAPI;
 ```
+
 <br>
 
-*server/schema.js*
+_server/schema.js_
+
 ```
 const { gql } = require('apollo-server');
 
@@ -343,9 +360,11 @@ type RecordUpdateResponse {
 
 module.exports = typeDefs;
 ```
+
 <br>
 
-*server/utils.js*
+_server/utils.js_
+
 ```
 const db = require("./db")
 
@@ -358,16 +377,16 @@ module.exports = {
         getCursor = () => null,
       }) => {
         if (pageSize < 1) return [];
-      
+
         if (!cursor) return results.slice(0, pageSize);
         const cursorIndex = results.findIndex(item => {
           // if an item has a `cursor` on it, use that, otherwise try to generate one
           let itemCursor = item.cursor ? item.cursor : getCursor(item);
-      
+
           // if there's still not a cursor, return false by default
           return itemCursor ? cursor === itemCursor : false;
         });
-      
+
         return cursorIndex >= 0
           ? cursorIndex === results.length - 1 // don't let us overflow
             ? []
@@ -385,9 +404,11 @@ module.exports = {
     }
 }
 ```
+
 <br>
 
-*server/resolvers.js*
+_server/resolvers.js_
+
 ```
 const { paginateResults } = require('./utils');
 
@@ -415,7 +436,7 @@ module.exports = {
           },
         quake: (_, { id }, { dataSources }) =>
             dataSources.quakeAPI.getQuakeById({ quakeId: id }),
-        users: (_, __, { dataSources }) => 
+        users: (_, __, { dataSources }) =>
             dataSources.userAPI.getUsers()
     }
 };

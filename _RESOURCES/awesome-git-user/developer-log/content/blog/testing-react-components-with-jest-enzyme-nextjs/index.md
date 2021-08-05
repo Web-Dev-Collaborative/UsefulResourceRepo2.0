@@ -1,16 +1,16 @@
 ---
-title: 'Testing React Components Using Jest and Enzyme with Next.js'
-tags: ['react', 'testing']
+title: "Testing React Components Using Jest and Enzyme with Next.js"
+tags: ["react", "testing"]
 published: true
-date: '2019-03-22'
+date: "2019-03-22"
 ---
-
 
 Testing React components with Jest is pretty straightforward if you've started your project using [create-react-app](https://github.com/facebook/create-react-app). However, if you're using Next.js, things are a bit tricky.<br>
 
 To see what I mean, start a project in Next.js. Create a 'components' directory and put a file in it called `App.js`
 
 ### App.js
+
 ```
 class App extends React.Component {
     render() {
@@ -22,11 +22,13 @@ class App extends React.Component {
 
 export default App;
 ```
+
 Bring in Jest in the usual way...
 `npm install --save-dev jest`<br>
 Add Enzyme and a few other dependencies...
 
 ### package.json
+
 ```
 {
   "name": "jest-with-next",
@@ -59,9 +61,11 @@ Add Enzyme and a few other dependencies...
 }
 
 ```
-In the root of your project, add a folder called '__tests__', and in it add a file called `App.test.js`.
+
+In the root of your project, add a folder called '**tests**', and in it add a file called `App.test.js`.
 
 ### App.test.js
+
 ```
 import { shallow } from "enzyme";
 import React from "react";
@@ -85,16 +89,19 @@ describe("With Snapshot Testing", () => {
   });
 });
 ```
+
 We'll need a babel config file, so in the root of your project, add a `.babelrc` file. And follow the instructions you'll find at [Next.js docs](https://nextjs.org/docs/).<br>
 From the docs, under the heading "Customizing babel config":
-> "In order to extend our usage of babel, you can simply define a 
+
+> "In order to extend our usage of babel, you can simply define a
 > .babelrc file at the root of your app. This file is optional.
 
-> If found, we're going to consider it the source of truth, 
-> therefore it needs to define what next needs as well, which is 
+> If found, we're going to consider it the source of truth,
+> therefore it needs to define what next needs as well, which is
 > the 'next/babel' preset."
 
 ### .babelrc
+
 ```
 {
   "presets": ["next/babel"],
@@ -103,6 +110,7 @@ From the docs, under the heading "Customizing babel config":
 ```
 
 Run the test on `App.js` now, and you'll get the following in the console...
+
 ```
 FAIL __tests__/App.test.js
   With Enzyme
@@ -145,6 +153,7 @@ Ran all test suites.
 So, apparently we need to add a couple more files in the root of our project directory, one called `jest.config.js` and one called `jest.setup.js`.
 
 ### jest.config.js
+
 ```
 module.exports = {
   setupFiles: ['<rootDir>/jest.setup.js'],
@@ -153,12 +162,14 @@ module.exports = {
 ```
 
 ### jest.setup.js
+
 ```
 import { configure } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
 configure({ adapter: new Adapter() })
 ```
+
 And, now if we run the test on `App.js`, we see in the console...
 
 ```

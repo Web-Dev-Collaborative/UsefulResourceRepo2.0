@@ -3,7 +3,7 @@ import {
   GraphQLID,
   GraphQLString,
   GraphQLSchema,
-  GraphQLNonNull
+  GraphQLNonNull,
 } from "graphql";
 import jwt from "jsonwebtoken";
 
@@ -14,15 +14,15 @@ const UserType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     email: { type: GraphQLString },
-    password: { type: GraphQLString }
-  })
+    password: { type: GraphQLString },
+  }),
 });
 
 const AuthDataType = new GraphQLObjectType({
   name: "AuthData",
   fields: () => ({
-    token: { type: GraphQLString }
-  })
+    token: { type: GraphQLString },
+  }),
 });
 
 const RootQuery = new GraphQLObjectType({
@@ -33,13 +33,13 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return User.findById(args.id);
-      }
+      },
     },
     login: {
       type: AuthDataType,
       args: {
         email: { type: GraphQLString },
-        password: { type: GraphQLString }
+        password: { type: GraphQLString },
       },
       resolve: async (parent, { email, password }) => {
         const user = await User.findOne({ email });
@@ -51,12 +51,12 @@ const RootQuery = new GraphQLObjectType({
           throw new Error("Invalid credential");
         }
         const token = jwt.sign({ id: user.id, email: user.email }, "secret", {
-          expiresIn: "1h"
+          expiresIn: "1h",
         });
         return { token };
-      }
-    }
-  }
+      },
+    },
+  },
 });
 
 const Mutation = new GraphQLObjectType({
@@ -66,7 +66,7 @@ const Mutation = new GraphQLObjectType({
       type: UserType,
       args: {
         email: { type: new GraphQLNonNull(GraphQLString) },
-        password: { type: new GraphQLNonNull(GraphQLString) }
+        password: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve: async (parent, args) => {
         const check = await User.findOne({ email: args.email });
@@ -77,15 +77,15 @@ const Mutation = new GraphQLObjectType({
         }
         let user = new User({
           email: args.email,
-          password: args.password
+          password: args.password,
         });
         return user.save();
-      }
-    }
-  }
+      },
+    },
+  },
 });
 
 export const schema = new GraphQLSchema({
   query: RootQuery,
-  mutation: Mutation
+  mutation: Mutation,
 });

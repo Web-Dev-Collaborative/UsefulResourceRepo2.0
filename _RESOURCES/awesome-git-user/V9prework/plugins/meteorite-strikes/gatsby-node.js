@@ -6,7 +6,7 @@ const API_URI = "https://data.nasa.gov/resource/gh4g-9sfh.json?$limit=45000"
 exports.sourceNodes = async ({ actions }) => {
   const { createNode } = actions
   const result = await axios.get(API_URI)
-  result.data.forEach(datum => {
+  result.data.forEach((datum) => {
     createNode({
       children: [],
       id: datum.id,

@@ -1,7 +1,6 @@
-
 .head-title {
   font-family: "Orbitron";
-  font-size: calc(.75em + 2vw);
+  font-size: calc(0.75em + 2vw);
   vertical-align: middle;
 }
 
@@ -24,7 +23,7 @@
 
 .mobile-card {
   display: none;
-  font-family: "Raleway"
+  font-family: "Raleway";
 }
 
 .search-box {
@@ -32,7 +31,7 @@
 }
 
 p {
-  font-family: "Raleway"
+  font-family: "Raleway";
 }
 
 .spinner {
@@ -44,7 +43,7 @@ p {
   height: 100vh;
   position: fixed;
   z-index: 99;
-  background: rgba(0, 0, 0, .7)
+  background: rgba(0, 0, 0, 0.7);
 }
 
 html {

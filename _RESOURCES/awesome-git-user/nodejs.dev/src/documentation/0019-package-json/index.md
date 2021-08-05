@@ -114,16 +114,16 @@ Here's a much more complex example, which was extracted from a sample Vue.js app
 
 there are _lots_ of things going on here:
 
-* `version` indicates the current version
-* `name` sets the application/package name
-* `description` is a brief description of the app/package
-* `main` set the entry point for the application
-* `private` if set to `true` prevents the app/package to be accidentally published on `npm`
-* `scripts` defines a set of node scripts you can run
-* `dependencies` sets a list of `npm` packages installed as dependencies
-* `devDependencies` sets a list of `npm` packages installed as development dependencies
-* `engines` sets which versions of Node.js this package/app works on
-* `browserslist` is used to tell which browsers (and their versions) you want to support
+- `version` indicates the current version
+- `name` sets the application/package name
+- `description` is a brief description of the app/package
+- `main` set the entry point for the application
+- `private` if set to `true` prevents the app/package to be accidentally published on `npm`
+- `scripts` defines a set of node scripts you can run
+- `dependencies` sets a list of `npm` packages installed as dependencies
+- `devDependencies` sets a list of `npm` packages installed as development dependencies
+- `engines` sets which versions of Node.js this package/app works on
+- `browserslist` is used to tell which browsers (and their versions) you want to support
 
 All those properties are used by either `npm` or other tools that we can use.
 

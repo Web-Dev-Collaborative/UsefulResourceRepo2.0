@@ -38,61 +38,53 @@ exports.createReview = function (req, res) {
       const { rental } = foundBooking;
 
       if (rental.user.id === user.id) {
-        return res
-          .status(422)
-          .send({
-            errors: [
-              {
-                title: "Invalid User!",
-                detail: "Cannot create review on your Rental!",
-              },
-            ],
-          });
+        return res.status(422).send({
+          errors: [
+            {
+              title: "Invalid User!",
+              detail: "Cannot create review on your Rental!",
+            },
+          ],
+        });
       }
 
       const foundBookingUserId = foundBooking.user.id;
 
       if (foundBookingUserId !== user.id) {
-        return res
-          .status(422)
-          .send({
-            errors: [
-              {
-                title: "Invalid User!",
-                detail: "Cannot write review on someone else booking",
-              },
-            ],
-          });
+        return res.status(422).send({
+          errors: [
+            {
+              title: "Invalid User!",
+              detail: "Cannot write review on someone else booking",
+            },
+          ],
+        });
       }
 
       const timeNow = moment();
       const endAt = moment(foundBooking.endAt);
 
       if (!endAt.isBefore(timeNow)) {
-        return res
-          .status(422)
-          .send({
-            errors: [
-              {
-                title: "Invalid Date!",
-                detail:
-                  "You can place the review only after your trip is finished",
-              },
-            ],
-          });
+        return res.status(422).send({
+          errors: [
+            {
+              title: "Invalid Date!",
+              detail:
+                "You can place the review only after your trip is finished",
+            },
+          ],
+        });
       }
 
       if (foundBooking.review) {
-        return res
-          .status(422)
-          .send({
-            errors: [
-              {
-                title: "Booking Error!",
-                detail: "Only one review per booking is allowed!",
-              },
-            ],
-          });
+        return res.status(422).send({
+          errors: [
+            {
+              title: "Booking Error!",
+              detail: "Only one review per booking is allowed!",
+            },
+          ],
+        });
       }
 
       const review = new Review(reviewData);

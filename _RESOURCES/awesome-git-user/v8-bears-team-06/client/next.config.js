@@ -2,10 +2,10 @@ module.exports = {
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.node = {
-        fs: "empty"
+        fs: "empty",
       };
     }
 
     return config;
-  }
+  },
 };

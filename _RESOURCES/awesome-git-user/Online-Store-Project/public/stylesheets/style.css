@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Rye|Cabin|El+Messiri');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Rye|Cabin|El+Messiri");
 
 body {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   overflow-x: hidden;
 }
 
@@ -16,13 +16,12 @@ body {
 }
 
 .navbar-brand {
-  font-family: 'Rye';
+  font-family: "Rye";
 }
 
 h2 {
-  font-family: 'El Messiri';
+  font-family: "El Messiri";
 }
-
 
 .thumbnail {
   padding: 20px;
@@ -38,7 +37,7 @@ h2 {
 }
 
 .thumbnail h3 {
-  font-family: 'Cabin';
+  font-family: "Cabin";
   margin-top: 10px;
 }
 

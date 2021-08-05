@@ -345,7 +345,7 @@ noscript .localization-form__select {
 
 .localization-form__select .icon-caret {
   position: absolute;
-  content: '';
+  content: "";
   height: 0.6rem;
   right: 1.5rem;
   top: calc(50% - 0.35rem);

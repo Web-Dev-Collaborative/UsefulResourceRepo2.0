@@ -30,10 +30,10 @@ or confuse them.
 
 Node.js’ voice is:
 
-* **Helpful**
-* **Respectful**
-* **Expert**
-* **Inviting**
+- **Helpful**
+- **Respectful**
+- **Expert**
+- **Inviting**
 
 ### Examples of voice
 
@@ -89,15 +89,15 @@ Actions are also part of tone. A request for help going ignored for many weeks c
 
 It will help to know the audience and the situation when deciding on the right tone. When writing for an audience, think about asking yourself these six questions:
 
-* Who will be reading this content or post? _This is our intended audience._
-* What does the reader want? _This is their goal._
-* How familar is the reader with the content? _This lets us tailor our answer
-to them._
-* What situation is the reader in? _This helps us understand why they are here._
-* What emotion is the reader feeling at this moment? _This helps us empathise,
-to help better._
-* How can you maintain (or better yet, improve) the reader's state of mind? _This
-is our goal._
+- Who will be reading this content or post? _This is our intended audience._
+- What does the reader want? _This is their goal._
+- How familar is the reader with the content? _This lets us tailor our answer
+  to them._
+- What situation is the reader in? _This helps us understand why they are here._
+- What emotion is the reader feeling at this moment? _This helps us empathise,
+  to help better._
+- How can you maintain (or better yet, improve) the reader's state of mind? _This
+  is our goal._
 
 When we understand the context to which the conversation belongs, we can adjust
 our tone to fit.
@@ -124,9 +124,9 @@ to make use of a suggested resource.
 
 These are key elements to get started with writing in Node.js’ voice.
 
-* **Do: Active voice** Use active voice. Avoid passive voice.
-* **Don't: Jargon (and slang)** Write in vanilla English.
-* **Do: Positivity** Use positive language, instead of negative language.
+- **Do: Active voice** Use active voice. Avoid passive voice.
+- **Don't: Jargon (and slang)** Write in vanilla English.
+- **Do: Positivity** Use positive language, instead of negative language.
 
 For details on active voice and jargon, we encourage reading Mailchimp's excellently
 written [Grammar and Mechanics Styleguide](https://styleguide.mailchimp.com/grammar-and-mechanics/), which

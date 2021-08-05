@@ -649,8 +649,7 @@
       } else if ($("input[name=animation]").length) {
         $("input[name=animation]").remove();
 
-        var $animatedElements = $(
-        )
+        var $animatedElements = $()
           .not(function () {
             return $(this)
               .parents()

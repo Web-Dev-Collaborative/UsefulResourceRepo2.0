@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from "react-router-dom"
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
   return (
@@ -20,9 +20,10 @@ function App() {
         >
           Learn React
         </a>
-        <Link className="App-link" to="/about">Link to the About Page</Link>
+        <Link className="App-link" to="/about">
+          Link to the About Page
+        </Link>
       </header>
-      
     </div>
   );
 }

@@ -1,4 +1,3 @@
-
 # Hands-on Machine Learning in Docker
 
 This is the Docker configuration which allows you to run and tweak the book's notebooks without installing any dependencies on your machine!<br/>
@@ -10,7 +9,7 @@ As stated, the two things you need is `docker` and `docker-compose`.
 
 Follow the instructions on [Install Docker](https://docs.docker.com/engine/installation/) and [Install Docker Compose](https://docs.docker.com/compose/install/) for your environment if you haven't got `docker` already.
 
-Some general knowledge about `docker` infrastructure might be useful (that's an interesting topic on its own) but is not strictly *required* to just run the notebooks.
+Some general knowledge about `docker` infrastructure might be useful (that's an interesting topic on its own) but is not strictly _required_ to just run the notebooks.
 
 ## Usage
 
@@ -39,4 +38,4 @@ Another one may be comparing versions of the notebooks using the `nbdiff` comman
 You can see changes you made relative to the version in git using `git diff` which is integrated with `nbdiff`.
 
 You may also try `nbd NOTEBOOK_NAME.ipynb` command (custom, see bashrc file) to compare one of your notebooks with its `checkpointed` version.<br/>
-To be precise, the output will tell you *what modifications should be re-played on the **manually saved** version of the notebook (located in `.ipynb_checkpoints` subdirectory) to update it to the **current** i.e. **auto-saved** version (given as command's argument - located in working directory)*.
+To be precise, the output will tell you _what modifications should be re-played on the **manually saved** version of the notebook (located in `.ipynb_checkpoints` subdirectory) to update it to the **current** i.e. **auto-saved** version (given as command's argument - located in working directory)_.

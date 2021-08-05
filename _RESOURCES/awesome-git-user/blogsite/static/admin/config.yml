@@ -10,10 +10,10 @@ collections:
     label: "Articles"
     folder: "articles"
     create: true
-    fields: 
+    fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Image", name: "image", widget: "image" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["article"]}
+      - { label: "Tags", name: "tags", widget: "list", default: ["article"] }
       - { label: "Page Type", name: "pagetype", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }

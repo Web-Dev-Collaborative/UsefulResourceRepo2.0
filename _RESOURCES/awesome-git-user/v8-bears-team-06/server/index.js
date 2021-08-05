@@ -19,7 +19,7 @@ export default async function main() {
 
   const server = express();
   const expressPino = createExpressPino({
-    logger
+    logger,
   });
   server.use(expressPino);
   server.use(bodyParser.json());
@@ -43,7 +43,7 @@ export default async function main() {
     return;
   }
 
-  server.listen(port, err => {
+  server.listen(port, (err) => {
     if (err) {
       throw err;
     }

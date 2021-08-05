@@ -9,16 +9,17 @@ pagetype: "article"
 
 **Warning: Spoilers Follow The Question**
 
-If you roll a single die six times, what is the probability of a number being rolled more than once? 
+If you roll a single die six times, what is the probability of a number being rolled more than once?
 
-Answer
+## Answer
+
 ---
----
-There are six sides to a die, each side representing a unique number. A series of six rolls where no number is repeated could be 
 
-1, 2, 3, 4, 5, 6 
+There are six sides to a die, each side representing a unique number. A series of six rolls where no number is repeated could be
 
-or 
+1, 2, 3, 4, 5, 6
+
+or
 
 5, 4, 3, 2, 1, 6
 
@@ -33,4 +34,3 @@ This means the probability of a repeated number in a sequence of six rolls is
 $$
 P(repeat) = 1 - \frac{6!}{6^{6}} \approx 0.9846
 $$
-

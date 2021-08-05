@@ -1,7 +1,7 @@
-@import 'https://fonts.googleapis.com/css?family=Titillium+Web|Source+Sans+Pro|Faster+One';
+@import "https://fonts.googleapis.com/css?family=Titillium+Web|Source+Sans+Pro|Faster+One";
 
 body {
-  font-family: 'Titillium Web';
+  font-family: "Titillium Web";
 }
 #main {
   display: grid;
@@ -16,15 +16,16 @@ body {
 }
 
 h1 {
-  font-family: 'Faster One';
+  font-family: "Faster One";
 }
 
-h1, h4 {
+h1,
+h4 {
   text-align: center;
 }
 
 #plot-area {
-  background-color: #DCDCDC;
+  background-color: #dcdcdc;
   box-shadow: 1px 1px 10px;
 }
 

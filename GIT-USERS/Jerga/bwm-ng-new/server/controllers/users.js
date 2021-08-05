@@ -118,14 +118,12 @@ function parseToken(token) {
 }
 
 function notAuthorized(res) {
-  return res
-    .status(401)
-    .send({
-      errors: [
-        {
-          title: "Not Authorized!",
-          detail: "You need to log in to get an access!",
-        },
-      ],
-    });
+  return res.status(401).send({
+    errors: [
+      {
+        title: "Not Authorized!",
+        detail: "You need to log in to get an access!",
+      },
+    ],
+  });
 }

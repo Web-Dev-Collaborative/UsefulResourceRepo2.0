@@ -40,20 +40,20 @@
 
 // REVEAL PATTERN --------------------------------------------------
 
-var expenser = (function() {
+var expenser = (function () {
   var expenses = [];
 
   function _addExpense(amount) {
     if (!isNaN(parseFloat(amount)) && isFinite(amount)) {
       expenses.push(amount);
     } else {
-      alert('Invalid value, enter number!');
+      alert("Invalid value, enter number!");
     }
   }
 
   function _attachAmountToElement(totalExpenses) {
-    if ($('#expenses').length > 0) {
-      $('#expenses').html(totalExpenses + ' $ expenses')
+    if ($("#expenses").length > 0) {
+      $("#expenses").html(totalExpenses + " $ expenses");
     }
   }
 
@@ -63,7 +63,7 @@ var expenser = (function() {
 
   function addExpense(amount) {
     _addExpense(amount);
-    countExpenses()
+    countExpenses();
   }
 
   function countExpenses() {
@@ -78,6 +78,6 @@ var expenser = (function() {
   return {
     add: addExpense,
     display: displayExpenses,
-    count: countExpenses
-  }
-})()
+    count: countExpenses,
+  };
+})();

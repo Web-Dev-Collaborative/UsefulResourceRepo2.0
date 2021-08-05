@@ -10,26 +10,20 @@ exports.signup = function (req, res, next) {
   const passwordConf = req.body.passwordConfirmation;
 
   if (password !== passwordConf) {
-    return res
-      .status(422)
-      .send({
-        errors: [
-          {
-            title: "Invalid Password",
-            detail: "Password is not same as confirmation",
-          },
-        ],
-      });
+    return res.status(422).send({
+      errors: [
+        {
+          title: "Invalid Password",
+          detail: "Password is not same as confirmation",
+        },
+      ],
+    });
   }
 
   if (!email || !password) {
-    return res
-      .status(422)
-      .send({
-        errors: [
-          { title: "Data Missing", detail: "Provide email and password" },
-        ],
-      });
+    return res.status(422).send({
+      errors: [{ title: "Data Missing", detail: "Provide email and password" }],
+    });
   }
 
   // See if user with given email exists
@@ -41,11 +35,9 @@ exports.signup = function (req, res, next) {
 
     // If a user with email does exist, return an error
     if (existingUser) {
-      return res
-        .status(422)
-        .send({
-          errors: [{ title: "Invalid Email", detail: "Email is in use" }],
-        }); //Umprocesable entity
+      return res.status(422).send({
+        errors: [{ title: "Invalid Email", detail: "Email is in use" }],
+      }); //Umprocesable entity
     }
     // If a user with email; does not exist , create and save user record
     const user = new User({
@@ -69,23 +61,17 @@ exports.signin = function (req, res, next) {
   const password = req.body.password;
 
   if (!email || !password)
-    return res
-      .status(422)
-      .send({
-        errors: [
-          { title: "Missing Data", detail: "Provide email and password" },
-        ],
-      });
+    return res.status(422).send({
+      errors: [{ title: "Missing Data", detail: "Provide email and password" }],
+    });
 
   User.findOne({ email: email }, function (err, user) {
     if (err)
       return res.status(422).send({ errors: normalizeErrors(err.errors) });
     if (!user)
-      return res
-        .status(422)
-        .send({
-          errors: [{ title: "Invalid User", detail: "User doesnt exist" }],
-        });
+      return res.status(422).send({
+        errors: [{ title: "Invalid User", detail: "User doesnt exist" }],
+      });
 
     if (user.isSamePassword(password)) {
       return res.json({
@@ -96,11 +82,9 @@ exports.signin = function (req, res, next) {
         email: user.email,
       });
     } else {
-      return res
-        .status(422)
-        .send({
-          errors: [{ title: "Wrong Data", detail: "Wrong email or password" }],
-        });
+      return res.status(422).send({
+        errors: [{ title: "Wrong Data", detail: "Wrong email or password" }],
+      });
     }
   });
 };
@@ -119,21 +103,17 @@ exports.authMiddleware = function (req, res, next) {
         res.locals.user = user;
         next();
       } else {
-        return res
-          .status(422)
-          .send({
-            errors: [
-              { title: "Not Authorized", detail: "You are not authorized" },
-            ],
-          });
+        return res.status(422).send({
+          errors: [
+            { title: "Not Authorized", detail: "You are not authorized" },
+          ],
+        });
       }
     });
   } else {
-    return res
-      .status(422)
-      .send({
-        errors: [{ title: "Not Authorized", detail: "You are not authorized" }],
-      });
+    return res.status(422).send({
+      errors: [{ title: "Not Authorized", detail: "You are not authorized" }],
+    });
   }
 };
 

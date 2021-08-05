@@ -8,7 +8,7 @@ const Navbar = () => {
   const { isLoggedIn, logout } = useContext(AuthContext);
   return (
     <ApolloConsumer>
-      {client => (
+      {(client) => (
         <nav className="navbar fixed-top navbar-expand-md navbar-light bg-warning">
           <div className="container">
             <Link href="/">

@@ -42,16 +42,8 @@
           "type": "button"
         }
       },
-      "block_order": [
-        "heading",
-        "text",
-        "button"
-      ]
+      "block_order": ["heading", "text", "button"]
     }
   },
-  "order": [
-    "image_banner",
-    "featured_products",
-    "image_text"
-  ]
+  "order": ["image_banner", "featured_products", "image_text"]
 }

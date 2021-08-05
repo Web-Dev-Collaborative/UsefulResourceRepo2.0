@@ -78,7 +78,3 @@ Just like the older-child scenario, we have two possibilities:
 - GG
 
 So, again, the probability of two girls is 1/2.
-
-
-
-

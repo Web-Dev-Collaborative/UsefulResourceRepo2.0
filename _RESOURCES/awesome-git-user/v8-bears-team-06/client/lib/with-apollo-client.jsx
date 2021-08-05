@@ -3,7 +3,7 @@ import initApollo from "./init-apollo";
 import Head from "next/head";
 import { getDataFromTree } from "react-apollo";
 
-export default App => {
+export default (App) => {
   return class Apollo extends React.Component {
     static async getInitialProps(ctx) {
       const { Component, router } = ctx;
@@ -44,7 +44,7 @@ export default App => {
 
       return {
         ...appProps,
-        apolloState
+        apolloState,
       };
     }
 

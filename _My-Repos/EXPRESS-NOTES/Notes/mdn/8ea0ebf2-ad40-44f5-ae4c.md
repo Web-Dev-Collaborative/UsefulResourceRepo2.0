@@ -152,6 +152,7 @@ At this point, we have a complete skeleton project. The website doesn't actually
     ```
 
 2.  Then run the application.
+
     - On the Windows CMD prompt, use this command:
 
       ```
@@ -173,6 +174,7 @@ At this point, we have a complete skeleton project. The website doesn't actually
       ```
       DEBUG=express-locallibrary-tutorial:* npm start
       ```
+
 3.  Then load [http://localhost:3000/](http://localhost:3000/) in your browser to access the app.
 
 You should see a browser page that looks like this:

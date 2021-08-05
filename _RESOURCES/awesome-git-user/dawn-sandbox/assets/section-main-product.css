@@ -129,7 +129,7 @@ fieldset.product-form__input .form__label {
   margin-bottom: 0.2rem;
 }
 
-.product-form__input input[type='radio'] {
+.product-form__input input[type="radio"] {
   clip: rect(0, 0, 0, 0);
   overflow: hidden;
   position: absolute;
@@ -137,7 +137,7 @@ fieldset.product-form__input .form__label {
   width: 1px;
 }
 
-.product-form__input input[type='radio'] + label {
+.product-form__input input[type="radio"] + label {
   border: 0.1rem solid var(--color-foreground-55);
   border-radius: 4rem;
   background-color: var(--color-background);
@@ -153,33 +153,33 @@ fieldset.product-form__input .form__label {
   cursor: pointer;
 }
 
-.product-form__input input[type='radio'] + label:hover {
+.product-form__input input[type="radio"] + label:hover {
   border: 0.1rem solid var(--color-foreground);
 }
 
-.product-form__input input[type='radio']:checked + label {
+.product-form__input input[type="radio"]:checked + label {
   background-color: var(--color-foreground);
   color: var(--color-background);
 }
 
-.product-form__input input[type='radio']:disabled + label {
+.product-form__input input[type="radio"]:disabled + label {
   border-color: var(--color-foreground-10);
   color: var(--color-foreground-40);
   text-decoration: line-through;
 }
-.product-form__input input[type='radio']:focus-visible + label {
+.product-form__input input[type="radio"]:focus-visible + label {
   box-shadow: 0 0 0 0.3rem var(--color-background),
     0 0 0 0.5rem var(--color-foreground-55);
 }
 
 /* Fallback */
-.product-form__input input[type='radio']:focus + label {
+.product-form__input input[type="radio"]:focus + label {
   box-shadow: 0 0 0 0.3rem var(--color-background),
     0 0 0 0.5rem var(--color-foreground-55);
 }
 
 /* No outline when focus-visible is available in the browser */
-.product-form__input input[type='radio']:focus:not(:focus-visible) + label {
+.product-form__input input[type="radio"]:focus:not(:focus-visible) + label {
   box-shadow: none;
 }
 
@@ -202,7 +202,7 @@ fieldset.product-form__input .form__label {
 
 .shopify-payment-button__button {
   font-size: 1.5rem;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
 }
 
 /* Product info */
@@ -393,7 +393,8 @@ a.product__text {
   left: 1.5rem;
   top: 1.5rem;
   z-index: 1;
-  transition: color var(--duration-short) ease, opacity var(--duration-short) ease;
+  transition: color var(--duration-short) ease,
+    opacity var(--duration-short) ease;
 }
 
 .product__media-video .product__media-icon {

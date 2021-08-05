@@ -4,7 +4,7 @@ author: Susan Thomas
 date: December 12, 2019
 ---
 
-Hey Everyone! *My blog is better than Dave's.*
+Hey Everyone! _My blog is better than Dave's._
 
 You may know me from my other blog, "No Sleep Till Deployment", which is all about my life as a senior developer at a large tech company.
 

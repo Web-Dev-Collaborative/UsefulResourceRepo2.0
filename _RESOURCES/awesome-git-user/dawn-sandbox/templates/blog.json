@@ -13,14 +13,8 @@
           "type": "link"
         }
       },
-      "block_order": [
-        "title",
-        "summary",
-        "link"
-      ]
+      "block_order": ["title", "summary", "link"]
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }

@@ -1,10 +1,9 @@
 .chart h3 {
-    border-bottom: 3px solid dodgerblue;
+  border-bottom: 3px solid dodgerblue;
 }
 
 @media (max-width: 1300px) {
-    .chart h3 {
-       font-size: 1rem;
-   }
+  .chart h3 {
+    font-size: 1rem;
+  }
 }
-

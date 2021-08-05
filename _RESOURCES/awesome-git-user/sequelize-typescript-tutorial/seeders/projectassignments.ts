@@ -1,3 +1,3 @@
 export const projectassignments = [
-    //Add assignments here
-]
+  //Add assignments here
+];

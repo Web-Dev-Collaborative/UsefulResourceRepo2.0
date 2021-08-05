@@ -7,7 +7,7 @@ import SignUpBox from "../components/SignUpBox";
 const Signup = () => {
   return (
     <ApolloConsumer>
-      {client => (
+      {(client) => (
         <Layout>
           <div className="box-container">
             <SignUpBox apolloClient={client} />

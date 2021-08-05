@@ -2,6 +2,6 @@
 
 ## freeCodeCamp Front End Libraries Project - 25 + 5 Clock
 
-- Bootstrapped with Create React App. 
+- Bootstrapped with Create React App.
 - Used Function Components with Hooks
 - fCC test suite included for running tests

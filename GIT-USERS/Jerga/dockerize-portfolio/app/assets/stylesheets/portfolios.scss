@@ -9,21 +9,27 @@
 @import "font-awesome";
 
 @font-face {
-  font-family:'Lato';
-  src:font-url('Lato-Regular.ttf');
+  font-family: "Lato";
+  src: font-url("Lato-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'Roboto';
-  src:font-url('Roboto-Regular.ttf');
+  font-family: "Roboto";
+  src: font-url("Roboto-Regular.ttf");
 }
 
-html, body {
-  font-family: 'Lato', sans-serif;
+html,
+body {
+  font-family: "Lato", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-font-family: 'Roboto', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto", sans-serif;
 }
 
 :root {
@@ -61,10 +67,12 @@ footer {
 }
 
 footer p {
-  margin-bottom: .25rem;
+  margin-bottom: 0.25rem;
 }
 
-.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+.box-shadow {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
 
 .portfolio-form {
   padding: 20px;

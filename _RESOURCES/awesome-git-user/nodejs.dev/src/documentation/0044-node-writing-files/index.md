@@ -10,31 +10,31 @@ The easiest way to write to files in Node.js is to use the `fs.writeFile()` API.
 Example:
 
 ```js
-const fs = require('fs')
+const fs = require('fs');
 
-const content = 'Some content!'
+const content = 'Some content!';
 
 fs.writeFile('/Users/joe/test.txt', content, err => {
   if (err) {
-    console.error(err)
-    return
+    console.error(err);
+    return;
   }
   //file written successfully
-})
+});
 ```
 
 Alternatively, you can use the synchronous version `fs.writeFileSync()`:
 
 ```js
-const fs = require('fs')
+const fs = require('fs');
 
-const content = 'Some content!'
+const content = 'Some content!';
 
 try {
-  const data = fs.writeFileSync('/Users/joe/test.txt', content)
+  const data = fs.writeFileSync('/Users/joe/test.txt', content);
   //file written successfully
 } catch (err) {
-  console.error(err)
+  console.error(err);
 }
 ```
 
@@ -43,15 +43,15 @@ By default, this API will **replace the contents of the file** if it does alread
 You can modify the default by specifying a flag:
 
 ```js
-fs.writeFile('/Users/joe/test.txt', content, { flag: 'a+' }, err => {})
+fs.writeFile('/Users/joe/test.txt', content, { flag: 'a+' }, err => {});
 ```
 
 The flags you'll likely use are
 
-* `r+` open the file for reading and writing
-* `w+` open the file for reading and writing, positioning the stream at the beginning of the file. The file is created if not existing
-* `a` open the file for writing, positioning the stream at the end of the file. The file is created if not existing
-* `a+` open the file for reading and writing, positioning the stream at the end of the file. The file is created if not existing
+- `r+` open the file for reading and writing
+- `w+` open the file for reading and writing, positioning the stream at the beginning of the file. The file is created if not existing
+- `a` open the file for writing, positioning the stream at the end of the file. The file is created if not existing
+- `a+` open the file for reading and writing, positioning the stream at the end of the file. The file is created if not existing
 
 (you can find more flags at <https://nodejs.org/api/fs.html#fs_file_system_flags>)
 
@@ -60,15 +60,15 @@ The flags you'll likely use are
 A handy method to append content to the end of a file is `fs.appendFile()` (and its `fs.appendFileSync()` counterpart):
 
 ```js
-const content = 'Some content!'
+const content = 'Some content!';
 
 fs.appendFile('file.log', content, err => {
   if (err) {
-    console.error(err)
-    return
+    console.error(err);
+    return;
   }
   //done!
-})
+});
 ```
 
 ## Using streams

@@ -1,5 +1,5 @@
-ThinkComplexity
-===============
+# ThinkComplexity
+
 2nd Edition
 
 Code for Allen Downey's book Think Complexity, 2nd edition.

@@ -28,16 +28,14 @@ router.get("", function (req, res) {
       .select("-bookings")
       .exec(function (err, filteredRentals) {
         if (err || filteredRentals.length === 0) {
-          return res
-            .status(422)
-            .send({
-              errors: [
-                {
-                  title: "No Rentals found",
-                  detail: `There are no rentals for city ${city}`,
-                },
-              ],
-            });
+          return res.status(422).send({
+            errors: [
+              {
+                title: "No Rentals found",
+                detail: `There are no rentals for city ${city}`,
+              },
+            ],
+          });
         }
 
         res.json(filteredRentals);
@@ -59,11 +57,9 @@ router.patch("/:id", Auth.authMiddleware, function (req, res) {
     .populate("user")
     .exec(function (err, foundRental) {
       if (foundRental.user.id !== user.id) {
-        return res
-          .status(422)
-          .send({
-            errors: [{ title: "Invalid User", detail: "Update not allowed!" }],
-          });
+        return res.status(422).send({
+          errors: [{ title: "Invalid User", detail: "Update not allowed!" }],
+        });
       }
 
       if (err) {
@@ -85,17 +81,15 @@ router.delete("/:id", Auth.authMiddleware, function (req, res) {
         return res.status(422).send({ errors: normalizeErrors(err.errors) });
       }
       if (rental.n == 0) {
-        return res
-          .status(422)
-          .send({
-            errors: [
-              {
-                title: "Has Bookings",
-                detail:
-                  "Cannot delete rental with active bookings. Please contact support for more info",
-              },
-            ],
-          });
+        return res.status(422).send({
+          errors: [
+            {
+              title: "Has Bookings",
+              detail:
+                "Cannot delete rental with active bookings. Please contact support for more info",
+            },
+          ],
+        });
       }
 
       return res.status(200).send({ success: "ok" });

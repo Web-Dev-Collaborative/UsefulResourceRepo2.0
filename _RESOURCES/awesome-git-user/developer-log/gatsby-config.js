@@ -1,4 +1,4 @@
-'use strict'
+"use strict"
 
 const siteConfig = require("./config")
 
@@ -48,8 +48,8 @@ module.exports = {
               aliases: {},
               showLineNumbers: false,
               noInlineHighlight: false,
-            }
-          }, 
+            },
+          },
           `gatsby-remark-responsive-iframe`,
           {
             resolve: `gatsby-remark-images`,
@@ -68,9 +68,9 @@ module.exports = {
       options: {
         fonts: [
           `Raleway`,
-          `source sans pro\:300,400,400i,700` // you can also specify font weights and styles
-        ]
-      }
+          `source sans pro\:300,400,400i,700`, // you can also specify font weights and styles
+        ],
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,

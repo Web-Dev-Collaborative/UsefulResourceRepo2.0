@@ -6,7 +6,7 @@ import { User } from "./models/user";
 export async function insertMockData() {
   await User.insertMany([
     { email: "foo@foo.com", password: "foo" },
-    { email: "bar@bar.com", password: "bar" }
+    { email: "bar@bar.com", password: "bar" },
   ]);
 }
 
@@ -16,7 +16,7 @@ export async function setupDbConnection(dev, mongoUri = "") {
   mongoose.connect(mongoUri, { useNewUrlParser: true });
   const conn = new Promise((resolve, reject) => {
     mongoose.connection
-      .on("error", err => {
+      .on("error", (err) => {
         reject(err);
       })
       .once("open", () => {

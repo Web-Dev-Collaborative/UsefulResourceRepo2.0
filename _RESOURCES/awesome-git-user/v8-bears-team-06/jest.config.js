@@ -2,7 +2,7 @@ module.exports = {
   setupFiles: ["<rootDir>/jest.setup.js"],
   testPathIgnorePatterns: [
     "<rootDir>/client/.next/",
-    "<rootDir>/node_modules/"
+    "<rootDir>/node_modules/",
   ],
   collectCoverageFrom: [
     "**/*.{js,jsx}",
@@ -10,6 +10,6 @@ module.exports = {
     "!client/.next/**",
     "!client/next.config.js",
     "!coverage/**",
-    "!jest.config.js"
-  ]
+    "!jest.config.js",
+  ],
 };

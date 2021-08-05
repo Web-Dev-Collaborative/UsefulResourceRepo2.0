@@ -1,17 +1,20 @@
-@import 'https://fonts.googleapis.com/css?family=Share+Tech+Mono';
+@import "https://fonts.googleapis.com/css?family=Share+Tech+Mono";
 body {
   background-color: #984b4b;
-  font-family: 'Share Tech Mono';
+  font-family: "Share Tech Mono";
   color: #000000;
   user-select: none;
-  cursor: default; }
+  cursor: default;
+}
 
 h1 {
-  color: #FFFFFF; }
+  color: #ffffff;
+}
 
 hr {
   border-color: white;
-  border-width: 2px; }
+  border-width: 2px;
+}
 
 #calculator-body {
   background-color: #585858;
@@ -22,17 +25,20 @@ hr {
   position: relative;
   left: 50%;
   transform: translate(-50%, 0);
-  box-shadow: -1px -1px 5px; }
+  box-shadow: -1px -1px 5px;
+}
 
 #body-top {
   width: 100%;
-  padding: 7px; }
+  padding: 7px;
+}
 
 #body-bottom {
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-gap: 7px;
-  padding: 7px; }
+  padding: 7px;
+}
 
 #number-pad {
   display: grid;
@@ -41,7 +47,8 @@ hr {
   padding: 5px;
   border-radius: 5px;
   background-color: #403c3c;
-  box-shadow: inset 1px 1px 10px; }
+  box-shadow: inset 1px 1px 10px;
+}
 
 #execute-pad {
   display: grid;
@@ -50,7 +57,8 @@ hr {
   padding: 5px;
   border-radius: 5px;
   background-color: #403c3c;
-  box-shadow: inset 1px 1px 10px; }
+  box-shadow: inset 1px 1px 10px;
+}
 
 .std-button {
   position: relative;
@@ -61,23 +69,27 @@ hr {
   border-radius: 2px;
   background-color: lightgray;
   color: black;
-  box-shadow: -1px 1px 5px; }
-  .std-button:hover {
-    color: black;
-    outline: .05em solid grey;
-    z-index: 3; }
+  box-shadow: -1px 1px 5px;
+}
+.std-button:hover {
+  color: black;
+  outline: 0.05em solid grey;
+  z-index: 3;
+}
 
 .exc-std-button {
   background-color: green;
   font-size: 22px;
   cursor: default;
-  pointer-events: auto; }
+  pointer-events: auto;
+}
 
 .exc-button {
   background-color: #800020;
   color: white;
   cursor: default;
-  pointer-events: auto; }
+  pointer-events: auto;
+}
 
 .screen {
   width: 100%;
@@ -86,25 +98,31 @@ hr {
   flex-direction: column;
   padding: 5px;
   box-shadow: inset 1px 1px 5px;
-  background-color: #77abff; }
+  background-color: #77abff;
+}
 
 .sub-screen {
   width: 100%;
   height: 50%;
-  background-color: transparent; }
+  background-color: transparent;
+}
 
 #equation-display {
   font-size: 18px;
-  color: #A52A2A; }
+  color: #a52a2a;
+}
 
 #display {
   font-size: 24px;
-  color: #262626; }
+  color: #262626;
+}
 
 #footer {
   width: 100%;
   text-align: center;
-  margin-top: 10px; }
+  margin-top: 10px;
+}
 
 a {
-  color: #FFFFFF; }
+  color: #ffffff;
+}

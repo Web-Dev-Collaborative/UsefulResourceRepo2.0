@@ -1,6 +1,9 @@
 # Life satisfaction and GDP per capita
+
 ## Life satisfaction
+
 ### Source
+
 This dataset was obtained from the OECD's website at: http://stats.oecd.org/index.aspx?DataSetCode=BLI
 
 ### Data description
@@ -30,11 +33,11 @@ This dataset was obtained from the OECD's website at: http://stats.oecd.org/inde
 ### Example usage using python Pandas
 
     >>> life_sat = pd.read_csv("oecd_bli_2015.csv", thousands=',')
-    
+
     >>> life_sat_total = life_sat[life_sat["INEQUALITY"]=="TOT"]
-    
+
     >>> life_sat_total = life_sat_total.pivot(index="Country", columns="Indicator", values="Value")
-    
+
     >>> life_sat_total.info()
     <class 'pandas.core.frame.DataFrame'>
     Index: 37 entries, Australia to United States
@@ -67,7 +70,9 @@ This dataset was obtained from the OECD's website at: http://stats.oecd.org/inde
     memory usage: 7.2+ KB
 
 ## GDP per capita
+
 ### Source
+
 Dataset obtained from the IMF's website at: http://goo.gl/j1MSKe
 
 ### Data description
@@ -91,4 +96,3 @@ Dataset obtained from the IMF's website at: http://goo.gl/j1MSKe
     ...     encoding='latin1', na_values="n/a", index_col="Country")
     ...
     >>> gdp_per_capita.rename(columns={"2015": "GDP per capita"}, inplace=True)
-

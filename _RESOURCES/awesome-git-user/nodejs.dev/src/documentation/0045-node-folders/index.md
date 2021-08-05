@@ -16,16 +16,16 @@ Use `fs.access()` to check if the folder exists and Node.js can access it with i
 Use `fs.mkdir()` or `fs.mkdirSync()` to create a new folder.
 
 ```js
-const fs = require('fs')
+const fs = require('fs');
 
-const folderName = '/Users/joe/test'
+const folderName = '/Users/joe/test';
 
 try {
   if (!fs.existsSync(folderName)) {
-    fs.mkdirSync(folderName)
+    fs.mkdirSync(folderName);
   }
 } catch (err) {
-  console.error(err)
+  console.error(err);
 }
 ```
 
@@ -36,33 +36,34 @@ Use `fs.readdir()` or `fs.readdirSync()` to read the contents of a directory.
 This piece of code reads the content of a folder, both files and subfolders, and returns their relative path:
 
 ```js
-const fs = require('fs')
-const path = require('path')
+const fs = require('fs');
+const path = require('path');
 
-const folderPath = '/Users/joe'
+const folderPath = '/Users/joe';
 
-fs.readdirSync(folderPath)
+fs.readdirSync(folderPath);
 ```
 
 You can get the full path:
 
 ```js
 fs.readdirSync(folderPath).map(fileName => {
-  return path.join(folderPath, fileName)
-})
+  return path.join(folderPath, fileName);
+});
 ```
 
 You can also filter the results to only return the files, and exclude the folders:
 
 ```js
 const isFile = fileName => {
-  return fs.lstatSync(fileName).isFile()
-}
+  return fs.lstatSync(fileName).isFile();
+};
 
-fs.readdirSync(folderPath).map(fileName => {
-  return path.join(folderPath, fileName)
-})
-.filter(isFile)
+fs.readdirSync(folderPath)
+  .map(fileName => {
+    return path.join(folderPath, fileName);
+  })
+  .filter(isFile);
 ```
 
 ## Rename a folder
@@ -70,26 +71,26 @@ fs.readdirSync(folderPath).map(fileName => {
 Use `fs.rename()` or `fs.renameSync()` to rename folder. The first parameter is the current path, the second the new path:
 
 ```js
-const fs = require('fs')
+const fs = require('fs');
 
 fs.rename('/Users/joe', '/Users/roger', err => {
   if (err) {
-    console.error(err)
-    return
+    console.error(err);
+    return;
   }
   //done
-})
+});
 ```
 
 `fs.renameSync()` is the synchronous version:
 
 ```js
-const fs = require('fs')
+const fs = require('fs');
 
 try {
-  fs.renameSync('/Users/joe', '/Users/roger')
+  fs.renameSync('/Users/joe', '/Users/roger');
 } catch (err) {
-  console.error(err)
+  console.error(err);
 }
 ```
 
@@ -112,13 +113,13 @@ npm install fs-extra
 and use it like this:
 
 ```js
-const fs = require('fs-extra')
+const fs = require('fs-extra');
 
-const folder = '/Users/joe'
+const folder = '/Users/joe';
 
 fs.remove(folder, err => {
-  console.error(err)
-})
+  console.error(err);
+});
 ```
 
 It can also be used with promises:
@@ -129,8 +130,8 @@ fs.remove(folder)
     //done
   })
   .catch(err => {
-    console.error(err)
-  })
+    console.error(err);
+  });
 ```
 
 or with async/await:
@@ -138,13 +139,13 @@ or with async/await:
 ```js
 async function removeFolder(folder) {
   try {
-    await fs.remove(folder)
+    await fs.remove(folder);
     //done
   } catch (err) {
-    console.error(err)
+    console.error(err);
   }
 }
 
-const folder = '/Users/joe'
-removeFolder(folder)
+const folder = '/Users/joe';
+removeFolder(folder);
 ```

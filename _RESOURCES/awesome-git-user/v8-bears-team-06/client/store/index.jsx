@@ -6,7 +6,7 @@ import { AuthContext } from "../context";
 export const StoreProvider = ({ children, token: initialToken }) => {
   const [token, setToken] = useState(initialToken);
   const contextValue = {
-    login: newToken => {
+    login: (newToken) => {
       setToken(newToken);
       Cookie.set("token", newToken);
     },
@@ -14,7 +14,7 @@ export const StoreProvider = ({ children, token: initialToken }) => {
       Cookie.remove("token");
       setToken("");
     },
-    isLoggedIn: !!token
+    isLoggedIn: !!token,
   };
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>

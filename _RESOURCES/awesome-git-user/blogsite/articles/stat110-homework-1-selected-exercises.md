@@ -9,7 +9,7 @@ pagetype: "article"
 
 **Warning: Spoilers Follow**
 
-**1. How many ways are there to permute the letters in the word MISSISSIPPI?** 
+**1. How many ways are there to permute the letters in the word MISSISSIPPI?**
 
 If each letter were to have its own unique ID and it were the case that only the IDs mattered, there would be 11! permutations of the word MISSISSIPPI. However, were not permuting unique IDs, but letters, some of which get used several times, which means that 11! permutations would include overcounting.
 
@@ -23,7 +23,9 @@ There are 4! ways in which the letters 'I' can be interchanged with each other, 
 $$
 \frac{11!}{1!4!4!2!} \ = \ 34650
 $$
+
 ---
+
 **12. Four players, named A, B, C, and D, are playing a card game. A standard, well-shuffled deck of cards is dealt to the players (so that each player receives a 13-card hand).**
 
 **(a) How many possibilities are there for the hand that player A will get? (Within a hand, the order in which the cards were received doesn't matter.)**
@@ -55,19 +57,21 @@ that would mean that we were replacing the cards dealt to players with exact cop
 For each pizza, you have $\binom{4}{1}$ ways to choose a size. Then, you have 9 possible topping combinations, including the zero-toppings option.
 
 $$
-4\binom{8}{8} \ + \ 4\binom{8}{7} + \ 4\binom{8}{6} + \ 4\binom{8}{5}  
+4\binom{8}{8} \ + \ 4\binom{8}{7} + \ 4\binom{8}{6} + \ 4\binom{8}{5}
 $$
+
 $$
 + \ 4\binom{8}{4} \ + \ 4\binom{8}{3}\ + \ 4\binom{8}{2}\ + \ 4\binom{8}{1}
 $$
+
 $$
 \ + \ 4\binom{8}{0}
 $$
 
 Taking into account both pizzas and the fact that $\binom{n}{k} \ = \ \binom{n}{n-k}$, we have
 
- $\left [4\left [2\binom{8}{8}+2\binom{8}{7}+2\binom{8}{6}+2\binom{8}{5}+\binom{8}{4} \right ] \right ]^2$
+$\left [4\left [2\binom{8}{8}+2\binom{8}{7}+2\binom{8}{6}+2\binom{8}{5}+\binom{8}{4} \right ] \right ]^2$
 
- $= 1048576$.
+$= 1048576$.
 
- Adjusting for overcounting since the order of pizzas doesn't matter, we finally have $\frac{1048576}{2} \ = \ 524288$
+Adjusting for overcounting since the order of pizzas doesn't matter, we finally have $\frac{1048576}{2} \ = \ 524288$

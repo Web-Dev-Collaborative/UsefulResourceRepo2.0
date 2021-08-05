@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Raleway&family=Rubik&display=swap");
-button, button:focus {
+button,
+button:focus {
   outline: none !important;
   box-shadow: none !important;
 }
@@ -41,19 +42,19 @@ button, button:focus {
 }
 
 .color-secondary {
-  color: #00A5C4;
+  color: #00a5c4;
 }
 
 .color-secondary-bg {
-  background: #00A5C4;
+  background: #00a5c4;
 }
 
 .color-yellow {
-  color: #FFD289;
+  color: #ffd289;
 }
 
 .color-yellow-bg {
-  background: #FFD289;
+  background: #ffd289;
 }
 
 #best-sellers .owl-carousel .item .product a {

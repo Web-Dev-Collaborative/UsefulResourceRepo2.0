@@ -142,7 +142,7 @@ cart-items {
   margin-top: 0;
 }
 
-.cart__dynamic-checkout-buttons div[role='button'] {
+.cart__dynamic-checkout-buttons div[role="button"] {
   border-radius: 0 !important;
 }
 

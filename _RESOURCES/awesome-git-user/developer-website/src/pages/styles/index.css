@@ -1,74 +1,79 @@
 /*Home Page*/
-body, div, h1 {
-    margin: 0;
-    padding: 0;
+body,
+div,
+h1 {
+  margin: 0;
+  padding: 0;
 }
 
 .index {
-    margin-top: 125px;
-    font-family: Raleway;
-    color: #666666;
+  margin-top: 125px;
+  font-family: Raleway;
+  color: #666666;
 }
 
 .intro {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    height: 45vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 45vh;
 }
 
 .profile-img {
-    width: 110px;
-    border-radius: 50%;
+  width: 110px;
+  border-radius: 50%;
 }
 
 .profile-name {
-    font-weight: 200;
+  font-weight: 200;
 }
 
-
 .profile-description {
-    text-align: center;
-    font-size: 46px;
-    font-weight: bolder;
+  text-align: center;
+  font-size: 46px;
+  font-weight: bolder;
 }
 
 .social-icons {
-    width: 325px;
-    display: flex;
-    justify-content: space-around;
+  width: 325px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .divider {
-    width: 350px; 
-    margin-top: 40px;
+  width: 350px;
+  margin-top: 40px;
 }
 
 .post {
-    width: 325px;
-    margin: auto;
-    margin-top: 50px;
+  width: 325px;
+  margin: auto;
+  margin-top: 50px;
 }
 
 .index-post-heading {
-    text-align: center;
+  text-align: center;
 }
 
 .index-post-button {
-    padding: 5px;
-    border: 1px solid transparent;
-    border-radius: 2px;
-    font-family: Raleway;
-    background: lightgray;
-    cursor: pointer;   
+  padding: 5px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-family: Raleway;
+  background: lightgray;
+  cursor: pointer;
 }
 .index-post-button:hover {
-    background: transparent;
-    border: 1px solid lightgray;
+  background: transparent;
+  border: 1px solid lightgray;
 }
 
 @media (max-width: 600px) {
-    .intro {height: 60vh;}
-    .profile-img { border-radius: 50%;}
+  .intro {
+    height: 60vh;
+  }
+  .profile-img {
+    border-radius: 50%;
+  }
 }

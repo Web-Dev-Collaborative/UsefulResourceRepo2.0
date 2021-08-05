@@ -1,10 +1,10 @@
-import React, {Fragment} from 'react';
-import { useQuery, useApolloClient } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import React, { Fragment } from "react";
+import { useQuery, useApolloClient } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 
-import QuakeTile from "./components/quaketile"
-import Header from "./components/header"
-import './App.css';
+import QuakeTile from "./components/quaketile";
+import Header from "./components/header";
+import "./App.css";
 
 const GET_QUAKES = gql`
   query quakeList($after: String) {
@@ -23,27 +23,27 @@ const GET_QUAKES = gql`
 `;
 
 function Quakes() {
-  const client = useApolloClient()
+  const client = useApolloClient();
   const { data, loading, error, fetchMore } = useQuery(GET_QUAKES);
 
   const logoutHandler = (e) => {
-    e.preventDefault()
-    client.writeData({ data: { isLoggedIn: false } })
-    localStorage.clear()
-    
-  }
+    e.preventDefault();
+    client.writeData({ data: { isLoggedIn: false } });
+    localStorage.clear();
+  };
   if (loading) return <p>Loading, Yo!</p>;
   if (error) return <p>ERROR</p>;
-
 
   return (
     <Fragment>
       <Header />
       <div className="main">
-        <button type="submit" onClick={logoutHandler}>Log Out</button>
+        <button type="submit" onClick={logoutHandler}>
+          Log Out
+        </button>
         {data.quakes &&
           data.quakes.quakes &&
-          data.quakes.quakes.map(quake => (
+          data.quakes.quakes.map((quake) => (
             <QuakeTile
               key={quake.id}
               id={quake.id}
@@ -52,34 +52,32 @@ function Quakes() {
               when={quake.when}
             />
           ))}
-          {data.quakes &&
-            data.quakes.hasMore && (
-              <button
-                onClick={() =>
-                  fetchMore({
-                    variables: {
-                      after: data.quakes.cursor,
+        {data.quakes && data.quakes.hasMore && (
+          <button
+            onClick={() =>
+              fetchMore({
+                variables: {
+                  after: data.quakes.cursor,
+                },
+                updateQuery: (prev, { fetchMoreResult }) => {
+                  if (!fetchMoreResult) return prev;
+                  return {
+                    ...fetchMoreResult,
+                    quakes: {
+                      ...fetchMoreResult.quakes,
+                      quakes: [
+                        ...prev.quakes.quakes,
+                        ...fetchMoreResult.quakes.quakes,
+                      ],
                     },
-                    updateQuery: (prev, { fetchMoreResult }) => {
-                      if (!fetchMoreResult) return prev;
-                      return {
-                        ...fetchMoreResult,
-                        quakes: {
-                          ...fetchMoreResult.quakes,
-                          quakes: [
-                            ...prev.quakes.quakes,
-                            ...fetchMoreResult.quakes.quakes,
-                          ],
-                        },
-                      };
-                    },
-                  })
-                }
-              >
-                Load More
-              </button>
-            )
-          }
+                  };
+                },
+              })
+            }
+          >
+            Load More
+          </button>
+        )}
       </div>
     </Fragment>
   );

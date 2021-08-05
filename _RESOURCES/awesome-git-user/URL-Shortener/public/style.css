@@ -1,11 +1,10 @@
 /****** Main Styling ******/
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Special+Elite');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Special+Elite");
 
 body {
   align-items: center;
-  font-family: 'Special Elite';
-
+  font-family: "Special Elite";
 }
 
 form {

@@ -64,7 +64,7 @@ a.pagination__item:hover::after {
 
 .pagination__item--current::after,
 .pagination__item:hover::after {
-  content: '';
+  content: "";
   display: block;
   width: 2rem;
   position: absolute;

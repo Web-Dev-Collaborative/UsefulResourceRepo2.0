@@ -1,11 +1,10 @@
-@import 'https://fonts.googleapis.com/css?family=Philosopher';
+@import "https://fonts.googleapis.com/css?family=Philosopher";
 
 body {
- width: 100%;
- font-family: 'Philosopher';
- background-color: #F8F8FF;
+  width: 100%;
+  font-family: "Philosopher";
+  background-color: #f8f8ff;
 }
-
 
 #top-box {
   display: flex;
@@ -18,7 +17,6 @@ body {
   text-align: center;
 }
 
-
 #title-box {
   display: flex;
   flex-direction: column;
@@ -30,7 +28,6 @@ body {
 
 #map-area {
   text-align: center;
-
 }
 
 svg {
@@ -45,7 +42,7 @@ div.tooltip {
   height: 48px;
   padding: 2px;
   font: 12px sans-serif;
-  background: #F0FFFF;
+  background: #f0ffff;
   border: 1px;
   border-style: solid;
   border-color: purple;

@@ -31,7 +31,7 @@ const SignUpBox = ({ apolloClient }) => {
             id="email"
             placeholder="Enter your email"
             value={email}
-            onChange={event => {
+            onChange={(event) => {
               setEmail(event.target.value);
             }}
             autoFocus
@@ -56,7 +56,7 @@ const SignUpBox = ({ apolloClient }) => {
             id="password"
             placeholder="Enter your password"
             value={password}
-            onChange={event => {
+            onChange={(event) => {
               setPassword(event.target.value);
             }}
             required
@@ -74,7 +74,7 @@ const SignUpBox = ({ apolloClient }) => {
           data-testid="submitBtn"
           type="submit"
           className="btn btn-primary float-left"
-          onClick={async event => {
+          onClick={async (event) => {
             setErrorMessage("");
             setSuccessMessage("");
             event.preventDefault();
@@ -92,7 +92,7 @@ const SignUpBox = ({ apolloClient }) => {
 
             const { data } = await apolloClient.mutate({
               mutation: addUserMutation,
-              variables: { email, password }
+              variables: { email, password },
             });
             if (data.addUser.email === "empty") {
               setErrorMessage("You must enter a valid email address");

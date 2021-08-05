@@ -13,14 +13,8 @@
           "type": "buttons"
         }
       },
-      "block_order": [
-        "subtotal",
-        "buttons"
-      ]
+      "block_order": ["subtotal", "buttons"]
     }
   },
-  "order": [
-    "cart-items",
-    "cart-footer"
-  ]
+  "order": ["cart-items", "cart-footer"]
 }

@@ -1,33 +1,33 @@
 class DetailsModal extends HTMLElement {
   constructor() {
     super();
-    this.detailsContainer = this.querySelector('details');
-    this.summaryToggle = this.querySelector('summary');
+    this.detailsContainer = this.querySelector("details");
+    this.summaryToggle = this.querySelector("summary");
 
     this.detailsContainer.addEventListener(
-      'keyup',
-      (event) => event.code.toUpperCase() === 'ESCAPE' && this.close()
+      "keyup",
+      (event) => event.code.toUpperCase() === "ESCAPE" && this.close()
     );
     this.summaryToggle.addEventListener(
-      'click',
+      "click",
       this.onSummaryClick.bind(this)
     );
     this.querySelector('button[type="button"]').addEventListener(
-      'click',
+      "click",
       this.close.bind(this)
     );
 
-    this.summaryToggle.setAttribute('role', 'button');
-    this.summaryToggle.setAttribute('aria-expanded', 'false');
+    this.summaryToggle.setAttribute("role", "button");
+    this.summaryToggle.setAttribute("aria-expanded", "false");
   }
 
   isOpen() {
-    return this.detailsContainer.hasAttribute('open');
+    return this.detailsContainer.hasAttribute("open");
   }
 
   onSummaryClick(event) {
     event.preventDefault();
-    event.target.closest('details').hasAttribute('open')
+    event.target.closest("details").hasAttribute("open")
       ? this.close()
       : this.open(event);
   }
@@ -39,8 +39,8 @@ class DetailsModal extends HTMLElement {
   open(event) {
     this.onBodyClickEvent =
       this.onBodyClickEvent || this.onBodyClick.bind(this);
-    event.target.closest('details').setAttribute('open', true);
-    document.body.addEventListener('click', this.onBodyClickEvent);
+    event.target.closest("details").setAttribute("open", true);
+    document.body.addEventListener("click", this.onBodyClickEvent);
 
     trapFocus(
       this.detailsContainer.querySelector('[tabindex="-1"]'),
@@ -50,9 +50,9 @@ class DetailsModal extends HTMLElement {
 
   close(focusToggle = true) {
     removeTrapFocus(focusToggle ? this.summaryToggle : null);
-    this.detailsContainer.removeAttribute('open');
-    document.body.removeEventListener('click', this.onBodyClickEvent);
+    this.detailsContainer.removeAttribute("open");
+    document.body.removeEventListener("click", this.onBodyClickEvent);
   }
 }
 
-customElements.define('details-modal', DetailsModal);
+customElements.define("details-modal", DetailsModal);

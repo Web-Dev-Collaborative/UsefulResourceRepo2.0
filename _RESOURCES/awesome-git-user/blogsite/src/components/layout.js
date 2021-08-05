@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, {useState} from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import Header from "./header"
@@ -21,29 +21,49 @@ const Layout = ({ children }) => {
       }
     }
   `)
-  
+
   const [sidebarClass, setSidebarClass] = useState("sidebar")
 
   const handleSlide = () => {
-    setSidebarClass('sidebar-show')
+    setSidebarClass("sidebar-show")
   }
-  const handleClose = (e) => {
+  const handleClose = e => {
     e.preventDefault()
-    setSidebarClass('sidebar-hide')
+    setSidebarClass("sidebar-hide")
   }
 
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title} isOpen={handleSlide} />
-        <main>{children}</main>
-        <div className={sidebarClass}>
-          <Link to="/tags/web-development"><h3 className="sidebar-link">Web Development</h3></Link>
-          <a href="https://github.com/willjw3/nonlinear-dynamics-notebooks" target="_blank" rel="noreferrer noopener"><h3 className="sidebar-link">Notebooks</h3></a>
-          <Link to="/tags/mathematics"><h3 className="sidebar-link">Mathematics</h3></Link>
-          <Link to="/archives"><h3 className="sidebar-link">Browse Archives</h3></Link>
-          <a href="https://willjw3.netlify.app" target="_blank" rel="noreferrer noopener"><h3 className="sidebar-link">About</h3></a>
-          <button className="sidebar-btn" onClick={handleClose}>CLOSE</button>
-        </div>
+      <main>{children}</main>
+      <div className={sidebarClass}>
+        <Link to="/tags/web-development">
+          <h3 className="sidebar-link">Web Development</h3>
+        </Link>
+        <a
+          href="https://github.com/willjw3/nonlinear-dynamics-notebooks"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <h3 className="sidebar-link">Notebooks</h3>
+        </a>
+        <Link to="/tags/mathematics">
+          <h3 className="sidebar-link">Mathematics</h3>
+        </Link>
+        <Link to="/archives">
+          <h3 className="sidebar-link">Browse Archives</h3>
+        </Link>
+        <a
+          href="https://willjw3.netlify.app"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <h3 className="sidebar-link">About</h3>
+        </a>
+        <button className="sidebar-btn" onClick={handleClose}>
+          CLOSE
+        </button>
+      </div>
     </>
   )
 }

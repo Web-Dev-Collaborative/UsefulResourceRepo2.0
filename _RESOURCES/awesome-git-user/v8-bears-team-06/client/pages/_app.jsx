@@ -20,7 +20,7 @@ class MyApp extends App {
   }
 }
 
-const withStore = App => {
+const withStore = (App) => {
   return class extends React.Component {
     static async getInitialProps(context) {
       const componentProps =
@@ -53,7 +53,7 @@ function auth(context) {
   return token;
 }
 
-const withAuth = App => {
+const withAuth = (App) => {
   return class Authorizer extends React.Component {
     static async getInitialProps(context) {
       const { ctx } = context;

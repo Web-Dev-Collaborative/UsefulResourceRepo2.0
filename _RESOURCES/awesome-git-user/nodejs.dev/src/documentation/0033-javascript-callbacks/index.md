@@ -26,11 +26,11 @@ JavaScript is **synchronous** by default and is single threaded. This means that
 Lines of code are executed in series, one after another, for example:
 
 ```js
-const a = 1
-const b = 2
-const c = a * b
-console.log(c)
-doSomething()
+const a = 1;
+const b = 2;
+const c = a * b;
+console.log(c);
+doSomething();
 ```
 
 But JavaScript was born inside the browser, its main job, in the beginning, was to respond to user actions, like `onClick`, `onMouseOver`, `onChange`, `onSubmit` and so on. How could it do this with a synchronous programming model?
@@ -46,7 +46,7 @@ You can't know when a user is going to click a button. So, you **define an event
 ```js
 document.getElementById('button').addEventListener('click', () => {
   //item clicked
-})
+});
 ```
 
 This is the so-called **callback**.
@@ -59,7 +59,7 @@ It's common to wrap all your client code in a `load` event listener on the `wind
 window.addEventListener('load', () => {
   //window loaded
   //do what you want
-})
+});
 ```
 
 Callbacks are used everywhere, not just in DOM events.
@@ -69,20 +69,20 @@ One common example is by using timers:
 ```js
 setTimeout(() => {
   // runs after 2 seconds
-}, 2000)
+}, 2000);
 ```
 
 XHR requests also accept a callback, in this example by assigning a function to a property that will be called when a particular event occurs (in this case, the state of the request changes):
 
 ```js
-const xhr = new XMLHttpRequest()
+const xhr = new XMLHttpRequest();
 xhr.onreadystatechange = () => {
   if (xhr.readyState === 4) {
-    xhr.status === 200 ? console.log(xhr.responseText) : console.error('error')
+    xhr.status === 200 ? console.log(xhr.responseText) : console.error('error');
   }
-}
-xhr.open('GET', 'https://yoursite.com')
-xhr.send()
+};
+xhr.open('GET', 'https://yoursite.com');
+xhr.send();
 ```
 
 ## Handling errors in callbacks
@@ -95,13 +95,13 @@ If there is no error, the object is `null`. If there is an error, it contains so
 fs.readFile('/file.json', (err, data) => {
   if (err !== null) {
     //handle error
-    console.log(err)
-    return
+    console.log(err);
+    return;
   }
 
   //no errors, process data
-  console.log(data)
-})
+  console.log(data);
+});
 ```
 
 ## The problem with callbacks
@@ -116,10 +116,10 @@ window.addEventListener('load', () => {
     setTimeout(() => {
       items.forEach(item => {
         //your code here
-      })
-    }, 2000)
-  })
-})
+      });
+    }, 2000);
+  });
+});
 ```
 
 This is just a simple 4-levels code, but I've seen much more levels of nesting and it's not fun.

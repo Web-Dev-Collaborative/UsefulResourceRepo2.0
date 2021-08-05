@@ -14,7 +14,7 @@ When we pass a function to `process.nextTick()`, we instruct the engine to invok
 ```js
 process.nextTick(() => {
   //do something
-})
+});
 ```
 
 The event loop is busy processing the current function code.

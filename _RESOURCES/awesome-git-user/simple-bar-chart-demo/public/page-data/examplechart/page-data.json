@@ -1,1 +1,6 @@
-{"componentChunkName":"component---src-pages-examplechart-js","path":"/examplechart/","webpackCompilationHash":"","result":{"pageContext":{"isCreatedByStatefulCreatePages":true}}}
+{
+  "componentChunkName": "component---src-pages-examplechart-js",
+  "path": "/examplechart/",
+  "webpackCompilationHash": "",
+  "result": { "pageContext": { "isCreatedByStatefulCreatePages": true } }
+}
