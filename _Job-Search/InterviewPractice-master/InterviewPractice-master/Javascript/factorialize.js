@@ -1,13 +1,11 @@
-
 function factorialize(num) {
+  let final = 1;
 
-    let final = 1;
+  for (let i = 1; i <= num; i++) {
+    final *= i;
+  }
 
-    for (let i = 1; i <= num; i++) {
-        final *= i;
-    }
-
-    return console.log(final);
+  return console.log(final);
 }
 
 factorialize(5);

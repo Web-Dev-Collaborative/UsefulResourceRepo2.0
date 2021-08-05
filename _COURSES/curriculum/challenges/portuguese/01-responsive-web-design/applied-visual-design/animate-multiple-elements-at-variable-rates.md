@@ -2,7 +2,7 @@
 id: 587d78a8367417b2b2512ae6
 title: Animar múltiplos elementos em diferentes momentos
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cnpWZc9'
+videoUrl: "https://scrimba.com/c/cnpWZc9"
 forumTopicId: 301042
 dashedName: animate-multiple-elements-at-variable-rates
 ---
@@ -22,19 +22,19 @@ Defina a propriedade `animation-duration` dos elementos com as classes `star-1`,
 O valor da propriedade `animation-duration` da estrela com a classe `star-1` deve permanecer em 1s.
 
 ```js
-assert($('.star-1').css('animation-duration') == '1s');
+assert($(".star-1").css("animation-duration") == "1s");
 ```
 
 O valor da propriedade `animation-duration` da estrela com a classe `star-2` deve ser 0.9s.
 
 ```js
-assert($('.star-2').css('animation-duration') == '0.9s');
+assert($(".star-2").css("animation-duration") == "0.9s");
 ```
 
 O valor da propriedade `animation-duration` da estrela com a classe `star-3` deve ser 1.1s.
 
 ```js
-assert($('.star-3').css('animation-duration') == '1.1s');
+assert($(".star-3").css("animation-duration") == "1.1s");
 ```
 
 # --seed--

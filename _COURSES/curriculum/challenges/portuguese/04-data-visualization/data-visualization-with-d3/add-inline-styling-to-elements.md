@@ -13,7 +13,7 @@ D3 lets you add inline CSS styles on dynamic elements with the `style()` method.
 The `style()` method takes a comma-separated key-value pair as an argument. Here's an example to set the selection's text color to blue:
 
 ```js
-selection.style("color","blue");
+selection.style("color", "blue");
 ```
 
 # --instructions--
@@ -25,7 +25,7 @@ Add the `style()` method to the code in the editor to make all the displayed tex
 Your `h2` elements should have a `font-family` of `verdana`.
 
 ```js
-assert($('h2').css('font-family') == 'verdana');
+assert($("h2").css("font-family") == "verdana");
 ```
 
 Your code should use the `style()` method.
@@ -43,16 +43,15 @@ assert(code.match(/\.style/g));
   <script>
     const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
-    d3.select("body").selectAll("h2")
+    d3.select("body")
+      .selectAll("h2")
       .data(dataset)
       .enter()
       .append("h2")
-      .text((d) => (d + " USD"))
-      // Add your code below this line
+      .text((d) => d + " USD");
+    // Add your code below this line
 
-
-
-      // Add your code above this line
+    // Add your code above this line
   </script>
 </body>
 ```
@@ -64,13 +63,13 @@ assert(code.match(/\.style/g));
   <script>
     const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
-    d3.select("body").selectAll("h2")
+    d3.select("body")
+      .selectAll("h2")
       .data(dataset)
       .enter()
       .append("h2")
-      .text((d) => (d + " USD"))
-      .style("font-family", "verdana")
-
+      .text((d) => d + " USD")
+      .style("font-family", "verdana");
   </script>
 </body>
 ```

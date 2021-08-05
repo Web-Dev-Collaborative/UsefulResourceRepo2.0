@@ -2,7 +2,7 @@
 id: cf1391c1c11feddfaeb4bdef
 title: Create Decimal Numbers with JavaScript
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/ca8GEuW'
+videoUrl: "https://scrimba.com/c/ca8GEuW"
 forumTopicId: 16826
 dashedName: create-decimal-numbers-with-javascript
 ---
@@ -22,7 +22,7 @@ Create a variable `myDecimal` and give it a decimal value with a fractional part
 `myDecimal` should be a number.
 
 ```js
-assert(typeof myDecimal === 'number');
+assert(typeof myDecimal === "number");
 ```
 
 `myDecimal` should have a decimal point
@@ -36,7 +36,11 @@ assert(myDecimal % 1 != 0);
 ## --after-user-code--
 
 ```js
-(function(){if(typeof myDecimal !== "undefined"){return myDecimal;}})();
+(function () {
+  if (typeof myDecimal !== "undefined") {
+    return myDecimal;
+  }
+})();
 ```
 
 ## --seed-contents--

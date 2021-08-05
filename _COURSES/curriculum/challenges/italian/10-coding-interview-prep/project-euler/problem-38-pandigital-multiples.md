@@ -1,6 +1,6 @@
 ---
 id: 5900f3931000cf542c50fea5
-title: 'Problem 38: Pandigital multiples'
+title: "Problem 38: Pandigital multiples"
 challengeType: 5
 forumTopicId: 302042
 dashedName: problem-38-pandigital-multiples
@@ -10,11 +10,13 @@ dashedName: problem-38-pandigital-multiples
 
 Take the number 192 and multiply it by each of 1, 2, and 3:
 
-$$\begin{align}
+$$
+\begin{align}
   192 × 1 = 192\\\\
   192 × 2 = 384\\\\
   192 × 3 = 576\\\\
-\end{align}$$
+\end{align}
+$$
 
 By concatenating each product we get the 1 to 9 pandigital, 192384576. We will call 192384576 the concatenated product of 192 and (1, 2, 3).
 
@@ -27,7 +29,7 @@ What is the largest 1 to `k` pandigital `k`-digit number that can be formed as t
 `pandigitalMultiples(8)` should return a number.
 
 ```js
-assert(typeof pandigitalMultiples(8) === 'number');
+assert(typeof pandigitalMultiples(8) === "number");
 ```
 
 `pandigitalMultiples(8)` should return `78156234`.
@@ -48,7 +50,6 @@ assert.strictEqual(pandigitalMultiples(9), 932718654);
 
 ```js
 function pandigitalMultiples(k) {
-
   return true;
 }
 

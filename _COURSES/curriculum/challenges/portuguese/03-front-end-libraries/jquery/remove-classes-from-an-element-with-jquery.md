@@ -4,7 +4,7 @@ title: Remove Classes from an Element with jQuery
 challengeType: 6
 forumTopicId: 18264
 required:
-  - link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: remove-classes-from-an-element-with-jquery
 ---
 
@@ -25,7 +25,7 @@ Let's remove the `btn-default` class from all of our `button` elements.
 The `btn-default` class should be removed from all of your `button` elements.
 
 ```js
-assert($('.btn-default').length === 0);
+assert($(".btn-default").length === 0);
 ```
 
 You should only use jQuery to remove this class from the element.
@@ -50,11 +50,10 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
     $(".well").addClass("animated shake");
     $("#target3").addClass("animated fadeOut");
-
   });
 </script>
 
@@ -87,7 +86,7 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
     $(".well").addClass("animated shake");
     $("#target3").addClass("animated fadeOut");

@@ -1,6 +1,6 @@
 ---
 id: 5900f48f1000cf542c50ffa1
-title: 'Problem 290: Digital Signature'
+title: "Problem 290: Digital Signature"
 challengeType: 5
 forumTopicId: 301942
 dashedName: problem-290-digital-signature
@@ -24,7 +24,6 @@ assert.strictEqual(euler290(), 20444710234716470);
 
 ```js
 function euler290() {
-
   return true;
 }
 

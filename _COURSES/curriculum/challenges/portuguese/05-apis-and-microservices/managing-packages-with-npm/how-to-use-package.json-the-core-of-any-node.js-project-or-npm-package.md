@@ -1,6 +1,6 @@
 ---
 id: 587d7fb3367417b2b2512bfb
-title: 'How to Use package.json, the Core of Any Node.js Project or npm Package'
+title: "How to Use package.json, the Core of Any Node.js Project or npm Package"
 challengeType: 2
 forumTopicId: 301528
 dashedName: how-to-use-package-json-the-core-of-any-node-js-project-or-npm-package
@@ -38,7 +38,7 @@ package.json should have a valid "author" key
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert(packJson.author, '"author" is missing');

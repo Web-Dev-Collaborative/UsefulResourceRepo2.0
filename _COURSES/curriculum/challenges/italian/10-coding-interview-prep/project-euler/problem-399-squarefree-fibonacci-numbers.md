@@ -1,6 +1,6 @@
 ---
 id: 5900f4fc1000cf542c51000e
-title: 'Problem 399: Squarefree Fibonacci Numbers'
+title: "Problem 399: Squarefree Fibonacci Numbers"
 challengeType: 5
 forumTopicId: 302064
 dashedName: problem-399-squarefree-fibonacci-numbers
@@ -40,7 +40,6 @@ assert.strictEqual(euler399(), 1508395636674243, 6.5e27330467);
 
 ```js
 function euler399() {
-
   return true;
 }
 

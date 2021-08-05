@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08808
 title: O que fazer quando uma tipografia não estiver disponível
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cpVKBfQ'
+videoUrl: "https://scrimba.com/c/cpVKBfQ"
 forumTopicId: 18304
 dashedName: specify-how-fonts-should-degrade
 ---
@@ -37,8 +37,8 @@ O elemento h2 deve usar a tipografia `Lobster`.
 
 ```js
 assert(
-  $('h2')
-    .css('font-family')
+  $("h2")
+    .css("font-family")
     .match(/^"?lobster/i)
 );
 ```
@@ -56,13 +56,13 @@ assert(
 Você deve comentar a importação da tipografia `Lobster` usando `<!--`.
 
 ```js
-assert(new RegExp('<!--[^fc]', 'gi').test(code));
+assert(new RegExp("<!--[^fc]", "gi").test(code));
 ```
 
 Você deve fechar o comentário usando `-->`.
 
 ```js
-assert(new RegExp('[^fc]-->', 'gi').test(code));
+assert(new RegExp("[^fc]-->", "gi").test(code));
 ```
 
 # --seed--
@@ -70,7 +70,11 @@ assert(new RegExp('[^fc]-->', 'gi').test(code));
 ## --seed-contents--
 
 ```html
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link
+  href="https://fonts.googleapis.com/css?family=Lobster"
+  rel="stylesheet"
+  type="text/css"
+/>
 <style>
   .red-text {
     color: red;
@@ -90,7 +94,11 @@ assert(new RegExp('[^fc]-->', 'gi').test(code));
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -108,12 +116,12 @@ assert(new RegExp('[^fc]-->', 'gi').test(code));
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>
@@ -142,7 +150,11 @@ assert(new RegExp('[^fc]-->', 'gi').test(code));
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -160,12 +172,12 @@ assert(new RegExp('[^fc]-->', 'gi').test(code));
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>

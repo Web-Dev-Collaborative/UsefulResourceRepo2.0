@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244ac
 title: Increment a Number with JavaScript
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/ca8GLT9'
+videoUrl: "https://scrimba.com/c/ca8GLT9"
 forumTopicId: 18201
 dashedName: increment-a-number-with-javascript
 ---
@@ -60,7 +60,9 @@ assert(/var myVar = 87;/.test(code));
 ## --after-user-code--
 
 ```js
-(function(z){return 'myVar = ' + z;})(myVar);
+(function (z) {
+  return "myVar = " + z;
+})(myVar);
 ```
 
 ## --seed-contents--

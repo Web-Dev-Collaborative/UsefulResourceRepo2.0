@@ -1,6 +1,6 @@
 ---
 id: 5900f4a71000cf542c50ffb9
-title: 'Problem 314: The Mouse on the Moon'
+title: "Problem 314: The Mouse on the Moon"
 challengeType: 5
 forumTopicId: 301970
 dashedName: problem-314-the-mouse-on-the-moon
@@ -32,7 +32,6 @@ assert.strictEqual(euler314(), 132.52756426);
 
 ```js
 function euler314() {
-
   return true;
 }
 

@@ -1,6 +1,6 @@
 ---
 id: 5900f4251000cf542c50ff38
-title: 'Problem 185: Number Mind'
+title: "Problem 185: Number Mind"
 challengeType: 5
 forumTopicId: 301821
 dashedName: problem-185-number-mind
@@ -34,7 +34,6 @@ assert.strictEqual(euler185(), 4640261571849533);
 
 ```js
 function euler185() {
-
   return true;
 }
 

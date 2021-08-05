@@ -32,11 +32,11 @@ Test 1 : Your API endpoint should respond with the correct name
 
 ```js
 (getUserInput) =>
-  $.post(getUserInput('url') + '/name', { first: 'Mick', last: 'Jagger' }).then(
+  $.post(getUserInput("url") + "/name", { first: "Mick", last: "Jagger" }).then(
     (data) => {
       assert.equal(
         data.name,
-        'Mick Jagger',
+        "Mick Jagger",
         'Test 1: "POST /name" route does not behave as expected'
       );
     },
@@ -50,14 +50,14 @@ Test 2 : Your API endpoint should respond with the correct name
 
 ```js
 (getUserInput) =>
-  $.post(getUserInput('url') + '/name', {
-    first: 'Keith',
-    last: 'Richards'
+  $.post(getUserInput("url") + "/name", {
+    first: "Keith",
+    last: "Richards",
   }).then(
     (data) => {
       assert.equal(
         data.name,
-        'Keith Richards',
+        "Keith Richards",
         'Test 2: "POST /name" route does not behave as expected'
       );
     },

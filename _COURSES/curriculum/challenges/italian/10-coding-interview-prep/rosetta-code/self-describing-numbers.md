@@ -32,13 +32,13 @@ Write a function that takes a positive integer as a parameter. If it is self-des
 `isSelfDescribing` should be a function.
 
 ```js
-assert(typeof isSelfDescribing == 'function');
+assert(typeof isSelfDescribing == "function");
 ```
 
 `isSelfDescribing()` should return a boolean.
 
 ```js
-assert(typeof isSelfDescribing(2020) == 'boolean');
+assert(typeof isSelfDescribing(2020) == "boolean");
 ```
 
 `isSelfDescribing(2020)` should return `true`.
@@ -64,37 +64,39 @@ assert.equal(isSelfDescribing(3211000), true);
 ## --seed-contents--
 
 ```js
-function isSelfDescribing(n) {
-
-}
+function isSelfDescribing(n) {}
 ```
 
 # --solutions--
 
 ```js
 function isSelfDescribing(n) {
-    let digits = String(n).split("");
-    digits = digits.map(function(e) {return parseInt(e)});
-    let count = digits.map((x) => {return 0})
-    digits.forEach((d) =>{
-        if (d >= count.length) {
-            return false
-        }
-        count[d] += 1;
-    });
+  let digits = String(n).split("");
+  digits = digits.map(function (e) {
+    return parseInt(e);
+  });
+  let count = digits.map((x) => {
+    return 0;
+  });
+  digits.forEach((d) => {
+    if (d >= count.length) {
+      return false;
+    }
+    count[d] += 1;
+  });
 
-     if (digits === count) {
-        return true;
-    }
-    if (digits.length != count.length) {
-        return false;
-    }
-    
-    for (let i=0; i< digits.length; i++){
-      if (digits[i] !== count[i]) {
-        return false;
-      }
-    }
+  if (digits === count) {
     return true;
+  }
+  if (digits.length != count.length) {
+    return false;
+  }
+
+  for (let i = 0; i < digits.length; i++) {
+    if (digits[i] !== count[i]) {
+      return false;
+    }
+  }
+  return true;
 }
 ```

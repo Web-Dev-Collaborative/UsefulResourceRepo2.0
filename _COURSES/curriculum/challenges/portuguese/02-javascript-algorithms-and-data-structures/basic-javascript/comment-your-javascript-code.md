@@ -3,7 +3,7 @@ id: bd7123c9c441eddfaeb4bdef
 title: Comment Your JavaScript Code
 challengeType: 1
 removeComments: false
-videoUrl: 'https://scrimba.com/c/c7ynnTp'
+videoUrl: "https://scrimba.com/c/c7ynnTp"
 forumTopicId: 16783
 dashedName: comment-your-javascript-code
 ---
@@ -27,7 +27,7 @@ You can make a multi-line comment beginning with `/*` and ending with `*/`. This
 multi-line comment */
 ```
 
-**NOTE:** As you write code, you should regularly add comments to clarify the function of parts of your code. Good commenting can help communicate the intent of your code—both for others *and* for your future self.
+**NOTE:** As you write code, you should regularly add comments to clarify the function of parts of your code. Good commenting can help communicate the intent of your code—both for others _and_ for your future self.
 
 # --instructions--
 

@@ -19,23 +19,21 @@ Todos os botões de seleção correspondentes a uma mesma pergunta devem ter o a
 Aqui vemos um exemplo de botão de seleção:
 
 ```html
-<label> 
-  <input type="radio" name="indoor-outdoor">Indoor 
-</label>
+<label> <input type="radio" name="indoor-outdoor" />Indoor </label>
 ```
 
 É uma prática recomendada definir o atributo `for` no elemento `label` contendo um valor equivalente ao do atributo `id` do elemento `input`. Isso permite que tecnologias assistivas criem uma relação entre o label e o elemento `input`. Por exemplo:
 
 ```html
-<input id="indoor" type="radio" name="indoor-outdoor">
+<input id="indoor" type="radio" name="indoor-outdoor" />
 <label for="indoor">Indoor</label>
 ```
 
 Também podemos alocar o elemento `input` dentro das tags `label`:
 
 ```html
-<label for="indoor"> 
-  <input id="indoor" type="radio" name="indoor-outdoor">Indoor 
+<label for="indoor">
+  <input id="indoor" type="radio" name="indoor-outdoor" />Indoor
 </label>
 ```
 
@@ -77,7 +75,7 @@ Um dos botões de seleção deve ter o elemento label com o texto `indoor`.
 
 ```js
 assert(
-  $('label')
+  $("label")
     .text()
     .match(/indoor/gi)
 );
@@ -87,7 +85,7 @@ Um dos botões de seleção deve ter o elemento label com o texto `outdoor`.
 
 ```js
 assert(
-  $('label')
+  $("label")
     .text()
     .match(/outdoor/gi)
 );
@@ -96,7 +94,7 @@ assert(
 Os botões de seleção dever ser adicionados dentro da tag `form`.
 
 ```js
-assert($('label').parent().get(0).tagName.match('FORM'));
+assert($("label").parent().get(0).tagName.match("FORM"));
 ```
 
 # --seed--
@@ -108,7 +106,11 @@ assert($('label').parent().get(0).tagName.match('FORM'));
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -123,7 +125,7 @@ assert($('label').parent().get(0).tagName.match('FORM'));
     <li>other cats</li>
   </ol>
   <form action="https://www.freecatphotoapp.com/submit-cat-photo">
-    <input type="text" placeholder="cat photo URL" required>
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>
@@ -136,7 +138,11 @@ assert($('label').parent().get(0).tagName.match('FORM'));
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -151,9 +157,13 @@ assert($('label').parent().get(0).tagName.match('FORM'));
     <li>other cats</li>
   </ol>
   <form action="https://www.freecatphotoapp.com/submit-cat-photo">
-   <label for="indoor"><input id="indoor" type="radio" name="indoor-outdoor"> Indoor</label>
-    <label for="outdoor"><input id="outdoor" type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label for="indoor"
+      ><input id="indoor" type="radio" name="indoor-outdoor" /> Indoor</label
+    >
+    <label for="outdoor"
+      ><input id="outdoor" type="radio" name="indoor-outdoor" /> Outdoor</label
+    ><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>

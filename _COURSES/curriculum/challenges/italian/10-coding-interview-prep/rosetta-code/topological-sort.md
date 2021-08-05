@@ -46,8 +46,7 @@ The input of the function will be a multiline string, each line will consist of 
 For example:
 
 ```js
-const libsSimple =
-  `aaa bbb
+const libsSimple = `aaa bbb
   bbb`;
 ```
 
@@ -56,7 +55,7 @@ const libsSimple =
 `topologicalSort` should be a function.
 
 ```js
-assert(typeof topologicalSort === 'function');
+assert(typeof topologicalSort === "function");
 ```
 
 `topologicalSort(libsSimple)` should return an array.
@@ -68,25 +67,41 @@ assert(Array.isArray(topologicalSort(libsSimple)));
 `topologicalSort(libsSimple)` should return `['bbb', 'aaa']`.
 
 ```js
-assert.deepEqual(topologicalSort(libsSimple), ['bbb', 'aaa']);
+assert.deepEqual(topologicalSort(libsSimple), ["bbb", "aaa"]);
 ```
 
 `topologicalSort(libsVHDL)` should return `['ieee', 'std_cell_lib', 'gtech', 'dware', 'dw07', 'dw06', 'dw05', 'dw02', 'dw01', 'dw04', 'std', 'ramlib', 'synopsys', 'dw03', 'des_system_lib']`.
 
 ```js
-assert.deepEqual(topologicalSort(libsVHDL), ['ieee', 'std_cell_lib', 'gtech', 'dware', 'dw07', 'dw06', 'dw05', 'dw02', 'dw01', 'dw04', 'std', 'ramlib', 'synopsys', 'dw03', 'des_system_lib']);
+assert.deepEqual(topologicalSort(libsVHDL), [
+  "ieee",
+  "std_cell_lib",
+  "gtech",
+  "dware",
+  "dw07",
+  "dw06",
+  "dw05",
+  "dw02",
+  "dw01",
+  "dw04",
+  "std",
+  "ramlib",
+  "synopsys",
+  "dw03",
+  "des_system_lib",
+]);
 ```
 
 `topologicalSort(libsCustom)` should return `['base', 'c', 'd', 'b', 'a']`.
 
 ```js
-assert.deepEqual(topologicalSort(libsCustom), ['base', 'c', 'd', 'b', 'a']);
+assert.deepEqual(topologicalSort(libsCustom), ["base", "c", "d", "b", "a"]);
 ```
 
 `topologicalSort` should ignore unorderable dependencies.
 
 ```js
-assert.deepEqual(topologicalSort(libsUnorderable), ['Base']);
+assert.deepEqual(topologicalSort(libsUnorderable), ["Base"]);
 ```
 
 # --seed--
@@ -94,12 +109,10 @@ assert.deepEqual(topologicalSort(libsUnorderable), ['Base']);
 ## --after-user-code--
 
 ```js
-const libsSimple =
-  `aaa bbb
+const libsSimple = `aaa bbb
   bbb`;
 
-const libsVHDL =
-  `des_system_lib   std synopsys std_cell_lib des_system_lib dw02 dw01 ramlib ieee
+const libsVHDL = `des_system_lib   std synopsys std_cell_lib des_system_lib dw02 dw01 ramlib ieee
   dw01             ieee dw01 dware gtech
   dw02             ieee dw02 dware
   dw03             std synopsys dware dw03 dw02 dw01 ieee gtech
@@ -113,15 +126,13 @@ const libsVHDL =
   std_cell_lib     ieee std_cell_lib
   synopsys`;
 
-const libsCustom =
-  `a b c d
+const libsCustom = `a b c d
   b c d
   d c
   c base
   base`;
 
-const libsUnorderable =
-  `TestLib Base MainLib
+const libsUnorderable = `TestLib Base MainLib
   MainLib TestLib
   Base`;
 ```
@@ -130,7 +141,6 @@ const libsUnorderable =
 
 ```js
 function topologicalSort(libs) {
-
   return true;
 }
 ```
@@ -142,11 +152,17 @@ function topologicalSort(libs) {
   // A map of the input data, with the keys as the packages, and the values as
   // and array of packages on which it depends.
   const D = libs
-    .split('\n')
-    .map(e => e.split(' ').filter(ep => ep !== ''))
-    .reduce((p, c) =>
-      p.set(c[0], c.filter((e, i) => (i > 0 && e !== c[0] ? e : null))), new Map());
-  [].concat(...D.values()).forEach(e => {
+    .split("\n")
+    .map((e) => e.split(" ").filter((ep) => ep !== ""))
+    .reduce(
+      (p, c) =>
+        p.set(
+          c[0],
+          c.filter((e, i) => (i > 0 && e !== c[0] ? e : null))
+        ),
+      new Map()
+    );
+  [].concat(...D.values()).forEach((e) => {
     D.set(e, D.get(e) || []);
   });
 
@@ -157,23 +173,28 @@ function topologicalSort(libs) {
   //    C => []
   // }
   // where each key represents a node, and the array contains the edges.
-  const G = [...D.keys()].reduce((p, c) =>
-    p.set(
-      c,
-      [...D.keys()].filter(e => D.get(e).includes(c))),
+  const G = [...D.keys()].reduce(
+    (p, c) =>
+      p.set(
+        c,
+        [...D.keys()].filter((e) => D.get(e).includes(c))
+      ),
     new Map()
   );
 
   // An array of leaf nodes; nodes with 0 in degrees.
-  const Q = [...D.keys()].filter(e => D.get(e).length === 0);
+  const Q = [...D.keys()].filter((e) => D.get(e).length === 0);
 
   // The result array.
   const S = [];
   while (Q.length) {
     const u = Q.pop();
     S.push(u);
-    G.get(u).forEach(v => {
-      D.set(v, D.get(v).filter(e => e !== u));
+    G.get(u).forEach((v) => {
+      D.set(
+        v,
+        D.get(v).filter((e) => e !== u)
+      );
       if (D.get(v).length === 0) {
         Q.push(v);
       }

@@ -2,7 +2,7 @@
 id: 587d78ac367417b2b2512af4
 title: Usar a propriedade flex-direction para criar uma coluna
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cZmWeA4'
+videoUrl: "https://scrimba.com/p/pVaDAv/cZmWeA4"
 forumTopicId: 301109
 dashedName: use-the-flex-direction-property-to-make-a-column
 ---
@@ -20,7 +20,7 @@ Adicione a propriedade CSS `flex-direction` ao elemento de id `#box-container` e
 O elemento de id `#box-container` deve ter a propriedade `flex-direction` com o valor de `column`.
 
 ```js
-assert($('#box-container').css('flex-direction') == 'column');
+assert($("#box-container").css("flex-direction") == "column");
 ```
 
 # --seed--
@@ -32,7 +32,6 @@ assert($('#box-container').css('flex-direction') == 'column');
   #box-container {
     display: flex;
     height: 500px;
-
   }
   #box-1 {
     background-color: dodgerblue;

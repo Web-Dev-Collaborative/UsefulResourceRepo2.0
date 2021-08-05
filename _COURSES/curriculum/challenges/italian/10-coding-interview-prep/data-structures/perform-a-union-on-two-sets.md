@@ -20,7 +20,7 @@ Your `Set` class should have a `union` method.
 assert(
   (function () {
     var test = new Set();
-    return typeof test.union === 'function';
+    return typeof test.union === "function";
   })()
 );
 ```
@@ -32,18 +32,18 @@ assert(
   (function () {
     var setA = new Set();
     var setB = new Set();
-    setA.add('a');
-    setA.add('b');
-    setA.add('c');
-    setB.add('c');
-    setB.add('d');
+    setA.add("a");
+    setA.add("b");
+    setA.add("c");
+    setB.add("c");
+    setB.add("d");
     var unionSetAB = setA.union(setB);
     var final = unionSetAB.values();
     return (
-      final.indexOf('a') !== -1 &&
-      final.indexOf('b') !== -1 &&
-      final.indexOf('c') !== -1 &&
-      final.indexOf('d') !== -1 &&
+      final.indexOf("a") !== -1 &&
+      final.indexOf("b") !== -1 &&
+      final.indexOf("c") !== -1 &&
+      final.indexOf("d") !== -1 &&
       final.length === 4
     );
   })()
@@ -142,12 +142,12 @@ class Set {
 
   union(set) {
     const newSet = new Set();
-    this.values().forEach(value => {
+    this.values().forEach((value) => {
       newSet.add(value);
-    })
-    set.values().forEach(value => {
+    });
+    set.values().forEach((value) => {
       newSet.add(value);
-    })
+    });
 
     return newSet;
   }

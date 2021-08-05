@@ -8,7 +8,7 @@ dashedName: implementation-of-social-authentication-iii
 
 # --description--
 
-The final part of the strategy is handling the profile returned from GitHub. We need to load the user's database object if it exists, or create one if it doesn't, and populate the fields from the profile, then return the user's object. GitHub supplies us a unique *id* within each profile which we can use to search with to serialize the user with (already implemented). Below is an example implementation you can use in your project--it goes within the function that is the second argument for the new strategy, right below where `console.log(profile);` currently is:
+The final part of the strategy is handling the profile returned from GitHub. We need to load the user's database object if it exists, or create one if it doesn't, and populate the fields from the profile, then return the user's object. GitHub supplies us a unique _id_ within each profile which we can use to search with to serialize the user with (already implemented). Below is an example implementation you can use in your project--it goes within the function that is the second argument for the new strategy, right below where `console.log(profile);` currently is:
 
 ```js
 myDataBase.findOneAndUpdate(
@@ -16,20 +16,20 @@ myDataBase.findOneAndUpdate(
   {
     $setOnInsert: {
       id: profile.id,
-      name: profile.displayName || 'John Doe',
-      photo: profile.photos[0].value || '',
+      name: profile.displayName || "John Doe",
+      photo: profile.photos[0].value || "",
       email: Array.isArray(profile.emails)
         ? profile.emails[0].value
-        : 'No public email',
+        : "No public email",
       created_on: new Date(),
-      provider: profile.provider || ''
+      provider: profile.provider || "",
     },
     $set: {
-      last_login: new Date()
+      last_login: new Date(),
     },
     $inc: {
-      login_count: 1
-    }
+      login_count: 1,
+    },
   },
   { upsert: true, new: true },
   (err, doc) => {
@@ -50,12 +50,12 @@ GitHub strategy setup should be complete.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/auth.js').then(
+  $.get(getUserInput("url") + "/_api/auth.js").then(
     (data) => {
       assert.match(
         data,
         /GitHubStrategy[^]*myDataBase/gi,
-        'Strategy should use now use the database to search for the user'
+        "Strategy should use now use the database to search for the user"
       );
       assert.match(
         data,

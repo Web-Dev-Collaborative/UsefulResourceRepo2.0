@@ -1,8 +1,8 @@
 ---
 id: 587d78ab367417b2b2512af0
-title: 'Usar display: flex para posicionar duas caixas'
+title: "Usar display: flex para posicionar duas caixas"
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cgz3QS7'
+videoUrl: "https://scrimba.com/p/pVaDAv/cgz3QS7"
 forumTopicId: 301105
 dashedName: use-display-flex-to-position-two-boxes
 ---
@@ -22,7 +22,7 @@ Adicione a propriedade CSS `display` ao `#box-container` e dê a ele o valor `fl
 `#box-container` deve ter a propriedade `display` com o valor de `flex`.
 
 ```js
-assert($('#box-container').css('display') == 'flex');
+assert($("#box-container").css("display") == "flex");
 ```
 
 # --seed--
@@ -33,7 +33,6 @@ assert($('#box-container').css('display') == 'flex');
 <style>
   #box-container {
     height: 500px;
-
   }
 
   #box-1 {

@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08719
 title: Usar códigos hexadecimais de modo abreviado
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cRkpKAm'
+videoUrl: "https://scrimba.com/c/cRkpKAm"
 forumTopicId: 18338
 dashedName: use-abbreviated-hex-code
 ---
@@ -26,7 +26,7 @@ Tente usar os códigos hexadecimais abreviados para colorir os elementos correto
 O elemento `h1` com o texto `I am red!` deve receber a propriedade `color` com o valor hexadecimal que representa a cor vermelha.
 
 ```js
-assert($('.red-text').css('color') === 'rgb(255, 0, 0)');
+assert($(".red-text").css("color") === "rgb(255, 0, 0)");
 ```
 
 O código hexadecimal (`hex code`) abreviado que representa a cor vermelha deve ser usado em vez do código hexadecimal `#FF0000`.
@@ -38,7 +38,7 @@ assert(code.match(/\.red-text\s*?{\s*?color\s*:\s*?#F00\s*?;?\s*?}/gi));
 O elemento `h1` com o texto `I am green!` deve receber a propriedade `color` com o valor hexadecimal que representa a cor verde.
 
 ```js
-assert($('.green-text').css('color') === 'rgb(0, 255, 0)');
+assert($(".green-text").css("color") === "rgb(0, 255, 0)");
 ```
 
 O código hexadecimal (`hex code`) abreviado que representa a cor verde deve ser usado em vez do código hexadecimal `#00FF00`.
@@ -50,7 +50,7 @@ assert(code.match(/\.green-text\s*?{\s*?color\s*:\s*?#0F0\s*?;?\s*?}/gi));
 O elemento `h1` com o texto `I am cyan!` deve receber a propriedade `color` com o valor hexadecimal que representa a cor ciano.
 
 ```js
-assert($('.cyan-text').css('color') === 'rgb(0, 255, 255)');
+assert($(".cyan-text").css("color") === "rgb(0, 255, 255)");
 ```
 
 O código hexadecimal (`hex code`) abreviado que representa a cor ciano deve ser usado em vez do código hexadecimal `#00FFFF`.
@@ -62,7 +62,7 @@ assert(code.match(/\.cyan-text\s*?{\s*?color\s*:\s*?#0FF\s*?;?\s*?}/gi));
 O elemento `h1` com o texto `I am fuchsia!` deve receber a propriedade `color` com o valor hexadecimal que representa a cor fúcsia.
 
 ```js
-assert($('.fuchsia-text').css('color') === 'rgb(255, 0, 255)');
+assert($(".fuchsia-text").css("color") === "rgb(255, 0, 255)");
 ```
 
 O código hexadecimal (`hex code`) abreviado que representa a cor fúcsia deve ser usado em vez do código hexadecimal `#FF00FF`.
@@ -105,16 +105,16 @@ assert(code.match(/\.fuchsia-text\s*?{\s*?color\s*:\s*?#F0F\s*?;?\s*?}/gi));
 ```html
 <style>
   .red-text {
-    color: #F00;
+    color: #f00;
   }
   .fuchsia-text {
-    color: #F0F;
+    color: #f0f;
   }
   .cyan-text {
-    color: #0FF;
+    color: #0ff;
   }
   .green-text {
-    color: #0F0;
+    color: #0f0;
   }
 </style>
 

@@ -1,6 +1,6 @@
 ---
 id: 5900f5071000cf542c510018
-title: 'Problem 410: Circle and tangent line'
+title: "Problem 410: Circle and tangent line"
 challengeType: 5
 forumTopicId: 302079
 dashedName: problem-410-circle-and-tangent-line
@@ -30,7 +30,6 @@ assert.strictEqual(euler410(), 799999783589946600);
 
 ```js
 function euler410() {
-
   return true;
 }
 

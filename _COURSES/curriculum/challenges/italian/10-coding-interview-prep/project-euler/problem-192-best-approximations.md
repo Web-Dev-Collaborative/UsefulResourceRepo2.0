@@ -1,6 +1,6 @@
 ---
 id: 5900f42c1000cf542c50ff3f
-title: 'Problem 192: Best Approximations'
+title: "Problem 192: Best Approximations"
 challengeType: 5
 forumTopicId: 301830
 dashedName: problem-192-best-approximations
@@ -32,7 +32,6 @@ assert.strictEqual(euler192(), 57060635927998344);
 
 ```js
 function euler192() {
-
   return true;
 }
 

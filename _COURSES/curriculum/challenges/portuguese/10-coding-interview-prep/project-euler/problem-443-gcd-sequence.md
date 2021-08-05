@@ -1,6 +1,6 @@
 ---
 id: 5900f5271000cf542c51003a
-title: 'Problem 443: GCD sequence'
+title: "Problem 443: GCD sequence"
 challengeType: 5
 forumTopicId: 302115
 dashedName: problem-443-gcd-sequence
@@ -34,7 +34,6 @@ assert.strictEqual(euler443(), 2744233049300770);
 
 ```js
 function euler443() {
-
   return true;
 }
 

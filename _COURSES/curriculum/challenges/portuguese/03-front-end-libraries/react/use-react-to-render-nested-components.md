@@ -14,14 +14,14 @@ Component composition is one of React's powerful features. When you work with Re
 
 # --instructions--
 
-There are two functional components defined in the code editor, called `TypesOfFruit` and `Fruits`. Take the `TypesOfFruit` component and compose it, or *nest* it, within the `Fruits` component. Then take the `Fruits` component and nest it within the `TypesOfFood` component. The result should be a child component, nested within a parent component, which is nested within a parent component of its own!
+There are two functional components defined in the code editor, called `TypesOfFruit` and `Fruits`. Take the `TypesOfFruit` component and compose it, or _nest_ it, within the `Fruits` component. Then take the `Fruits` component and nest it within the `TypesOfFood` component. The result should be a child component, nested within a parent component, which is nested within a parent component of its own!
 
 # --hints--
 
 The `TypesOfFood` component should return a single `div` element.
 
 ```js
-assert(Enzyme.shallow(React.createElement(TypesOfFood)).type() === 'div');
+assert(Enzyme.shallow(React.createElement(TypesOfFood)).type() === "div");
 ```
 
 The `TypesOfFood` component should return the `Fruits` component.
@@ -29,7 +29,7 @@ The `TypesOfFood` component should return the `Fruits` component.
 ```js
 assert(
   Enzyme.shallow(React.createElement(TypesOfFood)).props().children[1].type
-    .name === 'Fruits'
+    .name === "Fruits"
 );
 ```
 
@@ -37,8 +37,8 @@ The `Fruits` component should return the `TypesOfFruit` component.
 
 ```js
 assert(
-  Enzyme.mount(React.createElement(TypesOfFood)).find('h2').html() ===
-    '<h2>Fruits:</h2>'
+  Enzyme.mount(React.createElement(TypesOfFood)).find("h2").html() ===
+    "<h2>Fruits:</h2>"
 );
 ```
 
@@ -46,8 +46,8 @@ The `TypesOfFruit` component should return the `h2` and `ul` elements.
 
 ```js
 assert(
-  Enzyme.mount(React.createElement(TypesOfFood)).find('ul').text() ===
-    'ApplesBlueberriesStrawberriesBananas'
+  Enzyme.mount(React.createElement(TypesOfFood)).find("ul").text() ===
+    "ApplesBlueberriesStrawberriesBananas"
 );
 ```
 
@@ -56,7 +56,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<TypesOfFood />, document.getElementById('root'))
+ReactDOM.render(<TypesOfFood />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -79,9 +79,9 @@ const TypesOfFruit = () => {
 const Fruits = () => {
   return (
     <div>
-      { /* Change code below this line */ }
+      {/* Change code below this line */}
 
-      { /* Change code above this line */ }
+      {/* Change code above this line */}
     </div>
   );
 };
@@ -95,13 +95,13 @@ class TypesOfFood extends React.Component {
     return (
       <div>
         <h1>Types of Food:</h1>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
 
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -124,9 +124,9 @@ const TypesOfFruit = () => {
 const Fruits = () => {
   return (
     <div>
-      { /* Change code below this line */ }
-        <TypesOfFruit />
-      { /* Change code above this line */ }
+      {/* Change code below this line */}
+      <TypesOfFruit />
+      {/* Change code above this line */}
     </div>
   );
 };
@@ -140,11 +140,11 @@ class TypesOfFood extends React.Component {
     return (
       <div>
         <h1>Types of Food:</h1>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
         <Fruits />
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 ```

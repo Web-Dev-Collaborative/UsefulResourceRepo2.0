@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08824
 title: Adicionar diferentes preenchimentos a cada lado de um elemento
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cB7mwUw'
+videoUrl: "https://scrimba.com/c/cB7mwUw"
 forumTopicId: 16634
 dashedName: add-different-padding-to-each-side-of-an-element
 ---
@@ -22,25 +22,25 @@ Dê à caixa azul um preenchimento (`padding`) de `40px` em seus lados superior 
 A classe `blue-box` deve criar um preenchimento (`padding`) de `40px` acima do elemento.
 
 ```js
-assert($('.blue-box').css('padding-top') === '40px');
+assert($(".blue-box").css("padding-top") === "40px");
 ```
 
 A classe `blue-box` deve criar um preenchimento (`padding`) de `20px` à direita do elemento.
 
 ```js
-assert($('.blue-box').css('padding-right') === '20px');
+assert($(".blue-box").css("padding-right") === "20px");
 ```
 
 A classe `blue-box` deve criar um preenchimento (`padding`) de `20px` abaixo do elemento.
 
 ```js
-assert($('.blue-box').css('padding-bottom') === '20px');
+assert($(".blue-box").css("padding-bottom") === "20px");
 ```
 
 A classe `blue-box` deve criar um preenchimento (`padding`) de `40px` à esquerda do elemento.
 
 ```js
-assert($('.blue-box').css('padding-left') === '40px');
+assert($(".blue-box").css("padding-left") === "40px");
 ```
 
 # --seed--

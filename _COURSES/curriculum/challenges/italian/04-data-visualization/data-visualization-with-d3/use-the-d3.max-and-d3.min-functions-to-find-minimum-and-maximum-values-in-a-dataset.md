@@ -18,14 +18,18 @@ D3 ha due metodi - `min()` e `max()` per restituire queste informazioni. Ecco un
 
 ```js
 const exampleData = [34, 234, 73, 90, 6, 52];
-d3.min(exampleData)
-d3.max(exampleData)
+d3.min(exampleData);
+d3.max(exampleData);
 ```
 
 Un set di dati può avere array annidati, come le coppie di coordinate `[x, y]` che erano nell'esempio del grafico a dispersione. In questo caso, è necessario dire a D3 come calcolare il massimo e minimo. Fortunatamente, entrambi i metodi `min()` e `max()` assumono una funzione di callback. In questo esempio, l'argomento `d` della funzione di callback è per l'attuale array interno. Il callback deve restituire l'elemento dall'array interno (il valore `x` o `y`) su cui si desidera calcolare il massimo o minimo. Ecco un esempio di come trovare i valori minimi e massimi con un array di array:
 
 ```js
-const locationData = [[1, 7],[6, 3],[8, 3]];
+const locationData = [
+  [1, 7],
+  [6, 3],
+  [8, 3],
+];
 const minX = d3.min(locationData, (d) => d[0]);
 ```
 
@@ -40,7 +44,7 @@ L'array `positionData` contiene sotto-array di coordinate x, y e z. Utilizza un 
 Il testo di `h2` dovrebbe essere `8`.
 
 ```js
-assert(output == 8 && $('h2').text() == '8');
+assert(output == 8 && $("h2").text() == "8");
 ```
 
 Il tuo codice dovrebbe usare il metodo `max()`.
@@ -48,7 +52,7 @@ Il tuo codice dovrebbe usare il metodo `max()`.
 ```js
 assert(
   code.match(/\.max/g),
-  'Your code should use the <code>max()</code> method.'
+  "Your code should use the <code>max()</code> method."
 );
 ```
 
@@ -59,16 +63,18 @@ assert(
 ```html
 <body>
   <script>
-    const positionData = [[1, 7, -4],[6, 3, 8],[2, 9, 3]]
+    const positionData = [
+      [1, 7, -4],
+      [6, 3, 8],
+      [2, 9, 3],
+    ];
     // Add your code below this line
 
     const output = undefined; // Change this line
 
     // Add your code above this line
 
-    d3.select("body")
-      .append("h2")
-      .text(output)
+    d3.select("body").append("h2").text(output);
   </script>
 </body>
 ```
@@ -78,13 +84,15 @@ assert(
 ```html
 <body>
   <script>
-    const positionData = [[1, 7, -4],[6, 3, 8],[2, 9, 3]]
+    const positionData = [
+      [1, 7, -4],
+      [6, 3, 8],
+      [2, 9, 3],
+    ];
 
-    const output = d3.max(positionData, (d) => d[2])
+    const output = d3.max(positionData, (d) => d[2]);
 
-    d3.select("body")
-      .append("h2")
-      .text(output)
+    d3.select("body").append("h2").text(output);
   </script>
 </body>
 ```

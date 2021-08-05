@@ -29,13 +29,13 @@ For example, given the string "Hello hello goodbye", your function should return
 `wordFrequency` should be a function.
 
 ```js
-assert(typeof wordFrequency == 'function');
+assert(typeof wordFrequency == "function");
 ```
 
 `wordFrequency` should return an array.
 
 ```js
-assert(Array.isArray(wordFrequency('test')));
+assert(Array.isArray(wordFrequency("test")));
 ```
 
 `wordFrequency("Hello hello world", 2)` should return `[['hello', 2], ['world', 1]]`
@@ -80,27 +80,33 @@ assert.deepEqual(wordFrequency(example_6, 5), example_6_solution);
 ## --before-user-code--
 
 ```js
-var example_1 = 'Hello hello world';
-var example_1_solution = [['hello', 2], ['world', 1]];
-var example_2 = 'The quick brown fox jumped over the lazy dog';
-var example_2_solution = [['the', 2]];
-var example_3 = 'Opensource opensource open-source open source';
-var example_3_solution = [['opensource', 2]];
-var example_4 = 'Apple App apply aPP aPPlE';
-var example_4_solution_a = "[[\"app\",2],[\"apple\",2],[\"apply\",1]]";
-var example_4_solution_b = "[[\"apple\",2],[\"app\",2],[\"apply\",1]]";
-var example_5 = 'c d a d c a b d d c';
-var example_5_solution = [['d', 4], ['c', 3], ['a', 2], ['b', 1]];
-var example_6 = '';
+var example_1 = "Hello hello world";
+var example_1_solution = [
+  ["hello", 2],
+  ["world", 1],
+];
+var example_2 = "The quick brown fox jumped over the lazy dog";
+var example_2_solution = [["the", 2]];
+var example_3 = "Opensource opensource open-source open source";
+var example_3_solution = [["opensource", 2]];
+var example_4 = "Apple App apply aPP aPPlE";
+var example_4_solution_a = '[["app",2],["apple",2],["apply",1]]';
+var example_4_solution_b = '[["apple",2],["app",2],["apply",1]]';
+var example_5 = "c d a d c a b d d c";
+var example_5_solution = [
+  ["d", 4],
+  ["c", 3],
+  ["a", 2],
+  ["b", 1],
+];
+var example_6 = "";
 var example_6_solution = [];
 ```
 
 ## --seed-contents--
 
 ```js
-function wordFrequency(txt, n) {
-
-}
+function wordFrequency(txt, n) {}
 ```
 
 # --solutions--
@@ -109,8 +115,8 @@ function wordFrequency(txt, n) {
 function wordFrequency(txt, n) {
   var words = txt.split(/\s+/);
   var wordCount = {};
-  words.forEach(word => {
-    if (word == '') {
+  words.forEach((word) => {
+    if (word == "") {
       return;
     }
     const lowerWord = word.toLowerCase();

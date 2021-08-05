@@ -21,43 +21,43 @@ where $count_i$ is the count of character $n_i$.
 `entropy` should be a function.
 
 ```js
-assert(typeof entropy === 'function');
+assert(typeof entropy === "function");
 ```
 
 `entropy("0")` should return `0`
 
 ```js
-assert.equal(entropy('0'), 0);
+assert.equal(entropy("0"), 0);
 ```
 
 `entropy("01")` should return `1`
 
 ```js
-assert.equal(entropy('01'), 1);
+assert.equal(entropy("01"), 1);
 ```
 
 `entropy("0123")` should return `2`
 
 ```js
-assert.equal(entropy('0123'), 2);
+assert.equal(entropy("0123"), 2);
 ```
 
 `entropy("01234567")` should return `3`
 
 ```js
-assert.equal(entropy('01234567'), 3);
+assert.equal(entropy("01234567"), 3);
 ```
 
 `entropy("0123456789abcdef")` should return `4`
 
 ```js
-assert.equal(entropy('0123456789abcdef'), 4);
+assert.equal(entropy("0123456789abcdef"), 4);
 ```
 
 `entropy("1223334444")` should return `1.8464393446710154`
 
 ```js
-assert.equal(entropy('1223334444'), 1.8464393446710154);
+assert.equal(entropy("1223334444"), 1.8464393446710154);
 ```
 
 # --seed--
@@ -65,31 +65,30 @@ assert.equal(entropy('1223334444'), 1.8464393446710154);
 ## --seed-contents--
 
 ```js
-function entropy(s) {
-
-}
+function entropy(s) {}
 ```
 
 # --solutions--
 
 ```js
 function entropy(s) {
-    // Create a dictionary of character frequencies and iterate over it.
+  // Create a dictionary of character frequencies and iterate over it.
   function process(s, evaluator) {
     let h = Object.create(null),
       k;
-    s.split('').forEach(c => {
-      h[c] && h[c]++ || (h[c] = 1); });
+    s.split("").forEach((c) => {
+      (h[c] && h[c]++) || (h[c] = 1);
+    });
     if (evaluator) for (k in h) evaluator(k, h[k]);
     return h;
   }
-    // Measure the entropy of a string in bits per symbol.
+  // Measure the entropy of a string in bits per symbol.
 
   let sum = 0,
     len = s.length;
   process(s, (k, f) => {
     const p = f / len;
-    sum -= p * Math.log(p) / Math.log(2);
+    sum -= (p * Math.log(p)) / Math.log(2);
   });
   return sum;
 }

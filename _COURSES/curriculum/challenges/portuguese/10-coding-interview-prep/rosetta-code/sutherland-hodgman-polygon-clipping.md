@@ -25,7 +25,7 @@ Write a function that takes 2 arrays as parameters. The first array contains the
 `clip` should be a function.
 
 ```js
-assert(typeof clip == 'function');
+assert(typeof clip == "function");
 ```
 
 `clip([[50, 150], [200, 50], [350, 150], [350, 300], [250, 300], [200, 250], [150, 350], [100, 250], [100, 200]], [[100, 100], [300, 100], [300, 300], [100, 300]])` should return an array.
@@ -43,13 +43,13 @@ assert(
         [200, 250],
         [150, 350],
         [100, 250],
-        [100, 200]
+        [100, 200],
       ],
       [
         [100, 100],
         [300, 100],
         [300, 300],
-        [100, 300]
+        [100, 300],
       ]
     )
   )
@@ -70,13 +70,13 @@ assert.deepEqual(
       [200, 250],
       [150, 350],
       [100, 250],
-      [100, 200]
+      [100, 200],
     ],
     [
       [100, 100],
       [300, 100],
       [300, 300],
-      [100, 300]
+      [100, 300],
     ]
   ),
   [
@@ -89,7 +89,7 @@ assert.deepEqual(
     [200, 250],
     [175, 300],
     [125, 300],
-    [100, 250]
+    [100, 250],
   ]
 );
 ```
@@ -102,20 +102,20 @@ assert.deepEqual(
     [
       [150, 200],
       [400, 450],
-      [30, 50]
+      [30, 50],
     ],
     [
       [10, 10],
       [300, 200],
       [400, 600],
-      [100, 300]
+      [100, 300],
     ]
   ),
   [
     [150, 200],
     [350, 400],
     [348.611, 394.444],
-    [30, 50]
+    [30, 50],
   ]
 );
 ```
@@ -128,19 +128,19 @@ assert.deepEqual(
     [
       [250, 200],
       [100, 450],
-      [130, 250]
+      [130, 250],
     ],
     [
       [50, 60],
       [100, 230],
       [400, 600],
-      [100, 300]
+      [100, 300],
     ]
   ),
   [
     [129.167, 329.167],
     [119.565, 319.565],
-    [121.854, 304.305]
+    [121.854, 304.305],
   ]
 );
 ```
@@ -150,9 +150,7 @@ assert.deepEqual(
 ## --seed-contents--
 
 ```js
-function clip(subjectPolygon, clipPolygon) {
-
-}
+function clip(subjectPolygon, clipPolygon) {}
 ```
 
 # --solutions--
@@ -160,12 +158,12 @@ function clip(subjectPolygon, clipPolygon) {
 ```js
 function clip(subjectPolygon, clipPolygon) {
   var cp1, cp2, s, e, i, j;
-  var inside = function(p) {
+  var inside = function (p) {
     return (
       (cp2[0] - cp1[0]) * (p[1] - cp1[1]) > (cp2[1] - cp1[1]) * (p[0] - cp1[0])
     );
   };
-  var intersection = function() {
+  var intersection = function () {
     var dc = [cp1[0] - cp2[0], cp1[1] - cp2[1]],
       dp = [s[0] - e[0], s[1] - e[1]],
       n1 = cp1[0] * cp2[1] - cp1[1] * cp2[0],
@@ -194,6 +192,6 @@ function clip(subjectPolygon, clipPolygon) {
     }
     cp1 = cp2;
   }
-  return outputList.map(e => e.map(f => Math.round(f * 1000) / 1000));
+  return outputList.map((e) => e.map((f) => Math.round(f * 1000) / 1000));
 }
 ```

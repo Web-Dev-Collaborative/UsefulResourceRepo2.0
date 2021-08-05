@@ -8,19 +8,19 @@ before_script:
 test:
   stage: test
   script:
-  - python validate.py schema.json < interview-questions.yml > questions.json
-  - ./filter.sh | python render.py > questions.html
+    - python validate.py schema.json < interview-questions.yml > questions.json
+    - ./filter.sh | python render.py > questions.html
 
 pages:
   stage: deploy
   script:
-  - python validate.py schema.json < interview-questions.yml > public/interview-questions.json
-  - python render.py < public/interview-questions.json > public/index.html
-  - "(echo -n 'var interview_questions = {qs: '; jq -c . public/interview-questions.json ; echo '};' ) > public/interview-questions.js"
-  - cp style.css public/
+    - python validate.py schema.json < interview-questions.yml > public/interview-questions.json
+    - python render.py < public/interview-questions.json > public/index.html
+    - "(echo -n 'var interview_questions = {qs: '; jq -c . public/interview-questions.json ; echo '};' ) > public/interview-questions.js"
+    - cp style.css public/
 
   artifacts:
     paths:
-    - public
+      - public
   only:
-  - master
+    - master

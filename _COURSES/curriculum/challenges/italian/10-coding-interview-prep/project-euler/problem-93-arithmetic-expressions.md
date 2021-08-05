@@ -1,6 +1,6 @@
 ---
 id: 5900f3ca1000cf542c50fedc
-title: 'Problem 93: Arithmetic expressions'
+title: "Problem 93: Arithmetic expressions"
 challengeType: 5
 forumTopicId: 302210
 dashedName: problem-93-arithmetic-expressions
@@ -30,7 +30,7 @@ Find the set of four distinct digits, `a` &lt; `b` &lt; `c` &lt; `d`, for which 
 `arithmeticExpressions()` should return a number.
 
 ```js
-assert(typeof arithmeticExpressions() === 'number');
+assert(typeof arithmeticExpressions() === "number");
 ```
 
 `arithmeticExpressions()` should return 1258.
@@ -45,7 +45,6 @@ assert.strictEqual(arithmeticExpressions(), 1258);
 
 ```js
 function arithmeticExpressions() {
-
   return true;
 }
 

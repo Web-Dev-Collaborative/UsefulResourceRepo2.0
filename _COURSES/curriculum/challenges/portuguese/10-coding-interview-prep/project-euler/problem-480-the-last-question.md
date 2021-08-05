@@ -1,6 +1,6 @@
 ---
 id: 5900f54c1000cf542c51005f
-title: 'Problem 480: The Last Question'
+title: "Problem 480: The Last Question"
 challengeType: 5
 forumTopicId: 302158
 dashedName: problem-480-the-last-question
@@ -100,7 +100,6 @@ assert.strictEqual(euler480(), turnthestarson);
 
 ```js
 function euler480() {
-
   return true;
 }
 

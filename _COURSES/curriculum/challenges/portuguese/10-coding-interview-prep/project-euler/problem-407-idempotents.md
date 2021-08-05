@@ -1,6 +1,6 @@
 ---
 id: 5900f5041000cf542c510016
-title: 'Problem 407: Idempotents'
+title: "Problem 407: Idempotents"
 challengeType: 5
 forumTopicId: 302075
 dashedName: problem-407-idempotents
@@ -28,7 +28,6 @@ assert.strictEqual(euler407(), 39782849136421);
 
 ```js
 function euler407() {
-
   return true;
 }
 

@@ -19,7 +19,7 @@ $\\binom{n}{k} = \\frac{n!}{(n-k)!k!} = \\frac{n(n-1)(n-2)\\ldots(n-k+1)}{k(k-1)
 `binom` should be a function.
 
 ```js
-assert(typeof binom === 'function');
+assert(typeof binom === "function");
 ```
 
 `binom(5,3)` should return 10.
@@ -57,9 +57,7 @@ assert.equal(binom(12, 8), 495);
 ## --seed-contents--
 
 ```js
-function binom(n, k) {
-
-}
+function binom(n, k) {}
 ```
 
 # --solutions--

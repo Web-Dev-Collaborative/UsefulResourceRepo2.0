@@ -32,11 +32,11 @@ Your app should serve the string 'Hello Express'
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url')).then(
+  $.get(getUserInput("url")).then(
     (data) => {
       assert.equal(
         data,
-        'Hello Express',
+        "Hello Express",
         'Your app does not serve the text "Hello Express"'
       );
     },

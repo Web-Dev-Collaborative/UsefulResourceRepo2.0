@@ -1,6 +1,6 @@
 ---
 id: 5900f4aa1000cf542c50ffbc
-title: 'Problem 317: Firecracker'
+title: "Problem 317: Firecracker"
 challengeType: 5
 forumTopicId: 301973
 dashedName: problem-317-firecracker
@@ -28,7 +28,6 @@ assert.strictEqual(euler317(), 1856532.8455);
 
 ```js
 function euler317() {
-
   return true;
 }
 

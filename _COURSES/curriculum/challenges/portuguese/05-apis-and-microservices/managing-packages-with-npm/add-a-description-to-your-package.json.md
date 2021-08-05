@@ -30,7 +30,7 @@ package.json should have a valid "description" key
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert(packJson.description, '"description" is missing');

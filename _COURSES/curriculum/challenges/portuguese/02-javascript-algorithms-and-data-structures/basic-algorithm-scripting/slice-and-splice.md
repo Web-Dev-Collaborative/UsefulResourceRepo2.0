@@ -27,7 +27,7 @@ assert.deepEqual(frankenSplice([1, 2, 3], [4, 5], 1), [4, 1, 2, 3, 5]);
 `frankenSplice([1, 2], ["a", "b"], 1)` should return `["a", 1, 2, "b"]`.
 
 ```js
-assert.deepEqual(frankenSplice(testArr1, testArr2, 1), ['a', 1, 2, 'b']);
+assert.deepEqual(frankenSplice(testArr1, testArr2, 1), ["a", 1, 2, "b"]);
 ```
 
 `frankenSplice(["claw", "tentacle"], ["head", "shoulders", "knees", "toes"], 2)` should return `["head", "shoulders", "claw", "tentacle", "knees", "toes"]`.
@@ -35,11 +35,11 @@ assert.deepEqual(frankenSplice(testArr1, testArr2, 1), ['a', 1, 2, 'b']);
 ```js
 assert.deepEqual(
   frankenSplice(
-    ['claw', 'tentacle'],
-    ['head', 'shoulders', 'knees', 'toes'],
+    ["claw", "tentacle"],
+    ["head", "shoulders", "knees", "toes"],
     2
   ),
-  ['head', 'shoulders', 'claw', 'tentacle', 'knees', 'toes']
+  ["head", "shoulders", "claw", "tentacle", "knees", "toes"]
 );
 ```
 
@@ -60,7 +60,7 @@ The second array should remain the same after the function runs.
 
 ```js
 frankenSplice(testArr1, testArr2, 1);
-assert.deepEqual(testArr2, ['a', 'b']);
+assert.deepEqual(testArr2, ["a", "b"]);
 ```
 
 # --seed--
@@ -89,7 +89,7 @@ function frankenSplice(arr1, arr2, n) {
   // It's alive. It's alive!
   let result = arr2.slice();
   for (let i = 0; i < arr1.length; i++) {
-    result.splice(n+i, 0, arr1[i]);
+    result.splice(n + i, 0, arr1[i]);
   }
   return result;
 }

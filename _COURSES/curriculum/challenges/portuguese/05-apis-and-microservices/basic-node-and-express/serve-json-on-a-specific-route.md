@@ -22,11 +22,11 @@ The endpoint `/json` should serve the json object `{"message": "Hello json"}`
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/json').then(
+  $.get(getUserInput("url") + "/json").then(
     (data) => {
       assert.equal(
         data.message,
-        'Hello json',
+        "Hello json",
         "The '/json' endpoint does not serve the right data"
       );
     },

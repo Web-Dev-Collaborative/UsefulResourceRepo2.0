@@ -1,6 +1,6 @@
 ---
 id: 5900f3d21000cf542c50fee4
-title: 'Problem 101: Optimum polynomial'
+title: "Problem 101: Optimum polynomial"
 challengeType: 5
 forumTopicId: 301725
 dashedName: problem-101-optimum-polynomial
@@ -38,7 +38,6 @@ assert.strictEqual(euler101(), 37076114526);
 
 ```js
 function euler101() {
-
   return true;
 }
 

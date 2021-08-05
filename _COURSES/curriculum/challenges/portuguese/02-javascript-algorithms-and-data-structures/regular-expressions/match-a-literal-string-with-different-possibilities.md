@@ -25,43 +25,43 @@ Complete the regex `petRegex` to match the pets `dog`, `cat`, `bird`, or `fish`.
 Your regex `petRegex` should return `true` for the string `John has a pet dog.`
 
 ```js
-assert(petRegex.test('John has a pet dog.'));
+assert(petRegex.test("John has a pet dog."));
 ```
 
 Your regex `petRegex` should return `false` for the string `Emma has a pet rock.`
 
 ```js
-assert(!petRegex.test('Emma has a pet rock.'));
+assert(!petRegex.test("Emma has a pet rock."));
 ```
 
 Your regex `petRegex` should return `true` for the string `Emma has a pet bird.`
 
 ```js
-assert(petRegex.test('Emma has a pet bird.'));
+assert(petRegex.test("Emma has a pet bird."));
 ```
 
 Your regex `petRegex` should return `true` for the string `Liz has a pet cat.`
 
 ```js
-assert(petRegex.test('Liz has a pet cat.'));
+assert(petRegex.test("Liz has a pet cat."));
 ```
 
 Your regex `petRegex` should return `false` for the string `Kara has a pet dolphin.`
 
 ```js
-assert(!petRegex.test('Kara has a pet dolphin.'));
+assert(!petRegex.test("Kara has a pet dolphin."));
 ```
 
 Your regex `petRegex` should return `true` for the string `Alice has a pet fish.`
 
 ```js
-assert(petRegex.test('Alice has a pet fish.'));
+assert(petRegex.test("Alice has a pet fish."));
 ```
 
 Your regex `petRegex` should return `false` for the string `Jimmy has a pet computer.`
 
 ```js
-assert(!petRegex.test('Jimmy has a pet computer.'));
+assert(!petRegex.test("Jimmy has a pet computer."));
 ```
 
 # --seed--

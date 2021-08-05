@@ -1,6 +1,6 @@
 ---
 id: 59da22823d04c95919d46269
-title: 'Sailors, coconuts and a monkey problem'
+title: "Sailors, coconuts and a monkey problem"
 challengeType: 5
 forumTopicId: 302304
 dashedName: sailors-coconuts-and-a-monkey-problem
@@ -24,7 +24,7 @@ Create a function that returns the minimum possible size of the initial pile of 
 `splitCoconuts` should be a function.
 
 ```js
-assert(typeof splitCoconuts === 'function');
+assert(typeof splitCoconuts === "function");
 ```
 
 `splitCoconuts(5)` should return 3121.
@@ -51,7 +51,6 @@ assert(splitCoconuts(7) === 823537);
 
 ```js
 function splitCoconuts(intSailors) {
-
   return true;
 }
 ```
@@ -81,7 +80,9 @@ function splitCoconutsHelper(intNuts, intSailors, intDepth) {
 
   if (nDepth) {
     return splitCoconutsHelper(
-      intNuts - portion - remain, intSailors, nDepth - 1
+      intNuts - portion - remain,
+      intSailors,
+      nDepth - 1
     );
   }
 

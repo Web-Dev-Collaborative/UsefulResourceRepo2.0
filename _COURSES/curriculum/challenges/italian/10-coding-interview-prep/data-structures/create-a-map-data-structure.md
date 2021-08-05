@@ -32,10 +32,10 @@ The Map data structure should exist.
 assert(
   (function () {
     var test = false;
-    if (typeof Map !== 'undefined') {
+    if (typeof Map !== "undefined") {
       test = new Map();
     }
-    return typeof test == 'object';
+    return typeof test == "object";
   })()
 );
 ```
@@ -46,17 +46,17 @@ The Map object should have the following methods: add, remove, get, has, values,
 assert(
   (function () {
     var test = false;
-    if (typeof Map !== 'undefined') {
+    if (typeof Map !== "undefined") {
       test = new Map();
     }
     return (
-      typeof test.add == 'function' &&
-      typeof test.remove == 'function' &&
-      typeof test.get == 'function' &&
-      typeof test.has == 'function' &&
-      typeof test.values == 'function' &&
-      typeof test.clear == 'function' &&
-      typeof test.size == 'function'
+      typeof test.add == "function" &&
+      typeof test.remove == "function" &&
+      typeof test.get == "function" &&
+      typeof test.has == "function" &&
+      typeof test.values == "function" &&
+      typeof test.clear == "function" &&
+      typeof test.size == "function"
     );
   })()
 );
@@ -68,7 +68,7 @@ The add method should add items to the map.
 assert(
   (function () {
     var test = false;
-    if (typeof Map !== 'undefined') {
+    if (typeof Map !== "undefined") {
       test = new Map();
     }
     test.add(5, 6);
@@ -85,11 +85,11 @@ The has method should return true for added items and false for absent items.
 assert(
   (function () {
     var test = false;
-    if (typeof Map !== 'undefined') {
+    if (typeof Map !== "undefined") {
       test = new Map();
     }
-    test.add('test', 'value');
-    return test.has('test') && !test.has('false');
+    test.add("test", "value");
+    return test.has("test") && !test.has("false");
   })()
 );
 ```
@@ -100,11 +100,11 @@ The get method should accept keys as input and should return the associated valu
 assert(
   (function () {
     var test = false;
-    if (typeof Map !== 'undefined') {
+    if (typeof Map !== "undefined") {
       test = new Map();
     }
-    test.add('abc', 'def');
-    return test.get('abc') == 'def';
+    test.add("abc", "def");
+    return test.get("abc") == "def";
   })()
 );
 ```
@@ -115,17 +115,17 @@ The values method should return all the values stored in the map as strings in a
 assert(
   (function () {
     var test = false;
-    if (typeof Map !== 'undefined') {
+    if (typeof Map !== "undefined") {
       test = new Map();
     }
-    test.add('a', 'b');
-    test.add('c', 'd');
-    test.add('e', 'f');
+    test.add("a", "b");
+    test.add("c", "d");
+    test.add("e", "f");
     var vals = test.values();
     return (
-      vals.indexOf('b') != -1 &&
-      vals.indexOf('d') != -1 &&
-      vals.indexOf('f') != -1
+      vals.indexOf("b") != -1 &&
+      vals.indexOf("d") != -1 &&
+      vals.indexOf("f") != -1
     );
   })()
 );
@@ -137,12 +137,12 @@ The clear method should empty the map and the size method should return the numb
 assert(
   (function () {
     var test = false;
-    if (typeof Map !== 'undefined') {
+    if (typeof Map !== "undefined") {
       test = new Map();
     }
-    test.add('b', 'b');
-    test.add('c', 'd');
-    test.remove('asdfas');
+    test.add("b", "b");
+    test.add("c", "d");
+    test.remove("asdfas");
     var init = test.size();
     test.clear();
     return init == 2 && test.size() == 0;
@@ -155,10 +155,10 @@ assert(
 ## --seed-contents--
 
 ```js
-var Map = function() {
+var Map = function () {
   this.collection = {};
   // Only change code below this line
-  
+
   // Only change code above this line
 };
 ```
@@ -166,39 +166,39 @@ var Map = function() {
 # --solutions--
 
 ```js
-var Map = function() {
-    this.collection = {};
-    // Only change code below this line
+var Map = function () {
+  this.collection = {};
+  // Only change code below this line
 
-    this.add = function(key,value) {
-      this.collection[key] = value;
-    }
+  this.add = function (key, value) {
+    this.collection[key] = value;
+  };
 
-    this.remove = function(key) {
-      delete this.collection[key];
-    }
+  this.remove = function (key) {
+    delete this.collection[key];
+  };
 
-    this.get = function(key) {
-      return this.collection[key];
-    }
+  this.get = function (key) {
+    return this.collection[key];
+  };
 
-    this.has = function(key) {
-      return this.collection.hasOwnProperty(key)
-    }
+  this.has = function (key) {
+    return this.collection.hasOwnProperty(key);
+  };
 
-    this.values = function() {
-      return Object.values(this.collection);
-    }
+  this.values = function () {
+    return Object.values(this.collection);
+  };
 
-    this.size = function() {
-      return Object.keys(this.collection).length;
-    }
+  this.size = function () {
+    return Object.keys(this.collection).length;
+  };
 
-    this.clear = function() {
-      for(let item of Object.keys(this.collection)) {
-        delete this.collection[item];
-      }
+  this.clear = function () {
+    for (let item of Object.keys(this.collection)) {
+      delete this.collection[item];
     }
-    // Only change code above this line
+  };
+  // Only change code above this line
 };
 ```

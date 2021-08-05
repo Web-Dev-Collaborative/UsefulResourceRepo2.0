@@ -19,11 +19,11 @@ I metodi `domain()` e `range()` impostano questi valori per la scala. Entrambi i
 ```js
 scale.domain([50, 480]);
 scale.range([10, 500]);
-scale(50)
-scale(480)
-scale(325)
-scale(750)
-d3.scaleLinear()
+scale(50);
+scale(480);
+scale(325);
+scale(750);
+d3.scaleLinear();
 ```
 
 In ordine, i seguenti valori saranno visualizzati nella console: `10`, `500`, `323.37`, e `807.67`.
@@ -65,7 +65,7 @@ assert(JSON.stringify(scale.range()) == JSON.stringify([10, 150]));
 Il testo nell'`h2` dovrebbe essere `-102`.
 
 ```js
-assert($('h2').text() == '-102');
+assert($("h2").text() == "-102");
 ```
 
 # --seed--
@@ -78,13 +78,9 @@ assert($('h2').text() == '-102');
     // Add your code below this line
     const scale = d3.scaleLinear();
 
-
-
     // Add your code above this line
     const output = scale(50);
-    d3.select("body")
-      .append("h2")
-      .text(output);
+    d3.select("body").append("h2").text(output);
   </script>
 </body>
 ```
@@ -95,12 +91,10 @@ assert($('h2').text() == '-102');
 <body>
   <script>
     const scale = d3.scaleLinear();
-    scale.domain([250, 500])
-    scale.range([10, 150])
+    scale.domain([250, 500]);
+    scale.range([10, 150]);
     const output = scale(50);
-    d3.select("body")
-      .append("h2")
-      .text(output);
+    d3.select("body").append("h2").text(output);
   </script>
 </body>
 ```

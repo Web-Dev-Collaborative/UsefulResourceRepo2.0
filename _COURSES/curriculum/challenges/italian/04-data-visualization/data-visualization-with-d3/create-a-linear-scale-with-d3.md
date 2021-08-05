@@ -19,7 +19,7 @@ Ad esempio, diciamo di avere una tela SVG di dimensioni 100x500 e di voler tracc
 D3 ha diversi tipi di scala. Per una scala lineare (di solito utilizzata con dati quantitativi), c'è il metodo D3 `scaleLinear()`:
 
 ```js
-const scale = d3.scaleLinear()
+const scale = d3.scaleLinear();
 ```
 
 Per impostazione predefinita, una scala utilizza la relazione di identità. Il valore dell'input è lo stesso del valore dell'output. Una sfida distinta riguarda come cambiare questo comportamento.
@@ -33,7 +33,7 @@ Cambia la variabile `scale` per creare una scala lineare. Quindi imposta la vari
 Il testo di `h2` dovrebbe essere `50`.
 
 ```js
-assert($('h2').text() == '50');
+assert($("h2").text() == "50");
 ```
 
 Il tuo codice dovrebbe utilizzare il metodo `scaleLinear()`.
@@ -62,10 +62,7 @@ assert(output == 50 && code.match(/scale\(\s*?50\s*?\)/g));
 
     // Add your code above this line
 
-    d3.select("body")
-      .append("h2")
-      .text(output);
-
+    d3.select("body").append("h2").text(output);
   </script>
 </body>
 ```
@@ -75,14 +72,10 @@ assert(output == 50 && code.match(/scale\(\s*?50\s*?\)/g));
 ```html
 <body>
   <script>
-
     const scale = d3.scaleLinear();
-    const output = scale(50); 
+    const output = scale(50);
 
-    d3.select("body")
-      .append("h2")
-      .text(output);
-
+    d3.select("body").append("h2").text(output);
   </script>
 </body>
 ```

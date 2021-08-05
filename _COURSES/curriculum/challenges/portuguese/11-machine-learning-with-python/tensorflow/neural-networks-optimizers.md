@@ -1,6 +1,6 @@
 ---
 id: 5e8f2f13c4cdbe86b5c72d94
-title: 'Neural Networks: Optimizers'
+title: "Neural Networks: Optimizers"
 challengeType: 11
 videoId: hdOtRPQe1o4
 dashedName: neural-networks-optimizers
@@ -27,4 +27,3 @@ A function that reduces the time a model needs to train.
 ## --video-solution--
 
 2
-

@@ -23,7 +23,8 @@ Here is an example that selects a `ul` element and creates a new list item based
   <ul></ul>
   <script>
     const dataset = ["a", "b", "c"];
-    d3.select("ul").selectAll("li")
+    d3.select("ul")
+      .selectAll("li")
       .data(dataset)
       .enter()
       .append("li")
@@ -43,14 +44,14 @@ Select the `body` node, then select all `h2` elements. Have D3 create and append
 Your document should have 9 `h2` elements.
 
 ```js
-assert($('h2').length == 9);
+assert($("h2").length == 9);
 ```
 
 The text in the `h2` elements should say `New Title`. The capitalization and spacing should match exactly.
 
 ```js
 assert(
-  $('h2')
+  $("h2")
     .text()
     .match(/New Title/g).length == 9
 );
@@ -79,8 +80,6 @@ assert(code.match(/\.enter/g));
 
     // Add your code below this line
 
-
-
     // Add your code above this line
   </script>
 </body>
@@ -98,8 +97,7 @@ assert(code.match(/\.enter/g));
       .data(dataset)
       .enter()
       .append("h2")
-      .text("New Title")
-
+      .text("New Title");
   </script>
 </body>
 ```

@@ -1,6 +1,6 @@
 ---
 id: 5900f4db1000cf542c50ffee
-title: 'Problem 367: Bozo sort'
+title: "Problem 367: Bozo sort"
 challengeType: 5
 forumTopicId: 302028
 dashedName: problem-367-bozo-sort
@@ -30,7 +30,6 @@ assert.strictEqual(euler367(), 48271207);
 
 ```js
 function euler367() {
-
   return true;
 }
 

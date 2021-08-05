@@ -10,7 +10,7 @@ dashedName: closest-pair-problem
 
 Provide a function to find the closest two points among a set of given points in two dimensions.
 
-The straightforward solution is a $O(n^2)$ algorithm (which we can call *brute-force algorithm*); the pseudo-code (using indexes) could be simply:
+The straightforward solution is a $O(n^2)$ algorithm (which we can call _brute-force algorithm_); the pseudo-code (using indexes) could be simply:
 
 <pre><strong>bruteForceClosestPair</strong> of P(1), P(2), ... P(N)
 <strong>if</strong> N &#x3C; 2 <strong>then</strong>
@@ -70,11 +70,7 @@ For the input, expect the argument to be an array of `Point` objects with `x` an
 For example `getClosestPair` with input array `points`:
 
 ```js
-const points = [
-  new Point(1, 2),
-  new Point(3, 3),
-  new Point(2, 2)
-];
+const points = [new Point(1, 2), new Point(3, 3), new Point(2, 2)];
 ```
 
 Would return:
@@ -97,13 +93,12 @@ Would return:
 
 **Note:** Sort the `pair` array by their `x` values in incrementing order.
 
-
 # --hints--
 
 `getClosestPair` should be a function.
 
 ```js
-assert(typeof getClosestPair === 'function');
+assert(typeof getClosestPair === "function");
 ```
 
 `getClosestPair(points1).distance` should be `0.0894096443343775`.
@@ -157,16 +152,16 @@ assert.deepEqual(
 
 ```js
 const points1 = [
-    new Point(0.748501, 4.09624),
-    new Point(3.00302, 5.26164),
-    new Point(3.61878,  9.52232),
-    new Point(7.46911,  4.71611),
-    new Point(5.7819,   2.69367),
-    new Point(2.34709,  8.74782),
-    new Point(2.87169,  5.97774),
-    new Point(6.33101,  0.463131),
-    new Point(7.46489,  4.6268),
-    new Point(1.45428,  0.087596)
+  new Point(0.748501, 4.09624),
+  new Point(3.00302, 5.26164),
+  new Point(3.61878, 9.52232),
+  new Point(7.46911, 4.71611),
+  new Point(5.7819, 2.69367),
+  new Point(2.34709, 8.74782),
+  new Point(2.87169, 5.97774),
+  new Point(6.33101, 0.463131),
+  new Point(7.46489, 4.6268),
+  new Point(1.45428, 0.087596),
 ];
 
 const answer1 = {
@@ -174,13 +169,13 @@ const answer1 = {
   pair: [
     {
       x: 7.46489,
-      y: 4.6268
+      y: 4.6268,
     },
     {
       x: 7.46911,
-      y: 4.71611
-    }
-  ]
+      y: 4.71611,
+    },
+  ],
 };
 
 const points2 = [
@@ -188,7 +183,7 @@ const points2 = [
   new Point(37134, 1963),
   new Point(37181, 2008),
   new Point(37276, 21611),
-  new Point(37307, 9320)
+  new Point(37307, 9320),
 ];
 
 const answer2 = {
@@ -196,13 +191,13 @@ const answer2 = {
   pair: [
     {
       x: 37134,
-      y: 1963
+      y: 1963,
     },
     {
       x: 37181,
-      y: 2008
-    }
-  ]
+      y: 2008,
+    },
+  ],
 };
 
 const points3 = [
@@ -255,7 +250,7 @@ const points3 = [
   new Point(4092, 19709),
   new Point(99415, 60298),
   new Point(51090, 52158),
-  new Point(48953, 58567)
+  new Point(48953, 58567),
 ];
 
 const answer3 = {
@@ -263,32 +258,31 @@ const answer3 = {
   pair: [
     {
       x: 46817,
-      y: 64975
+      y: 64975,
     },
     {
       x: 48953,
-      y: 58567
-    }
-  ]
-}
+      y: 58567,
+    },
+  ],
+};
 ```
 
 ## --seed-contents--
 
 ```js
-const Point = function(x, y) {
+const Point = function (x, y) {
   this.x = x;
   this.y = y;
 };
-Point.prototype.getX = function() {
+Point.prototype.getX = function () {
   return this.x;
 };
-Point.prototype.getY = function() {
+Point.prototype.getY = function () {
   return this.y;
 };
 
 function getClosestPair(pointsArr) {
-
   return true;
 }
 ```
@@ -296,115 +290,123 @@ function getClosestPair(pointsArr) {
 # --solutions--
 
 ```js
-const Point = function(x, y) {
+const Point = function (x, y) {
   this.x = x;
   this.y = y;
 };
-Point.prototype.getX = function() {
+Point.prototype.getX = function () {
   return this.x;
 };
-Point.prototype.getY = function() {
+Point.prototype.getY = function () {
   return this.y;
 };
 
 const mergeSort = function mergeSort(points, comp) {
-    if(points.length < 2) return points;
+  if (points.length < 2) return points;
 
-    var n = points.length,
-        i = 0,
-        j = 0,
-        leftN = Math.floor(n / 2),
-        rightN = leftN;
+  var n = points.length,
+    i = 0,
+    j = 0,
+    leftN = Math.floor(n / 2),
+    rightN = leftN;
 
-    var leftPart = mergeSort( points.slice(0, leftN), comp),
-        rightPart = mergeSort( points.slice(rightN), comp );
+  var leftPart = mergeSort(points.slice(0, leftN), comp),
+    rightPart = mergeSort(points.slice(rightN), comp);
 
-    var sortedPart = [];
+  var sortedPart = [];
 
-    while((i < leftPart.length) && (j < rightPart.length)) {
-        if(comp(leftPart[i], rightPart[j]) < 0) {
-            sortedPart.push(leftPart[i]);
-            i += 1;
-        }
-        else {
-            sortedPart.push(rightPart[j]);
-            j += 1;
-        }
+  while (i < leftPart.length && j < rightPart.length) {
+    if (comp(leftPart[i], rightPart[j]) < 0) {
+      sortedPart.push(leftPart[i]);
+      i += 1;
+    } else {
+      sortedPart.push(rightPart[j]);
+      j += 1;
     }
-    while(i < leftPart.length) {
-        sortedPart.push(leftPart[i]);
-        i += 1;
-    }
-    while(j < rightPart.length) {
-        sortedPart.push(rightPart[j]);
-        j += 1;
-    }
-    return sortedPart;
+  }
+  while (i < leftPart.length) {
+    sortedPart.push(leftPart[i]);
+    i += 1;
+  }
+  while (j < rightPart.length) {
+    sortedPart.push(rightPart[j]);
+    j += 1;
+  }
+  return sortedPart;
 };
 
 const closestPair = function _closestPair(Px, Py) {
-    if(Px.length < 2) return { distance: Infinity, pair: [ new Point(0, 0), new Point(0, 0) ] };
-    if(Px.length < 3) {
-        //find euclid distance
-        var d = Math.sqrt( Math.pow(Math.abs(Px[1].x - Px[0].x), 2) + Math.pow(Math.abs(Px[1].y - Px[0].y), 2) );
-        return {
-            distance: d,
-            pair: [ Px[0], Px[1] ]
-        };
-    }
-
-    var n = Px.length,
-        leftN = Math.floor(n / 2),
-        rightN = leftN;
-
-    var Xl = Px.slice(0, leftN),
-        Xr = Px.slice(rightN),
-        Xm = Xl[leftN - 1],
-        Yl = [],
-        Yr = [];
-    //separate Py
-    for(var i = 0; i < Py.length; i += 1) {
-        if(Py[i].x <= Xm.x)
-            Yl.push(Py[i]);
-        else
-            Yr.push(Py[i]);
-    }
-
-    var dLeft = _closestPair(Xl, Yl),
-        dRight = _closestPair(Xr, Yr);
-
-    var minDelta = dLeft.distance,
-        closestPair = dLeft.pair;
-    if(dLeft.distance > dRight.distance) {
-        minDelta = dRight.distance;
-        closestPair = dRight.pair;
-    }
-
-    //filter points around Xm within delta (minDelta)
-    var closeY = [];
-    for(i = 0; i < Py.length; i += 1) {
-        if(Math.abs(Py[i].x - Xm.x) < minDelta) closeY.push(Py[i]);
-    }
-    //find min within delta. 8 steps max
-    for(i = 0; i < closeY.length; i += 1) {
-        for(var j = i + 1; j < Math.min( (i + 8), closeY.length ); j += 1) {
-            var d = Math.sqrt( Math.pow(Math.abs(closeY[j].x - closeY[i].x), 2) + Math.pow(Math.abs(closeY[j].y - closeY[i].y), 2) );
-            if(d < minDelta) {
-                minDelta = d;
-                closestPair = [ closeY[i], closeY[j] ]
-            }
-        }
-    }
-
+  if (Px.length < 2)
+    return { distance: Infinity, pair: [new Point(0, 0), new Point(0, 0)] };
+  if (Px.length < 3) {
+    //find euclid distance
+    var d = Math.sqrt(
+      Math.pow(Math.abs(Px[1].x - Px[0].x), 2) +
+        Math.pow(Math.abs(Px[1].y - Px[0].y), 2)
+    );
     return {
-        distance: minDelta,
-        pair: closestPair.sort((pointA, pointB) => pointA.x - pointB.x)
+      distance: d,
+      pair: [Px[0], Px[1]],
     };
+  }
+
+  var n = Px.length,
+    leftN = Math.floor(n / 2),
+    rightN = leftN;
+
+  var Xl = Px.slice(0, leftN),
+    Xr = Px.slice(rightN),
+    Xm = Xl[leftN - 1],
+    Yl = [],
+    Yr = [];
+  //separate Py
+  for (var i = 0; i < Py.length; i += 1) {
+    if (Py[i].x <= Xm.x) Yl.push(Py[i]);
+    else Yr.push(Py[i]);
+  }
+
+  var dLeft = _closestPair(Xl, Yl),
+    dRight = _closestPair(Xr, Yr);
+
+  var minDelta = dLeft.distance,
+    closestPair = dLeft.pair;
+  if (dLeft.distance > dRight.distance) {
+    minDelta = dRight.distance;
+    closestPair = dRight.pair;
+  }
+
+  //filter points around Xm within delta (minDelta)
+  var closeY = [];
+  for (i = 0; i < Py.length; i += 1) {
+    if (Math.abs(Py[i].x - Xm.x) < minDelta) closeY.push(Py[i]);
+  }
+  //find min within delta. 8 steps max
+  for (i = 0; i < closeY.length; i += 1) {
+    for (var j = i + 1; j < Math.min(i + 8, closeY.length); j += 1) {
+      var d = Math.sqrt(
+        Math.pow(Math.abs(closeY[j].x - closeY[i].x), 2) +
+          Math.pow(Math.abs(closeY[j].y - closeY[i].y), 2)
+      );
+      if (d < minDelta) {
+        minDelta = d;
+        closestPair = [closeY[i], closeY[j]];
+      }
+    }
+  }
+
+  return {
+    distance: minDelta,
+    pair: closestPair.sort((pointA, pointB) => pointA.x - pointB.x),
+  };
 };
 
 function getClosestPair(points) {
-  const sortX = function(a, b) { return (a.x < b.x) ? -1 : ((a.x > b.x) ? 1 : 0); }
-  const sortY = function(a, b) { return (a.y < b.y) ? -1 : ((a.y > b.y) ? 1 : 0); }
+  const sortX = function (a, b) {
+    return a.x < b.x ? -1 : a.x > b.x ? 1 : 0;
+  };
+  const sortY = function (a, b) {
+    return a.y < b.y ? -1 : a.y > b.y ? 1 : 0;
+  };
 
   const Px = mergeSort(points, sortX);
   const Py = mergeSort(points, sortY);

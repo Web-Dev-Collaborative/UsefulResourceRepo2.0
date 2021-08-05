@@ -23,7 +23,7 @@ Only integers greater than or equal to zero will be supplied to the function.
 `factorialize(5)` should return a number.
 
 ```js
-assert(typeof factorialize(5) === 'number');
+assert(typeof factorialize(5) === "number");
 ```
 
 `factorialize(5)` should return `120`.

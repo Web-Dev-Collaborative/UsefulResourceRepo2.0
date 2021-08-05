@@ -1,96 +1,96 @@
 /* eslint-disable no-loop-func */
-const path = require('path');
-const liveServer = require('live-server');
-const stringSimilarity = require('string-similarity');
-const { isAuditedCert } = require('../../utils/is-audited');
+const path = require("path");
+const liveServer = require("live-server");
+const stringSimilarity = require("string-similarity");
+const { isAuditedCert } = require("../../utils/is-audited");
 
-const spinner = require('ora')();
+const spinner = require("ora")();
 
-const clientPath = path.resolve(__dirname, '../../client');
-require('@babel/polyfill');
-require('@babel/register')({
+const clientPath = path.resolve(__dirname, "../../client");
+require("@babel/polyfill");
+require("@babel/register")({
   root: clientPath,
   babelrc: false,
-  presets: ['@babel/preset-env', '@babel/typescript'],
-  plugins: ['dynamic-import-node'],
+  presets: ["@babel/preset-env", "@babel/typescript"],
+  plugins: ["dynamic-import-node"],
   ignore: [/node_modules/],
-  only: [clientPath]
+  only: [clientPath],
 });
 
-const mockRequire = require('mock-require');
-const lodash = require('lodash');
+const mockRequire = require("mock-require");
+const lodash = require("lodash");
 
 // lodash-es can't easily be used in node environments, so we just mock it out
 // for the original lodash in testing.
-mockRequire('lodash-es', lodash);
+mockRequire("lodash-es", lodash);
 
-const createPseudoWorker = require('./utils/pseudo-worker');
+const createPseudoWorker = require("./utils/pseudo-worker");
 const {
-  default: createWorker
-} = require('../../client/src/templates/Challenges/utils/worker-executor');
+  default: createWorker,
+} = require("../../client/src/templates/Challenges/utils/worker-executor");
 
-const { assert, AssertionError } = require('chai');
-const Mocha = require('mocha');
+const { assert, AssertionError } = require("chai");
+const Mocha = require("mocha");
 
 const { flatten, isEmpty, cloneDeep, isEqual } = lodash;
-const { getLines } = require('../../utils/get-lines');
+const { getLines } = require("../../utils/get-lines");
 
-const jsdom = require('jsdom');
+const jsdom = require("jsdom");
 
-const vm = require('vm');
+const vm = require("vm");
 
-const puppeteer = require('puppeteer');
+const puppeteer = require("puppeteer");
 
 const {
   getChallengesForLang,
   getMetaForBlock,
-  getTranslatableComments
-} = require('../getChallenges');
+  getTranslatableComments,
+} = require("../getChallenges");
 
-const MongoIds = require('./utils/mongoIds');
-const ChallengeTitles = require('./utils/challengeTitles');
-const { challengeSchemaValidator } = require('../schema/challengeSchema');
-const { challengeTypes } = require('../../client/utils/challengeTypes');
+const MongoIds = require("./utils/mongoIds");
+const ChallengeTitles = require("./utils/challengeTitles");
+const { challengeSchemaValidator } = require("../schema/challengeSchema");
+const { challengeTypes } = require("../../client/utils/challengeTypes");
 
-const { toSortedArray } = require('../../utils/sort-files');
+const { toSortedArray } = require("../../utils/sort-files");
 
-const { testedLang } = require('../utils');
+const { testedLang } = require("../utils");
 
 const {
   buildDOMChallenge,
-  buildJSChallenge
-} = require('../../client/src/templates/Challenges/utils/build');
+  buildJSChallenge,
+} = require("../../client/src/templates/Challenges/utils/build");
 
-const { sortChallenges } = require('./utils/sort-challenges');
+const { sortChallenges } = require("./utils/sort-challenges");
 
 const TRANSLATABLE_COMMENTS = getTranslatableComments(
-  path.resolve(__dirname, '..', 'dictionaries')
+  path.resolve(__dirname, "..", "dictionaries")
 );
 
 // the config files are created during the build, but not before linting
 /* eslint-disable import/no-unresolved */
 const testEvaluator =
-  require('../../config/client/test-evaluator.json').filename;
+  require("../../config/client/test-evaluator.json").filename;
 /* eslint-enable import/no-unresolved */
-const { inspect } = require('util');
+const { inspect } = require("util");
 
 const commentExtractors = {
-  html: require('./utils/extract-html-comments'),
-  js: require('./utils/extract-js-comments'),
-  jsx: require('./utils/extract-jsx-comments'),
-  css: require('./utils/extract-css-comments'),
-  scriptJs: require('./utils/extract-script-js-comments')
+  html: require("./utils/extract-html-comments"),
+  js: require("./utils/extract-js-comments"),
+  jsx: require("./utils/extract-jsx-comments"),
+  css: require("./utils/extract-css-comments"),
+  scriptJs: require("./utils/extract-script-js-comments"),
 };
 
 // rethrow unhandled rejections to make sure the tests exit with -1
-process.on('unhandledRejection', err => handleRejection(err));
+process.on("unhandledRejection", (err) => handleRejection(err));
 
-const handleRejection = err => {
+const handleRejection = (err) => {
   // setting the error code because node does not (yet) exit with a non-zero
   // code on unhandled exceptions.
   process.exitCode = 1;
   cleanup();
-  if (process.env.FULL_OUTPUT === 'true') {
+  if (process.env.FULL_OUTPUT === "true") {
     // some errors *may* not be reported, since cleanup is triggered by the
     // first error and that starts shutting down the browser and the server.
     console.error(err);
@@ -99,14 +99,14 @@ const handleRejection = err => {
   }
 };
 
-const dom = new jsdom.JSDOM('');
+const dom = new jsdom.JSDOM("");
 global.document = dom.window.document;
 
 const oldRunnerFail = Mocha.Runner.prototype.fail;
 Mocha.Runner.prototype.fail = function (test, err) {
   if (err instanceof AssertionError) {
-    const errMessage = String(err.message || '');
-    const assertIndex = errMessage.indexOf(': expected');
+    const errMessage = String(err.message || "");
+    const assertIndex = errMessage.indexOf(": expected");
     if (assertIndex !== -1) {
       err.message = errMessage.slice(0, assertIndex);
     }
@@ -121,19 +121,19 @@ Mocha.Runner.prototype.fail = function (test, err) {
 async function newPageContext(browser) {
   const page = await browser.newPage();
   // it's needed for workers as context.
-  await page.goto('http://127.0.0.1:8080/index.html');
+  await page.goto("http://127.0.0.1:8080/index.html");
   return page;
 }
 
 spinner.start();
-spinner.text = 'Populate tests.';
+spinner.text = "Populate tests.";
 
 let browser;
 let page;
 
 setup()
   .then(runTests)
-  .catch(err => handleRejection(err));
+  .catch((err) => handleRejection(err));
 
 async function setup() {
   if (process.env.npm_config_superblock && process.env.npm_config_block) {
@@ -142,23 +142,23 @@ async function setup() {
 
   // liveServer starts synchronously
   liveServer.start({
-    host: '127.0.0.1',
-    port: '8080',
-    root: path.resolve(__dirname, 'stubs'),
-    mount: [['/js', path.join(clientPath, 'static/js')]],
+    host: "127.0.0.1",
+    port: "8080",
+    root: path.resolve(__dirname, "stubs"),
+    mount: [["/js", path.join(clientPath, "static/js")]],
     open: false,
-    logLevel: 0
+    logLevel: 0,
   });
   browser = await puppeteer.launch({
     args: [
       // Required for Docker version of Puppeteer
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
       // This will write shared memory files into /tmp instead of /dev/shm,
       // because Docker’s default for /dev/shm is 64MB
-      '--disable-dev-shm-usage'
+      "--disable-dev-shm-usage",
       // dumpio: true
-    ]
+    ],
   });
   global.Worker = createPseudoWorker(await newPageContext(browser));
   page = await newPageContext(browser);
@@ -184,7 +184,7 @@ async function setup() {
 
     console.log(`\nsuperBlock being tested: ${filter}`);
     challenges = challenges.filter(
-      challenge => challenge.superBlock === filter
+      (challenge) => challenge.superBlock === filter
     );
 
     if (!challenges.length) {
@@ -199,7 +199,7 @@ async function setup() {
     ).bestMatch.target;
 
     console.log(`\nblock being tested: ${filter}`);
-    challenges = challenges.filter(challenge => challenge.block === filter);
+    challenges = challenges.filter((challenge) => challenge.block === filter);
 
     if (!challenges.length) {
       throw new Error(`No challenges found with block "${filter}"`);
@@ -218,7 +218,7 @@ async function setup() {
   return {
     meta,
     challenges,
-    lang
+    lang,
   };
 }
 
@@ -233,23 +233,23 @@ function cleanup() {
 }
 
 function runTests(challengeData) {
-  describe('Check challenges', function () {
+  describe("Check challenges", function () {
     after(function () {
       cleanup();
     });
     populateTestsForLang(challengeData);
   });
-  spinner.text = 'Testing';
+  spinner.text = "Testing";
   run();
 }
 
 async function getChallenges(lang) {
-  const challenges = await getChallengesForLang(lang).then(curriculum =>
+  const challenges = await getChallengesForLang(lang).then((curriculum) =>
     Object.keys(curriculum)
-      .map(key => curriculum[key].blocks)
+      .map((key) => curriculum[key].blocks)
       .reduce((challengeArray, superBlock) => {
         const challengesForBlock = Object.keys(superBlock).map(
-          key => superBlock[key].challenges
+          (key) => superBlock[key].challenges
         );
         return [...challengeArray, ...flatten(challengesForBlock)];
       }, [])
@@ -268,13 +268,13 @@ function populateTestsForLang({ lang, challenges, meta }) {
     this.timeout(5000);
     challenges.forEach((challenge, id) => {
       const dashedBlockName = challenge.block;
-      describe(challenge.block || 'No block', function () {
-        describe(challenge.title || 'No title', function () {
+      describe(challenge.block || "No block", function () {
+        describe(challenge.title || "No title", function () {
           // Note: the title in meta.json are purely for human readability and
           // do not include translations, so we do not validate against them.
-          it('Matches an ID in meta.json', function () {
+          it("Matches an ID in meta.json", function () {
             const index = meta[dashedBlockName].findIndex(
-              arr => arr[0] === challenge.id
+              (arr) => arr[0] === challenge.id
             );
 
             if (index < 0) {
@@ -284,7 +284,7 @@ function populateTestsForLang({ lang, challenges, meta }) {
             }
           });
 
-          it('Common checks', function () {
+          it("Common checks", function () {
             const result = validateChallenge(challenge);
 
             if (result.error) {
@@ -296,23 +296,23 @@ function populateTestsForLang({ lang, challenges, meta }) {
             challengeTitles.check(title, pathAndTitle);
           });
 
-          it('Has replaced all the English comments', () => {
+          it("Has replaced all the English comments", () => {
             // special cases are where this process breaks for some reason, but
             // we have validated that the challenge gets parsed correctly.
             const specialCases = [
-              '587d7b84367417b2b2512b36',
-              '587d7b84367417b2b2512b37',
-              '587d7db0367417b2b2512b82',
-              '587d7dbe367417b2b2512bb8',
-              '5a24c314108439a4d4036161',
-              '5a24c314108439a4d4036154',
-              '5a94fe0569fb03452672e45c',
-              '5a94fe7769fb03452672e463',
-              '5a24c314108439a4d4036148'
+              "587d7b84367417b2b2512b36",
+              "587d7b84367417b2b2512b37",
+              "587d7db0367417b2b2512b82",
+              "587d7dbe367417b2b2512bb8",
+              "5a24c314108439a4d4036161",
+              "5a24c314108439a4d4036154",
+              "5a94fe0569fb03452672e45c",
+              "5a94fe7769fb03452672e463",
+              "5a24c314108439a4d4036148",
             ];
             if (specialCases.includes(challenge.id)) return;
             if (
-              lang === 'english' ||
+              lang === "english" ||
               !isAuditedCert(lang, challenge.superBlock)
             ) {
               return;
@@ -325,8 +325,8 @@ function populateTestsForLang({ lang, challenges, meta }) {
             //   translations. While this is a crude check, no challenges
             //   currently have the text of a comment elsewhere. If that happens
             //   we can handle that challenge separately.
-            TRANSLATABLE_COMMENTS.forEach(comment => {
-              Object.values(challenge.files).forEach(file => {
+            TRANSLATABLE_COMMENTS.forEach((comment) => {
+              Object.values(challenge.files).forEach((file) => {
                 if (file.contents.includes(comment))
                   throw Error(
                     `English comment '${comment}' should be replaced with its translation`
@@ -336,12 +336,12 @@ function populateTestsForLang({ lang, challenges, meta }) {
 
             // - None of the translated comment texts should appear *outside* a
             //   comment
-            Object.values(challenge.files).forEach(file => {
+            Object.values(challenge.files).forEach((file) => {
               let comments = {};
 
               // We get all the actual comments using the appropriate parsers
-              if (file.ext === 'html') {
-                const commentTypes = ['css', 'html', 'scriptJs'];
+              if (file.ext === "html") {
+                const commentTypes = ["css", "html", "scriptJs"];
                 for (let type of commentTypes) {
                   const newComments = commentExtractors[type](file.contents);
                   for (const [key, value] of Object.entries(newComments)) {
@@ -385,14 +385,14 @@ ${inspect(commentMap)}
           }
 
           let { tests = [] } = challenge;
-          tests = tests.filter(test => !!test.testString);
+          tests = tests.filter((test) => !!test.testString);
           if (tests.length === 0) {
-            it('Check tests. No tests.');
+            it("Check tests. No tests.");
             return;
           }
 
-          describe('Check tests syntax', function () {
-            tests.forEach(test => {
+          describe("Check tests syntax", function () {
+            tests.forEach((test) => {
               it(`Check for: ${test.text}`, function () {
                 assert.doesNotThrow(() => new vm.Script(test.testString));
               });
@@ -400,7 +400,7 @@ ${inspect(commentMap)}
           });
 
           if (challengeType === challengeTypes.backend) {
-            it('Check tests is not implemented.');
+            it("Check tests is not implemented.");
             return;
           }
 
@@ -410,7 +410,7 @@ ${inspect(commentMap)}
               ? buildJSChallenge
               : buildDOMChallenge;
 
-          it('Test suite must fail on the initial contents', async function () {
+          it("Test suite must fail on the initial contents", async function () {
             this.timeout(5000 * tests.length + 1000);
             // suppress errors in the console.
             const oldConsoleError = console.error;
@@ -420,7 +420,7 @@ ${inspect(commentMap)}
             try {
               testRunner = await createTestRunner(
                 challenge,
-                '',
+                "",
                 buildChallenge
               );
             } catch {
@@ -437,7 +437,7 @@ ${inspect(commentMap)}
               }
             }
             console.error = oldConsoleError;
-            assert(fails, 'Test suit does not fail on the initial contents');
+            assert(fails, "Test suit does not fail on the initial contents");
           });
 
           let { solutions = [] } = challenge;
@@ -460,7 +460,7 @@ ${inspect(commentMap)}
             // handler?
             if (nextChallenge) {
               const solutionFiles = cloneDeep(nextChallenge.files);
-              Object.keys(solutionFiles).forEach(key => {
+              Object.keys(solutionFiles).forEach((key) => {
                 const file = solutionFiles[key];
                 file.editableContents = getLines(
                   file.contents,
@@ -470,27 +470,27 @@ ${inspect(commentMap)}
               solutions = [solutionFiles];
               solutionFromNext = true;
             } else {
-              throw Error('solution omitted');
+              throw Error("solution omitted");
             }
           }
 
           // TODO: the no-solution filtering is a little convoluted:
-          const noSolution = new RegExp('// solution required');
+          const noSolution = new RegExp("// solution required");
 
           const solutionsAsArrays = solutions.map(toSortedArray);
 
-          const filteredSolutions = solutionsAsArrays.filter(solution => {
+          const filteredSolutions = solutionsAsArrays.filter((solution) => {
             return !isEmpty(
-              solution.filter(file => !noSolution.test(file.contents))
+              solution.filter((file) => !noSolution.test(file.contents))
             );
           });
 
           if (isEmpty(filteredSolutions)) {
-            it('Check tests. No solutions');
+            it("Check tests. No solutions");
             return;
           }
 
-          describe('Check tests against solutions', function () {
+          describe("Check tests against solutions", function () {
             solutions.forEach((solution, index) => {
               it(`Solution ${
                 index + 1
@@ -524,7 +524,7 @@ async function createTestRunner(
   // we should avoid modifying challenge, as it gets reused:
   const files = cloneDeep(challenge.files);
 
-  Object.keys(solution).forEach(key => {
+  Object.keys(solution).forEach((key) => {
     files[key].contents = solution[key].contents;
     files[key].editableContents = solution[key].editableContents;
   });
@@ -532,12 +532,12 @@ async function createTestRunner(
   const { build, sources, loadEnzyme } = await buildChallenge({
     files,
     required,
-    template
+    template,
   });
 
   const code = {
     contents: sources.index,
-    editableContents: sources.editableContents
+    editableContents: sources.editableContents,
   };
 
   const evaluator = await (buildChallenge === buildDOMChallenge
@@ -552,9 +552,9 @@ async function createTestRunner(
       }
     } catch (err) {
       // add more info to the error so the failing test can be identified.
-      text = 'Test text: ' + text;
+      text = "Test text: " + text;
       const newMessage = solutionFromNext
-        ? 'Check next step for solution!\n' + text
+        ? "Check next step for solution!\n" + text
         : text;
       // if the stack is missing, the message should be included. Otherwise it
       // is redundant.
@@ -574,12 +574,12 @@ async function getContextEvaluator(build, sources, code, loadEnzyme) {
     evaluate: async (testString, timeout) =>
       Promise.race([
         new Promise((_, reject) =>
-          setTimeout(() => reject('timeout'), timeout)
+          setTimeout(() => reject("timeout"), timeout)
         ),
-        await page.evaluate(async testString => {
+        await page.evaluate(async (testString) => {
           return await document.__runTest(testString);
-        }, testString)
-      ])
+        }, testString),
+      ]),
   };
 }
 
@@ -590,7 +590,7 @@ async function getWorkerEvaluator(build, sources, code, removeComments) {
       await testWorker.execute(
         { testString, build, code, sources, removeComments },
         timeout
-      ).done
+      ).done,
   };
 }
 
@@ -599,7 +599,7 @@ async function initializeTestRunner(build, sources, code, loadEnzyme) {
   await page.setContent(build);
   await page.evaluate(
     async (code, sources, loadEnzyme) => {
-      const getUserInput = fileName => sources[fileName];
+      const getUserInput = (fileName) => sources[fileName];
       await document.__initTestFrame({ code, getUserInput, loadEnzyme });
     },
     code,

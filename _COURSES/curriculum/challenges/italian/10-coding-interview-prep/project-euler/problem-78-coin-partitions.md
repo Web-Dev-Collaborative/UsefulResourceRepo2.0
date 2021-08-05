@@ -1,6 +1,6 @@
 ---
 id: 5900f3ba1000cf542c50fecd
-title: 'Problem 78: Coin partitions'
+title: "Problem 78: Coin partitions"
 challengeType: 5
 forumTopicId: 302191
 dashedName: problem-78-coin-partitions
@@ -31,7 +31,7 @@ Find the least value of `n` for which ${p}(n)$ is divisible by `divisor`.
 `coinPartitions(7)` should return a number.
 
 ```js
-assert(typeof coinPartitions(7) === 'number');
+assert(typeof coinPartitions(7) === "number");
 ```
 
 `coinPartitions(7)` should return `5`.
@@ -64,7 +64,6 @@ assert.strictEqual(coinPartitions(1000000), 55374);
 
 ```js
 function coinPartitions(divisor) {
-
   return true;
 }
 

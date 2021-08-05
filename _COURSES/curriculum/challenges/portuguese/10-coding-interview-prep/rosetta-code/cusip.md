@@ -19,61 +19,61 @@ Write a function that takes a string as a parameter and checks if the string is 
 `isCusip` should be a function.
 
 ```js
-assert(typeof isCusip == 'function');
+assert(typeof isCusip == "function");
 ```
 
 `isCusip("037833100")` should return a boolean.
 
 ```js
-assert(typeof isCusip('037833100') == 'boolean');
+assert(typeof isCusip("037833100") == "boolean");
 ```
 
 `isCusip("037833100")` should return `true`.
 
 ```js
-assert.equal(isCusip('037833100'), true);
+assert.equal(isCusip("037833100"), true);
 ```
 
 `isCusip("17275R102")` should return `true`.
 
 ```js
-assert.equal(isCusip('17275R102'), true);
+assert.equal(isCusip("17275R102"), true);
 ```
 
 `isCusip("38259P50a")` should return `false`.
 
 ```js
-assert.equal(isCusip('38259P50a'), false);
+assert.equal(isCusip("38259P50a"), false);
 ```
 
 `isCusip("38259P508")` should return `true`.
 
 ```js
-assert.equal(isCusip('38259P508'), true);
+assert.equal(isCusip("38259P508"), true);
 ```
 
 `isCusip("38259P50#")` should return `false`.
 
 ```js
-assert.equal(isCusip('38259P50#'), false);
+assert.equal(isCusip("38259P50#"), false);
 ```
 
 `isCusip("68389X105")` should return `true`.
 
 ```js
-assert.equal(isCusip('68389X105'), true);
+assert.equal(isCusip("68389X105"), true);
 ```
 
 `isCusip("68389X106")` should return `false`.
 
 ```js
-assert.equal(isCusip('68389X106'), false);
+assert.equal(isCusip("68389X106"), false);
 ```
 
 `isCusip("5949181")` should return `false`.
 
 ```js
-assert.equal(isCusip('5949181'), false);
+assert.equal(isCusip("5949181"), false);
 ```
 
 # --seed--
@@ -81,9 +81,7 @@ assert.equal(isCusip('5949181'), false);
 ## --seed-contents--
 
 ```js
-function isCusip(s) {
-
-}
+function isCusip(s) {}
 ```
 
 # --solutions--
@@ -92,20 +90,20 @@ function isCusip(s) {
 function isCusip(s) {
   if (s.length != 9) return false;
   var sum = 0;
-  var ASCII = x => x.charCodeAt(0);
+  var ASCII = (x) => x.charCodeAt(0);
   for (var i = 0; i < 7; i++) {
     var c = s.charCodeAt(i);
 
     var v;
-    if (c >= ASCII('0') && c <= ASCII('9')) {
+    if (c >= ASCII("0") && c <= ASCII("9")) {
       v = c - 48;
-    } else if (c >= ASCII('A') && c <= ASCII('Z')) {
+    } else if (c >= ASCII("A") && c <= ASCII("Z")) {
       v = c - 64; // lower case letters apparently invalid
-    } else if (c == ASCII('*')) {
+    } else if (c == ASCII("*")) {
       v = 36;
-    } else if (c == ASCII('@')) {
+    } else if (c == ASCII("@")) {
       v = 37;
-    } else if (c == ASCII('#')) {
+    } else if (c == ASCII("#")) {
       v = 38;
     } else {
       return false;

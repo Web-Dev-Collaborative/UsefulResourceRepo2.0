@@ -27,31 +27,31 @@ Aggiungi una forma `rect` all'`svg` usando `append()`, e dalle un attributo `wid
 Il tuo documento dovrebbe avere un elemento `rect`.
 
 ```js
-assert($('rect').length == 1);
+assert($("rect").length == 1);
 ```
 
 L'elemento `rect` dovrebbe avere un attributo `width` impostato a `25`.
 
 ```js
-assert($('rect').attr('width') == '25');
+assert($("rect").attr("width") == "25");
 ```
 
 L'elemento `rect` dovrebbe avere un attributo `height` impostato a `100`.
 
 ```js
-assert($('rect').attr('height') == '100');
+assert($("rect").attr("height") == "100");
 ```
 
 L'elemento `rect` dovrebbe avere un attributo `x` settato a `0`.
 
 ```js
-assert($('rect').attr('x') == '0');
+assert($("rect").attr("x") == "0");
 ```
 
 L'elemento `rect` dovrebbe avere un attributo `y` settato a `0`.
 
 ```js
-assert($('rect').attr('y') == '0');
+assert($("rect").attr("y") == "0");
 ```
 
 # --seed--
@@ -66,15 +66,14 @@ assert($('rect').attr('y') == '0');
     const w = 500;
     const h = 100;
 
-    const svg = d3.select("body")
-                  .append("svg")
-                  .attr("width", w)
-                  .attr("height", h)
-                  // Add your code below this line
+    const svg = d3
+      .select("body")
+      .append("svg")
+      .attr("width", w)
+      .attr("height", h);
+    // Add your code below this line
 
-
-
-                  // Add your code above this line
+    // Add your code above this line
   </script>
 </body>
 ```
@@ -89,15 +88,16 @@ assert($('rect').attr('y') == '0');
     const w = 500;
     const h = 100;
 
-    const svg = d3.select("body")
-                  .append("svg")
-                  .attr("width", w)
-                  .attr("height", h)
-                  .append("rect")
-                  .attr("width", 25)
-                  .attr("height", 100)
-                  .attr("x", 0)
-                  .attr("y", 0);
+    const svg = d3
+      .select("body")
+      .append("svg")
+      .attr("width", w)
+      .attr("height", h)
+      .append("rect")
+      .attr("width", 25)
+      .attr("height", 100)
+      .attr("x", 0)
+      .attr("y", 0);
   </script>
 </body>
 ```

@@ -38,7 +38,7 @@ Your regex should find 6 non-alphanumeric characters in the string `The five box
 
 ```js
 assert(
-  'The five boxing wizards jump quickly.'.match(nonAlphabetRegex).length == 6
+  "The five boxing wizards jump quickly.".match(nonAlphabetRegex).length == 6
 );
 ```
 
@@ -52,7 +52,7 @@ Your regex should find 8 non-alphanumeric characters in the string `Pack my box 
 
 ```js
 assert(
-  'Pack my box with five dozen liquor jugs.'.match(nonAlphabetRegex).length == 8
+  "Pack my box with five dozen liquor jugs.".match(nonAlphabetRegex).length == 8
 );
 ```
 
@@ -60,7 +60,7 @@ Your regex should find 6 non-alphanumeric characters in the string `How vexingly
 
 ```js
 assert(
-  'How vexingly quick daft zebras jump!'.match(nonAlphabetRegex).length == 6
+  "How vexingly quick daft zebras jump!".match(nonAlphabetRegex).length == 6
 );
 ```
 
@@ -68,7 +68,7 @@ Your regex should find 12 non-alphanumeric characters in the string `123 456 789
 
 ```js
 assert(
-  '123 456 7890 ABC def GHI jkl MNO pqr STU vwx YZ.'.match(nonAlphabetRegex)
+  "123 456 7890 ABC def GHI jkl MNO pqr STU vwx YZ.".match(nonAlphabetRegex)
     .length == 12
 );
 ```

@@ -1,6 +1,6 @@
 ---
 id: 5900f5141000cf542c510026
-title: 'Problem 424: Kakuro'
+title: "Problem 424: Kakuro"
 challengeType: 5
 forumTopicId: 302094
 dashedName: problem-424-kakuro
@@ -40,7 +40,6 @@ assert.strictEqual(euler424(), 1059760019628);
 
 ```js
 function euler424() {
-
   return true;
 }
 

@@ -318,11 +318,9 @@ function testHandleEmailChangeRevocation_success() {
     "EMAIL_CHANGE_REVOKE_ACTION_CODE"
   );
   // Simulate successful revoke email change code.
-  app
-    .getAuth()
-    .assertCheckActionCode(["EMAIL_CHANGE_REVOKE_ACTION_CODE"], {
-      data: { email: passwordAccount.getEmail() },
-    });
+  app.getAuth().assertCheckActionCode(["EMAIL_CHANGE_REVOKE_ACTION_CODE"], {
+    data: { email: passwordAccount.getEmail() },
+  });
   app.getAuth().assertApplyActionCode(["EMAIL_CHANGE_REVOKE_ACTION_CODE"]);
   return app
     .getAuth()
@@ -368,11 +366,9 @@ function testHandleEmailChangeRevocation_resetPassword_success() {
     "EMAIL_CHANGE_REVOKE_ACTION_CODE"
   );
   // Successful email change revocation.
-  app
-    .getAuth()
-    .assertCheckActionCode(["EMAIL_CHANGE_REVOKE_ACTION_CODE"], {
-      data: { email: passwordAccount.getEmail() },
-    });
+  app.getAuth().assertCheckActionCode(["EMAIL_CHANGE_REVOKE_ACTION_CODE"], {
+    data: { email: passwordAccount.getEmail() },
+  });
   app.getAuth().assertApplyActionCode(["EMAIL_CHANGE_REVOKE_ACTION_CODE"]);
   return app
     .getAuth()
@@ -409,11 +405,9 @@ function testHandleEmailChangeRevocation_resetPassword_failure() {
     "EMAIL_CHANGE_REVOKE_ACTION_CODE"
   );
   // Successful email change revocation.
-  app
-    .getAuth()
-    .assertCheckActionCode(["EMAIL_CHANGE_REVOKE_ACTION_CODE"], {
-      data: { email: passwordAccount.getEmail() },
-    });
+  app.getAuth().assertCheckActionCode(["EMAIL_CHANGE_REVOKE_ACTION_CODE"], {
+    data: { email: passwordAccount.getEmail() },
+  });
   app.getAuth().assertApplyActionCode(["EMAIL_CHANGE_REVOKE_ACTION_CODE"]);
   return app
     .getAuth()
@@ -491,11 +485,9 @@ function testHandleEmailChangeRevocation_applyActionCodefailure() {
     "EMAIL_CHANGE_REVOKE_ACTION_CODE"
   );
   // Simulate invalid action code for email change revocation.
-  app
-    .getAuth()
-    .assertCheckActionCode(["EMAIL_CHANGE_REVOKE_ACTION_CODE"], {
-      data: { email: passwordAccount.getEmail() },
-    });
+  app.getAuth().assertCheckActionCode(["EMAIL_CHANGE_REVOKE_ACTION_CODE"], {
+    data: { email: passwordAccount.getEmail() },
+  });
   app
     .getAuth()
     .assertApplyActionCode(

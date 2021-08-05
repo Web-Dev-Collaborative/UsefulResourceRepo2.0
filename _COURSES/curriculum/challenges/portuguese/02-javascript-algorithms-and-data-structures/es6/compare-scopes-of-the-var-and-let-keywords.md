@@ -45,7 +45,7 @@ This behavior will cause problems if you were to create a function and store it 
 var printNumTwo;
 for (var i = 0; i < 3; i++) {
   if (i === 2) {
-    printNumTwo = function() {
+    printNumTwo = function () {
       return i;
     };
   }
@@ -61,7 +61,7 @@ As you can see, `printNumTwo()` prints 3 and not 2. This is because the value as
 let printNumTwo;
 for (let i = 0; i < 3; i++) {
   if (i === 2) {
-    printNumTwo = function() {
+    printNumTwo = function () {
       return i;
     };
   }
@@ -85,7 +85,7 @@ This exercise is designed to illustrate the difference between how `var` and `le
 `var` should not exist in code.
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/var/g));
+(getUserInput) => assert(!getUserInput("index").match(/var/g));
 ```
 
 The variable `i` declared in the `if` statement should equal the string `block scope`.
@@ -93,14 +93,14 @@ The variable `i` declared in the `if` statement should equal the string `block s
 ```js
 (getUserInput) =>
   assert(
-    getUserInput('index').match(/(i\s*=\s*).*\s*.*\s*.*\1('|")block\s*scope\2/g)
+    getUserInput("index").match(/(i\s*=\s*).*\s*.*\s*.*\1('|")block\s*scope\2/g)
   );
 ```
 
 `checkScope()` should return the string `function scope`
 
 ```js
-assert(checkScope() === 'function scope');
+assert(checkScope() === "function scope");
 ```
 
 # --seed--
@@ -109,12 +109,12 @@ assert(checkScope() === 'function scope');
 
 ```js
 function checkScope() {
-  var i = 'function scope';
+  var i = "function scope";
   if (true) {
-    i = 'block scope';
-    console.log('Block scope i is: ', i);
+    i = "block scope";
+    console.log("Block scope i is: ", i);
   }
-  console.log('Function scope i is: ', i);
+  console.log("Function scope i is: ", i);
   return i;
 }
 ```
@@ -123,13 +123,13 @@ function checkScope() {
 
 ```js
 function checkScope() {
-  let i = 'function scope';
+  let i = "function scope";
   if (true) {
-    let i = 'block scope';
-    console.log('Block scope i is: ', i);
+    let i = "block scope";
+    console.log("Block scope i is: ", i);
   }
- 
-  console.log('Function scope i is: ', i);
+
+  console.log("Function scope i is: ", i);
   return i;
 }
 ```

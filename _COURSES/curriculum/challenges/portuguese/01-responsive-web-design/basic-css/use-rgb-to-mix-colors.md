@@ -2,7 +2,7 @@
 id: bad82fee1348bd9aedf08721
 title: Usar RGB para Misturar Cores
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cm24JU6'
+videoUrl: "https://scrimba.com/c/cm24JU6"
 forumTopicId: 18368
 dashedName: use-rgb-to-mix-colors
 ---
@@ -22,7 +22,7 @@ Substitua os códigos hexadecimais em nosso elemento `style` por seus valores RG
 O elemento `h1` com o texto `I am red!` deve ter a propriedade `color` com um valor red (vermelho).
 
 ```js
-assert($('.red-text').css('color') === 'rgb(255, 0, 0)');
+assert($(".red-text").css("color") === "rgb(255, 0, 0)");
 ```
 
 Você deve usar `rgb` para inserir a cor vermelha.
@@ -38,7 +38,7 @@ assert(
 O elemento `h1` com o texto `I am orchid!` deve ter a propriedade `color` com um valor orchid (orquídea).
 
 ```js
-assert($('.orchid-text').css('color') === 'rgb(218, 112, 214)');
+assert($(".orchid-text").css("color") === "rgb(218, 112, 214)");
 ```
 
 Você deve usar `rgb` para inserir a cor orquídea.
@@ -54,7 +54,7 @@ assert(
 O elemento `h1` com o texto `I am blue!` deve ter a propriedade `color` com um valor blue (azul).
 
 ```js
-assert($('.blue-text').css('color') === 'rgb(0, 0, 255)');
+assert($(".blue-text").css("color") === "rgb(0, 0, 255)");
 ```
 
 Você deve usar `rgb` para inserir a cor azul.
@@ -70,7 +70,7 @@ assert(
 O elemento `h1` com o texto `I am sienna!` deve ter a propriedade `color` com um valor sienna (siena).
 
 ```js
-assert($('.sienna-text').css('color') === 'rgb(160, 82, 45)');
+assert($(".sienna-text").css("color") === "rgb(160, 82, 45)");
 ```
 
 Você deve usar `rgb` para inserir a cor siena.
@@ -126,7 +126,7 @@ assert(
     color: rgb(160, 82, 45);
   }
   .blue-text {
-    color:rgb(0, 0, 255);
+    color: rgb(0, 0, 255);
   }
 </style>
 

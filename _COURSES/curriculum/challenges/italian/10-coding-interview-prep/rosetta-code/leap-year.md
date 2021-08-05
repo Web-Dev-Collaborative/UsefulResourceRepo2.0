@@ -15,13 +15,13 @@ Determine whether a given year is a leap year in the Gregorian calendar.
 `isLeapYear` should be a function.
 
 ```js
-assert(typeof isLeapYear == 'function');
+assert(typeof isLeapYear == "function");
 ```
 
 `isLeapYear()` should return a boolean.
 
 ```js
-assert(typeof isLeapYear(2018) == 'boolean');
+assert(typeof isLeapYear(2018) == "boolean");
 ```
 
 `isLeapYear(2018)` should return `false`.
@@ -65,9 +65,7 @@ assert.equal(isLeapYear(1800), false);
 ## --seed-contents--
 
 ```js
-function isLeapYear(year) {
-
-}
+function isLeapYear(year) {}
 ```
 
 # --solutions--

@@ -1,6 +1,6 @@
 ---
 id: 5900f38f1000cf542c50fea2
-title: 'Problem 35: Circular primes'
+title: "Problem 35: Circular primes"
 challengeType: 5
 forumTopicId: 302009
 dashedName: problem-35-circular-primes
@@ -14,7 +14,7 @@ There are thirteen such primes below 100: 2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73
 
 How many circular primes are there below `n`, whereas 100 ≤ `n` ≤ 1000000?
 
-**Note:**  
+**Note:**
 
 Circular primes individual rotation can exceed `n`.
 
@@ -23,7 +23,7 @@ Circular primes individual rotation can exceed `n`.
 `circularPrimes(100)` should return a number.
 
 ```js
-assert(typeof circularPrimes(100) === 'number');
+assert(typeof circularPrimes(100) === "number");
 ```
 
 `circularPrimes(100)` should return 13.
@@ -68,7 +68,6 @@ assert(circularPrimes(1000000) == 55);
 
 ```js
 function circularPrimes(n) {
-
   return n;
 }
 
@@ -115,8 +114,7 @@ function circularPrimes(n) {
       for (let x = rotate(curr); x != curr; x = rotate(x)) {
         if (x > n && primes[x]) {
           continue;
-        }
-        else if (!primes[x]) {
+        } else if (!primes[x]) {
           // If the rotated value is 0 then it isn't a circular prime, break the loop
           tmp = 0;
           break;

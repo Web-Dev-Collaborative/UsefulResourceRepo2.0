@@ -1,6 +1,6 @@
 ---
 id: 5900f3c81000cf542c50fedb
-title: 'Problem 92: Square digit chains'
+title: "Problem 92: Square digit chains"
 challengeType: 5
 forumTopicId: 302209
 dashedName: problem-92-square-digit-chains
@@ -12,10 +12,12 @@ A number chain is created by continuously adding the square of the digits in a n
 
 For example,
 
-$$\begin{align}
+$$
+\begin{align}
   & 44 → 32 → 13 → 10 → \boldsymbol{1} → \boldsymbol{1}\\\\
   & 85 → \boldsymbol{89} → 145 → 42 → 20 → 4 → 16 → 37 → 58 → \boldsymbol{89}\\\\
-\end{align}$$
+\end{align}
+$$
 
 Therefore any chain that arrives at 1 or 89 will become stuck in an endless loop. What is most amazing is that EVERY starting number will eventually arrive at 1 or 89.
 
@@ -26,7 +28,7 @@ How many starting numbers below `limit` will arrive at 89?
 `squareDigitChains(100)` should return a number.
 
 ```js
-assert(typeof squareDigitChains(100) === 'number');
+assert(typeof squareDigitChains(100) === "number");
 ```
 
 `squareDigitChains(100)` should return `80`.
@@ -59,7 +61,6 @@ assert.strictEqual(squareDigitChains(10000000), 8581146);
 
 ```js
 function squareDigitChains(limit) {
-
   return true;
 }
 

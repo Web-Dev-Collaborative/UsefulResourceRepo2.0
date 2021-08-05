@@ -1,6 +1,6 @@
 ---
 id: 5900f4e41000cf542c50fff5
-title: 'Problem 375: Minimum of subsequences'
+title: "Problem 375: Minimum of subsequences"
 challengeType: 5
 forumTopicId: 302037
 dashedName: problem-375-minimum-of-subsequences
@@ -40,7 +40,6 @@ assert.strictEqual(euler375(), 7435327983715286000);
 
 ```js
 function euler375() {
-
   return true;
 }
 

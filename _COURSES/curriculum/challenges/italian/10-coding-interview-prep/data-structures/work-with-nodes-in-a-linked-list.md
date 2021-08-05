@@ -23,13 +23,13 @@ Create a `Cat` and `Dog` node and manually add them to the line.
 Your `Puppy` node should have a reference to a `Cat` node.
 
 ```js
-assert(Puppy.next.element === 'Cat');
+assert(Puppy.next.element === "Cat");
 ```
 
 Your `Cat` node should have a reference to a `Dog` node.
 
 ```js
-assert(Cat.next.element === 'Dog');
+assert(Cat.next.element === "Dog");
 ```
 
 # --seed--
@@ -37,12 +37,12 @@ assert(Cat.next.element === 'Dog');
 ## --seed-contents--
 
 ```js
-var Node = function(element) {
+var Node = function (element) {
   this.element = element;
   this.next = null;
 };
-var Kitten = new Node('Kitten');
-var Puppy = new Node('Puppy');
+var Kitten = new Node("Kitten");
+var Puppy = new Node("Puppy");
 
 Kitten.next = Puppy;
 // Only change code below this line

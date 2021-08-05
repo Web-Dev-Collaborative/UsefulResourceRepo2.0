@@ -1,6 +1,6 @@
 ---
 id: 5900f50f1000cf542c510021
-title: 'Problem 418: Factorisation triples'
+title: "Problem 418: Factorisation triples"
 challengeType: 5
 forumTopicId: 302087
 dashedName: problem-418-factorisation-triples
@@ -32,7 +32,6 @@ assert.strictEqual(euler418(), 1177163565297340400);
 
 ```js
 function euler418() {
-
   return true;
 }
 

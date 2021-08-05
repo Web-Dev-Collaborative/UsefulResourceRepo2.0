@@ -2,7 +2,7 @@
 id: 587d78a4367417b2b2512ad4
 title: Ajustar a tonalidade de uma cor
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cPp38TZ'
+videoUrl: "https://scrimba.com/c/cPp38TZ"
 forumTopicId: 301036
 dashedName: adjust-the-hue-of-a-color
 ---
@@ -48,19 +48,19 @@ assert(code.match(/\.blue\s*?{\s*?background-color\s*:\s*?hsl/gi));
 O elemento `div` com a classe `green` deve ter apropriedade `background-color` com o valor green (verde).
 
 ```js
-assert($('.green').css('background-color') == 'rgb(0, 255, 0)');
+assert($(".green").css("background-color") == "rgb(0, 255, 0)");
 ```
 
 O elemento `div` com a classe `cyan` deve ter apropriedade `background-color` com o valor cyan (ciano).
 
 ```js
-assert($('.cyan').css('background-color') == 'rgb(0, 255, 255)');
+assert($(".cyan").css("background-color") == "rgb(0, 255, 255)");
 ```
 
 O elemento `div` com a classe `blue` deve ter apropriedade `background-color` com o valor blue (azul).
 
 ```js
-assert($('.blue').css('background-color') == 'rgb(0, 0, 255)');
+assert($(".blue").css("background-color") == "rgb(0, 0, 255)");
 ```
 
 # --seed--
@@ -70,7 +70,7 @@ assert($('.blue').css('background-color') == 'rgb(0, 0, 255)');
 ```html
 <style>
   body {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
   }
 
   .green {
@@ -102,7 +102,7 @@ assert($('.blue').css('background-color') == 'rgb(0, 0, 255)');
 ```html
 <style>
   body {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
   }
 
   .green {
@@ -110,7 +110,7 @@ assert($('.blue').css('background-color') == 'rgb(0, 0, 255)');
   }
 
   .cyan {
-    background-color:   hsl(180, 100%, 50%);
+    background-color: hsl(180, 100%, 50%);
   }
 
   .blue {

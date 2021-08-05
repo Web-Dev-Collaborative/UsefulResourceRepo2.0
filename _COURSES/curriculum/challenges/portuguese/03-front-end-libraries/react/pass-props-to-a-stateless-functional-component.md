@@ -12,14 +12,14 @@ The previous challenges covered a lot about creating and composing JSX elements,
 
 ```jsx
 <App>
-  <Welcome user='Mark' />
+  <Welcome user="Mark" />
 </App>
 ```
 
 You use **custom HTML attributes** created by you and supported by React to be passed to the component. In this case, the created property `user` is passed to the component `Welcome`. Since `Welcome` is a stateless functional component, it has access to this value like so:
 
 ```jsx
-const Welcome = (props) => <h1>Hello, {props.user}!</h1>
+const Welcome = (props) => <h1>Hello, {props.user}!</h1>;
 ```
 
 It is standard to call this value `props` and when dealing with stateless functional components, you basically consider it as an argument to a function which returns JSX. You can access the value of the argument in the function body. With class components, you will see this is a little different.
@@ -36,7 +36,7 @@ The `Calendar` component should return a single `div` element.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(Calendar));
-    return mockedComponent.children().type() === 'div';
+    return mockedComponent.children().type() === "div";
   })()
 );
 ```
@@ -47,7 +47,7 @@ The second child of the `Calendar` component should be the `CurrentDate` compone
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(Calendar));
-    return mockedComponent.children().childAt(1).name() === 'CurrentDate';
+    return mockedComponent.children().childAt(1).name() === "CurrentDate";
   })()
 );
 ```
@@ -70,7 +70,7 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(Calendar));
     const prop = mockedComponent.children().childAt(1).props().date;
-    return typeof prop === 'string' && prop.length > 0;
+    return typeof prop === "string" && prop.length > 0;
   })()
 );
 ```
@@ -84,13 +84,13 @@ assert(/<CurrentDatedate={Date\(\)}\/>/.test(__helpers.removeWhiteSpace(code)));
 The `CurrentDate` component should render the value from the `date` prop in the `p` tag.
 
 ```js
-let date = 'dummy date';
+let date = "dummy date";
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(
       React.createElement(CurrentDate, { date })
     );
-    return mockedComponent.find('p').html().includes(date);
+    return mockedComponent.find("p").html().includes(date);
   })()
 );
 ```
@@ -100,7 +100,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<Calendar />, document.getElementById('root'))
+ReactDOM.render(<Calendar />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -109,9 +109,9 @@ ReactDOM.render(<Calendar />, document.getElementById('root'))
 const CurrentDate = (props) => {
   return (
     <div>
-      { /* Change code below this line */ }
+      {/* Change code below this line */}
       <p>The current date is: </p>
-      { /* Change code above this line */ }
+      {/* Change code above this line */}
     </div>
   );
 };
@@ -124,13 +124,13 @@ class Calendar extends React.Component {
     return (
       <div>
         <h3>What date is it?</h3>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
         <CurrentDate />
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -139,9 +139,9 @@ class Calendar extends React.Component {
 const CurrentDate = (props) => {
   return (
     <div>
-      { /* Change code below this line */ }
+      {/* Change code below this line */}
       <p>The current date is: {props.date}</p>
-      { /* Change code above this line */ }
+      {/* Change code above this line */}
     </div>
   );
 };
@@ -154,11 +154,11 @@ class Calendar extends React.Component {
     return (
       <div>
         <h3>What date is it?</h3>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
         <CurrentDate date={Date()} />
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 ```

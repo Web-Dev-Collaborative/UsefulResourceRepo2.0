@@ -19,7 +19,7 @@ Implement a function to determine the state of the doors after the last pass. Re
 `getFinalOpenedDoors` should be a function.
 
 ```js
-assert(typeof getFinalOpenedDoors === 'function');
+assert(typeof getFinalOpenedDoors === "function");
 ```
 
 `getFinalOpenedDoors` should return an array.
@@ -45,9 +45,7 @@ const solution = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100];
 ## --seed-contents--
 
 ```js
-function getFinalOpenedDoors(numDoors) {
-
-}
+function getFinalOpenedDoors(numDoors) {}
 ```
 
 # --solutions--

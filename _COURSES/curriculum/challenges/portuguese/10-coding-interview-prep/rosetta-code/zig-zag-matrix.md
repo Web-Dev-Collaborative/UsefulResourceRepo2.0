@@ -29,19 +29,19 @@ Write a function that takes the size of the zig-zag matrix, and returns the corr
 ZigZagMatrix should be a function.
 
 ```js
-assert.equal(typeof ZigZagMatrix, 'function');
+assert.equal(typeof ZigZagMatrix, "function");
 ```
 
 ZigZagMatrix should return array.
 
 ```js
-assert.equal(typeof ZigZagMatrix(1), 'object');
+assert.equal(typeof ZigZagMatrix(1), "object");
 ```
 
 ZigZagMatrix should return an array of nested arrays.
 
 ```js
-assert.equal(typeof ZigZagMatrix(1)[0], 'object');
+assert.equal(typeof ZigZagMatrix(1)[0], "object");
 ```
 
 ZigZagMatrix(1) should return \[[0]].
@@ -68,13 +68,16 @@ assert.deepEqual(ZigZagMatrix(5), zm5);
 
 ```js
 const zm1 = [[0]];
-const zm2 = [[0, 1], [2, 3]];
+const zm2 = [
+  [0, 1],
+  [2, 3],
+];
 const zm5 = [
   [0, 1, 5, 6, 14],
   [2, 4, 7, 13, 15],
   [3, 8, 12, 16, 21],
   [9, 11, 17, 20, 22],
-  [10, 18, 19, 23, 24]
+  [10, 18, 19, 23, 24],
 ];
 ```
 
@@ -82,7 +85,6 @@ const zm5 = [
 
 ```js
 function ZigZagMatrix(n) {
-
   return [[], []];
 }
 ```

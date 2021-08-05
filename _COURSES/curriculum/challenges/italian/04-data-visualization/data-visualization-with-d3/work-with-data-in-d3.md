@@ -23,7 +23,8 @@ Ecco un esempio che seleziona un elemento `ul` e crea un nuovo elemento lista in
   <ul></ul>
   <script>
     const dataset = ["a", "b", "c"];
-    d3.select("ul").selectAll("li")
+    d3.select("ul")
+      .selectAll("li")
       .data(dataset)
       .enter()
       .append("li")
@@ -43,14 +44,14 @@ Seleziona il nodo `body`, dopodiché seleziona tutti gli elementi `h2`. Fai crea
 Il tuo documento dovrebbe avere 9 elementi `h2`.
 
 ```js
-assert($('h2').length == 9);
+assert($("h2").length == 9);
 ```
 
 Il testo nell'elemento `h2` dovrebbe dire `New Title`. Le maiuscole e la spaziatura dovrebbero corrispondere esattamente.
 
 ```js
 assert(
-  $('h2')
+  $("h2")
     .text()
     .match(/New Title/g).length == 9
 );
@@ -79,8 +80,6 @@ assert(code.match(/\.enter/g));
 
     // Add your code below this line
 
-
-
     // Add your code above this line
   </script>
 </body>
@@ -98,8 +97,7 @@ assert(code.match(/\.enter/g));
       .data(dataset)
       .enter()
       .append("h2")
-      .text("New Title")
-
+      .text("New Title");
   </script>
 </body>
 ```

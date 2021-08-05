@@ -1,6 +1,6 @@
 ---
 id: 5900f5221000cf542c510033
-title: 'Problem 436: Unfair wager'
+title: "Problem 436: Unfair wager"
 challengeType: 5
 forumTopicId: 302107
 dashedName: problem-436-unfair-wager
@@ -40,7 +40,6 @@ assert.strictEqual(euler436(), 0.5276662759);
 
 ```js
 function euler436() {
-
   return true;
 }
 

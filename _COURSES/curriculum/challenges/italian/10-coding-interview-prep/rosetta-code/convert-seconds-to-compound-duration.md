@@ -55,7 +55,7 @@ Demonstrate that it passes the following three test-cases:
 `convertSeconds` should be a function.
 
 ```js
-assert(typeof convertSeconds === 'function');
+assert(typeof convertSeconds === "function");
 ```
 
 `convertSeconds(7259)` should return `2 hr, 59 sec`.
@@ -82,14 +82,13 @@ assert.equal(convertSeconds(testCases[2]), results[2]);
 
 ```js
 const testCases = [7259, 86400, 6000000];
-const results = ['2 hr, 59 sec', '1 d', '9 wk, 6 d, 10 hr, 40 min'];
+const results = ["2 hr, 59 sec", "1 d", "9 wk, 6 d, 10 hr, 40 min"];
 ```
 
 ## --seed-contents--
 
 ```js
 function convertSeconds(sec) {
-
   return true;
 }
 ```
@@ -98,31 +97,31 @@ function convertSeconds(sec) {
 
 ```js
 function convertSeconds(sec) {
-  const localNames = ['wk', 'd', 'hr', 'min', 'sec'];
+  const localNames = ["wk", "d", "hr", "min", "sec"];
   // compoundDuration :: [String] -> Int -> String
   const compoundDuration = (labels, intSeconds) =>
     weekParts(intSeconds)
-    .map((v, i) => [v, labels[i]])
-    .reduce((a, x) =>
-      a.concat(x[0] ? [`${x[0]} ${x[1] || '?'}`] : []), []
-    )
-    .join(', ');
+      .map((v, i) => [v, labels[i]])
+      .reduce((a, x) => a.concat(x[0] ? [`${x[0]} ${x[1] || "?"}`] : []), [])
+      .join(", ");
 
-    // weekParts :: Int -> [Int]
-  const weekParts = intSeconds => [0, 7, 24, 60, 60]
-    .reduceRight((a, x) => {
-      const r = a.rem;
-      const mod = x !== 0 ? r % x : r;
+  // weekParts :: Int -> [Int]
+  const weekParts = (intSeconds) =>
+    [0, 7, 24, 60, 60].reduceRight(
+      (a, x) => {
+        const r = a.rem;
+        const mod = x !== 0 ? r % x : r;
 
-      return {
-        rem: (r - mod) / (x || 1),
-        parts: [mod].concat(a.parts)
-      };
-    }, {
-      rem: intSeconds,
-      parts: []
-    })
-    .parts;
+        return {
+          rem: (r - mod) / (x || 1),
+          parts: [mod].concat(a.parts),
+        };
+      },
+      {
+        rem: intSeconds,
+        parts: [],
+      }
+    ).parts;
 
   return compoundDuration(localNames, sec);
 }

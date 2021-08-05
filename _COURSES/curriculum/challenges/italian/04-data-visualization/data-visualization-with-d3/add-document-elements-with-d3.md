@@ -27,9 +27,7 @@ Il metodo `text()` imposta il testo del nodo selezionato, o ottiene il testo cor
 Ecco un esempio che seleziona una lista non ordinata, aggiunge un elemento alla lista e aggiunge del testo:
 
 ```js
-d3.select("ul")
-  .append("li")
-  .text("Very important item");
+d3.select("ul").append("li").text("Very important item");
 ```
 
 D3 consente di concatenare diversi metodi tra loro con dei punti per eseguire un certo numero di azioni in una stessa riga.
@@ -43,13 +41,13 @@ Usa il metodo `select` per selezionare il tag `body` nel documento. Quindi aggiu
 Il `body` dovrebbe avere un elemento `h1`.
 
 ```js
-assert($('body').children('h1').length == 1);
+assert($("body").children("h1").length == 1);
 ```
 
 L'elemento `h1` dovrebbe contenere il testo `Learning D3`.
 
 ```js
-assert($('h1').text() == 'Learning D3');
+assert($("h1").text() == "Learning D3");
 ```
 
 Il tuo codice dovrebbe accedere all'oggetto `d3`.
@@ -85,8 +83,6 @@ assert(code.match(/\.text/g));
   <script>
     // Add your code below this line
 
-
-
     // Add your code above this line
   </script>
 </body>
@@ -97,9 +93,7 @@ assert(code.match(/\.text/g));
 ```html
 <body>
   <script>
-    d3.select("body")
-      .append("h1")
-      .text("Learning D3")
+    d3.select("body").append("h1").text("Learning D3");
   </script>
 </body>
 ```

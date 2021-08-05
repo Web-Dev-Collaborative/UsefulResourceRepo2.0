@@ -1,6 +1,6 @@
 ---
 id: 5900f3db1000cf542c50feee
-title: 'Problem 111: Primes with runs'
+title: "Problem 111: Primes with runs"
 challengeType: 5
 forumTopicId: 301736
 dashedName: problem-111-primes-with-runs
@@ -36,7 +36,6 @@ assert.strictEqual(euler111(), 612407567715);
 
 ```js
 function euler111() {
-
   return true;
 }
 

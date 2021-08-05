@@ -1,6 +1,6 @@
 ---
 id: 5900f3d61000cf542c50fee7
-title: 'Problem 103: Special subset sums: optimum'
+title: "Problem 103: Special subset sums: optimum"
 challengeType: 5
 forumTopicId: 301727
 dashedName: problem-103-special-subset-sums-optimum
@@ -40,7 +40,6 @@ assert.strictEqual(euler103(), 20313839404245);
 
 ```js
 function euler103() {
-
   return true;
 }
 

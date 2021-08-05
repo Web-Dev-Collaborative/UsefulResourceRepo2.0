@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244df
 title: Multiple Identical Options in Switch Statements
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cdBKWCV'
+videoUrl: "https://scrimba.com/c/cdBKWCV"
 forumTopicId: 18242
 dashedName: multiple-identical-options-in-switch-statements
 ---
@@ -13,7 +13,7 @@ If the `break` statement is omitted from a `switch` statement's `case`, the foll
 
 ```js
 var result = "";
-switch(val) {
+switch (val) {
   case 1:
   case 2:
   case 3:
@@ -40,55 +40,55 @@ Write a switch statement to set `answer` for the following ranges:
 `sequentialSizes(1)` should return the string `Low`
 
 ```js
-assert(sequentialSizes(1) === 'Low');
+assert(sequentialSizes(1) === "Low");
 ```
 
 `sequentialSizes(2)` should return the string `Low`
 
 ```js
-assert(sequentialSizes(2) === 'Low');
+assert(sequentialSizes(2) === "Low");
 ```
 
 `sequentialSizes(3)` should return the string `Low`
 
 ```js
-assert(sequentialSizes(3) === 'Low');
+assert(sequentialSizes(3) === "Low");
 ```
 
 `sequentialSizes(4)` should return the string `Mid`
 
 ```js
-assert(sequentialSizes(4) === 'Mid');
+assert(sequentialSizes(4) === "Mid");
 ```
 
 `sequentialSizes(5)` should return the string `Mid`
 
 ```js
-assert(sequentialSizes(5) === 'Mid');
+assert(sequentialSizes(5) === "Mid");
 ```
 
 `sequentialSizes(6)` should return the string `Mid`
 
 ```js
-assert(sequentialSizes(6) === 'Mid');
+assert(sequentialSizes(6) === "Mid");
 ```
 
 `sequentialSizes(7)` should return the string `High`
 
 ```js
-assert(sequentialSizes(7) === 'High');
+assert(sequentialSizes(7) === "High");
 ```
 
 `sequentialSizes(8)` should return the string `High`
 
 ```js
-assert(sequentialSizes(8) === 'High');
+assert(sequentialSizes(8) === "High");
 ```
 
 `sequentialSizes(9)` should return the string `High`
 
 ```js
-assert(sequentialSizes(9) === 'High');
+assert(sequentialSizes(9) === "High");
 ```
 
 You should not use any `if` or `else` statements
@@ -112,8 +112,6 @@ function sequentialSizes(val) {
   var answer = "";
   // Only change code below this line
 
-
-
   // Only change code above this line
   return answer;
 }
@@ -127,7 +125,7 @@ sequentialSizes(1);
 function sequentialSizes(val) {
   var answer = "";
 
-  switch(val) {
+  switch (val) {
     case 1:
     case 2:
     case 3:

@@ -1,6 +1,6 @@
 ---
 id: 5900f5361000cf542c510048
-title: 'Problem 457: A polynomial modulo the square of a prime'
+title: "Problem 457: A polynomial modulo the square of a prime"
 challengeType: 5
 forumTopicId: 302131
 dashedName: problem-457-a-polynomial-modulo-the-square-of-a-prime
@@ -32,7 +32,6 @@ assert.strictEqual(euler457(), 2647787126797397000);
 
 ```js
 function euler457() {
-
   return true;
 }
 

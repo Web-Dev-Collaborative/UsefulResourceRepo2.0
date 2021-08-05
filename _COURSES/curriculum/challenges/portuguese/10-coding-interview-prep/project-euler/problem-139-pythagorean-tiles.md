@@ -1,6 +1,6 @@
 ---
 id: 5900f3f71000cf542c50ff0a
-title: 'Problem 139: Pythagorean tiles'
+title: "Problem 139: Pythagorean tiles"
 challengeType: 5
 forumTopicId: 301767
 dashedName: problem-139-pythagorean-tiles
@@ -28,7 +28,6 @@ assert.strictEqual(euler139(), 10057761);
 
 ```js
 function euler139() {
-
   return true;
 }
 

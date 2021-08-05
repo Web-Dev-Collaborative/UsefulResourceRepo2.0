@@ -23,7 +23,7 @@ Usa i metodi `data()`, `enter()`, e `append()` per associare il `dataset` ai nuo
 Il tuo codice dovrebbe avere 10 elementi `circle`.
 
 ```js
-assert($('circle').length == 10);
+assert($("circle").length == 10);
 ```
 
 # --seed--
@@ -34,34 +34,31 @@ assert($('circle').length == 10);
 <body>
   <script>
     const dataset = [
-                  [ 34,    78 ],
-                  [ 109,   280 ],
-                  [ 310,   120 ],
-                  [ 79,    411 ],
-                  [ 420,   220 ],
-                  [ 233,   145 ],
-                  [ 333,   96 ],
-                  [ 222,   333 ],
-                  [ 78,    320 ],
-                  [ 21,    123 ]
-                ];
-
+      [34, 78],
+      [109, 280],
+      [310, 120],
+      [79, 411],
+      [420, 220],
+      [233, 145],
+      [333, 96],
+      [222, 333],
+      [78, 320],
+      [21, 123],
+    ];
 
     const w = 500;
     const h = 500;
 
-    const svg = d3.select("body")
-                  .append("svg")
-                  .attr("width", w)
-                  .attr("height", h);
+    const svg = d3
+      .select("body")
+      .append("svg")
+      .attr("width", w)
+      .attr("height", h);
 
-    svg.selectAll("circle")
-       // Add your code below this line
+    svg.selectAll("circle");
+    // Add your code below this line
 
-
-
-       // Add your code above this line
-
+    // Add your code above this line
   </script>
 </body>
 ```
@@ -72,32 +69,28 @@ assert($('circle').length == 10);
 <body>
   <script>
     const dataset = [
-                  [ 34,    78 ],
-                  [ 109,   280 ],
-                  [ 310,   120 ],
-                  [ 79,    411 ],
-                  [ 420,   220 ],
-                  [ 233,   145 ],
-                  [ 333,   96 ],
-                  [ 222,   333 ],
-                  [ 78,    320 ],
-                  [ 21,    123 ]
-                ];
-
+      [34, 78],
+      [109, 280],
+      [310, 120],
+      [79, 411],
+      [420, 220],
+      [233, 145],
+      [333, 96],
+      [222, 333],
+      [78, 320],
+      [21, 123],
+    ];
 
     const w = 500;
     const h = 500;
 
-    const svg = d3.select("body")
-                  .append("svg")
-                  .attr("width", w)
-                  .attr("height", h);
+    const svg = d3
+      .select("body")
+      .append("svg")
+      .attr("width", w)
+      .attr("height", h);
 
-    svg.selectAll("circle")
-       .data(dataset)
-       .enter()
-       .append("circle")
-
+    svg.selectAll("circle").data(dataset).enter().append("circle");
   </script>
 </body>
 ```

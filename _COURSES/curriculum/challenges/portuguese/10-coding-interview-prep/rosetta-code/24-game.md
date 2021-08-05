@@ -17,6 +17,7 @@ The aim of the game is to arrange four numbers in a way that when evaluated, the
 Implement a function that takes a string of four digits as its argument, with each digit from 1 to 9 (inclusive) with repetitions allowed, and returns an arithmetic expression that evaluates to the number 24. If no such solution exists, return "no solution exists".
 
 **Rules:**
+
 <ul>
   <li> Only the following operators/functions are allowed: multiplication, division, addition, subtraction. </li>
   <li> Division should use floating point or rational arithmetic, etc, to preserve remainders. </li>
@@ -36,7 +37,7 @@ Implement a function that takes a string of four digits as its argument, with ea
 `solve24` should be a function.
 
 ```js
-assert(typeof solve24 === 'function');
+assert(typeof solve24 === "function");
 ```
 
 `solve24("4878")` should return `(7-8/8)*4` or `4*(7-8/8)`
@@ -68,18 +69,67 @@ assert(include(answers[3], removeParentheses(solve24(testCases[3]))));
 ## --after-user-code--
 
 ```js
-const testCases = [
-  '4878',
-  '1234',
-  '6789',
-  '1127'
-];
+const testCases = ["4878", "1234", "6789", "1127"];
 
 const answers = [
-  ['(7-8/8)*4', '4*(7-8/8)', '(4-8+7)*8', '(4+7-8)*8', '(7+4-8)*8', '(7-8+4)*8', '8*(4-8+7)', '8*(4+7-8)', '8*(7+4-8)', '8*(7-8+4)'],
-  ['1*2*3*4', '1*2*4*3', '1*3*2*4', '1*3*4*2', '1*4*2*3', '1*4*3*2', '2*1*3*4', '2*1*4*3', '2*3*1*4', '2*3*4*1', '2*4*3*1', '2*4*1*3', '3*1*2*4', '3*1*4*2', '3*2*1*4', '3*2*4*1', '3*4*1*2', '3*4*2*1', '4*1*2*3', '4*1*3*2', '4*2*1*3', '4*2*3*1', '4*3*1*2', '4*3*2*1', '(1+2+3)*4', '(1+3+2)*4', '(2+1+3)*4', '(2+3+1)*4', '(3+1+2)*4', '(3+2+1)*4', '4*(1+2+3)', '4*(2+1+3)', '4*(2+3+1)', '4*(3+1+2)', '4*(3+2+1)'],
-  ['(6*8)/(9-7)', '(8*6)/(9-7)', '6*8/(9-7)', '8*6/(9-7)'],
-  ['(1+7)*(2+1)', '(1+7)*(1+2)', '(1+2)*(1+7)', '(1+2)*(7+1)', '(2+1)*(1+7)', '(7+1)*(2+1)']
+  [
+    "(7-8/8)*4",
+    "4*(7-8/8)",
+    "(4-8+7)*8",
+    "(4+7-8)*8",
+    "(7+4-8)*8",
+    "(7-8+4)*8",
+    "8*(4-8+7)",
+    "8*(4+7-8)",
+    "8*(7+4-8)",
+    "8*(7-8+4)",
+  ],
+  [
+    "1*2*3*4",
+    "1*2*4*3",
+    "1*3*2*4",
+    "1*3*4*2",
+    "1*4*2*3",
+    "1*4*3*2",
+    "2*1*3*4",
+    "2*1*4*3",
+    "2*3*1*4",
+    "2*3*4*1",
+    "2*4*3*1",
+    "2*4*1*3",
+    "3*1*2*4",
+    "3*1*4*2",
+    "3*2*1*4",
+    "3*2*4*1",
+    "3*4*1*2",
+    "3*4*2*1",
+    "4*1*2*3",
+    "4*1*3*2",
+    "4*2*1*3",
+    "4*2*3*1",
+    "4*3*1*2",
+    "4*3*2*1",
+    "(1+2+3)*4",
+    "(1+3+2)*4",
+    "(2+1+3)*4",
+    "(2+3+1)*4",
+    "(3+1+2)*4",
+    "(3+2+1)*4",
+    "4*(1+2+3)",
+    "4*(2+1+3)",
+    "4*(2+3+1)",
+    "4*(3+1+2)",
+    "4*(3+2+1)",
+  ],
+  ["(6*8)/(9-7)", "(8*6)/(9-7)", "6*8/(9-7)", "8*6/(9-7)"],
+  [
+    "(1+7)*(2+1)",
+    "(1+7)*(1+2)",
+    "(1+2)*(1+7)",
+    "(1+2)*(7+1)",
+    "(2+1)*(1+7)",
+    "(7+1)*(2+1)",
+  ],
 ];
 
 function include(ansArr, res) {
@@ -100,10 +150,10 @@ function removeParentheses(ans) {
 //Helper to remove left and right parantheses
 function removeParenthesesHelper(ans, i) {
   while (i > 0 && i < ans.length - 1) {
-    if (ans[i - 1] === '(' && ans[i + 1] === ')') {
+    if (ans[i - 1] === "(" && ans[i + 1] === ")") {
       //Paranthesis detected. Remove them.
-      ans = replaceChar(ans, '', i - 1);
-      ans = replaceChar(ans, '', i);
+      ans = replaceChar(ans, "", i - 1);
+      ans = replaceChar(ans, "", i);
       i--;
     } else {
       return ans;
@@ -124,8 +174,7 @@ function replaceChar(origString, replaceChar, index) {
 ## --seed-contents--
 
 ```js
-function solve24 (numStr) {
-
+function solve24(numStr) {
   return true;
 }
 ```
@@ -134,17 +183,16 @@ function solve24 (numStr) {
 
 ```js
 function solve24(numStr) {
-  const digitsArr = numStr.split('');
+  const digitsArr = numStr.split("");
   const answers = [];
 
   const digitPermutations = [];
   const operatorPermutations = [];
 
-  function generateDigitPermutations (digits, permutations = []) {
+  function generateDigitPermutations(digits, permutations = []) {
     if (digits.length === 0) {
       digitPermutations.push(permutations);
-    }
-    else {
+    } else {
       for (let i = 0; i < digits.length; i++) {
         const curr = digits.slice();
         const next = curr.splice(i, 1);
@@ -153,12 +201,11 @@ function solve24(numStr) {
     }
   }
 
-  function generateOperatorPermutations (permutations = []) {
-    const operators = ['+', '-', '*', '/'];
+  function generateOperatorPermutations(permutations = []) {
+    const operators = ["+", "-", "*", "/"];
     if (permutations.length === 3) {
       operatorPermutations.push(permutations);
-    }
-    else {
+    } else {
       for (let i = 0; i < operators.length; i++) {
         const curr = permutations.slice();
         curr.push(operators[i]);
@@ -174,7 +221,7 @@ function solve24(numStr) {
 
   return answers[0];
 
-  function interleave () {
+  function interleave() {
     for (let i = 0; i < digitPermutations.length; i++) {
       for (let j = 0; j < operatorPermutations.length; j++) {
         const d = digitPermutations[i];
@@ -186,10 +233,10 @@ function solve24(numStr) {
           `${d[0]}${o[0]}${d[1]}${o[1]}(${d[2]}${o[2]}${d[3]})`,
           `${d[0]}${o[0]}(${d[1]}${o[1]}${d[2]}${o[2]}${d[3]})`,
           `(${d[0]}${o[0]}${d[1]}${o[1]}${d[2]})${o[2]}${d[3]}`,
-          `(${d[0]}${o[0]}${d[1]})${o[1]}(${d[2]}${o[2]}${d[3]})`
+          `(${d[0]}${o[0]}${d[1]})${o[1]}(${d[2]}${o[2]}${d[3]})`,
         ];
 
-        perm.forEach(combination => {
+        perm.forEach((combination) => {
           const res = eval(combination);
 
           if (res === 24) {

@@ -23,7 +23,7 @@ An `action` object should exist.
 ```js
 assert(
   (function () {
-    return typeof action === 'object';
+    return typeof action === "object";
   })()
 );
 ```
@@ -33,7 +33,7 @@ The `action` object should have a key property `type` with value `LOGIN`.
 ```js
 assert(
   (function () {
-    return action.type === 'LOGIN';
+    return action.type === "LOGIN";
   })()
 );
 ```
@@ -50,6 +50,6 @@ assert(
 
 ```js
 const action = {
-  type: 'LOGIN'
-}
+  type: "LOGIN",
+};
 ```

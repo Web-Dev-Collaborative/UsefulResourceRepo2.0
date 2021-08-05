@@ -1,6 +1,6 @@
 ---
 id: 5900f46e1000cf542c50ff81
-title: 'Problem 258: A lagged Fibonacci sequence'
+title: "Problem 258: A lagged Fibonacci sequence"
 challengeType: 5
 forumTopicId: 301906
 dashedName: problem-258-a-lagged-fibonacci-sequence
@@ -26,7 +26,6 @@ assert.strictEqual(euler258(), 12747994);
 
 ```js
 function euler258() {
-
   return true;
 }
 

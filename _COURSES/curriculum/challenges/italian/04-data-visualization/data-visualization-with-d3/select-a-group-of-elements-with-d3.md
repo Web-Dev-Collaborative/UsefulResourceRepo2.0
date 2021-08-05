@@ -26,7 +26,7 @@ Nella pagina ci dovrebbero essere 3 elementi `li`, e il testo in ciascuno di ess
 
 ```js
 assert(
-  $('li')
+  $("li")
     .text()
     .match(/list item/g).length == 3
 );
@@ -58,8 +58,6 @@ assert(code.match(/\.selectAll/g));
   <script>
     // Add your code below this line
 
-
-
     // Add your code above this line
   </script>
 </body>
@@ -75,8 +73,7 @@ assert(code.match(/\.selectAll/g));
     <li>Example</li>
   </ul>
   <script>
-    d3.selectAll("li")
-      .text("list item")
+    d3.selectAll("li").text("list item");
   </script>
 </body>
 ```

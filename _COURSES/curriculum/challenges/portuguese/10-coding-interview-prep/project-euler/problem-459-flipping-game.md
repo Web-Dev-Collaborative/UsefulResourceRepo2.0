@@ -1,6 +1,6 @@
 ---
 id: 5900f5371000cf542c51004a
-title: 'Problem 459: Flipping game'
+title: "Problem 459: Flipping game"
 challengeType: 5
 forumTopicId: 302133
 dashedName: problem-459-flipping-game
@@ -38,7 +38,6 @@ assert.strictEqual(euler459(), 3996390106631);
 
 ```js
 function euler459() {
-
   return true;
 }
 

@@ -1,6 +1,6 @@
 ---
 id: 5900f4d01000cf542c50ffe2
-title: 'Problem 355: Maximal coprime subset'
+title: "Problem 355: Maximal coprime subset"
 challengeType: 5
 forumTopicId: 302015
 dashedName: problem-355-maximal-coprime-subset
@@ -28,7 +28,6 @@ assert.strictEqual(euler355(), 1726545007);
 
 ```js
 function euler355() {
-
   return true;
 }
 

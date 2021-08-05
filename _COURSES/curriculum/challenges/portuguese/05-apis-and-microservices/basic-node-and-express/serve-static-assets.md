@@ -26,12 +26,12 @@ Your app should serve asset files from the `/public` directory to the `/public` 
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/public/style.css').then(
+  $.get(getUserInput("url") + "/public/style.css").then(
     (data) => {
       assert.match(
         data,
         /body\s*\{[^\}]*\}/,
-        'Your app does not serve static assets'
+        "Your app does not serve static assets"
       );
     },
     (xhr) => {

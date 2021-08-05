@@ -1,6 +1,6 @@
 ---
 id: 5900f5231000cf542c510035
-title: 'Problem 439: Sum of sum of divisors'
+title: "Problem 439: Sum of sum of divisors"
 challengeType: 5
 forumTopicId: 302110
 dashedName: problem-439-sum-of-sum-of-divisors
@@ -30,7 +30,6 @@ assert.strictEqual(euler439(), 968697378);
 
 ```js
 function euler439() {
-
   return true;
 }
 

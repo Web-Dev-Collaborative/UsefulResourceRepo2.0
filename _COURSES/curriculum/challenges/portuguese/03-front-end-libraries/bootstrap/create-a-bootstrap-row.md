@@ -18,23 +18,23 @@ You should add a `div` element below your `h3` element.
 
 ```js
 assert(
-  $('div').length > 1 &&
-    $('div.row h3.text-primary').length == 0 &&
-    $('div.row + h3.text-primary').length == 0 &&
-    $('h3.text-primary + div.row').length > 0
+  $("div").length > 1 &&
+    $("div.row h3.text-primary").length == 0 &&
+    $("div.row + h3.text-primary").length == 0 &&
+    $("h3.text-primary + div.row").length > 0
 );
 ```
 
 Your `div` element should have the class `row`
 
 ```js
-assert($('div').hasClass('row'));
+assert($("div").hasClass("row"));
 ```
 
 Your `row div` should be nested inside the `container-fluid div`
 
 ```js
-assert($('div.container-fluid div.row').length > 0);
+assert($("div.container-fluid div.row").length > 0);
 ```
 
 Your `div` element should have a closing tag.
@@ -54,7 +54,6 @@ assert(
 ```html
 <div class="container-fluid">
   <h3 class="text-primary text-center">jQuery Playground</h3>
-
 </div>
 ```
 

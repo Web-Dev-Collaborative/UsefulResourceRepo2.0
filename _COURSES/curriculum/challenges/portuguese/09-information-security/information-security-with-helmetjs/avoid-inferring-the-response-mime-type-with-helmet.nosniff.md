@@ -20,10 +20,10 @@ helmet.noSniff() middleware should be mounted correctly
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/app-info').then(
+  $.get(getUserInput("url") + "/_api/app-info").then(
     (data) => {
-      assert.include(data.appStack, 'nosniff');
-      assert.equal(data.headers['x-content-type-options'], 'nosniff');
+      assert.include(data.appStack, "nosniff");
+      assert.equal(data.headers["x-content-type-options"], "nosniff");
     },
     (xhr) => {
       throw new Error(xhr.responseText);

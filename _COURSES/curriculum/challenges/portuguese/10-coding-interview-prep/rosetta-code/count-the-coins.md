@@ -37,7 +37,7 @@ Implement a function to determine how many ways there are to make change for a g
 `countCoins` should be a function.
 
 ```js
-assert(typeof countCoins === 'function');
+assert(typeof countCoins === "function");
 ```
 
 `countCoins(15)` should return `6`.
@@ -64,7 +64,6 @@ assert.equal(countCoins(100), 242);
 
 ```js
 function countCoins(cents) {
-
   return true;
 }
 ```
@@ -84,7 +83,7 @@ function countCoins(cents) {
       t[b] = t[b] ? t[b] : 0;
 
       // accumulate target + operand ways
-      t[b] += (b < operands[a]) ? 0 : t[b - operands[a]];
+      t[b] += b < operands[a] ? 0 : t[b - operands[a]];
     }
   }
 

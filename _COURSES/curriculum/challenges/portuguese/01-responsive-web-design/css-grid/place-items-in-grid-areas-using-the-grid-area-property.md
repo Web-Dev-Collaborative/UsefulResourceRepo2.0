@@ -2,7 +2,7 @@
 id: 5a94fe1369fb03452672e45d
 title: Definir a posição dos itens usando a propriedade grid-area
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pByETK/cRrqmtV'
+videoUrl: "https://scrimba.com/p/pByETK/cRrqmtV"
 forumTopicId: 301132
 dashedName: place-items-in-grid-areas-using-the-grid-area-property
 ---
@@ -41,15 +41,22 @@ assert(
 
 ```html
 <style>
-  .item1{background:LightSkyBlue;}
-  .item2{background:LightSalmon;}
-  .item3{background:PaleTurquoise;}
-  .item4{background:LightPink;}
+  .item1 {
+    background: LightSkyBlue;
+  }
+  .item2 {
+    background: LightSalmon;
+  }
+  .item3 {
+    background: PaleTurquoise;
+  }
+  .item4 {
+    background: LightPink;
+  }
 
   .item5 {
     background: PaleGreen;
     /* Only change code below this line */
-
 
     /* Only change code above this line */
   }
@@ -82,5 +89,9 @@ assert(
 # --solutions--
 
 ```html
-<style>.item5 {grid-area: footer;}</style>
+<style>
+  .item5 {
+    grid-area: footer;
+  }
+</style>
 ```

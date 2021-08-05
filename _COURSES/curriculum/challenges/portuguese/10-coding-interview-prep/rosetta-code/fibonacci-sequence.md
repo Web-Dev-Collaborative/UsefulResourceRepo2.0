@@ -23,13 +23,13 @@ Hence, the series is: 0, 1, 1, 2, 3, 5, 8, 13...
 `fibonacci` should be a function.
 
 ```js
-assert(typeof fibonacci === 'function');
+assert(typeof fibonacci === "function");
 ```
 
 `fibonacci(2)` should return a number.
 
 ```js
-assert(typeof fibonacci(2) == 'number');
+assert(typeof fibonacci(2) == "number");
 ```
 
 `fibonacci(3)` should return 2.
@@ -55,16 +55,16 @@ assert.equal(fibonacci(10), 55);
 ## --seed-contents--
 
 ```js
-function fibonacci(n) {
-
-}
+function fibonacci(n) {}
 ```
 
 # --solutions--
 
 ```js
 function fibonacci(n) {
-  let a = 0, b = 1, t;
+  let a = 0,
+    b = 1,
+    t;
   while (--n >= 0) {
     t = a;
     a = b;

@@ -14,9 +14,9 @@ Next, target the `dashboard` class you created and give it a `width` of `980px` 
 test-text
 
 ```js
-const dashboard = $('.dashboard');
+const dashboard = $(".dashboard");
 assert(
-  dashboard.css('width') === '980px' && dashboard.css('height') === '500px'
+  dashboard.css("width") === "980px" && dashboard.css("height") === "500px"
 );
 ```
 
@@ -41,12 +41,9 @@ assert(
 
 ```html
 <style>
-body {
-  background-color: #ccc;
-}
-
-
-
+  body {
+    background-color: #ccc;
+  }
 </style>
 ```
 
@@ -54,13 +51,13 @@ body {
 
 ```html
 <style>
-body {
-  background-color: #ccc;
-}
+  body {
+    background-color: #ccc;
+  }
 
-.dashboard {
-  width: 980px;
-  height: 500px;  
-}
+  .dashboard {
+    width: 980px;
+    height: 500px;
+  }
 </style>
 ```

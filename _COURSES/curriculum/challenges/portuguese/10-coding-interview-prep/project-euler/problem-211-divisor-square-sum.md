@@ -1,6 +1,6 @@
 ---
 id: 5900f43f1000cf542c50ff52
-title: 'Problem 211: Divisor Square Sum'
+title: "Problem 211: Divisor Square Sum"
 challengeType: 5
 forumTopicId: 301853
 dashedName: problem-211-divisor-square-sum
@@ -28,7 +28,6 @@ assert.strictEqual(euler211(), 1922364685);
 
 ```js
 function euler211() {
-
   return true;
 }
 

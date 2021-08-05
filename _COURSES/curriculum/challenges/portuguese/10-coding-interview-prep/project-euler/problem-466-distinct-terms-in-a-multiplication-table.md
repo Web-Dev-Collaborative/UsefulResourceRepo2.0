@@ -1,6 +1,6 @@
 ---
 id: 5900f53e1000cf542c510051
-title: 'Problem 466: Distinct terms in a multiplication table'
+title: "Problem 466: Distinct terms in a multiplication table"
 challengeType: 5
 forumTopicId: 302141
 dashedName: problem-466-distinct-terms-in-a-multiplication-table
@@ -34,7 +34,6 @@ assert.strictEqual(euler466(), 258381958195474750);
 
 ```js
 function euler466() {
-
   return true;
 }
 

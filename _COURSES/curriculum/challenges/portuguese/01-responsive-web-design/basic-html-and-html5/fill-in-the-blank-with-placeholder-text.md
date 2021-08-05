@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08833
 title: Preencher um espaço vazio com um texto placeholder
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cgR7Dc7'
+videoUrl: "https://scrimba.com/p/pVMPUv/cgR7Dc7"
 forumTopicId: 18178
 dashedName: fill-in-the-blank-with-placeholder-text
 ---
@@ -24,7 +24,7 @@ Substitua o texto dentro do elemento `p` pelas primeiras palavras desse texto: `
 O elemento `p` deve conter as primeiras palavras do texto "kitty ipsum" fornecido.
 
 ```js
-assert.isTrue(/Kitty(\s)+ipsum/gi.test($('p').text()));
+assert.isTrue(/Kitty(\s)+ipsum/gi.test($("p").text()));
 ```
 
 # --seed--
@@ -46,5 +46,8 @@ assert.isTrue(/Kitty(\s)+ipsum/gi.test($('p').text()));
 
 <h2>CatPhotoApp</h2>
 
-<p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff</p>
+<p>
+  Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack
+  your ankles chase the red dot, hairball run catnip eat the grass sniff
+</p>
 ```

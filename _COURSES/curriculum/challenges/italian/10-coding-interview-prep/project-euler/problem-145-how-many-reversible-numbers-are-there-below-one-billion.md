@@ -1,6 +1,6 @@
 ---
 id: 5900f3fd1000cf542c50ff10
-title: 'Problem 145: How many reversible numbers are there below one-billion?'
+title: "Problem 145: How many reversible numbers are there below one-billion?"
 challengeType: 5
 forumTopicId: 301774
 dashedName: problem-145-how-many-reversible-numbers-are-there-below-one-billion
@@ -28,7 +28,6 @@ assert.strictEqual(euler145(), 608720);
 
 ```js
 function euler145() {
-
   return true;
 }
 

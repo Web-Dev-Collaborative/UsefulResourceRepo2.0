@@ -9,7 +9,6 @@ function reverseString(str) {
   const joinArray = arr.join("");
 
   return console.log(joinArray);
-
 }
 
 reverseString("hello");

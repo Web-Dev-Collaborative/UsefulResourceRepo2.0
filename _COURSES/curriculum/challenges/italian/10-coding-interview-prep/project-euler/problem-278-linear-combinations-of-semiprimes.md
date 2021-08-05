@@ -1,6 +1,6 @@
 ---
 id: 5900f4831000cf542c50ff95
-title: 'Problem 278: Linear Combinations of Semiprimes'
+title: "Problem 278: Linear Combinations of Semiprimes"
 challengeType: 5
 forumTopicId: 301928
 dashedName: problem-278-linear-combinations-of-semiprimes
@@ -30,7 +30,6 @@ assert.strictEqual(euler278(), 1228215747273908500);
 
 ```js
 function euler278() {
-
   return true;
 }
 

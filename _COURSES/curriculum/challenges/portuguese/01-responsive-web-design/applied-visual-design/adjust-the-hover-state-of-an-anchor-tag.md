@@ -2,7 +2,7 @@
 id: 587d781d367417b2b2512ac8
 title: Mudar o estilo de um link ao passar o mouse
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cakRGcm'
+videoUrl: "https://scrimba.com/c/cakRGcm"
 forumTopicId: 301035
 dashedName: adjust-the-hover-state-of-an-anchor-tag
 ---
@@ -28,7 +28,7 @@ O editor de código tem uma declaração de estilo CSS que estiliza todas as tag
 A propriedade `color` do link deve permanecer preta. A cor do texto deve mudar apenas no estado `:hover`.
 
 ```js
-assert($('a').css('color') == 'rgb(0, 0, 0)');
+assert($("a").css("color") == "rgb(0, 0, 0)");
 ```
 
 O link deve ter a propriedade `color` de valor azul ao passar o mouse sobre ele.
@@ -50,9 +50,6 @@ assert(
   a {
     color: #000;
   }
-
-
-
 </style>
 <a href="https://freecatphotoapp.com/" target="_blank">CatPhotoApp</a>
 ```
@@ -65,7 +62,7 @@ assert(
     color: #000;
   }
   a:hover {
-    color: rgba(0,0,255,1);
+    color: rgba(0, 0, 255, 1);
   }
 </style>
 <a href="https://freecatphotoapp.com/" target="_blank">CatPhotoApp</a>

@@ -1,6 +1,6 @@
 ---
 id: 5900f4d91000cf542c50ffeb
-title: 'Problem 363: Bézier Curves'
+title: "Problem 363: Bézier Curves"
 challengeType: 5
 forumTopicId: 302024
 dashedName: problem-363-bzier-curves
@@ -34,7 +34,6 @@ assert.strictEqual(euler363(), 0.0000372091);
 
 ```js
 function euler363() {
-
   return true;
 }
 

@@ -1,6 +1,6 @@
 ---
 id: 5900f3b61000cf542c50fec8
-title: 'Problem 73: Counting fractions in a range'
+title: "Problem 73: Counting fractions in a range"
 challengeType: 5
 forumTopicId: 302186
 dashedName: problem-73-counting-fractions-in-a-range
@@ -23,7 +23,7 @@ How many fractions lie between $\frac{1}{3}$ and $\frac{1}{2}$ in the sorted set
 `countingFractionsInARange(8)` should return a number.
 
 ```js
-assert(typeof countingFractionsInARange(8) === 'number');
+assert(typeof countingFractionsInARange(8) === "number");
 ```
 
 `countingFractionsInARange(8)` should return `3`.
@@ -56,7 +56,6 @@ assert.strictEqual(countingFractionsInARange(12000), 7295372);
 
 ```js
 function countingFractionsInARange(limit) {
-
   return true;
 }
 

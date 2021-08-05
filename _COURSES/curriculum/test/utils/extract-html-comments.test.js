@@ -1,4 +1,4 @@
-const extractHTMLComments = require('./extract-html-comments');
+const extractHTMLComments = require("./extract-html-comments");
 
 const someHTML = `<body>
 Some text
@@ -10,11 +10,11 @@ Some text
 </body>
 `;
 
-describe('extractHTMLComments', () => {
-  it('should return an object with comment keys and count values', () => {
+describe("extractHTMLComments", () => {
+  it("should return an object with comment keys and count values", () => {
     const commentCounts = {
-      'a comment': 2,
-      'another comment': 1
+      "a comment": 2,
+      "another comment": 1,
     };
     expect(extractHTMLComments(someHTML)).toEqual(commentCounts);
   });

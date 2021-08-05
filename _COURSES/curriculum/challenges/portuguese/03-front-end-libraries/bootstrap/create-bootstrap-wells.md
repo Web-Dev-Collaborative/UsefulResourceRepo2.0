@@ -17,13 +17,13 @@ Nest one `div` element with the class `well` within each of your `col-xs-6` `div
 You should add a `div` element with the class `well` inside each of your `div` elements with the class `col-xs-6`
 
 ```js
-assert($('div.col-xs-6').not(':has(>div.well)').length < 1);
+assert($("div.col-xs-6").not(":has(>div.well)").length < 1);
 ```
 
 Both of your `div` elements with the class `col-xs-6` should be nested within your `div` element with the class `row`.
 
 ```js
-assert($('div.row > div.col-xs-6').length > 1);
+assert($("div.row > div.col-xs-6").length > 1);
 ```
 
 All your `div` elements should have closing tags.
@@ -44,12 +44,8 @@ assert(
 <div class="container-fluid">
   <h3 class="text-primary text-center">jQuery Playground</h3>
   <div class="row">
-    <div class="col-xs-6">
-
-    </div>
-    <div class="col-xs-6">
-
-    </div>
+    <div class="col-xs-6"></div>
+    <div class="col-xs-6"></div>
   </div>
 </div>
 ```

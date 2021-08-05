@@ -2,7 +2,7 @@
 id: 587d7790367417b2b2512ab0
 title: Use tabindex para adicionar foco a um elemento usando o teclado
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cmzMDHW'
+videoUrl: "https://scrimba.com/c/cmzMDHW"
 forumTopicId: 301027
 dashedName: use-tabindex-to-add-keyboard-focus-to-an-element
 ---
@@ -28,13 +28,13 @@ Camper Cat criou uma nova pesquisa para coletar informações sobre os usuários
 O código deve adicionar um atributo `tabindex` à tag `p` que contém as instruções do formulário.
 
 ```js
-assert($('p').attr('tabindex'));
+assert($("p").attr("tabindex"));
 ```
 
 O código deve definir o atributo `tabindex` na tag `p` com um valor de 0.
 
 ```js
-assert($('p').attr('tabindex') == '0');
+assert($("p").attr("tabindex") == "0");
 ```
 
 # --seed--
@@ -44,9 +44,9 @@ assert($('p').attr('tabindex') == '0');
 ```html
 <head>
   <style>
-  p:focus {
-    background-color: yellow;
-  }
+    p:focus {
+      background-color: yellow;
+    }
   </style>
 </head>
 <body>
@@ -55,37 +55,45 @@ assert($('p').attr('tabindex') == '0');
   </header>
   <section>
     <form>
-
-
       <p>Instructions: Fill in ALL your information then click <b>Submit</b></p>
 
-
       <label for="username">Username:</label>
-      <input type="text" id="username" name="username"><br>
+      <input type="text" id="username" name="username" /><br />
       <fieldset>
         <legend>What level ninja are you?</legend>
-        <input id="newbie" type="radio" name="levels" value="newbie">
-        <label for="newbie">Newbie Kitten</label><br>
-        <input id="intermediate" type="radio" name="levels" value="intermediate">
-        <label for="intermediate">Developing Student</label><br>
-        <input id="master" type="radio" name="levels" value="master">
+        <input id="newbie" type="radio" name="levels" value="newbie" />
+        <label for="newbie">Newbie Kitten</label><br />
+        <input
+          id="intermediate"
+          type="radio"
+          name="levels"
+          value="intermediate"
+        />
+        <label for="intermediate">Developing Student</label><br />
+        <input id="master" type="radio" name="levels" value="master" />
         <label for="master">9th Life Master</label>
       </fieldset>
-      <br>
+      <br />
       <fieldset>
-      <legend>Select your favorite weapons:</legend>
-      <input id="stars" type="checkbox" name="weapons" value="stars">
-      <label for="stars">Throwing Stars</label><br>
-      <input id="nunchucks" type="checkbox" name="weapons" value="nunchucks">
-      <label for="nunchucks">Nunchucks</label><br>
-      <input id="sai" type="checkbox" name="weapons" value="sai">
-      <label for="sai">Sai Set</label><br>
-      <input id="sword" type="checkbox" name="weapons" value="sword">
-      <label for="sword">Sword</label>
+        <legend>Select your favorite weapons:</legend>
+        <input id="stars" type="checkbox" name="weapons" value="stars" />
+        <label for="stars">Throwing Stars</label><br />
+        <input
+          id="nunchucks"
+          type="checkbox"
+          name="weapons"
+          value="nunchucks"
+        />
+        <label for="nunchucks">Nunchucks</label><br />
+        <input id="sai" type="checkbox" name="weapons" value="sai" />
+        <label for="sai">Sai Set</label><br />
+        <input id="sword" type="checkbox" name="weapons" value="sword" />
+        <label for="sword">Sword</label>
       </fieldset>
-      <br>
-      <input type="submit" name="submit" value="Submit">
-    </form><br>
+      <br />
+      <input type="submit" name="submit" value="Submit" />
+    </form>
+    <br />
   </section>
   <footer>&copy; 2018 Camper Cat</footer>
 </body>
@@ -96,9 +104,9 @@ assert($('p').attr('tabindex') == '0');
 ```html
 <head>
   <style>
-  p:focus {
-    background-color: yellow;
-  }
+    p:focus {
+      background-color: yellow;
+    }
   </style>
 </head>
 <body>
@@ -107,37 +115,47 @@ assert($('p').attr('tabindex') == '0');
   </header>
   <section>
     <form>
-
-
-      <p tabindex="0">Instructions: Fill in ALL your information then click <b>Submit</b></p>
-
+      <p tabindex="0">
+        Instructions: Fill in ALL your information then click <b>Submit</b>
+      </p>
 
       <label for="username">Username:</label>
-      <input type="text" id="username" name="username"><br>
+      <input type="text" id="username" name="username" /><br />
       <fieldset>
         <legend>What level ninja are you?</legend>
-        <input id="newbie" type="radio" name="levels" value="newbie">
-        <label for="newbie">Newbie Kitten</label><br>
-        <input id="intermediate" type="radio" name="levels" value="intermediate">
-        <label for="intermediate">Developing Student</label><br>
-        <input id="master" type="radio" name="levels" value="master">
+        <input id="newbie" type="radio" name="levels" value="newbie" />
+        <label for="newbie">Newbie Kitten</label><br />
+        <input
+          id="intermediate"
+          type="radio"
+          name="levels"
+          value="intermediate"
+        />
+        <label for="intermediate">Developing Student</label><br />
+        <input id="master" type="radio" name="levels" value="master" />
         <label for="master">9th Life Master</label>
       </fieldset>
-      <br>
+      <br />
       <fieldset>
-      <legend>Select your favorite weapons:</legend>
-      <input id="stars" type="checkbox" name="weapons" value="stars">
-      <label for="stars">Throwing Stars</label><br>
-      <input id="nunchucks" type="checkbox" name="weapons" value="nunchucks">
-      <label for="nunchucks">Nunchucks</label><br>
-      <input id="sai" type="checkbox" name="weapons" value="sai">
-      <label for="sai">Sai Set</label><br>
-      <input id="sword" type="checkbox" name="weapons" value="sword">
-      <label for="sword">Sword</label>
+        <legend>Select your favorite weapons:</legend>
+        <input id="stars" type="checkbox" name="weapons" value="stars" />
+        <label for="stars">Throwing Stars</label><br />
+        <input
+          id="nunchucks"
+          type="checkbox"
+          name="weapons"
+          value="nunchucks"
+        />
+        <label for="nunchucks">Nunchucks</label><br />
+        <input id="sai" type="checkbox" name="weapons" value="sai" />
+        <label for="sai">Sai Set</label><br />
+        <input id="sword" type="checkbox" name="weapons" value="sword" />
+        <label for="sword">Sword</label>
       </fieldset>
-      <br>
-      <input type="submit" name="submit" value="Submit">
-    </form><br>
+      <br />
+      <input type="submit" name="submit" value="Submit" />
+    </form>
+    <br />
   </section>
   <footer>&copy; 2018 Camper Cat</footer>
 </body>

@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08822
 title: Ajustar a margem de um elemento
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cVJarHW'
+videoUrl: "https://scrimba.com/c/cVJarHW"
 forumTopicId: 16654
 dashedName: adjust-the-margin-of-an-element
 ---
@@ -24,7 +24,7 @@ Altere a `margin` da caixa azul para que combine com a da caixa vermelha.
 A classe `blue-box` deve dar `20px` de `margin` aos elementos.
 
 ```js
-assert($('.blue-box').css('margin-top') === '20px');
+assert($(".blue-box").css("margin-top") === "20px");
 ```
 
 # --seed--

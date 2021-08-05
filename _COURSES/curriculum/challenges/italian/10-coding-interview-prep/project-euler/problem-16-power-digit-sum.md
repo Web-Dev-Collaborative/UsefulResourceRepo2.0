@@ -1,6 +1,6 @@
 ---
 id: 5900f37d1000cf542c50fe8f
-title: 'Problem 16: Power digit sum'
+title: "Problem 16: Power digit sum"
 challengeType: 5
 forumTopicId: 301791
 dashedName: problem-16-power-digit-sum
@@ -17,7 +17,7 @@ What is the sum of the digits of the number 2<sup><code>exponent</code></sup>?
 `powerDigitSum(15)` should return a number.
 
 ```js
-assert(typeof powerDigitSum(15) === 'number');
+assert(typeof powerDigitSum(15) === "number");
 ```
 
 `powerDigitSum(15)` should return 26.
@@ -44,7 +44,6 @@ assert.strictEqual(powerDigitSum(1000), 1366);
 
 ```js
 function powerDigitSum(exponent) {
-
   return true;
 }
 
@@ -76,8 +75,8 @@ function powerDigitSum(exponent) {
     }
   }
 
-  bigNum.forEach(function(num) {
-    return sum += num;
+  bigNum.forEach(function (num) {
+    return (sum += num);
   });
 
   return sum;

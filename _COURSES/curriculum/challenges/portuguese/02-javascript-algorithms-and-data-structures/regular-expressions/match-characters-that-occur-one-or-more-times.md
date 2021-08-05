@@ -37,7 +37,7 @@ assert(result.length == 2);
 The `result` variable should be an array with two matches of `ss`
 
 ```js
-assert(result[0] == 'ss' && result[1] == 'ss');
+assert(result[0] == "ss" && result[1] == "ss");
 ```
 
 # --seed--

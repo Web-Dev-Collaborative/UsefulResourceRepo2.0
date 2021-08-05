@@ -13,10 +13,10 @@ Many chat rooms are able to announce when a user connects or disconnects and the
 Change the event name to `'user'`, and pass an object along containing the fields 'name', 'currentUsers', and 'connected' (to be `true` in case of connection, or `false` for disconnection of the user sent). Be sure to change both 'user count' events and set the disconnect one to send `false` for the field 'connected' instead of `true` like the event emitted on connect.
 
 ```js
-io.emit('user', {
+io.emit("user", {
   name: socket.request.user.name,
   currentUsers,
-  connected: true
+  connected: true,
 });
 ```
 
@@ -25,12 +25,12 @@ Now your client will have all the necessary information to correctly display the
 An implementation of this could look like the following:
 
 ```js
-socket.on('user', data => {
-  $('#num-users').text(data.currentUsers + ' users online');
+socket.on("user", (data) => {
+  $("#num-users").text(data.currentUsers + " users online");
   let message =
     data.name +
-    (data.connected ? ' has joined the chat.' : ' has left the chat.');
-  $('#messages').append($('<li>').html('<b>' + message + '</b>'));
+    (data.connected ? " has joined the chat." : " has left the chat.");
+  $("#messages").append($("<li>").html("<b>" + message + "</b>"));
 });
 ```
 
@@ -42,12 +42,12 @@ Event `'user'` should be emitted with name, currentUsers, and connected.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
         /io.emit.*('|")user\1.*name.*currentUsers.*connected/gis,
-        'You should have an event emitted named user sending name, currentUsers, and connected'
+        "You should have an event emitted named user sending name, currentUsers, and connected"
       );
     },
     (xhr) => {
@@ -60,7 +60,7 @@ Client should properly handle and display the new data from event `'user'`.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/public/client.js').then(
+  $.get(getUserInput("url") + "/public/client.js").then(
     (data) => {
       assert.match(
         data,

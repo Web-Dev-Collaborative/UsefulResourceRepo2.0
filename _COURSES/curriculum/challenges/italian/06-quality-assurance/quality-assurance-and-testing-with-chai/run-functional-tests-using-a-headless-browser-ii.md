@@ -32,9 +32,9 @@ All tests should pass.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=5').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=5").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -46,9 +46,9 @@ You should assert that the headless browser request succeeded.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=5').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=5").then(
     (data) => {
-      assert.equal(data.assertions[0].method, 'browser.success');
+      assert.equal(data.assertions[0].method, "browser.success");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -60,9 +60,9 @@ You should assert that the text inside the element 'span#name' is 'Amerigo'.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=5').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=5").then(
     (data) => {
-      assert.equal(data.assertions[1].method, 'browser.text');
+      assert.equal(data.assertions[1].method, "browser.text");
       assert.match(data.assertions[1].args[0], /('|")span#name\1/);
       assert.match(data.assertions[1].args[1], /('|")Amerigo\1/);
     },
@@ -76,9 +76,9 @@ You should assert that the text inside the element 'span#surname' is 'Vespucci'.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=5').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=5").then(
     (data) => {
-      assert.equal(data.assertions[2].method, 'browser.text');
+      assert.equal(data.assertions[2].method, "browser.text");
       assert.match(data.assertions[2].args[0], /('|")span#surname\1/);
       assert.match(data.assertions[2].args[1], /('|")Vespucci\1/);
     },
@@ -92,9 +92,9 @@ You should assert that the element 'span#dates' exist and its count is 1.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=5').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=5").then(
     (data) => {
-      assert.equal(data.assertions[3].method, 'browser.elements');
+      assert.equal(data.assertions[3].method, "browser.elements");
       assert.match(data.assertions[3].args[0], /('|")span#dates\1/);
       assert.equal(data.assertions[3].args[1], 1);
     },

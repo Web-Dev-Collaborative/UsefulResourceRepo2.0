@@ -28,7 +28,7 @@ The MyToDoList component should exist and render to the page.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(MyToDoList));
-    return mockedComponent.find('MyToDoList').length === 1;
+    return mockedComponent.find("MyToDoList").length === 1;
   })()
 );
 ```
@@ -40,8 +40,8 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(MyToDoList));
     return (
-      mockedComponent.find('MyToDoList').children().childAt(0).type() ===
-      'textarea'
+      mockedComponent.find("MyToDoList").children().childAt(0).type() ===
+      "textarea"
     );
   })()
 );
@@ -54,7 +54,7 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(MyToDoList));
     return (
-      mockedComponent.find('MyToDoList').children().childAt(1).type() === 'br'
+      mockedComponent.find("MyToDoList").children().childAt(1).type() === "br"
     );
   })()
 );
@@ -67,8 +67,8 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(MyToDoList));
     return (
-      mockedComponent.find('MyToDoList').children().childAt(2).type() ===
-      'button'
+      mockedComponent.find("MyToDoList").children().childAt(2).type() ===
+      "button"
     );
   })()
 );
@@ -97,7 +97,7 @@ assert(
     const mockedComponent = Enzyme.mount(React.createElement(MyToDoList));
     const initialState = mockedComponent.state();
     return (
-      typeof initialState.userInput === 'string' &&
+      typeof initialState.userInput === "string" &&
       initialState.userInput.length === 0
     );
   })()
@@ -110,35 +110,35 @@ When the `Create List` button is clicked, the `MyToDoList` component should dyna
 (() => {
   const mockedComponent = Enzyme.mount(React.createElement(MyToDoList));
   const simulateChange = (el, value) =>
-    el.simulate('change', { target: { value } });
+    el.simulate("change", { target: { value } });
   const state_1 = () => {
-    return mockedComponent.find('ul').find('li');
+    return mockedComponent.find("ul").find("li");
   };
   const setInput = () => {
     return simulateChange(
-      mockedComponent.find('textarea'),
-      'testA, testB, testC'
+      mockedComponent.find("textarea"),
+      "testA, testB, testC"
     );
   };
   const click = () => {
-    return mockedComponent.find('button').simulate('click');
+    return mockedComponent.find("button").simulate("click");
   };
   const state_2 = () => {
-    const nodes = mockedComponent.find('ul').find('li');
-    return { nodes, text: nodes.reduce((t, n) => t + n.text().trim(), '') };
+    const nodes = mockedComponent.find("ul").find("li");
+    return { nodes, text: nodes.reduce((t, n) => t + n.text().trim(), "") };
   };
   const setInput_2 = () => {
     return simulateChange(
-      mockedComponent.find('textarea'),
-      't1, t2, t3, t4, t5, t6'
+      mockedComponent.find("textarea"),
+      "t1, t2, t3, t4, t5, t6"
     );
   };
   const click_1 = () => {
-    return mockedComponent.find('button').simulate('click');
+    return mockedComponent.find("button").simulate("click");
   };
   const state_3 = () => {
-    const nodes = mockedComponent.find('ul').find('li');
-    return { nodes, text: nodes.reduce((t, n) => t + n.text().trim(), '') };
+    const nodes = mockedComponent.find("ul").find("li");
+    return { nodes, text: nodes.reduce((t, n) => t + n.text().trim(), "") };
   };
   const awaited_state_1 = state_1();
   const awaited_setInput = setInput();
@@ -151,8 +151,8 @@ When the `Create List` button is clicked, the `MyToDoList` component should dyna
     awaited_state_1.length === 0 &&
       awaited_state_2.nodes.length === 3 &&
       awaited_state_3.nodes.length === 6 &&
-      awaited_state_2.text === 'testAtestBtestC' &&
-      awaited_state_3.text === 't1t2t3t4t5t6'
+      awaited_state_2.text === "testAtestBtestC" &&
+      awaited_state_3.text === "t1t2t3t4t5t6"
   );
 })();
 ```
@@ -162,7 +162,7 @@ When the `Create List` button is clicked, the `MyToDoList` component should dyna
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyToDoList />, document.getElementById('root'));
+ReactDOM.render(<MyToDoList />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -170,7 +170,7 @@ ReactDOM.render(<MyToDoList />, document.getElementById('root'));
 ```jsx
 const textAreaStyles = {
   width: 235,
-  margin: 5
+  margin: 5,
 };
 
 class MyToDoList extends React.Component {
@@ -183,14 +183,14 @@ class MyToDoList extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
   handleSubmit() {
-    const itemsArray = this.state.userInput.split(',');
+    const itemsArray = this.state.userInput.split(",");
     this.setState({
-      toDoList: itemsArray
+      toDoList: itemsArray,
     });
   }
   handleChange(e) {
     this.setState({
-      userInput: e.target.value
+      userInput: e.target.value,
     });
   }
   render() {
@@ -201,7 +201,7 @@ class MyToDoList extends React.Component {
           onChange={this.handleChange}
           value={this.state.userInput}
           style={textAreaStyles}
-          placeholder='Separate Items With Commas'
+          placeholder="Separate Items With Commas"
         />
         <br />
         <button onClick={this.handleSubmit}>Create List</button>
@@ -218,7 +218,7 @@ class MyToDoList extends React.Component {
 ```jsx
 const textAreaStyles = {
   width: 235,
-  margin: 5
+  margin: 5,
 };
 
 class MyToDoList extends React.Component {
@@ -226,20 +226,20 @@ class MyToDoList extends React.Component {
     super(props);
     this.state = {
       toDoList: [],
-      userInput: ''
+      userInput: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
   handleSubmit() {
-    const itemsArray = this.state.userInput.split(',');
+    const itemsArray = this.state.userInput.split(",");
     this.setState({
-      toDoList: itemsArray
+      toDoList: itemsArray,
     });
   }
   handleChange(e) {
     this.setState({
-      userInput: e.target.value
+      userInput: e.target.value,
     });
   }
   render() {
@@ -252,7 +252,7 @@ class MyToDoList extends React.Component {
           onChange={this.handleChange}
           value={this.state.userInput}
           style={textAreaStyles}
-          placeholder='Separate Items With Commas'
+          placeholder="Separate Items With Commas"
         />
         <br />
         <button onClick={this.handleSubmit}>Create List</button>

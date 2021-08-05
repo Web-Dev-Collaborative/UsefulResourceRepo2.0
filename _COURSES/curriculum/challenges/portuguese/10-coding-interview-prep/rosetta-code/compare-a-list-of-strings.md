@@ -8,7 +8,7 @@ dashedName: compare-a-list-of-strings
 
 # --description--
 
-Given a [list](https://en.wikipedia.org/wiki/List_(abstract_data_type) "wp: List\_(abstract_data_type)") of arbitrarily many strings, implement a function for each of the following conditions:
+Given a [list](<https://en.wikipedia.org/wiki/List_(abstract_data_type)> "wp: List_(abstract_data_type)") of arbitrarily many strings, implement a function for each of the following conditions:
 
 <ul>
   <li>test if they are all lexically equal</li>
@@ -20,13 +20,13 @@ Given a [list](https://en.wikipedia.org/wiki/List_(abstract_data_type) "wp: List
 `allEqual` should be a function.
 
 ```js
-assert(typeof allEqual === 'function');
+assert(typeof allEqual === "function");
 ```
 
 `azSorted` should be a function.
 
 ```js
-assert(typeof azSorted === 'function');
+assert(typeof azSorted === "function");
 ```
 
 `allEqual(["AA", "AA", "AA", "AA"])` should return true.
@@ -94,19 +94,23 @@ assert(!azSorted(testCases[4]));
 ## --after-user-code--
 
 ```js
-const testCases = [['AA', 'AA', 'AA', 'AA'], ['AA', 'ACB', 'BB', 'CC'], [], ['AA'], ['BB', 'AA']];
+const testCases = [
+  ["AA", "AA", "AA", "AA"],
+  ["AA", "ACB", "BB", "CC"],
+  [],
+  ["AA"],
+  ["BB", "AA"],
+];
 ```
 
 ## --seed-contents--
 
 ```js
 function allEqual(arr) {
-
   return true;
 }
 
 function azSorted(arr) {
-
   return true;
 }
 ```
@@ -118,15 +122,17 @@ function allEqual(a) {
   let out = true;
   let i = 0;
   while (++i < a.length) {
-    out = out && (a[i - 1] === a[i]);
-  } return out;
+    out = out && a[i - 1] === a[i];
+  }
+  return out;
 }
 
 function azSorted(a) {
   let out = true;
   let i = 0;
   while (++i < a.length) {
-    out = out && (a[i - 1] < a[i]);
-  } return out;
+    out = out && a[i - 1] < a[i];
+  }
+  return out;
 }
 ```

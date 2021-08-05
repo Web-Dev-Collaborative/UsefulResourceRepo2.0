@@ -1,6 +1,6 @@
 ---
 id: 5900f3831000cf542c50fe96
-title: 'Problem 23: Non-abundant sums'
+title: "Problem 23: Non-abundant sums"
 challengeType: 5
 forumTopicId: 301873
 dashedName: problem-23-non-abundant-sums
@@ -21,7 +21,7 @@ Find the sum of all positive integers &lt;= `n` which cannot be written as the s
 `sumOfNonAbundantNumbers(10000)` should return a number.
 
 ```js
-assert(typeof sumOfNonAbundantNumbers(10000) === 'number');
+assert(typeof sumOfNonAbundantNumbers(10000) === "number");
 ```
 
 `sumOfNonAbundantNumbers(10000)` should return 3731004.
@@ -54,7 +54,6 @@ assert(sumOfNonAbundantNumbers(28123) === 4179871);
 
 ```js
 function sumOfNonAbundantNumbers(n) {
-
   return n;
 }
 
@@ -68,7 +67,7 @@ function abundantCheck(number) {
   let sum = 1;
 
   for (let i = 2; i <= Math.sqrt(number); i += 1) {
-    if(number % i === 0) {
+    if (number % i === 0) {
       sum += i + +(i !== Math.sqrt(number) && number / i);
     }
   }
@@ -83,7 +82,7 @@ function sumOfNonAbundantNumbers(n) {
   // Function checkSum checks if num can be represented as a sum of numbers in the stack (array)
   const checkSum = (num, stack, memo) => {
     for (let i = 0; i < stack.length; i += 1) {
-      if ((num - stack[i]) in memo) return true;
+      if (num - stack[i] in memo) return true;
     }
     return false;
   };

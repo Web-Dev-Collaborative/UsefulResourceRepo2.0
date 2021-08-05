@@ -1,6 +1,6 @@
 ---
 id: 5900f4a51000cf542c50ffb7
-title: 'Problem 312: Cyclic paths on Sierpiński graphs'
+title: "Problem 312: Cyclic paths on Sierpiński graphs"
 challengeType: 5
 forumTopicId: 301968
 dashedName: problem-312-cyclic-paths-on-sierpiski-graphs
@@ -32,7 +32,6 @@ assert.strictEqual(euler312(), 324681947);
 
 ```js
 function euler312() {
-
   return true;
 }
 

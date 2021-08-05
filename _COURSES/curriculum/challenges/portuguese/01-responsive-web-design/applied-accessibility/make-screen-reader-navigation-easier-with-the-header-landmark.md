@@ -2,7 +2,7 @@
 id: 587d7787367417b2b2512aa1
 title: Facilite a navegação do leitor de tela com o ponto de referência header
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cB76vtv'
+videoUrl: "https://scrimba.com/c/cB76vtv"
 forumTopicId: 301023
 dashedName: make-screen-reader-navigation-easier-with-the-header-landmark
 ---
@@ -24,19 +24,19 @@ O Camper Cat está escrevendo ótimos artigos sobre treinamento de ninjas e dese
 O código deve ter uma tag `header`.
 
 ```js
-assert($('header').length == 1);
+assert($("header").length == 1);
 ```
 
 A tag `header` deve envolver o `h1`.
 
 ```js
-assert($('header').children('h1').length == 1);
+assert($("header").children("h1").length == 1);
 ```
 
 O código não deve ter nenhuma tag `div`.
 
 ```js
-assert($('div').length == 0);
+assert($("div").length == 0);
 ```
 
 O elemento `header` deve ter uma tag de fechamento.
@@ -54,27 +54,35 @@ assert(
 
 ```html
 <body>
-
   <div>
     <h1>Training with Camper Cat</h1>
   </div>
 
-
   <main>
     <section id="stealth">
       <h2>Stealth &amp; Agility Training</h2>
-      <article><h3>Climb foliage quickly using a minimum spanning tree approach</h3></article>
+      <article>
+        <h3>Climb foliage quickly using a minimum spanning tree approach</h3>
+      </article>
       <article><h3>No training is NP-complete without parkour</h3></article>
     </section>
     <section id="combat">
       <h2>Combat Training</h2>
-      <article><h3>Dispatch multiple enemies with multithreaded tactics</h3></article>
-      <article><h3>Goodbye world: 5 proven ways to knock out an opponent</h3></article>
+      <article>
+        <h3>Dispatch multiple enemies with multithreaded tactics</h3>
+      </article>
+      <article>
+        <h3>Goodbye world: 5 proven ways to knock out an opponent</h3>
+      </article>
     </section>
     <section id="weapons">
       <h2>Weapons Training</h2>
-      <article><h3>Swords: the best tool to literally divide and conquer</h3></article>
-      <article><h3>Breadth-first or depth-first in multi-weapon training?</h3></article>
+      <article>
+        <h3>Swords: the best tool to literally divide and conquer</h3>
+      </article>
+      <article>
+        <h3>Breadth-first or depth-first in multi-weapon training?</h3>
+      </article>
     </section>
   </main>
 </body>
@@ -84,27 +92,35 @@ assert(
 
 ```html
 <body>
-
   <header>
     <h1>Training with Camper Cat</h1>
   </header>
 
-
   <main>
     <section id="stealth">
       <h2>Stealth &amp; Agility Training</h2>
-      <article><h3>Climb foliage quickly using a minimum spanning tree approach</h3></article>
+      <article>
+        <h3>Climb foliage quickly using a minimum spanning tree approach</h3>
+      </article>
       <article><h3>No training is NP-complete without parkour</h3></article>
     </section>
     <section id="combat">
       <h2>Combat Training</h2>
-      <article><h3>Dispatch multiple enemies with multithreaded tactics</h3></article>
-      <article><h3>Goodbye world: 5 proven ways to knock out an opponent</h3></article>
+      <article>
+        <h3>Dispatch multiple enemies with multithreaded tactics</h3>
+      </article>
+      <article>
+        <h3>Goodbye world: 5 proven ways to knock out an opponent</h3>
+      </article>
     </section>
     <section id="weapons">
       <h2>Weapons Training</h2>
-      <article><h3>Swords: the best tool to literally divide and conquer</h3></article>
-      <article><h3>Breadth-first or depth-first in multi-weapon training?</h3></article>
+      <article>
+        <h3>Swords: the best tool to literally divide and conquer</h3>
+      </article>
+      <article>
+        <h3>Breadth-first or depth-first in multi-weapon training?</h3>
+      </article>
     </section>
   </main>
 </body>

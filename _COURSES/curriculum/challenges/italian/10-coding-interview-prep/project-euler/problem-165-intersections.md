@@ -1,6 +1,6 @@
 ---
 id: 5900f4111000cf542c50ff24
-title: 'Problem 165: Intersections'
+title: "Problem 165: Intersections"
 challengeType: 5
 forumTopicId: 301799
 dashedName: problem-165-intersections
@@ -32,7 +32,6 @@ assert.strictEqual(euler165(), 2868868);
 
 ```js
 function euler165() {
-
   return true;
 }
 

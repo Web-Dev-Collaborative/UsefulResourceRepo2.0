@@ -6,10 +6,20 @@
   "properties": {
     "q": { "type": "string", "minLength": 3 },
     "a": { "type": "string" },
-    "followup": { "oneOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string", "minItems": 1 } }] },
+    "followup": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string", "minItems": 1 } }
+      ]
+    },
     "tags": { "type": "array", "items": { "type": "string", "minItems": 1 } },
     "pri": { "type": ["number"] },
-    "ref": { "oneOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string", "minItems": 1 } }] },
+    "ref": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string", "minItems": 1 } }
+      ]
+    },
     "who": { "type": "array", "items": { "type": "string", "minItems": 1 } },
     "where": { "type": "array", "items": { "type": "string", "minItems": 1 } }
   },

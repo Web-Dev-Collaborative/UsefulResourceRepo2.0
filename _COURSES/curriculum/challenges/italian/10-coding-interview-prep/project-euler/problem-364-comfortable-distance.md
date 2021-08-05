@@ -1,6 +1,6 @@
 ---
 id: 5900f4d91000cf542c50ffea
-title: 'Problem 364: Comfortable distance'
+title: "Problem 364: Comfortable distance"
 challengeType: 5
 forumTopicId: 302025
 dashedName: problem-364-comfortable-distance
@@ -34,7 +34,6 @@ assert.strictEqual(euler364(), 44855254);
 
 ```js
 function euler364() {
-
   return true;
 }
 

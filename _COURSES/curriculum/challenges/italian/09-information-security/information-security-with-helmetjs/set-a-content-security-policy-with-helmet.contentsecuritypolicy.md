@@ -26,9 +26,9 @@ helmet.contentSecurityPolicy() middleware should be mounted correctly
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/app-info').then(
+  $.get(getUserInput("url") + "/_api/app-info").then(
     (data) => {
-      assert.include(data.appStack, 'csp');
+      assert.include(data.appStack, "csp");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -40,13 +40,13 @@ Your csp config is not correct. defaultSrc should be ["'self'"] and scriptSrc sh
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/app-info').then(
+  $.get(getUserInput("url") + "/_api/app-info").then(
     (data) => {
       var cspHeader = Object.keys(data.headers).filter(function (k) {
         return (
-          k === 'content-security-policy' ||
-          k === 'x-webkit-csp' ||
-          k === 'x-content-security-policy'
+          k === "content-security-policy" ||
+          k === "x-webkit-csp" ||
+          k === "x-content-security-policy"
         );
       })[0];
       assert.equal(

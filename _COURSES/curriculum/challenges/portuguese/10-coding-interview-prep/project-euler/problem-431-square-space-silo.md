@@ -1,6 +1,6 @@
 ---
 id: 5900f51b1000cf542c51002e
-title: 'Problem 431: Square Space Silo'
+title: "Problem 431: Square Space Silo"
 challengeType: 5
 forumTopicId: 302102
 dashedName: problem-431-square-space-silo
@@ -32,7 +32,6 @@ assert.strictEqual(euler431(), 23.386029052);
 
 ```js
 function euler431() {
-
   return true;
 }
 

@@ -1,6 +1,6 @@
 ---
 id: 5900f36e1000cf542c50fe80
-title: 'Problem 1: Multiples of 3 and 5'
+title: "Problem 1: Multiples of 3 and 5"
 challengeType: 5
 forumTopicId: 301722
 dashedName: problem-1-multiples-of-3-and-5
@@ -17,7 +17,7 @@ Find the sum of all the multiples of 3 or 5 below the provided parameter value `
 `multiplesOf3and5(10)` should return a number.
 
 ```js
-assert(typeof multiplesOf3and5(10) === 'number');
+assert(typeof multiplesOf3and5(10) === "number");
 ```
 
 `multiplesOf3and5(49)` should return 543.
@@ -50,7 +50,6 @@ assert.strictEqual(multiplesOf3and5(19564), 89301183);
 
 ```js
 function multiplesOf3and5(number) {
-
   return true;
 }
 
@@ -63,8 +62,8 @@ multiplesOf3and5(1000);
 const multiplesOf3and5 = (number) => {
   var total = 0;
 
-  for(var i = 0; i < number; i++) {
-    if(i % 3 == 0 || i % 5 == 0) {
+  for (var i = 0; i < number; i++) {
+    if (i % 3 == 0 || i % 5 == 0) {
       total += i;
     }
   }

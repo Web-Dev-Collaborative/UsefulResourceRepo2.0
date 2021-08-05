@@ -24,9 +24,9 @@ All tests should pass.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=2').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=2").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -38,9 +38,9 @@ You should choose the correct method for the first assertion - `isOk` vs. `isNot
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=2').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=2").then(
     (data) => {
-      assert.equal(data.assertions[0].method, 'isNotOk', 'Null is falsy');
+      assert.equal(data.assertions[0].method, "isNotOk", "Null is falsy");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -52,9 +52,9 @@ You should choose the correct method for the second assertion - `isOk` vs. `isNo
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=2').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=2").then(
     (data) => {
-      assert.equal(data.assertions[1].method, 'isOk', 'A string is truthy');
+      assert.equal(data.assertions[1].method, "isOk", "A string is truthy");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -66,9 +66,9 @@ You should choose the correct method for the third assertion - `isOk` vs. `isNot
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=2').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=2").then(
     (data) => {
-      assert.equal(data.assertions[2].method, 'isOk', 'true is truthy');
+      assert.equal(data.assertions[2].method, "isOk", "true is truthy");
     },
     (xhr) => {
       throw new Error(xhr.responseText);

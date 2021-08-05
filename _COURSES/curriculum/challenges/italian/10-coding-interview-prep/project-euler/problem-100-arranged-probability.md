@@ -1,6 +1,6 @@
 ---
 id: 5900f3d01000cf542c50fee3
-title: 'Problem 100: Arranged probability'
+title: "Problem 100: Arranged probability"
 challengeType: 5
 forumTopicId: 301724
 dashedName: problem-100-arranged-probability
@@ -21,7 +21,7 @@ By finding the first arrangement to contain over `limit` discs in total, determi
 `arrangedProbability(20)` should return a number.
 
 ```js
-assert(typeof arrangedProbability(10) === 'number');
+assert(typeof arrangedProbability(10) === "number");
 ```
 
 `arrangedProbability(20)` should return `15`.
@@ -60,7 +60,6 @@ assert.strictEqual(arrangedProbability(1000000000000), 756872327473);
 
 ```js
 function arrangedProbability(limit) {
-
   return true;
 }
 

@@ -24,10 +24,10 @@ The MinHeap data structure should exist.
 assert(
   (function () {
     var test = false;
-    if (typeof MinHeap !== 'undefined') {
+    if (typeof MinHeap !== "undefined") {
       test = new MinHeap();
     }
-    return typeof test == 'object';
+    return typeof test == "object";
   })()
 );
 ```
@@ -38,12 +38,12 @@ MinHeap should have a method called insert.
 assert(
   (function () {
     var test = false;
-    if (typeof MinHeap !== 'undefined') {
+    if (typeof MinHeap !== "undefined") {
       test = new MinHeap();
     } else {
       return false;
     }
-    return typeof test.insert == 'function';
+    return typeof test.insert == "function";
   })()
 );
 ```
@@ -54,12 +54,12 @@ MinHeap should have a method called remove.
 assert(
   (function () {
     var test = false;
-    if (typeof MinHeap !== 'undefined') {
+    if (typeof MinHeap !== "undefined") {
       test = new MinHeap();
     } else {
       return false;
     }
-    return typeof test.remove == 'function';
+    return typeof test.remove == "function";
   })()
 );
 ```
@@ -70,12 +70,12 @@ MinHeap should have a method called sort.
 assert(
   (function () {
     var test = false;
-    if (typeof MinHeap !== 'undefined') {
+    if (typeof MinHeap !== "undefined") {
       test = new MinHeap();
     } else {
       return false;
     }
-    return typeof test.sort == 'function';
+    return typeof test.sort == "function";
   })()
 );
 ```
@@ -85,7 +85,7 @@ The sort method should return an array containing all items added to the min hea
 ```js
 assert(
   (() => {
-    if (typeof MinHeap === 'undefined') {
+    if (typeof MinHeap === "undefined") {
       return false;
     }
 
@@ -114,25 +114,21 @@ assert(
 ## --seed-contents--
 
 ```js
-function isSorted(a){
-  for(let i = 0; i < a.length - 1; i++)
-    if(a[i] > a[i + 1])
-      return false;
+function isSorted(a) {
+  for (let i = 0; i < a.length - 1; i++) if (a[i] > a[i + 1]) return false;
   return true;
 }
 // Generate a randomly filled array
-function createRandomArray(size = 5){
+function createRandomArray(size = 5) {
   let a = new Array(size);
-  for(let i = 0; i < size; i++)
-    a[i] = Math.floor(Math.random() * 100);
-  
+  for (let i = 0; i < size; i++) a[i] = Math.floor(Math.random() * 100);
+
   return a;
 }
 const array = createRandomArray(25);
 
-var MinHeap = function() {
+var MinHeap = function () {
   // Only change code below this line
-  
   // Only change code above this line
 };
 ```

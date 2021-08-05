@@ -3,13 +3,12 @@
  */
 
 function greetUser(name) {
-    if (typeof name === 'undefined') {
-        console.log('That is not a name');
-    }
-    else {
-        console.log(name);
-    }
+  if (typeof name === "undefined") {
+    console.log("That is not a name");
+  } else {
+    console.log(name);
+  }
 }
 
-greetUser('Ahad');
+greetUser("Ahad");
 greetUser();

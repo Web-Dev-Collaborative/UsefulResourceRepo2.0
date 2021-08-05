@@ -1,6 +1,6 @@
 ---
 id: 5900f3731000cf542c50fe86
-title: 'Problem 7: 10001st prime'
+title: "Problem 7: 10001st prime"
 challengeType: 5
 forumTopicId: 302182
 dashedName: problem-7-10001st-prime
@@ -17,7 +17,7 @@ What is the `n`th prime number?
 `nthPrime(6)` should return a number.
 
 ```js
-assert(typeof nthPrime(6) === 'number');
+assert(typeof nthPrime(6) === "number");
 ```
 
 `nthPrime(6)` should return 13.
@@ -56,7 +56,6 @@ assert.strictEqual(nthPrime(10001), 104743);
 
 ```js
 function nthPrime(n) {
-
   return true;
 }
 
@@ -66,7 +65,7 @@ nthPrime(10001);
 # --solutions--
 
 ```js
-const nthPrime = n => {
+const nthPrime = (n) => {
   let pN = 2;
   let step = 0;
   while (step < n) {
@@ -78,9 +77,9 @@ const nthPrime = n => {
         break;
       }
     }
-    isPrime ? step++ : '';
+    isPrime ? step++ : "";
     pN++;
   }
   return pN - 1;
-}
+};
 ```

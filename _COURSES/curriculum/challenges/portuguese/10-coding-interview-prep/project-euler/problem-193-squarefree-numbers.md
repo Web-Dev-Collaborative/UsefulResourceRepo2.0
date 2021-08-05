@@ -1,6 +1,6 @@
 ---
 id: 5900f42f1000cf542c50ff41
-title: 'Problem 193: Squarefree Numbers'
+title: "Problem 193: Squarefree Numbers"
 challengeType: 5
 forumTopicId: 301831
 dashedName: problem-193-squarefree-numbers
@@ -26,7 +26,6 @@ assert.strictEqual(euler193(), 684465067343069);
 
 ```js
 function euler193() {
-
   return true;
 }
 

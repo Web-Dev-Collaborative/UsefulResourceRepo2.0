@@ -1,6 +1,6 @@
 ---
 id: 5900f51a1000cf542c51002d
-title: 'Problem 430: Range flips'
+title: "Problem 430: Range flips"
 challengeType: 5
 forumTopicId: 302101
 dashedName: problem-430-range-flips
@@ -34,7 +34,6 @@ assert.strictEqual(euler430(), 5000624921.38);
 
 ```js
 function euler430() {
-
   return true;
 }
 

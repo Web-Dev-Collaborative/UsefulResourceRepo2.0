@@ -8,7 +8,7 @@ dashedName: copy-an-array-with-the-spread-operator
 
 # --description--
 
-While `slice()` allows us to be selective about what elements of an array to copy, among several other useful tasks, ES6's new <dfn>spread operator</dfn> allows us to easily copy *all* of an array's elements, in order, with a simple and highly readable syntax. The spread syntax simply looks like this: `...`
+While `slice()` allows us to be selective about what elements of an array to copy, among several other useful tasks, ES6's new <dfn>spread operator</dfn> allows us to easily copy _all_ of an array's elements, in order, with a simple and highly readable syntax. The spread syntax simply looks like this: `...`
 
 In practice, we can use the spread operator to copy an array like so:
 
@@ -30,7 +30,7 @@ We have defined a function, `copyMachine` which takes `arr` (an array) and `num`
 ```js
 assert.deepEqual(copyMachine([true, false, true], 2), [
   [true, false, true],
-  [true, false, true]
+  [true, false, true],
 ]);
 ```
 
@@ -42,7 +42,7 @@ assert.deepEqual(copyMachine([1, 2, 3], 5), [
   [1, 2, 3],
   [1, 2, 3],
   [1, 2, 3],
-  [1, 2, 3]
+  [1, 2, 3],
 ]);
 ```
 
@@ -55,10 +55,10 @@ assert.deepEqual(copyMachine([true, true, null], 1), [[true, true, null]]);
 `copyMachine(["it works"], 3)` should return `[["it works"], ["it works"], ["it works"]]`
 
 ```js
-assert.deepEqual(copyMachine(['it works'], 3), [
-  ['it works'],
-  ['it works'],
-  ['it works']
+assert.deepEqual(copyMachine(["it works"], 3), [
+  ["it works"],
+  ["it works"],
+  ["it works"],
 ]);
 ```
 
@@ -90,13 +90,13 @@ console.log(copyMachine([true, false, true], 2));
 # --solutions--
 
 ```js
-function copyMachine(arr,num){
-    let newArr=[];
-    while(num >=1){
+function copyMachine(arr, num) {
+  let newArr = [];
+  while (num >= 1) {
     newArr.push([...arr]);
     num--;
-    }
-    return newArr;
+  }
+  return newArr;
 }
 console.log(copyMachine([true, false, true], 2));
 ```

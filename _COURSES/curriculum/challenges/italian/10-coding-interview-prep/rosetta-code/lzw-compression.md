@@ -21,104 +21,54 @@ Write a function that takes two parameters. The first parameter is a boolean whe
 `LZW` should be a function.
 
 ```js
-assert(typeof LZW === 'function');
+assert(typeof LZW === "function");
 ```
 
 `LZW(true, "TOBEORNOTTOBEORTOBEORNOT")` should return a array.
 
 ```js
-assert(Array.isArray(LZW(true, 'TOBEORNOTTOBEORTOBEORNOT')));
+assert(Array.isArray(LZW(true, "TOBEORNOTTOBEORTOBEORNOT")));
 ```
 
 `LZW(false, [84, 79, 66, 69, 79, 82, 78, 79, 84, 256, 258, 260, 265, 259, 261, 263])` should return a string.
 
 ```js
 assert(
-  typeof LZW(false, [
-    84,
-    79,
-    66,
-    69,
-    79,
-    82,
-    78,
-    79,
-    84,
-    256,
-    258,
-    260,
-    265,
-    259,
-    261,
-    263
-  ]) === 'string'
+  typeof LZW(
+    false,
+    [84, 79, 66, 69, 79, 82, 78, 79, 84, 256, 258, 260, 265, 259, 261, 263]
+  ) === "string"
 );
 ```
 
 `LZW(true, "TOBEORNOTTOBEORTOBEORNOT")` should return `[84, 79, 66, 69, 79, 82, 78, 79, 84, 256, 258, 260, 265, 259, 261, 263]`.
 
 ```js
-assert.deepEqual(LZW(true, 'TOBEORNOTTOBEORTOBEORNOT'), [
-  84,
-  79,
-  66,
-  69,
-  79,
-  82,
-  78,
-  79,
-  84,
-  256,
-  258,
-  260,
-  265,
-  259,
-  261,
-  263
-]);
+assert.deepEqual(
+  LZW(true, "TOBEORNOTTOBEORTOBEORNOT"),
+  [84, 79, 66, 69, 79, 82, 78, 79, 84, 256, 258, 260, 265, 259, 261, 263]
+);
 ```
 
 `LZW(false, [84, 79, 66, 69, 79, 82, 78, 79, 84, 256, 258, 260, 265, 259, 261, 263])` should return `"TOBEORNOTTOBEORTOBEORNOT"`.
 
 ```js
 assert.equal(
-  LZW(false, [
-    84,
-    79,
-    66,
-    69,
-    79,
-    82,
-    78,
-    79,
-    84,
-    256,
-    258,
-    260,
-    265,
-    259,
-    261,
-    263
-  ]),
-  'TOBEORNOTTOBEORTOBEORNOT'
+  LZW(
+    false,
+    [84, 79, 66, 69, 79, 82, 78, 79, 84, 256, 258, 260, 265, 259, 261, 263]
+  ),
+  "TOBEORNOTTOBEORTOBEORNOT"
 );
 ```
 
 `LZW(true, "0123456789")` should return `[48, 49, 50, 51, 52, 53, 54, 55, 56, 57]`.
 
 ```js
-assert.deepEqual(LZW(true, '0123456789'), [
-  48,
-  49,
-  50,
-  51,
-  52,
-  53,
-  54,
-  55,
-  56,
-  57
-]);
+assert.deepEqual(
+  LZW(true, "0123456789"),
+  [48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
+);
 ```
 
 `LZW(false, [48, 49, 50, 51, 52, 53, 54, 55, 56, 57])` should return `"0123456789"`.
@@ -126,20 +76,20 @@ assert.deepEqual(LZW(true, '0123456789'), [
 ```js
 assert.equal(
   LZW(false, [48, 49, 50, 51, 52, 53, 54, 55, 56, 57]),
-  '0123456789'
+  "0123456789"
 );
 ```
 
 `LZW(true, "BABAABAAA")` should return `[66, 65, 256, 257, 65, 260]`.
 
 ```js
-assert.deepEqual(LZW(true, 'BABAABAAA'), [66, 65, 256, 257, 65, 260]);
+assert.deepEqual(LZW(true, "BABAABAAA"), [66, 65, 256, 257, 65, 260]);
 ```
 
 `LZW(false, [66, 65, 256, 257, 65, 260])` should return `"BABAABAAA"`.
 
 ```js
-assert.equal(LZW(false, [66, 65, 256, 257, 65, 260]), 'BABAABAAA');
+assert.equal(LZW(false, [66, 65, 256, 257, 65, 260]), "BABAABAAA");
 ```
 
 # --seed--
@@ -147,15 +97,13 @@ assert.equal(LZW(false, [66, 65, 256, 257, 65, 260]), 'BABAABAAA');
 ## --seed-contents--
 
 ```js
-function LZW (compressData, input) {
-
-}
+function LZW(compressData, input) {}
 ```
 
 # --solutions--
 
 ```js
-function LZW (compressData, input) {
+function LZW(compressData, input) {
   function compress(uncompressed) {
     // Build the dictionary.
     var i,
@@ -191,7 +139,6 @@ function LZW (compressData, input) {
     }
     return result;
   }
-
 
   function decompress(compressed) {
     // Build the dictionary.
@@ -230,10 +177,10 @@ function LZW (compressData, input) {
     return result;
   }
 
-  if(compressData){
-    return compress(input)
-  }else{
-    return decompress(input)
+  if (compressData) {
+    return compress(input);
+  } else {
+    return decompress(input);
   }
 }
 ```

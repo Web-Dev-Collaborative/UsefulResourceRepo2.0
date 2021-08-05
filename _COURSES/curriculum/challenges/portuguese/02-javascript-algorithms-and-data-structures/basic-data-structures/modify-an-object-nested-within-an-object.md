@@ -13,16 +13,16 @@ Now let's take a look at a slightly more complex object. Object properties can b
 ```js
 let nestedObject = {
   id: 28802695164,
-  date: 'December 31, 2016',
+  date: "December 31, 2016",
   data: {
     totalUsers: 99,
     online: 80,
     onlineStatus: {
       active: 67,
       away: 13,
-      busy: 8
-    }
-  }
+      busy: 8,
+    },
+  },
 };
 ```
 
@@ -42,14 +42,14 @@ Here we've defined an object `userActivity`, which includes another object neste
 
 ```js
 assert(
-  'id' in userActivity && 'date' in userActivity && 'data' in userActivity
+  "id" in userActivity && "date" in userActivity && "data" in userActivity
 );
 ```
 
 `userActivity` should have a `data` key set to an object with keys `totalUsers` and `online`.
 
 ```js
-assert('totalUsers' in userActivity.data && 'online' in userActivity.data);
+assert("totalUsers" in userActivity.data && "online" in userActivity.data);
 ```
 
 The `online` property nested in the `data` key of `userActivity` should be set to `45`
@@ -71,11 +71,11 @@ assert.strictEqual(code.search(/online: 45/), -1);
 ```js
 let userActivity = {
   id: 23894201352,
-  date: 'January 1, 2017',
+  date: "January 1, 2017",
   data: {
     totalUsers: 51,
-    online: 42
-  }
+    online: 42,
+  },
 };
 
 // Only change code below this line
@@ -90,11 +90,11 @@ console.log(userActivity);
 ```js
 let userActivity = {
   id: 23894201352,
-  date: 'January 1, 2017',
+  date: "January 1, 2017",
   data: {
     totalUsers: 51,
-    online: 42
-  }
+    online: 42,
+  },
 };
 
 userActivity.data.online = 45;

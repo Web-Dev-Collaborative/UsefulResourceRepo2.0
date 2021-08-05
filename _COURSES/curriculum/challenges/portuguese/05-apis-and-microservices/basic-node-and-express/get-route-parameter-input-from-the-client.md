@@ -22,12 +22,12 @@ Test 1 : Your echo server should repeat words correctly
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/eChOtEsT/echo').then(
+  $.get(getUserInput("url") + "/eChOtEsT/echo").then(
     (data) => {
       assert.equal(
         data.echo,
-        'eChOtEsT',
-        'Test 1: the echo server is not working as expected'
+        "eChOtEsT",
+        "Test 1: the echo server is not working as expected"
       );
     },
     (xhr) => {
@@ -40,12 +40,12 @@ Test 2 : Your echo server should repeat words correctly
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/ech0-t3st/echo').then(
+  $.get(getUserInput("url") + "/ech0-t3st/echo").then(
     (data) => {
       assert.equal(
         data.echo,
-        'ech0-t3st',
-        'Test 2: the echo server is not working as expected'
+        "ech0-t3st",
+        "Test 2: the echo server is not working as expected"
       );
     },
     (xhr) => {

@@ -18,6 +18,7 @@ var str = arr.join(" ");
 ```
 
 `str` would have a value of the string `Hello World`.
+
 # --instructions--
 
 Use the `join` method (among others) inside the `sentensify` function to make a sentence from the words in the string `str`. The function should return a string. For example, `I-like-Star-Wars` would be converted to `I like Star Wars`. For this challenge, do not use the `replace` method.
@@ -39,21 +40,21 @@ assert(!code.match(/\.?[\s\S]*?replace/g));
 `sentensify("May-the-force-be-with-you")` should return a string.
 
 ```js
-assert(typeof sentensify('May-the-force-be-with-you') === 'string');
+assert(typeof sentensify("May-the-force-be-with-you") === "string");
 ```
 
 `sentensify("May-the-force-be-with-you")` should return the string `May the force be with you`.
 
 ```js
-assert(sentensify('May-the-force-be-with-you') === 'May the force be with you');
+assert(sentensify("May-the-force-be-with-you") === "May the force be with you");
 ```
 
 `sentensify("The.force.is.strong.with.this.one")` should return the string `The force is strong with this one`.
 
 ```js
 assert(
-  sentensify('The.force.is.strong.with.this.one') ===
-    'The force is strong with this one'
+  sentensify("The.force.is.strong.with.this.one") ===
+    "The force is strong with this one"
 );
 ```
 
@@ -61,7 +62,7 @@ assert(
 
 ```js
 assert(
-  sentensify('There,has,been,an,awakening') === 'There has been an awakening'
+  sentensify("There,has,been,an,awakening") === "There has been an awakening"
 );
 ```
 
@@ -72,8 +73,6 @@ assert(
 ```js
 function sentensify(str) {
   // Only change code below this line
-
-
   // Only change code above this line
 }
 sentensify("May-the-force-be-with-you");
@@ -84,7 +83,7 @@ sentensify("May-the-force-be-with-you");
 ```js
 function sentensify(str) {
   // Only change code below this line
-  return str.split(/\W/).join(' ');
+  return str.split(/\W/).join(" ");
   // Only change code above this line
 }
 ```

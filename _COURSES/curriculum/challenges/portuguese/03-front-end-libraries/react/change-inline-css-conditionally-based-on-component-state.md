@@ -24,7 +24,7 @@ The `GateKeeper` component should render a `div` element.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(GateKeeper));
-    return mockedComponent.find('div').length === 1;
+    return mockedComponent.find("div").length === 1;
   })()
 );
 ```
@@ -35,7 +35,7 @@ The `GateKeeper` component should be initialized with a state key `input` set to
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(GateKeeper));
-    return mockedComponent.state().input === '';
+    return mockedComponent.state().input === "";
   })()
 );
 ```
@@ -47,8 +47,8 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(GateKeeper));
     return (
-      mockedComponent.find('h3').length === 1 &&
-      mockedComponent.find('input').length === 1
+      mockedComponent.find("h3").length === 1 &&
+      mockedComponent.find("input").length === 1
     );
   })()
 );
@@ -61,7 +61,7 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(GateKeeper));
     return (
-      mockedComponent.find('input').props().style.border === '1px solid black'
+      mockedComponent.find("input").props().style.border === "1px solid black"
     );
   })()
 );
@@ -75,24 +75,24 @@ async () => {
     new Promise((resolve, reject) => setTimeout(() => resolve(fn()), 100));
   const mockedComponent = Enzyme.mount(React.createElement(GateKeeper));
   const simulateChange = (el, value) =>
-    el.simulate('change', { target: { value } });
-  let initialStyle = mockedComponent.find('input').props().style.border;
+    el.simulate("change", { target: { value } });
+  let initialStyle = mockedComponent.find("input").props().style.border;
   const state_1 = () => {
-    mockedComponent.setState({ input: 'this is 15 char' });
-    return waitForIt(() => mockedComponent.find('input').props().style.border);
+    mockedComponent.setState({ input: "this is 15 char" });
+    return waitForIt(() => mockedComponent.find("input").props().style.border);
   };
   const state_2 = () => {
     mockedComponent.setState({
-      input: 'A very long string longer than 15 characters.'
+      input: "A very long string longer than 15 characters.",
     });
-    return waitForIt(() => mockedComponent.find('input').props().style.border);
+    return waitForIt(() => mockedComponent.find("input").props().style.border);
   };
   const style_1 = await state_1();
   const style_2 = await state_2();
   assert(
-    initialStyle === '1px solid black' &&
-      style_1 === '1px solid black' &&
-      style_2 === '3px solid red'
+    initialStyle === "1px solid black" &&
+      style_1 === "1px solid black" &&
+      style_2 === "3px solid red"
   );
 };
 ```
@@ -102,7 +102,7 @@ async () => {
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<GateKeeper />, document.getElementById('root'))
+ReactDOM.render(<GateKeeper />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -112,16 +112,16 @@ class GateKeeper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: ''
+      input: "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
-    this.setState({ input: event.target.value })
+    this.setState({ input: event.target.value });
   }
   render() {
     let inputStyle = {
-      border: '1px solid black'
+      border: "1px solid black",
     };
     // Change code below this line
 
@@ -133,11 +133,12 @@ class GateKeeper extends React.Component {
           type="text"
           style={inputStyle}
           value={this.state.input}
-          onChange={this.handleChange} />
+          onChange={this.handleChange}
+        />
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -147,20 +148,20 @@ class GateKeeper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: ''
+      input: "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
-    this.setState({ input: event.target.value })
+    this.setState({ input: event.target.value });
   }
   render() {
     let inputStyle = {
-      border: '1px solid black'
+      border: "1px solid black",
     };
     if (this.state.input.length > 15) {
-      inputStyle.border = '3px solid red';
-    };
+      inputStyle.border = "3px solid red";
+    }
     return (
       <div>
         <h3>Don't Type Too Much:</h3>
@@ -168,9 +169,10 @@ class GateKeeper extends React.Component {
           type="text"
           style={inputStyle}
           value={this.state.input}
-          onChange={this.handleChange} />
+          onChange={this.handleChange}
+        />
       </div>
     );
   }
-};
+}
 ```

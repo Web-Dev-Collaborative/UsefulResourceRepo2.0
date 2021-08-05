@@ -1,6 +1,6 @@
 ---
 id: 5900f4a21000cf542c50ffb5
-title: 'Problem 310: Nim Square'
+title: "Problem 310: Nim Square"
 challengeType: 5
 forumTopicId: 301966
 dashedName: problem-310-nim-square
@@ -32,7 +32,6 @@ assert.strictEqual(euler310(), 2586528661783);
 
 ```js
 function euler310() {
-
   return true;
 }
 

@@ -1,6 +1,6 @@
 ---
 id: 5900f4c81000cf542c50ffda
-title: 'Problem 345: Matrix Sum'
+title: "Problem 345: Matrix Sum"
 challengeType: 5
 forumTopicId: 302004
 dashedName: problem-345-matrix-sum
@@ -30,7 +30,6 @@ assert.strictEqual(euler345(), 13938);
 
 ```js
 function euler345() {
-
   return true;
 }
 

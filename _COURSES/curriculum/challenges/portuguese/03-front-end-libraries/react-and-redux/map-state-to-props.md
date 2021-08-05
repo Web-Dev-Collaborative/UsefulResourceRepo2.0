@@ -29,19 +29,19 @@ assert(Array.isArray(state) && state.length === 0);
 `mapStateToProps` should be a function.
 
 ```js
-assert(typeof mapStateToProps === 'function');
+assert(typeof mapStateToProps === "function");
 ```
 
 `mapStateToProps` should return an object.
 
 ```js
-assert(typeof mapStateToProps() === 'object');
+assert(typeof mapStateToProps() === "object");
 ```
 
 Passing an array as state to `mapStateToProps` should return this array assigned to a key of `messages`.
 
 ```js
-assert(mapStateToProps(['messages']).messages.pop() === 'messages');
+assert(mapStateToProps(["messages"]).messages.pop() === "messages");
 ```
 
 # --seed--
@@ -63,7 +63,7 @@ const state = [];
 
 const mapStateToProps = (state) => {
   return {
-    messages: state
-  }
+    messages: state,
+  };
 };
 ```

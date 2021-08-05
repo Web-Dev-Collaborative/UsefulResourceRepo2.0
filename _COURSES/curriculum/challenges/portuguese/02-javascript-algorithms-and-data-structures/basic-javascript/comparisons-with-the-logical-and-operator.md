@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244d8
 title: Comparisons with the Logical And Operator
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cvbRVtr'
+videoUrl: "https://scrimba.com/c/cvbRVtr"
 forumTopicId: 16799
 dashedName: comparisons-with-the-logical-and-operator
 ---
@@ -52,49 +52,49 @@ assert(code.match(/if/g).length === 1);
 `testLogicalAnd(0)` should return the string `No`
 
 ```js
-assert(testLogicalAnd(0) === 'No');
+assert(testLogicalAnd(0) === "No");
 ```
 
 `testLogicalAnd(24)` should return the string `No`
 
 ```js
-assert(testLogicalAnd(24) === 'No');
+assert(testLogicalAnd(24) === "No");
 ```
 
 `testLogicalAnd(25)` should return the string `Yes`
 
 ```js
-assert(testLogicalAnd(25) === 'Yes');
+assert(testLogicalAnd(25) === "Yes");
 ```
 
 `testLogicalAnd(30)` should return the string `Yes`
 
 ```js
-assert(testLogicalAnd(30) === 'Yes');
+assert(testLogicalAnd(30) === "Yes");
 ```
 
 `testLogicalAnd(50)` should return the string `Yes`
 
 ```js
-assert(testLogicalAnd(50) === 'Yes');
+assert(testLogicalAnd(50) === "Yes");
 ```
 
 `testLogicalAnd(51)` should return the string `No`
 
 ```js
-assert(testLogicalAnd(51) === 'No');
+assert(testLogicalAnd(51) === "No");
 ```
 
 `testLogicalAnd(75)` should return the string `No`
 
 ```js
-assert(testLogicalAnd(75) === 'No');
+assert(testLogicalAnd(75) === "No");
 ```
 
 `testLogicalAnd(80)` should return the string `No`
 
 ```js
-assert(testLogicalAnd(80) === 'No');
+assert(testLogicalAnd(80) === "No");
 ```
 
 # --seed--

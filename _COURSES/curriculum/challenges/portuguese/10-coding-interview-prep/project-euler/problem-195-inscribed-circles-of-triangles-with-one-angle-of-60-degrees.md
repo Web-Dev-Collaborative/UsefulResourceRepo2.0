@@ -1,6 +1,6 @@
 ---
 id: 5900f4311000cf542c50ff43
-title: 'Problem 195: Inscribed circles of triangles with one angle of 60 degrees'
+title: "Problem 195: Inscribed circles of triangles with one angle of 60 degrees"
 challengeType: 5
 forumTopicId: 301833
 dashedName: problem-195-inscribed-circles-of-triangles-with-one-angle-of-60-degrees
@@ -34,7 +34,6 @@ assert.strictEqual(euler195(), 75085391);
 
 ```js
 function euler195() {
-
   return true;
 }
 

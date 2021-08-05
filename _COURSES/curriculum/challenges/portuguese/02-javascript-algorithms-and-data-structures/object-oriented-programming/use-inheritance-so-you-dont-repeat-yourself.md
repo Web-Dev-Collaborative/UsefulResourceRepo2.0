@@ -15,29 +15,29 @@ Notice in the example below that the `describe` method is shared by `Bird` and `
 ```js
 Bird.prototype = {
   constructor: Bird,
-  describe: function() {
+  describe: function () {
     console.log("My name is " + this.name);
-  }
+  },
 };
 
 Dog.prototype = {
   constructor: Dog,
-  describe: function() {
+  describe: function () {
     console.log("My name is " + this.name);
-  }
+  },
 };
 ```
 
 The `describe` method is repeated in two places. The code can be edited to follow the DRY principle by creating a `supertype` (or parent) called `Animal`:
 
 ```js
-function Animal() { };
+function Animal() {}
 
 Animal.prototype = {
-  constructor: Animal, 
-  describe: function() {
+  constructor: Animal,
+  describe: function () {
     console.log("My name is " + this.name);
-  }
+  },
 };
 ```
 
@@ -45,11 +45,11 @@ Since `Animal` includes the `describe` method, you can remove it from `Bird` and
 
 ```js
 Bird.prototype = {
-  constructor: Bird
+  constructor: Bird,
 };
 
 Dog.prototype = {
-  constructor: Dog
+  constructor: Dog,
 };
 ```
 
@@ -62,19 +62,19 @@ The `eat` method is repeated in both `Cat` and `Bear`. Edit the code in the spir
 `Animal.prototype` should have the `eat` property.
 
 ```js
-assert(Animal.prototype.hasOwnProperty('eat'));
+assert(Animal.prototype.hasOwnProperty("eat"));
 ```
 
 `Bear.prototype` should not have the `eat` property.
 
 ```js
-assert(!Bear.prototype.hasOwnProperty('eat'));
+assert(!Bear.prototype.hasOwnProperty("eat"));
 ```
 
 `Cat.prototype` should not have the `eat` property.
 
 ```js
-assert(!Cat.prototype.hasOwnProperty('eat'));
+assert(!Cat.prototype.hasOwnProperty("eat"));
 ```
 
 # --seed--
@@ -88,9 +88,9 @@ function Cat(name) {
 
 Cat.prototype = {
   constructor: Cat,
-  eat: function() {
+  eat: function () {
     console.log("nom nom nom");
-  }
+  },
 };
 
 function Bear(name) {
@@ -99,16 +99,15 @@ function Bear(name) {
 
 Bear.prototype = {
   constructor: Bear,
-  eat: function() {
+  eat: function () {
     console.log("nom nom nom");
-  }
+  },
 };
 
-function Animal() { }
+function Animal() {}
 
 Animal.prototype = {
   constructor: Animal,
-
 };
 ```
 
@@ -120,7 +119,7 @@ function Cat(name) {
 }
 
 Cat.prototype = {
-  constructor: Cat
+  constructor: Cat,
 };
 
 function Bear(name) {
@@ -128,15 +127,15 @@ function Bear(name) {
 }
 
 Bear.prototype = {
-  constructor: Bear
+  constructor: Bear,
 };
 
-function Animal() { }
+function Animal() {}
 
 Animal.prototype = {
   constructor: Animal,
-  eat: function() {
+  eat: function () {
     console.log("nom nom nom");
-  }
+  },
 };
 ```

@@ -1,6 +1,6 @@
-const findIndex = require('lodash/findIndex');
-const Joi = require('joi');
-Joi.objectId = require('joi-objectid')(Joi);
+const findIndex = require("lodash/findIndex");
+const Joi = require("joi");
+Joi.objectId = require("joi-objectid")(Joi);
 
 const schema = Joi.objectId();
 
@@ -15,7 +15,7 @@ class MongoIds {
       throw new Error(`Expected a valid ObjectId for ${title}, but got ${id}`);
     }
 
-    const idIndex = findIndex(this.knownIds, existing => id === existing);
+    const idIndex = findIndex(this.knownIds, (existing) => id === existing);
     if (idIndex !== -1) {
       throw new Error(`
     All challenges must have a unique id.

@@ -2,7 +2,7 @@
 id: 587d774c367417b2b2512a9c
 title: Adicionar um texto alternativo em imagens para acessibilidade de deficientes visuais
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cPp7VfD'
+videoUrl: "https://scrimba.com/c/cPp7VfD"
 forumTopicId: 16628
 dashedName: add-a-text-alternative-to-images-for-visually-impaired-accessibility
 ---
@@ -12,7 +12,7 @@ dashedName: add-a-text-alternative-to-images-for-visually-impaired-accessibility
 Você provavelmente já viu um atributo `alt` em uma tag `img` em outros desafios. O texto do atributo `alt` descreve o conteúdo da imagem, dando a ela um texto alternativo. Um atributo `alt` ajuda nos casos onde a imagem não carrega ou não pode ser vista pelo usuário. Os mecanismos de busca também a utilizam para compreender o que uma imagem contém para a incluir nos resultados de pesquisa. Aqui está um exemplo:
 
 ```html
-<img src="importantLogo.jpeg" alt="Company logo">
+<img src="importantLogo.jpeg" alt="Company logo" />
 ```
 
 Pessoas com deficiências visuais dependem de leitores de tela para converter conteúdo da web em uma interface de áudio. Eles não vão obter informações se elas forem apresentadas apenas visualmente. Para imagens, os leitores de tela podem acessar o atributo `alt` e ler seu conteúdo para fornecer informações importantes.
@@ -28,7 +28,7 @@ O Camper Cat é tanto um ninja do código quanto um ninja de verdade. Ele está 
 A tag `img` deve ter um atributo `alt` e o texto dele não deve estar vazio.
 
 ```js
-assert($('img').attr('alt'));
+assert($("img").attr("alt"));
 ```
 
 # --seed--
@@ -36,11 +36,11 @@ assert($('img').attr('alt'));
 ## --seed-contents--
 
 ```html
-<img src="doingKarateWow.jpeg">
+<img src="doingKarateWow.jpeg" />
 ```
 
 # --solutions--
 
 ```html
-<img src="doingKarateWow.jpeg" alt="Someone doing karate">
+<img src="doingKarateWow.jpeg" alt="Someone doing karate" />
 ```

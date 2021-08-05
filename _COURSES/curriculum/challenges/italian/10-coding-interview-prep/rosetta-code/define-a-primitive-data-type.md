@@ -22,19 +22,19 @@ Error handling:
 `Num` should be a function.
 
 ```js
-assert(typeof Num === 'function');
+assert(typeof Num === "function");
 ```
 
 `new Num(4)` should return an object.
 
 ```js
-assert(typeof new Num(4) === 'object');
+assert(typeof new Num(4) === "object");
 ```
 
 `new Num('test')` should throw a TypeError with message 'Not a Number'.
 
 ```js
-assert.throws(() => new Num('test'), TypeError);
+assert.throws(() => new Num("test"), TypeError);
 ```
 
 `new Num(0)` should throw a TypeError with message 'Out of range'.
@@ -100,7 +100,7 @@ assert(!(new Num(3) > new Num(4)));
 `(new Num(5)).toString()` should return '5'
 
 ```js
-assert.equal(new Num(5).toString(), '5');
+assert.equal(new Num(5).toString(), "5");
 ```
 
 # --seed--
@@ -109,7 +109,6 @@ assert.equal(new Num(5).toString(), '5');
 
 ```js
 function Num(n) {
-
   return n;
 }
 ```
@@ -119,14 +118,18 @@ function Num(n) {
 ```js
 function Num(n) {
   if (isNaN(n)) {
-    throw new TypeError('Not a Number');
+    throw new TypeError("Not a Number");
   }
   if (n < 1 || n > 10) {
-    throw new TypeError('Out of range');
+    throw new TypeError("Out of range");
   }
 
   this._value = +n;
 }
-Num.prototype.valueOf = function() { return this._value; };
-Num.prototype.toString = function () { return this._value.toString(); };
+Num.prototype.valueOf = function () {
+  return this._value;
+};
+Num.prototype.toString = function () {
+  return this._value.toString();
+};
 ```

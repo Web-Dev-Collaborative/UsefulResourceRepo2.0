@@ -8,7 +8,7 @@ dashedName: spiral-matrix
 
 # --description--
 
-Produce a spiral array. A *spiral array* is a square arrangement of the first N<sup>2</sup> natural numbers, where the numbers increase sequentially as you go around the edges of the array spiraling inwards. For example, given **5**, produce this array:
+Produce a spiral array. A _spiral array_ is a square arrangement of the first N<sup>2</sup> natural numbers, where the numbers increase sequentially as you go around the edges of the array spiraling inwards. For example, given **5**, produce this array:
 
 <pre>
 0  1  2  3  4
@@ -23,7 +23,7 @@ Produce a spiral array. A *spiral array* is a square arrangement of the first N<
 `spiralArray` should be a function.
 
 ```js
-assert(typeof spiralArray == 'function');
+assert(typeof spiralArray == "function");
 ```
 
 `spiralArray(3)` should return an array.
@@ -38,7 +38,7 @@ assert(Array.isArray(spiralArray(3)));
 assert.deepEqual(spiralArray(3), [
   [0, 1, 2],
   [7, 8, 3],
-  [6, 5, 4]
+  [6, 5, 4],
 ]);
 ```
 
@@ -49,7 +49,7 @@ assert.deepEqual(spiralArray(4), [
   [0, 1, 2, 3],
   [11, 12, 13, 4],
   [10, 15, 14, 5],
-  [9, 8, 7, 6]
+  [9, 8, 7, 6],
 ]);
 ```
 
@@ -61,7 +61,7 @@ assert.deepEqual(spiralArray(5), [
   [15, 16, 17, 18, 5],
   [14, 23, 24, 19, 6],
   [13, 22, 21, 20, 7],
-  [12, 11, 10, 9, 8]
+  [12, 11, 10, 9, 8],
 ]);
 ```
 
@@ -70,9 +70,7 @@ assert.deepEqual(spiralArray(5), [
 ## --seed-contents--
 
 ```js
-function spiralArray(n) {
-
-}
+function spiralArray(n) {}
 ```
 
 # --solutions--

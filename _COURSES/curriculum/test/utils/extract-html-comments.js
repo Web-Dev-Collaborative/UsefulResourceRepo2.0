@@ -1,7 +1,7 @@
-var rehype = require('rehype');
-var vfile = require('vfile');
+var rehype = require("rehype");
+var vfile = require("vfile");
 
-var getComments = require('./plugins/get-html-comments');
+var getComments = require("./plugins/get-html-comments");
 
 const processor = rehype().use(getComments);
 

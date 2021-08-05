@@ -1,6 +1,6 @@
 ---
 id: 5900f3f91000cf542c50ff0b
-title: 'Problem 141: Investigating progressive numbers, n, which are also square'
+title: "Problem 141: Investigating progressive numbers, n, which are also square"
 challengeType: 5
 forumTopicId: 301770
 dashedName: problem-141-investigating-progressive-numbers-n-which-are-also-square
@@ -32,7 +32,6 @@ assert.strictEqual(euler141(), 878454337159);
 
 ```js
 function euler141() {
-
   return true;
 }
 

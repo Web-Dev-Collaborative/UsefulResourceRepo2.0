@@ -7,7 +7,6 @@ url: https://github.com/moT01/.learn-bash-and-sql-by-building-a-bike-rental-shop
 dashedName: learn-bash-and-sql-by-building-a-bike-rental-shop
 ---
 
-
 # --instructions--
 
 # --hints--

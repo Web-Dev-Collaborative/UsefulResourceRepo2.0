@@ -20,10 +20,10 @@ The `users` object should only contain the keys `Alan`, `Jeff`, `Sarah`, and `Ry
 
 ```js
 assert(
-  'Alan' in users &&
-    'Jeff' in users &&
-    'Sarah' in users &&
-    'Ryan' in users &&
+  "Alan" in users &&
+    "Jeff" in users &&
+    "Sarah" in users &&
+    "Ryan" in users &&
     Object.keys(users).length === 4
 );
 ```
@@ -37,12 +37,12 @@ assert(
     users.Lewis = {};
     let R = getArrayOfUsers(users);
     return (
-      R.indexOf('Alan') !== -1 &&
-      R.indexOf('Jeff') !== -1 &&
-      R.indexOf('Sarah') !== -1 &&
-      R.indexOf('Ryan') !== -1 &&
-      R.indexOf('Sam') !== -1 &&
-      R.indexOf('Lewis') !== -1
+      R.indexOf("Alan") !== -1 &&
+      R.indexOf("Jeff") !== -1 &&
+      R.indexOf("Sarah") !== -1 &&
+      R.indexOf("Ryan") !== -1 &&
+      R.indexOf("Sam") !== -1 &&
+      R.indexOf("Lewis") !== -1
     );
   })() === true
 );
@@ -56,25 +56,24 @@ assert(
 let users = {
   Alan: {
     age: 27,
-    online: false
+    online: false,
   },
   Jeff: {
     age: 32,
-    online: true
+    online: true,
   },
   Sarah: {
     age: 48,
-    online: false
+    online: false,
   },
   Ryan: {
     age: 19,
-    online: true
-  }
+    online: true,
+  },
 };
 
 function getArrayOfUsers(obj) {
   // Only change code below this line
-
   // Only change code above this line
 }
 
@@ -87,20 +86,20 @@ console.log(getArrayOfUsers(users));
 let users = {
   Alan: {
     age: 27,
-    online: false
+    online: false,
   },
   Jeff: {
     age: 32,
-    online: true
+    online: true,
   },
   Sarah: {
     age: 48,
-    online: false
+    online: false,
   },
   Ryan: {
     age: 19,
-    online: true
-  }
+    online: true,
+  },
 };
 
 function getArrayOfUsers(obj) {

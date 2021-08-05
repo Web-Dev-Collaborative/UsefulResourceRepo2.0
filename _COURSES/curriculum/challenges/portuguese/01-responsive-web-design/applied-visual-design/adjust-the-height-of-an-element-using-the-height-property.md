@@ -2,7 +2,7 @@
 id: 587d7791367417b2b2512ab5
 title: Ajustar a altura de um elemento usando a propriedade height
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cEDaDTN'
+videoUrl: "https://scrimba.com/c/cEDaDTN"
 forumTopicId: 301034
 dashedName: adjust-the-height-of-an-element-using-the-height-property
 ---
@@ -29,9 +29,9 @@ O código deve alterar a propriedade `height` da tag `h4` para um valor de 25 pi
 
 ```js
 assert(
-  Math.round(document.querySelector('h4').getBoundingClientRect().height) ===
+  Math.round(document.querySelector("h4").getBoundingClientRect().height) ===
     25 &&
-    /h4{\S*height:25px(;\S*}|})/.test($('style').text().replace(/\s/g, ''))
+    /h4{\S*height:25px(;\S*}|})/.test($("style").text().replace(/\s/g, ""))
 );
 ```
 
@@ -43,7 +43,6 @@ assert(
 <style>
   h4 {
     text-align: center;
-
   }
   p {
     text-align: justify;
@@ -67,11 +66,24 @@ assert(
   <div class="cardContent">
     <div class="cardText">
       <h4>Google</h4>
-      <p>Google was founded by Larry Page and Sergey Brin while they were Ph.D. students at Stanford University.</p>
+      <p>
+        Google was founded by Larry Page and Sergey Brin while they were Ph.D.
+        students at Stanford University.
+      </p>
     </div>
     <div class="cardLinks">
-      <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a>
-      <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+      <a
+        href="https://en.wikipedia.org/wiki/Larry_Page"
+        target="_blank"
+        class="links"
+        >Larry Page</a
+      >
+      <a
+        href="https://en.wikipedia.org/wiki/Sergey_Brin"
+        target="_blank"
+        class="links"
+        >Sergey Brin</a
+      >
     </div>
   </div>
 </div>
@@ -107,11 +119,24 @@ assert(
   <div class="cardContent">
     <div class="cardText">
       <h4>Google</h4>
-      <p>Google was founded by Larry Page and Sergey Brin while they were Ph.D. students at Stanford University.</p>
+      <p>
+        Google was founded by Larry Page and Sergey Brin while they were Ph.D.
+        students at Stanford University.
+      </p>
     </div>
     <div class="cardLinks">
-      <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a>
-      <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+      <a
+        href="https://en.wikipedia.org/wiki/Larry_Page"
+        target="_blank"
+        class="links"
+        >Larry Page</a
+      >
+      <a
+        href="https://en.wikipedia.org/wiki/Sergey_Brin"
+        target="_blank"
+        class="links"
+        >Sergey Brin</a
+      >
     </div>
   </div>
 </div>

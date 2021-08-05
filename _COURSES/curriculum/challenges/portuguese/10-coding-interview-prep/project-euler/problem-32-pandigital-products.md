@@ -1,6 +1,6 @@
 ---
 id: 5900f38c1000cf542c50fe9f
-title: 'Problem 32: Pandigital products'
+title: "Problem 32: Pandigital products"
 challengeType: 5
 forumTopicId: 301976
 dashedName: problem-32-pandigital-products
@@ -21,7 +21,7 @@ Find the sum of all products whose multiplicand/multiplier/product identity can 
 `pandigitalProducts(4)` should return a number.
 
 ```js
-assert(typeof pandigitalProducts(4) === 'number');
+assert(typeof pandigitalProducts(4) === "number");
 ```
 
 `pandigitalProducts(4)` should return `12`.
@@ -60,7 +60,6 @@ assert.strictEqual(pandigitalProducts(9), 45228);
 
 ```js
 function pandigitalProducts(n) {
-
   return true;
 }
 
@@ -85,7 +84,7 @@ function pandigitalProducts(n) {
     return true;
   }
   function concatenateNums(...numbers) {
-    let digitStr = '';
+    let digitStr = "";
     for (let i = 0; i < numbers.length; i++) {
       digitStr += numbers[i].toString();
     }

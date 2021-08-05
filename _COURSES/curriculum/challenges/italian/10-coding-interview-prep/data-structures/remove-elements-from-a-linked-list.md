@@ -30,7 +30,7 @@ Your `LinkedList` class should have a `remove` method.
 assert(
   (function () {
     var test = new LinkedList();
-    return typeof test.remove === 'function';
+    return typeof test.remove === "function";
   })()
 );
 ```
@@ -41,10 +41,10 @@ Your `remove` method should reassign `head` to the second node when the first no
 assert(
   (function () {
     var test = new LinkedList();
-    test.add('cat');
-    test.add('dog');
-    test.remove('cat');
-    return test.head().element === 'dog';
+    test.add("cat");
+    test.add("dog");
+    test.remove("cat");
+    return test.head().element === "dog";
   })()
 );
 ```
@@ -55,11 +55,11 @@ Your `remove` method should decrease the `length` of the linked list by one for 
 assert(
   (function () {
     var test = new LinkedList();
-    test.add('cat');
-    test.add('dog');
-    test.add('hamster');
-    test.remove('cat');
-    test.remove('fish');
+    test.add("cat");
+    test.add("dog");
+    test.add("hamster");
+    test.remove("cat");
+    test.remove("fish");
     return test.size() === 2;
   })()
 );
@@ -71,12 +71,12 @@ Your `remove` method should reassign the reference of the previous node of the r
 assert(
   (function () {
     var test = new LinkedList();
-    test.add('cat');
-    test.add('dog');
-    test.add('snake');
-    test.add('kitten');
-    test.remove('snake');
-    return test.head().next.next.element === 'kitten';
+    test.add("cat");
+    test.add("dog");
+    test.add("snake");
+    test.add("kitten");
+    test.remove("snake");
+    return test.head().next.next.element === "kitten";
   })()
 );
 ```
@@ -87,10 +87,10 @@ Your `remove` method should not change the linked list if the element does not e
 assert(
   (function () {
     var test = new LinkedList();
-    test.add('cat');
-    test.add('dog');
-    test.add('kitten');
-    test.remove('elephant');
+    test.add("cat");
+    test.add("dog");
+    test.add("kitten");
+    test.remove("elephant");
     return (
       JSON.stringify(test.head()) ===
       '{"element":"cat","next":{"element":"dog","next":{"element":"kitten","next":null}}}'
@@ -108,28 +108,28 @@ function LinkedList() {
   var length = 0;
   var head = null;
 
-  var Node = function(element){
+  var Node = function (element) {
     this.element = element;
     this.next = null;
   };
 
-  this.size = function(){
+  this.size = function () {
     return length;
   };
 
-  this.head = function(){
+  this.head = function () {
     return head;
   };
 
-  this.add = function(element){
+  this.add = function (element) {
     var node = new Node(element);
-    if(head === null){
-        head = node;
+    if (head === null) {
+      head = node;
     } else {
       var currentNode = head;
 
-      while(currentNode.next){
-        currentNode  = currentNode.next;
+      while (currentNode.next) {
+        currentNode = currentNode.next;
       }
 
       currentNode.next = node;
@@ -138,9 +138,8 @@ function LinkedList() {
     length++;
   };
 
-  this.remove = function(element){
+  this.remove = function (element) {
     // Only change code below this line
-
     // Only change code above this line
   };
 }
@@ -153,37 +152,37 @@ function LinkedList() {
   var length = 0;
   var head = null;
 
-  var Node = function(element){
+  var Node = function (element) {
     this.element = element;
     this.next = null;
   };
 
-  this.size = function(){
+  this.size = function () {
     return length;
   };
 
-  this.head = function(){
+  this.head = function () {
     return head;
   };
 
-  this.add = function(element){
+  this.add = function (element) {
     var node = new Node(element);
-    if(head === null){
-        head = node;
+    if (head === null) {
+      head = node;
     } else {
-        var currentNode = head;
+      var currentNode = head;
 
-        while(currentNode.next){
-            currentNode  = currentNode.next;
-        }
+      while (currentNode.next) {
+        currentNode = currentNode.next;
+      }
 
-        currentNode.next = node;
+      currentNode.next = node;
     }
 
     length++;
   };
 
-  this.remove = function(element){
+  this.remove = function (element) {
     if (head === null) {
       return;
     }
@@ -194,11 +193,10 @@ function LinkedList() {
       previous = currentNode;
       currentNode = currentNode.next;
     }
-    
+
     if (currentNode.next === null && currentNode.element !== element) {
       return;
-    }
-    else if (previous) {
+    } else if (previous) {
       previous.next = currentNode.next;
     } else {
       head = currentNode.next;
@@ -206,5 +204,5 @@ function LinkedList() {
 
     length--;
   };
-} 
+}
 ```

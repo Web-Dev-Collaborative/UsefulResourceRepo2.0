@@ -21,7 +21,7 @@ Write a regex and use the appropriate string methods to remove whitespace at the
 `result` should be equal to the string `Hello, World!`
 
 ```js
-assert(result === 'Hello, World!');
+assert(result === "Hello, World!");
 ```
 
 Your solution should not use the `String.prototype.trim()` method.
@@ -51,5 +51,5 @@ let result = hello; // Change this line
 ```js
 let hello = "   Hello, World!  ";
 let wsRegex = /^(\s+)(.+[^\s])(\s+)$/;
-let result = hello.replace(wsRegex, '$2');
+let result = hello.replace(wsRegex, "$2");
 ```

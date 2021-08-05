@@ -17,7 +17,7 @@ Let's nest your `h3` element within a `div` element with the class `container-fl
 Your `div` element should have the class `container-fluid`.
 
 ```js
-assert($('div').hasClass('container-fluid'));
+assert($("div").hasClass("container-fluid"));
 ```
 
 Each of your `div` elements should have closing tags.
@@ -33,7 +33,7 @@ assert(
 Your `h3` element should be nested inside a `div` element.
 
 ```js
-assert($('div').children('h3').length > 0);
+assert($("div").children("h3").length > 0);
 ```
 
 # --seed--
@@ -48,6 +48,6 @@ assert($('div').children('h3').length > 0);
 
 ```html
 <div class="container-fluid">
-    <h3 class="text-primary text-center">jQuery Playground</h3>
+  <h3 class="text-primary text-center">jQuery Playground</h3>
 </div>
 ```

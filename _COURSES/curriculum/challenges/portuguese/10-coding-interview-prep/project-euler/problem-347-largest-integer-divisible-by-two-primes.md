@@ -1,6 +1,6 @@
 ---
 id: 5900f4c81000cf542c50ffd9
-title: 'Problem 347: Largest integer divisible by two primes'
+title: "Problem 347: Largest integer divisible by two primes"
 challengeType: 5
 forumTopicId: 302006
 dashedName: problem-347-largest-integer-divisible-by-two-primes
@@ -34,7 +34,6 @@ assert.strictEqual(euler347(), 11109800204052);
 
 ```js
 function euler347() {
-
   return true;
 }
 

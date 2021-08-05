@@ -1,6 +1,6 @@
 ---
 id: 5900f3f31000cf542c50ff06
-title: 'Problem 135: Same differences'
+title: "Problem 135: Same differences"
 challengeType: 5
 forumTopicId: 301763
 dashedName: problem-135-same-differences
@@ -30,7 +30,6 @@ assert.strictEqual(euler135(), 4989);
 
 ```js
 function euler135() {
-
   return true;
 }
 

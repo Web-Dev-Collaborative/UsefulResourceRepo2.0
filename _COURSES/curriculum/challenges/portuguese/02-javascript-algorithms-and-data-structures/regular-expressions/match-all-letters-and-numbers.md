@@ -49,7 +49,7 @@ Your regex should find 31 alphanumeric characters in the string `The five boxing
 
 ```js
 assert(
-  'The five boxing wizards jump quickly.'.match(alphabetRegexV2).length === 31
+  "The five boxing wizards jump quickly.".match(alphabetRegexV2).length === 31
 );
 ```
 
@@ -57,7 +57,7 @@ Your regex should find 32 alphanumeric characters in the string `Pack my box wit
 
 ```js
 assert(
-  'Pack my box with five dozen liquor jugs.'.match(alphabetRegexV2).length ===
+  "Pack my box with five dozen liquor jugs.".match(alphabetRegexV2).length ===
     32
 );
 ```
@@ -66,7 +66,7 @@ Your regex should find 30 alphanumeric characters in the string `How vexingly qu
 
 ```js
 assert(
-  'How vexingly quick daft zebras jump!'.match(alphabetRegexV2).length === 30
+  "How vexingly quick daft zebras jump!".match(alphabetRegexV2).length === 30
 );
 ```
 
@@ -74,7 +74,7 @@ Your regex should find 36 alphanumeric characters in the string `123 456 7890 AB
 
 ```js
 assert(
-  '123 456 7890 ABC def GHI jkl MNO pqr STU vwx YZ.'.match(alphabetRegexV2)
+  "123 456 7890 ABC def GHI jkl MNO pqr STU vwx YZ.".match(alphabetRegexV2)
     .length === 36
 );
 ```

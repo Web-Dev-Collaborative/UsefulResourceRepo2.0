@@ -18,10 +18,10 @@ The `BinarySearchTree` data structure should exist.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     }
-    return typeof test == 'object';
+    return typeof test == "object";
   })()
 );
 ```
@@ -32,12 +32,12 @@ The binary search tree should have a method called `findMin`.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    return typeof test.findMin == 'function';
+    return typeof test.findMin == "function";
   })()
 );
 ```
@@ -48,12 +48,12 @@ The binary search tree should have a method called `findMax`.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    return typeof test.findMax == 'function';
+    return typeof test.findMax == "function";
   })()
 );
 ```
@@ -64,12 +64,12 @@ The `findMin` method should return the minimum value in the binary search tree.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.findMin !== 'function') {
+    if (typeof test.findMin !== "function") {
       return false;
     }
     test.add(4);
@@ -91,12 +91,12 @@ The `findMax` method should return the maximum value in the binary search tree.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.findMax !== 'function') {
+    if (typeof test.findMax !== "function") {
       return false;
     }
     test.add(4);
@@ -118,15 +118,15 @@ The `findMin` and `findMax` methods should return `null` for an empty tree.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.findMin !== 'function') {
+    if (typeof test.findMin !== "function") {
       return false;
     }
-    if (typeof test.findMax !== 'function') {
+    if (typeof test.findMax !== "function") {
       return false;
     }
     return test.findMin() == null && test.findMax() == null;
@@ -139,46 +139,43 @@ assert(
 ## --after-user-code--
 
 ```js
-BinarySearchTree.prototype = Object.assign(
-  BinarySearchTree.prototype,
-  {
-    add: function(value) {
-      function searchTree(node) {
-        if (value < node.value) {
-          if (node.left == null) {
-            node.left = new Node(value);
-            return;
-          } else if (node.left != null) {
-            return searchTree(node.left);
-          }
-        } else if (value > node.value) {
-          if (node.right == null) {
-            node.right = new Node(value);
-            return;
-          } else if (node.right != null) {
-            return searchTree(node.right);
-          }
-        } else {
-          return null;
+BinarySearchTree.prototype = Object.assign(BinarySearchTree.prototype, {
+  add: function (value) {
+    function searchTree(node) {
+      if (value < node.value) {
+        if (node.left == null) {
+          node.left = new Node(value);
+          return;
+        } else if (node.left != null) {
+          return searchTree(node.left);
         }
-      }
-
-      var node = this.root;
-      if (node == null) {
-        this.root = new Node(value);
-        return;
+      } else if (value > node.value) {
+        if (node.right == null) {
+          node.right = new Node(value);
+          return;
+        } else if (node.right != null) {
+          return searchTree(node.right);
+        }
       } else {
-        return searchTree(node);
+        return null;
       }
     }
-  }
-);
+
+    var node = this.root;
+    if (node == null) {
+      this.root = new Node(value);
+      return;
+    } else {
+      return searchTree(node);
+    }
+  },
+});
 ```
 
 ## --seed-contents--
 
 ```js
-var displayTree = tree => console.log(JSON.stringify(tree, null, 2));
+var displayTree = (tree) => console.log(JSON.stringify(tree, null, 2));
 function Node(value) {
   this.value = value;
   this.left = null;
@@ -187,7 +184,7 @@ function Node(value) {
 function BinarySearchTree() {
   this.root = null;
   // Only change code below this line
-  
+
   // Only change code above this line
 }
 ```
@@ -195,7 +192,7 @@ function BinarySearchTree() {
 # --solutions--
 
 ```js
-var displayTree = tree => console.log(JSON.stringify(tree, null, 2));
+var displayTree = (tree) => console.log(JSON.stringify(tree, null, 2));
 
 function Node(value) {
   this.value = value;
@@ -205,7 +202,7 @@ function Node(value) {
 
 function BinarySearchTree() {
   this.root = null;
-  this.findMin = function() {
+  this.findMin = function () {
     // Empty tree.
     if (!this.root) {
       return null;
@@ -216,7 +213,7 @@ function BinarySearchTree() {
     }
     return currentNode.value;
   };
-  this.findMax = function() {
+  this.findMax = function () {
     // Empty tree.
     if (!this.root) {
       return null;
@@ -227,7 +224,7 @@ function BinarySearchTree() {
     }
     return currentNode.value;
   };
-  this.add = function(value) {
+  this.add = function (value) {
     // Empty tree.
     if (!this.root) {
       this.root = new Node(value);
@@ -235,7 +232,7 @@ function BinarySearchTree() {
     }
     return this.addNode(this.root, value);
   };
-  this.addNode = function(node, value) {
+  this.addNode = function (node, value) {
     // Check if value already exists.
     if (node.value === value) return null;
     if (value < node.value) {
@@ -254,13 +251,13 @@ function BinarySearchTree() {
       }
     }
   };
-  this.isPresent = function(value) {
+  this.isPresent = function (value) {
     if (!this.root) {
       return null;
     }
     return this.isNodePresent(this.root, value);
   };
-  this.isNodePresent = function(node, value) {
+  this.isNodePresent = function (node, value) {
     if (node.value === value) return true;
     if (value < node.value) {
       return node.left ? this.isNodePresent(node.left, value) : false;
@@ -269,7 +266,7 @@ function BinarySearchTree() {
     }
     return false;
   };
-  this.findMinHeight = function() {
+  this.findMinHeight = function () {
     if (!this.root) {
       return -1;
     }
@@ -278,7 +275,7 @@ function BinarySearchTree() {
     this.traverseTree(this.root, height, heights);
     return Math.min(...Object.keys(heights));
   };
-  this.findMaxHeight = function() {
+  this.findMaxHeight = function () {
     if (!this.root) {
       return -1;
     }
@@ -287,7 +284,7 @@ function BinarySearchTree() {
     this.traverseTree(this.root, height, heights);
     return Math.max(...Object.keys(heights));
   };
-  this.traverseTree = function(node, height, heights) {
+  this.traverseTree = function (node, height, heights) {
     if (node.left === null && node.right === null) {
       return (heights[height] = true);
     }
@@ -298,11 +295,11 @@ function BinarySearchTree() {
       this.traverseTree(node.right, height + 1, heights);
     }
   };
-  this.isBalanced = function() {
+  this.isBalanced = function () {
     return this.findMaxHeight() > this.findMinHeight() + 1;
   };
   // DFS tree traversal.
-  this.inorder = function() {
+  this.inorder = function () {
     if (!this.root) return null;
     let result = [];
 
@@ -314,7 +311,7 @@ function BinarySearchTree() {
     traverseInOrder(this.root);
     return result;
   };
-  this.preorder = function() {
+  this.preorder = function () {
     if (!this.root) return null;
     let result = [];
 
@@ -326,7 +323,7 @@ function BinarySearchTree() {
     traverseInOrder(this.root);
     return result;
   };
-  this.postorder = function() {
+  this.postorder = function () {
     if (!this.root) return null;
     let result = [];
 
@@ -339,7 +336,7 @@ function BinarySearchTree() {
     return result;
   };
   // BFS tree traversal.
-  this.levelOrder = function() {
+  this.levelOrder = function () {
     if (!this.root) return null;
     let queue = [this.root];
     let result = [];
@@ -351,7 +348,7 @@ function BinarySearchTree() {
     }
     return result;
   };
-  this.reverseLevelOrder = function() {
+  this.reverseLevelOrder = function () {
     if (!this.root) return null;
     let queue = [this.root];
     let result = [];

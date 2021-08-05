@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08826
 title: Usar a notação de sentido horário para especificar o preenchimento (padding) de um elemento
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cB7mBS9'
+videoUrl: "https://scrimba.com/c/cB7mBS9"
 forumTopicId: 18346
 dashedName: use-clockwise-notation-to-specify-the-padding-of-an-element
 ---
@@ -26,25 +26,25 @@ Use a notação no sentido horário para dar à classe `.blue-box` um preenchime
 A classe `blue-box` deve dar `40px` de preenchimento (`padding`) no lado superior dos elementos.
 
 ```js
-assert($('.blue-box').css('padding-top') === '40px');
+assert($(".blue-box").css("padding-top") === "40px");
 ```
 
 A classe `blue-box` deve dar `20px` de preenchimento (`padding`) no lado direito dos elementos.
 
 ```js
-assert($('.blue-box').css('padding-right') === '20px');
+assert($(".blue-box").css("padding-right") === "20px");
 ```
 
 A classe `blue-box` deve dar `20px` de preenchimento (`padding`) no lado inferior dos elementos.
 
 ```js
-assert($('.blue-box').css('padding-bottom') === '20px');
+assert($(".blue-box").css("padding-bottom") === "20px");
 ```
 
 A classe `blue-box` deve dar `40px` de preenchimento (`padding`) no lado esquerdo dos elementos.
 
 ```js
-assert($('.blue-box').css('padding-left') === '40px');
+assert($(".blue-box").css("padding-left") === "40px");
 ```
 
 Você deve usar a notação no sentido horário para definir o padding dos elementos da classe `blue-box`.
@@ -52,7 +52,7 @@ Você deve usar a notação no sentido horário para definir o padding dos eleme
 ```js
 assert(
   /\.blue-box\s*{[\s\S]*padding[\s]*:\s*\d+px\s+\d+px\s+\d+px\s+\d+px(;\s*[^}]+\s*}|;?\s*})/.test(
-    __helpers.removeCssComments($('style').text())
+    __helpers.removeCssComments($("style").text())
   )
 );
 ```

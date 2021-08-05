@@ -12,12 +12,12 @@ An immediately invoked function expression (IIFE) is often used to group related
 
 ```js
 function glideMixin(obj) {
-  obj.glide = function() {
+  obj.glide = function () {
     console.log("Gliding on the water");
   };
 }
 function flyMixin(obj) {
-  obj.fly = function() {
+  obj.fly = function () {
     console.log("Flying, wooosh!");
   };
 }
@@ -28,17 +28,17 @@ We can group these mixins into a module as follows:
 ```js
 let motionModule = (function () {
   return {
-    glideMixin: function(obj) {
-      obj.glide = function() {
+    glideMixin: function (obj) {
+      obj.glide = function () {
         console.log("Gliding on the water");
       };
     },
-    flyMixin: function(obj) {
-      obj.fly = function() {
+    flyMixin: function (obj) {
+      obj.fly = function () {
         console.log("Flying, wooosh!");
       };
-    }
-  }
+    },
+  };
 })();
 ```
 
@@ -58,19 +58,19 @@ Create a module named `funModule` to wrap the two mixins `isCuteMixin` and `sing
 `funModule` should be defined and return an object.
 
 ```js
-assert(typeof funModule === 'object');
+assert(typeof funModule === "object");
 ```
 
 `funModule.isCuteMixin` should access a function.
 
 ```js
-assert(typeof funModule.isCuteMixin === 'function');
+assert(typeof funModule.isCuteMixin === "function");
 ```
 
 `funModule.singMixin` should access a function.
 
 ```js
-assert(typeof funModule.singMixin === 'function');
+assert(typeof funModule.singMixin === "function");
 ```
 
 # --seed--
@@ -78,13 +78,13 @@ assert(typeof funModule.singMixin === 'function');
 ## --seed-contents--
 
 ```js
-let isCuteMixin = function(obj) {
-  obj.isCute = function() {
+let isCuteMixin = function (obj) {
+  obj.isCute = function () {
     return true;
   };
 };
-let singMixin = function(obj) {
-  obj.sing = function() {
+let singMixin = function (obj) {
+  obj.sing = function () {
     console.log("Singing to an awesome tune");
   };
 };
@@ -95,12 +95,12 @@ let singMixin = function(obj) {
 ```js
 const funModule = (function () {
   return {
-    isCuteMixin: obj => {
+    isCuteMixin: (obj) => {
       obj.isCute = () => true;
     },
-    singMixin: obj => {
+    singMixin: (obj) => {
       obj.sing = () => console.log("Singing to an awesome tune");
-    }
+    },
   };
 })();
 ```

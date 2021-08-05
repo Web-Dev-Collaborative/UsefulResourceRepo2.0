@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08823
 title: Adicionar margem negativa a um elemento
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cnpyGs3'
+videoUrl: "https://scrimba.com/c/cnpyGs3"
 forumTopicId: 16166
 dashedName: add-a-negative-margin-to-an-element
 ---
@@ -24,7 +24,7 @@ Altere a propriedade `margin` da caixa azul para `-15px`, de modo a preencher to
 O elemento de classe `blue-box` deve possuir a propriedade `margin` com o valor de `-15px`.
 
 ```js
-assert($('.blue-box').css('margin-top') === '-15px');
+assert($(".blue-box").css("margin-top") === "-15px");
 ```
 
 # --seed--

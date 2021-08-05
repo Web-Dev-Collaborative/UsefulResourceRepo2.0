@@ -2,7 +2,7 @@
 id: 587d781a367417b2b2512ab7
 title: Use the strong Tag to Make Text Bold
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/ceJNBSb'
+videoUrl: "https://scrimba.com/c/ceJNBSb"
 forumTopicId: 301080
 dashedName: use-the-strong-tag-to-make-text-bold
 ---
@@ -20,20 +20,20 @@ Wrap a `strong` tag around `Stanford University` text inside the `p` tag (do not
 Your code should add one `strong` tag to the markup.
 
 ```js
-assert($('strong').length == 1);
+assert($("strong").length == 1);
 ```
 
 The `strong` tag should be inside the `p` tag.
 
 ```js
-assert($('p').children('strong').length == 1);
+assert($("p").children("strong").length == 1);
 ```
 
 The `strong` tag should wrap around the words `Stanford University`.
 
 ```js
 assert(
-  $('strong')
+  $("strong")
     .text()
     .match(/^Stanford University\.?$/gi)
 );
@@ -74,11 +74,24 @@ assert(
   <div class="cardContent">
     <div class="cardText">
       <h4>Google</h4>
-      <p>Google was founded by Larry Page and Sergey Brin while they were Ph.D. students at Stanford University.</p>
+      <p>
+        Google was founded by Larry Page and Sergey Brin while they were Ph.D.
+        students at Stanford University.
+      </p>
     </div>
     <div class="cardLinks">
-      <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
-      <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+      <a
+        href="https://en.wikipedia.org/wiki/Larry_Page"
+        target="_blank"
+        class="links"
+        >Larry Page</a
+      ><br /><br />
+      <a
+        href="https://en.wikipedia.org/wiki/Sergey_Brin"
+        target="_blank"
+        class="links"
+        >Sergey Brin</a
+      >
     </div>
   </div>
 </div>
@@ -117,11 +130,24 @@ assert(
   <div class="cardContent">
     <div class="cardText">
       <h4>Google</h4>
-      <p>Google was founded by Larry Page and Sergey Brin while they were Ph.D. students at <strong>Stanford University</strong>.</p>
+      <p>
+        Google was founded by Larry Page and Sergey Brin while they were Ph.D.
+        students at <strong>Stanford University</strong>.
+      </p>
     </div>
     <div class="cardLinks">
-      <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
-      <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+      <a
+        href="https://en.wikipedia.org/wiki/Larry_Page"
+        target="_blank"
+        class="links"
+        >Larry Page</a
+      ><br /><br />
+      <a
+        href="https://en.wikipedia.org/wiki/Sergey_Brin"
+        target="_blank"
+        class="links"
+        >Sergey Brin</a
+      >
     </div>
   </div>
 </div>

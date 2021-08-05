@@ -17,7 +17,7 @@ For example, `sumAll([4,1])` should return `10` because sum of all the numbers b
 `sumAll([1, 4])` should return a number.
 
 ```js
-assert(typeof sumAll([1, 4]) === 'number');
+assert(typeof sumAll([1, 4]) === "number");
 ```
 
 `sumAll([1, 4])` should return 10.
@@ -61,7 +61,9 @@ sumAll([1, 4]);
 ```js
 function sumAll(arr) {
   var sum = 0;
-  arr.sort(function(a,b) {return a-b;});
+  arr.sort(function (a, b) {
+    return a - b;
+  });
   for (var i = arr[0]; i <= arr[1]; i++) {
     sum += i;
   }

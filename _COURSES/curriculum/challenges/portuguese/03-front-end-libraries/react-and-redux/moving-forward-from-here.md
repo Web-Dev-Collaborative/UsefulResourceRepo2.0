@@ -26,7 +26,7 @@ The message `Now I know React and Redux!` should be logged to the console.
 (getUserInput) =>
   assert(
     /console\s*\.\s*log\s*\(\s*('|"|`)Now I know React and Redux!\1\s*\)/.test(
-      getUserInput('index')
+      getUserInput("index")
     )
   );
 ```
@@ -65,5 +65,5 @@ ReactDOM.render(
 # --solutions--
 
 ```jsx
-console.log('Now I know React and Redux!');
+console.log("Now I know React and Redux!");
 ```

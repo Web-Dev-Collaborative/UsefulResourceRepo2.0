@@ -22,10 +22,10 @@ The `BinarySearchTree` data structure should exist.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     }
-    return typeof test == 'object';
+    return typeof test == "object";
   })()
 );
 ```
@@ -36,12 +36,12 @@ The binary search tree should have a method called `inorder`.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    return typeof test.inorder == 'function';
+    return typeof test.inorder == "function";
   })()
 );
 ```
@@ -52,12 +52,12 @@ The binary search tree should have a method called `preorder`.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    return typeof test.preorder == 'function';
+    return typeof test.preorder == "function";
   })()
 );
 ```
@@ -68,12 +68,12 @@ The binary search tree should have a method called `postorder`.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    return typeof test.postorder == 'function';
+    return typeof test.postorder == "function";
   })()
 );
 ```
@@ -84,12 +84,12 @@ The `inorder` method should return an array of the node values that result from 
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.inorder !== 'function') {
+    if (typeof test.inorder !== "function") {
       return false;
     }
     test.add(7);
@@ -103,7 +103,7 @@ assert(
     test.add(5);
     test.add(4);
     test.add(6);
-    return test.inorder().join('') == '012345678910';
+    return test.inorder().join("") == "012345678910";
   })()
 );
 ```
@@ -114,12 +114,12 @@ The `preorder` method should return an array of the node values that result from
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.preorder !== 'function') {
+    if (typeof test.preorder !== "function") {
       return false;
     }
     test.add(7);
@@ -133,7 +133,7 @@ assert(
     test.add(5);
     test.add(4);
     test.add(6);
-    return test.preorder().join('') == '710325469810';
+    return test.preorder().join("") == "710325469810";
   })()
 );
 ```
@@ -144,12 +144,12 @@ The `postorder` method should return an array of the node values that result fro
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.postorder !== 'function') {
+    if (typeof test.postorder !== "function") {
       return false;
     }
     test.add(7);
@@ -163,7 +163,7 @@ assert(
     test.add(5);
     test.add(4);
     test.add(6);
-    return test.postorder().join('') == '024653181097';
+    return test.postorder().join("") == "024653181097";
   })()
 );
 ```
@@ -174,12 +174,12 @@ The `inorder` method should return `null` for an empty tree.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.inorder !== 'function') {
+    if (typeof test.inorder !== "function") {
       return false;
     }
     return test.inorder() == null;
@@ -193,12 +193,12 @@ The `preorder` method should return `null` for an empty tree.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.preorder !== 'function') {
+    if (typeof test.preorder !== "function") {
       return false;
     }
     return test.preorder() == null;
@@ -212,12 +212,12 @@ The `postorder` method should return `null` for an empty tree.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.postorder !== 'function') {
+    if (typeof test.postorder !== "function") {
       return false;
     }
     return test.postorder() == null;
@@ -230,46 +230,43 @@ assert(
 ## --after-user-code--
 
 ```js
-BinarySearchTree.prototype = Object.assign(
-  BinarySearchTree.prototype,
-  {
-    add: function(value) {
-      function searchTree(node) {
-        if (value < node.value) {
-          if (node.left == null) {
-            node.left = new Node(value);
-            return;
-          } else if (node.left != null) {
-            return searchTree(node.left);
-          }
-        } else if (value > node.value) {
-          if (node.right == null) {
-            node.right = new Node(value);
-            return;
-          } else if (node.right != null) {
-            return searchTree(node.right);
-          }
-        } else {
-          return null;
+BinarySearchTree.prototype = Object.assign(BinarySearchTree.prototype, {
+  add: function (value) {
+    function searchTree(node) {
+      if (value < node.value) {
+        if (node.left == null) {
+          node.left = new Node(value);
+          return;
+        } else if (node.left != null) {
+          return searchTree(node.left);
         }
-      }
-
-      var node = this.root;
-      if (node == null) {
-        this.root = new Node(value);
-        return;
+      } else if (value > node.value) {
+        if (node.right == null) {
+          node.right = new Node(value);
+          return;
+        } else if (node.right != null) {
+          return searchTree(node.right);
+        }
       } else {
-        return searchTree(node);
+        return null;
       }
     }
-  }
-);
+
+    var node = this.root;
+    if (node == null) {
+      this.root = new Node(value);
+      return;
+    } else {
+      return searchTree(node);
+    }
+  },
+});
 ```
 
 ## --seed-contents--
 
 ```js
-var displayTree = tree => console.log(JSON.stringify(tree, null, 2));
+var displayTree = (tree) => console.log(JSON.stringify(tree, null, 2));
 function Node(value) {
   this.value = value;
   this.left = null;
@@ -278,7 +275,7 @@ function Node(value) {
 function BinarySearchTree() {
   this.root = null;
   // Only change code below this line
-  
+
   // Only change code above this line
 }
 ```
@@ -286,7 +283,7 @@ function BinarySearchTree() {
 # --solutions--
 
 ```js
-var displayTree = tree => console.log(JSON.stringify(tree, null, 2));
+var displayTree = (tree) => console.log(JSON.stringify(tree, null, 2));
 function Node(value) {
   this.value = value;
   this.left = null;
@@ -296,7 +293,7 @@ function BinarySearchTree() {
   this.root = null;
   this.result = [];
 
-  this.inorder = function(node) {
+  this.inorder = function (node) {
     if (!node) node = this.root;
     if (!node) return null;
 
@@ -305,7 +302,7 @@ function BinarySearchTree() {
     if (node.right) this.inorder(node.right);
     return this.result;
   };
-  this.preorder = function(node) {
+  this.preorder = function (node) {
     if (!node) node = this.root;
     if (!node) return null;
 
@@ -314,7 +311,7 @@ function BinarySearchTree() {
     if (node.right) this.preorder(node.right);
     return this.result;
   };
-  this.postorder = function(node) {
+  this.postorder = function (node) {
     if (!node) node = this.root;
     if (!node) return null;
 

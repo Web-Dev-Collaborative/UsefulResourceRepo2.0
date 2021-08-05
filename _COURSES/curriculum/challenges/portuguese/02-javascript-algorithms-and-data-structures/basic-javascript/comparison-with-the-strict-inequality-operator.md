@@ -2,21 +2,21 @@
 id: 56533eb9ac21ba0edf2244d3
 title: Comparison with the Strict Inequality Operator
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cKekkUy'
+videoUrl: "https://scrimba.com/c/cKekkUy"
 forumTopicId: 16791
 dashedName: comparison-with-the-strict-inequality-operator
 ---
 
 # --description--
 
-The strict inequality operator (`!==`) is the logical opposite of the strict equality operator. It means "Strictly Not Equal" and returns `false` where strict equality would return `true` and *vice versa*. The strict inequality operator will not convert data types.
+The strict inequality operator (`!==`) is the logical opposite of the strict equality operator. It means "Strictly Not Equal" and returns `false` where strict equality would return `true` and _vice versa_. The strict inequality operator will not convert data types.
 
 **Examples**
 
 ```js
-3 !==  3
-3 !== '3'
-4 !==  3
+3 !== 3;
+3 !== "3";
+4 !== 3;
 ```
 
 In order, these expressions would evaluate to `false`, `true`, and `true`.
@@ -30,25 +30,25 @@ Add the strict inequality operator to the `if` statement so the function will re
 `testStrictNotEqual(17)` should return the string `Equal`
 
 ```js
-assert(testStrictNotEqual(17) === 'Equal');
+assert(testStrictNotEqual(17) === "Equal");
 ```
 
 `testStrictNotEqual("17")` should return the string `Not Equal`
 
 ```js
-assert(testStrictNotEqual('17') === 'Not Equal');
+assert(testStrictNotEqual("17") === "Not Equal");
 ```
 
 `testStrictNotEqual(12)` should return the string `Not Equal`
 
 ```js
-assert(testStrictNotEqual(12) === 'Not Equal');
+assert(testStrictNotEqual(12) === "Not Equal");
 ```
 
 `testStrictNotEqual("bob")` should return the string `Not Equal`
 
 ```js
-assert(testStrictNotEqual('bob') === 'Not Equal');
+assert(testStrictNotEqual("bob") === "Not Equal");
 ```
 
 You should use the `!==` operator
@@ -64,7 +64,8 @@ assert(code.match(/(val\s*!==\s*\d+)|(\d+\s*!==\s*val)/g).length > 0);
 ```js
 // Setup
 function testStrictNotEqual(val) {
-  if (val) { // Change this line
+  if (val) {
+    // Change this line
     return "Not Equal";
   }
   return "Equal";

@@ -13,9 +13,7 @@ D3 riguarda la visualizzazione e la presentazione dei dati. È probabile che tu 
 Ad esempio, potresti voler rendere blu un punto dati se ha un valore inferiore a 20, e rosso altrimenti. Puoi usare una funzione di callback nel metodo `style()` e includere la logica condizionale. La funzione callback utilizza il parametro `d` per rappresentare il punto dati:
 
 ```js
-selection.style("color", (d) => {
-
-});
+selection.style("color", (d) => {});
 ```
 
 Il metodo `style()` non si limita a impostare il `color` - può essere utilizzato anche con altre proprietà CSS.
@@ -31,55 +29,55 @@ Aggiungi il metodo `style()` al codice nell'editor per impostare il `color` dell
 Il primo `h2` dovrebbe avere un `color` rosso.
 
 ```js
-assert($('h2').eq(0).css('color') == 'rgb(255, 0, 0)');
+assert($("h2").eq(0).css("color") == "rgb(255, 0, 0)");
 ```
 
 Il secondo `h2` dovrebbe avere un `color` verde.
 
 ```js
-assert($('h2').eq(1).css('color') == 'rgb(0, 128, 0)');
+assert($("h2").eq(1).css("color") == "rgb(0, 128, 0)");
 ```
 
 Il terzo `h2` dovrebbe avere un `color` verde.
 
 ```js
-assert($('h2').eq(2).css('color') == 'rgb(0, 128, 0)');
+assert($("h2").eq(2).css("color") == "rgb(0, 128, 0)");
 ```
 
 Il quarto `h2` dovrebbe avere un `color` rosso.
 
 ```js
-assert($('h2').eq(3).css('color') == 'rgb(255, 0, 0)');
+assert($("h2").eq(3).css("color") == "rgb(255, 0, 0)");
 ```
 
 Il quinto `h2` dovrebbe avere un `color` verde.
 
 ```js
-assert($('h2').eq(4).css('color') == 'rgb(0, 128, 0)');
+assert($("h2").eq(4).css("color") == "rgb(0, 128, 0)");
 ```
 
 Il sesto `h2` dovrebbe avere un `color` rosso.
 
 ```js
-assert($('h2').eq(5).css('color') == 'rgb(255, 0, 0)');
+assert($("h2").eq(5).css("color") == "rgb(255, 0, 0)");
 ```
 
 Il settimo `h2` dovrebbe avere un `color` verde.
 
 ```js
-assert($('h2').eq(6).css('color') == 'rgb(0, 128, 0)');
+assert($("h2").eq(6).css("color") == "rgb(0, 128, 0)");
 ```
 
 L'ottavo `h2` dovrebbe avere un `color` rosso.
 
 ```js
-assert($('h2').eq(7).css('color') == 'rgb(255, 0, 0)');
+assert($("h2").eq(7).css("color") == "rgb(255, 0, 0)");
 ```
 
 Il nono `h2` dovrebbe avere un `color` rosso.
 
 ```js
-assert($('h2').eq(8).css('color') == 'rgb(255, 0, 0)');
+assert($("h2").eq(8).css("color") == "rgb(255, 0, 0)");
 ```
 
 # --seed--
@@ -91,16 +89,15 @@ assert($('h2').eq(8).css('color') == 'rgb(255, 0, 0)');
   <script>
     const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
-    d3.select("body").selectAll("h2")
+    d3.select("body")
+      .selectAll("h2")
       .data(dataset)
       .enter()
       .append("h2")
-      .text((d) => (d + " USD"))
-      // Add your code below this line
+      .text((d) => d + " USD");
+    // Add your code below this line
 
-
-
-      // Add your code above this line
+    // Add your code above this line
   </script>
 </body>
 ```
@@ -112,12 +109,13 @@ assert($('h2').eq(8).css('color') == 'rgb(255, 0, 0)');
   <script>
     const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
-    d3.select("body").selectAll("h2")
+    d3.select("body")
+      .selectAll("h2")
       .data(dataset)
       .enter()
       .append("h2")
-      .text((d) => (d + " USD"))
-      .style("color", (d) => d < 20 ? "red" : "green")
+      .text((d) => d + " USD")
+      .style("color", (d) => (d < 20 ? "red" : "green"));
   </script>
 </body>
 ```

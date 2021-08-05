@@ -2,7 +2,7 @@
 id: 587d7790367417b2b2512ab1
 title: Usar tabindex para especificar a ordem do foco em vários elementos usando o teclado
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cmzRRcb'
+videoUrl: "https://scrimba.com/c/cmzRRcb"
 forumTopicId: 301028
 dashedName: use-tabindex-to-specify-the-order-of-keyboard-focus-for-several-elements
 ---
@@ -36,25 +36,25 @@ Outra questão a ser observada é o fato de que alguns navegadores podem colocar
 O código deve adicionar um atributo `tabindex` à tag `input` de id `search`.
 
 ```js
-assert($('#search').attr('tabindex'));
+assert($("#search").attr("tabindex"));
 ```
 
 O código deve adicionar um atributo `tabindex` à tag `input` de id `submit`.
 
 ```js
-assert($('#submit').attr('tabindex'));
+assert($("#submit").attr("tabindex"));
 ```
 
 O código deve definir o atributo `tabindex` na tag `input` de id `search` para um valor de 1.
 
 ```js
-assert($('#search').attr('tabindex') == '1');
+assert($("#search").attr("tabindex") == "1");
 ```
 
 O código deve definir o atributo `tabindex` na tag `input` de id `submit` para um valor de 2.
 
 ```js
-assert($('#submit').attr('tabindex') == '2');
+assert($("#submit").attr("tabindex") == "2");
 ```
 
 # --seed--
@@ -77,20 +77,23 @@ assert($('#submit').attr('tabindex') == '2');
   <form>
     <label for="search">Search:</label>
 
-
-    <input type="search" name="search" id="search">
-    <input type="submit" name="submit" value="Submit" id="submit">
-
-
+    <input type="search" name="search" id="search" />
+    <input type="submit" name="submit" value="Submit" id="submit" />
   </form>
   <h2>Inspirational Quotes</h2>
   <blockquote>
-    <p>&ldquo;There's no Theory of Evolution, just a list of creatures I've allowed to live.&rdquo;<br>
-    - Chuck Norris</p>
+    <p>
+      &ldquo;There's no Theory of Evolution, just a list of creatures I've
+      allowed to live.&rdquo;<br />
+      - Chuck Norris
+    </p>
   </blockquote>
   <blockquote>
-    <p>&ldquo;Wise men say forgiveness is divine, but never pay full price for late pizza.&rdquo;<br>
-    - TMNT</p>
+    <p>
+      &ldquo;Wise men say forgiveness is divine, but never pay full price for
+      late pizza.&rdquo;<br />
+      - TMNT
+    </p>
   </blockquote>
   <footer>&copy; 2018 Camper Cat</footer>
 </body>
@@ -127,20 +130,29 @@ assert($('#submit').attr('tabindex') == '2');
   <form>
     <label for="search">Search:</label>
 
-
-    <input tabindex="1" type="search" name="search" id="search">
-    <input tabindex="2" type="submit" name="submit" value="Submit" id="submit">
-
-
+    <input tabindex="1" type="search" name="search" id="search" />
+    <input
+      tabindex="2"
+      type="submit"
+      name="submit"
+      value="Submit"
+      id="submit"
+    />
   </form>
   <h2>Inspirational Quotes</h2>
   <blockquote>
-    <p>&ldquo;There's no Theory of Evolution, just a list of creatures I've allowed to live.&rdquo;<br>
-    - Chuck Norris</p>
+    <p>
+      &ldquo;There's no Theory of Evolution, just a list of creatures I've
+      allowed to live.&rdquo;<br />
+      - Chuck Norris
+    </p>
   </blockquote>
   <blockquote>
-    <p>&ldquo;Wise men say forgiveness is divine, but never pay full price for late pizza.&rdquo;<br>
-    - TMNT</p>
+    <p>
+      &ldquo;Wise men say forgiveness is divine, but never pay full price for
+      late pizza.&rdquo;<br />
+      - TMNT
+    </p>
   </blockquote>
   <footer>&copy; 2018 Camper Cat</footer>
 </body>

@@ -26,12 +26,12 @@ Remove the moment package from your dependencies.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.notProperty(
         packJson.dependencies,
-        'moment',
+        "moment",
         '"dependencies" still includes "moment"'
       );
     },

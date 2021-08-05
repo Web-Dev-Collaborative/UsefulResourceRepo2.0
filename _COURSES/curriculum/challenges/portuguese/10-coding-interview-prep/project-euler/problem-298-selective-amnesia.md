@@ -1,6 +1,6 @@
 ---
 id: 5900f4971000cf542c50ffa9
-title: 'Problem 298: Selective Amnesia'
+title: "Problem 298: Selective Amnesia"
 challengeType: 5
 forumTopicId: 301950
 dashedName: problem-298-selective-amnesia
@@ -30,7 +30,6 @@ assert.strictEqual(euler298(), 1.76882294);
 
 ```js
 function euler298() {
-
   return true;
 }
 

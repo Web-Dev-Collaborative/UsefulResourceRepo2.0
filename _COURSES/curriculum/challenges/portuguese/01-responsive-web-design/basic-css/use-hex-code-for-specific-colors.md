@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08726
 title: Usar códigos hexadecimais para selecionar cores específicas
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c8W9mHM'
+videoUrl: "https://scrimba.com/c/c8W9mHM"
 forumTopicId: 18350
 dashedName: use-hex-code-for-specific-colors
 ---
@@ -30,7 +30,7 @@ Substitua a palavra `black` na cor de fundo do elemento `body` por sua represent
 O elemento `body` deve ter a cor de fundo preta.
 
 ```js
-assert($('body').css('background-color') === 'rgb(0, 0, 0)');
+assert($("body").css("background-color") === "rgb(0, 0, 0)");
 ```
 
 O código hexadecimal (`hex code`) para a cor preta deve ser usado no lugar da palavra `black`.

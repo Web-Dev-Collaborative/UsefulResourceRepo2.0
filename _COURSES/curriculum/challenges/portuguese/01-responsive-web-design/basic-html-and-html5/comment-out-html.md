@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08804
 title: Comentários no HTML
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cGyGbca'
+videoUrl: "https://scrimba.com/p/pVMPUv/cGyGbca"
 forumTopicId: 16782
 dashedName: comment-out-html
 ---
@@ -22,19 +22,19 @@ Comente os elementos `h1` e `p`, mas deixe o elemento `h2` fora do comentário.
 O elemento `h1` deve estar comentado para não ser exibido na página.
 
 ```js
-assert($('h1').length === 0);
+assert($("h1").length === 0);
 ```
 
 O elemento `h2` não deve ser comentado para poder ser exibido na página.
 
 ```js
-assert($('h2').length > 0);
+assert($("h2").length > 0);
 ```
 
 O elemento `p` deve estar comentado para não ser exibido na página.
 
 ```js
-assert($('p').length === 0);
+assert($("p").length === 0);
 ```
 
 Todos os comentários devem ser fechados com `-->`.
@@ -47,9 +47,9 @@ Você não deve mudar a ordem dos elementos `h1`, `h2` e `p` no código.
 
 ```js
 assert(
-  code.match(/<([a-z0-9]){1,2}>/g)[0] === '<h1>' &&
-    code.match(/<([a-z0-9]){1,2}>/g)[1] === '<h2>' &&
-    code.match(/<([a-z0-9]){1,2}>/g)[2] === '<p>'
+  code.match(/<([a-z0-9]){1,2}>/g)[0] === "<h1>" &&
+    code.match(/<([a-z0-9]){1,2}>/g)[1] === "<h2>" &&
+    code.match(/<([a-z0-9]){1,2}>/g)[2] === "<p>"
 );
 ```
 
@@ -71,6 +71,6 @@ assert(
 
 ```html
 <!--<h1>Hello World</h1>-->
-<h2>CatPhotoApp</h2> 
+<h2>CatPhotoApp</h2>
 <!--<p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p> -->
 ```

@@ -1,6 +1,6 @@
 ---
 id: 5900f5151000cf542c510028
-title: 'Problem 425: Prime connection'
+title: "Problem 425: Prime connection"
 challengeType: 5
 forumTopicId: 302095
 dashedName: problem-425-prime-connection
@@ -36,7 +36,6 @@ assert.strictEqual(euler425(), 46479497324);
 
 ```js
 function euler425() {
-
   return true;
 }
 

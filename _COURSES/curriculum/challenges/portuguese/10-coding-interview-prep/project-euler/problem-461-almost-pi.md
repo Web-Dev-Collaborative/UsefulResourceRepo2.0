@@ -1,6 +1,6 @@
 ---
 id: 5900f53a1000cf542c51004c
-title: 'Problem 461: Almost Pi'
+title: "Problem 461: Almost Pi"
 challengeType: 5
 forumTopicId: 302136
 dashedName: problem-461-almost-pi
@@ -23,13 +23,13 @@ You are given `almostPi(200)` = 6<sup>2</sup> + 75<sup>2</sup> + 89<sup>2</sup> 
 `almostPi` should be a function.
 
 ```js
-assert(typeof almostPi === 'function')
+assert(typeof almostPi === "function");
 ```
 
 `almostPi` should return a number.
 
 ```js
-assert.strictEqual(typeof almostPi(10), 'number');
+assert.strictEqual(typeof almostPi(10), "number");
 ```
 
 `almostPi(29)` should return `1208`.
@@ -56,7 +56,6 @@ assert.strictEqual(almostPi(200), 64658);
 
 ```js
 function almostPi(n) {
-  
   return true;
 }
 ```
@@ -65,7 +64,6 @@ function almostPi(n) {
 
 ```js
 function almostPi(n) {
-
   // Find all possible values where f(k, n) <= PI
   const f = [];
   let max = 0;
@@ -113,8 +111,7 @@ function almostPi(n) {
     }
 
     let error = Math.abs(need - pairs[match]);
-    if (error < minError)
-    {
+    if (error < minError) {
       minError = error;
       left = i;
       right = match;
@@ -131,8 +128,7 @@ function almostPi(n) {
 
   let a, b, c, d;
 
-  OuterLoop1:
-  for (a = 0; a < max; ++a) {
+  OuterLoop1: for (a = 0; a < max; ++a) {
     for (b = a; b < max; ++b) {
       if (pairs[left] == f[a] + f[b]) {
         break OuterLoop1;
@@ -140,14 +136,13 @@ function almostPi(n) {
     }
   }
 
-  OuterLoop2:
-  for (c = 0; c < max; ++c) {
+  OuterLoop2: for (c = 0; c < max; ++c) {
     for (d = c; d < max; ++d) {
       if (pairs[right] == f[c] + f[d]) {
         break OuterLoop2;
       }
     }
   }
-  return a*a + b*b + c*c + d*d;
+  return a * a + b * b + c * c + d * d;
 }
 ```

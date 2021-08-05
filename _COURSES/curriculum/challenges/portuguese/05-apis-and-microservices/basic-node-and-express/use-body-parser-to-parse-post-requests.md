@@ -36,7 +36,7 @@ The 'body-parser' middleware should be mounted
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/add-body-parser').then(
+  $.get(getUserInput("url") + "/_api/add-body-parser").then(
     (data) => {
       assert.isAbove(
         data.mountedAt,

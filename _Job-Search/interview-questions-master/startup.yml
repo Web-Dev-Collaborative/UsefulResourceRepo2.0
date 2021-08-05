@@ -3,16 +3,15 @@
 ---
 # TODO: To be filled in; this is just a skeleton
 qs:
-# https://blog.alexmaccaw.com/an-engineers-guide-to-stock-options
-- q: Business plan
-- q: Hiring plan
-- q: Investors
-- q: How many shares
-- q: Strike price
-- q: Shares outstanding
-- q: 409A valuation
-- q: Preferred share price
-- q: Runway
-- q: Option pool
-- q: Liquidation preference > 1X
-
+  # https://blog.alexmaccaw.com/an-engineers-guide-to-stock-options
+  - q: Business plan
+  - q: Hiring plan
+  - q: Investors
+  - q: How many shares
+  - q: Strike price
+  - q: Shares outstanding
+  - q: 409A valuation
+  - q: Preferred share price
+  - q: Runway
+  - q: Option pool
+  - q: Liquidation preference > 1X

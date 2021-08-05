@@ -11,8 +11,8 @@ dashedName: explore-differences-between-the-var-and-let-keywords
 One of the biggest problems with declaring variables with the `var` keyword is that you can overwrite variable declarations without an error.
 
 ```js
-var camper = 'James';
-var camper = 'David';
+var camper = "James";
+var camper = "David";
 console.log(camper);
 ```
 
@@ -22,8 +22,8 @@ As you can see in the code above, the `camper` variable is originally declared a
 A new keyword called `let` was introduced in ES6 to solve this potential issue with the `var` keyword. If you were to replace `var` with `let` in the variable declarations of the code above, the result would be an error.
 
 ```js
-let camper = 'James';
-let camper = 'David';
+let camper = "James";
+let camper = "David";
 ```
 
 This error can be seen in the console of your browser. So unlike `var`, when using `let`, a variable with the same name can only be declared once. Note the `"use strict"`. This enables Strict Mode, which catches common coding mistakes and "unsafe" actions. For instance:
@@ -44,19 +44,19 @@ Update the code so it only uses the `let` keyword.
 `var` should not exist in the code.
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/var/g));
+(getUserInput) => assert(!getUserInput("index").match(/var/g));
 ```
 
 `catName` should be the string `Oliver`.
 
 ```js
-assert(catName === 'Oliver');
+assert(catName === "Oliver");
 ```
 
 `quote` should be the string `Oliver says Meow!`
 
 ```js
-assert(quote === 'Oliver says Meow!');
+assert(quote === "Oliver says Meow!");
 ```
 
 # --seed--
@@ -71,7 +71,6 @@ function catTalk() {
 
   catName = "Oliver";
   quote = catName + " says Meow!";
-
 }
 catTalk();
 ```
@@ -82,10 +81,10 @@ catTalk();
 let catName;
 let quote;
 function catTalk() {
-  'use strict';
+  "use strict";
 
-  catName = 'Oliver';
-  quote = catName + ' says Meow!';
+  catName = "Oliver";
+  quote = catName + " says Meow!";
 }
 catTalk();
 ```

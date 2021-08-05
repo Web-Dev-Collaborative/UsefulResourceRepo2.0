@@ -2,7 +2,7 @@
 id: 56104e9e514f539506016a5c
 title: Iterate Odd Numbers With a For Loop
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cm8n7T9'
+videoUrl: "https://scrimba.com/c/cm8n7T9"
 forumTopicId: 18212
 dashedName: iterate-odd-numbers-with-a-for-loop
 ---
@@ -45,7 +45,11 @@ assert.deepEqual(myArray, [1, 3, 5, 7, 9]);
 ## --after-user-code--
 
 ```js
-if(typeof myArray !== "undefined"){(function(){return myArray;})();}
+if (typeof myArray !== "undefined") {
+  (function () {
+    return myArray;
+  })();
+}
 ```
 
 ## --seed-contents--

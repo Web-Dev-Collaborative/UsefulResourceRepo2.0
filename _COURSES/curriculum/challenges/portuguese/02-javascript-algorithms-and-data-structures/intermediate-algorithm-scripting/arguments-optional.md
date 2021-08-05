@@ -45,13 +45,13 @@ assert.deepEqual(addTogether(5)(7), 12);
 `addTogether("http://bit.ly/IqT6zt")` should return `undefined`.
 
 ```js
-assert.isUndefined(addTogether('http://bit.ly/IqT6zt'));
+assert.isUndefined(addTogether("http://bit.ly/IqT6zt"));
 ```
 
 `addTogether(2, "3")` should return `undefined`.
 
 ```js
-assert.isUndefined(addTogether(2, '3'));
+assert.isUndefined(addTogether(2, "3"));
 ```
 
 `addTogether(2)([3])` should return `undefined`.
@@ -69,7 +69,7 @@ function addTogether() {
   return false;
 }
 
-addTogether(2,3);
+addTogether(2, 3);
 ```
 
 # --solutions--
@@ -77,15 +77,15 @@ addTogether(2,3);
 ```js
 function addTogether() {
   var a = arguments[0];
-  if (toString.call(a) !== '[object Number]') return;
+  if (toString.call(a) !== "[object Number]") return;
   if (arguments.length === 1) {
-    return function(b) {
-      if (toString.call(b) !== '[object Number]') return;
+    return function (b) {
+      if (toString.call(b) !== "[object Number]") return;
       return a + b;
     };
   }
   var b = arguments[1];
-  if (toString.call(b) !== '[object Number]') return;
+  if (toString.call(b) !== "[object Number]") return;
   return a + arguments[1];
 }
 ```

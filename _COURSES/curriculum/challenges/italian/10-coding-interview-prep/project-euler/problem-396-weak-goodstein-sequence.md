@@ -1,6 +1,6 @@
 ---
 id: 5900f4f81000cf542c51000b
-title: 'Problem 396: Weak Goodstein sequence'
+title: "Problem 396: Weak Goodstein sequence"
 challengeType: 5
 forumTopicId: 302061
 dashedName: problem-396-weak-goodstein-sequence
@@ -40,7 +40,6 @@ assert.strictEqual(euler396(), 173214653);
 
 ```js
 function euler396() {
-
   return true;
 }
 

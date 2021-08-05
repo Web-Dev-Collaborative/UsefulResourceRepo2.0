@@ -17,7 +17,7 @@ For example, there are slight differences in American and British English and yo
 ```js
 let american = "color";
 let british = "colour";
-let rainbowRegex= /colou?r/;
+let rainbowRegex = /colou?r/;
 rainbowRegex.test(american);
 rainbowRegex.test(british);
 ```
@@ -41,21 +41,21 @@ Your regex should match the string `favorite`
 
 ```js
 favRegex.lastIndex = 0;
-assert(favRegex.test('favorite'));
+assert(favRegex.test("favorite"));
 ```
 
 Your regex should match the string `favourite`
 
 ```js
 favRegex.lastIndex = 0;
-assert(favRegex.test('favourite'));
+assert(favRegex.test("favourite"));
 ```
 
 Your regex should not match the string `fav`
 
 ```js
 favRegex.lastIndex = 0;
-assert(!favRegex.test('fav'));
+assert(!favRegex.test("fav"));
 ```
 
 # --seed--

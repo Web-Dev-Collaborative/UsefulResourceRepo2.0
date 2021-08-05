@@ -2,7 +2,7 @@
 id: 5679ceb97cbaa8c51670a16b
 title: Returning Boolean Values from Functions
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cp62qAQ'
+videoUrl: "https://scrimba.com/c/cp62qAQ"
 forumTopicId: 18273
 dashedName: returning-boolean-values-from-functions
 ---
@@ -14,7 +14,7 @@ You may recall from [Comparison with the Equality Operator](/learn/javascript-al
 Sometimes people use an `if/else` statement to do a comparison, like this:
 
 ```js
-function isEqual(a,b) {
+function isEqual(a, b) {
   if (a === b) {
     return true;
   } else {
@@ -26,7 +26,7 @@ function isEqual(a,b) {
 But there's a better way to do this. Since `===` returns `true` or `false`, we can return the result of the comparison:
 
 ```js
-function isEqual(a,b) {
+function isEqual(a, b) {
   return a === b;
 }
 ```

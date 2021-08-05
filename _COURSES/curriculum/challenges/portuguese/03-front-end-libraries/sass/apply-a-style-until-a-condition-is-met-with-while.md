@@ -15,12 +15,14 @@ The `@for` challenge gave an example to create a simple grid system. This can al
 ```scss
 $x: 1;
 @while $x < 13 {
-  .col-#{$x} { width: 100%/12 * $x;}
+  .col-#{$x} {
+    width: 100%/12 * $x;
+  }
   $x: $x + 1;
 }
 ```
 
-First, define a variable `$x` and set it to 1. Next, use the `@while` directive to create the grid system *while* `$x` is less than 13. After setting the CSS rule for `width`, `$x` is incremented by 1 to avoid an infinite loop.
+First, define a variable `$x` and set it to 1. Next, use the `@while` directive to create the grid system _while_ `$x` is less than 13. After setting the CSS rule for `width`, `$x` is incremented by 1 to avoid an infinite loop.
 
 # --instructions--
 
@@ -51,31 +53,31 @@ assert(code.match(/\$(.*)\s*?:\s*\$\1\s*\+\s*1\s*;/gi));
 Your `.text-1` class should have a `font-size` of `15px`.
 
 ```js
-assert($('.text-1').css('font-size') == '15px');
+assert($(".text-1").css("font-size") == "15px");
 ```
 
 Your `.text-2` class should have a `font-size` of `30px`.
 
 ```js
-assert($('.text-2').css('font-size') == '30px');
+assert($(".text-2").css("font-size") == "30px");
 ```
 
 Your `.text-3` class should have a `font-size` of `45px`.
 
 ```js
-assert($('.text-3').css('font-size') == '45px');
+assert($(".text-3").css("font-size") == "45px");
 ```
 
 Your `.text-4` class should have a `font-size` of `60px`.
 
 ```js
-assert($('.text-4').css('font-size') == '60px');
+assert($(".text-4").css("font-size") == "60px");
 ```
 
 Your `.text-5` class should have a `font-size` of `75px`.
 
 ```js
-assert($('.text-5').css('font-size') == '75px');
+assert($(".text-5").css("font-size") == "75px");
 ```
 
 # --seed--
@@ -83,11 +85,7 @@ assert($('.text-5').css('font-size') == '75px');
 ## --seed-contents--
 
 ```html
-<style type='text/scss'>
-
-
-
-</style>
+<style type="text/scss"></style>
 
 <p class="text-1">Hello</p>
 <p class="text-2">Hello</p>
@@ -99,10 +97,10 @@ assert($('.text-5').css('font-size') == '75px');
 # --solutions--
 
 ```html
-<style type='text/scss'>
+<style type="text/scss">
   $x: 1;
   @while $x < 6 {
-    .text-#{$x}{
+    .text-#{$x} {
       font-size: 15px * $x;
     }
     $x: $x + 1;

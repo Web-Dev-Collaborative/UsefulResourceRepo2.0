@@ -1,6 +1,6 @@
 ---
 id: 5900f3b61000cf542c50fec9
-title: 'Problem 74: Digit factorial chains'
+title: "Problem 74: Digit factorial chains"
 challengeType: 5
 forumTopicId: 302187
 dashedName: problem-74-digit-factorial-chains
@@ -14,19 +14,23 @@ $$1! + 4! + 5! = 1 + 24 + 120 = 145$$
 
 Perhaps less well known is 169, in that it produces the longest chain of numbers that link back to 169; it turns out that there are only three such loops that exist:
 
-$$\begin{align}
+$$
+\begin{align}
 &169 → 363601 → 1454 → 169\\\\
 &871 → 45361 → 871\\\\
 &872 → 45362 → 872\\\\
-\end{align}$$
+\end{align}
+$$
 
 It is not difficult to prove that EVERY starting number will eventually get stuck in a loop. For example,
 
-$$\begin{align}
+$$
+\begin{align}
 &69 → 363600 → 1454 → 169 → 363601\\ (→ 1454)\\\\
 &78 → 45360 → 871 → 45361\\ (→ 871)\\\\
 &540 → 145\\ (→ 145)\\\\
-\end{align}$$
+\end{align}
+$$
 
 Starting with 69 produces a chain of five non-repeating terms, but the longest non-repeating chain with a starting number below one million is sixty terms.
 
@@ -37,7 +41,7 @@ How many chains, with a starting number below `n`, contain exactly sixty non-rep
 `digitFactorialChains(2000)` should return a number.
 
 ```js
-assert(typeof digitFactorialChains(2000) === 'number');
+assert(typeof digitFactorialChains(2000) === "number");
 ```
 
 `digitFactorialChains(2000)` should return `6`.
@@ -70,7 +74,6 @@ assert.strictEqual(digitFactorialChains(1000000), 402);
 
 ```js
 function digitFactorialChains(n) {
-
   return true;
 }
 
@@ -102,7 +105,7 @@ function digitFactorialChains(n) {
     1454: 3,
     45362: 2,
     45461: 2,
-    3693601: 3
+    3693601: 3,
   };
   let result = 0;
 

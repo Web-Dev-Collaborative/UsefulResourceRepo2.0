@@ -24,8 +24,8 @@ Third argument is what you will be replacing the second argument with (after).
 
 ```js
 assert.deepEqual(
-  myReplace('Let us go to the store', 'store', 'mall'),
-  'Let us go to the mall'
+  myReplace("Let us go to the store", "store", "mall"),
+  "Let us go to the mall"
 );
 ```
 
@@ -33,8 +33,8 @@ assert.deepEqual(
 
 ```js
 assert.deepEqual(
-  myReplace('He is Sleeping on the couch', 'Sleeping', 'sitting'),
-  'He is Sitting on the couch'
+  myReplace("He is Sleeping on the couch", "Sleeping", "sitting"),
+  "He is Sitting on the couch"
 );
 ```
 
@@ -42,8 +42,8 @@ assert.deepEqual(
 
 ```js
 assert.deepEqual(
-  myReplace('I think we should look up there', 'up', 'Down'),
-  'I think we should look down there'
+  myReplace("I think we should look up there", "up", "Down"),
+  "I think we should look down there"
 );
 ```
 
@@ -51,8 +51,8 @@ assert.deepEqual(
 
 ```js
 assert.deepEqual(
-  myReplace('This has a spellngi error', 'spellngi', 'spelling'),
-  'This has a spelling error'
+  myReplace("This has a spellngi error", "spellngi", "spelling"),
+  "This has a spelling error"
 );
 ```
 
@@ -60,8 +60,8 @@ assert.deepEqual(
 
 ```js
 assert.deepEqual(
-  myReplace('His name is Tom', 'Tom', 'john'),
-  'His name is John'
+  myReplace("His name is Tom", "Tom", "john"),
+  "His name is John"
 );
 ```
 
@@ -69,8 +69,8 @@ assert.deepEqual(
 
 ```js
 assert.deepEqual(
-  myReplace('Let us get back to more Coding', 'Coding', 'algorithms'),
-  'Let us get back to more Algorithms'
+  myReplace("Let us get back to more Coding", "Coding", "algorithms"),
+  "Let us get back to more Algorithms"
 );
 ```
 

@@ -1,8 +1,8 @@
-const gulp = require('gulp');
-const through2 = require('through2');
+const gulp = require("gulp");
+const through2 = require("through2");
 
-const { testedLang } = require('./utils');
-const lintMarkdown = require('../tools/scripts/lint');
+const { testedLang } = require("./utils");
+const lintMarkdown = require("../tools/scripts/lint");
 
 /**
  * Tasks
@@ -24,4 +24,4 @@ function globLang(lang) {
   return `./challenges/${lang}/**/*.md`;
 }
 
-gulp.task('lint', lint);
+gulp.task("lint", lint);

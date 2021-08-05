@@ -2,7 +2,7 @@
 id: bd7123c9c441eddfaeb5bdef
 title: Understanding Boolean Values
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c9Me8t4'
+videoUrl: "https://scrimba.com/c/c9Me8t4"
 forumTopicId: 301176
 dashedName: understanding-boolean-values
 ---
@@ -22,7 +22,7 @@ Modify the `welcomeToBooleans` function so that it returns `true` instead of `fa
 The `welcomeToBooleans()` function should return a Boolean (`true` or `false`) value.
 
 ```js
-assert(typeof welcomeToBooleans() === 'boolean');
+assert(typeof welcomeToBooleans() === "boolean");
 ```
 
 `welcomeToBooleans()` should return `true`.
@@ -43,7 +43,6 @@ welcomeToBooleans();
 
 ```js
 function welcomeToBooleans() {
-
   // Only change code below this line
 
   return false; // Change this line

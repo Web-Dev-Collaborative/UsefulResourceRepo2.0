@@ -1,6 +1,6 @@
 ---
 id: 5900f4b71000cf542c50ffca
-title: 'Problem 331: Cross flips'
+title: "Problem 331: Cross flips"
 challengeType: 5
 forumTopicId: 301989
 dashedName: problem-331-cross-flips
@@ -36,7 +36,6 @@ assert.strictEqual(euler331(), 467178235146843500);
 
 ```js
 function euler331() {
-
   return true;
 }
 

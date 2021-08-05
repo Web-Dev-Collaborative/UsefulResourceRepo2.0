@@ -24,10 +24,10 @@ The `BinarySearchTree` data structure should exist.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     }
-    return typeof test == 'object';
+    return typeof test == "object";
   })()
 );
 ```
@@ -38,12 +38,12 @@ The binary search tree should have a method called `levelOrder`.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    return typeof test.levelOrder == 'function';
+    return typeof test.levelOrder == "function";
   })()
 );
 ```
@@ -54,12 +54,12 @@ The binary search tree should have a method called `reverseLevelOrder`.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    return typeof test.reverseLevelOrder == 'function';
+    return typeof test.reverseLevelOrder == "function";
   })()
 );
 ```
@@ -70,12 +70,12 @@ The `levelOrder` method should return an array of the tree node values explored 
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.levelOrder !== 'function') {
+    if (typeof test.levelOrder !== "function") {
       return false;
     }
     test.add(7);
@@ -89,7 +89,7 @@ assert(
     test.add(5);
     test.add(4);
     test.add(6);
-    return test.levelOrder().join('') == '719038102546';
+    return test.levelOrder().join("") == "719038102546";
   })()
 );
 ```
@@ -100,12 +100,12 @@ The `reverseLevelOrder` method should return an array of the tree node values ex
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.reverseLevelOrder !== 'function') {
+    if (typeof test.reverseLevelOrder !== "function") {
       return false;
     }
     test.add(7);
@@ -119,7 +119,7 @@ assert(
     test.add(5);
     test.add(4);
     test.add(6);
-    return test.reverseLevelOrder().join('') == '791108305264';
+    return test.reverseLevelOrder().join("") == "791108305264";
   })()
 );
 ```
@@ -130,12 +130,12 @@ The `levelOrder` method should return `null` for an empty tree.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.levelOrder !== 'function') {
+    if (typeof test.levelOrder !== "function") {
       return false;
     }
     return test.levelOrder() == null;
@@ -149,12 +149,12 @@ The `reverseLevelOrder` method should return `null` for an empty tree.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.reverseLevelOrder !== 'function') {
+    if (typeof test.reverseLevelOrder !== "function") {
       return false;
     }
     return test.reverseLevelOrder() == null;
@@ -167,45 +167,42 @@ assert(
 ## --after-user-code--
 
 ```js
-BinarySearchTree.prototype = Object.assign(
-  BinarySearchTree.prototype,
-  {
-    add: function(value) {
-      function searchTree(node) {
-        if (value < node.value) {
-          if (node.left == null) {
-            node.left = new Node(value);
-            return;
-          } else if (node.left != null) {
-            return searchTree(node.left);
-          }
-        } else if (value > node.value) {
-          if (node.right == null) {
-            node.right = new Node(value);
-            return;
-          } else if (node.right != null) {
-            return searchTree(node.right);
-          }
-        } else {
-          return null;
+BinarySearchTree.prototype = Object.assign(BinarySearchTree.prototype, {
+  add: function (value) {
+    function searchTree(node) {
+      if (value < node.value) {
+        if (node.left == null) {
+          node.left = new Node(value);
+          return;
+        } else if (node.left != null) {
+          return searchTree(node.left);
         }
-      }
-      var node = this.root;
-      if (node == null) {
-        this.root = new Node(value);
-        return;
+      } else if (value > node.value) {
+        if (node.right == null) {
+          node.right = new Node(value);
+          return;
+        } else if (node.right != null) {
+          return searchTree(node.right);
+        }
       } else {
-        return searchTree(node);
+        return null;
       }
     }
-  }
-);
+    var node = this.root;
+    if (node == null) {
+      this.root = new Node(value);
+      return;
+    } else {
+      return searchTree(node);
+    }
+  },
+});
 ```
 
 ## --seed-contents--
 
 ```js
-var displayTree = tree => console.log(JSON.stringify(tree, null, 2));
+var displayTree = (tree) => console.log(JSON.stringify(tree, null, 2));
 function Node(value) {
   this.value = value;
   this.left = null;
@@ -214,7 +211,7 @@ function Node(value) {
 function BinarySearchTree() {
   this.root = null;
   // Only change code below this line
-  
+
   // Only change code above this line
 }
 ```
@@ -222,7 +219,7 @@ function BinarySearchTree() {
 # --solutions--
 
 ```js
-var displayTree = tree => console.log(JSON.stringify(tree, null, 2));
+var displayTree = (tree) => console.log(JSON.stringify(tree, null, 2));
 function Node(value) {
   this.value = value;
   this.left = null;
@@ -232,30 +229,30 @@ function BinarySearchTree() {
   this.root = null;
   // Only change code below this line
   this.levelOrder = (root = this.root) => {
-    if(!root) return null;
+    if (!root) return null;
     let queue = [root];
     let results = [];
-    while(queue.length > 0) {
+    while (queue.length > 0) {
       let node = queue.shift();
       results.push(node.value);
-      if(node.left) queue.push(node.left);
-      if(node.right) queue.push(node.right);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
     }
     return results;
-  }
+  };
 
   this.reverseLevelOrder = (root = this.root) => {
-    if(!root) return null;
+    if (!root) return null;
     let queue = [root];
-    let results = [] ;
-    while ( queue.length > 0) {
+    let results = [];
+    while (queue.length > 0) {
       let node = queue.shift();
       results.push(node.value);
-      if(node.right) queue.push(node.right);
-      if(node.left ) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+      if (node.left) queue.push(node.left);
     }
     return results;
-  }
+  };
   // Only change code above this line
 }
 ```

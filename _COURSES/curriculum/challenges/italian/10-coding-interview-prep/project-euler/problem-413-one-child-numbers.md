@@ -1,6 +1,6 @@
 ---
 id: 5900f50a1000cf542c51001c
-title: 'Problem 413: One-child Numbers'
+title: "Problem 413: One-child Numbers"
 challengeType: 5
 forumTopicId: 302082
 dashedName: problem-413-one-child-numbers
@@ -30,7 +30,6 @@ assert.strictEqual(euler413(), 3079418648040719);
 
 ```js
 function euler413() {
-
   return true;
 }
 

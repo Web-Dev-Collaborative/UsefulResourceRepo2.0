@@ -1,6 +1,6 @@
 ---
 id: 5900f4f71000cf542c510009
-title: 'Problem 394: Eating pie'
+title: "Problem 394: Eating pie"
 challengeType: 5
 forumTopicId: 302059
 dashedName: problem-394-eating-pie
@@ -38,7 +38,6 @@ assert.strictEqual(euler394(), 3.2370342194);
 
 ```js
 function euler394() {
-
   return true;
 }
 

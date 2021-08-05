@@ -28,7 +28,7 @@ Implement a function to return the lowest integer that satisfies the Babbage pro
 `babbage` should be a function.
 
 ```js
-assert(typeof babbage === 'function');
+assert(typeof babbage === "function");
 ```
 
 `babbage(99736, 269696)` should not return 99736 (there is a smaller answer).
@@ -51,7 +51,6 @@ const answer = 25264;
 
 ```js
 function babbage(babbageNum, endDigits) {
-
   return true;
 }
 ```
@@ -61,12 +60,14 @@ function babbage(babbageNum, endDigits) {
 ```js
 function babbage(babbageAns, endDigits) {
   const babbageNum = Math.pow(babbageAns, 2);
-  const babbageStartDigits = parseInt(babbageNum.toString().replace('269696', ''));
+  const babbageStartDigits = parseInt(
+    babbageNum.toString().replace("269696", "")
+  );
   let answer = 99736;
 
   // count down from this answer and save any sqrt int result. return lowest one
   for (let i = babbageStartDigits; i >= 0; i--) {
-    const num = parseInt(i.toString().concat('269696'));
+    const num = parseInt(i.toString().concat("269696"));
     const result = Math.sqrt(num);
     if (result === Math.floor(Math.sqrt(num))) {
       answer = result;

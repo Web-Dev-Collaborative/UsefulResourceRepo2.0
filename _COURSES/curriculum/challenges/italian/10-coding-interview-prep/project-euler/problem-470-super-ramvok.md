@@ -1,6 +1,6 @@
 ---
 id: 5900f5431000cf542c510055
-title: 'Problem 470: Super Ramvok'
+title: "Problem 470: Super Ramvok"
 challengeType: 5
 forumTopicId: 302146
 dashedName: problem-470-super-ramvok
@@ -36,7 +36,6 @@ assert.strictEqual(euler470(), 147668794);
 
 ```js
 function euler470() {
-
   return true;
 }
 

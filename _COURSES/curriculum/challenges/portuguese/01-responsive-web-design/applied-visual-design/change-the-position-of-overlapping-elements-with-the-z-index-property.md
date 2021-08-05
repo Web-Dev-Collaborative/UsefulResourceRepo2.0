@@ -2,7 +2,7 @@
 id: 587d78a3367417b2b2512acf
 title: Change the Position of Overlapping Elements with the z-index Property
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cM94aHk'
+videoUrl: "https://scrimba.com/c/cM94aHk"
 forumTopicId: 301046
 dashedName: change-the-position-of-overlapping-elements-with-the-z-index-property
 ---
@@ -20,7 +20,7 @@ Add a `z-index` property to the element with the class name of `first` (the red 
 The element with class `first` should have a `z-index` value of 2.
 
 ```js
-assert($('.first').css('z-index') == '2');
+assert($(".first").css("z-index") == "2");
 ```
 
 # --seed--
@@ -38,7 +38,6 @@ assert($('.first').css('z-index') == '2');
   .first {
     background-color: red;
     position: absolute;
-
   }
   .second {
     background-color: blue;

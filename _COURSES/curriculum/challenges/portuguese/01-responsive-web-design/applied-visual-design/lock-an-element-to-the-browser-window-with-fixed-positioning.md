@@ -2,7 +2,7 @@
 id: 587d781e367417b2b2512acc
 title: Lock an Element to the Browser Window with Fixed Positioning
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c2MDNUR'
+videoUrl: "https://scrimba.com/c/c2MDNUR"
 forumTopicId: 301061
 dashedName: lock-an-element-to-the-browser-window-with-fixed-positioning
 ---
@@ -22,19 +22,19 @@ The navigation bar in the code is labeled with an id of `navbar`. Change its `po
 The `#navbar` element should have a `position` set to `fixed`.
 
 ```js
-assert($('#navbar').css('position') == 'fixed');
+assert($("#navbar").css("position") == "fixed");
 ```
 
 Your code should use the `top` CSS offset of 0 pixels on the `#navbar` element.
 
 ```js
-assert($('#navbar').css('top') == '0px');
+assert($("#navbar").css("top") == "0px");
 ```
 
 Your code should use the `left` CSS offset of 0 pixels on the `#navbar` element.
 
 ```js
-assert($('#navbar').css('left') == '0px');
+assert($("#navbar").css("left") == "0px");
 ```
 
 # --seed--
@@ -47,9 +47,6 @@ assert($('#navbar').css('left') == '0px');
     min-height: 150vh;
   }
   #navbar {
-
-
-
     width: 100%;
     background-color: #767676;
   }

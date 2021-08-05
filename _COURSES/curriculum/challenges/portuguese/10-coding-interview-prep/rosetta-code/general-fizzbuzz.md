@@ -23,7 +23,7 @@ The second parameter is the number for which the function should return a string
 `genFizzBuzz` should be a function.
 
 ```js
-assert(typeof genFizzBuzz == 'function');
+assert(typeof genFizzBuzz == "function");
 ```
 
 `genFizzBuzz([[3, "Fizz"],[5, "Buzz"]], 6)` should return a string.
@@ -32,11 +32,11 @@ assert(typeof genFizzBuzz == 'function');
 assert(
   typeof genFizzBuzz(
     [
-      [3, 'Fizz'],
-      [5, 'Buzz']
+      [3, "Fizz"],
+      [5, "Buzz"],
     ],
     6
-  ) == 'string'
+  ) == "string"
 );
 ```
 
@@ -46,12 +46,12 @@ assert(
 assert.equal(
   genFizzBuzz(
     [
-      [3, 'Fizz'],
-      [5, 'Buzz']
+      [3, "Fizz"],
+      [5, "Buzz"],
     ],
     6
   ),
-  'Fizz'
+  "Fizz"
 );
 ```
 
@@ -61,12 +61,12 @@ assert.equal(
 assert.equal(
   genFizzBuzz(
     [
-      [3, 'Fizz'],
-      [5, 'Buzz']
+      [3, "Fizz"],
+      [5, "Buzz"],
     ],
     10
   ),
-  'Buzz'
+  "Buzz"
 );
 ```
 
@@ -76,12 +76,12 @@ assert.equal(
 assert.equal(
   genFizzBuzz(
     [
-      [3, 'Buzz'],
-      [5, 'Fizz']
+      [3, "Buzz"],
+      [5, "Fizz"],
     ],
     12
   ),
-  'Buzz'
+  "Buzz"
 );
 ```
 
@@ -91,12 +91,12 @@ assert.equal(
 assert.equal(
   genFizzBuzz(
     [
-      [3, 'Buzz'],
-      [5, 'Fizz']
+      [3, "Buzz"],
+      [5, "Fizz"],
     ],
     13
   ),
-  '13'
+  "13"
 );
 ```
 
@@ -106,12 +106,12 @@ assert.equal(
 assert.equal(
   genFizzBuzz(
     [
-      [3, 'Buzz'],
-      [5, 'Fizz']
+      [3, "Buzz"],
+      [5, "Fizz"],
     ],
     15
   ),
-  'BuzzFizz'
+  "BuzzFizz"
 );
 ```
 
@@ -121,12 +121,12 @@ assert.equal(
 assert.equal(
   genFizzBuzz(
     [
-      [3, 'Fizz'],
-      [5, 'Buzz']
+      [3, "Fizz"],
+      [5, "Buzz"],
     ],
     15
   ),
-  'FizzBuzz'
+  "FizzBuzz"
 );
 ```
 
@@ -136,13 +136,13 @@ assert.equal(
 assert.equal(
   genFizzBuzz(
     [
-      [3, 'Fizz'],
-      [5, 'Buzz'],
-      [7, 'Baxx']
+      [3, "Fizz"],
+      [5, "Buzz"],
+      [7, "Baxx"],
     ],
     105
   ),
-  'FizzBuzzBaxx'
+  "FizzBuzzBaxx"
 );
 ```
 
@@ -151,23 +151,20 @@ assert.equal(
 ## --seed-contents--
 
 ```js
-function genFizzBuzz(rules, num) {
-
-}
+function genFizzBuzz(rules, num) {}
 ```
 
 # --solutions--
 
 ```js
 function genFizzBuzz(rules, num) {
-  let res='';
+  let res = "";
   rules.forEach(function (e) {
-    if(num % e[0] == 0)
-      res+=e[1];
-  })
+    if (num % e[0] == 0) res += e[1];
+  });
 
-  if(res==''){
-    res=num.toString();
+  if (res == "") {
+    res = num.toString();
   }
 
   return res;

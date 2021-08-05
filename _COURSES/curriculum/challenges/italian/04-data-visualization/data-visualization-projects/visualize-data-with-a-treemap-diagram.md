@@ -38,9 +38,9 @@ Puoi usare HTML, JavaScript, CSS e la libreria di visualizzazione basata su svg 
 
 Per questo progetto puoi utilizzare uno dei seguenti set di dati:
 
--   **Finanziamenti di KickStarter:**`https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/kickstarter-funding-data.json`
--   **Vendite di film:**`https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/movie-data.json`
--   **Vendite di videogiochi:**`https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/video-game-sales-data.json`
+- **Finanziamenti di KickStarter:**`https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/kickstarter-funding-data.json`
+- **Vendite di film:**`https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/movie-data.json`
+- **Vendite di videogiochi:**`https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/video-game-sales-data.json`
 
 Puoi costruire il tuo progetto <a href='https://codepen.io/pen?template=MJjpwO' target='_blank' rel='nofollow'>usando questo modello CodePen</a> e facendo click su `Save` per creare il tuo pen. Oppure puoi usare questo link CDN per eseguire i test in qualsiasi ambiente tu voglia: `https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js`
 

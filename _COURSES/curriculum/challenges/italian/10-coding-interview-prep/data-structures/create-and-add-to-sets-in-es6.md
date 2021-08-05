@@ -59,9 +59,9 @@ assert(
       test.has(1) &&
       test.has(2) &&
       test.has(3) &&
-      test.has('Taco') &&
-      test.has('Cat') &&
-      test.has('Awesome')
+      test.has("Taco") &&
+      test.has("Cat") &&
+      test.has("Awesome")
     );
   })()
 );
@@ -87,6 +87,8 @@ checkSet();
 # --solutions--
 
 ```js
-function checkSet(){var set = new Set([1,2,3,'Taco','Cat','Awesome']);
-return set;}
+function checkSet() {
+  var set = new Set([1, 2, 3, "Taco", "Cat", "Awesome"]);
+  return set;
+}
 ```

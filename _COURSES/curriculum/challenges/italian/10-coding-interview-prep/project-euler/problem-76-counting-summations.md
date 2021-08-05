@@ -1,6 +1,6 @@
 ---
 id: 5900f3b81000cf542c50fecb
-title: 'Problem 76: Counting summations'
+title: "Problem 76: Counting summations"
 challengeType: 5
 forumTopicId: 302189
 dashedName: problem-76-counting-summations
@@ -26,7 +26,7 @@ How many different ways can `n` be written as a sum of at least two positive int
 `countingSummations(5)` should return a number.
 
 ```js
-assert(typeof countingSummations(5) === 'number');
+assert(typeof countingSummations(5) === "number");
 ```
 
 `countingSummations(5)` should return `6`.
@@ -59,7 +59,6 @@ assert.strictEqual(countingSummations(100), 190569291);
 
 ```js
 function countingSummations(n) {
-
   return true;
 }
 

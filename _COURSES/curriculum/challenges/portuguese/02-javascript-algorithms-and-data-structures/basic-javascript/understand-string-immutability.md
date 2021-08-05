@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244ba
 title: Understand String Immutability
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cWPVaUR'
+videoUrl: "https://scrimba.com/c/cWPVaUR"
 forumTopicId: 18331
 dashedName: understand-string-immutability
 ---
@@ -18,7 +18,7 @@ var myStr = "Bob";
 myStr[0] = "J";
 ```
 
-cannot change the value of `myStr` to `Job`, because the contents of `myStr` cannot be altered. Note that this does *not* mean that `myStr` cannot be changed, just that the individual characters of a <dfn>string literal</dfn> cannot be changed. The only way to change `myStr` would be to assign it with a new string, like this:
+cannot change the value of `myStr` to `Job`, because the contents of `myStr` cannot be altered. Note that this does _not_ mean that `myStr` cannot be changed, just that the individual characters of a <dfn>string literal</dfn> cannot be changed. The only way to change `myStr` would be to assign it with a new string, like this:
 
 ```js
 var myStr = "Bob";
@@ -34,7 +34,7 @@ Correct the assignment to `myStr` so it contains the string value of `Hello Worl
 `myStr` should have a value of the string `Hello World`.
 
 ```js
-assert(myStr === 'Hello World');
+assert(myStr === "Hello World");
 ```
 
 You should not change the code above the specified comment.
@@ -48,7 +48,9 @@ assert(/myStr = "Jello World"/.test(code));
 ## --after-user-code--
 
 ```js
-(function(v){return "myStr = " + v;})(myStr);
+(function (v) {
+  return "myStr = " + v;
+})(myStr);
 ```
 
 ## --seed-contents--

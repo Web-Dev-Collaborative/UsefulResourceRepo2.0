@@ -1,6 +1,6 @@
 ---
 id: 5900f3b91000cf542c50fecc
-title: 'Problem 77: Prime summations'
+title: "Problem 77: Prime summations"
 challengeType: 5
 forumTopicId: 302190
 dashedName: problem-77-prime-summations
@@ -25,7 +25,7 @@ What is the first value which can be written as the sum of primes in over `n` wa
 `primeSummations(5)` should return a number.
 
 ```js
-assert(typeof primeSummations(5) === 'number');
+assert(typeof primeSummations(5) === "number");
 ```
 
 `primeSummations(5)` should return `11`.
@@ -58,7 +58,6 @@ assert.strictEqual(primeSummations(5000), 71);
 
 ```js
 function primeSummations(n) {
-
   return true;
 }
 

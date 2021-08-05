@@ -23,7 +23,7 @@ The `replace` call would return the string `The sky is blue.`.
 You can also access capture groups in the replacement string with dollar signs (`$`).
 
 ```js
-"Code Camp".replace(/(\w+)\s(\w+)/, '$2 $1');
+"Code Camp".replace(/(\w+)\s(\w+)/, "$2 $1");
 ```
 
 The `replace` call would return the string `Camp Code`.
@@ -43,7 +43,7 @@ assert(code.match(/\.replace\(.*\)/));
 Your regex should change the string `one two three` to the string `three two one`
 
 ```js
-assert(result === 'three two one');
+assert(result === "three two one");
 ```
 
 You should not change the last line.
@@ -55,7 +55,7 @@ assert(code.match(/result\s*=\s*str\.replace\(.*?\)/));
 `fixRegex` should use at least three capture groups.
 
 ```js
-assert(new RegExp(fixRegex.source + '|').exec('').length - 1 >= 3);
+assert(new RegExp(fixRegex.source + "|").exec("").length - 1 >= 3);
 ```
 
 `replaceText` should use parenthesized submatch string(s) (i.e. the nth parenthesized submatch string, $n, corresponds to the nth capture group).

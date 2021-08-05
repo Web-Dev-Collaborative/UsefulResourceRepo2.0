@@ -2,7 +2,7 @@
 id: 587d78ac367417b2b2512af6
 title: Alinhar elementos usando a propriedade justify-content
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/c43gnHm'
+videoUrl: "https://scrimba.com/p/pVaDAv/c43gnHm"
 forumTopicId: 301102
 dashedName: align-elements-using-the-justify-content-property
 ---
@@ -31,7 +31,7 @@ Use os demais valores da propriedade `justify-content` no editor de código para
 O elemento `#box-container` deve ter a propriedade `justify-content` com o valor de `center`.
 
 ```js
-assert($('#box-container').css('justify-content') == 'center');
+assert($("#box-container").css("justify-content") == "center");
 ```
 
 # --seed--
@@ -44,7 +44,6 @@ assert($('#box-container').css('justify-content') == 'center');
     background: gray;
     display: flex;
     height: 500px;
-
   }
   #box-1 {
     background-color: dodgerblue;

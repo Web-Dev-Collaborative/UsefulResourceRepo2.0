@@ -1,6 +1,6 @@
 ---
 id: 5900f3c61000cf542c50fed9
-title: 'Problem 90: Cube digit pairs'
+title: "Problem 90: Cube digit pairs"
 challengeType: 5
 forumTopicId: 302207
 dashedName: problem-90-cube-digit-pairs
@@ -36,7 +36,7 @@ How many distinct arrangements of the two cubes allow for all of the square numb
 `cubeDigitPairs()` should return a number.
 
 ```js
-assert(typeof cubeDigitPairs() === 'number');
+assert(typeof cubeDigitPairs() === "number");
 ```
 
 `cubeDigitPairs()` should return 1217.
@@ -51,7 +51,6 @@ assert.strictEqual(cubeDigitPairs(), 1217);
 
 ```js
 function cubeDigitPairs() {
-
   return true;
 }
 

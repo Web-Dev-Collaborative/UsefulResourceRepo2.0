@@ -1,6 +1,6 @@
 ---
 id: 5900f37b1000cf542c50fe8e
-title: 'Problem 15: Lattice paths'
+title: "Problem 15: Lattice paths"
 challengeType: 5
 forumTopicId: 301780
 dashedName: problem-15-lattice-paths
@@ -19,7 +19,7 @@ How many such routes are there through a given `gridSize`?
 `latticePaths(4)` should return a number.
 
 ```js
-assert(typeof latticePaths(4) === 'number');
+assert(typeof latticePaths(4) === "number");
 ```
 
 `latticePaths(4)` should return 70.
@@ -46,7 +46,6 @@ assert.strictEqual(latticePaths(20), 137846528820);
 
 ```js
 function latticePaths(gridSize) {
-
   return true;
 }
 
@@ -60,7 +59,7 @@ function latticePaths(gridSize) {
   let paths = 1;
 
   for (let i = 0; i < gridSize; i++) {
-    paths *= (2 * gridSize) - i;
+    paths *= 2 * gridSize - i;
     paths /= i + 1;
   }
   return paths;

@@ -2,7 +2,7 @@
 id: 5b7d72c338cd7e35b63f3e14
 title: Melhorar a compatibilidade do CSS com navegadores antigos
 challengeType: 0
-videoUrl: ''
+videoUrl: ""
 forumTopicId: 301087
 dashedName: improve-compatibility-with-browser-fallbacks
 ---
@@ -26,7 +26,7 @@ O seletor `.red-box` deve possuir uma propriedade reserva para a propriedade `ba
 ```js
 assert(
   code
-    .replace(/\s/g, '')
+    .replace(/\s/g, "")
     .match(
       /\.red-box{background:(red|#ff0000|#f00|rgb\(255,0,0\)|rgb\(100%,0%,0%\)|hsl\(0,100%,50%\));background:var\(--red-color\);height:200px;width:200px;}/gi
     )
@@ -43,10 +43,9 @@ assert(
     --red-color: red;
   }
   .red-box {
-
     background: var(--red-color);
     height: 200px;
-    width:200px;
+    width: 200px;
   }
 </style>
 <div class="red-box"></div>
@@ -63,7 +62,7 @@ assert(
     background: red;
     background: var(--red-color);
     height: 200px;
-    width:200px;
+    width: 200px;
   }
 </style>
 <div class="red-box"></div>

@@ -3,14 +3,14 @@ class ChallengeTitles {
     this.knownTitles = [];
   }
   check(title, pathAndTitle) {
-    if (typeof title !== 'string') {
+    if (typeof title !== "string") {
       throw new Error(
         `Expected a valid string for ${title}, but got a(n) ${typeof title}`
       );
     }
-    let titleToCheck = title.replace(/\s+/g, '').toLowerCase();
+    let titleToCheck = title.replace(/\s+/g, "").toLowerCase();
     if (titleToCheck.length === 0) {
-      throw new Error('Expected a title length greater than 0');
+      throw new Error("Expected a title length greater than 0");
     }
     // reassign titleToCheck if challenge is part of the project
     // based curriculum

@@ -2,7 +2,7 @@
 id: cf1111c1c11feddfaeb9bdef
 title: Generate Random Fractions with JavaScript
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cyWJJs3'
+videoUrl: "https://scrimba.com/c/cyWJJs3"
 forumTopicId: 18185
 dashedName: generate-random-fractions-with-javascript
 ---
@@ -24,13 +24,13 @@ Change `randomFraction` to return a random number instead of returning `0`.
 `randomFraction` should return a random number.
 
 ```js
-assert(typeof randomFraction() === 'number');
+assert(typeof randomFraction() === "number");
 ```
 
 The number returned by `randomFraction` should be a decimal.
 
 ```js
-assert((randomFraction() + '').match(/\./g));
+assert((randomFraction() + "").match(/\./g));
 ```
 
 You should be using `Math.random` to generate the random decimal number.
@@ -44,14 +44,15 @@ assert(code.match(/Math\.random/g).length >= 0);
 ## --after-user-code--
 
 ```js
-(function(){return randomFraction();})();
+(function () {
+  return randomFraction();
+})();
 ```
 
 ## --seed-contents--
 
 ```js
 function randomFraction() {
-
   // Only change code below this line
 
   return 0;

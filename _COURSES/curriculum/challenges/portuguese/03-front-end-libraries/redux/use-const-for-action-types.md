@@ -21,13 +21,13 @@ Declare `LOGIN` and `LOGOUT` as `const` values and assign them to the strings `'
 Calling the function `loginUser` should return an object with `type` property set to the string `LOGIN`.
 
 ```js
-assert(loginUser().type === 'LOGIN');
+assert(loginUser().type === "LOGIN");
 ```
 
 Calling the function `logoutUser` should return an object with `type` property set to the string `LOGOUT`.
 
 ```js
-assert(logoutUser().type === 'LOGOUT');
+assert(logoutUser().type === "LOGOUT");
 ```
 
 The store should be initialized with an object with property `login` set to `false`.
@@ -74,10 +74,10 @@ The `authReducer` function should handle multiple action types with a switch sta
   assert(
     (function () {
       return (
-        typeof authReducer === 'function' &&
-        getUserInput('index').toString().includes('switch') &&
-        getUserInput('index').toString().includes('case') &&
-        getUserInput('index').toString().includes('default')
+        typeof authReducer === "function" &&
+        getUserInput("index").toString().includes("switch") &&
+        getUserInput("index").toString().includes("case") &&
+        getUserInput("index").toString().includes("default")
       );
     })()
   );
@@ -100,13 +100,13 @@ The action creators and the reducer should reference the `LOGIN` and `LOGOUT` co
   assert(
     (function () {
       const noWhiteSpace = __helpers.removeWhiteSpace(
-        getUserInput('index').toString()
+        getUserInput("index").toString()
       );
       return (
-        noWhiteSpace.includes('caseLOGIN:') &&
-        noWhiteSpace.includes('caseLOGOUT:') &&
-        noWhiteSpace.includes('type:LOGIN') &&
-        noWhiteSpace.includes('type:LOGOUT')
+        noWhiteSpace.includes("caseLOGIN:") &&
+        noWhiteSpace.includes("caseLOGOUT:") &&
+        noWhiteSpace.includes("type:LOGIN") &&
+        noWhiteSpace.includes("type:LOGOUT")
       );
     })()
   );
@@ -117,88 +117,79 @@ The action creators and the reducer should reference the `LOGIN` and `LOGOUT` co
 ## --seed-contents--
 
 ```js
-
-
 const defaultState = {
-  authenticated: false
+  authenticated: false,
 };
 
 const authReducer = (state = defaultState, action) => {
-
   switch (action.type) {
-    case 'LOGIN': 
+    case "LOGIN":
       return {
-        authenticated: true
-      }
-    case 'LOGOUT': 
+        authenticated: true,
+      };
+    case "LOGOUT":
       return {
-        authenticated: false
-      }
+        authenticated: false,
+      };
 
     default:
       return state;
-
   }
-
 };
 
 const store = Redux.createStore(authReducer);
 
 const loginUser = () => {
   return {
-    type: 'LOGIN'
-  }
+    type: "LOGIN",
+  };
 };
 
 const logoutUser = () => {
   return {
-    type: 'LOGOUT'
-  }
+    type: "LOGOUT",
+  };
 };
 ```
 
 # --solutions--
 
 ```js
-const LOGIN = 'LOGIN';
-const LOGOUT = 'LOGOUT';
+const LOGIN = "LOGIN";
+const LOGOUT = "LOGOUT";
 
 const defaultState = {
-  authenticated: false
+  authenticated: false,
 };
 
 const authReducer = (state = defaultState, action) => {
-
   switch (action.type) {
-
     case LOGIN:
       return {
-        authenticated: true
-      }
+        authenticated: true,
+      };
 
     case LOGOUT:
       return {
-        authenticated: false
-      }
+        authenticated: false,
+      };
 
     default:
       return state;
-
   }
-
 };
 
 const store = Redux.createStore(authReducer);
 
 const loginUser = () => {
   return {
-    type: LOGIN
-  }
+    type: LOGIN,
+  };
 };
 
 const logoutUser = () => {
   return {
-    type: LOGOUT
-  }
+    type: LOGOUT,
+  };
 };
 ```

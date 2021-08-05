@@ -1,6 +1,6 @@
 ---
 id: 5900f4511000cf542c50ff63
-title: 'Problem 228: Minkowski Sums'
+title: "Problem 228: Minkowski Sums"
 challengeType: 5
 forumTopicId: 301871
 dashedName: problem-228-minkowski-sums
@@ -44,7 +44,6 @@ assert.strictEqual(euler228(), 86226);
 
 ```js
 function euler228() {
-
   return true;
 }
 

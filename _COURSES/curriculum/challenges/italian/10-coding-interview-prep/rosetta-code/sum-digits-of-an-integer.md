@@ -22,49 +22,49 @@ Write a function that takes a string as a parameter. This string represents a nu
 `sumDigits` should be a function.
 
 ```js
-assert(typeof sumDigits == 'function');
+assert(typeof sumDigits == "function");
 ```
 
 `sumDigits("1")` should return a number.
 
 ```js
-assert(typeof sumDigits('1') == 'number');
+assert(typeof sumDigits("1") == "number");
 ```
 
 `sumDigits("1")` should return `1`.
 
 ```js
-assert.equal(sumDigits('1'), 1);
+assert.equal(sumDigits("1"), 1);
 ```
 
 `sumDigits("12345")` should return `15`.
 
 ```js
-assert.equal(sumDigits('12345'), 15);
+assert.equal(sumDigits("12345"), 15);
 ```
 
 `sumDigits("254")` should return `11`.
 
 ```js
-assert.equal(sumDigits('254'), 11);
+assert.equal(sumDigits("254"), 11);
 ```
 
 `sumDigits("fe")` should return `29`.
 
 ```js
-assert.equal(sumDigits('fe'), 29);
+assert.equal(sumDigits("fe"), 29);
 ```
 
 `sumDigits("f0e")` should return `29`.
 
 ```js
-assert.equal(sumDigits('f0e'), 29);
+assert.equal(sumDigits("f0e"), 29);
 ```
 
 `sumDigits("999ABCXYZ")` should return `162`.
 
 ```js
-assert.equal(sumDigits('999ABCXYZ'), 162);
+assert.equal(sumDigits("999ABCXYZ"), 162);
 ```
 
 # --seed--
@@ -72,16 +72,14 @@ assert.equal(sumDigits('999ABCXYZ'), 162);
 ## --seed-contents--
 
 ```js
-function sumDigits(n) {
-
-}
+function sumDigits(n) {}
 ```
 
 # --solutions--
 
 ```js
 function sumDigits(n) {
-  n += '';
+  n += "";
   for (var s = 0, i = 0, e = n.length; i < e; i += 1)
     s += parseInt(n.charAt(i), 36);
   return s;

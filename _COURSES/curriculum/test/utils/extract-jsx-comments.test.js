@@ -1,4 +1,4 @@
-const extractJSXComments = require('./extract-jsx-comments');
+const extractJSXComments = require("./extract-jsx-comments");
 
 const someJSX = `<Link
 className='btn-invert'
@@ -16,12 +16,12 @@ a multiline comment
 */
 `;
 
-describe('extractJSXComments', () => {
-  it('should return an object with comment keys and count values', () => {
+describe("extractJSXComments", () => {
+  it("should return an object with comment keys and count values", () => {
     const commentCounts = {
-      'JSX comment': 2,
-      'single line comment': 1,
-      'a multiline comment': 1
+      "JSX comment": 2,
+      "single line comment": 1,
+      "a multiline comment": 1,
     };
     expect(extractJSXComments(someJSX)).toEqual(commentCounts);
   });

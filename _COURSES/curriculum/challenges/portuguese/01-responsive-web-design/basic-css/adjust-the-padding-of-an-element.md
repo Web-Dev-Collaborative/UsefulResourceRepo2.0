@@ -2,7 +2,7 @@
 id: bad88fee1348bd9aedf08825
 title: Ajustar o espaçamento de um elemento
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cED8ZC2'
+videoUrl: "https://scrimba.com/c/cED8ZC2"
 forumTopicId: 301083
 dashedName: adjust-the-padding-of-an-element
 ---
@@ -30,7 +30,7 @@ Altere o `padding` da caixa azul para combinar com o da caixa vermelha.
 A classe `blue-box` deve criar no elemento um preenchimento (`padding`) de `20px`.
 
 ```js
-assert($('.blue-box').css('padding-top') === '20px');
+assert($(".blue-box").css("padding-top") === "20px");
 ```
 
 # --seed--

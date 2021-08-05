@@ -1,6 +1,6 @@
 ---
 id: 5900f3ff1000cf542c50ff12
-title: 'Problem 147: Rectangles in cross-hatched grids'
+title: "Problem 147: Rectangles in cross-hatched grids"
 challengeType: 5
 forumTopicId: 301776
 dashedName: problem-147-rectangles-in-cross-hatched-grids
@@ -30,7 +30,6 @@ assert.strictEqual(euler147(), 846910284);
 
 ```js
 function euler147() {
-
   return true;
 }
 

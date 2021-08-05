@@ -1,4 +1,4 @@
-const extractScriptJSComments = require('./extract-script-js-comments');
+const extractScriptJSComments = require("./extract-script-js-comments");
 
 const inlineComments = `<body>
 Some text
@@ -51,25 +51,25 @@ var x = 'y';
 </body>
 `;
 
-describe('extractScriptJSComments', () => {
-  it('should catch inline comments', () => {
+describe("extractScriptJSComments", () => {
+  it("should catch inline comments", () => {
     const commentCounts = {
-      'comment 1': 2,
-      'comment 2': 1
+      "comment 1": 2,
+      "comment 2": 1,
     };
     expect(extractScriptJSComments(inlineComments)).toEqual(commentCounts);
   });
-  it('should catch multiline comments', () => {
+  it("should catch multiline comments", () => {
     const commentCounts = {
-      'comment 1': 2,
-      'comment 2': 1
+      "comment 1": 2,
+      "comment 2": 1,
     };
     expect(extractScriptJSComments(multilineComments)).toEqual(commentCounts);
   });
-  it('should ignore comments outside script tags', () => {
+  it("should ignore comments outside script tags", () => {
     const commentCounts = {
-      'comment 1': 2,
-      'comment 2': 1
+      "comment 1": 2,
+      "comment 2": 1,
     };
     expect(extractScriptJSComments(outsideScript)).toEqual(commentCounts);
   });

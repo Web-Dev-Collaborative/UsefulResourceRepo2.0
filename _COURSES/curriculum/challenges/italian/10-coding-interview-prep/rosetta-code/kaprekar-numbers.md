@@ -33,13 +33,13 @@ Write a function that takes a number $n$, a base $bs$, and returns true if the n
 `isKaprekar` should be a function.
 
 ```js
-assert(typeof isKaprekar == 'function');
+assert(typeof isKaprekar == "function");
 ```
 
 `isKaprekar(1, 10)` should return a boolean.
 
 ```js
-assert(typeof isKaprekar(1, 10) == 'boolean');
+assert(typeof isKaprekar(1, 10) == "boolean");
 ```
 
 `isKaprekar(1, 10)` should return `true`.
@@ -89,9 +89,7 @@ assert.equal(isKaprekar(999, 17), false);
 ## --seed-contents--
 
 ```js
-function isKaprekar(n, bs) {
-
-}
+function isKaprekar(n, bs) {}
 ```
 
 # --solutions--

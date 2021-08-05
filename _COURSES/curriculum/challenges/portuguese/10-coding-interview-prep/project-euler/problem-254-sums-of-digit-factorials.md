@@ -1,6 +1,6 @@
 ---
 id: 5900f46b1000cf542c50ff7d
-title: 'Problem 254: Sums of Digit Factorials'
+title: "Problem 254: Sums of Digit Factorials"
 challengeType: 5
 forumTopicId: 301902
 dashedName: problem-254-sums-of-digit-factorials
@@ -34,7 +34,6 @@ assert.strictEqual(euler254(), 8184523820510);
 
 ```js
 function euler254() {
-
   return true;
 }
 

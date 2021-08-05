@@ -1,6 +1,6 @@
 ---
 id: 5900f5331000cf542c510046
-title: 'Problem 455: Powers With Trailing Digits'
+title: "Problem 455: Powers With Trailing Digits"
 challengeType: 5
 forumTopicId: 302129
 dashedName: problem-455-powers-with-trailing-digits
@@ -28,7 +28,6 @@ assert.strictEqual(euler455(), 450186511399999);
 
 ```js
 function euler455() {
-
   return true;
 }
 

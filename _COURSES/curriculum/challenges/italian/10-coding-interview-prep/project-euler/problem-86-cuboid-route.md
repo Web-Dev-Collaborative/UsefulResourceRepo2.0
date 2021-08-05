@@ -1,6 +1,6 @@
 ---
 id: 5900f3c31000cf542c50fed5
-title: 'Problem 86: Cuboid route'
+title: "Problem 86: Cuboid route"
 challengeType: 5
 forumTopicId: 302200
 dashedName: problem-86-cuboid-route
@@ -23,7 +23,7 @@ Find the least value of M such that the number of solutions first exceeds `n`.
 `cuboidRoute(2000)` should return a number.
 
 ```js
-assert(typeof cuboidRoute(2000) === 'number');
+assert(typeof cuboidRoute(2000) === "number");
 ```
 
 `cuboidRoute(2000)` should return `100`.
@@ -56,7 +56,6 @@ assert.strictEqual(cuboidRoute(1000000), 1818);
 
 ```js
 function cuboidRoute(n) {
-
   return true;
 }
 

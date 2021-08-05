@@ -21,7 +21,7 @@ The following function is supposed to create a two-dimensional array with `m` ro
 Your code should set the `matrix` variable to an array holding 3 rows of 2 columns of zeroes each.
 
 ```js
-assert(JSON.stringify(matrix) == '[[0,0],[0,0],[0,0]]');
+assert(JSON.stringify(matrix) == "[[0,0],[0,0],[0,0]]");
 ```
 
 The `matrix` variable should have 3 rows.
@@ -68,20 +68,20 @@ console.log(matrix);
 
 ```js
 function zeroArray(m, n) {
- // Creates a 2-D array with m rows and n columns of zeroes
- let newArray = [];
- for (let i = 0; i < m; i++) {
-   let row = [];
-   // Adds the m-th row into newArray
+  // Creates a 2-D array with m rows and n columns of zeroes
+  let newArray = [];
+  for (let i = 0; i < m; i++) {
+    let row = [];
+    // Adds the m-th row into newArray
 
-   for (let j = 0; j < n; j++) {
-     // Pushes n zeroes into the current row to create the columns
-     row.push(0);
-   }
-   // Pushes the current row, which now has n zeroes in it, to the array
-   newArray.push(row);
- }
- return newArray;
+    for (let j = 0; j < n; j++) {
+      // Pushes n zeroes into the current row to create the columns
+      row.push(0);
+    }
+    // Pushes the current row, which now has n zeroes in it, to the array
+    newArray.push(row);
+  }
+  return newArray;
 }
 
 let matrix = zeroArray(3, 2);

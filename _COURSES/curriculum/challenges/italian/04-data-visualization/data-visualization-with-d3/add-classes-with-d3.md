@@ -27,7 +27,7 @@ Aggiungi il metodo `attr()` al codice nell'editor e applica una classe `bar` agl
 I tuoi elementi `div` dovrebbero avere una classe di `bar`.
 
 ```js
-assert($('div').attr('class').trim().split(/\s+/g).includes('bar'));
+assert($("div").attr("class").trim().split(/\s+/g).includes("bar"));
 ```
 
 Il tuo codice dovrebbe usare il metodo `attr()`.
@@ -53,15 +53,10 @@ assert(code.match(/\.attr/g));
   <script>
     const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
-    d3.select("body").selectAll("div")
-      .data(dataset)
-      .enter()
-      .append("div")
-      // Add your code below this line
+    d3.select("body").selectAll("div").data(dataset).enter().append("div");
+    // Add your code below this line
 
-
-
-      // Add your code above this line
+    // Add your code above this line
   </script>
 </body>
 ```
@@ -81,13 +76,14 @@ assert(code.match(/\.attr/g));
   <script>
     const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
-    d3.select("body").selectAll("div")
+    d3.select("body")
+      .selectAll("div")
       .data(dataset)
       .enter()
       .append("div")
       // Add your code below this line
-      .attr("class","bar");
-      // Add your code above this line
+      .attr("class", "bar");
+    // Add your code above this line
   </script>
 </body>
 ```

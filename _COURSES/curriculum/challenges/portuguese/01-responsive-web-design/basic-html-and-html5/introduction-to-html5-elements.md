@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aecf08801
 title: Introdução aos elementos do HTML5
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cBkZGpt7'
+videoUrl: "https://scrimba.com/p/pVMPUv/cBkZGpt7"
 forumTopicId: 301097
 dashedName: introduction-to-html5-elements
 ---
@@ -16,7 +16,7 @@ Essas tags conferem uma estrutura descritiva ao seu HTML, tornam seu HTML mais f
 Vemos abaixo um exemplo de uso de um elemento `main` com dois elementos filhos dentre dele:
 
 ```html
-<main> 
+<main>
   <h1>Hello World</h1>
   <p>Hello Paragraph</p>
 </main>
@@ -35,7 +35,7 @@ Em seguida, crie um elemento `main` e coloque os dois elementos `p` dentro do el
 Você deve ter 2 elementos `p` contendo o texto Kitty Ipsum.
 
 ```js
-assert($('p').length > 1);
+assert($("p").length > 1);
 ```
 
 Cada elemento `p` deve ter uma tag de fechamento.
@@ -50,19 +50,19 @@ assert(
 O elemento `p` deve conter as palavras do texto `kitty ipsum text` fornecido.
 
 ```js
-assert.isTrue(/Purr\s+jump\s+eat/gi.test($('p').text()));
+assert.isTrue(/Purr\s+jump\s+eat/gi.test($("p").text()));
 ```
 
 O seu código deve ter um elemento `main`.
 
 ```js
-assert($('main').length === 1);
+assert($("main").length === 1);
 ```
 
 O elemento `main` deve ter dois elementos de parágrafo como filhos.
 
 ```js
-assert($('main').children('p').length === 2);
+assert($("main").children("p").length === 2);
 ```
 
 A tag de abertura `main` deve vir antes da primeira tag de parágrafo.
@@ -84,7 +84,10 @@ assert(code.match(/<\/p>\s*?<\/main>/g));
 ```html
 <h2>CatPhotoApp</h2>
 
-<p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p>
+<p>
+  Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack
+  your ankles chase the red dot, hairball run catnip eat the grass sniff.
+</p>
 ```
 
 # --solutions--
@@ -92,7 +95,14 @@ assert(code.match(/<\/p>\s*?<\/main>/g));
 ```html
 <h2>CatPhotoApp</h2>
 <main>
-  <p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p>
-  <p>Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere rip the couch sleep in the sink fluffy fur catnip scratched.</p>
+  <p>
+    Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching
+    attack your ankles chase the red dot, hairball run catnip eat the grass
+    sniff.
+  </p>
+  <p>
+    Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere
+    rip the couch sleep in the sink fluffy fur catnip scratched.
+  </p>
 </main>
 ```

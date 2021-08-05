@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244cc
 title: Accessing Nested Objects
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cRnRnfa'
+videoUrl: "https://scrimba.com/c/cRnRnfa"
 forumTopicId: 16161
 dashedName: accessing-nested-objects
 ---
@@ -15,16 +15,16 @@ Here is a nested object:
 
 ```js
 var ourStorage = {
-  "desk": {
-    "drawer": "stapler"
+  desk: {
+    drawer: "stapler",
   },
-  "cabinet": {
-    "top drawer": { 
-      "folder1": "a file",
-      "folder2": "secrets"
+  cabinet: {
+    "top drawer": {
+      folder1: "a file",
+      folder2: "secrets",
     },
-    "bottom drawer": "soda"
-  }
+    "bottom drawer": "soda",
+  },
 };
 ourStorage.cabinet["top drawer"].folder2;
 ourStorage.desk.drawer;
@@ -41,7 +41,7 @@ Access the `myStorage` object and assign the contents of the `glove box` propert
 `gloveBoxContents` should equal the string `maps`.
 
 ```js
-assert(gloveBoxContents === 'maps');
+assert(gloveBoxContents === "maps");
 ```
 
 Your code should use dot and bracket notation to access `myStorage`.
@@ -55,8 +55,8 @@ assert(/=\s*myStorage\.car\.inside\[\s*("|')glove box\1\s*\]/g.test(code));
 ## --after-user-code--
 
 ```js
-(function(x) { 
-  if(typeof x != 'undefined') { 
+(function (x) {
+  if (typeof x != "undefined") {
     return "gloveBoxContents = " + x;
   }
   return "gloveBoxContents is undefined";
@@ -67,15 +67,15 @@ assert(/=\s*myStorage\.car\.inside\[\s*("|')glove box\1\s*\]/g.test(code));
 
 ```js
 var myStorage = {
-  "car": {
-    "inside": {
+  car: {
+    inside: {
       "glove box": "maps",
-      "passenger seat": "crumbs"
-     },
-    "outside": {
-      "trunk": "jack"
-    }
-  }
+      "passenger seat": "crumbs",
+    },
+    outside: {
+      trunk: "jack",
+    },
+  },
 };
 
 var gloveBoxContents = undefined;
@@ -85,15 +85,15 @@ var gloveBoxContents = undefined;
 
 ```js
 var myStorage = {
-  "car":{
-    "inside":{
-      "glove box":"maps",
-      "passenger seat":"crumbs"
+  car: {
+    inside: {
+      "glove box": "maps",
+      "passenger seat": "crumbs",
     },
-    "outside":{
-      "trunk":"jack"
-    }
-  }
+    outside: {
+      trunk: "jack",
+    },
+  },
 };
 var gloveBoxContents = myStorage.car.inside["glove box"];
 ```

@@ -33,13 +33,13 @@ Write a function that takes $r_0,a,c,m,n$ as parameters and returns $r_n$.
 `linearCongGenerator` should be a function.
 
 ```js
-assert(typeof linearCongGenerator == 'function');
+assert(typeof linearCongGenerator == "function");
 ```
 
 `linearCongGenerator(324, 1145, 177, 2148, 3)` should return a number.
 
 ```js
-assert(typeof linearCongGenerator(324, 1145, 177, 2148, 3) == 'number');
+assert(typeof linearCongGenerator(324, 1145, 177, 2148, 3) == "number");
 ```
 
 `linearCongGenerator(324, 1145, 177, 2148, 3)` should return `855`.
@@ -80,18 +80,16 @@ assert.equal(
 ## --seed-contents--
 
 ```js
-function linearCongGenerator(r0, a, c, m, n) {
-
-}
+function linearCongGenerator(r0, a, c, m, n) {}
 ```
 
 # --solutions--
 
 ```js
 function linearCongGenerator(r0, a, c, m, n) {
-    for (let i = 0; i < n; i++) {
-        r0 = (a * r0 + c) % m;
-    }
-    return r0;
+  for (let i = 0; i < n; i++) {
+    r0 = (a * r0 + c) % m;
+  }
+  return r0;
 }
 ```

@@ -19,7 +19,7 @@ Objects in JavaScript are used to model real-world objects, giving them properti
 ```js
 let duck = {
   name: "Aflac",
-  numLegs: 2
+  numLegs: 2,
 };
 ```
 
@@ -34,19 +34,19 @@ Create a `dog` object with `name` and `numLegs` properties, and set them to a st
 `dog` should be an object.
 
 ```js
-assert(typeof dog === 'object');
+assert(typeof dog === "object");
 ```
 
 `dog` should have a `name` property set to a string.
 
 ```js
-assert(typeof dog.name === 'string');
+assert(typeof dog.name === "string");
 ```
 
 `dog` should have a `numLegs` property set to a number.
 
 ```js
-assert(typeof dog.numLegs === 'number');
+assert(typeof dog.numLegs === "number");
 ```
 
 # --seed--
@@ -54,16 +54,14 @@ assert(typeof dog.numLegs === 'number');
 ## --seed-contents--
 
 ```js
-let dog = {
-
-};
+let dog = {};
 ```
 
 # --solutions--
 
 ```js
 let dog = {
-  name: '',
-  numLegs: 4
+  name: "",
+  numLegs: 4,
 };
 ```

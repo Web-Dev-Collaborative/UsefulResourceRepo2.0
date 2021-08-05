@@ -1,6 +1,6 @@
 ---
 id: 5900f39c1000cf542c50feaf
-title: 'Problem 48: Self powers'
+title: "Problem 48: Self powers"
 challengeType: 5
 forumTopicId: 302157
 dashedName: problem-48-self-powers
@@ -17,7 +17,7 @@ Find the last ten digits of the series, 1<sup>1</sup> + 2<sup>2</sup> + 3<sup>3<
 `selfPowers(10, 3)` should return a number.
 
 ```js
-assert(typeof selfPowers(10, 3) === 'number');
+assert(typeof selfPowers(10, 3) === "number");
 ```
 
 `selfPowers(10, 3)` should return 317.
@@ -50,7 +50,6 @@ assert.strictEqual(selfPowers(1000, 10), 9110846700);
 
 ```js
 function selfPowers(power, lastDigits) {
-
   return true;
 }
 

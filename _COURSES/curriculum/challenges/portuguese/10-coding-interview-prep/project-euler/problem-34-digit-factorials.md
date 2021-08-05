@@ -1,6 +1,6 @@
 ---
 id: 5900f38e1000cf542c50fea1
-title: 'Problem 34: Digit factorials'
+title: "Problem 34: Digit factorials"
 challengeType: 5
 forumTopicId: 301998
 dashedName: problem-34-digit-factorials
@@ -19,7 +19,7 @@ Find the numbers and the sum of the numbers which are equal to the sum of the fa
 `digitFactorial()` should return an object.
 
 ```js
-assert.typeOf(digitFactorial(), 'object');
+assert.typeOf(digitFactorial(), "object");
 ```
 
 `digitFactorial()` should return { sum: 40730, numbers: [145, 40585] }.
@@ -34,7 +34,6 @@ assert.deepEqual(digitFactorial(), { sum: 40730, numbers: [145, 40585] });
 
 ```js
 function digitFactorial() {
-
   var sum = 0;
   var numbers = [];
   return { sum, numbers };

@@ -13,12 +13,13 @@ The challenges so far have covered matching letters of the alphabet and numbers.
 You can search for whitespace using `\s`, which is a lowercase `s`. This pattern not only matches whitespace, but also carriage return, tab, form feed, and new line characters. You can think of it as similar to the character class `[ \r\t\f\n\v]`.
 
 ```js
-let whiteSpace = "Whitespace. Whitespace everywhere!"
+let whiteSpace = "Whitespace. Whitespace everywhere!";
 let spaceRegex = /\s/g;
 whiteSpace.match(spaceRegex);
 ```
 
 This `match` call would return `[" ", " "]`.
+
 # --instructions--
 
 Change the regex `countWhiteSpace` to look for multiple whitespace characters in a string.
@@ -41,7 +42,7 @@ Your regex should find eight spaces in the string `Men are from Mars and women a
 
 ```js
 assert(
-  'Men are from Mars and women are from Venus.'.match(countWhiteSpace).length ==
+  "Men are from Mars and women are from Venus.".match(countWhiteSpace).length ==
     8
 );
 ```
@@ -49,13 +50,13 @@ assert(
 Your regex should find three spaces in the string `Space: the final frontier.`
 
 ```js
-assert('Space: the final frontier.'.match(countWhiteSpace).length == 3);
+assert("Space: the final frontier.".match(countWhiteSpace).length == 3);
 ```
 
 Your regex should find no spaces in the string `MindYourPersonalSpace`
 
 ```js
-assert('MindYourPersonalSpace'.match(countWhiteSpace) == null);
+assert("MindYourPersonalSpace".match(countWhiteSpace) == null);
 ```
 
 # --seed--

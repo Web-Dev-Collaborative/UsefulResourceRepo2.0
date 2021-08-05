@@ -27,7 +27,7 @@ Declare a `store` variable and assign it to the `createStore()` method, passing 
 The Redux store should exist.
 
 ```js
-assert(typeof store.getState === 'function');
+assert(typeof store.getState === "function");
 ```
 
 The Redux store should have a value of 5 for the state.
@@ -43,7 +43,7 @@ assert(store.getState() === 5);
 ```js
 const reducer = (state = 5) => {
   return state;
-}
+};
 
 // Redux methods are available from a Redux object
 // For example: Redux.createStore()
@@ -55,7 +55,7 @@ const reducer = (state = 5) => {
 ```js
 const reducer = (state = 5) => {
   return state;
-}
+};
 
 const store = Redux.createStore(reducer);
 ```

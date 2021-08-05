@@ -1,6 +1,6 @@
 ---
 id: 5900f3c11000cf542c50fed3
-title: 'Problem 84: Monopoly odds'
+title: "Problem 84: Monopoly odds"
 challengeType: 5
 forumTopicId: 302198
 dashedName: problem-84-monopoly-odds
@@ -8,7 +8,7 @@ dashedName: problem-84-monopoly-odds
 
 # --description--
 
-In the game, *Monopoly*, the standard board is set up in the following way:
+In the game, _Monopoly_, the standard board is set up in the following way:
 
 <div style="text-align: center;">
   <table cellspacing="1" cellpadding="5" border="0" style="background-color: black; color: black;" align="center">
@@ -129,31 +129,31 @@ If, instead of using two 6-sided dice, two `n`-sided dice are used, find the six
 `monopolyOdds(8)` should return a string.
 
 ```js
-assert(typeof monopolyOdds(8) === 'string');
+assert(typeof monopolyOdds(8) === "string");
 ```
 
 `monopolyOdds(8)` should return string `102400`.
 
 ```js
-assert.strictEqual(monopolyOdds(8), '102400');
+assert.strictEqual(monopolyOdds(8), "102400");
 ```
 
 `monopolyOdds(10)` should return string `100024`.
 
 ```js
-assert.strictEqual(monopolyOdds(10), '100024');
+assert.strictEqual(monopolyOdds(10), "100024");
 ```
 
 `monopolyOdds(20)` should return string `100005`.
 
 ```js
-assert.strictEqual(monopolyOdds(20), '100005');
+assert.strictEqual(monopolyOdds(20), "100005");
 ```
 
 `monopolyOdds(4)` should return string `101524`.
 
 ```js
-assert.strictEqual(monopolyOdds(4), '101524');
+assert.strictEqual(monopolyOdds(4), "101524");
 ```
 
 # --seed--
@@ -162,7 +162,6 @@ assert.strictEqual(monopolyOdds(4), '101524');
 
 ```js
 function monopolyOdds(n) {
-
   return true;
 }
 
@@ -214,8 +213,8 @@ function monopolyOdds(n) {
   function getTopThree(board) {
     return sortByVisits(board)
       .slice(0, 3)
-      .map(elem => elem[0].toString().padStart(2, '0'))
-      .join('');
+      .map((elem) => elem[0].toString().padStart(2, "0"))
+      .join("");
   }
 
   function sortByVisits(board) {

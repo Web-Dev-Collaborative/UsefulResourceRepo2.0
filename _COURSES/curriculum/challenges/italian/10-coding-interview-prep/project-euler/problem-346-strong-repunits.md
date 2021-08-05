@@ -1,6 +1,6 @@
 ---
 id: 5900f4c71000cf542c50ffd8
-title: 'Problem 346: Strong Repunits'
+title: "Problem 346: Strong Repunits"
 challengeType: 5
 forumTopicId: 302005
 dashedName: problem-346-strong-repunits
@@ -28,7 +28,6 @@ assert.strictEqual(euler346(), 336108797689259260);
 
 ```js
 function euler346() {
-
   return true;
 }
 

@@ -1,6 +1,6 @@
 ---
 id: 5900f3b01000cf542c50fec3
-title: 'Problem 68: Magic 5-gon ring'
+title: "Problem 68: Magic 5-gon ring"
 challengeType: 5
 forumTopicId: 302180
 dashedName: problem-68-magic-5-gon-ring
@@ -42,7 +42,7 @@ Using the numbers 1 to 10, and depending on arrangements, it is possible to form
 `magic5GonRing()` should return a number.
 
 ```js
-assert(typeof magic5GonRing() === 'number');
+assert(typeof magic5GonRing() === "number");
 ```
 
 `magic5GonRing()` should return 6531031914842725.
@@ -57,7 +57,6 @@ assert.strictEqual(magic5GonRing(), 6531031914842725);
 
 ```js
 function magic5GonRing() {
-
   return true;
 }
 

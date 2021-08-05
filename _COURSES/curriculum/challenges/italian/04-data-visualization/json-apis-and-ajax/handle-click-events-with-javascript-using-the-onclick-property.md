@@ -11,15 +11,13 @@ dashedName: handle-click-events-with-javascript-using-the-onclick-property
 Vuoi che il tuo codice venga eseguito solo una volta che la pagina avrà terminato il caricamento. A tal fine, puoi collegare un evento JavaScript al documento chiamato `DOMContentLoaded`. Ecco il codice che lo fa:
 
 ```js
-document.addEventListener('DOMContentLoaded', function() {
-
-});
+document.addEventListener("DOMContentLoaded", function () {});
 ```
 
 Puoi implementare i gestori di eventi che vanno all'interno della funzione `DOMContentLoaded`. Puoi implementare un gestore di eventi `onclick` che si attiva quando l'utente fa click sull'elemento con id `getMessage`, aggiungendo il seguente codice:
 
 ```js
-document.getElementById('getMessage').onclick = function(){};
+document.getElementById("getMessage").onclick = function () {};
 ```
 
 # --instructions--
@@ -37,7 +35,7 @@ assert(code.match(/document\s*\.getElementById\(\s*?('|")getMessage\1\s*?\)/g));
 Il tuo codice dovrebbe aggiungere un gestore di eventi `onclick`.
 
 ```js
-assert(typeof document.getElementById('getMessage').onclick === 'function');
+assert(typeof document.getElementById("getMessage").onclick === "function");
 ```
 
 # --seed--
@@ -46,10 +44,8 @@ assert(typeof document.getElementById('getMessage').onclick === 'function');
 
 ```html
 <script>
-  document.addEventListener('DOMContentLoaded', function(){
+  document.addEventListener("DOMContentLoaded", function () {
     // Add your code below this line
-
-
     // Add your code above this line
   });
 </script>
@@ -76,18 +72,14 @@ assert(typeof document.getElementById('getMessage').onclick === 'function');
     padding: 5px 10px 8px 10px;
   }
   button:hover {
-    background-color: #0F5897;
-    border: 1px solid #0F5897;
+    background-color: #0f5897;
+    border: 1px solid #0f5897;
   }
 </style>
 <h1>Cat Photo Finder</h1>
-<p class="message box">
-  The message will go here
-</p>
+<p class="message box">The message will go here</p>
 <p>
-  <button id="getMessage">
-    Get Message
-  </button>
+  <button id="getMessage">Get Message</button>
 </p>
 ```
 
@@ -95,9 +87,9 @@ assert(typeof document.getElementById('getMessage').onclick === 'function');
 
 ```html
 <script>
-  document.addEventListener('DOMContentLoaded', function(){
+  document.addEventListener("DOMContentLoaded", function () {
     // Add your code below this line
-    document.getElementById('getMessage').onclick = function(){ };
+    document.getElementById("getMessage").onclick = function () {};
     // Add your code above this line
   });
 </script>
@@ -124,17 +116,13 @@ assert(typeof document.getElementById('getMessage').onclick === 'function');
     padding: 5px 10px 8px 10px;
   }
   button:hover {
-    background-color: #0F5897;
-    border: 1px solid #0F5897;
+    background-color: #0f5897;
+    border: 1px solid #0f5897;
   }
 </style>
-<h1>Cat Photo Finder</h1> 
-<p class="message box">
-  The message will go here
-</p>
+<h1>Cat Photo Finder</h1>
+<p class="message box">The message will go here</p>
 <p>
-  <button id="getMessage">
-    Get Message
-  </button>
+  <button id="getMessage">Get Message</button>
 </p>
 ```

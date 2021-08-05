@@ -17,7 +17,7 @@ Create two `div` elements within your row, both with the class `col-xs-6`.
 Two `div class="col-xs-6"` elements should be nested within your `div class="row"` element.
 
 ```js
-assert($('div.row > div.col-xs-6').length > 1);
+assert($("div.row > div.col-xs-6").length > 1);
 ```
 
 All your `div` elements should have closing tags.
@@ -37,10 +37,7 @@ assert(
 ```html
 <div class="container-fluid">
   <h3 class="text-primary text-center">jQuery Playground</h3>
-  <div class="row">
-
-
-  </div>
+  <div class="row"></div>
 </div>
 ```
 

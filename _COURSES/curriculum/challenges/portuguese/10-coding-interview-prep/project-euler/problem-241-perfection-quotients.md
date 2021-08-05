@@ -1,6 +1,6 @@
 ---
 id: 5900f45d1000cf542c50ff70
-title: 'Problem 241: Perfection Quotients'
+title: "Problem 241: Perfection Quotients"
 challengeType: 5
 forumTopicId: 301888
 dashedName: problem-241-perfection-quotients
@@ -28,7 +28,6 @@ assert.strictEqual(euler241(), 482316491800641150);
 
 ```js
 function euler241() {
-
   return true;
 }
 

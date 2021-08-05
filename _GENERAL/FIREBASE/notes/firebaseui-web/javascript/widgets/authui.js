@@ -1664,7 +1664,8 @@ firebaseui.auth.AuthUI.prototype.finishSignInAndRetrieveDataWithAuthResult =
         // with error credential already in use.
         // There are cases where this is required. For example, when email
         // mismatch occurs and the user continues with the new account.
-        return /**
+        return;
+        /**
          * @type {!firebase.Promise<
          *     !firebaseui.auth.widget.Config.AuthResult>}
          */ (

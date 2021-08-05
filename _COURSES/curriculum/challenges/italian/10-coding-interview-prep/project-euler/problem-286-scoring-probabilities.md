@@ -1,6 +1,6 @@
 ---
 id: 5900f48a1000cf542c50ff9d
-title: 'Problem 286: Scoring probabilities'
+title: "Problem 286: Scoring probabilities"
 challengeType: 5
 forumTopicId: 301937
 dashedName: problem-286-scoring-probabilities
@@ -28,7 +28,6 @@ assert.strictEqual(euler286(), 52.6494571953);
 
 ```js
 function euler286() {
-
   return true;
 }
 

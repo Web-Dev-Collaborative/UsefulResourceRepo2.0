@@ -5,9 +5,9 @@
 */
 
 function createAdder(baseNumber) {
-    return numberToAdd => {
-       return baseNumber + numberToAdd;
-    };
+  return (numberToAdd) => {
+    return baseNumber + numberToAdd;
+  };
 }
 
 const addTen = createAdder(10);

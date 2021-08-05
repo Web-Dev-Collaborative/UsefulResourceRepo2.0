@@ -2,7 +2,7 @@
 id: 587d78ad367417b2b2512afb
 title: Usar a propriedade flex-shrink para encolher itens
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cd3PBfr'
+videoUrl: "https://scrimba.com/p/pVaDAv/cd3PBfr"
 forumTopicId: 301113
 dashedName: use-the-flex-shrink-property-to-shrink-items
 ---
@@ -24,13 +24,13 @@ Adicione a propriedade CSS `flex-shrink` aos elementos de id `#box-1` e `#box-2`
 O elemento de id `#box-1` deve ter a propriedade `flex-shrink` com o valor de `1`.
 
 ```js
-assert($('#box-1').css('flex-shrink') == '1');
+assert($("#box-1").css("flex-shrink") == "1");
 ```
 
 O elemento de id `#box-2` deve ter a propriedade `flex-shrink` com o valor de `2`.
 
 ```js
-assert($('#box-2').css('flex-shrink') == '2');
+assert($("#box-2").css("flex-shrink") == "2");
 ```
 
 # --seed--
@@ -47,14 +47,12 @@ assert($('#box-2').css('flex-shrink') == '2');
     background-color: dodgerblue;
     width: 100%;
     height: 200px;
-
   }
 
   #box-2 {
     background-color: orangered;
     width: 100%;
     height: 200px;
-
   }
 </style>
 

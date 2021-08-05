@@ -1,6 +1,6 @@
 ---
 id: 5900f4c41000cf542c50ffd6
-title: 'Problem 343: Fractional Sequences'
+title: "Problem 343: Fractional Sequences"
 challengeType: 5
 forumTopicId: 302002
 dashedName: problem-343-fractional-sequences
@@ -42,7 +42,6 @@ assert.strictEqual(euler343(), 269533451410884200);
 
 ```js
 function euler343() {
-
   return true;
 }
 

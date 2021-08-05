@@ -61,25 +61,25 @@ Using the above method find a factor of <code>2<sup>p</sup>-1</code>.
 `check_mersenne` should be a function.
 
 ```js
-assert(typeof check_mersenne === 'function');
+assert(typeof check_mersenne === "function");
 ```
 
 `check_mersenne(3)` should return a string.
 
 ```js
-assert(typeof check_mersenne(3) == 'string');
+assert(typeof check_mersenne(3) == "string");
 ```
 
 `check_mersenne(3)` should return the string `M3 = 2^3-1 is prime`.
 
 ```js
-assert.equal(check_mersenne(3), 'M3 = 2^3-1 is prime');
+assert.equal(check_mersenne(3), "M3 = 2^3-1 is prime");
 ```
 
 `check_mersenne(23)` should return the string `M23 = 2^23-1 is composite with factor 47`.
 
 ```js
-assert.equal(check_mersenne(23), 'M23 = 2^23-1 is composite with factor 47');
+assert.equal(check_mersenne(23), "M23 = 2^23-1 is composite with factor 47");
 ```
 
 `check_mersenne(929)` should return the string `M929 = 2^929-1 is composite with factor 13007`.
@@ -87,7 +87,7 @@ assert.equal(check_mersenne(23), 'M23 = 2^23-1 is composite with factor 47');
 ```js
 assert.equal(
   check_mersenne(929),
-  'M929 = 2^929-1 is composite with factor 13007'
+  "M929 = 2^929-1 is composite with factor 13007"
 );
 ```
 
@@ -96,53 +96,51 @@ assert.equal(
 ## --seed-contents--
 
 ```js
-function check_mersenne(p) {
-
-}
+function check_mersenne(p) {}
 ```
 
 # --solutions--
 
 ```js
-function check_mersenne(p){
-    function isPrime(value){
-      for (let i=2; i < value; i++){
-        if (value % i == 0){
-          return false;
-        }
-        if (value % i != 0){
-          return true;
-         }
+function check_mersenne(p) {
+  function isPrime(value) {
+    for (let i = 2; i < value; i++) {
+      if (value % i == 0) {
+        return false;
+      }
+      if (value % i != 0) {
+        return true;
       }
     }
+  }
 
-    function trial_factor(base, exp, mod){
-      let square, bits;
-      square = 1;
-      bits = exp.toString(2).split('');
-      for (let i=0,ln=bits.length; i<ln; i++){
-        square = Math.pow(square, 2) * (bits[i] == 1 ? base : 1) % mod;
-      }
-      return (square == 1);
+  function trial_factor(base, exp, mod) {
+    let square, bits;
+    square = 1;
+    bits = exp.toString(2).split("");
+    for (let i = 0, ln = bits.length; i < ln; i++) {
+      square = (Math.pow(square, 2) * (bits[i] == 1 ? base : 1)) % mod;
     }
+    return square == 1;
+  }
 
-    function mersenne_factor(p){
-      let limit, k, q;
-      limit = Math.sqrt(Math.pow(2,p) - 1);
-      k = 1;
-      while ((2*k*p - 1) < limit){
-        q = 2*k*p + 1;
-        if (isPrime(q) && (q % 8 == 1 || q % 8 == 7) && trial_factor(2,p,q)){
-          return q; // q is a factor of 2**p-1
-        }
-        k++;
+  function mersenne_factor(p) {
+    let limit, k, q;
+    limit = Math.sqrt(Math.pow(2, p) - 1);
+    k = 1;
+    while (2 * k * p - 1 < limit) {
+      q = 2 * k * p + 1;
+      if (isPrime(q) && (q % 8 == 1 || q % 8 == 7) && trial_factor(2, p, q)) {
+        return q; // q is a factor of 2**p-1
       }
-      return null;
+      k++;
     }
+    return null;
+  }
   let f, result;
-  result="M"+p+" = 2^"+p+"-1 is ";
+  result = "M" + p + " = 2^" + p + "-1 is ";
   f = mersenne_factor(p);
-  result+=f == null ? "prime" : "composite with factor "+f;
+  result += f == null ? "prime" : "composite with factor " + f;
   return result;
 }
 ```

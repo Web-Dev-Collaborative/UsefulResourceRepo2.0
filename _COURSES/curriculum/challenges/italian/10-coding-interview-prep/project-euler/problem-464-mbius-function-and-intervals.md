@@ -1,6 +1,6 @@
 ---
 id: 5900f53d1000cf542c51004f
-title: 'Problem 464: Möbius function and intervals'
+title: "Problem 464: Möbius function and intervals"
 challengeType: 5
 forumTopicId: 302139
 dashedName: problem-464-mbius-function-and-intervals
@@ -36,7 +36,6 @@ assert.strictEqual(euler464(), 198775297232878);
 
 ```js
 function euler464() {
-
   return true;
 }
 

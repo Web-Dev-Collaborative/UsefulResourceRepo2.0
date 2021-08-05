@@ -28,7 +28,7 @@ The hailstone sequence is also known as hailstone numbers (because the values ar
 `hailstoneSequence` should be a function.
 
 ```js
-assert(typeof hailstoneSequence === 'function');
+assert(typeof hailstoneSequence === "function");
 ```
 
 `hailstoneSequence(30)` should return an array.
@@ -63,7 +63,6 @@ assert.deepEqual(hailstoneSequence(100000), [77031, 351]);
 function hailstoneSequence(limit) {
   const res = [];
 
-
   return res;
 }
 ```
@@ -71,7 +70,7 @@ function hailstoneSequence(limit) {
 # --solutions--
 
 ```js
-function hailstoneSequence (limit) {
+function hailstoneSequence(limit) {
   function hailstone(n) {
     const seq = [n];
     while (n > 1) {
@@ -83,7 +82,7 @@ function hailstoneSequence (limit) {
 
   let n = 0;
   let max = 0;
-  for (let i = limit; --i;) {
+  for (let i = limit; --i; ) {
     const seq = hailstone(i);
     const sLen = seq.length;
 

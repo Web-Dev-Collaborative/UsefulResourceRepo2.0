@@ -33,13 +33,13 @@ Write a function that takes the initial number of prisoners and 'k' as parameter
 `josephus` should be a function.
 
 ```js
-assert(typeof josephus == 'function');
+assert(typeof josephus == "function");
 ```
 
 `josephus(30,3)` should return a number.
 
 ```js
-assert(typeof josephus(30, 3) == 'number');
+assert(typeof josephus(30, 3) == "number");
 ```
 
 `josephus(30,3)` should return `28`.
@@ -77,9 +77,7 @@ assert.equal(josephus(29, 4), 1);
 ## --seed-contents--
 
 ```js
-function josephus(init, kill) {
-
-}
+function josephus(init, kill) {}
 ```
 
 # --solutions--
@@ -87,7 +85,7 @@ function josephus(init, kill) {
 ```js
 function josephus(init, kill) {
   const arr = Array.from(Array(init).keys());
-  let curr = -1
+  let curr = -1;
   while (arr.length > 1) {
     curr = (curr + kill) % arr.length;
     arr.splice(curr, 1);

@@ -1,6 +1,6 @@
 ---
 id: 5900f3fe1000cf542c50ff11
-title: 'Problem 146: Investigating a Prime Pattern'
+title: "Problem 146: Investigating a Prime Pattern"
 challengeType: 5
 forumTopicId: 301775
 dashedName: problem-146-investigating-a-prime-pattern
@@ -26,7 +26,6 @@ assert.strictEqual(euler146(), 676333270);
 
 ```js
 function euler146() {
-
   return true;
 }
 

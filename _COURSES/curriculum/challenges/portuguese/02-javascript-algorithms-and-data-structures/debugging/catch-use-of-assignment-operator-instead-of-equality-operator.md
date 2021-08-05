@@ -19,10 +19,8 @@ The code below assigns `x` to be 2, which evaluates as `true`. Almost every valu
 ```js
 let x = 1;
 let y = 2;
-if (x = y) {
-
+if ((x = y)) {
 } else {
-
 }
 ```
 
@@ -37,7 +35,7 @@ Fix the condition so the program runs the right branch, and the appropriate valu
 Your code should fix the condition so it checks for equality, instead of using assignment.
 
 ```js
-assert(result == 'Not equal!');
+assert(result == "Not equal!");
 ```
 
 The condition should use either `==` or `===` to test for equality.
@@ -55,7 +53,7 @@ let x = 7;
 let y = 9;
 let result = "to come";
 
-if(x = y) {
+if ((x = y)) {
   result = "Equal!";
 } else {
   result = "Not equal!";
@@ -71,10 +69,10 @@ let x = 7;
 let y = 9;
 let result = "to come";
 
-if(x === y) {
- result = "Equal!";
+if (x === y) {
+  result = "Equal!";
 } else {
- result = "Not equal!";
+  result = "Not equal!";
 }
 
 console.log(result);

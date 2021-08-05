@@ -8,7 +8,7 @@ dashedName: knights-tour
 
 # --description--
 
-[Knight's Tour](https://en.wikipedia.org/wiki/Knight%27s_tour) Problem: You have an empty `w` \* `h` chessboard, but for a single knight on some square. The knight must perform a sequence of legal moves that result in the knight visiting every square on the chessboard exactly once. Note that it is *not* a requirement that the tour be "closed"; that is, the knight need not end within a single move of its start position.
+[Knight's Tour](https://en.wikipedia.org/wiki/Knight%27s_tour) Problem: You have an empty `w` \* `h` chessboard, but for a single knight on some square. The knight must perform a sequence of legal moves that result in the knight visiting every square on the chessboard exactly once. Note that it is _not_ a requirement that the tour be "closed"; that is, the knight need not end within a single move of its start position.
 
 # --instructions--
 
@@ -19,13 +19,13 @@ Write a function that takes `w` and `h` as parameters and returns the number of 
 `knightTour` should be a function.
 
 ```js
-assert(typeof knightTour == 'function');
+assert(typeof knightTour == "function");
 ```
 
 `knightTour(6, 6)` should return a number.
 
 ```js
-assert(typeof knightTour(6, 6) == 'number');
+assert(typeof knightTour(6, 6) == "number");
 ```
 
 `knightTour(6, 6)` should return `36`.
@@ -63,9 +63,7 @@ assert.equal(knightTour(8, 6), 48);
 ## --seed-contents--
 
 ```js
-function knightTour(w, h) {
-
-}
+function knightTour(w, h) {}
 ```
 
 # --solutions--
@@ -101,8 +99,9 @@ function knightTour(w, h) {
 
   function areAllVisited(visited) {
     return (
-      visited.filter(row => row.filter(column => column === false).length !== 0)
-        .length === 0
+      visited.filter(
+        (row) => row.filter((column) => column === false).length !== 0
+      ).length === 0
     );
   }
 
@@ -175,7 +174,7 @@ function knightTour(w, h) {
 
     const bestMoves = getBestNextMoves(board, allowedMoves);
     const restMoves = allowedMoves.filter(
-      move => bestMoves.indexOf(move) === -1
+      (move) => bestMoves.indexOf(move) === -1
     );
     const possibleMoves = [...bestMoves];
     possibleMoves.push(...getBestNextMoves(board, restMoves));
@@ -207,7 +206,7 @@ function knightTour(w, h) {
     [1, 2],
     [2, 1],
     [2, -1],
-    [1, -2]
+    [1, -2],
   ];
 
   const [baseBoard, baseVisited] = createBoards(h, w);

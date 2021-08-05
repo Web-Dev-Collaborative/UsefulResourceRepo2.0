@@ -1,6 +1,6 @@
 ---
 id: 5900f3b31000cf542c50fec6
-title: 'Problem 71: Ordered fractions'
+title: "Problem 71: Ordered fractions"
 challengeType: 5
 forumTopicId: 302184
 dashedName: problem-71-ordered-fractions
@@ -23,7 +23,7 @@ By listing the set of reduced proper fractions for `d` ≤ `limit` in ascending 
 `orderedFractions(8)` should return a number.
 
 ```js
-assert(typeof orderedFractions(8) === 'number');
+assert(typeof orderedFractions(8) === "number");
 ```
 
 `orderedFractions(8)` should return `2`.
@@ -62,7 +62,6 @@ assert.strictEqual(orderedFractions(1000000), 428570);
 
 ```js
 function orderedFractions(limit) {
-
   return true;
 }
 

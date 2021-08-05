@@ -1,6 +1,6 @@
 ---
 id: 5900f37f1000cf542c50fe92
-title: 'Problem 19: Counting Sundays'
+title: "Problem 19: Counting Sundays"
 challengeType: 5
 forumTopicId: 301827
 dashedName: problem-19-counting-sundays
@@ -23,7 +23,7 @@ How many Sundays fell on the first of the month during the twentieth century (1 
 `countingSundays(1943, 1946)` should return a number.
 
 ```js
-assert(typeof countingSundays(1943, 1946) === 'number');
+assert(typeof countingSundays(1943, 1946) === "number");
 ```
 
 `countingSundays(1943, 1946)` should return 6.
@@ -50,7 +50,6 @@ assert.strictEqual(countingSundays(1901, 2000), 171);
 
 ```js
 function countingSundays(firstYear, lastYear) {
-
   return true;
 }
 

@@ -13,8 +13,8 @@
 // } = require('../tools/challenge-parser/translation-parser/__mocks__/mock-comments');
 // /* eslint-enable max-len */
 
-describe('translation parser', () => {
-  it('should pass', () => {
+describe("translation parser", () => {
+  it("should pass", () => {
     expect(true).toBe(true);
   });
 });

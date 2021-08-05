@@ -1,6 +1,6 @@
 ---
 id: 5900f4f41000cf542c510007
-title: 'Problem 392: Enmeshed unit circle'
+title: "Problem 392: Enmeshed unit circle"
 challengeType: 5
 forumTopicId: 302057
 dashedName: problem-392-enmeshed-unit-circle
@@ -34,7 +34,6 @@ assert.strictEqual(euler392(), 3.1486734435);
 
 ```js
 function euler392() {
-
   return true;
 }
 

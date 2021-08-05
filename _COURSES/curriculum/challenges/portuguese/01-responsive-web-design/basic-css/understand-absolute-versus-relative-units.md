@@ -2,7 +2,7 @@
 id: bad82fee1322bd9aedf08721
 title: Diferenças entre unidades absolutas e relativas
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cN66JSL'
+videoUrl: "https://scrimba.com/c/cN66JSL"
 forumTopicId: 301089
 dashedName: understand-absolute-versus-relative-units
 ---
@@ -27,10 +27,10 @@ A classe `red-box` deve ter a propriedade `padding`.
 
 ```js
 assert(
-  $('.red-box').css('padding-top') != '0px' &&
-    $('.red-box').css('padding-right') != '0px' &&
-    $('.red-box').css('padding-bottom') != '0px' &&
-    $('.red-box').css('padding-left') != '0px'
+  $(".red-box").css("padding-top") != "0px" &&
+    $(".red-box").css("padding-right") != "0px" &&
+    $(".red-box").css("padding-bottom") != "0px" &&
+    $(".red-box").css("padding-left") != "0px"
 );
 ```
 
@@ -66,7 +66,6 @@ assert(code.match(/\.red-box\s*?{[\s\S]*padding\s*:\s*?1\.5em/gi));
   .red-box {
     background-color: red;
     margin: 20px 40px 20px 40px;
-
   }
 
   .green-box {

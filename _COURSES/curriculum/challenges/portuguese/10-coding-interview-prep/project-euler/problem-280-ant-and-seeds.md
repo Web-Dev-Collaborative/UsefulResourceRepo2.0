@@ -1,6 +1,6 @@
 ---
 id: 5900f4841000cf542c50ff97
-title: 'Problem 280: Ant and seeds'
+title: "Problem 280: Ant and seeds"
 challengeType: 5
 forumTopicId: 301931
 dashedName: problem-280-ant-and-seeds
@@ -28,7 +28,6 @@ assert.strictEqual(euler280(), 430.088247);
 
 ```js
 function euler280() {
-
   return true;
 }
 

@@ -2,20 +2,20 @@ function createPseudoWorker(context) {
   class PseudoWorker {
     constructor(path) {
       this.terminated = false;
-      this.worker = context.evaluateHandle(path => new Worker(path), path);
-      this.listenToWorker('onmessage');
-      this.listenToWorker('onerror');
+      this.worker = context.evaluateHandle((path) => new Worker(path), path);
+      this.listenToWorker("onmessage");
+      this.listenToWorker("onerror");
     }
 
     terminate() {
       this.terminated = true;
-      this.worker.then(worker =>
-        context.evaluate(worker => worker.terminate(), worker)
+      this.worker.then((worker) =>
+        context.evaluate((worker) => worker.terminate(), worker)
       );
     }
 
     listenToWorker(eventName) {
-      this.worker.then(async worker => {
+      this.worker.then(async (worker) => {
         const producer = await context.evaluateHandle(
           (worker, eventName) => {
             let callback;
@@ -27,9 +27,9 @@ function createPseudoWorker(context) {
               queue.push(event);
             }
 
-            worker[eventName] = e => send(e);
+            worker[eventName] = (e) => send(e);
 
-            const resolver = resolve => (callback = resolve);
+            const resolver = (resolve) => (callback = resolve);
             async function* produce() {
               while (true) {
                 while (queue.length) {
@@ -46,7 +46,7 @@ function createPseudoWorker(context) {
         while (!this.terminated) {
           try {
             const data = await context.evaluate(
-              producer =>
+              (producer) =>
                 producer
                   .next()
                   .then(({ value: { data, message } }) => ({ data, message })),
@@ -64,10 +64,10 @@ function createPseudoWorker(context) {
 
     async postMessage(msg) {
       if (this.terminated) {
-        throw new Error('Worker is terminated.');
+        throw new Error("Worker is terminated.");
       }
       try {
-        await this.worker.then(worker =>
+        await this.worker.then((worker) =>
           worker
             .executionContext()
             .evaluate((worker, msg) => worker.postMessage(msg), worker, msg)

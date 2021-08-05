@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244e1
 title: Nesting For Loops
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cRn6GHM'
+videoUrl: "https://scrimba.com/c/cRn6GHM"
 forumTopicId: 18248
 dashedName: nesting-for-loops
 ---
@@ -13,10 +13,12 @@ If you have a multi-dimensional array, you can use the same logic as the prior w
 
 ```js
 var arr = [
-  [1,2], [3,4], [5,6]
+  [1, 2],
+  [3, 4],
+  [5, 6],
 ];
-for (var i=0; i < arr.length; i++) {
-  for (var j=0; j < arr[i].length; j++) {
+for (var i = 0; i < arr.length; i++) {
+  for (var j = 0; j < arr[i].length; j++) {
     console.log(arr[i][j]);
   }
 }
@@ -43,7 +45,7 @@ assert(
   multiplyAll([
     [1, 2],
     [3, 4],
-    [5, 6, 7]
+    [5, 6, 7],
   ]) === 5040
 );
 ```
@@ -55,7 +57,7 @@ assert(
   multiplyAll([
     [5, 1],
     [0.2, 4, 0.5],
-    [3, 9]
+    [3, 9],
   ]) === 54
 );
 ```
@@ -73,7 +75,11 @@ function multiplyAll(arr) {
   return product;
 }
 
-multiplyAll([[1,2],[3,4],[5,6,7]]);
+multiplyAll([
+  [1, 2],
+  [3, 4],
+  [5, 6, 7],
+]);
 ```
 
 # --solutions--
@@ -89,5 +95,9 @@ function multiplyAll(arr) {
   return product;
 }
 
-multiplyAll([[1,2],[3,4],[5,6,7]]);
+multiplyAll([
+  [1, 2],
+  [3, 4],
+  [5, 6, 7],
+]);
 ```

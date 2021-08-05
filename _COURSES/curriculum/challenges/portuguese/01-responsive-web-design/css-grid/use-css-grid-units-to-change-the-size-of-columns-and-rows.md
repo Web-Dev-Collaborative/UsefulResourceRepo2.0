@@ -2,7 +2,7 @@
 id: 5a9036ee38fddaf9a66b5d34
 title: Usar unidades específicas de grid para alterar o tamanho de colunas e linhas
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pByETK/cvE8phd'
+videoUrl: "https://scrimba.com/p/pByETK/cvE8phd"
 forumTopicId: 301134
 dashedName: use-css-grid-units-to-change-the-size-of-columns-and-rows
 ---
@@ -47,11 +47,21 @@ assert(
 
 ```html
 <style>
-  .d1{background:LightSkyBlue;}
-  .d2{background:LightSalmon;}
-  .d3{background:PaleTurquoise;}
-  .d4{background:LightPink;}
-  .d5{background:PaleGreen;}
+  .d1 {
+    background: LightSkyBlue;
+  }
+  .d2 {
+    background: LightSalmon;
+  }
+  .d3 {
+    background: PaleTurquoise;
+  }
+  .d4 {
+    background: LightPink;
+  }
+  .d5 {
+    background: PaleGreen;
+  }
 
   .container {
     font-size: 40px;
@@ -79,5 +89,9 @@ assert(
 # --solutions--
 
 ```html
-<style>.container {grid-template-columns: 1fr 100px 2fr;}</style>
+<style>
+  .container {
+    grid-template-columns: 1fr 100px 2fr;
+  }
+</style>
 ```

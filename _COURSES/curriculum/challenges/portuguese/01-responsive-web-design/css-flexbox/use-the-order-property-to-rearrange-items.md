@@ -2,7 +2,7 @@
 id: 587d78ae367417b2b2512aff
 title: Usar a propriedade order para reorganizar os itens
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cMbvNAG'
+videoUrl: "https://scrimba.com/p/pVaDAv/cMbvNAG"
 forumTopicId: 301116
 dashedName: use-the-order-property-to-rearrange-items
 ---
@@ -20,13 +20,13 @@ Adicione a propriedade CSS `order` aos elementos de id `#box-1` e `#box-2`. Dê 
 O elemento de id `#box-1` deve ter a propriedade `order` com o valor de `2`.
 
 ```js
-assert($('#box-1').css('order') == '2');
+assert($("#box-1").css("order") == "2");
 ```
 
 O elemento de id `#box-2` deve ter a propriedade `order` com o valor de `1`.
 
 ```js
-assert($('#box-2').css('order') == '1');
+assert($("#box-2").css("order") == "1");
 ```
 
 # --seed--

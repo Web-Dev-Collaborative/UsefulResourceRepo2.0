@@ -27,7 +27,7 @@ Fix the regex `/<.*>/` to return the HTML tag `<h1>` and not the text `"<h1>Wint
 The `result` variable should be an array with `<h1>` in it
 
 ```js
-assert(result[0] == '<h1>');
+assert(result[0] == "<h1>");
 ```
 
 `myRegex` should use lazy matching
@@ -39,7 +39,7 @@ assert(/\?/g.test(myRegex));
 `myRegex` should not include the string `h1`
 
 ```js
-assert(!myRegex.source.match('h1'));
+assert(!myRegex.source.match("h1"));
 ```
 
 # --seed--

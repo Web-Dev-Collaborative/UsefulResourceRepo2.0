@@ -1,6 +1,6 @@
 ---
 id: 5900f40f1000cf542c50ff22
-title: 'Problem 163: Cross-hatched triangles'
+title: "Problem 163: Cross-hatched triangles"
 challengeType: 5
 forumTopicId: 301797
 dashedName: problem-163-cross-hatched-triangles
@@ -26,7 +26,6 @@ assert.strictEqual(euler163(), 343047);
 
 ```js
 function euler163() {
-
   return true;
 }
 

@@ -1,5 +1,5 @@
-const { sortBy } = require('lodash');
+const { sortBy } = require("lodash");
 
-exports.sortChallenges = arr => {
-  return sortBy(arr, ['superOrder', 'order', 'challengeOrder']);
+exports.sortChallenges = (arr) => {
+  return sortBy(arr, ["superOrder", "order", "challengeOrder"]);
 };

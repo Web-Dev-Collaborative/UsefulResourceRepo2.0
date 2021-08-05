@@ -26,8 +26,8 @@ Here the first `match` would return `["Hello"]` and the second would return `["e
 Note that the `.match` syntax is the "opposite" of the `.test` method you have been using thus far:
 
 ```js
-'string'.match(/regex/);
-/regex/.test('string');
+"string".match(/regex/);
+/regex/.test("string");
 ```
 
 # --instructions--
@@ -39,13 +39,13 @@ Apply the `.match()` method to extract the string `coding`.
 The `result` should have the string `coding`
 
 ```js
-assert(result.join() === 'coding');
+assert(result.join() === "coding");
 ```
 
 Your regex `codingRegex` should search for the string `coding`
 
 ```js
-assert(codingRegex.source === 'coding');
+assert(codingRegex.source === "coding");
 ```
 
 You should use the `.match()` method.

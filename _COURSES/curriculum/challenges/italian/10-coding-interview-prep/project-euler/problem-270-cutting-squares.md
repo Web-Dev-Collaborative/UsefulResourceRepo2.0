@@ -1,6 +1,6 @@
 ---
 id: 5900f47c1000cf542c50ff8e
-title: 'Problem 270: Cutting Squares'
+title: "Problem 270: Cutting Squares"
 challengeType: 5
 forumTopicId: 301920
 dashedName: problem-270-cutting-squares
@@ -34,7 +34,6 @@ assert.strictEqual(euler270(), 82282080);
 
 ```js
 function euler270() {
-
   return true;
 }
 

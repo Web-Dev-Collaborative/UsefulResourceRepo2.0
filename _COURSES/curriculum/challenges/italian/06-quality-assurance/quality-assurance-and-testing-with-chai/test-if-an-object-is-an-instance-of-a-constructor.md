@@ -22,9 +22,9 @@ All tests should pass.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=17').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=17").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -36,12 +36,12 @@ You should choose the correct method for the first assertion - `instanceOf` vs. 
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=17').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=17").then(
     (data) => {
       assert.equal(
         data.assertions[0].method,
-        'notInstanceOf',
-        'myCar is not an instance of Plane'
+        "notInstanceOf",
+        "myCar is not an instance of Plane"
       );
     },
     (xhr) => {
@@ -54,12 +54,12 @@ You should choose the correct method for the second assertion - `instanceOf` vs.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=17').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=17").then(
     (data) => {
       assert.equal(
         data.assertions[1].method,
-        'instanceOf',
-        'airlinePlane is an instance of Plane'
+        "instanceOf",
+        "airlinePlane is an instance of Plane"
       );
     },
     (xhr) => {
@@ -72,12 +72,12 @@ You should choose the correct method for the third assertion - `instanceOf` vs. 
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=17').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=17").then(
     (data) => {
       assert.equal(
         data.assertions[2].method,
-        'instanceOf',
-        'everything is an Object in JavaScript...'
+        "instanceOf",
+        "everything is an Object in JavaScript..."
       );
     },
     (xhr) => {
@@ -90,12 +90,12 @@ You should choose the correct method for the fourth assertion - `instanceOf` vs.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=17').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=17").then(
     (data) => {
       assert.equal(
         data.assertions[3].method,
-        'notInstanceOf',
-        'myCar.wheels is not an instance of String'
+        "notInstanceOf",
+        "myCar.wheels is not an instance of String"
       );
     },
     (xhr) => {

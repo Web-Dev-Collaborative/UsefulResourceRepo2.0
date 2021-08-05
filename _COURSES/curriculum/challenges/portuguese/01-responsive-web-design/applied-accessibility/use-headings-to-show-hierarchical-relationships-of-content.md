@@ -2,7 +2,7 @@
 id: 587d774d367417b2b2512a9e
 title: Usar títulos para criar relações hierárquicas de conteúdo
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cqVEktm'
+videoUrl: "https://scrimba.com/c/cqVEktm"
 forumTopicId: 301026
 dashedName: use-headings-to-show-hierarchical-relationships-of-content
 ---
@@ -11,7 +11,7 @@ dashedName: use-headings-to-show-hierarchical-relationships-of-content
 
 Títulos (elementos `h1` até `h6`) são tags que ajudam a fornecer estrutura e rotulagem ao seu conteúdo. Os leitores de tela podem ser configurados para ler apenas os cabeçalhos de uma página para que o usuário obtenha um resumo. Isso significa que é importante que as tags de título em seu código tenham significado semântico e se relacionem umas com as outras. Também é importante que não sejam escolhidas apenas pelo tamanho da fonte que essas tags fornecem.
 
-*Significado semântico* significa que a tag que você usa em torno do conteúdo (do texto) indica o tipo de informação que a tag contém.
+_Significado semântico_ significa que a tag que você usa em torno do conteúdo (do texto) indica o tipo de informação que a tag contém.
 
 Se você estivesse escrevendo um artigo com uma introdução, um corpo e uma conclusão, não faria muito sentido colocar a conclusão como uma subseção do corpo. A conclusão deve ter sua própria seção. Da mesma forma, as tags de título em uma página da web precisam estar em ordem e indicar as relações hierárquicas de seu conteúdo.
 
@@ -30,7 +30,7 @@ O Camper Cat quer uma página no site dedicada a como se tornar um ninja. Ajude-
 O código deve ter 6 tags `h3`.
 
 ```js
-assert($('h3').length === 6);
+assert($("h3").length === 6);
 ```
 
 O código deve ter 6 tags de fechamento `h3`.
@@ -42,7 +42,7 @@ assert((code.match(/\/h3/g) || []).length === 6);
 O código não deve ter nenhuma tag `h5`.
 
 ```js
-assert($('h5').length === 0);
+assert($("h5").length === 0);
 ```
 
 O código não deve ter nenhuma tag de fechamento `h5`.

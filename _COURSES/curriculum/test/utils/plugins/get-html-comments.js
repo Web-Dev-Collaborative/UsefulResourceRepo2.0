@@ -1,6 +1,6 @@
-const { isEmpty } = require('lodash');
-const visit = require('unist-util-visit');
-const { commentToData } = require('../comment-to-data');
+const { isEmpty } = require("lodash");
+const visit = require("unist-util-visit");
+const { commentToData } = require("../comment-to-data");
 
 function plugin() {
   return transformer;
@@ -9,7 +9,7 @@ function plugin() {
     if (isEmpty(file.data)) {
       file.data = {};
     }
-    visit(tree, 'comment', visitor);
+    visit(tree, "comment", visitor);
 
     function visitor(node) {
       commentToData(file, node.value.trim());

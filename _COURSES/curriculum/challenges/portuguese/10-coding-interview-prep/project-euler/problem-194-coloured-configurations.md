@@ -1,6 +1,6 @@
 ---
 id: 5900f42f1000cf542c50ff40
-title: 'Problem 194: Coloured Configurations'
+title: "Problem 194: Coloured Configurations"
 challengeType: 5
 forumTopicId: 301832
 dashedName: problem-194-coloured-configurations
@@ -34,7 +34,6 @@ assert.strictEqual(euler194(), 61190912);
 
 ```js
 function euler194() {
-
   return true;
 }
 

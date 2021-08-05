@@ -1,7 +1,7 @@
-const { isEmpty } = require('lodash');
-const visit = require('unist-util-visit');
-const acorn = require('acorn');
-const { commentToData } = require('../comment-to-data');
+const { isEmpty } = require("lodash");
+const visit = require("unist-util-visit");
+const acorn = require("acorn");
+const { commentToData } = require("../comment-to-data");
 
 const parser = acorn.Parser;
 
@@ -10,10 +10,10 @@ function plugin() {
 
   function transformer(tree, file) {
     if (isEmpty(file.data)) file.data = {};
-    visit(tree, { type: 'element', tagName: 'script' }, scriptVisitor);
+    visit(tree, { type: "element", tagName: "script" }, scriptVisitor);
 
     function scriptVisitor(node) {
-      visit(node, 'text', jsVisitor);
+      visit(node, "text", jsVisitor);
     }
     function jsVisitor(node) {
       let comments = [];
@@ -21,7 +21,7 @@ function plugin() {
 
       comments
         .map(({ value }) => value.trim())
-        .forEach(comment => commentToData(file, comment));
+        .forEach((comment) => commentToData(file, comment));
     }
   }
 }

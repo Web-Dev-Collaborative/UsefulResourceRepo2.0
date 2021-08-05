@@ -1,6 +1,6 @@
 ---
 id: 5900f47b1000cf542c50ff8d
-title: 'Problem 271: Modular Cubes, part 1'
+title: "Problem 271: Modular Cubes, part 1"
 challengeType: 5
 forumTopicId: 301921
 dashedName: problem-271-modular-cubes-part-1
@@ -28,7 +28,6 @@ assert.strictEqual(euler271(), 4617456485273130000);
 
 ```js
 function euler271() {
-
   return true;
 }
 

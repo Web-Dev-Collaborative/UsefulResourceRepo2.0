@@ -1,6 +1,6 @@
 ---
 id: 5900f5381000cf542c51004b
-title: 'Problem 460: An ant on the move'
+title: "Problem 460: An ant on the move"
 challengeType: 5
 forumTopicId: 302135
 dashedName: problem-460-an-ant-on-the-move
@@ -34,7 +34,6 @@ assert.strictEqual(euler460(), 18.420738199);
 
 ```js
 function euler460() {
-
   return true;
 }
 

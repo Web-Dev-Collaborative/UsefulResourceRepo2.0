@@ -1,6 +1,6 @@
 ---
 id: 5900f36f1000cf542c50fe82
-title: 'Problem 3: Largest prime factor'
+title: "Problem 3: Largest prime factor"
 challengeType: 5
 forumTopicId: 301952
 dashedName: problem-3-largest-prime-factor
@@ -17,7 +17,7 @@ What is the largest prime factor of the given `number`?
 `largestPrimeFactor(2)` should return a number.
 
 ```js
-assert(typeof largestPrimeFactor(2) === 'number');
+assert(typeof largestPrimeFactor(2) === "number");
 ```
 
 `largestPrimeFactor(2)` should return 2.
@@ -68,7 +68,6 @@ assert.strictEqual(largestPrimeFactor(600851475143), 6857);
 
 ```js
 function largestPrimeFactor(number) {
-
   return true;
 }
 
@@ -91,5 +90,5 @@ const largestPrimeFactor = (number) => {
   }
 
   return largestFactor;
-}
+};
 ```

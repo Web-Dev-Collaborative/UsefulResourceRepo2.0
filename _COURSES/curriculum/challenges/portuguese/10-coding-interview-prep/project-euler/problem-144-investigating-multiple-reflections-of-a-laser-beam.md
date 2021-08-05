@@ -1,6 +1,6 @@
 ---
 id: 5900f3fc1000cf542c50ff0f
-title: 'Problem 144: Investigating multiple reflections of a laser beam'
+title: "Problem 144: Investigating multiple reflections of a laser beam"
 challengeType: 5
 forumTopicId: 301773
 dashedName: problem-144-investigating-multiple-reflections-of-a-laser-beam
@@ -32,7 +32,6 @@ assert.strictEqual(euler144(), 354);
 
 ```js
 function euler144() {
-
   return true;
 }
 

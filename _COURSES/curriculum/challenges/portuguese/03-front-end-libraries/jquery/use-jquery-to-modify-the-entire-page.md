@@ -4,7 +4,7 @@ title: Use jQuery to Modify the Entire Page
 challengeType: 6
 forumTopicId: 18361
 required:
-  - link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: use-jquery-to-modify-the-entire-page
 ---
 
@@ -23,7 +23,7 @@ But let's do something more dramatic. Add the classes `animated` and `hinge` to 
 You should add the classes `animated` and `hinge` to your `body` element.
 
 ```js
-assert($('body').hasClass('animated') && $('body').hasClass('hinge'));
+assert($("body").hasClass("animated") && $("body").hasClass("hinge"));
 ```
 
 # --seed--
@@ -32,7 +32,7 @@ assert($('body').hasClass('animated') && $('body').hasClass('hinge'));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();
@@ -43,7 +43,6 @@ assert($('body').hasClass('animated') && $('body').hasClass('hinge'));
     $("#left-well").children().css("color", "green");
     $(".target:nth-child(2)").addClass("animated bounce");
     $(".target:even").addClass("animated shake");
-
   });
 </script>
 
@@ -76,7 +75,7 @@ assert($('body').hasClass('animated') && $('body').hasClass('hinge'));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();

@@ -2,7 +2,7 @@
 id: cf1111c1c11feddfaeb5bdef
 title: Iterate with JavaScript For Loops
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c9yNVCe'
+videoUrl: "https://scrimba.com/c/c9yNVCe"
 forumTopicId: 18219
 dashedName: iterate-with-javascript-for-loops
 ---
@@ -57,7 +57,11 @@ assert.deepEqual(myArray, [1, 2, 3, 4, 5]);
 ## --after-user-code--
 
 ```js
-if (typeof myArray !== "undefined"){(function(){return myArray;})();}
+if (typeof myArray !== "undefined") {
+  (function () {
+    return myArray;
+  })();
+}
 ```
 
 ## --seed-contents--

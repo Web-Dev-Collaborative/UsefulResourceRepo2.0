@@ -13,13 +13,11 @@ Un altro metodo per richiedere dati esterni è usare il metodo JavaScript `fetch
 Ecco il codice per fare una richiesta GET a `/json/cats.json`
 
 ```js
-
-fetch('/json/cats.json')
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('message').innerHTML = JSON.stringify(data);
-    })
-
+fetch("/json/cats.json")
+  .then((response) => response.json())
+  .then((data) => {
+    document.getElementById("message").innerHTML = JSON.stringify(data);
+  });
 ```
 
 Dai un'occhiata ad ogni parte di questo codice.
@@ -64,9 +62,11 @@ Il tuo codice dovrebbe selezionare l'elemento con id `message` e cambiare il suo
 
 ```js
 assert(
-  __helpers.removeWhiteSpace(code).match(
-    /document\.getElementById\(('|")message\1\)\.innerHTML=JSON\.stringify\(?\w+\)/g
-  )
+  __helpers
+    .removeWhiteSpace(code)
+    .match(
+      /document\.getElementById\(('|")message\1\)\.innerHTML=JSON\.stringify\(?\w+\)/g
+    )
 );
 ```
 
@@ -76,11 +76,9 @@ assert(
 
 ```html
 <script>
-  document.addEventListener('DOMContentLoaded',function(){
-    document.getElementById('getMessage').onclick= () => {
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("getMessage").onclick = () => {
       // Add your code below this line
-
-
       // Add your code above this line
     };
   });
@@ -107,18 +105,14 @@ assert(
     padding: 5px 10px 8px 10px;
   }
   button:hover {
-    background-color: #0F5897;
-    border: 1px solid #0F5897;
+    background-color: #0f5897;
+    border: 1px solid #0f5897;
   }
 </style>
 <h1>Cat Photo Finder</h1>
-<p id="message" class="box">
-  The message will go here
-</p>
+<p id="message" class="box">The message will go here</p>
 <p>
-  <button id="getMessage">
-    Get Message
-  </button>
+  <button id="getMessage">Get Message</button>
 </p>
 ```
 
@@ -126,13 +120,13 @@ assert(
 
 ```html
 <script>
-  document.addEventListener('DOMContentLoaded',function(){
-    document.getElementById('getMessage').onclick= () => {
-      fetch('/json/cats.json')
-        .then(response => response.json())
-        .then(data => {
-          document.getElementById('message').innerHTML=JSON.stringify(data);
-        })
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("getMessage").onclick = () => {
+      fetch("/json/cats.json")
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById("message").innerHTML = JSON.stringify(data);
+        });
     };
   });
 </script>
@@ -158,17 +152,13 @@ assert(
     padding: 5px 10px 8px 10px;
   }
   button:hover {
-    background-color: #0F5897;
-    border: 1px solid #0F5897;
+    background-color: #0f5897;
+    border: 1px solid #0f5897;
   }
 </style>
 <h1>Cat Photo Finder</h1>
-<p id="message" class="box">
-  The message will go here
-</p>
+<p id="message" class="box">The message will go here</p>
 <p>
-  <button id="getMessage">
-    Get Message
-  </button>
+  <button id="getMessage">Get Message</button>
 </p>
 ```

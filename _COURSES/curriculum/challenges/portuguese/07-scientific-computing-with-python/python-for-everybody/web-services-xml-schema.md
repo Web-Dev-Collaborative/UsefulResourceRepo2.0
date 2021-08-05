@@ -1,6 +1,6 @@
 ---
 id: 5e7b9f0e0b6c005b0e76f07c
-title: 'Web Services: XML Schema'
+title: "Web Services: XML Schema"
 challengeType: 11
 videoId: yWU9kTxW-nc
 dashedName: web-services-xml-schema
@@ -27,4 +27,3 @@ Extensible Situational Driver
 ## --video-solution--
 
 1
-

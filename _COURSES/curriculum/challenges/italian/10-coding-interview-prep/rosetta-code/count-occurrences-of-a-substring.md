@@ -28,7 +28,7 @@ In general, this essentially means matching from left-to-right or right-to-left.
 `countSubstring` should be a function.
 
 ```js
-assert(typeof countSubstring === 'function');
+assert(typeof countSubstring === "function");
 ```
 
 `countSubstring("the three truths", "th")` should return `3`.
@@ -54,8 +54,8 @@ assert.equal(countSubstring(testCases[2], searchString[2]), results[2]);
 ## --after-user-code--
 
 ```js
-const testCases = ['the three truths', 'ababababab', 'abaabba*bbaba*bbab'];
-const searchString = ['th', 'abab', 'a*b'];
+const testCases = ["the three truths", "ababababab", "abaabba*bbaba*bbab"];
+const searchString = ["th", "abab", "a*b"];
 const results = [3, 2, 2];
 ```
 
@@ -63,7 +63,6 @@ const results = [3, 2, 2];
 
 ```js
 function countSubstring(str, subStr) {
-
   return true;
 }
 ```
@@ -72,8 +71,8 @@ function countSubstring(str, subStr) {
 
 ```js
 function countSubstring(str, subStr) {
-  const escapedSubStr = subStr.replace(/[.+*?^$[\]{}()|/]/g, '\\$&');
-  const matches = str.match(new RegExp(escapedSubStr, 'g'));
+  const escapedSubStr = subStr.replace(/[.+*?^$[\]{}()|/]/g, "\\$&");
+  const matches = str.match(new RegExp(escapedSubStr, "g"));
   return matches ? matches.length : 0;
 }
 ```

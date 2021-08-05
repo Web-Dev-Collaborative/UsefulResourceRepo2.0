@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08801
 title: Informar com o elemento de parágrafo
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/ceZ7DtN'
+videoUrl: "https://scrimba.com/p/pVMPUv/ceZ7DtN"
 forumTopicId: 18202
 dashedName: inform-with-the-paragraph-element
 ---
@@ -28,13 +28,13 @@ Crie um elemento `p` abaixo do elemento `h2` e dê a ele o texto `Hello Paragrap
 Seu código deve ter um elemento `p` válido.
 
 ```js
-assert($('p').length > 0);
+assert($("p").length > 0);
 ```
 
 O elemento `p` deve conter o texto `Hello Paragraph`.
 
 ```js
-assert.isTrue(/hello(\s)+paragraph/gi.test($('p').text()));
+assert.isTrue(/hello(\s)+paragraph/gi.test($("p").text()));
 ```
 
 O elemento `p` deve ter uma tag de fechamento.

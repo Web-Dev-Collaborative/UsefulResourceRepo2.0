@@ -4,7 +4,7 @@ title: Target Elements by Class Using jQuery
 challengeType: 6
 forumTopicId: 18316
 required:
-  - link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: target-elements-by-class-using-jquery
 ---
 
@@ -31,7 +31,7 @@ $(".text-primary").addClass("animated shake");
 You should use the jQuery `addClass()` function to give the classes `animated` and `shake` to all your elements with the class `well`.
 
 ```js
-assert($('.well').hasClass('animated') && $('.well').hasClass('shake'));
+assert($(".well").hasClass("animated") && $(".well").hasClass("shake"));
 ```
 
 You should only use jQuery to add these classes to the element.
@@ -46,7 +46,7 @@ assert(!code.match(/class\.\*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
   });
 </script>
@@ -80,7 +80,7 @@ assert(!code.match(/class\.\*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
     $(".well").addClass("animated shake");
   });

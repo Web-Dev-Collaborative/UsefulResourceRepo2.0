@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08827
 title: Criar uma lista não ordenada de itens
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cDKVPuv'
+videoUrl: "https://scrimba.com/p/pVMPUv/cDKVPuv"
 forumTopicId: 16814
 dashedName: create-a-bulleted-unordered-list
 ---
@@ -33,13 +33,13 @@ Remova os dois últimos elementos `p` e crie uma lista não ordenada de três co
 Crie um elemento `ul`.
 
 ```js
-assert($('ul').length > 0);
+assert($("ul").length > 0);
 ```
 
 Você precisa de três elementos `li` dentro de seu elemento `ul`.
 
 ```js
-assert($('ul li').length > 2);
+assert($("ul li").length > 2);
 ```
 
 O elemento `ul` deve ter uma tag de fechamento.
@@ -65,7 +65,7 @@ assert(
 Os elementos `li` não devem estar vazios ou ter espaços em branco.
 
 ```js
-assert($('ul li').filter((_, item) => !$(item).text().trim()).length === 0);
+assert($("ul li").filter((_, item) => !$(item).text().trim()).length === 0);
 ```
 
 # --seed--
@@ -77,10 +77,21 @@ assert($('ul li').filter((_, item) => !$(item).text().trim()).length === 0);
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
-  <p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p>
-  <p>Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere rip the couch sleep in the sink fluffy fur catnip scratched.</p>
+  <p>
+    Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching
+    attack your ankles chase the red dot, hairball run catnip eat the grass
+    sniff.
+  </p>
+  <p>
+    Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere
+    rip the couch sleep in the sink fluffy fur catnip scratched.
+  </p>
 </main>
 ```
 
@@ -91,7 +102,11 @@ assert($('ul li').filter((_, item) => !$(item).text().trim()).length === 0);
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <ul>
     <li>milk</li>
