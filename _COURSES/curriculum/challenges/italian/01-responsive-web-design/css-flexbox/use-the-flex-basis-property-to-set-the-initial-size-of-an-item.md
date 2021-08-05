@@ -2,7 +2,7 @@
 id: 587d78ae367417b2b2512afd
 title: Utilizzare la proprietà flex-basis per impostare la dimensione iniziale di un elemento
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/c3d9nCa'
+videoUrl: "https://scrimba.com/p/pVaDAv/c3d9nCa"
 forumTopicId: 301108
 dashedName: use-the-flex-basis-property-to-set-the-initial-size-of-an-item
 ---
@@ -22,7 +22,7 @@ Imposta la dimensione iniziale dei riquadri usando `flex-basis`. Aggiungi la pro
 L'elemento `#box-1` dovrebbe avere la proprietà `flex-basis`.
 
 ```js
-assert($('#box-1').css('flex-basis') != 'auto');
+assert($("#box-1").css("flex-basis") != "auto");
 ```
 
 L'elemento `#box-1` dovrebbe avere un valore `flex-basis` di `10em`.
@@ -34,7 +34,7 @@ assert(code.match(/#box-1\s*?{\s*?.*?\s*?.*?\s*?flex-basis:\s*?10em;/g));
 L'elemento `#box-2` dovrebbe avere la proprietà `flex-basis`.
 
 ```js
-assert($('#box-2').css('flex-basis') != 'auto');
+assert($("#box-2").css("flex-basis") != "auto");
 ```
 
 L'elemento `#box-2` dovrebbe avere un valore `flex-basis` di `20em`.
@@ -57,13 +57,11 @@ assert(code.match(/#box-2\s*?{\s*?.*?\s*?.*?\s*?flex-basis:\s*?20em;/g));
   #box-1 {
     background-color: dodgerblue;
     height: 200px;
-
   }
 
   #box-2 {
     background-color: orangered;
     height: 200px;
-
   }
 </style>
 

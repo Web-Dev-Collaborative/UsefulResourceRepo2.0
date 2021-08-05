@@ -24,7 +24,7 @@ Your Binary Search Tree should return true when checked with `isBinarySearchTree
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
@@ -44,7 +44,7 @@ assert(
 ## --after-user-code--
 
 ```js
-BinarySearchTree.prototype.push = function(val) {
+BinarySearchTree.prototype.push = function (val) {
   var root = this.root;
 
   if (!root) {
@@ -89,7 +89,6 @@ function BinarySearchTree() {
 }
 function isBinarySearchTree(tree) {
   // Only change code below this line
-  
   // Only change code above this line
 }
 ```
@@ -132,5 +131,5 @@ function isBinarySearchTree(tree) {
     checkTree(tree.root);
     return isBST;
   }
-};
+}
 ```

@@ -20,7 +20,7 @@ doubler(4);
 如果箭头函数只有一个参数，则可以省略参数外面的括号。
 
 ```js
-const doubler = item => item * 2;
+const doubler = (item) => item * 2;
 ```
 
 可以给箭头函数传递多个参数。
@@ -41,21 +41,21 @@ multiplier(4, 2);
 应替换 `var` 关键词。
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/var/g));
+(getUserInput) => assert(!getUserInput("index").match(/var/g));
 ```
 
 `myConcat` 应该是一个常量（使用`const`）。
 
 ```js
-(getUserInput) => assert(getUserInput('index').match(/const\s+myConcat/g));
+(getUserInput) => assert(getUserInput("index").match(/const\s+myConcat/g));
 ```
 
 `myConcat` 应该是一个带有两个参数的箭头函数。
 
 ```js
 assert(
-  /myConcat=\(\w+,\w+\)=>/.test(code.replace(/\s/g, '')) &&
-    typeof myConcat === 'function'
+  /myConcat=\(\w+,\w+\)=>/.test(code.replace(/\s/g, "")) &&
+    typeof myConcat === "function"
 );
 ```
 
@@ -68,7 +68,7 @@ assert.deepEqual(myConcat([1, 2], [3, 4, 5]), [1, 2, 3, 4, 5]);
 不能使用 `function` 关键字。
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/function/g));
+(getUserInput) => assert(!getUserInput("index").match(/function/g));
 ```
 
 # --seed--
@@ -76,7 +76,7 @@ assert.deepEqual(myConcat([1, 2], [3, 4, 5]), [1, 2, 3, 4, 5]);
 ## --seed-contents--
 
 ```js
-var myConcat = function(arr1, arr2) {
+var myConcat = function (arr1, arr2) {
   return arr1.concat(arr2);
 };
 
@@ -86,7 +86,7 @@ console.log(myConcat([1, 2], [3, 4, 5]));
 # --solutions--
 
 ```js
-const myConcat = (arr1, arr2) =>  {
+const myConcat = (arr1, arr2) => {
   return arr1.concat(arr2);
 };
 

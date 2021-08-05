@@ -28,12 +28,12 @@ dashedName: manage-npm-dependencies-by-understanding-semantic-versioning
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.property(
         packJson.dependencies,
-        'moment',
+        "moment",
         '"dependencies" does not include "moment"'
       );
     },
@@ -47,12 +47,12 @@ dashedName: manage-npm-dependencies-by-understanding-semantic-versioning
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.equal(
         packJson.dependencies.moment,
-        '2.10.2',
+        "2.10.2",
         'Wrong version of "moment". It should be 2.10.2'
       );
     },

@@ -20,7 +20,7 @@ Your `Set` class should have a `difference` method.
 assert(
   (function () {
     var test = new Set();
-    return typeof test.difference === 'function';
+    return typeof test.difference === "function";
   })()
 );
 ```
@@ -32,15 +32,15 @@ assert(
   (function () {
     var setA = new Set();
     var setB = new Set();
-    setA.add('a');
-    setA.add('b');
-    setA.add('c');
-    setB.add('c');
-    setB.add('d');
+    setA.add("a");
+    setA.add("b");
+    setA.add("c");
+    setB.add("c");
+    setB.add("d");
     var differenceSetAB = setA.difference(setB);
     return (
       differenceSetAB.size() === 2 &&
-      DeepEqual(differenceSetAB.values(), ['a', 'b'])
+      DeepEqual(differenceSetAB.values(), ["a", "b"])
     );
   })()
 );
@@ -89,15 +89,15 @@ class Set {
   size() {
     return this.length;
   }
-  // This is our union method 
+  // This is our union method
   union(set) {
     const newSet = new Set();
-    this.values().forEach(value => {
+    this.values().forEach((value) => {
       newSet.add(value);
-    })
-    set.values().forEach(value => {
+    });
+    set.values().forEach((value) => {
       newSet.add(value);
-    })
+    });
 
     return newSet;
   }
@@ -115,11 +115,11 @@ class Set {
       smallSet = this;
     }
 
-    smallSet.values().forEach(value => {
+    smallSet.values().forEach((value) => {
       if (largeSet.dictionary[value]) {
         newSet.add(value);
       }
-    })
+    });
 
     return newSet;
   }
@@ -172,12 +172,12 @@ class Set {
 
   union(set) {
     const newSet = new Set();
-    this.values().forEach(value => {
+    this.values().forEach((value) => {
       newSet.add(value);
-    })
-    set.values().forEach(value => {
+    });
+    set.values().forEach((value) => {
       newSet.add(value);
-    })
+    });
 
     return newSet;
   }
@@ -195,11 +195,11 @@ class Set {
       smallSet = this;
     }
 
-    smallSet.values().forEach(value => {
+    smallSet.values().forEach((value) => {
       if (largeSet.dictionary[value]) {
         newSet.add(value);
       }
-    })
+    });
 
     return newSet;
   }
@@ -207,11 +207,11 @@ class Set {
   difference(set) {
     const newSet = new Set();
 
-    this.values().forEach(value => {
+    this.values().forEach((value) => {
       if (!set.dictionary[value]) {
         newSet.add(value);
       }
-    })
+    });
 
     return newSet;
   }

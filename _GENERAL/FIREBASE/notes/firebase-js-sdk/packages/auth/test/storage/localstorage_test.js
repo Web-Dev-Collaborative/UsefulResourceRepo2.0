@@ -33,15 +33,12 @@ goog.require('goog.testing.recordFunction');
 
 goog.setTestOnly('fireauth.storage.LocalStorageTest');
 
-
 var stubs = new goog.testing.PropertyReplacer();
 var storage;
-
 
 function setUp() {
   storage = new fireauth.storage.LocalStorage();
 }
-
 
 function tearDown() {
   storage = null;
@@ -49,32 +46,26 @@ function tearDown() {
   localStorage.clear();
 }
 
-
 /** Simulates a Node.js environment. */
 function simulateNodeEnvironment() {
   // Node.js environment.
-  stubs.replace(
-      fireauth.util,
-      'getEnvironment',
-      function() {return fireauth.util.Env.NODE;});
+  stubs.replace(fireauth.util, 'getEnvironment', function () {
+    return fireauth.util.Env.NODE;
+  });
   // No window.localStorage.
-  stubs.replace(
-      fireauth.storage.LocalStorage,
-      'getGlobalStorage',
-      function() {return null;});
+  stubs.replace(fireauth.storage.LocalStorage, 'getGlobalStorage', function () {
+    return null;
+  });
 }
-
 
 function testBasicStorageOperations() {
   assertEquals(fireauth.storage.Storage.Type.LOCAL_STORAGE, storage.type);
   return assertBasicStorageOperations(storage);
 }
 
-
 function testDifferentTypes() {
   return assertDifferentTypes(storage);
 }
-
 
 function testListeners() {
   var storageEvent;
@@ -86,8 +77,10 @@ function testListeners() {
   storage.addStorageListener(listener1);
   storage.addStorageListener(listener3);
 
-  storageEvent =
-      new goog.testing.events.Event(goog.events.EventType.STORAGE, window);
+  storageEvent = new goog.testing.events.Event(
+    goog.events.EventType.STORAGE,
+    window
+  );
   storageEvent.key = 'myKey';
   goog.testing.events.fireBrowserEvent(storageEvent);
 
@@ -97,8 +90,10 @@ function testListeners() {
 
   storage.removeStorageListener(listener3);
 
-  storageEvent =
-      new goog.testing.events.Event(goog.events.EventType.STORAGE, window);
+  storageEvent = new goog.testing.events.Event(
+    goog.events.EventType.STORAGE,
+    window
+  );
   storageEvent.key = 'myKey2';
   goog.testing.events.fireBrowserEvent(storageEvent);
 
@@ -107,17 +102,18 @@ function testListeners() {
   assertEquals(0, listener2.getCallCount());
 }
 
-
 function testNotAvailable() {
-  stubs.replace(
-      fireauth.storage.LocalStorage, 'isAvailable',
-      function() { return false; });
-  var error = assertThrows(function() { new fireauth.storage.LocalStorage(); });
+  stubs.replace(fireauth.storage.LocalStorage, 'isAvailable', function () {
+    return false;
+  });
+  var error = assertThrows(function () {
+    new fireauth.storage.LocalStorage();
+  });
   assertErrorEquals(
-      new fireauth.AuthError(fireauth.authenum.Error.WEB_STORAGE_UNSUPPORTED),
-      error);
+    new fireauth.AuthError(fireauth.authenum.Error.WEB_STORAGE_UNSUPPORTED),
+    error
+  );
 }
-
 
 function testBasicStorageOperations_node() {
   simulateNodeEnvironment();
@@ -125,13 +121,11 @@ function testBasicStorageOperations_node() {
   return assertBasicStorageOperations(storage);
 }
 
-
 function testDifferentTypes_node() {
   simulateNodeEnvironment();
   storage = new fireauth.storage.LocalStorage();
   return assertDifferentTypes(storage);
 }
-
 
 function testNotAvailable_node() {
   // Compatibility libraries not included.
@@ -139,10 +133,11 @@ function testNotAvailable_node() {
   // Simulate Node.js environment.
   simulateNodeEnvironment();
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.INTERNAL_ERROR,
-      'The LocalStorage compatibility library was not found.');
-  var error = assertThrows(function() { new fireauth.storage.LocalStorage(); });
-  assertErrorEquals(
-      expectedError,
-      error);
+    fireauth.authenum.Error.INTERNAL_ERROR,
+    'The LocalStorage compatibility library was not found.'
+  );
+  var error = assertThrows(function () {
+    new fireauth.storage.LocalStorage();
+  });
+  assertErrorEquals(expectedError, error);
 }

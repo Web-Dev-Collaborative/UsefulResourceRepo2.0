@@ -9,21 +9,23 @@
 </template>
 
 <script>
-  import ResourceForm from '@/components/ResourceForm'
-  export default {
-    components: { ResourceForm },
-    data() {
-      return {
-        title: '',
-        description: '',
-        type: '',
-        link: ''
-      }
+import ResourceForm from "@/components/ResourceForm";
+export default {
+  components: { ResourceForm },
+  data() {
+    return {
+      title: "",
+      description: "",
+      type: "",
+      link: "",
+    };
+  },
+  methods: {
+    submitForm() {
+      alert(
+        `${this.title} - ${this.description} - ${this.type} - ${this.link}`
+      );
     },
-    methods: {
-      submitForm() {
-        alert(`${this.title} - ${this.description} - ${this.type} - ${this.link}`)
-      }
-    }
-  }
+  },
+};
 </script>

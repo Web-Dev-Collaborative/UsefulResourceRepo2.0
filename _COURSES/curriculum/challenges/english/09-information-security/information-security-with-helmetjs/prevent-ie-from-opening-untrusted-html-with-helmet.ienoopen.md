@@ -22,10 +22,10 @@ helmet.ieNoOpen() middleware should be mounted correctly
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/app-info').then(
+  $.get(getUserInput("url") + "/_api/app-info").then(
     (data) => {
-      assert.include(data.appStack, 'ienoopen');
-      assert.equal(data.headers['x-download-options'], 'noopen');
+      assert.include(data.appStack, "ienoopen");
+      assert.equal(data.headers["x-download-options"], "noopen");
     },
     (xhr) => {
       throw new Error(xhr.responseText);

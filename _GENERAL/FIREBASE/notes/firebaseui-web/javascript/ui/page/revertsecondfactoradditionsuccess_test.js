@@ -16,36 +16,35 @@
  * @fileoverview Tests for the revert second factor addition success page.
  */
 
-goog.provide('firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccessTest');
+goog.provide("firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccessTest");
 goog.setTestOnly(
-    'firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccessTest');
+  "firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccessTest"
+);
 
-goog.require('firebaseui.auth.ui.element.FormTestHelper');
-goog.require('firebaseui.auth.ui.element.InfoBarTestHelper');
-goog.require('firebaseui.auth.ui.page.PageTestHelper');
-goog.require('firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccess');
-goog.require('goog.dom');
-goog.require('goog.dom.TagName');
-goog.require('goog.testing.MockClock');
-goog.require('goog.testing.events');
-goog.require('goog.testing.jsunit');
-goog.require('goog.userAgent');
-
+goog.require("firebaseui.auth.ui.element.FormTestHelper");
+goog.require("firebaseui.auth.ui.element.InfoBarTestHelper");
+goog.require("firebaseui.auth.ui.page.PageTestHelper");
+goog.require("firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccess");
+goog.require("goog.dom");
+goog.require("goog.dom.TagName");
+goog.require("goog.testing.MockClock");
+goog.require("goog.testing.events");
+goog.require("goog.testing.jsunit");
+goog.require("goog.userAgent");
 
 let mockClock;
 let root;
 let component;
-const formTestHelper = new firebaseui.auth.ui.element.FormTestHelper().
-    excludeTests('testOnLinkClick_', 'testOnLinkEnter_').
-    registerTests();
+const formTestHelper = new firebaseui.auth.ui.element.FormTestHelper()
+  .excludeTests("testOnLinkClick_", "testOnLinkEnter_")
+  .registerTests();
 const infoBarTestHelper =
-    new firebaseui.auth.ui.element.InfoBarTestHelper().registerTests();
+  new firebaseui.auth.ui.element.InfoBarTestHelper().registerTests();
 const pageTestHelper =
-    new firebaseui.auth.ui.page.PageTestHelper().registerTests();
+  new firebaseui.auth.ui.page.PageTestHelper().registerTests();
 
 let updateClicked;
 let onClick;
-
 
 function setUp() {
   // Set up clock.
@@ -58,12 +57,14 @@ function setUp() {
   root = goog.dom.createDom(goog.dom.TagName.DIV);
   document.body.appendChild(root);
   component = new firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccess(
-      'phone',
-      onClick,
-      '+*******1234',
-      goog.bind(
-          firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
-          formTestHelper));
+    "phone",
+    onClick,
+    "+*******1234",
+    goog.bind(
+      firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
+      formTestHelper
+    )
+  );
   component.render(root);
   formTestHelper.setComponent(component);
   // Reset previous state of form helper.
@@ -71,7 +72,6 @@ function setUp() {
   infoBarTestHelper.setComponent(component);
   pageTestHelper.setClock(mockClock).setComponent(component);
 }
-
 
 function tearDown() {
   // Tear down clock.
@@ -81,16 +81,15 @@ function tearDown() {
   goog.dom.removeNode(root);
 }
 
-
 function testInitialFocus() {
   if (goog.userAgent.IE && !goog.userAgent.isDocumentModeOrHigher(9)) {
     return;
   }
   assertEquals(
-      component.getSubmitElement(),
-      goog.dom.getActiveElement(document));
+    component.getSubmitElement(),
+    goog.dom.getActiveElement(document)
+  );
 }
-
 
 function testRevertSecondFactorAdditionSuccess_resetPassword() {
   const link = component.getResetPasswordElement();
@@ -100,7 +99,6 @@ function testRevertSecondFactorAdditionSuccess_resetPassword() {
   assertTrue(updateClicked);
 }
 
-
 function testRevertSecondFactorAdditionSuccess_pageEvents() {
   // Run page event tests.
   // Dispose previously created container since test must run before rendering
@@ -108,16 +106,17 @@ function testRevertSecondFactorAdditionSuccess_pageEvents() {
   component.dispose();
   // Initialize component.
   component = new firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccess(
-      'phone',
-      onClick,
-      '+*******1234',
-      goog.bind(
-          firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
-          formTestHelper));
+    "phone",
+    onClick,
+    "+*******1234",
+    goog.bind(
+      firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
+      formTestHelper
+    )
+  );
   // Run all page helper tests.
   pageTestHelper.runTests(component, root);
 }
-
 
 function testRevertSecondFactorAdditionSuccess_unknownFactorId() {
   // Run page event tests.
@@ -126,12 +125,14 @@ function testRevertSecondFactorAdditionSuccess_unknownFactorId() {
   component.dispose();
   // Initialize component.
   component = new firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccess(
-      'unknown',
-      onClick,
-      undefined,
-      goog.bind(
-          firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
-          formTestHelper));
+    "unknown",
+    onClick,
+    undefined,
+    goog.bind(
+      firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
+      formTestHelper
+    )
+  );
   component.render(root);
   const link = component.getResetPasswordElement();
   assertNotNull(link);
@@ -140,7 +141,6 @@ function testRevertSecondFactorAdditionSuccess_unknownFactorId() {
   assertTrue(updateClicked);
 }
 
-
 function testRevertSecondFactorAdditionSuccess_getPageId() {
-  assertEquals('revertSecondFactorAdditionSuccess', component.getPageId());
+  assertEquals("revertSecondFactorAdditionSuccess", component.getPageId());
 }

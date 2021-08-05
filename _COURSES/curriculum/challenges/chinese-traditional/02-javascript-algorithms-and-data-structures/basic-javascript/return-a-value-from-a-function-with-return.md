@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244c2
 title: 使用 return 給函數返回值
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cy87wue'
+videoUrl: "https://scrimba.com/c/cy87wue"
 forumTopicId: 18271
 dashedName: return-a-value-from-a-function-with-return
 ---
@@ -33,7 +33,7 @@ var answer = plusThree(5);
 `timesFive` 應是一個函數
 
 ```js
-assert(typeof timesFive === 'function');
+assert(typeof timesFive === "function");
 ```
 
 `timesFive(5)` 應該返回 `25`

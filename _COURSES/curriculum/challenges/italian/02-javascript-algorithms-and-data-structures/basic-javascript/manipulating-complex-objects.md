@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244cb
 title: Manipolare oggetti complessi
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c9yNMfR'
+videoUrl: "https://scrimba.com/c/c9yNMfR"
 forumTopicId: 18208
 dashedName: manipulating-complex-objects
 ---
@@ -16,16 +16,12 @@ Ecco un esempio di struttura di dati complessa:
 ```js
 var ourMusic = [
   {
-    "artist": "Daft Punk",
-    "title": "Homework",
-    "release_year": 1997,
-    "formats": [ 
-      "CD", 
-      "Cassette", 
-      "LP"
-    ],
-    "gold": true
-  }
+    artist: "Daft Punk",
+    title: "Homework",
+    release_year: 1997,
+    formats: ["CD", "Cassette", "LP"],
+    gold: true,
+  },
 ];
 ```
 
@@ -36,11 +32,7 @@ Questo è un array che contiene un oggetto al suo interno. L'oggetto ha vari pez
   "artist": "Daft Punk",
   "title": "Homework",
   "release_year": 1997,
-  "formats": [ 
-    "CD",
-    "Cassette",
-    "LP"
-  ],
+  "formats": ["CD", "Cassette", "LP"],
   "gold": true
 }
 ```
@@ -68,60 +60,64 @@ assert(myMusic.length > 1);
 Gli elementi dell'array `myMusic` dovrebbero essere oggetti
 
 ```js
-myMusic.forEach(object => {assert.typeOf(object, 'object')})
+myMusic.forEach((object) => {
+  assert.typeOf(object, "object");
+});
 ```
 
 Il tuo oggetto in `myMusic` dovrebbe avere almeno 4 proprietà
 
 ```js
-myMusic.forEach(object => {assert(Object.keys(object).length > 3); });
+myMusic.forEach((object) => {
+  assert(Object.keys(object).length > 3);
+});
 ```
 
 Il tuo oggetto in `myMusic` dovrebbe contenere la proprietà `artist`, di tipo string
 
 ```js
-myMusic.forEach(object => {
-  assert.containsAllKeys(object, ['artist']);
-  assert.typeOf(object.artist, 'string')
-})
+myMusic.forEach((object) => {
+  assert.containsAllKeys(object, ["artist"]);
+  assert.typeOf(object.artist, "string");
+});
 ```
 
 Il tuo oggetto in `myMusic` dovrebbe contenere la proprietà `title`, di tipo string
 
 ```js
-myMusic.forEach(object => {
-  assert.containsAllKeys(object, ['title']);
-  assert.typeOf(object.title, 'string')
-})
+myMusic.forEach((object) => {
+  assert.containsAllKeys(object, ["title"]);
+  assert.typeOf(object.title, "string");
+});
 ```
 
 Il tuo oggetto in `myMusic` dovrebbe contenere la proprietà `release_year`, di tipo number
 
 ```js
-myMusic.forEach(object => {
-  assert.containsAllKeys(object, ['release_year']);
-  assert.typeOf(object.release_year, 'number')
-})
+myMusic.forEach((object) => {
+  assert.containsAllKeys(object, ["release_year"]);
+  assert.typeOf(object.release_year, "number");
+});
 ```
 
 Il tuo oggetto in `myMusic` dovrebbe contenere una proprietà `formats`, di tipo array
 
 ```js
-myMusic.forEach(object => {
-  assert.containsAllKeys(object, ['formats']);
-  assert.typeOf(object.formats, 'array')
-})
+myMusic.forEach((object) => {
+  assert.containsAllKeys(object, ["formats"]);
+  assert.typeOf(object.formats, "array");
+});
 ```
 
 `formats` dovrebbe essere un array di stringhe con almeno due elementi
 
 ```js
-myMusic.forEach(object => {
-  object.formats.forEach(format => {
-    assert.typeOf(format, 'string')
+myMusic.forEach((object) => {
+  object.formats.forEach((format) => {
+    assert.typeOf(format, "string");
   });
-  assert.isAtLeast(object.formats.length, 2)
-})
+  assert.isAtLeast(object.formats.length, 2);
+});
 ```
 
 # --seed--
@@ -129,7 +125,12 @@ myMusic.forEach(object => {
 ## --after-user-code--
 
 ```js
-(function(x){ if (Array.isArray(x)) { return JSON.stringify(x); } return "myMusic is not an array"})(myMusic);
+(function (x) {
+  if (Array.isArray(x)) {
+    return JSON.stringify(x);
+  }
+  return "myMusic is not an array";
+})(myMusic);
 ```
 
 ## --seed-contents--
@@ -137,16 +138,12 @@ myMusic.forEach(object => {
 ```js
 var myMusic = [
   {
-    "artist": "Billy Joel",
-    "title": "Piano Man",
-    "release_year": 1973,
-    "formats": [
-      "CD",
-      "8T",
-      "LP"
-    ],
-    "gold": true
-  }
+    artist: "Billy Joel",
+    title: "Piano Man",
+    release_year: 1973,
+    formats: ["CD", "8T", "LP"],
+    gold: true,
+  },
 ];
 ```
 
@@ -155,25 +152,17 @@ var myMusic = [
 ```js
 var myMusic = [
   {
-    "artist": "Billy Joel",
-    "title": "Piano Man",
-    "release_year": 1973,
-    "formats": [
-      "CS",
-      "8T",
-      "LP" ],
-    "gold": true
+    artist: "Billy Joel",
+    title: "Piano Man",
+    release_year: 1973,
+    formats: ["CS", "8T", "LP"],
+    gold: true,
   },
   {
-    "artist": "ABBA",
-    "title": "Ring Ring",
-    "release_year": 1973,
-    "formats": [
-      "CS",
-      "8T",
-      "LP",
-    "CD",
-  ]
-  }
+    artist: "ABBA",
+    title: "Ring Ring",
+    release_year: 1973,
+    formats: ["CS", "8T", "LP", "CD"],
+  },
 ];
 ```

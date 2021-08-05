@@ -71,7 +71,8 @@ assert(!/[b-df-hj-np-tv-z]/gi.test(result.join()));
 ## --seed-contents--
 
 ```js
-let quoteSample = "Beware of bugs in the above code; I have only proved it correct, not tried it.";
+let quoteSample =
+  "Beware of bugs in the above code; I have only proved it correct, not tried it.";
 let vowelRegex = /change/; // Change this line
 let result = vowelRegex; // Change this line
 ```
@@ -79,7 +80,8 @@ let result = vowelRegex; // Change this line
 # --solutions--
 
 ```js
-let quoteSample = "Beware of bugs in the above code; I have only proved it correct, not tried it.";
+let quoteSample =
+  "Beware of bugs in the above code; I have only proved it correct, not tried it.";
 let vowelRegex = /[aeiou]/gi; // Change this line
 let result = quoteSample.match(vowelRegex); // Change this line
 ```

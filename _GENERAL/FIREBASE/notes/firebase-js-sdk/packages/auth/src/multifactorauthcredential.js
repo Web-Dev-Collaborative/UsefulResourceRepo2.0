@@ -27,7 +27,6 @@ goog.provide('fireauth.MultiFactorSignInRequestIdentifier');
 
 goog.forwardDeclare('fireauth.AuthCredential');
 
-
 /**
  * Type specifying the EnrollmentRequest interface to be passed along the
  * AuthCredential's verificationInfo. This is used to identify the user
@@ -40,7 +39,6 @@ goog.forwardDeclare('fireauth.AuthCredential');
  */
 fireauth.MultiFactorEnrollmentRequestIdentifier;
 
-
 /**
  * Type specifying the SignInRequest interface to be passed along the
  * AuthCredential's verificationInfo. This is used to identify the user
@@ -51,22 +49,19 @@ fireauth.MultiFactorEnrollmentRequestIdentifier;
  */
 fireauth.MultiFactorSignInRequestIdentifier;
 
-
 /**
  * Interface representing AuthCredentials that can also be used as second factor
  * credentials.
  * @extends {fireauth.AuthCredential}
  * @interface
  */
-fireauth.MultiFactorAuthCredential = function() {};
-
+fireauth.MultiFactorAuthCredential = function () {};
 
 /**
  * The credential provider ID.
  * @type {string} The provider ID.
  */
 fireauth.MultiFactorAuthCredential.prototype.providerId;
-
 
 /**
  * Finalizes the 2nd factor enrollment flow with the current AuthCredential
@@ -77,9 +72,10 @@ fireauth.MultiFactorAuthCredential.prototype.providerId;
  * @return {!goog.Promise<{idToken: string, refreshToken: string}>} A promise
  *     that resolves with the updated ID and refresh tokens.
  */
-fireauth.MultiFactorAuthCredential.prototype.finalizeMfaEnrollment =
-    function(rpcHandler, enrollmentRequest) {};
-
+fireauth.MultiFactorAuthCredential.prototype.finalizeMfaEnrollment = function (
+  rpcHandler,
+  enrollmentRequest
+) {};
 
 /**
  * Finalizes the 2nd factor sign-in flow with the current AuthCredential
@@ -90,5 +86,7 @@ fireauth.MultiFactorAuthCredential.prototype.finalizeMfaEnrollment =
  * @return {!goog.Promise<{idToken: string, refreshToken: string}>} A promise
  *     that resolves with the signed in user's ID and refresh tokens.
  */
-fireauth.MultiFactorAuthCredential.prototype.finalizeMfaSignIn =
-    function(rpcHandler, signInRequest) {};
+fireauth.MultiFactorAuthCredential.prototype.finalizeMfaSignIn = function (
+  rpcHandler,
+  signInRequest
+) {};

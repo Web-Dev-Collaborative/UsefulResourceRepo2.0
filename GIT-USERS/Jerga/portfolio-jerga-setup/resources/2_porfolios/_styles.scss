@@ -16,8 +16,6 @@
 
 // --------- BASE PAGE -------------
 
-
-
 // --------- DEFAULT HEADER -------------
 .port-navbar.port-nav-base.port-nav-default {
   padding: 30px;
@@ -25,7 +23,6 @@
 }
 
 // --------- DEFAULT HEADER -------------
-
 
 // --------- PORTFOLIO PAGE -------------
 
@@ -47,7 +44,7 @@
     }
 
     &:hover .readMore:before {
-      background: linear-gradient(to right, #ffffff 0%,#ffffff 100%);
+      background: linear-gradient(to right, #ffffff 0%, #ffffff 100%);
     }
 
     &-header {
@@ -60,7 +57,6 @@
     }
 
     &-city {
-
     }
 
     &-title {
@@ -82,5 +78,3 @@
 }
 
 // --------- PORTFOLIO PAGE -------------
-
-

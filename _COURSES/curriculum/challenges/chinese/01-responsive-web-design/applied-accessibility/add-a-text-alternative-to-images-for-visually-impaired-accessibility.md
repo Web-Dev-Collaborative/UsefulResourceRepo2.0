@@ -2,7 +2,7 @@
 id: 587d774c367417b2b2512a9c
 title: 为视觉障碍用户添加替代图像的文本
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cPp7VfD'
+videoUrl: "https://scrimba.com/c/cPp7VfD"
 forumTopicId: 16628
 dashedName: add-a-text-alternative-to-images-for-visually-impaired-accessibility
 ---
@@ -12,7 +12,7 @@ dashedName: add-a-text-alternative-to-images-for-visually-impaired-accessibility
 在其他挑战里你应该已经见到过 `img` 标签的 `alt` 属性了。 `alt` 属性中的文本来描述图片内容，作为备用文字。 `alt` 属性可以帮助用户在图片加载失败或者不可见的情况下理解图片内容， 搜索引擎也通过它来理解图片内容，并将其加入到搜索结果中。 例如：
 
 ```html
-<img src="importantLogo.jpeg" alt="Company logo">
+<img src="importantLogo.jpeg" alt="Company logo" />
 ```
 
 视觉障碍用户无法通过视觉获取信息，而是通过屏幕阅读器将网页内容转换为音频以获取信息。 他们无法通过直观的呈现理解信息。 屏幕阅读器可以识别 `alt` 属性，朗读其中的内容，来告知用户图片包含的关键信息。
@@ -28,7 +28,7 @@ dashedName: add-a-text-alternative-to-images-for-visually-impaired-accessibility
 `img` 标签应该包含一个非空的 `alt` 属性。
 
 ```js
-assert($('img').attr('alt'));
+assert($("img").attr("alt"));
 ```
 
 # --seed--
@@ -36,11 +36,11 @@ assert($('img').attr('alt'));
 ## --seed-contents--
 
 ```html
-<img src="doingKarateWow.jpeg">
+<img src="doingKarateWow.jpeg" />
 ```
 
 # --solutions--
 
 ```html
-<img src="doingKarateWow.jpeg" alt="Someone doing karate">
+<img src="doingKarateWow.jpeg" alt="Someone doing karate" />
 ```

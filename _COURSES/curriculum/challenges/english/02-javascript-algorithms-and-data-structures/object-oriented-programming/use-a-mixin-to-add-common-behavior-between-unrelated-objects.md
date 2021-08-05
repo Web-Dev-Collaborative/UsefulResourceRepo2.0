@@ -13,10 +13,10 @@ As you have seen, behavior is shared through inheritance. However, there are cas
 For unrelated objects, it's better to use <dfn>mixins</dfn>. A mixin allows other objects to use a collection of functions.
 
 ```js
-let flyMixin = function(obj) {
-  obj.fly = function() {
+let flyMixin = function (obj) {
+  obj.fly = function () {
     console.log("Flying, wooosh!");
-  }
+  };
 };
 ```
 
@@ -25,12 +25,12 @@ The `flyMixin` takes any object and gives it the `fly` method.
 ```js
 let bird = {
   name: "Donald",
-  numLegs: 2
+  numLegs: 2,
 };
 
 let plane = {
   model: "777",
-  numPassengers: 524
+  numPassengers: 524,
 };
 
 flyMixin(bird);
@@ -57,19 +57,19 @@ Create a mixin named `glideMixin` that defines a method named `glide`. Then use 
 Your code should declare a `glideMixin` variable that is a function.
 
 ```js
-assert(typeof glideMixin === 'function');
+assert(typeof glideMixin === "function");
 ```
 
 Your code should use the `glideMixin` on the `bird` object to give it the `glide` method.
 
 ```js
-assert(typeof bird.glide === 'function');
+assert(typeof bird.glide === "function");
 ```
 
 Your code should use the `glideMixin` on the `boat` object to give it the `glide` method.
 
 ```js
-assert(typeof boat.glide === 'function');
+assert(typeof boat.glide === "function");
 ```
 
 # --seed--
@@ -79,12 +79,12 @@ assert(typeof boat.glide === 'function');
 ```js
 let bird = {
   name: "Donald",
-  numLegs: 2
+  numLegs: 2,
 };
 
 let boat = {
   name: "Warrior",
-  type: "race-boat"
+  type: "race-boat",
 };
 
 // Only change code below this line
@@ -95,15 +95,15 @@ let boat = {
 ```js
 let bird = {
   name: "Donald",
-  numLegs: 2
+  numLegs: 2,
 };
 
 let boat = {
   name: "Warrior",
-  type: "race-boat"
+  type: "race-boat",
 };
-function glideMixin (obj) {
-  obj.glide = () => 'Gliding!';
+function glideMixin(obj) {
+  obj.glide = () => "Gliding!";
 }
 
 glideMixin(bird);

@@ -1,20 +1,18 @@
-import React from 'react';
-import BaseLayout from '../components/BaseLayout.js';
-import Cookie from 'js-cookie';
+import React from "react";
+import BaseLayout from "../components/BaseLayout.js";
+import Cookie from "js-cookie";
 
-import BlogEditor from '../components/slate-blog/BlogEditor';
+import BlogEditor from "../components/slate-blog/BlogEditor";
 
-import { Editor } from 'slate-react';
-import { Value } from 'slate';
+import { Editor } from "slate-react";
+import { Value } from "slate";
 
-import * as actions from '../actions';
-import withAuth from '../components/hoc/withAuth';
-
+import * as actions from "../actions";
+import withAuth from "../components/hoc/withAuth";
 
 class BlogCreate extends React.Component {
-
-  static async getInitialProps({reduxStore, query}) {
-    return {userId: query.id};
+  static async getInitialProps({ reduxStore, query }) {
+    return { userId: query.id };
   }
 
   constructor(props) {
@@ -22,8 +20,8 @@ class BlogCreate extends React.Component {
 
     this.state = {
       isSaving: false,
-      blog: null
-    }
+      blog: null,
+    };
 
     this.saveBlog = this.saveBlog.bind(this);
   }
@@ -35,13 +33,12 @@ class BlogCreate extends React.Component {
   }
 
   getBlogById = (userId) => {
-    actions.getBlogById(userId).then(
-      blog => this.setState({blog}));
-  }
+    actions.getBlogById(userId).then((blog) => this.setState({ blog }));
+  };
 
   saveBlog = (text, title) => {
     const { blog } = this.state;
-    const user = JSON.parse(Cookie.get('user'));
+    const user = JSON.parse(Cookie.get("user"));
 
     if (blog) this.updateBlog(text);
 
@@ -50,31 +47,28 @@ class BlogCreate extends React.Component {
 
     newBlog.story = text;
     newBlog.title = title;
-    this.setState({saving: true})
+    this.setState({ saving: true });
 
-    actions.saveBlog(newBlog).then(
-      (newBlog) => {
-
-        this.setState({saving: false});
+    actions
+      .saveBlog(newBlog)
+      .then((newBlog) => {
+        this.setState({ saving: false });
       })
-    .catch(err => {
-        this.setState({saving: false});
-    });
-  }
+      .catch((err) => {
+        this.setState({ saving: false });
+      });
+  };
 
   updateBlog = (text, publish) => {
     const { blog } = this.state;
     blog.text = text;
     if (publish) blog.publish = publish;
 
-    actions.updateBlog(blog).then(
-      (updatedBlog) => {
-
-      })
-    .catch(err => {
-
-    });
-  }
+    actions
+      .updateBlog(blog)
+      .then((updatedBlog) => {})
+      .catch((err) => {});
+  };
 
   render() {
     const { userId } = this.props;
@@ -86,12 +80,16 @@ class BlogCreate extends React.Component {
           <div className="container">
             <h1 className="portfolio-page-title">WRITE YOUR STORY...</h1>
             <div className="editor">
-              <BlogEditor {...this.state} save={this.saveBlog} update={this.updateBlog} />
+              <BlogEditor
+                {...this.state}
+                save={this.saveBlog}
+                update={this.updateBlog}
+              />
             </div>
           </div>
         </section>
       </BaseLayout>
-    )
+    );
   }
 }
 

@@ -1,6 +1,6 @@
 ---
 id: 5900f4861000cf542c50ff98
-title: 'Problem 281: Pizza Toppings'
+title: "Problem 281: Pizza Toppings"
 challengeType: 5
 forumTopicId: 301932
 dashedName: problem-281-pizza-toppings
@@ -30,7 +30,6 @@ assert.strictEqual(euler281(), 1485776387445623);
 
 ```js
 function euler281() {
-
   return true;
 }
 

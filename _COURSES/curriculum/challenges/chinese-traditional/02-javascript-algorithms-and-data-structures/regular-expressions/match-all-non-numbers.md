@@ -33,37 +33,37 @@ assert(noNumRegex.global);
 你的正則表達式在 `9` 中應該匹配不到非數字。
 
 ```js
-assert('9'.match(noNumRegex) == null);
+assert("9".match(noNumRegex) == null);
 ```
 
 你的正則表達式應該在 `Catch 22` 中匹配到 6 個非數字。
 
 ```js
-assert('Catch 22'.match(noNumRegex).length == 6);
+assert("Catch 22".match(noNumRegex).length == 6);
 ```
 
 你的正則表達式應該在 `101 Dalmatians` 中匹配到 11 個非數字。
 
 ```js
-assert('101 Dalmatians'.match(noNumRegex).length == 11);
+assert("101 Dalmatians".match(noNumRegex).length == 11);
 ```
 
 你的正則表達式應該在 `One, Two, Three` 中匹配到 15 個非數字。
 
 ```js
-assert('One, Two, Three'.match(noNumRegex).length == 15);
+assert("One, Two, Three".match(noNumRegex).length == 15);
 ```
 
 你的正則表達式應該在 `21 Jump Street` 中匹配到 12 個非數字。
 
 ```js
-assert('21 Jump Street'.match(noNumRegex).length == 12);
+assert("21 Jump Street".match(noNumRegex).length == 12);
 ```
 
 你的正則表達式應該在 `2001: A Space Odyssey` 中匹配到 17 個非數字。
 
 ```js
-assert('2001: A Space Odyssey'.match(noNumRegex).length == 17);
+assert("2001: A Space Odyssey".match(noNumRegex).length == 17);
 ```
 
 # --seed--

@@ -12,7 +12,7 @@ dashedName: understand-own-properties
 
 ```js
 function Bird(name) {
-  this.name  = name;
+  this.name = name;
   this.numLegs = 2;
 }
 
@@ -26,7 +26,7 @@ let canary = new Bird("Tweety");
 let ownProps = [];
 
 for (let property in duck) {
-  if(duck.hasOwnProperty(property)) {
+  if (duck.hasOwnProperty(property)) {
     ownProps.push(property);
   }
 }
@@ -45,7 +45,7 @@ console.log(ownProps);
 `ownProps` 应该包含 `numLegs` 和 `name` 两个属性的值。
 
 ```js
-assert(ownProps.indexOf('name') !== -1 && ownProps.indexOf('numLegs') !== -1);
+assert(ownProps.indexOf("name") !== -1 && ownProps.indexOf("numLegs") !== -1);
 ```
 
 在不使用内置方法 `Object.keys()` 的前提下完成这个挑战。
@@ -88,7 +88,7 @@ function Bird(name) {
 }
 
 let canary = new Bird("Tweety");
-function getOwnProps (obj) {
+function getOwnProps(obj) {
   const props = [];
 
   for (let prop in obj) {

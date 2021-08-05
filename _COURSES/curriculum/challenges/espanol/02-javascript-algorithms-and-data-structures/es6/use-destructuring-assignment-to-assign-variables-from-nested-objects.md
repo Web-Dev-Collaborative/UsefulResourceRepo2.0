@@ -14,23 +14,27 @@ Usando un objeto similar a los ejemplos anteriores:
 
 ```js
 const user = {
-  johnDoe: { 
+  johnDoe: {
     age: 34,
-    email: 'johnDoe@freeCodeCamp.com'
-  }
+    email: "johnDoe@freeCodeCamp.com",
+  },
 };
 ```
 
 Así es como se extraen los valores de propiedades de objetos y se los asigna a variables con el mismo nombre:
 
 ```js
-const { johnDoe: { age, email }} = user;
+const {
+  johnDoe: { age, email },
+} = user;
 ```
 
 Y así es como se puede asignar los valores de las propiedades de un objeto a variables con diferentes nombres:
 
 ```js
-const { johnDoe: { age: userAge, email: userEmail }} = user;
+const {
+  johnDoe: { age: userAge, email: userEmail },
+} = user;
 ```
 
 # --instructions--
@@ -82,7 +86,7 @@ assert(lowToday === 64 && highToday === 77);
 const LOCAL_FORECAST = {
   yesterday: { low: 61, high: 75 },
   today: { low: 64, high: 77 },
-  tomorrow: { low: 68, high: 80 }
+  tomorrow: { low: 68, high: 80 },
 };
 
 // Only change code below this line
@@ -99,8 +103,10 @@ const highToday = LOCAL_FORECAST.today.high;
 const LOCAL_FORECAST = {
   yesterday: { low: 61, high: 75 },
   today: { low: 64, high: 77 },
-  tomorrow: { low: 68, high: 80 }
+  tomorrow: { low: 68, high: 80 },
 };
 
-const { today: { low: lowToday, high: highToday }} = LOCAL_FORECAST;
+const {
+  today: { low: lowToday, high: highToday },
+} = LOCAL_FORECAST;
 ```

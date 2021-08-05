@@ -2,7 +2,7 @@
 id: 587d781c367417b2b2512ac2
 title: 设置多个标题元素的 font-size
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cPpQNT3'
+videoUrl: "https://scrimba.com/c/cPpQNT3"
 forumTopicId: 301067
 dashedName: set-the-font-size-for-multiple-heading-elements
 ---
@@ -27,31 +27,31 @@ dashedName: set-the-font-size-for-multiple-heading-elements
 `h1` 标签的 `font-size` 属性值应为 68px。
 
 ```js
-assert($('h1').css('font-size') == '68px');
+assert($("h1").css("font-size") == "68px");
 ```
 
 `h2` 标签的 `font-size` 属性值应为 52px。
 
 ```js
-assert($('h2').css('font-size') == '52px');
+assert($("h2").css("font-size") == "52px");
 ```
 
 `h3` 标签的 `font-size` 属性值应为 40px。
 
 ```js
-assert($('h3').css('font-size') == '40px');
+assert($("h3").css("font-size") == "40px");
 ```
 
 `h4` 标签的 `font-size` 属性值应为 32px。
 
 ```js
-assert($('h4').css('font-size') == '32px');
+assert($("h4").css("font-size") == "32px");
 ```
 
 `h5` 标签的 `font-size` 属性值应为 21px。
 
 ```js
-assert($('h5').css('font-size') == '21px');
+assert($("h5").css("font-size") == "21px");
 ```
 
 `h6` 标签的 `font-size` 属性值应为 14px。
@@ -66,14 +66,7 @@ assert.strictEqual(true, regex.test(code));
 ## --seed-contents--
 
 ```html
-<style>
-
-
-
-
-
-
-</style>
+<style></style>
 <h1>This is h1 text</h1>
 <h2>This is h2 text</h2>
 <h3>This is h3 text</h3>

@@ -12,13 +12,13 @@ Los nombres de usuario se utilizan en todas partes en Internet. Son los que dan 
 
 Se necesita comprobar todos los nombres de usuario en una base de datos. Estas son algunas reglas simples que los usuarios deben seguir al crear su nombre de usuario.
 
-1) Los nombres de usuario sólo pueden utilizar caracteres alfanuméricos.
+1. Los nombres de usuario sólo pueden utilizar caracteres alfanuméricos.
 
-2) Los únicos números del nombre de usuario tienen que estar al final. Puede tener un cero o más al final. El nombre de usuario no puede iniciar con un número.
+2. Los únicos números del nombre de usuario tienen que estar al final. Puede tener un cero o más al final. El nombre de usuario no puede iniciar con un número.
 
-3) Las letras del nombre de usuario pueden ser minúsculas y mayúsculas.
+3. Las letras del nombre de usuario pueden ser minúsculas y mayúsculas.
 
-4) Los nombres de usuario deben tener al menos dos caracteres. Un nombre de usuario de dos caracteres sólo puede utilizar letras del alfabeto como caracteres.
+4. Los nombres de usuario deben tener al menos dos caracteres. Un nombre de usuario de dos caracteres sólo puede utilizar letras del alfabeto como caracteres.
 
 # --instructions--
 
@@ -29,79 +29,79 @@ Cambia la expresión regular `userCheck` para que se ajuste a las restricciones 
 Tu expresión regular debe coincidir con la cadena `JACK`
 
 ```js
-assert(userCheck.test('JACK'));
+assert(userCheck.test("JACK"));
 ```
 
 Tu expresión regular no debe coincidir con la cadena `J`
 
 ```js
-assert(!userCheck.test('J'));
+assert(!userCheck.test("J"));
 ```
 
 Tu expresión regular debe coincidir con la cadena `Jo`
 
 ```js
-assert(userCheck.test('Jo'));
+assert(userCheck.test("Jo"));
 ```
 
 Tu expresión regular debe coincidir con la cadena `Oceans11`
 
 ```js
-assert(userCheck.test('Oceans11'));
+assert(userCheck.test("Oceans11"));
 ```
 
 Tu expresión regular debe coincidir con la cadena `RegexGuru`
 
 ```js
-assert(userCheck.test('RegexGuru'));
+assert(userCheck.test("RegexGuru"));
 ```
 
 Tu expresión regular no debe coincidir con la cadena `007`
 
 ```js
-assert(!userCheck.test('007'));
+assert(!userCheck.test("007"));
 ```
 
 Tu expresión regular no debe coincidir con la cadena `9`
 
 ```js
-assert(!userCheck.test('9'));
+assert(!userCheck.test("9"));
 ```
 
 Tu expresión regular no debe coincidir con la cadena `A1`
 
 ```js
-assert(!userCheck.test('A1'));
+assert(!userCheck.test("A1"));
 ```
 
 Tu expresión regular no debe coincidir con la cadena `BadUs3rnam3`
 
 ```js
-assert(!userCheck.test('BadUs3rnam3'));
+assert(!userCheck.test("BadUs3rnam3"));
 ```
 
 Tu expresión regular debe coincidir con la cadena `Z97`
 
 ```js
-assert(userCheck.test('Z97'));
+assert(userCheck.test("Z97"));
 ```
 
 Tu expresión regular no debe coincidir con la cadena `c57bT3`
 
 ```js
-assert(!userCheck.test('c57bT3'));
+assert(!userCheck.test("c57bT3"));
 ```
 
 Tu expresión regular debe coincidir con la cadena `AB1`
 
 ```js
-assert(userCheck.test('AB1'));
+assert(userCheck.test("AB1"));
 ```
 
 Tu expresión regular no debe coincidir con la cadena `J%4`
 
 ```js
-assert(!userCheck.test('J%4'))
+assert(!userCheck.test("J%4"));
 ```
 
 # --seed--

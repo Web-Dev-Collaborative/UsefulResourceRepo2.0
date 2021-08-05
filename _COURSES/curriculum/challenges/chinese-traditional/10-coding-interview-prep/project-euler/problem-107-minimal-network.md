@@ -1,6 +1,6 @@
 ---
 id: 5900f3d91000cf542c50feea
-title: 'Problem 107: Minimal network'
+title: "Problem 107: Minimal network"
 challengeType: 5
 forumTopicId: 301731
 dashedName: problem-107-minimal-network
@@ -28,7 +28,6 @@ assert.strictEqual(euler107(), 259679);
 
 ```js
 function euler107() {
-
   return true;
 }
 

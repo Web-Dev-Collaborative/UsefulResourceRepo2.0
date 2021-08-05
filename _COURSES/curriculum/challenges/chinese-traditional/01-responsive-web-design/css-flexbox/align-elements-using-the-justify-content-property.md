@@ -2,7 +2,7 @@
 id: 587d78ac367417b2b2512af6
 title: 使用 justify-content 屬性對齊元素
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/c43gnHm'
+videoUrl: "https://scrimba.com/p/pVaDAv/c43gnHm"
 forumTopicId: 301102
 dashedName: align-elements-using-the-justify-content-property
 ---
@@ -31,7 +31,7 @@ flex 子元素有時不能充滿整個 flex 容器， 所以我們經常需要�
 `#box-container` 所選擇的元素應有 `justify-content` 屬性，且其屬性值應爲 `center`。
 
 ```js
-assert($('#box-container').css('justify-content') == 'center');
+assert($("#box-container").css("justify-content") == "center");
 ```
 
 # --seed--
@@ -44,7 +44,6 @@ assert($('#box-container').css('justify-content') == 'center');
     background: gray;
     display: flex;
     height: 500px;
-
   }
   #box-1 {
     background-color: dodgerblue;

@@ -6,6 +6,7 @@ You need to have created a Firebase Project in the
 [Firebase Console](https://firebase.google.com/console/) as well as configured a web app.
 
 ## Installation
+
 Make sure you run `yarn` to install all dependencies in the root directory.
 
 Enable the Auth providers you would like to offer your users in the console, under
@@ -60,15 +61,15 @@ If you would prefer to use a CDN instead of locally compiled Firebase Auth files
 locate the following in the `<head>` tag of `public/index.html`:
 
 ```html
-    <script src="dist/firebase-app.js"></script>
-    <script src="dist/firebase-auth.js"></script>
-    <script src="dist/firebase-database.js"></script>
+<script src="dist/firebase-app.js"></script>
+<script src="dist/firebase-auth.js"></script>
+<script src="dist/firebase-database.js"></script>
 ```
 
 Then replace that with the public CDN:
 
 ```html
-    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
 ```
 
 Finally, ensure you are in the `demo/` folder (and not the root directory of Firebase Auth package),

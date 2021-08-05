@@ -43,19 +43,17 @@
  * sign in with bar@gmail.com and not foo@gmail.com.
  */
 
-goog.provide('firebaseui.auth.widget.handler.handleEmailMismatch');
+goog.provide("firebaseui.auth.widget.handler.handleEmailMismatch");
 
-goog.require('firebaseui.auth.storage');
-goog.require('firebaseui.auth.ui.page.EmailMismatch');
-goog.require('firebaseui.auth.widget.Handler');
-goog.require('firebaseui.auth.widget.HandlerName');
-goog.require('firebaseui.auth.widget.handler');
-goog.require('firebaseui.auth.widget.handler.common');
-goog.requireType('firebaseui.auth.PendingEmailCredential');
-goog.requireType('firebaseui.auth.ui.page.Base');
-goog.requireType('firebaseui.auth.widget.Config');
-
-
+goog.require("firebaseui.auth.storage");
+goog.require("firebaseui.auth.ui.page.EmailMismatch");
+goog.require("firebaseui.auth.widget.Handler");
+goog.require("firebaseui.auth.widget.HandlerName");
+goog.require("firebaseui.auth.widget.handler");
+goog.require("firebaseui.auth.widget.handler.common");
+goog.requireType("firebaseui.auth.PendingEmailCredential");
+goog.requireType("firebaseui.auth.ui.page.Base");
+goog.requireType("firebaseui.auth.widget.Config");
 
 /**
  * Handles the email mismatch case in verifyAssertion response.
@@ -66,11 +64,14 @@ goog.requireType('firebaseui.auth.widget.Config');
  * @param {!firebaseui.auth.widget.Config.AuthResult} authResult The Auth
  *     result object.
  */
-firebaseui.auth.widget.handler.handleEmailMismatch = function(
-    app, container, authResult) {
+firebaseui.auth.widget.handler.handleEmailMismatch = function (
+  app,
+  container,
+  authResult
+) {
   // Render the UI.
   var pendingEmailCredential =
-      firebaseui.auth.storage.getPendingEmailCredential(app.getAppId());
+    firebaseui.auth.storage.getPendingEmailCredential(app.getAppId());
   if (!pendingEmailCredential) {
     // If no pending email credential, it's an error and the user should be
     // redirected to the sign-in page.
@@ -78,30 +79,36 @@ firebaseui.auth.widget.handler.handleEmailMismatch = function(
     return;
   }
   var component = new firebaseui.auth.ui.page.EmailMismatch(
-      authResult['user']['email'],
-      pendingEmailCredential.getEmail(),
-      // On submit.
-      function() {
-        // The user accepts to sign in with the provider even if the original
-        // email does not correspond.
-        firebaseui.auth.widget.handler.handleEmailMismatchContinue_(
-            app, component, authResult);
-      }, function() {
-        // On cancel.
-        firebaseui.auth.widget.handler.handleEmailMismatchCancel_(
-            app,
-            component,
-            /** @type {!firebaseui.auth.PendingEmailCredential} */ (
-                pendingEmailCredential),
-            authResult['credential']['providerId']);
-      },
-      app.getConfig().getTosUrl(),
-      app.getConfig().getPrivacyPolicyUrl());
+    authResult["user"]["email"],
+    pendingEmailCredential.getEmail(),
+    // On submit.
+    function () {
+      // The user accepts to sign in with the provider even if the original
+      // email does not correspond.
+      firebaseui.auth.widget.handler.handleEmailMismatchContinue_(
+        app,
+        component,
+        authResult
+      );
+    },
+    function () {
+      // On cancel.
+      firebaseui.auth.widget.handler.handleEmailMismatchCancel_(
+        app,
+        component,
+        /** @type {!firebaseui.auth.PendingEmailCredential} */ (
+          pendingEmailCredential
+        ),
+        authResult["credential"]["providerId"]
+      );
+    },
+    app.getConfig().getTosUrl(),
+    app.getConfig().getPrivacyPolicyUrl()
+  );
   component.render(container);
   // Set current UI component.
   app.setCurrentComponent(component);
 };
-
 
 /**
  * Handles when the user clicks on continue.
@@ -112,15 +119,20 @@ firebaseui.auth.widget.handler.handleEmailMismatch = function(
  *     result object.
  * @private
  */
-firebaseui.auth.widget.handler.handleEmailMismatchContinue_ =
-    function(app, component, authResult) {
+firebaseui.auth.widget.handler.handleEmailMismatchContinue_ = function (
+  app,
+  component,
+  authResult
+) {
   // Do not dispose of component yet as error could still occur in setLoggedIn
   // and new component may need to be rendered.
   firebaseui.auth.storage.removePendingEmailCredential(app.getAppId());
   firebaseui.auth.widget.handler.common.setLoggedInWithAuthResult(
-      app, component, authResult);
+    app,
+    component,
+    authResult
+  );
 };
-
 
 /**
  * Handles when the user cancels.
@@ -132,32 +144,38 @@ firebaseui.auth.widget.handler.handleEmailMismatchContinue_ =
  * @param {string} providerId The original providerId that was just used.
  * @private
  */
-firebaseui.auth.widget.handler.handleEmailMismatchCancel_ =
-    function(app, component, pendingEmailCredential, providerId) {
+firebaseui.auth.widget.handler.handleEmailMismatchCancel_ = function (
+  app,
+  component,
+  pendingEmailCredential,
+  providerId
+) {
   var container = component.getContainer();
   component.dispose();
   if (pendingEmailCredential.getCredential()) {
     // Redirects back to federated linking.
     firebaseui.auth.widget.handler.handle(
-        firebaseui.auth.widget.HandlerName.FEDERATED_LINKING,
-        app,
-        container,
-        pendingEmailCredential.getEmail(),
-        providerId);
+      firebaseui.auth.widget.HandlerName.FEDERATED_LINKING,
+      app,
+      container,
+      pendingEmailCredential.getEmail(),
+      providerId
+    );
   } else {
     // Redirects back to federated sign-in.
     firebaseui.auth.widget.handler.handle(
-        firebaseui.auth.widget.HandlerName.FEDERATED_SIGN_IN,
-        app,
-        container,
-        pendingEmailCredential.getEmail(),
-        providerId);
+      firebaseui.auth.widget.HandlerName.FEDERATED_SIGN_IN,
+      app,
+      container,
+      pendingEmailCredential.getEmail(),
+      providerId
+    );
   }
 };
 
-
 // Register handler.
 firebaseui.auth.widget.handler.register(
-    firebaseui.auth.widget.HandlerName.EMAIL_MISMATCH,
-    /** @type {firebaseui.auth.widget.Handler} */
-    (firebaseui.auth.widget.handler.handleEmailMismatch));
+  firebaseui.auth.widget.HandlerName.EMAIL_MISMATCH,
+  /** @type {firebaseui.auth.widget.Handler} */
+  (firebaseui.auth.widget.handler.handleEmailMismatch)
+);

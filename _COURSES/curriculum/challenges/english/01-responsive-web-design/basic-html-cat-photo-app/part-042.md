@@ -16,7 +16,7 @@ You learned previously that the button submits the form by default, but you can 
 Your `button` element should have an opening tag. Opening tags have this syntax: `<elementName>`.
 
 ```js
-assert(document.querySelector('button'));
+assert(document.querySelector("button"));
 ```
 
 Your `button` element should have a closing tag. Closing tags have a `/` just after the `<` character.
@@ -28,15 +28,15 @@ assert(code.match(/<\/button\>/));
 Your `button` element does not have a `type` attribute. Check that there is a space after the opening tag's name.
 
 ```js
-assert($('button')[0].hasAttribute('type'));
+assert($("button")[0].hasAttribute("type"));
 ```
 
 Your `button` element should have a `type` attribute with the value `submit`. You have either omitted the value or have a typo. Remember that attribute values should be surrounded with quotation marks.
 
 ```js
 assert(
-  $('button')[0]
-    .getAttribute('type')
+  $("button")[0]
+    .getAttribute("type")
     .match(/^submit$/i)
 );
 ```
@@ -59,8 +59,15 @@ assert(!/\<\s*button\s+type\s*=\s*submit/i.test(code));
       <section>
         <h2>Cat Photos</h2>
         <!-- TODO: Add link to cat photos -->
-        <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        <p>
+          Click here to view more
+          <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+        </p>
+        <a href="https://freecatphotoapp.com"
+          ><img
+            src="https://bit.ly/fcc-relaxing-cat"
+            alt="A cute orange cat lying on its back."
+        /></a>
       </section>
       <section>
         <h2>Cat Lists</h2>
@@ -71,8 +78,11 @@ assert(!/\<\s*button\s+type\s*=\s*submit/i.test(code));
           <li>lasagna</li>
         </ul>
         <figure>
-          <img src="https://bit.ly/fcc-lasagna" alt="A slice of lasagna on a plate.">
-          <figcaption>Cats <em>love</em> lasagna.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-lasagna"
+            alt="A slice of lasagna on a plate."
+          />
+          <figcaption>Cats <em>love</em> lasagna.</figcaption>
         </figure>
         <h3>Top 3 things cats hate:</h3>
         <ol>
@@ -81,21 +91,28 @@ assert(!/\<\s*button\s+type\s*=\s*submit/i.test(code));
           <li>other cats</li>
         </ol>
         <figure>
-          <img src="https://bit.ly/fcc-cats" alt="Five cats looking around a field.">
-          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-cats"
+            alt="Five cats looking around a field."
+          />
+          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>
         </figure>
       </section>
       <section>
         <h2>Cat Form</h2>
         <form action="https://freecatphotoapp.com/submit-cat-photo">
-          <input type="text" name="catphotourl" placeholder="cat photo URL" required>
---fcc-editable-region--
+          <input
+            type="text"
+            name="catphotourl"
+            placeholder="cat photo URL"
+            required
+          />
+          --fcc-editable-region--
           <button>Submit</button>
---fcc-editable-region--
+          --fcc-editable-region--
         </form>
       </section>
     </main>
   </body>
 </html>
 ```
-

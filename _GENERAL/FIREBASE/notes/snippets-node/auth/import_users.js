@@ -1,21 +1,21 @@
-'use strict';
-const admin = require('firebase-admin');
+"use strict";
+const admin = require("firebase-admin");
 admin.initializeApp();
 
 //[START build_user_list]
 // Up to 1000 users can be imported at once.
 const userImportRecords = [
   {
-    uid: 'uid1',
-    email: 'user1@example.com',
-    passwordHash: Buffer.from('passwordHash1'),
-    passwordSalt: Buffer.from('salt1'),
+    uid: "uid1",
+    email: "user1@example.com",
+    passwordHash: Buffer.from("passwordHash1"),
+    passwordSalt: Buffer.from("salt1"),
   },
   {
-    uid: 'uid2',
-    email: 'user2@example.com',
-    passwordHash: Buffer.from('passwordHash2'),
-    passwordSalt: Buffer.from('salt2'),
+    uid: "uid2",
+    email: "user2@example.com",
+    passwordHash: Buffer.from("passwordHash2"),
+    passwordSalt: Buffer.from("salt2"),
   },
   //...
 ];
@@ -26,8 +26,8 @@ admin
   .auth()
   .importUsers(userImportRecords, {
     hash: {
-      algorithm: 'HMAC_SHA256',
-      key: Buffer.from('secretKey'),
+      algorithm: "HMAC_SHA256",
+      key: Buffer.from("secretKey"),
     },
   })
   .then((userImportResult) => {
@@ -37,8 +37,8 @@ admin
     userImportResult.errors.forEach((indexedError) => {
       // The corresponding user that failed to upload.
       console.log(
-        'Error ' + indexedError.index,
-        ' failed to import: ',
+        "Error " + indexedError.index,
+        " failed to import: ",
         indexedError.error
       );
     });
@@ -54,19 +54,19 @@ admin
   .importUsers(
     [
       {
-        uid: 'some-uid',
-        email: 'user@example.com',
+        uid: "some-uid",
+        email: "user@example.com",
         // Must be provided in a byte buffer.
-        passwordHash: Buffer.from('password-hash'),
+        passwordHash: Buffer.from("password-hash"),
         // Must be provided in a byte buffer.
-        passwordSalt: Buffer.from('salt'),
+        passwordSalt: Buffer.from("salt"),
       },
     ],
     {
       hash: {
-        algorithm: 'HMAC_SHA256',
+        algorithm: "HMAC_SHA256",
         // Must be provided in a byte buffer.
-        key: Buffer.from('secret'),
+        key: Buffer.from("secret"),
       },
     }
   )
@@ -76,7 +76,7 @@ admin
     });
   })
   .catch((error) => {
-    console.log('Error importing users :', error);
+    console.log("Error importing users :", error);
   });
 // [END import_with_hmac]
 
@@ -86,17 +86,17 @@ admin
   .importUsers(
     [
       {
-        uid: 'some-uid',
-        email: 'user@example.com',
+        uid: "some-uid",
+        email: "user@example.com",
         // Must be provided in a byte buffer.
-        passwordHash: Buffer.from('password-hash'),
+        passwordHash: Buffer.from("password-hash"),
         // Must be provided in a byte buffer.
-        passwordSalt: Buffer.from('salt'),
+        passwordSalt: Buffer.from("salt"),
       },
     ],
     {
       hash: {
-        algorithm: 'PBKDF2_SHA256',
+        algorithm: "PBKDF2_SHA256",
         rounds: 100000,
       },
     }
@@ -107,7 +107,7 @@ admin
     });
   })
   .catch((error) => {
-    console.log('Error importing users :', error);
+    console.log("Error importing users :", error);
   });
 // [END import_with_pbkdf]
 
@@ -117,17 +117,17 @@ admin
   .importUsers(
     [
       {
-        uid: 'some-uid',
-        email: 'user@example.com',
+        uid: "some-uid",
+        email: "user@example.com",
         // Must be provided in a byte buffer.
-        passwordHash: Buffer.from('password-hash'),
+        passwordHash: Buffer.from("password-hash"),
         // Must be provided in a byte buffer.
-        passwordSalt: Buffer.from('salt'),
+        passwordSalt: Buffer.from("salt"),
       },
     ],
     {
       hash: {
-        algorithm: 'STANDARD_SCRYPT',
+        algorithm: "STANDARD_SCRYPT",
         memoryCost: 1024,
         parallelization: 16,
         blockSize: 8,
@@ -141,7 +141,7 @@ admin
     });
   })
   .catch((error) => {
-    console.log('Error importing users :', error);
+    console.log("Error importing users :", error);
   });
 // [END import_with_standard_scrypt]
 
@@ -151,15 +151,15 @@ admin
   .importUsers(
     [
       {
-        uid: 'some-uid',
-        email: 'user@example.com',
+        uid: "some-uid",
+        email: "user@example.com",
         // Must be provided in a byte buffer.
-        passwordHash: Buffer.from('password-hash'),
+        passwordHash: Buffer.from("password-hash"),
       },
     ],
     {
       hash: {
-        algorithm: 'BCRYPT',
+        algorithm: "BCRYPT",
       },
     }
   )
@@ -169,7 +169,7 @@ admin
     });
   })
   .catch((error) => {
-    console.log('Error importing users :', error);
+    console.log("Error importing users :", error);
   });
 // [END import_with_bcrypt]
 
@@ -179,21 +179,21 @@ admin
   .importUsers(
     [
       {
-        uid: 'some-uid',
-        email: 'user@example.com',
+        uid: "some-uid",
+        email: "user@example.com",
         // Must be provided in a byte buffer.
-        passwordHash: Buffer.from('base64-password-hash', 'base64'),
+        passwordHash: Buffer.from("base64-password-hash", "base64"),
         // Must be provided in a byte buffer.
-        passwordSalt: Buffer.from('base64-salt', 'base64'),
+        passwordSalt: Buffer.from("base64-salt", "base64"),
       },
     ],
     {
       hash: {
-        algorithm: 'SCRYPT',
+        algorithm: "SCRYPT",
         // All the parameters below can be obtained from the Firebase Console's users section.
         // Must be provided in a byte buffer.
-        key: Buffer.from('base64-secret', 'base64'),
-        saltSeparator: Buffer.from('base64SaltSeparator', 'base64'),
+        key: Buffer.from("base64-secret", "base64"),
+        saltSeparator: Buffer.from("base64SaltSeparator", "base64"),
         rounds: 8,
         memoryCost: 14,
       },
@@ -205,7 +205,7 @@ admin
     });
   })
   .catch((error) => {
-    console.log('Error importing users :', error);
+    console.log("Error importing users :", error);
   });
 // [END import_with_scrypt]
 
@@ -214,22 +214,22 @@ admin
   .auth()
   .importUsers([
     {
-      uid: 'some-uid',
-      displayName: 'John Doe',
-      email: 'johndoe@gmail.com',
-      photoURL: 'http://www.example.com/12345678/photo.png',
+      uid: "some-uid",
+      displayName: "John Doe",
+      email: "johndoe@gmail.com",
+      photoURL: "http://www.example.com/12345678/photo.png",
       emailVerified: true,
-      phoneNumber: '+11234567890',
+      phoneNumber: "+11234567890",
       // Set this user as admin.
       customClaims: { admin: true },
       // User with Google provider.
       providerData: [
         {
-          uid: 'google-uid',
-          email: 'johndoe@gmail.com',
-          displayName: 'John Doe',
-          photoURL: 'http://www.example.com/12345678/photo.png',
-          providerId: 'google.com',
+          uid: "google-uid",
+          email: "johndoe@gmail.com",
+          displayName: "John Doe",
+          photoURL: "http://www.example.com/12345678/photo.png",
+          providerId: "google.com",
         },
       ],
     },
@@ -240,6 +240,6 @@ admin
     });
   })
   .catch((error) => {
-    console.log('Error importing users :', error);
+    console.log("Error importing users :", error);
   });
 // [END import_without_password]

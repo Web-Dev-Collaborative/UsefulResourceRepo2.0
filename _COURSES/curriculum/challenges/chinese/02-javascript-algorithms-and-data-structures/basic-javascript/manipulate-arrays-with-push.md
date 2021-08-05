@@ -2,7 +2,7 @@
 id: 56bbb991ad1ed5201cd392cb
 title: 使用 push() 操作数组
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cnqmVtJ'
+videoUrl: "https://scrimba.com/c/cnqmVtJ"
 forumTopicId: 18237
 dashedName: manipulate-arrays-with-push
 ---
@@ -16,7 +16,7 @@ dashedName: manipulate-arrays-with-push
 示例：
 
 ```js
-var arr1 = [1,2,3];
+var arr1 = [1, 2, 3];
 arr1.push(4);
 
 var arr2 = ["Stimpson", "J", "cat"];
@@ -38,9 +38,9 @@ assert(
   (function (d) {
     if (
       d[2] != undefined &&
-      d[0][0] == 'John' &&
+      d[0][0] == "John" &&
       d[0][1] === 23 &&
-      d[2][0] == 'dog' &&
+      d[2][0] == "dog" &&
       d[2][1] === 3 &&
       d[2].length == 2
     ) {
@@ -57,14 +57,19 @@ assert(
 ## --after-user-code--
 
 ```js
-(function(z){return 'myArray = ' + JSON.stringify(z);})(myArray);
+(function (z) {
+  return "myArray = " + JSON.stringify(z);
+})(myArray);
 ```
 
 ## --seed-contents--
 
 ```js
 // Setup
-var myArray = [["John", 23], ["cat", 2]];
+var myArray = [
+  ["John", 23],
+  ["cat", 2],
+];
 
 // Only change code below this line
 ```
@@ -72,6 +77,9 @@ var myArray = [["John", 23], ["cat", 2]];
 # --solutions--
 
 ```js
-var myArray = [["John", 23], ["cat", 2]];
-myArray.push(["dog",3]);
+var myArray = [
+  ["John", 23],
+  ["cat", 2],
+];
+myArray.push(["dog", 3]);
 ```

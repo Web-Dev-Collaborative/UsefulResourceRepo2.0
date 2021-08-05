@@ -25,43 +25,43 @@ Completa la expresión regular `petRegex` para que coincida con las mascotas `do
 Tu expresión regular `petRegex` debe devolver `true` para la cadena `John has a pet dog.`
 
 ```js
-assert(petRegex.test('John has a pet dog.'));
+assert(petRegex.test("John has a pet dog."));
 ```
 
 Tu expresión regular `petRegex` debe devolver `false` para la cadena `Emma has a pet rock.`
 
 ```js
-assert(!petRegex.test('Emma has a pet rock.'));
+assert(!petRegex.test("Emma has a pet rock."));
 ```
 
 Tu expresión regular `petRegex` debe devolver `true` para la cadena `Emma has a pet bird.`
 
 ```js
-assert(petRegex.test('Emma has a pet bird.'));
+assert(petRegex.test("Emma has a pet bird."));
 ```
 
 Tu expresión regular `petRegex` debe devolver `true` para la cadena `Liz has a pet cat.`
 
 ```js
-assert(petRegex.test('Liz has a pet cat.'));
+assert(petRegex.test("Liz has a pet cat."));
 ```
 
 Tu expresión regular `petRegex` debe devolver `false` para la cadena `Kara has a pet dolphin.`
 
 ```js
-assert(!petRegex.test('Kara has a pet dolphin.'));
+assert(!petRegex.test("Kara has a pet dolphin."));
 ```
 
 Tu expresión regular `petRegex` debe devolver `true` para la cadena `Alice has a pet fish.`
 
 ```js
-assert(petRegex.test('Alice has a pet fish.'));
+assert(petRegex.test("Alice has a pet fish."));
 ```
 
 Tu expresión regular `petRegex` debe devolver `false` para la cadena `Jimmy has a pet computer.`
 
 ```js
-assert(!petRegex.test('Jimmy has a pet computer.'));
+assert(!petRegex.test("Jimmy has a pet computer."));
 ```
 
 # --seed--

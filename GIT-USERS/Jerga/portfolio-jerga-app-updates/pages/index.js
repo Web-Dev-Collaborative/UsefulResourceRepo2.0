@@ -1,6 +1,6 @@
-import React from 'react';
-import BaseLayout from '../components/layouts/BaseLayout';
-import { Container, Row, Col } from 'reactstrap';
+import React from "react";
+import BaseLayout from "../components/layouts/BaseLayout";
+import { Container, Row, Col } from "reactstrap";
 import Typed from "react-typed";
 
 const roles = ["Developer", "Tech Lover", "Team Player", "React JS", "Angular"];
@@ -24,7 +24,7 @@ class Index extends React.Component {
                           Have a look at my portfolio and job history.
                         </div>
                       </div>
-                      <img className="image" src="/images/section-1.png"/>
+                      <img className="image" src="/images/section-1.png" />
                       <div className="shadow-custom">
                         <div className="shadow-inner"> </div>
                       </div>
@@ -35,8 +35,9 @@ class Index extends React.Component {
               <Col md="6" className="hero-welcome-wrapper">
                 <div className="hero-welcome-text">
                   <h1>
-                    Welcome to the portfolio website of Filip Jerga.
-                    Get informed, collaborate and discover projects I was working on through the years!
+                    Welcome to the portfolio website of Filip Jerga. Get
+                    informed, collaborate and discover projects I was working on
+                    through the years!
                   </h1>
                 </div>
                 <Typed
@@ -51,16 +52,14 @@ class Index extends React.Component {
                   cursorChar="|"
                 />
                 <div className="hero-welcome-bio">
-                  <h1>
-                    Let's take a look on my work.
-                  </h1>
+                  <h1>Let's take a look on my work.</h1>
                 </div>
               </Col>
             </Row>
           </Container>
         </div>
       </BaseLayout>
-    )
+    );
   }
 }
 

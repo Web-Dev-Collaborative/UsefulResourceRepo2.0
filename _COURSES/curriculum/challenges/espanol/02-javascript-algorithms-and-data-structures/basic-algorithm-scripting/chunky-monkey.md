@@ -15,9 +15,9 @@ Escribe una función que divida un arreglo (primer argumento) en grupos de la lo
 `chunkArrayInGroups(["a", "b", "c", "d"], 2)` debe devolver `[["a", "b"], ["c", "d"]]`.
 
 ```js
-assert.deepEqual(chunkArrayInGroups(['a', 'b', 'c', 'd'], 2), [
-  ['a', 'b'],
-  ['c', 'd']
+assert.deepEqual(chunkArrayInGroups(["a", "b", "c", "d"], 2), [
+  ["a", "b"],
+  ["c", "d"],
 ]);
 ```
 
@@ -26,7 +26,7 @@ assert.deepEqual(chunkArrayInGroups(['a', 'b', 'c', 'd'], 2), [
 ```js
 assert.deepEqual(chunkArrayInGroups([0, 1, 2, 3, 4, 5], 3), [
   [0, 1, 2],
-  [3, 4, 5]
+  [3, 4, 5],
 ]);
 ```
 
@@ -36,7 +36,7 @@ assert.deepEqual(chunkArrayInGroups([0, 1, 2, 3, 4, 5], 3), [
 assert.deepEqual(chunkArrayInGroups([0, 1, 2, 3, 4, 5], 2), [
   [0, 1],
   [2, 3],
-  [4, 5]
+  [4, 5],
 ]);
 ```
 
@@ -45,7 +45,7 @@ assert.deepEqual(chunkArrayInGroups([0, 1, 2, 3, 4, 5], 2), [
 ```js
 assert.deepEqual(chunkArrayInGroups([0, 1, 2, 3, 4, 5], 4), [
   [0, 1, 2, 3],
-  [4, 5]
+  [4, 5],
 ]);
 ```
 
@@ -55,7 +55,7 @@ assert.deepEqual(chunkArrayInGroups([0, 1, 2, 3, 4, 5], 4), [
 assert.deepEqual(chunkArrayInGroups([0, 1, 2, 3, 4, 5, 6], 3), [
   [0, 1, 2],
   [3, 4, 5],
-  [6]
+  [6],
 ]);
 ```
 
@@ -65,7 +65,7 @@ assert.deepEqual(chunkArrayInGroups([0, 1, 2, 3, 4, 5, 6], 3), [
 assert.deepEqual(chunkArrayInGroups([0, 1, 2, 3, 4, 5, 6, 7, 8], 4), [
   [0, 1, 2, 3],
   [4, 5, 6, 7],
-  [8]
+  [8],
 ]);
 ```
 
@@ -77,7 +77,7 @@ assert.deepEqual(chunkArrayInGroups([0, 1, 2, 3, 4, 5, 6, 7, 8], 2), [
   [2, 3],
   [4, 5],
   [6, 7],
-  [8]
+  [8],
 ]);
 ```
 

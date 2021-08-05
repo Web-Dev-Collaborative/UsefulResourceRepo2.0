@@ -17,7 +17,7 @@ Por ejemplo, hay ligeras diferencias en inglés americano y británico y puedes 
 ```js
 let american = "color";
 let british = "colour";
-let rainbowRegex= /colou?r/;
+let rainbowRegex = /colou?r/;
 rainbowRegex.test(american);
 rainbowRegex.test(british);
 ```
@@ -41,21 +41,21 @@ Tu expresión regular debe coincidir con la cadena `favorite`
 
 ```js
 favRegex.lastIndex = 0;
-assert(favRegex.test('favorite'));
+assert(favRegex.test("favorite"));
 ```
 
 Tu expresión regular debe coincidir con la cadena `favourite`
 
 ```js
 favRegex.lastIndex = 0;
-assert(favRegex.test('favourite'));
+assert(favRegex.test("favourite"));
 ```
 
 Tu expresión regular no debe coincidir con la cadena `fav`
 
 ```js
 favRegex.lastIndex = 0;
-assert(!favRegex.test('fav'));
+assert(!favRegex.test("fav"));
 ```
 
 # --seed--

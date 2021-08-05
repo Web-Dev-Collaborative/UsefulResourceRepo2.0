@@ -17,7 +17,7 @@ dashedName: add-id-attributes-to-bootstrap-elements
 記住，可以這樣給一個元素設置 id：
 
 ```html
-<div class="well" id="center-well">
+<div class="well" id="center-well"></div>
 ```
 
 給左邊的塊設置 id 爲 `left-well`。 給右邊的塊設置 id 爲 `right-well`。
@@ -28,8 +28,8 @@ dashedName: add-id-attributes-to-bootstrap-elements
 
 ```js
 assert(
-  $('.col-xs-6').children('#left-well') &&
-    $('.col-xs-6').children('#left-well').length > 0
+  $(".col-xs-6").children("#left-well") &&
+    $(".col-xs-6").children("#left-well").length > 0
 );
 ```
 
@@ -37,8 +37,8 @@ assert(
 
 ```js
 assert(
-  $('.col-xs-6').children('#right-well') &&
-    $('.col-xs-6').children('#right-well').length > 0
+  $(".col-xs-6").children("#right-well") &&
+    $(".col-xs-6").children("#right-well").length > 0
 );
 ```
 

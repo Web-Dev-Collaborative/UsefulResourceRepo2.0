@@ -59,9 +59,7 @@ export interface HttpResponseBody {
  *
  * @param millis Number of milliseconds to wait before rejecting.
  */
-function failAfter(
-  millis: number
-): {
+function failAfter(millis: number): {
   timer: number | NodeJS.Timeout;
   promise: Promise<never>;
 } {

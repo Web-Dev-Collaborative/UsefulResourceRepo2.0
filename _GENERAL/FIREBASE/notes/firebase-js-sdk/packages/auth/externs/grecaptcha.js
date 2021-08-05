@@ -20,14 +20,12 @@
  * @externs
  */
 
-
 /**
  * The namespace for reCaptcha V2.
  *
  * https://developers.google.com/recaptcha/docs/display#js_api
  */
 var grecaptcha = {};
-
 
 /**
  * Creates a new instance of the recaptcha client.
@@ -37,8 +35,7 @@ var grecaptcha = {};
  * @param {!Object} params Parameters for the recaptcha client.
  * @return {number} The client id.
  */
-grecaptcha.render = function(elementOrId, params) {};
-
+grecaptcha.render = function (elementOrId, params) {};
 
 /**
  * Resets a client with the given id.  If an id is not provided, resets the
@@ -47,8 +44,7 @@ grecaptcha.render = function(elementOrId, params) {};
  * @param {number=} opt_id The id of the recaptcha client.
  * @param {?Object=} opt_params Parameters for the recaptcha client.
  */
-grecaptcha.reset = function(opt_id, opt_params) {};
-
+grecaptcha.reset = function (opt_id, opt_params) {};
 
 /**
  * Gets the response for the client with the given id.  If an id is not
@@ -57,12 +53,11 @@ grecaptcha.reset = function(opt_id, opt_params) {};
  * @param {number=} opt_id The id of the recaptcha client.
  * @return {string}
  */
-grecaptcha.getResponse = function(opt_id) {};
-
+grecaptcha.getResponse = function (opt_id) {};
 
 /**
  * Programmatically triggers the invisible reCAPTCHA.
  *
  * @param {number=} opt_id The id of the recaptcha client.
  */
-grecaptcha.execute = function(opt_id) {};
+grecaptcha.execute = function (opt_id) {};

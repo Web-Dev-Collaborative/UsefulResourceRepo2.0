@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244d5
 title: 大於或等於運算符
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c6KBqtV'
+videoUrl: "https://scrimba.com/c/c6KBqtV"
 forumTopicId: 16785
 dashedName: comparison-with-the-greater-than-or-equal-to-operator
 ---
@@ -16,10 +16,10 @@ dashedName: comparison-with-the-greater-than-or-equal-to-operator
 **例如：**
 
 ```js
-6   >=  6
-7   >= '3'
-2   >=  3
-'7' >=  9
+6 >= 6;
+7 >= "3";
+2 >= 3;
+"7" >= 9;
 ```
 
 按順序，這些表達式會返回 `true`、`true`、`false` 和 `false`。
@@ -33,43 +33,43 @@ dashedName: comparison-with-the-greater-than-or-equal-to-operator
 `testGreaterOrEqual(0)` 應該返回字符串 `Less than 10`。
 
 ```js
-assert(testGreaterOrEqual(0) === 'Less than 10');
+assert(testGreaterOrEqual(0) === "Less than 10");
 ```
 
 `testGreaterOrEqual(9)` 應該返回字符串 `Less than 10`。
 
 ```js
-assert(testGreaterOrEqual(9) === 'Less than 10');
+assert(testGreaterOrEqual(9) === "Less than 10");
 ```
 
 `testGreaterOrEqual(10)` 應該返回字符串 `10 or Over`。
 
 ```js
-assert(testGreaterOrEqual(10) === '10 or Over');
+assert(testGreaterOrEqual(10) === "10 or Over");
 ```
 
 `testGreaterOrEqual(11)` 應該返回字符串 `10 or Over`。
 
 ```js
-assert(testGreaterOrEqual(11) === '10 or Over');
+assert(testGreaterOrEqual(11) === "10 or Over");
 ```
 
 `testGreaterOrEqual(19)` 應該返回字符串 `10 or Over`。
 
 ```js
-assert(testGreaterOrEqual(19) === '10 or Over');
+assert(testGreaterOrEqual(19) === "10 or Over");
 ```
 
 `testGreaterOrEqual(100)` 應該返回字符串 `20 or Over`。
 
 ```js
-assert(testGreaterOrEqual(100) === '20 or Over');
+assert(testGreaterOrEqual(100) === "20 or Over");
 ```
 
 `testGreaterOrEqual(21)` 應該返回字符串 `20 or Over`。
 
 ```js
-assert(testGreaterOrEqual(21) === '20 or Over');
+assert(testGreaterOrEqual(21) === "20 or Over");
 ```
 
 應該使用 `>=` 運算符至少兩次。
@@ -84,11 +84,13 @@ assert(code.match(/val\s*>=\s*('|")*\d+('|")*/g).length > 1);
 
 ```js
 function testGreaterOrEqual(val) {
-  if (val) {  // Change this line
+  if (val) {
+    // Change this line
     return "20 or Over";
   }
 
-  if (val) {  // Change this line
+  if (val) {
+    // Change this line
     return "10 or Over";
   }
 
@@ -102,11 +104,13 @@ testGreaterOrEqual(10);
 
 ```js
 function testGreaterOrEqual(val) {
-  if (val >= 20) {  // Change this line
+  if (val >= 20) {
+    // Change this line
     return "20 or Over";
   }
 
-  if (val >= 10) {  // Change this line
+  if (val >= 10) {
+    // Change this line
     return "10 or Over";
   }
 

@@ -11,7 +11,7 @@ dashedName: use-an-array-to-store-a-collection-of-data
 以下是最简单的数组（Array）示例： 这是一个一维数组（<dfn>one-dimensional array</dfn>），它只有一层，或者说它里面没有包含其它数组。 可以观察到，这个数组中只包含了布尔值（<dfn>booleans</dfn>）、字符串（<dfn>strings</dfn>）、数字（<dfn>numbers</dfn>）以及 JavaScript 中的其他数据类型：
 
 ```js
-let simpleArray = ['one', 2, 'three', true, false, undefined, null];
+let simpleArray = ["one", 2, "three", true, false, undefined, null];
 console.log(simpleArray.length);
 ```
 
@@ -24,23 +24,23 @@ let complexArray = [
   [
     {
       one: 1,
-      two: 2
+      two: 2,
     },
     {
       three: 3,
-      four: 4
-    }
+      four: 4,
+    },
   ],
   [
     {
       a: "a",
-      b: "b"
+      b: "b",
     },
     {
       c: "c",
-      d: "d"
-    }
-  ]
+      d: "d",
+    },
+  ],
 ];
 ```
 
@@ -65,19 +65,19 @@ assert.isAtLeast(yourArray.length, 5);
 `yourArray` 应包含至少一个 `boolean`。
 
 ```js
-assert(yourArray.filter((el) => typeof el === 'boolean').length >= 1);
+assert(yourArray.filter((el) => typeof el === "boolean").length >= 1);
 ```
 
 `yourArray` 应包含至少一个 `number`。
 
 ```js
-assert(yourArray.filter((el) => typeof el === 'number').length >= 1);
+assert(yourArray.filter((el) => typeof el === "number").length >= 1);
 ```
 
 `yourArray` 应包含至少一个 `string`。
 
 ```js
-assert(yourArray.filter((el) => typeof el === 'string').length >= 1);
+assert(yourArray.filter((el) => typeof el === "string").length >= 1);
 ```
 
 # --seed--
@@ -91,5 +91,5 @@ let yourArray; // Change this line
 # --solutions--
 
 ```js
-let yourArray = ['a string', 100, true, ['one', 2], 'another string'];
+let yourArray = ["a string", 100, true, ["one", 2], "another string"];
 ```

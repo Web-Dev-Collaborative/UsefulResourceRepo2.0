@@ -1,19 +1,27 @@
-'use strict';
+"use strict";
 
-const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const EmberApp = require("ember-cli/lib/broccoli/ember-app");
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     sassOptions: {
-        extension: 'sass'
-      }
+      extension: "sass",
+    },
   });
 
-  app.import('bower_components/bootstrap/dist/css/bootstrap.css', { destDir: 'assets' });
-  app.import('bower_components/bootstrap/dist/css/bootstrap.css.map', { destDir: 'assets' });
-  app.import('bower_components/tether/dist/js/tether.js', { destDir: 'assets' });
-  app.import('bower_components/jquery/dist/jquery.js', { destDir: 'assets' });
-  app.import('bower_components/bootstrap/dist/js/bootstrap.js', { destDir: 'assets' });
+  app.import("bower_components/bootstrap/dist/css/bootstrap.css", {
+    destDir: "assets",
+  });
+  app.import("bower_components/bootstrap/dist/css/bootstrap.css.map", {
+    destDir: "assets",
+  });
+  app.import("bower_components/tether/dist/js/tether.js", {
+    destDir: "assets",
+  });
+  app.import("bower_components/jquery/dist/jquery.js", { destDir: "assets" });
+  app.import("bower_components/bootstrap/dist/js/bootstrap.js", {
+    destDir: "assets",
+  });
   // app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.eot', { destDir: 'fonts' });
   // app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.svg', { destDir: 'fonts' });
   // app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf', { destDir: 'fonts' });

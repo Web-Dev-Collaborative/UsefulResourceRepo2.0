@@ -23,79 +23,79 @@ También pasaremos cadenas con símbolos especiales, como `2A3*3a2`, `2A3 3a2` y
 `palindrome("eye")` debe devolver un booleano.
 
 ```js
-assert(typeof palindrome('eye') === 'boolean');
+assert(typeof palindrome("eye") === "boolean");
 ```
 
 `palindrome("eye")` debe devolver `true`.
 
 ```js
-assert(palindrome('eye') === true);
+assert(palindrome("eye") === true);
 ```
 
 `palindrome("_eye")` debe devolver `true`.
 
 ```js
-assert(palindrome('_eye') === true);
+assert(palindrome("_eye") === true);
 ```
 
 `palindrome("race car")` debe devolver `true`.
 
 ```js
-assert(palindrome('race car') === true);
+assert(palindrome("race car") === true);
 ```
 
 `palindrome("not a palindrome")` debe devolver `false`.
 
 ```js
-assert(palindrome('not a palindrome') === false);
+assert(palindrome("not a palindrome") === false);
 ```
 
 `palindrome("A man, a plan, a canal. Panama")` debe devolver `true`.
 
 ```js
-assert(palindrome('A man, a plan, a canal. Panama') === true);
+assert(palindrome("A man, a plan, a canal. Panama") === true);
 ```
 
 `palindrome("never odd or even")` debe devolver `true`.
 
 ```js
-assert(palindrome('never odd or even') === true);
+assert(palindrome("never odd or even") === true);
 ```
 
 `palindrome("nope")` debe devolver `false`.
 
 ```js
-assert(palindrome('nope') === false);
+assert(palindrome("nope") === false);
 ```
 
 `palindrome("almostomla")` debe devolver `false`.
 
 ```js
-assert(palindrome('almostomla') === false);
+assert(palindrome("almostomla") === false);
 ```
 
 `palindrome("My age is 0, 0 si ega ym.")` debe devolver `true`.
 
 ```js
-assert(palindrome('My age is 0, 0 si ega ym.') === true);
+assert(palindrome("My age is 0, 0 si ega ym.") === true);
 ```
 
 `palindrome("1 eye for of 1 eye.")` debe devolver `false`.
 
 ```js
-assert(palindrome('1 eye for of 1 eye.') === false);
+assert(palindrome("1 eye for of 1 eye.") === false);
 ```
 
 `palindrome("0_0 (: /-\ :) 0-0")` debe devolver `true`.
 
 ```js
-assert(palindrome('0_0 (: /- :) 0-0') === true);
+assert(palindrome("0_0 (: /- :) 0-0") === true);
 ```
 
 `palindrome("five|\_/|four")` debe devolver `false`.
 
 ```js
-assert(palindrome('five|_/|four') === false);
+assert(palindrome("five|_/|four") === false);
 ```
 
 # --seed--
@@ -107,8 +107,6 @@ function palindrome(str) {
   return true;
 }
 
-
-
 palindrome("eye");
 ```
 
@@ -116,9 +114,12 @@ palindrome("eye");
 
 ```js
 function palindrome(str) {
-  var string = str.toLowerCase().split(/[^A-Za-z0-9]/gi).join('');
-  var aux = string.split('');
-  if (aux.join('') === aux.reverse().join('')){
+  var string = str
+    .toLowerCase()
+    .split(/[^A-Za-z0-9]/gi)
+    .join("");
+  var aux = string.split("");
+  if (aux.join("") === aux.reverse().join("")) {
     return true;
   }
 

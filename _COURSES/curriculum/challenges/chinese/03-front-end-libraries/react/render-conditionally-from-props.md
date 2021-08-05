@@ -16,7 +16,7 @@ dashedName: render-conditionally-from-props
 
 代码编辑器有两个部分为你定义的组件：一个名为 `GameOfChance` 的父组件和一个名为 `Results` 的子组件。 它们被用来创建一个简单的游戏，用户按下按钮来看它们是赢还是输。
 
-首先，需要一个简单的表达式，每次运行时都会随机返回一个不同的值。 可以使用 `Math.random()`。 每次调用此方法时，此方法返回 `0`（包括）和 `1`（不包括）之间的值。 因此，对于50/50的几率，请在表达式中使用 `Math.random() >= .5`。 从统计学上讲，这个表达式有 50％ 的几率返回 `true`，另外 50％ 返回 `false`。 在第 render 方法里，用此表达式替换 `null` 以完成变量声明。
+首先，需要一个简单的表达式，每次运行时都会随机返回一个不同的值。 可以使用 `Math.random()`。 每次调用此方法时，此方法返回 `0`（包括）和 `1`（不包括）之间的值。 因此，对于 50/50 的几率，请在表达式中使用 `Math.random() >= .5`。 从统计学上讲，这个表达式有 50％ 的几率返回 `true`，另外 50％ 返回 `false`。 在第 render 方法里，用此表达式替换 `null` 以完成变量声明。
 
 现在了一个表达式，可以使用该表达式在代码中做出随机决策。 接下来，需要实现此功能。 将 `Results` 组件渲染为 `GameOfChance` 的子 组件，并将 `expression` 作为名为 `fiftyFifty` 的 prop 传入 。 在 `Results` 组件中，编写一个三元表达式来渲染 `h1` 元素的文本。`GameOfChance` 传来的 prop `fiftyFifty` 来决定渲染文本 `You Win!` 还是 `You Lose!`。 最后，确保 `handleClick()` 方法正确计算每个回合，以便用户知道他们玩过多少次。 这也可以让用户知道组件实际上已经更新，以防他们连续赢两次或输两次时自己不知道。
 
@@ -26,7 +26,7 @@ dashedName: render-conditionally-from-props
 
 ```js
 assert.strictEqual(
-  Enzyme.mount(React.createElement(GameOfChance)).find('GameOfChance').length,
+  Enzyme.mount(React.createElement(GameOfChance)).find("GameOfChance").length,
   1
 );
 ```
@@ -35,7 +35,7 @@ assert.strictEqual(
 
 ```js
 assert.strictEqual(
-  Enzyme.mount(React.createElement(GameOfChance)).find('button').length,
+  Enzyme.mount(React.createElement(GameOfChance)).find("button").length,
   1
 );
 ```
@@ -44,12 +44,12 @@ assert.strictEqual(
 
 ```js
 assert(
-  Enzyme.mount(React.createElement(GameOfChance)).find('Results').length ===
+  Enzyme.mount(React.createElement(GameOfChance)).find("Results").length ===
     1 &&
     Enzyme.mount(React.createElement(GameOfChance))
-      .find('Results')
+      .find("Results")
       .props()
-      .hasOwnProperty('fiftyFifty') === true
+      .hasOwnProperty("fiftyFifty") === true
 );
 ```
 
@@ -66,8 +66,8 @@ assert.strictEqual(
 
 ```js
 assert.strictEqual(
-  Enzyme.mount(React.createElement(GameOfChance)).find('p').text(),
-  'Turn: 1'
+  Enzyme.mount(React.createElement(GameOfChance)).find("p").text(),
+  "Turn: 1"
 );
 ```
 
@@ -77,11 +77,11 @@ assert.strictEqual(
 (() => {
   const comp = Enzyme.mount(React.createElement(GameOfChance));
   const simulate = () => {
-    comp.find('button').simulate('click');
+    comp.find("button").simulate("click");
   };
   const result = () => ({
-    count: comp.state('counter'),
-    text: comp.find('p').text()
+    count: comp.state("counter"),
+    text: comp.find("p").text(),
   });
   const _1 = () => {
     simulate();
@@ -110,15 +110,15 @@ assert.strictEqual(
   const _5_val = _5();
   assert(
     _1_val.count === 2 &&
-      _1_val.text === 'Turn: 2' &&
+      _1_val.text === "Turn: 2" &&
       _2_val.count === 3 &&
-      _2_val.text === 'Turn: 3' &&
+      _2_val.text === "Turn: 3" &&
       _3_val.count === 4 &&
-      _3_val.text === 'Turn: 4' &&
+      _3_val.text === "Turn: 4" &&
       _4_val.count === 5 &&
-      _4_val.text === 'Turn: 5' &&
+      _4_val.text === "Turn: 5" &&
       _5_val.count === 6 &&
-      _5_val.text === 'Turn: 6'
+      _5_val.text === "Turn: 6"
   );
 })();
 ```
@@ -129,11 +129,11 @@ assert.strictEqual(
 (() => {
   const comp = Enzyme.mount(React.createElement(GameOfChance));
   const simulate = () => {
-    comp.find('button').simulate('click');
+    comp.find("button").simulate("click");
   };
   const result = () => ({
-    h1: comp.find('h1').length,
-    text: comp.find('h1').text()
+    h1: comp.find("h1").length,
+    text: comp.find("h1").text(),
   });
   const _1 = result();
   const _2 = () => {
@@ -191,7 +191,7 @@ assert.strictEqual(
     _7_val.text,
     _8_val.text,
     _9_val.text,
-    _10_val.text
+    _10_val.text,
   ]);
   const __h1 = new Set([
     _1.h1,
@@ -203,7 +203,7 @@ assert.strictEqual(
     _7_val.h1,
     _8_val.h1,
     _9_val.h1,
-    _10_val.h1
+    _10_val.h1,
   ]);
   assert(__text.size === 2 && __h1.size === 1);
 })();
@@ -214,7 +214,7 @@ assert.strictEqual(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<GameOfChance />, document.getElementById('root'));
+ReactDOM.render(<GameOfChance />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -225,9 +225,13 @@ class Results extends React.Component {
     super(props);
   }
   render() {
-    {/* Change code below this line */}
+    {
+      /* Change code below this line */
+    }
     return <h1></h1>;
-    {/* Change code above this line */}
+    {
+      /* Change code above this line */
+    }
   }
 }
 
@@ -235,16 +239,16 @@ class GameOfChance extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      counter: 1
+      counter: 1,
     };
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       // Complete the return statement:
       return {
-        counter: prevState
-      }
+        counter: prevState,
+      };
     });
   }
   render() {
@@ -255,7 +259,7 @@ class GameOfChance extends React.Component {
         {/* Change code below this line */}
 
         {/* Change code above this line */}
-        <p>{'Turn: ' + this.state.counter}</p>
+        <p>{"Turn: " + this.state.counter}</p>
       </div>
     );
   }
@@ -270,7 +274,7 @@ class Results extends React.Component {
     super(props);
   }
   render() {
-    return <h1>{this.props.fiftyFifty ? 'You Win!' : 'You Lose!'}</h1>;
+    return <h1>{this.props.fiftyFifty ? "You Win!" : "You Lose!"}</h1>;
   }
 }
 
@@ -278,15 +282,15 @@ class GameOfChance extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      counter: 1
+      counter: 1,
     };
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return {
-        counter: prevState.counter + 1
-      }
+        counter: prevState.counter + 1,
+      };
     });
   }
   render() {
@@ -295,7 +299,7 @@ class GameOfChance extends React.Component {
       <div>
         <button onClick={this.handleClick}>Play Again</button>
         <Results fiftyFifty={expression} />
-        <p>{'Turn: ' + this.state.counter}</p>
+        <p>{"Turn: " + this.state.counter}</p>
       </div>
     );
   }

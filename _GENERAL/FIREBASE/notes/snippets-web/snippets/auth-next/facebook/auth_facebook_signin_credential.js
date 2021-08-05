@@ -4,13 +4,17 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START auth_facebook_signin_credential_modular]
-import { getAuth, signInWithCredential, FacebookAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  signInWithCredential,
+  FacebookAuthProvider,
+} from "firebase/auth";
 
 // Sign in with the credential from the Facebook user.
 const auth = getAuth();
 signInWithCredential(auth, credential)
   .then((result) => {
-    // Signed in 
+    // Signed in
     const credential = FacebookAuthProvider.credentialFromResult(result);
   })
   .catch((error) => {

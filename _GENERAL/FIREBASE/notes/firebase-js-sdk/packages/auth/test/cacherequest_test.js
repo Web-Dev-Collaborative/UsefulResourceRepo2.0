@@ -29,7 +29,6 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.CacheRequestTest');
 
-
 var cacheRequest;
 var MyClass;
 var instance;
@@ -37,19 +36,19 @@ var clock;
 
 function setUp() {
   // Test class.
-  MyClass = function() {
+  MyClass = function () {
     this.counter = 0;
     this.err = 0;
   };
   // Method that always resolves with an incremented counter.
-  MyClass.prototype.func = function(par1, par2) {
+  MyClass.prototype.func = function (par1, par2) {
     assertEquals(1, par1);
     assertEquals(2, par2);
     this.counter++;
     return goog.Promise.resolve(this.counter);
   };
   // Method that always rejects with an incremented error message.
-  MyClass.prototype.func2 = function(par1, par2) {
+  MyClass.prototype.func2 = function (par1, par2) {
     assertEquals(1, par1);
     assertEquals(2, par2);
     this.err++;
@@ -59,11 +58,9 @@ function setUp() {
   cacheRequest = new fireauth.CacheRequest();
 }
 
-
 function tearDown() {
   cacheRequest = null;
 }
-
 
 /**
  * Test cache request when the cached request resolves successfully.
@@ -72,36 +69,42 @@ function tearDown() {
 function cacheRequestWithoutErrors() {
   clock = new goog.testing.MockClock(true);
   cacheRequest.cache(instance.func, instance, [1, 2], 60 * 1000);
-  return cacheRequest.run().then(function(result) {
-    assertEquals(result, 1);
-    // This response should be returned from cache.
-    return cacheRequest.run();
-  }).then(function(result) {
-    assertEquals(result, 1);
-    clock.tick(60 * 1000);
-    // This should bust the cache and send a request.
-    return cacheRequest.run();
-  }).then(function(result) {
-    assertEquals(result, 2);
-    clock.tick(30 * 1000);
-    // This response should be returned from cache.
-    return cacheRequest.run();
-  }).then(function(result) {
-    assertEquals(result, 2);
-    clock.tick(30 * 1000);
-    // This should bust the cache and send a request.
-    return cacheRequest.run();
-  }).then(function(result) {
-    assertEquals(result, 3);
-    cacheRequest.purge();
-    // This should bust the cache and send a request.
-    return cacheRequest.run();
-  }).then(function(result) {
-    assertEquals(result, 4);
-    goog.dispose(clock);
-  });
+  return cacheRequest
+    .run()
+    .then(function (result) {
+      assertEquals(result, 1);
+      // This response should be returned from cache.
+      return cacheRequest.run();
+    })
+    .then(function (result) {
+      assertEquals(result, 1);
+      clock.tick(60 * 1000);
+      // This should bust the cache and send a request.
+      return cacheRequest.run();
+    })
+    .then(function (result) {
+      assertEquals(result, 2);
+      clock.tick(30 * 1000);
+      // This response should be returned from cache.
+      return cacheRequest.run();
+    })
+    .then(function (result) {
+      assertEquals(result, 2);
+      clock.tick(30 * 1000);
+      // This should bust the cache and send a request.
+      return cacheRequest.run();
+    })
+    .then(function (result) {
+      assertEquals(result, 3);
+      cacheRequest.purge();
+      // This should bust the cache and send a request.
+      return cacheRequest.run();
+    })
+    .then(function (result) {
+      assertEquals(result, 4);
+      goog.dispose(clock);
+    });
 }
-
 
 /**
  * Test cache request when the cached request rejects with an error and errors
@@ -111,21 +114,24 @@ function cacheRequestWithoutErrors() {
 function cacheRequestWithErrorsNotCached() {
   clock = new goog.testing.MockClock(true);
   cacheRequest.cache(instance.func2, instance, [1, 2], 60 * 1000);
-  return cacheRequest.run().thenCatch(function(error) {
-    assertEquals(parseInt(error.message, 10), 1);
-    // This response should not be returned from cache.
-    return cacheRequest.run();
-  }).thenCatch(function(error) {
-    assertEquals(parseInt(error.message, 10), 2);
-    cacheRequest.purge();
-    // This response should not be returned from cache.
-    return cacheRequest.run();
-  }).thenCatch(function(error) {
-    assertEquals(parseInt(error.message, 10), 3);
-    goog.dispose(clock);
-  });
+  return cacheRequest
+    .run()
+    .thenCatch(function (error) {
+      assertEquals(parseInt(error.message, 10), 1);
+      // This response should not be returned from cache.
+      return cacheRequest.run();
+    })
+    .thenCatch(function (error) {
+      assertEquals(parseInt(error.message, 10), 2);
+      cacheRequest.purge();
+      // This response should not be returned from cache.
+      return cacheRequest.run();
+    })
+    .thenCatch(function (error) {
+      assertEquals(parseInt(error.message, 10), 3);
+      goog.dispose(clock);
+    });
 }
-
 
 /**
  * Test cache request when the cached request rejects with an error and errors
@@ -135,36 +141,42 @@ function cacheRequestWithErrorsNotCached() {
 function cacheRequestWithErrorsCached() {
   clock = new goog.testing.MockClock(true);
   cacheRequest.cache(instance.func2, instance, [1, 2], 60 * 1000, true);
-  return cacheRequest.run().thenCatch(function(error) {
-    assertEquals(parseInt(error.message, 10), 1);
-    // This response should be returned from cache.
-    return cacheRequest.run();
-  }).thenCatch(function(error) {
-    assertEquals(parseInt(error.message, 10), 1);
-    clock.tick(60 * 1000);
-    // This should bust the cache and send a request.
-    return cacheRequest.run();
-  }).thenCatch(function(error) {
-    assertEquals(parseInt(error.message, 10), 2);
-    clock.tick(30 * 1000);
-    // This response should be returned from cache.
-    return cacheRequest.run();
-  }).thenCatch(function(error) {
-    assertEquals(parseInt(error.message, 10), 2);
-    clock.tick(30 * 1000);
-    // This should bust the cache and send a request.
-    return cacheRequest.run();
-  }).thenCatch(function(error) {
-    assertEquals(parseInt(error.message, 10), 3);
-    cacheRequest.purge();
-    // This should bust the cache and send a request.
-    return cacheRequest.run();
-  }).thenCatch(function(error) {
-    assertEquals(parseInt(error.message, 10), 4);
-    goog.dispose(clock);
-  });
+  return cacheRequest
+    .run()
+    .thenCatch(function (error) {
+      assertEquals(parseInt(error.message, 10), 1);
+      // This response should be returned from cache.
+      return cacheRequest.run();
+    })
+    .thenCatch(function (error) {
+      assertEquals(parseInt(error.message, 10), 1);
+      clock.tick(60 * 1000);
+      // This should bust the cache and send a request.
+      return cacheRequest.run();
+    })
+    .thenCatch(function (error) {
+      assertEquals(parseInt(error.message, 10), 2);
+      clock.tick(30 * 1000);
+      // This response should be returned from cache.
+      return cacheRequest.run();
+    })
+    .thenCatch(function (error) {
+      assertEquals(parseInt(error.message, 10), 2);
+      clock.tick(30 * 1000);
+      // This should bust the cache and send a request.
+      return cacheRequest.run();
+    })
+    .thenCatch(function (error) {
+      assertEquals(parseInt(error.message, 10), 3);
+      cacheRequest.purge();
+      // This should bust the cache and send a request.
+      return cacheRequest.run();
+    })
+    .thenCatch(function (error) {
+      assertEquals(parseInt(error.message, 10), 4);
+      goog.dispose(clock);
+    });
 }
-
 
 /**
  * Install the test to run and runs it.
@@ -175,7 +187,7 @@ function cacheRequestWithErrorsCached() {
 function installAndRunTest(id, func) {
   var testCase = new goog.testing.TestCase();
   testCase.addNewTest(id, func);
-  return testCase.runTestsReturningPromise().then(function(result) {
+  return testCase.runTestsReturningPromise().then(function (result) {
     assertTrue(result.complete);
     assertEquals(1, result.totalCount);
     assertEquals(1, result.runCount);
@@ -184,30 +196,32 @@ function installAndRunTest(id, func) {
   });
 }
 
-
 function testNoAvailableConfiguration() {
   try {
     cacheRequest.run();
     fail('Missing cache configuration should throw an error!');
-  } catch(e) {
+  } catch (e) {
     assertEquals('No available configuration cached!', e.message);
   }
 }
 
-
 function testCacheRequestWithoutErrors() {
   return installAndRunTest(
-      'cacheRequestWithoutErrors', cacheRequestWithoutErrors);
+    'cacheRequestWithoutErrors',
+    cacheRequestWithoutErrors
+  );
 }
-
 
 function testCacheRequestWithErrorsNotCached() {
   return installAndRunTest(
-      'cacheRequestWithErrorsNotCached', cacheRequestWithErrorsNotCached);
+    'cacheRequestWithErrorsNotCached',
+    cacheRequestWithErrorsNotCached
+  );
 }
-
 
 function testCacheRequestWithErrorsCached() {
   return installAndRunTest(
-      'cacheRequestWithErrorsCached', cacheRequestWithErrorsCached);
+    'cacheRequestWithErrorsCached',
+    cacheRequestWithErrorsCached
+  );
 }

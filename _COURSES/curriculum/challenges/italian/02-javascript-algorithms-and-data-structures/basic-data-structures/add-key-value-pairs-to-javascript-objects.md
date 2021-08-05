@@ -12,30 +12,30 @@ In linea di massima, gli oggetti sono solo collezioni di coppie <dfn>chiave-valo
 
 ```js
 const tekkenCharacter = {
-  player: 'Hwoarang',
-  fightingStyle: 'Tae Kwon Doe',
-  human: true
+  player: "Hwoarang",
+  fightingStyle: "Tae Kwon Doe",
+  human: true,
 };
 ```
 
 Il codice qui sopra definisce l'oggetto di un personaggio del videogioco Tekken, chiamato `tekkenCharacter`. Ha tre proprietà, ad ognuna delle quali corrisponde un valore specifico. Se desiderassi aggiungere una nuova proprietà, ad esempio "origin", potresti farlo assegnando `origin` all'oggetto:
 
 ```js
-tekkenCharacter.origin = 'South Korea';
+tekkenCharacter.origin = "South Korea";
 ```
 
 Questo usa la notazione a punti. Se tu osservi l'oggetto `tekkenCharacter`, esso ora includerà la proprietà `origin`. Hwoarang aveva anche dei caratteristici capelli arancioni. È possibile aggiungere questa proprietà con la notazione a parentesi scrivendo:
 
 ```js
-tekkenCharacter['hair color'] = 'dyed orange';
+tekkenCharacter["hair color"] = "dyed orange";
 ```
 
 La notazione a parentesi è obbligatoria se la proprietà ha uno spazio o se si vuole utilizzare una variabile per selezionare la proprietà. Nel caso precedente, la proprietà è racchiusa tra virgolette per indicarla come una stringa e verrà aggiunta esattamente come mostrato. Senza virgolette, sarà valutata come una variabile e il nome della proprietà sarà qualsiasi valore sia assegnato alla variabile. Ecco un esempio con una variabile:
 
 ```js
-const eyes = 'eye color';
+const eyes = "eye color";
 
-tekkenCharacter[eyes] = 'brown';
+tekkenCharacter[eyes] = "brown";
 ```
 
 Dopo aver aggiunto tutti gli esempi, l'oggetto apparirà così:
@@ -60,7 +60,7 @@ Dopo aver aggiunto tutti gli esempi, l'oggetto apparirà così:
 `foods` dovrebbe essere un oggetto.
 
 ```js
-assert(typeof foods === 'object');
+assert(typeof foods === "object");
 ```
 
 L'oggetto `foods` dovrebbe avere una chiave `bananas` con un valore di `13`.
@@ -99,7 +99,7 @@ assert(
 let foods = {
   apples: 25,
   oranges: 32,
-  plums: 28
+  plums: 28,
 };
 
 // Only change code below this line
@@ -115,10 +115,10 @@ console.log(foods);
 let foods = {
   apples: 25,
   oranges: 32,
-  plums: 28
+  plums: 28,
 };
 
-foods['bananas'] = 13;
-foods['grapes']  = 35;
-foods['strawberries'] = 27;
+foods["bananas"] = 13;
+foods["grapes"] = 35;
+foods["strawberries"] = 27;
 ```

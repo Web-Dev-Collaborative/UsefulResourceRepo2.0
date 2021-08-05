@@ -2,7 +2,7 @@
 id: 58c383d33e2e3259241f3076
 title: Usare i selettori degli attributi per stilizzare gli elementi
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cnpymfJ'
+videoUrl: "https://scrimba.com/c/cnpymfJ"
 forumTopicId: 301092
 dashedName: use-attribute-selectors-to-style-elements
 ---
@@ -16,7 +16,7 @@ Prendiamo di nuovo CatPhotoApp per fare pratica con i selettori CSS.
 Per questa sfida, userai il selettore di attributi `[attr=value]` per stilizzare le caselle di spunta in CatPhotoApp. Questo selettore trova e stilizza gli elementi con un valore di attributo specifico. Ad esempio, il codice seguente cambia i margini di tutti gli elementi con l'attributo `type` e un valore corrispondente di `radio`:
 
 ```css
-[type='radio'] {
+[type="radio"] {
   margin: 20px 0px 20px 0px;
 }
 ```
@@ -44,7 +44,7 @@ assert(
   (function () {
     var count = 0;
     $("[type='checkbox']").each(function () {
-      if ($(this).css('marginTop') === '10px') {
+      if ($(this).css("marginTop") === "10px") {
         count++;
       }
     });
@@ -60,7 +60,7 @@ assert(
   (function () {
     var count = 0;
     $("[type='checkbox']").each(function () {
-      if ($(this).css('marginBottom') === '15px') {
+      if ($(this).css("marginBottom") === "15px") {
         count++;
       }
     });
@@ -74,7 +74,11 @@ assert(
 ## --seed-contents--
 
 ```html
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link
+  href="https://fonts.googleapis.com/css?family=Lobster"
+  rel="stylesheet"
+  type="text/css"
+/>
 <style>
   .red-text {
     color: red;
@@ -109,7 +113,12 @@ assert(
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img class="smaller-image thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      class="smaller-image thick-green-border"
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div class="silver-background">
     <p>Things cats love:</p>
@@ -126,13 +135,16 @@ assert(
     </ol>
   </div>
 
-  <form action="https://freecatphotoapp.com/submit-cat-photo" id="cat-photo-form">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+  <form
+    action="https://freecatphotoapp.com/submit-cat-photo"
+    id="cat-photo-form"
+  >
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>
@@ -141,7 +153,11 @@ assert(
 # --solutions--
 
 ```html
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link
+  href="https://fonts.googleapis.com/css?family=Lobster"
+  rel="stylesheet"
+  type="text/css"
+/>
 <style>
   .red-text {
     color: red;
@@ -170,7 +186,7 @@ assert(
   .silver-background {
     background-color: silver;
   }
-  [type='checkbox'] {
+  [type="checkbox"] {
     margin-top: 10px;
     margin-bottom: 15px;
   }
@@ -180,7 +196,12 @@ assert(
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img class="smaller-image thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      class="smaller-image thick-green-border"
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div class="silver-background">
     <p>Things cats love:</p>
@@ -197,13 +218,16 @@ assert(
     </ol>
   </div>
 
-  <form action="https://freecatphotoapp.com/submit-cat-photo" id="cat-photo-form">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+  <form
+    action="https://freecatphotoapp.com/submit-cat-photo"
+    id="cat-photo-form"
+  >
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>

@@ -1,6 +1,6 @@
 ---
 id: 5900f4b91000cf542c50ffcb
-title: 'Problem 332: Spherical triangles'
+title: "Problem 332: Spherical triangles"
 challengeType: 5
 forumTopicId: 301990
 dashedName: problem-332-spherical-triangles
@@ -30,7 +30,6 @@ assert.strictEqual(euler332(), 2717.751525);
 
 ```js
 function euler332() {
-
   return true;
 }
 

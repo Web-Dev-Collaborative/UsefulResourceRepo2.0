@@ -36,7 +36,7 @@ Your `Set` class should have an `add` method.
 assert(
   (function () {
     var test = new Set();
-    return typeof test.add === 'function';
+    return typeof test.add === "function";
   })()
 );
 ```
@@ -47,11 +47,11 @@ Your `add` method should not add duplicate values.
 assert(
   (function () {
     var test = new Set();
-    test.add('a');
-    test.add('b');
-    test.add('a');
+    test.add("a");
+    test.add("b");
+    test.add("a");
     var vals = test.values();
-    return vals[0] === 'a' && vals[1] === 'b' && vals.length === 2;
+    return vals[0] === "a" && vals[1] === "b" && vals.length === 2;
   })()
 );
 ```
@@ -62,7 +62,7 @@ Your `add` method should return `true` when a value has been successfully added.
 assert(
   (function () {
     var test = new Set();
-    var result = test.add('a');
+    var result = test.add("a");
     return result != undefined && result === true;
   })()
 );
@@ -74,8 +74,8 @@ Your `add` method should return `false` when a duplicate value is added.
 assert(
   (function () {
     var test = new Set();
-    test.add('a');
-    var result = test.add('a');
+    test.add("a");
+    var result = test.add("a");
     return result != undefined && result === false;
   })()
 );
@@ -87,7 +87,7 @@ Your `Set` class should have a `remove` method.
 assert(
   (function () {
     var test = new Set();
-    return typeof test.remove === 'function';
+    return typeof test.remove === "function";
   })()
 );
 ```
@@ -98,12 +98,12 @@ Your `remove` method should only remove items that are present in the set.
 assert.deepEqual(
   (function () {
     var test = new Set();
-    test.add('a');
-    test.add('b');
-    test.remove('c');
+    test.add("a");
+    test.add("b");
+    test.remove("c");
     return test.values();
   })(),
-  ['a', 'b']
+  ["a", "b"]
 );
 ```
 
@@ -113,11 +113,11 @@ Your `remove` method should remove the given item from the set.
 assert(
   (function () {
     var test = new Set();
-    test.add('a');
-    test.add('b');
-    test.remove('a');
+    test.add("a");
+    test.add("b");
+    test.remove("a");
     var vals = test.values();
-    return vals[0] === 'b' && vals.length === 1;
+    return vals[0] === "b" && vals.length === 1;
   })()
 );
 ```
@@ -128,7 +128,7 @@ Your `Set` class should have a `size` method.
 assert(
   (function () {
     var test = new Set();
-    return typeof test.size === 'function';
+    return typeof test.size === "function";
   })()
 );
 ```
@@ -139,9 +139,9 @@ The `size` method should return the number of elements in the collection.
 assert(
   (function () {
     var test = new Set();
-    test.add('a');
-    test.add('b');
-    test.remove('a');
+    test.add("a");
+    test.add("b");
+    test.remove("a");
     return test.size() === 1;
   })()
 );

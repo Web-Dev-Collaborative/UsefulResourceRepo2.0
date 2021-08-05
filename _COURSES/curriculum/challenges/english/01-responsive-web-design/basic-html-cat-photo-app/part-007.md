@@ -16,7 +16,7 @@ Add an `img` element below the `p` element. At this point, no image will show up
 Your `img` element should have an opening tag. Opening tags have this syntax: `<elementName>`.
 
 ```js
-assert(document.querySelector('img'));
+assert(document.querySelector("img"));
 ```
 
 Your `img` element should not have a closing tag. Closing tags have a `/` just after the `<` character.
@@ -28,16 +28,16 @@ assert(!code.match(/<\/img\>/));
 You should only have one `img` element. Remove any extras.
 
 ```js
-assert(document.querySelectorAll('img').length === 1);
+assert(document.querySelectorAll("img").length === 1);
 ```
 
 Your `img` element should be below the `p` element. You have them in the wrong order.
 
 ```js
-const collection = [...document.querySelectorAll('p,img')].map(
+const collection = [...document.querySelectorAll("p,img")].map(
   (node) => node.nodeName
 );
-assert(collection.indexOf('P') < collection.indexOf('IMG'));
+assert(collection.indexOf("P") < collection.indexOf("IMG"));
 ```
 
 # --seed--
@@ -51,11 +51,10 @@ assert(collection.indexOf('P') < collection.indexOf('IMG'));
     <main>
       <h2>Cat Photos</h2>
       <!-- TODO: Add link to cat photos -->
---fcc-editable-region--
+      --fcc-editable-region--
       <p>Click here to view more cat photos.</p>
---fcc-editable-region--
+      --fcc-editable-region--
     </main>
   </body>
 </html>
 ```
-

@@ -6,9 +6,10 @@
       @blur="v.$touch()"
       type="text"
       placeholder="e.g. Amazing Course in Flutter!"
-      class="input is-large">
+      class="input is-large"
+    />
     <span class="icon is-small is-right">
-      {{remainingLength}}
+      {{ remainingLength }}
     </span>
   </div>
 </template>
@@ -17,50 +18,39 @@
 export default {
   data() {
     return {
-      currentValue: ''
-    }
+      currentValue: "",
+    };
   },
   props: {
     maxLength: {
       type: Number,
       default: 50,
-      required: false
+      required: false,
     },
     v: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     inputLength() {
-      return this.currentValue.length || 0
+      return this.currentValue.length || 0;
     },
     remainingLength() {
       if (this.inputLength > 0 && this.inputLength < this.maxLength) {
-        return this.maxLength - this.inputLength
+        return this.maxLength - this.inputLength;
       } else if (this.inputLength === 0) {
-        return this.maxLength
+        return this.maxLength;
       } else {
-        return 0
+        return 0;
       }
-    }
+    },
   },
   methods: {
     emitInputValue($event) {
-      this.currentValue = $event.target.value
-      this.$emit('input', this.currentValue)
-    }
-  }
-}
+      this.currentValue = $event.target.value;
+      this.$emit("input", this.currentValue);
+    },
+  },
+};
 </script>
-
-
-
-
-
-
-
-
-
-
-

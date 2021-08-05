@@ -2,7 +2,7 @@
 id: 587d78ab367417b2b2512af2
 title: 使用 flex-direction 屬性創建一個行
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cBEkbfJ'
+videoUrl: "https://scrimba.com/p/pVaDAv/cBEkbfJ"
 forumTopicId: 301110
 dashedName: use-the-flex-direction-property-to-make-a-row
 ---
@@ -24,7 +24,7 @@ dashedName: use-the-flex-direction-property-to-make-a-row
 `#box-container` 元素應有 `flex-direction` 屬性，其屬性值應爲 `row-reverse`。
 
 ```js
-assert($('#box-container').css('flex-direction') == 'row-reverse');
+assert($("#box-container").css("flex-direction") == "row-reverse");
 ```
 
 # --seed--
@@ -36,7 +36,6 @@ assert($('#box-container').css('flex-direction') == 'row-reverse');
   #box-container {
     display: flex;
     height: 500px;
-
   }
   #box-1 {
     background-color: dodgerblue;

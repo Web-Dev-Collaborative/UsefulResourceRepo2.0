@@ -3,7 +3,9 @@
     <div class="course-create-headerText">
       What category best fits the knowledge you'll share?
     </div>
-    <h2 class="course-create-subtitle">If you're not sure about the right category, you can change it later.</h2>
+    <h2 class="course-create-subtitle">
+      If you're not sure about the right category, you can change it later.
+    </h2>
     <form class="course-create-form">
       <div class="course-create-form-group">
         <div class="course-create-form-field">
@@ -11,13 +13,15 @@
             <select
               v-model="form.category"
               @blur="$v.form.category.$touch()"
-              @change="emitFormData">
+              @change="emitFormData"
+            >
               <option value="default">Select Category</option>
               <option
                 v-for="category in categories"
                 :key="category._id"
-                :value="category._id">
-                {{category.name}}
+                :value="category._id"
+              >
+                {{ category.name }}
               </option>
             </select>
           </div>
@@ -32,50 +36,40 @@
   </div>
 </template>
 <script>
-import { required } from 'vuelidate/lib/validators'
+import { required } from "vuelidate/lib/validators";
 export default {
   data() {
     return {
       form: {
-        category: 'default'
-      }
-    }
+        category: "default",
+      },
+    };
   },
   validations: {
     form: {
       category: {
-        required
-      }
-    }
+        required,
+      },
+    },
   },
   computed: {
     isValid() {
-      return !this.$v.$invalid && this.form.category !== 'default'
+      return !this.$v.$invalid && this.form.category !== "default";
     },
     categories() {
-      return this.$store.state.category.items
-    }
+      return this.$store.state.category.items;
+    },
   },
   methods: {
     emitFormData() {
-      this.$v.form.$touch()
-      this.$emit('stepUpdated', {data: this.form, isValid: this.isValid})
-    }
-  }
-}
+      this.$v.form.$touch();
+      this.$emit("stepUpdated", { data: this.form, isValid: this.isValid });
+    },
+  },
+};
 </script>
 <style scoped>
-  .help.is-danger {
-    text-align: left;
-  }
+.help.is-danger {
+  text-align: left;
+}
 </style>
-
-
-
-
-
-
-
-
-
-

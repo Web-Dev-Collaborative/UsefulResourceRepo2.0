@@ -1,23 +1,22 @@
-import React from 'react'
-import { Link } from "react-router-dom"
-import withAuthorization from 'components/hoc/withAuthorization'
-import { getCollaborations } from 'actions'
-import moment from 'moment'
+import React from "react";
+import { Link } from "react-router-dom";
+import withAuthorization from "components/hoc/withAuthorization";
+import { getCollaborations } from "actions";
+import moment from "moment";
 
 class Collaborations extends React.Component {
-
   state = {
-    collaborations: []
-  }
+    collaborations: [],
+  };
 
   render() {
-    const { collaborations } = this.state
+    const { collaborations } = this.state;
     return (
       <div className="content-wrapper">
         <div className="container">
           <h1 className="title">Collaborations</h1>
           <div className="box content">
-            { collaborations.map(c => (
+            {collaborations.map((c) => (
               <article className="post">
                 <h4>{c.title}</h4>
                 <div className="media">
@@ -29,7 +28,8 @@ class Collaborations extends React.Component {
                   <div className="media-content">
                     <div className="content">
                       <p>
-                        <a href="#">{c.fromUser.name}</a> replied {moment(c.createdAt.toDate()).fromNow()} &nbsp;
+                        <a href="#">{c.fromUser.name}</a> replied{" "}
+                        {moment(c.createdAt.toDate()).fromNow()} &nbsp;
                         <span className="tag">{c.status}</span>
                       </p>
                     </div>
@@ -43,13 +43,12 @@ class Collaborations extends React.Component {
                   </div>
                 </div>
               </article>
-              ))
-            }
+            ))}
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default withAuthorization(Collaborations)
+export default withAuthorization(Collaborations);

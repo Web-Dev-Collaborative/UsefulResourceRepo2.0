@@ -7,7 +7,9 @@ import "firebase/auth";
 function signInCustom() {
   var token = "token123";
   // [START auth_sign_in_custom]
-  firebase.auth().signInWithCustomToken(token)
+  firebase
+    .auth()
+    .signInWithCustomToken(token)
     .then((userCredential) => {
       // Signed in
       var user = userCredential.user;

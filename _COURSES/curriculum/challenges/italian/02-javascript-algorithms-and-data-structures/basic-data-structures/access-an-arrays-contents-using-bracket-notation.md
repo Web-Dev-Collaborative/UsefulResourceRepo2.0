@@ -16,7 +16,7 @@ Se definiamo un semplice array come il seguente, ci sono 3 elementi:
 let ourArray = ["a", "b", "c"];
 ```
 
-In un array, ogni elemento ha un <dfn>indice</dfn>. Questo indice indica la posizione di quell'elemento nell'array e come lo puoi consultare. Tuttavia è importante notare che gli array JavaScript sono <dfn>indicizzati a zero</dfn>, cioè che il primo elemento di un array è in realtà alla ***zeresima*** posizione, non alla prima. Per recuperare un elemento da un array possiamo racchiudere un indice tra parentesi e aggiungerlo alla fine di un array, o più comunemente, a una variabile che fa riferimento ad un array. Questa notazione si chiama <dfn>notazione a parentesi</dfn>. Ad esempio, se vogliamo recuperare `a` da `ourArray` e assegnarlo a una variabile, possiamo farlo con il seguente codice:
+In un array, ogni elemento ha un <dfn>indice</dfn>. Questo indice indica la posizione di quell'elemento nell'array e come lo puoi consultare. Tuttavia è importante notare che gli array JavaScript sono <dfn>indicizzati a zero</dfn>, cioè che il primo elemento di un array è in realtà alla **_zeresima_** posizione, non alla prima. Per recuperare un elemento da un array possiamo racchiudere un indice tra parentesi e aggiungerlo alla fine di un array, o più comunemente, a una variabile che fa riferimento ad un array. Questa notazione si chiama <dfn>notazione a parentesi</dfn>. Ad esempio, se vogliamo recuperare `a` da `ourArray` e assegnarlo a una variabile, possiamo farlo con il seguente codice:
 
 ```js
 let ourVariable = ourArray[0];
@@ -24,7 +24,7 @@ let ourVariable = ourArray[0];
 
 Ora `ourVariable` ha il valore di `a`.
 
-Oltre ad accedere al valore associato ad un indice, è anche possibile *impostare* un indice ad un valore utilizzando la stessa notazione:
+Oltre ad accedere al valore associato ad un indice, è anche possibile _impostare_ un indice ad un valore utilizzando la stessa notazione:
 
 ```js
 ourArray[1] = "not b anymore";
@@ -41,25 +41,25 @@ Per completare questa sfida, imposta la seconda posizione (indice `1`) di `myArr
 `myArray[0]` dovrebbe essere uguale alla lettera `a`
 
 ```js
-assert.strictEqual(myArray[0], 'a');
+assert.strictEqual(myArray[0], "a");
 ```
 
 `myArray[1]` non deve essere uguale alla lettera `b`
 
 ```js
-assert.notStrictEqual(myArray[1], 'b');
+assert.notStrictEqual(myArray[1], "b");
 ```
 
 `myArray[2]` deve essere uguale alla lettera `c`
 
 ```js
-assert.strictEqual(myArray[2], 'c');
+assert.strictEqual(myArray[2], "c");
 ```
 
 `myArray[3]` deve essere uguale alla lettera `d`
 
 ```js
-assert.strictEqual(myArray[3], 'd');
+assert.strictEqual(myArray[3], "d");
 ```
 
 # --seed--

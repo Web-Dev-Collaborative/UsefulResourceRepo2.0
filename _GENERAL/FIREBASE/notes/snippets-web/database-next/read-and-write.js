@@ -7,47 +7,46 @@ function writeUserData_wrapped() {
 
   function writeUserData(userId, name, email, imageUrl) {
     const db = getDatabase();
-    set(ref(db, 'users/' + userId), {
+    set(ref(db, "users/" + userId), {
       username: name,
       email: email,
-      profile_picture : imageUrl
+      profile_picture: imageUrl,
     });
   }
   // [END rtdb_write_new_user]
 }
-
 
 function writeUserDataWithCompletion(userId, name, email, imageUrl) {
   // [START rtdb_write_new_user_completion]
   const { getDatabase, ref, set } = require("firebase/database");
 
   const db = getDatabase();
-  set(ref(db, 'users/' + userId), {
+  set(ref(db, "users/" + userId), {
     username: name,
     email: email,
-    profile_picture : imageUrl
+    profile_picture: imageUrl,
   })
-  .then(() => {
-    // Data saved successfully!
-  })
-  .catch((error) => {
-    // The write failed...
-  });
+    .then(() => {
+      // Data saved successfully!
+    })
+    .catch((error) => {
+      // The write failed...
+    });
   // [END rtdb_write_new_user_completion]
 }
 
 function socialListenStarCount() {
-  const postElement = document.querySelector('#post');
+  const postElement = document.querySelector("#post");
   const postId = "1234";
   function updateStarCount(a, b) {
     // ...
   }
 
   // [START rtdb_social_listen_star_count]
-  const { getDatabase, ref, onValue} = require("firebase/database");
+  const { getDatabase, ref, onValue } = require("firebase/database");
 
   const db = getDatabase();
-  const starCountRef = ref(db, 'posts/' + postId + '/starCount');
+  const starCountRef = ref(db, "posts/" + postId + "/starCount");
   onValue(starCountRef, (snapshot) => {
     const data = snapshot.val();
     updateStarCount(postElement, data);
@@ -64,17 +63,28 @@ function socialSingleValueRead() {
   const auth = getAuth();
 
   const userId = auth.currentUser.uid;
-  return onValue(ref(db, '/users/' + userId), (snapshot) => {
-    const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-    // ...
-  }, {
-    onlyOnce: true
-  });
+  return onValue(
+    ref(db, "/users/" + userId),
+    (snapshot) => {
+      const username =
+        (snapshot.val() && snapshot.val().username) || "Anonymous";
+      // ...
+    },
+    {
+      onlyOnce: true,
+    }
+  );
   // [END rtdb_social_single_value_read]
 }
 
 function writeNewPost_wrapped() {
-  const { getDatabase, ref, child, push, update } = require("firebase/database");
+  const {
+    getDatabase,
+    ref,
+    child,
+    push,
+    update,
+  } = require("firebase/database");
 
   // [START rtdb_social_write_fan_out]
   function writeNewPost(uid, username, picture, title, body) {
@@ -87,16 +97,16 @@ function writeNewPost_wrapped() {
       body: body,
       title: title,
       starCount: 0,
-      authorPic: picture
+      authorPic: picture,
     };
 
     // Get a key for a new Post.
-    const newPostKey = push(child(ref(db), 'posts')).key;
+    const newPostKey = push(child(ref(db), "posts")).key;
 
     // Write the new post's data simultaneously in the posts list and the user's post list.
     const updates = {};
-    updates['/posts/' + newPostKey] = postData;
-    updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+    updates["/posts/" + newPostKey] = postData;
+    updates["/user-posts/" + uid + "/" + newPostKey] = postData;
 
     return update(ref(db), updates);
   }
@@ -112,17 +122,17 @@ function socialCompletionCallback() {
   const { getDatabase, ref, set } = require("firebase/database");
 
   const db = getDatabase();
-  set(ref(db, 'users/' + userId), {
+  set(ref(db, "users/" + userId), {
     username: name,
     email: email,
-    profile_picture : imageUrl
+    profile_picture: imageUrl,
   })
-  .then(() => {
-    // Data saved successfully!
-  })
-  .catch((error) => {
-    // The write failed...
-  });
+    .then(() => {
+      // Data saved successfully!
+    })
+    .catch((error) => {
+      // The write failed...
+    });
   // [END rtdb_social_completion_callback]
 }
 
@@ -132,7 +142,7 @@ function toggleStar_wrapped() {
 
   function toggleStar(uid) {
     const db = getDatabase();
-    const postRef = ref(db, '/posts/foo-bar-123');
+    const postRef = ref(db, "/posts/foo-bar-123");
 
     runTransaction(postRef, (post) => {
       if (post) {
@@ -154,8 +164,8 @@ function toggleStar_wrapped() {
 }
 
 /**
- * @param {string} uid 
- * @param {string} key 
+ * @param {string} uid
+ * @param {string} key
  */
 // [START rtdb_social_star_increment]
 function addStar(uid, key) {
@@ -176,14 +186,16 @@ function readOnceWithGet(userId) {
   const { getDatabase, ref, child, get } = require("firebase/database");
 
   const dbRef = ref(getDatabase());
-  get(child(dbRef, `users/${userId}`)).then((snapshot) => {
-    if (snapshot.exists()) {
-      console.log(snapshot.val());
-    } else {
-      console.log("No data available");
-    }
-  }).catch((error) => {
-    console.error(error);
-  });
+  get(child(dbRef, `users/${userId}`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   // [END rtdb_read_once_get]
 }

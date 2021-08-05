@@ -1,24 +1,24 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
+import { Pipe, PipeTransform } from "@angular/core";
+import { DomSanitizer, SafeStyle } from "@angular/platform-browser";
 
 interface Sentiment {
-  score: number,
-  magnitude: number
+  score: number;
+  magnitude: number;
 }
 
 /*
  * Styles a message based on its sentiment.
  */
-@Pipe({name: 'stylize'})
+@Pipe({ name: "stylize" })
 export class StylizePipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
 
-  transform(sentiment: Sentiment): string|SafeStyle {
+  transform(sentiment: Sentiment): string | SafeStyle {
     if (!sentiment) {
-      return '';
+      return "";
     }
 
-    let style = '';
+    let style = "";
 
     // Change font based on positive/negative score.
     if (sentiment.score >= 0.9) {
@@ -36,6 +36,6 @@ export class StylizePipe implements PipeTransform {
       style += `font-weight: bold;`;
     }
 
-    return style ? this.sanitizer.bypassSecurityTrustStyle(style) : '';
+    return style ? this.sanitizer.bypassSecurityTrustStyle(style) : "";
   }
 }

@@ -2,7 +2,7 @@
 id: 587d78ad367417b2b2512af8
 title: 使用 align-items 属性对齐元素
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/c8aggtk'
+videoUrl: "https://scrimba.com/p/pVaDAv/c8aggtk"
 forumTopicId: 301101
 dashedName: align-elements-using-the-align-items-property
 ---
@@ -30,7 +30,7 @@ CSS 中的 `align-items` 属性用来定义 flex 子元素沿交叉轴的对齐�
 `#box-container` 所选择的元素应有 `align-items` 属性，且其属性值应为 `center`。
 
 ```js
-assert($('#box-container').css('align-items') == 'center');
+assert($("#box-container").css("align-items") == "center");
 ```
 
 # --seed--
@@ -43,7 +43,6 @@ assert($('#box-container').css('align-items') == 'center');
     background: gray;
     display: flex;
     height: 500px;
-
   }
   #box-1 {
     background-color: dodgerblue;

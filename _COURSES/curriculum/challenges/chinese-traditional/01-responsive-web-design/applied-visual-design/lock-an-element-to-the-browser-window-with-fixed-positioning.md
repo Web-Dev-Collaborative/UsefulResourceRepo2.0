@@ -2,7 +2,7 @@
 id: 587d781e367417b2b2512acc
 title: 固定定位的參照物是瀏覽器的窗口
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c2MDNUR'
+videoUrl: "https://scrimba.com/c/c2MDNUR"
 forumTopicId: 301061
 dashedName: lock-an-element-to-the-browser-window-with-fixed-positioning
 ---
@@ -22,19 +22,19 @@ dashedName: lock-an-element-to-the-browser-window-with-fixed-positioning
 `#navbar` 元素的 `position` 屬性值應爲 `fixed`。
 
 ```js
-assert($('#navbar').css('position') == 'fixed');
+assert($("#navbar").css("position") == "fixed");
 ```
 
 `#navbar` 元素的 `top` 屬性值應爲 0px。
 
 ```js
-assert($('#navbar').css('top') == '0px');
+assert($("#navbar").css("top") == "0px");
 ```
 
 `#navbar` 元素的 `left` 屬性值應爲 0px。
 
 ```js
-assert($('#navbar').css('left') == '0px');
+assert($("#navbar").css("left") == "0px");
 ```
 
 # --seed--
@@ -47,9 +47,6 @@ assert($('#navbar').css('left') == '0px');
     min-height: 150vh;
   }
   #navbar {
-
-
-
     width: 100%;
     background-color: #767676;
   }

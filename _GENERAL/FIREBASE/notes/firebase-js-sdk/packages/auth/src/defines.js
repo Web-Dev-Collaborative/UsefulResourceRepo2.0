@@ -22,7 +22,6 @@
 goog.provide('fireauth.constants');
 goog.provide('fireauth.constants.AuthEventType');
 
-
 /**
  * Enums for authentication operation types.
  * @enum {string}
@@ -32,7 +31,6 @@ fireauth.constants.OperationType = {
   REAUTHENTICATE: 'reauthenticate',
   SIGN_IN: 'signIn'
 };
-
 
 /**
  * Events dispatched firebase.auth.Auth.
@@ -47,7 +45,6 @@ fireauth.constants.AuthEventType = {
   LANGUAGE_CODE_CHANGED: 'languageCodeChanged'
 };
 
-
 /**
  * Enums for all second factor types.
  * @enum {string}
@@ -55,7 +52,6 @@ fireauth.constants.AuthEventType = {
 fireauth.constants.SecondFactorType = {
   PHONE: 'phone'
 };
-
 
 /**
  * The settings of an Auth endpoint. The fields are:
@@ -77,7 +73,6 @@ fireauth.constants.SecondFactorType = {
  */
 fireauth.constants.EndpointSettings;
 
-
 /**
  * The different endpoints for Firebase Auth backend.
  * @enum {!fireauth.constants.EndpointSettings}
@@ -86,49 +81,50 @@ fireauth.constants.Endpoint = {
   // TODO: this is no longer needed now that client endpoint migration is
   // completed.
   BOQ: {
-    firebaseAuthEndpoint: 'https://staging-identitytoolkit.sandbox.googleapi' +
-        's.com/identitytoolkit/v3/relyingparty/',
-    secureTokenEndpoint: 'https://staging-securetoken.sandbox.googleapis.com' +
-        '/v1/token',
+    firebaseAuthEndpoint:
+      'https://staging-identitytoolkit.sandbox.googleapi' +
+      's.com/identitytoolkit/v3/relyingparty/',
+    secureTokenEndpoint:
+      'https://staging-securetoken.sandbox.googleapis.com' + '/v1/token',
     identityPlatformEndpoint:
-        'https://staging-identitytoolkit.sandbox.googleapis.com/v2/',
+      'https://staging-identitytoolkit.sandbox.googleapis.com/v2/',
     id: 'b'
   },
   PRODUCTION: {
-    firebaseAuthEndpoint: 'https://www.googleapis.com/identitytoolkit/v3/' +
-        'relyingparty/',
+    firebaseAuthEndpoint:
+      'https://www.googleapis.com/identitytoolkit/v3/' + 'relyingparty/',
     secureTokenEndpoint: 'https://securetoken.googleapis.com/v1/token',
-    identityPlatformEndpoint:
-        'https://identitytoolkit.googleapis.com/v2/',
+    identityPlatformEndpoint: 'https://identitytoolkit.googleapis.com/v2/',
     id: 'p'
   },
   STAGING: {
-    firebaseAuthEndpoint: 'https://staging-www.sandbox.googleapis.com/' +
-        'identitytoolkit/v3/relyingparty/',
-    secureTokenEndpoint: 'https://staging-securetoken.sandbox.googleapis.com' +
-        '/v1/token',
+    firebaseAuthEndpoint:
+      'https://staging-www.sandbox.googleapis.com/' +
+      'identitytoolkit/v3/relyingparty/',
+    secureTokenEndpoint:
+      'https://staging-securetoken.sandbox.googleapis.com' + '/v1/token',
     identityPlatformEndpoint:
-        'https://staging-identitytoolkit.sandbox.googleapis.com/v2/',
+      'https://staging-identitytoolkit.sandbox.googleapis.com/v2/',
     id: 's'
   },
   TEST: {
-    firebaseAuthEndpoint: 'https://www-googleapis-test.sandbox.google.com/' +
-        'identitytoolkit/v3/relyingparty/',
-    secureTokenEndpoint: 'https://test-securetoken.sandbox.googleapis.com/v1' +
-        '/token',
+    firebaseAuthEndpoint:
+      'https://www-googleapis-test.sandbox.google.com/' +
+      'identitytoolkit/v3/relyingparty/',
+    secureTokenEndpoint:
+      'https://test-securetoken.sandbox.googleapis.com/v1' + '/token',
     identityPlatformEndpoint:
-        'https://test-identitytoolkit.sandbox.googleapis.com/v2/',
+      'https://test-identitytoolkit.sandbox.googleapis.com/v2/',
     id: 't'
   }
 };
-
 
 /**
  * Returns the endpoint specific RpcHandler configuration.
  * @param {?string=} opt_id The identifier of the endpoint type if available.
  * @return {?Object|undefined} The RpcHandler endpoint configuration object.
  */
-fireauth.constants.getEndpointConfig = function(opt_id) {
+fireauth.constants.getEndpointConfig = function (opt_id) {
   for (var endpointKey in fireauth.constants.Endpoint) {
     if (fireauth.constants.Endpoint[endpointKey].id === opt_id) {
       var endpoint = fireauth.constants.Endpoint[endpointKey];
@@ -142,7 +138,6 @@ fireauth.constants.getEndpointConfig = function(opt_id) {
   return null;
 };
 
-
 /**
  * Returns the validated endpoint identifier. Undefined if the provided one is
  * invalid.
@@ -150,21 +145,18 @@ fireauth.constants.getEndpointConfig = function(opt_id) {
  * @return {string|undefined} The validated endpoint ID. If not valid,
  *     undefined.
  */
-fireauth.constants.getEndpointId = function(opt_id) {
+fireauth.constants.getEndpointId = function (opt_id) {
   if (opt_id && fireauth.constants.getEndpointConfig(opt_id)) {
     return opt_id;
   }
   return undefined;
 };
 
-
 /** @const {string|undefined} The current client endpoint. */
 fireauth.constants.clientEndpoint = fireauth.constants.getEndpointId('__EID__');
 
-
 /** @const {string} The required SAML provider ID prefix. */
 fireauth.constants.SAML_PREFIX = 'saml.';
-
 
 /** @const {string} The required OIDC provider ID prefix. */
 fireauth.constants.OIDC_PREFIX = 'oidc.';
@@ -181,8 +173,7 @@ fireauth.constants.OIDC_PREFIX = 'oidc.';
  * }}
  */
 fireauth.constants.EmulatorSettings;
- 
- 
+
 /**
  * The (externally visible) emulator configuration, used for
  * getEmulatorConfig(). The fields are:

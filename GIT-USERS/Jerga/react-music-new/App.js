@@ -1,10 +1,10 @@
-import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import { Asset } from 'expo-asset';
-import * as Font from 'expo-font';
-import { AppLoading } from 'expo';
-import AppNavigator from './navigation/AppNavigator';
-import { NavigationContainer } from '@react-navigation/native';
+import React from "react";
+import { Platform, StatusBar, StyleSheet, View } from "react-native";
+import { Asset } from "expo-asset";
+import * as Font from "expo-font";
+import { AppLoading } from "expo";
+import AppNavigator from "./navigation/AppNavigator";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default class App extends React.Component {
   state = {
@@ -23,7 +23,7 @@ export default class App extends React.Component {
     } else {
       return (
         <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          {Platform.OS === "ios" && <StatusBar barStyle="default" />}
           <NavigationContainer>
             <AppNavigator />
           </NavigationContainer>
@@ -35,16 +35,16 @@ export default class App extends React.Component {
   _loadResourcesAsync = async () => {
     return Promise.all([
       Asset.loadAsync([
-        require('./assets/images/robot-dev.png'),
-        require('./assets/images/robot-prod.png'),
+        require("./assets/images/robot-dev.png"),
+        require("./assets/images/robot-prod.png"),
       ]),
       Font.loadAsync({
-        'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
+        "space-mono": require("./assets/fonts/SpaceMono-Regular.ttf"),
       }),
     ]);
   };
 
-  _handleLoadingError = error => {
+  _handleLoadingError = (error) => {
     // In this case, you might want to report the error to your error
     // reporting service, for example Sentry
     console.warn(error);
@@ -58,6 +58,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
 });

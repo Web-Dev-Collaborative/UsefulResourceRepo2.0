@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedc08830
 title: Usa HTML5 para requerir un campo
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cMd4EcQ'
+videoUrl: "https://scrimba.com/p/pVMPUv/cMd4EcQ"
 forumTopicId: 18360
 dashedName: use-html5-to-require-a-field
 ---
@@ -24,7 +24,7 @@ Luego intenta enviar el formulario sin introducir ningún texto. ¿Ves cómo tu 
 Tu elemento de entrada de texto `input` debe tener el atributo `required`.
 
 ```js
-assert($('input').prop('required'));
+assert($("input").prop("required"));
 ```
 
 # --seed--
@@ -36,7 +36,11 @@ assert($('input').prop('required'));
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -51,7 +55,7 @@ assert($('input').prop('required'));
     <li>other cats</li>
   </ol>
   <form action="https://www.freecatphotoapp.com/submit-cat-photo">
-    <input type="text" placeholder="cat photo URL">
+    <input type="text" placeholder="cat photo URL" />
     <button type="submit">Submit</button>
   </form>
 </main>
@@ -64,7 +68,11 @@ assert($('input').prop('required'));
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -79,7 +87,7 @@ assert($('input').prop('required'));
     <li>other cats</li>
   </ol>
   <form action="https://www.freecatphotoapp.com/submit-cat-photo">
-    <input type="text" required placeholder="cat photo URL">
+    <input type="text" required placeholder="cat photo URL" />
     <button type="submit">Submit</button>
   </form>
 </main>

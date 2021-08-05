@@ -32,7 +32,6 @@ goog.require('goog.testing.recordFunction');
 
 goog.setTestOnly('fireauth.storage.IndexedDBTest');
 
-
 let mockControl;
 let ignoreArgument;
 const stubs = new goog.testing.PropertyReplacer();
@@ -43,24 +42,19 @@ let indexedDBMock;
 let containsObjectStore;
 let deleted;
 
-
-
 function setUp() {
   mockControl = new goog.testing.MockControl();
   ignoreArgument = goog.testing.mockmatchers.ignoreArgument;
   mockControl.$resetAll();
   deleted = 0;
   // IndexedDB not supported in IE9.
-  stubs.replace(
-      fireauth.storage.IndexedDB,
-      'isAvailable',
-      function() {
-        return true;
-      });
+  stubs.replace(fireauth.storage.IndexedDB, 'isAvailable', function () {
+    return true;
+  });
   clock = new goog.testing.MockClock(true);
   // Callback to run to determine whether the database constains an object
   // store.
-  containsObjectStore = function() {
+  containsObjectStore = function () {
     return true;
   };
   indexedDBMock = {
@@ -75,7 +69,7 @@ function setUp() {
       });
       return request;
     },
-    onopen_: () => { },
+    onopen_: () => {},
     open: function (dbName, version) {
       assertEquals('firebaseLocalStorageDb', dbName);
       assertEquals(1, version);
@@ -123,8 +117,8 @@ function setUp() {
                   add: function (data) {
                     if (!db.connectionActive) {
                       throw new Error(
-                        'Failed to execute \'transaction\' on ' +
-                        '\'IDBDatabase\'.');
+                        "Failed to execute 'transaction' on " + "'IDBDatabase'."
+                      );
                     }
                     const request = {};
                     if (type != 'readwrite') {
@@ -142,8 +136,8 @@ function setUp() {
                   put: function (data) {
                     if (!db.connectionActive) {
                       throw new Error(
-                        'Failed to execute \'transaction\' on ' +
-                        '\'IDBDatabase\'.');
+                        "Failed to execute 'transaction' on " + "'IDBDatabase'."
+                      );
                     }
                     const request = {};
                     if (type != 'readwrite') {
@@ -164,8 +158,8 @@ function setUp() {
                   delete: function (keyToRemove) {
                     if (!db.connectionActive) {
                       throw new Error(
-                        'Failed to execute \'transaction\' on ' +
-                        '\'IDBDatabase\'.');
+                        "Failed to execute 'transaction' on " + "'IDBDatabase'."
+                      );
                     }
                     const request = {};
                     if (type != 'readwrite') {
@@ -182,8 +176,8 @@ function setUp() {
                   get: function (keyToGet, callback) {
                     if (!db.connectionActive) {
                       throw new Error(
-                        'Failed to execute \'transaction\' on ' +
-                        '\'IDBDatabase\'.');
+                        "Failed to execute 'transaction' on " + "'IDBDatabase'."
+                      );
                     }
                     const request = {};
                     const data = db.store[objectStoreName][keyToGet] || null;
@@ -196,8 +190,8 @@ function setUp() {
                   getAll: function () {
                     if (!db.connectionActive) {
                       throw new Error(
-                        'Failed to execute \'transaction\' on ' +
-                        '\'IDBDatabase\'.');
+                        "Failed to execute 'transaction' on " + "'IDBDatabase'."
+                      );
                     }
                     const request = {};
                     const results = [];
@@ -224,7 +218,6 @@ function setUp() {
   };
 }
 
-
 function tearDown() {
   if (manager) {
     manager.removeAllStorageListeners();
@@ -241,7 +234,6 @@ function tearDown() {
   }
 }
 
-
 /**
  * Asserts that two errors are equivalent. Plain assertObjectEquals cannot be
  * used as Internet Explorer adds the stack trace as a property of the object.
@@ -252,32 +244,29 @@ function assertErrorEquals(expected, actual) {
   assertObjectEquals(expected.toPlainObject(), actual.toPlainObject());
 }
 
-
 /**
  * @return {!fireauth.storage.IndexedDB} The default indexedDB
  *     local storage manager to be used for testing.
  */
 function getDefaultFireauthManager() {
   return new fireauth.storage.IndexedDB(
-      'firebaseLocalStorageDb',
-      'firebaseLocalStorage',
-      'fbase_key',
-      'value',
-      1,
-      indexedDBMock);
+    'firebaseLocalStorageDb',
+    'firebaseLocalStorage',
+    'fbase_key',
+    'value',
+    1,
+    indexedDBMock
+  );
 }
-
 
 function testIndexedDb_notSupported() {
   // Test when indexedDB is not supported.
-  stubs.replace(
-      fireauth.storage.IndexedDB,
-      'isAvailable',
-      function() {
-        return false;
-      });
+  stubs.replace(fireauth.storage.IndexedDB, 'isAvailable', function () {
+    return false;
+  });
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.WEB_STORAGE_UNSUPPORTED);
+    fireauth.authenum.Error.WEB_STORAGE_UNSUPPORTED
+  );
   try {
     getDefaultFireauthManager();
     fail('Should fail when indexedDB is not supported.');
@@ -286,50 +275,46 @@ function testIndexedDb_notSupported() {
   }
 }
 
-
 function testIndexedDb_null() {
   manager = getDefaultFireauthManager();
   assertEquals(fireauth.storage.Storage.Type.INDEXEDDB, manager.type);
-  return manager.get('key1')
-      .then(function(data) {
-        assertNull(data);
-      });
+  return manager.get('key1').then(function (data) {
+    assertNull(data);
+  });
 }
-
 
 function testIndexedDb_setGetRemove_objectStoreContained() {
   manager = getDefaultFireauthManager();
-  manager.addStorageListener(function() {
+  manager.addStorageListener(function () {
     fail('Storage should not be triggered for local changes!');
   });
   return goog.Promise.resolve()
-      .then(function() {
-        return manager.set('key1', 'value1');
-      })
-      .then(function() {
-        // No database deletion should occur.
-        assertEquals(0, deleted);
-        return manager.get('key1');
-      })
-      .then(function(data) {
-        assertEquals('value1', data);
-      })
-      .then(function() {
-        return manager.remove('key1');
-      })
-      .then(function() {
-        return manager.get('key1');
-      })
-      .then(function(data) {
-        assertNull(data);
-      });
+    .then(function () {
+      return manager.set('key1', 'value1');
+    })
+    .then(function () {
+      // No database deletion should occur.
+      assertEquals(0, deleted);
+      return manager.get('key1');
+    })
+    .then(function (data) {
+      assertEquals('value1', data);
+    })
+    .then(function () {
+      return manager.remove('key1');
+    })
+    .then(function () {
+      return manager.get('key1');
+    })
+    .then(function (data) {
+      assertNull(data);
+    });
 }
-
 
 function testIndexedDb_setGetRemove_objectStoreMissing() {
   // Track number of initialization trials.
   var trials = 2;
-  containsObjectStore = function() {
+  containsObjectStore = function () {
     trials--;
     // Fail first time and then succeed the second time.
     if (trials != 0) {
@@ -338,33 +323,32 @@ function testIndexedDb_setGetRemove_objectStoreMissing() {
     return true;
   };
   manager = getDefaultFireauthManager();
-  manager.addStorageListener(function() {
+  manager.addStorageListener(function () {
     fail('Storage should not be triggered for local changes!');
   });
   return goog.Promise.resolve()
-      .then(function() {
-        return manager.set('key1', 'value1');
-      })
-      .then(function() {
-        // Db should have been deleted and re-initialized.
-        assertEquals(0, trials);
-        assertEquals(1, deleted);
-        return manager.get('key1');
-      })
-      .then(function(data) {
-        assertEquals('value1', data);
-      })
-      .then(function() {
-        return manager.remove('key1');
-      })
-      .then(function() {
-        return manager.get('key1');
-      })
-      .then(function(data) {
-        assertNull(data);
-      });
+    .then(function () {
+      return manager.set('key1', 'value1');
+    })
+    .then(function () {
+      // Db should have been deleted and re-initialized.
+      assertEquals(0, trials);
+      assertEquals(1, deleted);
+      return manager.get('key1');
+    })
+    .then(function (data) {
+      assertEquals('value1', data);
+    })
+    .then(function () {
+      return manager.remove('key1');
+    })
+    .then(function () {
+      return manager.get('key1');
+    })
+    .then(function (data) {
+      assertNull(data);
+    });
 }
-
 
 function testIndexedDb_setGetRemove_connectionClosed() {
   manager = getDefaultFireauthManager();
@@ -387,23 +371,24 @@ function testIndexedDb_setGetRemove_connectionClosed() {
       db.close();
       return manager.get('key1');
     })
-    .then((data) => {
+    .then(data => {
       // Close the connection and try a remove, it should not throw.
       db.close();
       return manager.remove('key1');
     })
     .then(() => {
       db.close();
-      indexedDBMock.onopen_ = (db) => {
+      indexedDBMock.onopen_ = db => {
         numAttempts++;
         db.close();
       };
       return manager.set('key1', 'value1');
     })
-    .thenCatch((error) => {
+    .thenCatch(error => {
       assertEquals(
         error.message,
-        'Failed to execute \'transaction\' on \'IDBDatabase\'.');
+        "Failed to execute 'transaction' on 'IDBDatabase'."
+      );
       errorThrown = true;
     })
     .then(() => {
@@ -412,7 +397,6 @@ function testIndexedDb_setGetRemove_connectionClosed() {
     });
 }
 
-
 function testIndexedDb_failingOnDbOpen() {
   manager = getDefaultFireauthManager();
   manager.addStorageListener(() => {
@@ -420,25 +404,27 @@ function testIndexedDb_failingOnDbOpen() {
   });
   let errorThrown = false;
   indexedDBMock.open = () => {
-    throw new Error('InvalidStateError: A mutation operation was attempted ' +
-                    'on a database that did not allow mutations.');
+    throw new Error(
+      'InvalidStateError: A mutation operation was attempted ' +
+        'on a database that did not allow mutations.'
+    );
   };
   return goog.Promise.resolve()
-      .then(() => {
-        return manager.get('key1');
-      })
-      .thenCatch((error) => {
-        assertEquals(
-            error.message,
-            'InvalidStateError: A mutation operation was attempted on a ' +
-            'database that did not allow mutations.');
-        errorThrown = true;
-      })
-      .then(() => {
-        assertTrue(errorThrown);
-      });
+    .then(() => {
+      return manager.get('key1');
+    })
+    .thenCatch(error => {
+      assertEquals(
+        error.message,
+        'InvalidStateError: A mutation operation was attempted on a ' +
+          'database that did not allow mutations.'
+      );
+      errorThrown = true;
+    })
+    .then(() => {
+      assertTrue(errorThrown);
+    });
 }
-
 
 function testStartListeners() {
   manager = getDefaultFireauthManager();
@@ -452,18 +438,15 @@ function testStartListeners() {
   clock.tick(800);
   clock.tick(800);
   db.store['firebaseLocalStorage'] = {
-    'key1': {'fbase_key': 'key1', 'value': 1},
-    'key2': {'fbase_key': 'key2', 'value': 2}
+    'key1': { 'fbase_key': 'key1', 'value': 1 },
+    'key2': { 'fbase_key': 'key2', 'value': 2 }
   };
   clock.tick(800);
   assertEquals(1, listener1.getCallCount());
   assertEquals(1, listener2.getCallCount());
-  assertArrayEquals(
-      ['key1', 'key2'], listener1.getLastCall().getArgument(0));
-  assertArrayEquals(
-      ['key1', 'key2'], listener2.getLastCall().getArgument(0));
+  assertArrayEquals(['key1', 'key2'], listener1.getLastCall().getArgument(0));
+  assertArrayEquals(['key1', 'key2'], listener2.getLastCall().getArgument(0));
 }
-
 
 function testStopListeners() {
   manager = getDefaultFireauthManager();
@@ -481,47 +464,44 @@ function testStopListeners() {
   manager.removeStorageListener(listener1);
   manager.removeStorageListener(listener2);
   db.store['firebaseLocalStorage'] = {
-    'key1': {'fbase_key': 'key1', 'value': 1},
-    'key2': {'fbase_key': 'key2', 'value': 2}
+    'key1': { 'fbase_key': 'key1', 'value': 1 },
+    'key2': { 'fbase_key': 'key2', 'value': 2 }
   };
   clock.tick(800);
   // Only listener3 should be called.
   assertEquals(0, listener1.getCallCount());
   assertEquals(0, listener2.getCallCount());
   assertEquals(1, listener3.getCallCount());
-  assertArrayEquals(
-      ['key1', 'key2'], listener3.getLastCall().getArgument(0));
+  assertArrayEquals(['key1', 'key2'], listener3.getLastCall().getArgument(0));
   db.store['firebaseLocalStorage'] = {
-    'key1': {'fbase_key': 'key1', 'value': 1},
-    'key3': {'fbase_key': 'key3', 'value': 3}
+    'key1': { 'fbase_key': 'key1', 'value': 1 },
+    'key3': { 'fbase_key': 'key3', 'value': 3 }
   };
   clock.tick(800);
   // Only listener3 should be called.
   assertEquals(0, listener1.getCallCount());
   assertEquals(0, listener2.getCallCount());
   assertEquals(2, listener3.getCallCount());
-  assertArrayEquals(
-      ['key2', 'key3'], listener3.getLastCall().getArgument(0));
+  assertArrayEquals(['key2', 'key3'], listener3.getLastCall().getArgument(0));
   // Remove listener3.
   manager.removeStorageListener(listener3);
   // Add listener1 again.
   manager.addStorageListener(listener1);
   db.store['firebaseLocalStorage'] = {
-    'key1': {'fbase_key': 'key1', 'value': 0},
-    'key3': {'fbase_key': 'key3', 'value': 3},
-    'key4': {'fbase_key': 'key4', 'value': 4}
+    'key1': { 'fbase_key': 'key1', 'value': 0 },
+    'key3': { 'fbase_key': 'key3', 'value': 3 },
+    'key4': { 'fbase_key': 'key4', 'value': 4 }
   };
   clock.tick(800);
   // Only listener1 should be called.
   assertEquals(1, listener1.getCallCount());
   assertEquals(0, listener2.getCallCount());
   assertEquals(2, listener3.getCallCount());
-  assertArrayEquals(
-      ['key1', 'key4'], listener1.getLastCall().getArgument(0));
+  assertArrayEquals(['key1', 'key4'], listener1.getLastCall().getArgument(0));
   // Remove all listeners.
   manager.removeAllStorageListeners();
   db.store['firebaseLocalStorage'] = {
-    'key1': {'fbase_key': 'key1', 'value': 0}
+    'key1': { 'fbase_key': 'key1', 'value': 0 }
   };
   clock.tick(800);
   // No additional listener should be called.
@@ -530,22 +510,24 @@ function testStopListeners() {
   assertEquals(2, listener3.getCallCount());
 }
 
-
 function testReceiverSubscribed_noWorkerGlobalScope() {
   var getWorkerGlobalScope = mockControl.createMethodMock(
-      fireauth.util, 'getWorkerGlobalScope');
+    fireauth.util,
+    'getWorkerGlobalScope'
+  );
   var getInstance = mockControl.createMethodMock(
-      fireauth.messagechannel.Receiver, 'getInstance');
+    fireauth.messagechannel.Receiver,
+    'getInstance'
+  );
   getWorkerGlobalScope().$returns(null).$atLeastOnce();
   getInstance().$never();
   mockControl.$replayAll();
 
   manager = getDefaultFireauthManager();
-  return manager.get('abc').then(function(value) {
+  return manager.get('abc').then(function (value) {
     assertNull(value);
   });
 }
-
 
 function testReceiverSubscribed_externalChange_notYetProcessed() {
   var listener1 = goog.testing.recordFunction();
@@ -553,46 +535,57 @@ function testReceiverSubscribed_externalChange_notYetProcessed() {
   var pingCallback;
   var workerGlobalScope = {};
   var getWorkerGlobalScope = mockControl.createMethodMock(
-      fireauth.util, 'getWorkerGlobalScope');
+    fireauth.util,
+    'getWorkerGlobalScope'
+  );
   var receiver = mockControl.createStrictMock(fireauth.messagechannel.Receiver);
   var getInstance = mockControl.createMethodMock(
-      fireauth.messagechannel.Receiver, 'getInstance');
+    fireauth.messagechannel.Receiver,
+    'getInstance'
+  );
   getWorkerGlobalScope().$returns(workerGlobalScope).$atLeastOnce();
   getInstance(workerGlobalScope).$returns(receiver);
-  receiver.subscribe('keyChanged', ignoreArgument)
-      .$does(function(eventType, callback) {
-        subscribedCallback = callback;
-      }).$once();
-  receiver.subscribe('ping', ignoreArgument)
-      .$does(function(eventType, callback) {
-        pingCallback = callback;
-      }).$once();
+  receiver
+    .subscribe('keyChanged', ignoreArgument)
+    .$does(function (eventType, callback) {
+      subscribedCallback = callback;
+    })
+    .$once();
+  receiver
+    .subscribe('ping', ignoreArgument)
+    .$does(function (eventType, callback) {
+      pingCallback = callback;
+    })
+    .$once();
   mockControl.$replayAll();
 
   manager = getDefaultFireauthManager();
   manager.addStorageListener(listener1);
-  return manager.get('abc').then(function(value) {
-    // Simulate ping response at this point.
-    pingCallback('https://www.example.com', {});
-    assertNull(value);
-    // Simulate external indexedDB change.
-    db.store['firebaseLocalStorage'] = {
-      'abc': {'fbase_key': 'abc', 'value': 'def'}
-    };
-    return subscribedCallback('https://www.example.com', {'key': 'abc'});
-  }).then(function(response) {
-    // Confirm sync completed. Status true returned to confirm the key was
-    // processed.
-    assertObjectEquals({'keyProcessed': true}, response);
-    // Listener should trigger with expected argument.
-    assertEquals(1, listener1.getCallCount());
-    assertArrayEquals(['abc'], listener1.getLastCall().getArgument(0));
-    return manager.get('abc');
-  }).then(function(value) {
-    assertEquals('def', value);
-  });
+  return manager
+    .get('abc')
+    .then(function (value) {
+      // Simulate ping response at this point.
+      pingCallback('https://www.example.com', {});
+      assertNull(value);
+      // Simulate external indexedDB change.
+      db.store['firebaseLocalStorage'] = {
+        'abc': { 'fbase_key': 'abc', 'value': 'def' }
+      };
+      return subscribedCallback('https://www.example.com', { 'key': 'abc' });
+    })
+    .then(function (response) {
+      // Confirm sync completed. Status true returned to confirm the key was
+      // processed.
+      assertObjectEquals({ 'keyProcessed': true }, response);
+      // Listener should trigger with expected argument.
+      assertEquals(1, listener1.getCallCount());
+      assertArrayEquals(['abc'], listener1.getLastCall().getArgument(0));
+      return manager.get('abc');
+    })
+    .then(function (value) {
+      assertEquals('def', value);
+    });
 }
-
 
 function testReceiverSubscribed_externalChange_notYetProcessed_pingTimeout() {
   // Confirm ping timeout does not affect the flow. This is mostly used for
@@ -601,16 +594,22 @@ function testReceiverSubscribed_externalChange_notYetProcessed_pingTimeout() {
   var subscribedCallback;
   var workerGlobalScope = {};
   var getWorkerGlobalScope = mockControl.createMethodMock(
-      fireauth.util, 'getWorkerGlobalScope');
+    fireauth.util,
+    'getWorkerGlobalScope'
+  );
   var receiver = mockControl.createStrictMock(fireauth.messagechannel.Receiver);
   var getInstance = mockControl.createMethodMock(
-      fireauth.messagechannel.Receiver, 'getInstance');
+    fireauth.messagechannel.Receiver,
+    'getInstance'
+  );
   getWorkerGlobalScope().$returns(workerGlobalScope).$atLeastOnce();
   getInstance(workerGlobalScope).$returns(receiver);
-  receiver.subscribe('keyChanged', ignoreArgument)
-      .$does(function(eventType, callback) {
-        subscribedCallback = callback;
-      }).$once();
+  receiver
+    .subscribe('keyChanged', ignoreArgument)
+    .$does(function (eventType, callback) {
+      subscribedCallback = callback;
+    })
+    .$once();
   // Simulate no response to ping. This means short timeout will be used by
   // sender.
   receiver.subscribe('ping', ignoreArgument).$once();
@@ -618,26 +617,29 @@ function testReceiverSubscribed_externalChange_notYetProcessed_pingTimeout() {
 
   manager = getDefaultFireauthManager();
   manager.addStorageListener(listener1);
-  return manager.get('abc').then(function(value) {
-    assertNull(value);
-    // Simulate external indexedDB change.
-    db.store['firebaseLocalStorage'] = {
-      'abc': {'fbase_key': 'abc', 'value': 'def'}
-    };
-    return subscribedCallback('https://www.example.com', {'key': 'abc'});
-  }).then(function(response) {
-    // Confirm sync completed. Status true returned to confirm the key was
-    // processed.
-    assertObjectEquals({'keyProcessed': true}, response);
-    // Listener should trigger with expected argument.
-    assertEquals(1, listener1.getCallCount());
-    assertArrayEquals(['abc'], listener1.getLastCall().getArgument(0));
-    return manager.get('abc');
-  }).then(function(value) {
-    assertEquals('def', value);
-  });
+  return manager
+    .get('abc')
+    .then(function (value) {
+      assertNull(value);
+      // Simulate external indexedDB change.
+      db.store['firebaseLocalStorage'] = {
+        'abc': { 'fbase_key': 'abc', 'value': 'def' }
+      };
+      return subscribedCallback('https://www.example.com', { 'key': 'abc' });
+    })
+    .then(function (response) {
+      // Confirm sync completed. Status true returned to confirm the key was
+      // processed.
+      assertObjectEquals({ 'keyProcessed': true }, response);
+      // Listener should trigger with expected argument.
+      assertEquals(1, listener1.getCallCount());
+      assertArrayEquals(['abc'], listener1.getLastCall().getArgument(0));
+      return manager.get('abc');
+    })
+    .then(function (value) {
+      assertEquals('def', value);
+    });
 }
-
 
 function testReceiverSubscribed_externalChange_alreadyProcessed() {
   var listener1 = goog.testing.recordFunction();
@@ -645,48 +647,62 @@ function testReceiverSubscribed_externalChange_alreadyProcessed() {
   var pingCallback;
   var workerGlobalScope = {};
   var getWorkerGlobalScope = mockControl.createMethodMock(
-      fireauth.util, 'getWorkerGlobalScope');
+    fireauth.util,
+    'getWorkerGlobalScope'
+  );
   var receiver = mockControl.createStrictMock(fireauth.messagechannel.Receiver);
   var getInstance = mockControl.createMethodMock(
-      fireauth.messagechannel.Receiver, 'getInstance');
+    fireauth.messagechannel.Receiver,
+    'getInstance'
+  );
   getWorkerGlobalScope().$returns(workerGlobalScope).$atLeastOnce();
   getInstance(workerGlobalScope).$returns(receiver);
-  receiver.subscribe('keyChanged', ignoreArgument)
-      .$does(function(eventType, callback) {
-        subscribedCallback = callback;
-      }).$once();
-  receiver.subscribe('ping', ignoreArgument)
-      .$does(function(eventType, callback) {
-        pingCallback = callback;
-      }).$once();
+  receiver
+    .subscribe('keyChanged', ignoreArgument)
+    .$does(function (eventType, callback) {
+      subscribedCallback = callback;
+    })
+    .$once();
+  receiver
+    .subscribe('ping', ignoreArgument)
+    .$does(function (eventType, callback) {
+      pingCallback = callback;
+    })
+    .$once();
   mockControl.$replayAll();
 
   manager = getDefaultFireauthManager();
   manager.addStorageListener(listener1);
-  return manager.set('abc', 'def').then(function() {
-    // Simulate ping response at this point.
-    pingCallback('https://www.example.com', {});
-    return subscribedCallback('https://www.example.com', {'key': 'abc'});
-  }).then(function(response) {
-    // Confirm sync completed but key not processed since no change is detected.
-    assertObjectEquals({'keyProcessed': false}, response);
-    // No listener should trigger.
-    assertEquals(0, listener1.getCallCount());
-    return manager.get('abc');
-  }).then(function(value) {
-    assertEquals('def', value);
-  });
+  return manager
+    .set('abc', 'def')
+    .then(function () {
+      // Simulate ping response at this point.
+      pingCallback('https://www.example.com', {});
+      return subscribedCallback('https://www.example.com', { 'key': 'abc' });
+    })
+    .then(function (response) {
+      // Confirm sync completed but key not processed since no change is detected.
+      assertObjectEquals({ 'keyProcessed': false }, response);
+      // No listener should trigger.
+      assertEquals(0, listener1.getCallCount());
+      return manager.get('abc');
+    })
+    .then(function (value) {
+      assertEquals('def', value);
+    });
 }
-
 
 function testSender_writeOperations_serviceWorkerControllerUnavailable() {
   var getActiveServiceWorker = mockControl.createMethodMock(
-      fireauth.util, 'getActiveServiceWorker');
+    fireauth.util,
+    'getActiveServiceWorker'
+  );
   var sender = mockControl.createStrictMock(fireauth.messagechannel.Sender);
   var senderConstructor = mockControl.createConstructorMock(
-      fireauth.messagechannel, 'Sender');
-  getActiveServiceWorker()
-      .$returns(goog.Promise.resolve(null)).$atLeastOnce();
+    fireauth.messagechannel,
+    'Sender'
+  );
+  getActiveServiceWorker().$returns(goog.Promise.resolve(null)).$atLeastOnce();
   // No sender initialized.
   senderConstructor(ignoreArgument).$never();
   sender.send(ignoreArgument).$never();
@@ -694,136 +710,169 @@ function testSender_writeOperations_serviceWorkerControllerUnavailable() {
 
   // Set and remove should not trigger sender.
   manager = getDefaultFireauthManager();
-  return manager.set('abc', 'def').then(function() {
-    return manager.get('abc');
-  }).then(function(value) {
-    assertEquals('def', value);
-    return manager.remove('abc');
-  }).then(function() {
-    return manager.get('abc');
-  }).then(function(value) {
-    assertNull(value);
-  });
+  return manager
+    .set('abc', 'def')
+    .then(function () {
+      return manager.get('abc');
+    })
+    .then(function (value) {
+      assertEquals('def', value);
+      return manager.remove('abc');
+    })
+    .then(function () {
+      return manager.get('abc');
+    })
+    .then(function (value) {
+      assertNull(value);
+    });
 }
-
 
 function testSender_writeOperations_serviceWorkerControllerAvailable() {
   var status = [];
   var serviceWorkerController = {};
   var getServiceWorkerController = mockControl.createMethodMock(
-      fireauth.util, 'getServiceWorkerController');
+    fireauth.util,
+    'getServiceWorkerController'
+  );
   var getActiveServiceWorker = mockControl.createMethodMock(
-      fireauth.util, 'getActiveServiceWorker');
+    fireauth.util,
+    'getActiveServiceWorker'
+  );
   var sender = mockControl.createStrictMock(fireauth.messagechannel.Sender);
   var senderConstructor = mockControl.createConstructorMock(
-      fireauth.messagechannel, 'Sender');
+    fireauth.messagechannel,
+    'Sender'
+  );
   var resolvePing;
   getActiveServiceWorker()
-      .$returns(goog.Promise.resolve(serviceWorkerController)).$atLeastOnce();
+    .$returns(goog.Promise.resolve(serviceWorkerController))
+    .$atLeastOnce();
   // Successful set event.
   senderConstructor(ignoreArgument).$returns(sender);
-  sender.send('ping', null, true).$does(function(eventType, data) {
-    return new goog.Promise(function(resolve, reject) {
-      resolvePing = resolve;
-    });
-  }).$once();
+  sender
+    .send('ping', null, true)
+    .$does(function (eventType, data) {
+      return new goog.Promise(function (resolve, reject) {
+        resolvePing = resolve;
+      });
+    })
+    .$once();
   // Short timeout used as ping response not yet received.
   getServiceWorkerController().$returns(serviceWorkerController).$once();
-  sender.send('keyChanged', {'key': 'abc'}, false)
-      .$does(function(eventType, data) {
-        status.push(0);
-        return goog.Promise.resolve([
-          {
-            'fulfilled': true,
-            'value': {'keyProcessed': true}
-          }
-        ]);
-      }).$once();
-      // Successful remove event.
+  sender
+    .send('keyChanged', { 'key': 'abc' }, false)
+    .$does(function (eventType, data) {
+      status.push(0);
+      return goog.Promise.resolve([
+        {
+          'fulfilled': true,
+          'value': { 'keyProcessed': true }
+        }
+      ]);
+    })
+    .$once();
+  // Successful remove event.
   // Short timeout used as ping response not yet received.
   getServiceWorkerController().$returns(serviceWorkerController).$once();
-  sender.send('keyChanged', {'key': 'abc'}, false)
-      .$does(function(eventType, data) {
-        // Simulate ping resolved at this point.
-        resolvePing([
-          {
-            'fulfilled': true,
-            'value': ['keyChanged']
-          }
-        ]);
-        status.push(1);
-        return goog.Promise.resolve([
-          {
-            'fulfilled': true,
-            'value': {'keyProcessed': true}
-          }
-        ]);
-      }).$once();
+  sender
+    .send('keyChanged', { 'key': 'abc' }, false)
+    .$does(function (eventType, data) {
+      // Simulate ping resolved at this point.
+      resolvePing([
+        {
+          'fulfilled': true,
+          'value': ['keyChanged']
+        }
+      ]);
+      status.push(1);
+      return goog.Promise.resolve([
+        {
+          'fulfilled': true,
+          'value': { 'keyProcessed': true }
+        }
+      ]);
+    })
+    .$once();
   // Long timeout used as ping response has been resolved.
   // Failing set event.
   getServiceWorkerController().$returns(serviceWorkerController).$once();
-  sender.send('keyChanged', {'key': 'abc'}, true)
-      .$does(function(eventType, data) {
-        status.push(2);
-        return goog.Promise.reject(new Error('unsupported_event'));
-      }).$once();
+  sender
+    .send('keyChanged', { 'key': 'abc' }, true)
+    .$does(function (eventType, data) {
+      status.push(2);
+      return goog.Promise.reject(new Error('unsupported_event'));
+    })
+    .$once();
   // Failing remove event.
   getServiceWorkerController().$returns(serviceWorkerController).$once();
-  sender.send('keyChanged', {'key': 'abc'}, true)
-      .$does(function(eventType, data) {
-        status.push(3);
-        return goog.Promise.reject(new Error('invalid_response'));
-      }).$once();
+  sender
+    .send('keyChanged', { 'key': 'abc' }, true)
+    .$does(function (eventType, data) {
+      status.push(3);
+      return goog.Promise.reject(new Error('invalid_response'));
+    })
+    .$once();
   // Simulate the active service worker changed for some reason. No send
   // requests sent anymore.
   getServiceWorkerController().$returns({}).$once();
   mockControl.$replayAll();
 
   manager = getDefaultFireauthManager();
-  return manager.set('abc', 'def').then(function() {
-    // Set should trigger sender at this point.
-    assertArrayEquals([0], status);
-    return manager.get('abc');
-  }).then(function(value) {
-    // Get shouldn't trigger.
-    assertArrayEquals([0], status);
-    assertEquals('def', value);
-    return manager.remove('abc');
-  }).then(function() {
-    // Remove should trigger sender at this point.
-    assertArrayEquals([0, 1], status);
-    return manager.get('abc');
-  }).then(function(value) {
-    // Get shouldn't trigger.
-    assertArrayEquals([0, 1], status);
-    assertNull(value);
-    // This should resolve even if sender error occurs.
-    return manager.set('abc', 'ghi');
-  }).then(function() {
-    // Set should trigger sender at this point.
-    assertArrayEquals([0, 1, 2], status);
-    return manager.get('abc');
-  }).then(function(value) {
-    // Get shouldn't trigger.
-    assertArrayEquals([0, 1, 2], status);
-    assertEquals('ghi', value);
-    // This should resolve even if sender error occurs.
-    return manager.remove('abc');
-  }).then(function() {
-    // Remove should trigger sender at this point.
-    assertArrayEquals([0, 1, 2, 3], status);
-    return manager.get('abc');
-  }).then(function(value) {
-    // Get shouldn't trigger.
-    assertArrayEquals([0, 1, 2, 3], status);
-    assertNull(value);
-    return manager.set('abc', 'ghi');
-  }).then(function() {
-    // This shouldn't trigger sender anymore since active service worker
-    // changed.
-    assertArrayEquals([0, 1, 2, 3], status);
-    return manager.get('abc');
-  }).then(function(value) {
-    assertEquals('ghi', value);
-  });
+  return manager
+    .set('abc', 'def')
+    .then(function () {
+      // Set should trigger sender at this point.
+      assertArrayEquals([0], status);
+      return manager.get('abc');
+    })
+    .then(function (value) {
+      // Get shouldn't trigger.
+      assertArrayEquals([0], status);
+      assertEquals('def', value);
+      return manager.remove('abc');
+    })
+    .then(function () {
+      // Remove should trigger sender at this point.
+      assertArrayEquals([0, 1], status);
+      return manager.get('abc');
+    })
+    .then(function (value) {
+      // Get shouldn't trigger.
+      assertArrayEquals([0, 1], status);
+      assertNull(value);
+      // This should resolve even if sender error occurs.
+      return manager.set('abc', 'ghi');
+    })
+    .then(function () {
+      // Set should trigger sender at this point.
+      assertArrayEquals([0, 1, 2], status);
+      return manager.get('abc');
+    })
+    .then(function (value) {
+      // Get shouldn't trigger.
+      assertArrayEquals([0, 1, 2], status);
+      assertEquals('ghi', value);
+      // This should resolve even if sender error occurs.
+      return manager.remove('abc');
+    })
+    .then(function () {
+      // Remove should trigger sender at this point.
+      assertArrayEquals([0, 1, 2, 3], status);
+      return manager.get('abc');
+    })
+    .then(function (value) {
+      // Get shouldn't trigger.
+      assertArrayEquals([0, 1, 2, 3], status);
+      assertNull(value);
+      return manager.set('abc', 'ghi');
+    })
+    .then(function () {
+      // This shouldn't trigger sender anymore since active service worker
+      // changed.
+      assertArrayEquals([0, 1, 2, 3], status);
+      return manager.get('abc');
+    })
+    .then(function (value) {
+      assertEquals('ghi', value);
+    });
 }

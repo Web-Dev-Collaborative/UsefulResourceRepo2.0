@@ -21,42 +21,42 @@ dashedName: chain-search-query-helpers-to-narrow-search-results
 ```js
 (getUserInput) =>
   $.ajax({
-    url: getUserInput('url') + '/_api/query-tools',
-    type: 'POST',
-    contentType: 'application/json',
+    url: getUserInput("url") + "/_api/query-tools",
+    type: "POST",
+    contentType: "application/json",
     data: JSON.stringify([
-      { name: 'Pablo', age: 26, favoriteFoods: ['burrito', 'hot-dog'] },
-      { name: 'Bob', age: 23, favoriteFoods: ['pizza', 'nachos'] },
-      { name: 'Ashley', age: 32, favoriteFoods: ['steak', 'burrito'] },
-      { name: 'Mario', age: 51, favoriteFoods: ['burrito', 'prosciutto'] }
-    ])
+      { name: "Pablo", age: 26, favoriteFoods: ["burrito", "hot-dog"] },
+      { name: "Bob", age: 23, favoriteFoods: ["pizza", "nachos"] },
+      { name: "Ashley", age: 32, favoriteFoods: ["steak", "burrito"] },
+      { name: "Mario", age: 51, favoriteFoods: ["burrito", "prosciutto"] },
+    ]),
   }).then(
     (data) => {
-      assert.isArray(data, 'the response should be an Array');
+      assert.isArray(data, "the response should be an Array");
       assert.equal(
         data.length,
         2,
-        'the data array length is not what expected'
+        "the data array length is not what expected"
       );
       assert.notProperty(
         data[0],
-        'age',
-        'The returned first item has too many properties'
+        "age",
+        "The returned first item has too many properties"
       );
       assert.equal(
         data[0].name,
-        'Ashley',
-        'The returned first item name is not what expected'
+        "Ashley",
+        "The returned first item name is not what expected"
       );
       assert.notProperty(
         data[1],
-        'age',
-        'The returned second item has too many properties'
+        "age",
+        "The returned second item has too many properties"
       );
       assert.equal(
         data[1].name,
-        'Mario',
-        'The returned second item name is not what expected'
+        "Mario",
+        "The returned second item name is not what expected"
       );
     },
     (xhr) => {

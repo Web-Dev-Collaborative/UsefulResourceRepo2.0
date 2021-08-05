@@ -2,7 +2,7 @@
 id: 587d78ac367417b2b2512af5
 title: 使用 flex-direction 在嵌入推文中創建一列
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cnzdVC9'
+videoUrl: "https://scrimba.com/p/pVaDAv/cnzdVC9"
 forumTopicId: 301103
 dashedName: apply-the-flex-direction-property-to-create-a-column-in-the-tweet-embed
 ---
@@ -20,13 +20,15 @@ dashedName: apply-the-flex-direction-property-to-create-a-column-in-the-tweet-em
 `.follow-btn` 應在頁面上呈現。 請關閉廣告攔截器等任何擴展。
 
 ```js
-assert($('.follow-btn').length > 0 && $('.follow-btn').css('display') !== 'none');
+assert(
+  $(".follow-btn").length > 0 && $(".follow-btn").css("display") !== "none"
+);
 ```
 
 `.profile-name` 元素應有一個值爲 `column` 的`flex-direction` 屬性。
 
 ```js
-assert($('.profile-name').css('flex-direction') == 'column');
+assert($(".profile-name").css("flex-direction") == "column");
 ```
 
 # --seed--
@@ -38,7 +40,8 @@ assert($('.profile-name').css('flex-direction') == 'column');
   body {
     font-family: Arial, sans-serif;
   }
-  header, footer {
+  header,
+  footer {
     display: flex;
     flex-direction: row;
   }
@@ -61,7 +64,8 @@ assert($('.profile-name').css('flex-direction') == 'column');
     border-radius: 3px;
     padding: 5px;
   }
-  header h3, header h4 {
+  header h3,
+  header h4 {
     display: flex;
     margin: 0;
   }
@@ -93,7 +97,11 @@ assert($('.profile-name').css('flex-direction') == 'column');
   }
 </style>
 <header>
-  <img src="https://freecodecamp.s3.amazonaws.com/quincy-twitter-photo.jpg" alt="Quincy Larson's profile picture" class="profile-thumbnail">
+  <img
+    src="https://freecodecamp.s3.amazonaws.com/quincy-twitter-photo.jpg"
+    alt="Quincy Larson's profile picture"
+    class="profile-thumbnail"
+  />
   <div class="profile-name">
     <h3>Quincy Larson</h3>
     <h4>@ossia</h4>
@@ -103,18 +111,17 @@ assert($('.profile-name').css('flex-direction') == 'column');
   </div>
 </header>
 <div id="inner">
-  <p>I meet so many people who are in search of that one trick that will help them work smart. Even if you work smart, you still have to work hard.</p>
+  <p>
+    I meet so many people who are in search of that one trick that will help
+    them work smart. Even if you work smart, you still have to work hard.
+  </p>
   <span class="date">1:32 PM - 12 Jan 2018</span>
-  <hr>
+  <hr />
 </div>
 <footer>
   <div class="stats">
-    <div class="Retweets">
-      <strong>107</strong> Retweets
-    </div>
-    <div class="likes">
-      <strong>431</strong> Likes
-    </div>
+    <div class="Retweets"><strong>107</strong> Retweets</div>
+    <div class="likes"><strong>431</strong> Likes</div>
   </div>
   <div class="cta">
     <button class="share-btn">Share</button>
@@ -131,7 +138,8 @@ assert($('.profile-name').css('flex-direction') == 'column');
   body {
     font-family: Arial, sans-serif;
   }
-  header, footer {
+  header,
+  footer {
     display: flex;
     flex-direction: row;
   }
@@ -154,7 +162,8 @@ assert($('.profile-name').css('flex-direction') == 'column');
     border-radius: 3px;
     padding: 5px;
   }
-  header h3, header h4 {
+  header h3,
+  header h4 {
     display: flex;
     margin: 0;
   }
@@ -186,7 +195,11 @@ assert($('.profile-name').css('flex-direction') == 'column');
   }
 </style>
 <header>
-  <img src="https://freecodecamp.s3.amazonaws.com/quincy-twitter-photo.jpg" alt="Quincy Larson's profile picture" class="profile-thumbnail">
+  <img
+    src="https://freecodecamp.s3.amazonaws.com/quincy-twitter-photo.jpg"
+    alt="Quincy Larson's profile picture"
+    class="profile-thumbnail"
+  />
   <div class="profile-name">
     <h3>Quincy Larson</h3>
     <h4>@ossia</h4>
@@ -196,18 +209,17 @@ assert($('.profile-name').css('flex-direction') == 'column');
   </div>
 </header>
 <div id="inner">
-  <p>I meet so many people who are in search of that one trick that will help them work smart. Even if you work smart, you still have to work hard.</p>
+  <p>
+    I meet so many people who are in search of that one trick that will help
+    them work smart. Even if you work smart, you still have to work hard.
+  </p>
   <span class="date">1:32 PM - 12 Jan 2018</span>
-  <hr>
+  <hr />
 </div>
 <footer>
   <div class="stats">
-    <div class="Retweets">
-      <strong>107</strong> Retweets
-    </div>
-    <div class="likes">
-      <strong>431</strong> Likes
-    </div>
+    <div class="Retweets"><strong>107</strong> Retweets</div>
+    <div class="likes"><strong>431</strong> Likes</div>
   </div>
   <div class="cta">
     <button class="share-btn">Share</button>

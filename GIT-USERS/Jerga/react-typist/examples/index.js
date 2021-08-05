@@ -1,20 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Typist from 'Typist';
-import './main.scss';
+import React from "react";
+import ReactDOM from "react-dom";
+import Typist from "Typist";
+import "./main.scss";
 
 class TypistExample extends React.Component {
-
   state = {
     renderMsg: false,
-  }
+  };
 
   onHeaderTyped = () => {
     this.setState({ renderMsg: true });
-  }
+  };
 
   render() {
-    const docs = '//github.com/jstejada/react-typist';
+    const docs = "//github.com/jstejada/react-typist";
     return (
       <div className="TypistExample">
         <Typist
@@ -37,22 +36,28 @@ class TypistExample extends React.Component {
               * Easy to customize
               <Typist.Delay ms={1250} />
               <br />
-              * Easy to use backp<Typist.Delay ms={500} />sace
+              * Easy to use backp
+              <Typist.Delay ms={500} />
+              sace
               <Typist.Backspace count={5} delay={1000} />
               <Typist.Delay ms={750} />
               space
               <Typist.Delay ms={1250} />
               <br />
-              <span>* <a href={docs} className="flash">docs</a></span>
+              <span>
+                *{" "}
+                <a href={docs} className="flash">
+                  docs
+                </a>
+              </span>
               <br />
-              {''}
+              {""}
             </Typist>
-          ) : null }
+          ) : null}
         </div>
       </div>
     );
   }
-
 }
 
-ReactDOM.render(<TypistExample />, document.getElementById('content'));
+ReactDOM.render(<TypistExample />, document.getElementById("content"));

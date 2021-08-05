@@ -2,7 +2,7 @@
 id: 587d78a7367417b2b2512ae2
 title: 通過從左到右淡化元素來創建視覺方向
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cGJqqAE'
+videoUrl: "https://scrimba.com/c/cGJqqAE"
 forumTopicId: 301054
 dashedName: create-visual-direction-by-fading-an-element-from-left-to-right
 ---
@@ -35,7 +35,6 @@ assert(
 
 ```html
 <style>
-
   #ball {
     width: 70px;
     height: 70px;
@@ -43,11 +42,7 @@ assert(
     position: fixed;
     left: 20%;
     border-radius: 50%;
-    background: linear-gradient(
-      35deg,
-      #ccffff,
-      #ffcccc
-    );
+    background: linear-gradient(35deg, #ccffff, #ffcccc);
     animation-name: fade;
     animation-duration: 3s;
   }
@@ -55,10 +50,8 @@ assert(
   @keyframes fade {
     50% {
       left: 60%;
-
     }
   }
-
 </style>
 
 <div id="ball"></div>
@@ -75,11 +68,7 @@ assert(
     position: fixed;
     left: 20%;
     border-radius: 50%;
-    background: linear-gradient(
-      35deg,
-      #ccffff,
-      #ffcccc
-    );
+    background: linear-gradient(35deg, #ccffff, #ffcccc);
     animation-name: fade;
     animation-duration: 3s;
   }

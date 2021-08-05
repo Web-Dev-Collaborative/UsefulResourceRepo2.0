@@ -45,7 +45,7 @@ console.log(i);
 var printNumTwo;
 for (var i = 0; i < 3; i++) {
   if (i === 2) {
-    printNumTwo = function() {
+    printNumTwo = function () {
       return i;
     };
   }
@@ -61,7 +61,7 @@ console.log(printNumTwo());
 let printNumTwo;
 for (let i = 0; i < 3; i++) {
   if (i === 2) {
-    printNumTwo = function() {
+    printNumTwo = function () {
       return i;
     };
   }
@@ -85,7 +85,7 @@ console.log(i);
 代码中不应该出现 `var`。
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/var/g));
+(getUserInput) => assert(!getUserInput("index").match(/var/g));
 ```
 
 `if` 语句中声明的变量 `i` 应该等于字符串 `block scope`。
@@ -93,14 +93,14 @@ console.log(i);
 ```js
 (getUserInput) =>
   assert(
-    getUserInput('index').match(/(i\s*=\s*).*\s*.*\s*.*\1('|")block\s*scope\2/g)
+    getUserInput("index").match(/(i\s*=\s*).*\s*.*\s*.*\1('|")block\s*scope\2/g)
   );
 ```
 
 `checkScope()` 应该返回字符串 `function scope`。
 
 ```js
-assert(checkScope() === 'function scope');
+assert(checkScope() === "function scope");
 ```
 
 # --seed--
@@ -109,12 +109,12 @@ assert(checkScope() === 'function scope');
 
 ```js
 function checkScope() {
-  var i = 'function scope';
+  var i = "function scope";
   if (true) {
-    i = 'block scope';
-    console.log('Block scope i is: ', i);
+    i = "block scope";
+    console.log("Block scope i is: ", i);
   }
-  console.log('Function scope i is: ', i);
+  console.log("Function scope i is: ", i);
   return i;
 }
 ```
@@ -123,13 +123,13 @@ function checkScope() {
 
 ```js
 function checkScope() {
-  let i = 'function scope';
+  let i = "function scope";
   if (true) {
-    let i = 'block scope';
-    console.log('Block scope i is: ', i);
+    let i = "block scope";
+    console.log("Block scope i is: ", i);
   }
 
-  console.log('Function scope i is: ', i);
+  console.log("Function scope i is: ", i);
   return i;
 }
 ```

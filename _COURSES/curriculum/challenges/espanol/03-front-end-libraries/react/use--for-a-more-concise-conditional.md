@@ -26,7 +26,7 @@ Solve the previous example again, so the `h1` only renders if `display` is `true
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
-    return mockedComponent.find('MyComponent').length;
+    return mockedComponent.find("MyComponent").length;
   })()
 );
 ```
@@ -44,10 +44,10 @@ async () => {
   };
   const updated = await state_1();
   assert(
-    updated.find('div').length === 1 &&
-      updated.find('div').children().length === 2 &&
-      updated.find('button').length === 1 &&
-      updated.find('h1').length === 1
+    updated.find("div").length === 1 &&
+      updated.find("div").children().length === 2 &&
+      updated.find("button").length === 1 &&
+      updated.find("h1").length === 1
   );
 };
 ```
@@ -65,10 +65,10 @@ async () => {
   };
   const updated = await state_1();
   assert(
-    updated.find('div').length === 1 &&
-      updated.find('div').children().length === 1 &&
-      updated.find('button').length === 1 &&
-      updated.find('h1').length === 0
+    updated.find("div").length === 1 &&
+      updated.find("div").children().length === 1 &&
+      updated.find("button").length === 1 &&
+      updated.find("h1").length === 0
   );
 };
 ```
@@ -76,7 +76,7 @@ async () => {
 The render method should use the && logical operator to check the condition of this.state.display.
 
 ```js
-(getUserInput) => assert(getUserInput('index').includes('&&'));
+(getUserInput) => assert(getUserInput("index").includes("&&"));
 ```
 
 # --seed--
@@ -84,7 +84,7 @@ The render method should use the && logical operator to check the condition of t
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyComponent />, document.getElementById('root'))
+ReactDOM.render(<MyComponent />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -94,25 +94,25 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      display: true
-    }
+      display: true,
+    };
     this.toggleDisplay = this.toggleDisplay.bind(this);
   }
   toggleDisplay() {
-    this.setState(state => ({
-      display: !state.display
+    this.setState((state) => ({
+      display: !state.display,
     }));
   }
   render() {
     // Change code below this line
     return (
-       <div>
-         <button onClick={this.toggleDisplay}>Toggle Display</button>
-         <h1>Displayed!</h1>
-       </div>
+      <div>
+        <button onClick={this.toggleDisplay}>Toggle Display</button>
+        <h1>Displayed!</h1>
+      </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -122,23 +122,23 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      display: true
-    }
- this.toggleDisplay = this.toggleDisplay.bind(this);
+      display: true,
+    };
+    this.toggleDisplay = this.toggleDisplay.bind(this);
   }
   toggleDisplay() {
-    this.setState(state => ({
-      display: !state.display
+    this.setState((state) => ({
+      display: !state.display,
     }));
   }
   render() {
     // Change code below this line
     return (
-       <div>
-         <button onClick={this.toggleDisplay}>Toggle Display</button>
-         {this.state.display && <h1>Displayed!</h1>}
-       </div>
+      <div>
+        <button onClick={this.toggleDisplay}>Toggle Display</button>
+        {this.state.display && <h1>Displayed!</h1>}
+      </div>
     );
   }
-};
+}
 ```

@@ -1,6 +1,6 @@
 ---
 id: 5900f4691000cf542c50ff7b
-title: 'Problem 252: Convex Holes'
+title: "Problem 252: Convex Holes"
 challengeType: 5
 forumTopicId: 301900
 dashedName: problem-252-convex-holes
@@ -34,7 +34,6 @@ assert.strictEqual(euler252(), 104924);
 
 ```js
 function euler252() {
-
   return true;
 }
 

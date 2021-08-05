@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244d7
 title: 小於或等於運算符
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cNVR7Am'
+videoUrl: "https://scrimba.com/c/cNVR7Am"
 forumTopicId: 16788
 dashedName: comparison-with-the-less-than-or-equal-to-operator
 ---
@@ -14,11 +14,11 @@ dashedName: comparison-with-the-less-than-or-equal-to-operator
 **例如**
 
 ```js
-4   <= 5
-'7' <= 7
-5   <= 5
-3   <= 2
-'8' <= 4
+4 <= 5;
+"7" <= 7;
+5 <= 5;
+3 <= 2;
+"8" <= 4;
 ```
 
 按順序，這些表達式會返回 `true`、`true`、`true`、`false` 和 `false`。
@@ -32,43 +32,43 @@ dashedName: comparison-with-the-less-than-or-equal-to-operator
 `testLessOrEqual(0)` 應該返回 `Smaller Than or Equal to 12`
 
 ```js
-assert(testLessOrEqual(0) === 'Smaller Than or Equal to 12');
+assert(testLessOrEqual(0) === "Smaller Than or Equal to 12");
 ```
 
 `testLessOrEqual(11)` 應該返回 `Smaller Than or Equal to 12`
 
 ```js
-assert(testLessOrEqual(11) === 'Smaller Than or Equal to 12');
+assert(testLessOrEqual(11) === "Smaller Than or Equal to 12");
 ```
 
 `testLessOrEqual(12)` 應該返回 `Smaller Than or Equal to 12`
 
 ```js
-assert(testLessOrEqual(12) === 'Smaller Than or Equal to 12');
+assert(testLessOrEqual(12) === "Smaller Than or Equal to 12");
 ```
 
 `testLessOrEqual(23)` 應該返回 `Smaller Than or Equal to 24`
 
 ```js
-assert(testLessOrEqual(23) === 'Smaller Than or Equal to 24');
+assert(testLessOrEqual(23) === "Smaller Than or Equal to 24");
 ```
 
 `testLessOrEqual(24)` 應該返回 `Smaller Than or Equal to 24`
 
 ```js
-assert(testLessOrEqual(24) === 'Smaller Than or Equal to 24');
+assert(testLessOrEqual(24) === "Smaller Than or Equal to 24");
 ```
 
 `testLessOrEqual(25)` 應該返回 `More Than 24`
 
 ```js
-assert(testLessOrEqual(25) === 'More Than 24');
+assert(testLessOrEqual(25) === "More Than 24");
 ```
 
 `testLessOrEqual(55)` 應該返回 `More Than 24`
 
 ```js
-assert(testLessOrEqual(55) === 'More Than 24');
+assert(testLessOrEqual(55) === "More Than 24");
 ```
 
 應該使用 `<=` 運算符至少兩次
@@ -83,11 +83,13 @@ assert(code.match(/val\s*<=\s*('|")*\d+('|")*/g).length > 1);
 
 ```js
 function testLessOrEqual(val) {
-  if (val) {  // Change this line
+  if (val) {
+    // Change this line
     return "Smaller Than or Equal to 12";
   }
 
-  if (val) {  // Change this line
+  if (val) {
+    // Change this line
     return "Smaller Than or Equal to 24";
   }
 
@@ -101,11 +103,13 @@ testLessOrEqual(10);
 
 ```js
 function testLessOrEqual(val) {
-  if (val <= 12) {  // Change this line
+  if (val <= 12) {
+    // Change this line
     return "Smaller Than or Equal to 12";
   }
 
-  if (val <= 24) {  // Change this line
+  if (val <= 24) {
+    // Change this line
     return "Smaller Than or Equal to 24";
   }
 

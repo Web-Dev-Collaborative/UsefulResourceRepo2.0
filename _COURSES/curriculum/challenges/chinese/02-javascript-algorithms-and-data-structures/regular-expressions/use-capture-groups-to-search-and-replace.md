@@ -23,7 +23,7 @@ wrongText.replace(silverRegex, "blue");
 你还可以使用美元符号（`$`）访问替换字符串中的捕获组。
 
 ```js
-"Code Camp".replace(/(\w+)\s(\w+)/, '$2 $1');
+"Code Camp".replace(/(\w+)\s(\w+)/, "$2 $1");
 ```
 
 调用 `replace` 将返回字符串 `Camp Code`。
@@ -43,7 +43,7 @@ assert(code.match(/\.replace\(.*\)/));
 你的正则表达式应该将字符串 `one two three` 更改为字符串 `three two one`
 
 ```js
-assert(result === 'three two one');
+assert(result === "three two one");
 ```
 
 你不应该改变最后一行。
@@ -55,7 +55,7 @@ assert(code.match(/result\s*=\s*str\.replace\(.*?\)/));
 `fixRegex` 应该至少使用三个抓取组。
 
 ```js
-assert(new RegExp(fixRegex.source + '|').exec('').length - 1 >= 3);
+assert(new RegExp(fixRegex.source + "|").exec("").length - 1 >= 3);
 ```
 
 `replaceText` 应该使用括号化的子匹配字符串（例如：nth 括号化的子匹配字符串, $n, 对应于第 n 个捕获组）。

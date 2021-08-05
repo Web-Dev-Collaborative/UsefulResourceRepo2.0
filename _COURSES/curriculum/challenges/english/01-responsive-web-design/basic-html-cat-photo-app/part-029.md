@@ -14,7 +14,7 @@ To improve accessibility of the image you just added, add an `alt` attribute wit
 Your `figure` element should have an opening tag. Opening tags have this syntax: `<elementName>`.
 
 ```js
-assert(document.querySelectorAll('figure').length === 2);
+assert(document.querySelectorAll("figure").length === 2);
 ```
 
 Your `ol` element should have a closing tag. Closing tags have a `/` just after the `<` character.
@@ -26,27 +26,27 @@ assert(code.match(/<\/figure>/g).length === 2);
 There should be a `figure` element right above the last `section` element's closing tag.
 
 ```js
-assert($('main > section')[1].lastElementChild.nodeName === 'FIGURE');
+assert($("main > section")[1].lastElementChild.nodeName === "FIGURE");
 ```
 
 The Cats `img` element should be nested in the `figure` element.
 
 ```js
-const catsImg = document.querySelectorAll('figure > img')[1];
+const catsImg = document.querySelectorAll("figure > img")[1];
 assert(
   catsImg &&
-    catsImg.getAttribute('src').toLowerCase() === 'https://bit.ly/fcc-cats'
+    catsImg.getAttribute("src").toLowerCase() === "https://bit.ly/fcc-cats"
 );
 ```
 
 The Cats `img` element should have an `alt` attribute with the value `Five cats looking around a field.`
 
 ```js
-const catsImg = document.querySelectorAll('figure > img')[1];
+const catsImg = document.querySelectorAll("figure > img")[1];
 assert(
   catsImg
-    .getAttribute('alt')
-    .replace(/\s+/g, ' ')
+    .getAttribute("alt")
+    .replace(/\s+/g, " ")
     .match(/^Five cats looking around a field\.?$/i)
 );
 ```
@@ -63,8 +63,15 @@ assert(
       <section>
         <h2>Cat Photos</h2>
         <!-- TODO: Add link to cat photos -->
-        <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        <p>
+          Click here to view more
+          <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+        </p>
+        <a href="https://freecatphotoapp.com"
+          ><img
+            src="https://bit.ly/fcc-relaxing-cat"
+            alt="A cute orange cat lying on its back."
+        /></a>
       </section>
       <section>
         <h2>Cat Lists</h2>
@@ -75,8 +82,11 @@ assert(
           <li>lasagna</li>
         </ul>
         <figure>
-          <img src="https://bit.ly/fcc-lasagna" alt="A slice of lasagna on a plate.">
-          <figcaption>Cats <em>love</em> lasagna.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-lasagna"
+            alt="A slice of lasagna on a plate."
+          />
+          <figcaption>Cats <em>love</em> lasagna.</figcaption>
         </figure>
         <h3>Top 3 things cats hate:</h3>
         <ol>
@@ -85,13 +95,12 @@ assert(
           <li>other cats</li>
         </ol>
         <figure>
---fcc-editable-region--
-          <img src="https://bit.ly/fcc-cats">
---fcc-editable-region--
+          --fcc-editable-region--
+          <img src="https://bit.ly/fcc-cats" />
+          --fcc-editable-region--
         </figure>
       </section>
     </main>
   </body>
 </html>
 ```
-

@@ -2,7 +2,7 @@
 id: 587d774e367417b2b2512a9f
 title: 使用 main 元素包裹主题内容
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cPp7zuE'
+videoUrl: "https://scrimba.com/c/cPp7zuE"
 forumTopicId: 301018
 dashedName: jump-straight-to-the-content-using-the-main-element
 ---
@@ -26,7 +26,7 @@ Camper Cat 对他的忍者武器页面有一些新的想法。 请帮他在 `hea
 应存在一个 `main` 标签。
 
 ```js
-assert($('main').length == 1);
+assert($("main").length == 1);
 ```
 
 `main` 标签应位于 `header` 标签与 `footer` 标签之间。
@@ -44,8 +44,6 @@ assert(code.match(/<\/header>\s*?<main>\s*?<\/main>/gi));
   <h1>Weapons of the Ninja</h1>
 </header>
 
-
-
 <footer></footer>
 ```
 
@@ -55,8 +53,6 @@ assert(code.match(/<\/header>\s*?<main>\s*?<\/main>/gi));
 <header>
   <h1>Weapons of the Ninja</h1>
 </header>
-<main>
-
-</main>
+<main></main>
 <footer></footer>
 ```

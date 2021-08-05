@@ -33,13 +33,13 @@ Write a function that takes the initial number of prisoners and 'k' as parameter
 `josephus` should be a function.
 
 ```js
-assert(typeof josephus == 'function');
+assert(typeof josephus == "function");
 ```
 
 `josephus(30,3)` should return a number.
 
 ```js
-assert(typeof josephus(30, 3) == 'number');
+assert(typeof josephus(30, 3) == "number");
 ```
 
 `josephus(30,3)` should return `29`.
@@ -77,9 +77,7 @@ assert.equal(josephus(29, 4), 2);
 ## --seed-contents--
 
 ```js
-function josephus(init, kill) {
-
-}
+function josephus(init, kill) {}
 ```
 
 # --solutions--
@@ -87,13 +85,13 @@ function josephus(init, kill) {
 ```js
 function josephus(init, kill) {
   var Josephus = {
-    init: function(n) {
+    init: function (n) {
       this.head = {};
       var current = this.head;
       for (var i = 0; i < n - 1; i++) {
         current.label = i + 1;
         current.next = {
-          prev: current
+          prev: current,
         };
         current = current.next;
       }
@@ -102,7 +100,7 @@ function josephus(init, kill) {
       this.head.prev = current;
       return this;
     },
-    kill: function(spacing) {
+    kill: function (spacing) {
       var current = this.head;
       while (current.next !== current) {
         for (var i = 0; i < spacing - 1; i++) {
@@ -113,9 +111,9 @@ function josephus(init, kill) {
         current = current.next;
       }
       return current.label;
-    }
-  }
+    },
+  };
 
-  return Josephus.init(init).kill(kill)
+  return Josephus.init(init).kill(kill);
 }
 ```

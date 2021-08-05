@@ -13,7 +13,7 @@ La destrutturazione ti consente di assegnare un nuovo nome di variabile mentre s
 Usando lo stesso oggetto dell'ultimo esempio:
 
 ```js
-const user = { name: 'John Doe', age: 34 };
+const user = { name: "John Doe", age: 34 };
 ```
 
 Ecco come è possibile creare nuovi nomi di variabili con l'assegnazione:
@@ -73,13 +73,13 @@ assert(highToday === 77 && highTomorrow === 80);
 const HIGH_TEMPERATURES = {
   yesterday: 75,
   today: 77,
-  tomorrow: 80
+  tomorrow: 80,
 };
 
 // Only change code below this line
 
 const highToday = HIGH_TEMPERATURES.today;
-const highTomorrow = HIGH_TEMPERATURES.tomorrow; 
+const highTomorrow = HIGH_TEMPERATURES.tomorrow;
 
 // Only change code above this line
 ```
@@ -90,7 +90,7 @@ const highTomorrow = HIGH_TEMPERATURES.tomorrow;
 const HIGH_TEMPERATURES = {
   yesterday: 75,
   today: 77,
-  tomorrow: 80
+  tomorrow: 80,
 };
 
 const { today: highToday, tomorrow: highTomorrow } = HIGH_TEMPERATURES;

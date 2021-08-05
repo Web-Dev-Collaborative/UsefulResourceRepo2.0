@@ -17,20 +17,20 @@
  * page.
  */
 
-goog.provide('firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccess');
+goog.provide("firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccess");
 
-goog.require('firebaseui.auth.soy2.page');
-goog.require('firebaseui.auth.ui.element');
-goog.require('firebaseui.auth.ui.element.form');
-goog.require('firebaseui.auth.ui.page.Base');
-goog.requireType('goog.dom.DomHelper');
-
+goog.require("firebaseui.auth.soy2.page");
+goog.require("firebaseui.auth.ui.element");
+goog.require("firebaseui.auth.ui.element.form");
+goog.require("firebaseui.auth.ui.page.Base");
+goog.requireType("goog.dom.DomHelper");
 
 /**
  * Revert second factor addition success UI component.
  */
-firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccess =
-    class extends firebaseui.auth.ui.page.Base {
+firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccess = class extends (
+  firebaseui.auth.ui.page.Base
+) {
   /**
    * @param {string} factorId The factor ID of the second factor.
    * @param {function()} onResetPasswordClick Callback to invoke when the reset
@@ -40,17 +40,23 @@ firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccess =
    *     continue button is clicked.
    * @param {?goog.dom.DomHelper=} domHelper Optional DOM helper.
    */
-  constructor(factorId, onResetPasswordClick, phoneNumber, onContinueClick,
-              domHelper) {
+  constructor(
+    factorId,
+    onResetPasswordClick,
+    phoneNumber,
+    onContinueClick,
+    domHelper
+  ) {
     super(
-        firebaseui.auth.soy2.page.revertSecondFactorAdditionSuccess,
-        {
-          factorId: factorId,
-          phoneNumber: phoneNumber || null,
-          allowContinue: !!onContinueClick
-        },
-        domHelper,
-        'revertSecondFactorAdditionSuccess');
+      firebaseui.auth.soy2.page.revertSecondFactorAdditionSuccess,
+      {
+        factorId: factorId,
+        phoneNumber: phoneNumber || null,
+        allowContinue: !!onContinueClick,
+      },
+      domHelper,
+      "revertSecondFactorAdditionSuccess"
+    );
     this.onResetPasswordClick_ = onResetPasswordClick;
     this.onContinueClick_ = onContinueClick || null;
   }
@@ -59,9 +65,12 @@ firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccess =
   enterDocument() {
     // Handle action event for 'change your password immediately' link.
     firebaseui.auth.ui.element.listenForActionEvent(
-        this, this.getResetPasswordElement(), (e) => {
-          this.onResetPasswordClick_();
-        });
+      this,
+      this.getResetPasswordElement(),
+      (e) => {
+        this.onResetPasswordClick_();
+      }
+    );
     if (this.onContinueClick_) {
       this.initFormElement(this.onContinueClick_);
       this.getSubmitElement().focus();
@@ -80,23 +89,21 @@ firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccess =
    * @return {?Element} The reset password link.
    */
   getResetPasswordElement() {
-    return this.getElementByClass('firebaseui-id-reset-password-link');
+    return this.getElementByClass("firebaseui-id-reset-password-link");
   }
 };
 
-
 goog.mixin(
-    firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccess.prototype,
-    /**
-     * @lends
-     * {firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccess.prototype}
-     */
-    {
-      // For form.
-      getSubmitElement:
-          firebaseui.auth.ui.element.form.getSubmitElement,
-      getSecondaryLinkElement:
-          firebaseui.auth.ui.element.form.getSecondaryLinkElement,
-      initFormElement:
-          firebaseui.auth.ui.element.form.initFormElement
-    });
+  firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccess.prototype,
+  /**
+   * @lends
+   * {firebaseui.auth.ui.page.RevertSecondFactorAdditionSuccess.prototype}
+   */
+  {
+    // For form.
+    getSubmitElement: firebaseui.auth.ui.element.form.getSubmitElement,
+    getSecondaryLinkElement:
+      firebaseui.auth.ui.element.form.getSecondaryLinkElement,
+    initFormElement: firebaseui.auth.ui.element.form.initFormElement,
+  }
+);

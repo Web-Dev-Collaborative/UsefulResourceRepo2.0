@@ -42,19 +42,18 @@ assert(Animal.prototype.isPrototypeOf(Dog.prototype));
 ## --seed-contents--
 
 ```js
-function Animal() { }
+function Animal() {}
 
 Animal.prototype = {
   constructor: Animal,
-  eat: function() {
+  eat: function () {
     console.log("nom nom nom");
-  }
+  },
 };
 
-function Dog() { }
+function Dog() {}
 
 // Only change code below this line
-
 
 let beagle = new Dog();
 ```
@@ -62,16 +61,16 @@ let beagle = new Dog();
 # --solutions--
 
 ```js
-function Animal() { }
+function Animal() {}
 
 Animal.prototype = {
   constructor: Animal,
-  eat: function() {
+  eat: function () {
     console.log("nom nom nom");
-  }
+  },
 };
 
-function Dog() { }
+function Dog() {}
 Dog.prototype = Object.create(Animal.prototype);
 
 let beagle = new Dog();

@@ -16,12 +16,11 @@
  * @fileoverview UI component for the blank page.
  */
 
-goog.provide('firebaseui.auth.ui.page.Blank');
+goog.provide("firebaseui.auth.ui.page.Blank");
 
-goog.require('firebaseui.auth.soy2.page');
-goog.require('firebaseui.auth.ui.page.Base');
-goog.requireType('goog.dom.DomHelper');
-
+goog.require("firebaseui.auth.soy2.page");
+goog.require("firebaseui.auth.ui.page.Base");
+goog.requireType("goog.dom.DomHelper");
 
 /**
  * Blank page UI componenet.
@@ -31,6 +30,6 @@ firebaseui.auth.ui.page.Blank = class extends firebaseui.auth.ui.page.Base {
    * @param {?goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
    */
   constructor(opt_domHelper) {
-    super(firebaseui.auth.soy2.page.blank, undefined, opt_domHelper, 'blank');
+    super(firebaseui.auth.soy2.page.blank, undefined, opt_domHelper, "blank");
   }
 };

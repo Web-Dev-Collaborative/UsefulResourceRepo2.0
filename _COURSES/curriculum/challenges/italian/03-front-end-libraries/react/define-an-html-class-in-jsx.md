@@ -25,13 +25,13 @@ Applica una classe `myDiv` al `div` fornito nel codice JSX.
 La costante `JSX` dovrebbe restituire un elemento `div`.
 
 ```js
-assert.strictEqual(JSX.type, 'div');
+assert.strictEqual(JSX.type, "div");
 ```
 
 Il `div` dovrebbe essere di classe `myDiv`.
 
 ```js
-assert.strictEqual(JSX.props.className, 'myDiv');
+assert.strictEqual(JSX.props.className, "myDiv");
 ```
 
 # --seed--
@@ -39,7 +39,7 @@ assert.strictEqual(JSX.props.className, 'myDiv');
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(JSX, document.getElementById('root'))
+ReactDOM.render(JSX, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -56,7 +56,8 @@ const JSX = (
 
 ```jsx
 const JSX = (
-<div className = 'myDiv'>
-  <h1>Add a class to this div</h1>
-</div>);
+  <div className="myDiv">
+    <h1>Add a class to this div</h1>
+  </div>
+);
 ```

@@ -10,7 +10,7 @@ dashedName: sort-stability
 
 When sorting records in a table by a particular column or field, a [stable sort](https://en.wikipedia.org/wiki/Stable_sort#Stability) will always retain the relative order of records that have the same key.
 
-For example, in this table of countries and cities, a stable sort on the **second** column, the cities, would keep the US Birmingham above the UK Birmingham. (Although an unstable sort *might*, in this case, place the US Birmingham above the UK Birmingham, a stable sort routine would *guarantee* it).
+For example, in this table of countries and cities, a stable sort on the **second** column, the cities, would keep the US Birmingham above the UK Birmingham. (Although an unstable sort _might_, in this case, place the US Birmingham above the UK Birmingham, a stable sort routine would _guarantee_ it).
 
 <pre>UK  London
 US  New York
@@ -29,7 +29,7 @@ Write a function that takes a 2D array as a parameter. Each element has 2 elemen
 `stableSort` should be a function.
 
 ```js
-assert(typeof stableSort == 'function');
+assert(typeof stableSort == "function");
 ```
 
 `stableSort([["UK", "London"], ["US", "New York"], ["US", "Birmingham"], ["UK", "Birmingham"]])` should return an array.
@@ -38,10 +38,10 @@ assert(typeof stableSort == 'function');
 assert(
   Array.isArray(
     stableSort([
-      ['UK', 'London'],
-      ['US', 'New York'],
-      ['US', 'Birmingham'],
-      ['UK', 'Birmingham']
+      ["UK", "London"],
+      ["US", "New York"],
+      ["US", "Birmingham"],
+      ["UK", "Birmingham"],
     ])
   )
 );
@@ -52,16 +52,16 @@ assert(
 ```js
 assert.deepEqual(
   stableSort([
-    ['UK', 'London'],
-    ['US', 'New York'],
-    ['US', 'Birmingham'],
-    ['UK', 'Birmingham']
+    ["UK", "London"],
+    ["US", "New York"],
+    ["US", "Birmingham"],
+    ["UK", "Birmingham"],
   ]),
   [
-    ['US', 'Birmingham'],
-    ['UK', 'Birmingham'],
-    ['UK', 'London'],
-    ['US', 'New York']
+    ["US", "Birmingham"],
+    ["UK", "Birmingham"],
+    ["UK", "London"],
+    ["US", "New York"],
   ]
 );
 ```
@@ -74,13 +74,13 @@ assert.deepEqual(
     [2, 2],
     [1, 2],
     [1, 4],
-    [1, 5]
+    [1, 5],
   ]),
   [
     [2, 2],
     [1, 2],
     [1, 4],
-    [1, 5]
+    [1, 5],
   ]
 );
 ```
@@ -93,13 +93,13 @@ assert.deepEqual(
     [11, 55],
     [12, 45],
     [11, 45],
-    [32, 45]
+    [32, 45],
   ]),
   [
     [12, 45],
     [11, 45],
     [32, 45],
-    [11, 55]
+    [11, 55],
   ]
 );
 ```
@@ -113,14 +113,14 @@ assert.deepEqual(
     [1, 2],
     [1, 4],
     [1, 5],
-    [10, 9]
+    [10, 9],
   ]),
   [
     [1, 2],
     [1, 4],
     [1, 5],
     [10, 9],
-    [10, 22]
+    [10, 22],
   ]
 );
 ```
@@ -134,14 +134,14 @@ assert.deepEqual(
     [12, 22],
     [31, 43],
     [31, 54],
-    [10, 49]
+    [10, 49],
   ]),
   [
     [12, 22],
     [31, 43],
     [10, 49],
     [55, 54],
-    [31, 54]
+    [31, 54],
   ]
 );
 ```
@@ -151,16 +151,14 @@ assert.deepEqual(
 ## --seed-contents--
 
 ```js
-function stableSort(arr) {
-
-}
+function stableSort(arr) {}
 ```
 
 # --solutions--
 
 ```js
 function stableSort(arr) {
-  arr.sort(function(a, b) {
+  arr.sort(function (a, b) {
     return a[1] < b[1] ? -1 : a[1] > b[1] ? 1 : 0;
   });
   return arr;

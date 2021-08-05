@@ -4,7 +4,7 @@ title: Target a Specific Child of an Element Using jQuery
 challengeType: 6
 forumTopicId: 18315
 required:
-  - link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: target-a-specific-child-of-an-element-using-jquery
 ---
 
@@ -30,15 +30,15 @@ The second element in your `target` elements should bounce.
 
 ```js
 assert(
-  $('.target:nth-child(2)').hasClass('animated') &&
-    $('.target:nth-child(2)').hasClass('bounce')
+  $(".target:nth-child(2)").hasClass("animated") &&
+    $(".target:nth-child(2)").hasClass("bounce")
 );
 ```
 
 Only two elements should bounce.
 
 ```js
-assert($('.animated.bounce').length === 2);
+assert($(".animated.bounce").length === 2);
 ```
 
 You should use the `:nth-child()` selector to modify these elements.
@@ -64,7 +64,7 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();
@@ -72,7 +72,6 @@ assert(
     $("#target5").clone().appendTo("#left-well");
     $("#target1").parent().css("background-color", "red");
     $("#right-well").children().css("color", "orange");
-
   });
 </script>
 
@@ -105,7 +104,7 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();

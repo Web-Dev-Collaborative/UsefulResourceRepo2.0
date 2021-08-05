@@ -2,7 +2,7 @@
 id: cf1111c1c12feddfaeb3bdef
 title: 用 if 语句来表达条件逻辑
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cy87mf3'
+videoUrl: "https://scrimba.com/c/cy87mf3"
 forumTopicId: 18348
 dashedName: use-conditional-logic-with-if-statements
 ---
@@ -20,9 +20,9 @@ dashedName: use-conditional-logic-with-if-statements
 **示例**
 
 ```js
-function test (myCondition) {
+function test(myCondition) {
   if (myCondition) {
-     return "It was true";
+    return "It was true";
   }
   return "It was false";
 }
@@ -32,7 +32,7 @@ test(false);
 
 `test(true)` 返回字符串 `It was true`，`test(false)` 返回字符串 `It was false`。
 
-当 `test` 被调用，并且传递进来的参数值为 `true` 时，`if` 语句会计算 `myCondition` 的结果，看它是否为 `true`。 如果条件为 `true`，函数会返回 `It was true`。 当 `test` 被调用，并且传递进来的参数值为 `false` 时，`myCondition` *不* 为 `true`，并且不执行大括号后面的语句，函数返回 `It was false`。
+当 `test` 被调用，并且传递进来的参数值为 `true` 时，`if` 语句会计算 `myCondition` 的结果，看它是否为 `true`。 如果条件为 `true`，函数会返回 `It was true`。 当 `test` 被调用，并且传递进来的参数值为 `false` 时，`myCondition` _不_ 为 `true`，并且不执行大括号后面的语句，函数返回 `It was false`。
 
 # --instructions--
 
@@ -43,31 +43,31 @@ test(false);
 `trueOrFalse` 应该是一个函数
 
 ```js
-assert(typeof trueOrFalse === 'function');
+assert(typeof trueOrFalse === "function");
 ```
 
 `trueOrFalse(true)` 应该返回一个字符串
 
 ```js
-assert(typeof trueOrFalse(true) === 'string');
+assert(typeof trueOrFalse(true) === "string");
 ```
 
 `trueOrFalse(false)` 应该返回一个字符串
 
 ```js
-assert(typeof trueOrFalse(false) === 'string');
+assert(typeof trueOrFalse(false) === "string");
 ```
 
 `trueOrFalse(true)` 应该返回 `Yes, that was true`
 
 ```js
-assert(trueOrFalse(true) === 'Yes, that was true');
+assert(trueOrFalse(true) === "Yes, that was true");
 ```
 
 `trueOrFalse(false)`应该返回 `No, that was false`
 
 ```js
-assert(trueOrFalse(false) === 'No, that was false');
+assert(trueOrFalse(false) === "No, that was false");
 ```
 
 # --seed--
@@ -77,11 +77,7 @@ assert(trueOrFalse(false) === 'No, that was false');
 ```js
 function trueOrFalse(wasThatTrue) {
   // Only change code below this line
-
-
-
   // Only change code above this line
-
 }
 ```
 

@@ -16,14 +16,13 @@
  * @fileoverview Unsupported provider handler.
  */
 
-goog.provide('firebaseui.auth.widget.handler.handleUnsupportedProvider');
+goog.provide("firebaseui.auth.widget.handler.handleUnsupportedProvider");
 
-goog.require('firebaseui.auth.ui.page.UnsupportedProvider');
-goog.require('firebaseui.auth.widget.Handler');
-goog.require('firebaseui.auth.widget.HandlerName');
-goog.require('firebaseui.auth.widget.handler');
-goog.require('firebaseui.auth.widget.handler.common');
-
+goog.require("firebaseui.auth.ui.page.UnsupportedProvider");
+goog.require("firebaseui.auth.widget.Handler");
+goog.require("firebaseui.auth.widget.HandlerName");
+goog.require("firebaseui.auth.widget.handler");
+goog.require("firebaseui.auth.widget.handler.common");
 
 /**
  * Handles unsupported provider.
@@ -33,37 +32,43 @@ goog.require('firebaseui.auth.widget.handler.common');
  * @param {!Element} container The container DOM element.
  * @param {string} email The email address of the account.
  */
-firebaseui.auth.widget.handler.handleUnsupportedProvider = function(
-    app, container, email) {
+firebaseui.auth.widget.handler.handleUnsupportedProvider = function (
+  app,
+  container,
+  email
+) {
   var component = new firebaseui.auth.ui.page.UnsupportedProvider(
-      email,
-      // On recover password button clicked.
-      function() {
-        component.dispose();
-        firebaseui.auth.widget.handler.handle(
-            firebaseui.auth.widget.HandlerName.PASSWORD_RECOVERY,
-            app,
-            container,
-            email);
-      },
-      // On back button click.
-      function() {
-        component.dispose();
-        firebaseui.auth.widget.handler.common.handleSignInStart(
-            app,
-            container,
-            email);
-      },
-      app.getConfig().getTosUrl(),
-      app.getConfig().getPrivacyPolicyUrl());
+    email,
+    // On recover password button clicked.
+    function () {
+      component.dispose();
+      firebaseui.auth.widget.handler.handle(
+        firebaseui.auth.widget.HandlerName.PASSWORD_RECOVERY,
+        app,
+        container,
+        email
+      );
+    },
+    // On back button click.
+    function () {
+      component.dispose();
+      firebaseui.auth.widget.handler.common.handleSignInStart(
+        app,
+        container,
+        email
+      );
+    },
+    app.getConfig().getTosUrl(),
+    app.getConfig().getPrivacyPolicyUrl()
+  );
   component.render(container);
   // Set current UI component.
   app.setCurrentComponent(component);
 };
 
-
 // Register handler.
 firebaseui.auth.widget.handler.register(
-    firebaseui.auth.widget.HandlerName.UNSUPPORTED_PROVIDER,
-    /** @type {!firebaseui.auth.widget.Handler} */
-    (firebaseui.auth.widget.handler.handleUnsupportedProvider));
+  firebaseui.auth.widget.HandlerName.UNSUPPORTED_PROVIDER,
+  /** @type {!firebaseui.auth.widget.Handler} */
+  (firebaseui.auth.widget.handler.handleUnsupportedProvider)
+);

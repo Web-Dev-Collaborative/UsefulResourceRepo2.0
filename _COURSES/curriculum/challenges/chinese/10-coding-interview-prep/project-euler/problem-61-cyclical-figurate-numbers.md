@@ -1,6 +1,6 @@
 ---
 id: 5900f3a91000cf542c50febc
-title: 'Problem 61: Cyclical figurate numbers'
+title: "Problem 61: Cyclical figurate numbers"
 challengeType: 5
 forumTopicId: 302173
 dashedName: problem-61-cyclical-figurate-numbers
@@ -34,7 +34,7 @@ Find the sum of the only ordered set of six cyclic 4-digit numbers for which eac
 `cyclicalFigurateNums()` should return a number.
 
 ```js
-assert(typeof cyclicalFigurateNums() === 'number');
+assert(typeof cyclicalFigurateNums() === "number");
 ```
 
 `cyclicalFigurateNums()` should return 28684.
@@ -49,7 +49,6 @@ assert.strictEqual(cyclicalFigurateNums(), 28684);
 
 ```js
 function cyclicalFigurateNums() {
-
   return true;
 }
 

@@ -14,11 +14,11 @@ Give your `bb1` element these style properties: `display: flex;`, `flex-directio
 test-text
 
 ```js
-const bb1 = $('.bb1');
+const bb1 = $(".bb1");
 assert(
-  bb1.css('display') === 'flex' &&
-    bb1.css('flex-direction') === 'column' &&
-    bb1.css('align-items') === 'center'
+  bb1.css("display") === "flex" &&
+    bb1.css("flex-direction") === "column" &&
+    bb1.css("align-items") === "center"
 );
 ```
 
@@ -28,7 +28,7 @@ assert(
 
 ```html
 <!DOCTYPE html>
-<html>    
+<html>
   <head>
     <title>freeCodeCamp Skyline Project</title>
     <style>
@@ -57,12 +57,12 @@ assert(
         width: 70%;
         height: 10%;
       }
-  
+
       .bb1b {
         width: 80%;
         height: 10%;
       }
-  
+
       .bb1c {
         width: 90%;
         height: 10%;
@@ -92,7 +92,7 @@ assert(
 
 ```html
 <!DOCTYPE html>
-<html>    
+<html>
   <head>
     <title>freeCodeCamp Skyline Project</title>
     <style>
@@ -124,12 +124,12 @@ assert(
         width: 70%;
         height: 10%;
       }
-  
+
       .bb1b {
         width: 80%;
         height: 10%;
       }
-  
+
       .bb1c {
         width: 90%;
         height: 10%;

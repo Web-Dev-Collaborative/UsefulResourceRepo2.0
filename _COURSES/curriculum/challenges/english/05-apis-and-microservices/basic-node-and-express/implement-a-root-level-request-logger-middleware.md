@@ -33,11 +33,11 @@ Root level logger middleware should be active
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/root-middleware-logger').then(
+  $.get(getUserInput("url") + "/_api/root-middleware-logger").then(
     (data) => {
       assert.isTrue(
         data.passed,
-        'root-level logger is not working as expected'
+        "root-level logger is not working as expected"
       );
     },
     (xhr) => {

@@ -22,27 +22,29 @@
  * $ ./make_flag_pngs.js ./svg_images_dir ./png_images_dir
  */
 
-var fs = require('fs');
-var getDirectoryArgs = require('./get_directory_args.js');
-var path = require('path');
-var svgexport = require('svgexport');
+var fs = require("fs");
+var getDirectoryArgs = require("./get_directory_args.js");
+var path = require("path");
+var svgexport = require("svgexport");
 
 var dirs = getDirectoryArgs();
 
 /* The desired resolution of each PNG. */
-var OUTPUT_RESOLUTION = '48:28';
+var OUTPUT_RESOLUTION = "48:28";
 
 var files = fs.readdirSync(dirs.from);
-var svgExportInput = files.filter(function(file) {
-  // Ignore non-top-level flags (e.g. USA state flags).
-  return file.match(/^[A-Z][A-Z]\.svg$/);
-}).map(function(file) {
-  var fromPath = path.join(dirs.from, file);
-  var toPath = path.join(dirs.to, path.parse(file).name + '.png');
+var svgExportInput = files
+  .filter(function (file) {
+    // Ignore non-top-level flags (e.g. USA state flags).
+    return file.match(/^[A-Z][A-Z]\.svg$/);
+  })
+  .map(function (file) {
+    var fromPath = path.join(dirs.from, file);
+    var toPath = path.join(dirs.to, path.parse(file).name + ".png");
 
-  return {
-    input: [fromPath, 'pad', OUTPUT_RESOLUTION],
-    output: [toPath]
-  };
-});
+    return {
+      input: [fromPath, "pad", OUTPUT_RESOLUTION],
+      output: [toPath],
+    };
+  });
 svgexport.render(svgExportInput);

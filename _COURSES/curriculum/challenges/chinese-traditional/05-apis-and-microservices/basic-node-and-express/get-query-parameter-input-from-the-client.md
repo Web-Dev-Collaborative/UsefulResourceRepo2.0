@@ -24,11 +24,11 @@ dashedName: get-query-parameter-input-from-the-client
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/name?first=Mick&last=Jagger').then(
+  $.get(getUserInput("url") + "/name?first=Mick&last=Jagger").then(
     (data) => {
       assert.equal(
         data.name,
-        'Mick Jagger',
+        "Mick Jagger",
         'Test 1: "GET /name" route does not behave as expected'
       );
     },
@@ -42,11 +42,11 @@ dashedName: get-query-parameter-input-from-the-client
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/name?last=Richards&first=Keith').then(
+  $.get(getUserInput("url") + "/name?last=Richards&first=Keith").then(
     (data) => {
       assert.equal(
         data.name,
-        'Keith Richards',
+        "Keith Richards",
         'Test 2: "GET /name" route does not behave as expected'
       );
     },

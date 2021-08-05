@@ -26,8 +26,8 @@ ourStr.match(ourRegex);
 請注意， `.match` 語法是目前爲止一直使用的 `.test` 方法中的“反向”：
 
 ```js
-'string'.match(/regex/);
-/regex/.test('string');
+"string".match(/regex/);
+/regex/.test("string");
 ```
 
 # --instructions--
@@ -39,13 +39,13 @@ ourStr.match(ourRegex);
 `result` 應該有字符串 `coding`
 
 ```js
-assert(result.join() === 'coding');
+assert(result.join() === "coding");
 ```
 
 您的 regex `codingRegex` 應該搜索字符串 `coding`
 
 ```js
-assert(codingRegex.source === 'coding');
+assert(codingRegex.source === "coding");
 ```
 
 您應該使用 `.match()` 方法。

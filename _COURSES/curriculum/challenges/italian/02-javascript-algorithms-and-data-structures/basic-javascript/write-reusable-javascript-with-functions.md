@@ -2,7 +2,7 @@
 id: 56bbb991ad1ed5201cd392cf
 title: Scrivere JavaScript riutilizzabile con le funzioni
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cL6dqfy'
+videoUrl: "https://scrimba.com/c/cL6dqfy"
 forumTopicId: 18378
 dashedName: write-reusable-javascript-with-functions
 ---
@@ -37,7 +37,7 @@ Puoi chiamare o <dfn>invocare</dfn> questa funzione usando il suo nome seguito d
 `reusableFunction` dovrebbe essere una funzione.
 
 ```js
-assert(typeof reusableFunction === 'function');
+assert(typeof reusableFunction === "function");
 ```
 
 Se `reusableFunction` è chiamata, dovrebbe scrivere la stringa `Hi World` nella console.
@@ -49,8 +49,11 @@ assert(testConsole());
 Dovresti chiamare `reusableFunction` dopo averla definita.
 
 ```js
-const functionStr = reusableFunction && __helpers.removeWhiteSpace(reusableFunction.toString());
-const codeWithoutFunction = __helpers.removeWhiteSpace(code).replace(/reusableFunction\(\)\{/g, '');
+const functionStr =
+  reusableFunction && __helpers.removeWhiteSpace(reusableFunction.toString());
+const codeWithoutFunction = __helpers
+  .removeWhiteSpace(code)
+  .replace(/reusableFunction\(\)\{/g, "");
 assert(/reusableFunction\(\)/.test(codeWithoutFunction));
 ```
 
@@ -59,22 +62,21 @@ assert(/reusableFunction\(\)/.test(codeWithoutFunction));
 ## --after-user-code--
 
 ```js
-
 function testConsole() {
   var logOutput = "";
   var originalConsole = console;
   var nativeLog = console.log;
   var hiWorldWasLogged = false;
   console.log = function (message) {
-    if(message === 'Hi World')  {
-      console.warn(message)
+    if (message === "Hi World") {
+      console.warn(message);
       hiWorldWasLogged = true;
     }
-    if(message && message.trim) logOutput = message.trim();
-    if(nativeLog.apply) {
+    if (message && message.trim) logOutput = message.trim();
+    if (nativeLog.apply) {
       nativeLog.apply(originalConsole, arguments);
     } else {
-      var nativeMsg = Array.prototype.slice.apply(arguments).join(' ');
+      var nativeMsg = Array.prototype.slice.apply(arguments).join(" ");
       nativeLog(nativeMsg);
     }
   };
@@ -82,7 +84,6 @@ function testConsole() {
   console.log = nativeLog;
   return hiWorldWasLogged;
 }
-
 ```
 
 ## --seed-contents--

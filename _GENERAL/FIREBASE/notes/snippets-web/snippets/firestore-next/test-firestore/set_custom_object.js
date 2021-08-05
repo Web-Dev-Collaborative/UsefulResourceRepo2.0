@@ -4,7 +4,7 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START set_custom_object_modular]
-import { doc, setDoc } from "firebase/firestore"; 
+import { doc, setDoc } from "firebase/firestore";
 
 // Set with cityConverter
 const ref = doc(db, "cities", "LA").withConverter(cityConverter);

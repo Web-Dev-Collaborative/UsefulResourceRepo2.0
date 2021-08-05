@@ -2,7 +2,7 @@
 id: 587d78a3367417b2b2512ad0
 title: 使用 margin 屬性將元素水平居中
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cyLJqU4'
+videoUrl: "https://scrimba.com/c/cyLJqU4"
 forumTopicId: 301043
 dashedName: center-an-element-horizontally-using-the-margin-property
 ---
@@ -35,7 +35,6 @@ assert(code.match(/margin:\s*?auto;/g));
     background-color: blue;
     height: 100px;
     width: 100px;
-
   }
 </style>
 <div></div>

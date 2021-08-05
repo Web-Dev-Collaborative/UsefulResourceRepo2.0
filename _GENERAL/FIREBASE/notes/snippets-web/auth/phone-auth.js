@@ -6,7 +6,7 @@ import "firebase/auth";
 
 // Mask the global 'window' for this snippet file
 const window = {
-  recaptchaVerifier: undefined
+  recaptchaVerifier: undefined,
 };
 
 function recaptchaVerifierInvisible() {
@@ -15,35 +15,43 @@ function recaptchaVerifierInvisible() {
   }
 
   // [START auth_phone_recaptcha_verifier_invisible]
-  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
-    'size': 'invisible',
-    'callback': (response) => {
-      // reCAPTCHA solved, allow signInWithPhoneNumber.
-      onSignInSubmit();
+  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+    "sign-in-button",
+    {
+      size: "invisible",
+      callback: (response) => {
+        // reCAPTCHA solved, allow signInWithPhoneNumber.
+        onSignInSubmit();
+      },
     }
-  });
+  );
   // [END auth_phone_recaptcha_verifier_invisible]
 }
 
 function recaptchaVerifierVisible() {
   // [START auth_phone_recaptcha_verifier_visible]
-  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-    'size': 'normal',
-    'callback': (response) => {
-      // reCAPTCHA solved, allow signInWithPhoneNumber.
-      // ...
-    },
-    'expired-callback': () => {
-      // Response expired. Ask user to solve reCAPTCHA again.
-      // ...
+  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+    "recaptcha-container",
+    {
+      size: "normal",
+      callback: (response) => {
+        // reCAPTCHA solved, allow signInWithPhoneNumber.
+        // ...
+      },
+      "expired-callback": () => {
+        // Response expired. Ask user to solve reCAPTCHA again.
+        // ...
+      },
     }
-  });
+  );
   // [END auth_phone_recaptcha_verifier_visible]
 }
 
 function recaptchaVerifierSimple() {
   // [START auth_phone_recaptcha_verifier_simple]
-  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+    "recaptcha-container"
+  );
   // [END auth_phone_recaptcha_verifier_simple]
 }
 
@@ -66,16 +74,19 @@ function phoneSignIn() {
   // [START auth_phone_signin]
   const phoneNumber = getPhoneNumberFromUserInput();
   const appVerifier = window.recaptchaVerifier;
-  firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
-      .then((confirmationResult) => {
-        // SMS sent. Prompt user to type the code from the message, then sign the
-        // user in with confirmationResult.confirm(code).
-        window.confirmationResult = confirmationResult;
-        // ...
-      }).catch((error) => {
-        // Error; SMS not sent
-        // ...
-      });
+  firebase
+    .auth()
+    .signInWithPhoneNumber(phoneNumber, appVerifier)
+    .then((confirmationResult) => {
+      // SMS sent. Prompt user to type the code from the message, then sign the
+      // user in with confirmationResult.confirm(code).
+      window.confirmationResult = confirmationResult;
+      // ...
+    })
+    .catch((error) => {
+      // Error; SMS not sent
+      // ...
+    });
   // [END auth_phone_signin]
 }
 
@@ -89,14 +100,17 @@ function verifyCode() {
 
   // [START auth_phone_verify_code]
   const code = getCodeFromUserInput();
-  confirmationResult.confirm(code).then((result) => {
-    // User signed in successfully.
-    const user = result.user;
-    // ...
-  }).catch((error) => {
-    // User couldn't sign in (bad verification code?)
-    // ...
-  });
+  confirmationResult
+    .confirm(code)
+    .then((result) => {
+      // User signed in successfully.
+      const user = result.user;
+      // ...
+    })
+    .catch((error) => {
+      // User couldn't sign in (bad verification code?)
+      // ...
+    });
   // [END auth_phone_verify_code]
 }
 

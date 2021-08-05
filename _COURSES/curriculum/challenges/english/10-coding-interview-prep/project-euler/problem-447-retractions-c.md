@@ -1,6 +1,6 @@
 ---
 id: 5900f52c1000cf542c51003e
-title: 'Problem 447: Retractions C'
+title: "Problem 447: Retractions C"
 challengeType: 5
 forumTopicId: 302119
 dashedName: problem-447-retractions-c
@@ -30,7 +30,6 @@ assert.strictEqual(euler447(), 530553372);
 
 ```js
 function euler447() {
-
   return true;
 }
 

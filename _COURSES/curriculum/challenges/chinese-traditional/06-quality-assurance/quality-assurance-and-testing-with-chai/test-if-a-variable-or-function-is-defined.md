@@ -20,9 +20,9 @@ dashedName: test-if-a-variable-or-function-is-defined
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=1').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=1").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -34,12 +34,12 @@ dashedName: test-if-a-variable-or-function-is-defined
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=1').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=1").then(
     (data) => {
       assert.equal(
         data.assertions[0].method,
-        'isDefined',
-        'Null is not undefined'
+        "isDefined",
+        "Null is not undefined"
       );
     },
     (xhr) => {
@@ -52,12 +52,12 @@ dashedName: test-if-a-variable-or-function-is-defined
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=1').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=1").then(
     (data) => {
       assert.equal(
         data.assertions[1].method,
-        'isUndefined',
-        'Undefined is undefined'
+        "isUndefined",
+        "Undefined is undefined"
       );
     },
     (xhr) => {
@@ -70,12 +70,12 @@ dashedName: test-if-a-variable-or-function-is-defined
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=1').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=1").then(
     (data) => {
       assert.equal(
         data.assertions[2].method,
-        'isDefined',
-        'A string is not undefined'
+        "isDefined",
+        "A string is not undefined"
       );
     },
     (xhr) => {

@@ -25,9 +25,9 @@ assert(
   (() => {
     const mockedComponent = Enzyme.mount(React.createElement(Counter));
     return (
-      mockedComponent.find('.inc').text() === 'Increment!' &&
-      mockedComponent.find('.dec').text() === 'Decrement!' &&
-      mockedComponent.find('.reset').text() === 'Reset'
+      mockedComponent.find(".inc").text() === "Increment!" &&
+      mockedComponent.find(".dec").text() === "Decrement!" &&
+      mockedComponent.find(".reset").text() === "Reset"
     );
   })()
 );
@@ -37,23 +37,23 @@ Lo stato di `Counter` dovrebbe essere inizializzato con una proprietà `count` i
 
 ```js
 const mockedComponent = Enzyme.mount(React.createElement(Counter));
-assert(mockedComponent.find('h1').text() === 'Current Count: 0');
+assert(mockedComponent.find("h1").text() === "Current Count: 0");
 ```
 
 Cliccando sul bottone di incremento il conteggio dovrebbe aumentare di `1`.
 
 ```js
 const mockedComponent = Enzyme.mount(React.createElement(Counter));
-mockedComponent.find('.inc').simulate('click');
-assert(mockedComponent.find('h1').text() === 'Current Count: 1');
+mockedComponent.find(".inc").simulate("click");
+assert(mockedComponent.find("h1").text() === "Current Count: 1");
 ```
 
 Cliccando sul bottone di decremento il conteggio dovrebbe diminuire di `1`.
 
 ```js
 const mockedComponent = Enzyme.mount(React.createElement(Counter));
-mockedComponent.find('.dec').simulate('click');
-assert(mockedComponent.find('h1').text() === 'Current Count: -1');
+mockedComponent.find(".dec").simulate("click");
+assert(mockedComponent.find("h1").text() === "Current Count: -1");
 ```
 
 Cliccando sul bottone di reset il conteggio dovrebbe essere reimpostato a `0`.
@@ -61,10 +61,10 @@ Cliccando sul bottone di reset il conteggio dovrebbe essere reimpostato a `0`.
 ```js
 const mockedComponent = Enzyme.mount(React.createElement(Counter));
 mockedComponent.setState({ count: 5 });
-const currentCountElement = mockedComponent.find('h1');
-assert(currentCountElement.text() === 'Current Count: 5');
-mockedComponent.find('.reset').simulate('click');
-assert(currentCountElement.text() === 'Current Count: 0');
+const currentCountElement = mockedComponent.find("h1");
+assert(currentCountElement.text() === "Current Count: 5");
+mockedComponent.find(".reset").simulate("click");
+assert(currentCountElement.text() === "Current Count: 0");
 ```
 
 # --seed--
@@ -72,7 +72,7 @@ assert(currentCountElement.text() === 'Current Count: 0');
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<Counter />, document.getElementById('root'))
+ReactDOM.render(<Counter />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -82,7 +82,7 @@ class Counter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0
+      count: 0,
     };
     // Change code below this line
 
@@ -94,14 +94,20 @@ class Counter extends React.Component {
   render() {
     return (
       <div>
-        <button className='inc' onClick={this.increment}>Increment!</button>
-        <button className='dec' onClick={this.decrement}>Decrement!</button>
-        <button className='reset' onClick={this.reset}>Reset</button>
+        <button className="inc" onClick={this.increment}>
+          Increment!
+        </button>
+        <button className="dec" onClick={this.decrement}>
+          Decrement!
+        </button>
+        <button className="reset" onClick={this.reset}>
+          Reset
+        </button>
         <h1>Current Count: {this.state.count}</h1>
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -111,36 +117,42 @@ class Counter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0
+      count: 0,
     };
-  this.increment = this.increment.bind(this);
- this.decrement = this.decrement.bind(this);
- this.reset = this.reset.bind(this);
- }
+    this.increment = this.increment.bind(this);
+    this.decrement = this.decrement.bind(this);
+    this.reset = this.reset.bind(this);
+  }
   reset() {
     this.setState({
-      count: 0
+      count: 0,
     });
   }
   increment() {
-    this.setState(state => ({
-      count: state.count + 1
+    this.setState((state) => ({
+      count: state.count + 1,
     }));
   }
   decrement() {
-    this.setState(state => ({
-      count: state.count - 1
+    this.setState((state) => ({
+      count: state.count - 1,
     }));
   }
   render() {
     return (
       <div>
-        <button className='inc' onClick={this.increment}>Increment!</button>
-        <button className='dec' onClick={this.decrement}>Decrement!</button>
-        <button className='reset' onClick={this.reset}>Reset</button>
+        <button className="inc" onClick={this.increment}>
+          Increment!
+        </button>
+        <button className="dec" onClick={this.decrement}>
+          Decrement!
+        </button>
+        <button className="reset" onClick={this.reset}>
+          Reset
+        </button>
         <h1>Current Count: {this.state.count}</h1>
       </div>
     );
   }
-};
+}
 ```

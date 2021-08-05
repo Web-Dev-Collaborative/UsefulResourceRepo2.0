@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08829
 title: 創建一個輸入框
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/c2EVnf6'
+videoUrl: "https://scrimba.com/p/pVMPUv/c2EVnf6"
 forumTopicId: 16823
 dashedName: create-a-text-field
 ---
@@ -16,7 +16,7 @@ dashedName: create-a-text-field
 你可以像這樣創建一個文本輸入框：
 
 ```html
-<input type="text">
+<input type="text" />
 ```
 
 注意 `input` 輸入框是沒有結束標籤的。
@@ -30,7 +30,7 @@ dashedName: create-a-text-field
 網頁中應存在一個類型爲 `text` 的 `input` 輸入框。
 
 ```js
-assert($('input[type=text]').length > 0);
+assert($("input[type=text]").length > 0);
 ```
 
 # --seed--
@@ -42,7 +42,11 @@ assert($('input[type=text]').length > 0);
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -56,8 +60,6 @@ assert($('input[type=text]').length > 0);
     <li>thunder</li>
     <li>other cats</li>
   </ol>
-
-
 </main>
 ```
 
@@ -68,7 +70,11 @@ assert($('input[type=text]').length > 0);
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -83,7 +89,7 @@ assert($('input[type=text]').length > 0);
     <li>other cats</li>
   </ol>
   <form>
-    <input type="text">
+    <input type="text" />
   </form>
 </main>
 ```

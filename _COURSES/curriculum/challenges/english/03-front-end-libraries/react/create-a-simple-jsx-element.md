@@ -27,13 +27,13 @@ The current code uses JSX to assign a `div` element to the constant `JSX`. Repla
 The constant `JSX` should return an `h1` element.
 
 ```js
-assert(JSX.type === 'h1');
+assert(JSX.type === "h1");
 ```
 
 The `h1` tag should include the text `Hello JSX!`
 
 ```js
-assert(Enzyme.shallow(JSX).contains('Hello JSX!'));
+assert(Enzyme.shallow(JSX).contains("Hello JSX!"));
 ```
 
 # --seed--
@@ -41,7 +41,7 @@ assert(Enzyme.shallow(JSX).contains('Hello JSX!'));
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(JSX, document.getElementById('root'))
+ReactDOM.render(JSX, document.getElementById("root"));
 ```
 
 ## --seed-contents--

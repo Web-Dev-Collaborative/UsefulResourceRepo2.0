@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244dd
 title: Selecting from Many Options with Switch Statements
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c4mv4fm'
+videoUrl: "https://scrimba.com/c/c4mv4fm"
 forumTopicId: 18277
 dashedName: selecting-from-many-options-with-switch-statements
 ---
@@ -14,7 +14,7 @@ If you have many options to choose from, use a <dfn>switch</dfn> statement. A `s
 Here is an example of a `switch` statement:
 
 ```js
-switch(lowercaseLetter) {
+switch (lowercaseLetter) {
   case "a":
     console.log("A");
     break;
@@ -39,25 +39,25 @@ Write a switch statement which tests `val` and sets `answer` for the following c
 `caseInSwitch(1)` should have a value of the string `alpha`
 
 ```js
-assert(caseInSwitch(1) === 'alpha');
+assert(caseInSwitch(1) === "alpha");
 ```
 
 `caseInSwitch(2)` should have a value of the string `beta`
 
 ```js
-assert(caseInSwitch(2) === 'beta');
+assert(caseInSwitch(2) === "beta");
 ```
 
 `caseInSwitch(3)` should have a value of the string `gamma`
 
 ```js
-assert(caseInSwitch(3) === 'gamma');
+assert(caseInSwitch(3) === "gamma");
 ```
 
 `caseInSwitch(4)` should have a value of the string `delta`
 
 ```js
-assert(caseInSwitch(4) === 'delta');
+assert(caseInSwitch(4) === "delta");
 ```
 
 You should not use any `if` or `else` statements
@@ -81,8 +81,6 @@ function caseInSwitch(val) {
   var answer = "";
   // Only change code below this line
 
-
-
   // Only change code above this line
   return answer;
 }
@@ -96,7 +94,7 @@ caseInSwitch(1);
 function caseInSwitch(val) {
   var answer = "";
 
-  switch(val) {
+  switch (val) {
     case 1:
       answer = "alpha";
       break;

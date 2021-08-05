@@ -5,6 +5,6 @@
 
 // [START rc_set_default_values_modular]
 remoteConfig.defaultConfig = {
-  "welcome_message": "Welcome"
+  welcome_message: "Welcome",
 };
 // [END rc_set_default_values_modular]

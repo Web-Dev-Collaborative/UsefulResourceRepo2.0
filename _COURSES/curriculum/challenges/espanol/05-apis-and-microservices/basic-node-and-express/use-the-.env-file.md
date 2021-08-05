@@ -24,7 +24,7 @@ The response of the endpoint `/json` should change according to the environment 
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/use-env-vars').then(
+  $.get(getUserInput("url") + "/_api/use-env-vars").then(
     (data) => {
       assert.isTrue(
         data.passed,

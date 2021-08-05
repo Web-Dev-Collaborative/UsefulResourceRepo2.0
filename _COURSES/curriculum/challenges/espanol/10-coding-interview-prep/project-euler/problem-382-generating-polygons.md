@@ -1,6 +1,6 @@
 ---
 id: 5900f4eb1000cf542c50fffd
-title: 'Problem 382: Generating polygons'
+title: "Problem 382: Generating polygons"
 challengeType: 5
 forumTopicId: 302046
 dashedName: problem-382-generating-polygons
@@ -34,7 +34,6 @@ assert.strictEqual(euler382(), 697003956);
 
 ```js
 function euler382() {
-
   return true;
 }
 

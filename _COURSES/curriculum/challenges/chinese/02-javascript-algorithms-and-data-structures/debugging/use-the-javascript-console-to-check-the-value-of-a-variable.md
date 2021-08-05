@@ -17,7 +17,7 @@ Chrome 和 Firefox 都有出色的 JavaScript 控制台（也称为 DevTools）�
 下面是输出 `Hello world!` 字符串到控制台的示例：
 
 ```js
-console.log('Hello world!');
+console.log("Hello world!");
 ```
 
 # --instructions--
@@ -42,7 +42,6 @@ let b = 1;
 a++;
 // Only change code below this line
 
-
 let sumAB = a + b;
 console.log(sumAB);
 ```
@@ -50,5 +49,6 @@ console.log(sumAB);
 # --solutions--
 
 ```js
-var a = 5; console.log(a);
+var a = 5;
+console.log(a);
 ```

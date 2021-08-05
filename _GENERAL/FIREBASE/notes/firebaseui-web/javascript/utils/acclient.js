@@ -16,13 +16,12 @@
  * @fileoverview A wrapper of accountchooser.com APIs.
  */
 
-goog.provide('firebaseui.auth.acClient');
+goog.provide("firebaseui.auth.acClient");
 
-goog.require('firebaseui.auth.Account');
-goog.require('goog.Uri');
-goog.require('goog.array');
-goog.require('goog.asserts');
-
+goog.require("firebaseui.auth.Account");
+goog.require("goog.Uri");
+goog.require("goog.array");
+goog.require("goog.asserts");
 
 /**
  * @type {?accountchooser.Api}
@@ -30,14 +29,12 @@ goog.require('goog.asserts');
  */
 firebaseui.auth.acClient.api_ = null;
 
-
 /**
  * @return {boolean} Whether accountchooser.com API client is initialized.
  */
-firebaseui.auth.acClient.isInitialized = function() {
+firebaseui.auth.acClient.isInitialized = function () {
   return !!firebaseui.auth.acClient.api_;
 };
-
 
 /**
  * @param {Object=} opt_error The error returned by the accountchooser.com
@@ -46,12 +43,13 @@ firebaseui.auth.acClient.isInitialized = function() {
  *     available (false).
  * @private
  */
-firebaseui.auth.acClient.isUnavailable_ = function(opt_error) {
-  return !!(opt_error &&
-      opt_error['code'] == -32000 &&
-      opt_error['message'] == 'Service unavailable');
+firebaseui.auth.acClient.isUnavailable_ = function (opt_error) {
+  return !!(
+    opt_error &&
+    opt_error["code"] == -32000 &&
+    opt_error["message"] == "Service unavailable"
+  );
 };
-
 
 /**
  * Initializes the accountchooser.com API object. Only the first call
@@ -70,23 +68,25 @@ firebaseui.auth.acClient.isUnavailable_ = function(opt_error) {
  * @param {?string=} opt_language The display language for accountchooser.com.
  * @param {Object=} opt_uiConfig The UI configuration for accountchooser.com.
  */
-firebaseui.auth.acClient.init = function(
-    opt_onEmptyResponse,
-    opt_onAccountSelected,
-    opt_onAddAccount,
-    opt_providers,
-    opt_language,
-    opt_uiConfig) {
+firebaseui.auth.acClient.init = function (
+  opt_onEmptyResponse,
+  opt_onAccountSelected,
+  opt_onAddAccount,
+  opt_providers,
+  opt_language,
+  opt_uiConfig
+) {
   // Only initialize once.
   if (firebaseui.auth.acClient.isInitialized()) {
     return;
   }
 
   // Save the add account callback for later use.
-  var selectCallback = function(resp, opt_error) {
-    if (resp && resp['account'] && opt_onAccountSelected) {
+  var selectCallback = function (resp, opt_error) {
+    if (resp && resp["account"] && opt_onAccountSelected) {
       opt_onAccountSelected(
-          firebaseui.auth.Account.fromPlainObject(resp['account']));
+        firebaseui.auth.Account.fromPlainObject(resp["account"])
+      );
     } else if (opt_onAddAccount) {
       // Check if accountchooser.com is available and pass to add account.
       var isUnavailable = firebaseui.auth.acClient.isUnavailable_(opt_error);
@@ -96,29 +96,31 @@ firebaseui.auth.acClient.init = function(
   };
 
   var config = {
-    'callbacks': {
-      'empty': opt_onEmptyResponse,
-      'select': selectCallback,
+    callbacks: {
+      empty: opt_onEmptyResponse,
+      select: selectCallback,
       // Discard the result of store and update which we don't care. Instead it
       // should act like there is no response, hence the opt_onEmptyResponse.
-      'store': opt_onEmptyResponse,
-      'update': opt_onEmptyResponse
+      store: opt_onEmptyResponse,
+      update: opt_onEmptyResponse,
     },
-    'language': opt_language || '',
-    'providers': opt_providers,
-    'ui': opt_uiConfig
+    language: opt_language || "",
+    providers: opt_providers,
+    ui: opt_uiConfig,
   };
-  if (typeof accountchooser != 'undefined' &&
-      accountchooser.Api &&
-      accountchooser.Api.init) {
+  if (
+    typeof accountchooser != "undefined" &&
+    accountchooser.Api &&
+    accountchooser.Api.init
+  ) {
     firebaseui.auth.acClient.api_ = accountchooser.Api.init(config);
   } else {
     firebaseui.auth.acClient.api_ = new firebaseui.auth.acClient.DummyApi(
-        config);
+      config
+    );
     firebaseui.auth.acClient.api_.fireOnEmpty();
   }
 };
-
 
 /**
  * Starts the flow to select an account from accountchooser.com.
@@ -133,22 +135,28 @@ firebaseui.auth.acClient.init = function(
  * @param {string=} opt_callbackUrl The URL to return to when the flow finishes.
  *     The default is current URL.
  */
-firebaseui.auth.acClient.trySelectAccount = function(
-    onSkipSelect, opt_localAccounts, opt_callbackUrl) {
+firebaseui.auth.acClient.trySelectAccount = function (
+  onSkipSelect,
+  opt_localAccounts,
+  opt_callbackUrl
+) {
   goog.asserts.assert(firebaseui.auth.acClient.isInitialized());
-  var select = function() {
-    var callbackUrl =
-        goog.Uri.resolve(window.location.href, opt_callbackUrl).toString();
+  var select = function () {
+    var callbackUrl = goog.Uri.resolve(
+      window.location.href,
+      opt_callbackUrl
+    ).toString();
     firebaseui.auth.acClient.api_.select(
-        goog.array.map(opt_localAccounts || [], function(account) {
-          return account.toPlainObject();
-        }),
-        {'clientCallbackUrl': callbackUrl});
+      goog.array.map(opt_localAccounts || [], function (account) {
+        return account.toPlainObject();
+      }),
+      { clientCallbackUrl: callbackUrl }
+    );
   };
   if (opt_localAccounts && opt_localAccounts.length) {
     select();
   } else {
-    firebaseui.auth.acClient.api_.checkEmpty(function(empty, error) {
+    firebaseui.auth.acClient.api_.checkEmpty(function (empty, error) {
       if (!empty && !error) {
         select();
       } else {
@@ -158,7 +166,6 @@ firebaseui.auth.acClient.trySelectAccount = function(
     });
   }
 };
-
 
 /**
  * Starts the flow to store or update an account into accountchooser.com.
@@ -173,43 +180,51 @@ firebaseui.auth.acClient.trySelectAccount = function(
  * @param {string=} opt_callbackUrl The URL to return to when the flow finishes.
  *     If not provided, the current one is used.
  */
-firebaseui.auth.acClient.tryStoreAccount =
-    function(account, onSkipStore, opt_callbackUrl) {
+firebaseui.auth.acClient.tryStoreAccount = function (
+  account,
+  onSkipStore,
+  opt_callbackUrl
+) {
   goog.asserts.assert(firebaseui.auth.acClient.isInitialized());
   var options = {};
   if (opt_callbackUrl) {
-    options['clientCallbackUrl'] =
-      goog.Uri.resolve(window.location.href, opt_callbackUrl).toString();
+    options["clientCallbackUrl"] = goog.Uri.resolve(
+      window.location.href,
+      opt_callbackUrl
+    ).toString();
   }
   var acAccount = account.toPlainObject();
-  firebaseui.auth.acClient.api_.checkAccountExist(acAccount,
-      function(exist, error) {
-    if (!exist && !error) {
-      // It doens't exist in accountchooser.com.
-      firebaseui.auth.acClient.api_.store([acAccount], options);
-    } else if (!error) {
-      // It exists. Check whether we should update it.
-      firebaseui.auth.acClient.api_.checkShouldUpdate(
+  firebaseui.auth.acClient.api_.checkAccountExist(
+    acAccount,
+    function (exist, error) {
+      if (!exist && !error) {
+        // It doens't exist in accountchooser.com.
+        firebaseui.auth.acClient.api_.store([acAccount], options);
+      } else if (!error) {
+        // It exists. Check whether we should update it.
+        firebaseui.auth.acClient.api_.checkShouldUpdate(
           acAccount,
-          function(update, error) {
+          function (update, error) {
             if (update) {
               // Should update the account.
               firebaseui.auth.acClient.api_.update(
-                  account.toPlainObject(),
-                  options);
+                account.toPlainObject(),
+                options
+              );
             } else {
-              var isUnavailable = firebaseui.auth.acClient.isUnavailable_(
-                  error);
+              var isUnavailable =
+                firebaseui.auth.acClient.isUnavailable_(error);
               onSkipStore(!isUnavailable);
             }
-          });
-    } else {
-      var isUnavailable = firebaseui.auth.acClient.isUnavailable_(error);
-      onSkipStore(!isUnavailable);
+          }
+        );
+      } else {
+        var isUnavailable = firebaseui.auth.acClient.isUnavailable_(error);
+        onSkipStore(!isUnavailable);
+      }
     }
-  });
+  );
 };
-
 
 /**
  * A dummy accountchooser.com API implmentation which is used if
@@ -223,19 +238,17 @@ firebaseui.auth.acClient.DummyApi = class {
    */
   constructor(config) {
     this.config_ = config;
-    this.config_['callbacks'] = this.config_['callbacks'] || {};
+    this.config_["callbacks"] = this.config_["callbacks"] || {};
   }
-
 
   /**
    * Triggers the onEmpty callback.
    */
   fireOnEmpty() {
-    if (typeof this.config_['callbacks']['empty'] === 'function') {
-      this.config_['callbacks']['empty']();
+    if (typeof this.config_["callbacks"]["empty"] === "function") {
+      this.config_["callbacks"]["empty"]();
     }
   }
-
 
   /**
    * Stores the accounts. The callback is always invoked with a service
@@ -245,12 +258,13 @@ firebaseui.auth.acClient.DummyApi = class {
    * @param {Object=} opt_config The optional client configuration.
    */
   store(accounts, opt_config) {
-    if (typeof this.config_['callbacks']['store'] === 'function') {
-      this.config_['callbacks']['store'](
-          undefined, firebaseui.auth.acClient.DummyApi.UNAVAILABLE_ERROR_);
+    if (typeof this.config_["callbacks"]["store"] === "function") {
+      this.config_["callbacks"]["store"](
+        undefined,
+        firebaseui.auth.acClient.DummyApi.UNAVAILABLE_ERROR_
+      );
     }
   }
-
 
   /**
    * Selects account. The callback is always invoked with a service unavailable
@@ -260,12 +274,13 @@ firebaseui.auth.acClient.DummyApi = class {
    * @param {Object=} opt_config The optional client configuration.
    */
   select(accounts, opt_config) {
-    if (typeof this.config_['callbacks']['select'] === 'function') {
-      this.config_['callbacks']['select'](
-          undefined, firebaseui.auth.acClient.DummyApi.UNAVAILABLE_ERROR_);
+    if (typeof this.config_["callbacks"]["select"] === "function") {
+      this.config_["callbacks"]["select"](
+        undefined,
+        firebaseui.auth.acClient.DummyApi.UNAVAILABLE_ERROR_
+      );
     }
   }
-
 
   /**
    * Updates the account. The callback is always invoked with a service
@@ -275,12 +290,13 @@ firebaseui.auth.acClient.DummyApi = class {
    * @param {Object=} opt_config The optional client configuration.
    */
   update(account, opt_config) {
-    if (typeof this.config_['callbacks']['update'] === 'function') {
-      this.config_['callbacks']['update'](
-          undefined, firebaseui.auth.acClient.DummyApi.UNAVAILABLE_ERROR_);
+    if (typeof this.config_["callbacks"]["update"] === "function") {
+      this.config_["callbacks"]["update"](
+        undefined,
+        firebaseui.auth.acClient.DummyApi.UNAVAILABLE_ERROR_
+      );
     }
   }
-
 
   /**
    * Checkes if accountchooser.com is disabled. The callback is always invoked
@@ -292,7 +308,6 @@ firebaseui.auth.acClient.DummyApi = class {
     callback(true);
   }
 
-
   /**
    * Checkes if the accountchooser.com is empty. The callback is always invoked
    * with a service unavailable error.
@@ -302,7 +317,6 @@ firebaseui.auth.acClient.DummyApi = class {
   checkEmpty(callback) {
     callback(undefined, firebaseui.auth.acClient.DummyApi.UNAVAILABLE_ERROR_);
   }
-
 
   /**
    * Checkes if the account is in accountchooser.com. The callback is always
@@ -314,7 +328,6 @@ firebaseui.auth.acClient.DummyApi = class {
   checkAccountExist(account, callback) {
     callback(undefined, firebaseui.auth.acClient.DummyApi.UNAVAILABLE_ERROR_);
   }
-
 
   /**
    * Checkes if the account should be updated. The callback is always invoked
@@ -328,14 +341,13 @@ firebaseui.auth.acClient.DummyApi = class {
   }
 };
 
-
 /**
  * The accountchooser.com service unavailable error.
  * @const {Object}
  * @private
  */
 firebaseui.auth.acClient.DummyApi.UNAVAILABLE_ERROR_ = {
-  'code': -32000,
-  'message': 'Service unavailable',
-  'data': 'Service is unavailable.',
+  code: -32000,
+  message: "Service unavailable",
+  data: "Service is unavailable.",
 };

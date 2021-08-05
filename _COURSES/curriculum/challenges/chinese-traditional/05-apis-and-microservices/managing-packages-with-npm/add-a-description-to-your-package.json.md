@@ -30,7 +30,7 @@ package.json 應該包含一個有效的“description”鍵
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert(packJson.description, '"description" is missing');

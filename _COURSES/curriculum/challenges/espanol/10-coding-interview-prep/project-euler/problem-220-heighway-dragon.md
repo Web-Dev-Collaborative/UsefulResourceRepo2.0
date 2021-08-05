@@ -1,6 +1,6 @@
 ---
 id: 5900f4481000cf542c50ff5b
-title: 'Problem 220: Heighway Dragon'
+title: "Problem 220: Heighway Dragon"
 challengeType: 5
 forumTopicId: 301863
 dashedName: problem-220-heighway-dragon
@@ -34,7 +34,6 @@ assert.strictEqual(euler220(), 139776, 963904);
 
 ```js
 function euler220() {
-
   return true;
 }
 

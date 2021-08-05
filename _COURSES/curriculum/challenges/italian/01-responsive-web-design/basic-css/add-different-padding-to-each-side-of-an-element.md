@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08824
 title: Aggiungere un padding diverso su ogni lato di un elemento
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cB7mwUw'
+videoUrl: "https://scrimba.com/c/cB7mwUw"
 forumTopicId: 16634
 dashedName: add-different-padding-to-each-side-of-an-element
 ---
@@ -22,25 +22,25 @@ Assegna al riquadro blu un `padding` di `40px` sul lato superiore e sinistro, ma
 La tua classe `blue-box` dovrebbe dare alla parte superiore degli elementi `40px` di `padding`.
 
 ```js
-assert($('.blue-box').css('padding-top') === '40px');
+assert($(".blue-box").css("padding-top") === "40px");
 ```
 
 La tua classe `blue-box` dovrebbe dare alla parte destra degli elementi `20px` di `padding`.
 
 ```js
-assert($('.blue-box').css('padding-right') === '20px');
+assert($(".blue-box").css("padding-right") === "20px");
 ```
 
 La tua classe `blue-box` dovrebbe dare alla parte inferiore degli elementi `20px` di `padding`.
 
 ```js
-assert($('.blue-box').css('padding-bottom') === '20px');
+assert($(".blue-box").css("padding-bottom") === "20px");
 ```
 
 La tua classe `blue-box` dovrebbe dare alla parte sinistra degli elementi `40px` di `padding`.
 
 ```js
-assert($('.blue-box').css('padding-left') === '40px');
+assert($(".blue-box").css("padding-left") === "40px");
 ```
 
 # --seed--

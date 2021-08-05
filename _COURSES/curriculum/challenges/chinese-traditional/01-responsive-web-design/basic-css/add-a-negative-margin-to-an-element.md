@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08823
 title: 給元素添加負外邊距
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cnpyGs3'
+videoUrl: "https://scrimba.com/c/cnpyGs3"
 forumTopicId: 16166
 dashedName: add-a-negative-margin-to-an-element
 ---
@@ -24,7 +24,7 @@ dashedName: add-a-negative-margin-to-an-element
 class 爲 `blue-box` 的元素的 `margin` 應設置爲 `-15px`。
 
 ```js
-assert($('.blue-box').css('margin-top') === '-15px');
+assert($(".blue-box").css("margin-top") === "-15px");
 ```
 
 # --seed--

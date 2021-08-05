@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
- /**
+/**
  * @fileoverview Tests for authsettings.js.
  */
 
@@ -25,7 +25,6 @@ goog.require('fireauth.AuthSettings');
 goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.AuthSettingsTest');
-
 
 function testAuthSettings() {
   var authSettings = new fireauth.AuthSettings();

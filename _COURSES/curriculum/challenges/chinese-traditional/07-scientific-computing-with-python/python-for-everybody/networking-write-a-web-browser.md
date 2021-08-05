@@ -1,6 +1,6 @@
 ---
 id: 5e7b9f0c0b6c005b0e76f073
-title: '聯網：編寫一個 Web 瀏覽器'
+title: "聯網：編寫一個 Web 瀏覽器"
 challengeType: 11
 videoId: zjyT9DaAjx4
 dashedName: networking-write-a-web-browser
@@ -47,4 +47,3 @@ mysock.close()
 ## --video-solution--
 
 4
-

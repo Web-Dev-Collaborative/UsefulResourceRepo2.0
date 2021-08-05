@@ -11,7 +11,7 @@ dashedName: use-an-array-to-store-a-collection-of-data
 Di seguito è riportato un esempio della più semplice implementazione di una struttura dati ad array. Questo è conosciuto come <dfn>array uni-dimensionale</dfn>, il che significa che ha un solo livello, o che non ha altri array annidati al suo interno. Nota che contiene <dfn>booleani</dfn>, <dfn>stringhe</dfn> e <dfn>numeri</dfn>, tra gli altri tipi di dati JavaScript validi:
 
 ```js
-let simpleArray = ['one', 2, 'three', true, false, undefined, null];
+let simpleArray = ["one", 2, "three", true, false, undefined, null];
 console.log(simpleArray.length);
 ```
 
@@ -24,23 +24,23 @@ let complexArray = [
   [
     {
       one: 1,
-      two: 2
+      two: 2,
     },
     {
       three: 3,
-      four: 4
-    }
+      four: 4,
+    },
   ],
   [
     {
       a: "a",
-      b: "b"
+      b: "b",
     },
     {
       c: "c",
-      d: "d"
-    }
-  ]
+      d: "d",
+    },
+  ],
 ];
 ```
 
@@ -65,19 +65,19 @@ assert.isAtLeast(yourArray.length, 5);
 `yourArray` dovrebbe contenere almeno un valore di tipo `boolean`.
 
 ```js
-assert(yourArray.filter((el) => typeof el === 'boolean').length >= 1);
+assert(yourArray.filter((el) => typeof el === "boolean").length >= 1);
 ```
 
 `yourArray` dovrebbe contenere almeno un valore `number`.
 
 ```js
-assert(yourArray.filter((el) => typeof el === 'number').length >= 1);
+assert(yourArray.filter((el) => typeof el === "number").length >= 1);
 ```
 
 `yourArray` dovrebbe contenere almeno un valore di tipo `string`.
 
 ```js
-assert(yourArray.filter((el) => typeof el === 'string').length >= 1);
+assert(yourArray.filter((el) => typeof el === "string").length >= 1);
 ```
 
 # --seed--
@@ -91,5 +91,5 @@ let yourArray; // Change this line
 # --solutions--
 
 ```js
-let yourArray = ['a string', 100, true, ['one', 2], 'another string'];
+let yourArray = ["a string", 100, true, ["one", 2], "another string"];
 ```

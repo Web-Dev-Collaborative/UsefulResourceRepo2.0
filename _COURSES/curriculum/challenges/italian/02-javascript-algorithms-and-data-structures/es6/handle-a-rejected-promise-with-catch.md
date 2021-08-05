@@ -11,9 +11,7 @@ dashedName: handle-a-rejected-promise-with-catch
 `catch` è il metodo utilizzato quando una promise è stata respinta. Viene eseguito immediatamente dopo che viene chiamato il metodo `reject` di una promise. Ecco la sintassi:
 
 ```js
-myPromise.catch(error => {
-
-});
+myPromise.catch((error) => {});
 ```
 
 `error` è l'argomento passato al metodo `reject`.
@@ -54,7 +52,9 @@ assert(
 ## --after-user-code--
 
 ```js
-const errorIsParameter = /\.catch\((function\(error\){|error|\(error\)=>)/.test(__helpers.removeWhiteSpace(code));
+const errorIsParameter = /\.catch\((function\(error\){|error|\(error\)=>)/.test(
+  __helpers.removeWhiteSpace(code)
+);
 ```
 
 ## --seed-contents--
@@ -64,14 +64,14 @@ const makeServerRequest = new Promise((resolve, reject) => {
   // responseFromServer is set to false to represent an unsuccessful response from a server
   let responseFromServer = false;
 
-  if(responseFromServer) {
+  if (responseFromServer) {
     resolve("We got the data");
-  } else {  
+  } else {
     reject("Data not received");
   }
 });
 
-makeServerRequest.then(result => {
+makeServerRequest.then((result) => {
   console.log(result);
 });
 ```
@@ -83,18 +83,18 @@ const makeServerRequest = new Promise((resolve, reject) => {
   // responseFromServer is set to false to represent an unsuccessful response from a server
   let responseFromServer = false;
 
-  if(responseFromServer) {
+  if (responseFromServer) {
     resolve("We got the data");
-  } else {  
+  } else {
     reject("Data not received");
   }
 });
 
-makeServerRequest.then(result => {
+makeServerRequest.then((result) => {
   console.log(result);
 });
 
-makeServerRequest.catch(error => {
+makeServerRequest.catch((error) => {
   console.log(error);
 });
 ```

@@ -48,8 +48,8 @@ Puede utilizar cualquier mezcla de HTML, JavaScript, CSS, Bootstrap, SASS, React
 
 **EXAMPLE:** `3 + 5 x 6 - 2 / 4 =`
 
--   **Lógica de ejecución inmediata:** `11.5`
--   **Fórmula/Expresión lógica:** `32.5`
+- **Lógica de ejecución inmediata:** `11.5`
+- **Fórmula/Expresión lógica:** `32.5`
 
 Puedes construir tu proyecto con <a href='https://codepen.io/pen?template=MJjpwO' target='_blank' rel='nofollow'>usando esta plantilla de CodePen</a> y haciendo clic en `Save` para crear tu propio borrador. O puedes utilizar este enlace CDN(Red de distribución de contenidos) para ejecutar las pruebas en cualquier entorno que desees: `https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js`
 

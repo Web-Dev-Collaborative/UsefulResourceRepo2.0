@@ -13,16 +13,16 @@ Diamo adesso un'occhiata ad un oggetto leggermente più complesso. Le proprietà
 ```js
 let nestedObject = {
   id: 28802695164,
-  date: 'December 31, 2016',
+  date: "December 31, 2016",
   data: {
     totalUsers: 99,
     online: 80,
     onlineStatus: {
       active: 67,
       away: 13,
-      busy: 8
-    }
-  }
+      busy: 8,
+    },
+  },
 };
 ```
 
@@ -42,14 +42,14 @@ Qui abbiamo definito un oggetto `userActivity`che include un altro oggetto annid
 
 ```js
 assert(
-  'id' in userActivity && 'date' in userActivity && 'data' in userActivity
+  "id" in userActivity && "date" in userActivity && "data" in userActivity
 );
 ```
 
 `userActivity` dovrebbe avere la proprietà `data` impostata su un oggetto con chiavi `totalUsers` e `online`.
 
 ```js
-assert('totalUsers' in userActivity.data && 'online' in userActivity.data);
+assert("totalUsers" in userActivity.data && "online" in userActivity.data);
 ```
 
 La proprietà `online` annidata nella chiave `data` di `userActivity` dovrebbe essere impostata a `45`
@@ -71,11 +71,11 @@ assert.strictEqual(code.search(/online: 45/), -1);
 ```js
 let userActivity = {
   id: 23894201352,
-  date: 'January 1, 2017',
+  date: "January 1, 2017",
   data: {
     totalUsers: 51,
-    online: 42
-  }
+    online: 42,
+  },
 };
 
 // Only change code below this line
@@ -90,11 +90,11 @@ console.log(userActivity);
 ```js
 let userActivity = {
   id: 23894201352,
-  date: 'January 1, 2017',
+  date: "January 1, 2017",
   data: {
     totalUsers: 51,
-    online: 42
-  }
+    online: 42,
+  },
 };
 
 userActivity.data.online = 45;

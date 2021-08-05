@@ -2,7 +2,7 @@
 id: 5a9036ee38fddaf9a66b5d37
 title: 使用 grid-gap 爲網格添加間距
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pByETK/ca2qVtv'
+videoUrl: "https://scrimba.com/p/pByETK/ca2qVtv"
 forumTopicId: 301118
 dashedName: add-gaps-faster-with-grid-gap
 ---
@@ -33,11 +33,21 @@ assert(
 
 ```html
 <style>
-  .d1{background:LightSkyBlue;}
-  .d2{background:LightSalmon;}
-  .d3{background:PaleTurquoise;}
-  .d4{background:LightPink;}
-  .d5{background:PaleGreen;}
+  .d1 {
+    background: LightSkyBlue;
+  }
+  .d2 {
+    background: LightSalmon;
+  }
+  .d3 {
+    background: PaleTurquoise;
+  }
+  .d4 {
+    background: LightPink;
+  }
+  .d5 {
+    background: PaleGreen;
+  }
 
   .container {
     font-size: 40px;
@@ -48,7 +58,6 @@ assert(
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     /* Only change code below this line */
-
 
     /* Only change code above this line */
   }
@@ -65,5 +74,9 @@ assert(
 # --solutions--
 
 ```html
-<style>.container {grid-gap: 10px 20px;}</style>
+<style>
+  .container {
+    grid-gap: 10px 20px;
+  }
+</style>
 ```

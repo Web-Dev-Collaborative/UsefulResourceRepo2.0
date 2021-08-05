@@ -20,9 +20,9 @@ All tests should pass.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=0').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=0").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -34,9 +34,9 @@ You should choose the correct method for the first assertion - `isNull` vs. `isN
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=0').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=0").then(
     (data) => {
-      assert.equal(data.assertions[0].method, 'isNull', 'Null is null');
+      assert.equal(data.assertions[0].method, "isNull", "Null is null");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -48,9 +48,9 @@ You should choose the correct method for the second assertion - `isNull` vs. `is
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=0').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=0").then(
     (data) => {
-      assert.equal(data.assertions[1].method, 'isNotNull', '1 is not null');
+      assert.equal(data.assertions[1].method, "isNotNull", "1 is not null");
     },
     (xhr) => {
       throw new Error(xhr.responseText);

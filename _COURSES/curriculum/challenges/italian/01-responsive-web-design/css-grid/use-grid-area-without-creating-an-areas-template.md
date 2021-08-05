@@ -2,7 +2,7 @@
 id: 5a94fe2669fb03452672e45e
 title: Usare grid-area senza creare un modello di aree
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pByETK/c6N7VhK'
+videoUrl: "https://scrimba.com/p/pByETK/c6N7VhK"
 forumTopicId: 301135
 dashedName: use-grid-area-without-creating-an-areas-template
 ---
@@ -12,13 +12,16 @@ dashedName: use-grid-area-without-creating-an-areas-template
 La proprietà `grid-area` che hai appreso nell'ultima sfida può essere utilizzata in un altro modo. Se la griglia non ha un modello di aree a cui fare riferimento, è possibile creare un'area per posizionare un oggetto al volo in questo modo:
 
 ```css
-item1 { grid-area: 1/1/2/4; }
+item1 {
+  grid-area: 1/1/2/4;
+}
 ```
 
 Esso usa i numeri di riga che abbiamo visto in precedenza per definire dove sarà l'area di questo elemento. I numeri nell'esempio precedente rappresentano questi valori:
 
 ```css
-grid-area: horizontal line to start at / vertical line to start at / horizontal line to end at / vertical line to end at;
+grid-area: horizontal line to start at / vertical line to start at / horizontal
+  line to end at / vertical line to end at;
 ```
 
 Quindi l'elemento nell'esempio occuperà le righe tra le linee 1 e 2 e le colonne tra le linee 1 e 4.
@@ -45,15 +48,22 @@ assert(
 
 ```html
 <style>
-  .item1{background:LightSkyBlue;}
-  .item2{background:LightSalmon;}
-  .item3{background:PaleTurquoise;}
-  .item4{background:LightPink;}
+  .item1 {
+    background: LightSkyBlue;
+  }
+  .item2 {
+    background: LightSalmon;
+  }
+  .item3 {
+    background: PaleTurquoise;
+  }
+  .item4 {
+    background: LightPink;
+  }
 
   .item5 {
     background: PaleGreen;
     /* Only change code below this line */
-
 
     /* Only change code above this line */
   }
@@ -82,5 +92,9 @@ assert(
 # --solutions--
 
 ```html
-<style>.item5 {grid-area: 3/1/4/4;}</style>
+<style>
+  .item5 {
+    grid-area: 3/1/4/4;
+  }
+</style>
 ```

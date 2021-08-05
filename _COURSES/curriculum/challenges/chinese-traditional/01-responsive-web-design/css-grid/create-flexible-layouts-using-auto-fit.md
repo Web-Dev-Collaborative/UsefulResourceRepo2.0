@@ -2,7 +2,7 @@
 id: 5a94fe6269fb03452672e462
 title: 使用 auto-fit 創建彈性佈局
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pByETK/c3dPph8'
+videoUrl: "https://scrimba.com/p/pByETK/c3dPph8"
 forumTopicId: 301127
 dashedName: create-flexible-layouts-using-auto-fit
 ---
@@ -35,11 +35,21 @@ assert(
 
 ```html
 <style>
-  .item1{background:LightSkyBlue;}
-  .item2{background:LightSalmon;}
-  .item3{background:PaleTurquoise;}
-  .item4{background:LightPink;}
-  .item5{background:PaleGreen;}
+  .item1 {
+    background: LightSkyBlue;
+  }
+  .item2 {
+    background: LightSalmon;
+  }
+  .item3 {
+    background: PaleTurquoise;
+  }
+  .item4 {
+    background: LightPink;
+  }
+  .item5 {
+    background: PaleGreen;
+  }
 
   .container {
     font-size: 40px;
@@ -87,5 +97,12 @@ assert(
 # --solutions--
 
 ```html
-<style>.container {grid-template-columns: repeat( auto-fill, minmax(60px, 1fr));} .container2 {grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));}</style>
+<style>
+  .container {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  }
+  .container2 {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  }
+</style>
 ```

@@ -17,19 +17,19 @@
  *     device page.
  */
 
-goog.provide('firebaseui.auth.ui.page.EmailLinkSignInLinkingDifferentDevice');
+goog.provide("firebaseui.auth.ui.page.EmailLinkSignInLinkingDifferentDevice");
 
-goog.require('firebaseui.auth.soy2.page');
-goog.require('firebaseui.auth.ui.element.form');
-goog.require('firebaseui.auth.ui.page.Base');
-goog.requireType('goog.dom.DomHelper');
-
+goog.require("firebaseui.auth.soy2.page");
+goog.require("firebaseui.auth.ui.element.form");
+goog.require("firebaseui.auth.ui.page.Base");
+goog.requireType("goog.dom.DomHelper");
 
 /**
  * Email link sign in linking different device UI component.
  */
-firebaseui.auth.ui.page.EmailLinkSignInLinkingDifferentDevice =
-    class extends firebaseui.auth.ui.page.Base {
+firebaseui.auth.ui.page.EmailLinkSignInLinkingDifferentDevice = class extends (
+  firebaseui.auth.ui.page.Base
+) {
   /**
    * @param {?} providerConfig The provider config of the IdP we should
    *     use for sign in.
@@ -42,17 +42,24 @@ firebaseui.auth.ui.page.EmailLinkSignInLinkingDifferentDevice =
    * @param {?goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
    */
   constructor(
-      providerConfig, onContinueClick, opt_tosCallback,
-      opt_privacyPolicyCallback, opt_domHelper) {
+    providerConfig,
+    onContinueClick,
+    opt_tosCallback,
+    opt_privacyPolicyCallback,
+    opt_domHelper
+  ) {
     // Extend base page class and render Email link sign in linking different
     // device soy template.
     super(
-        firebaseui.auth.soy2.page.emailLinkSignInLinkingDifferentDevice,
-        {providerConfig: providerConfig}, opt_domHelper,
-        'emailLinkSignInLinkingDifferentDevice', {
-          tosCallback: opt_tosCallback,
-          privacyPolicyCallback: opt_privacyPolicyCallback
-        });
+      firebaseui.auth.soy2.page.emailLinkSignInLinkingDifferentDevice,
+      { providerConfig: providerConfig },
+      opt_domHelper,
+      "emailLinkSignInLinkingDifferentDevice",
+      {
+        tosCallback: opt_tosCallback,
+        privacyPolicyCallback: opt_privacyPolicyCallback,
+      }
+    );
     this.onContinueClick_ = onContinueClick;
   }
 
@@ -70,17 +77,15 @@ firebaseui.auth.ui.page.EmailLinkSignInLinkingDifferentDevice =
   }
 };
 
-
 goog.mixin(
-    firebaseui.auth.ui.page.EmailLinkSignInLinkingDifferentDevice.prototype,
-    /**
-     * @lends
-     * {firebaseui.auth.ui.page.EmailLinkSignInLinkingDifferentDevice.prototype}
-     */
-    {
-      // For form.
-      getSubmitElement:
-          firebaseui.auth.ui.element.form.getSubmitElement,
-      initFormElement:
-          firebaseui.auth.ui.element.form.initFormElement
-    });
+  firebaseui.auth.ui.page.EmailLinkSignInLinkingDifferentDevice.prototype,
+  /**
+   * @lends
+   * {firebaseui.auth.ui.page.EmailLinkSignInLinkingDifferentDevice.prototype}
+   */
+  {
+    // For form.
+    getSubmitElement: firebaseui.auth.ui.element.form.getSubmitElement,
+    initFormElement: firebaseui.auth.ui.element.form.initFormElement,
+  }
+);

@@ -16,95 +16,84 @@
  * @fileoverview Helper class for testing form UI element.
  */
 
-goog.provide('firebaseui.auth.ui.element.FormTestHelper');
-goog.setTestOnly('firebaseui.auth.ui.element.FormTestHelper');
+goog.provide("firebaseui.auth.ui.element.FormTestHelper");
+goog.setTestOnly("firebaseui.auth.ui.element.FormTestHelper");
 
-goog.require('firebaseui.auth.ui.element');
-goog.require('firebaseui.auth.ui.element.ElementTestHelper');
-goog.require('goog.events.KeyCodes');
-goog.require('goog.testing.events');
+goog.require("firebaseui.auth.ui.element");
+goog.require("firebaseui.auth.ui.element.ElementTestHelper");
+goog.require("goog.events.KeyCodes");
+goog.require("goog.testing.events");
 
+goog.scope(function () {
+  var element = firebaseui.auth.ui.element;
 
-goog.scope(function() {
-var element = firebaseui.auth.ui.element;
+  /** @constructor */
+  element.FormTestHelper = function () {
+    element.FormTestHelper.base(this, "constructor", "Form");
+  };
+  goog.inherits(element.FormTestHelper, element.ElementTestHelper);
 
+  /** @override */
+  element.FormTestHelper.prototype.resetState = function () {
+    this.submitted_ = false;
+    this.linkClicked_ = false;
+  };
 
+  /** Handler for form submit event. */
+  element.FormTestHelper.prototype.onSubmit = function () {
+    this.submitted_ = true;
+  };
 
-/** @constructor */
-element.FormTestHelper = function() {
-  element.FormTestHelper.base(this, 'constructor', 'Form');
-};
-goog.inherits(element.FormTestHelper, element.ElementTestHelper);
+  /** Asserts the form is submitted. */
+  element.FormTestHelper.prototype.assertSubmitted = function () {
+    assertTrue(this.submitted_);
+  };
 
+  /** Asserts the form is not submitted. */
+  element.FormTestHelper.prototype.assertNotSubmitted = function () {
+    assertFalse(!!this.submitted_);
+  };
 
-/** @override */
-element.FormTestHelper.prototype.resetState = function() {
-  this.submitted_ = false;
-  this.linkClicked_ = false;
-};
+  /** Handler for secondary link click event. */
+  element.FormTestHelper.prototype.onLinkClick = function () {
+    this.linkClicked_ = true;
+  };
 
+  /** @private */
+  element.FormTestHelper.prototype.testGetSubmitElement_ = function () {
+    assertNotNull(this.component.getSubmitElement());
+  };
 
-/** Handler for form submit event. */
-element.FormTestHelper.prototype.onSubmit = function() {
-  this.submitted_ = true;
-};
+  /** @private */
+  element.FormTestHelper.prototype.testOnSubmitClick_ = function () {
+    assertFalse(this.submitted_);
+    goog.testing.events.fireClickSequence(this.component.getSubmitElement());
+    assertTrue(this.submitted_);
+  };
 
+  /** @private */
+  element.FormTestHelper.prototype.testOnSubmitEnter_ = function () {
+    assertFalse(this.submitted_);
+    goog.testing.events.fireKeySequence(
+      this.component.getSubmitElement(),
+      goog.events.KeyCodes.ENTER
+    );
+    assertTrue(this.submitted_);
+  };
 
-/** Asserts the form is submitted. */
-element.FormTestHelper.prototype.assertSubmitted = function() {
-  assertTrue(this.submitted_);
-};
+  /** @private */
+  element.FormTestHelper.prototype.testOnLinkClick_ = function () {
+    var e = this.component.getSecondaryLinkElement();
+    assertFalse(this.linkClicked_);
+    goog.testing.events.fireClickSequence(e);
+    assertTrue(this.linkClicked_);
+  };
 
-
-/** Asserts the form is not submitted. */
-element.FormTestHelper.prototype.assertNotSubmitted = function() {
-  assertFalse(!!this.submitted_);
-};
-
-
-/** Handler for secondary link click event. */
-element.FormTestHelper.prototype.onLinkClick = function() {
-  this.linkClicked_ = true;
-};
-
-
-/** @private */
-element.FormTestHelper.prototype.testGetSubmitElement_ = function() {
-  assertNotNull(this.component.getSubmitElement());
-};
-
-
-/** @private */
-element.FormTestHelper.prototype.testOnSubmitClick_ = function() {
-  assertFalse(this.submitted_);
-  goog.testing.events.fireClickSequence(this.component.getSubmitElement());
-  assertTrue(this.submitted_);
-};
-
-
-/** @private */
-element.FormTestHelper.prototype.testOnSubmitEnter_ = function() {
-  assertFalse(this.submitted_);
-  goog.testing.events.fireKeySequence(
-      this.component.getSubmitElement(), goog.events.KeyCodes.ENTER);
-  assertTrue(this.submitted_);
-};
-
-
-/** @private */
-element.FormTestHelper.prototype.testOnLinkClick_ = function() {
-  var e = this.component.getSecondaryLinkElement();
-  assertFalse(this.linkClicked_);
-  goog.testing.events.fireClickSequence(e);
-  assertTrue(this.linkClicked_);
-};
-
-
-/** @private */
-element.FormTestHelper.prototype.testOnLinkEnter_ = function() {
-  var e = this.component.getSecondaryLinkElement();
-  assertFalse(this.linkClicked_);
-  goog.testing.events.fireKeySequence(e, goog.events.KeyCodes.ENTER);
-  assertTrue(this.linkClicked_);
-};
+  /** @private */
+  element.FormTestHelper.prototype.testOnLinkEnter_ = function () {
+    var e = this.component.getSecondaryLinkElement();
+    assertFalse(this.linkClicked_);
+    goog.testing.events.fireKeySequence(e, goog.events.KeyCodes.ENTER);
+    assertTrue(this.linkClicked_);
+  };
 });

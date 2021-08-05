@@ -22,7 +22,6 @@
 /** @suppress {extraRequire} */
 goog.require('fireauth.iframeclient.IfcHandler');
 
-
 /** @suppress {const|duplicate} */
 fireauth.iframeclient.SCHEME = 'http';
 /** @type {?number} @suppress {const|duplicate} */

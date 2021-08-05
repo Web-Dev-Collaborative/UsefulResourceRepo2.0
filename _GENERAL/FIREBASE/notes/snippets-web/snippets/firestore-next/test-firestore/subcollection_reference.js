@@ -4,7 +4,7 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START subcollection_reference_modular]
-import { doc } from "firebase/firestore"; 
+import { doc } from "firebase/firestore";
 
 const messageRef = doc(db, "rooms", "roomA", "messages", "message1");
 // [END subcollection_reference_modular]

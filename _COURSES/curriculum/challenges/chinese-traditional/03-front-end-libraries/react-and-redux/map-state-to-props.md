@@ -29,19 +29,19 @@ assert(Array.isArray(state) && state.length === 0);
 `mapStateToProps` 應爲函數。
 
 ```js
-assert(typeof mapStateToProps === 'function');
+assert(typeof mapStateToProps === "function");
 ```
 
 `mapStateToProps` 應返回一個對象。
 
 ```js
-assert(typeof mapStateToProps() === 'object');
+assert(typeof mapStateToProps() === "object");
 ```
 
 把 state 數組傳入 `mapStateToProps` 後應返回賦值給 `messages` 鍵的數組。
 
 ```js
-assert(mapStateToProps(['messages']).messages.pop() === 'messages');
+assert(mapStateToProps(["messages"]).messages.pop() === "messages");
 ```
 
 # --seed--
@@ -63,7 +63,7 @@ const state = [];
 
 const mapStateToProps = (state) => {
   return {
-    messages: state
-  }
+    messages: state,
+  };
 };
 ```

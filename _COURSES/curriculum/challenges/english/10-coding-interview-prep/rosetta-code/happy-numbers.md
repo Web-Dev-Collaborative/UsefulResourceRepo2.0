@@ -21,13 +21,13 @@ Implement a function that returns true if the number is happy, or false if not.
 `happy` should be a function.
 
 ```js
-assert(typeof happy === 'function');
+assert(typeof happy === "function");
 ```
 
 `happy(1)` should return a boolean.
 
 ```js
-assert(typeof happy(1) === 'boolean');
+assert(typeof happy(1) === "boolean");
 ```
 
 `happy(1)` should return `true`.
@@ -101,15 +101,13 @@ assert(!happy(33));
 ## --seed-contents--
 
 ```js
-function happy(number) {
-
-}
+function happy(number) {}
 ```
 
 # --solutions--
 
 ```js
-function happy (number) {
+function happy(number) {
   let m;
   let digit;
   const cycle = [];
@@ -124,6 +122,6 @@ function happy (number) {
     }
     number = m;
   }
-  return (number === 1);
+  return number === 1;
 }
 ```

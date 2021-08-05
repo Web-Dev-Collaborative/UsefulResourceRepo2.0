@@ -1,52 +1,46 @@
-
-import React, { useState, useRef, useEffect } from 'react'
-
+import React, { useState, useRef, useEffect } from "react";
 
 function usePrevious(value) {
-  const ref = useRef()
+  const ref = useRef();
 
   useEffect(() => {
-    ref.current = value
-  })
+    ref.current = value;
+  });
 
-  return ref.current
+  return ref.current;
 }
 
+const Counter = (props) => {
+  const [count, setCount] = useState(0);
+  const { title, onChange } = props;
 
-const Counter = props => {
-  const [count, setCount] = useState(0)
-  const { title, onChange } = props
-
-  const prevCount = usePrevious(count)
-  const prevTestCount = usePrevious(props.testNumber)
+  const prevCount = usePrevious(count);
+  const prevTestCount = usePrevious(props.testNumber);
 
   const increment = () => {
-    const newCount = count + 1
-    setCount(newCount)
-    onChange('increment', newCount)
-  }
+    const newCount = count + 1;
+    setCount(newCount);
+    onChange("increment", newCount);
+  };
 
   const decrement = () => {
-    const newCount = count - 1
-    setCount(newCount)
-    onChange('decrement', newCount)
-  }
+    const newCount = count - 1;
+    setCount(newCount);
+    onChange("decrement", newCount);
+  };
 
   return (
     <div>
       <h1>{title}</h1>
       <button onClick={increment}>Increment</button>
-       <div className="counter"> Current: {count} </div>
-       <div className="counter"> Previous: {prevCount} </div>
-       <h2>Current Test: {props.testNumber}</h2>
-       <h2>Previous Test: {prevTestCount}</h2>
+      <div className="counter"> Current: {count} </div>
+      <div className="counter"> Previous: {prevCount} </div>
+      <h2>Current Test: {props.testNumber}</h2>
+      <h2>Previous Test: {prevTestCount}</h2>
       <button onClick={decrement}>Decrement</button>
     </div>
-  )
-}
-
-
-
+  );
+};
 
 // class Counter extends React.Component {
 
@@ -87,4 +81,4 @@ const Counter = props => {
 //   }
 // }
 
-export default Counter
+export default Counter;

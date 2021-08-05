@@ -1,3 +1,3 @@
 export const keys = {
-  API_URL: ''
-}
+  API_URL: "",
+};

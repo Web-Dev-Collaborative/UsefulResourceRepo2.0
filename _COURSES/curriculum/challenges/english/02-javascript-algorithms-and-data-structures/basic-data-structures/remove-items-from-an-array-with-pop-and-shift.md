@@ -8,12 +8,12 @@ dashedName: remove-items-from-an-array-with-pop-and-shift
 
 # --description--
 
-Both `push()` and `unshift()` have corresponding methods that are nearly functional opposites: `pop()` and `shift()`. As you may have guessed by now, instead of adding, `pop()` *removes* an element from the end of an array, while `shift()` removes an element from the beginning. The key difference between `pop()` and `shift()` and their cousins `push()` and `unshift()`, is that neither method takes parameters, and each only allows an array to be modified by a single element at a time.
+Both `push()` and `unshift()` have corresponding methods that are nearly functional opposites: `pop()` and `shift()`. As you may have guessed by now, instead of adding, `pop()` _removes_ an element from the end of an array, while `shift()` removes an element from the beginning. The key difference between `pop()` and `shift()` and their cousins `push()` and `unshift()`, is that neither method takes parameters, and each only allows an array to be modified by a single element at a time.
 
 Let's take a look:
 
 ```js
-let greetings = ['whats up?', 'hello', 'see ya!'];
+let greetings = ["whats up?", "hello", "see ya!"];
 
 greetings.pop();
 ```
@@ -43,9 +43,9 @@ We have defined a function, `popShift`, which takes an array as an argument and 
 `popShift(["challenge", "is", "not", "complete"])` should return `["challenge", "complete"]`
 
 ```js
-assert.deepEqual(popShift(['challenge', 'is', 'not', 'complete']), [
-  'challenge',
-  'complete'
+assert.deepEqual(popShift(["challenge", "is", "not", "complete"]), [
+  "challenge",
+  "complete",
 ]);
 ```
 
@@ -72,7 +72,7 @@ function popShift(arr) {
   return [shifted, popped];
 }
 
-console.log(popShift(['challenge', 'is', 'not', 'complete']));
+console.log(popShift(["challenge", "is", "not", "complete"]));
 ```
 
 # --solutions--

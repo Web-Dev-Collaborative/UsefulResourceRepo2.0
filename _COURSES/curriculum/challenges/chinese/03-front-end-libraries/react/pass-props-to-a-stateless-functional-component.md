@@ -12,14 +12,14 @@ dashedName: pass-props-to-a-stateless-functional-component
 
 ```jsx
 <App>
-  <Welcome user='Mark' />
+  <Welcome user="Mark" />
 </App>
 ```
 
 可以把创建的 React 支持的**自定义 HTML 属性**传递给组件， 在上面的例子里，将创建的属性 `user` 传递给组件 `Welcome`。 由于 `Welcome` 是一个无状态函数组件，它可以像这样访问该值：
 
 ```jsx
-const Welcome = (props) => <h1>Hello, {props.user}!</h1>
+const Welcome = (props) => <h1>Hello, {props.user}!</h1>;
 ```
 
 调用 `props` 这个值是常见做法，当处理无状态函数组件时，基本上可以将其视为返回 JSX 的函数的参数。 这样，你就可以在函数体中访问该值。 但对于类组件，访问方式会略有不同。
@@ -36,7 +36,7 @@ const Welcome = (props) => <h1>Hello, {props.user}!</h1>
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(Calendar));
-    return mockedComponent.children().type() === 'div';
+    return mockedComponent.children().type() === "div";
   })()
 );
 ```
@@ -47,7 +47,7 @@ assert(
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(Calendar));
-    return mockedComponent.children().childAt(1).name() === 'CurrentDate';
+    return mockedComponent.children().childAt(1).name() === "CurrentDate";
   })()
 );
 ```
@@ -70,7 +70,7 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(Calendar));
     const prop = mockedComponent.children().childAt(1).props().date;
-    return typeof prop === 'string' && prop.length > 0;
+    return typeof prop === "string" && prop.length > 0;
   })()
 );
 ```
@@ -84,13 +84,13 @@ assert(/<CurrentDatedate={Date\(\)}\/>/.test(__helpers.removeWhiteSpace(code)));
 `CurrentDate` 组件应该把 `date` 属性渲染在 `p` 标签内。
 
 ```js
-let date = 'dummy date';
+let date = "dummy date";
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(
       React.createElement(CurrentDate, { date })
     );
-    return mockedComponent.find('p').html().includes(date);
+    return mockedComponent.find("p").html().includes(date);
   })()
 );
 ```
@@ -100,7 +100,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<Calendar />, document.getElementById('root'))
+ReactDOM.render(<Calendar />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -109,9 +109,9 @@ ReactDOM.render(<Calendar />, document.getElementById('root'))
 const CurrentDate = (props) => {
   return (
     <div>
-      { /* Change code below this line */ }
+      {/* Change code below this line */}
       <p>The current date is: </p>
-      { /* Change code above this line */ }
+      {/* Change code above this line */}
     </div>
   );
 };
@@ -124,13 +124,13 @@ class Calendar extends React.Component {
     return (
       <div>
         <h3>What date is it?</h3>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
         <CurrentDate />
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -139,9 +139,9 @@ class Calendar extends React.Component {
 const CurrentDate = (props) => {
   return (
     <div>
-      { /* Change code below this line */ }
+      {/* Change code below this line */}
       <p>The current date is: {props.date}</p>
-      { /* Change code above this line */ }
+      {/* Change code above this line */}
     </div>
   );
 };
@@ -154,11 +154,11 @@ class Calendar extends React.Component {
     return (
       <div>
         <h3>What date is it?</h3>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
         <CurrentDate date={Date()} />
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 ```

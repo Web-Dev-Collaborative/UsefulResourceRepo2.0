@@ -1,6 +1,6 @@
 ---
 id: 5900f4b91000cf542c50ffcc
-title: 'Problem 333: Special partitions'
+title: "Problem 333: Special partitions"
 challengeType: 5
 forumTopicId: 301991
 dashedName: problem-333-special-partitions
@@ -36,7 +36,6 @@ assert.strictEqual(euler333(), 3053105);
 
 ```js
 function euler333() {
-
   return true;
 }
 

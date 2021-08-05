@@ -22,11 +22,11 @@ HTML 服務器提供 HTML 服務，而 API 提供數據服務。 <dfn>REST</dfn>
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/json').then(
+  $.get(getUserInput("url") + "/json").then(
     (data) => {
       assert.equal(
         data.message,
-        'Hello json',
+        "Hello json",
         "The '/json' endpoint does not serve the right data"
       );
     },

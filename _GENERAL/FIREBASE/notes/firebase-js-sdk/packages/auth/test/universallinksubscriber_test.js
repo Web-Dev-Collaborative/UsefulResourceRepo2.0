@@ -27,17 +27,15 @@ goog.require('goog.testing.recordFunction');
 
 goog.setTestOnly('fireauth.UniversalLinkSubscriberTest');
 
-
 var universalLinks = null;
-var eventData1 = {url: 'URL1'};
-var eventData2 = {url: 'URLK2'};
-var eventData3 = {url: 'URLK2'};
-
+var eventData1 = { url: 'URL1' };
+var eventData2 = { url: 'URLK2' };
+var eventData3 = { url: 'URLK2' };
 
 function setUp() {
   // Initialize mock universalLinks plugin.
   universalLinks = {};
-  universalLinks.subscribe = function(name, cb) {
+  universalLinks.subscribe = function (name, cb) {
     // Only one subscriber allowed.
     assertUndefined(universalLinks.cb);
     // No name should be supplied.
@@ -45,9 +43,7 @@ function setUp() {
     // Save callback.
     universalLinks.cb = cb;
   };
-
 }
-
 
 function testUniversalLinkSubscriber() {
   var listener1 = goog.testing.recordFunction();
@@ -90,18 +86,16 @@ function testUniversalLinkSubscriber() {
   assertEquals(1, listener2.getCallCount());
 }
 
-
 function testUniversalLinkSubscriber_unavailable() {
   // Test when universal link plugin not available, no error is thrown.
   universalLinks = null;
   var listener1 = goog.testing.recordFunction();
   var universalLinkSubscriber = new fireauth.UniversalLinkSubscriber();
-  assertNotThrows(function() {
+  assertNotThrows(function () {
     universalLinkSubscriber.subscribe(listener1);
     universalLinkSubscriber.unsubscribe(listener1);
   });
 }
-
 
 function testUniversalLinkSubscriber_clear() {
   var instance = fireauth.UniversalLinkSubscriber.getInstance();
@@ -111,4 +105,3 @@ function testUniversalLinkSubscriber_clear() {
   // After clearing, new instance should be returned.
   assertNotEquals(instance, fireauth.UniversalLinkSubscriber.getInstance());
 }
-

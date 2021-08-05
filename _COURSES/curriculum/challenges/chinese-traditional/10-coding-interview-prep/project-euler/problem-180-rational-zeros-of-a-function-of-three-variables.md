@@ -1,6 +1,6 @@
 ---
 id: 5900f4201000cf542c50ff33
-title: 'Problem 180: Rational zeros of a function of three variables'
+title: "Problem 180: Rational zeros of a function of three variables"
 challengeType: 5
 forumTopicId: 301816
 dashedName: problem-180-rational-zeros-of-a-function-of-three-variables
@@ -40,7 +40,6 @@ assert.strictEqual(euler180(), 285196020571078980);
 
 ```js
 function euler180() {
-
   return true;
 }
 

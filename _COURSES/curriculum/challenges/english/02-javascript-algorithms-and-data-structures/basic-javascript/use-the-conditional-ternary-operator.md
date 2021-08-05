@@ -16,10 +16,9 @@ The following function uses an `if/else` statement to check a condition:
 
 ```js
 function findGreater(a, b) {
-  if(a > b) {
+  if (a > b) {
     return "a is greater";
-  }
-  else {
+  } else {
     return "b is greater";
   }
 }
@@ -48,19 +47,19 @@ assert(/.+?\s*?\?\s*?.+?\s*?:\s*?.+?/.test(code));
 `checkEqual(1, 2)` should return the string `Not Equal`
 
 ```js
-assert(checkEqual(1, 2) === 'Not Equal');
+assert(checkEqual(1, 2) === "Not Equal");
 ```
 
 `checkEqual(1, 1)` should return the string `Equal`
 
 ```js
-assert(checkEqual(1, 1) === 'Equal');
+assert(checkEqual(1, 1) === "Equal");
 ```
 
 `checkEqual(1, -1)` should return the string `Not Equal`
 
 ```js
-assert(checkEqual(1, -1) === 'Not Equal');
+assert(checkEqual(1, -1) === "Not Equal");
 ```
 
 # --seed--
@@ -68,9 +67,7 @@ assert(checkEqual(1, -1) === 'Not Equal');
 ## --seed-contents--
 
 ```js
-function checkEqual(a, b) {
-
-}
+function checkEqual(a, b) {}
 
 checkEqual(1, 2);
 ```

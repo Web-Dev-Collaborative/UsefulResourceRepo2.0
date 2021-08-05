@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf04756
 title: Class 选择器的优先级高于继承样式
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cGJDQug'
+videoUrl: "https://scrimba.com/c/cGJDQug"
 forumTopicId: 18253
 dashedName: override-styles-in-subsequent-css
 ---
@@ -34,25 +34,25 @@ class="class1 class2"
 `h1` 元素应包含 `pink-text` class。
 
 ```js
-assert($('h1').hasClass('pink-text'));
+assert($("h1").hasClass("pink-text"));
 ```
 
 `h1` 元素应包含 `blue-text` class。
 
 ```js
-assert($('h1').hasClass('blue-text'));
+assert($("h1").hasClass("blue-text"));
 ```
 
 `blue-text` 和 `pink-text` 需同时应用于 `h1` 元素上。
 
 ```js
-assert($('.pink-text').hasClass('blue-text'));
+assert($(".pink-text").hasClass("blue-text"));
 ```
 
 `h1` 元素的颜色应为蓝色。
 
 ```js
-assert($('h1').css('color') === 'rgb(0, 0, 255)');
+assert($("h1").css("color") === "rgb(0, 0, 255)");
 ```
 
 # --seed--
@@ -88,7 +88,7 @@ assert($('h1').css('color') === 'rgb(0, 0, 255)');
 
   .blue-text {
     color: blue;
-  }  
+  }
 </style>
 <h1 class="pink-text blue-text">Hello World!</h1>
 ```

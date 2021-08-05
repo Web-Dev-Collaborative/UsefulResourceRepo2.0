@@ -25,13 +25,13 @@ Mueve tu elemento `target2` desde tu `left-well` a tu `right-well`.
 Tu elemento `target2` debe estar dentro de `left-well`.
 
 ```js
-assert($('#left-well').children('#target2').length === 0);
+assert($("#left-well").children("#target2").length === 0);
 ```
 
 Tu elemento `target2` debe estar dentro de `right-well`.
 
 ```js
-assert($('#right-well').children('#target2').length > 0);
+assert($("#right-well").children("#target2").length > 0);
 ```
 
 Sólo debes usar jQuery para mover estos elementos.
@@ -46,11 +46,10 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();
-
   });
 </script>
 
@@ -83,7 +82,7 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();

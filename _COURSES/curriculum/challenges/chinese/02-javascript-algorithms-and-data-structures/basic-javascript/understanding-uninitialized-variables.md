@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244aa
 title: 理解未初始化的变量
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cBa2JAL'
+videoUrl: "https://scrimba.com/c/cBa2JAL"
 forumTopicId: 18335
 dashedName: understanding-uninitialized-variables
 ---
@@ -20,19 +20,19 @@ dashedName: understanding-uninitialized-variables
 `a` 应该被定义，并且值为 `6`。
 
 ```js
-assert(typeof a === 'number' && a === 6);
+assert(typeof a === "number" && a === 6);
 ```
 
 `b` 应该被定义，并且值为 `15`。
 
 ```js
-assert(typeof b === 'number' && b === 15);
+assert(typeof b === "number" && b === 15);
 ```
 
 `c` 的值不能包含 `undefined`，应该为字符串 `I am a String!`。
 
 ```js
-assert(!/undefined/.test(c) && c === 'I am a String!');
+assert(!/undefined/.test(c) && c === "I am a String!");
 ```
 
 不要修改第二条注释下的代码。
@@ -50,7 +50,9 @@ assert(
 ## --after-user-code--
 
 ```js
-(function(a,b,c){ return "a = " + a + ", b = " + b + ", c = '" + c + "'"; })(a,b,c);
+(function (a, b, c) {
+  return "a = " + a + ", b = " + b + ", c = '" + c + "'";
+})(a, b, c);
 ```
 
 ## --seed-contents--

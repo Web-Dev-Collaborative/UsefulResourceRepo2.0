@@ -1,6 +1,6 @@
 ---
 id: 5900f4341000cf542c50ff46
-title: 'Problem 199: Iterative Circle Packing'
+title: "Problem 199: Iterative Circle Packing"
 challengeType: 5
 forumTopicId: 301837
 dashedName: problem-199-iterative-circle-packing
@@ -21,7 +21,7 @@ What fraction of the area is not covered by circles after `n` iterations? Give y
 `iterativeCirclePacking(10)` should return a number.
 
 ```js
-assert(typeof iterativeCirclePacking(10) === 'number');
+assert(typeof iterativeCirclePacking(10) === "number");
 ```
 
 `iterativeCirclePacking(10)` should return 0.00396087.
@@ -42,7 +42,6 @@ assert.strictEqual(iterativeCirclePacking(3), 0.06790342);
 
 ```js
 function iterativeCirclePacking(n) {
-
   return true;
 }
 
@@ -63,13 +62,13 @@ function iterativeCirclePacking(n) {
 
   return parseFloat(final);
   function getArea(k1, k2, k3, depth) {
-      if (depth == 0) return 0.0;
-      let k4 = k1 + k2 + k3 + 2 * Math.sqrt(k1 * k2 + k2 * k3 + k3 * k1);
-      let a = 1 / (k4 * k4);
-      a += getArea(k1, k2, k4, depth - 1);
-      a += getArea(k2, k3, k4, depth - 1);
-      a += getArea(k3, k1, k4, depth - 1);
-      return a;
+    if (depth == 0) return 0.0;
+    let k4 = k1 + k2 + k3 + 2 * Math.sqrt(k1 * k2 + k2 * k3 + k3 * k1);
+    let a = 1 / (k4 * k4);
+    a += getArea(k1, k2, k4, depth - 1);
+    a += getArea(k2, k3, k4, depth - 1);
+    a += getArea(k3, k1, k4, depth - 1);
+    return a;
   }
 }
 ```

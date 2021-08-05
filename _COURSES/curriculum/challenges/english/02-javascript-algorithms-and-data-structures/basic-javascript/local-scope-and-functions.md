@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244bf
 title: Local Scope and Functions
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cd62NhM'
+videoUrl: "https://scrimba.com/c/cd62NhM"
 forumTopicId: 18227
 dashedName: local-scope-and-functions
 ---
@@ -57,30 +57,28 @@ assert(
 
 ```js
 function myLocalScope() {
-
   // Only change code below this line
 
-  console.log('inside myLocalScope', myVar);
+  console.log("inside myLocalScope", myVar);
 }
 myLocalScope();
 
 // Run and check the console
 // myVar is not defined outside of myLocalScope
-console.log('outside myLocalScope', myVar);
+console.log("outside myLocalScope", myVar);
 ```
 
 # --solutions--
 
 ```js
 function myLocalScope() {
-
   // Only change code below this line
   var myVar;
-  console.log('inside myLocalScope', myVar);
+  console.log("inside myLocalScope", myVar);
 }
 myLocalScope();
 
 // Run and check the console
 // myVar is not defined outside of myLocalScope
-console.log('outside myLocalScope', myVar);
+console.log("outside myLocalScope", myVar);
 ```

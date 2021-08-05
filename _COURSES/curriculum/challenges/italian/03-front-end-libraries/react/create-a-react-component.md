@@ -17,9 +17,7 @@ class Kitten extends React.Component {
   }
 
   render() {
-    return (
-      <h1>Hi</h1>
-    );
+    return <h1>Hi</h1>;
   }
 }
 ```
@@ -35,7 +33,7 @@ Questo crea una classe ES6 `Kitten` che estende la classe `React.Component`. Cos
 Il componente React dovrebbe restituire un elemento `div`.
 
 ```js
-assert(Enzyme.shallow(React.createElement(MyComponent)).type() === 'div');
+assert(Enzyme.shallow(React.createElement(MyComponent)).type() === "div");
 ```
 
 Il `div` restituito dovrebbe fare il render di un header `h1` al suo interno.
@@ -53,7 +51,7 @@ L'intestazione `h1` dovrebbe contenere la stringa `Hello React!`.
 ```js
 assert(
   Enzyme.shallow(React.createElement(MyComponent)).html() ===
-    '<div><h1>Hello React!</h1></div>'
+    "<div><h1>Hello React!</h1></div>"
 );
 ```
 
@@ -62,7 +60,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyComponent />, document.getElementById('root'))
+ReactDOM.render(<MyComponent />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -74,12 +72,9 @@ class MyComponent extends React.Component {
   }
   render() {
     // Change code below this line
-
-
-
     // Change code above this line
   }
-};
+}
 ```
 
 # --solutions--
@@ -98,5 +93,5 @@ class MyComponent extends React.Component {
     );
     // Change code above this line
   }
-};
+}
 ```

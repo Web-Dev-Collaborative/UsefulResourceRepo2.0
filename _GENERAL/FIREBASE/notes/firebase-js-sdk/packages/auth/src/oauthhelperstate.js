@@ -23,7 +23,6 @@ goog.provide('fireauth.OAuthHelperState');
 
 goog.require('fireauth.AuthEvent');
 
-
 /**
  * Defines the OAuth helper widget state.
  * @param {string} apiKey The API key.
@@ -43,10 +42,22 @@ goog.require('fireauth.AuthEvent');
  * @param {?string=} opt_tenantId The optional tenant ID.
  * @constructor
  */
-fireauth.OAuthHelperState = function(
-    apiKey, appName, type, opt_eventId, opt_redirectUrl, opt_clientVersion,
-    opt_displayName, opt_apn, opt_ibi, opt_eid, opt_frameworks, opt_clientId,
-    opt_sha1Cert, opt_tenantId) {
+fireauth.OAuthHelperState = function (
+  apiKey,
+  appName,
+  type,
+  opt_eventId,
+  opt_redirectUrl,
+  opt_clientVersion,
+  opt_displayName,
+  opt_apn,
+  opt_ibi,
+  opt_eid,
+  opt_frameworks,
+  opt_clientId,
+  opt_sha1Cert,
+  opt_tenantId
+) {
   /** @const @private {string} The API key. */
   this.apiKey_ = apiKey;
   /** @const @private {string} The App name. */
@@ -77,93 +88,78 @@ fireauth.OAuthHelperState = function(
   this.tenantId_ = opt_tenantId || null;
 };
 
-
 /** @return {?string} The OAuth client ID. */
-fireauth.OAuthHelperState.prototype.getClientId = function() {
+fireauth.OAuthHelperState.prototype.getClientId = function () {
   return this.clientId_;
 };
 
-
 /** @return {?string} The SHA-1 hash of the Android cert. */
-fireauth.OAuthHelperState.prototype.getSha1Cert = function() {
+fireauth.OAuthHelperState.prototype.getSha1Cert = function () {
   return this.sha1Cert_;
 };
 
-
 /** @return {!fireauth.AuthEvent.Type} The type of Auth event. */
-fireauth.OAuthHelperState.prototype.getType = function() {
+fireauth.OAuthHelperState.prototype.getType = function () {
   return this.type_;
 };
 
-
 /** @return {?string} The Auth event identifier. */
-fireauth.OAuthHelperState.prototype.getEventId = function() {
+fireauth.OAuthHelperState.prototype.getEventId = function () {
   return this.eventId_;
 };
 
-
 /** @return {string} The API key. */
-fireauth.OAuthHelperState.prototype.getApiKey = function() {
+fireauth.OAuthHelperState.prototype.getApiKey = function () {
   return this.apiKey_;
 };
 
-
 /** @return {string} The App name. */
-fireauth.OAuthHelperState.prototype.getAppName = function() {
+fireauth.OAuthHelperState.prototype.getAppName = function () {
   return this.appName_;
 };
 
-
 /** @return {?string} The redirect URL. */
-fireauth.OAuthHelperState.prototype.getRedirectUrl = function() {
+fireauth.OAuthHelperState.prototype.getRedirectUrl = function () {
   return this.redirectUrl_;
 };
 
-
 /** @return {?string} The client version. */
-fireauth.OAuthHelperState.prototype.getClientVersion = function() {
+fireauth.OAuthHelperState.prototype.getClientVersion = function () {
   return this.clientVersion_;
 };
 
-
 /** @return {?string} The application display name if available. */
-fireauth.OAuthHelperState.prototype.getDisplayName = function() {
+fireauth.OAuthHelperState.prototype.getDisplayName = function () {
   return this.displayName_;
 };
 
-
 /** @return {?string} The Android package name. */
-fireauth.OAuthHelperState.prototype.getApn = function() {
+fireauth.OAuthHelperState.prototype.getApn = function () {
   return this.apn_;
 };
 
-
 /** @return {?string} The iOS bundle ID. */
-fireauth.OAuthHelperState.prototype.getIbi = function() {
+fireauth.OAuthHelperState.prototype.getIbi = function () {
   return this.ibi_;
 };
 
-
 /** @return {?string} The Auth endpoint ID. */
-fireauth.OAuthHelperState.prototype.getEndpointId = function() {
+fireauth.OAuthHelperState.prototype.getEndpointId = function () {
   return this.eid_;
 };
 
-
 /** @return {?string} The tenant ID. */
-fireauth.OAuthHelperState.prototype.getTenantId = function() {
+fireauth.OAuthHelperState.prototype.getTenantId = function () {
   return this.tenantId_;
 };
 
-
 /** @return {!Array<string>} The list of framework IDs. */
-fireauth.OAuthHelperState.prototype.getFrameworks = function() {
+fireauth.OAuthHelperState.prototype.getFrameworks = function () {
   return this.frameworks_;
 };
 
-
 /** @return {!Object} The plain object representation of OAuth helper state. */
-fireauth.OAuthHelperState.prototype.toPlainObject = function() {
+fireauth.OAuthHelperState.prototype.toPlainObject = function () {
   return {
     'apiKey': this.apiKey_,
     'appName': this.appName_,
@@ -182,31 +178,31 @@ fireauth.OAuthHelperState.prototype.toPlainObject = function() {
   };
 };
 
-
 /**
  * @param {?Object} rawResponse The plain object representation of OAuth helper
  *     state.
  * @return {?fireauth.OAuthHelperState} The OAuth helper state representation of
  *     plain object.
  */
-fireauth.OAuthHelperState.fromPlainObject = function(rawResponse) {
+fireauth.OAuthHelperState.fromPlainObject = function (rawResponse) {
   var response = rawResponse || {};
   if (response['type'] && response['apiKey']) {
     return new fireauth.OAuthHelperState(
-        response['apiKey'],
-        response['appName'] || '',
-        response['type'],
-        response['eventId'],
-        response['redirectUrl'],
-        response['clientVersion'],
-        response['displayName'],
-        response['apn'],
-        response['ibi'],
-        response['eid'],
-        response['fw'],
-        response['clientId'],
-        response['sha1Cert'],
-        response['tenantId']);
+      response['apiKey'],
+      response['appName'] || '',
+      response['type'],
+      response['eventId'],
+      response['redirectUrl'],
+      response['clientVersion'],
+      response['displayName'],
+      response['apn'],
+      response['ibi'],
+      response['eid'],
+      response['fw'],
+      response['clientId'],
+      response['sha1Cert'],
+      response['tenantId']
+    );
   }
   return null;
 };

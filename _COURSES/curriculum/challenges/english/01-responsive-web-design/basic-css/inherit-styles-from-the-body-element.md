@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08746
 title: Inherit Styles from the Body Element
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c9bmdtR'
+videoUrl: "https://scrimba.com/c/c9bmdtR"
 forumTopicId: 18204
 dashedName: inherit-styles-from-the-body-element
 ---
@@ -26,15 +26,15 @@ Finally, give your `body` element the font-family of `monospace` by adding `font
 You should create an `h1` element.
 
 ```js
-assert($('h1').length > 0);
+assert($("h1").length > 0);
 ```
 
 Your `h1` element should have the text `Hello World`.
 
 ```js
 assert(
-  $('h1').length > 0 &&
-    $('h1')
+  $("h1").length > 0 &&
+    $("h1")
       .text()
       .match(/hello world/i)
 );
@@ -53,15 +53,15 @@ assert(
 Your `body` element should have the `color` property of `green`.
 
 ```js
-assert($('body').css('color') === 'rgb(0, 128, 0)');
+assert($("body").css("color") === "rgb(0, 128, 0)");
 ```
 
 Your `body` element should have the `font-family` property of `monospace`.
 
 ```js
 assert(
-  $('body')
-    .css('font-family')
+  $("body")
+    .css("font-family")
     .match(/monospace/i)
 );
 ```
@@ -70,9 +70,9 @@ Your `h1` element should inherit the font `monospace` from your `body` element.
 
 ```js
 assert(
-  $('h1').length > 0 &&
-    $('h1')
-      .css('font-family')
+  $("h1").length > 0 &&
+    $("h1")
+      .css("font-family")
       .match(/monospace/i)
 );
 ```
@@ -80,7 +80,7 @@ assert(
 Your `h1` element should inherit the color green from your `body` element.
 
 ```js
-assert($('h1').length > 0 && $('h1').css('color') === 'rgb(0, 128, 0)');
+assert($("h1").length > 0 && $("h1").css("color") === "rgb(0, 128, 0)");
 ```
 
 # --seed--
@@ -92,7 +92,6 @@ assert($('h1').length > 0 && $('h1').css('color') === 'rgb(0, 128, 0)');
   body {
     background-color: black;
   }
-
 </style>
 ```
 
@@ -105,7 +104,6 @@ assert($('h1').length > 0 && $('h1').css('color') === 'rgb(0, 128, 0)');
     font-family: monospace;
     color: green;
   }
-
 </style>
 <h1>Hello World!</h1>
 ```

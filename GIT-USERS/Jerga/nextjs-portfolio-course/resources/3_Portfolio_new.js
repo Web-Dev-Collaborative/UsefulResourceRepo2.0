@@ -6,7 +6,8 @@
       name="title"
       type="text"
       className="form-control"
-      id="title"/>
+      id="title"
+    />
   </div>
 
   <div className="form-group">
@@ -16,7 +17,8 @@
       name="company"
       type="text"
       className="form-control"
-      id="company"/>
+      id="company"
+    />
   </div>
 
   <div className="form-group">
@@ -26,7 +28,8 @@
       name="location"
       type="text"
       className="form-control"
-      id="location"/>
+      id="location"
+    />
   </div>
 
   <div className="form-group">
@@ -36,7 +39,8 @@
       name="jobTitle"
       type="text"
       className="form-control"
-      id="jobTitle"/>
+      id="jobTitle"
+    />
   </div>
 
   <div className="form-group">
@@ -47,8 +51,8 @@
       rows="5"
       type="text"
       className="form-control"
-      id="description">
-    </textarea>
+      id="description"
+    ></textarea>
   </div>
 
   <div className="form-group">
@@ -58,7 +62,8 @@
       name="startDate"
       type="text"
       className="form-control"
-      id="startDate"/>
+      id="startDate"
+    />
   </div>
 
   <div className="form-group">
@@ -68,11 +73,11 @@
       name="endDate"
       type="text"
       className="form-control"
-      id="endDate"/>
+      id="endDate"
+    />
   </div>
 
-  <button
-    type="submit"
-    className="btn btn-primary">Create
+  <button type="submit" className="btn btn-primary">
+    Create
   </button>
-</form>
+</form>;

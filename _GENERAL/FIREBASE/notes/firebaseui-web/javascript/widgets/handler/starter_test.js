@@ -16,27 +16,25 @@
  * @fileoverview Tests for sign in button handler.
  */
 
-goog.provide('firebaseui.auth.widget.handler.widgetSelectorTest');
-goog.setTestOnly('firebaseui.auth.widget.handler.widgetSelectorTest');
+goog.provide("firebaseui.auth.widget.handler.widgetSelectorTest");
+goog.setTestOnly("firebaseui.auth.widget.handler.widgetSelectorTest");
 
 /** @suppress {extraRequire} */
-goog.require('firebaseui.auth.AuthUI');
-goog.require('firebaseui.auth.util');
-goog.require('firebaseui.auth.widget.handler.startSignIn');
+goog.require("firebaseui.auth.AuthUI");
+goog.require("firebaseui.auth.util");
+goog.require("firebaseui.auth.widget.handler.startSignIn");
 /** @suppress {extraRequire} */
-goog.require('firebaseui.auth.widget.handler.testHelper');
-
+goog.require("firebaseui.auth.widget.handler.testHelper");
 
 /** Tests startSignIn in redirect mode. */
 function testHandleStartSignIn_redirect() {
   // Set popup mode to false.
-  app.setConfig({'popupMode': false});
+  app.setConfig({ popupMode: false });
   // Start sign in.
   firebaseui.auth.widget.handler.startSignIn(app);
   // This should redirect to sign in widget.
-  testUtil.assertGoTo('http://localhost/firebaseui-widget?mode=select');
+  testUtil.assertGoTo("http://localhost/firebaseui-widget?mode=select");
 }
-
 
 /** Tests startSignIn in popup mode. */
 function testHandleSignInButton_popup() {
@@ -46,10 +44,9 @@ function testHandleSignInButton_popup() {
     return;
   }
   // Set popup mode to true.
-  app.setConfig({'popupMode': true});
+  app.setConfig({ popupMode: true });
   // Start sign in.
   firebaseui.auth.widget.handler.startSignIn(app);
   // This should popup sign in widget.
-  testUtil.assertPopupWindow('http://localhost/firebaseui-widget?mode=select');
+  testUtil.assertPopupWindow("http://localhost/firebaseui-widget?mode=select");
 }
-

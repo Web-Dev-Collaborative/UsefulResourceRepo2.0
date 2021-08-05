@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-'use strict';
+"use strict";
 // [START get_service_account_tokens]
-const admin = require('firebase-admin');
+const admin = require("firebase-admin");
 
-const serviceAccount = require('./path/to/serviceAccountKey.json');
+const serviceAccount = require("./path/to/serviceAccountKey.json");
 const credential = admin.credential.cert(serviceAccount);
 
 credential.getAccessToken().then((accessTokenInfo) => {

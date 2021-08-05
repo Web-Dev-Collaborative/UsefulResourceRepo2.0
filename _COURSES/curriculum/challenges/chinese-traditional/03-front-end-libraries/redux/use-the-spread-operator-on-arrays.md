@@ -30,7 +30,7 @@ assert(
     const initialState = store.getState();
     return (
       Array.isArray(initialState) === true &&
-      initialState[0] === 'Do not mutate state!'
+      initialState[0] === "Do not mutate state!"
     );
   })()
 );
@@ -39,7 +39,7 @@ assert(
 `addToDo` 和 `immutableReducer` 都應該是函數。
 
 ```js
-assert(typeof addToDo === 'function' && typeof immutableReducer === 'function');
+assert(typeof addToDo === "function" && typeof immutableReducer === "function");
 ```
 
 在 Redux store 上 dispatch 一個類型爲 `ADD_TO_DO` 的 aciton，應該添加一個 `todo` 項，並且不應該改變 state。
@@ -49,9 +49,9 @@ assert(
   (function () {
     const initialState = store.getState();
     const isFrozen = DeepFreeze(initialState);
-    store.dispatch(addToDo('__TEST__TO__DO__'));
+    store.dispatch(addToDo("__TEST__TO__DO__"));
     const finalState = store.getState();
-    const expectedState = ['Do not mutate state!', '__TEST__TO__DO__'];
+    const expectedState = ["Do not mutate state!", "__TEST__TO__DO__"];
     return isFrozen && DeepEqual(finalState, expectedState);
   })()
 );
@@ -60,7 +60,7 @@ assert(
 應使用擴展運算符返回新的 state。
 
 ```js
-(getUserInput) => assert(getUserInput('index').includes('...state'));
+(getUserInput) => assert(getUserInput("index").includes("...state"));
 ```
 
 # --seed--
@@ -68,11 +68,11 @@ assert(
 ## --seed-contents--
 
 ```js
-const immutableReducer = (state = ['Do not mutate state!'], action) => {
-  switch(action.type) {
-    case 'ADD_TO_DO':
+const immutableReducer = (state = ["Do not mutate state!"], action) => {
+  switch (action.type) {
+    case "ADD_TO_DO":
       // Don't mutate state here or the tests will fail
-      return
+      return;
     default:
       return state;
   }
@@ -80,10 +80,10 @@ const immutableReducer = (state = ['Do not mutate state!'], action) => {
 
 const addToDo = (todo) => {
   return {
-    type: 'ADD_TO_DO',
-    todo
-  }
-}
+    type: "ADD_TO_DO",
+    todo,
+  };
+};
 
 const store = Redux.createStore(immutableReducer);
 ```
@@ -91,13 +91,10 @@ const store = Redux.createStore(immutableReducer);
 # --solutions--
 
 ```js
-const immutableReducer = (state = ['Do not mutate state!'], action) => {
-  switch(action.type) {
-    case 'ADD_TO_DO':
-      return [
-        ...state,
-        action.todo
-      ];
+const immutableReducer = (state = ["Do not mutate state!"], action) => {
+  switch (action.type) {
+    case "ADD_TO_DO":
+      return [...state, action.todo];
     default:
       return state;
   }
@@ -105,10 +102,10 @@ const immutableReducer = (state = ['Do not mutate state!'], action) => {
 
 const addToDo = (todo) => {
   return {
-    type: 'ADD_TO_DO',
-    todo
-  }
-}
+    type: "ADD_TO_DO",
+    todo,
+  };
+};
 
 const store = Redux.createStore(immutableReducer);
 ```

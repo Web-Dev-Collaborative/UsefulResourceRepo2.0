@@ -21,7 +21,7 @@ The code editor has the previous example as well as the start of a `reducer` fun
 Calling the function `loginAction` should return an object with type property set to the string `LOGIN`.
 
 ```js
-assert(loginAction().type === 'LOGIN');
+assert(loginAction().type === "LOGIN");
 ```
 
 The store should be initialized with an object with property `login` set to `false`.
@@ -48,9 +48,9 @@ If the action is not of type `LOGIN`, the store should return the current state.
 ```js
 assert(
   (function () {
-    store.dispatch({ type: '__TEST__ACTION__' });
+    store.dispatch({ type: "__TEST__ACTION__" });
     let afterTest = store.getState();
-    return typeof afterTest === 'object' && afterTest.hasOwnProperty('login');
+    return typeof afterTest === "object" && afterTest.hasOwnProperty("login");
   })()
 );
 ```
@@ -61,12 +61,11 @@ assert(
 
 ```js
 const defaultState = {
-  login: false
+  login: false,
 };
 
 const reducer = (state = defaultState, action) => {
   // Change code below this line
-
   // Change code above this line
 };
 
@@ -74,8 +73,8 @@ const store = Redux.createStore(reducer);
 
 const loginAction = () => {
   return {
-    type: 'LOGIN'
-  }
+    type: "LOGIN",
+  };
 };
 ```
 
@@ -83,26 +82,22 @@ const loginAction = () => {
 
 ```js
 const defaultState = {
-  login: false
+  login: false,
 };
 
 const reducer = (state = defaultState, action) => {
-
-  if (action.type === 'LOGIN') {
-    return {login: true}
+  if (action.type === "LOGIN") {
+    return { login: true };
+  } else {
+    return state;
   }
-
-  else {
-    return state
-  }
-
 };
 
 const store = Redux.createStore(reducer);
 
 const loginAction = () => {
   return {
-    type: 'LOGIN'
-  }
+    type: "LOGIN",
+  };
 };
 ```

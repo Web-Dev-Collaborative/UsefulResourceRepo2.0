@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244dd
 title: Selezionare tra molte opzioni con le istruzioni Switch
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c4mv4fm'
+videoUrl: "https://scrimba.com/c/c4mv4fm"
 forumTopicId: 18277
 dashedName: selecting-from-many-options-with-switch-statements
 ---
@@ -14,7 +14,7 @@ Se hai molte opzioni tra cui scegliere, usa un'istruzione <dfn>switch</dfn>. Un'
 Ecco un esempio di un'istruzione `switch`:
 
 ```js
-switch(lowercaseLetter) {
+switch (lowercaseLetter) {
   case "a":
     console.log("A");
     break;
@@ -39,25 +39,25 @@ Scrivi una dichiarazione switch che testa `val` e imposta il valore di `answer` 
 `caseInSwitch(1)` dovrebbe avere il valore stringa `alpha`
 
 ```js
-assert(caseInSwitch(1) === 'alpha');
+assert(caseInSwitch(1) === "alpha");
 ```
 
 `caseInSwitch(2)` dovrebbe avere il valore stringa `beta`
 
 ```js
-assert(caseInSwitch(2) === 'beta');
+assert(caseInSwitch(2) === "beta");
 ```
 
 `caseInSwitch(3)` dovrebbe avere il valore stringa `gamma`
 
 ```js
-assert(caseInSwitch(3) === 'gamma');
+assert(caseInSwitch(3) === "gamma");
 ```
 
 `caseInSwitch(4)` dovrebbe avere il valore stringa `delta`
 
 ```js
-assert(caseInSwitch(4) === 'delta');
+assert(caseInSwitch(4) === "delta");
 ```
 
 Non dovresti usare alcuna dichiarazione `if` o `else`
@@ -81,8 +81,6 @@ function caseInSwitch(val) {
   var answer = "";
   // Only change code below this line
 
-
-
   // Only change code above this line
   return answer;
 }
@@ -96,7 +94,7 @@ caseInSwitch(1);
 function caseInSwitch(val) {
   var answer = "";
 
-  switch(val) {
+  switch (val) {
     case 1:
       answer = "alpha";
       break;

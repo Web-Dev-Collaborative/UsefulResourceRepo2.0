@@ -20,20 +20,20 @@ Debes añadir un elemento `h4` para cada uno de sus elementos `<div class="col-x
 
 ```js
 assert(
-  $('.col-xs-6').children('h4') && $('.col-xs-6').children('h4').length > 1
+  $(".col-xs-6").children("h4") && $(".col-xs-6").children("h4").length > 1
 );
 ```
 
 Un elemento `h4` debe contener el texto `#left-well`.
 
 ```js
-assert(new RegExp('#left-well', 'gi').test($('h4').text()));
+assert(new RegExp("#left-well", "gi").test($("h4").text()));
 ```
 
 Un elemento `h4` debe contener el texto `#right-well`.
 
 ```js
-assert(new RegExp('#right-well', 'gi').test($('h4').text()));
+assert(new RegExp("#right-well", "gi").test($("h4").text()));
 ```
 
 Todos los elementos `h4` deben contener etiquetas de cierre.
@@ -55,7 +55,6 @@ assert(
   <h3 class="text-primary text-center">jQuery Playground</h3>
   <div class="row">
     <div class="col-xs-6">
-
       <div class="well" id="left-well">
         <button class="btn btn-default target"></button>
         <button class="btn btn-default target"></button>
@@ -63,7 +62,6 @@ assert(
       </div>
     </div>
     <div class="col-xs-6">
-
       <div class="well" id="right-well">
         <button class="btn btn-default target"></button>
         <button class="btn btn-default target"></button>

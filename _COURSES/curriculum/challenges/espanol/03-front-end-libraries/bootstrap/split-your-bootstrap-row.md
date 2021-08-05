@@ -17,7 +17,7 @@ Crea dos elementos `div` dentro de tu fila, ambos con la clase `col-xs-6`.
 Dos elementos `div class="col-xs-6"` deben estar anidados dentro de tu elemento `div class="row"`.
 
 ```js
-assert($('div.row > div.col-xs-6').length > 1);
+assert($("div.row > div.col-xs-6").length > 1);
 ```
 
 Todos tus elementos `div` deben tener etiquetas de cierre.
@@ -37,10 +37,7 @@ assert(
 ```html
 <div class="container-fluid">
   <h3 class="text-primary text-center">jQuery Playground</h3>
-  <div class="row">
-
-
-  </div>
+  <div class="row"></div>
 </div>
 ```
 

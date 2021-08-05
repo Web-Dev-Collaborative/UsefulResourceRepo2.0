@@ -1,6 +1,6 @@
 ---
 id: 5900f4931000cf542c50ffa6
-title: 'Problem 295: Lenticular holes'
+title: "Problem 295: Lenticular holes"
 challengeType: 5
 forumTopicId: 301947
 dashedName: problem-295-lenticular-holes
@@ -42,7 +42,6 @@ assert.strictEqual(euler295(), 4884650818);
 
 ```js
 function euler295() {
-
   return true;
 }
 

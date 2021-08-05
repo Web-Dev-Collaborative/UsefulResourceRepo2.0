@@ -1,13 +1,10 @@
+import React from "react";
+import moment from "moment";
 
-
-import React from 'react'
-import moment from 'moment'
-
-const ChatMessages = ({messages, authUser}) => {
-
+const ChatMessages = ({ messages, authUser }) => {
   const renderMessages = (messages, authUser) => {
     if (messages.length > 0) {
-      return messages.map(message => {
+      return messages.map((message) => {
         // Message is from currently logged in USER
         if (message.user.uid === authUser.uid) {
           return (
@@ -16,14 +13,17 @@ const ChatMessages = ({messages, authUser}) => {
                 <img
                   src={message.user.avatar}
                   alt="avatar"
-                  className="peerAvatarLeft" />
+                  className="peerAvatarLeft"
+                />
                 <div className="viewItemLeft">
                   <span className="textContentItem">{message.content}</span>
                 </div>
               </div>
-              <span className="textTimeLeft">{moment(message.timestamp).fromNow()}</span>
+              <span className="textTimeLeft">
+                {moment(message.timestamp).fromNow()}
+              </span>
             </div>
-          )
+          );
         }
 
         return (
@@ -32,21 +32,24 @@ const ChatMessages = ({messages, authUser}) => {
               <img
                 src={message.user.avatar}
                 alt="avatar"
-                className="peerAvatarLeft" />
+                className="peerAvatarLeft"
+              />
               <div className="viewItemRight">
                 <span className="textContentItem">{message.content}</span>
               </div>
             </div>
-            <span className="textTimeLeft">{moment(message.timestamp).fromNow()}</span>
+            <span className="textTimeLeft">
+              {moment(message.timestamp).fromNow()}
+            </span>
           </div>
-        )
-      })
+        );
+      });
     }
 
-    return null
-  }
+    return null;
+  };
 
-  return renderMessages(messages, authUser)
-}
+  return renderMessages(messages, authUser);
+};
 
-export default ChatMessages
+export default ChatMessages;

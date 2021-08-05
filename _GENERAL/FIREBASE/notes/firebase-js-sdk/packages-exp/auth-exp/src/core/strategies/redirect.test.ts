@@ -60,12 +60,11 @@ describe('core/strategies/redirect', () => {
   let redirectPersistence: RedirectPersistence;
 
   beforeEach(async () => {
-    eventManager = new AuthEventManager(({} as unknown) as TestAuth);
+    eventManager = new AuthEventManager({} as unknown as TestAuth);
     idpStubs = sinon.stub(idpTasks);
     resolver = makeMockPopupRedirectResolver(eventManager);
-    _getInstance<PopupRedirectResolverInternal>(
-      resolver
-    )._redirectPersistence = RedirectPersistence;
+    _getInstance<PopupRedirectResolverInternal>(resolver)._redirectPersistence =
+      RedirectPersistence;
     auth = await testAuth();
     redirectAction = new RedirectAction(auth, _getInstance(resolver), false);
     redirectPersistence = _getInstance(RedirectPersistence);
@@ -198,9 +197,8 @@ describe('core/strategies/redirect', () => {
 
   it('bypasses initialization if no key set', async () => {
     await reInitAuthWithRedirectUser(MATCHING_EVENT_ID);
-    const resolverInstance = _getInstance<PopupRedirectResolverInternal>(
-      resolver
-    );
+    const resolverInstance =
+      _getInstance<PopupRedirectResolverInternal>(resolver);
 
     sinon.spy(resolverInstance, '_initialize');
     redirectPersistence.hasPendingRedirect = false;

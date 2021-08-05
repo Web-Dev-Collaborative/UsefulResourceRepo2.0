@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244d9
 title: Comparisons with the Logical Or Operator
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cEPrGTN'
+videoUrl: "https://scrimba.com/c/cEPrGTN"
 forumTopicId: 16800
 dashedName: comparisons-with-the-logical-or-operator
 ---
@@ -55,49 +55,49 @@ assert(code.match(/if/g).length === 1);
 `testLogicalOr(0)` should return the string `Outside`
 
 ```js
-assert(testLogicalOr(0) === 'Outside');
+assert(testLogicalOr(0) === "Outside");
 ```
 
 `testLogicalOr(9)` should return the string `Outside`
 
 ```js
-assert(testLogicalOr(9) === 'Outside');
+assert(testLogicalOr(9) === "Outside");
 ```
 
 `testLogicalOr(10)` should return the string `Inside`
 
 ```js
-assert(testLogicalOr(10) === 'Inside');
+assert(testLogicalOr(10) === "Inside");
 ```
 
 `testLogicalOr(15)` should return the string `Inside`
 
 ```js
-assert(testLogicalOr(15) === 'Inside');
+assert(testLogicalOr(15) === "Inside");
 ```
 
 `testLogicalOr(19)` should return the string `Inside`
 
 ```js
-assert(testLogicalOr(19) === 'Inside');
+assert(testLogicalOr(19) === "Inside");
 ```
 
 `testLogicalOr(20)` should return the string `Inside`
 
 ```js
-assert(testLogicalOr(20) === 'Inside');
+assert(testLogicalOr(20) === "Inside");
 ```
 
 `testLogicalOr(21)` should return the string `Outside`
 
 ```js
-assert(testLogicalOr(21) === 'Outside');
+assert(testLogicalOr(21) === "Outside");
 ```
 
 `testLogicalOr(25)` should return the string `Outside`
 
 ```js
-assert(testLogicalOr(25) === 'Outside');
+assert(testLogicalOr(25) === "Outside");
 ```
 
 # --seed--

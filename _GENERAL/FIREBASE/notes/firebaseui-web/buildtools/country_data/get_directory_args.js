@@ -16,8 +16,8 @@
  * Utilities for parsing command line arguments.
  */
 
-var fs = require('fs');
-var path = require('path');
+var fs = require("fs");
+var path = require("path");
 
 /**
  * Asserts that the given path points to a directory and exits otherwise.
@@ -39,12 +39,12 @@ function assertIsDirectory(path) {
  * Gets the input and output directories from the script arguments.
  * @return {!Object}
  */
-module.exports = function() {
+module.exports = function () {
   // The file name of the script using this library.
   var currentScript = path.parse(process.argv[1]).base;
 
   if (process.argv.length !== 4) {
-    console.log('Usage: ' + currentScript + ' /path/to/input /path/to/output');
+    console.log("Usage: " + currentScript + " /path/to/input /path/to/output");
     process.exit();
   }
 
@@ -57,6 +57,6 @@ module.exports = function() {
 
   return {
     from: fromDir,
-    to: toDir
+    to: toDir,
   };
 };

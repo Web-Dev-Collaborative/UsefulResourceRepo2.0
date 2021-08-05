@@ -20,19 +20,19 @@ dashedName: use-model-findone-to-return-a-single-matching-document-from-your-dat
 
 ```js
 (getUserInput) =>
-  $.post(getUserInput('url') + '/_api/find-one-by-food', {
-    name: 'Gary',
+  $.post(getUserInput("url") + "/_api/find-one-by-food", {
+    name: "Gary",
     age: 46,
-    favoriteFoods: ['chicken salad']
+    favoriteFoods: ["chicken salad"],
   }).then(
     (data) => {
-      assert.equal(data.name, 'Gary', 'item.name is not what expected');
+      assert.equal(data.name, "Gary", "item.name is not what expected");
       assert.deepEqual(
         data.favoriteFoods,
-        ['chicken salad'],
-        'item.favoriteFoods is not what expected'
+        ["chicken salad"],
+        "item.favoriteFoods is not what expected"
       );
-      assert.equal(data.__v, 0, 'The item should be not previously edited');
+      assert.equal(data.__v, 0, "The item should be not previously edited");
     },
     (xhr) => {
       throw new Error(xhr.responseText);

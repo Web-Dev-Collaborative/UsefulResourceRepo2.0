@@ -24,7 +24,7 @@ MyComponent 的 state 中包含一个 `boolean`（布尔值），用于跟踪是
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
-    return mockedComponent.find('MyComponent').length === 1;
+    return mockedComponent.find("MyComponent").length === 1;
   })()
 );
 ```
@@ -42,10 +42,10 @@ async () => {
   };
   const updated = await state_1();
   assert(
-    mockedComponent.find('div').length === 1 &&
-      mockedComponent.find('div').children().length === 2 &&
-      mockedComponent.find('button').length === 1 &&
-      mockedComponent.find('h1').length === 1
+    mockedComponent.find("div").length === 1 &&
+      mockedComponent.find("div").children().length === 2 &&
+      mockedComponent.find("button").length === 1 &&
+      mockedComponent.find("h1").length === 1
   );
 };
 ```
@@ -63,10 +63,10 @@ async () => {
   };
   const updated = await state_1();
   assert(
-    mockedComponent.find('div').length === 1 &&
-      mockedComponent.find('div').children().length === 1 &&
-      mockedComponent.find('button').length === 1 &&
-      mockedComponent.find('h1').length === 0
+    mockedComponent.find("div").length === 1 &&
+      mockedComponent.find("div").children().length === 1 &&
+      mockedComponent.find("button").length === 1 &&
+      mockedComponent.find("h1").length === 0
   );
 };
 ```
@@ -76,8 +76,8 @@ Render 方法中应该使用 `if/else` 语句来检查 `this.state.display` 的�
 ```js
 (getUserInput) =>
   assert(
-    getUserInput('index').includes('if') &&
-      getUserInput('index').includes('else')
+    getUserInput("index").includes("if") &&
+      getUserInput("index").includes("else")
   );
 ```
 
@@ -86,7 +86,7 @@ Render 方法中应该使用 `if/else` 语句来检查 `this.state.display` 的�
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyComponent />, document.getElementById('root'))
+ReactDOM.render(<MyComponent />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -96,26 +96,26 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      display: true
-    }
+      display: true,
+    };
     this.toggleDisplay = this.toggleDisplay.bind(this);
   }
   toggleDisplay() {
     this.setState((state) => ({
-      display: !state.display
+      display: !state.display,
     }));
   }
   render() {
     // Change code below this line
 
     return (
-       <div>
-         <button onClick={this.toggleDisplay}>Toggle Display</button>
-         <h1>Displayed!</h1>
-       </div>
+      <div>
+        <button onClick={this.toggleDisplay}>Toggle Display</button>
+        <h1>Displayed!</h1>
+      </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -125,31 +125,31 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      display: true
-    }
- this.toggleDisplay = this.toggleDisplay.bind(this);
- }
+      display: true,
+    };
+    this.toggleDisplay = this.toggleDisplay.bind(this);
+  }
   toggleDisplay() {
     this.setState((state) => ({
-      display: !state.display
+      display: !state.display,
     }));
   }
   render() {
     // Change code below this line
     if (this.state.display) {
       return (
-         <div>
-           <button onClick={this.toggleDisplay}>Toggle Display</button>
-           <h1>Displayed!</h1>
-         </div>
+        <div>
+          <button onClick={this.toggleDisplay}>Toggle Display</button>
+          <h1>Displayed!</h1>
+        </div>
       );
     } else {
       return (
         <div>
-           <button onClick={this.toggleDisplay}>Toggle Display</button>
-         </div>
+          <button onClick={this.toggleDisplay}>Toggle Display</button>
+        </div>
       );
     }
   }
-};
+}
 ```

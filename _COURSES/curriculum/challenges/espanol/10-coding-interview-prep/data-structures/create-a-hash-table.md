@@ -28,10 +28,10 @@ The HashTable data structure should exist.
 assert(
   (function () {
     var test = false;
-    if (typeof HashTable !== 'undefined') {
+    if (typeof HashTable !== "undefined") {
       test = new HashTable();
     }
-    return typeof test === 'object';
+    return typeof test === "object";
   })()
 );
 ```
@@ -42,10 +42,10 @@ The HashTable should have an add method.
 assert(
   (function () {
     var test = false;
-    if (typeof HashTable !== 'undefined') {
+    if (typeof HashTable !== "undefined") {
       test = new HashTable();
     }
-    return typeof test.add === 'function';
+    return typeof test.add === "function";
   })()
 );
 ```
@@ -56,10 +56,10 @@ The HashTable should have a remove method.
 assert(
   (function () {
     var test = false;
-    if (typeof HashTable !== 'undefined') {
+    if (typeof HashTable !== "undefined") {
       test = new HashTable();
     }
-    return typeof test.remove === 'function';
+    return typeof test.remove === "function";
   })()
 );
 ```
@@ -70,10 +70,10 @@ The HashTable should have a lookup method.
 assert(
   (function () {
     var test = false;
-    if (typeof HashTable !== 'undefined') {
+    if (typeof HashTable !== "undefined") {
       test = new HashTable();
     }
-    return typeof test.lookup === 'function';
+    return typeof test.lookup === "function";
   })()
 );
 ```
@@ -84,11 +84,11 @@ The add method should add key value pairs and the lookup method should return th
 assert(
   (function () {
     var test = false;
-    if (typeof HashTable !== 'undefined') {
+    if (typeof HashTable !== "undefined") {
       test = new HashTable();
     }
-    test.add('key', 'value');
-    return test.lookup('key') === 'value';
+    test.add("key", "value");
+    return test.lookup("key") === "value";
   })()
 );
 ```
@@ -99,13 +99,13 @@ The remove method should accept a key as input and should remove the associated 
 assert(
   (function () {
     var test = false;
-    var hashValue = hash('key');
-    if (typeof HashTable !== 'undefined') {
+    var hashValue = hash("key");
+    if (typeof HashTable !== "undefined") {
       test = new HashTable();
     }
     test.add = addMethodSolution;
-    test.add('key', 'value');
-    test.remove('key');
+    test.add("key", "value");
+    test.remove("key");
     return !test.collection.hasOwnProperty(hashValue);
   })()
 );
@@ -117,13 +117,13 @@ Items should be added using the hash function.
 assert(
   (function () {
     var test = false;
-    if (typeof HashTable !== 'undefined') {
+    if (typeof HashTable !== "undefined") {
       test = new HashTable();
     }
     called = 0;
-    test.add('key1', 'value1');
-    test.add('key2', 'value2');
-    test.add('key3', 'value3');
+    test.add("key1", "value1");
+    test.add("key2", "value2");
+    test.add("key3", "value3");
     return called >= 3 && called % 3 === 0;
   })()
 );
@@ -135,17 +135,17 @@ The hash table should handle collisions.
 assert(
   (function () {
     var test = false;
-    if (typeof HashTable !== 'undefined') {
+    if (typeof HashTable !== "undefined") {
       test = new HashTable();
     }
     called = 0;
-    test.add('key1', 'value1');
-    test.add('1key', 'value2');
-    test.add('ke1y', 'value3');
+    test.add("key1", "value1");
+    test.add("1key", "value2");
+    test.add("ke1y", "value3");
     return (
-      test.lookup('key1') === 'value1' &&
-      test.lookup('1key') == 'value2' &&
-      test.lookup('ke1y') == 'value3'
+      test.lookup("key1") === "value1" &&
+      test.lookup("1key") == "value2" &&
+      test.lookup("ke1y") == "value3"
     );
   })()
 );
@@ -157,7 +157,7 @@ assert(
 
 ```js
 var called = 0;
-var hash = string => {
+var hash = (string) => {
   called++;
   var hash = 0;
   for (var i = 0; i < string.length; i++) {
@@ -166,20 +166,20 @@ var hash = string => {
   return hash;
 };
 
-var addMethodSolution = function(key, val) {
-    var theHash = hash(key);
-    if (!this.collection.hasOwnProperty(theHash)) {
-      this.collection[theHash] = {};
-    }
-    this.collection[theHash][key] = val;
-}
+var addMethodSolution = function (key, val) {
+  var theHash = hash(key);
+  if (!this.collection.hasOwnProperty(theHash)) {
+    this.collection[theHash] = {};
+  }
+  this.collection[theHash][key] = val;
+};
 ```
 
 ## --seed-contents--
 
 ```js
 var called = 0;
-var hash = string => {
+var hash = (string) => {
   called++;
   var hashed = 0;
   for (var i = 0; i < string.length; i++) {
@@ -187,7 +187,7 @@ var hash = string => {
   }
   return hashed;
 };
-var HashTable = function() {
+var HashTable = function () {
   this.collection = {};
   // Only change code below this line
 
@@ -202,22 +202,24 @@ var called = 0;
 var hash = (string) => {
   called++;
   var hash = 0;
-  for (var i = 0; i < string.length; i++) { hash += string.charCodeAt(i); }
+  for (var i = 0; i < string.length; i++) {
+    hash += string.charCodeAt(i);
+  }
   return hash;
 };
-var HashTable = function() {
+var HashTable = function () {
   this.collection = {};
   // Only change code below this line
 
-  this.add = function(key, val) {
+  this.add = function (key, val) {
     var theHash = hash(key);
     if (!this.collection.hasOwnProperty(theHash)) {
       this.collection[theHash] = {};
     }
     this.collection[theHash][key] = val;
-  }
+  };
 
-  this.remove = function(key) {
+  this.remove = function (key) {
     var theHash = hash(key);
     var hashedObj = this.collection[theHash];
     if (hashedObj.hasOwnProperty(key)) {
@@ -226,15 +228,15 @@ var HashTable = function() {
     if (!Object.keys(hashedObj).length) {
       delete this.collection[theHash];
     }
-  }
+  };
 
-  this.lookup = function(key) {
+  this.lookup = function (key) {
     var theHash = hash(key);
     if (this.collection.hasOwnProperty(theHash)) {
       return this.collection[theHash][key];
     }
-    return null
-  }
+    return null;
+  };
   // Only change code above this line
 };
 ```

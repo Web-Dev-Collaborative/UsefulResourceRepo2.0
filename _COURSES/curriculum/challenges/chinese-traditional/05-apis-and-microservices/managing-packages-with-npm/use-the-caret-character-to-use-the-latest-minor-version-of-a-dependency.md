@@ -30,12 +30,12 @@ dashedName: use-the-caret-character-to-use-the-latest-minor-version-of-a-depende
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.property(
         packJson.dependencies,
-        'moment',
+        "moment",
         '"dependencies" does not include "moment"'
       );
     },
@@ -49,7 +49,7 @@ dashedName: use-the-caret-character-to-use-the-latest-minor-version-of-a-depende
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.match(

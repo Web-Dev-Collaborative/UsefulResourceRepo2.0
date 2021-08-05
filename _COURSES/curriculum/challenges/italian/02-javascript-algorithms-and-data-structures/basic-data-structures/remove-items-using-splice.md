@@ -10,10 +10,10 @@ dashedName: remove-items-using-splice
 
 Ok, quindi abbiamo imparato a rimuovere gli elementi dall'inizio e dalla fine degli array usando `shift()` e `pop()`, ma cosa succede se vogliamo rimuovere un elemento da qualche parte nel mezzo? O rimuovere più di un elemento alla volta? Beh, ecco dove entra in gioco `splice()`. `splice()` ci permette di fare proprio questo: **rimuovere qualunque numero di elementi consecutivi** da qualsiasi punto di un array.
 
-`splice()` può richiedere fino a 3 parametri, ma per ora ci concentreremo solo sui primi 2. I primi due parametri di `splice()` sono interi che rappresentano indici, o posizioni, dell'array su cui viene chiamato `splice()`. E ricorda, gli array sono *indicizzati a zero*, quindi per indicare il primo elemento di un array, useremo `0`. Il primo parametro di `splice()`rappresenta l'indice dell'array da cui iniziare a rimuovere gli elementi, mentre il secondo parametro indica il numero di elementi da eliminare. Ad esempio:
+`splice()` può richiedere fino a 3 parametri, ma per ora ci concentreremo solo sui primi 2. I primi due parametri di `splice()` sono interi che rappresentano indici, o posizioni, dell'array su cui viene chiamato `splice()`. E ricorda, gli array sono _indicizzati a zero_, quindi per indicare il primo elemento di un array, useremo `0`. Il primo parametro di `splice()`rappresenta l'indice dell'array da cui iniziare a rimuovere gli elementi, mentre il secondo parametro indica il numero di elementi da eliminare. Ad esempio:
 
 ```js
-let array = ['today', 'was', 'not', 'so', 'great'];
+let array = ["today", "was", "not", "so", "great"];
 
 array.splice(2, 2);
 ```
@@ -23,7 +23,7 @@ Qui rimuoviamo 2 elementi a partire dal terzo (all'indice 2). `array` avrà il v
 `splice()` non solo modifica l'array su cui viene chiamato, ma restituisce anche un nuovo array contenente il valore degli elementi rimossi:
 
 ```js
-let array = ['I', 'am', 'feeling', 'really', 'happy'];
+let array = ["I", "am", "feeling", "really", "happy"];
 
 let newArray = array.splice(3, 2);
 ```

@@ -14,15 +14,15 @@ Nest six `div` elements within `foreground-buildings` and give them the classes 
 test-text
 
 ```js
-const fb = $('.foreground-buildings').children('div');
+const fb = $(".foreground-buildings").children("div");
 assert(
   fb.length === 6 &&
-    fb[0] === $('div.fb1')[0] &&
-    fb[1] === $('div.fb2')[0] &&
-    fb[2] === $('div.fb3')[0] &&
-    fb[3] === $('div.fb4')[0] &&
-    fb[4] === $('div.fb5')[0] &&
-    fb[5] === $('div.fb6')[0]
+    fb[0] === $("div.fb1")[0] &&
+    fb[1] === $("div.fb2")[0] &&
+    fb[2] === $("div.fb3")[0] &&
+    fb[3] === $("div.fb4")[0] &&
+    fb[4] === $("div.fb5")[0] &&
+    fb[5] === $("div.fb6")[0]
 );
 ```
 
@@ -32,7 +32,7 @@ assert(
 
 ```html
 <!DOCTYPE html>
-<html>    
+<html>
   <head>
     <title>freeCodeCamp Skyline Project</title>
     <style>
@@ -75,13 +75,13 @@ assert(
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1b {
         width: 80%;
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1c {
         width: 90%;
         height: 10%;
@@ -148,7 +148,7 @@ assert(
 
 ```html
 <!DOCTYPE html>
-<html>    
+<html>
   <head>
     <title>freeCodeCamp Skyline Project</title>
     <style>
@@ -191,13 +191,13 @@ assert(
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1b {
         width: 80%;
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1c {
         width: 90%;
         height: 10%;

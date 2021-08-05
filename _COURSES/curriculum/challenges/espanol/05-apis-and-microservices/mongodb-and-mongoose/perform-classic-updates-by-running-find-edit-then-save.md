@@ -1,6 +1,6 @@
 ---
 id: 587d7fb8367417b2b2512c0e
-title: 'Perform Classic Updates by Running Find, Edit, then Save'
+title: "Perform Classic Updates by Running Find, Edit, then Save"
 challengeType: 2
 forumTopicId: 301541
 dashedName: perform-classic-updates-by-running-find-edit-then-save
@@ -22,20 +22,20 @@ Find-edit-update an item should succeed
 
 ```js
 (getUserInput) =>
-  $.post(getUserInput('url') + '/_api/find-edit-save', {
-    name: 'Poldo',
+  $.post(getUserInput("url") + "/_api/find-edit-save", {
+    name: "Poldo",
     age: 40,
-    favoriteFoods: ['spaghetti']
+    favoriteFoods: ["spaghetti"],
   }).then(
     (data) => {
-      assert.equal(data.name, 'Poldo', 'item.name is not what is expected');
-      assert.equal(data.age, 40, 'item.age is not what expected');
+      assert.equal(data.name, "Poldo", "item.name is not what is expected");
+      assert.equal(data.age, 40, "item.age is not what expected");
       assert.deepEqual(
         data.favoriteFoods,
-        ['spaghetti', 'hamburger'],
-        'item.favoriteFoods is not what expected'
+        ["spaghetti", "hamburger"],
+        "item.favoriteFoods is not what expected"
       );
-      assert.equal(data.__v, 1, 'The item should be previously edited');
+      assert.equal(data.__v, 1, "The item should be previously edited");
     },
     (xhr) => {
       throw new Error(xhr.responseText);

@@ -1,6 +1,6 @@
 ---
 id: 5900f4cb1000cf542c50ffdd
-title: 'Problem 350: Constraining the least greatest and the greatest least'
+title: "Problem 350: Constraining the least greatest and the greatest least"
 challengeType: 5
 forumTopicId: 302010
 dashedName: problem-350-constraining-the-least-greatest-and-the-greatest-least
@@ -34,7 +34,6 @@ assert.strictEqual(euler350(), 84664213);
 
 ```js
 function euler350() {
-
   return true;
 }
 

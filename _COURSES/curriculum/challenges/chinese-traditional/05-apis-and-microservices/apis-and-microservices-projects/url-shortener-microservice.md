@@ -10,9 +10,9 @@ dashedName: url-shortener-microservice
 
 構建一個 JavaScript 的全棧應用，在功能上與這個應用相似：<https://url-shortener-microservice.freecodecamp.rocks/>。 可以採用下面的任意一種方式完成這個挑戰：
 
--   克隆 [this GitHub repo](https://github.com/freeCodeCamp/boilerplate-project-filemetadata/) 並在本地完成項目。
--   使用[我們的 Replit 初始化項目](https://replit.com/github/freeCodeCamp/boilerplate-project-urlshortener)來完成你的項目。
--   使用你選擇的網站生成器來完成項目， 並確保包含了我們 GitHub 倉庫的所有文件。
+- 克隆 [this GitHub repo](https://github.com/freeCodeCamp/boilerplate-project-filemetadata/) 並在本地完成項目。
+- 使用[我們的 Replit 初始化項目](https://replit.com/github/freeCodeCamp/boilerplate-project-urlshortener)來完成你的項目。
+- 使用你選擇的網站生成器來完成項目， 並確保包含了我們 GitHub 倉庫的所有文件。
 
 當完成本項目，請確認有一個正常運行的 demo 可以公開訪問。 然後將 URL 提交到 `Solution Link` 中。 此外，還可以將項目的源碼提交到 `GitHub Link` 中。
 
@@ -28,7 +28,7 @@ dashedName: url-shortener-microservice
 (getUserInput) => {
   assert(
     !/.*\/url-shortener-microservice\.freecodecamp\.rocks/.test(
-      getUserInput('url')
+      getUserInput("url")
     )
   );
 };
@@ -38,13 +38,13 @@ dashedName: url-shortener-microservice
 
 ```js
 async (getUserInput) => {
-  const url = getUserInput('url');
+  const url = getUserInput("url");
   const urlVariable = Date.now();
-  const fullUrl = `${url}/?v=${urlVariable}`
-  const res = await fetch(url + '/api/shorturl', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `url=${fullUrl}`
+  const fullUrl = `${url}/?v=${urlVariable}`;
+  const res = await fetch(url + "/api/shorturl", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `url=${fullUrl}`,
   });
   if (res.ok) {
     const { short_url, original_url } = await res.json();
@@ -60,14 +60,14 @@ async (getUserInput) => {
 
 ```js
 async (getUserInput) => {
-  const url = getUserInput('url');
+  const url = getUserInput("url");
   const urlVariable = Date.now();
-  const fullUrl = `${url}/?v=${urlVariable}`
+  const fullUrl = `${url}/?v=${urlVariable}`;
   let shortenedUrlVariable;
-  const postResponse = await fetch(url + '/api/shorturl', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `url=${fullUrl}`
+  const postResponse = await fetch(url + "/api/shorturl", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `url=${fullUrl}`,
   });
   if (postResponse.ok) {
     const { short_url } = await postResponse.json();
@@ -76,12 +76,12 @@ async (getUserInput) => {
     throw new Error(`${postResponse.status} ${postResponse.statusText}`);
   }
   const getResponse = await fetch(
-    url + '/api/shorturl/' + shortenedUrlVariable
+    url + "/api/shorturl/" + shortenedUrlVariable
   );
   if (getResponse) {
     const { redirected, url } = getResponse;
     assert.isTrue(redirected);
-    assert.strictEqual(url,fullUrl);
+    assert.strictEqual(url, fullUrl);
   } else {
     throw new Error(`${getResponse.status} ${getResponse.statusText}`);
   }
@@ -92,16 +92,16 @@ async (getUserInput) => {
 
 ```js
 async (getUserInput) => {
-  const url = getUserInput('url');
-  const res = await fetch(url + '/api/shorturl', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `url=ftp:/john-doe.org`
+  const url = getUserInput("url");
+  const res = await fetch(url + "/api/shorturl", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `url=ftp:/john-doe.org`,
   });
   if (res.ok) {
     const { error } = await res.json();
     assert.isNotNull(error);
-    assert.strictEqual(error.toLowerCase(), 'invalid url');
+    assert.strictEqual(error.toLowerCase(), "invalid url");
   } else {
     throw new Error(`${res.status} ${res.statusText}`);
   }

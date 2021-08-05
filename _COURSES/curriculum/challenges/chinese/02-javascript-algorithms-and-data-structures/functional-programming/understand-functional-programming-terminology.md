@@ -39,7 +39,7 @@ assert(tea4GreenTeamFCC.length === 27);
 `tea4GreenTeamFCC` 变量应存有绿茶。
 
 ```js
-assert(tea4GreenTeamFCC[0] === 'greenTea');
+assert(tea4GreenTeamFCC[0] === "greenTea");
 ```
 
 `tea4BlackTeamFCC` 变量应存有 13 杯红茶。
@@ -51,7 +51,7 @@ assert(tea4BlackTeamFCC.length === 13);
 `tea4BlackTeamFCC` 变量应存有红茶。
 
 ```js
-assert(tea4BlackTeamFCC[0] === 'blackTea');
+assert(tea4BlackTeamFCC[0] === "blackTea");
 ```
 
 # --seed--
@@ -60,10 +60,10 @@ assert(tea4BlackTeamFCC[0] === 'blackTea');
 
 ```js
 // Function that returns a string representing a cup of green tea
-const prepareGreenTea = () => 'greenTea';
+const prepareGreenTea = () => "greenTea";
 
 // Function that returns a string representing a cup of black tea
-const prepareBlackTea = () => 'blackTea';
+const prepareBlackTea = () => "blackTea";
 
 /*
 Given a function (representing the tea type) and number of cups needed, the
@@ -73,7 +73,7 @@ a specific type of tea).
 const getTea = (prepareTea, numOfCups) => {
   const teaCups = [];
 
-  for(let cups = 1; cups <= numOfCups; cups += 1) {
+  for (let cups = 1; cups <= numOfCups; cups += 1) {
     const teaCup = prepareTea();
     teaCups.push(teaCup);
   }
@@ -85,22 +85,19 @@ const tea4GreenTeamFCC = null;
 const tea4BlackTeamFCC = null;
 // Only change code above this line
 
-console.log(
-  tea4GreenTeamFCC,
-  tea4BlackTeamFCC
-);
+console.log(tea4GreenTeamFCC, tea4BlackTeamFCC);
 ```
 
 # --solutions--
 
 ```js
-const prepareGreenTea = () => 'greenTea';
-const prepareBlackTea = () => 'blackTea';
+const prepareGreenTea = () => "greenTea";
+const prepareBlackTea = () => "blackTea";
 
 const getTea = (prepareTea, numOfCups) => {
   const teaCups = [];
 
-  for(let cups = 1; cups <= numOfCups; cups += 1) {
+  for (let cups = 1; cups <= numOfCups; cups += 1) {
     const teaCup = prepareTea();
     teaCups.push(teaCup);
   }

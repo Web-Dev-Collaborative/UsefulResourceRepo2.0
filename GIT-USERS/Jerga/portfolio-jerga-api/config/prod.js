@@ -1,5 +1,3 @@
-
-
 module.exports = {
   DB_URI: process.env.DB_URI,
   AUTH0_NAMESPACE: process.env.AUTH0_NAMESPACE,
@@ -8,5 +6,4 @@ module.exports = {
   AUTH0_CLIENT_SECRET: process.env.AUTH0_CLIENT_SECRET,
   AUTH0_AUDIENCE: process.env.AUTH0_AUDIENCE,
   AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
-}
-
+};

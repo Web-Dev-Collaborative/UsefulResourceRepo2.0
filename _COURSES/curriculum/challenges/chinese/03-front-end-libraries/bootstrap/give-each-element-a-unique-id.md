@@ -20,8 +20,8 @@ dashedName: give-each-element-a-unique-id
 
 ```js
 assert(
-  $('#left-well').children('#target1') &&
-    $('#left-well').children('#target1').length > 0
+  $("#left-well").children("#target1") &&
+    $("#left-well").children("#target1").length > 0
 );
 ```
 
@@ -29,8 +29,8 @@ assert(
 
 ```js
 assert(
-  $('#left-well').children('#target2') &&
-    $('#left-well').children('#target2').length > 0
+  $("#left-well").children("#target2") &&
+    $("#left-well").children("#target2").length > 0
 );
 ```
 
@@ -38,8 +38,8 @@ assert(
 
 ```js
 assert(
-  $('#left-well').children('#target3') &&
-    $('#left-well').children('#target3').length > 0
+  $("#left-well").children("#target3") &&
+    $("#left-well").children("#target3").length > 0
 );
 ```
 
@@ -47,8 +47,8 @@ assert(
 
 ```js
 assert(
-  $('#right-well').children('#target4') &&
-    $('#right-well').children('#target4').length > 0
+  $("#right-well").children("#target4") &&
+    $("#right-well").children("#target4").length > 0
 );
 ```
 
@@ -56,8 +56,8 @@ assert(
 
 ```js
 assert(
-  $('#right-well').children('#target5') &&
-    $('#right-well').children('#target5').length > 0
+  $("#right-well").children("#target5") &&
+    $("#right-well").children("#target5").length > 0
 );
 ```
 
@@ -65,8 +65,8 @@ assert(
 
 ```js
 assert(
-  $('#right-well').children('#target6') &&
-    $('#right-well').children('#target6').length > 0
+  $("#right-well").children("#target6") &&
+    $("#right-well").children("#target6").length > 0
 );
 ```
 

@@ -1,5 +1,5 @@
 These tests are intended to be run against the minified compiled version of the
-firebase binary (i.e. `firebase.js` and `firebase-firestore.js` of the `firebase` 
+firebase binary (i.e. `firebase.js` and `firebase-firestore.js` of the `firebase`
 package).
 
 The integration test files are modified to replace references to the

@@ -15,16 +15,13 @@ Consider the code below:
 ```js
 const profileUpdate = (profileData) => {
   const { name, age, nationality, location } = profileData;
-
-}
+};
 ```
 
 This effectively destructures the object sent into the function. This can also be done in-place:
 
 ```js
-const profileUpdate = ({ name, age, nationality, location }) => {
-
-}
+const profileUpdate = ({ name, age, nationality, location }) => {};
 ```
 
 When `profileData` is passed to the above function, the values are destructured from the function parameter for use within the function.
@@ -38,7 +35,7 @@ Use destructuring assignment within the argument to the function `half` to send 
 `stats` should be an `object`.
 
 ```js
-assert(typeof stats === 'object');
+assert(typeof stats === "object");
 ```
 
 `half(stats)` should be `28.015`
@@ -70,11 +67,11 @@ const stats = {
   median: 34.54,
   mode: 23.87,
   min: -0.75,
-  average: 35.85
+  average: 35.85,
 };
 
 // Only change code below this line
-const half = (stats) => (stats.max + stats.min) / 2.0; 
+const half = (stats) => (stats.max + stats.min) / 2.0;
 // Only change code above this line
 ```
 
@@ -87,8 +84,8 @@ const stats = {
   median: 34.54,
   mode: 23.87,
   min: -0.75,
-  average: 35.85
+  average: 35.85,
 };
 
-const half = ( {max, min} ) => (max + min) / 2.0;
+const half = ({ max, min }) => (max + min) / 2.0;
 ```

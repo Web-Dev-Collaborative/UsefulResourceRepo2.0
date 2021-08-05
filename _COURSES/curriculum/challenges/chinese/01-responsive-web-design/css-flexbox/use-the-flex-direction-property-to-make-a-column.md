@@ -2,7 +2,7 @@
 id: 587d78ac367417b2b2512af4
 title: 使用 flex-direction 属性创建一列
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cZmWeA4'
+videoUrl: "https://scrimba.com/p/pVaDAv/cZmWeA4"
 forumTopicId: 301109
 dashedName: use-the-flex-direction-property-to-make-a-column
 ---
@@ -20,7 +20,7 @@ dashedName: use-the-flex-direction-property-to-make-a-column
 `#box-container` 应有 `flex-direction` 属性，其属性值应为 `column`。
 
 ```js
-assert($('#box-container').css('flex-direction') == 'column');
+assert($("#box-container").css("flex-direction") == "column");
 ```
 
 # --seed--
@@ -32,7 +32,6 @@ assert($('#box-container').css('flex-direction') == 'column');
   #box-container {
     display: flex;
     height: 500px;
-
   }
   #box-1 {
     background-color: dodgerblue;

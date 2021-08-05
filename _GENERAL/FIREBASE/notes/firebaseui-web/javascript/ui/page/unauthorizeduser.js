@@ -16,14 +16,14 @@
  * @fileoverview UI component for the unauthorized user page.
  */
 
-goog.module('firebaseui.auth.ui.page.UnauthorizedUser');
+goog.module("firebaseui.auth.ui.page.UnauthorizedUser");
 goog.module.declareLegacyNamespace();
 
-const Base = goog.require('firebaseui.auth.ui.page.Base');
-const DomHelper = goog.requireType('goog.dom.DomHelper');
-const element = goog.require('firebaseui.auth.ui.element');
-const form = goog.require('firebaseui.auth.ui.element.form');
-const page = goog.require('firebaseui.auth.soy2.page');
+const Base = goog.require("firebaseui.auth.ui.page.Base");
+const DomHelper = goog.requireType("goog.dom.DomHelper");
+const element = goog.require("firebaseui.auth.ui.element");
+const form = goog.require("firebaseui.auth.ui.element.form");
+const page = goog.require("firebaseui.auth.soy2.page");
 
 /**
  * Unauthorized user page UI component.
@@ -43,19 +43,28 @@ class UnauthorizedUser extends Base {
    * @param {?DomHelper=} domHelper Optional DOM helper.
    */
   constructor(
-      email, onCancelClick, adminEmail, emailHelperCallback, tosCallback,
-      privacyPolicyCallback, domHelper) {
+    email,
+    onCancelClick,
+    adminEmail,
+    emailHelperCallback,
+    tosCallback,
+    privacyPolicyCallback,
+    domHelper
+  ) {
     super(
-        page.unauthorizedUser,
-        {
-          email: email,
-          adminEmail: adminEmail,
-          displayHelpLink: !!emailHelperCallback
-        },
-        domHelper, 'unauthorizedUser', {
-          tosCallback: tosCallback,
-          privacyPolicyCallback: privacyPolicyCallback,
-        });
+      page.unauthorizedUser,
+      {
+        email: email,
+        adminEmail: adminEmail,
+        displayHelpLink: !!emailHelperCallback,
+      },
+      domHelper,
+      "unauthorizedUser",
+      {
+        tosCallback: tosCallback,
+        privacyPolicyCallback: privacyPolicyCallback,
+      }
+    );
     this.onCancelClick_ = onCancelClick;
     this.onEmailHelperClick_ = emailHelperCallback;
   }
@@ -66,17 +75,19 @@ class UnauthorizedUser extends Base {
     const helpLink = this.getHelpLink();
     if (this.onEmailHelperClick_ && helpLink) {
       // Handle help link click.
-      element.listenForActionEvent(
-          this, helpLink, function() {
-            self.onEmailHelperClick_();
-          });
+      element.listenForActionEvent(this, helpLink, function () {
+        self.onEmailHelperClick_();
+      });
     }
 
     // Handle cancel button link click.
     element.listenForActionEvent(
-        this, this.getSecondaryLinkElement(), function() {
-          self.onCancelClick_();
-        });
+      this,
+      this.getSecondaryLinkElement(),
+      function () {
+        self.onCancelClick_();
+      }
+    );
     this.setupFocus_();
     super.enterDocument();
   }
@@ -100,16 +111,17 @@ class UnauthorizedUser extends Base {
    * @return {?Element} The help link.
    */
   getHelpLink() {
-    return this.getElementByClass('firebaseui-id-unauthorized-user-help-link');
+    return this.getElementByClass("firebaseui-id-unauthorized-user-help-link");
   }
 }
 
 goog.mixin(
-    UnauthorizedUser.prototype,
-    /** @lends {UnauthorizedUser.prototype} */
-    {
-      // For form.
-      getSecondaryLinkElement: form.getSecondaryLinkElement
-    });
+  UnauthorizedUser.prototype,
+  /** @lends {UnauthorizedUser.prototype} */
+  {
+    // For form.
+    getSecondaryLinkElement: form.getSecondaryLinkElement,
+  }
+);
 
 exports = UnauthorizedUser;

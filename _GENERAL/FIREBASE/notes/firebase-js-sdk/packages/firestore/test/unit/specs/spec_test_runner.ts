@@ -297,11 +297,12 @@ abstract class TestRunner {
     const onlineComponentProvider = new MockOnlineComponentProvider(
       this.connection
     );
-    const offlineComponentProvider = await this.initializeOfflineComponentProvider(
-      onlineComponentProvider,
-      configuration,
-      this.useGarbageCollection
-    );
+    const offlineComponentProvider =
+      await this.initializeOfflineComponentProvider(
+        onlineComponentProvider,
+        configuration,
+        this.useGarbageCollection
+      );
     await onlineComponentProvider.initialize(
       offlineComponentProvider,
       configuration
@@ -912,9 +913,8 @@ abstract class TestRunner {
         this.expectedActiveLimboDocs = expectedState.activeLimboDocs!.map(key);
       }
       if ('enqueuedLimboDocs' in expectedState) {
-        this.expectedEnqueuedLimboDocs = expectedState.enqueuedLimboDocs!.map(
-          key
-        );
+        this.expectedEnqueuedLimboDocs =
+          expectedState.enqueuedLimboDocs!.map(key);
       }
       if ('activeTargets' in expectedState) {
         this.expectedActiveTargets.clear();

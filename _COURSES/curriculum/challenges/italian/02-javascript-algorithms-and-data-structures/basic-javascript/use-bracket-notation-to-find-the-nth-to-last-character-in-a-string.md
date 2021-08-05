@@ -2,7 +2,7 @@
 id: bd7123c9c452eddfaeb5bdef
 title: Usare la notazione parentesi per trovare l'n-ultimo carattere dalla fine di una stringa
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cw4vkh9'
+videoUrl: "https://scrimba.com/c/cw4vkh9"
 forumTopicId: 18344
 dashedName: use-bracket-notation-to-find-the-nth-to-last-character-in-a-string
 ---
@@ -33,7 +33,7 @@ Usa <dfn>la notazione a parentesi</dfn> per trovare il penultimo carattere nella
 `secondToLastLetterOfLastName` dovrebbe essere la lettera `c`.
 
 ```js
-assert(secondToLastLetterOfLastName === 'c');
+assert(secondToLastLetterOfLastName === "c");
 ```
 
 Dovresti usare `.length` per ottenere la penultima lettera.
@@ -47,7 +47,9 @@ assert(code.match(/\.length/g).length > 0);
 ## --after-user-code--
 
 ```js
-(function(v){return v;})(secondToLastLetterOfLastName);
+(function (v) {
+  return v;
+})(secondToLastLetterOfLastName);
 ```
 
 ## --seed-contents--

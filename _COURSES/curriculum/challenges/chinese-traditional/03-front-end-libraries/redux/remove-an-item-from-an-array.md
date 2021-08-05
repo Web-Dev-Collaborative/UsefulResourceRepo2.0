@@ -8,7 +8,7 @@ dashedName: remove-an-item-from-an-array
 
 # --description--
 
-是時候練習從數組中刪除項目了。 擴展運算符也可以在這裏使用。 其他有用的JavaScript方法包括 `slice()` 和 `concat()`。
+是時候練習從數組中刪除項目了。 擴展運算符也可以在這裏使用。 其他有用的 JavaScript 方法包括 `slice()` 和 `concat()`。
 
 # --instructions--
 
@@ -34,7 +34,7 @@ assert(
 
 ```js
 assert(
-  typeof removeItem === 'function' && typeof immutableReducer === 'function'
+  typeof removeItem === "function" && typeof immutableReducer === "function"
 );
 ```
 
@@ -68,11 +68,11 @@ assert(
 ## --seed-contents--
 
 ```js
-const immutableReducer = (state = [0,1,2,3,4,5], action) => {
-  switch(action.type) {
-    case 'REMOVE_ITEM':
+const immutableReducer = (state = [0, 1, 2, 3, 4, 5], action) => {
+  switch (action.type) {
+    case "REMOVE_ITEM":
       // Don't mutate state here or the tests will fail
-      return
+      return;
     default:
       return state;
   }
@@ -80,10 +80,10 @@ const immutableReducer = (state = [0,1,2,3,4,5], action) => {
 
 const removeItem = (index) => {
   return {
-    type: 'REMOVE_ITEM',
-    index
-  }
-}
+    type: "REMOVE_ITEM",
+    index,
+  };
+};
 
 const store = Redux.createStore(immutableReducer);
 ```
@@ -91,12 +91,12 @@ const store = Redux.createStore(immutableReducer);
 # --solutions--
 
 ```js
-const immutableReducer = (state = [0,1,2,3,4,5], action) => {
-  switch(action.type) {
-    case 'REMOVE_ITEM':
+const immutableReducer = (state = [0, 1, 2, 3, 4, 5], action) => {
+  switch (action.type) {
+    case "REMOVE_ITEM":
       return [
         ...state.slice(0, action.index),
-        ...state.slice(action.index + 1)
+        ...state.slice(action.index + 1),
       ];
     default:
       return state;
@@ -105,10 +105,10 @@ const immutableReducer = (state = [0,1,2,3,4,5], action) => {
 
 const removeItem = (index) => {
   return {
-    type: 'REMOVE_ITEM',
-    index
-  }
-}
+    type: "REMOVE_ITEM",
+    index,
+  };
+};
 
 const store = Redux.createStore(immutableReducer);
 ```

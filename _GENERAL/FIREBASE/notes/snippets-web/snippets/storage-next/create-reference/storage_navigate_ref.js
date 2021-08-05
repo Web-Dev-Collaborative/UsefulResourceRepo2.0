@@ -7,7 +7,7 @@
 import { getStorage, ref } from "firebase/storage";
 
 const storage = getStorage();
-const spaceRef = ref(storage, 'images/space.jpg');
+const spaceRef = ref(storage, "images/space.jpg");
 
 // Parent allows us to move to the parent of a reference
 const imagesRef = spaceRef.parent;

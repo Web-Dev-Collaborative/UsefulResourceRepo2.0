@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aede08718
 title: Use RGB values to Color Elements
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cRkp2fr'
+videoUrl: "https://scrimba.com/c/cRkp2fr"
 forumTopicId: 18369
 dashedName: use-rgb-values-to-color-elements
 ---
@@ -44,7 +44,7 @@ Let's replace the hex code in our `body` element's background color with the RGB
 Your `body` element should have a black background.
 
 ```js
-assert($('body').css('background-color') === 'rgb(0, 0, 0)');
+assert($("body").css("background-color") === "rgb(0, 0, 0)");
 ```
 
 You should use `rgb` to give your `body` element a background of black.
@@ -60,7 +60,7 @@ assert(code.match(/rgb\s*\(\s*0\s*,\s*0\s*,\s*0\s*\)/gi));
 ```html
 <style>
   body {
-    background-color: #F00;
+    background-color: #f00;
   }
 </style>
 ```

@@ -8,12 +8,12 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 
 // Prepare ecommerce event params
 const params3 = {
-  currency: 'USD',
+  currency: "USD",
   value: 9.99,
-  items: [item_jeggings]
+  items: [item_jeggings],
 };
 
 // Log event
 const analytics = getAnalytics();
-logEvent(analytics, 'view_item', params3);
+logEvent(analytics, "view_item", params3);
 // [END analytics_ecommerce_view_item_details_modular]

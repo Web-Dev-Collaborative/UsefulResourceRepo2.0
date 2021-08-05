@@ -1,6 +1,4 @@
-
 export class Repo {
-
   name: string;
 
   link: string;

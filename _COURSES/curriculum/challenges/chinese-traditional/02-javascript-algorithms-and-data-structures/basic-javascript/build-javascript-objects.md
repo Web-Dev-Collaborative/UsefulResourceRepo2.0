@@ -2,7 +2,7 @@
 id: 56bbb991ad1ed5201cd392d0
 title: 創建 JavaScript 對象
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cWGkbtd'
+videoUrl: "https://scrimba.com/c/cWGkbtd"
 forumTopicId: 16769
 dashedName: build-javascript-objects
 ---
@@ -19,10 +19,10 @@ dashedName: build-javascript-objects
 
 ```js
 var cat = {
-  "name": "Whiskers",
-  "legs": 4,
-  "tails": 1,
-  "enemies": ["Water", "Dogs"]
+  name: "Whiskers",
+  legs: 4,
+  tails: 1,
+  enemies: ["Water", "Dogs"],
 };
 ```
 
@@ -32,7 +32,7 @@ var cat = {
 var anotherObject = {
   make: "Ford",
   5: "five",
-  "model": "focus"
+  model: "focus",
 };
 ```
 
@@ -52,9 +52,9 @@ var anotherObject = {
 assert(
   (function (z) {
     if (
-      z.hasOwnProperty('name') &&
+      z.hasOwnProperty("name") &&
       z.name !== undefined &&
-      typeof z.name === 'string'
+      typeof z.name === "string"
     ) {
       return true;
     } else {
@@ -70,9 +70,9 @@ assert(
 assert(
   (function (z) {
     if (
-      z.hasOwnProperty('legs') &&
+      z.hasOwnProperty("legs") &&
       z.legs !== undefined &&
-      typeof z.legs === 'number'
+      typeof z.legs === "number"
     ) {
       return true;
     } else {
@@ -88,9 +88,9 @@ assert(
 assert(
   (function (z) {
     if (
-      z.hasOwnProperty('tails') &&
+      z.hasOwnProperty("tails") &&
       z.tails !== undefined &&
-      typeof z.tails === 'number'
+      typeof z.tails === "number"
     ) {
       return true;
     } else {
@@ -106,7 +106,7 @@ assert(
 assert(
   (function (z) {
     if (
-      z.hasOwnProperty('friends') &&
+      z.hasOwnProperty("friends") &&
       z.friends !== undefined &&
       Array.isArray(z.friends)
     ) {
@@ -133,17 +133,17 @@ assert(
 ## --after-user-code--
 
 ```js
-(function(z){return z;})(myDog);
+(function (z) {
+  return z;
+})(myDog);
 ```
 
 ## --seed-contents--
 
 ```js
 var myDog = {
-// Only change code below this line
-
-
-// Only change code above this line
+  // Only change code below this line
+  // Only change code above this line
 };
 ```
 
@@ -151,9 +151,9 @@ var myDog = {
 
 ```js
 var myDog = {
-  "name": "Camper",
-  "legs": 4,
-  "tails": 1,
-  "friends": ["everything!"]
+  name: "Camper",
+  legs: 4,
+  tails: 1,
+  friends: ["everything!"],
 };
 ```

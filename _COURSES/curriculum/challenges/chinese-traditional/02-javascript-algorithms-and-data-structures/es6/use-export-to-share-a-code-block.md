@@ -13,7 +13,7 @@ dashedName: use-export-to-share-a-code-block
 ```js
 export const add = (x, y) => {
   return x + y;
-}
+};
 ```
 
 上面是導出單個函數常用方法，還可以這樣導出：
@@ -21,7 +21,7 @@ export const add = (x, y) => {
 ```js
 const add = (x, y) => {
   return x + y;
-}
+};
 
 export { add };
 ```
@@ -65,11 +65,11 @@ assert(
 ```js
 const uppercaseString = (string) => {
   return string.toUpperCase();
-}
+};
 
 const lowercaseString = (string) => {
-  return string.toLowerCase()
-}
+  return string.toLowerCase();
+};
 ```
 
 # --solutions--
@@ -77,9 +77,9 @@ const lowercaseString = (string) => {
 ```js
 export const uppercaseString = (string) => {
   return string.toUpperCase();
-}
+};
 
 export const lowercaseString = (string) => {
-  return string.toLowerCase()
-}
+  return string.toLowerCase();
+};
 ```

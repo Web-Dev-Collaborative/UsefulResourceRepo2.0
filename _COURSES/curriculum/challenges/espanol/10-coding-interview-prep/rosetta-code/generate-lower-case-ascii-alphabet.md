@@ -15,43 +15,43 @@ Write a function to generate an array of lower case ASCII characters for a given
 `lascii` should be a function.
 
 ```js
-assert(typeof lascii == 'function');
+assert(typeof lascii == "function");
 ```
 
 `lascii("a","d")` should return an array.
 
 ```js
-assert(Array.isArray(lascii('a', 'd')));
+assert(Array.isArray(lascii("a", "d")));
 ```
 
 `lascii('a','d')` should return `[ 'a', 'b', 'c', 'd' ]`.
 
 ```js
-assert.deepEqual(lascii('a', 'd'), results[0]);
+assert.deepEqual(lascii("a", "d"), results[0]);
 ```
 
 `lascii('c','i')` should return `[ 'c', 'd', 'e', 'f', 'g', 'h', 'i' ]`.
 
 ```js
-assert.deepEqual(lascii('c', 'i'), results[1]);
+assert.deepEqual(lascii("c", "i"), results[1]);
 ```
 
 `lascii('m','q')` should return `[ 'm', 'n', 'o', 'p', 'q' ]`.
 
 ```js
-assert.deepEqual(lascii('m', 'q'), results[2]);
+assert.deepEqual(lascii("m", "q"), results[2]);
 ```
 
 `lascii('k','n')` should return `[ 'k', 'l', 'm', 'n' ]`.
 
 ```js
-assert.deepEqual(lascii('k', 'n'), results[3]);
+assert.deepEqual(lascii("k", "n"), results[3]);
 ```
 
 `lascii('t','z')` should return `[ 't', 'u', 'v', 'w', 'x', 'y', 'z' ]`.
 
 ```js
-assert.deepEqual(lascii('t', 'z'), results[4]);
+assert.deepEqual(lascii("t", "z"), results[4]);
 ```
 
 # --seed--
@@ -59,41 +59,35 @@ assert.deepEqual(lascii('t', 'z'), results[4]);
 ## --after-user-code--
 
 ```js
-let results=[
-  [ 'a', 'b', 'c', 'd' ],
-  [ 'c', 'd', 'e', 'f', 'g', 'h', 'i' ],
-  [ 'm', 'n', 'o', 'p', 'q' ],
-  [ 'k', 'l', 'm', 'n' ],
-  [ 't', 'u', 'v', 'w', 'x', 'y', 'z' ]
-]
+let results = [
+  ["a", "b", "c", "d"],
+  ["c", "d", "e", "f", "g", "h", "i"],
+  ["m", "n", "o", "p", "q"],
+  ["k", "l", "m", "n"],
+  ["t", "u", "v", "w", "x", "y", "z"],
+];
 ```
 
 ## --seed-contents--
 
 ```js
-function lascii(cFrom, cTo) {
-
-}
+function lascii(cFrom, cTo) {}
 ```
 
 # --solutions--
 
 ```js
 function lascii(cFrom, cTo) {
-
   function cRange(cFrom, cTo) {
     var iStart = cFrom.charCodeAt(0);
 
-    return Array.apply(
-      null, Array(cTo.charCodeAt(0) - iStart + 1)
-    ).map(function (_, i) {
-
-      return String.fromCharCode(iStart + i);
-
-    });
+    return Array.apply(null, Array(cTo.charCodeAt(0) - iStart + 1)).map(
+      function (_, i) {
+        return String.fromCharCode(iStart + i);
+      }
+    );
   }
 
   return cRange(cFrom, cTo);
-
 }
 ```

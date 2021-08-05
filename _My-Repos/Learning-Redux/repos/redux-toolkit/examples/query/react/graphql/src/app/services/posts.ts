@@ -34,24 +34,26 @@ interface PostResponse {
   }
 }
 
-export const graphqlBaseQuery = ({
-  baseUrl,
-}: {
-  baseUrl: string
-}): BaseQueryFn<
-  { document: string | DocumentNode; variables?: any },
-  unknown,
-  ClientError
-> => async ({ document, variables }) => {
-  try {
-    return { data: await request(baseUrl, document, variables) }
-  } catch (error) {
-    if (error instanceof ClientError) {
-      return { error }
+export const graphqlBaseQuery =
+  ({
+    baseUrl,
+  }: {
+    baseUrl: string
+  }): BaseQueryFn<
+    { document: string | DocumentNode; variables?: any },
+    unknown,
+    ClientError
+  > =>
+  async ({ document, variables }) => {
+    try {
+      return { data: await request(baseUrl, document, variables) }
+    } catch (error) {
+      if (error instanceof ClientError) {
+        return { error }
+      }
+      throw error
     }
-    throw error
   }
-}
 
 export const api = createApi({
   baseQuery: graphqlBaseQuery({

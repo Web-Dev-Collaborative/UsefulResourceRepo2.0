@@ -20,7 +20,7 @@ Dovresti usare jQuery per rimuovere l'elemento `target4` dalla tua pagina.
 
 ```js
 assert(
-  $('#target4').length === 0 && code.match(/\$\(["']#target4["']\).remove\(\)/g)
+  $("#target4").length === 0 && code.match(/\$\(["']#target4["']\).remove\(\)/g)
 );
 ```
 
@@ -30,7 +30,7 @@ Dovresti usare solo jQuery per rimuovere questo elemento.
 assert(
   code.match(/id="target4/g) &&
     !code.match(/<!--.*id="target4".*-->/g) &&
-    $('#right-well').length > 0
+    $("#right-well").length > 0
 );
 ```
 
@@ -40,10 +40,9 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
-
   });
 </script>
 
@@ -76,7 +75,7 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();

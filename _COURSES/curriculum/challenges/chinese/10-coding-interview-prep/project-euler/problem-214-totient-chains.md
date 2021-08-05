@@ -1,6 +1,6 @@
 ---
 id: 5900f4421000cf542c50ff55
-title: 'Problem 214: Totient Chains'
+title: "Problem 214: Totient Chains"
 challengeType: 5
 forumTopicId: 301856
 dashedName: problem-214-totient-chains
@@ -34,7 +34,6 @@ assert.strictEqual(euler214(), 1677366278943);
 
 ```js
 function euler214() {
-
   return true;
 }
 

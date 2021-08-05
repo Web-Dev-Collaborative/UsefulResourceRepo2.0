@@ -2,7 +2,7 @@
 id: 587d78a7367417b2b2512ae0
 title: Usa animación CSS para cambiar el estado del desplazamiento de un botón
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cg4vZAa'
+videoUrl: "https://scrimba.com/c/cg4vZAa"
 forumTopicId: 301073
 dashedName: use-css-animation-to-change-the-hover-state-of-a-button
 ---
@@ -59,7 +59,7 @@ assert(code.match(/100%\s*?{\s*?background-color:\s*?#4791d0;\s*?}/gi));
   button {
     border-radius: 5px;
     color: white;
-    background-color: #0F5897;
+    background-color: #0f5897;
     padding: 5px 10px 8px 10px;
   }
 
@@ -67,8 +67,6 @@ assert(code.match(/100%\s*?{\s*?background-color:\s*?#4791d0;\s*?}/gi));
     animation-name: background-color;
     animation-duration: 500ms;
   }
-
-
 </style>
 
 <button>Register</button>
@@ -81,7 +79,7 @@ assert(code.match(/100%\s*?{\s*?background-color:\s*?#4791d0;\s*?}/gi));
   button {
     border-radius: 5px;
     color: white;
-    background-color: #0F5897;
+    background-color: #0f5897;
     padding: 5px 10px 8px 10px;
   }
 

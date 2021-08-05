@@ -208,15 +208,11 @@ export function extractDeclarations(
   // define a map here which is used to handle export statements that have no from clause.
   // As there is no from clause in such export statements, we retrieve symbol location by parsing the corresponding import
   // statements. We store the symbol and its defined location as key value pairs in the map.
-  const importSymbolCurrentNameToModuleLocation: Map<
-    string,
-    string
-  > = new Map();
+  const importSymbolCurrentNameToModuleLocation: Map<string, string> =
+    new Map();
   const importSymbolCurrentNameToOriginalName: Map<string, string> = new Map(); // key: current name value: original name
-  const importModuleLocationToExportedSymbolsList: Map<
-    string,
-    MemberList
-  > = new Map(); // key: module location, value: a list of all exported symbols of the module
+  const importModuleLocationToExportedSymbolsList: Map<string, MemberList> =
+    new Map(); // key: module location, value: a list of all exported symbols of the module
   ts.forEachChild(sourceFile, node => {
     if (ts.isFunctionDeclaration(node)) {
       declarations.functions.push(node.name!.text);
@@ -284,9 +280,8 @@ export function extractDeclarations(
           node.importClause.namedBindings &&
           ts.isNamespaceImport(node.importClause.namedBindings)
         ) {
-          const symbolName: string = node.importClause.namedBindings.name.getText(
-            sourceFile
-          );
+          const symbolName: string =
+            node.importClause.namedBindings.name.getText(sourceFile);
           namespaceImportSet.add(symbolName);
 
           // import a from '@firebase/dummy-exp'
@@ -313,11 +308,12 @@ export function extractDeclarations(
       // and "export * from '..';"
       if (node.moduleSpecifier) {
         if (ts.isStringLiteral(node.moduleSpecifier)) {
-          const reExportsWithFromClause: MemberList = handleExportStatementsWithFromClause(
-            checker,
-            node,
-            node.moduleSpecifier.getText(sourceFile)
-          );
+          const reExportsWithFromClause: MemberList =
+            handleExportStatementsWithFromClause(
+              checker,
+              node,
+              node.moduleSpecifier.getText(sourceFile)
+            );
           // concatenate re-exported MemberList with MemberList of the dts file
           for (const key of Object.keys(declarations) as Array<
             keyof MemberList
@@ -412,9 +408,8 @@ function extractSymbolsFromNamedExportStatement(
   if (node.exportClause && ts.isNamedExports(node.exportClause)) {
     const actualExports: string[] = [];
     node.exportClause.elements.forEach(exportSpecifier => {
-      const reExportedSymbol: string = extractOriginalSymbolName(
-        exportSpecifier
-      );
+      const reExportedSymbol: string =
+        extractOriginalSymbolName(exportSpecifier);
       // eg: export {foo as foo1 } from '...';
       // if export is renamed, replace with new name
       // reExportedSymbol: stores the original symbol name
@@ -470,10 +465,10 @@ function handleExportStatementsWithoutFromClause(
   if (node.exportClause && ts.isNamedExports(node.exportClause)) {
     node.exportClause.elements.forEach(exportSpecifier => {
       // export symbol could be renamed, we retrieve both its current/renamed name and original name
-      const exportSymbolCurrentName = exportSpecifier.name.escapedText.toString();
-      const exportSymbolOriginalName = extractOriginalSymbolName(
-        exportSpecifier
-      );
+      const exportSymbolCurrentName =
+        exportSpecifier.name.escapedText.toString();
+      const exportSymbolOriginalName =
+        extractOriginalSymbolName(exportSpecifier);
       // import * as fs from 'fs';  export {fs};
       if (namespaceImportSymbolSet.has(exportSymbolOriginalName)) {
         parentDeclarations.variables.push(exportSymbolOriginalName);
@@ -489,9 +484,10 @@ function handleExportStatementsWithoutFromClause(
       else if (
         importSymbolCurrentNameToModuleLocation.has(exportSymbolOriginalName)
       ) {
-        const moduleLocation: string = importSymbolCurrentNameToModuleLocation.get(
-          exportSymbolOriginalName
-        )!;
+        const moduleLocation: string =
+          importSymbolCurrentNameToModuleLocation.get(
+            exportSymbolOriginalName
+          )!;
         let reExportedSymbols: MemberList;
         if (importModuleLocationToExportedSymbolsList.has(moduleLocation)) {
           reExportedSymbols = deepCopy(
@@ -671,9 +667,9 @@ export function writeReportToDirectory(
  * This function extract unresolved external module symbols from bundle file import statements.
  *
  */
-export function extractExternalDependencies(
-  minimizedBundleFile: string
-): { [key: string]: string[] } {
+export function extractExternalDependencies(minimizedBundleFile: string): {
+  [key: string]: string[];
+} {
   const program = ts.createProgram([minimizedBundleFile], { allowJs: true });
 
   const sourceFile = program.getSourceFile(minimizedBundleFile);

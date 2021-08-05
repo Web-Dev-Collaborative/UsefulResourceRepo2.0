@@ -19,7 +19,7 @@ Por ejemplo, `sumFibs(10)` debe devolver `10` porque todos los números impares 
 `sumFibs(1)` debe devolver un número.
 
 ```js
-assert(typeof sumFibs(1) === 'number');
+assert(typeof sumFibs(1) === "number");
 ```
 
 `sumFibs(1000)` debe devolver 1785.
@@ -75,7 +75,7 @@ function sumFibs(num) {
     if (a % 2 !== 0) {
       s += a;
     }
-    a = [b, b=b+a][0];
+    a = [b, (b = b + a)][0];
   }
   return s;
 }

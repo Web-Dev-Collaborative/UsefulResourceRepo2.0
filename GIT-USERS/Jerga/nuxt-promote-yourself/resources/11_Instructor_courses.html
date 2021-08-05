@@ -9,23 +9,31 @@
             <div class="tile is-ancestor">
               <div class="tile is-parent is-12">
                 <!-- Navigate to course manage page -->
-                <nuxt-link :to="'#'" class="tile tile-overlay-container is-child box">
+                <nuxt-link
+                  :to="'#'"
+                  class="tile tile-overlay-container is-child box"
+                >
                   <div class="tile-overlay">
-                    <span class="tile-overlay-text">
-                      Update Course
-                    </span>
+                    <span class="tile-overlay-text"> Update Course </span>
                   </div>
                   <div class="columns">
                     <div class="column is-narrow">
                       <figure class="image is-4by2 is-128x128">
-                        <img :src="'https://i.udemycdn.com/course/750x422/2381802_d90c_3.jpg'">
+                        <img
+                          :src="'https://i.udemycdn.com/course/750x422/2381802_d90c_3.jpg'"
+                        />
                       </figure>
                     </div>
                     <div class="column">
-                      <p class="title">Dart and Flutter From Zero to Hero - Practical Dev Bootcamp</p>
-                      <p class="subtitle">Build real mobile Application for Android and iOS. Learn Dart Framework and discover amazing features of Flutter.</p>
-                      <span class="tag"
-                            :class="'is-success'">Published</span>
+                      <p class="title">
+                        Dart and Flutter From Zero to Hero - Practical Dev
+                        Bootcamp
+                      </p>
+                      <p class="subtitle">
+                        Build real mobile Application for Android and iOS. Learn
+                        Dart Framework and discover amazing features of Flutter.
+                      </p>
+                      <span class="tag" :class="'is-success'">Published</span>
                     </div>
                     <div class="column is-narrow flex-centered">
                       <div class="price-title">
@@ -44,8 +52,7 @@
   </div>
 </template>
 <script>
-export default {
-}
+  export default {};
 </script>
 <style scoped lang="scss">
   .tile-image {
@@ -66,7 +73,7 @@ export default {
       box-shadow: none;
     }
     &:hover > .tile-overlay {
-      background-color: rgba(255,255,255,.9);
+      background-color: rgba(255, 255, 255, 0.9);
     }
     &:hover .tile-overlay-text {
       visibility: visible;

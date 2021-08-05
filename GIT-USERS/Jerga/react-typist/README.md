@@ -1,49 +1,49 @@
 # React Typist [![npm](https://img.shields.io/npm/dm/react-typist.svg)]() [![npm](https://img.shields.io/npm/v/react-typist.svg)]()
+
 React Component for making typing animations. Wrap `Typist` around your text or any
 element tree to animate text inside the tree. Easily stylable and highly
 configurable.
 
-
 ## Install
+
 ```shell
 npm install react-typist --save
 ```
 
-
 ## Live Example
-* <a href="//jstejada.github.io/react-typist" target="_blank">Basic example</a>
 
+- <a href="//jstejada.github.io/react-typist" target="_blank">Basic example</a>
 
 ## Basic Usage
+
 #### CommonJS Module (using webpack or browserify):
+
 ```jsx
-import React, {Component} from 'react';
-import Typist from 'react-typist';
+import React, { Component } from "react";
+import Typist from "react-typist";
 
 export default class MyComponent extends Component {
-
   render() {
-    return (
-      <Typist>
-        Animate this text.
-      </Typist>
-    );
+    return <Typist>Animate this text.</Typist>;
   }
 }
 ```
 
 #### UMD module:
+
 Include `dist/standalone/Typist.js` into your build, using whatever build tool
 or manually entering a `<script>` tag.
 
 <a name="cssBlink"></a>
+
 #### CSS
+
 Typist contains a simple CSS file to make the cursor at the end of the text
 blink. To include it, you must include
 [`dist/Typist.css`](/dist/Typist.css) in your build.
 
-
 ## Children
+
 Typist will animate any text present in its descendents. Each text
 node will be animated as it is encountered in depth-first traversal of the
 `children` tree, one after the other.
@@ -70,8 +70,8 @@ easily style your text inside Typist:
 
 Refer to [`examples/`](/examples) for more examples.
 
-
 ## Typist.Delay
+
 In order to insert delays into your animation, you can use the `Typist.Delay`
 Component:
 
@@ -87,14 +87,16 @@ Component:
 Refer to [`examples/`](/examples) for more examples.
 
 ### Typist.Delay Props
-* [`ms`](#ms)
+
+- [`ms`](#ms)
 
 <a name="ms"></a>
+
 #### ms
-*Required*
+
+_Required_
 
 Milliseconds to apply for the delay
-
 
 ## Typist.Backspace
 
@@ -111,36 +113,43 @@ Typist also supports backspace animations via the `Typist.Backspace` Component:
 Refer to [`examples/`](/examples) for more examples.
 
 ### Typist.Backspace Props
-* [`count`](#count)
-* [`delay`](#delay)
+
+- [`count`](#count)
+- [`delay`](#delay)
 
 <a name="count"></a>
+
 #### count
-*Default*: `1`
+
+_Default_: `1`
 
 Number of characters to backspace
 
 <a name="delay"></a>
+
 #### delay
-*Default*: `0`
+
+_Default_: `0`
 
 Delay in milliseconds before the backspace animation starts
 
-
 ## Typist Props
-* [`className`](#className)
-* [`avgTypingDelay`](#avgTypingDelay)
-* [`stdTypingDelay`](#stdTypingDelay)
-* [`startDelay`](#startDelay)
-* [`cursor`](#cursor)
-* [`onCharacterTyped`](#onCharacterTyped)
-* [`onLineTyped`](#onLineTyped)
-* [`onTypingDone`](#onTypingDone)
-* [`delayGenerator`](#delayGenerator)
+
+- [`className`](#className)
+- [`avgTypingDelay`](#avgTypingDelay)
+- [`stdTypingDelay`](#stdTypingDelay)
+- [`startDelay`](#startDelay)
+- [`cursor`](#cursor)
+- [`onCharacterTyped`](#onCharacterTyped)
+- [`onLineTyped`](#onLineTyped)
+- [`onTypingDone`](#onTypingDone)
+- [`delayGenerator`](#delayGenerator)
 
 <a name="className"></a>
+
 #### className
-*Default*: `null`
+
+_Default_: `null`
 
 CSS class name to be applied to the Typist root node. Typist will always
 have the CSS class `Typist` applied to it.
@@ -148,35 +157,46 @@ have the CSS class `Typist` applied to it.
 ```jsx
 <Typist className="MyTypist"> Animate this text. </Typist>
 ```
- will produce:
+
+will produce:
+
 ```jsx
 <div class="Typist MyTypist"> Animate this text. </div>
 ```
 
 <a name="avgTypingDelay"></a>
+
 #### avgTypingDelay
-*Default*: `70`
+
+_Default_: `70`
 
 Average typing delay in milliseconds between every keystroke of the typing
 animation **(Less is faster)**. The distribution of the typing delays between
 strokes is not uniform, to make the animation more human like.
 
 <a name="stdTypingDelay"></a>
+
 #### stdTypingDelay
-*Default*: `25`
+
+_Default_: `25`
 
 Standard deviation of typing delay between keystrokes of the typing animation.
 **(Less means more uniform, i.e. less variance between values)**.
 
 <a name="startDelay"></a>
+
 #### startDelay
-*Default*: `0`
+
+_Default_: `0`
 
 Milliseconds before typing animation begins.
 
 <a name="cursor"></a>
+
 #### cursor
-*Default*:
+
+_Default_:
+
 ```js
 {
   show: true,
@@ -189,17 +209,19 @@ Milliseconds before typing animation begins.
 
 Object containing options for cursor:
 
-* `show (bool)`: whether to display cursor at the end of text.
-* `blink (bool)`: whether to add blinking animation to cursor. You must also
-include the [css](#cssBlink)
-* `element (string)`: character to use for the cursor
-* `hideWhenDone (bool)`: whether the cursor should be hidden after tyiping
-animation is complete.
-* `hideWhenDoneDelay (int)`: delay in ms to be applied before hiding cursor when
-typing animation is complete.
+- `show (bool)`: whether to display cursor at the end of text.
+- `blink (bool)`: whether to add blinking animation to cursor. You must also
+  include the [css](#cssBlink)
+- `element (string)`: character to use for the cursor
+- `hideWhenDone (bool)`: whether the cursor should be hidden after tyiping
+  animation is complete.
+- `hideWhenDoneDelay (int)`: delay in ms to be applied before hiding cursor when
+  typing animation is complete.
 
 <a name="onCharacterTyped"></a>
+
 #### onCharacterTyped
+
 Function to be called every time a character is typed on the screen.
 
 ```js
@@ -209,7 +231,9 @@ function(character, charIdx) {
 ```
 
 <a name="onLineTyped"></a>
+
 #### onLineTyped
+
 Function to be called every time a line is typed on the screen.
 
 ```js
@@ -219,12 +243,16 @@ function(line, lineIdx) {
 ```
 
 <a name="onTypingDone"></a>
+
 #### onTypingDone
+
 Function to be called when typing animation is complete.
 
 <a name="delayGenerator"></a>
+
 #### delayGenerator
-*Default*: [`gaussianDistribution`][normal-dist]
+
+_Default_: [`gaussianDistribution`][normal-dist]
 
 Function to be called to generate the typing delay (in ms) for every keystroke
 of the animation. Every time this function is called it should return a value
@@ -241,20 +269,20 @@ function(mean, std, current = {line, lineIdx, character, charIdx, defDelayGenera
 }
 ```
 
-* `mean (number)`: Average typing delay. Will be the value of [`props.avgTypingDelay`](#avgTypingDelay)
-* `std (number)`: Standard deviation of typing delay. Will be the value of [`props.stdTypingDelay`](#stdTypingDelay)
-* `current.line (string)`: Value of line of text (Typist child) currently being animated.
-* `current.lineIdx (int)`: Index of line of text (Typist child) currently being animated.
-* `current.character (string)`: Value of character that was just rendered.
-* `current.charIdx (int)`: Index of character that was just rendered.
-* `current.defDelayGenerator (function)`: Reference to default delay
-generator function to be able to fall back to.
-
+- `mean (number)`: Average typing delay. Will be the value of [`props.avgTypingDelay`](#avgTypingDelay)
+- `std (number)`: Standard deviation of typing delay. Will be the value of [`props.stdTypingDelay`](#stdTypingDelay)
+- `current.line (string)`: Value of line of text (Typist child) currently being animated.
+- `current.lineIdx (int)`: Index of line of text (Typist child) currently being animated.
+- `current.character (string)`: Value of character that was just rendered.
+- `current.charIdx (int)`: Index of character that was just rendered.
+- `current.defDelayGenerator (function)`: Reference to default delay
+  generator function to be able to fall back to.
 
 This function can also be used to introduce delays at specific points in the
 typing animation.
 
 e.g.:
+
 ```js
 function(mean, std, {line, lineIdx, charIdx, defDelayGenerator}) {
   // Delay the animation for 2 seconds at the last character of the first line
@@ -265,52 +293,55 @@ function(mean, std, {line, lineIdx, charIdx, defDelayGenerator}) {
 }
 ```
 
-
 ## Troubleshooting
+
 ### Internet Explorer Compatibility
+
 React Typist makes use of Array.from() which is not supported in IE.
 
 `SCRIPT438: Object doesn't support property or method 'from' Typist.js (449,1)`
 
 To resolve this, [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) can be added to your project.
 
- ```shell
- npm install --save babel-polyfill
- ```
+```shell
+npm install --save babel-polyfill
+```
 
 You can now include this module in your app at the entry point.
 
 ES6:
+
 ```js
-import 'babel-polyfill'
+import "babel-polyfill";
 ```
 
 CommonJS:
+
 ```js
-require('babel-polyfill')
+require("babel-polyfill");
 ```
 
 ## Development
 
 To build the examples and start the dev server, run:
+
 ```shell
 npm start
 ```
+
 Now, open `http://localhost:8080` and start hacking!
 
-
 If you just want to build the examples, run:
+
 ```shell
 npm run examples
 ```
-
 
 ## Running Tests
 
 ```shell
 npm test
 ```
-
 
 ## License
 

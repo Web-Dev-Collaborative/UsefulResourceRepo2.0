@@ -14,9 +14,9 @@ Since all reliable stock price APIs require an API key, we've built a workaround
 
 Working on this project will involve you writing your code using one of the following methods:
 
--   Clone [this GitHub repo](https://github.com/freeCodeCamp/boilerplate-project-stockchecker/) and complete your project locally.
--   Use [our repl.it starter project](https://repl.it/github/freeCodeCamp/boilerplate-project-stockchecker) to complete your project.
--   Use a site builder of your choice to complete the project. Be sure to incorporate all the files from our GitHub repo.
+- Clone [this GitHub repo](https://github.com/freeCodeCamp/boilerplate-project-stockchecker/) and complete your project locally.
+- Use [our repl.it starter project](https://repl.it/github/freeCodeCamp/boilerplate-project-stockchecker) to complete your project.
+- Use a site builder of your choice to complete the project. Be sure to incorporate all the files from our GitHub repo.
 
 When you are done, make sure a working demo of your project is hosted somewhere public. Then submit the URL to it in the `Solution Link` field. Optionally, also submit a link to your projects source code in the `GitHub Link` field.
 
@@ -29,11 +29,11 @@ When you are done, make sure a working demo of your project is hosted somewhere 
 
 Write the following tests in `tests/2_functional-tests.js`:
 
--   Viewing one stock: GET request to `/api/stock-prices/`
--   Viewing one stock and liking it: GET request to `/api/stock-prices/`
--   Viewing the same stock and liking it again: GET request to `/api/stock-prices/`
--   Viewing two stocks: GET request to `/api/stock-prices/`
--   Viewing two stocks and liking them: GET request to `/api/stock-prices/`
+- Viewing one stock: GET request to `/api/stock-prices/`
+- Viewing one stock and liking it: GET request to `/api/stock-prices/`
+- Viewing the same stock and liking it again: GET request to `/api/stock-prices/`
+- Viewing two stocks: GET request to `/api/stock-prices/`
+- Viewing two stocks and liking them: GET request to `/api/stock-prices/`
 
 # --hints--
 
@@ -42,7 +42,7 @@ You can provide your own project, not the example URL.
 ```js
 (getUserInput) => {
   assert(
-    !/.*\/stock-price-checker\.freecodecamp\.rocks/.test(getUserInput('url'))
+    !/.*\/stock-price-checker\.freecodecamp\.rocks/.test(getUserInput("url"))
   );
 };
 ```
@@ -51,13 +51,13 @@ You should set the content security policies to only allow loading of scripts an
 
 ```js
 async (getUserInput) => {
-  const data = await fetch(getUserInput('url') + '/_api/app-info');
+  const data = await fetch(getUserInput("url") + "/_api/app-info");
   const parsed = await data.json();
   assert.isTrue(
-    parsed.headers['content-security-policy'].includes("script-src 'self'")
+    parsed.headers["content-security-policy"].includes("script-src 'self'")
   );
   assert.isTrue(
-    parsed.headers['content-security-policy'].includes("style-src 'self'")
+    parsed.headers["content-security-policy"].includes("style-src 'self'")
   );
 };
 ```
@@ -67,10 +67,10 @@ You can send a `GET` request to `/api/stock-prices` with form data containing a 
 ```js
 async (getUserInput) => {
   const data = await fetch(
-    getUserInput('url') + '/api/stock-prices?stock=GOOG'
+    getUserInput("url") + "/api/stock-prices?stock=GOOG"
   );
   const parsed = await data.json();
-  assert.property(parsed, 'stockData');
+  assert.property(parsed, "stockData");
 };
 ```
 
@@ -79,13 +79,13 @@ The `stockData` property includes the `stock` ticker as a string, the `price` as
 ```js
 async (getUserInput) => {
   const data = await fetch(
-    getUserInput('url') + '/api/stock-prices?stock=GOOG'
+    getUserInput("url") + "/api/stock-prices?stock=GOOG"
   );
   const parsed = await data.json();
   const ticker = parsed.stockData;
-  assert.typeOf(ticker.price, 'number');
-  assert.typeOf(ticker.likes, 'number');
-  assert.typeOf(ticker.stock, 'string');
+  assert.typeOf(ticker.price, "number");
+  assert.typeOf(ticker.likes, "number");
+  assert.typeOf(ticker.stock, "string");
 };
 ```
 
@@ -100,13 +100,13 @@ If you pass along 2 stocks, the returned value will be an array with information
 ```js
 async (getUserInput) => {
   const data = await fetch(
-    getUserInput('url') + '/api/stock-prices?stock=GOOG&stock=MSFT'
+    getUserInput("url") + "/api/stock-prices?stock=GOOG&stock=MSFT"
   );
   const parsed = await data.json();
   const ticker = parsed.stockData;
-  assert.typeOf(ticker, 'array');
-  assert.property(ticker[0], 'rel_likes');
-  assert.property(ticker[1], 'rel_likes');
+  assert.typeOf(ticker, "array");
+  assert.property(ticker[0], "rel_likes");
+  assert.property(ticker[1], "rel_likes");
 };
 ```
 
@@ -114,11 +114,11 @@ All 5 functional tests are complete and passing.
 
 ```js
 async (getUserInput) => {
-  const tests = await fetch(getUserInput('url') + '/_api/get-tests');
+  const tests = await fetch(getUserInput("url") + "/_api/get-tests");
   const parsed = await tests.json();
   assert.isTrue(parsed.length >= 5);
   parsed.forEach((test) => {
-    assert.equal(test.state, 'passed');
+    assert.equal(test.state, "passed");
   });
 };
 ```

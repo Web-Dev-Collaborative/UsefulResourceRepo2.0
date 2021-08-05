@@ -25,7 +25,7 @@ Your program should return an array containing the results based on the rules ab
 `fizzBuzz` should be a function.
 
 ```js
-assert(typeof fizzBuzz == 'function');
+assert(typeof fizzBuzz == "function");
 ```
 
 `fizzBuzz()` should return an Array.
@@ -37,19 +37,19 @@ assert(Array.isArray(fizzBuzz()) == true);
 Numbers divisible by only 3 should return `"Fizz"`.
 
 ```js
-assert.equal(fizzBuzz()[2], 'Fizz');
+assert.equal(fizzBuzz()[2], "Fizz");
 ```
 
 Numbers divisible by only 5 should return `"Buzz"`.
 
 ```js
-assert.equal(fizzBuzz()[99], 'Buzz');
+assert.equal(fizzBuzz()[99], "Buzz");
 ```
 
 Numbers divisible by both 3 and 5 should return `"FizzBuzz"`.
 
 ```js
-assert.equal(fizzBuzz()[89], 'FizzBuzz');
+assert.equal(fizzBuzz()[89], "FizzBuzz");
 ```
 
 Numbers not divisible by either 3 or 5 should return the number itself.
@@ -63,30 +63,25 @@ assert.equal(fizzBuzz()[12], 13);
 ## --seed-contents--
 
 ```js
-function fizzBuzz() {
-
-}
+function fizzBuzz() {}
 ```
 
 # --solutions--
 
 ```js
 function fizzBuzz() {
-    let res=[];
-    for (let i =1; i < 101; i++) {
-        if (i % 3 === 0  && i % 5 === 0) {
-            res.push("FizzBuzz");
-        }
-        else if (i % 3 === 0) {
-            res.push("Fizz");
-        }
-        else if (i % 5 === 0) {
-            res.push("Buzz");
-        } 
-        else {
-            res.push(i);
-        }
+  let res = [];
+  for (let i = 1; i < 101; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      res.push("FizzBuzz");
+    } else if (i % 3 === 0) {
+      res.push("Fizz");
+    } else if (i % 5 === 0) {
+      res.push("Buzz");
+    } else {
+      res.push(i);
     }
-    return res;
+  }
+  return res;
 }
 ```

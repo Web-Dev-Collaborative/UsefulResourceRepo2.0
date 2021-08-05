@@ -2,7 +2,7 @@
 id: bd7123c8c441eddfaeb5bdef
 title: Say Hello to HTML Elements
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cE8Gpt2'
+videoUrl: "https://scrimba.com/p/pVMPUv/cE8Gpt2"
 forumTopicId: 18276
 dashedName: say-hello-to-html-elements
 ---
@@ -20,7 +20,7 @@ Most HTML elements have an opening tag and a closing tag.
 Opening tags look like this:
 
 ```html
-<h1>
+<h1></h1>
 ```
 
 Closing tags look like this:
@@ -42,7 +42,7 @@ To pass the test on this challenge, change your `h1` element's text to say `Hell
 Your `h1` element should have the text `Hello World`.
 
 ```js
-assert.isTrue(/hello(\s)+world/gi.test($('h1').text()));
+assert.isTrue(/hello(\s)+world/gi.test($("h1").text()));
 ```
 
 # --seed--

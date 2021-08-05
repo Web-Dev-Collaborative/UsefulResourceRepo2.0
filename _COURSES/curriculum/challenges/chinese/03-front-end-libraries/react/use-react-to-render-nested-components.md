@@ -21,7 +21,7 @@ dashedName: use-react-to-render-nested-components
 `TypesOfFood` 组件应该返回单个 `div` 元素。
 
 ```js
-assert(Enzyme.shallow(React.createElement(TypesOfFood)).type() === 'div');
+assert(Enzyme.shallow(React.createElement(TypesOfFood)).type() === "div");
 ```
 
 `TypesOfFood` 组件应该返回 `Fruits` 组件。
@@ -29,7 +29,7 @@ assert(Enzyme.shallow(React.createElement(TypesOfFood)).type() === 'div');
 ```js
 assert(
   Enzyme.shallow(React.createElement(TypesOfFood)).props().children[1].type
-    .name === 'Fruits'
+    .name === "Fruits"
 );
 ```
 
@@ -37,8 +37,8 @@ assert(
 
 ```js
 assert(
-  Enzyme.mount(React.createElement(TypesOfFood)).find('h2').html() ===
-    '<h2>Fruits:</h2>'
+  Enzyme.mount(React.createElement(TypesOfFood)).find("h2").html() ===
+    "<h2>Fruits:</h2>"
 );
 ```
 
@@ -46,8 +46,8 @@ assert(
 
 ```js
 assert(
-  Enzyme.mount(React.createElement(TypesOfFood)).find('ul').text() ===
-    'ApplesBlueberriesStrawberriesBananas'
+  Enzyme.mount(React.createElement(TypesOfFood)).find("ul").text() ===
+    "ApplesBlueberriesStrawberriesBananas"
 );
 ```
 
@@ -56,7 +56,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<TypesOfFood />, document.getElementById('root'))
+ReactDOM.render(<TypesOfFood />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -79,9 +79,9 @@ const TypesOfFruit = () => {
 const Fruits = () => {
   return (
     <div>
-      { /* Change code below this line */ }
+      {/* Change code below this line */}
 
-      { /* Change code above this line */ }
+      {/* Change code above this line */}
     </div>
   );
 };
@@ -95,13 +95,13 @@ class TypesOfFood extends React.Component {
     return (
       <div>
         <h1>Types of Food:</h1>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
 
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -124,9 +124,9 @@ const TypesOfFruit = () => {
 const Fruits = () => {
   return (
     <div>
-      { /* Change code below this line */ }
-        <TypesOfFruit />
-      { /* Change code above this line */ }
+      {/* Change code below this line */}
+      <TypesOfFruit />
+      {/* Change code above this line */}
     </div>
   );
 };
@@ -140,11 +140,11 @@ class TypesOfFood extends React.Component {
     return (
       <div>
         <h1>Types of Food:</h1>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
         <Fruits />
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 ```

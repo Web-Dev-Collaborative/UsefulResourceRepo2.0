@@ -36,9 +36,9 @@ describe('Firebase Perofmrance > initialization_service', () => {
   mockWindow.document = { ...mockWindow.document, readyState: 'complete' };
 
   beforeEach(() => {
-    SettingsService.prototype.firebaseAppInstance = ({
+    SettingsService.prototype.firebaseAppInstance = {
       installations: () => ({ getId, getToken })
-    } as unknown) as FirebaseApp;
+    } as unknown as FirebaseApp;
 
     stub(self, 'fetch').resolves(new Response('{}'));
     mockWindow.localStorage = { ...mockWindow.localStorage, setItem: stub() };

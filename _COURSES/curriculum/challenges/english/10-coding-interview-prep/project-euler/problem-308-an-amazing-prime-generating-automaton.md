@@ -1,6 +1,6 @@
 ---
 id: 5900f4a11000cf542c50ffb3
-title: 'Problem 308: An amazing Prime-generating Automaton'
+title: "Problem 308: An amazing Prime-generating Automaton"
 challengeType: 5
 forumTopicId: 301962
 dashedName: problem-308-an-amazing-prime-generating-automaton
@@ -32,7 +32,6 @@ assert.strictEqual(euler308(), 1539669807660924);
 
 ```js
 function euler308() {
-
   return true;
 }
 

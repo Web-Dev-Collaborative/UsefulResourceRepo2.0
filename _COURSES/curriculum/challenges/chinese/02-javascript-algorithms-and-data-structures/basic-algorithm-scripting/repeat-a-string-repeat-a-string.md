@@ -15,37 +15,37 @@ dashedName: repeat-a-string-repeat-a-string
 `repeatStringNumTimes("*", 3)` 应返回 `***`。
 
 ```js
-assert(repeatStringNumTimes('*', 3) === '***');
+assert(repeatStringNumTimes("*", 3) === "***");
 ```
 
 `repeatStringNumTimes("abc", 3)` 应返回 `abcabcabc`。
 
 ```js
-assert(repeatStringNumTimes('abc', 3) === 'abcabcabc');
+assert(repeatStringNumTimes("abc", 3) === "abcabcabc");
 ```
 
 `repeatStringNumTimes("abc", 4)` 应返回 `abcabcabcabc`。
 
 ```js
-assert(repeatStringNumTimes('abc', 4) === 'abcabcabcabc');
+assert(repeatStringNumTimes("abc", 4) === "abcabcabcabc");
 ```
 
 `repeatStringNumTimes("abc", 1)` 应返回 `abc`。
 
 ```js
-assert(repeatStringNumTimes('abc', 1) === 'abc');
+assert(repeatStringNumTimes("abc", 1) === "abc");
 ```
 
 `repeatStringNumTimes("*", 8)` 应返回 `********`。
 
 ```js
-assert(repeatStringNumTimes('*', 8) === '********');
+assert(repeatStringNumTimes("*", 8) === "********");
 ```
 
 `repeatStringNumTimes("abc", -2)` 应返回 `""`。
 
 ```js
-assert(repeatStringNumTimes('abc', -2) === '');
+assert(repeatStringNumTimes("abc", -2) === "");
 ```
 
 不应使用内置的 `repeat()` 方法。
@@ -57,7 +57,7 @@ assert(!/\.repeat/g.test(code));
 `repeatStringNumTimes("abc", 0)` 应返回 `""`。
 
 ```js
-assert(repeatStringNumTimes('abc', 0) === '');
+assert(repeatStringNumTimes("abc", 0) === "");
 ```
 
 # --seed--
@@ -76,8 +76,8 @@ repeatStringNumTimes("abc", 3);
 
 ```js
 function repeatStringNumTimes(str, num) {
-  if (num < 1) return '';
-  return num === 1 ? str : str + repeatStringNumTimes(str, num-1);
+  if (num < 1) return "";
+  return num === 1 ? str : str + repeatStringNumTimes(str, num - 1);
 }
 
 repeatStringNumTimes("abc", 3);

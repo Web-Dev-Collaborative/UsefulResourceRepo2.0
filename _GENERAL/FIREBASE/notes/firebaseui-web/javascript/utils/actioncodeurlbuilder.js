@@ -18,10 +18,9 @@
  * extract the data from a deep link.
  */
 
-goog.provide('firebaseui.auth.ActionCodeUrlBuilder');
+goog.provide("firebaseui.auth.ActionCodeUrlBuilder");
 
-goog.require('goog.Uri');
-
+goog.require("goog.Uri");
 
 /**
  * Defines a helper class to parse and edit continue URLs for
@@ -41,18 +40,17 @@ firebaseui.auth.ActionCodeUrlBuilder = class {
     this.uri_ = goog.Uri.parse(url);
   }
 
-
   /** Clears all email link sign-in related parameters. */
   clearState() {
     // Remove all related query parameters. Keep all other parameters.
     for (const key in firebaseui.auth.ActionCodeUrlBuilder.Parameter) {
       if (firebaseui.auth.ActionCodeUrlBuilder.Parameter.hasOwnProperty(key)) {
         this.uri_.removeParameter(
-            firebaseui.auth.ActionCodeUrlBuilder.Parameter[key]);
+          firebaseui.auth.ActionCodeUrlBuilder.Parameter[key]
+        );
       }
     }
   }
-
 
   /**
    * Sets the session ID on the URL.
@@ -61,41 +59,51 @@ firebaseui.auth.ActionCodeUrlBuilder = class {
   setSessionId(sid) {
     if (sid) {
       this.uri_.setParameterValue(
-          firebaseui.auth.ActionCodeUrlBuilder.Parameter.SESSION_ID, sid);
+        firebaseui.auth.ActionCodeUrlBuilder.Parameter.SESSION_ID,
+        sid
+      );
     } else {
       this.uri_.removeParameter(
-          firebaseui.auth.ActionCodeUrlBuilder.Parameter.SESSION_ID);
+        firebaseui.auth.ActionCodeUrlBuilder.Parameter.SESSION_ID
+      );
     }
   }
 
-
   /** @return {?string} The session ID. */
   getSessionId() {
-    return this.uri_.getParameterValue(
-        firebaseui.auth.ActionCodeUrlBuilder.Parameter.SESSION_ID) || null;
+    return (
+      this.uri_.getParameterValue(
+        firebaseui.auth.ActionCodeUrlBuilder.Parameter.SESSION_ID
+      ) || null
+    );
   }
-
 
   /** @return {?string} The OOB code if available. */
   getOobCode() {
-    return this.uri_.getParameterValue(
-        firebaseui.auth.ActionCodeUrlBuilder.Parameter.OOB_CODE) || null;
+    return (
+      this.uri_.getParameterValue(
+        firebaseui.auth.ActionCodeUrlBuilder.Parameter.OOB_CODE
+      ) || null
+    );
   }
-
 
   /** @return {?string} The email action mode if available. */
   getMode() {
-    return this.uri_.getParameterValue(
-        firebaseui.auth.ActionCodeUrlBuilder.Parameter.MODE) || null;
+    return (
+      this.uri_.getParameterValue(
+        firebaseui.auth.ActionCodeUrlBuilder.Parameter.MODE
+      ) || null
+    );
   }
-
 
   /** @return {?string} The API key if available. */
   getApiKey() {
-    return this.uri_.getParameterValue(
-        firebaseui.auth.ActionCodeUrlBuilder.Parameter.API_KEY) || null;
+    return (
+      this.uri_.getParameterValue(
+        firebaseui.auth.ActionCodeUrlBuilder.Parameter.API_KEY
+      ) || null
+    );
   }
-
 
   /**
    * Sets the tenant ID of the tenant project.
@@ -104,20 +112,24 @@ firebaseui.auth.ActionCodeUrlBuilder = class {
   setTenantId(tenantId) {
     if (tenantId) {
       this.uri_.setParameterValue(
-          firebaseui.auth.ActionCodeUrlBuilder.Parameter.TENANT_ID, tenantId);
+        firebaseui.auth.ActionCodeUrlBuilder.Parameter.TENANT_ID,
+        tenantId
+      );
     } else {
       this.uri_.removeParameter(
-          firebaseui.auth.ActionCodeUrlBuilder.Parameter.TENANT_ID);
+        firebaseui.auth.ActionCodeUrlBuilder.Parameter.TENANT_ID
+      );
     }
   }
 
-
   /** @return {?string} The tenant ID if available. */
   getTenantId() {
-    return this.uri_.getParameterValue(
-        firebaseui.auth.ActionCodeUrlBuilder.Parameter.TENANT_ID) || null;
+    return (
+      this.uri_.getParameterValue(
+        firebaseui.auth.ActionCodeUrlBuilder.Parameter.TENANT_ID
+      ) || null
+    );
   }
-
 
   /**
    * Defines whether to force same device flow.
@@ -126,22 +138,24 @@ firebaseui.auth.ActionCodeUrlBuilder = class {
   setForceSameDevice(forceSameDevice) {
     if (forceSameDevice !== null) {
       this.uri_.setParameterValue(
-          firebaseui.auth.ActionCodeUrlBuilder.Parameter.FORCE_SAME_DEVICE,
-          forceSameDevice ? '1' : '0');
+        firebaseui.auth.ActionCodeUrlBuilder.Parameter.FORCE_SAME_DEVICE,
+        forceSameDevice ? "1" : "0"
+      );
     } else {
       this.uri_.removeParameter(
-          firebaseui.auth.ActionCodeUrlBuilder.Parameter.FORCE_SAME_DEVICE);
+        firebaseui.auth.ActionCodeUrlBuilder.Parameter.FORCE_SAME_DEVICE
+      );
     }
   }
 
-
   /** @return {boolean} Whether to force same device flow. */
   getForceSameDevice() {
-    return this.uri_.getParameterValue(
-        firebaseui.auth.ActionCodeUrlBuilder.Parameter.FORCE_SAME_DEVICE) ===
-        '1';
+    return (
+      this.uri_.getParameterValue(
+        firebaseui.auth.ActionCodeUrlBuilder.Parameter.FORCE_SAME_DEVICE
+      ) === "1"
+    );
   }
-
 
   /**
    * Sets the UID of the anonymous user to upgrade.
@@ -150,21 +164,24 @@ firebaseui.auth.ActionCodeUrlBuilder = class {
   setAnonymousUid(anonymousUid) {
     if (anonymousUid) {
       this.uri_.setParameterValue(
-          firebaseui.auth.ActionCodeUrlBuilder.Parameter.ANONYMOUS_UID,
-          anonymousUid);
+        firebaseui.auth.ActionCodeUrlBuilder.Parameter.ANONYMOUS_UID,
+        anonymousUid
+      );
     } else {
       this.uri_.removeParameter(
-          firebaseui.auth.ActionCodeUrlBuilder.Parameter.ANONYMOUS_UID);
+        firebaseui.auth.ActionCodeUrlBuilder.Parameter.ANONYMOUS_UID
+      );
     }
   }
 
-
   /** @return {?string} The anonymous UID of the user to upgrade. */
   getAnonymousUid() {
-    return this.uri_.getParameterValue(
-        firebaseui.auth.ActionCodeUrlBuilder.Parameter.ANONYMOUS_UID) || null;
+    return (
+      this.uri_.getParameterValue(
+        firebaseui.auth.ActionCodeUrlBuilder.Parameter.ANONYMOUS_UID
+      ) || null
+    );
   }
-
 
   /**
    * Sets the provider ID of the credential to link.
@@ -173,23 +190,26 @@ firebaseui.auth.ActionCodeUrlBuilder = class {
   setProviderId(providerId) {
     if (providerId) {
       this.uri_.setParameterValue(
-          firebaseui.auth.ActionCodeUrlBuilder.Parameter.PROVIDER_ID,
-          providerId);
+        firebaseui.auth.ActionCodeUrlBuilder.Parameter.PROVIDER_ID,
+        providerId
+      );
     } else {
       this.uri_.removeParameter(
-          firebaseui.auth.ActionCodeUrlBuilder.Parameter.PROVIDER_ID);
+        firebaseui.auth.ActionCodeUrlBuilder.Parameter.PROVIDER_ID
+      );
     }
   }
-
 
   /**
    * @return {?string} The provider ID of the credential to link if available.
    */
   getProviderId() {
-    return this.uri_.getParameterValue(
-        firebaseui.auth.ActionCodeUrlBuilder.Parameter.PROVIDER_ID) || null;
+    return (
+      this.uri_.getParameterValue(
+        firebaseui.auth.ActionCodeUrlBuilder.Parameter.PROVIDER_ID
+      ) || null
+    );
   }
-
 
   /** @return {string} The URL string representation. */
   toString() {
@@ -197,19 +217,18 @@ firebaseui.auth.ActionCodeUrlBuilder = class {
   }
 };
 
-
 /**
  * The action code URL builder reserved parameters used by FirebaseUI.
  *
  * @enum {string}
  */
 firebaseui.auth.ActionCodeUrlBuilder.Parameter = {
-  ANONYMOUS_UID: 'ui_auid',
-  API_KEY: 'apiKey',
-  FORCE_SAME_DEVICE: 'ui_sd',
-  MODE: 'mode',
-  OOB_CODE: 'oobCode',
-  PROVIDER_ID: 'ui_pid',
-  SESSION_ID: 'ui_sid',
-  TENANT_ID: 'tenantId',
+  ANONYMOUS_UID: "ui_auid",
+  API_KEY: "apiKey",
+  FORCE_SAME_DEVICE: "ui_sd",
+  MODE: "mode",
+  OOB_CODE: "oobCode",
+  PROVIDER_ID: "ui_pid",
+  SESSION_ID: "ui_sid",
+  TENANT_ID: "tenantId",
 };

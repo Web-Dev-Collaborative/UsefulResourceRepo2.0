@@ -1,6 +1,6 @@
 ---
 id: 5900f5091000cf542c51001b
-title: 'Problem 408: Admissible paths through a grid'
+title: "Problem 408: Admissible paths through a grid"
 challengeType: 5
 forumTopicId: 302076
 dashedName: problem-408-admissible-paths-through-a-grid
@@ -32,7 +32,6 @@ assert.strictEqual(euler408(), 299742733);
 
 ```js
 function euler408() {
-
   return true;
 }
 

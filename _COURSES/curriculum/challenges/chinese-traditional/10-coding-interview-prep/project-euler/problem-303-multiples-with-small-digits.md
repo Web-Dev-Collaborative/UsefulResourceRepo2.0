@@ -1,6 +1,6 @@
 ---
 id: 5900f49b1000cf542c50ffae
-title: 'Problem 303: Multiples with small digits'
+title: "Problem 303: Multiples with small digits"
 challengeType: 5
 forumTopicId: 301957
 dashedName: problem-303-multiples-with-small-digits
@@ -30,7 +30,6 @@ assert.strictEqual(euler303(), 1111981904675169);
 
 ```js
 function euler303() {
-
   return true;
 }
 

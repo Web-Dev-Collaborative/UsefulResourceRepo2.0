@@ -19,19 +19,19 @@ dashedName: define-an-action-creator
 函数 `actionCreator` 应该存在。
 
 ```js
-assert(typeof actionCreator === 'function');
+assert(typeof actionCreator === "function");
 ```
 
 运行 `actionCreator` 函数应返回 `action` 对象。
 
 ```js
-assert(typeof action === 'object');
+assert(typeof action === "object");
 ```
 
 返回的 `action` 对象应该有一个值为 `LOGIN` 的 `type` 属性。
 
 ```js
-assert(action.type === 'LOGIN');
+assert(action.type === "LOGIN");
 ```
 
 # --seed--
@@ -40,8 +40,8 @@ assert(action.type === 'LOGIN');
 
 ```js
 const action = {
-  type: 'LOGIN'
-}
+  type: "LOGIN",
+};
 // Define an action creator here:
 ```
 
@@ -49,8 +49,8 @@ const action = {
 
 ```js
 const action = {
-  type: 'LOGIN'
-}
+  type: "LOGIN",
+};
 const actionCreator = () => {
   return action;
 };

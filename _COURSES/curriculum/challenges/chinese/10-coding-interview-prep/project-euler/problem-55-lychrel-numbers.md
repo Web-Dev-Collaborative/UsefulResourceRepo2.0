@@ -1,6 +1,6 @@
 ---
 id: 5900f3a31000cf542c50feb6
-title: 'Problem 55: Lychrel numbers'
+title: "Problem 55: Lychrel numbers"
 challengeType: 5
 forumTopicId: 302166
 dashedName: problem-55-lychrel-numbers
@@ -33,7 +33,7 @@ How many Lychrel numbers are there below `num`?
 `countLychrelNumbers(1000)` should return a number.
 
 ```js
-assert(typeof countLychrelNumbers(1000) === 'number');
+assert(typeof countLychrelNumbers(1000) === "number");
 ```
 
 `countLychrelNumbers(1000)` should return 13.
@@ -72,7 +72,6 @@ assert.strictEqual(countLychrelNumbers(10000), 249);
 
 ```js
 function countLychrelNumbers(num) {
-
   return true;
 }
 
@@ -84,7 +83,7 @@ countLychrelNumbers(10000);
 ```js
 const countLychrelNumbers = (size) => {
   const numReverse = (num) => {
-    return Number(num.toString().split('').reverse().join(''));
+    return Number(num.toString().split("").reverse().join(""));
   };
   const isPalin = (num) => {
     if (numReverse(num) === num) {
@@ -109,5 +108,5 @@ const countLychrelNumbers = (size) => {
     }
   }
   return total;
-}
+};
 ```

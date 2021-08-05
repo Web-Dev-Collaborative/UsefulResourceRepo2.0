@@ -15,19 +15,19 @@ Ecco un esempio per rivedere come farlo:
 L'espressione regolare `/z+/` riconosce la lettera `z` quando appare una o più volte in una riga. Troverà corrispondenze in tutte le seguenti stringhe:
 
 ```js
-"z"
-"zzzzzz"
-"ABCzzzz"
-"zzzzABC"
-"abczzzzzzzzzzzzzzzzzzzzzabc"
+"z";
+"zzzzzz";
+"ABCzzzz";
+"zzzzABC";
+"abczzzzzzzzzzzzzzzzzzzzzabc";
 ```
 
 Ma non trova corrispondenze nelle seguenti stringhe poiché non ci sono caratteri `z`:
 
 ```js
-""
-"ABC"
-"abcabc"
+"";
+"ABC";
+"abcabc";
 ```
 
 # --instructions--
@@ -39,21 +39,21 @@ Scrivi un'espressione regolare greedy che trovi uno o più criminali all'interno
 La tua espressione regolare dovrebbe riconoscere un criminale (`C`) nella stringa `C`
 
 ```js
-assert('C'.match(reCriminals) && 'C'.match(reCriminals)[0] == 'C');
+assert("C".match(reCriminals) && "C".match(reCriminals)[0] == "C");
 ```
 
 La tua espressione regolare dovrebbe riconoscere due criminali (`CC`) nella stringa `CC`
 
 ```js
-assert('CC'.match(reCriminals) && 'CC'.match(reCriminals)[0] == 'CC');
+assert("CC".match(reCriminals) && "CC".match(reCriminals)[0] == "CC");
 ```
 
 La tua espressione regolare dovrebbe riconoscere tre criminali (`CCC`) nella stringa `P1P5P4CCCcP2P6P3`.
 
 ```js
 assert(
-  'P1P5P4CCCcP2P6P3'.match(reCriminals) &&
-    'P1P5P4CCCcP2P6P3'.match(reCriminals)[0] == 'CCC'
+  "P1P5P4CCCcP2P6P3".match(reCriminals) &&
+    "P1P5P4CCCcP2P6P3".match(reCriminals)[0] == "CCC"
 );
 ```
 
@@ -61,33 +61,33 @@ La tua espressione regolare dovrebbe riconoscere cinque criminali (`CCCCC`) nell
 
 ```js
 assert(
-  'P6P2P7P4P5CCCCCP3P1'.match(reCriminals) &&
-    'P6P2P7P4P5CCCCCP3P1'.match(reCriminals)[0] == 'CCCCC'
+  "P6P2P7P4P5CCCCCP3P1".match(reCriminals) &&
+    "P6P2P7P4P5CCCCCP3P1".match(reCriminals)[0] == "CCCCC"
 );
 ```
 
 La tua espressione regolare non dovrebbe riconoscere nessun criminale nella stringa vuota `""`
 
 ```js
-assert(!reCriminals.test(''));
+assert(!reCriminals.test(""));
 ```
 
 La tua espressione regolare non dovrebbe riconoscere nessun criminale nella stringa `P1P2P3`
 
 ```js
-assert(!reCriminals.test('P1P2P3'));
+assert(!reCriminals.test("P1P2P3"));
 ```
 
 La tua espressione regolare dovrebbe riconoscere cinquanta criminali (`CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC`) nella stringa `P2P1P5P4CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCP3`.
 
 ```js
 assert(
-  'P2P1P5P4CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCP3'.match(
+  "P2P1P5P4CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCP3".match(
     reCriminals
   ) &&
-    'P2P1P5P4CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCP3'.match(
+    "P2P1P5P4CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCP3".match(
       reCriminals
-    )[0] == 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
+    )[0] == "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
 );
 ```
 

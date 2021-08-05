@@ -1,33 +1,39 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import React from "react";
+import PropTypes from "prop-types";
+import {
+  ButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
 
 export default class PortButtonDropdown extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      dropdownOpen: false
+      dropdownOpen: false,
     };
   }
 
   toggle() {
     this.setState({
-      dropdownOpen: !this.state.dropdownOpen
+      dropdownOpen: !this.state.dropdownOpen,
     });
   }
 
   renderMenu(items) {
     return (
       <DropdownMenu>
-        { items.map((item, index) =>
-            <DropdownItem key={index} {...item.handlers}> {item.text} </DropdownItem>
-          )
-        }
+        {items.map((item, index) => (
+          <DropdownItem key={index} {...item.handlers}>
+            {" "}
+            {item.text}{" "}
+          </DropdownItem>
+        ))}
       </DropdownMenu>
-    )
+    );
   }
 
   render() {
@@ -35,8 +41,7 @@ export default class PortButtonDropdown extends React.Component {
 
     return (
       <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle caret size="sm">
-        </DropdownToggle>
+        <DropdownToggle caret size="sm"></DropdownToggle>
         {this.renderMenu(items)}
       </ButtonDropdown>
     );
@@ -44,11 +49,11 @@ export default class PortButtonDropdown extends React.Component {
 }
 
 ButtonDropdown.defaultProps = {
-    title: 'Menu',
-    items: []
-  }
+  title: "Menu",
+  items: [],
+};
 
 ButtonDropdown.propTypes = {
-    items: PropTypes.array.isRequired,
-    title: PropTypes.string.isRequired
-  }
+  items: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+};

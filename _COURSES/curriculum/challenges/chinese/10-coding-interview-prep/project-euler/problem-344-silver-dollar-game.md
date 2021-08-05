@@ -1,6 +1,6 @@
 ---
 id: 5900f4c51000cf542c50ffd7
-title: 'Problem 344: Silver dollar game'
+title: "Problem 344: Silver dollar game"
 challengeType: 5
 forumTopicId: 302003
 dashedName: problem-344-silver-dollar-game
@@ -40,7 +40,6 @@ assert.strictEqual(euler344(), 65579304332);
 
 ```js
 function euler344() {
-
   return true;
 }
 

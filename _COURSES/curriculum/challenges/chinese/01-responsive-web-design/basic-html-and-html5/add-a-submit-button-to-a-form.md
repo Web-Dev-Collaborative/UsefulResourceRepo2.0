@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedd08830
 title: 给表单添加提交按钮
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cp2Nkhz'
+videoUrl: "https://scrimba.com/p/pVMPUv/cp2Nkhz"
 forumTopicId: 16627
 dashedName: add-a-submit-button-to-a-form
 ---
@@ -26,20 +26,20 @@ dashedName: add-a-submit-button-to-a-form
 你的 `form` 里面应该有一个 `button`。
 
 ```js
-assert($('form').children('button').length > 0);
+assert($("form").children("button").length > 0);
 ```
 
 按钮的 `type` 属性值应为 `submit`。
 
 ```js
-assert($('button').attr('type') === 'submit');
+assert($("button").attr("type") === "submit");
 ```
 
 提交按钮的文本应为 `Submit` 。
 
 ```js
 assert(
-  $('button')
+  $("button")
     .text()
     .match(/^\s*submit\s*$/gi)
 );
@@ -64,7 +64,11 @@ assert(
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -79,7 +83,7 @@ assert(
     <li>other cats</li>
   </ol>
   <form action="https://www.freecatphotoapp.com/submit-cat-photo">
-    <input type="text" placeholder="cat photo URL">
+    <input type="text" placeholder="cat photo URL" />
   </form>
 </main>
 ```
@@ -91,7 +95,11 @@ assert(
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -106,7 +114,7 @@ assert(
     <li>other cats</li>
   </ol>
   <form action="https://www.freecatphotoapp.com/submit-cat-photo">
-    <input type="text" placeholder="cat photo URL">
+    <input type="text" placeholder="cat photo URL" />
     <button type="submit">Submit</button>
   </form>
 </main>

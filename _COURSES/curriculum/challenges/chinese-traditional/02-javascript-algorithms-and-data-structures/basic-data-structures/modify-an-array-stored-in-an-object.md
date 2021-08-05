@@ -19,7 +19,7 @@ dashedName: modify-an-array-stored-in-an-object
 `user` 對象應該包含 `name`、`age` 和 `data` 三個屬性。
 
 ```js
-assert('name' in user && 'age' in user && 'data' in user);
+assert("name" in user && "age" in user && "data" in user);
 ```
 
 `addFriend` 函數應該接受一個 `user` 對象和一個 `friend` 字符串作爲輸入參數，並將這個字符串插入到 `user` 對象的 `friends` 數組中。
@@ -28,7 +28,7 @@ assert('name' in user && 'age' in user && 'data' in user);
 assert(
   (function () {
     let L1 = user.data.friends.length;
-    addFriend(user, 'Sean');
+    addFriend(user, "Sean");
     let L2 = user.data.friends.length;
     return L2 === L1 + 1;
   })()
@@ -41,10 +41,10 @@ assert(
 assert.deepEqual(
   (function () {
     delete user.data.friends;
-    user.data.friends = ['Sam', 'Kira', 'Tomo'];
-    return addFriend(user, 'Pete');
+    user.data.friends = ["Sam", "Kira", "Tomo"];
+    return addFriend(user, "Pete");
   })(),
-  ['Sam', 'Kira', 'Tomo', 'Pete']
+  ["Sam", "Kira", "Tomo", "Pete"]
 );
 ```
 
@@ -54,55 +54,46 @@ assert.deepEqual(
 
 ```js
 let user = {
-  name: 'Kenneth',
+  name: "Kenneth",
   age: 28,
   data: {
-    username: 'kennethCodesAllDay',
-    joinDate: 'March 26, 2016',
-    organization: 'freeCodeCamp',
-    friends: [
-      'Sam',
-      'Kira',
-      'Tomo'
-    ],
+    username: "kennethCodesAllDay",
+    joinDate: "March 26, 2016",
+    organization: "freeCodeCamp",
+    friends: ["Sam", "Kira", "Tomo"],
     location: {
-      city: 'San Francisco',
-      state: 'CA',
-      country: 'USA'
-    }
-  }
+      city: "San Francisco",
+      state: "CA",
+      country: "USA",
+    },
+  },
 };
 
 function addFriend(userObj, friend) {
   // Only change code below this line
-
   // Only change code above this line
 }
 
-console.log(addFriend(user, 'Pete'));
+console.log(addFriend(user, "Pete"));
 ```
 
 # --solutions--
 
 ```js
 let user = {
-  name: 'Kenneth',
+  name: "Kenneth",
   age: 28,
   data: {
-    username: 'kennethCodesAllDay',
-    joinDate: 'March 26, 2016',
-    organization: 'freeCodeCamp',
-    friends: [
-      'Sam',
-      'Kira',
-      'Tomo'
-    ],
+    username: "kennethCodesAllDay",
+    joinDate: "March 26, 2016",
+    organization: "freeCodeCamp",
+    friends: ["Sam", "Kira", "Tomo"],
     location: {
-      city: 'San Francisco',
-      state: 'CA',
-      country: 'USA'
-    }
-  }
+      city: "San Francisco",
+      state: "CA",
+      country: "USA",
+    },
+  },
 };
 
 function addFriend(userObj, friend) {

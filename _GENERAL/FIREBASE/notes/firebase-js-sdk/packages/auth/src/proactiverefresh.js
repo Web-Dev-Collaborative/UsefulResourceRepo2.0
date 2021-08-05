@@ -27,7 +27,6 @@ goog.require('fireauth.util');
 goog.require('goog.Promise');
 goog.require('goog.Timer');
 
-
 /**
  * The helper utility used to proactively refresh a certain operation based on
  * certain constraints with an exponential backoff retrial policy when
@@ -50,13 +49,14 @@ goog.require('goog.Timer');
  *     visible, the operation will block until the app is visible and then run.
  * @constructor @struct @final
  */
-fireauth.ProactiveRefresh = function(
-    operation,
-    retryPolicy,
-    getWaitDuration,
-    lowerBound,
-    upperBound,
-    opt_runInBackground) {
+fireauth.ProactiveRefresh = function (
+  operation,
+  retryPolicy,
+  getWaitDuration,
+  lowerBound,
+  upperBound,
+  opt_runInBackground
+) {
   /**
    * @const @private {!function():!goog.Promise} The promise returning operation
    *     to run.
@@ -102,16 +102,14 @@ fireauth.ProactiveRefresh = function(
   }
 };
 
-
 /** Starts the proactive refresh based on the current configuration. */
-fireauth.ProactiveRefresh.prototype.start = function() {
+fireauth.ProactiveRefresh.prototype.start = function () {
   // Set the next error wait interval to the lower bound. On each consecutive
   // error, this will double in value until it reaches the upper bound.
   this.nextErrorWaitInterval_ = this.lowerBound_;
   // Start proactive refresh with clean slate (successful status).
   this.process_(true);
 };
-
 
 /**
  * Returns the wait duration before the next run depending on the last run
@@ -122,7 +120,7 @@ fireauth.ProactiveRefresh.prototype.start = function() {
  * @return {number} The wait time for the next run.
  * @private
  */
-fireauth.ProactiveRefresh.prototype.getNextRun_ = function(hasSucceeded) {
+fireauth.ProactiveRefresh.prototype.getNextRun_ = function (hasSucceeded) {
   if (hasSucceeded) {
     // If last operation succeeded, reset next error wait interval and return
     // the default wait duration.
@@ -135,13 +133,12 @@ fireauth.ProactiveRefresh.prototype.getNextRun_ = function(hasSucceeded) {
     // Double interval for next consecutive error.
     this.nextErrorWaitInterval_ *= 2;
     // Make sure next wait interval does not exceed the maximum upper bound.
-    if (this.nextErrorWaitInterval_  > this.upperBound_) {
-      this.nextErrorWaitInterval_  = this.upperBound_;
+    if (this.nextErrorWaitInterval_ > this.upperBound_) {
+      this.nextErrorWaitInterval_ = this.upperBound_;
     }
     return currentErrorWaitInterval;
   }
 };
-
 
 /**
  * Processes one refresh call and sets the timer for the next call based on
@@ -149,37 +146,36 @@ fireauth.ProactiveRefresh.prototype.getNextRun_ = function(hasSucceeded) {
  * @param {boolean} hasSucceeded Whether last run succeeded.
  * @private
  */
-fireauth.ProactiveRefresh.prototype.process_ = function(hasSucceeded) {
+fireauth.ProactiveRefresh.prototype.process_ = function (hasSucceeded) {
   var self = this;
   // Stop any other pending operation.
   this.stop();
   // Wait for next scheduled run based on whether an error occurred during last
   // run.
   this.pending_ = goog.Timer.promise(this.getNextRun_(hasSucceeded))
-      .then(function() {
-        // Block for conditions (if app is required to be visible) to be ready.
-        return self.waitUntilReady_();
-       })
-       .then(function() {
-         // Run the operation.
-         return self.operation_();
-       })
-      .then(function() {
-         // If successful, try again on next cycle with no previous error
-         // passed.
-         self.process_(true);
-       })
-      .thenCatch(function(error) {
-         // If an error occurs, only rerun when the error meets the retry
-         // policy.
-         if (self.retryPolicy_(error)) {
-           // Should retry with error to trigger exponentional backoff.
-           self.process_(false);
-         }
-         // Any other error is considered unrecoverable. Do not try again.
-       });
+    .then(function () {
+      // Block for conditions (if app is required to be visible) to be ready.
+      return self.waitUntilReady_();
+    })
+    .then(function () {
+      // Run the operation.
+      return self.operation_();
+    })
+    .then(function () {
+      // If successful, try again on next cycle with no previous error
+      // passed.
+      self.process_(true);
+    })
+    .thenCatch(function (error) {
+      // If an error occurs, only rerun when the error meets the retry
+      // policy.
+      if (self.retryPolicy_(error)) {
+        // Should retry with error to trigger exponentional backoff.
+        self.process_(false);
+      }
+      // Any other error is considered unrecoverable. Do not try again.
+    });
 };
-
 
 /**
  * Returns a promise which resolves when the current tab is visible.
@@ -188,7 +184,7 @@ fireauth.ProactiveRefresh.prototype.process_ = function(hasSucceeded) {
  *     that requirement is not needed.
  * @private
  */
-fireauth.ProactiveRefresh.prototype.waitUntilReady_ = function() {
+fireauth.ProactiveRefresh.prototype.waitUntilReady_ = function () {
   // Wait until app is in foreground if required.
   if (this.runInBackground_) {
     // If runs in background, resolve quickly.
@@ -199,9 +195,8 @@ fireauth.ProactiveRefresh.prototype.waitUntilReady_ = function() {
   }
 };
 
-
 /** Stops the proactive refresh from running again. */
-fireauth.ProactiveRefresh.prototype.stop = function() {
+fireauth.ProactiveRefresh.prototype.stop = function () {
   // If there is a pending promise.
   if (this.pending_) {
     // Cancel the pending promise and nullify it.
@@ -210,8 +205,7 @@ fireauth.ProactiveRefresh.prototype.stop = function() {
   }
 };
 
-
 /** @return {boolean} Whether the proactive refresh is running or not. */
-fireauth.ProactiveRefresh.prototype.isRunning = function() {
+fireauth.ProactiveRefresh.prototype.isRunning = function () {
   return !!this.pending_;
 };

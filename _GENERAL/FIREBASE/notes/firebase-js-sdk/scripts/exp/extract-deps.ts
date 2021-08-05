@@ -38,8 +38,7 @@ const argv = yargs.options({
   bundle: {
     type: 'string',
     demandOption: true,
-    desc:
-      'The location of transpiled JavaScript bundle that contains all code for the SDK'
+    desc: 'The location of transpiled JavaScript bundle that contains all code for the SDK'
   },
   output: {
     type: 'string',

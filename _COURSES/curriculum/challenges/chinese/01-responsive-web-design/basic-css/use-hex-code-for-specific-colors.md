@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08726
 title: 使用十六进制编码获得指定颜色
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c8W9mHM'
+videoUrl: "https://scrimba.com/c/c8W9mHM"
 forumTopicId: 18350
 dashedName: use-hex-code-for-specific-colors
 ---
@@ -30,7 +30,7 @@ body {
 `body` 元素的背景颜色应为黑色。
 
 ```js
-assert($('body').css('background-color') === 'rgb(0, 0, 0)');
+assert($("body").css("background-color") === "rgb(0, 0, 0)");
 ```
 
 应使用 `hex code` 来替换 `black`。

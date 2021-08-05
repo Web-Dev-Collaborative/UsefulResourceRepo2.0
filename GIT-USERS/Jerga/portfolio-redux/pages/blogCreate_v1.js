@@ -41,7 +41,6 @@
 //   CodeBlockButton
 // } from "draft-js-buttons";
 
-
 // // import 'react-quill/dist/quill.snow.css';
 // // import 'react-quill/dist/quill.bubble.css';
 
@@ -103,7 +102,6 @@
 //   render() {
 //     const { editorState } = this.state;
 
-
 //     return (
 //       <BaseLayout>
 //         <section className="blogCreate-page">
@@ -157,4 +155,3 @@
 // }
 
 // export default BlogCreate;
-

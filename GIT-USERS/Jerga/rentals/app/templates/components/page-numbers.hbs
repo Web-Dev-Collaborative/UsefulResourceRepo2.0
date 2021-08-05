@@ -22,7 +22,11 @@
         </li>
       {{else}}
         <li class="page-item">
-          <a class="page-link" href="#" {{action "pageClicked" item.page}}>{{item.page}}</a>
+          <a
+            class="page-link"
+            href="#"
+            {{action "pageClicked" item.page}}
+          >{{item.page}}</a>
         </li>
       {{/if}}
     {{/each}}

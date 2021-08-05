@@ -14,21 +14,20 @@
 
 /** @fileoverview Defines all configurations used by FirebaseUI widget. */
 
-goog.module('firebaseui.auth.widget.Config');
+goog.module("firebaseui.auth.widget.Config");
 goog.module.declareLegacyNamespace();
 
-const AuthConfig = goog.require('firebaseui.auth.Config');
-const AuthUIError = goog.require('firebaseui.auth.AuthUIError');
-const PhoneNumber = goog.require('firebaseui.auth.PhoneNumber');
-const Uri = goog.require('goog.Uri');
-const country = goog.require('firebaseui.auth.data.country');
-const googArray = goog.require('goog.array');
-const googObject = goog.require('goog.object');
-const idp = goog.require('firebaseui.auth.idp');
-const log = goog.require('firebaseui.auth.log');
-const util = goog.require('firebaseui.auth.util');
-const utils = goog.require('goog.uri.utils');
-
+const AuthConfig = goog.require("firebaseui.auth.Config");
+const AuthUIError = goog.require("firebaseui.auth.AuthUIError");
+const PhoneNumber = goog.require("firebaseui.auth.PhoneNumber");
+const Uri = goog.require("goog.Uri");
+const country = goog.require("firebaseui.auth.data.country");
+const googArray = goog.require("goog.array");
+const googObject = goog.require("goog.object");
+const idp = goog.require("firebaseui.auth.idp");
+const log = goog.require("firebaseui.auth.log");
+const util = goog.require("firebaseui.auth.util");
+const utils = goog.require("goog.uri.utils");
 
 /** Application configuration settings. */
 class Config {
@@ -37,16 +36,14 @@ class Config {
     this.config_ = new AuthConfig();
     // Define FirebaseUI widget configurations and convenient getters.
     // TODO: This is deprecated and should be removed by Jan 31st, 2021.
-    this.config_.define('acUiConfig');
-    this.config_.define('autoUpgradeAnonymousUsers');
-    this.config_.define('callbacks');
+    this.config_.define("acUiConfig");
+    this.config_.define("autoUpgradeAnonymousUsers");
+    this.config_.define("callbacks");
     /**
      * Determines which credential helper to use. By default,
      * no credentialHelper is selected.
      */
-    this.config_.define(
-        'credentialHelper',
-        Config.CredentialHelper.NONE);
+    this.config_.define("credentialHelper", Config.CredentialHelper.NONE);
     /**
      * Determines whether to immediately redirect to the provider's site or
      * instead show the default 'Sign in with Provider' button when there
@@ -55,29 +52,31 @@ class Config {
      * federated provider (like 'google.com') and signInFlow must be set to
      * 'redirect'.
      */
-    this.config_.define('immediateFederatedRedirect', false);
-    this.config_.define('popupMode', false);
-    this.config_.define('privacyPolicyUrl');
+    this.config_.define("immediateFederatedRedirect", false);
+    this.config_.define("popupMode", false);
+    this.config_.define("privacyPolicyUrl");
     /** Determines the redirect URL query key. */
     this.config_.define(
-        'queryParameterForSignInSuccessUrl', 'signInSuccessUrl');
-    this.config_.define('queryParameterForWidgetMode', 'mode');
+      "queryParameterForSignInSuccessUrl",
+      "signInSuccessUrl"
+    );
+    this.config_.define("queryParameterForWidgetMode", "mode");
     /**
      * Determines the sign-in flow, 'popup' or 'redirect'. The former will use
      * signInWithPopup where as the latter will use the default
      * signInWithRedirect when a federated sign-in is triggered.
      */
-    this.config_.define('signInFlow');
+    this.config_.define("signInFlow");
     /**
      * Determines the list of IdPs for handling federated sign-in as well as
      * password account sign-up explicitly. The developer can also request
      * additional scopes.
      */
-    this.config_.define('signInOptions');
-    this.config_.define('signInSuccessUrl');
-    this.config_.define('siteName');
-    this.config_.define('tosUrl');
-    this.config_.define('widgetUrl');
+    this.config_.define("signInOptions");
+    this.config_.define("signInSuccessUrl");
+    this.config_.define("siteName");
+    this.config_.define("tosUrl");
+    this.config_.define("widgetUrl");
   }
 
   /**
@@ -87,7 +86,7 @@ class Config {
    * @return {string} The URL of the callback widget.
    */
   getRequiredWidgetUrl(mode = undefined) {
-    const url = /** @type {string} */ (this.config_.getRequired('widgetUrl'));
+    const url = /** @type {string} */ (this.config_.getRequired("widgetUrl"));
     return this.widgetUrlForMode_(url, mode);
   }
 
@@ -99,10 +98,10 @@ class Config {
    * @return {string} The URL of the callback widget.
    */
   getWidgetUrl(mode = undefined) {
-    const url = /** @type {string|undefined} */ (
-        this.config_.get('widgetUrl')) ||
-        // If no widget URL is provided, use the current one.
-        util.getCurrentUrl();
+    const url =
+      /** @type {string|undefined} */ (this.config_.get("widgetUrl")) ||
+      // If no widget URL is provided, use the current one.
+      util.getCurrentUrl();
     return this.widgetUrlForMode_(url, mode);
   }
 
@@ -111,8 +110,7 @@ class Config {
    * @return {string} The callback URL.
    */
   getIdpCallbackUrl() {
-    return Uri.resolve(
-        window.location.href, this.getWidgetUrl()).toString();
+    return Uri.resolve(window.location.href, this.getWidgetUrl()).toString();
   }
 
   /**
@@ -132,20 +130,23 @@ class Config {
 
   /** @return {string} The sign-in URL of the site. */
   getSignInSuccessUrl() {
-    return /** @type {string} */ (this.config_.get('signInSuccessUrl'));
+    return /** @type {string} */ (this.config_.get("signInSuccessUrl"));
   }
 
   /** @return {boolean} Whether to auto upgrade anonymous users. */
   autoUpgradeAnonymousUsers() {
-    const autoUpgradeAnonymousUsers =
-        !!this.config_.get('autoUpgradeAnonymousUsers');
+    const autoUpgradeAnonymousUsers = !!this.config_.get(
+      "autoUpgradeAnonymousUsers"
+    );
     // Confirm signInFailure callback is provided when anonymous upgrade is
     // enabled. This is required to provide a means of recovery for merge
     // conflict flows.
     if (autoUpgradeAnonymousUsers && !this.getSignInFailureCallback()) {
-      log.error('Missing "signInFailure" callback: ' +
+      log.error(
+        'Missing "signInFailure" callback: ' +
           '"signInFailure" callback needs to be provided when ' +
-          '"autoUpgradeAnonymousUsers" is set to true.');
+          '"autoUpgradeAnonymousUsers" is set to true.'
+      );
     }
     return autoUpgradeAnonymousUsers;
   }
@@ -160,16 +161,17 @@ class Config {
    * @private
    */
   getSignInOptions_() {
-    const signInOptions = this.config_.get('signInOptions') || [];
+    const signInOptions = this.config_.get("signInOptions") || [];
     const normalizedOptions = [];
     for (let i = 0; i < signInOptions.length; i++) {
       const providerConfig = signInOptions[i];
 
       // If the config is not in object format, convert to object format.
-      const normalizedConfig = goog.isObject(providerConfig) ?
-          providerConfig : {'provider': providerConfig};
+      const normalizedConfig = goog.isObject(providerConfig)
+        ? providerConfig
+        : { provider: providerConfig };
 
-      if (normalizedConfig['provider']) {
+      if (normalizedConfig["provider"]) {
         normalizedOptions.push(normalizedConfig);
       }
     }
@@ -189,7 +191,7 @@ class Config {
     // For each sign-in option.
     for (let i = 0; i < signInOptions.length; i++) {
       // Check if current option matches provider ID.
-      if (signInOptions[i]['provider'] === providerId) {
+      if (signInOptions[i]["provider"] === providerId) {
         return signInOptions[i];
       }
     }
@@ -202,7 +204,9 @@ class Config {
    */
   getProviders() {
     return googArray.map(
-        this.getSignInOptions_(), (option) => option['provider']);
+      this.getSignInOptions_(),
+      (option) => option["provider"]
+    );
   }
 
   /**
@@ -215,7 +219,7 @@ class Config {
     const providerConfigs = this.getProviderConfigs();
     for (let i = 0; i < providerConfigs.length; i++) {
       // Check if current option matches provider ID.
-      if (providerConfigs[i]['providerId'] === providerId) {
+      if (providerConfigs[i]["providerId"] === providerId) {
         return providerConfigs[i];
       }
     }
@@ -229,22 +233,23 @@ class Config {
    */
   getProviderConfigs() {
     return googArray.map(this.getSignInOptions_(), (option) => {
-      if (idp.isSupportedProvider(option['provider']) ||
-          googArray.contains(
-              UI_SUPPORTED_PROVIDERS,
-              option['provider'])) {
+      if (
+        idp.isSupportedProvider(option["provider"]) ||
+        googArray.contains(UI_SUPPORTED_PROVIDERS, option["provider"])
+      ) {
         // The login hint key is also automatically set for built-in providers
         // that support it.
         const providerConfig = {
-          providerId: option['provider'],
+          providerId: option["provider"],
           // Since developers may be using G-Suite for Google sign in or
           // want to label email/password as their own provider, we should
           // allow customization of these attributes.
-          providerName: option['providerName'] || null,
-          fullLabel: option['fullLabel'] || null,
-          buttonColor: option['buttonColor'] || null,
-          iconUrl: option['iconUrl'] ?
-              util.sanitizeUrl(option['iconUrl']) : null,
+          providerName: option["providerName"] || null,
+          fullLabel: option["fullLabel"] || null,
+          buttonColor: option["buttonColor"] || null,
+          iconUrl: option["iconUrl"]
+            ? util.sanitizeUrl(option["iconUrl"])
+            : null,
         };
         for (const key in providerConfig) {
           if (providerConfig[key] === null) {
@@ -254,13 +259,14 @@ class Config {
         return providerConfig;
       } else {
         return {
-          providerId: option['provider'],
-          providerName: option['providerName'] || null,
-          fullLabel: option['fullLabel'] || null,
-          buttonColor: option['buttonColor'] || null,
-          iconUrl: option['iconUrl'] ?
-              util.sanitizeUrl(option['iconUrl']) : null,
-          loginHintKey: option['loginHintKey'] || null,
+          providerId: option["provider"],
+          providerName: option["providerName"] || null,
+          fullLabel: option["fullLabel"] || null,
+          buttonColor: option["buttonColor"] || null,
+          iconUrl: option["iconUrl"]
+            ? util.sanitizeUrl(option["iconUrl"])
+            : null,
+          loginHintKey: option["loginHintKey"] || null,
         };
       }
     });
@@ -271,11 +277,14 @@ class Config {
    */
   getGoogleYoloClientId() {
     const signInOptions = this.getSignInOptionsForProvider_(
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID);
-    if (signInOptions &&
-        signInOptions['clientId'] &&
-        this.getCredentialHelper() === Config.CredentialHelper.GOOGLE_YOLO) {
-      return signInOptions['clientId'] || null;
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID
+    );
+    if (
+      signInOptions &&
+      signInOptions["clientId"] &&
+      this.getCredentialHelper() === Config.CredentialHelper.GOOGLE_YOLO
+    ) {
+      return signInOptions["clientId"] || null;
     }
     return null;
   }
@@ -286,10 +295,13 @@ class Config {
   isEmailSignUpDisabled() {
     // This is only applicable to email.
     const emailSignInOption = this.getSignInOptionsForProvider_(
-        firebase.auth.EmailAuthProvider.PROVIDER_ID);
-    return !!(emailSignInOption &&
-              emailSignInOption['disableSignUp'] &&
-              emailSignInOption['disableSignUp']['status']);
+      firebase.auth.EmailAuthProvider.PROVIDER_ID
+    );
+    return !!(
+      emailSignInOption &&
+      emailSignInOption["disableSignUp"] &&
+      emailSignInOption["disableSignUp"]["status"]
+    );
   }
 
   /**
@@ -301,11 +313,14 @@ class Config {
     // is disabled. Auto sign-in should be manually disabled.
     // Get Google custom parameters.
     const googleCustomParameters = this.getProviderCustomParameters(
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID);
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID
+    );
     // Google custom parameters must have prompt set to select_account,
     // otherwise account selection prompt is considered disabled.
-    return !!(googleCustomParameters &&
-              googleCustomParameters['prompt'] === 'select_account');
+    return !!(
+      googleCustomParameters &&
+      googleCustomParameters["prompt"] === "select_account"
+    );
   }
 
   /**
@@ -320,9 +335,9 @@ class Config {
     // For each supported provider.
     googArray.forEach(this.getSignInOptions_(), (option) => {
       // Check for matching authMethod.
-      if (option['authMethod'] === authMethod) {
+      if (option["authMethod"] === authMethod) {
         // Get the providerId for that provider.
-        providerId = option['provider'];
+        providerId = option["provider"];
       }
     });
     // Return the corresponding provider ID.
@@ -336,32 +351,34 @@ class Config {
   getRecaptchaParameters() {
     let recaptchaParameters = null;
     googArray.forEach(this.getSignInOptions_(), (option) => {
-      if (option['provider'] == firebase.auth.PhoneAuthProvider.PROVIDER_ID &&
-          // Confirm valid object.
-          goog.isObject(option['recaptchaParameters']) &&
-          !Array.isArray(option['recaptchaParameters'])) {
+      if (
+        option["provider"] == firebase.auth.PhoneAuthProvider.PROVIDER_ID &&
+        // Confirm valid object.
+        goog.isObject(option["recaptchaParameters"]) &&
+        !Array.isArray(option["recaptchaParameters"])
+      ) {
         // Clone original object.
-        recaptchaParameters = googObject.clone(option['recaptchaParameters']);
+        recaptchaParameters = googObject.clone(option["recaptchaParameters"]);
       }
     });
     if (recaptchaParameters) {
       // Keep track of all blacklisted keys passed by the developer.
       const blacklistedKeys = [];
       // Go over all blacklisted keys and remove them from the original object.
-      googArray.forEach(
-          BLACKLISTED_RECAPTCHA_KEYS,
-          (key) => {
-            if (typeof recaptchaParameters[key] !== 'undefined') {
-              blacklistedKeys.push(key);
-              delete recaptchaParameters[key];
-            }
-          });
+      googArray.forEach(BLACKLISTED_RECAPTCHA_KEYS, (key) => {
+        if (typeof recaptchaParameters[key] !== "undefined") {
+          blacklistedKeys.push(key);
+          delete recaptchaParameters[key];
+        }
+      });
       // Log a warning for invalid keys.
       // This will show on each call.
       if (blacklistedKeys.length) {
         log.warning(
-            'The following provided "recaptchaParameters" keys are not ' +
-            'allowed: ' + blacklistedKeys.join(', '));
+          'The following provided "recaptchaParameters" keys are not ' +
+            "allowed: " +
+            blacklistedKeys.join(", ")
+        );
       }
     }
     return recaptchaParameters;
@@ -372,9 +389,14 @@ class Config {
    */
   getEmailProviderAdminEmail() {
     const emailSignInOption = this.getSignInOptionsForProvider_(
-        firebase.auth.EmailAuthProvider.PROVIDER_ID);
-    return (emailSignInOption && emailSignInOption['disableSignUp'] &&
-            emailSignInOption['disableSignUp']['adminEmail']) || null;
+      firebase.auth.EmailAuthProvider.PROVIDER_ID
+    );
+    return (
+      (emailSignInOption &&
+        emailSignInOption["disableSignUp"] &&
+        emailSignInOption["disableSignUp"]["adminEmail"]) ||
+      null
+    );
   }
 
   /**
@@ -382,15 +404,16 @@ class Config {
    */
   getEmailProviderHelperLink() {
     const emailSignInOption = this.getSignInOptionsForProvider_(
-        firebase.auth.EmailAuthProvider.PROVIDER_ID);
-    if (emailSignInOption && emailSignInOption['disableSignUp']) {
-      const helpLink = emailSignInOption['disableSignUp']['helpLink'] || null;
-      if (helpLink && typeof helpLink === 'string') {
+      firebase.auth.EmailAuthProvider.PROVIDER_ID
+    );
+    if (emailSignInOption && emailSignInOption["disableSignUp"]) {
+      const helpLink = emailSignInOption["disableSignUp"]["helpLink"] || null;
+      if (helpLink && typeof helpLink === "string") {
         return () => {
           util.open(
-              /** @type {string} */ (helpLink),
-              util.isCordovaInAppBrowserInstalled() ?
-              '_system' : '_blank');
+            /** @type {string} */ (helpLink),
+            util.isCordovaInAppBrowserInstalled() ? "_system" : "_blank"
+          );
         };
       }
     }
@@ -406,7 +429,7 @@ class Config {
   getProviderAdditionalScopes(providerId) {
     // Get provided sign-in options for specified provider.
     const signInOptions = this.getSignInOptionsForProvider_(providerId);
-    const scopes = signInOptions && signInOptions['scopes'];
+    const scopes = signInOptions && signInOptions["scopes"];
     return Array.isArray(scopes) ? scopes : [];
   }
 
@@ -419,18 +442,18 @@ class Config {
     // Get provided sign-in options for specified provider.
     const signInOptions = this.getSignInOptionsForProvider_(providerId);
     // Get customParameters for that provider if available.
-    const customParameters = signInOptions && signInOptions['customParameters'];
+    const customParameters = signInOptions && signInOptions["customParameters"];
     // Custom parameters must be an object.
     if (goog.isObject(customParameters)) {
       // Clone original custom parameters.
       const clonedCustomParameters = googObject.clone(customParameters);
       // Delete login_hint from Google provider as it could break the flow.
       if (providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID) {
-        delete clonedCustomParameters['login_hint'];
+        delete clonedCustomParameters["login_hint"];
       }
       // Delete login from GitHub provider as it could break the flow.
       if (providerId === firebase.auth.GithubAuthProvider.PROVIDER_ID) {
-        delete clonedCustomParameters['login'];
+        delete clonedCustomParameters["login"];
       }
       return clonedCustomParameters;
     }
@@ -444,16 +467,21 @@ class Config {
    */
   getPhoneAuthDefaultNationalNumber() {
     const signInOptions = this.getSignInOptionsForProvider_(
-        firebase.auth.PhoneAuthProvider.PROVIDER_ID);
+      firebase.auth.PhoneAuthProvider.PROVIDER_ID
+    );
     // Check if loginHint passed. If so, get the national number from there.
     // If no defaultNationalNumber passed, use this value instead.
     let defaultPhoneNumber = null;
-    if (signInOptions && typeof (signInOptions['loginHint']) === 'string') {
+    if (signInOptions && typeof signInOptions["loginHint"] === "string") {
       defaultPhoneNumber = PhoneNumber.fromString(
-          /** @type {string} */ (signInOptions['loginHint']));
+        /** @type {string} */ (signInOptions["loginHint"])
+      );
     }
-    return (signInOptions && signInOptions['defaultNationalNumber']) ||
-        (defaultPhoneNumber && defaultPhoneNumber.nationalNumber) || null;
+    return (
+      (signInOptions && signInOptions["defaultNationalNumber"]) ||
+      (defaultPhoneNumber && defaultPhoneNumber.nationalNumber) ||
+      null
+    );
   }
 
   /**
@@ -463,19 +491,24 @@ class Config {
    */
   getPhoneAuthDefaultCountry() {
     const signInOptions = this.getSignInOptionsForProvider_(
-        firebase.auth.PhoneAuthProvider.PROVIDER_ID);
-    const iso2 = signInOptions && signInOptions['defaultCountry'] || null;
+      firebase.auth.PhoneAuthProvider.PROVIDER_ID
+    );
+    const iso2 = (signInOptions && signInOptions["defaultCountry"]) || null;
     const countries = iso2 && country.getCountriesByIso2(iso2);
     // Check if loginHint passed. If so, get the country ID from there.
     // If no defaultCountry passed, use this value instead.
     let defaultPhoneNumber = null;
-    if (signInOptions && typeof (signInOptions['loginHint']) === 'string') {
+    if (signInOptions && typeof signInOptions["loginHint"] === "string") {
       defaultPhoneNumber = PhoneNumber.fromString(
-          /** @type {string} */ (signInOptions['loginHint']));
+        /** @type {string} */ (signInOptions["loginHint"])
+      );
     }
     // If there are multiple entries, pick the first one.
-    return (countries && countries[0]) ||
-        (defaultPhoneNumber && defaultPhoneNumber.getCountry()) || null;
+    return (
+      (countries && countries[0]) ||
+      (defaultPhoneNumber && defaultPhoneNumber.getCountry()) ||
+      null
+    );
   }
 
   /**
@@ -485,26 +518,31 @@ class Config {
    */
   getPhoneAuthAvailableCountries() {
     const signInOptions = this.getSignInOptionsForProvider_(
-        firebase.auth.PhoneAuthProvider.PROVIDER_ID);
+      firebase.auth.PhoneAuthProvider.PROVIDER_ID
+    );
     if (!signInOptions) {
       return null;
     }
-    const whitelistedCountries = signInOptions['whitelistedCountries'];
-    const blacklistedCountries = signInOptions['blacklistedCountries'];
+    const whitelistedCountries = signInOptions["whitelistedCountries"];
+    const blacklistedCountries = signInOptions["blacklistedCountries"];
     // First validate the input.
-    if (typeof whitelistedCountries !== 'undefined' &&
-        (!Array.isArray(whitelistedCountries) ||
-         whitelistedCountries.length == 0)) {
-      throw new Error('WhitelistedCountries must be a non-empty array.');
+    if (
+      typeof whitelistedCountries !== "undefined" &&
+      (!Array.isArray(whitelistedCountries) || whitelistedCountries.length == 0)
+    ) {
+      throw new Error("WhitelistedCountries must be a non-empty array.");
     }
-    if (typeof blacklistedCountries !== 'undefined' &&
-        (!Array.isArray(blacklistedCountries))) {
-      throw new Error('BlacklistedCountries must be an array.');
+    if (
+      typeof blacklistedCountries !== "undefined" &&
+      !Array.isArray(blacklistedCountries)
+    ) {
+      throw new Error("BlacklistedCountries must be an array.");
     }
     // If both allowlist and disallowlist are provided, throw error.
     if (whitelistedCountries && blacklistedCountries) {
       throw new Error(
-          'Both whitelistedCountries and blacklistedCountries are provided.');
+        "Both whitelistedCountries and blacklistedCountries are provided."
+      );
     }
     // If no allowlist or disallowlist provided, return all available countries.
     if (!whitelistedCountries && !blacklistedCountries) {
@@ -516,33 +554,38 @@ class Config {
       // Allowlist is provided.
       const whitelistedCountryMap = {};
       for (let i = 0; i < whitelistedCountries.length; i++) {
-        countries = country
-            .getCountriesByE164OrIsoCode(whitelistedCountries[i]);
+        countries = country.getCountriesByE164OrIsoCode(
+          whitelistedCountries[i]
+        );
         // Remove duplicate and overlaps by putting into a map.
         for (let j = 0; j < countries.length; j++) {
           whitelistedCountryMap[countries[j].e164_key] = countries[j];
         }
       }
       for (let countryKey in whitelistedCountryMap) {
-         if (whitelistedCountryMap.hasOwnProperty(countryKey)) {
-           availableCountries.push(whitelistedCountryMap[countryKey]);
-         }
+        if (whitelistedCountryMap.hasOwnProperty(countryKey)) {
+          availableCountries.push(whitelistedCountryMap[countryKey]);
+        }
       }
       return availableCountries;
     } else {
       const blacklistedCountryMap = {};
       for (let i = 0; i < blacklistedCountries.length; i++) {
-        countries = country
-            .getCountriesByE164OrIsoCode(blacklistedCountries[i]);
+        countries = country.getCountriesByE164OrIsoCode(
+          blacklistedCountries[i]
+        );
         // Remove duplicate and overlaps by putting into a map.
         for (let j = 0; j < countries.length; j++) {
           blacklistedCountryMap[countries[j].e164_key] = countries[j];
         }
       }
       for (let k = 0; k < country.COUNTRY_LIST.length; k++) {
-        if (!googObject.containsKey(
-                blacklistedCountryMap,
-                country.COUNTRY_LIST[k].e164_key)) {
+        if (
+          !googObject.containsKey(
+            blacklistedCountryMap,
+            country.COUNTRY_LIST[k].e164_key
+          )
+        ) {
           availableCountries.push(country.COUNTRY_LIST[k]);
         }
       }
@@ -553,18 +596,20 @@ class Config {
   /** @return {string} The query parameter name for widget mode. */
   getQueryParameterForWidgetMode() {
     return /** @type {string} */ (
-        this.config_.getRequired('queryParameterForWidgetMode'));
+      this.config_.getRequired("queryParameterForWidgetMode")
+    );
   }
 
   /** @return {string} The redirect URL query parameter. */
   getQueryParameterForSignInSuccessUrl() {
     return /** @type {string} */ (
-        this.config_.getRequired('queryParameterForSignInSuccessUrl'));
+      this.config_.getRequired("queryParameterForSignInSuccessUrl")
+    );
   }
 
   /** @return {string} The name of the website. */
   getSiteName() {
-    return /** @type {string} */ (this.config_.getRequired('siteName'));
+    return /** @type {string} */ (this.config_.getRequired("siteName"));
   }
 
   /**
@@ -572,21 +617,22 @@ class Config {
    *     wraps the URL with a callback function.
    */
   getTosUrl() {
-    const tosUrl = this.config_.get('tosUrl') || null;
-    const privacyPolicyUrl = this.config_.get('privacyPolicyUrl') || null;
+    const tosUrl = this.config_.get("tosUrl") || null;
+    const privacyPolicyUrl = this.config_.get("privacyPolicyUrl") || null;
     if (tosUrl && !privacyPolicyUrl) {
       log.warning(
-          'Privacy Policy URL is missing, the link will not be displayed.');
+        "Privacy Policy URL is missing, the link will not be displayed."
+      );
     }
     if (tosUrl && privacyPolicyUrl) {
-      if (typeof tosUrl === 'function') {
+      if (typeof tosUrl === "function") {
         return /** @type {function()} */ (tosUrl);
-      } else if (typeof tosUrl === 'string') {
+      } else if (typeof tosUrl === "string") {
         return () => {
           util.open(
-              /** @type {string} */ (tosUrl),
-              util.isCordovaInAppBrowserInstalled() ?
-              '_system' : '_blank');
+            /** @type {string} */ (tosUrl),
+            util.isCordovaInAppBrowserInstalled() ? "_system" : "_blank"
+          );
         };
       }
     }
@@ -598,21 +644,22 @@ class Config {
    * provided, wraps the URL with a callback function.
    */
   getPrivacyPolicyUrl() {
-    const tosUrl = this.config_.get('tosUrl') || null;
-    const privacyPolicyUrl = this.config_.get('privacyPolicyUrl') || null;
+    const tosUrl = this.config_.get("tosUrl") || null;
+    const privacyPolicyUrl = this.config_.get("privacyPolicyUrl") || null;
     if (privacyPolicyUrl && !tosUrl) {
       log.warning(
-          'Term of Service URL is missing, the link will not be displayed.');
+        "Term of Service URL is missing, the link will not be displayed."
+      );
     }
     if (tosUrl && privacyPolicyUrl) {
-      if (typeof privacyPolicyUrl === 'function') {
-          return /** @type {function()} */ (privacyPolicyUrl);
-      } else if (typeof privacyPolicyUrl === 'string') {
+      if (typeof privacyPolicyUrl === "function") {
+        return /** @type {function()} */ (privacyPolicyUrl);
+      } else if (typeof privacyPolicyUrl === "string") {
         return () => {
           util.open(
-              /** @type {string} */ (privacyPolicyUrl),
-              util.isCordovaInAppBrowserInstalled() ?
-              '_system' : '_blank');
+            /** @type {string} */ (privacyPolicyUrl),
+            util.isCordovaInAppBrowserInstalled() ? "_system" : "_blank"
+          );
         };
       }
     }
@@ -626,11 +673,14 @@ class Config {
   isDisplayNameRequired() {
     // Get provided sign-in options for specified provider.
     const signInOptions = this.getSignInOptionsForProvider_(
-        firebase.auth.EmailAuthProvider.PROVIDER_ID);
+      firebase.auth.EmailAuthProvider.PROVIDER_ID
+    );
 
-    if (signInOptions &&
-        typeof signInOptions['requireDisplayName'] !== 'undefined') {
-      return /** @type {boolean} */ (!!signInOptions['requireDisplayName']);
+    if (
+      signInOptions &&
+      typeof signInOptions["requireDisplayName"] !== "undefined"
+    ) {
+      return /** @type {boolean} */ (!!signInOptions["requireDisplayName"]);
     }
     return true;
   }
@@ -641,10 +691,14 @@ class Config {
   isEmailLinkSignInAllowed() {
     // Get provided sign-in options for specified provider.
     const signInOptions = this.getSignInOptionsForProvider_(
-        firebase.auth.EmailAuthProvider.PROVIDER_ID);
+      firebase.auth.EmailAuthProvider.PROVIDER_ID
+    );
 
-    return !!(signInOptions && signInOptions['signInMethod'] ===
-              firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD);
+    return !!(
+      signInOptions &&
+      signInOptions["signInMethod"] ===
+        firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD
+    );
   }
 
   /**
@@ -658,9 +712,10 @@ class Config {
   isEmailLinkSameDeviceForced() {
     // Get provided sign-in options for specified provider.
     const signInOptions = this.getSignInOptionsForProvider_(
-        firebase.auth.EmailAuthProvider.PROVIDER_ID);
+      firebase.auth.EmailAuthProvider.PROVIDER_ID
+    );
 
-    return !!(signInOptions && signInOptions['forceSameDevice']);
+    return !!(signInOptions && signInOptions["forceSameDevice"]);
   }
 
   /**
@@ -670,22 +725,27 @@ class Config {
   getEmailLinkSignInActionCodeSettings() {
     if (this.isEmailLinkSignInAllowed()) {
       const actionCodeSettings = {
-        'url': util.getCurrentUrl(),
-        'handleCodeInApp': true,
+        url: util.getCurrentUrl(),
+        handleCodeInApp: true,
       };
       // Get provided sign-in options for specified provider.
       const signInOptions = this.getSignInOptionsForProvider_(
-          firebase.auth.EmailAuthProvider.PROVIDER_ID);
-      if (signInOptions &&
-          typeof signInOptions['emailLinkSignIn'] === 'function') {
+        firebase.auth.EmailAuthProvider.PROVIDER_ID
+      );
+      if (
+        signInOptions &&
+        typeof signInOptions["emailLinkSignIn"] === "function"
+      ) {
         googObject.extend(
-            actionCodeSettings,
-            signInOptions['emailLinkSignIn']());
+          actionCodeSettings,
+          signInOptions["emailLinkSignIn"]()
+        );
       }
       // URL could be provided using a relative path.
-      actionCodeSettings['url'] = Uri.resolve(
-          util.getCurrentUrl(),
-          actionCodeSettings['url']).toString();
+      actionCodeSettings["url"] = Uri.resolve(
+        util.getCurrentUrl(),
+        actionCodeSettings["url"]
+      ).toString();
       return actionCodeSettings;
     }
     return null;
@@ -693,7 +753,7 @@ class Config {
 
   /** @return {boolean} Whether to prefer popup mode. */
   getPopupMode() {
-    return !!this.config_.get('popupMode');
+    return !!this.config_.get("popupMode");
   }
 
   /**
@@ -706,18 +766,21 @@ class Config {
    */
   federatedProviderShouldImmediatelyRedirect() {
     const immediateFederatedRedirect = !!this.config_.get(
-        'immediateFederatedRedirect');
+      "immediateFederatedRedirect"
+    );
     const providers = this.getProviders();
     const signInFlow = this.getSignInFlow();
-    return immediateFederatedRedirect &&
-        providers.length == 1 &&
-        idp.isFederatedSignInMethod(providers[0]) &&
-        signInFlow == Config.SignInFlow.REDIRECT;
+    return (
+      immediateFederatedRedirect &&
+      providers.length == 1 &&
+      idp.isFederatedSignInMethod(providers[0]) &&
+      signInFlow == Config.SignInFlow.REDIRECT
+    );
   }
 
   /** @return {!Config.SignInFlow} The current sign-in flow. */
   getSignInFlow() {
-    const signInFlow = this.config_.get('signInFlow');
+    const signInFlow = this.config_.get("signInFlow");
     // Make sure the select flow is a valid one.
     for (let key in Config.SignInFlow) {
       if (Config.SignInFlow[key] == signInFlow) {
@@ -733,8 +796,7 @@ class Config {
    * @return {?function()} The callback to invoke when the widget UI is shown.
    */
   getUiShownCallback() {
-    return /** @type {?function()} */ (
-        this.getCallbacks_()['uiShown'] || null);
+    return /** @type {?function()} */ (this.getCallbacks_()["uiShown"] || null);
   }
 
   /**
@@ -744,7 +806,8 @@ class Config {
    */
   getUiChangedCallback() {
     return /** @type {?function(?string, ?string)} */ (
-        this.getCallbacks_()['uiChanged'] || null);
+      this.getCallbacks_()["uiChanged"] || null
+    );
   }
 
   /**
@@ -759,7 +822,8 @@ class Config {
    */
   getSignInSuccessCallback() {
     return /** @type {?Config.signInSuccessCallback} */ (
-        this.getCallbacks_()['signInSuccess'] || null);
+      this.getCallbacks_()["signInSuccess"] || null
+    );
   }
 
   /**
@@ -773,9 +837,9 @@ class Config {
    *     widget stops after it returns.
    */
   getSignInSuccessWithAuthResultCallback() {
-    return (
-        /** @type {?Config.signInSuccessWithAuthResultCallback} */ (
-        this.getCallbacks_()['signInSuccessWithAuthResult'] || null));
+    return /** @type {?Config.signInSuccessWithAuthResultCallback} */ (
+      this.getCallbacks_()["signInSuccessWithAuthResult"] || null
+    );
   }
 
   /**
@@ -784,7 +848,8 @@ class Config {
    */
   getSignInFailureCallback() {
     return /** @type {?Config.signInFailureCallback} */ (
-        this.getCallbacks_()['signInFailure'] || null);
+      this.getCallbacks_()["signInFailure"] || null
+    );
   }
 
   /**
@@ -792,7 +857,7 @@ class Config {
    * @private
    */
   getCallbacks_() {
-    return /** @type {!Object} */ (this.config_.get('callbacks') || {});
+    return /** @type {!Object} */ (this.config_.get("callbacks") || {});
   }
 
   /**
@@ -806,7 +871,7 @@ class Config {
     if (!util.isHttpOrHttps()) {
       return Config.CredentialHelper.NONE;
     }
-    const credentialHelper = this.config_.get('credentialHelper');
+    const credentialHelper = this.config_.get("credentialHelper");
 
     // Manually set deprecated accountchooser.com to none.
     if (credentialHelper === Config.CredentialHelper.ACCOUNT_CHOOSER_COM) {
@@ -831,7 +896,7 @@ class Config {
   resolveImplicitConfig_() {
     if (util.isMobileBrowser()) {
       // On mobile we should not use popup
-      this.config_.update('popupMode', false);
+      this.config_.update("popupMode", false);
     }
   }
 
@@ -868,16 +933,16 @@ class Config {
  */
 Config.CredentialHelper = {
   // TODO: accountchooser.com is no longer supported. Remove by Jan 31st, 2021.
-  ACCOUNT_CHOOSER_COM: 'accountchooser.com',
-  GOOGLE_YOLO: 'googleyolo',
-  NONE: 'none',
+  ACCOUNT_CHOOSER_COM: "accountchooser.com",
+  GOOGLE_YOLO: "googleyolo",
+  NONE: "none",
 };
 
 /**
  * Provider ID for continue as guest sign in option.
  * @const {string}
  */
-Config.ANONYMOUS_PROVIDER_ID = 'anonymous';
+Config.ANONYMOUS_PROVIDER_ID = "anonymous";
 
 /**
  * @typedef {{
@@ -913,8 +978,8 @@ Config.signInFailureCallback;
  * @enum {string}
  */
 Config.SignInFlow = {
-  POPUP: 'popup',
-  REDIRECT: 'redirect',
+  POPUP: "popup",
+  REDIRECT: "redirect",
 };
 
 /**
@@ -943,27 +1008,31 @@ Config.ProviderConfig;
  * @enum {string}
  */
 Config.WidgetMode = {
-  CALLBACK: 'callback',
-  RECOVER_EMAIL: 'recoverEmail',
-  RESET_PASSWORD: 'resetPassword',
-  REVERT_SECOND_FACTOR_ADDITION: 'revertSecondFactorAddition',
-  SELECT: 'select',
-  SIGN_IN: 'signIn',
-  VERIFY_AND_CHANGE_EMAIL: 'verifyAndChangeEmail',
-  VERIFY_EMAIL: 'verifyEmail',
+  CALLBACK: "callback",
+  RECOVER_EMAIL: "recoverEmail",
+  RESET_PASSWORD: "resetPassword",
+  REVERT_SECOND_FACTOR_ADDITION: "revertSecondFactorAddition",
+  SELECT: "select",
+  SIGN_IN: "signIn",
+  VERIFY_AND_CHANGE_EMAIL: "verifyAndChangeEmail",
+  VERIFY_EMAIL: "verifyEmail",
 };
 
 /**
  * FirebaseUI supported providers in sign in option.
  * @const {!Array<string>}
  */
-const UI_SUPPORTED_PROVIDERS = ['anonymous'];
+const UI_SUPPORTED_PROVIDERS = ["anonymous"];
 
 /**
  * @const @type {!Array<string>} List of blacklisted reCAPTCHA parameter
  *     keys.
  */
 const BLACKLISTED_RECAPTCHA_KEYS = [
-  'sitekey', 'tabindex', 'callback', 'expired-callback'];
+  "sitekey",
+  "tabindex",
+  "callback",
+  "expired-callback",
+];
 
 exports = Config;

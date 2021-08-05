@@ -2,7 +2,7 @@
 id: cf1111c1c11feddfaeb7bdef
 title: Nidificare un array in un altro array
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/crZQZf8'
+videoUrl: "https://scrimba.com/c/crZQZf8"
 forumTopicId: 18247
 dashedName: nest-one-array-within-another-array
 ---
@@ -12,7 +12,10 @@ dashedName: nest-one-array-within-another-array
 È anche possibile nidificare array all'interno di altri array, come nell'esempio:
 
 ```js
-[["Bulls", 23], ["White Sox", 45]]
+[
+  ["Bulls", 23],
+  ["White Sox", 45],
+];
 ```
 
 Questo viene anche chiamato un <dfn>array multidimensionale</dfn>.
@@ -34,7 +37,11 @@ assert(Array.isArray(myArray) && myArray.some(Array.isArray));
 ## --after-user-code--
 
 ```js
-if(typeof myArray !== "undefined"){(function(){return myArray;})();}
+if (typeof myArray !== "undefined") {
+  (function () {
+    return myArray;
+  })();
+}
 ```
 
 ## --seed-contents--
@@ -47,5 +54,5 @@ var myArray = [];
 # --solutions--
 
 ```js
-var myArray = [[1,2,3]];
+var myArray = [[1, 2, 3]];
 ```

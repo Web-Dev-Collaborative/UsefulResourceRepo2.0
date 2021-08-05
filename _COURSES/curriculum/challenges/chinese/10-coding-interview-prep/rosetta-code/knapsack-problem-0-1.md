@@ -24,14 +24,14 @@ Write a function to solve the knapsack problem. The function is given the array 
 assert.equal(
   knapsack(
     [
-      { name: 'map', weight: 9, value: 150 },
-      { name: 'compass', weight: 13, value: 35 },
-      { name: 'water', weight: 153, value: 200 },
-      { name: 'sandwich', weight: 50, value: 160 },
-      { name: 'glucose', weight: 15, value: 60 },
-      { name: 'tin', weight: 68, value: 45 },
-      { name: 'banana', weight: 27, value: 60 },
-      { name: 'apple', weight: 39, value: 40 }
+      { name: "map", weight: 9, value: 150 },
+      { name: "compass", weight: 13, value: 35 },
+      { name: "water", weight: 153, value: 200 },
+      { name: "sandwich", weight: 50, value: 160 },
+      { name: "glucose", weight: 15, value: 60 },
+      { name: "tin", weight: 68, value: 45 },
+      { name: "banana", weight: 27, value: 60 },
+      { name: "apple", weight: 39, value: 40 },
     ],
     100
   ),
@@ -45,14 +45,14 @@ assert.equal(
 assert.equal(
   knapsack(
     [
-      { name: 'map', weight: 9, value: 150 },
-      { name: 'compass', weight: 13, value: 35 },
-      { name: 'water', weight: 153, value: 200 },
-      { name: 'sandwich', weight: 50, value: 160 },
-      { name: 'glucose', weight: 15, value: 60 },
-      { name: 'tin', weight: 68, value: 45 },
-      { name: 'banana', weight: 27, value: 60 },
-      { name: 'apple', weight: 39, value: 40 }
+      { name: "map", weight: 9, value: 150 },
+      { name: "compass", weight: 13, value: 35 },
+      { name: "water", weight: 153, value: 200 },
+      { name: "sandwich", weight: 50, value: 160 },
+      { name: "glucose", weight: 15, value: 60 },
+      { name: "tin", weight: 68, value: 45 },
+      { name: "banana", weight: 27, value: 60 },
+      { name: "apple", weight: 39, value: 40 },
     ],
     200
   ),
@@ -66,13 +66,13 @@ assert.equal(
 assert.equal(
   knapsack(
     [
-      { name: 'cheese', weight: 23, value: 30 },
-      { name: 'beer', weight: 52, value: 10 },
-      { name: 'suntan cream', weight: 11, value: 70 },
-      { name: 'camera', weight: 32, value: 30 },
-      { name: 'T-shirt', weight: 24, value: 15 },
-      { name: 'trousers', weight: 48, value: 10 },
-      { name: 'umbrella', weight: 73, value: 40 }
+      { name: "cheese", weight: 23, value: 30 },
+      { name: "beer", weight: 52, value: 10 },
+      { name: "suntan cream", weight: 11, value: 70 },
+      { name: "camera", weight: 32, value: 30 },
+      { name: "T-shirt", weight: 24, value: 15 },
+      { name: "trousers", weight: 48, value: 10 },
+      { name: "umbrella", weight: 73, value: 40 },
     ],
     100
   ),
@@ -86,13 +86,13 @@ assert.equal(
 assert.equal(
   knapsack(
     [
-      { name: 'cheese', weight: 23, value: 30 },
-      { name: 'beer', weight: 52, value: 10 },
-      { name: 'suntan cream', weight: 11, value: 70 },
-      { name: 'camera', weight: 32, value: 30 },
-      { name: 'T-shirt', weight: 24, value: 15 },
-      { name: 'trousers', weight: 48, value: 10 },
-      { name: 'umbrella', weight: 73, value: 40 }
+      { name: "cheese", weight: 23, value: 30 },
+      { name: "beer", weight: 52, value: 10 },
+      { name: "suntan cream", weight: 11, value: 70 },
+      { name: "camera", weight: 32, value: 30 },
+      { name: "T-shirt", weight: 24, value: 15 },
+      { name: "trousers", weight: 48, value: 10 },
+      { name: "umbrella", weight: 73, value: 40 },
     ],
     200
   ),
@@ -106,13 +106,13 @@ assert.equal(
 assert.equal(
   knapsack(
     [
-      { name: 'waterproof trousers', weight: 42, value: 70 },
-      { name: 'waterproof overclothes', weight: 43, value: 75 },
-      { name: 'note-case', weight: 22, value: 80 },
-      { name: 'sunglasses', weight: 7, value: 20 },
-      { name: 'towel', weight: 18, value: 12 },
-      { name: 'socks', weight: 4, value: 50 },
-      { name: 'book', weight: 30, value: 10 }
+      { name: "waterproof trousers", weight: 42, value: 70 },
+      { name: "waterproof overclothes", weight: 43, value: 75 },
+      { name: "note-case", weight: 22, value: 80 },
+      { name: "sunglasses", weight: 7, value: 20 },
+      { name: "towel", weight: 18, value: 12 },
+      { name: "socks", weight: 4, value: 50 },
+      { name: "book", weight: 30, value: 10 },
     ],
     100
   ),
@@ -126,13 +126,13 @@ assert.equal(
 assert.equal(
   knapsack(
     [
-      { name: 'waterproof trousers', weight: 42, value: 70 },
-      { name: 'waterproof overclothes', weight: 43, value: 75 },
-      { name: 'note-case', weight: 22, value: 80 },
-      { name: 'sunglasses', weight: 7, value: 20 },
-      { name: 'towel', weight: 18, value: 12 },
-      { name: 'socks', weight: 4, value: 50 },
-      { name: 'book', weight: 30, value: 10 }
+      { name: "waterproof trousers", weight: 42, value: 70 },
+      { name: "waterproof overclothes", weight: 43, value: 75 },
+      { name: "note-case", weight: 22, value: 80 },
+      { name: "sunglasses", weight: 7, value: 20 },
+      { name: "towel", weight: 18, value: 12 },
+      { name: "socks", weight: 4, value: 50 },
+      { name: "book", weight: 30, value: 10 },
     ],
     200
   ),
@@ -145,9 +145,7 @@ assert.equal(
 ## --seed-contents--
 
 ```js
-function knapsack(items, maxweight) {
-
-}
+function knapsack(items, maxweight) {}
 ```
 
 # --solutions--
@@ -155,55 +153,55 @@ function knapsack(items, maxweight) {
 ```js
 function knapsack(items, maxweight) {
   var _ = {
-    max: function(e) {
+    max: function (e) {
       var mx = e[0];
-      e.forEach(function(f) {
+      e.forEach(function (f) {
         if (mx < f) mx = f;
       });
       return mx;
     },
-    map: function(array, func) {
+    map: function (array, func) {
       return array.map(func);
     },
-    isUndefined: function(a) {
+    isUndefined: function (a) {
       if (a) {
         return false;
       }
       return true;
     },
-    range: function(start, end, step) {
+    range: function (start, end, step) {
       var a = [];
       var f = (f = (i, end) => i < end);
       if (start > end) f = (i, end) => i > end;
 
       for (var i = start; f(i, end); i += step) a.push(i);
       return a;
-    }
+    },
   };
 
-  var valuefn = e => e.value;
-  var weightfn = e => e.weight;
+  var valuefn = (e) => e.value;
+  var weightfn = (e) => e.weight;
   var _epsilon = 0.01;
   var _p = _.max(_.map(items, valuefn));
   var _k = (_epsilon * _p) / items.length;
 
-  var _memo = (function() {
+  var _memo = (function () {
     var _mem = {};
-    var _key = function(i, w) {
-      return i + '::' + w;
+    var _key = function (i, w) {
+      return i + "::" + w;
     };
     return {
-      get: function(i, w) {
+      get: function (i, w) {
         return _mem[_key(i, w)];
       },
-      put: function(i, w, r) {
+      put: function (i, w, r) {
         _mem[_key(i, w)] = r;
         return r;
-      }
+      },
     };
   })();
 
-  var _m = function(i, w) {
+  var _m = function (i, w) {
     i = Math.round(i);
     w = Math.round(w);
 
@@ -238,7 +236,7 @@ function knapsack(items, maxweight) {
       return _memo.put(i, w, {
         items: i1,
         totalWeight: included.totalWeight + weightfn(item),
-        totalValue: included.totalValue + Math.floor(valuefn(item) / _k)
+        totalValue: included.totalValue + Math.floor(valuefn(item) / _k),
       });
     }
     //better off excluding it
@@ -247,7 +245,7 @@ function knapsack(items, maxweight) {
   var scaled = _m(items.length - 1, maxweight);
 
   var val = 0;
-  scaled.items.forEach(function(e) {
+  scaled.items.forEach(function (e) {
     val += e.value;
   });
   return val;

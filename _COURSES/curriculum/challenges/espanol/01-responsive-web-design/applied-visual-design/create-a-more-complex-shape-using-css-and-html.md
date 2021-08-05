@@ -2,7 +2,7 @@
 id: 587d78a6367417b2b2512ade
 title: Crea una forma más compleja usando CSS y HTML
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cPpz4fr'
+videoUrl: "https://scrimba.com/c/cPpz4fr"
 forumTopicId: 301050
 dashedName: create-a-more-complex-shape-using-css-and-html
 ---
@@ -40,9 +40,7 @@ La propiedad `background-color` del selector `heart::after` debe ser `pink`.
 
 ```js
 const heartAfter = code.match(/\.heart::after\s*{[\s\S]+?[^\}]}/g)[0];
-assert(
-  /({|;)\s*background-color\s*:\s*pink\s*(;|})/g.test(heartAfter)
-);
+assert(/({|;)\s*background-color\s*:\s*pink\s*(;|})/g.test(heartAfter));
 ```
 
 El `border-radius` del selector `heart::after` debe ser 50%.

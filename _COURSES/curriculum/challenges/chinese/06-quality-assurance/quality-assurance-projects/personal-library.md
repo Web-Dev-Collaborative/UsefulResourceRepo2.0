@@ -10,9 +10,9 @@ dashedName: personal-library
 
 构建一个 JavaScript 的全栈应用，在功能上与这个应用相似：<https://personal-library.freecodecamp.rocks/>。 可以采用下面的任意一种方式完成这个挑战：
 
--   克隆 [这个 GitHub 仓库](https://github.com/freeCodeCamp/boilerplate-project-library) 并在本地完成项目。
--   使用[我们的 Replit 初始化项目](https://replit.com/github/freeCodeCamp/boilerplate-project-library)来完成你的项目。
--   使用一个你喜欢的站点生成器来完成项目。 需要确定包含了我们 GitHub 仓库的所有文件。
+- 克隆 [这个 GitHub 仓库](https://github.com/freeCodeCamp/boilerplate-project-library) 并在本地完成项目。
+- 使用[我们的 Replit 初始化项目](https://replit.com/github/freeCodeCamp/boilerplate-project-library)来完成你的项目。
+- 使用一个你喜欢的站点生成器来完成项目。 需要确定包含了我们 GitHub 仓库的所有文件。
 
 完成本项目后，请将一个正常运行的 demo（项目演示）托管在可以公开访问的平台。 然后在 `Solution Link` 框中提交你的项目 URL。 此外，还可以将项目的源码提交到 `GitHub Link` 中。
 
@@ -30,26 +30,26 @@ dashedName: personal-library
 ```js
 (getUserInput) => {
   assert(
-    !/.*\/personal-library\.freecodecamp\.rocks/.test(getUserInput('url'))
+    !/.*\/personal-library\.freecodecamp\.rocks/.test(getUserInput("url"))
   );
 };
 ```
 
-可以发送 <b>POST</b> 请求到 `/api/books`，带有 `title` 作为表单数据的一部分，来添加一本书。  返回的响应将是一个包含 `title` 和唯一的 `_id` 作为键的对象。  如果 `title` 未包含在请求中，返回的响应应该是字符串 `missing required field title`。
+可以发送 <b>POST</b> 请求到 `/api/books`，带有 `title` 作为表单数据的一部分，来添加一本书。 返回的响应将是一个包含 `title` 和唯一的 `_id` 作为键的对象。 如果 `title` 未包含在请求中，返回的响应应该是字符串 `missing required field title`。
 
 ```js
 async (getUserInput) => {
   try {
-    let data1 = await $.post(getUserInput('url') + '/api/books', {
-      title: 'Faux Book 1'
+    let data1 = await $.post(getUserInput("url") + "/api/books", {
+      title: "Faux Book 1",
     });
     assert.isObject(data1);
-    assert.property(data1, 'title');
-    assert.equal(data1.title, 'Faux Book 1');
-    assert.property(data1, '_id');
-    let data2 = await $.post(getUserInput('url') + '/api/books');
+    assert.property(data1, "title");
+    assert.equal(data1.title, "Faux Book 1");
+    assert.property(data1, "_id");
+    let data2 = await $.post(getUserInput("url") + "/api/books");
     assert.isString(data2);
-    assert.equal(data2, 'missing required field title');
+    assert.equal(data2, "missing required field title");
   } catch (err) {
     throw new Error(err.responseText || err.message);
   }
@@ -61,20 +61,20 @@ async (getUserInput) => {
 ```js
 async (getUserInput) => {
   try {
-    let url = getUserInput('url') + '/api/books';
-    let a = $.post(url, { title: 'Faux Book A' });
-    let b = $.post(url, { title: 'Faux Book B' });
-    let c = $.post(url, { title: 'Faux Book C' });
+    let url = getUserInput("url") + "/api/books";
+    let a = $.post(url, { title: "Faux Book A" });
+    let b = $.post(url, { title: "Faux Book B" });
+    let c = $.post(url, { title: "Faux Book C" });
     await Promise.all([a, b, c]).then(async () => {
       let data = await $.get(url);
       assert.isArray(data);
       assert.isAtLeast(data.length, 3);
       data.forEach((book) => {
         assert.isObject(book);
-        assert.property(book, 'title');
+        assert.property(book, "title");
         assert.isString(book.title);
-        assert.property(book, '_id');
-        assert.property(book, 'commentcount');
+        assert.property(book, "_id");
+        assert.property(book, "commentcount");
         assert.isNumber(book.commentcount);
       });
     });
@@ -89,18 +89,18 @@ async (getUserInput) => {
 ```js
 async (getUserInput) => {
   try {
-    let url = getUserInput('url') + '/api/books';
-    let noBook = await $.get(url + '/5f665eb46e296f6b9b6a504d');
+    let url = getUserInput("url") + "/api/books";
+    let noBook = await $.get(url + "/5f665eb46e296f6b9b6a504d");
     assert.isString(noBook);
-    assert.equal(noBook, 'no book exists');
-    let sampleBook = await $.post(url, { title: 'Faux Book Alpha' });
+    assert.equal(noBook, "no book exists");
+    let sampleBook = await $.post(url, { title: "Faux Book Alpha" });
     assert.isObject(sampleBook);
     let bookId = sampleBook._id;
-    let bookQuery = await $.get(url + '/' + bookId);
+    let bookQuery = await $.get(url + "/" + bookId);
     assert.isObject(bookQuery);
-    assert.property(bookQuery, 'title');
-    assert.equal(bookQuery.title, 'Faux Book Alpha');
-    assert.property(bookQuery, 'comments');
+    assert.property(bookQuery, "title");
+    assert.equal(bookQuery.title, "Faux Book Alpha");
+    assert.property(bookQuery, "comments");
     assert.isArray(bookQuery.comments);
   } catch (err) {
     throw new Error(err.responseText || err.message);
@@ -113,33 +113,33 @@ async (getUserInput) => {
 ```js
 async (getUserInput) => {
   try {
-    let url = getUserInput('url') + '/api/books';
-    let commentTarget = await $.post(url, { title: 'Notable Book' });
+    let url = getUserInput("url") + "/api/books";
+    let commentTarget = await $.post(url, { title: "Notable Book" });
     assert.isObject(commentTarget);
     let bookId = commentTarget._id;
-    let bookCom1 = await $.post(url + '/' + bookId, {
-      comment: 'This book is fab!'
+    let bookCom1 = await $.post(url + "/" + bookId, {
+      comment: "This book is fab!",
     });
-    let bookCom2 = await $.post(url + '/' + bookId, {
-      comment: 'I did not care for it'
+    let bookCom2 = await $.post(url + "/" + bookId, {
+      comment: "I did not care for it",
     });
     assert.isObject(bookCom2);
-    assert.property(bookCom2, '_id');
-    assert.property(bookCom2, 'title');
-    assert.property(bookCom2, 'comments');
+    assert.property(bookCom2, "_id");
+    assert.property(bookCom2, "title");
+    assert.property(bookCom2, "comments");
     assert.lengthOf(bookCom2.comments, 2);
     bookCom2.comments.forEach((comment) => {
       assert.isString(comment);
-      assert.oneOf(comment, ['This book is fab!', 'I did not care for it']);
+      assert.oneOf(comment, ["This book is fab!", "I did not care for it"]);
     });
-    let commentErr = await $.post(url + '/' + bookId);
+    let commentErr = await $.post(url + "/" + bookId);
     assert.isString(commentErr);
-    assert.equal(commentErr, 'missing required field comment');
-    let failingComment = await $.post(url + '/5f665eb46e296f6b9b6a504d', {
-      comment: 'Never Seen Comment'
+    assert.equal(commentErr, "missing required field comment");
+    let failingComment = await $.post(url + "/5f665eb46e296f6b9b6a504d", {
+      comment: "Never Seen Comment",
     });
     assert.isString(failingComment);
-    assert.equal(failingComment, 'no book exists');
+    assert.equal(failingComment, "no book exists");
   } catch (err) {
     throw new Error(err.responseText || err.message);
   }
@@ -151,19 +151,19 @@ async (getUserInput) => {
 ```js
 async (getUserInput) => {
   try {
-    let url = getUserInput('url') + '/api/books';
-    let deleteTarget = await $.post(url, { title: 'Deletable Book' });
+    let url = getUserInput("url") + "/api/books";
+    let deleteTarget = await $.post(url, { title: "Deletable Book" });
     assert.isObject(deleteTarget);
     let bookId = deleteTarget._id;
-    let doDelete = await $.ajax({ url: url + '/' + bookId, type: 'DELETE' });
+    let doDelete = await $.ajax({ url: url + "/" + bookId, type: "DELETE" });
     assert.isString(doDelete);
-    assert.equal(doDelete, 'delete successful');
+    assert.equal(doDelete, "delete successful");
     let failingDelete = await $.ajax({
-      url: url + '/5f665eb46e296f6b9b6a504d',
-      type: 'DELETE'
+      url: url + "/5f665eb46e296f6b9b6a504d",
+      type: "DELETE",
     });
     assert.isString(failingDelete);
-    assert.equal(failingDelete, 'no book exists');
+    assert.equal(failingDelete, "no book exists");
   } catch (err) {
     throw new Error(err.responseText || err.message);
   }
@@ -176,11 +176,11 @@ async (getUserInput) => {
 async (getUserInput) => {
   try {
     const deleteAll = await $.ajax({
-      url: getUserInput('url') + '/api/books',
-      type: 'DELETE'
+      url: getUserInput("url") + "/api/books",
+      type: "DELETE",
     });
     assert.isString(deleteAll);
-    assert.equal(deleteAll, 'complete delete successful');
+    assert.equal(deleteAll, "complete delete successful");
   } catch (err) {
     throw new Error(err.responseText || err.message);
   }
@@ -192,15 +192,15 @@ async (getUserInput) => {
 ```js
 async (getUserInput) => {
   try {
-    const getTests = await $.get(getUserInput('url') + '/_api/get-tests');
+    const getTests = await $.get(getUserInput("url") + "/_api/get-tests");
     assert.isArray(getTests);
-    assert.isAtLeast(getTests.length, 10, 'At least 10 tests passed');
+    assert.isAtLeast(getTests.length, 10, "At least 10 tests passed");
     getTests.forEach((test) => {
-      assert.equal(test.state, 'passed', 'Test in Passed State');
+      assert.equal(test.state, "passed", "Test in Passed State");
       assert.isAtLeast(
         test.assertions.length,
         1,
-        'At least one assertion per test'
+        "At least one assertion per test"
       );
     });
   } catch (err) {

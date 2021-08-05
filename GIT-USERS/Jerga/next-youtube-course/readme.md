@@ -1,4 +1,3 @@
-
 ## Getting Started
 
 1. run `npm install` to install all of the dependencies
@@ -8,13 +7,12 @@
 5. create `.env` file in root folder with values of:
 
 ```javascript
-GOOGLE_USER=YOUR_GOOGLE_EMAIL // e.g test@gmail.com
-GOOGLE_PASSWORD=YOUR_GOOGLE_PASSWORD // testtest
-DOMAIN=YOUR_DOMAIN // e.g http://localhost:3000
+GOOGLE_USER = YOUR_GOOGLE_EMAIL; // e.g test@gmail.com
+GOOGLE_PASSWORD = YOUR_GOOGLE_PASSWORD; // testtest
+DOMAIN = YOUR_DOMAIN; // e.g http://localhost:3000
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
 
 Open [http://localhost:3001/api/test](http://localhost:3001/api/test) with your browser to test API Server
 

@@ -2,7 +2,7 @@
 id: 587d78a3367417b2b2512acf
 title: 使用 z-index 屬性更改重疊元素的位置
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cM94aHk'
+videoUrl: "https://scrimba.com/c/cM94aHk"
 forumTopicId: 301046
 dashedName: change-the-position-of-overlapping-elements-with-the-z-index-property
 ---
@@ -20,7 +20,7 @@ dashedName: change-the-position-of-overlapping-elements-with-the-z-index-propert
 class 爲 `first` 的元素的 `z-index` 屬性值應爲 2。
 
 ```js
-assert($('.first').css('z-index') == '2');
+assert($(".first").css("z-index") == "2");
 ```
 
 # --seed--
@@ -38,7 +38,6 @@ assert($('.first').css('z-index') == '2');
   .first {
     background-color: red;
     position: absolute;
-
   }
   .second {
     background-color: blue;

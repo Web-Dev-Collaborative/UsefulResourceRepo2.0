@@ -25,8 +25,8 @@ assert(
   (() => {
     const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
     return (
-      mockedComponent.find('div').length === 1 &&
-      mockedComponent.find('h1').length === 1
+      mockedComponent.find("div").length === 1 &&
+      mockedComponent.find("h1").length === 1
     );
   })()
 );
@@ -38,7 +38,7 @@ assert(
 assert(
   (() => {
     const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
-    return new RegExp('setTimeout(.|\n)+setState(.|\n)+activeUsers').test(
+    return new RegExp("setTimeout(.|\n)+setState(.|\n)+activeUsers").test(
       String(mockedComponent.instance().componentDidMount)
     );
   })()
@@ -52,13 +52,13 @@ assert(
   const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
   const first = () => {
     mockedComponent.setState({ activeUsers: 1237 });
-    return mockedComponent.find('h1').text();
+    return mockedComponent.find("h1").text();
   };
   const second = () => {
     mockedComponent.setState({ activeUsers: 1000 });
-    return mockedComponent.find('h1').text();
+    return mockedComponent.find("h1").text();
   };
-  assert(new RegExp('1237').test(first()) && new RegExp('1000').test(second()));
+  assert(new RegExp("1237").test(first()) && new RegExp("1000").test(second()));
 })();
 ```
 
@@ -67,7 +67,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyComponent />, document.getElementById('root'));
+ReactDOM.render(<MyComponent />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -77,13 +77,13 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeUsers: null
+      activeUsers: null,
     };
   }
   componentDidMount() {
     setTimeout(() => {
       this.setState({
-        activeUsers: 1273
+        activeUsers: 1273,
       });
     }, 2500);
   }
@@ -106,13 +106,13 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeUsers: null
+      activeUsers: null,
     };
   }
   componentDidMount() {
     setTimeout(() => {
       this.setState({
-        activeUsers: 1273
+        activeUsers: 1273,
       });
     }, 2500);
   }

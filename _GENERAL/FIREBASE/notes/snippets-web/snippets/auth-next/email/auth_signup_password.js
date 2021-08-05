@@ -9,7 +9,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 const auth = getAuth();
 createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
-    // Signed in 
+    // Signed in
     const user = userCredential.user;
     // ...
   })

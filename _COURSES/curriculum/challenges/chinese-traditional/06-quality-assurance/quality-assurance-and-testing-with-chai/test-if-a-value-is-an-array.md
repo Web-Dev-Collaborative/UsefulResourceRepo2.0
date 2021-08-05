@@ -20,9 +20,9 @@ dashedName: test-if-a-value-is-an-array
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=10').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=10").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -34,12 +34,12 @@ dashedName: test-if-a-value-is-an-array
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=10').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=10").then(
     (data) => {
       assert.equal(
         data.assertions[0].method,
-        'isArray',
-        'String.prototype.split() returns an Array'
+        "isArray",
+        "String.prototype.split() returns an Array"
       );
     },
     (xhr) => {
@@ -52,12 +52,12 @@ dashedName: test-if-a-value-is-an-array
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=10').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=10").then(
     (data) => {
       assert.equal(
         data.assertions[1].method,
-        'isNotArray',
-        'Array.prototype.indexOf() returns a number'
+        "isNotArray",
+        "Array.prototype.indexOf() returns a number"
       );
     },
     (xhr) => {

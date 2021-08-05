@@ -1,6 +1,6 @@
 ---
 id: 5900f4641000cf542c50ff76
-title: 'Problem 247: Squares under a hyperbola'
+title: "Problem 247: Squares under a hyperbola"
 challengeType: 5
 forumTopicId: 301894
 dashedName: problem-247-squares-under-a-hyperbola
@@ -30,7 +30,6 @@ assert.strictEqual(euler247(), 782252);
 
 ```js
 function euler247() {
-
   return true;
 }
 

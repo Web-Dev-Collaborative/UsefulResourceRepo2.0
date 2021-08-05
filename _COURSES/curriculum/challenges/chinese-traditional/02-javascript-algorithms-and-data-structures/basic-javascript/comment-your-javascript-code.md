@@ -3,7 +3,7 @@ id: bd7123c9c441eddfaeb4bdef
 title: 給代碼添加註釋
 challengeType: 1
 removeComments: false
-videoUrl: 'https://scrimba.com/c/c7ynnTp'
+videoUrl: "https://scrimba.com/c/c7ynnTp"
 forumTopicId: 16783
 dashedName: comment-your-javascript-code
 ---
@@ -12,7 +12,7 @@ dashedName: comment-your-javascript-code
 
 被註釋的代碼塊在 JavaScript 之中是不會執行的。 在代碼中寫註釋，是一個可以讓你自己和以後的其他人理解代碼作用的好方法。
 
-JavaScript有兩種寫註釋的方法。
+JavaScript 有兩種寫註釋的方法。
 
 使用 `//` 註釋掉當前行的代碼。 這是一個行內註釋：
 

@@ -1,6 +1,6 @@
 ---
 id: 5900f4e61000cf542c50fff9
-title: 'Problem 378: Triangle Triples'
+title: "Problem 378: Triangle Triples"
 challengeType: 5
 forumTopicId: 302040
 dashedName: problem-378-triangle-triples
@@ -34,7 +34,6 @@ assert.strictEqual(euler378(), 147534623725724700);
 
 ```js
 function euler378() {
-
   return true;
 }
 

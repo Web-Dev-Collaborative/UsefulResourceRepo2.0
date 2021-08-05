@@ -16,28 +16,26 @@
  * @fileoverview UI component for the notice pages.
  */
 
-goog.provide('firebaseui.auth.ui.page.EmailChangeEmailSent');
-goog.provide('firebaseui.auth.ui.page.EmailChangeRevokeFailure');
-goog.provide('firebaseui.auth.ui.page.EmailVerificationFailure');
-goog.provide('firebaseui.auth.ui.page.EmailVerificationSuccess');
-goog.provide('firebaseui.auth.ui.page.Notice');
-goog.provide('firebaseui.auth.ui.page.PasswordChangeSuccess');
-goog.provide('firebaseui.auth.ui.page.PasswordRecoveryEmailSent');
-goog.provide('firebaseui.auth.ui.page.PasswordResetFailure');
-goog.provide('firebaseui.auth.ui.page.PasswordResetSuccess');
-goog.provide('firebaseui.auth.ui.page.RecoverableError');
-goog.provide('firebaseui.auth.ui.page.RevertSecondFactorAdditionFailure');
-goog.provide('firebaseui.auth.ui.page.SignOut');
-goog.provide('firebaseui.auth.ui.page.UnrecoverableError');
-goog.provide('firebaseui.auth.ui.page.VerifyAndChangeEmailFailure');
-goog.provide('firebaseui.auth.ui.page.VerifyAndChangeEmailSuccess');
+goog.provide("firebaseui.auth.ui.page.EmailChangeEmailSent");
+goog.provide("firebaseui.auth.ui.page.EmailChangeRevokeFailure");
+goog.provide("firebaseui.auth.ui.page.EmailVerificationFailure");
+goog.provide("firebaseui.auth.ui.page.EmailVerificationSuccess");
+goog.provide("firebaseui.auth.ui.page.Notice");
+goog.provide("firebaseui.auth.ui.page.PasswordChangeSuccess");
+goog.provide("firebaseui.auth.ui.page.PasswordRecoveryEmailSent");
+goog.provide("firebaseui.auth.ui.page.PasswordResetFailure");
+goog.provide("firebaseui.auth.ui.page.PasswordResetSuccess");
+goog.provide("firebaseui.auth.ui.page.RecoverableError");
+goog.provide("firebaseui.auth.ui.page.RevertSecondFactorAdditionFailure");
+goog.provide("firebaseui.auth.ui.page.SignOut");
+goog.provide("firebaseui.auth.ui.page.UnrecoverableError");
+goog.provide("firebaseui.auth.ui.page.VerifyAndChangeEmailFailure");
+goog.provide("firebaseui.auth.ui.page.VerifyAndChangeEmailSuccess");
 
-goog.require('firebaseui.auth.soy2.page');
-goog.require('firebaseui.auth.ui.element.form');
-goog.require('firebaseui.auth.ui.page.Base');
-goog.requireType('goog.dom.DomHelper');
-
-
+goog.require("firebaseui.auth.soy2.page");
+goog.require("firebaseui.auth.ui.element.form");
+goog.require("firebaseui.auth.ui.page.Base");
+goog.requireType("goog.dom.DomHelper");
 
 /**
  * A UI component represnting a notice.
@@ -53,57 +51,53 @@ goog.requireType('goog.dom.DomHelper');
  * @extends {firebaseui.auth.ui.page.Base}
  * @template ARG_TYPES
  */
-firebaseui.auth.ui.page.Notice = function(
+firebaseui.auth.ui.page.Notice = function (
+  template,
+  opt_templateData,
+  opt_onContinueClick,
+  opt_domHelper,
+  opt_uiLabel,
+  opt_injectedData
+) {
+  firebaseui.auth.ui.page.Notice.base(
+    this,
+    "constructor",
     template,
     opt_templateData,
-    opt_onContinueClick,
     opt_domHelper,
-    opt_uiLabel,
-    opt_injectedData) {
-  firebaseui.auth.ui.page.Notice.base(
-      this,
-      'constructor',
-      template,
-      opt_templateData,
-      opt_domHelper,
-      opt_uiLabel || 'notice',
-      opt_injectedData);
+    opt_uiLabel || "notice",
+    opt_injectedData
+  );
   this.onContinueClick_ = opt_onContinueClick || null;
 };
 goog.inherits(firebaseui.auth.ui.page.Notice, firebaseui.auth.ui.page.Base);
 
-
 /** @override */
-firebaseui.auth.ui.page.Notice.prototype.enterDocument = function() {
+firebaseui.auth.ui.page.Notice.prototype.enterDocument = function () {
   if (this.onContinueClick_) {
     this.initFormElement(this.onContinueClick_);
     this.getSubmitElement().focus();
   }
-  firebaseui.auth.ui.page.Notice.base(this, 'enterDocument');
+  firebaseui.auth.ui.page.Notice.base(this, "enterDocument");
 };
-
 
 /** @override */
-firebaseui.auth.ui.page.Notice.prototype.disposeInternal = function() {
+firebaseui.auth.ui.page.Notice.prototype.disposeInternal = function () {
   this.onContinueClick_ = null;
-  firebaseui.auth.ui.page.Notice.base(this, 'disposeInternal');
+  firebaseui.auth.ui.page.Notice.base(this, "disposeInternal");
 };
 
-
 goog.mixin(
-    firebaseui.auth.ui.page.Notice.prototype,
-    /** @lends {firebaseui.auth.ui.page.Notice.prototype} */
-    {
-      // For form.
-      getSubmitElement:
-          firebaseui.auth.ui.element.form.getSubmitElement,
-      getSecondaryLinkElement:
-          firebaseui.auth.ui.element.form.getSecondaryLinkElement,
-      initFormElement:
-          firebaseui.auth.ui.element.form.initFormElement
-    });
-
-
+  firebaseui.auth.ui.page.Notice.prototype,
+  /** @lends {firebaseui.auth.ui.page.Notice.prototype} */
+  {
+    // For form.
+    getSubmitElement: firebaseui.auth.ui.element.form.getSubmitElement,
+    getSecondaryLinkElement:
+      firebaseui.auth.ui.element.form.getSecondaryLinkElement,
+    initFormElement: firebaseui.auth.ui.element.form.initFormElement,
+  }
+);
 
 /**
  * Password recovery email sent notice UI component.
@@ -118,28 +112,34 @@ goog.mixin(
  * @constructor
  * @extends {firebaseui.auth.ui.page.Notice}
  */
-firebaseui.auth.ui.page.PasswordRecoveryEmailSent = function(
-    email, opt_onContinueClick, opt_tosCallback, opt_privacyPolicyCallback,
-    opt_domHelper) {
+firebaseui.auth.ui.page.PasswordRecoveryEmailSent = function (
+  email,
+  opt_onContinueClick,
+  opt_tosCallback,
+  opt_privacyPolicyCallback,
+  opt_domHelper
+) {
   firebaseui.auth.ui.page.PasswordRecoveryEmailSent.base(
-      this,
-      'constructor',
-      firebaseui.auth.soy2.page.passwordRecoveryEmailSent,
-      {
-        email: email,
-        allowContinue: !!opt_onContinueClick
-      },
-      opt_onContinueClick,
-      opt_domHelper,
-      'passwordRecoveryEmailSent',
-      {
-        tosCallback: opt_tosCallback,
-        privacyPolicyCallback: opt_privacyPolicyCallback
-      });
+    this,
+    "constructor",
+    firebaseui.auth.soy2.page.passwordRecoveryEmailSent,
+    {
+      email: email,
+      allowContinue: !!opt_onContinueClick,
+    },
+    opt_onContinueClick,
+    opt_domHelper,
+    "passwordRecoveryEmailSent",
+    {
+      tosCallback: opt_tosCallback,
+      privacyPolicyCallback: opt_privacyPolicyCallback,
+    }
+  );
 };
-goog.inherits(firebaseui.auth.ui.page.PasswordRecoveryEmailSent,
-    firebaseui.auth.ui.page.Notice);
-
+goog.inherits(
+  firebaseui.auth.ui.page.PasswordRecoveryEmailSent,
+  firebaseui.auth.ui.page.Notice
+);
 
 /**
  * Email verification success notice UI component.
@@ -149,23 +149,26 @@ goog.inherits(firebaseui.auth.ui.page.PasswordRecoveryEmailSent,
  * @constructor
  * @extends {firebaseui.auth.ui.page.Notice}
  */
-firebaseui.auth.ui.page.EmailVerificationSuccess = function(
-    opt_onContinueClick, opt_domHelper) {
+firebaseui.auth.ui.page.EmailVerificationSuccess = function (
+  opt_onContinueClick,
+  opt_domHelper
+) {
   firebaseui.auth.ui.page.EmailVerificationSuccess.base(
-      this,
-      'constructor',
-      firebaseui.auth.soy2.page.emailVerificationSuccess,
-      {
-        allowContinue: !!opt_onContinueClick
-      },
-      opt_onContinueClick,
-      opt_domHelper,
-      'emailVerificationSuccess');
+    this,
+    "constructor",
+    firebaseui.auth.soy2.page.emailVerificationSuccess,
+    {
+      allowContinue: !!opt_onContinueClick,
+    },
+    opt_onContinueClick,
+    opt_domHelper,
+    "emailVerificationSuccess"
+  );
 };
-goog.inherits(firebaseui.auth.ui.page.EmailVerificationSuccess,
-    firebaseui.auth.ui.page.Notice);
-
-
+goog.inherits(
+  firebaseui.auth.ui.page.EmailVerificationSuccess,
+  firebaseui.auth.ui.page.Notice
+);
 
 /**
  * Email verification failure notice UI component.
@@ -175,22 +178,26 @@ goog.inherits(firebaseui.auth.ui.page.EmailVerificationSuccess,
  * @constructor
  * @extends {firebaseui.auth.ui.page.Notice}
  */
-firebaseui.auth.ui.page.EmailVerificationFailure = function(
-    opt_onContinueClick, opt_domHelper) {
+firebaseui.auth.ui.page.EmailVerificationFailure = function (
+  opt_onContinueClick,
+  opt_domHelper
+) {
   firebaseui.auth.ui.page.EmailVerificationFailure.base(
-      this,
-      'constructor',
-      firebaseui.auth.soy2.page.emailVerificationFailure,
-      {
-        allowContinue: !!opt_onContinueClick
-      },
-      opt_onContinueClick,
-      opt_domHelper,
-      'emailVerificationFailure');
+    this,
+    "constructor",
+    firebaseui.auth.soy2.page.emailVerificationFailure,
+    {
+      allowContinue: !!opt_onContinueClick,
+    },
+    opt_onContinueClick,
+    opt_domHelper,
+    "emailVerificationFailure"
+  );
 };
-goog.inherits(firebaseui.auth.ui.page.EmailVerificationFailure,
-    firebaseui.auth.ui.page.Notice);
-
+goog.inherits(
+  firebaseui.auth.ui.page.EmailVerificationFailure,
+  firebaseui.auth.ui.page.Notice
+);
 
 /**
  * Verify and change email success notice UI component.
@@ -201,23 +208,28 @@ goog.inherits(firebaseui.auth.ui.page.EmailVerificationFailure,
  * @constructor
  * @extends {firebaseui.auth.ui.page.Notice}
  */
-firebaseui.auth.ui.page.VerifyAndChangeEmailSuccess = function(
-    email, onContinueClick, domHelper) {
+firebaseui.auth.ui.page.VerifyAndChangeEmailSuccess = function (
+  email,
+  onContinueClick,
+  domHelper
+) {
   firebaseui.auth.ui.page.VerifyAndChangeEmailSuccess.base(
-      this,
-      'constructor',
-      firebaseui.auth.soy2.page.verifyAndChangeEmailSuccess,
-      {
-        email: email,
-        allowContinue: !!onContinueClick
-      },
-      onContinueClick,
-      domHelper,
-      'verifyAndChangeEmailSuccess');
+    this,
+    "constructor",
+    firebaseui.auth.soy2.page.verifyAndChangeEmailSuccess,
+    {
+      email: email,
+      allowContinue: !!onContinueClick,
+    },
+    onContinueClick,
+    domHelper,
+    "verifyAndChangeEmailSuccess"
+  );
 };
-goog.inherits(firebaseui.auth.ui.page.VerifyAndChangeEmailSuccess,
-    firebaseui.auth.ui.page.Notice);
-
+goog.inherits(
+  firebaseui.auth.ui.page.VerifyAndChangeEmailSuccess,
+  firebaseui.auth.ui.page.Notice
+);
 
 /**
  * Verify and change email failure notice UI component.
@@ -227,22 +239,26 @@ goog.inherits(firebaseui.auth.ui.page.VerifyAndChangeEmailSuccess,
  * @constructor
  * @extends {firebaseui.auth.ui.page.Notice}
  */
-firebaseui.auth.ui.page.VerifyAndChangeEmailFailure = function(
-    onContinueClick, domHelper) {
+firebaseui.auth.ui.page.VerifyAndChangeEmailFailure = function (
+  onContinueClick,
+  domHelper
+) {
   firebaseui.auth.ui.page.VerifyAndChangeEmailFailure.base(
-      this,
-      'constructor',
-      firebaseui.auth.soy2.page.verifyAndChangeEmailFailure,
-      {
-        allowContinue: !!onContinueClick
-      },
-      onContinueClick,
-      domHelper,
-      'verifyAndChangeEmailFailure');
+    this,
+    "constructor",
+    firebaseui.auth.soy2.page.verifyAndChangeEmailFailure,
+    {
+      allowContinue: !!onContinueClick,
+    },
+    onContinueClick,
+    domHelper,
+    "verifyAndChangeEmailFailure"
+  );
 };
-goog.inherits(firebaseui.auth.ui.page.VerifyAndChangeEmailFailure,
-    firebaseui.auth.ui.page.Notice);
-
+goog.inherits(
+  firebaseui.auth.ui.page.VerifyAndChangeEmailFailure,
+  firebaseui.auth.ui.page.Notice
+);
 
 /**
  * Revert second factor addition failure notice UI component.
@@ -252,22 +268,26 @@ goog.inherits(firebaseui.auth.ui.page.VerifyAndChangeEmailFailure,
  * @constructor
  * @extends {firebaseui.auth.ui.page.Notice}
  */
-firebaseui.auth.ui.page.RevertSecondFactorAdditionFailure = function(
-    onContinueClick, domHelper) {
+firebaseui.auth.ui.page.RevertSecondFactorAdditionFailure = function (
+  onContinueClick,
+  domHelper
+) {
   firebaseui.auth.ui.page.RevertSecondFactorAdditionFailure.base(
-      this,
-      'constructor',
-      firebaseui.auth.soy2.page.revertSecondFactorAdditionFailure,
-      {
-        allowContinue: !!onContinueClick
-      },
-      onContinueClick,
-      domHelper,
-      'revertSecondFactorAdditionFailure');
+    this,
+    "constructor",
+    firebaseui.auth.soy2.page.revertSecondFactorAdditionFailure,
+    {
+      allowContinue: !!onContinueClick,
+    },
+    onContinueClick,
+    domHelper,
+    "revertSecondFactorAdditionFailure"
+  );
 };
-goog.inherits(firebaseui.auth.ui.page.RevertSecondFactorAdditionFailure,
-    firebaseui.auth.ui.page.Notice);
-
+goog.inherits(
+  firebaseui.auth.ui.page.RevertSecondFactorAdditionFailure,
+  firebaseui.auth.ui.page.Notice
+);
 
 /**
  * Sign out notice UI component.
@@ -275,20 +295,18 @@ goog.inherits(firebaseui.auth.ui.page.RevertSecondFactorAdditionFailure,
  * @constructor
  * @extends {firebaseui.auth.ui.page.Notice}
  */
-firebaseui.auth.ui.page.SignOut = function(opt_domHelper) {
+firebaseui.auth.ui.page.SignOut = function (opt_domHelper) {
   firebaseui.auth.ui.page.SignOut.base(
-      this,
-      'constructor',
-      firebaseui.auth.soy2.page.signOut,
-      undefined,
-      undefined,
-      opt_domHelper,
-      'signOut');
+    this,
+    "constructor",
+    firebaseui.auth.soy2.page.signOut,
+    undefined,
+    undefined,
+    opt_domHelper,
+    "signOut"
+  );
 };
-goog.inherits(firebaseui.auth.ui.page.SignOut,
-    firebaseui.auth.ui.page.Notice);
-
-
+goog.inherits(firebaseui.auth.ui.page.SignOut, firebaseui.auth.ui.page.Notice);
 
 /**
  * Password reset success notice UI component.
@@ -298,23 +316,26 @@ goog.inherits(firebaseui.auth.ui.page.SignOut,
  * @constructor
  * @extends {firebaseui.auth.ui.page.Notice}
  */
-firebaseui.auth.ui.page.PasswordResetSuccess = function(
-    opt_onContinueClick, opt_domHelper) {
+firebaseui.auth.ui.page.PasswordResetSuccess = function (
+  opt_onContinueClick,
+  opt_domHelper
+) {
   firebaseui.auth.ui.page.PasswordResetSuccess.base(
-      this,
-      'constructor',
-      firebaseui.auth.soy2.page.passwordResetSuccess,
-      {
-        allowContinue: !!opt_onContinueClick
-      },
-      opt_onContinueClick,
-      opt_domHelper,
-      'passwordResetSuccess');
+    this,
+    "constructor",
+    firebaseui.auth.soy2.page.passwordResetSuccess,
+    {
+      allowContinue: !!opt_onContinueClick,
+    },
+    opt_onContinueClick,
+    opt_domHelper,
+    "passwordResetSuccess"
+  );
 };
-goog.inherits(firebaseui.auth.ui.page.PasswordResetSuccess,
-    firebaseui.auth.ui.page.Notice);
-
-
+goog.inherits(
+  firebaseui.auth.ui.page.PasswordResetSuccess,
+  firebaseui.auth.ui.page.Notice
+);
 
 /**
  * Password reset failure notice UI component.
@@ -324,22 +345,26 @@ goog.inherits(firebaseui.auth.ui.page.PasswordResetSuccess,
  * @constructor
  * @extends {firebaseui.auth.ui.page.Notice}
  */
-firebaseui.auth.ui.page.PasswordResetFailure = function(
-    opt_onContinueClick, opt_domHelper) {
+firebaseui.auth.ui.page.PasswordResetFailure = function (
+  opt_onContinueClick,
+  opt_domHelper
+) {
   firebaseui.auth.ui.page.PasswordResetFailure.base(
-      this,
-      'constructor',
-      firebaseui.auth.soy2.page.passwordResetFailure,
-      {
-        allowContinue: !!opt_onContinueClick
-      },
-      opt_onContinueClick,
-      opt_domHelper,
-      'passwordResetFailure');
+    this,
+    "constructor",
+    firebaseui.auth.soy2.page.passwordResetFailure,
+    {
+      allowContinue: !!opt_onContinueClick,
+    },
+    opt_onContinueClick,
+    opt_domHelper,
+    "passwordResetFailure"
+  );
 };
-goog.inherits(firebaseui.auth.ui.page.PasswordResetFailure,
-    firebaseui.auth.ui.page.Notice);
-
+goog.inherits(
+  firebaseui.auth.ui.page.PasswordResetFailure,
+  firebaseui.auth.ui.page.Notice
+);
 
 /**
  * Email change revoke failure notice UI component.
@@ -349,22 +374,26 @@ goog.inherits(firebaseui.auth.ui.page.PasswordResetFailure,
  * @constructor
  * @extends {firebaseui.auth.ui.page.Notice}
  */
-firebaseui.auth.ui.page.EmailChangeRevokeFailure = function(
-    opt_onContinueClick, opt_domHelper) {
+firebaseui.auth.ui.page.EmailChangeRevokeFailure = function (
+  opt_onContinueClick,
+  opt_domHelper
+) {
   firebaseui.auth.ui.page.EmailChangeRevokeFailure.base(
-      this,
-      'constructor',
-      firebaseui.auth.soy2.page.emailChangeRevokeFailure,
-      {
-        allowContinue: !!opt_onContinueClick
-      },
-      opt_onContinueClick,
-      opt_domHelper,
-      'emailChangeRevokeFailure');
+    this,
+    "constructor",
+    firebaseui.auth.soy2.page.emailChangeRevokeFailure,
+    {
+      allowContinue: !!opt_onContinueClick,
+    },
+    opt_onContinueClick,
+    opt_domHelper,
+    "emailChangeRevokeFailure"
+  );
 };
-goog.inherits(firebaseui.auth.ui.page.EmailChangeRevokeFailure,
-    firebaseui.auth.ui.page.Notice);
-
+goog.inherits(
+  firebaseui.auth.ui.page.EmailChangeRevokeFailure,
+  firebaseui.auth.ui.page.Notice
+);
 
 /**
  * Recoverable error notice UI component.
@@ -375,23 +404,28 @@ goog.inherits(firebaseui.auth.ui.page.EmailChangeRevokeFailure,
  * @constructor
  * @extends {firebaseui.auth.ui.page.Notice}
  */
-firebaseui.auth.ui.page.RecoverableError =
-    function(errorMessage, opt_onRetryClick, opt_domHelper) {
+firebaseui.auth.ui.page.RecoverableError = function (
+  errorMessage,
+  opt_onRetryClick,
+  opt_domHelper
+) {
   firebaseui.auth.ui.page.RecoverableError.base(
-      this,
-      'constructor',
-      firebaseui.auth.soy2.page.recoverableError,
-      {
-        errorMessage: errorMessage,
-        allowRetry: !!opt_onRetryClick
-      },
-      opt_onRetryClick,
-      opt_domHelper,
-      'recoverableError');
+    this,
+    "constructor",
+    firebaseui.auth.soy2.page.recoverableError,
+    {
+      errorMessage: errorMessage,
+      allowRetry: !!opt_onRetryClick,
+    },
+    opt_onRetryClick,
+    opt_domHelper,
+    "recoverableError"
+  );
 };
-goog.inherits(firebaseui.auth.ui.page.RecoverableError,
-    firebaseui.auth.ui.page.Notice);
-
+goog.inherits(
+  firebaseui.auth.ui.page.RecoverableError,
+  firebaseui.auth.ui.page.Notice
+);
 
 /**
  * Unrecoverable error notice UI component.
@@ -400,17 +434,22 @@ goog.inherits(firebaseui.auth.ui.page.RecoverableError,
  * @constructor
  * @extends {firebaseui.auth.ui.page.Notice}
  */
-firebaseui.auth.ui.page.UnrecoverableError =
-    function(errorMessage, opt_domHelper) {
+firebaseui.auth.ui.page.UnrecoverableError = function (
+  errorMessage,
+  opt_domHelper
+) {
   // Unrecoverable error notice has no continue button.
   firebaseui.auth.ui.page.UnrecoverableError.base(
-      this,
-      'constructor',
-      firebaseui.auth.soy2.page.unrecoverableError,
-      {errorMessage: errorMessage},
-      undefined,
-      opt_domHelper,
-      'unrecoverableError');
+    this,
+    "constructor",
+    firebaseui.auth.soy2.page.unrecoverableError,
+    { errorMessage: errorMessage },
+    undefined,
+    opt_domHelper,
+    "unrecoverableError"
+  );
 };
-goog.inherits(firebaseui.auth.ui.page.UnrecoverableError,
-    firebaseui.auth.ui.page.Notice);
+goog.inherits(
+  firebaseui.auth.ui.page.UnrecoverableError,
+  firebaseui.auth.ui.page.Notice
+);

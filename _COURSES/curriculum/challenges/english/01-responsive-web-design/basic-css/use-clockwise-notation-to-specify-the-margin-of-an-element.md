@@ -2,7 +2,7 @@
 id: bad87fee1348bd9afdf08726
 title: Use Clockwise Notation to Specify the Margin of an Element
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cnpybAd'
+videoUrl: "https://scrimba.com/c/cnpybAd"
 forumTopicId: 18345
 dashedName: use-clockwise-notation-to-specify-the-margin-of-an-element
 ---
@@ -28,25 +28,25 @@ Use Clockwise Notation to give the element with the `blue-box` class a margin of
 Your `blue-box` class should give the top of elements `40px` of `margin`.
 
 ```js
-assert($('.blue-box').css('margin-top') === '40px');
+assert($(".blue-box").css("margin-top") === "40px");
 ```
 
 Your `blue-box` class should give the right of elements `20px` of `margin`.
 
 ```js
-assert($('.blue-box').css('margin-right') === '20px');
+assert($(".blue-box").css("margin-right") === "20px");
 ```
 
 Your `blue-box` class should give the bottom of elements `20px` of `margin`.
 
 ```js
-assert($('.blue-box').css('margin-bottom') === '20px');
+assert($(".blue-box").css("margin-bottom") === "20px");
 ```
 
 Your `blue-box` class should give the left of elements `40px` of `margin`.
 
 ```js
-assert($('.blue-box').css('margin-left') === '40px');
+assert($(".blue-box").css("margin-left") === "40px");
 ```
 
 You should use the clockwise notation to set the margin of `blue-box` class.
@@ -54,7 +54,7 @@ You should use the clockwise notation to set the margin of `blue-box` class.
 ```js
 assert(
   /\.blue-box\s*{[\s\S]*margin[\s]*:\s*\d+px\s+\d+px\s+\d+px\s+\d+px(;\s*[^}]+\s*}|;?\s*})/.test(
-    __helpers.removeCssComments($('style').text())
+    __helpers.removeCssComments($("style").text())
   )
 );
 ```

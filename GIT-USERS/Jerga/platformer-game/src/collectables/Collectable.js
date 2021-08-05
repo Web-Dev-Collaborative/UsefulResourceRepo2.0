@@ -1,7 +1,4 @@
-
-
-
-import Phaser from 'phaser';
+import Phaser from "phaser";
 
 class Collectable extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, key) {
@@ -18,11 +15,10 @@ class Collectable extends Phaser.Physics.Arcade.Sprite {
       y: this.y - 3,
       duration: Phaser.Math.Between(1500, 2500),
       repeat: -1,
-      easy: 'linear',
-      yoyo: true
-    })
+      easy: "linear",
+      yoyo: true,
+    });
   }
 }
-
 
 export default Collectable;

@@ -26,7 +26,6 @@ goog.provide('fireauth.storage.RedirectUserManager');
 goog.require('fireauth.AuthUser');
 goog.require('fireauth.authStorage');
 
-
 /**
  * Defines the Auth redirect user storage manager. It provides methods
  * to store, load and delete a user going through a link with redirect
@@ -36,7 +35,7 @@ goog.require('fireauth.authStorage');
  *     manager to use. If none is provided, the default global instance is used.
  * @constructor @struct @final
  */
-fireauth.storage.RedirectUserManager = function(appId, opt_manager) {
+fireauth.storage.RedirectUserManager = function (appId, opt_manager) {
   /** @const @private{string} appId The Auth state's application ID. */
   this.appId_ = appId;
   /**
@@ -45,7 +44,6 @@ fireauth.storage.RedirectUserManager = function(appId, opt_manager) {
    */
   this.manager_ = opt_manager || fireauth.authStorage.Manager.getInstance();
 };
-
 
 /**
  * @const @private{!fireauth.authStorage.Key} The Auth redirect user storage
@@ -56,31 +54,32 @@ fireauth.storage.RedirectUserManager.REDIRECT_USER_KEY_ = {
   persistent: fireauth.authStorage.Persistence.SESSION
 };
 
-
 /**
  * Stores the user being redirected for the provided application ID.
  * @param {!fireauth.AuthUser} redirectUser The user being redirected.
  * @return {!goog.Promise<void>} A promise that resolves on success.
  */
-fireauth.storage.RedirectUserManager.prototype.setRedirectUser =
-    function(redirectUser) {
+fireauth.storage.RedirectUserManager.prototype.setRedirectUser = function (
+  redirectUser
+) {
   return this.manager_.set(
-      fireauth.storage.RedirectUserManager.REDIRECT_USER_KEY_,
-      redirectUser.toPlainObject(),
-      this.appId_);
+    fireauth.storage.RedirectUserManager.REDIRECT_USER_KEY_,
+    redirectUser.toPlainObject(),
+    this.appId_
+  );
 };
-
 
 /**
  * Removes the stored redirected user for provided app ID.
  * @return {!goog.Promise<void>} A promise that resolves on success.
  */
 fireauth.storage.RedirectUserManager.prototype.removeRedirectUser =
-    function() {
-  return this.manager_.remove(
-      fireauth.storage.RedirectUserManager.REDIRECT_USER_KEY_, this.appId_);
-};
-
+  function () {
+    return this.manager_.remove(
+      fireauth.storage.RedirectUserManager.REDIRECT_USER_KEY_,
+      this.appId_
+    );
+  };
 
 /**
  * @param {?string=} opt_authDomain The optional Auth domain to override if
@@ -88,16 +87,17 @@ fireauth.storage.RedirectUserManager.prototype.removeRedirectUser =
  * @return {!goog.Promise<?fireauth.AuthUser>} A promise that resolves with
  *     the stored redirected user for the provided app ID.
  */
-fireauth.storage.RedirectUserManager.prototype.getRedirectUser =
-    function(opt_authDomain) {
-  return this.manager_.get(
-      fireauth.storage.RedirectUserManager.REDIRECT_USER_KEY_, this.appId_)
-      .then(function(response) {
-        // If potential user saved, override Auth domain if authDomain is
-        // provided.
-        if (response && opt_authDomain) {
-          response['authDomain'] = opt_authDomain;
-        }
-        return fireauth.AuthUser.fromPlainObject(response || {});
-      });
+fireauth.storage.RedirectUserManager.prototype.getRedirectUser = function (
+  opt_authDomain
+) {
+  return this.manager_
+    .get(fireauth.storage.RedirectUserManager.REDIRECT_USER_KEY_, this.appId_)
+    .then(function (response) {
+      // If potential user saved, override Auth domain if authDomain is
+      // provided.
+      if (response && opt_authDomain) {
+        response['authDomain'] = opt_authDomain;
+      }
+      return fireauth.AuthUser.fromPlainObject(response || {});
+    });
 };

@@ -57,4 +57,4 @@ query($checkoutId: ID = "test_id_checkout"){
     }
   }
 }
-`
+`;

@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08805
 title: Usare i selettori CSS per stilizzare gli elementi
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cJKMBT2'
+videoUrl: "https://scrimba.com/c/cJKMBT2"
 forumTopicId: 18349
 dashedName: use-css-selectors-to-style-elements
 ---
@@ -18,8 +18,7 @@ Questo è un modo per specificare lo stile di un elemento, ma c'è un modo migli
 Nella parte superiore del codice, crea un blocco `style` come questo:
 
 ```html
-<style>
-</style>
+<style></style>
 ```
 
 All'interno di quel blocco di stile, puoi creare un <dfn>selettore CSS</dfn> per tutti gli elementi `h2`. Ad esempio, se desideri che tutti gli elementi `h2` siano rossi, dovresti aggiungere una regola di stile simile a questa:
@@ -43,19 +42,19 @@ Elimina l'attributo di stile dell'elemento `h2` e crea invece un blocco `style`.
 L'attributo `style` dovrebbe essere rimosso dal tuo elemento `h2`.
 
 ```js
-assert(!$('h2').attr('style'));
+assert(!$("h2").attr("style"));
 ```
 
 Dovresti creare un elemento `style`.
 
 ```js
-assert($('style') && $('style').length >= 1);
+assert($("style") && $("style").length >= 1);
 ```
 
 Il tuo elemento `h2` dovrebbe essere blu.
 
 ```js
-assert($('h2').css('color') === 'rgb(0, 0, 255)');
+assert($("h2").css("color") === "rgb(0, 0, 255)");
 ```
 
 La dichiarazione `h2` del foglio di stile dovrebbe essere valida, con un punto e virgola e una parentesi graffa di chiusura.
@@ -87,7 +86,11 @@ assert(
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -105,12 +108,12 @@ assert(
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>
@@ -128,7 +131,11 @@ assert(
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -146,12 +153,12 @@ assert(
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>

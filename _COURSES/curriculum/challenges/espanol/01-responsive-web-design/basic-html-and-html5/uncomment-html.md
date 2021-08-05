@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08802
 title: Descomenta código HTML
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cBmG9T7'
+videoUrl: "https://scrimba.com/p/pVMPUv/cBmG9T7"
 forumTopicId: 18329
 dashedName: uncomment-html
 ---
@@ -24,19 +24,19 @@ Descomenta tus elementos `h1`, `h2` y `p`.
 Tu elemento `h1` debe ser visible en la página al descomentarlo.
 
 ```js
-assert($('h1').length > 0);
+assert($("h1").length > 0);
 ```
 
 Tu elemento `h2` debe ser visible en la página al descomentarlo.
 
 ```js
-assert($('h2').length > 0);
+assert($("h2").length > 0);
 ```
 
 Tu elemento `p` debe ser visible en la página al descomentarlo.
 
 ```js
-assert($('p').length > 0);
+assert($("p").length > 0);
 ```
 
 Ninguna etiqueta de cierre de comentario debe ser visible en la página (por ejemplo, `-->`).
@@ -66,5 +66,8 @@ assert(!$('*:contains("-->")')[1]);
 
 <h2>CatPhotoApp</h2>
 
-<p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p>
+<p>
+  Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack
+  your ankles chase the red dot, hairball run catnip eat the grass sniff.
+</p>
 ```

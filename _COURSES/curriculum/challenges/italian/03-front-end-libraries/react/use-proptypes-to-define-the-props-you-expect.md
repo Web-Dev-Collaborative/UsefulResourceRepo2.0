@@ -13,7 +13,7 @@ React fornisce utili funzioni di verifica del tipo per verificare che i componen
 È considerata una buona pratica impostare `propTypes` quando si conosce il tipo di una prop in anticipo. Puoi definire una proprietà `propTypes` per un componente nello stesso modo in cui hai definito `defaultProps`. In questo modo si verificherà che la prop con una data chiave sia presenti con un dato tipo. Ecco un esempio per richiedere il tipo `function` per una prop chiamata `handleClick`:
 
 ```js
-MyComponent.propTypes = { handleClick: PropTypes.func.isRequired }
+MyComponent.propTypes = { handleClick: PropTypes.func.isRequired };
 ```
 
 Nell'esempio sopra, la parte `PropTypes.func` controlla che `handleClick` sia una funzione. Aggiungendo `isRequired` si dice a React che `handleClick` è una proprietà richiesta per quel componente. Se quella prop non è fornita vedrai un avviso. Nota anche che `func` rappresenta `function`. Tra i sette tipi primitivi JavaScript, `function` e `boolean` (scritto come `bool`) sono gli unici che usano un'ortografia insolita. Oltre ai tipi primitivi, ci sono altri tipi disponibili. Ad esempio, puoi controllare che una prop sia un elemento React. Fai riferimento alla [documentazione](https://reactjs.org/docs/jsx-in-depth.html#specifying-the-react-element-type) per tutte le opzioni.
@@ -32,7 +32,7 @@ Il componente `ShoppingCart` dovrebbe essere presentato.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(ShoppingCart));
-    return mockedComponent.find('ShoppingCart').length === 1;
+    return mockedComponent.find("ShoppingCart").length === 1;
   })()
 );
 ```
@@ -43,7 +43,7 @@ Il componente `Items` dovrebbe essere presentato.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(ShoppingCart));
-    return mockedComponent.find('Items').length === 1;
+    return mockedComponent.find("Items").length === 1;
   })()
 );
 ```
@@ -54,10 +54,10 @@ Il componente `Items` dovrebbe includere un controllo di `propTypes` per richied
 (getUserInput) =>
   assert(
     (function () {
-      const noWhiteSpace = __helpers.removeWhiteSpace(getUserInput('index'));
+      const noWhiteSpace = __helpers.removeWhiteSpace(getUserInput("index"));
       return (
-        noWhiteSpace.includes('quantity:PropTypes.number.isRequired') &&
-        noWhiteSpace.includes('Items.propTypes=')
+        noWhiteSpace.includes("quantity:PropTypes.number.isRequired") &&
+        noWhiteSpace.includes("Items.propTypes=")
       );
     })()
   );
@@ -69,21 +69,21 @@ Il componente `Items` dovrebbe includere un controllo di `propTypes` per richied
 
 ```jsx
 var PropTypes = {
-  number: { isRequired: true }
+  number: { isRequired: true },
 };
 ```
 
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<ShoppingCart />, document.getElementById('root'))
+ReactDOM.render(<ShoppingCart />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
 
 ```jsx
 const Items = (props) => {
-  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>;
 };
 
 // Change code below this line
@@ -91,7 +91,7 @@ const Items = (props) => {
 // Change code above this line
 
 Items.defaultProps = {
-  quantity: 0
+  quantity: 0,
 };
 
 class ShoppingCart extends React.Component {
@@ -99,26 +99,26 @@ class ShoppingCart extends React.Component {
     super(props);
   }
   render() {
-    return <Items />
+    return <Items />;
   }
-};
+}
 ```
 
 # --solutions--
 
 ```jsx
 const Items = (props) => {
-  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>;
 };
 
 // Change code below this line
 Items.propTypes = {
-  quantity: PropTypes.number.isRequired
+  quantity: PropTypes.number.isRequired,
 };
 // Change code above this line
 
 Items.defaultProps = {
-  quantity: 0
+  quantity: 0,
 };
 
 class ShoppingCart extends React.Component {
@@ -126,7 +126,7 @@ class ShoppingCart extends React.Component {
     super(props);
   }
   render() {
-    return <Items />
+    return <Items />;
   }
-};
+}
 ```

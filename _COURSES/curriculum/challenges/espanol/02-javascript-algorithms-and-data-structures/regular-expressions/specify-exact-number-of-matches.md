@@ -42,35 +42,35 @@ La expresión regular no debe coincidir con la cadena `Timber`
 
 ```js
 timRegex.lastIndex = 0;
-assert(!timRegex.test('Timber'));
+assert(!timRegex.test("Timber"));
 ```
 
 La expresión regular no debe coincidir con la cadena `Timmber`
 
 ```js
 timRegex.lastIndex = 0;
-assert(!timRegex.test('Timmber'));
+assert(!timRegex.test("Timmber"));
 ```
 
 La expresión regular no debe coincidir con la cadena `Timmmber`
 
 ```js
 timRegex.lastIndex = 0;
-assert(!timRegex.test('Timmmber'));
+assert(!timRegex.test("Timmmber"));
 ```
 
 La expresión regular debe coincidir con la cadena `Timmmmber`
 
 ```js
 timRegex.lastIndex = 0;
-assert(timRegex.test('Timmmmber'));
+assert(timRegex.test("Timmmmber"));
 ```
 
 La expresión regular no debe coincidir con la cadena `Timber` con 30 `m`.
 
 ```js
 timRegex.lastIndex = 0;
-assert(!timRegex.test('Ti' + 'm'.repeat(30) + 'ber'));
+assert(!timRegex.test("Ti" + "m".repeat(30) + "ber"));
 ```
 
 # --seed--

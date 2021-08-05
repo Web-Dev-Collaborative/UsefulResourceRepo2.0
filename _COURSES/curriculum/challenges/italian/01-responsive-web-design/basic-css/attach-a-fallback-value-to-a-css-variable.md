@@ -2,7 +2,7 @@
 id: 5a9d7286424fe3d0e10cad13
 title: Aggiungere un valore di fallback a una variabile CSS
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c6bDNfp'
+videoUrl: "https://scrimba.com/c/c6bDNfp"
 forumTopicId: 301084
 dashedName: attach-a-fallback-value-to-a-css-variable
 ---

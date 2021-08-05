@@ -14,23 +14,27 @@ dashedName: use-destructuring-assignment-to-assign-variables-from-nested-objects
 
 ```js
 const user = {
-  johnDoe: { 
+  johnDoe: {
     age: 34,
-    email: 'johnDoe@freeCodeCamp.com'
-  }
+    email: "johnDoe@freeCodeCamp.com",
+  },
 };
 ```
 
 這是解構對象的屬性值賦值給具有相同名字的變量：
 
 ```js
-const { johnDoe: { age, email }} = user;
+const {
+  johnDoe: { age, email },
+} = user;
 ```
 
 這是將對象的屬性值賦值給具有不同名字的變量：
 
 ```js
-const { johnDoe: { age: userAge, email: userEmail }} = user;
+const {
+  johnDoe: { age: userAge, email: userEmail },
+} = user;
 ```
 
 # --instructions--
@@ -82,7 +86,7 @@ assert(lowToday === 64 && highToday === 77);
 const LOCAL_FORECAST = {
   yesterday: { low: 61, high: 75 },
   today: { low: 64, high: 77 },
-  tomorrow: { low: 68, high: 80 }
+  tomorrow: { low: 68, high: 80 },
 };
 
 // Only change code below this line
@@ -99,8 +103,10 @@ const highToday = LOCAL_FORECAST.today.high;
 const LOCAL_FORECAST = {
   yesterday: { low: 61, high: 75 },
   today: { low: 64, high: 77 },
-  tomorrow: { low: 68, high: 80 }
+  tomorrow: { low: 68, high: 80 },
 };
 
-const { today: { low: lowToday, high: highToday }} = LOCAL_FORECAST;
+const {
+  today: { low: lowToday, high: highToday },
+} = LOCAL_FORECAST;
 ```

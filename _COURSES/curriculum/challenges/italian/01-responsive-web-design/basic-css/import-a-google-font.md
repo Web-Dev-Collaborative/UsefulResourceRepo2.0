@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08807
 title: Importare un font Google
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cM9MRsJ'
+videoUrl: "https://scrimba.com/c/cM9MRsJ"
 forumTopicId: 18200
 dashedName: import-a-google-font
 ---
@@ -18,7 +18,11 @@ Quindi, andiamo avanti e importiamo e applichiamo un carattere di Google (nota c
 Per importare un font Google, puoi copiare l'URL del font dalla libreria di font Google e poi incollarlo nel tuo HTML. Per questa sfida, importeremo il font `Lobster`. Per fare questo, copia la seguente linea di codice e incollala nella parte superiore dell'editor di codice (prima dell'elemento di apertura `style`):
 
 ```html
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link
+  href="https://fonts.googleapis.com/css?family=Lobster"
+  rel="stylesheet"
+  type="text/css"
+/>
 ```
 
 Ora puoi usare il carattere `Lobster` nel tuo CSS usando `Lobster` come FAMILY_NAME come nell'esempio seguente:
@@ -47,8 +51,8 @@ Il tuo elemento `h2` dovrebbe usare il font `Lobster`.
 
 ```js
 assert(
-  $('h2')
-    .css('font-family')
+  $("h2")
+    .css("font-family")
     .match(/lobster/i)
 );
 ```
@@ -67,8 +71,8 @@ Il tuo elemento `p` dovrebbe usare il font `monospace`.
 
 ```js
 assert(
-  $('p')
-    .css('font-family')
+  $("p")
+    .css("font-family")
     .match(/monospace/i)
 );
 ```
@@ -93,7 +97,11 @@ assert(
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -111,12 +119,12 @@ assert(
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>
@@ -125,7 +133,11 @@ assert(
 # --solutions--
 
 ```html
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link
+  href="https://fonts.googleapis.com/css?family=Lobster"
+  rel="stylesheet"
+  type="text/css"
+/>
 <style>
   .red-text {
     color: red;
@@ -145,7 +157,11 @@ assert(
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -163,12 +179,12 @@ assert(
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>

@@ -29,19 +29,19 @@ assert(Array.isArray(state) && state.length === 0);
 `mapStateToProps` 应为函数。
 
 ```js
-assert(typeof mapStateToProps === 'function');
+assert(typeof mapStateToProps === "function");
 ```
 
 `mapStateToProps` 应返回一个对象。
 
 ```js
-assert(typeof mapStateToProps() === 'object');
+assert(typeof mapStateToProps() === "object");
 ```
 
 把 state 数组传入 `mapStateToProps` 后应返回赋值给 `messages` 键的数组。
 
 ```js
-assert(mapStateToProps(['messages']).messages.pop() === 'messages');
+assert(mapStateToProps(["messages"]).messages.pop() === "messages");
 ```
 
 # --seed--
@@ -63,7 +63,7 @@ const state = [];
 
 const mapStateToProps = (state) => {
   return {
-    messages: state
-  }
+    messages: state,
+  };
 };
 ```

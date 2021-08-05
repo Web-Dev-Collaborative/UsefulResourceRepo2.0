@@ -13,7 +13,7 @@ La <dfn>sintaxis de desestructuración</dfn> es una sintaxis especial introducid
 Considera el siguiente código ES5:
 
 ```js
-const user = { name: 'John Doe', age: 34 };
+const user = { name: "John Doe", age: 34 };
 
 const name = user.name;
 const age = user.age;
@@ -42,16 +42,16 @@ Reemplaza las dos asignaciones con una sintaxis de desestructuración equivalent
 Debes eliminar la sintaxis de asignación ES5.
 
 ```js
-assert(
-  !code.match(/today\s*=\s*HIGH_TEMPERATURES\.(today|tomorrow)/g)
-);
+assert(!code.match(/today\s*=\s*HIGH_TEMPERATURES\.(today|tomorrow)/g));
 ```
 
 Debes usar desestructuración para crear la variable `today`.
 
 ```js
 assert(
-  code.match(/(var|let|const)\s*{\s*(today[^}]*|[^,]*,\s*today)\s*}\s*=\s*HIGH_TEMPERATURES(;|\s+|\/\/)/g)
+  code.match(
+    /(var|let|const)\s*{\s*(today[^}]*|[^,]*,\s*today)\s*}\s*=\s*HIGH_TEMPERATURES(;|\s+|\/\/)/g
+  )
 );
 ```
 
@@ -59,7 +59,9 @@ Debes usar desestructuración para crear la variable `tomorrow`.
 
 ```js
 assert(
-  code.match(/(var|let|const)\s*{\s*(tomorrow[^}]*|[^,]*,\s*tomorrow)\s*}\s*=\s*HIGH_TEMPERATURES(;|\s+|\/\/)/g)
+  code.match(
+    /(var|let|const)\s*{\s*(tomorrow[^}]*|[^,]*,\s*tomorrow)\s*}\s*=\s*HIGH_TEMPERATURES(;|\s+|\/\/)/g
+  )
 );
 ```
 
@@ -77,7 +79,7 @@ assert(today === 77 && tomorrow === 80);
 const HIGH_TEMPERATURES = {
   yesterday: 75,
   today: 77,
-  tomorrow: 80
+  tomorrow: 80,
 };
 
 // Only change code below this line
@@ -94,7 +96,7 @@ const tomorrow = HIGH_TEMPERATURES.tomorrow;
 const HIGH_TEMPERATURES = {
   yesterday: 75,
   today: 77,
-  tomorrow: 80
+  tomorrow: 80,
 };
 
 const { today, tomorrow } = HIGH_TEMPERATURES;

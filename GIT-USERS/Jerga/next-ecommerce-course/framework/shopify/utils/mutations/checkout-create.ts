@@ -1,5 +1,4 @@
-
-import { checkoutDetailFragment } from "../common"
+import { checkoutDetailFragment } from "../common";
 
 const checkoutCreate = `
   mutation checkoutCreate($input: CheckoutCreateInput = {}) {
@@ -13,6 +12,6 @@ const checkoutCreate = `
       }
     }
   }
-`
+`;
 
-export default checkoutCreate
+export default checkoutCreate;

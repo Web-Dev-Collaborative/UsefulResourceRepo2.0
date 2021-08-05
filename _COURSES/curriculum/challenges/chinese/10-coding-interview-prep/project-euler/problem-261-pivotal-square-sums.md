@@ -1,6 +1,6 @@
 ---
 id: 5900f4711000cf542c50ff84
-title: 'Problem 261: Pivotal Square Sums'
+title: "Problem 261: Pivotal Square Sums"
 challengeType: 5
 forumTopicId: 301910
 dashedName: problem-261-pivotal-square-sums
@@ -28,7 +28,6 @@ assert.strictEqual(euler261(), 238890850232021);
 
 ```js
 function euler261() {
-
   return true;
 }
 

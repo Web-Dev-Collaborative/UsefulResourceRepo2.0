@@ -21,7 +21,7 @@ Scrivi un'espressione regolare e usa i metodi stringa appropriati per rimuovere 
 `result` dovrebbe essere uguale alla stringa `Hello, World!`
 
 ```js
-assert(result === 'Hello, World!');
+assert(result === "Hello, World!");
 ```
 
 La tua soluzione non dovrebbe usare il metodo `String.prototype.trim()`.
@@ -51,5 +51,5 @@ let result = hello; // Change this line
 ```js
 let hello = "   Hello, World!  ";
 let wsRegex = /^(\s+)(.+[^\s])(\s+)$/;
-let result = hello.replace(wsRegex, '$2');
+let result = hello.replace(wsRegex, "$2");
 ```

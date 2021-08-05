@@ -16,14 +16,13 @@
  * @fileoverview Unauthorized user handler.
  */
 
-goog.provide('firebaseui.auth.widget.handler.handleUnauthorizedUser');
+goog.provide("firebaseui.auth.widget.handler.handleUnauthorizedUser");
 
-goog.require('firebaseui.auth.ui.page.UnauthorizedUser');
-goog.require('firebaseui.auth.widget.Handler');
-goog.require('firebaseui.auth.widget.HandlerName');
-goog.require('firebaseui.auth.widget.handler');
-goog.require('firebaseui.auth.widget.handler.common');
-
+goog.require("firebaseui.auth.ui.page.UnauthorizedUser");
+goog.require("firebaseui.auth.widget.Handler");
+goog.require("firebaseui.auth.widget.HandlerName");
+goog.require("firebaseui.auth.widget.handler");
+goog.require("firebaseui.auth.widget.handler.common");
 
 /**
  * Handles unauthorized user.
@@ -34,39 +33,45 @@ goog.require('firebaseui.auth.widget.handler.common');
  * @param {?string} email The email address of the account.
  * @param {string} provider The provider user uses.
  */
-firebaseui.auth.widget.handler.handleUnauthorizedUser = function(
-    app, container, email, provider) {
+firebaseui.auth.widget.handler.handleUnauthorizedUser = function (
+  app,
+  container,
+  email,
+  provider
+) {
   let backCallbackFunction = function () {
-      firebaseui.auth.widget.handler.common.handleSignInStart(
-          app, container);
+    firebaseui.auth.widget.handler.common.handleSignInStart(app, container);
   };
   // Defines the backCallbackFunction.
   if (provider === firebase.auth.EmailAuthProvider.PROVIDER_ID) {
     // Email password or Email link.
-    backCallbackFunction = function() {
+    backCallbackFunction = function () {
       // Go back to start email sign in handler.
       firebaseui.auth.widget.handler.common.handleSignInWithEmail(
-          app, container);
+        app,
+        container
+      );
     };
   }
   const component = new firebaseui.auth.ui.page.UnauthorizedUser(
-      email || null,
-      function () {
-        component.dispose();
-        backCallbackFunction();
-      },
-      app.getConfig().getEmailProviderAdminEmail(),
-      app.getConfig().getEmailProviderHelperLink(),
-      app.getConfig().getTosUrl(),
-      app.getConfig().getPrivacyPolicyUrl());
+    email || null,
+    function () {
+      component.dispose();
+      backCallbackFunction();
+    },
+    app.getConfig().getEmailProviderAdminEmail(),
+    app.getConfig().getEmailProviderHelperLink(),
+    app.getConfig().getTosUrl(),
+    app.getConfig().getPrivacyPolicyUrl()
+  );
   component.render(container);
   // Set current UI component.
   app.setCurrentComponent(component);
 };
 
-
 // Register handler.
 firebaseui.auth.widget.handler.register(
-    firebaseui.auth.widget.HandlerName.UNAUTHORIZED_USER,
-    /** @type {!firebaseui.auth.widget.Handler} */
-    (firebaseui.auth.widget.handler.handleUnauthorizedUser));
+  firebaseui.auth.widget.HandlerName.UNAUTHORIZED_USER,
+  /** @type {!firebaseui.auth.widget.Handler} */
+  (firebaseui.auth.widget.handler.handleUnauthorizedUser)
+);

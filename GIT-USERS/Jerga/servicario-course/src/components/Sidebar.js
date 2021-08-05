@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React from 'react'
+import React from "react";
 
 const Sidebar = () => {
   return (
@@ -13,36 +13,60 @@ const Sidebar = () => {
       </div>
       <div className="inner">
         <ul className="sidebar-menu">
-          <li><span className="nav-section-title"></span></li>
-          <li className="have-children"><a href="#">User</a>
+          <li>
+            <span className="nav-section-title"></span>
+          </li>
+          <li className="have-children">
+            <a href="#">User</a>
             <ul>
-              <li><a href="#">Profile</a></li>
-              <li><a href="#">Account</a></li>
-              <li><a href="#">Settings</a></li>
+              <li>
+                <a href="#">Profile</a>
+              </li>
+              <li>
+                <a href="#">Account</a>
+              </li>
+              <li>
+                <a href="#">Settings</a>
+              </li>
             </ul>
           </li>
-          <li className="have-children"><a href="#">Messages</a>
+          <li className="have-children">
+            <a href="#">Messages</a>
             <ul>
-              <li><a href="#">Inbox</a></li>
-              <li><a href="#">Compose</a></li>
+              <li>
+                <a href="#">Inbox</a>
+              </li>
+              <li>
+                <a href="#">Compose</a>
+              </li>
             </ul>
           </li>
-          <li className="have-children"><a href="#">Images</a>
+          <li className="have-children">
+            <a href="#">Images</a>
             <ul>
-              <li><a href="#">Library</a></li>
-              <li><a href="#">Upload</a></li>
+              <li>
+                <a href="#">Library</a>
+              </li>
+              <li>
+                <a href="#">Upload</a>
+              </li>
             </ul>
           </li>
-          <li className="have-children"><a href="#">Settings</a>
+          <li className="have-children">
+            <a href="#">Settings</a>
             <ul>
-              <li><a href="#">User settings</a></li>
-              <li><a href="#">App settings</a></li>
+              <li>
+                <a href="#">User settings</a>
+              </li>
+              <li>
+                <a href="#">App settings</a>
+              </li>
             </ul>
           </li>
         </ul>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar 
+export default Sidebar;

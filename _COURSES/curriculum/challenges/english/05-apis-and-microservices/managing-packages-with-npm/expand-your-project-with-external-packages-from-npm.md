@@ -32,12 +32,12 @@ Add version "2.14.0" of the "moment" package to the `dependencies` field of your
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.property(
         packJson.dependencies,
-        'moment',
+        "moment",
         '"dependencies" does not include "moment"'
       );
     },
@@ -51,7 +51,7 @@ Add version "2.14.0" of the "moment" package to the `dependencies` field of your
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.match(

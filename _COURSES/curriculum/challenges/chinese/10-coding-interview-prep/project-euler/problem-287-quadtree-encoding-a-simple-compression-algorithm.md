@@ -1,6 +1,6 @@
 ---
 id: 5900f48b1000cf542c50ff9e
-title: 'Problem 287: Quadtree encoding (a simple compression algorithm)'
+title: "Problem 287: Quadtree encoding (a simple compression algorithm)"
 challengeType: 5
 forumTopicId: 301938
 dashedName: problem-287-quadtree-encoding-a-simple-compression-algorithm
@@ -40,7 +40,6 @@ assert.strictEqual(euler287(), 313135496);
 
 ```js
 function euler287() {
-
   return true;
 }
 

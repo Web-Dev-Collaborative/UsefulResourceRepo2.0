@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244ba
 title: Comprendere l'immutabilità delle stringhe
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cWPVaUR'
+videoUrl: "https://scrimba.com/c/cWPVaUR"
 forumTopicId: 18331
 dashedName: understand-string-immutability
 ---
@@ -18,7 +18,7 @@ var myStr = "Bob";
 myStr[0] = "J";
 ```
 
-non può modificare il valore di `myStr` in `Job`, poiché il contenuto di `myStr` non può essere modificato. Tieni presente che questo *non* significa che `myStr` non può essere modificato, ma solo che i singoli caratteri di una <dfn>stringa letterale</dfn> non possono essere cambiati. L'unico modo per modificare `myStr` è di assegnargli una nuova stringa, in questo modo:
+non può modificare il valore di `myStr` in `Job`, poiché il contenuto di `myStr` non può essere modificato. Tieni presente che questo _non_ significa che `myStr` non può essere modificato, ma solo che i singoli caratteri di una <dfn>stringa letterale</dfn> non possono essere cambiati. L'unico modo per modificare `myStr` è di assegnargli una nuova stringa, in questo modo:
 
 ```js
 var myStr = "Bob";
@@ -34,7 +34,7 @@ Correggi l'assegnazione a `myStr` in modo che contenga il valore stringa di `Hel
 `myStr` dovrebbe avere un valore stringa `Hello World`.
 
 ```js
-assert(myStr === 'Hello World');
+assert(myStr === "Hello World");
 ```
 
 Non modificare il codice sopra il commento specificato.
@@ -48,7 +48,9 @@ assert(/myStr = "Jello World"/.test(code));
 ## --after-user-code--
 
 ```js
-(function(v){return "myStr = " + v;})(myStr);
+(function (v) {
+  return "myStr = " + v;
+})(myStr);
 ```
 
 ## --seed-contents--

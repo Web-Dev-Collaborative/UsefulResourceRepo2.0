@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 /**
  * @fileoverview Tests for multifactorgenerator.js
  */
@@ -33,44 +33,45 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.MultiFactorGeneratorTest');
 
-
 var verificationId = 'SESSION_INFO';
 var verificationCode = '123456';
 
-
 function testPhoneMultiFactorGenerator() {
   assertEquals(
-      fireauth.constants.SecondFactorType.PHONE,
-      fireauth.PhoneMultiFactorGenerator.FACTOR_ID);
+    fireauth.constants.SecondFactorType.PHONE,
+    fireauth.PhoneMultiFactorGenerator.FACTOR_ID
+  );
 }
-
 
 function testPhoneMultiFactorGenerator_assertion_success() {
   var phoneAuthCredential = fireauth.PhoneAuthProvider.credential(
-      verificationId, verificationCode);
+    verificationId,
+    verificationCode
+  );
   var assertion =
-      fireauth.PhoneMultiFactorGenerator.assertion(phoneAuthCredential);
+    fireauth.PhoneMultiFactorGenerator.assertion(phoneAuthCredential);
 
   assertTrue(assertion instanceof fireauth.PhoneMultiFactorAssertion);
   assertObjectEquals(
-      new fireauth.PhoneMultiFactorAssertion(phoneAuthCredential),
-      assertion);
+    new fireauth.PhoneMultiFactorAssertion(phoneAuthCredential),
+    assertion
+  );
 }
-
 
 function testPhoneMultiFactorGenerator_assertion_error() {
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.ARGUMENT_ERROR,
-      'firebase.auth.PhoneMultiFactorAssertion requires a valid ' +
-      'firebase.auth.PhoneAuthCredential');
+    fireauth.authenum.Error.ARGUMENT_ERROR,
+    'firebase.auth.PhoneMultiFactorAssertion requires a valid ' +
+      'firebase.auth.PhoneAuthCredential'
+  );
   var authCredential = fireauth.EmailAuthProvider.credential(
-      'user@example.com', 'password');
+    'user@example.com',
+    'password'
+  );
 
-  var error = assertThrows(function() {
+  var error = assertThrows(function () {
     return fireauth.PhoneMultiFactorGenerator.assertion(authCredential);
   });
 
-  fireauth.common.testHelper.assertErrorEquals(
-      expectedError,
-      error);
+  fireauth.common.testHelper.assertErrorEquals(expectedError, error);
 }

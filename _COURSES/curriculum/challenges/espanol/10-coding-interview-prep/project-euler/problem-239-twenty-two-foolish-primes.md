@@ -1,6 +1,6 @@
 ---
 id: 5900f45c1000cf542c50ff6e
-title: 'Problem 239: Twenty-two Foolish Primes'
+title: "Problem 239: Twenty-two Foolish Primes"
 challengeType: 5
 forumTopicId: 301884
 dashedName: problem-239-twenty-two-foolish-primes
@@ -28,7 +28,6 @@ assert.strictEqual(euler239(), 0.001887854841);
 
 ```js
 function euler239() {
-
   return true;
 }
 

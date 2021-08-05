@@ -12,11 +12,10 @@
  * limitations under the License.
  */
 
-goog.provide('firebaseui.auth.PhoneNumber');
+goog.provide("firebaseui.auth.PhoneNumber");
 
-goog.require('firebaseui.auth.data.country');
-goog.require('goog.string');
-
+goog.require("firebaseui.auth.data.country");
+goog.require("goog.string");
 
 /**
  * Represents a phone number.
@@ -34,7 +33,6 @@ firebaseui.auth.PhoneNumber = class {
     this.nationalNumber = nationalNumber;
   }
 
-
   /**
    * Converts a phone number string to a firebaseui.auth.PhoneNumber object.
    * Returns null if invalid.
@@ -49,40 +47,42 @@ firebaseui.auth.PhoneNumber = class {
     var trimmedPhoneNumber = goog.string.trim(phoneNumberStr);
     // Get matching countries if national number countains it.
     var countries =
-        firebaseui.auth.data.country.LOOKUP_TREE.search(trimmedPhoneNumber);
+      firebaseui.auth.data.country.LOOKUP_TREE.search(trimmedPhoneNumber);
     if (countries.length > 0) {
       var countryId;
       // Parse the country ID and national number components.
       // If the country code is +1, use US as default code.
       // Otherwise, just pick the first country.
-      if (countries[0].e164_cc == '1') {
+      if (countries[0].e164_cc == "1") {
         countryId = firebaseui.auth.PhoneNumber.DEFAULT_COUNTRY_ID;
       } else {
         countryId = countries[0].e164_key;
       }
       // Get the national number. Add the + char to the e164_cc string.
-      var nationalNumber =
-          trimmedPhoneNumber.substr(countries[0].e164_cc.length + 1);
+      var nationalNumber = trimmedPhoneNumber.substr(
+        countries[0].e164_cc.length + 1
+      );
       // Return the phone number object.
       return new firebaseui.auth.PhoneNumber(
-          countryId, goog.string.trim(nationalNumber));
+        countryId,
+        goog.string.trim(nationalNumber)
+      );
     }
     return null;
   }
-
 
   /**
    * @return {string} The full phone number.
    */
   getPhoneNumber() {
-    var countryData =
-        firebaseui.auth.data.country.getCountryByKey(this.countryId);
+    var countryData = firebaseui.auth.data.country.getCountryByKey(
+      this.countryId
+    );
     if (!countryData) {
-      throw new Error('Country ID ' + this.countryId + ' not found.');
+      throw new Error("Country ID " + this.countryId + " not found.");
     }
-    return '+' + countryData.e164_cc + this.nationalNumber;
+    return "+" + countryData.e164_cc + this.nationalNumber;
   }
-
 
   /**
    * @return {?firebaseui.auth.data.country.Country} The country corresponding
@@ -93,6 +93,5 @@ firebaseui.auth.PhoneNumber = class {
   }
 };
 
-
 /** @const {string} The ID of the default country (currently USA). */
-firebaseui.auth.PhoneNumber.DEFAULT_COUNTRY_ID = '1-US-0';
+firebaseui.auth.PhoneNumber.DEFAULT_COUNTRY_ID = "1-US-0";

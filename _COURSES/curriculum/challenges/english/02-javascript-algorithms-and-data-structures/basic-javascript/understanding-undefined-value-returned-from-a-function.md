@@ -2,7 +2,7 @@
 id: 598e8944f009e646fc236146
 title: Understanding Undefined Value returned from a Function
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/ce2p7cL'
+videoUrl: "https://scrimba.com/c/ce2p7cL"
 forumTopicId: 301177
 dashedName: understanding-undefined-value-returned-from-a-function
 ---
@@ -32,7 +32,7 @@ Create a function `addFive` without any arguments. This function adds 5 to the `
 `addFive` should be a function.
 
 ```js
-assert(typeof addFive === 'function');
+assert(typeof addFive === "function");
 ```
 
 Once both functions have run, the `sum` should be equal to `8`.
@@ -68,7 +68,6 @@ function addThree() {
 }
 
 // Only change code below this line
-
 
 // Only change code above this line
 

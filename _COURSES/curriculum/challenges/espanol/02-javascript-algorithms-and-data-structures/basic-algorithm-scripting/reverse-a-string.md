@@ -19,25 +19,25 @@ Tu resultado debe ser una cadena.
 `reverseString("hello")` debe devolver una cadena.
 
 ```js
-assert(typeof reverseString('hello') === 'string');
+assert(typeof reverseString("hello") === "string");
 ```
 
 `reverseString("hello")` debe devolver la cadena `olleh`.
 
 ```js
-assert(reverseString('hello') === 'olleh');
+assert(reverseString("hello") === "olleh");
 ```
 
 `reverseString("Howdy")` debe devolver la cadena `ydwoH`.
 
 ```js
-assert(reverseString('Howdy') === 'ydwoH');
+assert(reverseString("Howdy") === "ydwoH");
 ```
 
 `reverseString("Greetings from Earth")` debe devolver la cadena `htraE morf sgniteerG`.
 
 ```js
-assert(reverseString('Greetings from Earth') === 'htraE morf sgniteerG');
+assert(reverseString("Greetings from Earth") === "htraE morf sgniteerG");
 ```
 
 # --seed--
@@ -56,7 +56,7 @@ reverseString("hello");
 
 ```js
 function reverseString(str) {
-  return str.split('').reverse().join('');
+  return str.split("").reverse().join("");
 }
 
 reverseString("hello");

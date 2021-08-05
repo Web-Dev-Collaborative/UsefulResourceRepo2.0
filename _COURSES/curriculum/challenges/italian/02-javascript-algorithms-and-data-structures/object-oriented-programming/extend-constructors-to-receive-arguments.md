@@ -29,9 +29,9 @@ function Bird(name, color) {
 Potrai quindi passargli dei valori come argomenti al costruttore `Bird` per definire ogni singolo uccello: `let cardinal = new Bird("Bruce", "red");` crea una nuova istanza di `Bird` con le proprietà `name` e `color` impostate rispettivamente a `Bruce` e `red`. La proprietà `numLegs` è ancora impostata a 2. Il `cardinal` ha queste proprietà:
 
 ```js
-cardinal.name
-cardinal.color
-cardinal.numLegs
+cardinal.name;
+cardinal.color;
+cardinal.numLegs;
 ```
 
 Il costruttore è più flessibile. Ora è possibile definire le proprietà per ogni `Bird` al momento della creazione, che è uno dei motivi per cui i costruttori JavaScript sono così utili. Essi raggruppano gli oggetti in base a caratteristiche e comportamenti condivisi e definiscono un progetto che automatizza la loro creazione.
@@ -45,19 +45,19 @@ Crea un altro costruttore per `Dog`. Questa volta, impostalo in modo che riceva 
 `Dog` dovrebbe ricevere un argomento per `name`.
 
 ```js
-assert(new Dog('Clifford').name === 'Clifford');
+assert(new Dog("Clifford").name === "Clifford");
 ```
 
 `Dog` dovrebbe ricevere un argomento per `color`.
 
 ```js
-assert(new Dog('Clifford', 'yellow').color === 'yellow');
+assert(new Dog("Clifford", "yellow").color === "yellow");
 ```
 
 `Dog` dovrebbe avere la proprietà `numLegs` impostata a 4.
 
 ```js
-assert(new Dog('Clifford').numLegs === 4);
+assert(new Dog("Clifford").numLegs === 4);
 ```
 
 `terrier` dovrebbe essere creato usando il costruttore `Dog`.
@@ -71,15 +71,13 @@ assert(terrier instanceof Dog);
 ## --seed-contents--
 
 ```js
-function Dog() {
-
-}
+function Dog() {}
 ```
 
 # --solutions--
 
 ```js
-function Dog (name, color) {
+function Dog(name, color) {
   this.numLegs = 4;
   this.name = name;
   this.color = color;

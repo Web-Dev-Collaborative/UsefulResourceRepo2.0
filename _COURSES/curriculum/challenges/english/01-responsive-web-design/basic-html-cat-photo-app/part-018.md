@@ -17,7 +17,7 @@ The second `section` element appears to be missing or does not have both an open
 
 ```js
 assert(
-  document.querySelectorAll('main > section')[1] &&
+  document.querySelectorAll("main > section")[1] &&
     code.match(/\<\/section>/g).length == 2
 );
 ```
@@ -26,8 +26,8 @@ There should be an `h3` element right above the second `section` element's closi
 
 ```js
 assert(
-  document.querySelectorAll('main > section')[1].lastElementChild.nodeName ===
-    'H3'
+  document.querySelectorAll("main > section")[1].lastElementChild.nodeName ===
+    "H3"
 );
 ```
 
@@ -36,22 +36,22 @@ The `h3` element right above the second `section` element's closing tag should h
 ```js
 assert(
   document
-    .querySelectorAll('main > section')[1]
+    .querySelectorAll("main > section")[1]
     .lastElementChild.innerText.toLowerCase()
-    .replace(/\s+/g, ' ') === 'things cats love:'
+    .replace(/\s+/g, " ") === "things cats love:"
 );
 ```
 
 There should be an `h2` element with the text `Cat Lists` above the last `h3` element that is nested in the last `section` element'. You may have accidentally deleted the `h2` element.
 
 ```js
-const secondSectionLastElemNode = document.querySelectorAll('main > section')[1]
-  .lastElementChild;
+const secondSectionLastElemNode =
+  document.querySelectorAll("main > section")[1].lastElementChild;
 assert(
-  secondSectionLastElemNode.nodeName === 'H3' &&
+  secondSectionLastElemNode.nodeName === "H3" &&
     secondSectionLastElemNode.previousElementSibling.innerText
       .toLowerCase()
-      .replace(/\s+/g, ' ') === 'cat lists'
+      .replace(/\s+/g, " ") === "cat lists"
 );
 ```
 
@@ -67,16 +67,22 @@ assert(
       <section>
         <h2>Cat Photos</h2>
         <!-- TODO: Add link to cat photos -->
-        <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        <p>
+          Click here to view more
+          <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+        </p>
+        <a href="https://freecatphotoapp.com"
+          ><img
+            src="https://bit.ly/fcc-relaxing-cat"
+            alt="A cute orange cat lying on its back."
+        /></a>
       </section>
---fcc-editable-region--
+      --fcc-editable-region--
       <section>
         <h2>Cat Lists</h2>
       </section>
---fcc-editable-region--
+      --fcc-editable-region--
     </main>
   </body>
 </html>
 ```
-

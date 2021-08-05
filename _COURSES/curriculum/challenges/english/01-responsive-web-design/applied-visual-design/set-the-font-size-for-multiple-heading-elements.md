@@ -2,7 +2,7 @@
 id: 587d781c367417b2b2512ac2
 title: Set the font-size for Multiple Heading Elements
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cPpQNT3'
+videoUrl: "https://scrimba.com/c/cPpQNT3"
 forumTopicId: 301067
 dashedName: set-the-font-size-for-multiple-heading-elements
 ---
@@ -29,31 +29,31 @@ The `font-size` property is used to specify how large the text is in a given ele
 Your code should set the `font-size` property for the `h1` tag to 68 pixels.
 
 ```js
-assert($('h1').css('font-size') == '68px');
+assert($("h1").css("font-size") == "68px");
 ```
 
 Your code should set the `font-size` property for the `h2` tag to 52 pixels.
 
 ```js
-assert($('h2').css('font-size') == '52px');
+assert($("h2").css("font-size") == "52px");
 ```
 
 Your code should set the `font-size` property for the `h3` tag to 40 pixels.
 
 ```js
-assert($('h3').css('font-size') == '40px');
+assert($("h3").css("font-size") == "40px");
 ```
 
 Your code should set the `font-size` property for the `h4` tag to 32 pixels.
 
 ```js
-assert($('h4').css('font-size') == '32px');
+assert($("h4").css("font-size") == "32px");
 ```
 
 Your code should set the `font-size` property for the `h5` tag to 21 pixels.
 
 ```js
-assert($('h5').css('font-size') == '21px');
+assert($("h5").css("font-size") == "21px");
 ```
 
 Your code should set the `font-size` property for the `h6` tag to 14 pixels.
@@ -68,14 +68,7 @@ assert.strictEqual(true, regex.test(code));
 ## --seed-contents--
 
 ```html
-<style>
-
-
-
-
-
-
-</style>
+<style></style>
 <h1>This is h1 text</h1>
 <h2>This is h2 text</h2>
 <h3>This is h3 text</h3>

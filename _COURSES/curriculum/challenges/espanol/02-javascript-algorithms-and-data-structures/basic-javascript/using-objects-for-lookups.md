@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244ca
 title: Usa objetos para hacer búsquedas
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cdBk8sM'
+videoUrl: "https://scrimba.com/c/cdBk8sM"
 forumTopicId: 18373
 dashedName: using-objects-for-lookups
 ---
@@ -42,43 +42,43 @@ Convierte la declaración switch en un objeto llamado `lookup`. Úsalo para busc
 `phoneticLookup("alpha")` debe ser igual a la cadena `Adams`
 
 ```js
-assert(phoneticLookup('alpha') === 'Adams');
+assert(phoneticLookup("alpha") === "Adams");
 ```
 
 `phoneticLookup("bravo")` debe ser igual a la cadena `Boston`
 
 ```js
-assert(phoneticLookup('bravo') === 'Boston');
+assert(phoneticLookup("bravo") === "Boston");
 ```
 
 `phoneticLookup("charlie")` debe ser igual a la cadena `Chicago`
 
 ```js
-assert(phoneticLookup('charlie') === 'Chicago');
+assert(phoneticLookup("charlie") === "Chicago");
 ```
 
 `phoneticLookup("delta")` debe ser igual a la cadena `Denver`
 
 ```js
-assert(phoneticLookup('delta') === 'Denver');
+assert(phoneticLookup("delta") === "Denver");
 ```
 
 `phoneticLookup("echo")` debe ser igual a la cadena `Easy`
 
 ```js
-assert(phoneticLookup('echo') === 'Easy');
+assert(phoneticLookup("echo") === "Easy");
 ```
 
 `phoneticLookup("foxtrot")` debe ser igual a la cadena `Frank`
 
 ```js
-assert(phoneticLookup('foxtrot') === 'Frank');
+assert(phoneticLookup("foxtrot") === "Frank");
 ```
 
 `phoneticLookup("")` debe ser igual a `undefined`
 
 ```js
-assert(typeof phoneticLookup('') === 'undefined');
+assert(typeof phoneticLookup("") === "undefined");
 ```
 
 No debes modificar la sentencia `return`
@@ -91,7 +91,7 @@ No debes usar sentencias `case`, `switch`o `if`
 
 ```js
 assert(
-  !/case|switch|if/g.test(code.replace(/([/]{2}.*)|([/][*][^/*]*[*][/])/g, ''))
+  !/case|switch|if/g.test(code.replace(/([/]{2}.*)|([/][*][^/*]*[*][/])/g, ""))
 );
 ```
 
@@ -105,7 +105,7 @@ function phoneticLookup(val) {
   var result = "";
 
   // Only change code below this line
-  switch(val) {
+  switch (val) {
     case "alpha":
       result = "Adams";
       break;
@@ -144,7 +144,7 @@ function phoneticLookup(val) {
     charlie: "Chicago",
     delta: "Denver",
     echo: "Easy",
-    foxtrot: "Frank"
+    foxtrot: "Frank",
   };
 
   result = lookup[val];

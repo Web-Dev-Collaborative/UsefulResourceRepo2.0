@@ -30,14 +30,16 @@ exports.checkIfAuthenticated = functions.https.onRequest((req, res) => {
   const idToken = req.get('x-id-token');
   res.setHeader('Content-Type', 'application/json');
   if (idToken) {
-    admin.auth().verifyIdToken(idToken)
-        .then((decodedIdToken) => {
-          res.status(200).send(JSON.stringify({uid: decodedIdToken.sub}));
-        })
-        .catch((error) => {
-          res.status(400).send(JSON.stringify({error: error.code}));
-        });
+    admin
+      .auth()
+      .verifyIdToken(idToken)
+      .then(decodedIdToken => {
+        res.status(200).send(JSON.stringify({ uid: decodedIdToken.sub }));
+      })
+      .catch(error => {
+        res.status(400).send(JSON.stringify({ error: error.code }));
+      });
   } else {
-    res.status(403).send(JSON.stringify({error: 'Unauthorized access'}));
+    res.status(403).send(JSON.stringify({ error: 'Unauthorized access' }));
   }
 });

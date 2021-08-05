@@ -30,7 +30,6 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.DynamicLinkTest');
 
-
 var customSchemeLink;
 var reverseOAuthClientIdCustomSchemeLink;
 var customSchemeLinkUrl;
@@ -45,8 +44,9 @@ var iosPlatform = fireauth.DynamicLink.Platform.IOS;
 var appIdentifier = 'com.example.application';
 var authDomain = 'example.firebaseapp.com';
 var payload = 'https://example.firebaseapp.com/__/auth/callback#oauthResponse';
-var defaultError =
-    new fireauth.AuthError(fireauth.authenum.Error.APP_NOT_INSTALLED);
+var defaultError = new fireauth.AuthError(
+  fireauth.authenum.Error.APP_NOT_INSTALLED
+);
 var appName = 'Hello World!';
 var customFallbackUrl = 'https://example.firebaseapp.com/custom/fallback';
 var fallbackUrl;
@@ -55,57 +55,113 @@ var androidUserInteractionDynamicLinkUrl;
 var noAppNameAndroidDynamicLinkUrl;
 var noAppNameAndroidAutoRedirectDynamicLinkUrl;
 var requiredDynamicLinkUrlFields = [
-  'fdlDomain', 'platform', 'appIdentifier', 'authDomain', 'link', 'appName'];
-
+  'fdlDomain',
+  'platform',
+  'appIdentifier',
+  'authDomain',
+  'link',
+  'appName'
+];
 
 function setUp() {
-  fallbackUrl = 'https://' + authDomain + '/__/auth/handler?firebaseError=' +
-      encodeURIComponent(/** @type {string} */ (
-          fireauth.util.stringifyJSON(defaultError.toPlainObject())));
-  androidDynamicLinkUrl = 'https://example.firebaseapp.com/__/auth/callback?' +
-      'fdlDomain=' + encodeURIComponent(fdlDomain) +
-      '&platform=' + encodeURIComponent(androidPlatform) +
-      '&appIdentifier=' + encodeURIComponent(appIdentifier) +
-      '&authDomain=' + encodeURIComponent(authDomain) +
-      '&link=' + encodeURIComponent(payload) +
-      '&appName=' + encodeURIComponent(appName);
-  noAppNameAndroidDynamicLinkUrl =
-      goog.Uri.parse(androidDynamicLinkUrl).setParameterValue('appName', '')
-      .toString();
-  androidUserInteractionDynamicLinkUrl = 'https://' + fdlDomain + '/?' +
-      'apn=' + encodeURIComponent(appIdentifier) +
-      '&afl=' + encodeURIComponent(fallbackUrl) +
-      '&link=' + encodeURIComponent(payload);
-  androidAutoRedirectDynamicLinkUrl = 'https://' + fdlDomain + '/?' +
-      'apn=' + encodeURIComponent(appIdentifier) +
-      '&afl=' + encodeURIComponent(androidDynamicLinkUrl) +
-      '&link=' + encodeURIComponent(androidDynamicLinkUrl);
-  noAppNameAndroidAutoRedirectDynamicLinkUrl = 'https://' + fdlDomain + '/?' +
-      'apn=' + encodeURIComponent(appIdentifier) +
-      '&afl=' + encodeURIComponent(noAppNameAndroidDynamicLinkUrl) +
-      '&link=' + encodeURIComponent(noAppNameAndroidDynamicLinkUrl);
-  iosDynamicLinkUrl = 'https://example.firebaseapp.com/__/auth/callback?' +
-      'fdlDomain=' + encodeURIComponent(fdlDomain) +
-      '&platform=' + encodeURIComponent(iosPlatform) +
-      '&appIdentifier=' + encodeURIComponent(appIdentifier) +
-      '&authDomain=' + encodeURIComponent(authDomain) +
-      '&link=' + encodeURIComponent(payload) +
-      '&appName=' + encodeURIComponent(appName);
-  iosUserInteractionDynamicLinkUrl = 'https://' + fdlDomain + '/?' +
-      'ibi=' + encodeURIComponent(appIdentifier) +
-      '&ifl=' + encodeURIComponent(fallbackUrl) +
-      '&link=' + encodeURIComponent(payload);
-  iosAutoRedirectDynamicLinkUrl = 'https://' + fdlDomain + '/?' +
-      'ibi=' + encodeURIComponent(appIdentifier) +
-      '&ifl=' + encodeURIComponent(iosDynamicLinkUrl) +
-      '&link=' + encodeURIComponent(iosDynamicLinkUrl);
-  customSchemeLinkUrl = appIdentifier + '://google/link?deep_link_id=' +
-      encodeURIComponent(payload);
+  fallbackUrl =
+    'https://' +
+    authDomain +
+    '/__/auth/handler?firebaseError=' +
+    encodeURIComponent(
+      /** @type {string} */ (
+        fireauth.util.stringifyJSON(defaultError.toPlainObject())
+      )
+    );
+  androidDynamicLinkUrl =
+    'https://example.firebaseapp.com/__/auth/callback?' +
+    'fdlDomain=' +
+    encodeURIComponent(fdlDomain) +
+    '&platform=' +
+    encodeURIComponent(androidPlatform) +
+    '&appIdentifier=' +
+    encodeURIComponent(appIdentifier) +
+    '&authDomain=' +
+    encodeURIComponent(authDomain) +
+    '&link=' +
+    encodeURIComponent(payload) +
+    '&appName=' +
+    encodeURIComponent(appName);
+  noAppNameAndroidDynamicLinkUrl = goog.Uri.parse(androidDynamicLinkUrl)
+    .setParameterValue('appName', '')
+    .toString();
+  androidUserInteractionDynamicLinkUrl =
+    'https://' +
+    fdlDomain +
+    '/?' +
+    'apn=' +
+    encodeURIComponent(appIdentifier) +
+    '&afl=' +
+    encodeURIComponent(fallbackUrl) +
+    '&link=' +
+    encodeURIComponent(payload);
+  androidAutoRedirectDynamicLinkUrl =
+    'https://' +
+    fdlDomain +
+    '/?' +
+    'apn=' +
+    encodeURIComponent(appIdentifier) +
+    '&afl=' +
+    encodeURIComponent(androidDynamicLinkUrl) +
+    '&link=' +
+    encodeURIComponent(androidDynamicLinkUrl);
+  noAppNameAndroidAutoRedirectDynamicLinkUrl =
+    'https://' +
+    fdlDomain +
+    '/?' +
+    'apn=' +
+    encodeURIComponent(appIdentifier) +
+    '&afl=' +
+    encodeURIComponent(noAppNameAndroidDynamicLinkUrl) +
+    '&link=' +
+    encodeURIComponent(noAppNameAndroidDynamicLinkUrl);
+  iosDynamicLinkUrl =
+    'https://example.firebaseapp.com/__/auth/callback?' +
+    'fdlDomain=' +
+    encodeURIComponent(fdlDomain) +
+    '&platform=' +
+    encodeURIComponent(iosPlatform) +
+    '&appIdentifier=' +
+    encodeURIComponent(appIdentifier) +
+    '&authDomain=' +
+    encodeURIComponent(authDomain) +
+    '&link=' +
+    encodeURIComponent(payload) +
+    '&appName=' +
+    encodeURIComponent(appName);
+  iosUserInteractionDynamicLinkUrl =
+    'https://' +
+    fdlDomain +
+    '/?' +
+    'ibi=' +
+    encodeURIComponent(appIdentifier) +
+    '&ifl=' +
+    encodeURIComponent(fallbackUrl) +
+    '&link=' +
+    encodeURIComponent(payload);
+  iosAutoRedirectDynamicLinkUrl =
+    'https://' +
+    fdlDomain +
+    '/?' +
+    'ibi=' +
+    encodeURIComponent(appIdentifier) +
+    '&ifl=' +
+    encodeURIComponent(iosDynamicLinkUrl) +
+    '&link=' +
+    encodeURIComponent(iosDynamicLinkUrl);
+  customSchemeLinkUrl =
+    appIdentifier +
+    '://google/link?deep_link_id=' +
+    encodeURIComponent(payload);
   reverseOAuthClientIdCustomSchemeLinkUrl =
-      'com.googleusercontent.apps.123456://firebaseauth/link?deep_link_id=' +
-      encodeURIComponent(payload);
+    'com.googleusercontent.apps.123456://firebaseauth/link?deep_link_id=' +
+    encodeURIComponent(payload);
 }
-
 
 function tearDown() {
   androidDynamicLink = null;
@@ -124,11 +180,15 @@ function tearDown() {
   reverseOAuthClientIdCustomSchemeLinkUrl = null;
 }
 
-
 function testDynamicLink_initialization() {
   // Initialize the dynamic link.
   androidDynamicLink = new fireauth.DynamicLink(
-      fdlDomain, androidPlatform, appIdentifier, authDomain, payload);
+    fdlDomain,
+    androidPlatform,
+    appIdentifier,
+    authDomain,
+    payload
+  );
   // Confirm all properties set correctly.
   assertEquals(fallbackUrl, androidDynamicLink['fallbackUrl']);
   assertEquals(fdlDomain, androidDynamicLink['fdlDomain']);
@@ -146,11 +206,15 @@ function testDynamicLink_initialization() {
   assertEquals(customFallbackUrl, androidDynamicLink['fallbackUrl']);
 }
 
-
 function testDynamicLink_initialization_noFdlDomain() {
   // Initialize the dynamic link.
   customSchemeLink = new fireauth.DynamicLink(
-      null, iosPlatform, appIdentifier, authDomain, payload);
+    null,
+    iosPlatform,
+    appIdentifier,
+    authDomain,
+    payload
+  );
   // Confirm all properties set correctly.
   assertEquals(fallbackUrl, customSchemeLink['fallbackUrl']);
   assertNull(customSchemeLink['fdlDomain']);
@@ -168,18 +232,27 @@ function testDynamicLink_initialization_noFdlDomain() {
   assertEquals(customFallbackUrl, customSchemeLink['fallbackUrl']);
 }
 
-
 function testDynamicLink_initialization_clientIdAndNoFdlDomain() {
   // Initialize the dynamic link.
   reverseOAuthClientIdCustomSchemeLink = new fireauth.DynamicLink(
-      null, iosPlatform, appIdentifier, authDomain, payload, clientId);
+    null,
+    iosPlatform,
+    appIdentifier,
+    authDomain,
+    payload,
+    clientId
+  );
   // Confirm all properties set correctly.
   assertEquals(
-      fallbackUrl, reverseOAuthClientIdCustomSchemeLink['fallbackUrl']);
+    fallbackUrl,
+    reverseOAuthClientIdCustomSchemeLink['fallbackUrl']
+  );
   assertNull(reverseOAuthClientIdCustomSchemeLink['fdlDomain']);
   assertEquals(iosPlatform, reverseOAuthClientIdCustomSchemeLink['platform']);
   assertEquals(
-      appIdentifier, reverseOAuthClientIdCustomSchemeLink['appIdentifier']);
+    appIdentifier,
+    reverseOAuthClientIdCustomSchemeLink['appIdentifier']
+  );
   assertEquals(authDomain, reverseOAuthClientIdCustomSchemeLink['authDomain']);
   assertEquals(payload, reverseOAuthClientIdCustomSchemeLink['payload']);
   assertEquals(clientId, reverseOAuthClientIdCustomSchemeLink['clientId']);
@@ -190,172 +263,225 @@ function testDynamicLink_initialization_clientIdAndNoFdlDomain() {
   // Override the default fallback URL.
   reverseOAuthClientIdCustomSchemeLink.setFallbackUrl(customFallbackUrl);
   assertEquals(
-      customFallbackUrl, reverseOAuthClientIdCustomSchemeLink['fallbackUrl']);
+    customFallbackUrl,
+    reverseOAuthClientIdCustomSchemeLink['fallbackUrl']
+  );
 }
-
 
 function testDynamicLink_fromURL() {
   // Invalid dynamic link.
   assertNull(fireauth.DynamicLink.fromURL(payload));
   // Valid Android dynamic link.
   androidDynamicLink = new fireauth.DynamicLink(
-      fdlDomain, androidPlatform, appIdentifier, authDomain, payload);
+    fdlDomain,
+    androidPlatform,
+    appIdentifier,
+    authDomain,
+    payload
+  );
   androidDynamicLink.setAppName(appName);
   assertObjectEquals(
-      androidDynamicLink, fireauth.DynamicLink.fromURL(androidDynamicLinkUrl));
+    androidDynamicLink,
+    fireauth.DynamicLink.fromURL(androidDynamicLinkUrl)
+  );
   // Valid iOS dynamic link.
   iosDynamicLink = new fireauth.DynamicLink(
-      fdlDomain, iosPlatform, appIdentifier, authDomain, payload);
+    fdlDomain,
+    iosPlatform,
+    appIdentifier,
+    authDomain,
+    payload
+  );
   iosDynamicLink.setAppName(appName);
   assertObjectEquals(
-      iosDynamicLink, fireauth.DynamicLink.fromURL(iosDynamicLinkUrl));
+    iosDynamicLink,
+    fireauth.DynamicLink.fromURL(iosDynamicLinkUrl)
+  );
   // Any missing field should resolve to null.
   for (var i = 0; i < requiredDynamicLinkUrlFields.length; i++) {
     // Remove one required field and confirm it resolves to null.
-    assertNull(fireauth.DynamicLink.fromURL(
+    assertNull(
+      fireauth.DynamicLink.fromURL(
         goog.Uri.parse(androidDynamicLinkUrl)
-        .removeParameter(requiredDynamicLinkUrlFields[i])
-        .toString()));
+          .removeParameter(requiredDynamicLinkUrlFields[i])
+          .toString()
+      )
+    );
   }
   // Custom scheme URLs can't be constructed from URL string.
   assertNull(fireauth.DynamicLink.fromURL(customSchemeLinkUrl));
-  assertNull(fireauth.DynamicLink.fromURL(
-      reverseOAuthClientIdCustomSchemeLinkUrl));
+  assertNull(
+    fireauth.DynamicLink.fromURL(reverseOAuthClientIdCustomSchemeLinkUrl)
+  );
 }
-
 
 function testDynamicLink_toString_isAutoRedirect_android() {
   androidDynamicLink = new fireauth.DynamicLink(
-      fdlDomain, androidPlatform, appIdentifier, authDomain, payload);
+    fdlDomain,
+    androidPlatform,
+    appIdentifier,
+    authDomain,
+    payload
+  );
   androidDynamicLink.setAppName(appName);
   assertEquals(
-      androidAutoRedirectDynamicLinkUrl, androidDynamicLink.toString(true));
+    androidAutoRedirectDynamicLinkUrl,
+    androidDynamicLink.toString(true)
+  );
 }
-
 
 function testDynamicLink_toString_isAutoRedirect_android_noAppName() {
   androidDynamicLink = new fireauth.DynamicLink(
-      fdlDomain, androidPlatform, appIdentifier, authDomain, payload);
+    fdlDomain,
+    androidPlatform,
+    appIdentifier,
+    authDomain,
+    payload
+  );
   // Assume no app name provided.
   androidDynamicLink.setAppName(null);
   assertEquals(
-      noAppNameAndroidAutoRedirectDynamicLinkUrl,
-      androidDynamicLink.toString(true));
+    noAppNameAndroidAutoRedirectDynamicLinkUrl,
+    androidDynamicLink.toString(true)
+  );
 }
-
 
 function testDynamicLink_toString_isAutoRedirect_ios() {
   iosDynamicLink = new fireauth.DynamicLink(
-      fdlDomain, iosPlatform, appIdentifier, authDomain, payload);
+    fdlDomain,
+    iosPlatform,
+    appIdentifier,
+    authDomain,
+    payload
+  );
   iosDynamicLink.setAppName(appName);
   assertEquals(iosAutoRedirectDynamicLinkUrl, iosDynamicLink.toString(true));
 }
 
-
 function testDynamicLink_toString_isNotAutoRedirect_android() {
   androidDynamicLink = new fireauth.DynamicLink(
-      fdlDomain, androidPlatform, appIdentifier, authDomain, payload);
+    fdlDomain,
+    androidPlatform,
+    appIdentifier,
+    authDomain,
+    payload
+  );
   androidDynamicLink.setAppName(appName);
   assertEquals(
-      androidUserInteractionDynamicLinkUrl, androidDynamicLink.toString());
+    androidUserInteractionDynamicLinkUrl,
+    androidDynamicLink.toString()
+  );
 }
-
 
 function testDynamicLink_toString_isNotAutoRedirect_ios() {
   iosDynamicLink = new fireauth.DynamicLink(
-      fdlDomain, iosPlatform, appIdentifier, authDomain,
-      payload);
+    fdlDomain,
+    iosPlatform,
+    appIdentifier,
+    authDomain,
+    payload
+  );
   iosDynamicLink.setAppName(appName);
-  assertEquals(
-      iosUserInteractionDynamicLinkUrl, iosDynamicLink.toString());
+  assertEquals(iosUserInteractionDynamicLinkUrl, iosDynamicLink.toString());
 }
-
 
 function testDynamicLink_toString_customSchemeUrl() {
   customSchemeLink = new fireauth.DynamicLink(
-      null, iosPlatform, appIdentifier, authDomain, payload);
+    null,
+    iosPlatform,
+    appIdentifier,
+    authDomain,
+    payload
+  );
   customSchemeLink.setAppName(appName);
-  assertEquals(
-      customSchemeLinkUrl, customSchemeLink.toString(false));
-  assertEquals(
-      customSchemeLinkUrl, customSchemeLink.toString(true));
+  assertEquals(customSchemeLinkUrl, customSchemeLink.toString(false));
+  assertEquals(customSchemeLinkUrl, customSchemeLink.toString(true));
 }
-
 
 function testDynamicLink_toString_reverseOAuthClientIdCustomSchemeUrl() {
   reverseOAuthClientIdCustomSchemeLink = new fireauth.DynamicLink(
-      null, iosPlatform, appIdentifier, authDomain, payload, clientId);
+    null,
+    iosPlatform,
+    appIdentifier,
+    authDomain,
+    payload,
+    clientId
+  );
   reverseOAuthClientIdCustomSchemeLink.setAppName(appName);
   assertEquals(
-      reverseOAuthClientIdCustomSchemeLinkUrl,
-      reverseOAuthClientIdCustomSchemeLink.toString(false));
+    reverseOAuthClientIdCustomSchemeLinkUrl,
+    reverseOAuthClientIdCustomSchemeLink.toString(false)
+  );
   assertEquals(
-      reverseOAuthClientIdCustomSchemeLinkUrl,
-      reverseOAuthClientIdCustomSchemeLink.toString(true));
+    reverseOAuthClientIdCustomSchemeLinkUrl,
+    reverseOAuthClientIdCustomSchemeLink.toString(true)
+  );
 }
-
 
 function testDynamicLink_parseDeepLink_urlItself() {
   var deepLink =
-      'https://example.firebaseapp.com/__/auth/callback#oauthResponse';
+    'https://example.firebaseapp.com/__/auth/callback#oauthResponse';
   assertEquals(deepLink, fireauth.DynamicLink.parseDeepLink(deepLink));
 }
 
-
 function testDynamicLink_parseDeepLink_deepLink() {
   var deepLink =
-      'https://example.firebaseapp.com/__/auth/callback#oauthResponse';
+    'https://example.firebaseapp.com/__/auth/callback#oauthResponse';
   var url = 'https://example.app.goo.gl/?link=' + encodeURIComponent(deepLink);
   assertEquals(deepLink, fireauth.DynamicLink.parseDeepLink(url));
 }
 
-
 function testDynamicLink_parseDeepLink_linkWithinLink() {
   var deepLink =
-      'https://example.firebaseapp.com/__/auth/callback#oauthResponse';
-  var linkWithLink = 'https://example.firebaseapp.com/__/auth/callback?link=' +
-      encodeURIComponent(deepLink);
-  var url = 'https://example.app.goo.gl/?link=' +
-      encodeURIComponent(linkWithLink);
+    'https://example.firebaseapp.com/__/auth/callback#oauthResponse';
+  var linkWithLink =
+    'https://example.firebaseapp.com/__/auth/callback?link=' +
+    encodeURIComponent(deepLink);
+  var url =
+    'https://example.app.goo.gl/?link=' + encodeURIComponent(linkWithLink);
   assertEquals(deepLink, fireauth.DynamicLink.parseDeepLink(url));
 }
-
 
 function testDynamicLink_parseDeepLink_customUrlSchemeDeepLink() {
   var deepLink =
-      'https://example.firebaseapp.com/__/auth/callback#oauthResponse';
-  var url = 'comexampleiosurl://google/link?deep_link_id=' +
-      encodeURIComponent(deepLink);
+    'https://example.firebaseapp.com/__/auth/callback#oauthResponse';
+  var url =
+    'comexampleiosurl://google/link?deep_link_id=' +
+    encodeURIComponent(deepLink);
   assertEquals(deepLink, fireauth.DynamicLink.parseDeepLink(url));
 }
-
 
 function testDynamicLink_parseDeepLink_reverseClientIdSchemeDeepLink() {
   var deepLink =
-      'https://example.firebaseapp.com/__/auth/callback#oauthResponse';
-  var url = 'com.googleusercontent.apps.123456://firebaseauth/link?' +
-      'deep_link_id=' + encodeURIComponent(deepLink);
+    'https://example.firebaseapp.com/__/auth/callback#oauthResponse';
+  var url =
+    'com.googleusercontent.apps.123456://firebaseauth/link?' +
+    'deep_link_id=' +
+    encodeURIComponent(deepLink);
   assertEquals(deepLink, fireauth.DynamicLink.parseDeepLink(url));
 }
-
 
 function testDynamicLink_parseDeepLink_customUrlSchemeLinkWithinLink() {
   var deepLink =
-      'https://example.firebaseapp.com/__/auth/callback#oauthResponse';
-  var linkWithLink = 'https://example.firebaseapp.com/__/auth/callback?link=' +
-      encodeURIComponent(deepLink);
-  var url = 'comexampleiosurl://google/link?deep_link_id=' +
-      encodeURIComponent(linkWithLink);
+    'https://example.firebaseapp.com/__/auth/callback#oauthResponse';
+  var linkWithLink =
+    'https://example.firebaseapp.com/__/auth/callback?link=' +
+    encodeURIComponent(deepLink);
+  var url =
+    'comexampleiosurl://google/link?deep_link_id=' +
+    encodeURIComponent(linkWithLink);
   assertEquals(deepLink, fireauth.DynamicLink.parseDeepLink(url));
 }
 
-
 function testDynamicLink_parseDeepLink_clientIdCustomUrlSchemeLinkWithinLink() {
   var deepLink =
-      'https://example.firebaseapp.com/__/auth/callback#oauthResponse';
-  var linkWithLink = 'https://example.firebaseapp.com/__/auth/callback?link=' +
-      encodeURIComponent(deepLink);
-  var url = 'com.googleusercontent.apps.123456://firebaseauth/link?' +
-      'deep_link_id=' + encodeURIComponent(linkWithLink);
+    'https://example.firebaseapp.com/__/auth/callback#oauthResponse';
+  var linkWithLink =
+    'https://example.firebaseapp.com/__/auth/callback?link=' +
+    encodeURIComponent(deepLink);
+  var url =
+    'com.googleusercontent.apps.123456://firebaseauth/link?' +
+    'deep_link_id=' +
+    encodeURIComponent(linkWithLink);
   assertEquals(deepLink, fireauth.DynamicLink.parseDeepLink(url));
 }

@@ -24,7 +24,6 @@ goog.provide('fireauth.AuthEvent');
 goog.require('fireauth.AuthError');
 goog.require('fireauth.authenum.Error');
 
-
 /**
  * Defines the authentication event.
  * @param {!fireauth.AuthEvent.Type} type The Auth event type.
@@ -37,9 +36,15 @@ goog.require('fireauth.authenum.Error');
  * @param {?string=} opt_tenantId The optional tenant ID.
  * @constructor
  */
-fireauth.AuthEvent = function(
-    type, opt_eventId, opt_urlResponse, opt_sessionId, opt_error,
-    opt_postBody, opt_tenantId) {
+fireauth.AuthEvent = function (
+  type,
+  opt_eventId,
+  opt_urlResponse,
+  opt_sessionId,
+  opt_error,
+  opt_postBody,
+  opt_tenantId
+) {
   /** @const @private {!fireauth.AuthEvent.Type} The Auth event type. */
   this.type_ = type;
   /** @const @private {?string} The Auth event ID. */
@@ -68,8 +73,6 @@ fireauth.AuthEvent = function(
   }
 };
 
-
-
 /**
  * Auth event operation types.
  * All Auth event types that are used for popup operations should be suffixed
@@ -90,39 +93,34 @@ fireauth.AuthEvent.Type = {
   VERIFY_APP: 'verifyApp'
 };
 
-
 /**
  * @param {!fireauth.AuthEvent} event The Auth event.
  * @return {boolean} Whether the event is a redirect type.
  */
-fireauth.AuthEvent.isRedirect = function(event) {
+fireauth.AuthEvent.isRedirect = function (event) {
   return !!event.getType().match(/Redirect$/);
 };
-
 
 /**
  * @param {!fireauth.AuthEvent} event The Auth event.
  * @return {boolean} Whether the event is a popup type.
  */
-fireauth.AuthEvent.isPopup = function(event) {
+fireauth.AuthEvent.isPopup = function (event) {
   return !!event.getType().match(/Popup$/);
 };
 
-
 /** @return {!fireauth.AuthEvent.Type} The type of Auth event. */
-fireauth.AuthEvent.prototype.getType = function() {
+fireauth.AuthEvent.prototype.getType = function () {
   return this.type_;
 };
 
-
 /** @return {?string} The Auth event identifier. */
-fireauth.AuthEvent.prototype.getEventId = function() {
+fireauth.AuthEvent.prototype.getEventId = function () {
   return this.eventId_;
 };
 
-
 /** @return {string} The event unique identifier. */
-fireauth.AuthEvent.prototype.getUid = function() {
+fireauth.AuthEvent.prototype.getUid = function () {
   var components = [];
   components.push(this.type_);
   if (this.eventId_) {
@@ -137,45 +135,38 @@ fireauth.AuthEvent.prototype.getUid = function() {
   return components.join('-');
 };
 
-
 /** @return {?string} The url response of Auth event. */
-fireauth.AuthEvent.prototype.getUrlResponse = function() {
+fireauth.AuthEvent.prototype.getUrlResponse = function () {
   return this.urlResponse_;
 };
 
-
 /** @return {?string} The session ID Auth event. */
-fireauth.AuthEvent.prototype.getSessionId = function() {
+fireauth.AuthEvent.prototype.getSessionId = function () {
   return this.sessionId_;
 };
 
-
 /** @return {?string} The POST body of the Auth event, if available. */
-fireauth.AuthEvent.prototype.getPostBody = function() {
+fireauth.AuthEvent.prototype.getPostBody = function () {
   return this.postBody_;
 };
 
-
 /** @return {?string} The tenant ID of the Auth event, if available. */
-fireauth.AuthEvent.prototype.getTenantId = function() {
+fireauth.AuthEvent.prototype.getTenantId = function () {
   return this.tenantId_;
 };
 
-
 /** @return {?fireauth.AuthError} The error of Auth event. */
-fireauth.AuthEvent.prototype.getError = function() {
+fireauth.AuthEvent.prototype.getError = function () {
   return this.error_;
 };
 
-
 /** @return {boolean} Whether Auth event has an error. */
-fireauth.AuthEvent.prototype.hasError = function() {
+fireauth.AuthEvent.prototype.hasError = function () {
   return !!this.error_;
 };
 
-
 /** @return {!Object} The plain object representation of event. */
-fireauth.AuthEvent.prototype.toPlainObject = function() {
+fireauth.AuthEvent.prototype.toPlainObject = function () {
   return {
     'type': this.type_,
     'eventId': this.eventId_,
@@ -187,24 +178,23 @@ fireauth.AuthEvent.prototype.toPlainObject = function() {
   };
 };
 
-
 /**
  * @param {?Object} rawResponse The plain object representation of Auth event.
  * @return {?fireauth.AuthEvent} The Auth event representation of plain object.
  */
-fireauth.AuthEvent.fromPlainObject = function(rawResponse) {
+fireauth.AuthEvent.fromPlainObject = function (rawResponse) {
   var response = rawResponse || {};
   if (response['type']) {
     return new fireauth.AuthEvent(
-        response['type'],
-        response['eventId'],
-        response['urlResponse'],
-        response['sessionId'],
-        response['error'] &&
-            fireauth.AuthError.fromPlainObject(response['error']),
-        response['postBody'],
-        response['tenantId']
-        );
+      response['type'],
+      response['eventId'],
+      response['urlResponse'],
+      response['sessionId'],
+      response['error'] &&
+        fireauth.AuthError.fromPlainObject(response['error']),
+      response['postBody'],
+      response['tenantId']
+    );
   }
   return null;
 };

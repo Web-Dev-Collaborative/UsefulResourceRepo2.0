@@ -24,13 +24,13 @@ Mocha 允許你在實際測試之前準備一些代碼運行的基礎。 這可�
 在 `tests/2_functional-tests.js`中，緊接着 `Browser` 聲明之後，將你的項目 URL 添加到變量的 `site` 屬性：
 
 ```js
-Browser.site = 'https://sincere-cone.gomix.me'; // Your URL here
+Browser.site = "https://sincere-cone.gomix.me"; // Your URL here
 ```
 
 如果你在本地環境中測試，則替換上面的代碼爲：
 
 ```js
-Browser.localhost('example.com', process.env.PORT || 3000);
+Browser.localhost("example.com", process.env.PORT || 3000);
 ```
 
 在 `tests/2_functional-tests.js` 中，在 `'Functional Tests with Zombie.js'` 套件的底部，使用以下代碼實例化一個新的 `Browser` 對象：
@@ -42,8 +42,8 @@ const browser = new Browser();
 然後，通過以下代碼，使用 `suiteSetup` 鉤子把 `browser` 指向 `/` 路由：
 
 ```js
-suiteSetup(function(done) {
-  return browser.visit('/', done);
+suiteSetup(function (done) {
+  return browser.visit("/", done);
 });
 ```
 
@@ -53,11 +53,11 @@ suiteSetup(function(done) {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional").then(
     (data) => {
       data.slice(0, 4).forEach((test) => {
-        assert.equal(test.state, 'passed');
-      })
+        assert.equal(test.state, "passed");
+      });
     },
     (xhr) => {
       throw new Error(xhr.responseText);

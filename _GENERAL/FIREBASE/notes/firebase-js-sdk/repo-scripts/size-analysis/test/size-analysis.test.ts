@@ -477,9 +477,8 @@ describe('test writeReportToDirectory helper function', () => {
 describe('test extractExternalDependencies helper function', () => {
   it('should correctly extract all symbols listed in import statements', () => {
     const assortedImports: string = getAssortedImportsJsFilePath();
-    const externals: { [key: string]: string[] } = extractExternalDependencies(
-      assortedImports
-    );
+    const externals: { [key: string]: string[] } =
+      extractExternalDependencies(assortedImports);
 
     expect(externals['./bar']).to.have.members([
       'basicFuncExternalDependenciesBar',

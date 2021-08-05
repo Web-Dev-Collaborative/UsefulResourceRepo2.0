@@ -33,15 +33,15 @@ const fakeFirebaseConfig = {
   appId: '1:111:web:a1234'
 };
 
-const fakeFirebaseApp = ({
+const fakeFirebaseApp = {
   options: fakeFirebaseConfig
-} as unknown) as firebase.FirebaseApp;
+} as unknown as firebase.FirebaseApp;
 
 describe('Firebase Performance > initializePerformance()', () => {
   it('throws if a perf instance has already been created', () => {
-    stub(firebase, '_getProvider').returns(({
+    stub(firebase, '_getProvider').returns({
       isInitialized: () => true
-    } as unknown) as Provider<'performance-exp'>);
+    } as unknown as Provider<'performance-exp'>);
     const expectedError = ERROR_FACTORY.create(ErrorCode.ALREADY_INITIALIZED);
     expect(() => initializePerformance(fakeFirebaseApp)).to.throw(
       expectedError.message

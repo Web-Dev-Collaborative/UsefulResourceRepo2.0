@@ -4,8 +4,7 @@ title: 使用 jQuery 更改元素的 CSS
 challengeType: 6
 forumTopicId: 16776
 required:
-  - 
-    link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: change-the-css-of-an-element-using-jquery
 ---
 
@@ -32,7 +31,7 @@ $("#target1").css("color", "blue");
 `target1` 元素應該有紅色文本。
 
 ```js
-assert($('#target1').css('color') === 'rgb(255, 0, 0)');
+assert($("#target1").css("color") === "rgb(255, 0, 0)");
 ```
 
 應該僅用 jQuery 給元素添加這些 class。
@@ -47,12 +46,11 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
     $(".well").addClass("animated shake");
     $("#target3").addClass("animated fadeOut");
     $("button").removeClass("btn-default");
-
   });
 </script>
 
@@ -85,7 +83,7 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
     $(".well").addClass("animated shake");
     $("#target3").addClass("animated fadeOut");

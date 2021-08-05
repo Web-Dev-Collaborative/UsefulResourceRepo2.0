@@ -35,14 +35,11 @@ goog.require('goog.array');
 goog.require('goog.events');
 goog.require('goog.object');
 
-
-
 /**
  * The namespace for Firebase Auth storage.
  * @private @const {string}
  */
 fireauth.authStorage.NAMESPACE_ = 'firebase';
-
 
 /**
  * The separator for Firebase Auth storage with App ID key.
@@ -50,13 +47,11 @@ fireauth.authStorage.NAMESPACE_ = 'firebase';
  */
 fireauth.authStorage.SEPARATOR_ = ':';
 
-
 /**
  * @const {number} The IE 10 localStorage cross tab synchronization delay in
  *     milliseconds.
  */
 fireauth.authStorage.IE10_LOCAL_STORAGE_SYNC_DELAY = 10;
-
 
 /**
  * Enums for Auth state persistence.
@@ -74,26 +69,28 @@ fireauth.authStorage.Persistence = {
   SESSION: 'session'
 };
 
-
 /**
  * Validates that an argument is a valid persistence value. If an invalid type
  * is specified, an error is thrown synchronously.
  * @param {*} arg The argument to validate.
  */
-fireauth.authStorage.validatePersistenceArgument =
-    function(arg) {
+fireauth.authStorage.validatePersistenceArgument = function (arg) {
   // Invalid type error.
   var invalidTypeError = new fireauth.AuthError(
-      fireauth.authenum.Error.INVALID_PERSISTENCE);
+    fireauth.authenum.Error.INVALID_PERSISTENCE
+  );
   // Unsupported type error.
   var unsupportedTypeError = new fireauth.AuthError(
-      fireauth.authenum.Error.UNSUPPORTED_PERSISTENCE);
+    fireauth.authenum.Error.UNSUPPORTED_PERSISTENCE
+  );
   // Check if the persistence type is a valid one.
   // Throw invalid type error if not valid.
-  if (!goog.object.containsValue(fireauth.authStorage.Persistence, arg) ||
-      // goog.object.containsValue(fireauth.authStorage.Persistence, ['none'])
-      // returns true.
-      typeof arg !== 'string') {
+  if (
+    !goog.object.containsValue(fireauth.authStorage.Persistence, arg) ||
+    // goog.object.containsValue(fireauth.authStorage.Persistence, ['none'])
+    // returns true.
+    typeof arg !== 'string'
+  ) {
     throw invalidTypeError;
   }
   // Validate if the specified type is supported in the current environment.
@@ -113,30 +110,32 @@ fireauth.authStorage.validatePersistenceArgument =
     case fireauth.util.Env.WORKER:
       // In a worker environment, either LOCAL or NONE are supported.
       // If indexedDB not supported and LOCAL provided, throw an error.
-      if (arg === fireauth.authStorage.Persistence.SESSION ||
-          (!fireauth.storage.IndexedDB.isAvailable() &&
-           arg !== fireauth.authStorage.Persistence.NONE)) {
+      if (
+        arg === fireauth.authStorage.Persistence.SESSION ||
+        (!fireauth.storage.IndexedDB.isAvailable() &&
+          arg !== fireauth.authStorage.Persistence.NONE)
+      ) {
         throw unsupportedTypeError;
       }
       break;
     case fireauth.util.Env.BROWSER:
     default:
       // This is restricted by what the browser supports.
-      if (!fireauth.util.isWebStorageSupported() &&
-          arg !== fireauth.authStorage.Persistence.NONE) {
+      if (
+        !fireauth.util.isWebStorageSupported() &&
+        arg !== fireauth.authStorage.Persistence.NONE
+      ) {
         throw unsupportedTypeError;
       }
       break;
   }
 };
 
-
 /**
  * Storage key metadata.
  * @typedef {{name: string, persistent: !fireauth.authStorage.Persistence}}
  */
 fireauth.authStorage.Key;
-
 
 /**
  * Storage manager.
@@ -153,12 +152,13 @@ fireauth.authStorage.Key;
  *     supported.
  * @constructor @struct @final
  */
-fireauth.authStorage.Manager = function(
-    namespace,
-    separator,
-    safariLocalStorageNotSynced,
-    runsInBackground,
-    webStorageSupported) {
+fireauth.authStorage.Manager = function (
+  namespace,
+  separator,
+  safariLocalStorageNotSynced,
+  runsInBackground,
+  webStorageSupported
+) {
   /** @const @private {string} Storage namespace. */
   this.namespace_ = namespace;
   /** @const @private {string} Storage namespace key separator. */
@@ -224,12 +224,11 @@ fireauth.authStorage.Manager = function(
   this.localMap_ = {};
 };
 
-
 /**
  * @return {!fireauth.authStorage.Manager} The default Auth storage manager
  *     instance.
  */
-fireauth.authStorage.Manager.getInstance = function() {
+fireauth.authStorage.Manager.getInstance = function () {
   // Creates the default instance for Auth storage maanger.
   if (!fireauth.authStorage.Manager.instance_) {
     /**
@@ -237,21 +236,20 @@ fireauth.authStorage.Manager.getInstance = function() {
      *     instance.
      */
     fireauth.authStorage.Manager.instance_ = new fireauth.authStorage.Manager(
-        fireauth.authStorage.NAMESPACE_,
-        fireauth.authStorage.SEPARATOR_,
-        fireauth.util.isSafariLocalStorageNotSynced(),
-        fireauth.util.runsInBackground(),
-        fireauth.util.isWebStorageSupported());
+      fireauth.authStorage.NAMESPACE_,
+      fireauth.authStorage.SEPARATOR_,
+      fireauth.util.isSafariLocalStorageNotSynced(),
+      fireauth.util.runsInBackground(),
+      fireauth.util.isWebStorageSupported()
+    );
   }
   return fireauth.authStorage.Manager.instance_;
 };
 
-
 /** Clears storage manager instances. This is used for testing. */
-fireauth.authStorage.Manager.clear = function() {
+fireauth.authStorage.Manager.clear = function () {
   fireauth.authStorage.Manager.instance_ = null;
 };
-
 
 /**
  * Returns the storage corresponding to the specified persistence.
@@ -260,7 +258,7 @@ fireauth.authStorage.Manager.clear = function() {
  * @return {!fireauth.storage.Storage} The corresponding storage instance.
  * @private
  */
-fireauth.authStorage.Manager.prototype.getStorage_ = function(persistent) {
+fireauth.authStorage.Manager.prototype.getStorage_ = function (persistent) {
   switch (persistent) {
     case fireauth.authStorage.Persistence.SESSION:
       return this.temporaryStorage_;
@@ -272,7 +270,6 @@ fireauth.authStorage.Manager.prototype.getStorage_ = function(persistent) {
   }
 };
 
-
 /**
  * Constructs the corresponding storage key name.
  * @param {fireauth.authStorage.Key} dataKey The key under which the value is
@@ -282,11 +279,17 @@ fireauth.authStorage.Manager.prototype.getStorage_ = function(persistent) {
  * @return {string} The corresponding key name with namespace prefixed.
  * @private
  */
-fireauth.authStorage.Manager.prototype.getKeyName_ = function(dataKey, opt_id) {
-  return this.namespace_ + this.separator_ + dataKey.name +
-      (opt_id ? this.separator_ + opt_id : '');
+fireauth.authStorage.Manager.prototype.getKeyName_ = function (
+  dataKey,
+  opt_id
+) {
+  return (
+    this.namespace_ +
+    this.separator_ +
+    dataKey.name +
+    (opt_id ? this.separator_ + opt_id : '')
+  );
 };
-
 
 /**
  * Migrates window.localStorage to the provided persistent storage.
@@ -298,18 +301,21 @@ fireauth.authStorage.Manager.prototype.getKeyName_ = function(dataKey, opt_id) {
  *     in window.localStorage is migrated to the provided persistent storage
  *     identified by the provided data key.
  */
-fireauth.authStorage.Manager.prototype.migrateFromLocalStorage =
-    function(dataKey, opt_id) {
+fireauth.authStorage.Manager.prototype.migrateFromLocalStorage = function (
+  dataKey,
+  opt_id
+) {
   var self = this;
   var key = this.getKeyName_(dataKey, opt_id);
   var storage = this.getStorage_(dataKey.persistent);
   // Get data stored in the default persistent storage identified by dataKey.
-  return this.get(dataKey, opt_id).then(function(response) {
+  return this.get(dataKey, opt_id).then(function (response) {
     // Get the stored value in window.localStorage if available.
     var oldStorageValue = null;
     try {
       oldStorageValue = fireauth.util.parseJSON(
-          goog.global['localStorage']['getItem'](key));
+        goog.global['localStorage']['getItem'](key)
+      );
     } catch (e) {
       // Set value as null. This will resolve the promise immediately.
     }
@@ -324,9 +330,11 @@ fireauth.authStorage.Manager.prototype.migrateFromLocalStorage =
       goog.global['localStorage']['removeItem'](key);
       // Migrate the value to new default persistent storage.
       return self.set(dataKey, oldStorageValue, opt_id);
-    } else if (oldStorageValue &&
-               response &&
-               storage.type != fireauth.storage.Storage.Type.LOCAL_STORAGE) {
+    } else if (
+      oldStorageValue &&
+      response &&
+      storage.type != fireauth.storage.Storage.Type.LOCAL_STORAGE
+    ) {
       // Data stored in both localStorage and new persistent storage (eg.
       // indexedDB) for some reason.
       // This could happen if the developer is migrating back and forth.
@@ -336,7 +344,6 @@ fireauth.authStorage.Manager.prototype.migrateFromLocalStorage =
   });
 };
 
-
 /**
  * Gets the stored value from the corresponding storage.
  * @param {fireauth.authStorage.Key} dataKey The key under which the value is
@@ -345,11 +352,10 @@ fireauth.authStorage.Manager.prototype.migrateFromLocalStorage =
  *     associates storage values with specific apps.
  * @return {!goog.Promise} A Promise that resolves with the stored value.
  */
-fireauth.authStorage.Manager.prototype.get = function(dataKey, opt_id) {
+fireauth.authStorage.Manager.prototype.get = function (dataKey, opt_id) {
   var keyName = this.getKeyName_(dataKey, opt_id);
   return this.getStorage_(dataKey.persistent).get(keyName);
 };
-
 
 /**
  * Removes the stored value from the corresponding storage.
@@ -360,7 +366,7 @@ fireauth.authStorage.Manager.prototype.get = function(dataKey, opt_id) {
  * @return {!goog.Promise<void>} A Promise that resolves when the operation is
  *     completed.
  */
-fireauth.authStorage.Manager.prototype.remove = function(dataKey, opt_id) {
+fireauth.authStorage.Manager.prototype.remove = function (dataKey, opt_id) {
   var keyName = this.getKeyName_(dataKey, opt_id);
   // Keep local map up to date for requested key if persistent storage is used.
   if (dataKey.persistent == fireauth.authStorage.Persistence.LOCAL) {
@@ -368,7 +374,6 @@ fireauth.authStorage.Manager.prototype.remove = function(dataKey, opt_id) {
   }
   return this.getStorage_(dataKey.persistent).remove(keyName);
 };
-
 
 /**
  * Stores the value in the corresponding storage.
@@ -380,23 +385,23 @@ fireauth.authStorage.Manager.prototype.remove = function(dataKey, opt_id) {
  * @return {!goog.Promise<void>} A Promise that resolves when the operation is
  *     completed.
  */
-fireauth.authStorage.Manager.prototype.set = function(dataKey, value, opt_id) {
+fireauth.authStorage.Manager.prototype.set = function (dataKey, value, opt_id) {
   var keyName = this.getKeyName_(dataKey, opt_id);
   var self = this;
   var storage = this.getStorage_(dataKey.persistent);
-  return storage.set(keyName, value)
-      .then(function() {
-        return storage.get(keyName);
-      })
-      .then(function(serializedValue) {
-        // Keep local map up to date for requested key if persistent storage is
-        // used.
-        if (dataKey.persistent == fireauth.authStorage.Persistence.LOCAL) {
-          self.localMap_[keyName] = serializedValue;
-        }
-      });
+  return storage
+    .set(keyName, value)
+    .then(function () {
+      return storage.get(keyName);
+    })
+    .then(function (serializedValue) {
+      // Keep local map up to date for requested key if persistent storage is
+      // used.
+      if (dataKey.persistent == fireauth.authStorage.Persistence.LOCAL) {
+        self.localMap_[keyName] = serializedValue;
+      }
+    });
 };
-
 
 /**
  * @param {fireauth.authStorage.Key} dataKey The key under which the value is
@@ -406,8 +411,11 @@ fireauth.authStorage.Manager.prototype.set = function(dataKey, value, opt_id) {
  * @param {function()} listener The callback listener to run on storage event
  *     related to key.
  */
-fireauth.authStorage.Manager.prototype.addListener =
-    function(dataKey, id, listener) {
+fireauth.authStorage.Manager.prototype.addListener = function (
+  dataKey,
+  id,
+  listener
+) {
   var key = this.getKeyName_(dataKey, id);
   // Initialize local map for current key if web storage is supported.
   if (this.webStorageSupported_) {
@@ -423,7 +431,6 @@ fireauth.authStorage.Manager.prototype.addListener =
   this.listeners_[key].push(listener);
 };
 
-
 /**
  * @param {fireauth.authStorage.Key} dataKey The key under which the value is
  *     stored.
@@ -431,15 +438,16 @@ fireauth.authStorage.Manager.prototype.addListener =
  *     storage values with specific apps.
  * @param {function()} listener The listener to remove.
  */
-fireauth.authStorage.Manager.prototype.removeListener =
-    function(dataKey, id, listener) {
+fireauth.authStorage.Manager.prototype.removeListener = function (
+  dataKey,
+  id,
+  listener
+) {
   var key = this.getKeyName_(dataKey, id);
   if (this.listeners_[key]) {
-    goog.array.removeAllIf(
-        this.listeners_[key],
-        function(ele) {
-          return ele == listener;
-        });
+    goog.array.removeAllIf(this.listeners_[key], function (ele) {
+      return ele == listener;
+    });
     if (this.listeners_[key].length == 0) {
       delete this.listeners_[key];
     }
@@ -450,7 +458,6 @@ fireauth.authStorage.Manager.prototype.removeListener =
   }
 };
 
-
 /**
  * The delay to wait between continuous checks of localStorage on browsers where
  * tabs do not run in the background. After each interval wait, we check for
@@ -460,22 +467,24 @@ fireauth.authStorage.Manager.prototype.removeListener =
  */
 fireauth.authStorage.Manager.LOCAL_STORAGE_POLLING_TIMER_ = 1000;
 
-
 /**
  * Starts all storage event listeners.
  * @private
  */
-fireauth.authStorage.Manager.prototype.startListeners_ = function() {
-  this.getStorage_(fireauth.authStorage.Persistence.LOCAL)
-      .addStorageListener(this.storageChangeEventHandler_);
+fireauth.authStorage.Manager.prototype.startListeners_ = function () {
+  this.getStorage_(fireauth.authStorage.Persistence.LOCAL).addStorageListener(
+    this.storageChangeEventHandler_
+  );
   // TODO: refactor this implementation to be handled by the underlying
   // storage mechanism.
-  if (!this.runsInBackground_ &&
-      // Add an exception for browsers that persist storage with indexedDB, we
-      // should stick with indexedDB listener implementation in that case.
-      !fireauth.util.persistsStorageWithIndexedDB() &&
-      // Confirm browser web storage is supported as polling relies on it.
-      this.webStorageSupported_) {
+  if (
+    !this.runsInBackground_ &&
+    // Add an exception for browsers that persist storage with indexedDB, we
+    // should stick with indexedDB listener implementation in that case.
+    !fireauth.util.persistsStorageWithIndexedDB() &&
+    // Confirm browser web storage is supported as polling relies on it.
+    this.webStorageSupported_
+  ) {
     this.startManualListeners_();
   }
 };
@@ -484,11 +493,11 @@ fireauth.authStorage.Manager.prototype.startListeners_ = function() {
  * Starts manual polling function to detect storage event changes.
  * @private
  */
-fireauth.authStorage.Manager.prototype.startManualListeners_ = function() {
+fireauth.authStorage.Manager.prototype.startManualListeners_ = function () {
   var self = this;
   this.stopManualListeners_();
   /** @private {?number} The interval timer for manual storage checking. */
-  this.manualListenerTimer_ = setInterval(function() {
+  this.manualListenerTimer_ = setInterval(function () {
     // Check all keys with listeners on them.
     for (var key in self.listeners_) {
       // Get value from localStorage.
@@ -497,51 +506,51 @@ fireauth.authStorage.Manager.prototype.startManualListeners_ = function() {
       // If local map value does not match, trigger listener with storage event.
       if (currentValue != oldValue) {
         self.localMap_[key] = currentValue;
-        var event = new goog.events.BrowserEvent(/** @type {!Event} */ ({
-          type: 'storage',
-          key: key,
-          target: window,
-          oldValue: oldValue,
-          newValue: currentValue,
-          // Differentiate this simulated event from the real storage event.
-          poll: true
-        }));
+        var event = new goog.events.BrowserEvent(
+          /** @type {!Event} */ ({
+            type: 'storage',
+            key: key,
+            target: window,
+            oldValue: oldValue,
+            newValue: currentValue,
+            // Differentiate this simulated event from the real storage event.
+            poll: true
+          })
+        );
         self.storageChangeEvent_(event);
       }
     }
   }, fireauth.authStorage.Manager.LOCAL_STORAGE_POLLING_TIMER_);
 };
 
-
 /**
  * Stops manual polling function to detect storage event changes.
  * @private
  */
-fireauth.authStorage.Manager.prototype.stopManualListeners_ = function() {
+fireauth.authStorage.Manager.prototype.stopManualListeners_ = function () {
   if (this.manualListenerTimer_) {
     clearInterval(this.manualListenerTimer_);
     this.manualListenerTimer_ = null;
   }
 };
 
-
 /**
  * Stops all storage event listeners.
  * @private
  */
-fireauth.authStorage.Manager.prototype.stopListeners_ = function() {
-  this.getStorage_(fireauth.authStorage.Persistence.LOCAL)
-      .removeStorageListener(this.storageChangeEventHandler_);
+fireauth.authStorage.Manager.prototype.stopListeners_ = function () {
+  this.getStorage_(
+    fireauth.authStorage.Persistence.LOCAL
+  ).removeStorageListener(this.storageChangeEventHandler_);
   this.stopManualListeners_();
 };
-
 
 /**
  * @param {!goog.events.BrowserEvent|!Array<string>} data The storage event
  *     triggered or the array of keys modified.
  * @private
  */
-fireauth.authStorage.Manager.prototype.storageChangeEvent_ = function(data) {
+fireauth.authStorage.Manager.prototype.storageChangeEvent_ = function (data) {
   if (data && data.getBrowserEvent) {
     var event = /** @type {!goog.events.BrowserEvent} */ (data);
     var key = event.getBrowserEvent().key;
@@ -567,9 +576,11 @@ fireauth.authStorage.Manager.prototype.storageChangeEvent_ = function(data) {
       return;
     }
     // Check if the key is Firebase Auth related, otherwise ignore.
-    if (key.indexOf(this.namespace_ + this.separator_) != 0 ||
-        // Ignore keys that have no listeners.
-        !this.listeners_[key]) {
+    if (
+      key.indexOf(this.namespace_ + this.separator_) != 0 ||
+      // Ignore keys that have no listeners.
+      !this.listeners_[key]
+    ) {
       return;
     }
     // Check the mechanism how this event was detected.
@@ -578,8 +589,9 @@ fireauth.authStorage.Manager.prototype.storageChangeEvent_ = function(data) {
     if (typeof event.getBrowserEvent().poll !== 'undefined') {
       // Environment detects storage changes via polling.
       // Remove storage event listener to prevent possible event duplication.
-      this.getStorage_(fireauth.authStorage.Persistence.LOCAL)
-          .removeStorageListener(this.storageChangeEventHandler_);
+      this.getStorage_(
+        fireauth.authStorage.Persistence.LOCAL
+      ).removeStorageListener(this.storageChangeEventHandler_);
     } else {
       // Environment detects storage changes via storage event listener.
       // Remove polling listener to prevent possible event duplication.
@@ -602,19 +614,23 @@ fireauth.authStorage.Manager.prototype.storageChangeEvent_ = function(data) {
         }
       } else {
         // Already detected and processed, do not trigger listeners again.
-        if (this.localMap_[key] === newValue &&
-            // Real storage event.
-            typeof event.getBrowserEvent().poll === 'undefined') {
+        if (
+          this.localMap_[key] === newValue &&
+          // Real storage event.
+          typeof event.getBrowserEvent().poll === 'undefined'
+        ) {
           return;
         }
       }
     }
     var self = this;
-    var triggerListeners = function() {
+    var triggerListeners = function () {
       // Keep local map up to date in case storage event is triggered before
       // poll.
-      if (typeof event.getBrowserEvent().poll === 'undefined' &&
-          self.localMap_[key] === goog.global['localStorage']['getItem'](key)) {
+      if (
+        typeof event.getBrowserEvent().poll === 'undefined' &&
+        self.localMap_[key] === goog.global['localStorage']['getItem'](key)
+      ) {
         // Real storage event which has already been detected, do nothing.
         // This seems to trigger in some IE browsers for some reason.
         return;
@@ -622,16 +638,20 @@ fireauth.authStorage.Manager.prototype.storageChangeEvent_ = function(data) {
       self.localMap_[key] = goog.global['localStorage']['getItem'](key);
       self.callListeners_(key);
     };
-    if (fireauth.util.isIe10() &&
-        goog.global['localStorage']['getItem'](key) !==
+    if (
+      fireauth.util.isIe10() &&
+      goog.global['localStorage']['getItem'](key) !==
         event.getBrowserEvent().newValue &&
-        event.getBrowserEvent().newValue !== event.getBrowserEvent().oldValue) {
+      event.getBrowserEvent().newValue !== event.getBrowserEvent().oldValue
+    ) {
       // IE 10 has this weird bug where a storage event would trigger with the
       // correct key, oldValue and newValue but localStorage.getItem(key) does
       // not yield the updated value until a few milliseconds. This ensures this
       // recovers from that situation.
       setTimeout(
-          triggerListeners, fireauth.authStorage.IE10_LOCAL_STORAGE_SYNC_DELAY);
+        triggerListeners,
+        fireauth.authStorage.IE10_LOCAL_STORAGE_SYNC_DELAY
+      );
     } else {
       triggerListeners();
     }
@@ -641,18 +661,15 @@ fireauth.authStorage.Manager.prototype.storageChangeEvent_ = function(data) {
   }
 };
 
-
 /**
  * Calls all listeners for specified storage event key.
  * @param {string} key The storage event key whose listeners are to be run.
  * @private
  */
-fireauth.authStorage.Manager.prototype.callListeners_ = function(key) {
+fireauth.authStorage.Manager.prototype.callListeners_ = function (key) {
   if (this.listeners_[key]) {
-    goog.array.forEach(
-        this.listeners_[key],
-        function(listener) {
-          listener();
-        });
+    goog.array.forEach(this.listeners_[key], function (listener) {
+      listener();
+    });
   }
 };

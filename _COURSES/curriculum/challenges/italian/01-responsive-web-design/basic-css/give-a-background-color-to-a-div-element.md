@@ -2,7 +2,7 @@
 id: bad87fed1348bd9aede07836
 title: Dare un colore di sfondo a un elemento div
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cdRKMCk'
+videoUrl: "https://scrimba.com/c/cdRKMCk"
 forumTopicId: 18190
 dashedName: give-a-background-color-to-a-div-element
 ---
@@ -28,19 +28,21 @@ Crea una classe chiamata `silver-background` con il `background-color` di `silve
 Il tuo elemento `div` dovrebbe avere la classe `silver-background`.
 
 ```js
-assert($('div').hasClass('silver-background'));
+assert($("div").hasClass("silver-background"));
 ```
 
 Il tuo elemento `div` dovrebbe avere uno sfondo silver.
 
 ```js
-assert($('div').css('background-color') === 'rgb(192, 192, 192)');
+assert($("div").css("background-color") === "rgb(192, 192, 192)");
 ```
 
 Una classe chiamata `silver-background` dovrebbe essere definita all'interno dell'elemento`style` e il valore di `silver` dovrebbe essere assegnato alla proprietà `background-color`.
 
 ```js
-assert(code.match(/\.silver-background\s*{\s*background-color\s*:\s*silver\s*;?\s*}/));
+assert(
+  code.match(/\.silver-background\s*{\s*background-color\s*:\s*silver\s*;?\s*}/)
+);
 ```
 
 # --seed--
@@ -48,7 +50,11 @@ assert(code.match(/\.silver-background\s*{\s*background-color\s*:\s*silver\s*;?\
 ## --seed-contents--
 
 ```html
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link
+  href="https://fonts.googleapis.com/css?family=Lobster"
+  rel="stylesheet"
+  type="text/css"
+/>
 <style>
   .red-text {
     color: red;
@@ -79,7 +85,12 @@ assert(code.match(/\.silver-background\s*{\s*background-color\s*:\s*silver\s*;?\
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img class="smaller-image thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      class="smaller-image thick-green-border"
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -97,12 +108,12 @@ assert(code.match(/\.silver-background\s*{\s*background-color\s*:\s*silver\s*;?\
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>
@@ -111,7 +122,11 @@ assert(code.match(/\.silver-background\s*{\s*background-color\s*:\s*silver\s*;?\
 # --solutions--
 
 ```html
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link
+  href="https://fonts.googleapis.com/css?family=Lobster"
+  rel="stylesheet"
+  type="text/css"
+/>
 <style>
   .red-text {
     color: red;
@@ -146,7 +161,12 @@ assert(code.match(/\.silver-background\s*{\s*background-color\s*:\s*silver\s*;?\
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img class="smaller-image thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      class="smaller-image thick-green-border"
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div class="silver-background">
     <p>Things cats love:</p>
@@ -164,12 +184,12 @@ assert(code.match(/\.silver-background\s*{\s*background-color\s*:\s*silver\s*;?\
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>

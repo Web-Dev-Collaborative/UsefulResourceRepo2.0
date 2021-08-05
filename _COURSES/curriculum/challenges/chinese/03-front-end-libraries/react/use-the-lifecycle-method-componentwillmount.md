@@ -24,7 +24,7 @@ React 组件有几种特殊方法，可以在组件生命周期的特定点执�
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
-    return mockedComponent.find('div').length === 1;
+    return mockedComponent.find("div").length === 1;
   })()
 );
 ```
@@ -36,8 +36,8 @@ assert(
   (function () {
     const lifecycle = React.createElement(MyComponent)
       .type.prototype.componentWillMount.toString()
-      .replace(/ /g, '');
-    return lifecycle.includes('console.log(');
+      .replace(/ /g, "");
+    return lifecycle.includes("console.log(");
   })()
 );
 ```
@@ -47,7 +47,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyComponent />, document.getElementById('root'))
+ReactDOM.render(<MyComponent />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -59,13 +59,12 @@ class MyComponent extends React.Component {
   }
   componentWillMount() {
     // Change code below this line
-
     // Change code above this line
   }
   render() {
-    return <div />
+    return <div />;
   }
-};
+}
 ```
 
 # --solutions--
@@ -77,11 +76,11 @@ class MyComponent extends React.Component {
   }
   componentWillMount() {
     // Change code below this line
-    console.log('Component is mounting...');
+    console.log("Component is mounting...");
     // Change code above this line
   }
   render() {
-    return <div />
+    return <div />;
   }
-};
+}
 ```

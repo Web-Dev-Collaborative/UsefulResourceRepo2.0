@@ -11,8 +11,8 @@ dashedName: inherit-behaviors-from-a-supertype
 在上一个挑战中，我们创建了一个`Animal` 超类（`supertype`），用来定义所有动物共有的行为：
 
 ```js
-function Animal() { }
-Animal.prototype.eat = function() {
+function Animal() {}
+Animal.prototype.eat = function () {
   console.log("nom nom nom");
 };
 ```
@@ -47,13 +47,13 @@ animal instanceof Animal;
 应该定义一个 `duck` 变量。
 
 ```js
-assert(typeof duck !== 'undefined');
+assert(typeof duck !== "undefined");
 ```
 
 应该定义一个 `beagle` 变量。
 
 ```js
-assert(typeof beagle !== 'undefined');
+assert(typeof beagle !== "undefined");
 ```
 
 `duck` 变量应该通过 `Object.create` 初始化。
@@ -93,13 +93,13 @@ assert(beagle instanceof Animal);
 ## --seed-contents--
 
 ```js
-function Animal() { }
+function Animal() {}
 
 Animal.prototype = {
   constructor: Animal,
-  eat: function() {
+  eat: function () {
     console.log("nom nom nom");
-  }
+  },
 };
 
 // Only change code below this line
@@ -111,13 +111,13 @@ let beagle; // Change this line
 # --solutions--
 
 ```js
-function Animal() { }
+function Animal() {}
 
 Animal.prototype = {
   constructor: Animal,
-  eat: function() {
+  eat: function () {
     console.log("nom nom nom");
-  }
+  },
 };
 let duck = Object.create(Animal.prototype);
 let beagle = Object.create(Animal.prototype);

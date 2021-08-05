@@ -1,15 +1,13 @@
-
-import BaseScene from './BaseScene';
+import BaseScene from "./BaseScene";
 
 class CreditsScene extends BaseScene {
-
   constructor(config) {
-    super('CreditsScene', {...config, canGoBack: true});
+    super("CreditsScene", { ...config, canGoBack: true });
 
     this.menu = [
-      {scene: null, text: 'Thank you for playing'},
-      {scene: null, text: 'Author: Filip'}
-    ]
+      { scene: null, text: "Thank you for playing" },
+      { scene: null, text: "Author: Filip" },
+    ];
   }
 
   create() {
@@ -19,8 +17,6 @@ class CreditsScene extends BaseScene {
 }
 
 export default CreditsScene;
-
-
 
 // Create ScoreScene
 // Display Best score, you can get from the local storage

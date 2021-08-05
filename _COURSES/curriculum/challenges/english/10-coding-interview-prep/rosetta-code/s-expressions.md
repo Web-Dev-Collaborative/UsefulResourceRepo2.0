@@ -32,14 +32,14 @@ The reader should be able to read the following input
 (data (!@# (4.5) "(more" "data)")))
 </pre>
 
-and turn it into a native data structure. (See the [Pike](https://rosettacode.org/wiki/S-Expressions#Pike "\#Pike"), [Python](https://rosettacode.org/wiki/S-Expressions#Python "\#Python") and [Ruby](https://rosettacode.org/wiki/S-Expressions#Ruby "\#Ruby") implementations for examples of native data structures.)
+and turn it into a native data structure. (See the [Pike](https://rosettacode.org/wiki/S-Expressions#Pike "#Pike"), [Python](https://rosettacode.org/wiki/S-Expressions#Python "#Python") and [Ruby](https://rosettacode.org/wiki/S-Expressions#Ruby "#Ruby") implementations for examples of native data structures.)
 
 # --hints--
 
 `parseSexpr` should be a function.
 
 ```js
-assert(typeof parseSexpr === 'function');
+assert(typeof parseSexpr === "function");
 ```
 
 `parseSexpr('(data1 data2 data3)')` should return `['data1', 'data2', 'data3']`
@@ -59,18 +59,21 @@ assert.deepEqual(parseSexpr(basicSExpr), basicSolution);
 ## --after-user-code--
 
 ```js
-const simpleSExpr = '(data1 data2 data3)';
-const simpleSolution = ['data1', 'data2', 'data3'];
+const simpleSExpr = "(data1 data2 data3)";
+const simpleSolution = ["data1", "data2", "data3"];
 
-const basicSExpr = '((data "quoted data" 123 4.5) (data (!@# (4.5) "(more" "data)")))';
-const basicSolution = [["data","\"quoted data\"",123,4.5],["data",["!@#",[4.5],"\"(more\"","\"data)\""]]];
+const basicSExpr =
+  '((data "quoted data" 123 4.5) (data (!@# (4.5) "(more" "data)")))';
+const basicSolution = [
+  ["data", '"quoted data"', 123, 4.5],
+  ["data", ["!@#", [4.5], '"(more"', '"data)"']],
+];
 ```
 
 ## --seed-contents--
 
 ```js
 function parseSexpr(str) {
-
   return true;
 }
 ```
@@ -84,13 +87,15 @@ function parseSexpr(str) {
     var n,
       ti = t[i].trim();
     if (ti == '"') return;
-    else if (ti == '(') t[i] = '[', c += 1;
-    else if (ti == ')') t[i] = ']', c -= 1;
+    else if (ti == "(") (t[i] = "["), (c += 1);
+    else if (ti == ")") (t[i] = "]"), (c -= 1);
     else if ((n = +ti) == ti) t[i] = n;
-    else t[i] = `'${ti.replace('\'', '\\\'')}'`;
-    if (i > 0 && ti != ']' && t[i - 1].trim() != '(') t.splice(i, 0, ',');
-    if (!c) if (!o) o = true; else return;
+    else t[i] = `'${ti.replace("'", "\\'")}'`;
+    if (i > 0 && ti != "]" && t[i - 1].trim() != "(") t.splice(i, 0, ",");
+    if (!c)
+      if (!o) o = true;
+      else return;
   }
-  return c ? undefined : eval(t.join(''));
+  return c ? undefined : eval(t.join(""));
 }
 ```

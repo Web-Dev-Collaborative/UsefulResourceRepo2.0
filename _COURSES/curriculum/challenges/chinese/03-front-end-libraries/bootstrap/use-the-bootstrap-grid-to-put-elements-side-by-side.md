@@ -25,13 +25,13 @@ Bootstrap 的列宽取决于用户的屏幕宽度。 比如，手机有着窄屏
 所有按钮都需要嵌入到同一个 `div` 元素中， 并且该元素包含 `row` class 属性。
 
 ```js
-assert($('div.row:has(button)').length > 0);
+assert($("div.row:has(button)").length > 0);
 ```
 
 每个 Bootstrap 按钮都需要嵌入各自的 `div` 元素，并且该元素包含 class 属性 `col-xs-4`。
 
 ```js
-assert($('div.col-xs-4:has(button)').length > 2);
+assert($("div.col-xs-4:has(button)").length > 2);
 ```
 
 确保每一个 `button` 元素都有一个闭合标签。
@@ -59,7 +59,11 @@ assert(
 ## --seed-contents--
 
 ```html
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link
+  href="https://fonts.googleapis.com/css?family=Lobster"
+  rel="stylesheet"
+  type="text/css"
+/>
 <style>
   .red-text {
     color: red;
@@ -91,9 +95,18 @@ assert(
 
   <p>Click here for <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img class="smaller-image thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      class="smaller-image thick-green-border"
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
-  <img src="https://bit.ly/fcc-running-cats" class="img-responsive" alt="Three kittens running towards the camera.">
+  <img
+    src="https://bit.ly/fcc-running-cats"
+    class="img-responsive"
+    alt="Three kittens running towards the camera."
+  />
   <button class="btn btn-block btn-primary">Like</button>
   <button class="btn btn-block btn-info">Info</button>
   <button class="btn btn-block btn-danger">Delete</button>
@@ -110,12 +123,12 @@ assert(
     <li>other cats</li>
   </ol>
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor"> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label>
-    <label><input type="checkbox" name="personality"> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Crazy</label>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label>
+    <label><input type="checkbox" name="personality" /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Crazy</label>
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </div>
@@ -124,7 +137,11 @@ assert(
 # --solutions--
 
 ```html
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link
+  href="https://fonts.googleapis.com/css?family=Lobster"
+  rel="stylesheet"
+  type="text/css"
+/>
 <style>
   .red-text {
     color: red;
@@ -156,9 +173,18 @@ assert(
 
   <p>Click here for <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img class="smaller-image thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      class="smaller-image thick-green-border"
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
-  <img src="https://bit.ly/fcc-running-cats" class="img-responsive" alt="Three kittens running towards the camera.">
+  <img
+    src="https://bit.ly/fcc-running-cats"
+    class="img-responsive"
+    alt="Three kittens running towards the camera."
+  />
   <div class="row">
     <div class="col-xs-4">
       <button class="btn btn-block btn-primary">Like</button>
@@ -184,12 +210,12 @@ assert(
     <li>other cats</li>
   </ol>
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor"> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label>
-    <label><input type="checkbox" name="personality"> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Crazy</label>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label>
+    <label><input type="checkbox" name="personality" /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Crazy</label>
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </div>

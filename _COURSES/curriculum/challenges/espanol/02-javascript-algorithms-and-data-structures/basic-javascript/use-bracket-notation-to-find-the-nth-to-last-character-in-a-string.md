@@ -2,7 +2,7 @@
 id: bd7123c9c452eddfaeb5bdef
 title: Utiliza la notación de corchetes para encontrar el carácter enésimo final en una cadena
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cw4vkh9'
+videoUrl: "https://scrimba.com/c/cw4vkh9"
 forumTopicId: 18344
 dashedName: use-bracket-notation-to-find-the-nth-to-last-character-in-a-string
 ---
@@ -33,7 +33,7 @@ Usa <dfn>notación de corchetes</dfn> para encontrar el penúltimo carácter en 
 `secondToLastLetterOfLastName` debe ser la letra `c`.
 
 ```js
-assert(secondToLastLetterOfLastName === 'c');
+assert(secondToLastLetterOfLastName === "c");
 ```
 
 Debes usar `.length` para obtener la penúltima letra.
@@ -47,7 +47,9 @@ assert(code.match(/\.length/g).length > 0);
 ## --after-user-code--
 
 ```js
-(function(v){return v;})(secondToLastLetterOfLastName);
+(function (v) {
+  return v;
+})(secondToLastLetterOfLastName);
 ```
 
 ## --seed-contents--

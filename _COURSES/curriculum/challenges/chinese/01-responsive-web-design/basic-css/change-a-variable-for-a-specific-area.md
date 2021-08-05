@@ -2,7 +2,7 @@
 id: 5a9d72a1424fe3d0e10cad15
 title: 更改特定区域的变量
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cdRwbuW'
+videoUrl: "https://scrimba.com/c/cdRwbuW"
 forumTopicId: 301085
 dashedName: change-a-variable-for-a-specific-area
 ---
@@ -23,18 +23,17 @@ dashedName: change-a-variable-for-a-specific-area
 
 ```js
 assert(
-  code.match(/\.penguin\s*?{[\s\S]*--penguin-belly\s*?:\s*?white\s*?;[\s\S]*}/gi)
+  code.match(
+    /\.penguin\s*?{[\s\S]*--penguin-belly\s*?:\s*?white\s*?;[\s\S]*}/gi
+  )
 );
 ```
 
 `penguin` class 不应该包含 `background-color` 属性。
 
 ```js
-assert(
-  code.match(/^((?!background-color\s*?:\s*?)[\s\S])*$/g)
-);
+assert(code.match(/^((?!background-color\s*?:\s*?)[\s\S])*$/g));
 ```
-
 
 # --seed--
 
@@ -249,6 +248,8 @@ assert(
 
 ```html
 <style>
-.penguin {--penguin-belly: white;}
+  .penguin {
+    --penguin-belly: white;
+  }
 </style>
 ```

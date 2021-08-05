@@ -11,7 +11,7 @@ function twitterProvider() {
 
   // [START auth_twitter_provider_params]
   provider.setCustomParameters({
-    'lang': 'es'
+    lang: "es",
   });
   // [END auth_twitter_provider_params]
 }
@@ -33,7 +33,8 @@ function twitterSignInPopup(provider) {
       // The signed-in user info.
       var user = result.user;
       // ...
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -48,7 +49,8 @@ function twitterSignInPopup(provider) {
 
 function twitterSignInRedirectResult() {
   // [START auth_twitter_signin_redirect_result]
-  firebase.auth()
+  firebase
+    .auth()
     .getRedirectResult()
     .then((result) => {
       if (result.credential) {
@@ -64,7 +66,8 @@ function twitterSignInRedirectResult() {
 
       // The signed-in user info.
       var user = result.user;
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;

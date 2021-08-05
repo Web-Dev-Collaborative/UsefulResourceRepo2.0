@@ -17,7 +17,7 @@ Tipicamente, è una buona pratica creare un reducer per ogni parte dello stato d
 ```js
 const rootReducer = Redux.combineReducers({
   auth: authenticationReducer,
-  notes: notesReducer
+  notes: notesReducer,
 });
 ```
 
@@ -66,9 +66,9 @@ assert(
   (function () {
     const state = store.getState();
     return (
-      typeof state.auth === 'object' &&
-      typeof state.auth.authenticated === 'boolean' &&
-      typeof state.count === 'number'
+      typeof state.auth === "object" &&
+      typeof state.auth.authenticated === "boolean" &&
+      typeof state.count === "number"
     );
   })()
 );
@@ -80,10 +80,10 @@ Il `rootReducer` dovrebbe essere una funzione che combina il `counterReducer` e 
 (getUserInput) =>
   assert(
     (function () {
-      const noWhiteSpace = __helpers.removeWhiteSpace(getUserInput('index'));
+      const noWhiteSpace = __helpers.removeWhiteSpace(getUserInput("index"));
       return (
-        typeof rootReducer === 'function' &&
-        noWhiteSpace.includes('Redux.combineReducers')
+        typeof rootReducer === "function" &&
+        noWhiteSpace.includes("Redux.combineReducers")
       );
     })()
   );
@@ -134,11 +134,11 @@ const store = Redux.createStore(rootReducer);
 # --solutions--
 
 ```js
-const INCREMENT = 'INCREMENT';
-const DECREMENT = 'DECREMENT';
+const INCREMENT = "INCREMENT";
+const DECREMENT = "DECREMENT";
 
 const counterReducer = (state = 0, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case INCREMENT:
       return state + 1;
     case DECREMENT:
@@ -148,19 +148,19 @@ const counterReducer = (state = 0, action) => {
   }
 };
 
-const LOGIN = 'LOGIN';
-const LOGOUT = 'LOGOUT';
+const LOGIN = "LOGIN";
+const LOGOUT = "LOGOUT";
 
-const authReducer = (state = {authenticated: false}, action) => {
-  switch(action.type) {
+const authReducer = (state = { authenticated: false }, action) => {
+  switch (action.type) {
     case LOGIN:
       return {
-        authenticated: true
-      }
+        authenticated: true,
+      };
     case LOGOUT:
       return {
-        authenticated: false
-      }
+        authenticated: false,
+      };
     default:
       return state;
   }
@@ -168,7 +168,7 @@ const authReducer = (state = {authenticated: false}, action) => {
 
 const rootReducer = Redux.combineReducers({
   count: counterReducer,
-  auth: authReducer
+  auth: authReducer,
 });
 
 const store = Redux.createStore(rootReducer);

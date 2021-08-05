@@ -31,7 +31,7 @@ goog.require('goog.array');
  * one subscriber and multiple app instances can subscribe to this.
  * @constructor @final @struct
  */
-fireauth.UniversalLinkSubscriber = function() {
+fireauth.UniversalLinkSubscriber = function () {
   /**
    * @private {?function(?Object)} The master callback that subscribes directly
    *     to universalLinks.
@@ -44,25 +44,22 @@ fireauth.UniversalLinkSubscriber = function() {
   this.cb_ = [];
 };
 
-
 /**
  * @return {!fireauth.UniversalLinkSubscriber} The default universal link
  *     subscriber instance.
  */
-fireauth.UniversalLinkSubscriber.getInstance = function() {
+fireauth.UniversalLinkSubscriber.getInstance = function () {
   if (!fireauth.UniversalLinkSubscriber.instance_) {
     fireauth.UniversalLinkSubscriber.instance_ =
-        new fireauth.UniversalLinkSubscriber();
+      new fireauth.UniversalLinkSubscriber();
   }
   return fireauth.UniversalLinkSubscriber.instance_;
 };
 
-
 /** Clears singleton instance. Useful for testing. */
-fireauth.UniversalLinkSubscriber.clear = function() {
+fireauth.UniversalLinkSubscriber.clear = function () {
   fireauth.UniversalLinkSubscriber.instance_ = null;
 };
-
 
 /**
  * @private {?fireauth.UniversalLinkSubscriber} The singleton universal
@@ -70,23 +67,24 @@ fireauth.UniversalLinkSubscriber.clear = function() {
  */
 fireauth.UniversalLinkSubscriber.instance_ = null;
 
-
 /**
  * Subscribes a callback to the universal link plugin listener.
  * @param {function(?Object)} cb The callback to subscribe to the universal
  *     link plugin.
  */
-fireauth.UniversalLinkSubscriber.prototype.subscribe  = function(cb) {
+fireauth.UniversalLinkSubscriber.prototype.subscribe = function (cb) {
   var self = this;
   this.cb_.push(cb);
   if (!this.masterCb_) {
-    this.masterCb_ = function(event) {
+    this.masterCb_ = function (event) {
       for (var i = 0; i < self.cb_.length; i++) {
         self.cb_[i](event);
       }
     };
     var subscribe = fireauth.util.getObjectRef(
-        'universalLinks.subscribe', goog.global);
+      'universalLinks.subscribe',
+      goog.global
+    );
     // For iOS environments, this plugin is not used, therefore this is a no-op
     // and no error needs to be thrown.
     if (typeof subscribe === 'function') {
@@ -95,15 +93,13 @@ fireauth.UniversalLinkSubscriber.prototype.subscribe  = function(cb) {
   }
 };
 
-
 /**
  * Unsubscribes a callback from the universal link plugin listener.
  * @param {function(?Object)} cb The callback to unsubscribe from the universal
  *     link plugin.
  */
-fireauth.UniversalLinkSubscriber.prototype.unsubscribe = function(cb) {
-  goog.array.removeAllIf(this.cb_, function(ele) {
+fireauth.UniversalLinkSubscriber.prototype.unsubscribe = function (cb) {
+  goog.array.removeAllIf(this.cb_, function (ele) {
     return ele == cb;
   });
 };
-

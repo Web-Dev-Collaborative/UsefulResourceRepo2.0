@@ -1,3 +1,3 @@
 # README
 
-Simple trello clone, FE made with vue.js. 
+Simple trello clone, FE made with vue.js.

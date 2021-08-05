@@ -23,13 +23,13 @@ Where:
   <li> \(t\) is half the number of <i>transpositions</i>.</li>
 </ul>
 
-Two characters from \\(s_1\\) and \\(s_2\\) respectively, are considered *matching* only if they are the same and not farther than \\(\\left\\lfloor\\frac{\\max(|s_1|,|s_2|)}{2}\\right\\rfloor-1\\).
+Two characters from \\(s_1\\) and \\(s_2\\) respectively, are considered _matching_ only if they are the same and not farther than \\(\\left\\lfloor\\frac{\\max(|s_1|,|s_2|)}{2}\\right\\rfloor-1\\).
 
-Each character of \\(s_1\\) is compared with all its matching characters in \\(s_2\\) . The number of matching (but different sequence order) characters divided by 2 defines the number of *transpositions*.
+Each character of \\(s_1\\) is compared with all its matching characters in \\(s_2\\) . The number of matching (but different sequence order) characters divided by 2 defines the number of _transpositions_.
 
 **Example**
 
-Given the strings \\(s_1\\) *DWAYNE* and \\(s_2\\) *DUANE* we find:
+Given the strings \\(s_1\\) _DWAYNE_ and \\(s_2\\) _DUANE_ we find:
 
 <ul>
   <li>\(m = 4\)</li>
@@ -49,43 +49,43 @@ Write a function a that takes two strings as parameters and returns the associat
 `jaro` should be a function.
 
 ```js
-assert(typeof jaro == 'function');
+assert(typeof jaro == "function");
 ```
 
 `jaro("MARTHA", "MARHTA")` should return a number.
 
 ```js
-assert(typeof jaro('MARTHA', 'MARHTA') == 'number');
+assert(typeof jaro("MARTHA", "MARHTA") == "number");
 ```
 
 `jaro("MARTHA", "MARHTA")` should return `0.9444444444444445`.
 
 ```js
-assert.equal(jaro('MARTHA', 'MARHTA'), 0.9444444444444445);
+assert.equal(jaro("MARTHA", "MARHTA"), 0.9444444444444445);
 ```
 
 `jaro("DIXON", "DICKSONX")` should return `0.7666666666666666`.
 
 ```js
-assert.equal(jaro('DIXON', 'DICKSONX'), 0.7666666666666666);
+assert.equal(jaro("DIXON", "DICKSONX"), 0.7666666666666666);
 ```
 
 `jaro("JELLYFISH", "SMELLYFISH")` should return `0.8962962962962964`.
 
 ```js
-assert.equal(jaro('JELLYFISH', 'SMELLYFISH'), 0.8962962962962964);
+assert.equal(jaro("JELLYFISH", "SMELLYFISH"), 0.8962962962962964);
 ```
 
 `jaro("HELLOS", "CHELLO")` should return `0.888888888888889`.
 
 ```js
-assert.equal(jaro('HELLOS', 'CHELLO'), 0.888888888888889);
+assert.equal(jaro("HELLOS", "CHELLO"), 0.888888888888889);
 ```
 
 `jaro("ABCD", "BCDA")` should return `0.8333333333333334`.
 
 ```js
-assert.equal(jaro('ABCD', 'BCDA'), 0.8333333333333334);
+assert.equal(jaro("ABCD", "BCDA"), 0.8333333333333334);
 ```
 
 # --seed--
@@ -93,9 +93,7 @@ assert.equal(jaro('ABCD', 'BCDA'), 0.8333333333333334);
 ## --seed-contents--
 
 ```js
-function jaro(s, t) {
-
-}
+function jaro(s, t) {}
 ```
 
 # --solutions--
@@ -139,8 +137,11 @@ function jaro(s, t) {
     k++;
   }
 
-  return ((matches / s_len) +
-    (matches / t_len) +
-    ((matches - transpositions / 2.0) / matches)) / 3.0;
+  return (
+    (matches / s_len +
+      matches / t_len +
+      (matches - transpositions / 2.0) / matches) /
+    3.0
+  );
 }
 ```

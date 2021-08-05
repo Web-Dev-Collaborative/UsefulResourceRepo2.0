@@ -12,14 +12,18 @@ dashedName: nest-an-anchor-element-within-a-paragraph
 
 ```html
 <p>
-  Here's a <a target="_blank" href="https://www.freecodecamp.org"> link to www.freecodecamp.org</a> for you to follow.
+  Here's a
+  <a target="_blank" href="https://www.freecodecamp.org">
+    link to www.freecodecamp.org</a
+  >
+  for you to follow.
 </p>
 ```
 
 讓我們來拆解一下這個例子。 通常，文本是被包裹在 `p` 元素內：
 
 ```html
-<p> Here's a ... for you to follow. </p>
+<p>Here's a ... for you to follow.</p>
 ```
 
 接下來是*錨點*元素 `<a>`（它需要結束標籤 `</a>`）：
@@ -53,24 +57,20 @@ Here's a <a href="https://www.freecodecamp.org" target="_blank">link to www.free
 應該只有一個 `a` 元素。
 
 ```js
-assert(
-  $('a').length  === 1 
-);
+assert($("a").length === 1);
 ```
 
 `a` 元素應該鏈接到 “`https://www.freecatphotoapp.com`”。
 
 ```js
-assert(
-  $('a[href="https://www.freecatphotoapp.com"]').length  === 1 
-);
+assert($('a[href="https://www.freecatphotoapp.com"]').length === 1);
 ```
 
 `a` 元素應有錨文本 `cat photos`。
 
 ```js
 assert(
-  $('a')
+  $("a")
     .text()
     .match(/cat\sphotos/gi)
 );
@@ -79,15 +79,13 @@ assert(
 應該創建一個新的 `p` 元素。 頁面中應至少包含 3 個 `p` 標籤。
 
 ```js
-assert($('p') && $('p').length > 2);
+assert($("p") && $("p").length > 2);
 ```
 
 `a` 應嵌套在新創建的 `p` 元素內。
 
 ```js
-assert(
-  $('a[href="https://www.freecatphotoapp.com"]').parent().is('p')
-);
+assert($('a[href="https://www.freecatphotoapp.com"]').parent().is("p"));
 ```
 
 `p` 元素應該包含文本 `View more`（在它後面有一個空格）。
@@ -105,7 +103,7 @@ assert(
 
 ```js
 assert(
-  !$('a')
+  !$("a")
     .text()
     .match(/View\smore/gi)
 );
@@ -138,13 +136,22 @@ assert(
 ```html
 <h2>CatPhotoApp</h2>
 <main>
-
   <a href="https://www.freecatphotoapp.com" target="_blank">cat photos</a>
 
-  <img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back.">
+  <img
+    src="https://www.bit.ly/fcc-relaxing-cat"
+    alt="A cute orange cat lying on its back."
+  />
 
-  <p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p>
-  <p>Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere rip the couch sleep in the sink fluffy fur catnip scratched.</p>
+  <p>
+    Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching
+    attack your ankles chase the red dot, hairball run catnip eat the grass
+    sniff.
+  </p>
+  <p>
+    Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere
+    rip the couch sleep in the sink fluffy fur catnip scratched.
+  </p>
 </main>
 ```
 
@@ -153,11 +160,24 @@ assert(
 ```html
 <h2>CatPhotoApp</h2>
 <main>
-  <p>View more <a target="_blank" href="https://www.freecatphotoapp.com">cat photos</a></p>
+  <p>
+    View more
+    <a target="_blank" href="https://www.freecatphotoapp.com">cat photos</a>
+  </p>
 
-  <img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back.">
+  <img
+    src="https://www.bit.ly/fcc-relaxing-cat"
+    alt="A cute orange cat lying on its back."
+  />
 
-  <p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p>
-  <p>Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere rip the couch sleep in the sink fluffy fur catnip scratched.</p>
+  <p>
+    Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching
+    attack your ankles chase the red dot, hairball run catnip eat the grass
+    sniff.
+  </p>
+  <p>
+    Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere
+    rip the couch sleep in the sink fluffy fur catnip scratched.
+  </p>
 </main>
 ```

@@ -21,27 +21,27 @@ All letters will be uppercase. Do not transform any non-alphabetic character (i.
 `rot13("SERR PBQR PNZC")` should decode to the string `FREE CODE CAMP`
 
 ```js
-assert(rot13('SERR PBQR PNZC') === 'FREE CODE CAMP');
+assert(rot13("SERR PBQR PNZC") === "FREE CODE CAMP");
 ```
 
 `rot13("SERR CVMMN!")` should decode to the string `FREE PIZZA!`
 
 ```js
-assert(rot13('SERR CVMMN!') === 'FREE PIZZA!');
+assert(rot13("SERR CVMMN!") === "FREE PIZZA!");
 ```
 
 `rot13("SERR YBIR?")` should decode to the string `FREE LOVE?`
 
 ```js
-assert(rot13('SERR YBIR?') === 'FREE LOVE?');
+assert(rot13("SERR YBIR?") === "FREE LOVE?");
 ```
 
 `rot13("GUR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT.")` should decode to the string `THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.`
 
 ```js
 assert(
-  rot13('GUR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT.') ===
-    'THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.'
+  rot13("GUR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT.") ===
+    "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG."
 );
 ```
 
@@ -51,7 +51,6 @@ assert(
 
 ```js
 function rot13(str) {
-
   return str;
 }
 
@@ -62,22 +61,41 @@ rot13("SERR PBQR PNZC");
 
 ```js
 var lookup = {
-  'A': 'N','B': 'O','C': 'P','D': 'Q',
-  'E': 'R','F': 'S','G': 'T','H': 'U',
-  'I': 'V','J': 'W','K': 'X','L': 'Y',
-  'M': 'Z','N': 'A','O': 'B','P': 'C',
-  'Q': 'D','R': 'E','S': 'F','T': 'G',
-  'U': 'H','V': 'I','W': 'J','X': 'K',
-  'Y': 'L','Z': 'M'
+  A: "N",
+  B: "O",
+  C: "P",
+  D: "Q",
+  E: "R",
+  F: "S",
+  G: "T",
+  H: "U",
+  I: "V",
+  J: "W",
+  K: "X",
+  L: "Y",
+  M: "Z",
+  N: "A",
+  O: "B",
+  P: "C",
+  Q: "D",
+  R: "E",
+  S: "F",
+  T: "G",
+  U: "H",
+  V: "I",
+  W: "J",
+  X: "K",
+  Y: "L",
+  Z: "M",
 };
 
 function rot13(encodedStr) {
-  var codeArr = encodedStr.split("");  // String to Array
+  var codeArr = encodedStr.split(""); // String to Array
   var decodedArr = []; // Your Result goes here
   // Only change code below this line
 
-  decodedArr = codeArr.map(function(letter) {
-    if(lookup.hasOwnProperty(letter)) {
+  decodedArr = codeArr.map(function (letter) {
+    if (lookup.hasOwnProperty(letter)) {
       letter = lookup[letter];
     }
     return letter;

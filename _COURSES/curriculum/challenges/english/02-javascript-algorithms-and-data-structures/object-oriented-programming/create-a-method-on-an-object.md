@@ -16,7 +16,9 @@ Methods are properties that are functions. This adds different behavior to an ob
 let duck = {
   name: "Aflac",
   numLegs: 2,
-  sayName: function() {return "The name of this duck is " + duck.name + ".";}
+  sayName: function () {
+    return "The name of this duck is " + duck.name + ".";
+  },
 };
 duck.sayName();
 ```
@@ -32,13 +34,13 @@ Using the `dog` object, give it a method called `sayLegs`. The method should ret
 `dog.sayLegs()` should be a function.
 
 ```js
-assert(typeof dog.sayLegs === 'function');
+assert(typeof dog.sayLegs === "function");
 ```
 
 `dog.sayLegs()` should return the given string - note that punctuation and spacing matter.
 
 ```js
-assert(dog.sayLegs() === 'This dog has 4 legs.');
+assert(dog.sayLegs() === "This dog has 4 legs.");
 ```
 
 # --seed--
@@ -49,7 +51,6 @@ assert(dog.sayLegs() === 'This dog has 4 legs.');
 let dog = {
   name: "Spot",
   numLegs: 4,
-
 };
 
 dog.sayLegs();
@@ -61,9 +62,9 @@ dog.sayLegs();
 let dog = {
   name: "Spot",
   numLegs: 4,
-  sayLegs () {
-    return 'This dog has ' + this.numLegs + ' legs.';
-  }
+  sayLegs() {
+    return "This dog has " + this.numLegs + " legs.";
+  },
 };
 
 dog.sayLegs();

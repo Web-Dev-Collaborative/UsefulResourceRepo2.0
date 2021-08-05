@@ -1,6 +1,6 @@
 ---
 id: 5e6a54c358d3af90110a60a3
-title: '导言：Python 的元素'
+title: "导言：Python 的元素"
 challengeType: 11
 videoId: aRY_xjL35v0
 dashedName: introduction-elements-of-python
@@ -33,4 +33,3 @@ x + 1
 ## --video-solution--
 
 3
-

@@ -19,23 +19,21 @@ Tutti i pulsanti di opzione correlati dovrebbero avere lo stesso attributo `name
 Ecco un esempio di pulsante radio:
 
 ```html
-<label> 
-  <input type="radio" name="indoor-outdoor">Indoor 
-</label>
+<label> <input type="radio" name="indoor-outdoor" />Indoor </label>
 ```
 
 È buona norma impostare un attributo `for` per l'elemento `label`, con un valore che corrisponda al valore dell'attributo `id` dell'elemento `input`. Ciò consente alle tecnologie assistive di creare una relazione tra l'etichetta e l'elemento `input` correlato. Ad esempio:
 
 ```html
-<input id="indoor" type="radio" name="indoor-outdoor">
+<input id="indoor" type="radio" name="indoor-outdoor" />
 <label for="indoor">Indoor</label>
 ```
 
 Possiamo anche annidare l'elemento `input` all'interno dei tag `label`:
 
 ```html
-<label for="indoor"> 
-  <input id="indoor" type="radio" name="indoor-outdoor">Indoor 
+<label for="indoor">
+  <input id="indoor" type="radio" name="indoor-outdoor" />Indoor
 </label>
 ```
 
@@ -77,7 +75,7 @@ Uno dei tuoi pulsanti di opzione dovrebbe avere l'etichetta `indoor`.
 
 ```js
 assert(
-  $('label')
+  $("label")
     .text()
     .match(/indoor/gi)
 );
@@ -87,7 +85,7 @@ Uno dei tuoi pulsanti di opzione dovrebbe avere l'etichetta `outdoor`.
 
 ```js
 assert(
-  $('label')
+  $("label")
     .text()
     .match(/outdoor/gi)
 );
@@ -96,7 +94,7 @@ assert(
 Ognuno dei tuoi pulsanti di opzione dovrebbe essere aggiunto all'interno del tag `form`.
 
 ```js
-assert($('label').parent().get(0).tagName.match('FORM'));
+assert($("label").parent().get(0).tagName.match("FORM"));
 ```
 
 # --seed--
@@ -108,7 +106,11 @@ assert($('label').parent().get(0).tagName.match('FORM'));
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -123,7 +125,7 @@ assert($('label').parent().get(0).tagName.match('FORM'));
     <li>other cats</li>
   </ol>
   <form action="https://www.freecatphotoapp.com/submit-cat-photo">
-    <input type="text" placeholder="cat photo URL" required>
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>
@@ -136,7 +138,11 @@ assert($('label').parent().get(0).tagName.match('FORM'));
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -151,9 +157,13 @@ assert($('label').parent().get(0).tagName.match('FORM'));
     <li>other cats</li>
   </ol>
   <form action="https://www.freecatphotoapp.com/submit-cat-photo">
-   <label for="indoor"><input id="indoor" type="radio" name="indoor-outdoor"> Indoor</label>
-    <label for="outdoor"><input id="outdoor" type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label for="indoor"
+      ><input id="indoor" type="radio" name="indoor-outdoor" /> Indoor</label
+    >
+    <label for="outdoor"
+      ><input id="outdoor" type="radio" name="indoor-outdoor" /> Outdoor</label
+    ><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>

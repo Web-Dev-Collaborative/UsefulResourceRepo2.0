@@ -16,86 +16,82 @@
  * @fileoverview Binds handlers for the password UI element.
  */
 
-goog.provide('firebaseui.auth.ui.element.password');
+goog.provide("firebaseui.auth.ui.element.password");
 
-goog.require('firebaseui.auth.soy2.strings');
-goog.require('firebaseui.auth.ui.element');
-goog.require('goog.ui.Component');
+goog.require("firebaseui.auth.soy2.strings");
+goog.require("firebaseui.auth.ui.element");
+goog.require("goog.ui.Component");
 
+goog.scope(function () {
+  var element = firebaseui.auth.ui.element;
 
-goog.scope(function() {
-var element = firebaseui.auth.ui.element;
+  /**
+   * @return {Element} The password input.
+   * @this {goog.ui.Component}
+   */
+  element.password.getPasswordElement = function () {
+    return this.getElementByClass("firebaseui-id-password");
+  };
 
+  /**
+   * @return {Element} The error panel.
+   * @this {goog.ui.Component}
+   */
+  element.password.getPasswordErrorElement = function () {
+    return this.getElementByClass("firebaseui-id-password-error");
+  };
 
-/**
- * @return {Element} The password input.
- * @this {goog.ui.Component}
- */
-element.password.getPasswordElement = function() {
-  return this.getElementByClass('firebaseui-id-password');
-};
-
-
-/**
- * @return {Element} The error panel.
- * @this {goog.ui.Component}
- */
-element.password.getPasswordErrorElement = function() {
-  return this.getElementByClass('firebaseui-id-password-error');
-};
-
-
-/**
- * Validates the field and shows/clears the error message if necessary.
- * @param {Element} passwordElement The password input.
- * @param {Element} errorElement The error panel.
- * @return {boolean} True if field is valid.
- * @private
- */
-element.password.validate_ = function(passwordElement, errorElement) {
-  var password = element.getInputValue(passwordElement);
-  if (password) {
-    element.setValid(passwordElement, true);
-    element.hide(errorElement);
-    return true;
-  } else {
-    element.setValid(passwordElement, false);
-    element.show(errorElement,
-        firebaseui.auth.soy2.strings.errorMissingPassword().toString());
-    return false;
-  }
-};
-
-
-/**
- * Initializes the password element.
- * @this {goog.ui.Component}
- */
-element.password.initPasswordElement = function() {
-  var passwordElement = element.password.getPasswordElement.call(this);
-  var errorElement = element.password.getPasswordErrorElement.call(this);
-  element.listenForInputEvent(this, passwordElement, function(e) {
-    // Clear but not show error on-the-fly.
-    if (element.isShown(errorElement)) {
+  /**
+   * Validates the field and shows/clears the error message if necessary.
+   * @param {Element} passwordElement The password input.
+   * @param {Element} errorElement The error panel.
+   * @return {boolean} True if field is valid.
+   * @private
+   */
+  element.password.validate_ = function (passwordElement, errorElement) {
+    var password = element.getInputValue(passwordElement);
+    if (password) {
       element.setValid(passwordElement, true);
       element.hide(errorElement);
+      return true;
+    } else {
+      element.setValid(passwordElement, false);
+      element.show(
+        errorElement,
+        firebaseui.auth.soy2.strings.errorMissingPassword().toString()
+      );
+      return false;
     }
-  });
-};
+  };
 
+  /**
+   * Initializes the password element.
+   * @this {goog.ui.Component}
+   */
+  element.password.initPasswordElement = function () {
+    var passwordElement = element.password.getPasswordElement.call(this);
+    var errorElement = element.password.getPasswordErrorElement.call(this);
+    element.listenForInputEvent(this, passwordElement, function (e) {
+      // Clear but not show error on-the-fly.
+      if (element.isShown(errorElement)) {
+        element.setValid(passwordElement, true);
+        element.hide(errorElement);
+      }
+    });
+  };
 
-/**
- * Gets the password.
- * It validates the field and shows/clears the error message if necessary.
- * @return {?string} The password.
- * @this {goog.ui.Component}
- */
-element.password.checkAndGetPassword = function() {
-  var passwordElement = element.password.getPasswordElement.call(this);
-  var errorElement = element.password.getPasswordErrorElement.call(this);
-  if (element.password.validate_(passwordElement, errorElement)) {
-    return element.getInputValue(passwordElement);
-  }
-  return null;
-};
+  /**
+   * Gets the password.
+   * It validates the field and shows/clears the error message if necessary.
+   * @return {?string} The password.
+   * @this {goog.ui.Component}
+   */
+  element.password.checkAndGetPassword = function () {
+    var passwordElement = element.password.getPasswordElement.call(this);
+    var errorElement = element.password.getPasswordErrorElement.call(this);
+    if (element.password.validate_(passwordElement, errorElement)) {
+      return element.getInputValue(passwordElement);
+    }
+    return null;
+  };
 });

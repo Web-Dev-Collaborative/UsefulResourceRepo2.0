@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08827
 title: 創建一個無序列表
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cDKVPuv'
+videoUrl: "https://scrimba.com/p/pVMPUv/cDKVPuv"
 forumTopicId: 16814
 dashedName: create-a-bulleted-unordered-list
 ---
@@ -33,13 +33,13 @@ HTML 有一個特定的元素用於創建<dfn>無序列表</dfn>。
 應存在一個 `ul` 無序列表。
 
 ```js
-assert($('ul').length > 0);
+assert($("ul").length > 0);
 ```
 
 應在 `ul` 無序列表中添加三個 `li` 條目。
 
 ```js
-assert($('ul li').length > 2);
+assert($("ul li").length > 2);
 ```
 
 確保 `ul` 無序列表有結束標籤。
@@ -65,7 +65,7 @@ assert(
 每個 `li` 元素不應只包含空字符串或只包含空格。
 
 ```js
-assert($('ul li').filter((_, item) => !$(item).text().trim()).length === 0);
+assert($("ul li").filter((_, item) => !$(item).text().trim()).length === 0);
 ```
 
 # --seed--
@@ -77,10 +77,21 @@ assert($('ul li').filter((_, item) => !$(item).text().trim()).length === 0);
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
-  <p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p>
-  <p>Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere rip the couch sleep in the sink fluffy fur catnip scratched.</p>
+  <p>
+    Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching
+    attack your ankles chase the red dot, hairball run catnip eat the grass
+    sniff.
+  </p>
+  <p>
+    Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere
+    rip the couch sleep in the sink fluffy fur catnip scratched.
+  </p>
 </main>
 ```
 
@@ -91,7 +102,11 @@ assert($('ul li').filter((_, item) => !$(item).text().trim()).length === 0);
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <ul>
     <li>milk</li>

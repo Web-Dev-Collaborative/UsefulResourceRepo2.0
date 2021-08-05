@@ -27,13 +27,13 @@ React 使用名爲 JSX 的 JavaScript 語法擴展，可以直接在 JavaScript 
 常量 `JSX` 應該返回一個 `h1` 元素。
 
 ```js
-assert(JSX.type === 'h1');
+assert(JSX.type === "h1");
 ```
 
 `h1` 標籤應該包含文本 `Hello JSX!`。
 
 ```js
-assert(Enzyme.shallow(JSX).contains('Hello JSX!'));
+assert(Enzyme.shallow(JSX).contains("Hello JSX!"));
 ```
 
 # --seed--
@@ -41,7 +41,7 @@ assert(Enzyme.shallow(JSX).contains('Hello JSX!'));
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(JSX, document.getElementById('root'))
+ReactDOM.render(JSX, document.getElementById("root"));
 ```
 
 ## --seed-contents--

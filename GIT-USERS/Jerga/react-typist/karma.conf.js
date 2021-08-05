@@ -1,20 +1,20 @@
-const webpackConfig = require('./webpack.config');
-webpackConfig.devtool = 'inline-source-map';
+const webpackConfig = require("./webpack.config");
+webpackConfig.devtool = "inline-source-map";
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
-    browsers: [ 'Chrome' ],
+    browsers: ["Chrome"],
     files: [
       {
-        pattern: 'test/tests.bundle.js',
+        pattern: "test/tests.bundle.js",
         watched: false,
       },
     ],
-    frameworks: [ 'jasmine' ],
+    frameworks: ["jasmine"],
     preprocessors: {
-      'test/tests.bundle.js': [ 'webpack', 'sourcemap' ],
+      "test/tests.bundle.js": ["webpack", "sourcemap"],
     },
-    reporters: [ 'dots' ],
+    reporters: ["dots"],
     singleRun: true,
     webpack: webpackConfig,
     webpackServer: {

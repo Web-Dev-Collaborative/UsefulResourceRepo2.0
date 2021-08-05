@@ -17,31 +17,31 @@ Se tutte le lettere sono presenti nell'intervallo, restituisci `undefined`.
 `fearNotLetter("abce")` dovrebbe restituire la stringa `d`.
 
 ```js
-assert.deepEqual(fearNotLetter('abce'), 'd');
+assert.deepEqual(fearNotLetter("abce"), "d");
 ```
 
 `fearNotLetter("abcdefghjklmno")` dovrebbe restituire la stringa `i`.
 
 ```js
-assert.deepEqual(fearNotLetter('abcdefghjklmno'), 'i');
+assert.deepEqual(fearNotLetter("abcdefghjklmno"), "i");
 ```
 
 `fearNotLetter("stvwx")` dovrebbe restituire la stringa `u`.
 
 ```js
-assert.deepEqual(fearNotLetter('stvwx'), 'u');
+assert.deepEqual(fearNotLetter("stvwx"), "u");
 ```
 
 `fearNotLetter("bcdf")` dovrebbe restituire la stringa `e`.
 
 ```js
-assert.deepEqual(fearNotLetter('bcdf'), 'e');
+assert.deepEqual(fearNotLetter("bcdf"), "e");
 ```
 
 `fearNotLetter("abcdefghijklmnopqrstuvwxyz")` dovrebbe restituire `undefined`.
 
 ```js
-assert.isUndefined(fearNotLetter('abcdefghijklmnopqrstuvwxyz'));
+assert.isUndefined(fearNotLetter("abcdefghijklmnopqrstuvwxyz"));
 ```
 
 # --seed--
@@ -59,7 +59,7 @@ fearNotLetter("abce");
 # --solutions--
 
 ```js
-function fearNotLetter (str) {
+function fearNotLetter(str) {
   for (var i = str.charCodeAt(0); i <= str.charCodeAt(str.length - 1); i++) {
     var letter = String.fromCharCode(i);
     if (str.indexOf(letter) === -1) {

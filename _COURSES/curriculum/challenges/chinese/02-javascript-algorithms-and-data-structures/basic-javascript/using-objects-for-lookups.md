@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244ca
 title: 使用对象进行查找
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cdBk8sM'
+videoUrl: "https://scrimba.com/c/cdBk8sM"
 forumTopicId: 18373
 dashedName: using-objects-for-lookups
 ---
@@ -42,43 +42,43 @@ alpha[value];
 `phoneticLookup("alpha")` 应该等于 `Adams`
 
 ```js
-assert(phoneticLookup('alpha') === 'Adams');
+assert(phoneticLookup("alpha") === "Adams");
 ```
 
 `phoneticLookup("bravo")` 应该等于 `Boston`
 
 ```js
-assert(phoneticLookup('bravo') === 'Boston');
+assert(phoneticLookup("bravo") === "Boston");
 ```
 
 `phoneticLookup("charlie")` 应该等于 `Chicago`
 
 ```js
-assert(phoneticLookup('charlie') === 'Chicago');
+assert(phoneticLookup("charlie") === "Chicago");
 ```
 
 `phoneticLookup("delta")` 应该等于 `Denver`
 
 ```js
-assert(phoneticLookup('delta') === 'Denver');
+assert(phoneticLookup("delta") === "Denver");
 ```
 
 `phoneticLookup("echo")` 应该等于 `Easy`
 
 ```js
-assert(phoneticLookup('echo') === 'Easy');
+assert(phoneticLookup("echo") === "Easy");
 ```
 
 `phoneticLookup("foxtrot")` 应该等于字符串 `Frank`
 
 ```js
-assert(phoneticLookup('foxtrot') === 'Frank');
+assert(phoneticLookup("foxtrot") === "Frank");
 ```
 
 `phoneticLookup("")` 应该等于 `undefined`。
 
 ```js
-assert(typeof phoneticLookup('') === 'undefined');
+assert(typeof phoneticLookup("") === "undefined");
 ```
 
 请不要修改 `return` 语句
@@ -91,7 +91,7 @@ assert(code.match(/return\sresult;/));
 
 ```js
 assert(
-  !/case|switch|if/g.test(code.replace(/([/]{2}.*)|([/][*][^/*]*[*][/])/g, ''))
+  !/case|switch|if/g.test(code.replace(/([/]{2}.*)|([/][*][^/*]*[*][/])/g, ""))
 );
 ```
 
@@ -105,7 +105,7 @@ function phoneticLookup(val) {
   var result = "";
 
   // Only change code below this line
-  switch(val) {
+  switch (val) {
     case "alpha":
       result = "Adams";
       break;
@@ -144,7 +144,7 @@ function phoneticLookup(val) {
     charlie: "Chicago",
     delta: "Denver",
     echo: "Easy",
-    foxtrot: "Frank"
+    foxtrot: "Frank",
   };
 
   result = lookup[val];

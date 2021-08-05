@@ -4,8 +4,7 @@ title: Apunta al mismo elemento con múltiples selectores jQuery
 challengeType: 6
 forumTopicId: 18322
 required:
-  - 
-    link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: target-the-same-element-with-multiple-jquery-selectors
 ---
 
@@ -13,7 +12,7 @@ dashedName: target-the-same-element-with-multiple-jquery-selectors
 
 Ahora conoces tres maneras de seleccionar elementos: por tipo: `$("button")`, por clase: `$(".btn")`, y por id `$("#target1")`.
 
-Aunque es posible añadir múltiples clases en una sola llamada `.addClass()`, vamos a añadirlos al mismo elemento en *tres maneras diferentes*.
+Aunque es posible añadir múltiples clases en una sola llamada `.addClass()`, vamos a añadirlos al mismo elemento en _tres maneras diferentes_.
 
 Usando `.addClass()`, añade solo una clase a la vez al mismo elemento, de tres maneras diferentes:
 
@@ -58,9 +57,9 @@ Tu elemento `#target1` debe tener las clases `animated`, `shake` y `btn-primary`
 
 ```js
 assert(
-  $('#target1').hasClass('animated') &&
-    $('#target1').hasClass('shake') &&
-    $('#target1').hasClass('btn-primary')
+  $("#target1").hasClass("animated") &&
+    $("#target1").hasClass("shake") &&
+    $("#target1").hasClass("btn-primary")
 );
 ```
 
@@ -76,9 +75,7 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
-
-  });
+  $(document).ready(function () {});
 </script>
 
 <!-- Only change code above this line -->
@@ -110,7 +107,7 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated");
     $(".btn").addClass("shake");
     $("#target1").addClass("btn-primary");

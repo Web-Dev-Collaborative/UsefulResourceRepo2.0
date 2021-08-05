@@ -2,7 +2,7 @@
 id: 587d781e367417b2b2512acc
 title: Bloquea un elemento a la ventana del navegador con el posicionamiento fijo
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c2MDNUR'
+videoUrl: "https://scrimba.com/c/c2MDNUR"
 forumTopicId: 301061
 dashedName: lock-an-element-to-the-browser-window-with-fixed-positioning
 ---
@@ -22,19 +22,19 @@ La barra de navegación en el código está etiquetada con un id de `navbar`. Ca
 El elemento `#navbar` debe tener una `position` establecida en `fixed`.
 
 ```js
-assert($('#navbar').css('position') == 'fixed');
+assert($("#navbar").css("position") == "fixed");
 ```
 
 Tu código debe usar el desplazamiento CSS `top` de 0 pixeles en el elemento `#navbar`.
 
 ```js
-assert($('#navbar').css('top') == '0px');
+assert($("#navbar").css("top") == "0px");
 ```
 
 Tu código debe usar el desplazamiento CSS `left` de 0 pixeles en el elemento `#navbar`.
 
 ```js
-assert($('#navbar').css('left') == '0px');
+assert($("#navbar").css("left") == "0px");
 ```
 
 # --seed--
@@ -47,9 +47,6 @@ assert($('#navbar').css('left') == '0px');
     min-height: 150vh;
   }
   #navbar {
-
-
-
     width: 100%;
     background-color: #767676;
   }

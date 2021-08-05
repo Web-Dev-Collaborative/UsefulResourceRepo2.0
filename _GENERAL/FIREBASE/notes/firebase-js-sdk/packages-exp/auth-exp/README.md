@@ -9,14 +9,14 @@ This is the Firebase Authentication component of the Firebase JS SDK.
 The modular Auth SDK has both unit tests and integration tests, along with a
 host of npm scripts to run these tests. The most important commands are:
 
-| Command | Description |
-| ------- | ----------- |
-| `yarn test` | This will run lint, unit tests, and integration tests against the live environment|
-| `yarn test:<platform>` | Runs all browser tests, unit and integration |
-| `yarn test:<platform>:unit` | Runs only \<platform> unit tests |
-| `yarn test:<platform>:unit:debug` | Runs \<platform> unit tests, auto-watching for file system changes |
-| `yarn test:<platform>:integration` | Runs only integration tests against the live environment |
-| `yarn test:<platform>:integration:local` | Runs all headless \<platform> integration tests against the emulator (more below) |
+| Command                                  | Description                                                                        |
+| ---------------------------------------- | ---------------------------------------------------------------------------------- |
+| `yarn test`                              | This will run lint, unit tests, and integration tests against the live environment |
+| `yarn test:<platform>`                   | Runs all browser tests, unit and integration                                       |
+| `yarn test:<platform>:unit`              | Runs only \<platform> unit tests                                                   |
+| `yarn test:<platform>:unit:debug`        | Runs \<platform> unit tests, auto-watching for file system changes                 |
+| `yarn test:<platform>:integration`       | Runs only integration tests against the live environment                           |
+| `yarn test:<platform>:integration:local` | Runs all headless \<platform> integration tests against the emulator (more below)  |
 
 Where \<platform> is "browser" or "node". There are also cordova tests, but they
 are not broken into such granular details. Check out `package.json` for more.
@@ -33,11 +33,11 @@ to it by setting the `GCLOUD_PROJECT` and `FIREBASE_AUTH_EMULATOR_HOST`
 environmental variables. In addition to the commands listed above, the below
 commands also run various tests:
 
-  * `yarn test:integration:local` — Executes Node and browser emulator
-    integration tests, as well as the Selenium WebDriver tests
-  
-  * `yarn test:webdriver` — Executes only the Selenium WebDriver
-    integration tests
+- `yarn test:integration:local` — Executes Node and browser emulator
+  integration tests, as well as the Selenium WebDriver tests
+
+- `yarn test:webdriver` — Executes only the Selenium WebDriver
+  integration tests
 
 For example, to run all integration and WebDriver tests against the emulator,
 you would simply execute the following command:

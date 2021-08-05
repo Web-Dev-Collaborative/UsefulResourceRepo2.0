@@ -22,7 +22,7 @@ function setDefaultValues() {
   const remoteConfig = getInstance();
   // [START rc_set_default_values]
   remoteConfig.defaultConfig = {
-    "welcome_message": "Welcome"
+    welcome_message: "Welcome",
   };
   // [END rc_set_default_values]
 }

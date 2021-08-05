@@ -2,7 +2,7 @@
 id: cf1111c1c11feddfaeb4bdef
 title: 减法运算
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cP3yQtk'
+videoUrl: "https://scrimba.com/c/cP3yQtk"
 forumTopicId: 18314
 dashedName: subtract-one-number-from-another-with-javascript
 ---
@@ -20,6 +20,7 @@ myVar = 12 - 6;
 ```
 
 现在，变量 `myVar` 的值为 `6`。
+
 # --instructions--
 
 改变数字`0`让变量 difference 的值为 `12`。
@@ -43,7 +44,9 @@ assert(/difference=45-33;?/.test(__helpers.removeWhiteSpace(code)));
 ## --after-user-code--
 
 ```js
-(function(z){return 'difference = '+z;})(difference);
+(function (z) {
+  return "difference = " + z;
+})(difference);
 ```
 
 ## --seed-contents--

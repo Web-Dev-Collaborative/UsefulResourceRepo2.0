@@ -18,10 +18,10 @@ The `BinarySearchTree` data structure should exist.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     }
-    return typeof test == 'object';
+    return typeof test == "object";
   })()
 );
 ```
@@ -32,12 +32,12 @@ The binary search tree should have a method called `invert`.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    return typeof test.invert == 'function';
+    return typeof test.invert == "function";
   })()
 );
 ```
@@ -48,12 +48,12 @@ The `invert` method should correctly invert the tree structure.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.invert !== 'function') {
+    if (typeof test.invert !== "function") {
       return false;
     }
     test.add(4);
@@ -65,7 +65,7 @@ assert(
     test.add(73);
     test.add(8);
     test.invert();
-    return test.inorder().join('') == '877345348741';
+    return test.inorder().join("") == "877345348741";
   })()
 );
 ```
@@ -76,12 +76,12 @@ Inverting an empty tree should return `null`.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.invert !== 'function') {
+    if (typeof test.invert !== "function") {
       return false;
     }
     return test.invert() == null;
@@ -94,58 +94,55 @@ assert(
 ## --after-user-code--
 
 ```js
-BinarySearchTree.prototype = Object.assign(
-  BinarySearchTree.prototype,
-  {
-    add: function(value) {
-      function searchTree(node) {
-        if (value < node.value) {
-          if (node.left == null) {
-            node.left = new Node(value);
-            return;
-          } else if (node.left != null) {
-            return searchTree(node.left)
-          };
-        } else if (value > node.value) {
-          if (node.right == null) {
-            node.right = new Node(value);
-            return;
-          } else if (node.right != null) {
-            return searchTree(node.right);
-          };
-        } else {
-          return null;
-        };
-      }
-
-      var node = this.root;
-      if (node == null) {
-        this.root = new Node(value);
-        return;
-      } else {
-        return searchTree(node);
-      };
-    },
-    inorder: function() {
-      if (this.root == null) {
-        return null;
-      } else {
-        var result = new Array();
-        function traverseInOrder(node) {
-          if (node.left != null) {
-            traverseInOrder(node.left);
-          };
-          result.push(node.value);
-          if (node.right != null) {
-            traverseInOrder(node.right);
-          };
+BinarySearchTree.prototype = Object.assign(BinarySearchTree.prototype, {
+  add: function (value) {
+    function searchTree(node) {
+      if (value < node.value) {
+        if (node.left == null) {
+          node.left = new Node(value);
+          return;
+        } else if (node.left != null) {
+          return searchTree(node.left);
         }
-        traverseInOrder(this.root);
-        return result;
-      };
+      } else if (value > node.value) {
+        if (node.right == null) {
+          node.right = new Node(value);
+          return;
+        } else if (node.right != null) {
+          return searchTree(node.right);
+        }
+      } else {
+        return null;
+      }
     }
-  }
-);
+
+    var node = this.root;
+    if (node == null) {
+      this.root = new Node(value);
+      return;
+    } else {
+      return searchTree(node);
+    }
+  },
+  inorder: function () {
+    if (this.root == null) {
+      return null;
+    } else {
+      var result = new Array();
+      function traverseInOrder(node) {
+        if (node.left != null) {
+          traverseInOrder(node.left);
+        }
+        result.push(node.value);
+        if (node.right != null) {
+          traverseInOrder(node.right);
+        }
+      }
+      traverseInOrder(this.root);
+      return result;
+    }
+  },
+});
 ```
 
 ## --seed-contents--
@@ -160,7 +157,7 @@ function Node(value) {
 function BinarySearchTree() {
   this.root = null;
   // Only change code below this line
-  
+
   // Only change code above this line
 }
 ```
@@ -177,7 +174,7 @@ function Node(value) {
 function BinarySearchTree() {
   this.root = null;
   // Only change code below this line
-  this.invert = function(node = this.root) {
+  this.invert = function (node = this.root) {
     if (node) {
       const temp = node.left;
       node.left = node.right;
@@ -186,7 +183,7 @@ function BinarySearchTree() {
       this.invert(node.right);
     }
     return node;
-  }
-    // Only change code above this line
+  };
+  // Only change code above this line
 }
 ```

@@ -23,43 +23,43 @@ dashedName: pig-latin
 `translatePigLatin("california")` 应该返回字符串 `aliforniacay`。
 
 ```js
-assert.deepEqual(translatePigLatin('california'), 'aliforniacay');
+assert.deepEqual(translatePigLatin("california"), "aliforniacay");
 ```
 
 `translatePigLatin("paragraphs")` 应该返回字符串 `aragraphspay`。
 
 ```js
-assert.deepEqual(translatePigLatin('paragraphs'), 'aragraphspay');
+assert.deepEqual(translatePigLatin("paragraphs"), "aragraphspay");
 ```
 
 `translatePigLatin("glove")` 应该返回字符串 `oveglay`。
 
 ```js
-assert.deepEqual(translatePigLatin('glove'), 'oveglay');
+assert.deepEqual(translatePigLatin("glove"), "oveglay");
 ```
 
 `translatePigLatin("algorithm")` 应该返回字符串 `algorithmway`。
 
 ```js
-assert.deepEqual(translatePigLatin('algorithm'), 'algorithmway');
+assert.deepEqual(translatePigLatin("algorithm"), "algorithmway");
 ```
 
 `translatePigLatin("eight")` 应该返回字符串 `eightway`。
 
 ```js
-assert.deepEqual(translatePigLatin('eight'), 'eightway');
+assert.deepEqual(translatePigLatin("eight"), "eightway");
 ```
 
-应该处理单词的第一个元音在单词中间的位置的情况。  `translatePigLatin("schwartz")` 应该返回字符串 `artzschway`。
+应该处理单词的第一个元音在单词中间的位置的情况。 `translatePigLatin("schwartz")` 应该返回字符串 `artzschway`。
 
 ```js
-assert.deepEqual(translatePigLatin('schwartz'), 'artzschway');
+assert.deepEqual(translatePigLatin("schwartz"), "artzschway");
 ```
 
 应该处理不带元音的单词。 `translatePigLatin("rhythm")` 应该返回字符串 `rhythmay`。
 
 ```js
-assert.deepEqual(translatePigLatin('rhythm'), 'rhythmay');
+assert.deepEqual(translatePigLatin("rhythm"), "rhythmay");
 ```
 
 # --seed--
@@ -80,14 +80,14 @@ translatePigLatin("consonant");
 function translatePigLatin(str) {
   if (isVowel(str.charAt(0))) return str + "way";
   var front = [];
-  str = str.split('');
+  str = str.split("");
   while (str.length && !isVowel(str[0])) {
     front.push(str.shift());
   }
-  return [].concat(str, front).join('') + 'ay';
+  return [].concat(str, front).join("") + "ay";
 }
 
 function isVowel(c) {
-  return ['a', 'e', 'i', 'o', 'u'].indexOf(c.toLowerCase()) !== -1;
+  return ["a", "e", "i", "o", "u"].indexOf(c.toLowerCase()) !== -1;
 }
 ```

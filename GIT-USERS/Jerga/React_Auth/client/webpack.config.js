@@ -1,23 +1,23 @@
 module.exports = {
-  entry: [
-    './src/index.js'
-  ],
+  entry: ["./src/index.js"],
   output: {
     path: __dirname,
-    publicPath: '/',
-    filename: 'bundle.js'
+    publicPath: "/",
+    filename: "bundle.js",
   },
   module: {
-    loaders: [{
-      exclude: /node_modules/,
-      loader: 'babel'
-    }]
+    loaders: [
+      {
+        exclude: /node_modules/,
+        loader: "babel",
+      },
+    ],
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ["", ".js", ".jsx"],
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: './'
-  }
+    contentBase: "./",
+  },
 };

@@ -11,9 +11,9 @@ dashedName: combine-arrays-with-the-spread-operator
 Otra gran ventaja del operador de <dfn>propagación</dfn> es la capacidad de combinar arreglos, o de insertar todos los elementos de un arreglo en otro, en cualquier índice. Con sintaxis más tradicionales, podemos concatenar arreglos, pero esto sólo nos permite combinar arreglos al final de uno, y al principio de otro. La sintaxis de propagación hace la siguiente operación extremadamente simple:
 
 ```js
-let thisArray = ['sage', 'rosemary', 'parsley', 'thyme'];
+let thisArray = ["sage", "rosemary", "parsley", "thyme"];
 
-let thatArray = ['basil', 'cilantro', ...thisArray, 'coriander'];
+let thatArray = ["basil", "cilantro", ...thisArray, "coriander"];
 ```
 
 `thatArray` tendrá el valor `['basil', 'cilantro', 'sage', 'rosemary', 'parsley', 'thyme', 'coriander']`.
@@ -29,7 +29,7 @@ Hemos definido una función `spreadOut` que devuelve la variable `sentence`. Mod
 `spreadOut` debe devolver `["learning", "to", "code", "is", "fun"]`
 
 ```js
-assert.deepEqual(spreadOut(), ['learning', 'to', 'code', 'is', 'fun']);
+assert.deepEqual(spreadOut(), ["learning", "to", "code", "is", "fun"]);
 ```
 
 La función `spreadOut` debe utilizar la sintaxis de propagación
@@ -44,7 +44,7 @@ assert.notStrictEqual(spreadOut.toString().search(/[...]/), -1);
 
 ```js
 function spreadOut() {
-  let fragment = ['to', 'code'];
+  let fragment = ["to", "code"];
   let sentence; // Change this line
   return sentence;
 }
@@ -56,8 +56,8 @@ console.log(spreadOut());
 
 ```js
 function spreadOut() {
-  let fragment = ['to', 'code'];
-  let sentence = ['learning', ...fragment, 'is', 'fun'];
+  let fragment = ["to", "code"];
+  let sentence = ["learning", ...fragment, "is", "fun"];
   return sentence;
 }
 ```

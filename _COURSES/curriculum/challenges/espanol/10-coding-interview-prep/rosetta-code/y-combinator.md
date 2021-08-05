@@ -23,7 +23,7 @@ Define the stateless Y combinator function and use it to compute [factorial](htt
 Y should return a function.
 
 ```js
-assert.equal(typeof Y((f) => (n) => n), 'function');
+assert.equal(typeof Y((f) => (n) => n), "function");
 ```
 
 factorial(1) should return 1.
@@ -61,19 +61,17 @@ assert.equal(factorial(10), 3628800);
 ## --after-user-code--
 
 ```js
-var factorial = Y(f => n => (n > 1 ? n * f(n - 1) : 1));
+var factorial = Y((f) => (n) => n > 1 ? n * f(n - 1) : 1);
 ```
 
 ## --seed-contents--
 
 ```js
 function Y(f) {
-  return function() {
-
-  };
+  return function () {};
 }
 
-var factorial = Y(function(f) {
+var factorial = Y(function (f) {
   return function (n) {
     return n > 1 ? n * f(n - 1) : 1;
   };
@@ -83,5 +81,5 @@ var factorial = Y(function(f) {
 # --solutions--
 
 ```js
-var Y = f => (x => x(x))(y => f(x => y(y)(x)));
+var Y = (f) => ((x) => x(x))((y) => f((x) => y(y)(x)));
 ```

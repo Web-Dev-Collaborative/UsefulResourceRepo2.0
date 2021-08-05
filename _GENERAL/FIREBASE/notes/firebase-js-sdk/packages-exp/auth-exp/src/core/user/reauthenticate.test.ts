@@ -63,10 +63,10 @@ describe('core/user/reauthenticate', () => {
 
   it('should error if the idToken is missing', async () => {
     stub(credential, '_getReauthenticationResolver').returns(
-      Promise.resolve(({
+      Promise.resolve({
         ...TEST_ID_TOKEN_RESPONSE,
         idToken: undefined
-      } as unknown) as IdTokenResponse)
+      } as unknown as IdTokenResponse)
     );
 
     await expect(_reauthenticate(user, credential)).to.be.rejectedWith(

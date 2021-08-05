@@ -2,7 +2,7 @@
 id: 587d778b367417b2b2512aa8
 title: Add an Accessible Date Picker
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cR3bRbCV'
+videoUrl: "https://scrimba.com/c/cR3bRbCV"
 forumTopicId: 301008
 dashedName: add-an-accessible-date-picker
 ---
@@ -19,7 +19,7 @@ Here's an example:
 
 ```html
 <label for="input1">Enter a date:</label>
-<input type="date" id="input1" name="input1">
+<input type="date" id="input1" name="input1" />
 ```
 
 # --instructions--
@@ -31,25 +31,25 @@ Camper Cat is setting up a Mortal Kombat tournament and wants to ask his competi
 Your code should add one `input` tag for the date selector field.
 
 ```js
-assert($('input').length == 2);
+assert($("input").length == 2);
 ```
 
 Your `input` tag should have a `type` attribute with a value of `date`.
 
 ```js
-assert($('input').attr('type') == 'date');
+assert($("input").attr("type") == "date");
 ```
 
 Your `input` tag should have an `id` attribute with a value of `pickdate`.
 
 ```js
-assert($('input').attr('id') == 'pickdate');
+assert($("input").attr("id") == "pickdate");
 ```
 
 Your `input` tag should have a `name` attribute with a value of `date`.
 
 ```js
-assert($('input').attr('name') == 'date');
+assert($("input").attr("name") == "date");
 ```
 
 # --seed--
@@ -70,11 +70,9 @@ assert($('input').attr('name') == 'date');
 
         <!-- Only change code below this line -->
 
-
-
         <!-- Only change code above this line -->
 
-        <input type="submit" name="submit" value="Submit">
+        <input type="submit" name="submit" value="Submit" />
       </form>
     </section>
   </main>
@@ -95,8 +93,8 @@ assert($('input').attr('name') == 'date');
       <form>
         <p>Tell us the best date for the competition</p>
         <label for="pickdate">Preferred Date:</label>
-        <input type="date" id="pickdate" name="date">
-        <input type="submit" name="submit" value="Submit">
+        <input type="date" id="pickdate" name="date" />
+        <input type="submit" name="submit" value="Submit" />
       </form>
     </section>
   </main>

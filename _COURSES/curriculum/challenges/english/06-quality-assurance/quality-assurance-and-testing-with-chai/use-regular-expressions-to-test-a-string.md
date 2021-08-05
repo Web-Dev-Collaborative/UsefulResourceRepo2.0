@@ -22,9 +22,9 @@ All tests should pass.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=14').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=14").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -36,11 +36,11 @@ You should choose the correct method for the first assertion - `match` vs. `notM
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=14').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=14").then(
     (data) => {
       assert.equal(
         data.assertions[0].method,
-        'match',
+        "match",
         "'# name:John Doe, age:35' matches the regex"
       );
     },
@@ -54,11 +54,11 @@ You should choose the correct method for the second assertion - `match` vs. `not
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=14').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=14").then(
     (data) => {
       assert.equal(
         data.assertions[1].method,
-        'notMatch',
+        "notMatch",
         "'# name:Paul Smith III, age:twenty-four' does not match the regex (the age must be numeric)"
       );
     },

@@ -1,6 +1,6 @@
 ---
 id: 5900f5021000cf542c510014
-title: 'Problem 405: A rectangular tiling'
+title: "Problem 405: A rectangular tiling"
 challengeType: 5
 forumTopicId: 302073
 dashedName: problem-405-a-rectangular-tiling
@@ -34,7 +34,6 @@ assert.strictEqual(euler405(), 237696125);
 
 ```js
 function euler405() {
-
   return true;
 }
 

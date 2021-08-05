@@ -5,8 +5,8 @@
 
 // [START sample_doc_modular]
 const arinellDoc = {
-  name: 'Arinell Pizza',
+  name: "Arinell Pizza",
   avgRating: 4.65,
-  numRatings: 683
+  numRatings: 683,
 };
 // [END sample_doc_modular]

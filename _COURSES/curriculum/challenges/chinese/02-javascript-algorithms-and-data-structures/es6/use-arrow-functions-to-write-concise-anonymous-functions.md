@@ -13,10 +13,10 @@ dashedName: use-arrow-functions-to-write-concise-anonymous-functions
 这种情况下，我们通常会使用以下语法：
 
 ```js
-const myFunc = function() {
+const myFunc = function () {
   const myVar = "value";
   return myVar;
-}
+};
 ```
 
 ES6 提供了其他写匿名函数的方式的语法糖。 你可以使用**箭头函数**：
@@ -25,7 +25,7 @@ ES6 提供了其他写匿名函数的方式的语法糖。 你可以使用**箭�
 const myFunc = () => {
   const myVar = "value";
   return myVar;
-}
+};
 ```
 
 当不需要函数体，只返回一个值的时候，箭头函数允许你省略 `return` 关键字和外面的大括号。 这样就可以将一个简单的函数简化成一个单行语句。
@@ -45,19 +45,19 @@ const myFunc = () => "value";
 应该替换 `var` 关键字。
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/var/g));
+(getUserInput) => assert(!getUserInput("index").match(/var/g));
 ```
 
 `magic` 应该为一个常量（使用 `const`）。
 
 ```js
-(getUserInput) => assert(getUserInput('index').match(/const\s+magic/g));
+(getUserInput) => assert(getUserInput("index").match(/const\s+magic/g));
 ```
 
 `magic` 应该是一个函数 `function`。
 
 ```js
-assert(typeof magic === 'function');
+assert(typeof magic === "function");
 ```
 
 `magic()` 应该返回正确的日期。
@@ -69,7 +69,7 @@ assert(magic().setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0));
 不要使用 `function` 关键字。
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/function/g));
+(getUserInput) => assert(!getUserInput("index").match(/function/g));
 ```
 
 # --seed--
@@ -77,7 +77,7 @@ assert(magic().setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0));
 ## --seed-contents--
 
 ```js
-var magic = function() {
+var magic = function () {
   return new Date();
 };
 ```

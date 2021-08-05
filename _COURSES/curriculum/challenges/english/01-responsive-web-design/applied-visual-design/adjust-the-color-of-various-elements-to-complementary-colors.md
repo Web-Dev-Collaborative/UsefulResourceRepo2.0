@@ -2,7 +2,7 @@
 id: 587d78a4367417b2b2512ad3
 title: Adjust the Color of Various Elements to Complementary Colors
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cWmPpud'
+videoUrl: "https://scrimba.com/c/cWmPpud"
 forumTopicId: 301033
 dashedName: adjust-the-color-of-various-elements-to-complementary-colors
 ---
@@ -20,25 +20,25 @@ This page will use a shade of teal (`#09A7A1`) as the dominant color, and its or
 The `header` element should have a `background-color` of #09A7A1.
 
 ```js
-assert($('header').css('background-color') == 'rgb(9, 167, 161)');
+assert($("header").css("background-color") == "rgb(9, 167, 161)");
 ```
 
 The `footer` element should have a `background-color` of #09A7A1.
 
 ```js
-assert($('footer').css('background-color') == 'rgb(9, 167, 161)');
+assert($("footer").css("background-color") == "rgb(9, 167, 161)");
 ```
 
 The `h2` element should have a `color` of #09A7A1.
 
 ```js
-assert($('h2').css('color') == 'rgb(9, 167, 161)');
+assert($("h2").css("color") == "rgb(9, 167, 161)");
 ```
 
 The `button` element should have a `background-color` of #FF790E.
 
 ```js
-assert($('button').css('background-color') == 'rgb(255, 121, 14)');
+assert($("button").css("background-color") == "rgb(255, 121, 14)");
 ```
 
 # --seed--
@@ -73,16 +73,27 @@ assert($('button').css('background-color') == 'rgb(255, 121, 14)');
 <main>
   <article>
     <h2>Machine Learning in the Kitchen</h2>
-    <p>Join this two day workshop that walks through how to implement cutting-edge snack-getting algorithms with a command line interface. Coding usually involves writing exact instructions, but sometimes you need your computer to execute flexible commands, like <code>fetch Pringles</code>.</p>
+    <p>
+      Join this two day workshop that walks through how to implement
+      cutting-edge snack-getting algorithms with a command line interface.
+      Coding usually involves writing exact instructions, but sometimes you need
+      your computer to execute flexible commands, like
+      <code>fetch Pringles</code>.
+    </p>
     <button>Sign Up</button>
   </article>
   <article>
     <h2>Bisection Vegetable Chopping</h2>
-    <p>This week-long retreat will level-up your coding ninja skills to actual ninja skills. No longer is the humble bisection search limited to sorted arrays or coding interview questions, applying its concepts in the kitchen will have you chopping carrots in O(log n) time before you know it.</p>
+    <p>
+      This week-long retreat will level-up your coding ninja skills to actual
+      ninja skills. No longer is the humble bisection search limited to sorted
+      arrays or coding interview questions, applying its concepts in the kitchen
+      will have you chopping carrots in O(log n) time before you know it.
+    </p>
     <button>Sign Up</button>
   </article>
 </main>
-<br>
+<br />
 <footer>&copy; 2018 FCC Kitchen</footer>
 ```
 
@@ -94,18 +105,18 @@ assert($('button').css('background-color') == 'rgb(255, 121, 14)');
     background-color: white;
   }
   header {
-    background-color: #09A7A1;
+    background-color: #09a7a1;
     color: white;
     padding: 0.25em;
   }
   h2 {
-    color: #09A7A1;
+    color: #09a7a1;
   }
   button {
-    background-color: #FF790E;
+    background-color: #ff790e;
   }
   footer {
-    background-color: #09A7A1;
+    background-color: #09a7a1;
     color: white;
     padding: 0.5em;
   }
@@ -116,15 +127,26 @@ assert($('button').css('background-color') == 'rgb(255, 121, 14)');
 <main>
   <article>
     <h2>Machine Learning in the Kitchen</h2>
-    <p>Join this two day workshop that walks through how to implement cutting-edge snack-getting algorithms with a command line interface. Coding usually involves writing exact instructions, but sometimes you need your computer to execute flexible commands, like <code>fetch Pringles</code>.</p>
+    <p>
+      Join this two day workshop that walks through how to implement
+      cutting-edge snack-getting algorithms with a command line interface.
+      Coding usually involves writing exact instructions, but sometimes you need
+      your computer to execute flexible commands, like
+      <code>fetch Pringles</code>.
+    </p>
     <button>Sign Up</button>
   </article>
   <article>
     <h2>Bisection Vegetable Chopping</h2>
-    <p>This week-long retreat will level-up your coding ninja skills to actual ninja skills. No longer is the humble bisection search limited to sorted arrays or coding interview questions, applying its concepts in the kitchen will have you chopping carrots in O(log n) time before you know it.</p>
+    <p>
+      This week-long retreat will level-up your coding ninja skills to actual
+      ninja skills. No longer is the humble bisection search limited to sorted
+      arrays or coding interview questions, applying its concepts in the kitchen
+      will have you chopping carrots in O(log n) time before you know it.
+    </p>
     <button>Sign Up</button>
   </article>
 </main>
-<br>
+<br />
 <footer>&copy; 2018 FCC Kitchen</footer>
 ```

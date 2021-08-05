@@ -17,9 +17,9 @@ Your should have an `h2` element with text `Cat Photos`. You may have accidental
 
 ```js
 assert(
-  document.querySelector('h2') &&
+  document.querySelector("h2") &&
     code.match(/<\/h2\>/) &&
-    document.querySelector('h2').innerText.toLowerCase() === 'cat photos'
+    document.querySelector("h2").innerText.toLowerCase() === "cat photos"
 );
 ```
 
@@ -54,7 +54,7 @@ assert(
 Your code should have a `p` element. You have removed the `p` element from an earlier step.
 
 ```js
-assert(document.querySelector('p'));
+assert(document.querySelector("p"));
 ```
 
 The text of the `p` element should be `Click here to view more cat photos.` Do not change the text, spacing, or punctuation of the `p` element.
@@ -62,7 +62,7 @@ The text of the `p` element should be `Click here to view more cat photos.` Do n
 ```js
 assert(
   document
-    .querySelector('p')
+    .querySelector("p")
     .innerText.toLowerCase()
     .match(/click\s+here\s+to\s+view\s+more\s+cat\s+photos\.?$/)
 );
@@ -83,13 +83,12 @@ assert(code.toLowerCase().match(/-->\n\s{6}<p>/));
   <body>
     <h1>CatPhotoApp</h1>
     <main>
---fcc-editable-region--
-    <h2>Cat Photos</h2>
-    <!-- TODO: Add link to cat photos -->
-    <p>Click here to view more cat photos.</p>
---fcc-editable-region--
+      --fcc-editable-region--
+      <h2>Cat Photos</h2>
+      <!-- TODO: Add link to cat photos -->
+      <p>Click here to view more cat photos.</p>
+      --fcc-editable-region--
     </main>
   </body>
 </html>
 ```
-

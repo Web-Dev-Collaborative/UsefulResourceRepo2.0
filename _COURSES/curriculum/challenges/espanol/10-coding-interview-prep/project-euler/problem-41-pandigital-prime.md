@@ -1,6 +1,6 @@
 ---
 id: 5900f3951000cf542c50fea8
-title: 'Problem 41: Pandigital prime'
+title: "Problem 41: Pandigital prime"
 challengeType: 5
 forumTopicId: 302078
 dashedName: problem-41-pandigital-prime
@@ -17,7 +17,7 @@ What is the largest `n`-length digit pandigital prime that exists?
 `pandigitalPrime(4)` should return a number.
 
 ```js
-assert(typeof pandigitalPrime(4) === 'number');
+assert(typeof pandigitalPrime(4) === "number");
 ```
 
 `pandigitalPrime(4)` should return 4231.
@@ -38,7 +38,6 @@ assert(pandigitalPrime(7) == 7652413);
 
 ```js
 function pandigitalPrime(n) {
-
   return n;
 }
 
@@ -60,7 +59,7 @@ function pandigitalPrime(n) {
 
   function getPermutations(n) {
     if (n === 1) {
-      permutations.push(digitsArr.join(''));
+      permutations.push(digitsArr.join(""));
     } else {
       for (let i = 0; i < n - 1; i++) {
         getPermutations(n - 1);
@@ -82,7 +81,7 @@ function pandigitalPrime(n) {
   let max = 0;
   let permutations = [];
   let digitsArr;
-  let pandigitalNum = '';
+  let pandigitalNum = "";
 
   for (let max = n; max > 0; max--) {
     pandigitalNum += max;
@@ -94,11 +93,11 @@ function pandigitalPrime(n) {
     } else {
       permutations = [];
       const currMax = pandigitalNum.slice(i);
-      digitsArr = currMax.split('');
+      digitsArr = currMax.split("");
       getPermutations(digitsArr.length);
 
       // sort permutations in descending order
-      permutations.sort(function(a, b) {
+      permutations.sort(function (a, b) {
         return b - a;
       });
 

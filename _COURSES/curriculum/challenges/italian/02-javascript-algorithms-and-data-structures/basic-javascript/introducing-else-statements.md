@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244da
 title: Introduzione alle dichiarazioni Else
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cek4Efq'
+videoUrl: "https://scrimba.com/c/cek4Efq"
 forumTopicId: 18207
 dashedName: introducing-else-statements
 ---
@@ -40,25 +40,25 @@ assert(/else/g.test(code));
 `testElse(4)` dovrebbe restituire la stringa `5 or Smaller`
 
 ```js
-assert(testElse(4) === '5 or Smaller');
+assert(testElse(4) === "5 or Smaller");
 ```
 
 `testElse(5)` dovrebbe restituire la stringa `5 or Smaller`
 
 ```js
-assert(testElse(5) === '5 or Smaller');
+assert(testElse(5) === "5 or Smaller");
 ```
 
 `testElse(6)` dovrebbe restituire la stringa `Bigger than 5`
 
 ```js
-assert(testElse(6) === 'Bigger than 5');
+assert(testElse(6) === "Bigger than 5");
 ```
 
 `testElse(10)` dovrebbe restituire la stringa `Bigger than 5`
 
 ```js
-assert(testElse(10) === 'Bigger than 5');
+assert(testElse(10) === "Bigger than 5");
 ```
 
 Non dovresti modificare il codice sopra o sotto i commenti specificati.
@@ -96,7 +96,7 @@ testElse(4);
 ```js
 function testElse(val) {
   var result = "";
-  if(val > 5) {
+  if (val > 5) {
     result = "Bigger than 5";
   } else {
     result = "5 or Smaller";

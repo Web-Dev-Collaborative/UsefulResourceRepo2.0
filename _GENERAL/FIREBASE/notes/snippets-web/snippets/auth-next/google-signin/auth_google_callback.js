@@ -4,11 +4,16 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START auth_google_callback_modular]
-import { getAuth, onAuthStateChanged, signInWithCredential, GoogleAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithCredential,
+  GoogleAuthProvider,
+} from "firebase/auth";
 const auth = getAuth();
 
 function onSignIn(googleUser) {
-  console.log('Google Auth Response', googleUser);
+  console.log("Google Auth Response", googleUser);
   // We need to register an Observer on Firebase Auth to make sure auth is initialized.
   const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
     unsubscribe();
@@ -16,7 +21,8 @@ function onSignIn(googleUser) {
     if (!isUserEqual(googleUser, firebaseUser)) {
       // Build Firebase credential with the Google ID token.
       const credential = GoogleAuthProvider.credential(
-          googleUser.getAuthResponse().id_token);
+        googleUser.getAuthResponse().id_token
+      );
 
       // Sign in with credential from the Google user.
       signInWithCredential(auth, credential).catch((error) => {
@@ -30,7 +36,7 @@ function onSignIn(googleUser) {
         // ...
       });
     } else {
-      console.log('User already signed-in Firebase.');
+      console.log("User already signed-in Firebase.");
     }
   });
 }

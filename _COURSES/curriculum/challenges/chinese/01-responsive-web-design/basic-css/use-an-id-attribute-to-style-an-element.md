@@ -2,7 +2,7 @@
 id: bad87dee1348bd9aede07836
 title: 使用 id 属性来设定元素的样式
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cakyZfL'
+videoUrl: "https://scrimba.com/c/cakyZfL"
 forumTopicId: 18339
 dashedName: use-an-id-attribute-to-style-an-element
 ---
@@ -32,13 +32,13 @@ dashedName: use-an-id-attribute-to-style-an-element
 `form` 元素的 id 应为 `cat-photo-form`。
 
 ```js
-assert($('form').attr('id') === 'cat-photo-form');
+assert($("form").attr("id") === "cat-photo-form");
 ```
 
 `form` 元素应含有 `background-color` 属性，颜色为绿色。
 
 ```js
-assert($('#cat-photo-form').css('background-color') === 'rgb(0, 128, 0)');
+assert($("#cat-photo-form").css("background-color") === "rgb(0, 128, 0)");
 ```
 
 确保 `form` 元素的 `id` 设置正确。
@@ -61,7 +61,11 @@ assert(!code.match(/<form.*style.*>/gi) && !code.match(/<form.*class.*>/gi));
 ## --seed-contents--
 
 ```html
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link
+  href="https://fonts.googleapis.com/css?family=Lobster"
+  rel="stylesheet"
+  type="text/css"
+/>
 <style>
   .red-text {
     color: red;
@@ -96,7 +100,12 @@ assert(!code.match(/<form.*style.*>/gi) && !code.match(/<form.*class.*>/gi));
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img class="smaller-image thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      class="smaller-image thick-green-border"
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div class="silver-background">
     <p>Things cats love:</p>
@@ -113,13 +122,16 @@ assert(!code.match(/<form.*style.*>/gi) && !code.match(/<form.*class.*>/gi));
     </ol>
   </div>
 
-  <form action="https://freecatphotoapp.com/submit-cat-photo" id="cat-photo-form">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+  <form
+    action="https://freecatphotoapp.com/submit-cat-photo"
+    id="cat-photo-form"
+  >
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>
@@ -128,7 +140,11 @@ assert(!code.match(/<form.*style.*>/gi) && !code.match(/<form.*class.*>/gi));
 # --solutions--
 
 ```html
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link
+  href="https://fonts.googleapis.com/css?family=Lobster"
+  rel="stylesheet"
+  type="text/css"
+/>
 <style>
   .red-text {
     color: red;
@@ -167,7 +183,12 @@ assert(!code.match(/<form.*style.*>/gi) && !code.match(/<form.*class.*>/gi));
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img class="smaller-image thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      class="smaller-image thick-green-border"
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div class="silver-background">
     <p>Things cats love:</p>
@@ -184,13 +205,16 @@ assert(!code.match(/<form.*style.*>/gi) && !code.match(/<form.*class.*>/gi));
     </ol>
   </div>
 
-  <form action="https://freecatphotoapp.com/submit-cat-photo" id="cat-photo-form">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+  <form
+    action="https://freecatphotoapp.com/submit-cat-photo"
+    id="cat-photo-form"
+  >
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>

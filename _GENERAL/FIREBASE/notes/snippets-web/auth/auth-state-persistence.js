@@ -9,7 +9,9 @@ function setPersistenceSession() {
   var password = "...";
 
   // [START auth_set_persistence_session]
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  firebase
+    .auth()
+    .setPersistence(firebase.auth.Auth.Persistence.SESSION)
     .then(() => {
       // Existing and future Auth states are now persisted in the current
       // session only. Closing the window would clear any existing state even
@@ -28,7 +30,9 @@ function setPersistenceSession() {
 
 function setPersistenceNone() {
   // [START auth_set_persistence_none]
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE)
+  firebase
+    .auth()
+    .setPersistence(firebase.auth.Auth.Persistence.NONE)
     .then(() => {
       var provider = new firebase.auth.GoogleAuthProvider();
       // In memory persistence will be applied to the signed in Google user

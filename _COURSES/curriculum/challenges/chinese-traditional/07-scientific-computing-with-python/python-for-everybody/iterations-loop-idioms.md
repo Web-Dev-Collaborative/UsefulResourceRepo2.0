@@ -1,6 +1,6 @@
 ---
 id: 5e7b9f070b6c005b0e76f05e
-title: '迭代：循環成語'
+title: "迭代：循環成語"
 challengeType: 11
 videoId: AelGAcoMXbI
 dashedName: iterations-loop-idioms
@@ -42,4 +42,3 @@ print("Smallest:", smallest)
 ## --video-solution--
 
 3
-

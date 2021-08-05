@@ -1,6 +1,6 @@
 ---
 id: 5900f4701000cf542c50ff82
-title: 'Problem 259: Reachable Numbers'
+title: "Problem 259: Reachable Numbers"
 challengeType: 5
 forumTopicId: 301907
 dashedName: problem-259-reachable-numbers
@@ -28,7 +28,6 @@ assert.strictEqual(euler259(), 20101196798);
 
 ```js
 function euler259() {
-
   return true;
 }
 

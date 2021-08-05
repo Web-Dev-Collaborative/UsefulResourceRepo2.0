@@ -2,7 +2,7 @@
 id: 587d78a7367417b2b2512adf
 title: Aprende como funcionan las propiedades de CSS @keyframes y animación
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cakprhv'
+videoUrl: "https://scrimba.com/c/cakprhv"
 forumTopicId: 301059
 dashedName: learn-how-the-css-keyframes-and-animation-properties-work
 ---
@@ -44,13 +44,13 @@ Crea una animación para el elemento con el id `rect`, estableciendo `animation-
 El elemento con id de `rect` debe tener una propiedad `animation-name` con un valor de `rainbow`.
 
 ```js
-assert($('#rect').css('animation-name') == 'rainbow');
+assert($("#rect").css("animation-name") == "rainbow");
 ```
 
 El elemento con id de `rect` debe tener una propiedad `animation-duration` con un valor de 4s.
 
 ```js
-assert($('#rect').css('animation-duration') == '4s');
+assert($("#rect").css("animation-duration") == "4s");
 ```
 
 La regla `@keyframes` debe usar el `animation-name` de `rainbow`.
@@ -92,13 +92,7 @@ assert(code.match(/100%\s*?{\s*?background-color:\s*?yellow;\s*?}/gi));
   }
 
   #rect {
-
-
   }
-
-
-
-
 </style>
 <div id="rect"></div>
 ```

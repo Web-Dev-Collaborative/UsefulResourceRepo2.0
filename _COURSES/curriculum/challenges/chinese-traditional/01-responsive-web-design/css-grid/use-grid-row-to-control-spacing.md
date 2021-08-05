@@ -2,7 +2,7 @@
 id: 5a90373638fddaf9a66b5d39
 title: 使用 grid-row 來控制空間大小
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pByETK/c9WBLU4'
+videoUrl: "https://scrimba.com/p/pByETK/c9WBLU4"
 forumTopicId: 301137
 dashedName: use-grid-row-to-control-spacing
 ---
@@ -21,26 +21,26 @@ class 爲 `item5` 的元素應具有 `grid-row` 屬性。
 
 ```js
 assert(
-  __helpers.removeWhiteSpace($('style').text()).match(/\.item5{.*grid-row:.*}/g)
+  __helpers.removeWhiteSpace($("style").text()).match(/\.item5{.*grid-row:.*}/g)
 );
 ```
 
 class 爲 `item5` 的元素應具有 `grid-row` 屬性，其屬性值應將元素設置爲佔用網格的最後兩行。
 
 ```js
-const rowStart = getComputedStyle($('.item5')[0]).gridRowStart;
-const rowEnd = getComputedStyle($('.item5')[0]).gridRowEnd;
+const rowStart = getComputedStyle($(".item5")[0]).gridRowStart;
+const rowEnd = getComputedStyle($(".item5")[0]).gridRowEnd;
 const result = rowStart.toString() + rowEnd.toString();
 const correctResults = [
-  '24',
-  '2-1',
-  '2span 2',
-  '2span2',
-  'span 2-1',
-  '-12',
-  'span 2span 2',
-  'span 2auto',
-  'autospan 2'
+  "24",
+  "2-1",
+  "2span 2",
+  "2span2",
+  "span 2-1",
+  "-12",
+  "span 2span 2",
+  "span 2auto",
+  "autospan 2",
 ];
 assert(correctResults.includes(result));
 ```
@@ -51,10 +51,18 @@ assert(correctResults.includes(result));
 
 ```html
 <style>
-  .item1{background:LightSkyBlue;}
-  .item2{background:LightSalmon;}
-  .item3{background:PaleTurquoise;}
-  .item4{background:LightPink;}
+  .item1 {
+    background: LightSkyBlue;
+  }
+  .item2 {
+    background: LightSalmon;
+  }
+  .item3 {
+    background: PaleTurquoise;
+  }
+  .item4 {
+    background: LightPink;
+  }
 
   .item5 {
     background: PaleGreen;
@@ -89,10 +97,18 @@ assert(correctResults.includes(result));
 
 ```html
 <style>
-  .item1{background:LightSkyBlue;}
-  .item2{background:LightSalmon;}
-  .item3{background:PaleTurquoise;}
-  .item4{background:LightPink;}
+  .item1 {
+    background: LightSkyBlue;
+  }
+  .item2 {
+    background: LightSalmon;
+  }
+  .item3 {
+    background: PaleTurquoise;
+  }
+  .item4 {
+    background: LightPink;
+  }
 
   .item5 {
     background: PaleGreen;

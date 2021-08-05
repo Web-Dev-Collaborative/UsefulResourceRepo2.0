@@ -10,9 +10,9 @@ dashedName: exercise-tracker
 
 Build a full stack JavaScript app that is functionally similar to this: <https://exercise-tracker.freecodecamp.rocks/>. Working on this project will involve you writing your code using one of the following methods:
 
--   Clone [this GitHub repo](https://github.com/freeCodeCamp/boilerplate-project-exercisetracker/) and complete your project locally.
--   Use [our repl.it starter project](https://repl.it/github/freeCodeCamp/boilerplate-project-exercisetracker) to complete your project.
--   Use a site builder of your choice to complete the project. Be sure to incorporate all the files from our GitHub repo.
+- Clone [this GitHub repo](https://github.com/freeCodeCamp/boilerplate-project-exercisetracker/) and complete your project locally.
+- Use [our repl.it starter project](https://repl.it/github/freeCodeCamp/boilerplate-project-exercisetracker) to complete your project.
+- Use a site builder of your choice to complete the project. Be sure to incorporate all the files from our GitHub repo.
 
 When you are done, make sure a working demo of your project is hosted somewhere public. Then submit the URL to it in the `Solution Link` field. Optionally, also submit a link to your project's source code in the `GitHub Link` field.
 
@@ -22,9 +22,9 @@ You should provide your own project, not the example URL.
 
 ```js
 (getUserInput) => {
-  const url = getUserInput('url');
+  const url = getUserInput("url");
   assert(
-    !/.*\/exercise-tracker\.freecodecamp\.rocks/.test(getUserInput('url'))
+    !/.*\/exercise-tracker\.freecodecamp\.rocks/.test(getUserInput("url"))
   );
 };
 ```
@@ -33,11 +33,11 @@ You can `POST` to `/api/exercise/new-user` with form data `username` to create a
 
 ```js
 async (getUserInput) => {
-  const url = getUserInput('url');
-  const res = await fetch(url + '/api/exercise/new-user', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `username=fcc_test_${Date.now()}`.substr(0, 29)
+  const url = getUserInput("url");
+  const res = await fetch(url + "/api/exercise/new-user", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `username=fcc_test_${Date.now()}`.substr(0, 29),
   });
   if (res.ok) {
     const { _id, username } = await res.json();
@@ -53,8 +53,8 @@ You can make a `GET` request to `api/exercise/users` to get an array of all user
 
 ```js
 async (getUserInput) => {
-  const url = getUserInput('url');
-  const res = await fetch(url + '/api/exercise/users');
+  const url = getUserInput("url");
+  const res = await fetch(url + "/api/exercise/users");
   if (res.ok) {
     const data = await res.json();
     assert.isArray(data);
@@ -70,25 +70,25 @@ You can `POST` to `/api/exercise/add` with form data `userId=_id`, `description`
 
 ```js
 async (getUserInput) => {
-  const url = getUserInput('url');
-  const res = await fetch(url + '/api/exercise/new-user', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `username=fcc_test_${Date.now()}`.substr(0, 29)
+  const url = getUserInput("url");
+  const res = await fetch(url + "/api/exercise/new-user", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `username=fcc_test_${Date.now()}`.substr(0, 29),
   });
   if (res.ok) {
     const { _id, username } = await res.json();
     const expected = {
       username,
-      description: 'test',
+      description: "test",
       duration: 60,
       _id,
-      date: 'Mon Jan 01 1990'
+      date: "Mon Jan 01 1990",
     };
-    const addRes = await fetch(url + '/api/exercise/add', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `userId=${_id}&description=${expected.description}&duration=${expected.duration}&date=1990-01-01`
+    const addRes = await fetch(url + "/api/exercise/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `userId=${_id}&description=${expected.description}&duration=${expected.duration}&date=1990-01-01`,
     });
     if (addRes.ok) {
       const actual = await addRes.json();
@@ -106,25 +106,25 @@ You can make a `GET` request to `/api/exercise/log` with a parameter of `userId=
 
 ```js
 async (getUserInput) => {
-  const url = getUserInput('url');
-  const res = await fetch(url + '/api/exercise/new-user', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `username=fcc_test_${Date.now()}`.substr(0, 29)
+  const url = getUserInput("url");
+  const res = await fetch(url + "/api/exercise/new-user", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `username=fcc_test_${Date.now()}`.substr(0, 29),
   });
   if (res.ok) {
     const { _id, username } = await res.json();
     const expected = {
       username,
-      description: 'test',
+      description: "test",
       duration: 60,
       _id,
-      date: new Date().toDateString()
+      date: new Date().toDateString(),
     };
-    const addRes = await fetch(url + '/api/exercise/add', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `userId=${_id}&description=${expected.description}&duration=${expected.duration}`
+    const addRes = await fetch(url + "/api/exercise/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `userId=${_id}&description=${expected.description}&duration=${expected.duration}`,
     });
     if (addRes.ok) {
       const logRes = await fetch(url + `/api/exercise/log?userId=${_id}`);
@@ -148,25 +148,25 @@ A request to a user's log (`/api/exercise/log`) returns an object with a `count`
 
 ```js
 async (getUserInput) => {
-  const url = getUserInput('url');
-  const res = await fetch(url + '/api/exercise/new-user', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `username=fcc_test_${Date.now()}`.substr(0, 29)
+  const url = getUserInput("url");
+  const res = await fetch(url + "/api/exercise/new-user", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `username=fcc_test_${Date.now()}`.substr(0, 29),
   });
   if (res.ok) {
     const { _id, username } = await res.json();
     const expected = {
       username,
-      description: 'test',
+      description: "test",
       duration: 60,
       _id,
-      date: new Date().toDateString()
+      date: new Date().toDateString(),
     };
-    const addRes = await fetch(url + '/api/exercise/add', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `userId=${_id}&description=${expected.description}&duration=${expected.duration}`
+    const addRes = await fetch(url + "/api/exercise/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `userId=${_id}&description=${expected.description}&duration=${expected.duration}`,
     });
     if (addRes.ok) {
       const logRes = await fetch(url + `/api/exercise/log?userId=${_id}`);
@@ -189,30 +189,30 @@ You can add `from`, `to` and `limit` parameters to a `/api/exercise/log` request
 
 ```js
 async (getUserInput) => {
-  const url = getUserInput('url');
-  const res = await fetch(url + '/api/exercise/new-user', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `username=fcc_test_${Date.now()}`.substr(0, 29)
+  const url = getUserInput("url");
+  const res = await fetch(url + "/api/exercise/new-user", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `username=fcc_test_${Date.now()}`.substr(0, 29),
   });
   if (res.ok) {
     const { _id, username } = await res.json();
     const expected = {
       username,
-      description: 'test',
+      description: "test",
       duration: 60,
       _id,
-      date: new Date().toDateString()
+      date: new Date().toDateString(),
     };
-    const addExerciseRes = await fetch(url + '/api/exercise/add', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `userId=${_id}&description=${expected.description}&duration=${expected.duration}&date=1990-01-01`
+    const addExerciseRes = await fetch(url + "/api/exercise/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `userId=${_id}&description=${expected.description}&duration=${expected.duration}&date=1990-01-01`,
     });
-    const addExerciseTwoRes = await fetch(url + '/api/exercise/add', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `userId=${_id}&description=${expected.description}&duration=${expected.duration}&date=1990-01-02`
+    const addExerciseTwoRes = await fetch(url + "/api/exercise/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `userId=${_id}&description=${expected.description}&duration=${expected.duration}&date=1990-01-02`,
     });
     if (addExerciseRes.ok && addExerciseTwoRes.ok) {
       const logRes = await fetch(

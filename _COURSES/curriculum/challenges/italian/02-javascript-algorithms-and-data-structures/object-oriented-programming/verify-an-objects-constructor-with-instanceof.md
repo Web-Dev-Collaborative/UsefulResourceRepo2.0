@@ -11,11 +11,11 @@ dashedName: verify-an-objects-constructor-with-instanceof
 Ogni volta che una funzione costruttore crea un nuovo oggetto, si dice che l'oggetto è un'<dfn>istanza</dfn> del suo costruttore. JavaScript offre un modo conveniente per verificarlo con l'operatore `instanceof`. `instanceof` ti permette di confrontare un oggetto con un costruttore, restituendo `true` o `false` in base al fatto che l'oggetto sia stato creato o meno con quel costruttore. Ecco un esempio:
 
 ```js
-let Bird = function(name, color) {
+let Bird = function (name, color) {
   this.name = name;
   this.color = color;
   this.numLegs = 2;
-}
+};
 
 let crow = new Bird("Alexis", "black");
 
@@ -30,7 +30,7 @@ Se un oggetto viene creato senza usare un costruttore, `instanceof` verificherà
 let canary = {
   name: "Mildred",
   color: "Yellow",
-  numLegs: 2
+  numLegs: 2,
 };
 
 canary instanceof Bird;
@@ -47,7 +47,7 @@ Crea una nuova istanza del costruttore `House`, chiamandola `myHouse` e passando
 `myHouse` dovrebbe avere un attributo `numBedrooms` impostato su un numero.
 
 ```js
-assert(typeof myHouse.numBedrooms === 'number');
+assert(typeof myHouse.numBedrooms === "number");
 ```
 
 Dovresti verificare che `myHouse` sia un'istanza di `House` usando l'operatore `instanceof`.

@@ -13,9 +13,7 @@ Uno degli argomenti più importanti in React è lo stato (`state`). Lo stato è 
 Puoi creare lo stato in un componente React dichiarando una proprietà `state` nel `constructor` della classe del componente. Questo inizializza il componente con lo `state` quando viene creato. La proprietà `state` deve essere impostata su un `object` JavaScript. La dichiarazione appare così:
 
 ```jsx
-this.state = {
-
-}
+this.state = {};
 ```
 
 Hai accesso all'oggetto `state` per tutta la vita del tuo componente. Puoi aggiornarlo, farne il rendering (cioè visualizzarlo) nella tua interfaccia utente e passarlo come proprietà ai componenti figli. L'oggetto `state` può essere semplice o complesso in base alle tue necessità. Nota che devi creare un componente di classe estendendo `React.Component` per creare uno `state` di questo tipo.
@@ -34,7 +32,7 @@ assert(
     const mockedComponent = Enzyme.mount(
       React.createElement(StatefulComponent)
     );
-    return mockedComponent.find('StatefulComponent').length === 1;
+    return mockedComponent.find("StatefulComponent").length === 1;
   })()
 );
 ```
@@ -48,8 +46,8 @@ assert(
       React.createElement(StatefulComponent)
     );
     return (
-      mockedComponent.find('div').length === 1 &&
-      mockedComponent.find('h1').length === 1
+      mockedComponent.find("div").length === 1 &&
+      mockedComponent.find("h1").length === 1
     );
   })()
 );
@@ -65,7 +63,7 @@ assert(
     );
     const initialState = mockedComponent.state();
     return (
-      typeof initialState === 'object' && typeof initialState.name === 'string'
+      typeof initialState === "object" && typeof initialState.name === "string"
     );
   })()
 );
@@ -80,7 +78,7 @@ assert(
       React.createElement(StatefulComponent)
     );
     const initialState = mockedComponent.state();
-    return mockedComponent.find('h1').text() === initialState.name;
+    return mockedComponent.find("h1").text() === initialState.name;
   })()
 );
 ```
@@ -90,7 +88,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<StatefulComponent />, document.getElementById('root'))
+ReactDOM.render(<StatefulComponent />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -110,7 +108,7 @@ class StatefulComponent extends React.Component {
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -120,8 +118,8 @@ class StatefulComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'freeCodeCamp!'
-    }
+      name: "freeCodeCamp!",
+    };
   }
   render() {
     return (
@@ -130,5 +128,5 @@ class StatefulComponent extends React.Component {
       </div>
     );
   }
-};
+}
 ```

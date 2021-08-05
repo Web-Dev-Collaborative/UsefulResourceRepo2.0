@@ -2,7 +2,7 @@
 id: 587d78a8367417b2b2512ae7
 title: Cambiare il tempo di animazione con le keyword
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cJKvwCM'
+videoUrl: "https://scrimba.com/c/cJKvwCM"
 forumTopicId: 301045
 dashedName: change-animation-timing-with-keywords
 ---
@@ -23,19 +23,19 @@ Il valore della proprietà `animation-timing-function` per l'elemento con id `ba
 
 ```js
 const ball1Animation = __helpers.removeWhiteSpace(
-  $('#ball1').css('animation-timing-function')
+  $("#ball1").css("animation-timing-function")
 );
-assert(ball1Animation == 'linear' || ball1Animation == 'cubic-bezier(0,0,1,1)');
+assert(ball1Animation == "linear" || ball1Animation == "cubic-bezier(0,0,1,1)");
 ```
 
 Il valore della proprietà `animation-timing-function` per l'elemento con id `ball2` dovrebbe essere `ease-out`.
 
 ```js
 const ball2Animation = __helpers.removeWhiteSpace(
-  $('#ball2').css('animation-timing-function')
+  $("#ball2").css("animation-timing-function")
 );
 assert(
-  ball2Animation == 'ease-out' || ball2Animation == 'cubic-bezier(0,0,0.58,1)'
+  ball2Animation == "ease-out" || ball2Animation == "cubic-bezier(0,0,0.58,1)"
 );
 ```
 
@@ -45,14 +45,9 @@ assert(
 
 ```html
 <style>
-
   .balls {
     border-radius: 50%;
-    background: linear-gradient(
-      35deg,
-      #ccffff,
-      #ffcccc
-    );
+    background: linear-gradient(35deg, #ccffff, #ffcccc);
     position: fixed;
     width: 50px;
     height: 50px;
@@ -62,12 +57,10 @@ assert(
     animation-iteration-count: infinite;
   }
   #ball1 {
-    left:27%;
-
+    left: 27%;
   }
   #ball2 {
-    left:56%;
-
+    left: 56%;
   }
 
   @keyframes bounce {
@@ -78,7 +71,6 @@ assert(
       top: 249px;
     }
   }
-
 </style>
 
 <div class="balls" id="ball1"></div>
@@ -91,11 +83,7 @@ assert(
 <style>
   .balls {
     border-radius: 50%;
-    background: linear-gradient(
-      35deg,
-      #ccffff,
-      #ffcccc
-    );
+    background: linear-gradient(35deg, #ccffff, #ffcccc);
     position: fixed;
     width: 50px;
     height: 50px;
@@ -105,11 +93,11 @@ assert(
     animation-iteration-count: infinite;
   }
   #ball1 {
-    left:27%;
+    left: 27%;
     animation-timing-function: linear;
   }
   #ball2 {
-    left:56%;
+    left: 56%;
     animation-timing-function: ease-out;
   }
 

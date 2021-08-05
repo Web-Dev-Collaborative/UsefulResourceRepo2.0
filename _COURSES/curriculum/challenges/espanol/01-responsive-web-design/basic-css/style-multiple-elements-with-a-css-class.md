@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aefe08806
 title: Aplica un estilo a múltiples elementos usando una clase CSS
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cRkVbsQ'
+videoUrl: "https://scrimba.com/c/cRkVbsQ"
 forumTopicId: 18311
 dashedName: style-multiple-elements-with-a-css-class
 ---
@@ -16,34 +16,34 @@ Las clases te permiten usar los mismos estilos CSS en múltiples elementos HTML.
 Tu elemento `h2` debe ser de color rojo ("red").
 
 ```js
-assert($('h2').css('color') === 'rgb(255, 0, 0)');
+assert($("h2").css("color") === "rgb(255, 0, 0)");
 ```
 
 Tu elemento `h2` debe incluir la clase `red-text`.
 
 ```js
-assert($('h2').hasClass('red-text'));
+assert($("h2").hasClass("red-text"));
 ```
 
 Tu primer elemento `p` debe ser de color rojo ("red").
 
 ```js
-assert($('p:eq(0)').css('color') === 'rgb(255, 0, 0)');
+assert($("p:eq(0)").css("color") === "rgb(255, 0, 0)");
 ```
 
 Tu segundo y tercer elemento `p` no deben ser de color rojo ("red").
 
 ```js
 assert(
-  !($('p:eq(1)').css('color') === 'rgb(255, 0, 0)') &&
-    !($('p:eq(2)').css('color') === 'rgb(255, 0, 0)')
+  !($("p:eq(1)").css("color") === "rgb(255, 0, 0)") &&
+    !($("p:eq(2)").css("color") === "rgb(255, 0, 0)")
 );
 ```
 
 Tu primer elemento `p` debe incluir la clase `red-text`.
 
 ```js
-assert($('p:eq(0)').hasClass('red-text'));
+assert($("p:eq(0)").hasClass("red-text"));
 ```
 
 # --seed--
@@ -61,7 +61,11 @@ assert($('p:eq(0)').hasClass('red-text'));
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -79,12 +83,12 @@ assert($('p:eq(0)').hasClass('red-text'));
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>
@@ -103,7 +107,11 @@ assert($('p:eq(0)').hasClass('red-text'));
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -121,12 +129,12 @@ assert($('p:eq(0)').hasClass('red-text'));
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>

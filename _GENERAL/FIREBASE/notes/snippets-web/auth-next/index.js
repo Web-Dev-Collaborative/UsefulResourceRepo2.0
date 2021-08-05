@@ -10,7 +10,8 @@ function makeGoogleCredential(googleUser) {
   const { GoogleAuthProvider } = require("firebase/auth");
 
   const credential = GoogleAuthProvider.credential(
-    googleUser.getAuthResponse().id_token);
+    googleUser.getAuthResponse().id_token
+  );
   // [END auth_make_google_credential]
 }
 
@@ -19,14 +20,15 @@ function makeFacebookCredential(response) {
   const { FacebookAuthProvider } = require("firebase/auth");
 
   const credential = FacebookAuthProvider.credential(
-    response.authResponse.accessToken);
+    response.authResponse.accessToken
+  );
   // [END auth_make_facebook_credential]
 }
 
 function makeEmailCredential(email, password) {
   // [START auth_make_email_credential]
   const { EmailAuthProvider } = require("firebase/auth");
-  
+
   const credential = EmailAuthProvider.credential(email, password);
   // [END auth_make_email_credential]
 }
@@ -36,11 +38,13 @@ function signOut() {
   const { getAuth, signOut } = require("firebase/auth");
 
   const auth = getAuth();
-  signOut(auth).then(() => {
-    // Sign-out successful.
-  }).catch((error) => {
-    // An error happened.
-  });
+  signOut(auth)
+    .then(() => {
+      // Sign-out successful.
+    })
+    .catch((error) => {
+      // An error happened.
+    });
   // [END auth_sign_out]
 }
 
@@ -85,7 +89,7 @@ function setLanguageCode() {
   const { getAuth } = require("firebase/auth");
 
   const auth = getAuth();
-  auth.languageCode = 'it';
+  auth.languageCode = "it";
   // To apply the default browser preference instead of explicitly setting it.
   // firebase.auth().useDeviceLanguage();
   // [END auth_set_language_code]
@@ -99,7 +103,7 @@ function authWithCredential(credential) {
   const auth = getAuth();
   signInWithCredential(auth, credential)
     .then((result) => {
-      // Signed in 
+      // Signed in
       // ...
     })
     .catch((error) => {

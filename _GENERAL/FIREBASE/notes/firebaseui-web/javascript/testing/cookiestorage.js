@@ -16,14 +16,13 @@
  * @fileoverview Fake cookie storage for testing.
  */
 
-goog.module('firebaseui.auth.testing.FakeCookieStorage');
+goog.module("firebaseui.auth.testing.FakeCookieStorage");
 goog.module.declareLegacyNamespace();
 goog.setTestOnly();
 
-const Disposable = goog.require('goog.Disposable');
-const PropertyReplacer = goog.require('goog.testing.PropertyReplacer');
-const cookies = goog.require('goog.net.cookies');
-
+const Disposable = goog.require("goog.Disposable");
+const PropertyReplacer = goog.require("goog.testing.PropertyReplacer");
+const cookies = goog.require("goog.net.cookies");
 
 /**
  * Fake cookie storage client class. This makes it safe to isolate cookies
@@ -44,7 +43,6 @@ class FakeCookieStorage extends Disposable {
     this.replacer_ = null;
   }
 
-
   /**
    * Installs the fake cookie storage utility.
    * @return {!FakeCookieStorage} The fake cookie storage utility.
@@ -53,30 +51,34 @@ class FakeCookieStorage extends Disposable {
     // Note that this mock cookie storage does not take into account path,
     // domain and secure flag when manipulating cookies.
     var self = this;
-    var r = this.replacer_ = new PropertyReplacer();
+    var r = (this.replacer_ = new PropertyReplacer());
     r.replace(
-        cookies, 'set', function(key, value, maxAge, path, domain, secure) {
-          self.mockCookieStorage_[key] = {
-            'value': value,
-            'expiration': goog.now() + maxAge * 1000
-          };
-        });
-    r.replace(cookies, 'get', function(key) {
+      cookies,
+      "set",
+      function (key, value, maxAge, path, domain, secure) {
+        self.mockCookieStorage_[key] = {
+          value: value,
+          expiration: goog.now() + maxAge * 1000,
+        };
+      }
+    );
+    r.replace(cookies, "get", function (key) {
       // Make sure entry exist and is not expired.
-      if (self.mockCookieStorage_[key] &&
-          self.mockCookieStorage_[key].expiration > goog.now()) {
+      if (
+        self.mockCookieStorage_[key] &&
+        self.mockCookieStorage_[key].expiration > goog.now()
+      ) {
         return self.mockCookieStorage_[key].value;
       } else {
         delete self.mockCookieStorage_[key];
         return null;
       }
     });
-    r.replace(cookies, 'remove', function(key, path, domain) {
+    r.replace(cookies, "remove", function (key, path, domain) {
       delete self.mockCookieStorage_[key];
     });
     return this;
   }
-
 
   /** Removes the fake cookie storage utility hooks. */
   uninstall() {
@@ -87,13 +89,11 @@ class FakeCookieStorage extends Disposable {
     }
   }
 
-
   /** @override */
   disposeInternal() {
     this.uninstall();
     super.disposeInternal();
   }
 }
-
 
 exports = FakeCookieStorage;

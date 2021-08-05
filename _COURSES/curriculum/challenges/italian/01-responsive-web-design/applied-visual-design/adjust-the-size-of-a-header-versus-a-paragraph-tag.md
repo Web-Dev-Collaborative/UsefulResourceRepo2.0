@@ -2,7 +2,7 @@
 id: 587d781b367417b2b2512abd
 title: Regolare la dimensione di un'intestazione rispetto a quella di un paragrafo
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c3bRPTz'
+videoUrl: "https://scrimba.com/c/c3bRPTz"
 forumTopicId: 301037
 dashedName: adjust-the-size-of-a-header-versus-a-paragraph-tag
 ---
@@ -20,7 +20,7 @@ Per rendere l'intestazione significativamente più grande del paragrafo, porta `
 Il tuo codice dovrebbe aggiungere una proprietà `font-size` all'elemento `h4`, impostata a 27 pixel.
 
 ```js
-assert($('h4').css('font-size') == '27px');
+assert($("h4").css("font-size") == "27px");
 ```
 
 # --seed--
@@ -33,7 +33,6 @@ assert($('h4').css('font-size') == '27px');
     text-align: center;
     background-color: rgba(45, 45, 45, 0.1);
     padding: 10px;
-
   }
   p {
     text-align: justify;
@@ -60,12 +59,27 @@ assert($('h4').css('font-size') == '27px');
   <div class="cardContent">
     <div class="cardText">
       <h4>Alphabet</h4>
-      <hr>
-      <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>
+      <hr />
+      <p>
+        <em
+          >Google was founded by Larry Page and Sergey Brin while they were
+          <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em
+        >
+      </p>
     </div>
     <div class="cardLinks">
-      <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
-      <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+      <a
+        href="https://en.wikipedia.org/wiki/Larry_Page"
+        target="_blank"
+        class="links"
+        >Larry Page</a
+      ><br /><br />
+      <a
+        href="https://en.wikipedia.org/wiki/Sergey_Brin"
+        target="_blank"
+        class="links"
+        >Sergey Brin</a
+      >
     </div>
   </div>
 </div>
@@ -106,12 +120,27 @@ assert($('h4').css('font-size') == '27px');
   <div class="cardContent">
     <div class="cardText">
       <h4>Alphabet</h4>
-      <hr>
-      <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>
+      <hr />
+      <p>
+        <em
+          >Google was founded by Larry Page and Sergey Brin while they were
+          <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em
+        >
+      </p>
     </div>
     <div class="cardLinks">
-      <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
-      <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+      <a
+        href="https://en.wikipedia.org/wiki/Larry_Page"
+        target="_blank"
+        class="links"
+        >Larry Page</a
+      ><br /><br />
+      <a
+        href="https://en.wikipedia.org/wiki/Sergey_Brin"
+        target="_blank"
+        class="links"
+        >Sergey Brin</a
+      >
     </div>
   </div>
 </div>

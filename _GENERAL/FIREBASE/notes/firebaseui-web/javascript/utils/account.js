@@ -16,8 +16,7 @@
  * @fileoverview Defines account object.
  */
 
-goog.provide('firebaseui.auth.Account');
-
+goog.provide("firebaseui.auth.Account");
 
 firebaseui.auth.Account = class {
   /**
@@ -34,30 +33,25 @@ firebaseui.auth.Account = class {
     this.providerId_ = providerId || null;
   }
 
-
   /** @return {string} The email address. */
   getEmail() {
     return this.email_;
   }
-
 
   /** @return {?string} The displayName. */
   getDisplayName() {
     return this.displayName_ || null;
   }
 
-
   /** @return {?string} The profile photo URL. */
   getPhotoUrl() {
     return this.photoUrl_ || null;
   }
 
-
   /** @return {?string} The identity provider ID. */
   getProviderId() {
     return this.providerId_ || null;
   }
-
 
   /**
    * @return {{
@@ -69,13 +63,12 @@ firebaseui.auth.Account = class {
    */
   toPlainObject() {
     return {
-      'email': this.email_,
-      'displayName': this.displayName_,
-      'photoUrl': this.photoUrl_,
-      'providerId': this.providerId_
+      email: this.email_,
+      displayName: this.displayName_,
+      photoUrl: this.photoUrl_,
+      providerId: this.providerId_,
     };
   }
-
 
   /**
    * Converts a plain account object to `firebaseui.auth.Account`.
@@ -86,10 +79,13 @@ firebaseui.auth.Account = class {
     // TODO: Remove this filter once accountchooser.com supports non-email
     // accounts. We will also have to figure out how to choose a sign-in method,
     // since fetchProvidersForEmail won't work.
-    if (account['email']) {
+    if (account["email"]) {
       return new firebaseui.auth.Account(
-          account['email'], account['displayName'], account['photoUrl'],
-          account['providerId']);
+        account["email"],
+        account["displayName"],
+        account["photoUrl"],
+        account["providerId"]
+      );
     }
     return null;
   }

@@ -29,9 +29,9 @@ function Bird(name, color) {
 然后将值通过参数的方式传递给 `Bird` 构造函数来定义每一个唯一的小鸟实例： `let cardinal = new Bird("Bruce", "red");` 这给 `Bird` 的 `name` 和 `color` 属性分别赋值为 `Bruce` 和 `red` 色。 但 `numLegs` 属性仍然设置为 2。 `cardinal` 有以下这些属性：
 
 ```js
-cardinal.name
-cardinal.color
-cardinal.numLegs
+cardinal.name;
+cardinal.color;
+cardinal.numLegs;
 ```
 
 这样一来构造函数就变得很灵活了。 现在可以在创建每个`Bird`实例时直接定义属性，这是 JavaScript 构造函数非常实用的用法之一。 它们根据共同或相似的属性和行为将对象归纳为一组，并能够自动的创建各自实例。
@@ -45,19 +45,19 @@ cardinal.numLegs
 `Dog` 应该接收一个 `name` 参数。
 
 ```js
-assert(new Dog('Clifford').name === 'Clifford');
+assert(new Dog("Clifford").name === "Clifford");
 ```
 
 `Dog` 应该接收一个 `color` 参数。
 
 ```js
-assert(new Dog('Clifford', 'yellow').color === 'yellow');
+assert(new Dog("Clifford", "yellow").color === "yellow");
 ```
 
 `Dog` 应该有一个 `numLegs` 属性且值为 4。
 
 ```js
-assert(new Dog('Clifford').numLegs === 4);
+assert(new Dog("Clifford").numLegs === 4);
 ```
 
 `terrier` 应该是通过 `Dog` 构造函数创建的。
@@ -71,15 +71,13 @@ assert(terrier instanceof Dog);
 ## --seed-contents--
 
 ```js
-function Dog() {
-
-}
+function Dog() {}
 ```
 
 # --solutions--
 
 ```js
-function Dog (name, color) {
+function Dog(name, color) {
   this.numLegs = 4;
   this.name = name;
   this.color = color;

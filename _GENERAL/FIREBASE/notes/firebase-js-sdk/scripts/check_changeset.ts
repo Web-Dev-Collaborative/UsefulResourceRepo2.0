@@ -173,9 +173,8 @@ async function main() {
 
       // Check for packages with a minor or major bump where 'firebase' hasn't been
       // bumped high enough or at all.
-      const { highestBump, bumpText, bumpPackage } = getHighestBump(
-        changesetPackages
-      );
+      const { highestBump, bumpText, bumpPackage } =
+        getHighestBump(changesetPackages);
       if (highestBump > bumpRank.patch) {
         if (changesetPackages['firebase'] == null) {
           errors.push(

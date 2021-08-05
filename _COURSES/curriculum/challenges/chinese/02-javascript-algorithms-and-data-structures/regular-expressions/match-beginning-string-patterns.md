@@ -31,25 +31,25 @@ firstRegex.test(notFirst);
 你的正则表达式应该搜寻首字母大写的 `Cal`。
 
 ```js
-assert(calRegex.source == '^Cal');
+assert(calRegex.source == "^Cal");
 ```
 
 你的正则表达式不应该使用任何标志。
 
 ```js
-assert(calRegex.flags == '');
+assert(calRegex.flags == "");
 ```
 
 你的正则表达式应该匹配字符串 `Cal` 的开始位置。
 
 ```js
-assert(calRegex.test('Cal and Ricky both like racing.'));
+assert(calRegex.test("Cal and Ricky both like racing."));
 ```
 
 你的正则表达式不应该匹配中间包含 `Cal` 的字符串。
 
 ```js
-assert(!calRegex.test('Ricky and Cal both like racing.'));
+assert(!calRegex.test("Ricky and Cal both like racing."));
 ```
 
 # --seed--

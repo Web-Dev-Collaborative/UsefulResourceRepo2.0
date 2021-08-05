@@ -2,7 +2,7 @@
 id: 587d78a3367417b2b2512acf
 title: Cambiare la posizione degli elementi sovrapposti con la proprietà z-index
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cM94aHk'
+videoUrl: "https://scrimba.com/c/cM94aHk"
 forumTopicId: 301046
 dashedName: change-the-position-of-overlapping-elements-with-the-z-index-property
 ---
@@ -20,7 +20,7 @@ Aggiungi una proprietà `z-index` all'elemento con la classe di nome `first` (il
 L'elemento con classe `first` dovrebbe avere un valore `z-index` pari a 2.
 
 ```js
-assert($('.first').css('z-index') == '2');
+assert($(".first").css("z-index") == "2");
 ```
 
 # --seed--
@@ -38,7 +38,6 @@ assert($('.first').css('z-index') == '2');
   .first {
     background-color: red;
     position: absolute;
-
   }
   .second {
     background-color: blue;

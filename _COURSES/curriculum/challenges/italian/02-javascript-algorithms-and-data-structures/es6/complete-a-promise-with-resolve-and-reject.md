@@ -32,7 +32,9 @@ Fai sì che la promise gestisca il successo e il fallimento. Se `responseFromSer
 
 ```js
 assert(
-  code.match(/if\s*\(\s*responseFromServer\s*\)\s*{\s*resolve\s*\(\s*('|"|`)We got the data\1\s*\)(\s*|\s*;\s*)}/g)
+  code.match(
+    /if\s*\(\s*responseFromServer\s*\)\s*{\s*resolve\s*\(\s*('|"|`)We got the data\1\s*\)(\s*|\s*;\s*)}/g
+  )
 );
 ```
 
@@ -40,7 +42,9 @@ assert(
 
 ```js
 assert(
-  code.match(/}\s*else\s*{\s*reject\s*\(\s*('|"|`)Data not received\1\s*\)(\s*|\s*;\s*)}/g)
+  code.match(
+    /}\s*else\s*{\s*reject\s*\(\s*('|"|`)Data not received\1\s*\)(\s*|\s*;\s*)}/g
+  )
 );
 ```
 
@@ -53,9 +57,9 @@ const makeServerRequest = new Promise((resolve, reject) => {
   // responseFromServer represents a response from a server
   let responseFromServer;
 
-  if(responseFromServer) {
+  if (responseFromServer) {
     // Change this line
-  } else {  
+  } else {
     // Change this line
   }
 });
@@ -68,9 +72,9 @@ const makeServerRequest = new Promise((resolve, reject) => {
   // responseFromServer represents a response from a server
   let responseFromServer;
 
-  if(responseFromServer) {
+  if (responseFromServer) {
     resolve("We got the data");
-  } else {  
+  } else {
     reject("Data not received");
   }
 });

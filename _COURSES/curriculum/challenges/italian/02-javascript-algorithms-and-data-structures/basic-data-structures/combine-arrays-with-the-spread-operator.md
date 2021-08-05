@@ -11,9 +11,9 @@ dashedName: combine-arrays-with-the-spread-operator
 Un altro enorme vantaggio dell'operatore di <dfn>propagazione</dfn> è la capacità di combinare array, o di inserire tutti gli elementi di un array in un altro, a partire da qualsiasi indice. Con le sintassi più tradizionali, possiamo concatenare array, ma questo ci permette solo di unire array alla fine di uno, e all'inizio di un altro. La sintassi di propagazione rende estremamente semplice la seguente operazione:
 
 ```js
-let thisArray = ['sage', 'rosemary', 'parsley', 'thyme'];
+let thisArray = ["sage", "rosemary", "parsley", "thyme"];
 
-let thatArray = ['basil', 'cilantro', ...thisArray, 'coriander'];
+let thatArray = ["basil", "cilantro", ...thisArray, "coriander"];
 ```
 
 `thatArray` avrà i valori `['basil', 'cilantro', 'sage', 'rosemary', 'parsley', 'thyme', 'coriander']`.
@@ -29,7 +29,7 @@ Abbiamo definito una funzione `spreadOut` che restituisce la variabile `sentence
 `spreadOut` dovrebbe restituire `["learning", "to", "code", "is", "fun"]`
 
 ```js
-assert.deepEqual(spreadOut(), ['learning', 'to', 'code', 'is', 'fun']);
+assert.deepEqual(spreadOut(), ["learning", "to", "code", "is", "fun"]);
 ```
 
 La funzione `spreadOut` dovrebbe utilizzare la sintassi a espansione
@@ -44,7 +44,7 @@ assert.notStrictEqual(spreadOut.toString().search(/[...]/), -1);
 
 ```js
 function spreadOut() {
-  let fragment = ['to', 'code'];
+  let fragment = ["to", "code"];
   let sentence; // Change this line
   return sentence;
 }
@@ -56,8 +56,8 @@ console.log(spreadOut());
 
 ```js
 function spreadOut() {
-  let fragment = ['to', 'code'];
-  let sentence = ['learning', ...fragment, 'is', 'fun'];
+  let fragment = ["to", "code"];
+  let sentence = ["learning", ...fragment, "is", "fun"];
   return sentence;
 }
 ```

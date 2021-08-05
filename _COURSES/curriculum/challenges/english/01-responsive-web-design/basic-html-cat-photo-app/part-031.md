@@ -16,7 +16,7 @@ In the `figcaption` you just added, indicate that `hate` is of strong importance
 Your `strong` element should have an opening tag. Opening tags have this syntax: `<elementName>`.
 
 ```js
-assert(document.querySelector('strong'));
+assert(document.querySelector("strong"));
 ```
 
 Your strong element should have a closing tag. Closing tags have a `/` just after the `<` character.
@@ -30,20 +30,20 @@ Your strong element should surround the word `hate` in the text `Cats hate other
 ```js
 assert(
   document
-    .querySelectorAll('figcaption')[1]
-    .querySelector('strong')
-    .innerText.toLowerCase() === 'hate'
+    .querySelectorAll("figcaption")[1]
+    .querySelector("strong")
+    .innerText.toLowerCase() === "hate"
 );
 ```
 
 The `figcaption`'s text should be `Cats hate other cats.` Check for typos and that the necessary spaces are present around the `strong` element's opening and closing tags.
 
 ```js
-const secondFigCaption = document.querySelectorAll('figcaption')[1];
+const secondFigCaption = document.querySelectorAll("figcaption")[1];
 assert(
   secondFigCaption &&
     secondFigCaption.innerText
-      .replace(/\s+/gi, ' ')
+      .replace(/\s+/gi, " ")
       .trim()
       .match(/cats hate other cats\.?/i)
 );
@@ -61,8 +61,15 @@ assert(
       <section>
         <h2>Cat Photos</h2>
         <!-- TODO: Add link to cat photos -->
-        <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        <p>
+          Click here to view more
+          <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+        </p>
+        <a href="https://freecatphotoapp.com"
+          ><img
+            src="https://bit.ly/fcc-relaxing-cat"
+            alt="A cute orange cat lying on its back."
+        /></a>
       </section>
       <section>
         <h2>Cat Lists</h2>
@@ -73,8 +80,11 @@ assert(
           <li>lasagna</li>
         </ul>
         <figure>
-          <img src="https://bit.ly/fcc-lasagna" alt="A slice of lasagna on a plate.">
-          <figcaption>Cats <em>love</em> lasagna.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-lasagna"
+            alt="A slice of lasagna on a plate."
+          />
+          <figcaption>Cats <em>love</em> lasagna.</figcaption>
         </figure>
         <h3>Top 3 things cats hate:</h3>
         <ol>
@@ -83,14 +93,16 @@ assert(
           <li>other cats</li>
         </ol>
         <figure>
-          <img src="https://bit.ly/fcc-cats" alt="Five cats looking around a field.">
---fcc-editable-region--
-          <figcaption>Cats hate other cats.</figcaption>  
---fcc-editable-region--
+          <img
+            src="https://bit.ly/fcc-cats"
+            alt="Five cats looking around a field."
+          />
+          --fcc-editable-region--
+          <figcaption>Cats hate other cats.</figcaption>
+          --fcc-editable-region--
         </figure>
       </section>
     </main>
   </body>
 </html>
 ```
-

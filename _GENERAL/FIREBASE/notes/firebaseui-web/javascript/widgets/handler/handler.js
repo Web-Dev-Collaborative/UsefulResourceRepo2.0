@@ -16,58 +16,55 @@
  * @fileoverview Handler registration and dispatching.
  */
 
-goog.provide('firebaseui.auth.widget.Handler');
-goog.provide('firebaseui.auth.widget.HandlerName');
-goog.provide('firebaseui.auth.widget.handler');
+goog.provide("firebaseui.auth.widget.Handler");
+goog.provide("firebaseui.auth.widget.HandlerName");
+goog.provide("firebaseui.auth.widget.handler");
 
-goog.require('goog.asserts');
+goog.require("goog.asserts");
 
-goog.forwardDeclare('firebaseui.auth.AuthUI');
-
+goog.forwardDeclare("firebaseui.auth.AuthUI");
 
 /**
  * Handler names.
  * @enum {string}
  */
 firebaseui.auth.widget.HandlerName = {
-  SIGN_IN: 'signIn',
-  PASSWORD_SIGN_IN: 'passwordSignIn',
-  PASSWORD_SIGN_UP: 'passwordSignUp',
-  PASSWORD_RECOVERY: 'passwordRecovery',
-  CALLBACK: 'callback',
-  PASSWORD_LINKING: 'passwordLinking',
-  PHONE_SIGN_IN_FINISH: 'phoneSignInFinish',
-  PHONE_SIGN_IN_START: 'phoneSignInStart',
-  FEDERATED_LINKING: 'federatedLinking',
-  FEDERATED_SIGN_IN: 'federatedSignIn',
-  FEDERATED_REDIRECT: 'federatedRedirect',
-  SEND_EMAIL_LINK_FOR_SIGN_IN: 'sendEmailLinkForSignIn',
-  EMAIL_LINK_CONFIRMATION: 'emailLinkConfirmation',
-  EMAIL_LINK_NEW_DEVICE_LINKING: 'emailLinkNewDeviceLinking',
-  EMAIL_LINK_SIGN_IN_CALLBACK: 'emailLinkSignInCallback',
-  EMAIL_LINK_SIGN_IN_LINKING: 'emailLinkSignInLinking',
-  EMAIL_LINK_SIGN_IN_SENT: 'emailLinkSignInSent',
-  EMAIL_NOT_RECEIVED: 'emailNotReceived',
-  DIFFERENT_DEVICE_ERROR: 'differentDeviceError',
-  ANONYMOUS_USER_MISMATCH: 'anonymousUserMismatch',
-  EMAIL_CHANGE_REVOCATION: 'emailChangeRevocation',
-  EMAIL_VERIFICATION: 'emailVerification',
-  PASSWORD_RESET: 'passwordReset',
-  EMAIL_MISMATCH: 'emailMismatch',
-  PROVIDER_SIGN_IN: 'providerSignIn',
-  PREFILLED_EMAIL_SIGN_IN: 'prefilledEmailSignIn',
-  UNAUTHORIZED_USER: 'handleUnauthorizedUser',
-  UNSUPPORTED_PROVIDER: 'unsupportedProvider',
-  VERIFY_AND_CHANGE_EMAIL: 'verifyAndChangeEmail',
-  REVERT_SECOND_FACTOR_ADDITION: 'revertSecondFactorAddition',
+  SIGN_IN: "signIn",
+  PASSWORD_SIGN_IN: "passwordSignIn",
+  PASSWORD_SIGN_UP: "passwordSignUp",
+  PASSWORD_RECOVERY: "passwordRecovery",
+  CALLBACK: "callback",
+  PASSWORD_LINKING: "passwordLinking",
+  PHONE_SIGN_IN_FINISH: "phoneSignInFinish",
+  PHONE_SIGN_IN_START: "phoneSignInStart",
+  FEDERATED_LINKING: "federatedLinking",
+  FEDERATED_SIGN_IN: "federatedSignIn",
+  FEDERATED_REDIRECT: "federatedRedirect",
+  SEND_EMAIL_LINK_FOR_SIGN_IN: "sendEmailLinkForSignIn",
+  EMAIL_LINK_CONFIRMATION: "emailLinkConfirmation",
+  EMAIL_LINK_NEW_DEVICE_LINKING: "emailLinkNewDeviceLinking",
+  EMAIL_LINK_SIGN_IN_CALLBACK: "emailLinkSignInCallback",
+  EMAIL_LINK_SIGN_IN_LINKING: "emailLinkSignInLinking",
+  EMAIL_LINK_SIGN_IN_SENT: "emailLinkSignInSent",
+  EMAIL_NOT_RECEIVED: "emailNotReceived",
+  DIFFERENT_DEVICE_ERROR: "differentDeviceError",
+  ANONYMOUS_USER_MISMATCH: "anonymousUserMismatch",
+  EMAIL_CHANGE_REVOCATION: "emailChangeRevocation",
+  EMAIL_VERIFICATION: "emailVerification",
+  PASSWORD_RESET: "passwordReset",
+  EMAIL_MISMATCH: "emailMismatch",
+  PROVIDER_SIGN_IN: "providerSignIn",
+  PREFILLED_EMAIL_SIGN_IN: "prefilledEmailSignIn",
+  UNAUTHORIZED_USER: "handleUnauthorizedUser",
+  UNSUPPORTED_PROVIDER: "unsupportedProvider",
+  VERIFY_AND_CHANGE_EMAIL: "verifyAndChangeEmail",
+  REVERT_SECOND_FACTOR_ADDITION: "revertSecondFactorAddition",
 };
-
 
 /**
  * @typedef {!function(Element, ...*)}
  */
 firebaseui.auth.widget.Handler;
-
 
 /**
  * Registered handlers.
@@ -77,17 +74,15 @@ firebaseui.auth.widget.Handler;
  */
 firebaseui.auth.widget.handlers_ = {};
 
-
 /**
  * Registers a handler.
  * @param {firebaseui.auth.widget.HandlerName} name The handler name.
  * @param {firebaseui.auth.widget.Handler} handler The handler function.
  * @package
  */
-firebaseui.auth.widget.handler.register = function(name, handler) {
+firebaseui.auth.widget.handler.register = function (name, handler) {
   firebaseui.auth.widget.handlers_[name] = handler;
 };
-
 
 /**
  * Invokes a handler by the given name.
@@ -96,8 +91,12 @@ firebaseui.auth.widget.handler.register = function(name, handler) {
  * @param {Element} container The container DOM element for the handler.
  * @param {...*} var_args The handler-specific arguments.
  */
-firebaseui.auth.widget.handler.handle =
-    function(name, app, container, var_args) {
+firebaseui.auth.widget.handler.handle = function (
+  name,
+  app,
+  container,
+  var_args
+) {
   var handler = firebaseui.auth.widget.handlers_[name];
   goog.asserts.assertFunction(handler);
   handler.apply(null, Array.prototype.slice.call(arguments, 1));

@@ -2,7 +2,7 @@
   <div class="user-tile">
     <div class="user-tile-image">
       <figure class="image is-64x64">
-        <img class="is-rounded" :src="avatar">
+        <img class="is-rounded" :src="avatar" />
       </figure>
     </div>
     <div class="user-tile-author center">
@@ -12,13 +12,13 @@
   </div>
 </template>
 <script>
-export default {
-  props: {
-    name: {type: String, default: ''},
-    avatar: {type: String, default: ''},
-    date: {type: String, default: ''}
-  }
-}
+  export default {
+    props: {
+      name: { type: String, default: "" },
+      avatar: { type: String, default: "" },
+      date: { type: String, default: "" },
+    },
+  };
 </script>
 
 <style scoped lang="scss">

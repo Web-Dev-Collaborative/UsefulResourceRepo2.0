@@ -13,7 +13,7 @@ dashedName: handle-a-disconnect
 爲此，我們需要在目前的 `'connect'` 監聽裏面添加另一個監聽器，監聽 socket 斷開連接 `'disconnect'` 的事件。 通過登錄已與控制檯斷開連接的用戶，你可以測試這個功能。
 
 ```js
-socket.on('disconnect', () => {
+socket.on("disconnect", () => {
   /*anything you want to do on disconnect*/
 });
 ```
@@ -30,9 +30,9 @@ socket.on('disconnect', () => {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
-      assert.match(data, /socket.on.*('|")disconnect('|")/gi, '');
+      assert.match(data, /socket.on.*('|")disconnect('|")/gi, "");
     },
     (xhr) => {
       throw new Error(xhr.statusText);
@@ -44,12 +44,12 @@ socket.on('disconnect', () => {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/public/client.js').then(
+  $.get(getUserInput("url") + "/public/client.js").then(
     (data) => {
       assert.match(
         data,
         /socket.on.*('|")user count('|")/gi,
-        'Your client should be connection to server with the connection defined as socket'
+        "Your client should be connection to server with the connection defined as socket"
       );
     },
     (xhr) => {

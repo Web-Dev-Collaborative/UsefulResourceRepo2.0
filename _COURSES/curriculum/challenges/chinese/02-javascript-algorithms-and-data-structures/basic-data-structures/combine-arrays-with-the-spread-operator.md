@@ -11,9 +11,9 @@ dashedName: combine-arrays-with-the-spread-operator
 展开语法（<dfn>spread</dfn>）的另一个重要用途是合并数组，或者将某个数组的所有元素插入到另一个数组的任意位置。 我们也可以使用 ES5 的语法连接两个数组，但只能让它们首尾相接。 而展开语法可以让这样的操作变得极其简单：
 
 ```js
-let thisArray = ['sage', 'rosemary', 'parsley', 'thyme'];
+let thisArray = ["sage", "rosemary", "parsley", "thyme"];
 
-let thatArray = ['basil', 'cilantro', ...thisArray, 'coriander'];
+let thatArray = ["basil", "cilantro", ...thisArray, "coriander"];
 ```
 
 `thatArray` 会有值 `['basil', 'cilantro', 'sage', 'rosemary', 'parsley', 'thyme', 'coriander']`
@@ -29,7 +29,7 @@ let thatArray = ['basil', 'cilantro', ...thisArray, 'coriander'];
 `spreadOut` 应返回 `["learning", "to", "code", "is", "fun"]`。
 
 ```js
-assert.deepEqual(spreadOut(), ['learning', 'to', 'code', 'is', 'fun']);
+assert.deepEqual(spreadOut(), ["learning", "to", "code", "is", "fun"]);
 ```
 
 `spreadOut` 函数里应用到展开语法。
@@ -44,7 +44,7 @@ assert.notStrictEqual(spreadOut.toString().search(/[...]/), -1);
 
 ```js
 function spreadOut() {
-  let fragment = ['to', 'code'];
+  let fragment = ["to", "code"];
   let sentence; // Change this line
   return sentence;
 }
@@ -56,8 +56,8 @@ console.log(spreadOut());
 
 ```js
 function spreadOut() {
-  let fragment = ['to', 'code'];
-  let sentence = ['learning', ...fragment, 'is', 'fun'];
+  let fragment = ["to", "code"];
+  let sentence = ["learning", ...fragment, "is", "fun"];
   return sentence;
 }
 ```

@@ -14,13 +14,13 @@ It is time to add a new section. Add a second `section` element below the existi
 Your `section` element should have an opening tag. Opening tags have this syntax: `<elementName>`.
 
 ```js
-assert(document.querySelectorAll('section').length >= 2);
+assert(document.querySelectorAll("section").length >= 2);
 ```
 
 You should only add one opening `section` tag. Please remove any extras.
 
 ```js
-assert(document.querySelectorAll('section').length === 2);
+assert(document.querySelectorAll("section").length === 2);
 ```
 
 Your `section` element should have a closing tag. Closing tags have a `/` just after the `<` character.
@@ -39,10 +39,10 @@ The second `section` element should not be nested in the first `section` element
 
 ```js
 const childrenOf1stSection = [
-  ...document.querySelector('main > section').children
+  ...document.querySelector("main > section").children,
 ];
 const foundElems = childrenOf1stSection.filter((child) => {
-  return child.nodeName === 'SECTION';
+  return child.nodeName === "SECTION";
 });
 assert(foundElems.length === 0);
 ```
@@ -50,9 +50,9 @@ assert(foundElems.length === 0);
 Both `section` elements should be between the opening and closing tags of the `main` element.
 
 ```js
-const childrenOfMain = [...document.querySelector('main').children];
+const childrenOfMain = [...document.querySelector("main").children];
 const foundElems = childrenOfMain.filter((child) => {
-  return child.nodeName === 'SECTION';
+  return child.nodeName === "SECTION";
 });
 assert(foundElems.length === 2);
 ```
@@ -66,16 +66,22 @@ assert(foundElems.length === 2);
   <body>
     <h1>CatPhotoApp</h1>
     <main>
---fcc-editable-region--
+      --fcc-editable-region--
       <section>
         <h2>Cat Photos</h2>
         <!-- TODO: Add link to cat photos -->
-        <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        <p>
+          Click here to view more
+          <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+        </p>
+        <a href="https://freecatphotoapp.com"
+          ><img
+            src="https://bit.ly/fcc-relaxing-cat"
+            alt="A cute orange cat lying on its back."
+        /></a>
       </section>
---fcc-editable-region--
+      --fcc-editable-region--
     </main>
   </body>
 </html>
 ```
-

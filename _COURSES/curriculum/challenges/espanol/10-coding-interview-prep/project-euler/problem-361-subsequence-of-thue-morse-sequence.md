@@ -1,6 +1,6 @@
 ---
 id: 5900f4d51000cf542c50ffe8
-title: 'Problem 361: Subsequence of Thue-Morse sequence'
+title: "Problem 361: Subsequence of Thue-Morse sequence"
 challengeType: 5
 forumTopicId: 302022
 dashedName: problem-361-subsequence-of-thue-morse-sequence
@@ -40,7 +40,6 @@ assert.strictEqual(euler361(), 178476944);
 
 ```js
 function euler361() {
-
   return true;
 }
 

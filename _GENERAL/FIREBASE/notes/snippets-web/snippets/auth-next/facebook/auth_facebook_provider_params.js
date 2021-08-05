@@ -5,6 +5,6 @@
 
 // [START auth_facebook_provider_params_modular]
 provider.setCustomParameters({
-  'display': 'popup'
+  display: "popup",
 });
 // [END auth_facebook_provider_params_modular]

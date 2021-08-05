@@ -1,11 +1,10 @@
-import EmberObject from '@ember/object';
+import EmberObject from "@ember/object";
 
 const google = window.google;
 
 export default EmberObject.extend({
-
   init() {
-    this.set('geocoder', new window.google.maps.Geocoder());
+    this.set("geocoder", new window.google.maps.Geocoder());
   },
 
   createMap(element, location) {
@@ -15,7 +14,7 @@ export default EmberObject.extend({
   },
 
   pinLocation(location, map) {
-    this.get('geocoder').geocode({address: location}, (result, status) => {
+    this.get("geocoder").geocode({ address: location }, (result, status) => {
       if (status === google.maps.GeocoderStatus.OK) {
         let geometry = result[0].geometry.location;
         let position = { lat: geometry.lat(), lng: geometry.lng() };
@@ -23,6 +22,5 @@ export default EmberObject.extend({
         new google.maps.Marker({ position, map, title: location });
       }
     });
-  }
-
+  },
 });

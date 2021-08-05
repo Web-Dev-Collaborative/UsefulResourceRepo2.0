@@ -2,7 +2,7 @@
 id: 587d78aa367417b2b2512aed
 title: Declara el Doctype de un documento HTML
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cra98AJ'
+videoUrl: "https://scrimba.com/p/pVMPUv/cra98AJ"
 forumTopicId: 301095
 dashedName: declare-the-doctype-of-an-html-document
 ---
@@ -23,9 +23,7 @@ Aquí hay un ejemplo de estructura de página. Tu código HTML iría en el espac
 
 ```html
 <!DOCTYPE html>
-<html>
-
-</html>
+<html></html>
 ```
 
 # --instructions--
@@ -43,7 +41,7 @@ assert(code.match(/<!DOCTYPE\s+?html\s*?>/gi));
 Debe haber un elemento `html`.
 
 ```js
-assert($('html').length == 1);
+assert($("html").length == 1);
 ```
 
 Las etiquetas `html` deben envolver alrededor un elemento `h1`.
@@ -65,6 +63,6 @@ assert(code.match(/<html>\s*?<h1>\s*?.*?\s*?<\/h1>\s*?<\/html>/gi));
 ```html
 <!DOCTYPE html>
 <html>
-  <h1> Hello world </h1>
+  <h1>Hello world</h1>
 </html>
 ```

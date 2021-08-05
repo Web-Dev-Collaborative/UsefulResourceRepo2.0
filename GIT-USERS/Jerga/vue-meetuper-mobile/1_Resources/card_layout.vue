@@ -1,5 +1,5 @@
 <nb-text class="header-1">Featured Meetups</nb-text>
-  <!-- Iterate meetups "v-for"  -->
+<!-- Iterate meetups "v-for"  -->
 <nb-card>
   <nb-card-item bordered>
     <nb-left>

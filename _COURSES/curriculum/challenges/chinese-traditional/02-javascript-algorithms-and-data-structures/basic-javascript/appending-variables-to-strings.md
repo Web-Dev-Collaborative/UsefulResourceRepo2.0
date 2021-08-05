@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244ed
 title: 將變量追加到字符串
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cbQmZfa'
+videoUrl: "https://scrimba.com/c/cbQmZfa"
 forumTopicId: 16656
 dashedName: appending-variables-to-strings
 ---
@@ -30,7 +30,7 @@ ourStr += anAdjective;
 `someAdjective` 應當爲包含至少三個字符的字符串。
 
 ```js
-assert(typeof someAdjective !== 'undefined' && someAdjective.length > 2);
+assert(typeof someAdjective !== "undefined" && someAdjective.length > 2);
 ```
 
 你應該使用 `+=` 運算符將 `someAdjective` 追加到 `myStr`。
@@ -44,19 +44,19 @@ assert(code.match(/myStr\s*\+=\s*someAdjective\s*/).length > 0);
 ## --after-user-code--
 
 ```js
-(function(){
+(function () {
   var output = [];
-  if(typeof someAdjective === 'string') {
+  if (typeof someAdjective === "string") {
     output.push('someAdjective = "' + someAdjective + '"');
   } else {
-    output.push('someAdjective is not a string');
+    output.push("someAdjective is not a string");
   }
-  if(typeof myStr === 'string') {
+  if (typeof myStr === "string") {
     output.push('myStr = "' + myStr + '"');
   } else {
-    output.push('myStr is not a string');
+    output.push("myStr is not a string");
   }
-  return output.join('\n');
+  return output.join("\n");
 })();
 ```
 

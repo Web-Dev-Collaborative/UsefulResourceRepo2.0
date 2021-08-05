@@ -136,10 +136,8 @@ export class GoogleAuthProvider extends BaseOAuthProvider {
       return null;
     }
 
-    const {
-      oauthIdToken,
-      oauthAccessToken
-    } = tokenResponse as SignInWithIdpResponse;
+    const { oauthIdToken, oauthAccessToken } =
+      tokenResponse as SignInWithIdpResponse;
     if (!oauthIdToken && !oauthAccessToken) {
       // This could be an oauth 1 credential or a phone credential
       return null;

@@ -9,10 +9,10 @@ function initialize() {
   // Set the configuration for your app
   // TODO: Replace with your app's config object
   const firebaseConfig = {
-    apiKey: '<your-api-key>',
-    authDomain: '<your-auth-domain>',
-    databaseURL: '<your-database-url>',
-    storageBucket: '<your-storage-bucket-url>'
+    apiKey: "<your-api-key>",
+    authDomain: "<your-auth-domain>",
+    databaseURL: "<your-database-url>",
+    storageBucket: "<your-storage-bucket-url>",
   };
   const firebaseApp = initializeApp(firebaseConfig);
 
@@ -51,7 +51,7 @@ function storageCustomApp() {
 }
 
 /**
- * @param {File} file 
+ * @param {File} file
  */
 function storageOnComplete(file) {
   // The file param would be a File object from a file selection event in the browser.
@@ -61,25 +61,31 @@ function storageOnComplete(file) {
 
   /** @type {any} */
   const metadata = {
-    'contentType': file.type
+    contentType: file.type,
   };
 
   // [START storage_on_complete]
-  const { getStorage, ref, uploadBytesResumable, getDownloadURL } = require("firebase/storage");
+  const {
+    getStorage,
+    ref,
+    uploadBytesResumable,
+    getDownloadURL,
+  } = require("firebase/storage");
 
   const storage = getStorage();
-  const imageRef = ref(storage, 'images/' + file.name);
+  const imageRef = ref(storage, "images/" + file.name);
   uploadBytesResumable(imageRef, file, metadata)
     .then((snapshot) => {
-      console.log('Uploaded', snapshot.totalBytes, 'bytes.');
-      console.log('File metadata:', snapshot.metadata);
+      console.log("Uploaded", snapshot.totalBytes, "bytes.");
+      console.log("File metadata:", snapshot.metadata);
       // Let's get a download URL for the file.
       getDownloadURL(snapshot.ref).then((url) => {
-        console.log('File available at', url);
+        console.log("File available at", url);
         // ...
       });
-    }).catch((error) => {
-      console.error('Upload failed', error);
+    })
+    .catch((error) => {
+      console.error("Upload failed", error);
       // ...
     });
   // [END storage_on_complete]

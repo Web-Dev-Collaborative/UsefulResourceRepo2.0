@@ -17,15 +17,14 @@
  * ask user for confirmation before continuing sign-in without linking.
  */
 
-goog.provide('firebaseui.auth.widget.handler.handleEmailLinkNewDeviceLinking');
+goog.provide("firebaseui.auth.widget.handler.handleEmailLinkNewDeviceLinking");
 
-goog.require('firebaseui.auth.ActionCodeUrlBuilder');
-goog.require('firebaseui.auth.ui.page.EmailLinkSignInLinkingDifferentDevice');
-goog.require('firebaseui.auth.widget.Handler');
-goog.require('firebaseui.auth.widget.HandlerName');
-goog.require('firebaseui.auth.widget.handler');
-goog.require('firebaseui.auth.widget.handler.common');
-
+goog.require("firebaseui.auth.ActionCodeUrlBuilder");
+goog.require("firebaseui.auth.ui.page.EmailLinkSignInLinkingDifferentDevice");
+goog.require("firebaseui.auth.widget.Handler");
+goog.require("firebaseui.auth.widget.HandlerName");
+goog.require("firebaseui.auth.widget.handler");
+goog.require("firebaseui.auth.widget.handler.common");
 
 /**
  * Handles email confirmation when user opens a sign-in link on a different
@@ -38,8 +37,12 @@ goog.require('firebaseui.auth.widget.handler.common');
  * @param {function(!firebaseui.auth.AuthUI, !Element, string)} onContinue The
  *     callback to trigger when the user decides to sign-in without linking.
  */
-firebaseui.auth.widget.handler.handleEmailLinkNewDeviceLinking = function(
-    app, container, link, onContinue) {
+firebaseui.auth.widget.handler.handleEmailLinkNewDeviceLinking = function (
+  app,
+  container,
+  link,
+  onContinue
+) {
   // Get provider ID initially intended to be linked.
   var urlBuilder = new firebaseui.auth.ActionCodeUrlBuilder(link);
   var providerId = urlBuilder.getProviderId();
@@ -52,25 +55,26 @@ firebaseui.auth.widget.handler.handleEmailLinkNewDeviceLinking = function(
     return;
   }
   var component =
-      new firebaseui.auth.ui.page.EmailLinkSignInLinkingDifferentDevice(
-          app.getConfig().getConfigForProvider(providerId),
-          // On continue, go back to callback page with URL not requiring
-          // linking.
-          function() {
-            component.dispose();
-            // Continue with the modified link not requiring linking.
-            onContinue(app, container, urlBuilder.toString());
-          },
-          app.getConfig().getTosUrl(),
-          app.getConfig().getPrivacyPolicyUrl());
+    new firebaseui.auth.ui.page.EmailLinkSignInLinkingDifferentDevice(
+      app.getConfig().getConfigForProvider(providerId),
+      // On continue, go back to callback page with URL not requiring
+      // linking.
+      function () {
+        component.dispose();
+        // Continue with the modified link not requiring linking.
+        onContinue(app, container, urlBuilder.toString());
+      },
+      app.getConfig().getTosUrl(),
+      app.getConfig().getPrivacyPolicyUrl()
+    );
   component.render(container);
   // Set current UI component.
   app.setCurrentComponent(component);
 };
 
-
 // Register handler.
 firebaseui.auth.widget.handler.register(
-    firebaseui.auth.widget.HandlerName.EMAIL_LINK_NEW_DEVICE_LINKING,
-    /** @type {!firebaseui.auth.widget.Handler} */
-    (firebaseui.auth.widget.handler.handleEmailLinkNewDeviceLinking));
+  firebaseui.auth.widget.HandlerName.EMAIL_LINK_NEW_DEVICE_LINKING,
+  /** @type {!firebaseui.auth.widget.Handler} */
+  (firebaseui.auth.widget.handler.handleEmailLinkNewDeviceLinking)
+);

@@ -2,7 +2,7 @@
 id: 587d78a3367417b2b2512ad1
 title: Scoprire di più sui colori complementari
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c2MD3Tr'
+videoUrl: "https://scrimba.com/c/c2MD3Tr"
 forumTopicId: 301056
 dashedName: learn-about-complementary-colors
 ---
@@ -32,13 +32,13 @@ Cambia la proprietà `background-color` delle classi `blue` e `yellow` con i ris
 L'elemento `div` con classe `blue` dovrebbe avere un `background-color` blu.
 
 ```js
-assert($('.blue').css('background-color') == 'rgb(0, 0, 255)');
+assert($(".blue").css("background-color") == "rgb(0, 0, 255)");
 ```
 
 L'elemento `div` con classe `yellow` dovrebbe avere un `background-color` giallo.
 
 ```js
-assert($('.yellow').css('background-color') == 'rgb(255, 255, 0)');
+assert($(".yellow").css("background-color") == "rgb(255, 255, 0)");
 ```
 
 # --seed--
@@ -48,7 +48,7 @@ assert($('.yellow').css('background-color') == 'rgb(255, 255, 0)');
 ```html
 <style>
   body {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
   }
   .blue {
     background-color: #000000;
@@ -71,7 +71,7 @@ assert($('.yellow').css('background-color') == 'rgb(255, 255, 0)');
 ```html
 <style>
   body {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
   }
   .blue {
     background-color: blue;

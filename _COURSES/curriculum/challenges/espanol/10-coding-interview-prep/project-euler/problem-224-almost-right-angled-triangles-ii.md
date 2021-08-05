@@ -1,6 +1,6 @@
 ---
 id: 5900f44e1000cf542c50ff5f
-title: 'Problem 224: Almost right-angled triangles II'
+title: "Problem 224: Almost right-angled triangles II"
 challengeType: 5
 forumTopicId: 301867
 dashedName: problem-224-almost-right-angled-triangles-ii
@@ -26,7 +26,6 @@ assert.strictEqual(euler224(), 4137330);
 
 ```js
 function euler224() {
-
   return true;
 }
 

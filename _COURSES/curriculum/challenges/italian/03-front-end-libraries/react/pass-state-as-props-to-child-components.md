@@ -12,7 +12,7 @@ Hai visto un sacco di esempi che hanno passato le proprietà a elementi JSX figl
 
 Ad esempio, forse hai un componente `App` che presenta una `Navbar`, tra gli altri componenti. Nella tua `App` hai `state` che contiene molte informazioni dell'utente, ma la `Navbar` ha solo bisogno di accedere al nome utente dell'utente in modo da visualizzarlo. Passa quel pezzo di `state` al componente `Navbar` come una prop.
 
-Questo modello illustra alcuni paradigmi importanti in React. Il primo è il *flusso di dati unidirezionale*. Lo stato scorre in una direzione lungo l'albero dei componenti della tua applicazione, dal componente genitore stateful ai componenti figli. I componenti figlio ricevono solo i dati di stato di cui hanno bisogno. Il secondo è che complesse app stateful possono essere suddivise in alcuni, o anche un singolo componente stateful. Il resto dei tuoi componenti semplicemente riceve lo stato dal genitore come props, e presenta un'interfaccia utente da quello stato. Si comincia col creare una separazione in cui la gestione dello stato viene gestita in una parte del codice e il rendering dell'interfaccia utente in un'altra. Questo principio di separazione della logica dello stato dalla logica dell'interfaccia utente è uno dei principi chiave di React. Quando viene utilizzato correttamente, rende la progettazione di applicazioni stateful complesse molto più facile da gestire.
+Questo modello illustra alcuni paradigmi importanti in React. Il primo è il _flusso di dati unidirezionale_. Lo stato scorre in una direzione lungo l'albero dei componenti della tua applicazione, dal componente genitore stateful ai componenti figli. I componenti figlio ricevono solo i dati di stato di cui hanno bisogno. Il secondo è che complesse app stateful possono essere suddivise in alcuni, o anche un singolo componente stateful. Il resto dei tuoi componenti semplicemente riceve lo stato dal genitore come props, e presenta un'interfaccia utente da quello stato. Si comincia col creare una separazione in cui la gestione dello stato viene gestita in una parte del codice e il rendering dell'interfaccia utente in un'altra. Questo principio di separazione della logica dello stato dalla logica dell'interfaccia utente è uno dei principi chiave di React. Quando viene utilizzato correttamente, rende la progettazione di applicazioni stateful complesse molto più facile da gestire.
 
 # --instructions--
 
@@ -27,8 +27,8 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(MyApp));
     return (
-      mockedComponent.find('MyApp').length === 1 &&
-      mockedComponent.find('Navbar').length === 1
+      mockedComponent.find("MyApp").length === 1 &&
+      mockedComponent.find("Navbar").length === 1
     );
   })()
 );
@@ -42,11 +42,11 @@ async () => {
     new Promise((resolve, reject) => setTimeout(() => resolve(fn()), 250));
   const mockedComponent = Enzyme.mount(React.createElement(MyApp));
   const setState = () => {
-    mockedComponent.setState({ name: 'TestName' });
-    return waitForIt(() => mockedComponent.find('Navbar').props());
+    mockedComponent.setState({ name: "TestName" });
+    return waitForIt(() => mockedComponent.find("Navbar").props());
   };
   const navProps = await setState();
-  assert(navProps.name === 'TestName');
+  assert(navProps.name === "TestName");
 };
 ```
 
@@ -57,13 +57,13 @@ async () => {
   const waitForIt = (fn) =>
     new Promise((resolve, reject) => setTimeout(() => resolve(fn()), 250));
   const mockedComponent = Enzyme.mount(React.createElement(MyApp));
-  const navH1Before = mockedComponent.find('Navbar').find('h1').text();
+  const navH1Before = mockedComponent.find("Navbar").find("h1").text();
   const setState = () => {
-    mockedComponent.setState({ name: 'TestName' });
-    return waitForIt(() => mockedComponent.find('Navbar').find('h1').text());
+    mockedComponent.setState({ name: "TestName" });
+    return waitForIt(() => mockedComponent.find("Navbar").find("h1").text());
   };
   const navH1After = await setState();
-  assert(new RegExp('TestName').test(navH1After) && navH1After !== navH1Before);
+  assert(new RegExp("TestName").test(navH1After) && navH1After !== navH1Before);
 };
 ```
 
@@ -72,7 +72,7 @@ async () => {
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyApp />, document.getElementById('root'))
+ReactDOM.render(<MyApp />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -82,19 +82,19 @@ class MyApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'CamperBot'
-    }
+      name: "CamperBot",
+    };
   }
   render() {
     return (
-       <div>
-         {/* Change code below this line */}
-         <Navbar />
-         {/* Change code above this line */}
-       </div>
+      <div>
+        {/* Change code below this line */}
+        <Navbar />
+        {/* Change code above this line */}
+      </div>
     );
   }
-};
+}
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -102,14 +102,14 @@ class Navbar extends React.Component {
   }
   render() {
     return (
-    <div>
-      {/* Change code below this line */}
-      <h1>Hello, my name is: </h1>
-      {/* Change code above this line */}
-    </div>
+      <div>
+        {/* Change code below this line */}
+        <h1>Hello, my name is: </h1>
+        {/* Change code above this line */}
+      </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -119,27 +119,27 @@ class MyApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'CamperBot'
-    }
+      name: "CamperBot",
+    };
   }
   render() {
     return (
-       <div>
-         <Navbar name={this.state.name}/>
-       </div>
+      <div>
+        <Navbar name={this.state.name} />
+      </div>
     );
   }
-};
+}
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
     return (
-    <div>
-      <h1>Hello, my name is: {this.props.name}</h1>
-    </div>
+      <div>
+        <h1>Hello, my name is: {this.props.name}</h1>
+      </div>
     );
   }
-};
+}
 ```

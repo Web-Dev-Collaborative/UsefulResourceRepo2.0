@@ -1,6 +1,6 @@
 ---
 id: 5e7b9f160b6c005b0e76f086
-title: '對象：一個示例類'
+title: "對象：一個示例類"
 challengeType: 11
 videoId: FiABKEuaSJ8
 dashedName: objects-a-sample-class
@@ -55,4 +55,3 @@ So far 2
 ## --video-solution--
 
 4
-

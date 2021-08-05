@@ -1,8 +1,8 @@
 ---
 id: 587d78ab367417b2b2512af0
-title: 'Use display: flex to Position Two Boxes'
+title: "Use display: flex to Position Two Boxes"
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cgz3QS7'
+videoUrl: "https://scrimba.com/p/pVaDAv/cgz3QS7"
 forumTopicId: 301105
 dashedName: use-display-flex-to-position-two-boxes
 ---
@@ -22,7 +22,7 @@ Add the CSS property `display` to `#box-container` and set its value to `flex`.
 `#box-container` should have the `display` property set to a value of `flex`.
 
 ```js
-assert($('#box-container').css('display') == 'flex');
+assert($("#box-container").css("display") == "flex");
 ```
 
 # --seed--
@@ -33,7 +33,6 @@ assert($('#box-container').css('display') == 'flex');
 <style>
   #box-container {
     height: 500px;
-
   }
 
   #box-1 {

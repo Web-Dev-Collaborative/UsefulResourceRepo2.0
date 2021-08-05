@@ -4,7 +4,7 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START new_document_modular]
-import { collection, doc, setDoc } from "firebase/firestore"; 
+import { collection, doc, setDoc } from "firebase/firestore";
 
 // Add a new document with a generated id
 const newCityRef = doc(collection(db, "cities"));

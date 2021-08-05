@@ -2,16 +2,19 @@
   <div>
     <div @click="openModal" v-if="showButton">
       <slot name="submitBtn">
-        <button :class="openBtnClass">{{openTitle}}</button>
+        <button :class="openBtnClass">{{ openTitle }}</button>
       </slot>
     </div>
-    <div class="modal"
-         :class="{'is-active': isOpen}">
+    <div class="modal" :class="{ 'is-active': isOpen }">
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title">{{title}}</p>
-          <button @click="isOpen=false" class="delete" aria-label="close"></button>
+          <p class="modal-card-title">{{ title }}</p>
+          <button
+            @click="isOpen = false"
+            class="delete"
+            aria-label="close"
+          ></button>
         </header>
         <section class="modal-card-body">
           <div class="content">
@@ -22,10 +25,11 @@
           <button
             :disabled="isDisabled"
             @click="emitAction"
-            class="button is-success">
-            {{actionTitle}}
+            class="button is-success"
+          >
+            {{ actionTitle }}
           </button>
-          <button @click="isOpen=false" class="button">Cancel</button>
+          <button @click="isOpen = false" class="button">Cancel</button>
         </footer>
       </div>
     </div>
@@ -36,55 +40,53 @@ export default {
   props: {
     openTitle: {
       type: String,
-      default: 'Open'
+      default: "Open",
     },
     title: {
       type: String,
-      default: 'Hey There'
+      default: "Hey There",
     },
     actionTitle: {
       type: String,
-      default: 'Commit'
+      default: "Commit",
     },
     openBtnClass: {
       type: String,
-      default: 'button'
+      default: "button",
     },
     showButton: {
       type: Boolean,
-      default: true
+      default: true,
     },
     isDisabled: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
-      isOpen: false
-    }
+      isOpen: false,
+    };
   },
   methods: {
     emitAction() {
-      this.$emit('submitted',
-        { closeModal: this.closeCallback }
-      )
+      this.$emit("submitted", { closeModal: this.closeCallback });
     },
     closeCallback() {
-      this.isOpen = false
+      this.isOpen = false;
     },
     openModal() {
-      this.isOpen = true
-      this.$emit('opened')
-    }
-  }
-}
+      this.isOpen = true;
+      this.$emit("opened");
+    },
+  },
+};
 </script>
 <style scoped lang="scss">
-  .modal-card-body {
-    color: black;
-  }
-  .modal {
-    z-index: 9999;
-  }
+.modal-card-body {
+  color: black;
+}
+.modal {
+  z-index: 9999;
+}
 </style>

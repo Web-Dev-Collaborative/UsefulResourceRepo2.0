@@ -14,28 +14,28 @@ To prevent a user from submitting your form when required information is missing
 You have either deleted your `input` element or it has invalid syntax. All attributes' values should be surrounded by quotation marks.
 
 ```js
-assert($('input').length);
+assert($("input").length);
 ```
 
 Your `form` should only contain the `input` element. Remove any HTML additional elements or text within the `form` element.
 
 ```js
 assert(
-  $('form')[0].children.length === 1 &&
-    $('form')[0].innerText.trim().length === 0
+  $("form")[0].children.length === 1 &&
+    $("form")[0].innerText.trim().length === 0
 );
 ```
 
 Your `input` element should have a `required` attribute. Remember, you just add the word `required` inside the `input` element's tag.
 
 ```js
-assert($('input')[0].hasAttribute('required'));
+assert($("input")[0].hasAttribute("required"));
 ```
 
 A value should not be given to the `required` attribute.
 
 ```js
-assert($('input')[0].getAttribute('required') === '');
+assert($("input")[0].getAttribute("required") === "");
 ```
 
 # --seed--
@@ -50,8 +50,15 @@ assert($('input')[0].getAttribute('required') === '');
       <section>
         <h2>Cat Photos</h2>
         <!-- TODO: Add link to cat photos -->
-        <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        <p>
+          Click here to view more
+          <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+        </p>
+        <a href="https://freecatphotoapp.com"
+          ><img
+            src="https://bit.ly/fcc-relaxing-cat"
+            alt="A cute orange cat lying on its back."
+        /></a>
       </section>
       <section>
         <h2>Cat Lists</h2>
@@ -62,8 +69,11 @@ assert($('input')[0].getAttribute('required') === '');
           <li>lasagna</li>
         </ul>
         <figure>
-          <img src="https://bit.ly/fcc-lasagna" alt="A slice of lasagna on a plate.">
-          <figcaption>Cats <em>love</em> lasagna.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-lasagna"
+            alt="A slice of lasagna on a plate."
+          />
+          <figcaption>Cats <em>love</em> lasagna.</figcaption>
         </figure>
         <h3>Top 3 things cats hate:</h3>
         <ol>
@@ -72,20 +82,22 @@ assert($('input')[0].getAttribute('required') === '');
           <li>other cats</li>
         </ol>
         <figure>
-          <img src="https://bit.ly/fcc-cats" alt="Five cats looking around a field.">
-          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-cats"
+            alt="Five cats looking around a field."
+          />
+          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>
         </figure>
       </section>
       <section>
         <h2>Cat Form</h2>
         <form action="https://freecatphotoapp.com/submit-cat-photo">
---fcc-editable-region--
-          <input type="text" name="catphotourl" placeholder="cat photo URL">
---fcc-editable-region--
+          --fcc-editable-region--
+          <input type="text" name="catphotourl" placeholder="cat photo URL" />
+          --fcc-editable-region--
         </form>
       </section>
     </main>
   </body>
 </html>
 ```
-

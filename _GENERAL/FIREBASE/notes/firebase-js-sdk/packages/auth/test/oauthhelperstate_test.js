@@ -27,7 +27,6 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.OAuthHelperStateTest');
 
-
 var state;
 var state2;
 var state3;
@@ -43,88 +42,94 @@ var stateObject5;
 var stateObject6;
 var stateObject7;
 
-
 function setUp() {
   state = new fireauth.OAuthHelperState(
-      'API_KEY',
-      'APP_NAME',
-      fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP,
-      null,
-      'http://www.example.com/redirect',
-      '3.0.0');
+    'API_KEY',
+    'APP_NAME',
+    fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP,
+    null,
+    'http://www.example.com/redirect',
+    '3.0.0'
+  );
   state2 = new fireauth.OAuthHelperState(
-      'API_KEY',
-      'APP_NAME',
-      fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP,
-      '12345678');
+    'API_KEY',
+    'APP_NAME',
+    fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP,
+    '12345678'
+  );
   state3 = new fireauth.OAuthHelperState(
-      'API_KEY',
-      'APP_NAME',
-      fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT,
-      '12345678',
-      null,
-      '3.6.0',
-      'Test App',
-      'com.example.android',
-      null,
-      't',
-      ['firebaseui', 'angularfire']);
+    'API_KEY',
+    'APP_NAME',
+    fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT,
+    '12345678',
+    null,
+    '3.6.0',
+    'Test App',
+    'com.example.android',
+    null,
+    't',
+    ['firebaseui', 'angularfire']
+  );
   state4 = new fireauth.OAuthHelperState(
-      'API_KEY',
-      'APP_NAME',
-      fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT,
-      '12345678',
-      null,
-      '3.6.0',
-      'Test App',
-      null,
-      'com.example.ios',
-      's');
+    'API_KEY',
+    'APP_NAME',
+    fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT,
+    '12345678',
+    null,
+    '3.6.0',
+    'Test App',
+    null,
+    'com.example.ios',
+    's'
+  );
   // State with OAuth client ID.
   state5 = new fireauth.OAuthHelperState(
-      'API_KEY',
-      'APP_NAME',
-      fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT,
-      '12345678',
-      null,
-      '3.6.0',
-      'Test App',
-      null,
-      'com.example.ios',
-      null,
-      null,
-      '123456.apps.googleusercontent.com');
+    'API_KEY',
+    'APP_NAME',
+    fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT,
+    '12345678',
+    null,
+    '3.6.0',
+    'Test App',
+    null,
+    'com.example.ios',
+    null,
+    null,
+    '123456.apps.googleusercontent.com'
+  );
   // State with SHA-1 cert.
   state6 = new fireauth.OAuthHelperState(
-      'API_KEY',
-      'APP_NAME',
-      fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT,
-      '12345678',
-      null,
-      '3.6.0',
-      'Test App',
-      'com.example.android',
-      null,
-      null,
-      null,
-      null,
-      'SHA_1_ANDROID_CERT');
+    'API_KEY',
+    'APP_NAME',
+    fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT,
+    '12345678',
+    null,
+    '3.6.0',
+    'Test App',
+    'com.example.android',
+    null,
+    null,
+    null,
+    null,
+    'SHA_1_ANDROID_CERT'
+  );
   // State with tenant ID.
   state7 = new fireauth.OAuthHelperState(
-      'API_KEY',
-      'APP_NAME',
-      fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT,
-      null,
-      'http://www.example.com/redirect',
-      '3.0.0',
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      'TENANT_ID');
+    'API_KEY',
+    'APP_NAME',
+    fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT,
+    null,
+    'http://www.example.com/redirect',
+    '3.0.0',
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    'TENANT_ID'
+  );
   stateObject = {
     'apiKey': 'API_KEY',
     'appName': 'APP_NAME',
@@ -239,7 +244,6 @@ function setUp() {
   };
 }
 
-
 function tearDown() {
   state = null;
   state2 = null;
@@ -256,7 +260,6 @@ function tearDown() {
   stateObject6 = null;
   stateObject7 = null;
 }
-
 
 function testOAuthHelperState() {
   // Check state.
@@ -331,53 +334,44 @@ function testOAuthHelperState() {
   assertEquals('TENANT_ID', state7.getTenantId());
 }
 
-
 function testOAuthHelperState_toPlainObject() {
-  assertObjectEquals(
-      stateObject,
-      state.toPlainObject());
-  assertObjectEquals(
-      stateObject2,
-      state2.toPlainObject());
-  assertObjectEquals(
-      stateObject3,
-      state3.toPlainObject());
-  assertObjectEquals(
-      stateObject4,
-      state4.toPlainObject());
-  assertObjectEquals(
-      stateObject5,
-      state5.toPlainObject());
-  assertObjectEquals(
-      stateObject6,
-      state6.toPlainObject());
-  assertObjectEquals(
-      stateObject7,
-      state7.toPlainObject());
+  assertObjectEquals(stateObject, state.toPlainObject());
+  assertObjectEquals(stateObject2, state2.toPlainObject());
+  assertObjectEquals(stateObject3, state3.toPlainObject());
+  assertObjectEquals(stateObject4, state4.toPlainObject());
+  assertObjectEquals(stateObject5, state5.toPlainObject());
+  assertObjectEquals(stateObject6, state6.toPlainObject());
+  assertObjectEquals(stateObject7, state7.toPlainObject());
 }
-
 
 function testOAuthHelperState_fromPlainObject() {
   assertObjectEquals(
-      state,
-      fireauth.OAuthHelperState.fromPlainObject(stateObject));
+    state,
+    fireauth.OAuthHelperState.fromPlainObject(stateObject)
+  );
   assertObjectEquals(
-      state2,
-      fireauth.OAuthHelperState.fromPlainObject(stateObject2));
+    state2,
+    fireauth.OAuthHelperState.fromPlainObject(stateObject2)
+  );
   assertObjectEquals(
-      state3,
-      fireauth.OAuthHelperState.fromPlainObject(stateObject3));
+    state3,
+    fireauth.OAuthHelperState.fromPlainObject(stateObject3)
+  );
   assertObjectEquals(
-      state4,
-      fireauth.OAuthHelperState.fromPlainObject(stateObject4));
+    state4,
+    fireauth.OAuthHelperState.fromPlainObject(stateObject4)
+  );
   assertObjectEquals(
-      state5,
-      fireauth.OAuthHelperState.fromPlainObject(stateObject5));
+    state5,
+    fireauth.OAuthHelperState.fromPlainObject(stateObject5)
+  );
   assertObjectEquals(
-      state6,
-      fireauth.OAuthHelperState.fromPlainObject(stateObject6));
+    state6,
+    fireauth.OAuthHelperState.fromPlainObject(stateObject6)
+  );
   assertObjectEquals(
-      state7,
-      fireauth.OAuthHelperState.fromPlainObject(stateObject7));
+    state7,
+    fireauth.OAuthHelperState.fromPlainObject(stateObject7)
+  );
   assertNull(fireauth.OAuthHelperState.fromPlainObject({}));
 }

@@ -1,6 +1,6 @@
 ---
 id: 5900f4941000cf542c50ffa7
-title: 'Problem 296: Angular Bisector and Tangent'
+title: "Problem 296: Angular Bisector and Tangent"
 challengeType: 5
 forumTopicId: 301948
 dashedName: problem-296-angular-bisector-and-tangent
@@ -28,7 +28,6 @@ assert.strictEqual(euler296(), 1137208419);
 
 ```js
 function euler296() {
-
   return true;
 }
 

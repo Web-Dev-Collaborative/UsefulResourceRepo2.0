@@ -1,6 +1,6 @@
 ---
 id: 5900f3971000cf542c50feaa
-title: 'Problem 43: Sub-string divisibility'
+title: "Problem 43: Sub-string divisibility"
 challengeType: 5
 forumTopicId: 302100
 dashedName: problem-43-sub-string-divisibility
@@ -35,14 +35,10 @@ assert(Array.isArray(substringDivisibility()));
 `substringDivisibility()` should return [ 1430952867, 1460357289, 1406357289, 4130952867, 4160357289, 4106357289 ].
 
 ```js
-assert.sameMembers(substringDivisibility(), [
-  1430952867,
-  1460357289,
-  1406357289,
-  4130952867,
-  4160357289,
-  4106357289
-]);
+assert.sameMembers(
+  substringDivisibility(),
+  [1430952867, 1460357289, 1406357289, 4130952867, 4160357289, 4106357289]
+);
 ```
 
 You should not copy and return the array.
@@ -50,7 +46,7 @@ You should not copy and return the array.
 ```js
 assert(
   !code.match(
-      /(1430952867)|(1460357289)|(1406357289)|(4130952867)|(4160357289)|(4106357289)/
+    /(1430952867)|(1460357289)|(1406357289)|(4130952867)|(4160357289)|(4106357289)/
   )
 );
 ```
@@ -61,7 +57,6 @@ assert(
 
 ```js
 function substringDivisibility() {
-
   return [];
 }
 

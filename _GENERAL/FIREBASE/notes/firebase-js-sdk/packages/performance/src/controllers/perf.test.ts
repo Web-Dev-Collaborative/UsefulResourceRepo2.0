@@ -39,9 +39,9 @@ describe('Firebase Performance Test', () => {
     appId: '1:111:web:a1234'
   };
 
-  const fakeFirebaseApp = ({
+  const fakeFirebaseApp = {
     options: fakeFirebaseConfig
-  } as unknown) as FirebaseApp;
+  } as unknown as FirebaseApp;
 
   describe('#constructor', () => {
     it('does not initialize performance if the required apis are not available', () => {

@@ -22,7 +22,7 @@ assert(code.match(/catphotoapp/i));
 Your `h1` element should have an opening tag. Opening tags have this syntax: `<elementName>`.
 
 ```js
-assert(document.querySelector('h1'));
+assert(document.querySelector("h1"));
 ```
 
 Your `h1` element should have a closing tag. Closing tags have a `/` just after the `<` character.
@@ -34,13 +34,13 @@ assert(code.match(/<\/h1\>/));
 You have more than one `h1` element. Remove the extra `h1` element.
 
 ```js
-assert(document.querySelectorAll('h1').length === 1);
+assert(document.querySelectorAll("h1").length === 1);
 ```
 
 Your `h1` element's text should be `CatPhotoApp`. You have either omitted the text, have a typo, or it is not between the `h1` element's opening and closing tags.
 
 ```js
-assert(document.querySelector('h1').innerText.toLowerCase() === 'catphotoapp');
+assert(document.querySelector("h1").innerText.toLowerCase() === "catphotoapp");
 ```
 
 # --seed--
@@ -50,10 +50,9 @@ assert(document.querySelector('h1').innerText.toLowerCase() === 'catphotoapp');
 ```html
 <html>
   <body>
---fcc-editable-region--
+    --fcc-editable-region--
     <h1>Hello World</h1>
---fcc-editable-region--
+    --fcc-editable-region--
   </body>
 </html>
 ```
-

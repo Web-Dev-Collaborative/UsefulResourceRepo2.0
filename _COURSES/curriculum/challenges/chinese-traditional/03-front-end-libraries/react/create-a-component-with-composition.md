@@ -10,16 +10,16 @@ dashedName: create-a-component-with-composition
 
 現在來看看如何組合多個 React 組件。 想象一下，現在正在構建一個應用程序，並創建了三個組件：`Navbar`、`Dashboard` 和 `Footer`。
 
-要將這些組件組合在一起，可以創建一個 `App` *父組件*，將這三個組件分別渲染成爲*子組件*。 要在 React 組件中渲染一個子組件，需要在 JSX 中包含作爲自定義 HTML 標籤編寫的組件名稱。 例如，在 `render` 方法中，可以這樣編寫：
+要將這些組件組合在一起，可以創建一個 `App` _父組件_，將這三個組件分別渲染成爲*子組件*。 要在 React 組件中渲染一個子組件，需要在 JSX 中包含作爲自定義 HTML 標籤編寫的組件名稱。 例如，在 `render` 方法中，可以這樣編寫：
 
 ```jsx
 return (
- <App>
-  <Navbar />
-  <Dashboard />
-  <Footer />
- </App>
-)
+  <App>
+    <Navbar />
+    <Dashboard />
+    <Footer />
+  </App>
+);
 ```
 
 當 React 遇到一個自定義 HTML 標籤引用另一個組件的時（如本例所示，組件名稱包含在 `< />` 中），它在自定義標籤的位置渲染該組件的標籤。 這可以說明 `App` 組件和 `Navbar`、`Dashboard` 以及 `Footer` 之間的父子關係。
@@ -38,7 +38,7 @@ React 組件應該返回單個 `div` 元素。
 assert(
   (function () {
     var shallowRender = Enzyme.shallow(React.createElement(ParentComponent));
-    return shallowRender.type() === 'div';
+    return shallowRender.type() === "div";
   })()
 );
 ```
@@ -61,7 +61,7 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(ParentComponent));
     return (
-      mockedComponent.find('ParentComponent').find('ChildComponent').length ===
+      mockedComponent.find("ParentComponent").find("ChildComponent").length ===
       1
     );
   })()
@@ -73,7 +73,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<ParentComponent />, document.getElementById('root'))
+ReactDOM.render(<ParentComponent />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -95,14 +95,13 @@ class ParentComponent extends React.Component {
     return (
       <div>
         <h1>I am the parent</h1>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
 
-
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -124,11 +123,11 @@ class ParentComponent extends React.Component {
     return (
       <div>
         <h1>I am the parent</h1>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
         <ChildComponent />
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 ```

@@ -2,7 +2,7 @@
 id: 587d7b7e367417b2b2512b23
 title: Usare la funzione parseInt
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cm83LSW'
+videoUrl: "https://scrimba.com/c/cm83LSW"
 forumTopicId: 301183
 dashedName: use-the-parseint-function
 ---
@@ -32,25 +32,25 @@ assert(/parseInt/g.test(code));
 `convertToInteger("56")` dovrebbe restituire un numero
 
 ```js
-assert(typeof convertToInteger('56') === 'number');
+assert(typeof convertToInteger("56") === "number");
 ```
 
 `convertToInteger("56")` dovrebbe restituire 56
 
 ```js
-assert(convertToInteger('56') === 56);
+assert(convertToInteger("56") === 56);
 ```
 
 `convertToInteger("77")` dovrebbe restituire 77
 
 ```js
-assert(convertToInteger('77') === 77);
+assert(convertToInteger("77") === 77);
 ```
 
 `convertToInteger("JamesBond")` dovrebbe restituire `NaN`
 
 ```js
-assert.isNaN(convertToInteger('JamesBond'));
+assert.isNaN(convertToInteger("JamesBond"));
 ```
 
 # --seed--
@@ -58,9 +58,7 @@ assert.isNaN(convertToInteger('JamesBond'));
 ## --seed-contents--
 
 ```js
-function convertToInteger(str) {
-
-}
+function convertToInteger(str) {}
 
 convertToInteger("56");
 ```

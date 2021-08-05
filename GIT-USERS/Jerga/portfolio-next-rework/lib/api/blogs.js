@@ -1,10 +1,8 @@
-
-import BaseApi from './BaseApi';
+import BaseApi from "./BaseApi";
 
 class BlogApi extends BaseApi {
-
   constructor(accessToken) {
-    super(accessToken, '/blogs');
+    super(accessToken, "/blogs");
   }
 }
 

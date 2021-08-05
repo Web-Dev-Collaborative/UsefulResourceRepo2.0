@@ -8,44 +8,44 @@ dashedName: repeat-a-string-repeat-a-string
 
 # --description--
 
-Repeat a given string `str` (first argument) for `num` times (second argument). Return an empty string if `num` is not a positive number. For the purpose of this challenge, do *not* use the built-in `.repeat()` method.
+Repeat a given string `str` (first argument) for `num` times (second argument). Return an empty string if `num` is not a positive number. For the purpose of this challenge, do _not_ use the built-in `.repeat()` method.
 
 # --hints--
 
 `repeatStringNumTimes("*", 3)` should return the string `***`.
 
 ```js
-assert(repeatStringNumTimes('*', 3) === '***');
+assert(repeatStringNumTimes("*", 3) === "***");
 ```
 
 `repeatStringNumTimes("abc", 3)` should return the string `abcabcabc`.
 
 ```js
-assert(repeatStringNumTimes('abc', 3) === 'abcabcabc');
+assert(repeatStringNumTimes("abc", 3) === "abcabcabc");
 ```
 
 `repeatStringNumTimes("abc", 4)` should return the string `abcabcabcabc`.
 
 ```js
-assert(repeatStringNumTimes('abc', 4) === 'abcabcabcabc');
+assert(repeatStringNumTimes("abc", 4) === "abcabcabcabc");
 ```
 
 `repeatStringNumTimes("abc", 1)` should return the string `abc`.
 
 ```js
-assert(repeatStringNumTimes('abc', 1) === 'abc');
+assert(repeatStringNumTimes("abc", 1) === "abc");
 ```
 
 `repeatStringNumTimes("*", 8)` should return the string `********`.
 
 ```js
-assert(repeatStringNumTimes('*', 8) === '********');
+assert(repeatStringNumTimes("*", 8) === "********");
 ```
 
 `repeatStringNumTimes("abc", -2)` should return an empty string (`""`).
 
 ```js
-assert(repeatStringNumTimes('abc', -2) === '');
+assert(repeatStringNumTimes("abc", -2) === "");
 ```
 
 The built-in `repeat()` method should not be used.
@@ -57,7 +57,7 @@ assert(!/\.repeat/g.test(code));
 `repeatStringNumTimes("abc", 0)` should return `""`.
 
 ```js
-assert(repeatStringNumTimes('abc', 0) === '');
+assert(repeatStringNumTimes("abc", 0) === "");
 ```
 
 # --seed--
@@ -76,8 +76,8 @@ repeatStringNumTimes("abc", 3);
 
 ```js
 function repeatStringNumTimes(str, num) {
-  if (num < 1) return '';
-  return num === 1 ? str : str + repeatStringNumTimes(str, num-1);
+  if (num < 1) return "";
+  return num === 1 ? str : str + repeatStringNumTimes(str, num - 1);
 }
 
 repeatStringNumTimes("abc", 3);

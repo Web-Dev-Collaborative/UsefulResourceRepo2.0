@@ -51,49 +51,49 @@ Write a function that will validate a number with the Luhn test. Return true if 
 `luhnTest` should be a function.
 
 ```js
-assert(typeof luhnTest === 'function');
+assert(typeof luhnTest === "function");
 ```
 
 `luhnTest("4111111111111111")` should return a boolean.
 
 ```js
-assert(typeof luhnTest('4111111111111111') === 'boolean');
+assert(typeof luhnTest("4111111111111111") === "boolean");
 ```
 
 `luhnTest("4111111111111111")` should return `true`.
 
 ```js
-assert.equal(luhnTest('4111111111111111'), true);
+assert.equal(luhnTest("4111111111111111"), true);
 ```
 
 `luhnTest("4111111111111112")` should return `false`.
 
 ```js
-assert.equal(luhnTest('4111111111111112'), false);
+assert.equal(luhnTest("4111111111111112"), false);
 ```
 
 `luhnTest("49927398716")` should return `true`.
 
 ```js
-assert.equal(luhnTest('49927398716'), true);
+assert.equal(luhnTest("49927398716"), true);
 ```
 
 `luhnTest("49927398717")` should return `false`.
 
 ```js
-assert.equal(luhnTest('49927398717'), false);
+assert.equal(luhnTest("49927398717"), false);
 ```
 
 `luhnTest("1234567812345678")` should return `false`.
 
 ```js
-assert.equal(luhnTest('1234567812345678'), false);
+assert.equal(luhnTest("1234567812345678"), false);
 ```
 
 `luhnTest("1234567812345670")` should return `true`.
 
 ```js
-assert.equal(luhnTest('1234567812345670'), true);
+assert.equal(luhnTest("1234567812345670"), true);
 ```
 
 # --seed--
@@ -101,9 +101,7 @@ assert.equal(luhnTest('1234567812345670'), true);
 ## --seed-contents--
 
 ```js
-function luhnTest(str) {
-
-}
+function luhnTest(str) {}
 ```
 
 # --solutions--
@@ -114,7 +112,7 @@ function luhnTest(str) {
   var counter = 0;
   var incNum;
   var odd = false;
-  var temp = String(str).replace(/[^\d]/g, '');
+  var temp = String(str).replace(/[^\d]/g, "");
   if (temp.length == 0) return false;
   for (var i = temp.length - 1; i >= 0; --i) {
     incNum = parseInt(temp.charAt(i), 10);

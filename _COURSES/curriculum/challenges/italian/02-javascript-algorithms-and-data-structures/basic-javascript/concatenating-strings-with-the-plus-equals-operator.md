@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244b8
 title: Concatenare le stringhe con l'operatore +=
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cbQmmC4'
+videoUrl: "https://scrimba.com/c/cbQmmC4"
 forumTopicId: 16803
 dashedName: concatenating-strings-with-the-plus-equals-operator
 ---
@@ -31,7 +31,7 @@ Costruisci `myStr` su diverse righe concatenando queste due stringhe: `This is t
 `myStr` dovrebbe avere un valore stringa `This is the first sentence. This is the second sentence.`
 
 ```js
-assert(myStr === 'This is the first sentence. This is the second sentence.');
+assert(myStr === "This is the first sentence. This is the second sentence.");
 ```
 
 Dovresti usare l'operatore `+=` per costruire `myStr`.
@@ -45,11 +45,11 @@ assert(code.match(/myStr\s*\+=\s*(["']).*\1/g));
 ## --after-user-code--
 
 ```js
-(function(){
-  if(typeof myStr === 'string') {
+(function () {
+  if (typeof myStr === "string") {
     return 'myStr = "' + myStr + '"';
   } else {
-    return 'myStr is not a string';
+    return "myStr is not a string";
   }
 })();
 ```

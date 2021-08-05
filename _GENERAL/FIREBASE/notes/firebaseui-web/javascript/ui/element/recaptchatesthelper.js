@@ -16,39 +16,33 @@
  * @fileoverview Helper class for testing the visible reCAPTCHA UI element.
  */
 
-goog.provide('firebaseui.auth.ui.element.RecaptchaTestHelper');
-goog.setTestOnly('firebaseui.auth.ui.element.RecaptchaTestHelper');
+goog.provide("firebaseui.auth.ui.element.RecaptchaTestHelper");
+goog.setTestOnly("firebaseui.auth.ui.element.RecaptchaTestHelper");
 
-goog.require('firebaseui.auth.ui.element');
+goog.require("firebaseui.auth.ui.element");
 
+goog.scope(function () {
+  var element = firebaseui.auth.ui.element;
 
-goog.scope(function() {
-var element = firebaseui.auth.ui.element;
+  /** @constructor */
+  element.RecaptchaTestHelper = function () {
+    element.RecaptchaTestHelper.base(this, "constructor", "Recaptcha");
+  };
+  goog.inherits(element.RecaptchaTestHelper, element.ElementTestHelper);
 
+  /** @override */
+  element.RecaptchaTestHelper.prototype.resetState = function () {
+    element.hide(this.component.getRecaptchaErrorElement());
+  };
 
+  /** @private */
+  element.RecaptchaTestHelper.prototype.testGetRecaptchaElement_ = function () {
+    assertNotNull(this.component.getRecaptchaElement());
+  };
 
-/** @constructor */
-element.RecaptchaTestHelper = function() {
-  element.RecaptchaTestHelper.base(this, 'constructor', 'Recaptcha');
-};
-goog.inherits(element.RecaptchaTestHelper, element.ElementTestHelper);
-
-
-/** @override */
-element.RecaptchaTestHelper.prototype.resetState = function() {
-  element.hide(this.component.getRecaptchaErrorElement());
-};
-
-
-/** @private */
-element.RecaptchaTestHelper.prototype.testGetRecaptchaElement_ = function() {
-  assertNotNull(this.component.getRecaptchaElement());
-};
-
-
-/** @private */
-element.RecaptchaTestHelper.prototype.testGetRecaptchaErrorElement_ =
-    function() {
-  assertNotNull(this.component.getRecaptchaErrorElement());
-};
+  /** @private */
+  element.RecaptchaTestHelper.prototype.testGetRecaptchaErrorElement_ =
+    function () {
+      assertNotNull(this.component.getRecaptchaErrorElement());
+    };
 });

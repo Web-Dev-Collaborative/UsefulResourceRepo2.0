@@ -82,9 +82,10 @@ function extractProtocol(url: string): string {
   return protocolEnd < 0 ? '' : url.substr(0, protocolEnd + 1);
 }
 
-function extractHostAndPort(
-  url: string
-): { host: string; port: number | null } {
+function extractHostAndPort(url: string): {
+  host: string;
+  port: number | null;
+} {
   const protocol = extractProtocol(url);
   const authority = /(\/\/)?([^?#/]+)/.exec(url.substr(protocol.length)); // Between // and /, ? or #.
   if (!authority) {

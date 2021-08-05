@@ -27,19 +27,19 @@ dashedName: learn-about-tertiary-colors
 class 爲 `orange` 的 `div` 的 `background-color` 屬性值應爲橙色。
 
 ```js
-assert($('.orange').css('background-color') == 'rgb(255, 127, 0)');
+assert($(".orange").css("background-color") == "rgb(255, 127, 0)");
 ```
 
 class 爲 `cyan` 的 `div` 的 `background-color` 屬性值應爲藍綠色。
 
 ```js
-assert($('.cyan').css('background-color') == 'rgb(0, 255, 255)');
+assert($(".cyan").css("background-color") == "rgb(0, 255, 255)");
 ```
 
 class 爲 `raspberry` 的 `div` 的 `background-color` 屬性值應爲樹莓紅色。
 
 ```js
-assert($('.raspberry').css('background-color') == 'rgb(255, 0, 127)');
+assert($(".raspberry").css("background-color") == "rgb(255, 0, 127)");
 ```
 
 所有的 `background-color` 應使用十六進制顏色碼，而不應使用顏色名稱。
@@ -55,7 +55,7 @@ assert(!/background-color:\s(orange|cyan|raspberry)/.test(code));
 ```html
 <style>
   body {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
   }
 
   .orange {
@@ -87,19 +87,19 @@ assert(!/background-color:\s(orange|cyan|raspberry)/.test(code));
 ```html
 <style>
   body {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
   }
 
   .orange {
-    background-color: #FF7F00;
+    background-color: #ff7f00;
   }
 
   .cyan {
-    background-color: #00FFFF;
+    background-color: #00ffff;
   }
 
   .raspberry {
-    background-color: #FF007F;
+    background-color: #ff007f;
   }
 
   div {

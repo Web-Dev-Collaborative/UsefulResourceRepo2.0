@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 const Backspace = () => <noscript />;
 
-Backspace.componentName = 'Backspace';
+Backspace.componentName = "Backspace";
 
 Backspace.propTypes = {
   count: PropTypes.number,

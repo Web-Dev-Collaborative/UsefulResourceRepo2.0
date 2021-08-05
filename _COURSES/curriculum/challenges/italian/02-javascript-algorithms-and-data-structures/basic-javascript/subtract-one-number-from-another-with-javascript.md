@@ -2,7 +2,7 @@
 id: cf1111c1c11feddfaeb4bdef
 title: Sottrarre un numero da un altro con JavaScript
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cP3yQtk'
+videoUrl: "https://scrimba.com/c/cP3yQtk"
 forumTopicId: 18314
 dashedName: subtract-one-number-from-another-with-javascript
 ---
@@ -20,6 +20,7 @@ myVar = 12 - 6;
 ```
 
 `myVar` avrà il valore `6`.
+
 # --instructions--
 
 Modifica lo `0` in modo che la differenza sia `12`.
@@ -43,7 +44,9 @@ assert(/difference=45-33;?/.test(__helpers.removeWhiteSpace(code)));
 ## --after-user-code--
 
 ```js
-(function(z){return 'difference = '+z;})(difference);
+(function (z) {
+  return "difference = " + z;
+})(difference);
 ```
 
 ## --seed-contents--

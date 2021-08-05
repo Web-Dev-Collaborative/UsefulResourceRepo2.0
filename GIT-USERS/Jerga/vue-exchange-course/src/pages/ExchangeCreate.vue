@@ -22,14 +22,15 @@
               v-model="form.title"
               class="input"
               type="text"
-              placeholder="Some Nice Product">
+              placeholder="Some Nice Product"
+            />
             <div v-if="$v.form.title.$error" class="form-error">
-              <span
-                v-if="!$v.form.title.required"
-                class="help is-danger">Title is required</span>
-              <span
-                v-if="!$v.form.title.minLength"
-                class="help is-danger">Minimum length of title is 10 characters!</span>
+              <span v-if="!$v.form.title.required" class="help is-danger"
+                >Title is required</span
+              >
+              <span v-if="!$v.form.title.minLength" class="help is-danger"
+                >Minimum length of title is 10 characters!</span
+              >
             </div>
           </div>
         </div>
@@ -40,12 +41,13 @@
               @blur="$v.form.description.$touch"
               v-model="form.description"
               class="textarea"
-              placeholder="Some catchy description about product">
+              placeholder="Some catchy description about product"
+            >
             </textarea>
-            <div v-if="$v.form.description.$error"  class="form-error">
-              <span
-                v-if="!$v.form.description.required"
-                class="help is-danger">Description is required</span>
+            <div v-if="$v.form.description.$error" class="form-error">
+              <span v-if="!$v.form.description.required" class="help is-danger"
+                >Description is required</span
+              >
             </div>
           </div>
         </div>
@@ -55,12 +57,15 @@
             :action="''"
             class="upload-demo"
             :on-progress="handleProgress"
-            :limit="1">
+            :limit="1"
+          >
             <el-button size="small" type="primary">Click to upload</el-button>
-            <div slot="tip" class="el-upload__tip">jpg/png files with a size less than 500kb</div>
+            <div slot="tip" class="el-upload__tip">
+              jpg/png files with a size less than 500kb
+            </div>
           </el-upload>
         </div>
-        <img class="image-preview" v-if="form.image" :src="form.image"/>
+        <img class="image-preview" v-if="form.image" :src="form.image" />
         <!-- TODO: Rename To Price -->
         <div class="field">
           <label class="label">Price</label>
@@ -70,14 +75,15 @@
               v-model="form.price"
               class="input"
               type="number"
-              placeholder="249">
-            <div v-if="$v.form.price.$error"  class="form-error">
-              <span
-                v-if="!$v.form.price.required"
-                class="help is-danger">Price is required</span>
-              <span
-                v-if="!$v.form.price.minValue"
-                class="help is-danger">Minum price is 10$</span>
+              placeholder="249"
+            />
+            <div v-if="$v.form.price.$error" class="form-error">
+              <span v-if="!$v.form.price.required" class="help is-danger"
+                >Price is required</span
+              >
+              <span v-if="!$v.form.price.minValue" class="help is-danger"
+                >Minum price is 10$</span
+              >
             </div>
           </div>
         </div>
@@ -89,11 +95,12 @@
               v-model="form.country"
               class="input"
               type="text"
-              placeholder="Slovakia">
-            <div v-if="$v.form.country.$error"  class="form-error">
-              <span
-                v-if="!$v.form.country.required"
-                class="help is-danger">Country is required</span>
+              placeholder="Slovakia"
+            />
+            <div v-if="$v.form.country.$error" class="form-error">
+              <span v-if="!$v.form.country.required" class="help is-danger"
+                >Country is required</span
+              >
             </div>
           </div>
         </div>
@@ -105,12 +112,12 @@
               v-model="form.city"
               class="input"
               type="text"
-              placeholder="Bratislava">
-            <div
-              v-if="$v.form.city.$error"  class="form-error">
-              <span
-                v-if="!$v.form.city.required"
-                class="help is-danger">City is required</span>
+              placeholder="Bratislava"
+            />
+            <div v-if="$v.form.city.$error" class="form-error">
+              <span v-if="!$v.form.city.required" class="help is-danger"
+                >City is required</span
+              >
             </div>
           </div>
         </div>
@@ -123,12 +130,14 @@
               @input="handleTags"
               class="input"
               type="text"
-              placeholder="programming">
+              placeholder="programming"
+            />
             <div
               v-for="tag in form.tags"
               :key="`t-${tag}`"
-              class="tag is-primary is-medium">
-              {{tag}}
+              class="tag is-primary is-medium"
+            >
+              {{ tag }}
             </div>
           </div>
         </div>
@@ -138,7 +147,10 @@
             <button
               :disabled="!isFormValid"
               @click.prevent="createExchange"
-              class="button is-link">Submit</button>
+              class="button is-link"
+            >
+              Submit
+            </button>
           </div>
           <div class="control">
             <button class="button is-text">Cancel</button>
@@ -149,85 +161,90 @@
   </div>
 </template>
 <script>
-import { required, minLength, url, minValue } from 'vuelidate/lib/validators'
-import { supportedFileType } from '@/helpers/validators'
+import { required, minLength, url, minValue } from "vuelidate/lib/validators";
+import { supportedFileType } from "@/helpers/validators";
 export default {
   data() {
     return {
       form: {
-        title: '',
-        description: '',
-        type: 'service',
-        image: '',
+        title: "",
+        description: "",
+        type: "service",
+        image: "",
         price: null,
-        country: '',
-        city: '',
-        tags: []
-      }
-    }
+        country: "",
+        city: "",
+        tags: [],
+      },
+    };
   },
   validations: {
     form: {
       title: {
         required,
-        minLength: minLength(10)
+        minLength: minLength(10),
       },
       description: {
-        required
+        required,
       },
       image: {
-        url
+        url,
       },
       price: {
         required,
-        minValue: minValue(10)
+        minValue: minValue(10),
       },
       country: {
-        required
+        required,
       },
       city: {
-        required
-      }
-    }
+        required,
+      },
+    },
   },
   computed: {
     isFormValid() {
-      return !this.$v.form.$invalid && this.form.image
-    }
+      return !this.$v.form.$invalid && this.form.image;
+    },
   },
   methods: {
     createExchange() {
-      this.$v.form.$touch()
+      this.$v.form.$touch();
 
       if (this.isFormValid) {
-        this.$store.dispatch('exchange/createExchange', { ...this.form })
-          .then(_ => {
+        this.$store
+          .dispatch("exchange/createExchange", { ...this.form })
+          .then((_) => {
             // Or any other page, for example Home Page
-            this.$router.push({name: 'ProfilePage'})
+            this.$router.push({ name: "ProfilePage" });
           })
-          .catch(e => console.error(e.message))
+          .catch((e) => console.error(e.message));
       }
     },
     handleTags(e) {
-      const { value } = e.target
+      const { value } = e.target;
 
-      if (value && value.trim().length > 1 && (value.substr(-1) === ',' || value.substr(-1) === ' ')) {
-        this.form.tags.push(value.split(',')[0])
-        e.target.value = ''
+      if (
+        value &&
+        value.trim().length > 1 &&
+        (value.substr(-1) === "," || value.substr(-1) === " ")
+      ) {
+        this.form.tags.push(value.split(",")[0]);
+        e.target.value = "";
       }
     },
     handleProgress(event, file) {
-      if (file && file.status === 'ready') {
-        this.$store.dispatch('exchange/uploadImage', file.raw)
-          .then(imageUrl => {
+      if (file && file.status === "ready") {
+        this.$store
+          .dispatch("exchange/uploadImage", file.raw)
+          .then((imageUrl) => {
             this.form.image = imageUrl;
-          })
+          });
       }
     },
-  }
-}
+  },
+};
 </script>
-
 
 <style>
 .form-container {
@@ -236,28 +253,10 @@ export default {
 }
 
 .image-preview {
-  height: 200px ;
+  height: 200px;
 }
 
 .tag {
   margin: 3px;
 }
 </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

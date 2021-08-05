@@ -1,12 +1,12 @@
-import { moduleFor, test } from 'ember-qunit';
+import { moduleFor, test } from "ember-qunit";
 
-moduleFor('controller:sync-header', 'Unit | Controller | sync header', {
+moduleFor("controller:sync-header", "Unit | Controller | sync header", {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });
 
 // Replace this with your real tests.
-test('it exists', function(assert) {
+test("it exists", function (assert) {
   let controller = this.subject();
   assert.ok(controller);
 });

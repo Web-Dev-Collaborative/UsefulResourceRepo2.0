@@ -19,7 +19,7 @@ You can include these by doing the following:
 **ES Modules**
 
 ```javascript
-import { WebChannel } from '@firebase/webchannel-wrapper'
+import { WebChannel } from '@firebase/webchannel-wrapper';
 
 // Do stuff with WebChannel
 ```
@@ -29,5 +29,5 @@ import { WebChannel } from '@firebase/webchannel-wrapper'
 ```javascript
 const webchannelWrapper = require('@firebase/webchannel-wrapper');
 
-// Do stuff with webchannelWrapper.ErrorCode, webchannelWrapper.EventType, etc 
+// Do stuff with webchannelWrapper.ErrorCode, webchannelWrapper.EventType, etc
 ```

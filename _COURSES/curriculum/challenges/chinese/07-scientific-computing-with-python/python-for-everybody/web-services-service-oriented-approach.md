@@ -1,6 +1,6 @@
 ---
 id: 5e7b9f140b6c005b0e76f07e
-title: 'Web 服务：面向服务的方法'
+title: "Web 服务：面向服务的方法"
 challengeType: 11
 videoId: muerlsCHExI
 dashedName: web-services-service-oriented-approach
@@ -27,4 +27,3 @@ dashedName: web-services-service-oriented-approach
 ## --video-solution--
 
 1
-

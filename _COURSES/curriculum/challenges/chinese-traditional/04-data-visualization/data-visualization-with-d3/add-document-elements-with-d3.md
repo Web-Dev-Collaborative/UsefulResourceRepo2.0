@@ -27,9 +27,7 @@ const anchor = d3.select("a");
 下面的例子是選擇一個無序列表，添加列表項和添加文本：
 
 ```js
-d3.select("ul")
-  .append("li")
-  .text("Very important item");
+d3.select("ul").append("li").text("Very important item");
 ```
 
 在 D3 中可以串聯多個方法，連續執行一系列操作。
@@ -43,13 +41,13 @@ d3.select("ul")
 `body` 元素應該包含一個 `h1` 元素。
 
 ```js
-assert($('body').children('h1').length == 1);
+assert($("body").children("h1").length == 1);
 ```
 
 `h1` 元素應包含文本 `Learning D3`。
 
 ```js
-assert($('h1').text() == 'Learning D3');
+assert($("h1").text() == "Learning D3");
 ```
 
 你應該能訪問 `d3` 對象。
@@ -85,8 +83,6 @@ assert(code.match(/\.text/g));
   <script>
     // Add your code below this line
 
-
-
     // Add your code above this line
   </script>
 </body>
@@ -97,9 +93,7 @@ assert(code.match(/\.text/g));
 ```html
 <body>
   <script>
-    d3.select("body")
-      .append("h1")
-      .text("Learning D3")
+    d3.select("body").append("h1").text("Learning D3");
   </script>
 </body>
 ```

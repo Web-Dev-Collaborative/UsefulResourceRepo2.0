@@ -1,4 +1,4 @@
-import { checkoutDetailFragment } from "../common"
+import { checkoutDetailFragment } from "../common";
 
 const checkoutLineItemUpdateMutation = /* GraphQL */ `
   mutation($checkoutId: ID!, $lineItems: [CheckoutLineItemUpdateInput!]!) {
@@ -12,5 +12,5 @@ const checkoutLineItemUpdateMutation = /* GraphQL */ `
       }
     }
   }
-`
-export default checkoutLineItemUpdateMutation
+`;
+export default checkoutLineItemUpdateMutation;

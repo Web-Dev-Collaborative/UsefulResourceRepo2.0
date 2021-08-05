@@ -14,7 +14,7 @@ There was an example of an infinite loop in the introduction to this section - i
 
 ```js
 function loopy() {
-  while(true) {
+  while (true) {
     console.log("Hello, world!");
   }
 }
@@ -56,8 +56,8 @@ function myFunc() {
 
 ```js
 function myFunc() {
- for (let i = 1; i <= 4; i += 2) {
-   console.log("Still going!");
- }
+  for (let i = 1; i <= 4; i += 2) {
+    console.log("Still going!");
+  }
 }
 ```

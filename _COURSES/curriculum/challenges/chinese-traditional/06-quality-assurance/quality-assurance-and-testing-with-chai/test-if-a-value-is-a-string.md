@@ -22,9 +22,9 @@ dashedName: test-if-a-value-is-a-string
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=12').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=12").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -36,12 +36,12 @@ dashedName: test-if-a-value-is-a-string
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=12').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=12").then(
     (data) => {
       assert.equal(
         data.assertions[0].method,
-        'isNotString',
-        'A float number is not a string'
+        "isNotString",
+        "A float number is not a string"
       );
     },
     (xhr) => {
@@ -54,12 +54,12 @@ dashedName: test-if-a-value-is-a-string
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=12').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=12").then(
     (data) => {
       assert.equal(
         data.assertions[1].method,
-        'isString',
-        'environment vars are strings (or undefined)'
+        "isString",
+        "environment vars are strings (or undefined)"
       );
     },
     (xhr) => {
@@ -72,9 +72,9 @@ dashedName: test-if-a-value-is-a-string
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=12').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=12").then(
     (data) => {
-      assert.equal(data.assertions[2].method, 'isString', 'A JSON is a string');
+      assert.equal(data.assertions[2].method, "isString", "A JSON is a string");
     },
     (xhr) => {
       throw new Error(xhr.responseText);

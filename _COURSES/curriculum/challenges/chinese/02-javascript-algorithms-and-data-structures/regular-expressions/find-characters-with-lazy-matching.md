@@ -27,7 +27,7 @@ dashedName: find-characters-with-lazy-matching
 `result` 变量应该是一个包含 `<h1>` 的数组
 
 ```js
-assert(result[0] == '<h1>');
+assert(result[0] == "<h1>");
 ```
 
 `myRegex` 应该使用懒惰匹配
@@ -39,7 +39,7 @@ assert(/\?/g.test(myRegex));
 `myRegex` 不应包含字符串 `h1`
 
 ```js
-assert(!myRegex.source.match('h1'));
+assert(!myRegex.source.match("h1"));
 ```
 
 # --seed--

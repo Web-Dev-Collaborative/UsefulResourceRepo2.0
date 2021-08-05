@@ -14,13 +14,11 @@
           <div
             v-for="course in courses"
             :key="course._id"
-            class="column is-one-quarter">
+            class="column is-one-quarter"
+          >
             <!-- pass a course as a prop to course-card -->
-            <v-popover
-              offset="16"
-              trigger="hover"
-              placement="right-start">
-              <course-card :course="course"/>
+            <v-popover offset="16" trigger="hover" placement="right-start">
+              <course-card :course="course" />
               <template slot="popover">
                 <course-card-tooltip
                   :title="course.title"
@@ -39,10 +37,7 @@
         <h1 class="title">Featured Articles</h1>
         <div class="columns is-multiline">
           <div v-for="blog in featuredBlogs" class="column is-one-quarter">
-            <blog-card
-              :key="blog._id"
-              :blog="blog"
-            />
+            <blog-card :key="blog._id" :blog="blog" />
           </div>
         </div>
       </div>
@@ -51,36 +46,40 @@
 </template>
 
 <script>
-import CourseCard from '~/components/CourseCard'
-import CourseCardTooltip from '~/components/CourseCardTooltip'
-import BlogCard from '~/components/BlogCard'
-import Hero from '~/components/shared/Hero'
-import { mapState } from 'vuex'
+import CourseCard from "~/components/CourseCard";
+import CourseCardTooltip from "~/components/CourseCardTooltip";
+import BlogCard from "~/components/BlogCard";
+import Hero from "~/components/shared/Hero";
+import { mapState } from "vuex";
 export default {
   head: {
-    title: 'Online Courses and Blogs | Filip Jerga'
+    title: "Online Courses and Blogs | Filip Jerga",
   },
   components: {
-    CourseCard, BlogCard, Hero, CourseCardTooltip
+    CourseCard,
+    BlogCard,
+    Hero,
+    CourseCardTooltip,
   },
   computed: {
     ...mapState({
-      courses: state => state.course.items,
-      featuredBlogs: state => state.blog.items.featured,
-      courseHero: state => state.hero.item || {}
-    })
+      courses: (state) => state.course.items,
+      featuredBlogs: (state) => state.blog.items.featured,
+      courseHero: (state) => state.hero.item || {},
+    }),
   },
-  async fetch({store}) {
-    await store.dispatch('course/fetchCourses')
-    await store.dispatch('blog/fetchFeaturedBlogs', {'filter[featured]': true})
-  }
-}
+  async fetch({ store }) {
+    await store.dispatch("course/fetchCourses");
+    await store.dispatch("blog/fetchFeaturedBlogs", {
+      "filter[featured]": true,
+    });
+  },
+};
 </script>
 
 <style scoped lang="scss">
-
-  // Home page
-  .links {
-    padding-top: 15px;
-  }
+// Home page
+.links {
+  padding-top: 15px;
+}
 </style>

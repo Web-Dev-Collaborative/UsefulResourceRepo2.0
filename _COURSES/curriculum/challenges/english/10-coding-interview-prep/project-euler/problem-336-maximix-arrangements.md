@@ -1,6 +1,6 @@
 ---
 id: 5900f4bd1000cf542c50ffcf
-title: 'Problem 336: Maximix Arrangements'
+title: "Problem 336: Maximix Arrangements"
 challengeType: 5
 forumTopicId: 301994
 dashedName: problem-336-maximix-arrangements
@@ -36,7 +36,6 @@ assert.strictEqual(euler336(), CAGBIHEFJDK);
 
 ```js
 function euler336() {
-
   return true;
 }
 

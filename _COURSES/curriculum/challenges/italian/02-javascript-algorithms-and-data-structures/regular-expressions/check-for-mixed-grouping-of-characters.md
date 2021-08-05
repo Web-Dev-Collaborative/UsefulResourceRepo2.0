@@ -34,28 +34,28 @@ La tua espressione regolare `myRegex` dovrebbe restituire `true` per la stringa 
 
 ```js
 myRegex.lastIndex = 0;
-assert(myRegex.test('Franklin D. Roosevelt'));
+assert(myRegex.test("Franklin D. Roosevelt"));
 ```
 
 La tua espressione regolare `myRegex` dovrebbe restituire `true` per la stringa `Eleanor Roosevelt`
 
 ```js
 myRegex.lastIndex = 0;
-assert(myRegex.test('Eleanor Roosevelt'));
+assert(myRegex.test("Eleanor Roosevelt"));
 ```
 
 La tua espressione regolare `myRegex` dovrebbe restituire `false` per la stringa `Franklin Rosevelt`
 
 ```js
 myRegex.lastIndex = 0;
-assert(!myRegex.test('Franklin Rosevelt'));
+assert(!myRegex.test("Franklin Rosevelt"));
 ```
 
 La tua espressione regolare `myRegex` dovrebbe restituire `false` per la stringa `Frank Roosevelt`
 
 ```js
 myRegex.lastIndex = 0;
-assert(!myRegex.test('Frank Roosevelt'));
+assert(!myRegex.test("Frank Roosevelt"));
 ```
 
 Dovresti usare `.test()` per testare l'espressione regolare.

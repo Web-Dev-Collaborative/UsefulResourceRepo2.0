@@ -1,6 +1,6 @@
 ---
 id: 5900f3ce1000cf542c50fee0
-title: 'Problem 97: Large non-Mersenne prime'
+title: "Problem 97: Large non-Mersenne prime"
 challengeType: 5
 forumTopicId: 302214
 dashedName: problem-97-large-non-mersenne-prime
@@ -19,31 +19,31 @@ Find the last ten digits of that non-Mersenne prime in the form $multiplier × 2
 `largeNonMersennePrime(19, 6833086)` should return a string.
 
 ```js
-assert(typeof largeNonMersennePrime(19, 6833086) === 'string');
+assert(typeof largeNonMersennePrime(19, 6833086) === "string");
 ```
 
 `largeNonMersennePrime(19, 6833086)` should return the string `3637590017`.
 
 ```js
-assert.strictEqual(largeNonMersennePrime(19, 6833086), '3637590017');
+assert.strictEqual(largeNonMersennePrime(19, 6833086), "3637590017");
 ```
 
 `largeNonMersennePrime(27, 7046834)` should return the string `0130771969`.
 
 ```js
-assert.strictEqual(largeNonMersennePrime(27, 7046834), '0130771969');
+assert.strictEqual(largeNonMersennePrime(27, 7046834), "0130771969");
 ```
 
 `largeNonMersennePrime(6679881, 6679881)` should return the string `4455386113`.
 
 ```js
-assert.strictEqual(largeNonMersennePrime(6679881, 6679881), '4455386113');
+assert.strictEqual(largeNonMersennePrime(6679881, 6679881), "4455386113");
 ```
 
 `largeNonMersennePrime(28433, 7830457)` should return the string `8739992577`.
 
 ```js
-assert.strictEqual(largeNonMersennePrime(28433, 7830457), '8739992577');
+assert.strictEqual(largeNonMersennePrime(28433, 7830457), "8739992577");
 ```
 
 # --seed--
@@ -52,7 +52,6 @@ assert.strictEqual(largeNonMersennePrime(28433, 7830457), '8739992577');
 
 ```js
 function largeNonMersennePrime(multiplier, power) {
-
   return true;
 }
 
@@ -83,6 +82,6 @@ function largeNonMersennePrime(multiplier, power) {
   );
   const lastDigits = (digitsAfterMultiply + 1) % mod;
 
-  return lastDigits.toString().padStart(10, '0');
+  return lastDigits.toString().padStart(10, "0");
 }
 ```

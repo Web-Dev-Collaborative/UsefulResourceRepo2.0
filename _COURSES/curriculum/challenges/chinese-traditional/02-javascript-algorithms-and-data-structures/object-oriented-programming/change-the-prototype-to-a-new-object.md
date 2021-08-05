@@ -17,26 +17,26 @@ Bird.prototype.numLegs = 2;
 需要添加多個屬性的，這未免會顯得拖沓。
 
 ```js
-Bird.prototype.eat = function() {
+Bird.prototype.eat = function () {
   console.log("nom nom nom");
-}
+};
 
-Bird.prototype.describe = function() {
+Bird.prototype.describe = function () {
   console.log("My name is " + this.name);
-}
+};
 ```
 
 一種更有效的方法就是給對象的 `prototype` 設置爲一個已經包含了屬性的新對象。 這樣一來，所有屬性都可以一次性添加進來：
 
 ```js
 Bird.prototype = {
-  numLegs: 2, 
-  eat: function() {
+  numLegs: 2,
+  eat: function () {
     console.log("nom nom nom");
   },
-  describe: function() {
+  describe: function () {
     console.log("My name is " + this.name);
-  }
+  },
 };
 ```
 
@@ -61,13 +61,13 @@ assert(Dog.prototype.numLegs !== undefined);
 `Dog.prototype` 應該擁有方法 `eat()`。
 
 ```js
-assert(typeof Dog.prototype.eat === 'function');
+assert(typeof Dog.prototype.eat === "function");
 ```
 
 `Dog.prototype` 應該擁有方法 `describe()`。
 
 ```js
-assert(typeof Dog.prototype.describe === 'function');
+assert(typeof Dog.prototype.describe === "function");
 ```
 
 # --seed--
@@ -81,7 +81,6 @@ function Dog(name) {
 
 Dog.prototype = {
   // Only change code below this line
-
 };
 ```
 
@@ -92,12 +91,12 @@ function Dog(name) {
   this.name = name;
 }
 Dog.prototype = {
-numLegs: 4,
-  eat () {
-    console.log('nom nom nom');
+  numLegs: 4,
+  eat() {
+    console.log("nom nom nom");
   },
-  describe () {
-    console.log('My name is ' + this.name);
-  }
+  describe() {
+    console.log("My name is " + this.name);
+  },
 };
 ```

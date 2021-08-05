@@ -16,22 +16,22 @@ Add an `alt` attribute to the `img` element with the text `A cute orange cat lyi
 Your code should have an `img` element. You removed the `img` element from an earlier step.
 
 ```js
-assert(document.querySelector('img'));
+assert(document.querySelector("img"));
 ```
 
 Your `img` element does not have an `alt` attribute. Check that there is a space after the opening tag's name and/or there are spaces before all attribute names.
 
 ```js
-assert(document.querySelector('img').hasAttribute('alt'));
+assert(document.querySelector("img").hasAttribute("alt"));
 ```
 
 Your `img` element's `alt` attribute value is set to something other than 'A cute orange cat lying on its back'. Make sure the `alt` attribute's value is surrounded with quotation marks.
 
 ```js
 const altText = document
-  .querySelector('img')
+  .querySelector("img")
   .alt.toLowerCase()
-  .replace(/\s+/g, ' ');
+  .replace(/\s+/g, " ");
 assert(altText.match(/A cute orange cat lying on its back\.?$/i));
 ```
 
@@ -47,11 +47,10 @@ assert(altText.match(/A cute orange cat lying on its back\.?$/i));
       <h2>Cat Photos</h2>
       <!-- TODO: Add link to cat photos -->
       <p>Click here to view more cat photos.</p>
---fcc-editable-region--
-      <img src="https://bit.ly/fcc-relaxing-cat">
---fcc-editable-region--
+      --fcc-editable-region--
+      <img src="https://bit.ly/fcc-relaxing-cat" />
+      --fcc-editable-region--
     </main>
   </body>
 </html>
 ```
-

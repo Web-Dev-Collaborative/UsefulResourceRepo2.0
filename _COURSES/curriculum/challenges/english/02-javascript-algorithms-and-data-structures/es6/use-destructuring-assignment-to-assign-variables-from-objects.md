@@ -13,7 +13,7 @@ Destructuring allows you to assign a new variable name when extracting values. Y
 Using the same object from the last example:
 
 ```js
-const user = { name: 'John Doe', age: 34 };
+const user = { name: "John Doe", age: 34 };
 ```
 
 Here's how you can give new variable names in the assignment:
@@ -73,13 +73,13 @@ assert(highToday === 77 && highTomorrow === 80);
 const HIGH_TEMPERATURES = {
   yesterday: 75,
   today: 77,
-  tomorrow: 80
+  tomorrow: 80,
 };
 
 // Only change code below this line
-  
+
 const highToday = HIGH_TEMPERATURES.today;
-const highTomorrow = HIGH_TEMPERATURES.tomorrow; 
+const highTomorrow = HIGH_TEMPERATURES.tomorrow;
 
 // Only change code above this line
 ```
@@ -90,7 +90,7 @@ const highTomorrow = HIGH_TEMPERATURES.tomorrow;
 const HIGH_TEMPERATURES = {
   yesterday: 75,
   today: 77,
-  tomorrow: 80
+  tomorrow: 80,
 };
 
 const { today: highToday, tomorrow: highTomorrow } = HIGH_TEMPERATURES;

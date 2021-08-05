@@ -1,6 +1,6 @@
 ---
 id: 5900f3e61000cf542c50fef9
-title: 'Problem 122: Efficient exponentiation'
+title: "Problem 122: Efficient exponentiation"
 challengeType: 5
 forumTopicId: 301749
 dashedName: problem-122-efficient-exponentiation
@@ -38,7 +38,6 @@ assert.strictEqual(euler122(), 1582);
 
 ```js
 function euler122() {
-
   return true;
 }
 

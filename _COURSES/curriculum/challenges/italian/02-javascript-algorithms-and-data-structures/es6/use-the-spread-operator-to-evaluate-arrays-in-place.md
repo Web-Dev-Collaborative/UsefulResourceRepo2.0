@@ -28,7 +28,7 @@ const maximus = Math.max(...arr);
 
 `maximus` avrà un valore di `89`.
 
-`...arr` restituisce un array spacchettato. In altre parole, *propaga* l'array. Tuttavia, l'operatore di propagazione funziona solo sul posto, come argomento di una funzione o in un array letterale (definito usando le parentesi quadre). Il seguente codice non funzionerà:
+`...arr` restituisce un array spacchettato. In altre parole, _propaga_ l'array. Tuttavia, l'operatore di propagazione funziona solo sul posto, come argomento di una funzione o in un array letterale (definito usando le parentesi quadre). Il seguente codice non funzionerà:
 
 ```js
 const spreaded = ...arr;
@@ -56,7 +56,7 @@ assert(code.match(/Array\(\s*\.\.\.arr1\s*\)|\[\s*\.\.\.arr1\s*\]/));
 
 ```js
 assert((arr1, arr2) => {
-  arr1.push('JUN');
+  arr1.push("JUN");
   return arr2.length < arr1.length;
 });
 ```
@@ -66,10 +66,10 @@ assert((arr1, arr2) => {
 ## --seed-contents--
 
 ```js
-const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY'];
+const arr1 = ["JAN", "FEB", "MAR", "APR", "MAY"];
 let arr2;
 
-arr2 = [];  // Change this line
+arr2 = []; // Change this line
 
 console.log(arr2);
 ```
@@ -77,7 +77,7 @@ console.log(arr2);
 # --solutions--
 
 ```js
-const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY'];
+const arr1 = ["JAN", "FEB", "MAR", "APR", "MAY"];
 let arr2;
 
 arr2 = [...arr1];

@@ -1,6 +1,6 @@
 ---
 id: 5900f4531000cf542c50ff66
-title: 'Problem 231: The prime factorisation of binomial coefficients'
+title: "Problem 231: The prime factorisation of binomial coefficients"
 challengeType: 5
 forumTopicId: 301875
 dashedName: problem-231-the-prime-factorisation-of-binomial-coefficients
@@ -30,7 +30,6 @@ assert.strictEqual(euler231(), 7526965179680);
 
 ```js
 function euler231() {
-
   return true;
 }
 

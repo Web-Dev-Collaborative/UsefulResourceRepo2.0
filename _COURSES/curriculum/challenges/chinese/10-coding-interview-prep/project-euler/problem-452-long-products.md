@@ -1,6 +1,6 @@
 ---
 id: 5900f5311000cf542c510043
-title: 'Problem 452: Long Products'
+title: "Problem 452: Long Products"
 challengeType: 5
 forumTopicId: 302125
 dashedName: problem-452-long-products
@@ -30,7 +30,6 @@ assert.strictEqual(euler452(), 345558983);
 
 ```js
 function euler452() {
-
   return true;
 }
 

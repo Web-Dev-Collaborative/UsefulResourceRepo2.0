@@ -32,43 +32,43 @@ Write a function that accepts a string as a parameter, processes it, and returns
 `lookAndSay` should be a function.
 
 ```js
-assert(typeof lookAndSay == 'function');
+assert(typeof lookAndSay == "function");
 ```
 
 `lookAndSay("1")` should return a string.
 
 ```js
-assert(typeof lookAndSay('1') == 'string');
+assert(typeof lookAndSay("1") == "string");
 ```
 
 `lookAndSay("1")` should return `"11"`.
 
 ```js
-assert.equal(lookAndSay('1'), '11');
+assert.equal(lookAndSay("1"), "11");
 ```
 
 `lookAndSay("11")` should return `"21"`.
 
 ```js
-assert.equal(lookAndSay('11'), '21');
+assert.equal(lookAndSay("11"), "21");
 ```
 
 `lookAndSay("21")` should return `"1211"`.
 
 ```js
-assert.equal(lookAndSay('21'), '1211');
+assert.equal(lookAndSay("21"), "1211");
 ```
 
 `lookAndSay("1211")` should return `"111221"`.
 
 ```js
-assert.equal(lookAndSay('1211'), '111221');
+assert.equal(lookAndSay("1211"), "111221");
 ```
 
 `lookAndSay("3542")` should return `"13151412"`.
 
 ```js
-assert.equal(lookAndSay('3542'), '13151412');
+assert.equal(lookAndSay("3542"), "13151412");
 ```
 
 # --seed--
@@ -76,17 +76,15 @@ assert.equal(lookAndSay('3542'), '13151412');
 ## --seed-contents--
 
 ```js
-function lookAndSay(str) {
-
-}
+function lookAndSay(str) {}
 ```
 
 # --solutions--
 
 ```js
 function lookAndSay(str) {
-    return str.replace(/(.)\1*/g, function(seq, p1) {
-      return seq.length.toString() + p1;
-    });
+  return str.replace(/(.)\1*/g, function (seq, p1) {
+    return seq.length.toString() + p1;
+  });
 }
 ```

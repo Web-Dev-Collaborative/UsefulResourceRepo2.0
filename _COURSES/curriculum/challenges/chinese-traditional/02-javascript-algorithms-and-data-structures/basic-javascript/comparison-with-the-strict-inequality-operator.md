@@ -2,21 +2,21 @@
 id: 56533eb9ac21ba0edf2244d3
 title: 嚴格不等運算符
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cKekkUy'
+videoUrl: "https://scrimba.com/c/cKekkUy"
 forumTopicId: 16791
 dashedName: comparison-with-the-strict-inequality-operator
 ---
 
 # --description--
 
-嚴格不相等運算符（`!==`）與全等運算符是相反的。 這意味着嚴格不相等並返回 `false` 的地方，用嚴格相等運算符會返回 `true`，*反之亦然*。 嚴格不相等運算符不會轉換值的數據類型。
+嚴格不相等運算符（`!==`）與全等運算符是相反的。 這意味着嚴格不相等並返回 `false` 的地方，用嚴格相等運算符會返回 `true`，_反之亦然_。 嚴格不相等運算符不會轉換值的數據類型。
 
 **示例**
 
 ```js
-3 !==  3
-3 !== '3'
-4 !==  3
+3 !== 3;
+3 !== "3";
+4 !== 3;
 ```
 
 按順序，這些表達式會返回 `false`、`true`、`true`。
@@ -30,25 +30,25 @@ dashedName: comparison-with-the-strict-inequality-operator
 `testStrictNotEqual(17)` 應該返回字符串 `Equal`
 
 ```js
-assert(testStrictNotEqual(17) === 'Equal');
+assert(testStrictNotEqual(17) === "Equal");
 ```
 
 `testStrictNotEqual("17")` 應該返回字符串 `Not Equal`
 
 ```js
-assert(testStrictNotEqual('17') === 'Not Equal');
+assert(testStrictNotEqual("17") === "Not Equal");
 ```
 
 `testStrictNotEqual(12)` 應該返回字符串 `Not Equal`
 
 ```js
-assert(testStrictNotEqual(12) === 'Not Equal');
+assert(testStrictNotEqual(12) === "Not Equal");
 ```
 
 `testStrictNotEqual("bob")` 應該返回字符串 `Not Equal`
 
 ```js
-assert(testStrictNotEqual('bob') === 'Not Equal');
+assert(testStrictNotEqual("bob") === "Not Equal");
 ```
 
 應該使用 `!==` 運算符。
@@ -64,7 +64,8 @@ assert(code.match(/(val\s*!==\s*\d+)|(\d+\s*!==\s*val)/g).length > 0);
 ```js
 // Setup
 function testStrictNotEqual(val) {
-  if (val) { // Change this line
+  if (val) {
+    // Change this line
     return "Not Equal";
   }
   return "Equal";

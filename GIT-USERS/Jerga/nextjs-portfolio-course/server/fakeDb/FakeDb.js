@@ -1,14 +1,12 @@
+const { portfolios, users, forumCategories, topics, posts } = require("./data");
 
-const { portfolios, users, forumCategories, topics, posts } = require('./data');
-
-const Portfolio = require('../database/models/portfolio');
-const User = require('../database/models/user');
-const ForumCategory = require('../database/models/forumCategory');
-const Topic = require('../database/models/topic');
-const Post = require('../database/models/post');
+const Portfolio = require("../database/models/portfolio");
+const User = require("../database/models/user");
+const ForumCategory = require("../database/models/forumCategory");
+const Topic = require("../database/models/topic");
+const Post = require("../database/models/post");
 
 class FakeDb {
-
   async clean() {
     await User.deleteMany({});
     await Portfolio.deleteMany({});

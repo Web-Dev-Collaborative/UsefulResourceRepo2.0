@@ -26,7 +26,7 @@ Il componente `TypesOfFood` dovrebbe restituire un singolo elemento `div`.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(TypesOfFood));
-    return mockedComponent.children().type() === 'div';
+    return mockedComponent.children().type() === "div";
   })()
 );
 ```
@@ -37,7 +37,7 @@ Il componente `TypesOfFood` dovrebbe presentare il componente `Fruits` dopo l'el
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(TypesOfFood));
-    return mockedComponent.children().childAt(1).name() === 'Fruits';
+    return mockedComponent.children().childAt(1).name() === "Fruits";
   })()
 );
 ```
@@ -48,7 +48,7 @@ Il componente `TypesOfFood` dovrebbe presentare il componente `Vegetables` dopo 
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(TypesOfFood));
-    return mockedComponent.children().childAt(2).name() === 'Vegetables';
+    return mockedComponent.children().childAt(2).name() === "Vegetables";
   })()
 );
 ```
@@ -58,14 +58,14 @@ Il componente `TypesOfFood` dovrebbe essere presentato nel DOM all'interno del `
 ```js
 assert(
   (function () {
-    const html = document.getElementById('challenge-node').childNodes[0]
-      .innerHTML;
+    const html =
+      document.getElementById("challenge-node").childNodes[0].innerHTML;
     return (
       html.includes(
-        '<div><h2>Fruits:</h2><h4>Non-Citrus:</h4><ul><li>Apples</li><li>Blueberries</li><li>Strawberries</li><li>Bananas</li></ul><h4>Citrus:</h4><ul><li>Lemon</li><li>Lime</li><li>Orange</li><li>Grapefruit</li></ul></div>'
+        "<div><h2>Fruits:</h2><h4>Non-Citrus:</h4><ul><li>Apples</li><li>Blueberries</li><li>Strawberries</li><li>Bananas</li></ul><h4>Citrus:</h4><ul><li>Lemon</li><li>Lime</li><li>Orange</li><li>Grapefruit</li></ul></div>"
       ) &&
       html.includes(
-        '<div><h2>Vegetables:</h2><ul><li>Brussel Sprouts</li><li>Broccoli</li><li>Squash</li></ul></div>'
+        "<div><h2>Vegetables:</h2><ul><li>Brussel Sprouts</li><li>Broccoli</li><li>Squash</li></ul></div>"
       )
     );
   })()
@@ -82,19 +82,19 @@ const Fruits = () => {
     <div>
       <h2>Fruits:</h2>
       <h4>Non-Citrus:</h4>
-        <ul>
-          <li>Apples</li>
-          <li>Blueberries</li>
-          <li>Strawberries</li>
-          <li>Bananas</li>
-        </ul>
+      <ul>
+        <li>Apples</li>
+        <li>Blueberries</li>
+        <li>Strawberries</li>
+        <li>Bananas</li>
+      </ul>
       <h4>Citrus:</h4>
-        <ul>
-          <li>Lemon</li>
-          <li>Lime</li>
-          <li>Orange</li>
-          <li>Grapefruit</li>
-        </ul>
+      <ul>
+        <li>Lemon</li>
+        <li>Lime</li>
+        <li>Orange</li>
+        <li>Grapefruit</li>
+      </ul>
     </div>
   );
 };
@@ -129,7 +129,7 @@ class TypesOfFood extends React.Component {
       </div>
     );
   }
-};
+}
 
 // Change code below this line
 ```
@@ -146,14 +146,14 @@ class TypesOfFood extends React.Component {
       <div>
         <h1>Types of Food:</h1>
         {/* Change code below this line */}
-          <Fruits />
-           <Vegetables />
-         {/* Change code above this line */}
+        <Fruits />
+        <Vegetables />
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 
 // Change code below this line
-ReactDOM.render(<TypesOfFood />, document.getElementById('challenge-node'));
+ReactDOM.render(<TypesOfFood />, document.getElementById("challenge-node"));
 ```

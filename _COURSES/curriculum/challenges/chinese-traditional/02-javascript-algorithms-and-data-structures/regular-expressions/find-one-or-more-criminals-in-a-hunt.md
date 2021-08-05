@@ -15,19 +15,19 @@ dashedName: find-one-or-more-criminals-in-a-hunt
 當字母`z`在一行中出現一次或連續多次時，正則表達式`/z+/`會匹配到它。 它會在以下所有字符串中找到匹配項：
 
 ```js
-"z"
-"zzzzzz"
-"ABCzzzz"
-"zzzzABC"
-"abczzzzzzzzzzzzzzzzzzzzzabc"
+"z";
+"zzzzzz";
+"ABCzzzz";
+"zzzzABC";
+"abczzzzzzzzzzzzzzzzzzzzzabc";
 ```
 
 但是它不會在以下字符串中找到匹配項，因爲它們中沒有字母`z`：
 
 ```js
-""
-"ABC"
-"abcabc"
+"";
+"ABC";
+"abcabc";
 ```
 
 # --instructions--
@@ -39,21 +39,21 @@ dashedName: find-one-or-more-criminals-in-a-hunt
 您的正則表達式應該匹配字符串 `C` 中的一個罪犯(`C`)
 
 ```js
-assert('C'.match(reCriminals) && 'C'.match(reCriminals)[0] == 'C');
+assert("C".match(reCriminals) && "C".match(reCriminals)[0] == "C");
 ```
 
 您的正則表達式應該匹配字符串 `CC` 中的兩個罪犯(`CC`)
 
 ```js
-assert('CC'.match(reCriminals) && 'CC'.match(reCriminals)[0] == 'CC');
+assert("CC".match(reCriminals) && "CC".match(reCriminals)[0] == "CC");
 ```
 
 您的正則表達式應該在字符串 `P1P5P4CCCcP2P6P3` 中匹配三個罪犯(`CCC`)。
 
 ```js
 assert(
-  'P1P5P4CCCcP2P6P3'.match(reCriminals) &&
-    'P1P5P4CCCcP2P6P3'.match(reCriminals)[0] == 'CCC'
+  "P1P5P4CCCcP2P6P3".match(reCriminals) &&
+    "P1P5P4CCCcP2P6P3".match(reCriminals)[0] == "CCC"
 );
 ```
 
@@ -61,33 +61,33 @@ assert(
 
 ```js
 assert(
-  'P6P2P7P4P5CCCCCP3P1'.match(reCriminals) &&
-    'P6P2P7P4P5CCCCCP3P1'.match(reCriminals)[0] == 'CCCCC'
+  "P6P2P7P4P5CCCCCP3P1".match(reCriminals) &&
+    "P6P2P7P4P5CCCCCP3P1".match(reCriminals)[0] == "CCCCC"
 );
 ```
 
 你的正則表達式在`""`中不應該匹配到任何罪犯
 
 ```js
-assert(!reCriminals.test(''));
+assert(!reCriminals.test(""));
 ```
 
 你的正則表達式在`P1P2P3`中不應該匹配到任何罪犯
 
 ```js
-assert(!reCriminals.test('P1P2P3'));
+assert(!reCriminals.test("P1P2P3"));
 ```
 
 你的正則表達式應該在`P2P1P5P4CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCP3`中匹配五十個 罪犯（'`CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC`'）。
 
 ```js
 assert(
-  'P2P1P5P4CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCP3'.match(
+  "P2P1P5P4CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCP3".match(
     reCriminals
   ) &&
-    'P2P1P5P4CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCP3'.match(
+    "P2P1P5P4CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCP3".match(
       reCriminals
-    )[0] == 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
+    )[0] == "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
 );
 ```
 

@@ -22,7 +22,9 @@ Un modo per evitare questi problemi è con la parola chiave `this`:
 let duck = {
   name: "Aflac",
   numLegs: 2,
-  sayName: function() {return "The name of this duck is " + this.name + ".";}
+  sayName: function () {
+    return "The name of this duck is " + this.name + ".";
+  },
 };
 ```
 
@@ -37,7 +39,7 @@ Modifica il metodo `dog.sayLegs` per rimuovere qualsiasi riferimento a `dog`. Us
 `dog.sayLegs()` dovrebbe restituire la stringa data.
 
 ```js
-assert(dog.sayLegs() === 'This dog has 4 legs.');
+assert(dog.sayLegs() === "This dog has 4 legs.");
 ```
 
 Il tuo codice dovrebbe utilizzare la parola chiave `this` per accedere alla proprietà `numLegs` di `dog`.
@@ -54,7 +56,9 @@ assert(code.match(/this\.numLegs/g));
 let dog = {
   name: "Spot",
   numLegs: 4,
-  sayLegs: function() {return "This dog has " + dog.numLegs + " legs.";}
+  sayLegs: function () {
+    return "This dog has " + dog.numLegs + " legs.";
+  },
 };
 
 dog.sayLegs();
@@ -66,9 +70,9 @@ dog.sayLegs();
 let dog = {
   name: "Spot",
   numLegs: 4,
-  sayLegs () {
-    return 'This dog has ' + this.numLegs + ' legs.';
-  }
+  sayLegs() {
+    return "This dog has " + this.numLegs + " legs.";
+  },
 };
 
 dog.sayLegs();

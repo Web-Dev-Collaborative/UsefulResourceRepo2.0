@@ -1,6 +1,6 @@
 ---
 id: 5900f3c11000cf542c50fed4
-title: 'Problem 85: Counting rectangles'
+title: "Problem 85: Counting rectangles"
 challengeType: 5
 forumTopicId: 302199
 dashedName: problem-85-counting-rectangles
@@ -19,7 +19,7 @@ Although there exists no rectangular grid that contains exactly two million rect
 `countingRectangles()` should return a number.
 
 ```js
-assert(typeof countingRectangles() === 'number');
+assert(typeof countingRectangles() === "number");
 ```
 
 `countingRectangles()` should return 2772.
@@ -34,7 +34,6 @@ assert.strictEqual(countingRectangles(), 2772);
 
 ```js
 function countingRectangles() {
-
   return true;
 }
 

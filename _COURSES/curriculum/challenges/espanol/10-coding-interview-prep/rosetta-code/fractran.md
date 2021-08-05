@@ -42,37 +42,37 @@ Write a function that takes a fractran program as a string parameter and returns
 `fractran` should be a function.
 
 ```js
-assert(typeof fractran == 'function');
+assert(typeof fractran == "function");
 ```
 
 `fractran("3/2, 1/3")` should return an array.
 
 ```js
-assert(Array.isArray(fractran('3/2, 1/3')));
+assert(Array.isArray(fractran("3/2, 1/3")));
 ```
 
 `fractran("3/2, 1/3")` should return `[ 2, 3, 1 ]`.
 
 ```js
-assert.deepEqual(fractran('3/2, 1/3'), [2, 3, 1]);
+assert.deepEqual(fractran("3/2, 1/3"), [2, 3, 1]);
 ```
 
 `fractran("3/2, 5/3, 1/5")` should return `[ 2, 3, 5, 1 ]`.
 
 ```js
-assert.deepEqual(fractran('3/2, 5/3, 1/5'), [2, 3, 5, 1]);
+assert.deepEqual(fractran("3/2, 5/3, 1/5"), [2, 3, 5, 1]);
 ```
 
 `fractran("3/2, 6/3")` should return `[ 2, 3, 6, 9, 18, 27, 54, 81, 162, 243 ]`.
 
 ```js
-assert.deepEqual(fractran('3/2, 6/3'), [2, 3, 6, 9, 18, 27, 54, 81, 162, 243]);
+assert.deepEqual(fractran("3/2, 6/3"), [2, 3, 6, 9, 18, 27, 54, 81, 162, 243]);
 ```
 
 `fractran("2/7, 7/2")` should return `[ 2, 7, 2, 7, 2, 7, 2, 7, 2, 7 ]`.
 
 ```js
-assert.deepEqual(fractran('2/7, 7/2'), [2, 7, 2, 7, 2, 7, 2, 7, 2, 7]);
+assert.deepEqual(fractran("2/7, 7/2"), [2, 7, 2, 7, 2, 7, 2, 7, 2, 7]);
 ```
 
 `fractran("17/91, 78/85, 19/51, 23/38, 29/33, 77/29, 95/23, 77/19, 1/17, 11/13, 13/11, 15/14, 15/2, 55/1")` should return `[ 2, 15, 825, 725, 1925, 2275, 425, 390, 330, 290 ]`.
@@ -80,7 +80,7 @@ assert.deepEqual(fractran('2/7, 7/2'), [2, 7, 2, 7, 2, 7, 2, 7, 2, 7]);
 ```js
 assert.deepEqual(
   fractran(
-    '17/91, 78/85, 19/51, 23/38, 29/33, 77/29, 95/23, 77/19, 1/17, 11/13, 13/11, 15/14, 15/2, 55/1'
+    "17/91, 78/85, 19/51, 23/38, 29/33, 77/29, 95/23, 77/19, 1/17, 11/13, 13/11, 15/14, 15/2, 55/1"
   ),
   [2, 15, 825, 725, 1925, 2275, 425, 390, 330, 290]
 );
@@ -91,42 +91,40 @@ assert.deepEqual(
 ## --seed-contents--
 
 ```js
-function fractran(progStr) {
-
-}
+function fractran(progStr) {}
 ```
 
 # --solutions--
 
 ```js
-function fractran(progStr){
+function fractran(progStr) {
   var num = new Array();
   var den = new Array();
-  var val ;
-  var out="";
-  function compile(prog){
+  var val;
+  var out = "";
+  function compile(prog) {
     var regex = /\s*(\d*)\s*\/\s*(\d*)\s*(.*)/m;
-    while(regex.test(prog)){
+    while (regex.test(prog)) {
       num.push(regex.exec(prog)[1]);
       den.push(regex.exec(prog)[2]);
       prog = regex.exec(prog)[3];
     }
   }
 
-  function step(val){
-    var i=0;
-    while(i<den.length && val%den[i] != 0) i++;
-    return num[i]*val/den[i];
+  function step(val) {
+    var i = 0;
+    while (i < den.length && val % den[i] != 0) i++;
+    return (num[i] * val) / den[i];
   }
 
-  var seq=[]
+  var seq = [];
 
-  function exec(val){
+  function exec(val) {
     var i = 0;
-    while(val && i<limit){
-      seq.push(val)
+    while (val && i < limit) {
+      seq.push(val);
       val = step(val);
-      i ++;
+      i++;
     }
   }
 

@@ -27,7 +27,7 @@ Corrige la expresión regular `/<.*>/` para que devuelva la etiqueta HTML `<h1>`
 La variable `result` debe ser un arreglo con `<h1>` en él
 
 ```js
-assert(result[0] == '<h1>');
+assert(result[0] == "<h1>");
 ```
 
 `myRegex` debe usar una coincidencia perezosa
@@ -39,7 +39,7 @@ assert(/\?/g.test(myRegex));
 `myRegex` no debe incluir la cadena `h1`
 
 ```js
-assert(!myRegex.source.match('h1'));
+assert(!myRegex.source.match("h1"));
 ```
 
 # --seed--

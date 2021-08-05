@@ -19,8 +19,7 @@
  * associated with that account if it is available (federated account).
  */
 
-goog.provide('firebaseui.auth.PendingEmailCredential');
-
+goog.provide("firebaseui.auth.PendingEmailCredential");
 
 /**
  * The pending email credential.
@@ -40,18 +39,15 @@ firebaseui.auth.PendingEmailCredential = class {
     this.credential_ = credential || null;
   }
 
-
   /** @return {string} The pending email. */
   getEmail() {
     return this.email_;
   }
 
-
   /** @return {?firebase.auth.AuthCredential} The pending credential. */
   getCredential() {
     return this.credential_;
   }
-
 
   /**
    * @return {!Object} The plain object representation of a pending email
@@ -59,12 +55,11 @@ firebaseui.auth.PendingEmailCredential = class {
    */
   toPlainObject() {
     return {
-      'email': this.email_,
-      'credential': this.credential_ && this.credential_['toJSON']()
+      email: this.email_,
+      credential: this.credential_ && this.credential_["toJSON"](),
     };
   }
 };
-
 
 /**
  * @param {?Object} response The plain object presentation of a potential
@@ -72,12 +67,15 @@ firebaseui.auth.PendingEmailCredential = class {
  * @return {?firebaseui.auth.PendingEmailCredential} The pending email
  *     credential representation of the provided object.
  */
-firebaseui.auth.PendingEmailCredential.fromPlainObject = function(response) {
-  if (response && response['email']) {
-    var credentialObject = response['credential'] &&
-        firebase.auth.AuthCredential['fromJSON'](response['credential']);
+firebaseui.auth.PendingEmailCredential.fromPlainObject = function (response) {
+  if (response && response["email"]) {
+    var credentialObject =
+      response["credential"] &&
+      firebase.auth.AuthCredential["fromJSON"](response["credential"]);
     return new firebaseui.auth.PendingEmailCredential(
-        /** @type {string} */ (response['email']), credentialObject);
+      /** @type {string} */ (response["email"]),
+      credentialObject
+    );
   }
   return null;
 };

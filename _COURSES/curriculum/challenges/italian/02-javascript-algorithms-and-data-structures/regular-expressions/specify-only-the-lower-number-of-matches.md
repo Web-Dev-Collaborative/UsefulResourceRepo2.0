@@ -41,37 +41,37 @@ assert(haRegex.source.match(/{.*?}/).length > 0);
 La tua espressione regolare non dovrebbe riconoscere la stringa `Hazzah`
 
 ```js
-assert(!haRegex.test('Hazzah'));
+assert(!haRegex.test("Hazzah"));
 ```
 
 La tua espressione regolare non dovrebbe riconoscere la stringa `Hazzzah`
 
 ```js
-assert(!haRegex.test('Hazzzah'));
+assert(!haRegex.test("Hazzzah"));
 ```
 
 La tua espressione regolare dovrebbe riconoscere la stringa `Hazzzzah`
 
 ```js
-assert('Hazzzzah'.match(haRegex)[0].length === 8);
+assert("Hazzzzah".match(haRegex)[0].length === 8);
 ```
 
 La tua espressione regolare dovrebbe riconoscere la stringa `Hazzzzzah`
 
 ```js
-assert('Hazzzzzah'.match(haRegex)[0].length === 9);
+assert("Hazzzzzah".match(haRegex)[0].length === 9);
 ```
 
 La tua espressione regolare dovrebbe riconoscere la stringa `Hazzzzzzah`
 
 ```js
-assert('Hazzzzzzah'.match(haRegex)[0].length === 10);
+assert("Hazzzzzzah".match(haRegex)[0].length === 10);
 ```
 
 La tua espressione regolare dovrebbe riconoscere la stringa `Hazzah` con 30 `z` in essa.
 
 ```js
-assert('Hazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzah'.match(haRegex)[0].length === 34);
+assert("Hazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzah".match(haRegex)[0].length === 34);
 ```
 
 # --seed--

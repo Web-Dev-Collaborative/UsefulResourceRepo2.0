@@ -1,6 +1,6 @@
 ---
 id: 5900f4d61000cf542c50ffe9
-title: 'Problem 362: Squarefree factors'
+title: "Problem 362: Squarefree factors"
 challengeType: 5
 forumTopicId: 302023
 dashedName: problem-362-squarefree-factors
@@ -38,7 +38,6 @@ assert.strictEqual(euler362(), 457895958010);
 
 ```js
 function euler362() {
-
   return true;
 }
 

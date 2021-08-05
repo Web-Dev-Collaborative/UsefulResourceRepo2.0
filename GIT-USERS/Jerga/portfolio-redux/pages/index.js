@@ -1,23 +1,28 @@
-import React from 'react';
+import React from "react";
 
-import BaseLayout from '../components/BaseLayout.js';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
+import BaseLayout from "../components/BaseLayout.js";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group"; // ES6
 
 // import Typist from 'react-typist';
 // import TypistLoop from '../components/TypistLoop';
 
-import Typed from 'react-typed';
+import Typed from "react-typed";
 
 class Index extends React.Component {
-
   constructor() {
     super();
 
     this.state = {
-      activeScreen: 0
-    }
+      activeScreen: 0,
+    };
 
-    this.roles = ['Developer', 'Designer', 'Project Leader', 'Course Creator', 'Tech Lover'];
+    this.roles = [
+      "Developer",
+      "Designer",
+      "Project Leader",
+      "Course Creator",
+      "Tech Lover",
+    ];
 
     this.screens = 2;
     this.currentScreen = 0;
@@ -38,7 +43,7 @@ class Index extends React.Component {
     this.cardAnimationInterval = setInterval(() => {
       if (self.currentScreen === self.screens) self.currentScreen = 0;
 
-      self.setState({activeScreen: self.currentScreen})
+      self.setState({ activeScreen: self.currentScreen });
       self.currentScreen++;
     }, 10000);
   }
@@ -47,55 +52,67 @@ class Index extends React.Component {
     const { activeScreen } = this.state;
 
     return (
-      <BaseLayout canonical={true} headerType={'landing'} className={`cover cover-${activeScreen}`}>
-      <div>
-        <div className="main-section">
-          <div className="background-image">
-            <img src="/static/images/back5.png" />
-          </div>
+      <BaseLayout
+        canonical={true}
+        headerType={"landing"}
+        className={`cover cover-${activeScreen}`}
+      >
+        <div>
+          <div className="main-section">
+            <div className="background-image">
+              <img src="/static/images/back5.png" />
+            </div>
 
-          <div className="social-icons">
-            <ul className="list-inline text-center">
-              <li>
-                <a href="#">
-                  <span className="fa-stack fa-lg">
-                    <i className="fas fa-circle fa-stack-2x"></i>
-                    <i className="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span className="fa-stack fa-lg">
-                    <i className="fas fa-circle fa-stack-2x"></i>
-                    <i className="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span className="fa-stack fa-lg">
-                    <i className="fas fa-circle fa-stack-2x"></i>
-                    <i className="fab fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-            </ul>
-          </div>
+            <div className="social-icons">
+              <ul className="list-inline text-center">
+                <li>
+                  <a href="#">
+                    <span className="fa-stack fa-lg">
+                      <i className="fas fa-circle fa-stack-2x"></i>
+                      <i className="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span className="fa-stack fa-lg">
+                      <i className="fas fa-circle fa-stack-2x"></i>
+                      <i className="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span className="fa-stack fa-lg">
+                      <i className="fas fa-circle fa-stack-2x"></i>
+                      <i className="fab fa-github fa-stack-1x fa-inverse"></i>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-          <div className="container">
-            <div className="row">
-              <div className="col-md-6">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-6">
                   <div className="hero-section">
-                    <div className={`flipper ${activeScreen === 0 ? 'isActive' : ''}`}>
+                    <div
+                      className={`flipper ${
+                        activeScreen === 0 ? "isActive" : ""
+                      }`}
+                    >
                       <div className="front">
                         <div className="hero-section-content">
                           <h2> BEST DEVELOPER ON THE MARKET </h2>
                           <div className="hero-section-content-intro">
-                            Have a look at events organised by, or for creatives of all branches
+                            Have a look at events organised by, or for creatives
+                            of all branches
                           </div>
                         </div>
-                        <img className="image" src="/static/images/section-2.png"/>
+                        <img
+                          className="image"
+                          src="/static/images/section-2.png"
+                        />
                         <div className="shadow-custom shadow-custom-2">
                           <div className="shadow-inner"> </div>
                         </div>
@@ -105,24 +122,29 @@ class Index extends React.Component {
                         <div className="hero-section-content">
                           <h2> BEST DEVELOPER MA V PICI </h2>
                           <div className="hero-section-content-intro">
-                            Have a look at events organised by, or for creatives of all branches
+                            Have a look at events organised by, or for creatives
+                            of all branches
                           </div>
                         </div>
-                        <img className="image" src="/static/images/section-1.png"/>
+                        <img
+                          className="image"
+                          src="/static/images/section-1.png"
+                        />
                         <div className="shadow-custom">
                           <div className="shadow-inner"> </div>
                         </div>
                       </div>
                     </div>
                   </div>
-              </div>
-              <div className="col-md-6 hero-welcome-wrapper">
-                <div className="hero-welcome-text">
-                  <h1>
-                    Welcome to the Luxembourgish Platform for Creatives from all Branches.
-                    Get informed, collaborate, meet and discover our best developers in the World!
-                  </h1>
-                  <Typed
+                </div>
+                <div className="col-md-6 hero-welcome-wrapper">
+                  <div className="hero-welcome-text">
+                    <h1>
+                      Welcome to the Luxembourgish Platform for Creatives from
+                      all Branches. Get informed, collaborate, meet and discover
+                      our best developers in the World!
+                    </h1>
+                    <Typed
                       loop
                       typeSpeed={70}
                       backSpeed={70}
@@ -134,27 +156,21 @@ class Index extends React.Component {
                       cursorChar="|"
                       className="self-typed"
                     />
-                </div>
-                <div className="hero-welcome-bio">
-                  <h1>
-                    Let's take a look on my work.
-                  </h1>
+                  </div>
+                  <div className="hero-welcome-bio">
+                    <h1>Let's take a look on my work.</h1>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </BaseLayout>
-    )
+      </BaseLayout>
+    );
   }
-
 }
 
-export default Index
-
-
-
+export default Index;
 
 // import React from 'react';
 
@@ -219,7 +235,6 @@ export default Index
 
 // export default Index;
 
-
 // <TypistLoop interval={1000}>
 // {this.roles.map(role =>
 // <Typist key={role} startDelay={200}><span className="self-typed">{role}.</span>
@@ -227,5 +242,3 @@ export default Index
 // </Typist>
 // )}
 // </TypistLoop>
-
-

@@ -1,8 +1,6 @@
+import { useForm } from "react-hook-form";
 
-import { useForm } from 'react-hook-form'
-
-const RegisterForm = ({onSubmit}) => {
-
+const RegisterForm = ({ onSubmit }) => {
   const { register, handleSubmit } = useForm();
 
   return (
@@ -14,7 +12,8 @@ const RegisterForm = ({onSubmit}) => {
           type="text"
           className="form-control"
           name="avatar"
-          id="avatar" />
+          id="avatar"
+        />
       </div>
       <div className="form-group">
         <label htmlFor="username">Username</label>
@@ -23,7 +22,8 @@ const RegisterForm = ({onSubmit}) => {
           type="text"
           className="form-control"
           name="username"
-          id="username" />
+          id="username"
+        />
       </div>
       <div className="form-group">
         <label htmlFor="email">Email</label>
@@ -32,7 +32,8 @@ const RegisterForm = ({onSubmit}) => {
           type="email"
           className="form-control"
           name="email"
-          id="email" />
+          id="email"
+        />
       </div>
       <div className="form-group">
         <label htmlFor="password">Password</label>
@@ -41,7 +42,8 @@ const RegisterForm = ({onSubmit}) => {
           type="password"
           className="form-control"
           name="password"
-          id="password" />
+          id="password"
+        />
       </div>
       <div className="form-group">
         <label htmlFor="passwordConfirmation">Password Confirmation</label>
@@ -50,13 +52,14 @@ const RegisterForm = ({onSubmit}) => {
           type="password"
           className="form-control"
           name="passwordConfirmation"
-          id="passwordConfirmation" />
+          id="passwordConfirmation"
+        />
       </div>
-      <button
-        type="submit"
-        className="btn btn-main bg-blue py-2 ttu">Submit</button>
+      <button type="submit" className="btn btn-main bg-blue py-2 ttu">
+        Submit
+      </button>
     </form>
-  )
-}
+  );
+};
 
 export default RegisterForm;

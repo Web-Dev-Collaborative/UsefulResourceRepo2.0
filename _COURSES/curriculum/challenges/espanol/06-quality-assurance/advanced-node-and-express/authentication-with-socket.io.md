@@ -13,7 +13,7 @@ Currently, you cannot determine who is connected to your web socket. While `req.
 Add `passport.socketio`, `connect-mongo`, and `cookie-parser` as dependencies and require them as `passportSocketIo`, `MongoStore`, and `cookieParser` respectively. Also, we need to initialize a new memory store, from `express-session` which we previously required. It should look like this:
 
 ```js
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require("connect-mongo")(session);
 const URI = process.env.MONGO_URI;
 const store = new MongoStore({ url: URI });
 ```
@@ -24,16 +24,16 @@ Now we just have to tell Socket.IO to use it and set the options. Be sure this i
 io.use(
   passportSocketIo.authorize({
     cookieParser: cookieParser,
-    key: 'express.sid',
+    key: "express.sid",
     secret: process.env.SESSION_SECRET,
     store: store,
     success: onAuthorizeSuccess,
-    fail: onAuthorizeFail
+    fail: onAuthorizeFail,
   })
 );
 ```
 
-Be sure to add the `key` and `store` to the `session` middleware mounted on the app. This is necessary to tell *SocketIO* which session to relate to.
+Be sure to add the `key` and `store` to the `session` middleware mounted on the app. This is necessary to tell _SocketIO_ which session to relate to.
 
 <hr />
 
@@ -41,14 +41,14 @@ Now, define the `success`, and `fail` callback functions:
 
 ```js
 function onAuthorizeSuccess(data, accept) {
-  console.log('successful connection to socket.io');
+  console.log("successful connection to socket.io");
 
   accept(null, true);
 }
 
 function onAuthorizeFail(data, message, error, accept) {
   if (error) throw new Error(message);
-  console.log('failed connection to socket.io:', message);
+  console.log("failed connection to socket.io:", message);
   accept(null, false);
 }
 ```
@@ -56,7 +56,7 @@ function onAuthorizeFail(data, message, error, accept) {
 The user object is now accessible on your socket object as `socket.request.user`. For example, now you can add the following:
 
 ```js
-console.log('user ' + socket.request.user.name + ' connected');
+console.log("user " + socket.request.user.name + " connected");
 ```
 
 It will log to the server console who has connected!
@@ -69,12 +69,12 @@ Submit your page when you think you've got it right. If you're running into erro
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.property(
         packJson.dependencies,
-        'passport.socketio',
+        "passport.socketio",
         'Your project should list "passport.socketio" as a dependency'
       );
     },
@@ -88,12 +88,12 @@ Submit your page when you think you've got it right. If you're running into erro
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.property(
         packJson.dependencies,
-        'cookie-parser',
+        "cookie-parser",
         'Your project should list "cookie-parser" as a dependency'
       );
     },
@@ -107,7 +107,7 @@ passportSocketIo should be properly required.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
@@ -125,7 +125,7 @@ passportSocketIo should be properly setup.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,

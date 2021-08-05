@@ -16,15 +16,14 @@
  * @fileoverview Fake accountchooser.com client for testing.
  */
 
-goog.module('firebaseui.auth.testing.FakeAcClient');
+goog.module("firebaseui.auth.testing.FakeAcClient");
 goog.module.declareLegacyNamespace();
 goog.setTestOnly();
 
-var Account = goog.require('firebaseui.auth.Account');
-var Disposable = goog.require('goog.Disposable');
-var PropertyReplacer = goog.require('goog.testing.PropertyReplacer');
-var acClient = goog.require('firebaseui.auth.acClient');
-
+var Account = goog.require("firebaseui.auth.Account");
+var Disposable = goog.require("goog.Disposable");
+var PropertyReplacer = goog.require("goog.testing.PropertyReplacer");
+var acClient = goog.require("firebaseui.auth.acClient");
 
 /**
  * Fake accountchooser.com client class.
@@ -49,11 +48,14 @@ class FakeAcClient extends Disposable {
    *     client.
    */
   install() {
-    var r = this.replacer_ = new PropertyReplacer();
-    r.set(acClient, 'isInitialized', goog.bind(this.isInitialized_, this));
-    r.set(acClient, 'init', goog.bind(this.init_, this));
+    var r = (this.replacer_ = new PropertyReplacer());
+    r.set(acClient, "isInitialized", goog.bind(this.isInitialized_, this));
+    r.set(acClient, "init", goog.bind(this.init_, this));
     r.set(
-        acClient, 'trySelectAccount', goog.bind(this.trySelectAccount_, this));
+      acClient,
+      "trySelectAccount",
+      goog.bind(this.trySelectAccount_, this)
+    );
     return this;
   }
 
@@ -107,7 +109,7 @@ class FakeAcClient extends Disposable {
 
   /** Sets the response from accountchooser.com as add account. */
   setAddAccount() {
-    this.acResult_ = 'Add account';
+    this.acResult_ = "Add account";
   }
 
   /**
@@ -134,19 +136,23 @@ class FakeAcClient extends Disposable {
    * @private
    */
   init_(
-      opt_onEmptyResponse, opt_onAccountSelected, opt_onAddAccount,
-      opt_providers, opt_language, opt_uiConfig) {
+    opt_onEmptyResponse,
+    opt_onAccountSelected,
+    opt_onAddAccount,
+    opt_providers,
+    opt_language,
+    opt_uiConfig
+  ) {
     this.onEmptyResponse_ = opt_onEmptyResponse;
     this.initialized_ = true;
     if (this.acResult_ == null) {
       opt_onEmptyResponse();
     } else if (this.acResult_ instanceof Account) {
-      opt_onAccountSelected(
-          /** @type {!Account} */ (this.acResult_));
-    } else if (this.acResult_ == 'Add account') {
+      opt_onAccountSelected(/** @type {!Account} */ (this.acResult_));
+    } else if (this.acResult_ == "Add account") {
       opt_onAddAccount(this.available_);
     } else {
-      throw new Error('unknown accountchooser result.');
+      throw new Error("unknown accountchooser result.");
     }
   }
 
@@ -187,6 +193,5 @@ class FakeAcClient extends Disposable {
     }
   }
 }
-
 
 exports = FakeAcClient;

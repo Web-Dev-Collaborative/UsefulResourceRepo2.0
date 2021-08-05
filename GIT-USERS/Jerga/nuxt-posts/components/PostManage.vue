@@ -7,7 +7,8 @@
           v-model="post.title"
           class="input"
           type="text"
-          placeholder="Awesome Title">
+          placeholder="Awesome Title"
+        />
       </div>
     </div>
     <div class="field">
@@ -17,7 +18,8 @@
           v-model="post.subtitle"
           class="input"
           type="text"
-          placeholder="Awesome subtitle">
+          placeholder="Awesome subtitle"
+        />
       </div>
     </div>
     <div class="field">
@@ -26,55 +28,47 @@
         <textarea
           v-model="post.content"
           class="textarea"
-          placeholder="Awesome Content"></textarea>
+          placeholder="Awesome Content"
+        ></textarea>
       </div>
     </div>
     <div class="markdown">
       <label class="label">Contet Preview</label>
       <div v-html="compiledMarkdown"></div>
     </div>
-    <button
-      @click.prevent="updatePost"
-      class="button is-primary">Update</button>
+    <button @click.prevent="updatePost" class="button is-primary">
+      Update
+    </button>
   </form>
 </template>
 
 <script>
 export default {
-  props: ['postData'],
+  props: ["postData"],
   data() {
     return {
-      post: {...this.postData}
-    }
+      post: { ...this.postData },
+    };
   },
   watch: {
     postData(data) {
-      this.post = {...data}
-    }
+      this.post = { ...data };
+    },
   },
   computed: {
     compiledMarkdown() {
       if (process.client) {
-        return marked(this.post.content, {sanitize: true})
+        return marked(this.post.content, { sanitize: true });
       }
 
-      return ''
-    }
+      return "";
+    },
   },
   methods: {
     updatePost() {
-      debugger
-      this.$store.dispatch('post/updatePost', {...this.post})
-    }
-  }
-}
+      debugger;
+      this.$store.dispatch("post/updatePost", { ...this.post });
+    },
+  },
+};
 </script>
-
-
-
-
-
-
-
-
-

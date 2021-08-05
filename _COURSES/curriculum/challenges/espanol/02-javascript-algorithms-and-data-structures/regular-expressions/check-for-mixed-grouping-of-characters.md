@@ -34,28 +34,28 @@ Tu expresión regular `myRegex` debe devolver `true` para la cadena `Franklin D.
 
 ```js
 myRegex.lastIndex = 0;
-assert(myRegex.test('Franklin D. Roosevelt'));
+assert(myRegex.test("Franklin D. Roosevelt"));
 ```
 
 Tu expresión regular `myRegex` debe devolver `true` para la cadena `Eleanor Roosevelt`
 
 ```js
 myRegex.lastIndex = 0;
-assert(myRegex.test('Eleanor Roosevelt'));
+assert(myRegex.test("Eleanor Roosevelt"));
 ```
 
 Tu expresión regular `myRegex` debe devolver `false` para la cadena `Franklin Rosevelt`
 
 ```js
 myRegex.lastIndex = 0;
-assert(!myRegex.test('Franklin Rosevelt'));
+assert(!myRegex.test("Franklin Rosevelt"));
 ```
 
 Tu expresión regular `myRegex` debe devolver `false` para la cadena `Frank Roosevelt`
 
 ```js
 myRegex.lastIndex = 0;
-assert(!myRegex.test('Frank Roosevelt'));
+assert(!myRegex.test("Frank Roosevelt"));
 ```
 
 Debes usar `.test()` para probar la expresión regular.

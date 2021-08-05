@@ -17,7 +17,7 @@ The `console.log()` method, which "prints" the output of what's within its paren
 Here's an example to print the string `Hello world!` to the console:
 
 ```js
-console.log('Hello world!');
+console.log("Hello world!");
 ```
 
 # --instructions--
@@ -42,7 +42,6 @@ let b = 1;
 a++;
 // Only change code below this line
 
-
 let sumAB = a + b;
 console.log(sumAB);
 ```
@@ -50,5 +49,6 @@ console.log(sumAB);
 # --solutions--
 
 ```js
-var a = 5; console.log(a);
+var a = 5;
+console.log(a);
 ```

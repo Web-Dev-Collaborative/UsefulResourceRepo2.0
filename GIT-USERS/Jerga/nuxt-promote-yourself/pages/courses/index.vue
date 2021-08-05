@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <section class="section">
@@ -9,13 +8,11 @@
           <div
             v-for="course in courses"
             :key="course._id"
-            class="column is-one-quarter">
+            class="column is-one-quarter"
+          >
             <!-- pass a course as a prop to course-card -->
-            <v-popover
-              offset="16"
-              trigger="hover"
-              placement="right-start">
-              <course-card :course="course"/>
+            <v-popover offset="16" trigger="hover" placement="right-start">
+              <course-card :course="course" />
               <template slot="popover">
                 <course-card-tooltip
                   :title="course.title"
@@ -33,31 +30,31 @@
 </template>
 
 <script>
-import CourseCard from '~/components/CourseCard'
-import CourseCardTooltip from '~/components/CourseCardTooltip'
-import { mapState } from 'vuex'
+import CourseCard from "~/components/CourseCard";
+import CourseCardTooltip from "~/components/CourseCardTooltip";
+import { mapState } from "vuex";
 export default {
   head: {
-    title: 'Tech Courses | Filip Jerga'
+    title: "Tech Courses | Filip Jerga",
   },
   components: {
-    CourseCard, CourseCardTooltip
+    CourseCard,
+    CourseCardTooltip,
   },
   computed: {
     ...mapState({
-      courses: state => state.course.items
-    })
+      courses: (state) => state.course.items,
+    }),
   },
-  async fetch({store}) {
-    await store.dispatch('course/fetchCourses')
-  }
-}
+  async fetch({ store }) {
+    await store.dispatch("course/fetchCourses");
+  },
+};
 </script>
 
 <style scoped lang="scss">
-  // Home page
-  .links {
-    padding-top: 15px;
-  }
+// Home page
+.links {
+  padding-top: 15px;
+}
 </style>
-

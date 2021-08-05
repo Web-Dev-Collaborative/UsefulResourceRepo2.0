@@ -20,7 +20,7 @@ doubler(4);
 Si una función flecha tiene un solo parámetro, los paréntesis que encierran el parámetro pueden ser omitidos.
 
 ```js
-const doubler = item => item * 2;
+const doubler = (item) => item * 2;
 ```
 
 Es posible pasar más de un argumento a una función flecha.
@@ -41,21 +41,21 @@ Reescribe la función `myConcat` que añade el contenido de `arr2` a `arr1` para
 Debes reemplazar la palabra clave `var`.
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/var/g));
+(getUserInput) => assert(!getUserInput("index").match(/var/g));
 ```
 
 `myConcat` debe ser una variable constante (utilizando `const`).
 
 ```js
-(getUserInput) => assert(getUserInput('index').match(/const\s+myConcat/g));
+(getUserInput) => assert(getUserInput("index").match(/const\s+myConcat/g));
 ```
 
 `myConcat` debe ser una función de flecha con dos parámetros
 
 ```js
 assert(
-  /myConcat=\(\w+,\w+\)=>/.test(code.replace(/\s/g, '')) &&
-    typeof myConcat === 'function'
+  /myConcat=\(\w+,\w+\)=>/.test(code.replace(/\s/g, "")) &&
+    typeof myConcat === "function"
 );
 ```
 
@@ -68,7 +68,7 @@ assert.deepEqual(myConcat([1, 2], [3, 4, 5]), [1, 2, 3, 4, 5]);
 La palabra clave `function` no debe ser usada.
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/function/g));
+(getUserInput) => assert(!getUserInput("index").match(/function/g));
 ```
 
 # --seed--
@@ -76,7 +76,7 @@ La palabra clave `function` no debe ser usada.
 ## --seed-contents--
 
 ```js
-var myConcat = function(arr1, arr2) {
+var myConcat = function (arr1, arr2) {
   return arr1.concat(arr2);
 };
 
@@ -86,7 +86,7 @@ console.log(myConcat([1, 2], [3, 4, 5]));
 # --solutions--
 
 ```js
-const myConcat = (arr1, arr2) =>  {
+const myConcat = (arr1, arr2) => {
   return arr1.concat(arr2);
 };
 

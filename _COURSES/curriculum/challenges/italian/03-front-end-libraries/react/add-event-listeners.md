@@ -26,7 +26,7 @@ Poi, in `componentWillUnmount()`, rimuovi questo stesso listener di eventi. Puoi
 assert(
   (() => {
     const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
-    return mockedComponent.find('div').children().find('h1').length === 1;
+    return mockedComponent.find("div").children().find("h1").length === 1;
   })()
 );
 ```
@@ -41,7 +41,7 @@ assert(
       .instance()
       .componentDidMount.toString();
     return new RegExp(
-      'document.addEventListener(.|\n|\r)+keydown(.|\n|\r)+this.handleKeyPress'
+      "document.addEventListener(.|\n|\r)+keydown(.|\n|\r)+this.handleKeyPress"
     ).test(didMountString);
   })()
 );
@@ -57,7 +57,7 @@ assert(
       .instance()
       .componentWillUnmount.toString();
     return new RegExp(
-      'document.removeEventListener(.|\n|\r)+keydown(.|\n|\r)+this.handleKeyPress'
+      "document.removeEventListener(.|\n|\r)+keydown(.|\n|\r)+this.handleKeyPress"
     ).test(willUnmountString);
   })()
 );
@@ -70,15 +70,15 @@ async () => {
   const waitForIt = (fn) =>
     new Promise((resolve, reject) => setTimeout(() => resolve(fn()), 250));
   const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
-  const beforeState = mockedComponent.state('message');
-  const beforeText = mockedComponent.find('h1').text();
+  const beforeState = mockedComponent.state("message");
+  const beforeText = mockedComponent.find("h1").text();
   const pressEnterKey = () => {
     mockedComponent.instance().handleKeyPress({ keyCode: 13 });
     return waitForIt(() => {
       mockedComponent.update();
       return {
-        state: mockedComponent.state('message'),
-        text: mockedComponent.find('h1').text()
+        state: mockedComponent.state("message"),
+        text: mockedComponent.find("h1").text(),
       };
     });
   };
@@ -94,7 +94,7 @@ async () => {
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyComponent />, document.getElementById('root'))
+ReactDOM.render(<MyComponent />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -104,22 +104,18 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: ''
+      message: "",
     };
     this.handleEnter = this.handleEnter.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
   }
   // Change code below this line
-  componentDidMount() {
-
-  }
-  componentWillUnmount() {
-
-  }
+  componentDidMount() {}
+  componentWillUnmount() {}
   // Change code above this line
   handleEnter() {
     this.setState((state) => ({
-      message: state.message + 'You pressed the enter key! '
+      message: state.message + "You pressed the enter key! ",
     }));
   }
   handleKeyPress(event) {
@@ -134,7 +130,7 @@ class MyComponent extends React.Component {
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -144,23 +140,24 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: ''
+      message: "",
     };
     this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.handleEnter = this.handleEnter.bind(this);  }
+    this.handleEnter = this.handleEnter.bind(this);
+  }
   componentDidMount() {
     // Change code below this line
-    document.addEventListener('keydown', this.handleKeyPress);
+    document.addEventListener("keydown", this.handleKeyPress);
     // Change code above this line
   }
   componentWillUnmount() {
     // Change code below this line
-    document.removeEventListener('keydown', this.handleKeyPress);
+    document.removeEventListener("keydown", this.handleKeyPress);
     // Change code above this line
   }
   handleEnter() {
     this.setState((state) => ({
-      message: state.message + 'You pressed the enter key! '
+      message: state.message + "You pressed the enter key! ",
     }));
   }
   handleKeyPress(event) {
@@ -175,5 +172,5 @@ class MyComponent extends React.Component {
       </div>
     );
   }
-};
+}
 ```

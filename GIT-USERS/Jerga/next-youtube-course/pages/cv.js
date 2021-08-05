@@ -1,5 +1,4 @@
-
-import { Section, PageTitle } from 'components/shared';
+import { Section, PageTitle } from "components/shared";
 
 const CV = () => {
   return (
@@ -7,7 +6,7 @@ const CV = () => {
       <PageTitle text="CV" />
       Cv Page
     </Section>
-  )
-}
+  );
+};
 
 export default CV;

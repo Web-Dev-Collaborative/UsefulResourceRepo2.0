@@ -52,7 +52,9 @@ function addSuffixToSnippetNames(lines: string[], snippetSuffix: string) {
   const outputLines = [];
   for (const line of lines) {
     if (line.match(RE_START_SNIPPET)) {
-      outputLines.push(line.replace(RE_START_SNIPPET, `[START $1${snippetSuffix}]`));
+      outputLines.push(
+        line.replace(RE_START_SNIPPET, `[START $1${snippetSuffix}]`)
+      );
     } else if (line.match(RE_END_SNIPPET)) {
       outputLines.push(
         line.replace(RE_END_SNIPPET, `[END $1${snippetSuffix}]`)
@@ -89,9 +91,7 @@ function adjustIndentation(lines: string[]) {
 function removeFirstLineAfterComments(lines: string[]) {
   const outputLines = [...lines];
 
-  const firstNonComment = outputLines.findIndex(
-    (l) => !l.startsWith("//")
-  );
+  const firstNonComment = outputLines.findIndex((l) => !l.startsWith("//"));
   if (firstNonComment >= 0 && isBlank(outputLines[firstNonComment])) {
     outputLines.splice(firstNonComment, 1);
   }
@@ -158,7 +158,7 @@ function collectSnippets(filePath: string): SnippetsConfig {
     map: {},
   };
 
-  // If a file does not have '// [SNIPPETS_SEPARATION enabled]' in it then 
+  // If a file does not have '// [SNIPPETS_SEPARATION enabled]' in it then
   // we don't process it for this script.
   config.enabled = lines.some((l) => !!l.match(RE_SNIPPETS_SEPARATION));
   if (!config.enabled) {
@@ -187,7 +187,9 @@ function collectSnippets(filePath: string): SnippetsConfig {
       // are part of the snippet content.
       const snippetName = startMatch[1];
       if (config.map[snippetName] !== undefined) {
-        throw new Error(`Detected more than one snippet with the tag ${snippetName}!`);
+        throw new Error(
+          `Detected more than one snippet with the tag ${snippetName}!`
+        );
       }
 
       config.map[snippetName] = [line];
@@ -199,9 +201,7 @@ function collectSnippets(filePath: string): SnippetsConfig {
       // If we were not aware that we were inside this snippet (no previous START)
       // then we hard throw.
       if (!inSnippetNames.includes(snippetName)) {
-        throw new Error(
-          `Unrecognized END tag ${snippetName} in ${filePath}.`
-        );
+        throw new Error(`Unrecognized END tag ${snippetName} in ${filePath}.`);
       }
 
       // Collect this line as the final line of the snippet and then
@@ -247,11 +247,7 @@ async function main() {
       const newFilePath = path.join(snippetDir, `${snippetName}.js`);
 
       const snippetLines = config.map[snippetName];
-      const content = processSnippet(
-        snippetLines,
-        filePath,
-        config.suffix
-      );
+      const content = processSnippet(snippetLines, filePath, config.suffix);
 
       fs.writeFileSync(newFilePath, content);
     }

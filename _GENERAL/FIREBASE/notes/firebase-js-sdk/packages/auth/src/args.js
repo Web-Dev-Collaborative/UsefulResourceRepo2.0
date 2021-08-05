@@ -29,7 +29,6 @@ goog.require('fireauth.AuthUser');
 goog.require('fireauth.MultiFactorSession');
 goog.require('fireauth.authenum.Error');
 
-
 /**
  * Represents an argument to a function. Fields:
  * <ul>
@@ -50,7 +49,6 @@ goog.require('fireauth.authenum.Error');
  * }}
  */
 fireauth.args.Argument;
-
 
 /**
  * Validates the arguments to a method call and throws an error if invalid. This
@@ -89,17 +87,21 @@ fireauth.args.Argument;
  * @param {boolean=} opt_isSetter Whether the function is a setter which takes
  *     a single argument.
  */
-fireauth.args.validate = function(apiName, expected, actual, opt_isSetter) {
+fireauth.args.validate = function (apiName, expected, actual, opt_isSetter) {
   // Convert the arguments object into a real array.
   var actualAsArray = Array.prototype.slice.call(actual);
   var errorMessage = fireauth.args.validateAndGetMessage_(
-      expected, actualAsArray, opt_isSetter);
+    expected,
+    actualAsArray,
+    opt_isSetter
+  );
   if (errorMessage) {
-    throw new fireauth.AuthError(fireauth.authenum.Error.ARGUMENT_ERROR,
-        apiName + ' failed: ' + errorMessage);
+    throw new fireauth.AuthError(
+      fireauth.authenum.Error.ARGUMENT_ERROR,
+      apiName + ' failed: ' + errorMessage
+    );
   }
 };
-
 
 /**
  * @param {!Array<!fireauth.args.Argument>} expected
@@ -110,13 +112,19 @@ fireauth.args.validate = function(apiName, expected, actual, opt_isSetter) {
  *     null.
  * @private
  */
-fireauth.args.validateAndGetMessage_ =
-    function(expected, actual, opt_isSetter) {
+fireauth.args.validateAndGetMessage_ = function (
+  expected,
+  actual,
+  opt_isSetter
+) {
   var minNumArgs = fireauth.args.calcNumRequiredArgs_(expected);
   var maxNumArgs = expected.length;
   if (actual.length < minNumArgs || maxNumArgs < actual.length) {
-    return fireauth.args.makeLengthError_(minNumArgs, maxNumArgs,
-        actual.length);
+    return fireauth.args.makeLengthError_(
+      minNumArgs,
+      maxNumArgs,
+      actual.length
+    );
   }
 
   for (var i = 0; i < actual.length; i++) {
@@ -132,13 +140,12 @@ fireauth.args.validateAndGetMessage_ =
   return null;
 };
 
-
 /**
  * @param {!Array<!fireauth.args.Argument>} expected
  * @return {number} The number of required arguments.
  * @private
  */
-fireauth.args.calcNumRequiredArgs_ = function(expected) {
+fireauth.args.calcNumRequiredArgs_ = function (expected) {
   var numRequiredArgs = 0;
   var isOptionalSection = false;
   for (var i = 0; i < expected.length; i++) {
@@ -146,16 +153,17 @@ fireauth.args.calcNumRequiredArgs_ = function(expected) {
       isOptionalSection = true;
     } else {
       if (isOptionalSection) {
-        throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR,
-            'Argument validator encountered a required argument after an ' +
-            'optional argument.');
+        throw new fireauth.AuthError(
+          fireauth.authenum.Error.INTERNAL_ERROR,
+          'Argument validator encountered a required argument after an ' +
+            'optional argument.'
+        );
       }
       numRequiredArgs++;
     }
   }
   return numRequiredArgs;
 };
-
 
 /**
  * @param {number} min The minimum number of arguments to the function,
@@ -166,7 +174,7 @@ fireauth.args.calcNumRequiredArgs_ = function(expected) {
  * @return {string} The error message.
  * @private
  */
-fireauth.args.makeLengthError_ = function(min, max, actual) {
+fireauth.args.makeLengthError_ = function (min, max, actual) {
   var numExpectedString;
   if (min == max) {
     if (min == 1) {
@@ -180,7 +188,6 @@ fireauth.args.makeLengthError_ = function(min, max, actual) {
   return 'Expected ' + numExpectedString + ' but got ' + actual + '.';
 };
 
-
 /**
  * @param {number} position The position at which there was an error.
  * @param {!fireauth.args.Argument} expectedType The expected type of the
@@ -190,23 +197,33 @@ fireauth.args.makeLengthError_ = function(min, max, actual) {
  * @return {string} The error message.
  * @private
  */
-fireauth.args.makeErrorAtPosition_ =
-    function(position, expectedType, opt_isSetter) {
+fireauth.args.makeErrorAtPosition_ = function (
+  position,
+  expectedType,
+  opt_isSetter
+) {
   var ordinal = fireauth.args.makeOrdinal_(position);
-  var argName = expectedType.name ?
-      fireauth.args.quoteString_(expectedType.name) + ' ' : '';
+  var argName = expectedType.name
+    ? fireauth.args.quoteString_(expectedType.name) + ' '
+    : '';
   // Add support to setters for readable/writable properties which take a
   // required single argument.
   var errorPrefix = !!opt_isSetter ? '' : ordinal + ' argument ';
-  return errorPrefix + argName + 'must be ' +
-      expectedType.typeLabel + '.';
+  return errorPrefix + argName + 'must be ' + expectedType.typeLabel + '.';
 };
 
-
 /** @private {!Array<string>} The first few ordinal numbers. */
-fireauth.args.ORDINAL_NUMBERS_ = ['First', 'Second', 'Third', 'Fourth',
-  'Fifth', 'Sixth', 'Seventh', 'Eighth', 'Ninth'];
-
+fireauth.args.ORDINAL_NUMBERS_ = [
+  'First',
+  'Second',
+  'Third',
+  'Fourth',
+  'Fifth',
+  'Sixth',
+  'Seventh',
+  'Eighth',
+  'Ninth'
+];
 
 /**
  * @param {number} cardinal An integer.
@@ -215,17 +232,18 @@ fireauth.args.ORDINAL_NUMBERS_ = ['First', 'Second', 'Third', 'Fourth',
  *     returns "Second", etc.
  * @private
  */
-fireauth.args.makeOrdinal_ = function(cardinal) {
+fireauth.args.makeOrdinal_ = function (cardinal) {
   // We only support the first few ordinal numbers. We could provide a more
   // robust solution, but it is unlikely that a function would need more than
   // nine arguments.
   if (cardinal < 0 || cardinal >= fireauth.args.ORDINAL_NUMBERS_.length) {
-    throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR,
-        'Argument validator received an unsupported number of arguments.');
+    throw new fireauth.AuthError(
+      fireauth.authenum.Error.INTERNAL_ERROR,
+      'Argument validator received an unsupported number of arguments.'
+    );
   }
   return fireauth.args.ORDINAL_NUMBERS_[cardinal];
 };
-
 
 /**
  * Specifies a string argument.
@@ -234,7 +252,7 @@ fireauth.args.makeOrdinal_ = function(cardinal) {
  *     Defaults to false.
  * @return {!fireauth.args.Argument}
  */
-fireauth.args.string = function(opt_name, opt_optional) {
+fireauth.args.string = function (opt_name, opt_optional) {
   return {
     name: opt_name || '',
     typeLabel: 'a valid string',
@@ -243,7 +261,6 @@ fireauth.args.string = function(opt_name, opt_optional) {
   };
 };
 
-
 /**
  * Specifies a boolean argument.
  * @param {?string=} opt_name The name of the argument.
@@ -251,7 +268,7 @@ fireauth.args.string = function(opt_name, opt_optional) {
  *     Defaults to false.
  * @return {!fireauth.args.Argument}
  */
-fireauth.args.bool = function(opt_name, opt_optional) {
+fireauth.args.bool = function (opt_name, opt_optional) {
   return {
     name: opt_name || '',
     typeLabel: 'a boolean',
@@ -260,7 +277,6 @@ fireauth.args.bool = function(opt_name, opt_optional) {
   };
 };
 
-
 /**
  * Specifies a number argument.
  * @param {?string=} opt_name The name of the argument.
@@ -268,7 +284,7 @@ fireauth.args.bool = function(opt_name, opt_optional) {
  *     Defaults to false.
  * @return {!fireauth.args.Argument}
  */
-fireauth.args.number = function(opt_name, opt_optional) {
+fireauth.args.number = function (opt_name, opt_optional) {
   return {
     name: opt_name || '',
     typeLabel: 'a valid number',
@@ -277,7 +293,6 @@ fireauth.args.number = function(opt_name, opt_optional) {
   };
 };
 
-
 /**
  * Specifies an object argument.
  * @param {?string=} opt_name The name of the argument.
@@ -285,7 +300,7 @@ fireauth.args.number = function(opt_name, opt_optional) {
  *     Defaults to false.
  * @return {!fireauth.args.Argument}
  */
-fireauth.args.object = function(opt_name, opt_optional) {
+fireauth.args.object = function (opt_name, opt_optional) {
   return {
     name: opt_name || '',
     typeLabel: 'a valid object',
@@ -294,7 +309,6 @@ fireauth.args.object = function(opt_name, opt_optional) {
   };
 };
 
-
 /**
  * Specifies a function argument.
  * @param {?string=} opt_name The name of the argument.
@@ -302,7 +316,7 @@ fireauth.args.object = function(opt_name, opt_optional) {
  *     Defaults to false.
  * @return {!fireauth.args.Argument}
  */
-fireauth.args.func = function(opt_name, opt_optional) {
+fireauth.args.func = function (opt_name, opt_optional) {
   return {
     name: opt_name || '',
     typeLabel: 'a function',
@@ -311,7 +325,6 @@ fireauth.args.func = function(opt_name, opt_optional) {
   };
 };
 
-
 /**
  * Specifies a null argument.
  * @param {?string=} opt_name The name of the argument.
@@ -319,7 +332,7 @@ fireauth.args.func = function(opt_name, opt_optional) {
  *     Defaults to false.
  * @return {!fireauth.args.Argument}
  */
-fireauth.args.null = function(opt_name, opt_optional) {
+fireauth.args.null = function (opt_name, opt_optional) {
   return {
     name: opt_name || '',
     typeLabel: 'null',
@@ -328,7 +341,6 @@ fireauth.args.null = function(opt_name, opt_optional) {
   };
 };
 
-
 /**
  * Specifies an HTML element argument.
  * @param {?string=} opt_name The name of the argument.
@@ -336,18 +348,18 @@ fireauth.args.null = function(opt_name, opt_optional) {
  *     Defaults to false.
  * @return {!fireauth.args.Argument}
  */
-fireauth.args.element = function(opt_name, opt_optional) {
-   return /** @type {!fireauth.args.Argument} */ ({
+fireauth.args.element = function (opt_name, opt_optional) {
+  return /** @type {!fireauth.args.Argument} */ ({
     name: opt_name || '',
     typeLabel: 'an HTML element',
     optional: !!opt_optional,
     validator: /** @type {function(!Element) : boolean} */ (
-        function(element) {
-          return !!(element && element instanceof Element);
-        })
+      function (element) {
+        return !!(element && element instanceof Element);
+      }
+    )
   });
 };
-
 
 /**
  * Specifies an instance of Firebase Auth.
@@ -355,18 +367,18 @@ fireauth.args.element = function(opt_name, opt_optional) {
  *     Defaults to false.
  * @return {!fireauth.args.Argument}
  */
-fireauth.args.firebaseAuth = function(opt_optional) {
+fireauth.args.firebaseAuth = function (opt_optional) {
   return /** @type {!fireauth.args.Argument} */ ({
     name: 'auth',
     typeLabel: 'an instance of Firebase Auth',
     optional: !!opt_optional,
     validator: /** @type {function(!fireauth.Auth) : boolean} */ (
-        function(auth) {
-          return !!(auth && auth instanceof fireauth.Auth);
-        })
+      function (auth) {
+        return !!(auth && auth instanceof fireauth.Auth);
+      }
+    )
   });
 };
-
 
 /**
  * Specifies an instance of Firebase User.
@@ -374,18 +386,18 @@ fireauth.args.firebaseAuth = function(opt_optional) {
  *     Defaults to false.
  * @return {!fireauth.args.Argument}
  */
-fireauth.args.firebaseUser = function(opt_optional) {
+fireauth.args.firebaseUser = function (opt_optional) {
   return /** @type {!fireauth.args.Argument} */ ({
     name: 'user',
     typeLabel: 'an instance of Firebase User',
     optional: !!opt_optional,
     validator: /** @type {function(!fireauth.AuthUser) : boolean} */ (
-        function(user) {
-          return !!(user && user instanceof fireauth.AuthUser);
-        })
+      function (user) {
+        return !!(user && user instanceof fireauth.AuthUser);
+      }
+    )
   });
 };
-
 
 /**
  * Specifies an instance of Firebase App.
@@ -393,18 +405,18 @@ fireauth.args.firebaseUser = function(opt_optional) {
  *     Defaults to false.
  * @return {!fireauth.args.Argument}
  */
-fireauth.args.firebaseApp = function(opt_optional) {
+fireauth.args.firebaseApp = function (opt_optional) {
   return /** @type {!fireauth.args.Argument} */ ({
     name: 'app',
     typeLabel: 'an instance of Firebase App',
     optional: !!opt_optional,
     validator: /** @type {function(!firebase.app.App) : boolean} */ (
-        function(app) {
-          return !!(app && app instanceof firebase.app.App);
-        })
+      function (app) {
+        return !!(app && app instanceof firebase.app.App);
+      }
+    )
   });
 };
-
 
 /**
  * Specifies an argument that implements the fireauth.AuthCredential interface.
@@ -415,33 +427,38 @@ fireauth.args.firebaseApp = function(opt_optional) {
  *     Defaults to false.
  * @return {!fireauth.args.Argument}
  */
-fireauth.args.authCredential =
-    function(opt_requiredProviderId, opt_name, opt_optional) {
-  var name = opt_name ||
-      (opt_requiredProviderId ?
-       opt_requiredProviderId + 'Credential' :
-       'credential');
-  var typeLabel = opt_requiredProviderId ?
-      'a valid ' + opt_requiredProviderId + ' credential' :
-      'a valid credential';
+fireauth.args.authCredential = function (
+  opt_requiredProviderId,
+  opt_name,
+  opt_optional
+) {
+  var name =
+    opt_name ||
+    (opt_requiredProviderId
+      ? opt_requiredProviderId + 'Credential'
+      : 'credential');
+  var typeLabel = opt_requiredProviderId
+    ? 'a valid ' + opt_requiredProviderId + ' credential'
+    : 'a valid credential';
   return /** @type {!fireauth.args.Argument} */ ({
     name: name,
     typeLabel: typeLabel,
     optional: !!opt_optional,
     validator: /** @type {function(!fireauth.AuthCredential) : boolean} */ (
-        function(credential) {
-          if (!credential) {
-            return false;
-          }
-          // If opt_requiredProviderId is set, make sure it matches the
-          // credential's providerId.
-          var matchesRequiredProvider = !opt_requiredProviderId ||
-              (credential['providerId'] === opt_requiredProviderId);
-          return !!(credential.getIdTokenProvider && matchesRequiredProvider);
-        })
+      function (credential) {
+        if (!credential) {
+          return false;
+        }
+        // If opt_requiredProviderId is set, make sure it matches the
+        // credential's providerId.
+        var matchesRequiredProvider =
+          !opt_requiredProviderId ||
+          credential['providerId'] === opt_requiredProviderId;
+        return !!(credential.getIdTokenProvider && matchesRequiredProvider);
+      }
+    )
   });
 };
-
 
 /**
  * Specifies an argument that implements the fireauth.MultiFactorAssertion
@@ -452,33 +469,38 @@ fireauth.args.authCredential =
  *     Defaults to false.
  * @return {!fireauth.args.Argument}
  */
-fireauth.args.multiFactorAssertion =
-    function(requiredFactorId, optionalName, optionalArg) {
-  var name = optionalName ||
-      (requiredFactorId ?
-       requiredFactorId + 'MultiFactorAssertion' : 'multiFactorAssertion');
-  var typeLabel = requiredFactorId ?
-      'a valid ' + requiredFactorId + ' multiFactorAssertion' :
-      'a valid multiFactorAssertion';
+fireauth.args.multiFactorAssertion = function (
+  requiredFactorId,
+  optionalName,
+  optionalArg
+) {
+  var name =
+    optionalName ||
+    (requiredFactorId
+      ? requiredFactorId + 'MultiFactorAssertion'
+      : 'multiFactorAssertion');
+  var typeLabel = requiredFactorId
+    ? 'a valid ' + requiredFactorId + ' multiFactorAssertion'
+    : 'a valid multiFactorAssertion';
   return /** @type {!fireauth.args.Argument} */ ({
     name: name,
     typeLabel: typeLabel,
     optional: !!optionalArg,
     validator:
-        /** @type {function(!fireauth.MultiFactorAssertion) : boolean} */ (
-            function(assertion) {
-              if (!assertion) {
-                return false;
-              }
-              // If requiredFactorId is set, make sure it matches the
-              // assertion's factorId.
-              var matchesRequiredFactor = !requiredFactorId ||
-                  (assertion['factorId'] === requiredFactorId);
-              return !!(assertion.process && matchesRequiredFactor);
-            })
+      /** @type {function(!fireauth.MultiFactorAssertion) : boolean} */ (
+        function (assertion) {
+          if (!assertion) {
+            return false;
+          }
+          // If requiredFactorId is set, make sure it matches the
+          // assertion's factorId.
+          var matchesRequiredFactor =
+            !requiredFactorId || assertion['factorId'] === requiredFactorId;
+          return !!(assertion.process && matchesRequiredFactor);
+        }
+      )
   });
 };
-
 
 /**
  * Specifies an argument that implements the fireauth.AuthProvider interface.
@@ -487,21 +509,23 @@ fireauth.args.multiFactorAssertion =
  *     Defaults to false.
  * @return {!fireauth.args.Argument}
  */
-fireauth.args.authProvider = function(opt_name, opt_optional) {
+fireauth.args.authProvider = function (opt_name, opt_optional) {
   return /** @type {!fireauth.args.Argument} */ ({
     name: opt_name || 'authProvider',
     typeLabel: 'a valid Auth provider',
     optional: !!opt_optional,
     validator: /** @type {function(!fireauth.AuthProvider) : boolean} */ (
-        function(provider) {
-          return !!(provider &&
-                    provider['providerId'] &&
-                    provider.hasOwnProperty &&
-                    provider.hasOwnProperty('isOAuthProvider'));
-        })
+      function (provider) {
+        return !!(
+          provider &&
+          provider['providerId'] &&
+          provider.hasOwnProperty &&
+          provider.hasOwnProperty('isOAuthProvider')
+        );
+      }
+    )
   });
 };
-
 
 /**
  * Specifies a phone info options argument.
@@ -510,50 +534,61 @@ fireauth.args.authProvider = function(opt_name, opt_optional) {
  *     Defaults to false.
  * @return {!fireauth.args.Argument}
  */
-fireauth.args.phoneInfoOptions = function(name, optional) {
+fireauth.args.phoneInfoOptions = function (name, optional) {
   return /** @type {!fireauth.args.Argument} */ ({
     name: name || 'phoneInfoOptions',
     typeLabel: 'valid phone info options',
     optional: !!optional,
     validator: /** @type {function(!Object) : boolean} */ (
-        function(phoneInfoOptions) {
-          if (!phoneInfoOptions) {
-            return false;
-          }
-          // For multi-factor enrollment, phone number and MFA session should
-          // be provided.
-          if (phoneInfoOptions['session'] &&
-              phoneInfoOptions['phoneNumber']) {
-            return fireauth.args.validateMultiFactorSession_(
-                       phoneInfoOptions['session'],
-                       fireauth.MultiFactorSession.Type.ENROLL) &&
-                   typeof phoneInfoOptions['phoneNumber'] === 'string';
+      function (phoneInfoOptions) {
+        if (!phoneInfoOptions) {
+          return false;
+        }
+        // For multi-factor enrollment, phone number and MFA session should
+        // be provided.
+        if (phoneInfoOptions['session'] && phoneInfoOptions['phoneNumber']) {
+          return (
+            fireauth.args.validateMultiFactorSession_(
+              phoneInfoOptions['session'],
+              fireauth.MultiFactorSession.Type.ENROLL
+            ) && typeof phoneInfoOptions['phoneNumber'] === 'string'
+          );
           // For multi-factor sign-in, phone multi-factor hint and MFA session
           // are provided.
-          } else if (phoneInfoOptions['session'] &&
-                     phoneInfoOptions['multiFactorHint']) {
-            return fireauth.args.validateMultiFactorSession_(
-                       phoneInfoOptions['session'],
-                       fireauth.MultiFactorSession.Type.SIGN_IN) &&
-                   fireauth.args.validateMultiFactorInfo_(
-                       phoneInfoOptions['multiFactorHint']);
+        } else if (
+          phoneInfoOptions['session'] &&
+          phoneInfoOptions['multiFactorHint']
+        ) {
+          return (
+            fireauth.args.validateMultiFactorSession_(
+              phoneInfoOptions['session'],
+              fireauth.MultiFactorSession.Type.SIGN_IN
+            ) &&
+            fireauth.args.validateMultiFactorInfo_(
+              phoneInfoOptions['multiFactorHint']
+            )
+          );
           // For multi-factor sign-in, phone multi-factor UID and MFA session
           // are provided.
-          } else if (phoneInfoOptions['session'] &&
-                     phoneInfoOptions['multiFactorUid']) {
-            return fireauth.args.validateMultiFactorSession_(
-                       phoneInfoOptions['session'],
-                       fireauth.MultiFactorSession.Type.SIGN_IN) &&
-                   typeof phoneInfoOptions['multiFactorUid'] === 'string';
+        } else if (
+          phoneInfoOptions['session'] &&
+          phoneInfoOptions['multiFactorUid']
+        ) {
+          return (
+            fireauth.args.validateMultiFactorSession_(
+              phoneInfoOptions['session'],
+              fireauth.MultiFactorSession.Type.SIGN_IN
+            ) && typeof phoneInfoOptions['multiFactorUid'] === 'string'
+          );
           // For single-factor sign-in, only phone number needs to be provided.
-          } else if (phoneInfoOptions['phoneNumber']) {
-            return typeof phoneInfoOptions['phoneNumber'] === 'string';
-          }
-          return false;
-        })
+        } else if (phoneInfoOptions['phoneNumber']) {
+          return typeof phoneInfoOptions['phoneNumber'] === 'string';
+        }
+        return false;
+      }
+    )
   });
 };
-
 
 /**
  * @param {*} session The multi-factor session object.
@@ -561,22 +596,23 @@ fireauth.args.phoneInfoOptions = function(name, optional) {
  * @return {boolean} Whether the seesion is a valid multi-factor session.
  * @private
  */
-fireauth.args.validateMultiFactorSession_ = function(session, type) {
-  return goog.isObject(session) && typeof session.type === 'string' &&
-      session.type === type &&
-      typeof session.getRawSession === 'function';
+fireauth.args.validateMultiFactorSession_ = function (session, type) {
+  return (
+    goog.isObject(session) &&
+    typeof session.type === 'string' &&
+    session.type === type &&
+    typeof session.getRawSession === 'function'
+  );
 };
-
 
 /**
  * @param {*} info The multi-factor info object.
  * @return {boolean} Whether the info is a valid multi-factor info.
  * @private
  */
-fireauth.args.validateMultiFactorInfo_ = function(info) {
+fireauth.args.validateMultiFactorInfo_ = function (info) {
   return goog.isObject(info) && typeof info['uid'] === 'string';
 };
-
 
 /**
  * Specifies an argument that implements the fireauth.MultiFactorInfo
@@ -586,7 +622,7 @@ fireauth.args.validateMultiFactorInfo_ = function(info) {
  *     Defaults to false.
  * @return {!fireauth.args.Argument}
  */
-fireauth.args.multiFactorInfo = function(name, optional) {
+fireauth.args.multiFactorInfo = function (name, optional) {
   return /** @type {!fireauth.args.Argument} */ ({
     name: name || 'multiFactorInfo',
     typeLabel: 'a valid multiFactorInfo',
@@ -595,7 +631,6 @@ fireauth.args.multiFactorInfo = function(name, optional) {
   });
 };
 
-
 /**
  * Specifies an argument that implements the firebase.auth.ApplicationVerifier
  * interface.
@@ -603,21 +638,23 @@ fireauth.args.multiFactorInfo = function(name, optional) {
  *     Defaults to false.
  * @return {!fireauth.args.Argument}
  */
-fireauth.args.applicationVerifier = function(opt_optional) {
+fireauth.args.applicationVerifier = function (opt_optional) {
   return /** @type {!fireauth.args.Argument} */ ({
     name: 'applicationVerifier',
     typeLabel: 'an implementation of firebase.auth.ApplicationVerifier',
     optional: !!opt_optional,
     validator:
-        /** @type {function(!firebase.auth.ApplicationVerifier) : boolean} */ (
-        function(applicationVerifier) {
-          return !!(applicationVerifier &&
-                    typeof applicationVerifier.type === 'string' &&
-                    typeof applicationVerifier.verify === 'function');
-        })
+      /** @type {function(!firebase.auth.ApplicationVerifier) : boolean} */ (
+        function (applicationVerifier) {
+          return !!(
+            applicationVerifier &&
+            typeof applicationVerifier.type === 'string' &&
+            typeof applicationVerifier.verify === 'function'
+          );
+        }
+      )
   });
 };
-
 
 /**
  * Specifies an argument that can be either of two argument types.
@@ -628,23 +665,22 @@ fireauth.args.applicationVerifier = function(opt_optional) {
  *     Defaults to false.
  * @return {!fireauth.args.Argument}
  */
-fireauth.args.or = function(optionA, optionB, opt_name, opt_optional) {
+fireauth.args.or = function (optionA, optionB, opt_name, opt_optional) {
   return {
     name: opt_name || '',
     typeLabel: optionA.typeLabel + ' or ' + optionB.typeLabel,
     optional: !!opt_optional,
-    validator: function(value) {
+    validator: function (value) {
       return optionA.validator(value) || optionB.validator(value);
     }
   };
 };
-
 
 /**
  * @param {string} str
  * @return {string} The string surrounded with quotes.
  * @private
  */
-fireauth.args.quoteString_ = function(str) {
+fireauth.args.quoteString_ = function (str) {
   return '"' + str + '"';
 };

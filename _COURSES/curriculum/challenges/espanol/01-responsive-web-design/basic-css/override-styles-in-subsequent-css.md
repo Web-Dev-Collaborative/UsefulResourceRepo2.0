@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf04756
 title: Sobreescribe estilos en código CSS posterior
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cGJDQug'
+videoUrl: "https://scrimba.com/c/cGJDQug"
 forumTopicId: 18253
 dashedName: override-styles-in-subsequent-css
 ---
@@ -34,25 +34,25 @@ Sin embargo, lo importante es el orden de las declaraciones de `class` clases en
 Tu elemento `h1` debe incluir la clase `pink-text`.
 
 ```js
-assert($('h1').hasClass('pink-text'));
+assert($("h1").hasClass("pink-text"));
 ```
 
 Tu elemento `h1` debe incluir la clase `blue-text`.
 
 ```js
-assert($('h1').hasClass('blue-text'));
+assert($("h1").hasClass("blue-text"));
 ```
 
 Tanto `blue-text` como `pink-text` deben pertenecer al mismo elemento `h1`.
 
 ```js
-assert($('.pink-text').hasClass('blue-text'));
+assert($(".pink-text").hasClass("blue-text"));
 ```
 
 Tu elemento `h1` debe ser de color azul ("blue").
 
 ```js
-assert($('h1').css('color') === 'rgb(0, 0, 255)');
+assert($("h1").css("color") === "rgb(0, 0, 255)");
 ```
 
 # --seed--
@@ -88,7 +88,7 @@ assert($('h1').css('color') === 'rgb(0, 0, 255)');
 
   .blue-text {
     color: blue;
-  }  
+  }
 </style>
 <h1 class="pink-text blue-text">Hello World!</h1>
 ```

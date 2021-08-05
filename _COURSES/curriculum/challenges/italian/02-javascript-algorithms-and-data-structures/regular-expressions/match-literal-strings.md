@@ -44,7 +44,7 @@ assert(waldoRegex.test(waldoIsHiding));
 La tua espressione regolare `waldoRegex` non dovrebbe cercare altro.
 
 ```js
-assert(!waldoRegex.test('Somewhere is hiding in this text.'));
+assert(!waldoRegex.test("Somewhere is hiding in this text."));
 ```
 
 Dovresti cercare la corrispondenza di una stringa letterale con la tua espressione regolare.

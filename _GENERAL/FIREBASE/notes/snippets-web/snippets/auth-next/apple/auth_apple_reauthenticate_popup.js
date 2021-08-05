@@ -8,7 +8,7 @@ import { getAuth, reauthenticateWithPopup, OAuthProvider } from "firebase/auth";
 
 // Result from Redirect auth flow.
 const auth = getAuth();
-const provider = new OAuthProvider('apple.com');
+const provider = new OAuthProvider("apple.com");
 
 reauthenticateWithPopup(auth.currentUser, provider)
   .then((result) => {

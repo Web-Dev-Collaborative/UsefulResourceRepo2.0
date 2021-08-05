@@ -29,13 +29,13 @@ JavaScript 中的一個常見模式就是，函數在聲明後立刻執行：
 該函數應該是匿名的。
 
 ```js
-assert(/\((function|\(\))(=>|\(\)){?/.test(code.replace(/\s/g, '')));
+assert(/\((function|\(\))(=>|\(\)){?/.test(code.replace(/\s/g, "")));
 ```
 
 函數應該在表達式的末尾有括號，以便立即調用它。
 
 ```js
-assert(/\(.*(\)\(|\}\(\))\)/.test(code.replace(/[\s;]/g, '')));
+assert(/\(.*(\)\(|\}\(\))\)/.test(code.replace(/[\s;]/g, "")));
 ```
 
 # --seed--
@@ -63,7 +63,7 @@ makeNest();
 ```js
 (function () {
   console.log("A cozy nest is ready");
-}());
+})();
 ```
 
 ---
@@ -77,7 +77,5 @@ makeNest();
 ---
 
 ```js
-(() =>
-  console.log("A cozy nest is ready")
-)();
+(() => console.log("A cozy nest is ready"))();
 ```

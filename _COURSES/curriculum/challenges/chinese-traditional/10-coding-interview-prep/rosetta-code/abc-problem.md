@@ -48,13 +48,13 @@ Some rules to keep in mind:
 `canMakeWord` should be a function.
 
 ```js
-assert(typeof canMakeWord === 'function');
+assert(typeof canMakeWord === "function");
 ```
 
 `canMakeWord` should return a boolean.
 
 ```js
-assert(typeof canMakeWord('hi') === 'boolean');
+assert(typeof canMakeWord("hi") === "boolean");
 ```
 
 `canMakeWord("bark")` should return true.
@@ -98,29 +98,28 @@ assert(canMakeWord(words[5]));
 ## --after-user-code--
 
 ```js
-const words = ['bark', 'BooK', 'TReAT', 'COMMON', 'squAD', 'conFUSE'];
+const words = ["bark", "BooK", "TReAT", "COMMON", "squAD", "conFUSE"];
 ```
 
 ## --seed-contents--
 
 ```js
-function canMakeWord(word) {
-
-}
+function canMakeWord(word) {}
 ```
 
 # --solutions--
 
 ```js
 function canMakeWord(word) {
-  const characters = 'BO XK DQ CP NA GT RE TG QD FS JW HU VI AN OB ER FS LY PC ZM';
-  const blocks = characters.split(' ').map(pair => pair.split(''));
+  const characters =
+    "BO XK DQ CP NA GT RE TG QD FS JW HU VI AN OB ER FS LY PC ZM";
+  const blocks = characters.split(" ").map((pair) => pair.split(""));
 
   const letters = [...word.toUpperCase()];
   let length = letters.length;
   const copy = new Set(blocks);
 
-  letters.forEach(letter => {
+  letters.forEach((letter) => {
     for (let block of copy) {
       const index = block.indexOf(letter);
 

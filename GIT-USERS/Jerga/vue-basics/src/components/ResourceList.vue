@@ -4,12 +4,15 @@
       v-for="resource in resources"
       :key="resource._id"
       @click="onItemClick(resource)"
-      :class="`${activeItemClass(resource)} list-group-item d-flex justify-content-between lh-condensed resource-list-item`">
+      :class="`${activeItemClass(
+        resource
+      )} list-group-item d-flex justify-content-between lh-condensed resource-list-item`"
+    >
       <div>
-        <h6 class="my-0">{{resource.title}}</h6>
-        <small class="text-muted">{{resource.description}}</small>
+        <h6 class="my-0">{{ resource.title }}</h6>
+        <small class="text-muted">{{ resource.description }}</small>
       </div>
-      <span class="text-muted">{{resource.type}}</span>
+      <span class="text-muted">{{ resource.type }}</span>
     </li>
   </ul>
 </template>
@@ -19,42 +22,42 @@ export default {
   props: {
     resources: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
-    activeId: String
+    activeId: String,
   },
-  emit: ['on-item-click'],
-  inject: ['getTheme'],
+  emit: ["on-item-click"],
+  inject: ["getTheme"],
   computed: {
     activeItemClass() {
-      return resource => resource._id === this.activeId ? 'is-active' : ''
-    }
+      return (resource) => (resource._id === this.activeId ? "is-active" : "");
+    },
   },
   methods: {
     onItemClick(resource) {
-      this.$emit('on-item-click', resource)
+      this.$emit("on-item-click", resource);
+    },
+  },
+};
+</script>
+<style scoped lang="scss">
+.resource-list {
+  max-height: 350px;
+  overflow-y: auto;
+
+  &.dark {
+    color: black;
+  }
+
+  &-item {
+    cursor: pointer;
+    &:hover {
+      background-color: #f3f3f3;
     }
   }
 }
-</script>
-<style scoped lang="scss">
-  .resource-list {
-    max-height: 350px;
-    overflow-y: auto;
 
-    &.dark {
-      color: black;
-    }
-
-    &-item {
-      cursor: pointer;
-      &:hover {
-        background-color: #f3f3f3;
-      }
-    }
-  }
-
-  .is-active {
-     background-color: #f3f3f3;
-  }
+.is-active {
+  background-color: #f3f3f3;
+}
 </style>

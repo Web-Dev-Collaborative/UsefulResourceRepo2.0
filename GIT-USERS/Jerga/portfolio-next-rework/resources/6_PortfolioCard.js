@@ -1,4 +1,12 @@
-import { Row, Col, Card, CardHeader, CardBody, CardText, CardTitle } from 'reactstrap';
+import {
+  Row,
+  Col,
+  Card,
+  CardHeader,
+  CardBody,
+  CardText,
+  CardTitle,
+} from "reactstrap";
 
 <Row>
   <Col md="4">
@@ -7,10 +15,10 @@ import { Row, Col, Card, CardHeader, CardBody, CardText, CardTitle } from 'react
       <CardBody>
         <p className="portfolio-card-city">Berlin</p>
         <CardTitle className="portfolio-card-title">Nice Job</CardTitle>
-        <CardText className="portfolio-card-text">Some Description of the job</CardText>
+        <CardText className="portfolio-card-text">
+          Some Description of the job
+        </CardText>
       </CardBody>
     </Card>
   </Col>
-</Row>
-
-
+</Row>;

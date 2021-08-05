@@ -2,7 +2,7 @@
 id: 587d78ad367417b2b2512afa
 title: Use the flex-wrap Property to Wrap a Row or Column
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cQv9ZtG'
+videoUrl: "https://scrimba.com/p/pVaDAv/cQv9ZtG"
 forumTopicId: 301114
 dashedName: use-the-flex-wrap-property-to-wrap-a-row-or-column
 ---
@@ -26,7 +26,7 @@ The current layout has too many boxes for one row. Add the CSS property `flex-wr
 The `#box-container` element should have the `flex-wrap` property set to a value of `wrap`.
 
 ```js
-assert($('#box-container').css('flex-wrap') == 'wrap');
+assert($("#box-container").css("flex-wrap") == "wrap");
 ```
 
 # --seed--
@@ -39,7 +39,6 @@ assert($('#box-container').css('flex-wrap') == 'wrap');
     background: gray;
     display: flex;
     height: 100%;
-
   }
   #box-1 {
     background-color: dodgerblue;

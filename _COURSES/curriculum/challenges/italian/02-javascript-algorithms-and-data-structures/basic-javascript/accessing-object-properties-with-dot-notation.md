@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244c7
 title: Accedere alle proprietà dell'oggetto con la notazione a punti
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cGryJs8'
+videoUrl: "https://scrimba.com/c/cGryJs8"
 forumTopicId: 16164
 dashedName: accessing-object-properties-with-dot-notation
 ---
@@ -18,13 +18,14 @@ Di seguito è riportato un esempio di utilizzo della notazione a punti (`.`) per
 ```js
 var myObj = {
   prop1: "val1",
-  prop2: "val2"
+  prop2: "val2",
 };
 var prop1val = myObj.prop1;
 var prop2val = myObj.prop2;
 ```
 
 `prop1val` ha il valore della stringa `val1` e `prop2val` ha il avere un valore della stringa `val2`.
+
 # --instructions--
 
 Leggi i valori delle proprietà di `testObj` utilizzando la notazione a punti. Imposta la variabile `hatValue` in modo che sia uguale alla proprietà `hat` dell'oggetto, e imposta la variabile `shirtValue` in modo che sia uguale alla proprietà `shirt` dell'oggetto.
@@ -34,25 +35,25 @@ Leggi i valori delle proprietà di `testObj` utilizzando la notazione a punti. I
 `hatValue` dovrebbe essere una stringa
 
 ```js
-assert(typeof hatValue === 'string');
+assert(typeof hatValue === "string");
 ```
 
 Il valore di `hatValue` dovrebbe essere la stringa `ballcap`
 
 ```js
-assert(hatValue === 'ballcap');
+assert(hatValue === "ballcap");
 ```
 
 `shirtValue` dovrebbe essere una stringa
 
 ```js
-assert(typeof shirtValue === 'string');
+assert(typeof shirtValue === "string");
 ```
 
 Il valore di `shirtValue` dovrebbe essere la stringa `jersey`
 
 ```js
-assert(shirtValue === 'jersey');
+assert(shirtValue === "jersey");
 ```
 
 Dovresti usare due volte la notazione a punti
@@ -66,7 +67,9 @@ assert(code.match(/testObj\.\w+/g).length > 1);
 ## --after-user-code--
 
 ```js
-(function(a,b) { return "hatValue = '" + a + "', shirtValue = '" + b + "'"; })(hatValue,shirtValue);
+(function (a, b) {
+  return "hatValue = '" + a + "', shirtValue = '" + b + "'";
+})(hatValue, shirtValue);
 ```
 
 ## --seed-contents--
@@ -74,24 +77,24 @@ assert(code.match(/testObj\.\w+/g).length > 1);
 ```js
 // Setup
 var testObj = {
-  "hat": "ballcap",
-  "shirt": "jersey",
-  "shoes": "cleats"
+  hat: "ballcap",
+  shirt: "jersey",
+  shoes: "cleats",
 };
 
 // Only change code below this line
 
-var hatValue = testObj;      // Change this line
-var shirtValue = testObj;    // Change this line
+var hatValue = testObj; // Change this line
+var shirtValue = testObj; // Change this line
 ```
 
 # --solutions--
 
 ```js
 var testObj = {
-  "hat": "ballcap",
-  "shirt": "jersey",
-  "shoes": "cleats"
+  hat: "ballcap",
+  shirt: "jersey",
+  shoes: "cleats",
 };
 
 var hatValue = testObj.hat;

@@ -2,7 +2,7 @@
 id: 587d781e367417b2b2512aca
 title: 使用 CSS 偏移移動相對定位的元素
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c9bQEA4'
+videoUrl: "https://scrimba.com/c/c9bQEA4"
 forumTopicId: 301065
 dashedName: move-a-relatively-positioned-element-with-css-offsets
 ---
@@ -22,13 +22,13 @@ CSS 裏面的 `top`、`bottom`、`left` 和 `right` 定義了元素在相應方�
 應使用 CSS 屬性使 `h2` 相對當前位置向上移動 10px。 也就是說，從當前位置相對於 `bottom` 移動 10px。
 
 ```js
-assert($('h2').css('bottom') == '10px');
+assert($("h2").css("bottom") == "10px");
 ```
 
 應使用 CSS 屬性使 `h2` 相對當前位置向右移動 15px。 也就是說，從當前位置相對於 `left` 移動 15px。
 
 ```js
-assert($('h2').css('left') == '15px');
+assert($("h2").css("left") == "15px");
 ```
 
 # --seed--
@@ -37,13 +37,11 @@ assert($('h2').css('left') == '15px');
 
 ```html
 <head>
-<style>
-  h2 {
-    position: relative;
-
-
-  }
-</style>
+  <style>
+    h2 {
+      position: relative;
+    }
+  </style>
 </head>
 <body>
   <h1>On Being Well-Positioned</h1>
@@ -56,13 +54,13 @@ assert($('h2').css('left') == '15px');
 
 ```html
 <head>
-<style>
-  h2 {
-    position: relative;
-    left: 15px;
-    bottom: 10px;
-  }
-</style>
+  <style>
+    h2 {
+      position: relative;
+      left: 15px;
+      bottom: 10px;
+    }
+  </style>
 </head>
 <body>
   <h1>On Being Well-Positioned</h1>

@@ -8,7 +8,7 @@ function listAll() {
   const storage = getStorage();
 
   // Create a reference under which you want to list
-  const listRef = ref(storage, 'files/uid');
+  const listRef = ref(storage, "files/uid");
 
   // Find all the prefixes and items.
   listAll(listRef)
@@ -20,7 +20,8 @@ function listAll() {
       res.items.forEach((itemRef) => {
         // All the items under listRef.
       });
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Uh-oh, an error occurred!
     });
   // [END storage_list_all]
@@ -30,10 +31,10 @@ function listPaginate() {
   // [START storage_list_paginate]
   const { getStorage, ref, list } = require("firebase/storage");
 
-  async function pageTokenExample(){
+  async function pageTokenExample() {
     // Create a reference under which you want to list
     const storage = getStorage();
-    const listRef = ref(storage, 'files/uid');
+    const listRef = ref(storage, "files/uid");
 
     // Fetch the first page of 100.
     const firstPage = await list(listRef, { maxResults: 100 });

@@ -22,8 +22,8 @@ dashedName: render-state-in-the-user-interface-another-way
 
 ```js
 assert(
-  Enzyme.mount(React.createElement(MyComponent)).state('name') ===
-    'freeCodeCamp'
+  Enzyme.mount(React.createElement(MyComponent)).state("name") ===
+    "freeCodeCamp"
 );
 ```
 
@@ -41,7 +41,7 @@ assert(
 
 ```js
 (getUserInput) =>
-  assert(/<h1>\n*\s*\{\s*name\s*\}\s*\n*<\/h1>/.test(getUserInput('index')));
+  assert(/<h1>\n*\s*\{\s*name\s*\}\s*\n*<\/h1>/.test(getUserInput("index")));
 ```
 
 渲染的 `h1` 标题中应该包含一段文本，这段文本是从组件的 state 中渲染出来的。
@@ -52,11 +52,11 @@ async () => {
     new Promise((resolve, reject) => setTimeout(() => resolve(fn()), 250));
   const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
   const first = () => {
-    mockedComponent.setState({ name: 'TestName' });
+    mockedComponent.setState({ name: "TestName" });
     return waitForIt(() => mockedComponent.html());
   };
   const firstValue = await first();
-  assert(firstValue === '<div><h1>TestName</h1></div>');
+  assert(firstValue === "<div><h1>TestName</h1></div>");
 };
 ```
 
@@ -65,7 +65,7 @@ async () => {
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyComponent />, document.getElementById('root'))
+ReactDOM.render(<MyComponent />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -75,8 +75,8 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'freeCodeCamp'
-    }
+      name: "freeCodeCamp",
+    };
   }
   render() {
     // Change code below this line
@@ -84,13 +84,13 @@ class MyComponent extends React.Component {
     // Change code above this line
     return (
       <div>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
 
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -100,8 +100,8 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'freeCodeCamp'
-    }
+      name: "freeCodeCamp",
+    };
   }
   render() {
     // Change code below this line
@@ -109,11 +109,11 @@ class MyComponent extends React.Component {
     // Change code above this line
     return (
       <div>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
         <h1>{name}</h1>
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 ```

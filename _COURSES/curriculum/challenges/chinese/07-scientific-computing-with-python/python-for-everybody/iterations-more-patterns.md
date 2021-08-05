@@ -1,6 +1,6 @@
 ---
 id: 5e7b9f070b6c005b0e76f05f
-title: '迭代：更多模式'
+title: "迭代：更多模式"
 challengeType: 11
 videoId: 9Wtqo6vha1M
 dashedName: iterations-more-patterns
@@ -45,4 +45,3 @@ dashedName: iterations-more-patterns
 ## --video-solution--
 
 2
-

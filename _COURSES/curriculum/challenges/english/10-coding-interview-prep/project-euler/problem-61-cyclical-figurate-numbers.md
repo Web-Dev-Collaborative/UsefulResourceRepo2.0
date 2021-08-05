@@ -1,6 +1,6 @@
 ---
 id: 5900f3a91000cf542c50febc
-title: 'Problem 61: Cyclical figurate numbers'
+title: "Problem 61: Cyclical figurate numbers"
 challengeType: 5
 forumTopicId: 302173
 dashedName: problem-61-cyclical-figurate-numbers
@@ -32,7 +32,7 @@ Find the sum of all numbers in ordered sets of `n` cyclic 4-digit numbers for wh
 `cyclicalFigurateNums(3)` should return a number.
 
 ```js
-assert(typeof cyclicalFigurateNums(3) === 'number');
+assert(typeof cyclicalFigurateNums(3) === "number");
 ```
 
 `cyclicalFigurateNums(3)` should return `19291`.
@@ -65,7 +65,6 @@ assert.strictEqual(cyclicalFigurateNums(6), 28684);
 
 ```js
 function cyclicalFigurateNums(n) {
-
   return true;
 }
 
@@ -102,7 +101,7 @@ function cyclicalFigurateNums(n) {
   function getNextNumbersInChain(num, numsExcludingLastNeededType) {
     const results = [];
     const beginning = num % 100;
-    numsExcludingLastNeededType.forEach(number => {
+    numsExcludingLastNeededType.forEach((number) => {
       if (Math.floor(number / 100) === beginning) {
         results.push(number);
       }
@@ -218,12 +217,12 @@ function cyclicalFigurateNums(n) {
   }
 
   const numberTypes = [
-    ['triangle', isTriangle, []],
-    ['square', isSquare, []],
-    ['pentagonal', isPentagonal, []],
-    ['hexagonal', isHexagonal, []],
-    ['heptagonal', isHeptagonal, []],
-    ['octagonal', isOctagonal, []]
+    ["triangle", isTriangle, []],
+    ["square", isSquare, []],
+    ["pentagonal", isPentagonal, []],
+    ["hexagonal", isHexagonal, []],
+    ["heptagonal", isHeptagonal, []],
+    ["octagonal", isOctagonal, []],
   ];
   const numsExcludingLastNeededType = new Set();
   fillNumberTypes(n, numberTypes, numsExcludingLastNeededType);
@@ -237,7 +236,7 @@ function cyclicalFigurateNums(n) {
     );
   }
 
-  const cyclicalChains = nNumberChains.filter(chain =>
+  const cyclicalChains = nNumberChains.filter((chain) =>
     isCyclicalChain(chain, n, numberTypes)
   );
 

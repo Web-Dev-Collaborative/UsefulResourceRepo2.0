@@ -2,7 +2,7 @@
 id: 587d78a9367417b2b2512ae8
 title: Imparare il funzionamento delle curve di Bezier
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c9bDrs8'
+videoUrl: "https://scrimba.com/c/c9bDrs8"
 forumTopicId: 301058
 dashedName: learn-how-bezier-curves-work
 ---
@@ -31,8 +31,8 @@ Il valore della proprietà `animation-timing-function` per l'elemento con id `ba
 
 ```js
 assert(
-  $('#ball1').css('animation-timing-function') ==
-    'cubic-bezier(0.25, 0.25, 0.75, 0.75)'
+  $("#ball1").css("animation-timing-function") ==
+    "cubic-bezier(0.25, 0.25, 0.75, 0.75)"
 );
 ```
 
@@ -40,10 +40,10 @@ Il valore della proprietà `animation-timing-function` per l'elemento con id `ba
 
 ```js
 const ball2Animation = __helpers.removeWhiteSpace(
-  $('#ball2').css('animation-timing-function')
+  $("#ball2").css("animation-timing-function")
 );
 assert(
-  ball2Animation == 'ease-out' || ball2Animation == 'cubic-bezier(0,0,0.58,1)'
+  ball2Animation == "ease-out" || ball2Animation == "cubic-bezier(0,0,0.58,1)"
 );
 ```
 
@@ -53,14 +53,9 @@ assert(
 
 ```html
 <style>
-
-  .balls{
+  .balls {
     border-radius: 50%;
-    background: linear-gradient(
-      35deg,
-      #ccffff,
-      #ffcccc
-    );
+    background: linear-gradient(35deg, #ccffff, #ffcccc);
     position: fixed;
     width: 50px;
     height: 50px;
@@ -86,7 +81,6 @@ assert(
       top: 249px;
     }
   }
-
 </style>
 
 <div class="balls" id="ball1"></div>
@@ -97,14 +91,9 @@ assert(
 
 ```html
 <style>
-
-  .balls{
+  .balls {
     border-radius: 50%;
-    background: linear-gradient(
-      35deg,
-      #ccffff,
-      #ffcccc
-    );
+    background: linear-gradient(35deg, #ccffff, #ffcccc);
     position: fixed;
     width: 50px;
     height: 50px;

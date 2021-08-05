@@ -1,6 +1,6 @@
 ---
 id: 5900f38d1000cf542c50fea0
-title: 'Problem 33: Digit cancelling fractions'
+title: "Problem 33: Digit cancelling fractions"
 challengeType: 5
 forumTopicId: 301987
 dashedName: problem-33-digit-cancelling-fractions
@@ -21,7 +21,7 @@ If the product of these four fractions is given in its lowest common terms, find
 `digitCancellingFractions()` should return a number.
 
 ```js
-assert(typeof digitCancellingFractions() === 'number');
+assert(typeof digitCancellingFractions() === "number");
 ```
 
 `digitCancellingFractions()` should return 100.
@@ -36,7 +36,6 @@ assert.strictEqual(digitCancellingFractions(), 100);
 
 ```js
 function digitCancellingFractions() {
-
   return true;
 }
 
@@ -52,7 +51,7 @@ function digitCancellingFractions() {
     const numString = numerator.toString();
     const denString = denominator.toString();
 
-    if (numString[1] === '0' && denString[1] === '0') {
+    if (numString[1] === "0" && denString[1] === "0") {
       // trivial
       return false;
     }

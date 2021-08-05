@@ -1,6 +1,6 @@
 ---
 id: 5900f4cb1000cf542c50ffde
-title: 'Problem 351: Hexagonal orchards'
+title: "Problem 351: Hexagonal orchards"
 challengeType: 5
 forumTopicId: 302011
 dashedName: problem-351-hexagonal-orchards
@@ -32,7 +32,6 @@ assert.strictEqual(euler351(), 11762187201804552);
 
 ```js
 function euler351() {
-
   return true;
 }
 

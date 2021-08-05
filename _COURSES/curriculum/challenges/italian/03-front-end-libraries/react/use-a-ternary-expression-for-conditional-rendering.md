@@ -8,7 +8,7 @@ dashedName: use-a-ternary-expression-for-conditional-rendering
 
 # --description--
 
-Prima di passare alle tecniche di rendering dinamiche, c'è un ultimo modo per utilizzare le condizionali JavaScript integrate per presentare quello che vuoi: l'<dfn>operatore ternario</dfn>. L'operatore ternario è spesso utilizzato come scorciatoia per le istruzioni `if/else` in JavaScript. Non è robusto come le tradizionali istruzioni `if/else`, ma è molto popolare tra gli sviluppatori React. Uno dei motivi è che per come JSX è compilato, le istruzioni `if/else` non possono essere inserite direttamente nel codice JSX. Potresti averlo notato un paio di sfide fa — quando era richiesta un'istruzione `if/else`, era sempre inserita *fuori* dall'istruzione `return`. Le espressioni ternarie possono essere un'ottima alternativa se vuoi implementare una logica condizionale all'interno del tuo JSX. Ricordiamo che un operatore ternario ha tre parti, ma è possibile combinare diverse espressioni ternarie insieme. Ecco la sintassi di base:
+Prima di passare alle tecniche di rendering dinamiche, c'è un ultimo modo per utilizzare le condizionali JavaScript integrate per presentare quello che vuoi: l'<dfn>operatore ternario</dfn>. L'operatore ternario è spesso utilizzato come scorciatoia per le istruzioni `if/else` in JavaScript. Non è robusto come le tradizionali istruzioni `if/else`, ma è molto popolare tra gli sviluppatori React. Uno dei motivi è che per come JSX è compilato, le istruzioni `if/else` non possono essere inserite direttamente nel codice JSX. Potresti averlo notato un paio di sfide fa — quando era richiesta un'istruzione `if/else`, era sempre inserita _fuori_ dall'istruzione `return`. Le espressioni ternarie possono essere un'ottima alternativa se vuoi implementare una logica condizionale all'interno del tuo JSX. Ricordiamo che un operatore ternario ha tre parti, ma è possibile combinare diverse espressioni ternarie insieme. Ecco la sintassi di base:
 
 ```jsx
 condition ? expressionIfTrue : expressionIfFalse;
@@ -26,9 +26,9 @@ Il componente `CheckUserAge` dovrebbe presentare un singolo elemento `input` e u
 
 ```js
 assert(
-  Enzyme.mount(React.createElement(CheckUserAge)).find('div').find('input')
+  Enzyme.mount(React.createElement(CheckUserAge)).find("div").find("input")
     .length === 1 &&
-    Enzyme.mount(React.createElement(CheckUserAge)).find('div').find('button')
+    Enzyme.mount(React.createElement(CheckUserAge)).find("div").find("button")
       .length === 1
 );
 ```
@@ -37,8 +37,8 @@ Lo stato del componente `CheckUserAge` dovrebbe essere inizializzato con una pro
 
 ```js
 assert(
-  Enzyme.mount(React.createElement(CheckUserAge)).state().input === '' &&
-    Enzyme.mount(React.createElement(CheckUserAge)).state().userAge === ''
+  Enzyme.mount(React.createElement(CheckUserAge)).state().input === "" &&
+    Enzyme.mount(React.createElement(CheckUserAge)).state().userAge === ""
 );
 ```
 
@@ -46,8 +46,8 @@ Quando il componente `CheckUserAge` viene presentato per la prima volta nel DOM,
 
 ```js
 assert(
-  Enzyme.mount(React.createElement(CheckUserAge)).find('button').text() ===
-    'Submit'
+  Enzyme.mount(React.createElement(CheckUserAge)).find("button").text() ===
+    "Submit"
 );
 ```
 
@@ -56,29 +56,29 @@ Quando viene inserito un numero inferiore a 18 nell'elemento `input` e viene cli
 ```js
 (() => {
   const mockedComponent = Enzyme.mount(React.createElement(CheckUserAge));
-  const initialButton = mockedComponent.find('button').text();
+  const initialButton = mockedComponent.find("button").text();
   const enter3AndClickButton = () => {
     mockedComponent
-      .find('input')
-      .simulate('change', { target: { value: '3' } });
-    mockedComponent.find('button').simulate('click');
+      .find("input")
+      .simulate("change", { target: { value: "3" } });
+    mockedComponent.find("button").simulate("click");
     mockedComponent.update();
-    return mockedComponent.find('button').text();
+    return mockedComponent.find("button").text();
   };
   const enter17AndClickButton = () => {
     mockedComponent
-      .find('input')
-      .simulate('change', { target: { value: '17' } });
-    mockedComponent.find('button').simulate('click');
+      .find("input")
+      .simulate("change", { target: { value: "17" } });
+    mockedComponent.find("button").simulate("click");
     mockedComponent.update();
-    return mockedComponent.find('button').text();
+    return mockedComponent.find("button").text();
   };
   const userAge3 = enter3AndClickButton();
   const userAge17 = enter17AndClickButton();
   assert(
-    initialButton === 'Submit' &&
-      userAge3 === 'You Shall Not Pass' &&
-      userAge17 === 'You Shall Not Pass'
+    initialButton === "Submit" &&
+      userAge3 === "You Shall Not Pass" &&
+      userAge17 === "You Shall Not Pass"
   );
 })();
 ```
@@ -88,29 +88,29 @@ Quando un numero maggiore o uguale a 18 viene inserito nell'elemento `input` e i
 ```js
 (() => {
   const mockedComponent = Enzyme.mount(React.createElement(CheckUserAge));
-  const initialButton = mockedComponent.find('button').text();
+  const initialButton = mockedComponent.find("button").text();
   const enter18AndClickButton = () => {
     mockedComponent
-      .find('input')
-      .simulate('change', { target: { value: '18' } });
-    mockedComponent.find('button').simulate('click');
+      .find("input")
+      .simulate("change", { target: { value: "18" } });
+    mockedComponent.find("button").simulate("click");
     mockedComponent.update();
-    return mockedComponent.find('button').text();
+    return mockedComponent.find("button").text();
   };
   const enter35AndClickButton = () => {
     mockedComponent
-      .find('input')
-      .simulate('change', { target: { value: '35' } });
-    mockedComponent.find('button').simulate('click');
+      .find("input")
+      .simulate("change", { target: { value: "35" } });
+    mockedComponent.find("button").simulate("click");
     mockedComponent.update();
-    return mockedComponent.find('button').text();
+    return mockedComponent.find("button").text();
   };
   const userAge18 = enter18AndClickButton();
   const userAge35 = enter35AndClickButton();
   assert(
-    initialButton === 'Submit' &&
-      userAge18 === 'You May Enter' &&
-      userAge35 === 'You May Enter'
+    initialButton === "Submit" &&
+      userAge18 === "You May Enter" &&
+      userAge35 === "You May Enter"
   );
 })();
 ```
@@ -122,36 +122,36 @@ Una volta che un numero è stato inviato, e il valore dell'`input` è cambiato a
   const mockedComponent = Enzyme.mount(React.createElement(CheckUserAge));
   const enter18AndClickButton = () => {
     mockedComponent
-      .find('input')
-      .simulate('change', { target: { value: '18' } });
-    mockedComponent.find('button').simulate('click');
+      .find("input")
+      .simulate("change", { target: { value: "18" } });
+    mockedComponent.find("button").simulate("click");
     mockedComponent.update();
-    return mockedComponent.find('button').text();
+    return mockedComponent.find("button").text();
   };
   const changeInputDontClickButton = () => {
     mockedComponent
-      .find('input')
-      .simulate('change', { target: { value: '5' } });
+      .find("input")
+      .simulate("change", { target: { value: "5" } });
     mockedComponent.update();
-    return mockedComponent.find('button').text();
+    return mockedComponent.find("button").text();
   };
   const enter10AndClickButton = () => {
     mockedComponent
-      .find('input')
-      .simulate('change', { target: { value: '10' } });
-    mockedComponent.find('button').simulate('click');
+      .find("input")
+      .simulate("change", { target: { value: "10" } });
+    mockedComponent.find("button").simulate("click");
     mockedComponent.update();
-    return mockedComponent.find('button').text();
+    return mockedComponent.find("button").text();
   };
   const userAge18 = enter18AndClickButton();
   const changeInput1 = changeInputDontClickButton();
   const userAge10 = enter10AndClickButton();
   const changeInput2 = changeInputDontClickButton();
   assert(
-    userAge18 === 'You May Enter' &&
-      changeInput1 === 'Submit' &&
-      userAge10 === 'You Shall Not Pass' &&
-      changeInput2 === 'Submit'
+    userAge18 === "You May Enter" &&
+      changeInput1 === "Submit" &&
+      userAge10 === "You Shall Not Pass" &&
+      changeInput2 === "Submit"
   );
 })();
 ```
@@ -171,7 +171,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<CheckUserAge />, document.getElementById('root'));
+ReactDOM.render(<CheckUserAge />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -179,7 +179,7 @@ ReactDOM.render(<CheckUserAge />, document.getElementById('root'));
 ```jsx
 const inputStyle = {
   width: 235,
-  margin: 5
+  margin: 5,
 };
 
 class CheckUserAge extends React.Component {
@@ -194,12 +194,12 @@ class CheckUserAge extends React.Component {
   handleChange(e) {
     this.setState({
       input: e.target.value,
-      userAge: ''
+      userAge: "",
     });
   }
   submit() {
-    this.setState(state => ({
-      userAge: state.input
+    this.setState((state) => ({
+      userAge: state.input,
     }));
   }
   render() {
@@ -211,7 +211,7 @@ class CheckUserAge extends React.Component {
         <h3>Enter Your Age to Continue</h3>
         <input
           style={inputStyle}
-          type='number'
+          type="number"
           value={this.state.input}
           onChange={this.handleChange}
         />
@@ -230,15 +230,15 @@ class CheckUserAge extends React.Component {
 ```jsx
 const inputStyle = {
   width: 235,
-  margin: 5
+  margin: 5,
 };
 
 class CheckUserAge extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userAge: '',
-      input: ''
+      userAge: "",
+      input: "",
     };
     this.submit = this.submit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -246,12 +246,12 @@ class CheckUserAge extends React.Component {
   handleChange(e) {
     this.setState({
       input: e.target.value,
-      userAge: ''
+      userAge: "",
     });
   }
   submit() {
-    this.setState(state => ({
-      userAge: state.input
+    this.setState((state) => ({
+      userAge: state.input,
     }));
   }
   render() {
@@ -263,12 +263,12 @@ class CheckUserAge extends React.Component {
         <h3>Enter Your Age to Continue</h3>
         <input
           style={inputStyle}
-          type='number'
+          type="number"
           value={this.state.input}
           onChange={this.handleChange}
         />
         <br />
-        {this.state.userAge === ''
+        {this.state.userAge === ""
           ? buttonOne
           : this.state.userAge >= 18
           ? buttonTwo

@@ -1,6 +1,6 @@
 ---
 id: 5e7b9f0e0b6c005b0e76f07b
-title: 'Web 服务：XML'
+title: "Web 服务：XML"
 challengeType: 11
 videoId: _pZ0srbg7So
 dashedName: web-services-xml
@@ -40,4 +40,3 @@ Phone 标签缺少结束标签。
 ## --video-solution--
 
 3
-

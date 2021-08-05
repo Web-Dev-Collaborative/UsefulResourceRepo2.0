@@ -25,7 +25,6 @@ goog.provide('fireauth.ActionCodeSettings');
 goog.require('fireauth.AuthError');
 goog.require('fireauth.authenum.Error');
 
-
 /**
  * Defines the action code settings structure used to specify how email action
  * links are handled.
@@ -33,24 +32,25 @@ goog.require('fireauth.authenum.Error');
  *     construct the action code link.
  * @constructor @struct @final
  */
-fireauth.ActionCodeSettings = function(settingsObj) {
+fireauth.ActionCodeSettings = function (settingsObj) {
   // Validate the settings object passed.
   this.initialize_(settingsObj);
 };
-
 
 /**
  * Validate the action code settings object.
  * @param {!Object} settingsObj The action code settings object to validate.
  * @private
  */
-fireauth.ActionCodeSettings.prototype.initialize_ = function(settingsObj) {
+fireauth.ActionCodeSettings.prototype.initialize_ = function (settingsObj) {
   // URL should be required.
   var continueUrl = settingsObj[fireauth.ActionCodeSettings.RawField.URL];
   if (typeof continueUrl === 'undefined') {
     throw new fireauth.AuthError(fireauth.authenum.Error.MISSING_CONTINUE_URI);
-  } else if (typeof continueUrl !== 'string' ||
-             (typeof continueUrl === 'string' && !continueUrl.length)) {
+  } else if (
+    typeof continueUrl !== 'string' ||
+    (typeof continueUrl === 'string' && !continueUrl.length)
+  ) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INVALID_CONTINUE_URI);
   }
   /** @const @private {string} The continue URL. */
@@ -64,49 +64,61 @@ fireauth.ActionCodeSettings.prototype.initialize_ = function(settingsObj) {
   /** @private {boolean} Whether to install the Android app. */
   this.installApp_ = false;
   var androidSettings =
-      settingsObj[fireauth.ActionCodeSettings.RawField.ANDROID];
+    settingsObj[fireauth.ActionCodeSettings.RawField.ANDROID];
   if (androidSettings && typeof androidSettings === 'object') {
-    var apn = androidSettings[
-      fireauth.ActionCodeSettings.AndroidRawField.PACKAGE_NAME];
-    var installApp = androidSettings[
-      fireauth.ActionCodeSettings.AndroidRawField.INSTALL_APP];
-    var amv = androidSettings[
-      fireauth.ActionCodeSettings.AndroidRawField.MINIMUM_VERSION];
+    var apn =
+      androidSettings[fireauth.ActionCodeSettings.AndroidRawField.PACKAGE_NAME];
+    var installApp =
+      androidSettings[fireauth.ActionCodeSettings.AndroidRawField.INSTALL_APP];
+    var amv =
+      androidSettings[
+        fireauth.ActionCodeSettings.AndroidRawField.MINIMUM_VERSION
+      ];
     if (typeof apn === 'string' && apn.length) {
       this.apn_ = /** @type {string} */ (apn);
-      if (typeof installApp !== 'undefined' &&
-          typeof installApp !== 'boolean') {
+      if (
+        typeof installApp !== 'undefined' &&
+        typeof installApp !== 'boolean'
+      ) {
         throw new fireauth.AuthError(
-            fireauth.authenum.Error.ARGUMENT_ERROR,
-            fireauth.ActionCodeSettings.AndroidRawField.INSTALL_APP +
-            ' property must be a boolean when specified.');
+          fireauth.authenum.Error.ARGUMENT_ERROR,
+          fireauth.ActionCodeSettings.AndroidRawField.INSTALL_APP +
+            ' property must be a boolean when specified.'
+        );
       }
       this.installApp_ = !!installApp;
-      if (typeof amv !== 'undefined' &&
-          (typeof amv !== 'string' ||
-           (typeof amv === 'string' && !amv.length))) {
+      if (
+        typeof amv !== 'undefined' &&
+        (typeof amv !== 'string' || (typeof amv === 'string' && !amv.length))
+      ) {
         throw new fireauth.AuthError(
-            fireauth.authenum.Error.ARGUMENT_ERROR,
-            fireauth.ActionCodeSettings.AndroidRawField.MINIMUM_VERSION +
-            ' property must be a non empty string when specified.');
+          fireauth.authenum.Error.ARGUMENT_ERROR,
+          fireauth.ActionCodeSettings.AndroidRawField.MINIMUM_VERSION +
+            ' property must be a non empty string when specified.'
+        );
       }
       this.amv_ = /** @type {?string}*/ (amv || null);
     } else if (typeof apn !== 'undefined') {
       throw new fireauth.AuthError(
-          fireauth.authenum.Error.ARGUMENT_ERROR,
-          fireauth.ActionCodeSettings.AndroidRawField.PACKAGE_NAME +
-          ' property must be a non empty string when specified.');
-    } else if (typeof installApp !== 'undefined' ||
-               typeof amv !== 'undefined') {
+        fireauth.authenum.Error.ARGUMENT_ERROR,
+        fireauth.ActionCodeSettings.AndroidRawField.PACKAGE_NAME +
+          ' property must be a non empty string when specified.'
+      );
+    } else if (
+      typeof installApp !== 'undefined' ||
+      typeof amv !== 'undefined'
+    ) {
       // If installApp or amv specified with no valid APN, fail quickly.
       throw new fireauth.AuthError(
-          fireauth.authenum.Error.MISSING_ANDROID_PACKAGE_NAME);
+        fireauth.authenum.Error.MISSING_ANDROID_PACKAGE_NAME
+      );
     }
   } else if (typeof androidSettings !== 'undefined') {
     throw new fireauth.AuthError(
-        fireauth.authenum.Error.ARGUMENT_ERROR,
-        fireauth.ActionCodeSettings.RawField.ANDROID +
-        ' property must be a non null object when specified.');
+      fireauth.authenum.Error.ARGUMENT_ERROR,
+      fireauth.ActionCodeSettings.RawField.ANDROID +
+        ' property must be a non null object when specified.'
+    );
   }
 
   // Validate iOS parameters.
@@ -114,52 +126,57 @@ fireauth.ActionCodeSettings.prototype.initialize_ = function(settingsObj) {
   this.ibi_ = null;
   var iosSettings = settingsObj[fireauth.ActionCodeSettings.RawField.IOS];
   if (iosSettings && typeof iosSettings === 'object') {
-    var ibi = iosSettings[
-      fireauth.ActionCodeSettings.IosRawField.BUNDLE_ID];
+    var ibi = iosSettings[fireauth.ActionCodeSettings.IosRawField.BUNDLE_ID];
     if (typeof ibi === 'string' && ibi.length) {
       this.ibi_ = /** @type {string}*/ (ibi);
     } else if (typeof ibi !== 'undefined') {
       throw new fireauth.AuthError(
-          fireauth.authenum.Error.ARGUMENT_ERROR,
-          fireauth.ActionCodeSettings.IosRawField.BUNDLE_ID +
-          ' property must be a non empty string when specified.');
+        fireauth.authenum.Error.ARGUMENT_ERROR,
+        fireauth.ActionCodeSettings.IosRawField.BUNDLE_ID +
+          ' property must be a non empty string when specified.'
+      );
     }
   } else if (typeof iosSettings !== 'undefined') {
     throw new fireauth.AuthError(
-        fireauth.authenum.Error.ARGUMENT_ERROR,
-        fireauth.ActionCodeSettings.RawField.IOS +
-        ' property must be a non null object when specified.');
+      fireauth.authenum.Error.ARGUMENT_ERROR,
+      fireauth.ActionCodeSettings.RawField.IOS +
+        ' property must be a non null object when specified.'
+    );
   }
 
   // Validate canHandleCodeInApp.
   var canHandleCodeInApp =
-      settingsObj[fireauth.ActionCodeSettings.RawField.HANDLE_CODE_IN_APP];
-  if (typeof canHandleCodeInApp !== 'undefined' &&
-      typeof canHandleCodeInApp !== 'boolean') {
+    settingsObj[fireauth.ActionCodeSettings.RawField.HANDLE_CODE_IN_APP];
+  if (
+    typeof canHandleCodeInApp !== 'undefined' &&
+    typeof canHandleCodeInApp !== 'boolean'
+  ) {
     throw new fireauth.AuthError(
-        fireauth.authenum.Error.ARGUMENT_ERROR,
-        fireauth.ActionCodeSettings.RawField.HANDLE_CODE_IN_APP +
-        ' property must be a boolean when specified.');
+      fireauth.authenum.Error.ARGUMENT_ERROR,
+      fireauth.ActionCodeSettings.RawField.HANDLE_CODE_IN_APP +
+        ' property must be a boolean when specified.'
+    );
   }
   /** @const @private {boolean} Whether the code can be handled in app. */
   this.canHandleCodeInApp_ = !!canHandleCodeInApp;
 
   // Validate dynamicLinkDomain.
-  var dynamicLinkDomain = settingsObj[
-      fireauth.ActionCodeSettings.RawField.DYNAMIC_LINK_DOMAIN];
-  if (typeof dynamicLinkDomain !== 'undefined' &&
-      (typeof dynamicLinkDomain !== 'string' ||
-       (typeof dynamicLinkDomain === 'string' &&
-        !dynamicLinkDomain.length))) {
+  var dynamicLinkDomain =
+    settingsObj[fireauth.ActionCodeSettings.RawField.DYNAMIC_LINK_DOMAIN];
+  if (
+    typeof dynamicLinkDomain !== 'undefined' &&
+    (typeof dynamicLinkDomain !== 'string' ||
+      (typeof dynamicLinkDomain === 'string' && !dynamicLinkDomain.length))
+  ) {
     throw new fireauth.AuthError(
-        fireauth.authenum.Error.ARGUMENT_ERROR,
-        fireauth.ActionCodeSettings.RawField.DYNAMIC_LINK_DOMAIN +
-        ' property must be a non empty string when specified.');
+      fireauth.authenum.Error.ARGUMENT_ERROR,
+      fireauth.ActionCodeSettings.RawField.DYNAMIC_LINK_DOMAIN +
+        ' property must be a non empty string when specified.'
+    );
   }
   /** @const @private {?string} The FDL domain. */
   this.dynamicLinkDomain_ = dynamicLinkDomain || null;
 };
-
 
 /**
  * Action code settings backend request field names.
@@ -175,7 +192,6 @@ fireauth.ActionCodeSettings.RequestField = {
   IOS_BUNDLE_ID: 'iOSBundleId'
 };
 
-
 /**
  * Action code settings raw field names.
  * @enum {string}
@@ -188,7 +204,6 @@ fireauth.ActionCodeSettings.RawField = {
   URL: 'url'
 };
 
-
 /**
  * Action code settings raw Android raw field names.
  * @enum {string}
@@ -199,7 +214,6 @@ fireauth.ActionCodeSettings.AndroidRawField = {
   PACKAGE_NAME: 'packageName'
 };
 
-
 /**
  * Action code settings raw iOS raw field names.
  * @enum {string}
@@ -208,30 +222,29 @@ fireauth.ActionCodeSettings.IosRawField = {
   BUNDLE_ID: 'bundleId'
 };
 
-
 /**
  * Builds and returns the backend request for the passed action code settings.
  * @return {!Object} The constructed backend request populated with the action
  *     code settings parameters.
  */
-fireauth.ActionCodeSettings.prototype.buildRequest = function() {
+fireauth.ActionCodeSettings.prototype.buildRequest = function () {
   // Construct backend request.
   var request = {};
   request[fireauth.ActionCodeSettings.RequestField.CONTINUE_URL] =
-      this.continueUrl_;
+    this.continueUrl_;
   request[fireauth.ActionCodeSettings.RequestField.CAN_HANDLE_CODE_IN_APP] =
-      this.canHandleCodeInApp_;
+    this.canHandleCodeInApp_;
   request[fireauth.ActionCodeSettings.RequestField.ANDROID_PACKAGE_NAME] =
-      this.apn_;
+    this.apn_;
   if (this.apn_) {
     request[fireauth.ActionCodeSettings.RequestField.ANDROID_MINIMUM_VERSION] =
-        this.amv_;
+      this.amv_;
     request[fireauth.ActionCodeSettings.RequestField.ANDROID_INSTALL_APP] =
-        this.installApp_;
+      this.installApp_;
   }
   request[fireauth.ActionCodeSettings.RequestField.IOS_BUNDLE_ID] = this.ibi_;
   request[fireauth.ActionCodeSettings.RequestField.DYNAMIC_LINK_DOMAIN] =
-      this.dynamicLinkDomain_;
+    this.dynamicLinkDomain_;
   // Remove null fields.
   for (var key in request) {
     if (request[key] === null) {
@@ -241,11 +254,10 @@ fireauth.ActionCodeSettings.prototype.buildRequest = function() {
   return request;
 };
 
-
 /**
  * Returns the canHandleCodeInApp setting of ActionCodeSettings.
  * @return {boolean} Whether the code can be handled in app.
  */
-fireauth.ActionCodeSettings.prototype.canHandleCodeInApp = function() {
+fireauth.ActionCodeSettings.prototype.canHandleCodeInApp = function () {
   return this.canHandleCodeInApp_;
 };

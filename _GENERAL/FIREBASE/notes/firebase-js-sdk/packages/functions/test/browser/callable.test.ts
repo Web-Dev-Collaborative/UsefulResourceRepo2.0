@@ -47,9 +47,9 @@ describe('Firebase Functions > Call', () => {
       return;
     }
     // mock firebase messaging
-    const messagingMock: FirebaseMessaging = ({
+    const messagingMock: FirebaseMessaging = {
       getToken: async () => 'iid'
-    } as unknown) as FirebaseMessaging;
+    } as unknown as FirebaseMessaging;
     const messagingProvider = new Provider<FirebaseMessagingName>(
       'messaging',
       new ComponentContainer('test')

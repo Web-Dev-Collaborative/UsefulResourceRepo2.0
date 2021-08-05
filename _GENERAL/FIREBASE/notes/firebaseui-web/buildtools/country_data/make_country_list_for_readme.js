@@ -25,14 +25,14 @@
  * COPIED TABLE markers in javascript/data/README.md.
  */
 
-var fullCountryData = require('./full_country_data.json');
+var fullCountryData = require("./full_country_data.json");
 
 // Keep track of seen country codes to eliminate duplicates.
 var seenCountryCodes = {};
 
 // Print the table header.
-console.log('| Code | Country |');
-console.log('| ---- | ------- |');
+console.log("| Code | Country |");
+console.log("| ---- | ------- |");
 
 for (var i = 0; i < fullCountryData.length; i++) {
   var country = fullCountryData[i];
@@ -44,8 +44,8 @@ for (var i = 0; i < fullCountryData.length; i++) {
   seenCountryCodes[country.iso2_cc] = true;
 
   // Replace square brackets with parentheses, for Markdown support.
-  var normalizedName = country.name.replace(/\[/g, '(').replace(/\]/g, ')');
+  var normalizedName = country.name.replace(/\[/g, "(").replace(/\]/g, ")");
 
   // Print the Markdown table row.
-  console.log('| ' + country.iso2_cc + ' | ' + normalizedName + ' |');
+  console.log("| " + country.iso2_cc + " | " + normalizedName + " |");
 }

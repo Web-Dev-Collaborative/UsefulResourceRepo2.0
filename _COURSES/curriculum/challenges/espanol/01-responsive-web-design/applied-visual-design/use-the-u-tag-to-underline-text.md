@@ -2,7 +2,7 @@
 id: 587d781a367417b2b2512ab8
 title: Utiliza la etiqueta u para subrayar texto
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cN6aQCL'
+videoUrl: "https://scrimba.com/c/cN6aQCL"
 forumTopicId: 301082
 dashedName: use-the-u-tag-to-underline-text
 ---
@@ -22,13 +22,13 @@ Envuelve la etiqueta `u` solo alrededor del texto `Ph.D. students`.
 Tu código debe agregar una etiqueta `u` al lenguaje de marcado.
 
 ```js
-assert($('u').length === 1);
+assert($("u").length === 1);
 ```
 
 La etiqueta `u` debe envolver alrededor del texto `Ph.D. students`.
 
 ```js
-assert($('u').text() === 'Ph.D. students');
+assert($("u").text() === "Ph.D. students");
 ```
 
 # --seed--
@@ -66,11 +66,24 @@ assert($('u').text() === 'Ph.D. students');
   <div class="cardContent">
     <div class="cardText">
       <h4>Google</h4>
-      <p>Google was founded by Larry Page and Sergey Brin while they were Ph.D. students at <strong>Stanford University</strong>.</p>
+      <p>
+        Google was founded by Larry Page and Sergey Brin while they were Ph.D.
+        students at <strong>Stanford University</strong>.
+      </p>
     </div>
     <div class="cardLinks">
-      <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
-      <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+      <a
+        href="https://en.wikipedia.org/wiki/Larry_Page"
+        target="_blank"
+        class="links"
+        >Larry Page</a
+      ><br /><br />
+      <a
+        href="https://en.wikipedia.org/wiki/Sergey_Brin"
+        target="_blank"
+        class="links"
+        >Sergey Brin</a
+      >
     </div>
   </div>
 </div>
@@ -109,11 +122,24 @@ assert($('u').text() === 'Ph.D. students');
   <div class="cardContent">
     <div class="cardText">
       <h4>Google</h4>
-      <p>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</p>
+      <p>
+        Google was founded by Larry Page and Sergey Brin while they were
+        <u>Ph.D. students</u> at <strong>Stanford University</strong>.
+      </p>
     </div>
     <div class="cardLinks">
-      <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
-      <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+      <a
+        href="https://en.wikipedia.org/wiki/Larry_Page"
+        target="_blank"
+        class="links"
+        >Larry Page</a
+      ><br /><br />
+      <a
+        href="https://en.wikipedia.org/wiki/Sergey_Brin"
+        target="_blank"
+        class="links"
+        >Sergey Brin</a
+      >
     </div>
   </div>
 </div>

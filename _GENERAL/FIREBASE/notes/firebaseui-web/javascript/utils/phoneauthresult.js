@@ -18,10 +18,9 @@
  * @fileoverview FirebaseUI phone Auth result.
  */
 
-goog.provide('firebaseui.auth.PhoneAuthResult');
+goog.provide("firebaseui.auth.PhoneAuthResult");
 
-goog.require('goog.Promise');
-
+goog.require("goog.Promise");
 
 /**
  * Wrapper object for firebase.auth.ConfirmationResult with additional error
@@ -44,22 +43,24 @@ firebaseui.auth.PhoneAuthResult = class {
      * @const @private {function(*):*} The error handler for confirm method.
      *     If not provided, the error will be rethrown.
      */
-    this.errorHandler_ = errorHandler || (error => {throw error;});
+    this.errorHandler_ =
+      errorHandler ||
+      ((error) => {
+        throw error;
+      });
     /** @const {string} The verification ID in confirmation result. */
-    this.verificationId = confirmationResult['verificationId'];
+    this.verificationId = confirmationResult["verificationId"];
   }
-
 
   /**
    * @param {string} verificationCode The verification code.
    * @return {!goog.Promise<!firebase.auth.UserCredential>} The user credential.
    */
   confirm(verificationCode) {
-    return goog.Promise
-        .resolve(this.confirmationResult_.confirm(verificationCode))
-        .thenCatch(this.errorHandler_);
+    return goog.Promise.resolve(
+      this.confirmationResult_.confirm(verificationCode)
+    ).thenCatch(this.errorHandler_);
   }
-
 
   /**
    * @return {!firebase.auth.ConfirmationResult} The confirmation result.

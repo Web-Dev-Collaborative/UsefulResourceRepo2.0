@@ -23,43 +23,43 @@ Traduci la stringa fornita in Pig Latin. È garantito che le stringhe in ingress
 `translatePigLatin("california")` dovrebbe restituire la stringa `aliforniacay`.
 
 ```js
-assert.deepEqual(translatePigLatin('california'), 'aliforniacay');
+assert.deepEqual(translatePigLatin("california"), "aliforniacay");
 ```
 
 `translatePigLatin("paragraphs")` dovrebbe restituire la stringa `aragraphspay`.
 
 ```js
-assert.deepEqual(translatePigLatin('paragraphs'), 'aragraphspay');
+assert.deepEqual(translatePigLatin("paragraphs"), "aragraphspay");
 ```
 
 `translatePigLatin("glove")` dovrebbe restituire la stringa `oveglay`.
 
 ```js
-assert.deepEqual(translatePigLatin('glove'), 'oveglay');
+assert.deepEqual(translatePigLatin("glove"), "oveglay");
 ```
 
 `translatePigLatin("algorithm")` dovrebbe restituire la stringa `algorithmway`.
 
 ```js
-assert.deepEqual(translatePigLatin('algorithm'), 'algorithmway');
+assert.deepEqual(translatePigLatin("algorithm"), "algorithmway");
 ```
 
 `translatePigLatin("eight")` dovrebbe restituire la stringa `eightway`.
 
 ```js
-assert.deepEqual(translatePigLatin('eight'), 'eightway');
+assert.deepEqual(translatePigLatin("eight"), "eightway");
 ```
 
-Dovresti gestire le parole in cui la prima vocale viene in mezzo alla parola.  `translatePigLatin("schwartz")` dovrebbe restituire la stringa `artzschway`.
+Dovresti gestire le parole in cui la prima vocale viene in mezzo alla parola. `translatePigLatin("schwartz")` dovrebbe restituire la stringa `artzschway`.
 
 ```js
-assert.deepEqual(translatePigLatin('schwartz'), 'artzschway');
+assert.deepEqual(translatePigLatin("schwartz"), "artzschway");
 ```
 
 Dovresti gestire le parole senza vocali. `translatePigLatin("rhythm")` dovrebbe restituire la stringa `rhythmay`.
 
 ```js
-assert.deepEqual(translatePigLatin('rhythm'), 'rhythmay');
+assert.deepEqual(translatePigLatin("rhythm"), "rhythmay");
 ```
 
 # --seed--
@@ -80,14 +80,14 @@ translatePigLatin("consonant");
 function translatePigLatin(str) {
   if (isVowel(str.charAt(0))) return str + "way";
   var front = [];
-  str = str.split('');
+  str = str.split("");
   while (str.length && !isVowel(str[0])) {
     front.push(str.shift());
   }
-  return [].concat(str, front).join('') + 'ay';
+  return [].concat(str, front).join("") + "ay";
 }
 
 function isVowel(c) {
-  return ['a', 'e', 'i', 'o', 'u'].indexOf(c.toLowerCase()) !== -1;
+  return ["a", "e", "i", "o", "u"].indexOf(c.toLowerCase()) !== -1;
 }
 ```

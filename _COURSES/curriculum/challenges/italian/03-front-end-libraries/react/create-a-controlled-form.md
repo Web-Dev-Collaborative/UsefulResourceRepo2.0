@@ -29,10 +29,10 @@ assert(
   (() => {
     const mockedComponent = Enzyme.mount(React.createElement(MyForm));
     return (
-      mockedComponent.find('div').children().find('form').length === 1 &&
-      mockedComponent.find('div').children().find('h1').length === 1 &&
-      mockedComponent.find('form').children().find('input').length === 1 &&
-      mockedComponent.find('form').children().find('button').length === 1
+      mockedComponent.find("div").children().find("form").length === 1 &&
+      mockedComponent.find("div").children().find("h1").length === 1 &&
+      mockedComponent.find("form").children().find("input").length === 1 &&
+      mockedComponent.find("form").children().find("button").length === 1
     );
   })()
 );
@@ -42,8 +42,8 @@ Lo stato di `MyForm` dovrebbe essere inizializzato con le proprietà `input` e `
 
 ```js
 assert(
-  Enzyme.mount(React.createElement(MyForm)).state('input') === '' &&
-    Enzyme.mount(React.createElement(MyForm)).state('submit') === ''
+  Enzyme.mount(React.createElement(MyForm)).state("input") === "" &&
+    Enzyme.mount(React.createElement(MyForm)).state("submit") === ""
 );
 ```
 
@@ -53,24 +53,24 @@ Scrivendo dentro all'elemento `input` si dovrebbe aggiornare la proprietà `inpu
 (() => {
   const mockedComponent = Enzyme.mount(React.createElement(MyForm));
   const _1 = () => {
-    mockedComponent.setState({ input: '' });
-    return mockedComponent.state('input');
+    mockedComponent.setState({ input: "" });
+    return mockedComponent.state("input");
   };
   const _2 = () => {
     mockedComponent
-      .find('input')
-      .simulate('change', { target: { value: 'TestInput' } });
+      .find("input")
+      .simulate("change", { target: { value: "TestInput" } });
     return {
-      state: mockedComponent.state('input'),
-      inputVal: mockedComponent.find('input').props().value
+      state: mockedComponent.state("input"),
+      inputVal: mockedComponent.find("input").props().value,
     };
   };
   const before = _1();
   const after = _2();
   assert(
-    before === '' &&
-      after.state === 'TestInput' &&
-      after.inputVal === 'TestInput'
+    before === "" &&
+      after.state === "TestInput" &&
+      after.inputVal === "TestInput"
   );
 })();
 ```
@@ -81,20 +81,20 @@ L'invio del modulo dovrebbe eseguire `handleSubmit` che dovrebbe impostare la pr
 (() => {
   const mockedComponent = Enzyme.mount(React.createElement(MyForm));
   const _1 = () => {
-    mockedComponent.setState({ input: '' });
-    mockedComponent.setState({ submit: '' });
+    mockedComponent.setState({ input: "" });
+    mockedComponent.setState({ submit: "" });
     mockedComponent
-      .find('input')
-      .simulate('change', { target: { value: 'SubmitInput' } });
-    return mockedComponent.state('submit');
+      .find("input")
+      .simulate("change", { target: { value: "SubmitInput" } });
+    return mockedComponent.state("submit");
   };
   const _2 = () => {
-    mockedComponent.find('form').simulate('submit');
-    return mockedComponent.state('submit');
+    mockedComponent.find("form").simulate("submit");
+    return mockedComponent.state("submit");
   };
   const before = _1();
   const after = _2();
-  assert(before === '' && after === 'SubmitInput');
+  assert(before === "" && after === "SubmitInput");
 })();
 ```
 
@@ -123,20 +123,20 @@ L'intestazione `h1` dovrebbe fare il render del valore del campo `submit` prende
 (() => {
   const mockedComponent = Enzyme.mount(React.createElement(MyForm));
   const _1 = () => {
-    mockedComponent.setState({ input: '' });
-    mockedComponent.setState({ submit: '' });
+    mockedComponent.setState({ input: "" });
+    mockedComponent.setState({ submit: "" });
     mockedComponent
-      .find('input')
-      .simulate('change', { target: { value: 'TestInput' } });
-    return mockedComponent.find('h1').text();
+      .find("input")
+      .simulate("change", { target: { value: "TestInput" } });
+    return mockedComponent.find("h1").text();
   };
   const _2 = () => {
-    mockedComponent.find('form').simulate('submit');
-    return mockedComponent.find('h1').text();
+    mockedComponent.find("form").simulate("submit");
+    return mockedComponent.find("h1").text();
   };
   const before = _1();
   const after = _2();
-  assert(before === '' && after === 'TestInput');
+  assert(before === "" && after === "TestInput");
 })();
 ```
 
@@ -145,7 +145,7 @@ L'intestazione `h1` dovrebbe fare il render del valore del campo `submit` prende
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyForm />, document.getElementById('root'));
+ReactDOM.render(<MyForm />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -155,20 +155,19 @@ class MyForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: '',
-      submit: ''
+      input: "",
+      submit: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(event) {
     this.setState({
-      input: event.target.value
+      input: event.target.value,
     });
   }
   handleSubmit(event) {
     // Change code below this line
-
     // Change code above this line
   }
   render() {
@@ -178,7 +177,7 @@ class MyForm extends React.Component {
           {/* Change code below this line */}
 
           {/* Change code above this line */}
-          <button type='submit'>Submit!</button>
+          <button type="submit">Submit!</button>
         </form>
         {/* Change code below this line */}
 
@@ -196,21 +195,21 @@ class MyForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: '',
-      submit: ''
+      input: "",
+      submit: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(event) {
     this.setState({
-      input: event.target.value
+      input: event.target.value,
     });
   }
   handleSubmit(event) {
     event.preventDefault();
-    this.setState(state => ({
-      submit: state.input
+    this.setState((state) => ({
+      submit: state.input,
     }));
   }
   render() {
@@ -218,7 +217,7 @@ class MyForm extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <input value={this.state.input} onChange={this.handleChange} />
-          <button type='submit'>Submit!</button>
+          <button type="submit">Submit!</button>
         </form>
         <h1>{this.state.submit}</h1>
       </div>

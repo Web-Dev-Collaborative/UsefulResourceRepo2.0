@@ -18,69 +18,61 @@
  * @fileoverview Binds handlers for resend UI element.
  */
 
-goog.provide('firebaseui.auth.ui.element.resend');
+goog.provide("firebaseui.auth.ui.element.resend");
 
-goog.require('firebaseui.auth.soy2.strings');
-goog.require('firebaseui.auth.ui.element');
-goog.require('goog.dom');
-goog.require('goog.ui.Component');
+goog.require("firebaseui.auth.soy2.strings");
+goog.require("firebaseui.auth.ui.element");
+goog.require("goog.dom");
+goog.require("goog.ui.Component");
 
+goog.scope(function () {
+  var element = firebaseui.auth.ui.element;
 
-goog.scope(function() {
-var element = firebaseui.auth.ui.element;
+  /**
+   * @return {?Element} The resend countdown.
+   * @this {goog.ui.Component}
+   */
+  element.resend.getResendCountdown = function () {
+    return this.getElementByClass("firebaseui-id-resend-countdown");
+  };
 
+  /**
+   * @return {?Element} The resend link.
+   * @this {goog.ui.Component}
+   */
+  element.resend.getResendLink = function () {
+    return this.getElementByClass("firebaseui-id-resend-link");
+  };
 
-/**
- * @return {?Element} The resend countdown.
- * @this {goog.ui.Component}
- */
-element.resend.getResendCountdown = function() {
-  return this.getElementByClass('firebaseui-id-resend-countdown');
-};
+  /**
+   * Hide the resend countdown.
+   * @this {goog.ui.Component}
+   */
+  element.resend.hideResendCountdown = function () {
+    var el = this.getResendCountdown();
+    element.hide(el);
+  };
 
+  /**
+   * Show the resend link.
+   * @this {goog.ui.Component}
+   */
+  element.resend.showResendLink = function () {
+    var el = this.getResendLink();
+    element.show(el);
+  };
 
-/**
- * @return {?Element} The resend link.
- * @this {goog.ui.Component}
- */
-element.resend.getResendLink = function() {
-  return this.getElementByClass('firebaseui-id-resend-link');
-};
-
-
-/**
- * Hide the resend countdown.
- * @this {goog.ui.Component}
- */
-element.resend.hideResendCountdown = function() {
-  var el = this.getResendCountdown();
-  element.hide(el);
-};
-
-
-/**
- * Show the resend link.
- * @this {goog.ui.Component}
- */
-element.resend.showResendLink = function() {
-  var el = this.getResendLink();
-  element.show(el);
-};
-
-
-/**
- * Updates the countdown.
- * @param {number} secondsRemaining The number of seconds remaining.
- * @this {goog.ui.Component}
- */
-element.resend.updateResendCountdown = function(secondsRemaining) {
-  var countdown = element.resend.getResendCountdown.call(this);
-  var prefix = secondsRemaining > 9 ? '0:' : '0:0';
-  var text = firebaseui.auth.soy2.strings
-                 .resendCountdown({timeRemaining: prefix + secondsRemaining})
-                 .toString();
-  goog.dom.setTextContent(countdown, text);
-};
-
-
+  /**
+   * Updates the countdown.
+   * @param {number} secondsRemaining The number of seconds remaining.
+   * @this {goog.ui.Component}
+   */
+  element.resend.updateResendCountdown = function (secondsRemaining) {
+    var countdown = element.resend.getResendCountdown.call(this);
+    var prefix = secondsRemaining > 9 ? "0:" : "0:0";
+    var text = firebaseui.auth.soy2.strings
+      .resendCountdown({ timeRemaining: prefix + secondsRemaining })
+      .toString();
+    goog.dom.setTextContent(countdown, text);
+  };
 });

@@ -22,7 +22,7 @@ Your `Stack` class should have a `push` method.
 assert(
   (function () {
     var test = new Stack();
-    return typeof test.push === 'function';
+    return typeof test.push === "function";
   })()
 );
 ```
@@ -33,7 +33,7 @@ Your `Stack` class should have a `pop` method.
 assert(
   (function () {
     var test = new Stack();
-    return typeof test.pop === 'function';
+    return typeof test.pop === "function";
   })()
 );
 ```
@@ -44,7 +44,7 @@ Your `Stack` class should have a `peek` method.
 assert(
   (function () {
     var test = new Stack();
-    return typeof test.peek === 'function';
+    return typeof test.peek === "function";
   })()
 );
 ```
@@ -55,7 +55,7 @@ Your `Stack` class should have a `isEmpty` method.
 assert(
   (function () {
     var test = new Stack();
-    return typeof test.isEmpty === 'function';
+    return typeof test.isEmpty === "function";
   })()
 );
 ```
@@ -66,7 +66,7 @@ Your `Stack` class should have a `clear` method.
 assert(
   (function () {
     var test = new Stack();
-    return typeof test.clear === 'function';
+    return typeof test.clear === "function";
   })()
 );
 ```
@@ -77,8 +77,8 @@ The `peek` method should return the top element of the stack
 assert(
   (function () {
     var test = new Stack();
-    test.push('CS50');
-    return test.peek() === 'CS50';
+    test.push("CS50");
+    return test.peek() === "CS50";
   })()
 );
 ```
@@ -89,8 +89,8 @@ The `pop` method should remove and return the top element of the stack
 assert(
   (function () {
     var test = new Stack();
-    test.push('CS50');
-    return test.pop() === 'CS50';
+    test.push("CS50");
+    return test.pop() === "CS50";
   })()
 );
 ```
@@ -112,7 +112,7 @@ The `clear` method should remove all element from the stack
 assert(
   (function () {
     var test = new Stack();
-    test.push('CS50');
+    test.push("CS50");
     test.clear();
     return test.isEmpty();
   })()
@@ -126,7 +126,7 @@ assert(
 ```js
 function Stack() {
   var collection = [];
-  this.print = function() {
+  this.print = function () {
     console.log(collection);
   };
   // Only change code below this line

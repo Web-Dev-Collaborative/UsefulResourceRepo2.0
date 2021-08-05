@@ -13,9 +13,9 @@ dashedName: write-concise-declarative-functions-with-es6
 ```js
 const person = {
   name: "Taylor",
-  sayHello: function() {
+  sayHello: function () {
     return `Hello! My name is ${this.name}.`;
-  }
+  },
 };
 ```
 
@@ -26,7 +26,7 @@ const person = {
   name: "Taylor",
   sayHello() {
     return `Hello! My name is ${this.name}.`;
-  }
+  },
 };
 ```
 
@@ -46,7 +46,7 @@ const person = {
 
 ```js
 assert(
-  typeof bicycle.setGear === 'function' && code.match(/setGear\s*\(.+\)\s*\{/)
+  typeof bicycle.setGear === "function" && code.match(/setGear\s*\(.+\)\s*\{/)
 );
 ```
 
@@ -64,9 +64,9 @@ assert(new bicycle.setGear(48).gear === 48);
 // Only change code below this line
 const bicycle = {
   gear: 2,
-  setGear: function(newGear) {
+  setGear: function (newGear) {
     this.gear = newGear;
-  }
+  },
 };
 // Only change code above this line
 bicycle.setGear(3);
@@ -80,7 +80,7 @@ const bicycle = {
   gear: 2,
   setGear(newGear) {
     this.gear = newGear;
-  }
+  },
 };
 bicycle.setGear(3);
 ```

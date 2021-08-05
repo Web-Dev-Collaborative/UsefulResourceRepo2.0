@@ -2,7 +2,7 @@
 id: cf1111c1c11feddfaeb1bdef
 title: while 循环
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c8QbnCM'
+videoUrl: "https://scrimba.com/c/c8QbnCM"
 forumTopicId: 18220
 dashedName: iterate-with-javascript-while-loops
 ---
@@ -16,7 +16,7 @@ dashedName: iterate-with-javascript-while-loops
 ```js
 var ourArray = [];
 var i = 0;
-while(i < 5) {
+while (i < 5) {
   ourArray.push(i);
   i++;
 }
@@ -49,7 +49,11 @@ assert.deepEqual(myArray, [5, 4, 3, 2, 1, 0]);
 ## --after-user-code--
 
 ```js
-if(typeof myArray !== "undefined"){(function(){return myArray;})();}
+if (typeof myArray !== "undefined") {
+  (function () {
+    return myArray;
+  })();
+}
 ```
 
 ## --seed-contents--
@@ -66,7 +70,7 @@ var myArray = [];
 ```js
 var myArray = [];
 var i = 5;
-while(i >= 0) {
+while (i >= 0) {
   myArray.push(i);
   i--;
 }

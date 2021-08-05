@@ -2,7 +2,7 @@
 id: 599a789b454f2bbd91a3ff4d
 title: 比较不同值
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cm8PqCa'
+videoUrl: "https://scrimba.com/c/cm8PqCa"
 forumTopicId: 301174
 dashedName: practice-comparing-different-values
 ---
@@ -20,8 +20,8 @@ dashedName: practice-comparing-different-values
 **提示** 在 JavaScript 中，你可以使用 `typeof` 运算符确定变量或值的类型，如下所示：
 
 ```js
-typeof 3
-typeof '3'
+typeof 3;
+typeof "3";
 ```
 
 `typeof 3` 返回字符串 `number`，`typeof '3'` 返回字符串 `string`。
@@ -35,13 +35,13 @@ typeof '3'
 `compareEquality(10, "10")` 应该返回字符串 `Not Equal`
 
 ```js
-assert(compareEquality(10, '10') === 'Not Equal');
+assert(compareEquality(10, "10") === "Not Equal");
 ```
 
 `compareEquality("20", 20)` 应该返回字符串 `Not Equal`
 
 ```js
-assert(compareEquality('20', 20) === 'Not Equal');
+assert(compareEquality("20", 20) === "Not Equal");
 ```
 
 你应该使用 `===` 运算符
@@ -57,7 +57,8 @@ assert(code.match(/===/g));
 ```js
 // Setup
 function compareEquality(a, b) {
-  if (a == b) { // Change this line
+  if (a == b) {
+    // Change this line
     return "Equal";
   }
   return "Not Equal";
@@ -69,7 +70,7 @@ compareEquality(10, "10");
 # --solutions--
 
 ```js
-function compareEquality(a,b) {
+function compareEquality(a, b) {
   if (a === b) {
     return "Equal";
   }

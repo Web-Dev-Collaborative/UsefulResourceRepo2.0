@@ -19,7 +19,7 @@ For example, `sumFibs(10)` should return `10` because all odd Fibonacci numbers 
 `sumFibs(1)` should return a number.
 
 ```js
-assert(typeof sumFibs(1) === 'number');
+assert(typeof sumFibs(1) === "number");
 ```
 
 `sumFibs(1000)` should return 1785.
@@ -75,7 +75,7 @@ function sumFibs(num) {
     if (a % 2 !== 0) {
       s += a;
     }
-    a = [b, b=b+a][0];
+    a = [b, (b = b + a)][0];
   }
   return s;
 }

@@ -11,20 +11,24 @@ function googleProvider() {
   // [END auth_google_provider_create]
 
   // [START auth_google_provider_scopes]
-  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
   // [END auth_google_provider_scopes]
-  
+
   // [START auth_google_provider_params]
   provider.setCustomParameters({
-    'login_hint': 'user@example.com'
+    login_hint: "user@example.com",
   });
   // [END auth_google_provider_params]
 }
 
 function googleSignInPopup(provider) {
   // [START auth_google_signin_popup]
-  const { getAuth, signInWithPopup, GoogleAuthProvider } = require("firebase/auth");
-  
+  const {
+    getAuth,
+    signInWithPopup,
+    GoogleAuthProvider,
+  } = require("firebase/auth");
+
   const auth = getAuth();
   signInWithPopup(auth, provider)
     .then((result) => {
@@ -34,7 +38,8 @@ function googleSignInPopup(provider) {
       // The signed-in user info.
       const user = result.user;
       // ...
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -49,7 +54,11 @@ function googleSignInPopup(provider) {
 
 function googleSignInRedirectResult() {
   // [START auth_google_signin_redirect_result]
-  const { getAuth, getRedirectResult, GoogleAuthProvider } = require("firebase/auth");
+  const {
+    getAuth,
+    getRedirectResult,
+    GoogleAuthProvider,
+  } = require("firebase/auth");
 
   const auth = getAuth();
   getRedirectResult(auth)
@@ -60,7 +69,8 @@ function googleSignInRedirectResult() {
 
       // The signed-in user info.
       const user = result.user;
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -75,7 +85,11 @@ function googleSignInRedirectResult() {
 
 function googleBuildAndSignIn(id_token) {
   // [START auth_google_build_signin]
-  const { getAuth, signInWithCredential, GoogleAuthProvider } = require("firebase/auth");
+  const {
+    getAuth,
+    signInWithCredential,
+    GoogleAuthProvider,
+  } = require("firebase/auth");
 
   // Build Firebase credential with the Google ID token.
   const credential = GoogleAuthProvider.credential(id_token);
@@ -102,11 +116,16 @@ function onSignIn_wrapper() {
   }
 
   // [START auth_google_callback]
-  const { getAuth, onAuthStateChanged, signInWithCredential, GoogleAuthProvider } = require("firebase/auth");
+  const {
+    getAuth,
+    onAuthStateChanged,
+    signInWithCredential,
+    GoogleAuthProvider,
+  } = require("firebase/auth");
   const auth = getAuth();
 
   function onSignIn(googleUser) {
-    console.log('Google Auth Response', googleUser);
+    console.log("Google Auth Response", googleUser);
     // We need to register an Observer on Firebase Auth to make sure auth is initialized.
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       unsubscribe();
@@ -114,8 +133,9 @@ function onSignIn_wrapper() {
       if (!isUserEqual(googleUser, firebaseUser)) {
         // Build Firebase credential with the Google ID token.
         const credential = GoogleAuthProvider.credential(
-            googleUser.getAuthResponse().id_token);
-    
+          googleUser.getAuthResponse().id_token
+        );
+
         // Sign in with credential from the Google user.
         // [START auth_google_signin_credential]
         signInWithCredential(auth, credential).catch((error) => {
@@ -130,7 +150,7 @@ function onSignIn_wrapper() {
         });
         // [END auth_google_signin_credential]
       } else {
-        console.log('User already signed-in Firebase.');
+        console.log("User already signed-in Firebase.");
       }
     });
   }
@@ -145,8 +165,10 @@ function isUserEqual_wrapper() {
     if (firebaseUser) {
       const providerData = firebaseUser.providerData;
       for (let i = 0; i < providerData.length; i++) {
-        if (providerData[i].providerId === GoogleAuthProvider.PROVIDER_ID &&
-            providerData[i].uid === googleUser.getBasicProfile().getId()) {
+        if (
+          providerData[i].providerId === GoogleAuthProvider.PROVIDER_ID &&
+          providerData[i].uid === googleUser.getBasicProfile().getId()
+        ) {
           // We don't need to reauth the Firebase connection.
           return true;
         }
@@ -156,5 +178,3 @@ function isUserEqual_wrapper() {
   }
   // [END auth_google_checksameuser]
 }
-
-

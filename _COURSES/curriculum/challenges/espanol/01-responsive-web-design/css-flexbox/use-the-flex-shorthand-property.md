@@ -2,7 +2,7 @@
 id: 587d78ae367417b2b2512afe
 title: Usa la propiedad abreviada flex
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cbpW2tE'
+videoUrl: "https://scrimba.com/p/pVaDAv/cbpW2tE"
 forumTopicId: 301112
 dashedName: use-the-flex-shorthand-property
 ---
@@ -27,9 +27,9 @@ El elemento `#box-1` debe tener la propiedad `flex` establecida en un valor de `
 
 ```js
 assert(
-  $('#box-1').css('flex-grow') == '2' &&
-    $('#box-1').css('flex-shrink') == '2' &&
-    $('#box-1').css('flex-basis') == '150px'
+  $("#box-1").css("flex-grow") == "2" &&
+    $("#box-1").css("flex-shrink") == "2" &&
+    $("#box-1").css("flex-basis") == "150px"
 );
 ```
 
@@ -37,9 +37,9 @@ El elemento `#box-2` debe tener la propiedad `flex` establecida en un valor de `
 
 ```js
 assert(
-  $('#box-2').css('flex-grow') == '1' &&
-    $('#box-2').css('flex-shrink') == '1' &&
-    $('#box-2').css('flex-basis') == '150px'
+  $("#box-2").css("flex-grow") == "1" &&
+    $("#box-2").css("flex-shrink") == "1" &&
+    $("#box-2").css("flex-basis") == "150px"
 );
 ```
 

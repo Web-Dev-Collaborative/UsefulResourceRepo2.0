@@ -41,37 +41,37 @@ assert(haRegex.source.match(/{.*?}/).length > 0);
 La expresión regular no debe coincidir con la cadena `Hazzah`
 
 ```js
-assert(!haRegex.test('Hazzah'));
+assert(!haRegex.test("Hazzah"));
 ```
 
 La expresión regular no debe coincidir con la cadena `Hazzzah`
 
 ```js
-assert(!haRegex.test('Hazzzah'));
+assert(!haRegex.test("Hazzzah"));
 ```
 
 La expresión regular debe coincidir con la cadena `Hazzzzah`
 
 ```js
-assert('Hazzzzah'.match(haRegex)[0].length === 8);
+assert("Hazzzzah".match(haRegex)[0].length === 8);
 ```
 
 La expresión regular debe coincidir con la cadena `Hazzzzzah`
 
 ```js
-assert('Hazzzzzah'.match(haRegex)[0].length === 9);
+assert("Hazzzzzah".match(haRegex)[0].length === 9);
 ```
 
 La expresión regular debe coincidir con la cadena `Hazzzzzzah`
 
 ```js
-assert('Hazzzzzzah'.match(haRegex)[0].length === 10);
+assert("Hazzzzzzah".match(haRegex)[0].length === 10);
 ```
 
 La expresión regular debe coincidir con la cadena `Hazzah` con 30 `z`'s.
 
 ```js
-assert('Hazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzah'.match(haRegex)[0].length === 34);
+assert("Hazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzah".match(haRegex)[0].length === 34);
 ```
 
 # --seed--

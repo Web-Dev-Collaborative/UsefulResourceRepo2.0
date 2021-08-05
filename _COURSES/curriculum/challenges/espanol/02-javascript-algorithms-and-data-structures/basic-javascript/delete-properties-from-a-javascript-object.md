@@ -2,7 +2,7 @@
 id: 56bbb991ad1ed5201cd392d3
 title: Elimina propiedades en un objeto de JavaScript
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cDqKdTv'
+videoUrl: "https://scrimba.com/c/cDqKdTv"
 forumTopicId: 17560
 dashedName: delete-properties-from-a-javascript-object
 ---
@@ -19,11 +19,11 @@ Ejemplo:
 
 ```js
 var ourDog = {
-  "name": "Camper",
-  "legs": 4,
-  "tails": 1,
-  "friends": ["everything!"],
-  "bark": "bow-wow"
+  name: "Camper",
+  legs: 4,
+  tails: 1,
+  friends: ["everything!"],
+  bark: "bow-wow",
 };
 
 delete ourDog.bark;
@@ -49,7 +49,7 @@ Elimina la propiedad `tails` de `myDog`. Puedes usar tanto la notación de punto
 Debes eliminar la propiedad `tails` de `myDog`.
 
 ```js
-assert(typeof myDog === 'object' && myDog.tails === undefined);
+assert(typeof myDog === "object" && myDog.tails === undefined);
 ```
 
 No debes modificar la disposición de `myDog`.
@@ -63,7 +63,9 @@ assert(code.match(/"tails": 1/g).length > 0);
 ## --after-user-code--
 
 ```js
-(function(z){return z;})(myDog);
+(function (z) {
+  return z;
+})(myDog);
 ```
 
 ## --seed-contents--
@@ -71,11 +73,11 @@ assert(code.match(/"tails": 1/g).length > 0);
 ```js
 // Setup
 var myDog = {
-  "name": "Happy Coder",
-  "legs": 4,
-  "tails": 1,
-  "friends": ["freeCodeCamp Campers"],
-  "bark": "woof"
+  name: "Happy Coder",
+  legs: 4,
+  tails: 1,
+  friends: ["freeCodeCamp Campers"],
+  bark: "woof",
 };
 
 // Only change code below this line
@@ -85,11 +87,11 @@ var myDog = {
 
 ```js
 var myDog = {
-  "name": "Happy Coder",
-  "legs": 4,
-  "tails": 1,
-  "friends": ["freeCodeCamp Campers"],
-  "bark": "woof"
+  name: "Happy Coder",
+  legs: 4,
+  tails: 1,
+  friends: ["freeCodeCamp Campers"],
+  bark: "woof",
 };
 delete myDog.tails;
 ```

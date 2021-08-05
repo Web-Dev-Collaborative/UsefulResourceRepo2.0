@@ -15,7 +15,8 @@
             v-model="form.title"
             class="input"
             type="text"
-            placeholder="Awesome Title">
+            placeholder="Awesome Title"
+          />
         </div>
       </div>
 
@@ -26,7 +27,8 @@
             v-model="form.subtitle"
             class="input"
             type="text"
-            placeholder="Awesome subtitle">
+            placeholder="Awesome subtitle"
+          />
         </div>
       </div>
       <div class="field">
@@ -44,41 +46,39 @@
 </template>
 
 <script>
-  import Modal from "~/components/shared/Modal";
+import Modal from "~/components/shared/Modal";
 
-  export default {
-    name: "PostCreate",
-    components: {
-      Modal,
-    },
-    data() {
-      return {
-        form: {
-          title: '',
-          subtitle: '',
-          content: '',
-        }
-      }
-    },
-    methods: {
-      createPost(closeModal) {
-        //Dispatch action with our form data
-        //Musi być ... i jako obiekt bo inacej wystąpi błąd przy resetowaniu formularza
-        //ponieważ this.form jest już zbindowane z Vuexem, i nastąpi podmiana wartości
-        //przez referencje. ...this.form powoduje sklonowanie obiektu
-        this.$store.dispatch('post/createPost', {...this.form});
-        closeModal();
-        this.resetForm();
+export default {
+  name: "PostCreate",
+  components: {
+    Modal,
+  },
+  data() {
+    return {
+      form: {
+        title: "",
+        subtitle: "",
+        content: "",
       },
-      resetForm() {
-        this.form.title = '';
-        this.form.subtitle = '';
-        this.form.content = '';
-      }
-    }
-  }
+    };
+  },
+  methods: {
+    createPost(closeModal) {
+      //Dispatch action with our form data
+      //Musi być ... i jako obiekt bo inacej wystąpi błąd przy resetowaniu formularza
+      //ponieważ this.form jest już zbindowane z Vuexem, i nastąpi podmiana wartości
+      //przez referencje. ...this.form powoduje sklonowanie obiektu
+      this.$store.dispatch("post/createPost", { ...this.form });
+      closeModal();
+      this.resetForm();
+    },
+    resetForm() {
+      this.form.title = "";
+      this.form.subtitle = "";
+      this.form.content = "";
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

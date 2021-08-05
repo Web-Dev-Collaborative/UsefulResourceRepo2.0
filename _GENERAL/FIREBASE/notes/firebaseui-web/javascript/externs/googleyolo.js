@@ -23,7 +23,6 @@ SmartLockOptions.prototype.auto_select;
 /** @type {function(SmartLockCredential)} */
 SmartLockOptions.prototype.callback;
 
-
 /**
  * @record
  * @struct
@@ -53,14 +52,14 @@ function SmartLockApi() {}
  *     and customization properties for the display of any UI pertaining to
  *     releasing this credential.
  */
-SmartLockApi.prototype.initialize = function(options) {};
+SmartLockApi.prototype.initialize = function (options) {};
 
 /**
  * Triggers the prompt to display.
  */
-SmartLockApi.prototype.prompt = function() {};
+SmartLockApi.prototype.prompt = function () {};
 
 /**
  * Cancels the last operation triggered.
  */
-SmartLockApi.prototype.cancel = function() {};
+SmartLockApi.prototype.cancel = function () {};

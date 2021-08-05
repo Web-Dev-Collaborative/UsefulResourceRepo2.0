@@ -24,45 +24,31 @@
   </div>
 </template>
 <script>
-import MultiLineTextInput from '~/components/form/MultiLineTextInput'
+import MultiLineTextInput from "~/components/form/MultiLineTextInput";
 export default {
   components: {
-    MultiLineTextInput
+    MultiLineTextInput,
   },
   props: {
     course: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     addLine(field) {
-      this.$store.commit('instructor/course/addLine', field)
+      this.$store.commit("instructor/course/addLine", field);
     },
     removeLine(index, field) {
-      this.$store.commit('instructor/course/removeLine', {field, index})
+      this.$store.commit("instructor/course/removeLine", { field, index });
     },
-    updateLine({value, index}, field) {
-      this.$store.dispatch('instructor/course/updateLine', {field, value, index})
-    }
-  }
-}
+    updateLine({ value, index }, field) {
+      this.$store.dispatch("instructor/course/updateLine", {
+        field,
+        value,
+        index,
+      });
+    },
+  },
+};
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

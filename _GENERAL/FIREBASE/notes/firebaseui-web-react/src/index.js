@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import FirebaseAuth from './FirebaseAuth';
-import StyledFirebaseAuth from './StyledFirebaseAuth';
+import FirebaseAuth from "./FirebaseAuth";
+import StyledFirebaseAuth from "./StyledFirebaseAuth";
 
 exports.FirebaseAuth = FirebaseAuth;
 exports.StyledFirebaseAuth = StyledFirebaseAuth;

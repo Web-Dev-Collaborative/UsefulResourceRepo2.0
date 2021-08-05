@@ -8,12 +8,12 @@ dashedName: data-analysis-example-b
 
 # --description--
 
-*您可以使用 Google Colab，而不是像视频中显示的那样使用 notebooks.ai。*
+_您可以使用 Google Colab，而不是像视频中显示的那样使用 notebooks.ai。_
 
 更多资源：
 
--   [在 GitHub 平台的 Notebooks](https://github.com/ine-rmotr-curriculum/FreeCodeCamp-Pandas-Real-Life-Example)
--   [如何使用 Google Colab 来打开 GitHub 上的 Notebooks](https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb)
+- [在 GitHub 平台的 Notebooks](https://github.com/ine-rmotr-curriculum/FreeCodeCamp-Pandas-Real-Life-Example)
+- [如何使用 Google Colab 来打开 GitHub 上的 Notebooks](https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb)
 
 # --question--
 
@@ -36,4 +36,3 @@ dashedName: data-analysis-example-b
 ## --video-solution--
 
 2
-

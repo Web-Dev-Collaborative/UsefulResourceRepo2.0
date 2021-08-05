@@ -20,9 +20,9 @@ The Levenshtein distance between "**kitten**" and "**sitting**" is 3, since the 
   <li>sittin   sittin<strong>g</strong>    (insert 'g' at the end).</li>
 </ul>
 
-*The Levenshtein distance between "**rosettacode**", "**raisethysword**" is **8**.*
+_The Levenshtein distance between "**rosettacode**", "**raisethysword**" is **8**._
 
-*The distance between two strings is same as that when both strings are reversed.*
+_The distance between two strings is same as that when both strings are reversed._
 
 # --instructions--
 
@@ -33,49 +33,49 @@ Write a function that returns the Levenshtein distance between two strings given
 `levenshtein` should be a function.
 
 ```js
-assert(typeof levenshtein == 'function');
+assert(typeof levenshtein == "function");
 ```
 
 `levenshtein("mist", "dist")` should return a number.
 
 ```js
-assert(typeof levenshtein('mist', 'dist') == 'number');
+assert(typeof levenshtein("mist", "dist") == "number");
 ```
 
 `levenshtein("mist", "dist")` should return `1`.
 
 ```js
-assert.equal(levenshtein('mist', 'dist'), 1);
+assert.equal(levenshtein("mist", "dist"), 1);
 ```
 
 `levenshtein("tier", "tor")` should return `2`.
 
 ```js
-assert.equal(levenshtein('tier', 'tor'), 2);
+assert.equal(levenshtein("tier", "tor"), 2);
 ```
 
 `levenshtein("kitten", "sitting")` should return `3`.
 
 ```js
-assert.equal(levenshtein('kitten', 'sitting'), 3);
+assert.equal(levenshtein("kitten", "sitting"), 3);
 ```
 
 `levenshtein("stop", "tops")` should return `2`.
 
 ```js
-assert.equal(levenshtein('stop', 'tops'), 2);
+assert.equal(levenshtein("stop", "tops"), 2);
 ```
 
 `levenshtein("rosettacode", "raisethysword")` should return `8`.
 
 ```js
-assert.equal(levenshtein('rosettacode', 'raisethysword'), 8);
+assert.equal(levenshtein("rosettacode", "raisethysword"), 8);
 ```
 
 `levenshtein("mississippi", "swiss miss")` should return `8`.
 
 ```js
-assert.equal(levenshtein('mississippi', 'swiss miss'), 8);
+assert.equal(levenshtein("mississippi", "swiss miss"), 8);
 ```
 
 # --seed--
@@ -83,23 +83,37 @@ assert.equal(levenshtein('mississippi', 'swiss miss'), 8);
 ## --seed-contents--
 
 ```js
-function levenshtein(a, b) {
-
-}
+function levenshtein(a, b) {}
 ```
 
 # --solutions--
 
 ```js
 function levenshtein(a, b) {
-  var t = [], u, i, j, m = a.length, n = b.length;
-  if (!m) { return n; }
-  if (!n) { return m; }
-  for (j = 0; j <= n; j++) { t[j] = j; }
+  var t = [],
+    u,
+    i,
+    j,
+    m = a.length,
+    n = b.length;
+  if (!m) {
+    return n;
+  }
+  if (!n) {
+    return m;
+  }
+  for (j = 0; j <= n; j++) {
+    t[j] = j;
+  }
   for (i = 1; i <= m; i++) {
     for (u = [i], j = 1; j <= n; j++) {
-      u[j] = a[i - 1] === b[j - 1] ? t[j - 1] : Math.min(t[j - 1], t[j], u[j - 1]) + 1;
-    } t = u;
-  } return u[n];
+      u[j] =
+        a[i - 1] === b[j - 1]
+          ? t[j - 1]
+          : Math.min(t[j - 1], t[j], u[j - 1]) + 1;
+    }
+    t = u;
+  }
+  return u[n];
 }
 ```

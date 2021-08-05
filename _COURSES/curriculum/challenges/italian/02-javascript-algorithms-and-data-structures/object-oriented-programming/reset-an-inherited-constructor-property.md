@@ -13,17 +13,17 @@ Quando un oggetto eredita il suo `prototype` da un altro oggetto, eredita anche 
 Ecco un esempio:
 
 ```js
-function Bird() { }
+function Bird() {}
 Bird.prototype = Object.create(Animal.prototype);
 let duck = new Bird();
-duck.constructor
+duck.constructor;
 ```
 
 Ma `duck` e tutte le istanze di `Bird` dovrebbero mostrare che sono stati costruiti da `Bird` e non da `Animal`. Per farlo, puoi impostare manualmente la proprietà costruttore di `Bird` all'oggetto `Bird`:
 
 ```js
 Bird.prototype.constructor = Bird;
-duck.constructor
+duck.constructor;
 ```
 
 # --instructions--
@@ -61,16 +61,14 @@ assert(beagle.constructor === Dog);
 ## --seed-contents--
 
 ```js
-function Animal() { }
-function Bird() { }
-function Dog() { }
+function Animal() {}
+function Bird() {}
+function Dog() {}
 
 Bird.prototype = Object.create(Animal.prototype);
 Dog.prototype = Object.create(Animal.prototype);
 
 // Only change code below this line
-
-
 
 let duck = new Bird();
 let beagle = new Dog();
@@ -79,9 +77,9 @@ let beagle = new Dog();
 # --solutions--
 
 ```js
-function Animal() { }
-function Bird() { }
-function Dog() { }
+function Animal() {}
+function Bird() {}
+function Dog() {}
 Bird.prototype = Object.create(Animal.prototype);
 Dog.prototype = Object.create(Animal.prototype);
 Dog.prototype.constructor = Dog;

@@ -27,13 +27,13 @@ $("#target2").clone().appendTo("#right-well");
 `target5` 元素應該在 `right-well` 裏面。
 
 ```js
-assert($('#right-well').children('#target5').length > 0);
+assert($("#right-well").children("#target5").length > 0);
 ```
 
 應該克隆 `target5` 元素，並放在 `left-well` 裏面。
 
 ```js
-assert($('#left-well').children('#target5').length > 0);
+assert($("#left-well").children("#target5").length > 0);
 ```
 
 應該僅用 jQuery 移動這些元素。
@@ -48,12 +48,11 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();
     $("#target2").appendTo("#right-well");
-
   });
 </script>
 
@@ -86,7 +85,7 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();

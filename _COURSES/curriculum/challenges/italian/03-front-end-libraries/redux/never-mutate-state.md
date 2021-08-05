@@ -26,14 +26,14 @@ Lo store Redux dovrebbe esistere ed essere inizializzato con uno stato uguale al
 assert(
   (function () {
     const todos = [
-      'Go to the store',
-      'Clean the house',
-      'Cook dinner',
-      'Learn to code'
+      "Go to the store",
+      "Clean the house",
+      "Cook dinner",
+      "Learn to code",
     ];
     const initialState = store.getState();
     return (
-      Array.isArray(initialState) && initialState.join(',') === todos.join(',')
+      Array.isArray(initialState) && initialState.join(",") === todos.join(",")
     );
   })()
 );
@@ -42,7 +42,7 @@ assert(
 `addToDo` e `immutableReducer` dovrebbero essere entrambe funzioni.
 
 ```js
-assert(typeof addToDo === 'function' && typeof immutableReducer === 'function');
+assert(typeof addToDo === "function" && typeof immutableReducer === "function");
 ```
 
 L'invio di un'azione di tipo `ADD_TO_DO` allo store di Redux dovrebbe aggiungere un elemento `todo` e NON dovrebbe mutare lo stato.
@@ -52,14 +52,14 @@ assert(
   (function () {
     const initialState = store.getState();
     const isFrozen = DeepFreeze(initialState);
-    store.dispatch(addToDo('__TEST__TO__DO__'));
+    store.dispatch(addToDo("__TEST__TO__DO__"));
     const finalState = store.getState();
     const expectedState = [
-      'Go to the store',
-      'Clean the house',
-      'Cook dinner',
-      'Learn to code',
-      '__TEST__TO__DO__'
+      "Go to the store",
+      "Clean the house",
+      "Cook dinner",
+      "Learn to code",
+      "__TEST__TO__DO__",
     ];
     return isFrozen && DeepEqual(finalState, expectedState);
   })()
@@ -71,21 +71,21 @@ assert(
 ## --seed-contents--
 
 ```js
-const ADD_TO_DO = 'ADD_TO_DO';
+const ADD_TO_DO = "ADD_TO_DO";
 
 // A list of strings representing tasks to do:
 const todos = [
-  'Go to the store',
-  'Clean the house',
-  'Cook dinner',
-  'Learn to code',
+  "Go to the store",
+  "Clean the house",
+  "Cook dinner",
+  "Learn to code",
 ];
 
 const immutableReducer = (state = todos, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case ADD_TO_DO:
       // Don't mutate state here or the tests will fail
-      return
+      return;
     default:
       return state;
   }
@@ -94,9 +94,9 @@ const immutableReducer = (state = todos, action) => {
 const addToDo = (todo) => {
   return {
     type: ADD_TO_DO,
-    todo
-  }
-}
+    todo,
+  };
+};
 
 const store = Redux.createStore(immutableReducer);
 ```
@@ -104,17 +104,17 @@ const store = Redux.createStore(immutableReducer);
 # --solutions--
 
 ```js
-const ADD_TO_DO = 'ADD_TO_DO';
+const ADD_TO_DO = "ADD_TO_DO";
 
 const todos = [
-  'Go to the store',
-  'Clean the house',
-  'Cook dinner',
-  'Learn to code',
+  "Go to the store",
+  "Clean the house",
+  "Cook dinner",
+  "Learn to code",
 ];
 
 const immutableReducer = (state = todos, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case ADD_TO_DO:
       return state.concat(action.todo);
     default:
@@ -125,9 +125,9 @@ const immutableReducer = (state = todos, action) => {
 const addToDo = (todo) => {
   return {
     type: ADD_TO_DO,
-    todo
-  }
-}
+    todo,
+  };
+};
 
 const store = Redux.createStore(immutableReducer);
 ```

@@ -4,7 +4,7 @@ title: Change the CSS of an Element Using jQuery
 challengeType: 6
 forumTopicId: 16776
 required:
-  - link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: change-the-css-of-an-element-using-jquery
 ---
 
@@ -31,7 +31,7 @@ Select `target1` and change its color to red.
 Your `target1` element should have red text.
 
 ```js
-assert($('#target1').css('color') === 'rgb(255, 0, 0)');
+assert($("#target1").css("color") === "rgb(255, 0, 0)");
 ```
 
 You should only use jQuery to add these classes to the element.
@@ -46,12 +46,11 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
     $(".well").addClass("animated shake");
     $("#target3").addClass("animated fadeOut");
     $("button").removeClass("btn-default");
-
   });
 </script>
 
@@ -84,7 +83,7 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
     $(".well").addClass("animated shake");
     $("#target3").addClass("animated fadeOut");

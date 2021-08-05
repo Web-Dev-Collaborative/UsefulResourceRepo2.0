@@ -17,7 +17,7 @@ dashedName: diff-two-arrays
 `diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5])` 应返回一个数组。
 
 ```js
-assert(typeof diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]) === 'object');
+assert(typeof diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]) === "object");
 ```
 
 `["diorite", "andesite", "grass", "dirt", "pink wool", "dead shrub"], ["diorite", "andesite", "grass", "dirt", "dead shrub"]` 应返回 `["pink wool"]`。
@@ -25,10 +25,10 @@ assert(typeof diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]) === 'object');
 ```js
 assert.sameMembers(
   diffArray(
-    ['diorite', 'andesite', 'grass', 'dirt', 'pink wool', 'dead shrub'],
-    ['diorite', 'andesite', 'grass', 'dirt', 'dead shrub']
+    ["diorite", "andesite", "grass", "dirt", "pink wool", "dead shrub"],
+    ["diorite", "andesite", "grass", "dirt", "dead shrub"]
   ),
-  ['pink wool']
+  ["pink wool"]
 );
 ```
 
@@ -37,8 +37,8 @@ assert.sameMembers(
 ```js
 assert(
   diffArray(
-    ['diorite', 'andesite', 'grass', 'dirt', 'pink wool', 'dead shrub'],
-    ['diorite', 'andesite', 'grass', 'dirt', 'dead shrub']
+    ["diorite", "andesite", "grass", "dirt", "pink wool", "dead shrub"],
+    ["diorite", "andesite", "grass", "dirt", "dead shrub"]
   ).length === 1
 );
 ```
@@ -48,10 +48,10 @@ assert(
 ```js
 assert.sameMembers(
   diffArray(
-    ['andesite', 'grass', 'dirt', 'pink wool', 'dead shrub'],
-    ['diorite', 'andesite', 'grass', 'dirt', 'dead shrub']
+    ["andesite", "grass", "dirt", "pink wool", "dead shrub"],
+    ["diorite", "andesite", "grass", "dirt", "dead shrub"]
   ),
-  ['diorite', 'pink wool']
+  ["diorite", "pink wool"]
 );
 ```
 
@@ -60,8 +60,8 @@ assert.sameMembers(
 ```js
 assert(
   diffArray(
-    ['andesite', 'grass', 'dirt', 'pink wool', 'dead shrub'],
-    ['diorite', 'andesite', 'grass', 'dirt', 'dead shrub']
+    ["andesite", "grass", "dirt", "pink wool", "dead shrub"],
+    ["diorite", "andesite", "grass", "dirt", "dead shrub"]
   ).length === 2
 );
 ```
@@ -71,8 +71,8 @@ assert(
 ```js
 assert.sameMembers(
   diffArray(
-    ['andesite', 'grass', 'dirt', 'dead shrub'],
-    ['andesite', 'grass', 'dirt', 'dead shrub']
+    ["andesite", "grass", "dirt", "dead shrub"],
+    ["andesite", "grass", "dirt", "dead shrub"]
   ),
   []
 );
@@ -83,8 +83,8 @@ assert.sameMembers(
 ```js
 assert(
   diffArray(
-    ['andesite', 'grass', 'dirt', 'dead shrub'],
-    ['andesite', 'grass', 'dirt', 'dead shrub']
+    ["andesite", "grass", "dirt", "dead shrub"],
+    ["andesite", "grass", "dirt", "dead shrub"]
   ).length === 0
 );
 ```
@@ -104,51 +104,51 @@ assert(diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]).length === 1);
 `[1, "calf", 3, "piglet"], [1, "calf", 3, 4]` 应返回 `["piglet", 4]`。
 
 ```js
-assert.sameMembers(diffArray([1, 'calf', 3, 'piglet'], [1, 'calf', 3, 4]), [
-  'piglet',
-  4
+assert.sameMembers(diffArray([1, "calf", 3, "piglet"], [1, "calf", 3, 4]), [
+  "piglet",
+  4,
 ]);
 ```
 
 `[1, "calf", 3, "piglet"], [1, "calf", 3, 4]` 应返回一个长度为 2 的数组。
 
 ```js
-assert(diffArray([1, 'calf', 3, 'piglet'], [1, 'calf', 3, 4]).length === 2);
+assert(diffArray([1, "calf", 3, "piglet"], [1, "calf", 3, 4]).length === 2);
 ```
 
 `[], ["snuffleupagus", "cookie monster", "elmo"]` 应返回 `["snuffleupagus", "cookie monster", "elmo"]`。
 
 ```js
-assert.sameMembers(diffArray([], ['snuffleupagus', 'cookie monster', 'elmo']), [
-  'snuffleupagus',
-  'cookie monster',
-  'elmo'
+assert.sameMembers(diffArray([], ["snuffleupagus", "cookie monster", "elmo"]), [
+  "snuffleupagus",
+  "cookie monster",
+  "elmo",
 ]);
 ```
 
 `[], ["snuffleupagus", "cookie monster", "elmo"]` 应返回一个长度为 3 的数组。
 
 ```js
-assert(diffArray([], ['snuffleupagus', 'cookie monster', 'elmo']).length === 3);
+assert(diffArray([], ["snuffleupagus", "cookie monster", "elmo"]).length === 3);
 ```
 
 `[1, "calf", 3, "piglet"], [7, "filly"]` 应返回 `[1, "calf", 3, "piglet", 7, "filly"]`。
 
 ```js
-assert.sameMembers(diffArray([1, 'calf', 3, 'piglet'], [7, 'filly']), [
+assert.sameMembers(diffArray([1, "calf", 3, "piglet"], [7, "filly"]), [
   1,
-  'calf',
+  "calf",
   3,
-  'piglet',
+  "piglet",
   7,
-  'filly'
+  "filly",
 ]);
 ```
 
 `[1, "calf", 3, "piglet"], [7, "filly"]` 应返回一个长度为 6 的数组。
 
 ```js
-assert(diffArray([1, 'calf', 3, 'piglet'], [7, 'filly']).length === 6);
+assert(diffArray([1, "calf", 3, "piglet"], [7, "filly"]).length === 6);
 ```
 
 # --seed--
@@ -170,20 +170,20 @@ diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
 function diffArray(arr1, arr2) {
   var newArr = [];
   var h1 = Object.create(null);
-  arr1.forEach(function(e) {
+  arr1.forEach(function (e) {
     h1[e] = e;
   });
 
   var h2 = Object.create(null);
-  arr2.forEach(function(e) {
+  arr2.forEach(function (e) {
     h2[e] = e;
   });
 
-  Object.keys(h1).forEach(function(e) {
-     if (!(e in h2)) newArr.push(h1[e]);
+  Object.keys(h1).forEach(function (e) {
+    if (!(e in h2)) newArr.push(h1[e]);
   });
-  Object.keys(h2).forEach(function(e) {
-     if (!(e in h1)) newArr.push(h2[e]);
+  Object.keys(h2).forEach(function (e) {
+    if (!(e in h1)) newArr.push(h2[e]);
   });
   return newArr;
 }

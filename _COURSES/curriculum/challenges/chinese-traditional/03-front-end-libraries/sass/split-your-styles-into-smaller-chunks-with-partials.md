@@ -15,7 +15,7 @@ partials 的名稱以下劃線（`_`）字符開頭，這樣 Sass 就知道它�
 例如，如果所有 mixins 都保存在名爲 “\_mixins.scss” 的 partial 中，並且在 “main.scss” 文件中需要它們，下面是使用方法：
 
 ```scss
-@import 'mixins'
+@import "mixins";
 ```
 
 請注意，`import` 語句中不需要下劃線——Sass 知道它是 partial。 將 partial 導入文件後，可以使用所有變量、mixins 和其它代碼。

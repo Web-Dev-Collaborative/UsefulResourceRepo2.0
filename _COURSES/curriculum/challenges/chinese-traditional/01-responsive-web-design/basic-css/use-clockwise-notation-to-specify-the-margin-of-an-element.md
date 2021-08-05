@@ -2,7 +2,7 @@
 id: bad87fee1348bd9afdf08726
 title: 使用順時針標記指定元素的外邊距
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cnpybAd'
+videoUrl: "https://scrimba.com/c/cnpybAd"
 forumTopicId: 18345
 dashedName: use-clockwise-notation-to-specify-the-margin-of-an-element
 ---
@@ -28,25 +28,25 @@ margin: 10px 20px 10px 20px;
 class 爲 `blue-box` 的元素的上外邊距 `margin` 應爲 `40px`。
 
 ```js
-assert($('.blue-box').css('margin-top') === '40px');
+assert($(".blue-box").css("margin-top") === "40px");
 ```
 
 class 爲 `blue-box` 的元素的右外邊距 `margin` 應爲 `20px`。
 
 ```js
-assert($('.blue-box').css('margin-right') === '20px');
+assert($(".blue-box").css("margin-right") === "20px");
 ```
 
 class 爲 `blue-box` 的元素的下外邊距 `margin` 應爲 `20px`。
 
 ```js
-assert($('.blue-box').css('margin-bottom') === '20px');
+assert($(".blue-box").css("margin-bottom") === "20px");
 ```
 
 class 爲 `blue-box` 的元素的左外邊距 `margin` 應爲 `40px`。
 
 ```js
-assert($('.blue-box').css('margin-left') === '40px');
+assert($(".blue-box").css("margin-left") === "40px");
 ```
 
 應沿順時針方向設置 `blue-box` 的外邊距。
@@ -54,7 +54,7 @@ assert($('.blue-box').css('margin-left') === '40px');
 ```js
 assert(
   /\.blue-box\s*{[\s\S]*margin[\s]*:\s*\d+px\s+\d+px\s+\d+px\s+\d+px(;\s*[^}]+\s*}|;?\s*})/.test(
-    __helpers.removeCssComments($('style').text())
+    __helpers.removeCssComments($("style").text())
   )
 );
 ```

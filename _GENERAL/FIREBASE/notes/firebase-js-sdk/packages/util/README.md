@@ -22,4 +22,3 @@ const utils = require('@firebase/util');
 
 // Do stuff with any of the re-exported `utils`
 ```
-

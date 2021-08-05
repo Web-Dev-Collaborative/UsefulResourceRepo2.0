@@ -16,16 +16,16 @@ Use the following text to test your programs:
 
 ```js
 const testText = [
-  'Given$a$text$file$of$many$lines',
-  'where$fields$within$a$line$',
+  "Given$a$text$file$of$many$lines",
+  "where$fields$within$a$line$",
   'are$delineated$by$a$single$"dollar"$character',
-  'write$a$program',
-  'that$aligns$each$column$of$fields',
-  'by$ensuring$that$words$in$each$',
-  'column$are$separated$by$at$least$one$space.',
-  'Further,$allow$for$each$word$in$a$column$to$be$either$left$',
-  'justified,$right$justified',
-  'or$center$justified$within$its$column.'
+  "write$a$program",
+  "that$aligns$each$column$of$fields",
+  "by$ensuring$that$words$in$each$",
+  "column$are$separated$by$at$least$one$space.",
+  "Further,$allow$for$each$word$in$a$column$to$be$either$left$",
+  "justified,$right$justified",
+  "or$center$justified$within$its$column.",
 ];
 ```
 
@@ -41,9 +41,9 @@ const testText = [
 For example, one of the lines from the `testText`, after jusitifing to the right, left and center respectivelly:
 
 ```js
-'    column        are separated     by     at    least       one space.\n'
-'column     are        separated by     at     least    one       space.\n'
-'  column      are     separated   by     at    least      one    space.\n'
+"    column        are separated     by     at    least       one space.\n";
+"column     are        separated by     at     least    one       space.\n";
+"  column      are     separated   by     at    least      one    space.\n";
 ```
 
 # --hints--
@@ -51,25 +51,25 @@ For example, one of the lines from the `testText`, after jusitifing to the right
 `formatText` should be a function.
 
 ```js
-assert(typeof formatText === 'function');
+assert(typeof formatText === "function");
 ```
 
 `formatText(testText, 'right')` should produce text with columns justified to the right.
 
 ```js
-assert.strictEqual(formatText(_testText, 'right'), rightAligned);
+assert.strictEqual(formatText(_testText, "right"), rightAligned);
 ```
 
 `formatText(testText, 'left')` should produce text with columns justified to the left.
 
 ```js
-assert.strictEqual(formatText(_testText, 'left'), leftAligned);
+assert.strictEqual(formatText(_testText, "left"), leftAligned);
 ```
 
 `formatText(testText, 'center')` should produce text with columns justified to the center.
 
 ```js
-assert.strictEqual(formatText(_testText, 'center'), centerAligned);
+assert.strictEqual(formatText(_testText, "center"), centerAligned);
 ```
 
 # --seed--
@@ -78,82 +78,91 @@ assert.strictEqual(formatText(_testText, 'center'), centerAligned);
 
 ```js
 const _testText = [
-  'Given$a$text$file$of$many$lines',
-  'where$fields$within$a$line$',
+  "Given$a$text$file$of$many$lines",
+  "where$fields$within$a$line$",
   'are$delineated$by$a$single$"dollar"$character',
-  'write$a$program',
-  'that$aligns$each$column$of$fields$',
-  'by$ensuring$that$words$in$each$',
-  'column$are$separated$by$at$least$one$space.',
-  'Further,$allow$for$each$word$in$a$column$to$be$either$left$',
-  'justified,$right$justified',
-  'or$center$justified$within$its$column.'
+  "write$a$program",
+  "that$aligns$each$column$of$fields$",
+  "by$ensuring$that$words$in$each$",
+  "column$are$separated$by$at$least$one$space.",
+  "Further,$allow$for$each$word$in$a$column$to$be$either$left$",
+  "justified,$right$justified",
+  "or$center$justified$within$its$column.",
 ];
 
-const rightAligned = '     Given          a      text   file     of     many     lines\n' +
-'     where     fields    within      a   line \n' +
-'       are delineated        by      a single "dollar" character\n' +
-'     write          a   program\n' +
-'      that     aligns      each column     of   fields \n' +
-'        by   ensuring      that  words     in     each \n' +
-'    column        are separated     by     at    least       one space.\n' +
-'  Further,      allow       for   each   word       in         a column to be either left \n' +
-'justified,      right justified\n' +
-'        or     center justified within    its  column.';
+const rightAligned =
+  "     Given          a      text   file     of     many     lines\n" +
+  "     where     fields    within      a   line \n" +
+  '       are delineated        by      a single "dollar" character\n' +
+  "     write          a   program\n" +
+  "      that     aligns      each column     of   fields \n" +
+  "        by   ensuring      that  words     in     each \n" +
+  "    column        are separated     by     at    least       one space.\n" +
+  "  Further,      allow       for   each   word       in         a column to be either left \n" +
+  "justified,      right justified\n" +
+  "        or     center justified within    its  column.";
 
-const leftAligned = 'Given      a          text      file   of     many     lines    \n' +
-'where      fields     within    a      line   \n' +
-'are        delineated by        a      single "dollar" character\n' +
-'write      a          program  \n' +
-'that       aligns     each      column of     fields   \n' +
-'by         ensuring   that      words  in     each     \n' +
-'column     are        separated by     at     least    one       space.\n' +
-'Further,   allow      for       each   word   in       a         column to be either left \n' +
-'justified, right      justified\n' +
-'or         center     justified within its    column. ';
+const leftAligned =
+  "Given      a          text      file   of     many     lines    \n" +
+  "where      fields     within    a      line   \n" +
+  'are        delineated by        a      single "dollar" character\n' +
+  "write      a          program  \n" +
+  "that       aligns     each      column of     fields   \n" +
+  "by         ensuring   that      words  in     each     \n" +
+  "column     are        separated by     at     least    one       space.\n" +
+  "Further,   allow      for       each   word   in       a         column to be either left \n" +
+  "justified, right      justified\n" +
+  "or         center     justified within its    column. ";
 
-const centerAligned = '  Given        a        text     file    of     many     lines  \n' +
-'  where      fields    within     a     line  \n' +
-'   are     delineated    by       a    single \"dollar\" character\n' +
-'  write        a       program \n' +
-'   that      aligns     each    column   of    fields  \n' +
-'    by      ensuring    that    words    in     each   \n' +
-'  column      are     separated   by     at    least      one    space.\n' +
-' Further,    allow       for     each   word     in        a     column to be either left \n' +
-'justified,   right    justified\n' +
-'    or       center   justified within  its   column. ';
+const centerAligned =
+  "  Given        a        text     file    of     many     lines  \n" +
+  "  where      fields    within     a     line  \n" +
+  '   are     delineated    by       a    single "dollar" character\n' +
+  "  write        a       program \n" +
+  "   that      aligns     each    column   of    fields  \n" +
+  "    by      ensuring    that    words    in     each   \n" +
+  "  column      are     separated   by     at    least      one    space.\n" +
+  " Further,    allow       for     each   word     in        a     column to be either left \n" +
+  "justified,   right    justified\n" +
+  "    or       center   justified within  its   column. ";
 ```
 
 ## --seed-contents--
 
 ```js
-function formatText(input, justification) {
-
-}
+function formatText(input, justification) {}
 
 const testText = [
-  'Given$a$text$file$of$many$lines',
-  'where$fields$within$a$line$',
+  "Given$a$text$file$of$many$lines",
+  "where$fields$within$a$line$",
   'are$delineated$by$a$single$"dollar"$character',
-  'write$a$program',
-  'that$aligns$each$column$of$fields$',
-  'by$ensuring$that$words$in$each$',
-  'column$are$separated$by$at$least$one$space.',
-  'Further,$allow$for$each$word$in$a$column$to$be$either$left$',
-  'justified,$right$justified',
-  'or$center$justified$within$its$column.'
+  "write$a$program",
+  "that$aligns$each$column$of$fields$",
+  "by$ensuring$that$words$in$each$",
+  "column$are$separated$by$at$least$one$space.",
+  "Further,$allow$for$each$word$in$a$column$to$be$either$left$",
+  "justified,$right$justified",
+  "or$center$justified$within$its$column.",
 ];
 ```
 
 # --solutions--
 
 ```js
-String.prototype.repeat = function (n) { return new Array(1 + parseInt(n)).join(this); };
+String.prototype.repeat = function (n) {
+  return new Array(1 + parseInt(n)).join(this);
+};
 
 function formatText(input, justification) {
-  let x, y, max, cols = 0, diff, left, right;
+  let x,
+    y,
+    max,
+    cols = 0,
+    diff,
+    left,
+    right;
   for (x = 0; x < input.length; x++) {
-    input[x] = input[x].split('$');
+    input[x] = input[x].split("$");
     if (input[x].length > cols) {
       cols = input[x].length;
     }
@@ -168,22 +177,24 @@ function formatText(input, justification) {
     for (y = 0; y < input.length; y++) {
       if (input[y][x]) {
         diff = (max - input[y][x].length) / 2;
-        left = ' '.repeat(Math.floor(diff));
-        right = ' '.repeat(Math.ceil(diff));
-        if (justification === 'left') {
-          right += left; left = '';
+        left = " ".repeat(Math.floor(diff));
+        right = " ".repeat(Math.ceil(diff));
+        if (justification === "left") {
+          right += left;
+          left = "";
         }
-        if (justification === 'right') {
-          left += right; right = '';
+        if (justification === "right") {
+          left += right;
+          right = "";
         }
         input[y][x] = left + input[y][x] + right;
       }
     }
   }
   for (x = 0; x < input.length; x++) {
-    input[x] = input[x].join(' ');
+    input[x] = input[x].join(" ");
   }
-  input = input.join('\n');
+  input = input.join("\n");
   return input;
 }
 ```

@@ -1,11 +1,9 @@
-import { Doc } from 'tiptap'
+import { Doc } from "tiptap";
 
 export default class CustomDoc extends Doc {
-
   get schema() {
     return {
-      content: 'title subtitle block+',
-    }
+      content: "title subtitle block+",
+    };
   }
-
 }

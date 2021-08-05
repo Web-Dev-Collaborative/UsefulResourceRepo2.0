@@ -36,7 +36,7 @@ La variable `inputAnim` no debe cambiar.
 ```js
 assert(
   JSON.stringify(inputAnim) ===
-    JSON.stringify(['Cat', 'Dog', 'Tiger', 'Zebra', 'Ant'])
+    JSON.stringify(["Cat", "Dog", "Tiger", "Zebra", "Ant"])
 );
 ```
 
@@ -44,8 +44,8 @@ assert(
 
 ```js
 assert(
-  JSON.stringify(sliceArray(['Cat', 'Dog', 'Tiger', 'Zebra', 'Ant'], 1, 3)) ===
-    JSON.stringify(['Dog', 'Tiger'])
+  JSON.stringify(sliceArray(["Cat", "Dog", "Tiger", "Zebra", "Ant"], 1, 3)) ===
+    JSON.stringify(["Dog", "Tiger"])
 );
 ```
 
@@ -53,8 +53,8 @@ assert(
 
 ```js
 assert(
-  JSON.stringify(sliceArray(['Cat', 'Dog', 'Tiger', 'Zebra', 'Ant'], 0, 1)) ===
-    JSON.stringify(['Cat'])
+  JSON.stringify(sliceArray(["Cat", "Dog", "Tiger", "Zebra", "Ant"], 0, 1)) ===
+    JSON.stringify(["Cat"])
 );
 ```
 
@@ -62,8 +62,8 @@ assert(
 
 ```js
 assert(
-  JSON.stringify(sliceArray(['Cat', 'Dog', 'Tiger', 'Zebra', 'Ant'], 1, 4)) ===
-    JSON.stringify(['Dog', 'Tiger', 'Zebra'])
+  JSON.stringify(sliceArray(["Cat", "Dog", "Tiger", "Zebra", "Ant"], 1, 4)) ===
+    JSON.stringify(["Dog", "Tiger", "Zebra"])
 );
 ```
 
@@ -74,8 +74,6 @@ assert(
 ```js
 function sliceArray(anim, beginSlice, endSlice) {
   // Only change code below this line
-
-
   // Only change code above this line
 }
 var inputAnim = ["Cat", "Dog", "Tiger", "Zebra", "Ant"];
@@ -87,7 +85,7 @@ sliceArray(inputAnim, 1, 3);
 ```js
 function sliceArray(anim, beginSlice, endSlice) {
   // Only change code below this line
-  return anim.slice(beginSlice, endSlice)
+  return anim.slice(beginSlice, endSlice);
   // Only change code above this line
 }
 var inputAnim = ["Cat", "Dog", "Tiger", "Zebra", "Ant"];

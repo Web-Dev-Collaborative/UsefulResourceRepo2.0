@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aede08718
 title: 使用 RGB 值爲元素上色
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cRkp2fr'
+videoUrl: "https://scrimba.com/c/cRkp2fr"
 forumTopicId: 18369
 dashedName: use-rgb-values-to-color-elements
 ---
@@ -44,7 +44,7 @@ body {
 `body` 元素的背景顏色應該是黑色。
 
 ```js
-assert($('body').css('background-color') === 'rgb(0, 0, 0)');
+assert($("body").css("background-color") === "rgb(0, 0, 0)");
 ```
 
 您應該使用 `rgb` 給您的 `body` 元素黑色背景。
@@ -60,7 +60,7 @@ assert(code.match(/rgb\s*\(\s*0\s*,\s*0\s*,\s*0\s*\)/gi));
 ```html
 <style>
   body {
-    background-color: #F00;
+    background-color: #f00;
   }
 </style>
 ```

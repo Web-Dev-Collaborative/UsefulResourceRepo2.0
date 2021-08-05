@@ -12,11 +12,11 @@ Ti viene dato un oggetto letterale che rappresenta una parte della tua collezion
 
 Partirai con una funzione `updateRecords` che prende un oggetto letterale, `records`, contenente la collezione di album musicali, un `id`, una proprietà `prop` (come `artist` o `tracks`), e un valore `value`. Completa la funzione usando le regole sottostanti per modificare l'oggetto passato alla funzione.
 
--   La tua funzione deve sempre restituire l'intero oggetto della raccolta di dischi.
--   Se `prop` non è `tracks` e `value` non è una stringa vuota, aggiorna o imposta la `prop` di quell'album a `value`.
--   Se `prop` è `tracks` ma l'album non ha una proprietà `tracks`, crea un array vuoto e aggiungi `value` ad esso.
--   Se `prop` è `tracks` e `value` non è una stringa vuota, aggiungi `value` alla fine dell'array `tracks` già esistente.
--   Se il valore `value` è una stringa vuota, elimina la proprietà `prop` dall'album.
+- La tua funzione deve sempre restituire l'intero oggetto della raccolta di dischi.
+- Se `prop` non è `tracks` e `value` non è una stringa vuota, aggiorna o imposta la `prop` di quell'album a `value`.
+- Se `prop` è `tracks` ma l'album non ha una proprietà `tracks`, crea un array vuoto e aggiungi `value` ad esso.
+- Se `prop` è `tracks` e `value` non è una stringa vuota, aggiungi `value` alla fine dell'array `tracks` già esistente.
+- Se il valore `value` è una stringa vuota, elimina la proprietà `prop` dall'album.
 
 **Nota:** Una copia dell'oggetto `recordCollection` viene utilizzata per i test.
 
@@ -26,8 +26,8 @@ Dopo aver eseguito `updateRecords(recordCollection, 5439, "artist", "ABBA")`, `a
 
 ```js
 assert(
-  updateRecords(_recordCollection, 5439, 'artist', 'ABBA')[5439]['artist'] ===
-    'ABBA'
+  updateRecords(_recordCollection, 5439, "artist", "ABBA")[5439]["artist"] ===
+    "ABBA"
 );
 ```
 
@@ -35,26 +35,26 @@ Dopo `updateRecords(recordCollection, 5439, "tracks", "Take a Chance on Me")`, `
 
 ```js
 assert(
-  updateRecords(_recordCollection, 5439, 'tracks', 'Take a Chance on Me')[5439][
-    'tracks'
-  ].pop() === 'Take a Chance on Me'
+  updateRecords(_recordCollection, 5439, "tracks", "Take a Chance on Me")[5439][
+    "tracks"
+  ].pop() === "Take a Chance on Me"
 );
 ```
 
 Dopo `updateRecords(recordCollection, 2548, "artist", "")`, `artist` non dovrebbe essere impostato
 
 ```js
-updateRecords(_recordCollection, 2548, 'artist', '');
-assert(!_recordCollection[2548].hasOwnProperty('artist'));
+updateRecords(_recordCollection, 2548, "artist", "");
+assert(!_recordCollection[2548].hasOwnProperty("artist"));
 ```
 
 Dopo `updateRecords(recordCollection, 1245, "tracks", "Addicted to Love")`, `tracks` dovrebbero avere la stringa `Addicted to Love` come ultimo elemento.
 
 ```js
 assert(
-  updateRecords(_recordCollection, 1245, 'tracks', 'Addicted to Love')[1245][
-    'tracks'
-  ].pop() === 'Addicted to Love'
+  updateRecords(_recordCollection, 1245, "tracks", "Addicted to Love")[1245][
+    "tracks"
+  ].pop() === "Addicted to Love"
 );
 ```
 
@@ -62,26 +62,26 @@ Dopo `updateRecords(recordCollection, 2468, "tracks", "Free")`, `tracks` dovrebb
 
 ```js
 assert(
-  updateRecords(_recordCollection, 2468, 'tracks', 'Free')[2468][
-    'tracks'
-  ][0] === '1999'
+  updateRecords(_recordCollection, 2468, "tracks", "Free")[2468][
+    "tracks"
+  ][0] === "1999"
 );
 ```
 
 Dopo `updateRecords(recordCollection, 2548, "tracks", "")`, `tracks` non dovrebbe essere impostato
 
 ```js
-updateRecords(_recordCollection, 2548, 'tracks', '');
-assert(!_recordCollection[2548].hasOwnProperty('tracks'));
+updateRecords(_recordCollection, 2548, "tracks", "");
+assert(!_recordCollection[2548].hasOwnProperty("tracks"));
 ```
 
 Dopo `updateRecords(recordCollection, 1245, "albumTitle", "Riptide")`, `albumTitle` dovrebbe essere la stringa `Riptide`
 
 ```js
 assert(
-  updateRecords(_recordCollection, 1245, 'albumTitle', 'Riptide')[1245][
-    'albumTitle'
-  ] === 'Riptide'
+  updateRecords(_recordCollection, 1245, "albumTitle", "Riptide")[1245][
+    "albumTitle"
+  ] === "Riptide"
 );
 ```
 
@@ -92,22 +92,22 @@ assert(
 ```js
 const _recordCollection = {
   2548: {
-    albumTitle: 'Slippery When Wet',
-    artist: 'Bon Jovi',
-    tracks: ['Let It Rock', 'You Give Love a Bad Name']
+    albumTitle: "Slippery When Wet",
+    artist: "Bon Jovi",
+    tracks: ["Let It Rock", "You Give Love a Bad Name"],
   },
   2468: {
-    albumTitle: '1999',
-    artist: 'Prince',
-    tracks: ['1999', 'Little Red Corvette']
+    albumTitle: "1999",
+    artist: "Prince",
+    tracks: ["1999", "Little Red Corvette"],
   },
   1245: {
-    artist: 'Robert Palmer',
-    tracks: []
+    artist: "Robert Palmer",
+    tracks: [],
   },
   5439: {
-    albumTitle: 'ABBA Gold'
-  }
+    albumTitle: "ABBA Gold",
+  },
 };
 ```
 
@@ -117,22 +117,22 @@ const _recordCollection = {
 // Setup
 var recordCollection = {
   2548: {
-    albumTitle: 'Slippery When Wet',
-    artist: 'Bon Jovi',
-    tracks: ['Let It Rock', 'You Give Love a Bad Name']
+    albumTitle: "Slippery When Wet",
+    artist: "Bon Jovi",
+    tracks: ["Let It Rock", "You Give Love a Bad Name"],
   },
   2468: {
-    albumTitle: '1999',
-    artist: 'Prince',
-    tracks: ['1999', 'Little Red Corvette']
+    albumTitle: "1999",
+    artist: "Prince",
+    tracks: ["1999", "Little Red Corvette"],
   },
   1245: {
-    artist: 'Robert Palmer',
-    tracks: []
+    artist: "Robert Palmer",
+    tracks: [],
   },
   5439: {
-    albumTitle: 'ABBA Gold'
-  }
+    albumTitle: "ABBA Gold",
+  },
 };
 
 // Only change code below this line
@@ -140,7 +140,7 @@ function updateRecords(records, id, prop, value) {
   return records;
 }
 
-updateRecords(recordCollection, 5439, 'artist', 'ABBA');
+updateRecords(recordCollection, 5439, "artist", "ABBA");
 ```
 
 # --solutions--
@@ -148,28 +148,28 @@ updateRecords(recordCollection, 5439, 'artist', 'ABBA');
 ```js
 var recordCollection = {
   2548: {
-    albumTitle: 'Slippery When Wet',
-    artist: 'Bon Jovi',
-    tracks: ['Let It Rock', 'You Give Love a Bad Name']
+    albumTitle: "Slippery When Wet",
+    artist: "Bon Jovi",
+    tracks: ["Let It Rock", "You Give Love a Bad Name"],
   },
   2468: {
-    albumTitle: '1999',
-    artist: 'Prince',
-    tracks: ['1999', 'Little Red Corvette']
+    albumTitle: "1999",
+    artist: "Prince",
+    tracks: ["1999", "Little Red Corvette"],
   },
   1245: {
-    artist: 'Robert Palmer',
-    tracks: []
+    artist: "Robert Palmer",
+    tracks: [],
   },
   5439: {
-    albumTitle: 'ABBA Gold'
-  }
+    albumTitle: "ABBA Gold",
+  },
 };
 
 // Only change code below this line
 function updateRecords(records, id, prop, value) {
-  if (value === '') delete records[id][prop];
-  else if (prop === 'tracks') {
+  if (value === "") delete records[id][prop];
+  else if (prop === "tracks") {
     records[id][prop] = records[id][prop] || [];
     records[id][prop].push(value);
   } else {

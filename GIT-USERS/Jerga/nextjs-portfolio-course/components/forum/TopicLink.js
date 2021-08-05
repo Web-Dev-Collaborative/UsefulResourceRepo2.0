@@ -1,11 +1,8 @@
+import { fromNow, shortify } from "@/utils/functions";
+import Link from "next/link";
 
-import { fromNow, shortify } from '@/utils/functions';
-import Link from 'next/link';
-
-const TopicLink = ({topic}) =>
-  <Link
-    href="/forum/topics/[slug]"
-    as={`/forum/topics/${topic.slug}`}>
+const TopicLink = ({ topic }) => (
+  <Link href="/forum/topics/[slug]" as={`/forum/topics/${topic.slug}`}>
     <a className="mb-1 list-group-item list-group-item-action flex-column align-items-start py-3 subtle-shadow no-border">
       <div className="d-flex w-100 justify-content-between">
         <h5 className="mb-1 black">{topic.title}</h5>
@@ -18,5 +15,6 @@ const TopicLink = ({topic}) =>
       </div>
     </a>
   </Link>
+);
 
 export default TopicLink;

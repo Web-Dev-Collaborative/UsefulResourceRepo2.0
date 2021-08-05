@@ -1,6 +1,6 @@
 ---
 id: 5900f3861000cf542c50fe99
-title: 'Problem 26: Reciprocal cycles'
+title: "Problem 26: Reciprocal cycles"
 challengeType: 5
 forumTopicId: 301908
 dashedName: problem-26-reciprocal-cycles
@@ -21,7 +21,7 @@ Find the value of `d` &lt; `n` for which <sup>1</sup>/<sub>d</sub> contains the 
 `reciprocalCycles(700)` should return a number.
 
 ```js
-assert(typeof reciprocalCycles(700) === 'number');
+assert(typeof reciprocalCycles(700) === "number");
 ```
 
 `reciprocalCycles(700)` should return 659.
@@ -54,7 +54,6 @@ assert(reciprocalCycles(1000) == 983);
 
 ```js
 function reciprocalCycles(n) {
-
   return n;
 }
 

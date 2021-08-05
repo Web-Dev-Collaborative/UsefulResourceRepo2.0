@@ -24,13 +24,13 @@ This task will not test for:
 `deepcopy` should be a function.
 
 ```js
-assert(typeof deepcopy === 'function');
+assert(typeof deepcopy === "function");
 ```
 
 `deepcopy({test: "test"})` should return an object.
 
 ```js
-assert(typeof deepcopy(obj1) === 'object');
+assert(typeof deepcopy(obj1) === "object");
 ```
 
 `deepcopy` should not return the same object that was provided.
@@ -45,7 +45,7 @@ When passed an object containing an array, `deepcopy` should return a deep copy 
 assert.deepEqual(deepcopy(obj2), obj2);
 ```
 
-When passed an object containing another object, `deepcopy`  should return a deep copy of the object.
+When passed an object containing another object, `deepcopy` should return a deep copy of the object.
 
 ```js
 assert.deepEqual(deepcopy(obj3), obj3);
@@ -56,14 +56,14 @@ assert.deepEqual(deepcopy(obj3), obj3);
 ## --after-user-code--
 
 ```js
-const obj1 = { test: 'test' };
+const obj1 = { test: "test" };
 const obj2 = {
-  t: 'test',
-  a: ['an', 'array']
+  t: "test",
+  a: ["an", "array"],
 };
 const obj3 = {
-  t: 'try',
-  o: obj2
+  t: "try",
+  o: obj2,
 };
 ```
 
@@ -71,7 +71,6 @@ const obj3 = {
 
 ```js
 function deepcopy(obj) {
-
   return true;
 }
 ```

@@ -1,6 +1,6 @@
 ---
 id: 5900f4891000cf542c50ff9b
-title: 'Problem 284: Steady Squares'
+title: "Problem 284: Steady Squares"
 challengeType: 5
 forumTopicId: 301935
 dashedName: problem-284-steady-squares
@@ -21,7 +21,7 @@ Find the sum of the digits of all the n-digit steady squares in the base 14 numb
 `euler284()` should return 5a411d7b.
 
 ```js
-assert.strictEqual(euler284(), '5a411d7b');
+assert.strictEqual(euler284(), "5a411d7b");
 ```
 
 # --seed--
@@ -30,7 +30,6 @@ assert.strictEqual(euler284(), '5a411d7b');
 
 ```js
 function euler284() {
-
   return true;
 }
 

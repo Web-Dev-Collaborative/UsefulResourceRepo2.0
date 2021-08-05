@@ -6,5 +6,5 @@
 // [START auth_msft_create_provider_modular]
 import { OAuthProvider } from "firebase/auth";
 
-const provider = new OAuthProvider('microsoft.com');
+const provider = new OAuthProvider("microsoft.com");
 // [END auth_msft_create_provider_modular]

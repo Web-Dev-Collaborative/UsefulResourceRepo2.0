@@ -14,7 +14,7 @@ Emphasize the word `love` in the `figcaption` element by wrapping it in an empha
 Your emphasis (`em`) element should have an opening tag. Opening tags have this syntax: `<elementName>`.
 
 ```js
-assert(document.querySelector('em'));
+assert(document.querySelector("em"));
 ```
 
 Your emphasis (`em`) element should have a closing tag. Closing tags have a `/` just after the `<` character.
@@ -26,14 +26,14 @@ assert(code.match(/<\/em\>/));
 You have either deleted the `figcaption` element or it is missing an opening or closing tag.
 
 ```js
-assert(document.querySelector('figcaption') && code.match(/<\/figcaption\>/));
+assert(document.querySelector("figcaption") && code.match(/<\/figcaption\>/));
 ```
 
 Your emphasis (`em`) element should surround the text `love`. You have either omitted the text or have a typo.
 
 ```js
 assert(
-  document.querySelector('figcaption > em').innerText.toLowerCase() === 'love'
+  document.querySelector("figcaption > em").innerText.toLowerCase() === "love"
 );
 ```
 
@@ -42,8 +42,8 @@ The `figcaption`'s text should be `Cats love lasagna`. Check for typos and that 
 ```js
 assert(
   document
-    .querySelector('figcaption')
-    .innerText.replace(/\s+/gi, ' ')
+    .querySelector("figcaption")
+    .innerText.replace(/\s+/gi, " ")
     .match(/cats love lasagna\.?/i)
 );
 ```
@@ -60,8 +60,15 @@ assert(
       <section>
         <h2>Cat Photos</h2>
         <!-- TODO: Add link to cat photos -->
-        <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        <p>
+          Click here to view more
+          <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+        </p>
+        <a href="https://freecatphotoapp.com"
+          ><img
+            src="https://bit.ly/fcc-relaxing-cat"
+            alt="A cute orange cat lying on its back."
+        /></a>
       </section>
       <section>
         <h2>Cat Lists</h2>
@@ -72,14 +79,16 @@ assert(
           <li>lasagna</li>
         </ul>
         <figure>
-          <img src="https://bit.ly/fcc-lasagna" alt="A slice of lasagna on a plate.">
---fcc-editable-region--
+          <img
+            src="https://bit.ly/fcc-lasagna"
+            alt="A slice of lasagna on a plate."
+          />
+          --fcc-editable-region--
           <figcaption>Cats love lasagna.</figcaption>
---fcc-editable-region--
+          --fcc-editable-region--
         </figure>
       </section>
     </main>
   </body>
 </html>
 ```
-

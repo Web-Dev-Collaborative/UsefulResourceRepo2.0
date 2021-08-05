@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08726
 title: Utiliza código hexadecimal (hex code) para indicar colores específicos
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c8W9mHM'
+videoUrl: "https://scrimba.com/c/c8W9mHM"
 forumTopicId: 18350
 dashedName: use-hex-code-for-specific-colors
 ---
@@ -30,7 +30,7 @@ Reemplaza la palabra `black` en el "background-color" (color de fondo) de nuestr
 Tu elemento `body` debe tener "background-color" black (negro).
 
 ```js
-assert($('body').css('background-color') === 'rgb(0, 0, 0)');
+assert($("body").css("background-color") === "rgb(0, 0, 0)");
 ```
 
 Debes usar el `hex code` correspondiente al color negro en lugar de la palabra reservada `black`.

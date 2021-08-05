@@ -1,6 +1,6 @@
 ---
 id: 5900f3c51000cf542c50fed6
-title: 'Problem 88: Product-sum numbers'
+title: "Problem 88: Product-sum numbers"
 challengeType: 5
 forumTopicId: 302203
 dashedName: problem-88-product-sum-numbers
@@ -33,7 +33,7 @@ What is the sum of all the minimal product-sum numbers for 2≤`k`≤12000?
 `productSumNumbers()` should return a number.
 
 ```js
-assert(typeof productSumNumbers() === 'number');
+assert(typeof productSumNumbers() === "number");
 ```
 
 `productSumNumbers()` should return 7587457.
@@ -48,7 +48,6 @@ assert.strictEqual(productSumNumbers(), 7587457);
 
 ```js
 function productSumNumbers() {
-
   return true;
 }
 

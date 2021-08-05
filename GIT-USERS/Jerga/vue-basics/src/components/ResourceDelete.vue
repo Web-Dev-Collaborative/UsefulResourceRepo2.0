@@ -1,24 +1,19 @@
-
 <template>
-  <button
-    @click="deleteResource"
-    class="btn btn-sm btn-danger">
-    Delete
-  </button>
+  <button @click="deleteResource" class="btn btn-sm btn-danger">Delete</button>
 </template>
 
 <script>
-import { deleteResourceApi } from '@/actions';
+import { deleteResourceApi } from "@/actions";
 export default {
   props: {
-    activeId: String
+    activeId: String,
   },
-  emits: ['on-resource-delete'],
+  emits: ["on-resource-delete"],
   methods: {
     async deleteResource() {
-      const deletedResource = await deleteResourceApi(this.activeId)
-      this.$emit('on-resource-delete', deletedResource)
-    }
-  }
-}
+      const deletedResource = await deleteResourceApi(this.activeId);
+      this.$emit("on-resource-delete", deletedResource);
+    },
+  },
+};
 </script>

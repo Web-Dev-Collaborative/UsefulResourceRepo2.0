@@ -1,4 +1,3 @@
-
 <!-- HTML part -->
 <template>
   <div id="app">
@@ -16,42 +15,42 @@
 
 <!-- JS part -->
 <script>
-import playground from './playground'
-import TodoList from '@/components/TodoList'
-import TodoCreate from '@/components/TodoCreate'
+import playground from "./playground";
+import TodoList from "@/components/TodoList";
+import TodoCreate from "@/components/TodoCreate";
 
-import store from '@/store'
+import store from "@/store";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    TodoList, TodoCreate
+    TodoList,
+    TodoCreate,
   },
   data() {
     return {
-      todos: store.state.todos
-    }
+      todos: store.state.todos,
+    };
   },
   // This function is run automaticaly by VUE framework
   created() {
     // playground()
-    this.todos = store.dispatch('initStore')
+    this.todos = store.dispatch("initStore");
   },
   methods: {
     createTodo(todo) {
-      store.dispatch('createTodo', todo)
-    }
-  }
-}
+      store.dispatch("createTodo", todo);
+    },
+  },
+};
 </script>
 
 <!-- Stylings, css, scss.... -->
 <style lang="scss">
-
 $color-red: red;
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -66,7 +65,7 @@ $color-red: red;
   .label {
     display: block;
     font-size: 18px;
-    font-weight: bold
+    font-weight: bold;
   }
 
   .form-input {
@@ -94,7 +93,6 @@ $color-red: red;
 .is-danger {
   background-color: #ff5a5a !important;
 }
-
 
 .app-button {
   font-size: 20px;
@@ -135,16 +133,4 @@ $color-red: red;
     border-radius: 5px;
   }
 }
-
 </style>
-
-
-
-
-
-
-
-
-
-
-

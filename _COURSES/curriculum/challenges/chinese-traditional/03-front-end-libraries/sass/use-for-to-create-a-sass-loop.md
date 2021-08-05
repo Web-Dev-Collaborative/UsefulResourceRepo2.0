@@ -10,13 +10,15 @@ dashedName: use-for-to-create-a-sass-loop
 
 可以在 Sass 中使用 `@for` 循環添加樣式，它的用法和 JavaScript 中的 `for` 循環類似。
 
-`@for` 以兩種方式使用：“開始 through 結束” 或 “開始 to 結束”。 主要區別在於“開始 **to** 結束”*不包括*結束數字，而“開始 **through** 結束”*包括* 結束號碼。
+`@for` 以兩種方式使用：“開始 through 結束” 或 “開始 to 結束”。 主要區別在於“開始 **to** 結束”*不包括*結束數字，而“開始 **through** 結束”_包括_ 結束號碼。
 
 這是一個開始 **through** 結束的示例：
 
 ```scss
 @for $i from 1 through 12 {
-  .col-#{$i} { width: 100%/12 * $i; }
+  .col-#{$i} {
+    width: 100%/12 * $i;
+  }
 }
 ```
 
@@ -31,9 +33,7 @@ dashedName: use-for-to-create-a-sass-loop
   width: 16.66667%;
 }
 
-...
-
-.col-12 {
+... .col-12 {
   width: 100%;
 }
 ```
@@ -57,31 +57,31 @@ assert(code.match(/@for /g));
 `.text-1` class 的 `font-size` 應爲 15px。
 
 ```js
-assert($('.text-1').css('font-size') == '15px');
+assert($(".text-1").css("font-size") == "15px");
 ```
 
 `.text-2` class 的 `font-size` 應爲 30px。
 
 ```js
-assert($('.text-2').css('font-size') == '30px');
+assert($(".text-2").css("font-size") == "30px");
 ```
 
 `.text-3` class 的 `font-size` 應爲 45px。
 
 ```js
-assert($('.text-3').css('font-size') == '45px');
+assert($(".text-3").css("font-size") == "45px");
 ```
 
 `.text-4` class 的 `font-size` 應爲 60px。
 
 ```js
-assert($('.text-4').css('font-size') == '60px');
+assert($(".text-4").css("font-size") == "60px");
 ```
 
 `.text-5` class 的 `font-size` 應爲 75px。
 
 ```js
-assert($('.text-5').css('font-size') == '75px');
+assert($(".text-5").css("font-size") == "75px");
 ```
 
 # --seed--
@@ -89,11 +89,7 @@ assert($('.text-5').css('font-size') == '75px');
 ## --seed-contents--
 
 ```html
-<style type='text/scss'>
-
-
-
-</style>
+<style type="text/scss"></style>
 
 <p class="text-1">Hello</p>
 <p class="text-2">Hello</p>
@@ -105,12 +101,12 @@ assert($('.text-5').css('font-size') == '75px');
 # --solutions--
 
 ```html
-<style type='text/scss'>
-
-@for $i from 1 through 5 {
-  .text-#{$i} { font-size: 15px * $i; }
-}
-
+<style type="text/scss">
+  @for $i from 1 through 5 {
+    .text-#{$i} {
+      font-size: 15px * $i;
+    }
+  }
 </style>
 
 <p class="text-1">Hello</p>
@@ -123,12 +119,12 @@ assert($('.text-5').css('font-size') == '75px');
 ---
 
 ```html
-<style type='text/scss'>
-
-@for $i from 1 to 6 {
-  .text-#{$i} { font-size: 15px * $i; }
-}
-
+<style type="text/scss">
+  @for $i from 1 to 6 {
+    .text-#{$i} {
+      font-size: 15px * $i;
+    }
+  }
 </style>
 
 <p class="text-1">Hello</p>

@@ -11,11 +11,11 @@ dashedName: verify-an-objects-constructor-with-instanceof
 Anytime a constructor function creates a new object, that object is said to be an <dfn>instance</dfn> of its constructor. JavaScript gives a convenient way to verify this with the `instanceof` operator. `instanceof` allows you to compare an object to a constructor, returning `true` or `false` based on whether or not that object was created with the constructor. Here's an example:
 
 ```js
-let Bird = function(name, color) {
+let Bird = function (name, color) {
   this.name = name;
   this.color = color;
   this.numLegs = 2;
-}
+};
 
 let crow = new Bird("Alexis", "black");
 
@@ -30,7 +30,7 @@ If an object is created without using a constructor, `instanceof` will verify th
 let canary = {
   name: "Mildred",
   color: "Yellow",
-  numLegs: 2
+  numLegs: 2,
 };
 
 canary instanceof Bird;
@@ -47,7 +47,7 @@ Create a new instance of the `House` constructor, calling it `myHouse` and passi
 `myHouse` should have a `numBedrooms` attribute set to a number.
 
 ```js
-assert(typeof myHouse.numBedrooms === 'number');
+assert(typeof myHouse.numBedrooms === "number");
 ```
 
 You should verify that `myHouse` is an instance of `House` using the `instanceof` operator.

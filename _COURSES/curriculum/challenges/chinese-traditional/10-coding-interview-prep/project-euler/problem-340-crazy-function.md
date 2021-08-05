@@ -1,6 +1,6 @@
 ---
 id: 5900f4c21000cf542c50ffd4
-title: 'Problem 340: Crazy Function'
+title: "Problem 340: Crazy Function"
 challengeType: 5
 forumTopicId: 301999
 dashedName: problem-340-crazy-function
@@ -34,7 +34,6 @@ assert.strictEqual(euler340(), 291504964);
 
 ```js
 function euler340() {
-
   return true;
 }
 

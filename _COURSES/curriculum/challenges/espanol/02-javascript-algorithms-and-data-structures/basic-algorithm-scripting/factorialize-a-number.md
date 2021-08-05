@@ -23,7 +23,7 @@ Sólo se proporcionarán a la función los enteros mayores o iguales a cero.
 `factorialize(5)` debe devolver un número.
 
 ```js
-assert(typeof factorialize(5) === 'number');
+assert(typeof factorialize(5) === "number");
 ```
 
 `factorialize(5)` debe devolver `120`.

@@ -16,7 +16,7 @@ Inoltre, è possibile combinare un intervallo di lettere e numeri in un unico se
 
 ```js
 let jennyStr = "Jenny8675309";
-let myRegex = /[a-z0-9]/ig;
+let myRegex = /[a-z0-9]/gi;
 jennyStr.match(myRegex);
 ```
 

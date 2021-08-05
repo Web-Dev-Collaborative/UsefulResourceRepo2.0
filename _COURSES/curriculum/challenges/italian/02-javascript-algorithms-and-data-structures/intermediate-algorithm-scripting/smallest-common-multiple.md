@@ -12,14 +12,14 @@ Trova il minimo comune multiplo (mcm) dei parametri forniti che sia divisibile p
 
 L'intervallo sarà un array di due numeri che non saranno necessariamente in ordine crescente.
 
-Per esempio, se dati 1 e 3, trovare il minimo comune multiplo sia di 1 che di 3 che è anche divisibile per tutti i numeri *tra* 1 e 3. La risposta in questo caso sarà 6.
+Per esempio, se dati 1 e 3, trovare il minimo comune multiplo sia di 1 che di 3 che è anche divisibile per tutti i numeri _tra_ 1 e 3. La risposta in questo caso sarà 6.
 
 # --hints--
 
 `smallestCommons([1, 5])` dovrebbe restituire un numero.
 
 ```js
-assert.deepEqual(typeof smallestCommons([1, 5]), 'number');
+assert.deepEqual(typeof smallestCommons([1, 5]), "number");
 ```
 
 `smallestCommons([1, 5])` dovrebbe restituire 60.
@@ -61,26 +61,27 @@ function smallestCommons(arr) {
   return arr;
 }
 
-
-smallestCommons([1,5]);
+smallestCommons([1, 5]);
 ```
 
 # --solutions--
 
 ```js
 function gcd(a, b) {
-    while (b !== 0) {
-        a = [b, b = a % b][0];
-    }
-    return a;
+  while (b !== 0) {
+    a = [b, (b = a % b)][0];
+  }
+  return a;
 }
 
 function lcm(a, b) {
-    return (a * b) / gcd(a, b);
+  return (a * b) / gcd(a, b);
 }
 
 function smallestCommons(arr) {
-  arr.sort(function(a,b) {return a-b;});
+  arr.sort(function (a, b) {
+    return a - b;
+  });
   var rng = [];
   for (var i = arr[0]; i <= arr[1]; i++) {
     rng.push(i);

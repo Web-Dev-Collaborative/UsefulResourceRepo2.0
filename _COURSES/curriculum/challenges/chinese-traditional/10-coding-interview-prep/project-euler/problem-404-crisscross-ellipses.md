@@ -1,6 +1,6 @@
 ---
 id: 5900f5001000cf542c510012
-title: 'Problem 404: Crisscross Ellipses'
+title: "Problem 404: Crisscross Ellipses"
 challengeType: 5
 forumTopicId: 302072
 dashedName: problem-404-crisscross-ellipses
@@ -32,7 +32,6 @@ assert.strictEqual(euler404(), 1199215615081353);
 
 ```js
 function euler404() {
-
   return true;
 }
 

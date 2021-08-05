@@ -8,16 +8,16 @@ dashedName: check-for-the-presence-of-an-element-with-indexof
 
 # --description--
 
-Ya que los arreglos pueden modificarse, o *mutarse*, en cualquier momento, no se puede garantizar dónde estará un dato concreto en un arreglo determinado, o si ese elemento sigue existiendo. Afortunadamente, JavaScript nos proporciona otro método incorporado, `indexOf()`, que nos permite comprobar rápida y fácilmente la presencia de un elemento en un arreglo. `indexOf()` toma un elemento como parámetro, y cuando lo llama, devuelve la posición, o índice, de ese elemento, o `-1` si el elemento no existe en el arreglo.
+Ya que los arreglos pueden modificarse, o _mutarse_, en cualquier momento, no se puede garantizar dónde estará un dato concreto en un arreglo determinado, o si ese elemento sigue existiendo. Afortunadamente, JavaScript nos proporciona otro método incorporado, `indexOf()`, que nos permite comprobar rápida y fácilmente la presencia de un elemento en un arreglo. `indexOf()` toma un elemento como parámetro, y cuando lo llama, devuelve la posición, o índice, de ese elemento, o `-1` si el elemento no existe en el arreglo.
 
 Por ejemplo:
 
 ```js
-let fruits = ['apples', 'pears', 'oranges', 'peaches', 'pears'];
+let fruits = ["apples", "pears", "oranges", "peaches", "pears"];
 
-fruits.indexOf('dates');
-fruits.indexOf('oranges');
-fruits.indexOf('pears');
+fruits.indexOf("dates");
+fruits.indexOf("oranges");
+fruits.indexOf("pears");
 ```
 
 `indexOf('dates')` devuelve `-1`, `indexOf('oranges')` devuelve `2`, e `indexOf('pears')` devuelve `1` (el primer índice en el que existe cada elemento).
@@ -31,14 +31,14 @@ fruits.indexOf('pears');
 La función `quickCheck` debe devolver un valor booleano (`true` o `false`), no una cadena (`"true"` o `"false"`)
 
 ```js
-assert.isBoolean(quickCheck(['squash', 'onions', 'shallots'], 'mushrooms'));
+assert.isBoolean(quickCheck(["squash", "onions", "shallots"], "mushrooms"));
 ```
 
 `quickCheck(["squash", "onions", "shallots"], "mushrooms")` debe devolver `false`
 
 ```js
 assert.strictEqual(
-  quickCheck(['squash', 'onions', 'shallots'], 'mushrooms'),
+  quickCheck(["squash", "onions", "shallots"], "mushrooms"),
   false
 );
 ```
@@ -47,7 +47,7 @@ assert.strictEqual(
 
 ```js
 assert.strictEqual(
-  quickCheck(['onions', 'squash', 'shallots'], 'onions'),
+  quickCheck(["onions", "squash", "shallots"], "onions"),
   true
 );
 ```
@@ -77,17 +77,16 @@ assert.notStrictEqual(quickCheck.toString().search(/\.indexOf\(/), -1);
 ```js
 function quickCheck(arr, elem) {
   // Only change code below this line
-
   // Only change code above this line
 }
 
-console.log(quickCheck(['squash', 'onions', 'shallots'], 'mushrooms'));
+console.log(quickCheck(["squash", "onions", "shallots"], "mushrooms"));
 ```
 
 # --solutions--
 
 ```js
 function quickCheck(arr, elem) {
-  return arr.indexOf(elem) >= 0; 
+  return arr.indexOf(elem) >= 0;
 }
 ```

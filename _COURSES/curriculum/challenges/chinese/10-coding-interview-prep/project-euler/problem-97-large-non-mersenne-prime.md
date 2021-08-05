@@ -1,6 +1,6 @@
 ---
 id: 5900f3ce1000cf542c50fee0
-title: 'Problem 97: Large non-Mersenne prime'
+title: "Problem 97: Large non-Mersenne prime"
 challengeType: 5
 forumTopicId: 302214
 dashedName: problem-97-large-non-mersenne-prime
@@ -19,7 +19,7 @@ Find the last ten digits of this prime number.
 `lrgNonMersennePrime()` should return a number.
 
 ```js
-assert(typeof lrgNonMersennePrime() === 'number');
+assert(typeof lrgNonMersennePrime() === "number");
 ```
 
 `lrgNonMersennePrime()` should return 8739992577.
@@ -34,7 +34,6 @@ assert.strictEqual(lrgNonMersennePrime(), 8739992577);
 
 ```js
 function lrgNonMersennePrime() {
-
   return true;
 }
 

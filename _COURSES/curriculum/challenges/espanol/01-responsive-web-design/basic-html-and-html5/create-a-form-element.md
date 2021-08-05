@@ -14,7 +14,7 @@ Por ejemplo:
 
 ```html
 <form action="/url-where-you-want-to-submit-form-data">
-  <input>
+  <input />
 </form>
 ```
 
@@ -27,18 +27,20 @@ Anida el elemento `input` existente dentro de un elemento `form` y asigna `"http
 El elemento `input` existente debe anidarse dentro de un elemento `form`.
 
 ```js
-const inputElem = document.querySelector('form input');
+const inputElem = document.querySelector("form input");
 assert(
-  inputElem.getAttribute('type') === 'text' &&
-    inputElem.getAttribute('placeholder') === 'cat photo URL'
+  inputElem.getAttribute("type") === "text" &&
+    inputElem.getAttribute("placeholder") === "cat photo URL"
 );
 ```
 
 Tu formulario `form` debe tener un atributo `action` que esté establecido como `https://www.freecatphotoapp.com/submit-cat-photo`.
 
 ```js
-const action = $('form').attr('action');
-assert(action.match(/^https:\/\/(www\.)?freecatphotoapp\.com\/submit-cat-photo$/i))
+const action = $("form").attr("action");
+assert(
+  action.match(/^https:\/\/(www\.)?freecatphotoapp\.com\/submit-cat-photo$/i)
+);
 ```
 
 Tu elemento `form` debe tener etiquetas correctamente abiertas y cerradas.
@@ -60,7 +62,11 @@ assert(
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -74,7 +80,7 @@ assert(
     <li>thunder</li>
     <li>other cats</li>
   </ol>
-  <input type="text" placeholder="cat photo URL">
+  <input type="text" placeholder="cat photo URL" />
 </main>
 ```
 
@@ -85,7 +91,11 @@ assert(
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -100,7 +110,7 @@ assert(
     <li>other cats</li>
   </ol>
   <form action="https://www.freecatphotoapp.com/submit-cat-photo">
-    <input type="text" placeholder="cat photo URL">
+    <input type="text" placeholder="cat photo URL" />
   </form>
 </main>
 ```

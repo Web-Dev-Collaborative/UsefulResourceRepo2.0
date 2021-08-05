@@ -2,14 +2,11 @@
   <div>
     <div @click="toggleIsActive">
       <slot name="actionButton">
-<!--        domyślne wartości jak nic nie podamy dalej-->
-<!--       <button class="button is-primary">Open</button>-->
+        <!--        domyślne wartości jak nic nie podamy dalej-->
+        <!--       <button class="button is-primary">Open</button>-->
       </slot>
     </div>
-    <div
-      class="modal"
-      :class="{'is-active': isActive}"
-    >
+    <div class="modal" :class="{ 'is-active': isActive }">
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
@@ -24,15 +21,10 @@
           <slot></slot>
         </section>
         <footer class="modal-card-foot">
-          <button
-            @click="emitModalSubmit"
-            class="button is-success"
-          >Save changes</button>
-          <button
-            @click="toggleIsActive"
-            class="button"
-          >Cancel
+          <button @click="emitModalSubmit" class="button is-success">
+            Save changes
           </button>
+          <button @click="toggleIsActive" class="button">Cancel</button>
         </footer>
       </div>
     </div>
@@ -40,27 +32,25 @@
 </template>
 
 <script>
-  export default {
-    name: "Modal",
-    data() {
-      return {
-        isActive: false,
-      }
+export default {
+  name: "Modal",
+  data() {
+    return {
+      isActive: false,
+    };
+  },
+  methods: {
+    toggleIsActive() {
+      this.isActive = !this.isActive;
     },
-    methods: {
-      toggleIsActive() {
-        this.isActive = !this.isActive;
-      },
-      emitModalSubmit() {
-        this.$emit('modalSubmited', this.closeModal);
-      },
-      closeModal() {
-        this.isActive = false;
-      }
-    }
-  }
+    emitModalSubmit() {
+      this.$emit("modalSubmited", this.closeModal);
+    },
+    closeModal() {
+      this.isActive = false;
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

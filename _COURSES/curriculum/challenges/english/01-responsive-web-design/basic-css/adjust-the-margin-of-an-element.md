@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08822
 title: Adjust the Margin of an Element
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cVJarHW'
+videoUrl: "https://scrimba.com/c/cVJarHW"
 forumTopicId: 16654
 dashedName: adjust-the-margin-of-an-element
 ---
@@ -24,7 +24,7 @@ Change the `margin` of the blue box to match that of the red box.
 Your `blue-box` class should give elements `20px` of `margin`.
 
 ```js
-assert($('.blue-box').css('margin-top') === '20px');
+assert($(".blue-box").css("margin-top") === "20px");
 ```
 
 # --seed--

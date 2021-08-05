@@ -2,7 +2,7 @@
 id: 587d781e367417b2b2512ac9
 title: 更改元素的相對位置
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/czVmMtZ'
+videoUrl: "https://scrimba.com/c/czVmMtZ"
 forumTopicId: 301044
 dashedName: change-an-elements-relative-position
 ---
@@ -33,13 +33,13 @@ p {
 `h2` 元素應有一個值爲 `relative` 的 `position` 屬性。
 
 ```js
-assert($('h2').css('position') == 'relative');
+assert($("h2").css("position") == "relative");
 ```
 
 你應該使用 CSS 屬性調整 `h2` 的位置，使其從原來的位置相對 `top` 偏移 15px。
 
 ```js
-assert($('h2').css('top') == '15px');
+assert($("h2").css("top") == "15px");
 ```
 
 # --seed--
@@ -49,8 +49,6 @@ assert($('h2').css('top') == '15px');
 ```html
 <style>
   h2 {
-
-
   }
 </style>
 <body>

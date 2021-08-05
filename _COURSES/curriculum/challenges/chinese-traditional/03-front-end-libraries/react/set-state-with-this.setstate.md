@@ -12,7 +12,7 @@ dashedName: set-state-with-this-setstate
 
 ```jsx
 this.setState({
-  username: 'Lewis'
+  username: "Lewis",
 });
 ```
 
@@ -30,15 +30,15 @@ React 要求永遠不要直接修改 `state`，而是在 state 發生改變時�
 
 ```js
 assert(
-  Enzyme.mount(React.createElement(MyComponent)).state('name') ===
-    'Initial State'
+  Enzyme.mount(React.createElement(MyComponent)).state("name") ===
+    "Initial State"
 );
 ```
 
 `MyComponent` 應該渲染一個 `h1` 標題。
 
 ```js
-assert(Enzyme.mount(React.createElement(MyComponent)).find('h1').length === 1);
+assert(Enzyme.mount(React.createElement(MyComponent)).find("h1").length === 1);
 ```
 
 渲染的 `h1` 標題中應該包含一段文本，這段文本是從組件的 state 中渲染出來的。
@@ -49,7 +49,7 @@ async () => {
     new Promise((resolve, reject) => setTimeout(() => resolve(fn()), 250));
   const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
   const first = () => {
-    mockedComponent.setState({ name: 'TestName' });
+    mockedComponent.setState({ name: "TestName" });
     return waitForIt(() => mockedComponent.html());
   };
   const firstValue = await first();
@@ -65,16 +65,16 @@ async () => {
     new Promise((resolve, reject) => setTimeout(() => resolve(fn()), 250));
   const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
   const first = () => {
-    mockedComponent.setState({ name: 'Before' });
-    return waitForIt(() => mockedComponent.state('name'));
+    mockedComponent.setState({ name: "Before" });
+    return waitForIt(() => mockedComponent.state("name"));
   };
   const second = () => {
     mockedComponent.instance().handleClick();
-    return waitForIt(() => mockedComponent.state('name'));
+    return waitForIt(() => mockedComponent.state("name"));
   };
   const firstValue = await first();
   const secondValue = await second();
-  assert(firstValue === 'Before' && secondValue === 'React Rocks!');
+  assert(firstValue === "Before" && secondValue === "React Rocks!");
 };
 ```
 
@@ -83,7 +83,7 @@ async () => {
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyComponent />, document.getElementById('root'))
+ReactDOM.render(<MyComponent />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -93,13 +93,12 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'Initial State'
+      name: "Initial State",
     };
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
     // Change code below this line
-
     // Change code above this line
   }
   render() {
@@ -110,7 +109,7 @@ class MyComponent extends React.Component {
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -120,24 +119,24 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'Initial State'
+      name: "Initial State",
     };
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
-     // Change code below this line
+    // Change code below this line
     this.setState({
-      name: 'React Rocks!'
+      name: "React Rocks!",
     });
     // Change code above this line
   }
   render() {
     return (
       <div>
-        <button onClick = {this.handleClick}>Click Me</button>
+        <button onClick={this.handleClick}>Click Me</button>
         <h1>{this.state.name}</h1>
       </div>
     );
   }
-};
+}
 ```

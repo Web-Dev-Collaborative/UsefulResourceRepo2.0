@@ -29,55 +29,55 @@ Change the `text()` method so that each `h2` element displays the corresponding 
 The first `h2` should have the text "12 USD".
 
 ```js
-assert($('h2').eq(0).text() == '12 USD');
+assert($("h2").eq(0).text() == "12 USD");
 ```
 
 The second `h2` should have the text "31 USD".
 
 ```js
-assert($('h2').eq(1).text() == '31 USD');
+assert($("h2").eq(1).text() == "31 USD");
 ```
 
 The third `h2` should have the text "22 USD".
 
 ```js
-assert($('h2').eq(2).text() == '22 USD');
+assert($("h2").eq(2).text() == "22 USD");
 ```
 
 The fourth `h2` should have the text "17 USD".
 
 ```js
-assert($('h2').eq(3).text() == '17 USD');
+assert($("h2").eq(3).text() == "17 USD");
 ```
 
 The fifth `h2` should have the text "25 USD".
 
 ```js
-assert($('h2').eq(4).text() == '25 USD');
+assert($("h2").eq(4).text() == "25 USD");
 ```
 
 The sixth `h2` should have the text "18 USD".
 
 ```js
-assert($('h2').eq(5).text() == '18 USD');
+assert($("h2").eq(5).text() == "18 USD");
 ```
 
 The seventh `h2` should have the text "29 USD".
 
 ```js
-assert($('h2').eq(6).text() == '29 USD');
+assert($("h2").eq(6).text() == "29 USD");
 ```
 
 The eighth `h2` should have the text "14 USD".
 
 ```js
-assert($('h2').eq(7).text() == '14 USD');
+assert($("h2").eq(7).text() == "14 USD");
 ```
 
 The ninth `h2` should have the text "9 USD".
 
 ```js
-assert($('h2').eq(8).text() == '9 USD');
+assert($("h2").eq(8).text() == "9 USD");
 ```
 
 # --seed--
@@ -89,7 +89,8 @@ assert($('h2').eq(8).text() == '9 USD');
   <script>
     const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
-    d3.select("body").selectAll("h2")
+    d3.select("body")
+      .selectAll("h2")
       .data(dataset)
       .enter()
       .append("h2")
@@ -97,7 +98,7 @@ assert($('h2').eq(8).text() == '9 USD');
 
       .text("New Title");
 
-      // Add your code above this line
+    // Add your code above this line
   </script>
 </body>
 ```
@@ -109,12 +110,12 @@ assert($('h2').eq(8).text() == '9 USD');
   <script>
     const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
-    d3.select("body").selectAll("h2")
+    d3.select("body")
+      .selectAll("h2")
       .data(dataset)
       .enter()
       .append("h2")
       .text((d) => `${d} USD`);
-
   </script>
 </body>
 ```

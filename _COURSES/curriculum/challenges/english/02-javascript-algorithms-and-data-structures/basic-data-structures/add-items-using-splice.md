@@ -34,18 +34,18 @@ We have defined a function, `htmlColorNames`, which takes an array of HTML color
 ```js
 assert.deepEqual(
   htmlColorNames([
-    'DarkGoldenRod',
-    'WhiteSmoke',
-    'LavenderBlush',
-    'PaleTurquoise',
-    'FireBrick'
+    "DarkGoldenRod",
+    "WhiteSmoke",
+    "LavenderBlush",
+    "PaleTurquoise",
+    "FireBrick",
   ]),
   [
-    'DarkSalmon',
-    'BlanchedAlmond',
-    'LavenderBlush',
-    'PaleTurquoise',
-    'FireBrick'
+    "DarkSalmon",
+    "BlanchedAlmond",
+    "LavenderBlush",
+    "PaleTurquoise",
+    "FireBrick",
   ]
 );
 ```
@@ -80,14 +80,22 @@ function htmlColorNames(arr) {
   return arr;
 }
 
-console.log(htmlColorNames(['DarkGoldenRod', 'WhiteSmoke', 'LavenderBlush', 'PaleTurquoise', 'FireBrick']));
+console.log(
+  htmlColorNames([
+    "DarkGoldenRod",
+    "WhiteSmoke",
+    "LavenderBlush",
+    "PaleTurquoise",
+    "FireBrick",
+  ])
+);
 ```
 
 # --solutions--
 
 ```js
 function htmlColorNames(arr) {
-  arr.splice(0,2,'DarkSalmon', 'BlanchedAlmond');
+  arr.splice(0, 2, "DarkSalmon", "BlanchedAlmond");
   return arr;
 }
 ```

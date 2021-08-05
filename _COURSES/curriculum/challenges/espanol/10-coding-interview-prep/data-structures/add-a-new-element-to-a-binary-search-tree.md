@@ -34,10 +34,10 @@ The `BinarySearchTree` data structure should exist.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     }
-    return typeof test == 'object';
+    return typeof test == "object";
   })()
 );
 ```
@@ -48,12 +48,12 @@ The binary search tree should have a method called `add`.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    return typeof test.add == 'function';
+    return typeof test.add == "function";
   })()
 );
 ```
@@ -64,12 +64,12 @@ The add method should add elements according to the binary search tree rules.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.add !== 'function') {
+    if (typeof test.add !== "function") {
       return false;
     }
     test.add(4);
@@ -93,12 +93,12 @@ Adding an element that already exists should return `null`.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.add !== 'function') {
+    if (typeof test.add !== "function") {
       return false;
     }
     test.add(4);
@@ -112,30 +112,27 @@ assert(
 ## --after-user-code--
 
 ```js
-BinarySearchTree.prototype = Object.assign(
-  BinarySearchTree.prototype,
-  {
-    inOrder() {
-      if (!this.root) {
-        return null;
-      }
-      var result = new Array();
-      function traverseInOrder(node) {
-        node.left && traverseInOrder(node.left);
-        result.push(node.value);
-        node.right && traverseInOrder(node.right);
-      }
-      traverseInOrder(this.root);
-      return result;
+BinarySearchTree.prototype = Object.assign(BinarySearchTree.prototype, {
+  inOrder() {
+    if (!this.root) {
+      return null;
     }
-  }
-);
+    var result = new Array();
+    function traverseInOrder(node) {
+      node.left && traverseInOrder(node.left);
+      result.push(node.value);
+      node.right && traverseInOrder(node.right);
+    }
+    traverseInOrder(this.root);
+    return result;
+  },
+});
 ```
 
 ## --seed-contents--
 
 ```js
-var displayTree = tree => console.log(JSON.stringify(tree, null, 2));
+var displayTree = (tree) => console.log(JSON.stringify(tree, null, 2));
 function Node(value) {
   this.value = value;
   this.left = null;
@@ -159,13 +156,13 @@ function Node(value) {
 }
 function BinarySearchTree() {
   this.root = null;
-  this.add = function(element) {
+  this.add = function (element) {
     let current = this.root;
     if (!current) {
       this.root = new Node(element);
       return;
     } else {
-      const searchTree = function(current) {
+      const searchTree = function (current) {
         if (current.value > element) {
           if (current.left) {
             return searchTree(current.left);

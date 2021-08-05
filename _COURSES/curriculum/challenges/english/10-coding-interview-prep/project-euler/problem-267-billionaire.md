@@ -1,6 +1,6 @@
 ---
 id: 5900f4771000cf542c50ff8a
-title: 'Problem 267: Billionaire'
+title: "Problem 267: Billionaire"
 challengeType: 5
 forumTopicId: 301916
 dashedName: problem-267-billionaire
@@ -34,7 +34,6 @@ assert.strictEqual(euler267(), 0.999992836187);
 
 ```js
 function euler267() {
-
   return true;
 }
 

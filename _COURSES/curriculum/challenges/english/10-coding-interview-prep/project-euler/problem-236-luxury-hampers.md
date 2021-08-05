@@ -1,6 +1,6 @@
 ---
 id: 5900f4591000cf542c50ff6b
-title: 'Problem 236: Luxury Hampers'
+title: "Problem 236: Luxury Hampers"
 challengeType: 5
 forumTopicId: 301881
 dashedName: problem-236-luxury-hampers
@@ -34,7 +34,6 @@ assert.strictEqual(euler236(), 123 / 59);
 
 ```js
 function euler236() {
-
   return true;
 }
 

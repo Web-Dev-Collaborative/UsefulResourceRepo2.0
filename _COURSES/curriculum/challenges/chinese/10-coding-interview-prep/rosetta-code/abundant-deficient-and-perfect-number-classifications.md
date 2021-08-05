@@ -1,6 +1,6 @@
 ---
 id: 594810f028c0303b75339acd
-title: 'Abundant, deficient and perfect number classifications'
+title: "Abundant, deficient and perfect number classifications"
 challengeType: 5
 forumTopicId: 302221
 dashedName: abundant-deficient-and-perfect-number-classifications
@@ -29,7 +29,7 @@ Implement a function that calculates how many of the integers from `1` to `20,00
 `getDPA` should be a function.
 
 ```js
-assert(typeof getDPA === 'function');
+assert(typeof getDPA === "function");
 ```
 
 `getDPA` should return an array.
@@ -61,9 +61,7 @@ const solution = [15043, 4, 4953];
 ## --seed-contents--
 
 ```js
-function getDPA(num) {
-
-}
+function getDPA(num) {}
 ```
 
 # --solutions--
@@ -76,7 +74,7 @@ function getDPA(num) {
     const e = Math.sqrt(n);
     for (let d = 2; d < e; d += 1) {
       if (n % d === 0) {
-        ds += d + (n / d);
+        ds += d + n / d;
       }
     }
     if (n % e === 0) {

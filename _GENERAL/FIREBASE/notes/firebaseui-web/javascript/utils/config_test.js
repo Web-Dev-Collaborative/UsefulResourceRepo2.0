@@ -16,35 +16,33 @@
  * @fileoverview Tests for config.js.
  */
 
-goog.provide('firebaseui.auth.ConfigTest');
+goog.provide("firebaseui.auth.ConfigTest");
 
-goog.require('firebaseui.auth.Config');
-goog.require('goog.testing.jsunit');
+goog.require("firebaseui.auth.Config");
+goog.require("goog.testing.jsunit");
 
-goog.setTestOnly('firebaseui.auth.ConfigTest');
-
+goog.setTestOnly("firebaseui.auth.ConfigTest");
 
 var instance = null;
-
 
 function setUp() {
   instance = new firebaseui.auth.Config();
 }
 
 function testHasGetAndSet() {
-  var name = 'name';
+  var name = "name";
   assertFalse(instance.has_(name));
   instance.set_(name, 1);
   assertTrue(instance.has_(name));
   assertEquals(1, instance.get_(name));
   // Case insensitive.
-  name = 'NaMe';
+  name = "NaMe";
   assertTrue(instance.has_(name));
   assertEquals(1, instance.get_(name));
 }
 
 function testDefine_withoutValue() {
-  var name = 'test';
+  var name = "test";
   assertFalse(instance.has_(name));
   instance.define(name);
   assertTrue(instance.has_(name));
@@ -52,7 +50,7 @@ function testDefine_withoutValue() {
 }
 
 function testDefine_withValue() {
-  var name = 'test';
+  var name = "test";
   assertFalse(instance.has_(name));
   instance.define(name, 1);
   assertTrue(instance.has_(name));
@@ -60,17 +58,21 @@ function testDefine_withValue() {
 }
 
 function testDefine_duplicated() {
-  var name = 'test';
+  var name = "test";
   instance.define(name);
-  assertThrows(function() {instance.define(name);});
+  assertThrows(function () {
+    instance.define(name);
+  });
 }
 
 function testUpdate_nonDefined() {
-  assertThrows(function() {instance.update('test', 1);});
+  assertThrows(function () {
+    instance.update("test", 1);
+  });
 }
 
 function testUpdate() {
-  var name = 'test';
+  var name = "test";
   instance.define(name);
   assertUndefined(instance.get_(name));
   instance.update(name, 1);
@@ -78,27 +80,33 @@ function testUpdate() {
 }
 
 function testGet_nonDefined() {
-  assertThrows(function() {instance.get('test');});
+  assertThrows(function () {
+    instance.get("test");
+  });
 }
 
 function testGet() {
-  var name = 'test';
+  var name = "test";
   instance.define(name, 1);
   assertEquals(1, instance.get(name));
 }
 
 function testGetRequired_nonDefined() {
-  assertThrows(function() {instance.getRequired('test');});
+  assertThrows(function () {
+    instance.getRequired("test");
+  });
 }
 
 function testGetRequired_noValue() {
-  var name = 'test';
+  var name = "test";
   instance.define(name);
-  assertThrows(function() {instance.getRequired(name);});
+  assertThrows(function () {
+    instance.getRequired(name);
+  });
 }
 
 function testGetRequired() {
-  var name = 'test';
+  var name = "test";
   instance.define(name, 1);
   assertEquals(1, instance.get(name));
 }

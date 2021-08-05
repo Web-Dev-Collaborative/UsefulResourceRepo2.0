@@ -13,9 +13,7 @@ dashedName: clean-up-your-project-with-modules
 在每個文件的開頭，我們都需要寫上這段代碼：
 
 ```js
-module.exports = function (app, myDataBase) {
-
-}
+module.exports = function (app, myDataBase) {};
 ```
 
 然後，在 server.js 文件的開頭，像這樣引入文件：`const routes = require('./routes.js');`。在成功連接數據庫之後，像這樣進行實例化：`routes(app, myDataBase)`。
@@ -34,17 +32,17 @@ module.exports = function (app, myDataBase) {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
         /require\s*\(('|")\.\/routes(\.js)?\1\)/gi,
-        'You should have required your new files'
+        "You should have required your new files"
       );
       assert.match(
         data,
         /client\s*\.db[^]*routes/gi,
-        'Your new modules should be called after your connection to the database'
+        "Your new modules should be called after your connection to the database"
       );
     },
     (xhr) => {

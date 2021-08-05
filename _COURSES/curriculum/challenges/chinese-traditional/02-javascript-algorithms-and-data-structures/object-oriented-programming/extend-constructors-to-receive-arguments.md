@@ -29,9 +29,9 @@ function Bird(name, color) {
 然後將值通過參數的方式傳遞給 `Bird` 構造函數來定義每一個唯一的小鳥實例： `let cardinal = new Bird("Bruce", "red");` 這給 `Bird` 的 `name` 和 `color` 屬性分別賦值爲 `Bruce` 和 `red` 色。 但 `numLegs` 屬性仍然設置爲 2。 `cardinal` 有以下這些屬性：
 
 ```js
-cardinal.name
-cardinal.color
-cardinal.numLegs
+cardinal.name;
+cardinal.color;
+cardinal.numLegs;
 ```
 
 這樣一來構造函數就變得很靈活了。 現在可以在創建每個`Bird`實例時直接定義屬性，這是 JavaScript 構造函數非常實用的用法之一。 它們根據共同或相似的屬性和行爲將對象歸納爲一組，並能夠自動的創建各自實例。
@@ -45,19 +45,19 @@ cardinal.numLegs
 `Dog` 應該接收一個 `name` 參數。
 
 ```js
-assert(new Dog('Clifford').name === 'Clifford');
+assert(new Dog("Clifford").name === "Clifford");
 ```
 
 `Dog` 應該接收一個 `color` 參數。
 
 ```js
-assert(new Dog('Clifford', 'yellow').color === 'yellow');
+assert(new Dog("Clifford", "yellow").color === "yellow");
 ```
 
 `Dog` 應該有一個 `numLegs` 屬性且值爲 4。
 
 ```js
-assert(new Dog('Clifford').numLegs === 4);
+assert(new Dog("Clifford").numLegs === 4);
 ```
 
 `terrier` 應該是通過 `Dog` 構造函數創建的。
@@ -71,15 +71,13 @@ assert(terrier instanceof Dog);
 ## --seed-contents--
 
 ```js
-function Dog() {
-
-}
+function Dog() {}
 ```
 
 # --solutions--
 
 ```js
-function Dog (name, color) {
+function Dog(name, color) {
   this.numLegs = 4;
   this.name = name;
   this.color = color;

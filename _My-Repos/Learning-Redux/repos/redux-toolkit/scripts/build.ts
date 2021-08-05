@@ -180,7 +180,8 @@ async function bundle(options: BuildOptions & EntryPointOptions) {
               return
             }
             const source = await fs.readFile(args.path, 'utf-8')
-            const defaultPattern = /\/\* PROD_START_REMOVE_UMD[\s\S]*?\/\* PROD_STOP_REMOVE_UMD \*\//g
+            const defaultPattern =
+              /\/\* PROD_START_REMOVE_UMD[\s\S]*?\/\* PROD_STOP_REMOVE_UMD \*\//g
             const code = source.replace(defaultPattern, '')
             return {
               contents: code,
@@ -330,9 +331,8 @@ async function main({ skipExtraction = false, local = false }: BuildArgs) {
     for (let entryPoint of entryPoints) {
       try {
         // Load and parse the api-extractor.json file
-        const extractorConfig: ExtractorConfig = ExtractorConfig.loadFileAndPrepare(
-          entryPoint.extractionConfig
-        )
+        const extractorConfig: ExtractorConfig =
+          ExtractorConfig.loadFileAndPrepare(entryPoint.extractionConfig)
 
         console.log('Extracting API types for entry point: ', entryPoint.prefix)
         // Invoke API Extractor

@@ -1,6 +1,6 @@
 ---
 id: 5900f5001000cf542c510013
-title: 'Problem 403: Lattice points enclosed by parabola and line'
+title: "Problem 403: Lattice points enclosed by parabola and line"
 challengeType: 5
 forumTopicId: 302071
 dashedName: problem-403-lattice-points-enclosed-by-parabola-and-line
@@ -30,7 +30,6 @@ assert.strictEqual(euler403(), 18224771);
 
 ```js
 function euler403() {
-
   return true;
 }
 

@@ -8,7 +8,7 @@ dashedName: serialization-of-a-user-object
 
 # --description--
 
-序列化和反序列化在身份认证中是很重要的概念。 序列化一个对象就是将其内容转换成一个体积很小的 *key*，后续可以通过它反序列化为原始对象。 这样，服务器就可以在用户未登录时识别用户，或者说给这个用户一个唯一标识，用户也不需要在每次访问不同页面时都给服务器发送用户名和密码。
+序列化和反序列化在身份认证中是很重要的概念。 序列化一个对象就是将其内容转换成一个体积很小的 _key_，后续可以通过它反序列化为原始对象。 这样，服务器就可以在用户未登录时识别用户，或者说给这个用户一个唯一标识，用户也不需要在每次访问不同页面时都给服务器发送用户名和密码。
 
 我们需要用到序列化和反序列化的方法来进行配置。 passport 为我们提供了 `passport.serializeUser( OURFUNCTION )` 和 `passport.deserializeUser( OURFUNCTION )` 两个方法。
 
@@ -36,17 +36,17 @@ passport.deserializeUser((id, done) => {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
         /passport.serializeUser/gi,
-        'You should have created your passport.serializeUser function'
+        "You should have created your passport.serializeUser function"
       );
       assert.match(
         data,
         /null,\s*user._id/gi,
-        'There should be a callback in your serializeUser with (null, user._id)'
+        "There should be a callback in your serializeUser with (null, user._id)"
       );
     },
     (xhr) => {
@@ -59,17 +59,17 @@ passport.deserializeUser((id, done) => {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
         /passport.deserializeUser/gi,
-        'You should have created your passport.deserializeUser function'
+        "You should have created your passport.deserializeUser function"
       );
       assert.match(
         data,
         /null,\s*null/gi,
-        'There should be a callback in your deserializeUser with (null, null) for now'
+        "There should be a callback in your deserializeUser with (null, null) for now"
       );
     },
     (xhr) => {
@@ -82,12 +82,12 @@ MongoDB 应作为项目的依赖。
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.property(
         packJson.dependencies,
-        'mongodb',
+        "mongodb",
         'Your project should list "mongodb" as a dependency'
       );
     },
@@ -101,17 +101,17 @@ MongoDB 应作为项目的依赖。
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
         /require.*("|')mongodb\1/gi,
-        'You should have required mongodb'
+        "You should have required mongodb"
       );
       assert.match(
         data,
         /new ObjectID.*id/gi,
-        'Even though the block is commented out, you should use new ObjectID(id) for when we add the database'
+        "Even though the block is commented out, you should use new ObjectID(id) for when we add the database"
       );
     },
     (xhr) => {

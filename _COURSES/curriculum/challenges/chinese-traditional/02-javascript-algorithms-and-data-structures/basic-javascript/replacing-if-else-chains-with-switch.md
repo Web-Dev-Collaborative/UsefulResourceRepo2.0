@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244e0
 title: 用一個 Switch 語句來替代多個 if else 語句
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c3JE8fy'
+videoUrl: "https://scrimba.com/c/c3JE8fy"
 forumTopicId: 18266
 dashedName: replacing-if-else-chains-with-switch
 ---
@@ -24,7 +24,7 @@ if (val === 1) {
 可以被下面替代：
 
 ```js
-switch(val) {
+switch (val) {
   case 1:
     answer = "a";
     break;
@@ -63,43 +63,43 @@ assert(code.match(/break/g).length >= 4);
 `chainToSwitch("bob")` 應該是字符串 `Marley`
 
 ```js
-assert(chainToSwitch('bob') === 'Marley');
+assert(chainToSwitch("bob") === "Marley");
 ```
 
 `chainToSwitch(42)` 應該是字符串 `The Answer`
 
 ```js
-assert(chainToSwitch(42) === 'The Answer');
+assert(chainToSwitch(42) === "The Answer");
 ```
 
 `chainToSwitch(1)` 應該是字符串 `There is no #1`
 
 ```js
-assert(chainToSwitch(1) === 'There is no #1');
+assert(chainToSwitch(1) === "There is no #1");
 ```
 
 `chainToSwitch(99)`應該爲 `Missed me by this much!`。
 
 ```js
-assert(chainToSwitch(99) === 'Missed me by this much!');
+assert(chainToSwitch(99) === "Missed me by this much!");
 ```
 
 `chainToSwitch(7)` 應該是字符串 `Ate Nine`
 
 ```js
-assert(chainToSwitch(7) === 'Ate Nine');
+assert(chainToSwitch(7) === "Ate Nine");
 ```
 
 `chainToSwitch("John")` 應該爲 `""` (empty string)。
 
 ```js
-assert(chainToSwitch('John') === '');
+assert(chainToSwitch("John") === "");
 ```
 
 `chainToSwitch(156)` 應該爲 `""` (empty string)。
 
 ```js
-assert(chainToSwitch(156) === '');
+assert(chainToSwitch(156) === "");
 ```
 
 # --seed--
@@ -136,7 +136,7 @@ chainToSwitch(7);
 function chainToSwitch(val) {
   var answer = "";
 
-  switch(val) {
+  switch (val) {
     case "bob":
       answer = "Marley";
       break;

@@ -13,7 +13,7 @@ En el último desafío creaste un objeto con varias propiedades. Ahora verás c�
 ```js
 let duck = {
   name: "Aflac",
-  numLegs: 2
+  numLegs: 2,
 };
 console.log(duck.name);
 ```
@@ -45,7 +45,7 @@ assert(/console.log\(.*dog\.numLegs.*\)/g.test(code));
 ```js
 let dog = {
   name: "Spot",
-  numLegs: 4
+  numLegs: 4,
 };
 // Only change code below this line
 ```
@@ -55,7 +55,7 @@ let dog = {
 ```js
 let dog = {
   name: "Spot",
-  numLegs: 4
+  numLegs: 4,
 };
 console.log(dog.name);
 console.log(dog.numLegs);

@@ -30,9 +30,9 @@ class Book {
     this._author = updatedAuthor;
   }
 }
-const novel = new Book('anonymous');
+const novel = new Book("anonymous");
 console.log(novel.writer);
-novel.writer = 'newAuthor';
+novel.writer = "newAuthor";
 console.log(novel.writer);
 ```
 
@@ -62,8 +62,8 @@ console.log(novel.writer);
 
 ```js
 assert(
-  typeof Thermostat === 'function' &&
-    typeof Thermostat.constructor === 'function'
+  typeof Thermostat === "function" &&
+    typeof Thermostat.constructor === "function"
 );
 ```
 
@@ -79,7 +79,7 @@ assert(code.match(/class/g));
 assert(
   (() => {
     const t = new Thermostat(122);
-    return typeof t === 'object';
+    return typeof t === "object";
   })()
 );
 ```
@@ -102,9 +102,9 @@ assert(
   (() => {
     const desc = Object.getOwnPropertyDescriptor(
       Thermostat.prototype,
-      'temperature'
+      "temperature"
     );
-    return !!desc && typeof desc.get === 'function';
+    return !!desc && typeof desc.get === "function";
   })()
 );
 ```
@@ -116,9 +116,9 @@ assert(
   (() => {
     const desc = Object.getOwnPropertyDescriptor(
       Thermostat.prototype,
-      'temperature'
+      "temperature"
     );
-    return !!desc && typeof desc.set === 'function';
+    return !!desc && typeof desc.set === "function";
   })()
 );
 ```
@@ -157,12 +157,12 @@ temp = thermos.temperature; // 26 in Celsius
 ```js
 class Thermostat {
   constructor(fahrenheit) {
-    this._tempInCelsius = 5/9 * (fahrenheit - 32);
+    this._tempInCelsius = (5 / 9) * (fahrenheit - 32);
   }
-  get temperature(){
+  get temperature() {
     return this._tempInCelsius;
   }
-  set temperature(newTemp){
+  set temperature(newTemp) {
     this._tempInCelsius = newTemp;
   }
 }

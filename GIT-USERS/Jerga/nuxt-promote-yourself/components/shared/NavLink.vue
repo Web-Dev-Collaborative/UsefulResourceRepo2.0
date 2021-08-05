@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="to" :class="{'is-active': isActive}">
+  <nuxt-link :to="to" :class="{ 'is-active': isActive }">
     <slot />
   </nuxt-link>
 </template>
@@ -9,22 +9,22 @@ export default {
   props: {
     to: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     isActive() {
-      debugger
-      return this.to === this.$route.path
-    }
-  }
-}
+      debugger;
+      return this.to === this.$route.path;
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
-  /*TODO: Get here color variables*/
-  .is-active {
-    border-bottom: 4px solid $primary;
-    font-weight: bold;
-  }
+/*TODO: Get here color variables*/
+.is-active {
+  border-bottom: 4px solid $primary;
+  font-weight: bold;
+}
 </style>

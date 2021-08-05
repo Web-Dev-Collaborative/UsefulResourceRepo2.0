@@ -12,7 +12,7 @@ dashedName: learn-about-self-closing-jsx-tags
 
 JSX 不同於 HTML 的另一個重要方面是自閉合標籤。
 
-在HTML中，幾乎所有的標籤都有一個開始和結束標籤：`<div></div>`，結束標籤在你要關閉的標籤名之前始終具有正斜槓。 但是，HTML 中有一些稱爲 “自閉合標籤” 的特殊實例，它們在另一個標籤開始之前，不需要開始和結束標籤都存在。
+在 HTML 中，幾乎所有的標籤都有一個開始和結束標籤：`<div></div>`，結束標籤在你要關閉的標籤名之前始終具有正斜槓。 但是，HTML 中有一些稱爲 “自閉合標籤” 的特殊實例，它們在另一個標籤開始之前，不需要開始和結束標籤都存在。
 
 例如，換行標籤可以寫成 `<br>` 或者 `<br />`，但是不應該寫成 `<br></br>`，因爲它不包含任何內容。
 
@@ -27,19 +27,19 @@ JSX 不同於 HTML 的另一個重要方面是自閉合標籤。
 常量 `JSX` 應該返回一個 `div` 元素。
 
 ```js
-assert.strictEqual(JSX.type, 'div');
+assert.strictEqual(JSX.type, "div");
 ```
 
 `div` 應該包含一個 `br` 標籤。
 
 ```js
-assert(Enzyme.shallow(JSX).find('br').length === 1);
+assert(Enzyme.shallow(JSX).find("br").length === 1);
 ```
 
 `div` 應該包含一個 `hr` 標籤。
 
 ```js
-assert(Enzyme.shallow(JSX).find('hr').length === 1);
+assert(Enzyme.shallow(JSX).find("hr").length === 1);
 ```
 
 # --seed--
@@ -47,7 +47,7 @@ assert(Enzyme.shallow(JSX).find('hr').length === 1);
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(JSX, document.getElementById('root'))
+ReactDOM.render(JSX, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -66,10 +66,10 @@ const JSX = (
 
 ```jsx
 const JSX = (
-<div>
-  <h2>Welcome to React!</h2> <br />
-  <p>Be sure to close all tags!</p>
-  <hr />
-</div>
+  <div>
+    <h2>Welcome to React!</h2> <br />
+    <p>Be sure to close all tags!</p>
+    <hr />
+  </div>
 );
 ```

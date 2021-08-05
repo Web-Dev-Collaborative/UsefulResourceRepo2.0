@@ -15,10 +15,10 @@ Va notato che la sintassi `class` è appunto solo una sintassi, e non la vera e 
 In ES5, di solito definiamo una funzione `constructor` e usiamo la parola chiave `new` per istanziare un oggetto.
 
 ```js
-var SpaceShuttle = function(targetPlanet){
+var SpaceShuttle = function (targetPlanet) {
   this.targetPlanet = targetPlanet;
-}
-var zeus = new SpaceShuttle('Jupiter');
+};
+var zeus = new SpaceShuttle("Jupiter");
 ```
 
 La sintassi `class` sostituisce semplicemente la creazione della funzione `constructor`:
@@ -29,7 +29,7 @@ class SpaceShuttle {
     this.targetPlanet = targetPlanet;
   }
 }
-const zeus = new SpaceShuttle('Jupiter');
+const zeus = new SpaceShuttle("Jupiter");
 ```
 
 Va notato che la parola chiave `class` dichiara una nuova funzione, alla quale viene aggiunto un costruttore. Questo costruttore viene invocato quando `new` viene chiamata per creare un nuovo oggetto.
@@ -50,7 +50,7 @@ La classe `Vegetable` consente di creare un oggetto con una proprietà `name` ch
 
 ```js
 assert(
-  typeof Vegetable === 'function' && typeof Vegetable.constructor === 'function'
+  typeof Vegetable === "function" && typeof Vegetable.constructor === "function"
 );
 ```
 
@@ -64,15 +64,15 @@ assert(code.match(/class/g));
 
 ```js
 assert(() => {
-  const a = new Vegetable('apple');
-  return typeof a === 'object';
+  const a = new Vegetable("apple");
+  return typeof a === "object";
 });
 ```
 
 `carrot.name` dovrebbe restituire `carrot`.
 
 ```js
-assert(carrot.name == 'carrot');
+assert(carrot.name == "carrot");
 ```
 
 # --seed--
@@ -84,7 +84,7 @@ assert(carrot.name == 'carrot');
 
 // Only change code above this line
 
-const carrot = new Vegetable('carrot');
+const carrot = new Vegetable("carrot");
 console.log(carrot.name); // Should display 'carrot'
 ```
 
@@ -96,5 +96,5 @@ class Vegetable {
     this.name = name;
   }
 }
-const carrot = new Vegetable('carrot');
+const carrot = new Vegetable("carrot");
 ```

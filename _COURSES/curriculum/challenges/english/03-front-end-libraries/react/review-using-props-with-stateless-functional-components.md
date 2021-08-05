@@ -10,7 +10,7 @@ dashedName: review-using-props-with-stateless-functional-components
 
 Except for the last challenge, you've been passing props to stateless functional components. These components act like pure functions. They accept props as input and return the same view every time they are passed the same props. You may be wondering what state is, and the next challenge will cover it in more detail. Before that, here's a review of the terminology for components.
 
-A *stateless functional component* is any function you write which accepts props and returns JSX. A *stateless component*, on the other hand, is a class that extends `React.Component`, but does not use internal state (covered in the next challenge). Finally, a *stateful component* is a class component that does maintain its own internal state. You may see stateful components referred to simply as components or React components.
+A _stateless functional component_ is any function you write which accepts props and returns JSX. A _stateless component_, on the other hand, is a class that extends `React.Component`, but does not use internal state (covered in the next challenge). Finally, a _stateful component_ is a class component that does maintain its own internal state. You may see stateful components referred to simply as components or React components.
 
 A common pattern is to try to minimize statefulness and to create stateless functional components wherever possible. This helps contain your state management to a specific area of your application. In turn, this improves development and maintenance of your app by making it easier to follow how changes to state affect its behavior.
 
@@ -26,7 +26,7 @@ The `CampSite` component should render.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(CampSite));
-    return mockedComponent.find('CampSite').length === 1;
+    return mockedComponent.find("CampSite").length === 1;
   })()
 );
 ```
@@ -37,7 +37,7 @@ The `Camper` component should render.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(CampSite));
-    return mockedComponent.find('Camper').length === 1;
+    return mockedComponent.find("Camper").length === 1;
   })()
 );
 ```
@@ -69,8 +69,8 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(CampSite));
     return (
-      mockedComponent.find('p').text() ===
-      mockedComponent.find('Camper').props().name
+      mockedComponent.find("p").text() ===
+      mockedComponent.find("Camper").props().name
     );
   })()
 );
@@ -82,14 +82,14 @@ assert(
 
 ```jsx
 var PropTypes = {
-   string: { isRequired: true }
+  string: { isRequired: true },
 };
 ```
 
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<CampSite />, document.getElementById('root'))
+ReactDOM.render(<CampSite />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -102,11 +102,11 @@ class CampSite extends React.Component {
   render() {
     return (
       <div>
-        <Camper/>
+        <Camper />
       </div>
     );
   }
-};
+}
 // Change code below this line
 ```
 
@@ -120,26 +120,26 @@ class CampSite extends React.Component {
   render() {
     return (
       <div>
-        <Camper/>
+        <Camper />
       </div>
     );
   }
-};
+}
 // Change code below this line
 
 const Camper = (props) => {
-   return (
-     <div>
-       <p>{props.name}</p>
-     </div>
-   );
+  return (
+    <div>
+      <p>{props.name}</p>
+    </div>
+  );
 };
 
 Camper.propTypes = {
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
 };
 
 Camper.defaultProps = {
-  name: 'CamperBot'
+  name: "CamperBot",
 };
 ```

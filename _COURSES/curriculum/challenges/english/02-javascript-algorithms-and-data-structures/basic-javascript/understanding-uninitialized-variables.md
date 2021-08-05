@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244aa
 title: Understanding Uninitialized Variables
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cBa2JAL'
+videoUrl: "https://scrimba.com/c/cBa2JAL"
 forumTopicId: 18335
 dashedName: understanding-uninitialized-variables
 ---
@@ -20,19 +20,19 @@ Initialize the three variables `a`, `b`, and `c` with `5`, `10`, and `"I am a"` 
 `a` should be defined and evaluated to have the value of `6`.
 
 ```js
-assert(typeof a === 'number' && a === 6);
+assert(typeof a === "number" && a === 6);
 ```
 
 `b` should be defined and evaluated to have the value of `15`.
 
 ```js
-assert(typeof b === 'number' && b === 15);
+assert(typeof b === "number" && b === 15);
 ```
 
 `c` should not contain `undefined` and should have a value of the string `I am a String!`
 
 ```js
-assert(!/undefined/.test(c) && c === 'I am a String!');
+assert(!/undefined/.test(c) && c === "I am a String!");
 ```
 
 You should not change code below the specified comment.
@@ -50,7 +50,9 @@ assert(
 ## --after-user-code--
 
 ```js
-(function(a,b,c){ return "a = " + a + ", b = " + b + ", c = '" + c + "'"; })(a,b,c);
+(function (a, b, c) {
+  return "a = " + a + ", b = " + b + ", c = '" + c + "'";
+})(a, b, c);
 ```
 
 ## --seed-contents--

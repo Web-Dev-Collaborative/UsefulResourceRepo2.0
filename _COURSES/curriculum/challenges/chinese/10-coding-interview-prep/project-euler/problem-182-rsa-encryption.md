@@ -1,6 +1,6 @@
 ---
 id: 5900f4231000cf542c50ff35
-title: 'Problem 182: RSA encryption'
+title: "Problem 182: RSA encryption"
 challengeType: 5
 forumTopicId: 301818
 dashedName: problem-182-rsa-encryption
@@ -28,7 +28,6 @@ assert.strictEqual(euler182(), 399788195976);
 
 ```js
 function euler182() {
-
   return true;
 }
 

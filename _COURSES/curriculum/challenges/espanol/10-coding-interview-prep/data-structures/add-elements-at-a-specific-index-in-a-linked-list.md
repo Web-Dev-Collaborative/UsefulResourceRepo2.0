@@ -22,10 +22,10 @@ Your `addAt` method should reassign `head` to the new node when the given index 
 assert(
   (function () {
     var test = new LinkedList();
-    test.add('cat');
-    test.add('dog');
-    test.addAt(0, 'cat');
-    return test.head().element === 'cat';
+    test.add("cat");
+    test.add("dog");
+    test.addAt(0, "cat");
+    return test.head().element === "cat";
   })()
 );
 ```
@@ -36,9 +36,9 @@ Your `addAt` method should increase the length of the linked list by one for eac
 assert(
   (function () {
     var test = new LinkedList();
-    test.add('cat');
-    test.add('dog');
-    test.addAt(0, 'cat');
+    test.add("cat");
+    test.add("dog");
+    test.addAt(0, "cat");
     return test.size() === 3;
   })()
 );
@@ -50,9 +50,9 @@ Your `addAt` method should return `false` if a node was unable to be added.
 assert(
   (function () {
     var test = new LinkedList();
-    test.add('cat');
-    test.add('dog');
-    return test.addAt(4, 'cat') === false;
+    test.add("cat");
+    test.add("dog");
+    return test.addAt(4, "cat") === false;
   })()
 );
 ```
@@ -66,20 +66,20 @@ function LinkedList() {
   var length = 0;
   var head = null;
 
-  var Node = function(element) {
+  var Node = function (element) {
     this.element = element;
     this.next = null;
   };
 
-  this.size = function() {
+  this.size = function () {
     return length;
   };
 
-  this.head = function() {
+  this.head = function () {
     return head;
   };
 
-  this.add = function(element) {
+  this.add = function (element) {
     var node = new Node(element);
     if (head === null) {
       head = node;
@@ -108,23 +108,23 @@ function LinkedList() {
   var length = 0;
   var head = null;
 
-  var Node = function(element){
+  var Node = function (element) {
     this.element = element;
     this.next = null;
   };
 
-  this.size = function(){
+  this.size = function () {
     return length;
   };
 
-  this.head = function(){
+  this.head = function () {
     return head;
   };
 
-  this.add = function(element){
+  this.add = function (element) {
     var node = new Node(element);
-    if (head === null){
-        head = node;
+    if (head === null) {
+      head = node;
     } else {
       var currentNode = head;
 
@@ -156,6 +156,6 @@ function LinkedList() {
     }
     newNode.next = currentNode;
     length++;
-  }
+  };
 }
 ```

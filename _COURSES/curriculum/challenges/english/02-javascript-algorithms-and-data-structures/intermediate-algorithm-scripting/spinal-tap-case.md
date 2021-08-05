@@ -15,21 +15,21 @@ Convert a string to spinal case. Spinal case is all-lowercase-words-joined-by-da
 `spinalCase("This Is Spinal Tap")` should return the string `this-is-spinal-tap`.
 
 ```js
-assert.deepEqual(spinalCase('This Is Spinal Tap'), 'this-is-spinal-tap');
+assert.deepEqual(spinalCase("This Is Spinal Tap"), "this-is-spinal-tap");
 ```
 
 `spinalCase("thisIsSpinalTap")` should return the string `this-is-spinal-tap`.
 
 ```js
-assert.strictEqual(spinalCase('thisIsSpinalTap'), 'this-is-spinal-tap');
+assert.strictEqual(spinalCase("thisIsSpinalTap"), "this-is-spinal-tap");
 ```
 
 `spinalCase("The_Andy_Griffith_Show")` should return the string `the-andy-griffith-show`.
 
 ```js
 assert.strictEqual(
-  spinalCase('The_Andy_Griffith_Show'),
-  'the-andy-griffith-show'
+  spinalCase("The_Andy_Griffith_Show"),
+  "the-andy-griffith-show"
 );
 ```
 
@@ -37,15 +37,15 @@ assert.strictEqual(
 
 ```js
 assert.strictEqual(
-  spinalCase('Teletubbies say Eh-oh'),
-  'teletubbies-say-eh-oh'
+  spinalCase("Teletubbies say Eh-oh"),
+  "teletubbies-say-eh-oh"
 );
 ```
 
 `spinalCase("AllThe-small Things")` should return the string `all-the-small-things`.
 
 ```js
-assert.strictEqual(spinalCase('AllThe-small Things'), 'all-the-small-things');
+assert.strictEqual(spinalCase("AllThe-small Things"), "all-the-small-things");
 ```
 
 # --seed--
@@ -57,14 +57,14 @@ function spinalCase(str) {
   return str;
 }
 
-spinalCase('This Is Spinal Tap');
+spinalCase("This Is Spinal Tap");
 ```
 
 # --solutions--
 
 ```js
 function spinalCase(str) {
-  str = str.replace(/([a-z](?=[A-Z]))/g, '$1 ');
-  return str.toLowerCase().replace(/\ |\_/g, '-');
+  str = str.replace(/([a-z](?=[A-Z]))/g, "$1 ");
+  return str.toLowerCase().replace(/\ |\_/g, "-");
 }
 ```

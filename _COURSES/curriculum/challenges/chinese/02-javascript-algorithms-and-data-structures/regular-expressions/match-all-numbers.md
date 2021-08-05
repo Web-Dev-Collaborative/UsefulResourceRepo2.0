@@ -33,37 +33,37 @@ assert(numRegex.global);
 你的正则表达式应该在 `9` 中匹配到 1 个数字。
 
 ```js
-assert('9'.match(numRegex).length == 1);
+assert("9".match(numRegex).length == 1);
 ```
 
 你的正则表达式应该在 `Catch 22` 中匹配到 2 个数字。
 
 ```js
-assert('Catch 22'.match(numRegex).length == 2);
+assert("Catch 22".match(numRegex).length == 2);
 ```
 
 你的正则表达式应该在 `101 Dalmatians` 中匹配到 3 个数字。
 
 ```js
-assert('101 Dalmatians'.match(numRegex).length == 3);
+assert("101 Dalmatians".match(numRegex).length == 3);
 ```
 
 你的正则表达式在 `One, Two, Three` 中应该匹配不到数字。
 
 ```js
-assert('One, Two, Three'.match(numRegex) == null);
+assert("One, Two, Three".match(numRegex) == null);
 ```
 
 你的正则表达式应该在 `21 Jump Street` 中匹配到 2 个数字。
 
 ```js
-assert('21 Jump Street'.match(numRegex).length == 2);
+assert("21 Jump Street".match(numRegex).length == 2);
 ```
 
 你的正则表达式应该在 `2001: A Space Odyssey` 中匹配到 4 个数字。
 
 ```js
-assert('2001: A Space Odyssey'.match(numRegex).length == 4);
+assert("2001: A Space Odyssey".match(numRegex).length == 4);
 ```
 
 # --seed--

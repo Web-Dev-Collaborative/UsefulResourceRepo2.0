@@ -1,20 +1,18 @@
+import { REQUEST_RESOURCE, FETCH_RESOURCE_SUCCESS } from "types";
 
-import { REQUEST_RESOURCE, FETCH_RESOURCE_SUCCESS} from 'types'
-
-
-export const isFetching = resource => {
+export const isFetching = (resource) => {
   return (state = false, action) => {
     if (resource !== action.resource) {
-      return state
+      return state;
     }
 
-    switch(action.type) {
-      case REQUEST_RESOURCE: 
-        return true
+    switch (action.type) {
+      case REQUEST_RESOURCE:
+        return true;
       case FETCH_RESOURCE_SUCCESS:
-        return false
+        return false;
       default:
-        return state
+        return state;
     }
-  }
-}
+  };
+};

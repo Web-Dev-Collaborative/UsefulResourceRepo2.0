@@ -17,7 +17,7 @@ Anidemos tu elemento `h3` dentro de un elemento `div` con la clase `container-fl
 Tu elemento `div` debe tener la clase `container-fluid`.
 
 ```js
-assert($('div').hasClass('container-fluid'));
+assert($("div").hasClass("container-fluid"));
 ```
 
 Cada uno de tus elementos `div` deben tener etiquetas de cierre.
@@ -33,7 +33,7 @@ assert(
 Tu elemento `h3` debe estar anidado dentro de un elemento `div`.
 
 ```js
-assert($('div').children('h3').length > 0);
+assert($("div").children("h3").length > 0);
 ```
 
 # --seed--
@@ -48,6 +48,6 @@ assert($('div').children('h3').length > 0);
 
 ```html
 <div class="container-fluid">
-    <h3 class="text-primary text-center">jQuery Playground</h3>
+  <h3 class="text-primary text-center">jQuery Playground</h3>
 </div>
 ```

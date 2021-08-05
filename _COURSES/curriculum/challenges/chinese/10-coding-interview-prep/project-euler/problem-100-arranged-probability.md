@@ -1,6 +1,6 @@
 ---
 id: 5900f3d01000cf542c50fee3
-title: 'Problem 100: Arranged probability'
+title: "Problem 100: Arranged probability"
 challengeType: 5
 forumTopicId: 301724
 dashedName: problem-100-arranged-probability
@@ -19,7 +19,7 @@ By finding the first arrangement to contain over 10<sup>12</sup> = 1,000,000,000
 `arrangedProbability()` should return a number.
 
 ```js
-assert(typeof arrangedProbability() === 'number');
+assert(typeof arrangedProbability() === "number");
 ```
 
 `arrangedProbability()` should return 756872327473.
@@ -34,7 +34,6 @@ assert.strictEqual(arrangedProbability(), 756872327473);
 
 ```js
 function arrangedProbability() {
-
   return true;
 }
 

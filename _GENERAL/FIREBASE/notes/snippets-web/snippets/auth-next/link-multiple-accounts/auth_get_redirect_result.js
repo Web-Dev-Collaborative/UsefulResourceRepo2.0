@@ -5,15 +5,17 @@
 
 // [START auth_get_redirect_result_modular]
 import { getRedirectResult } from "firebase/auth";
-getRedirectResult(auth).then((result) => {
-  const credential = GoogleAuthProvider.credentialFromResult(result);
-  if (credential) {
-    // Accounts successfully linked.
-    const user = result.user;
+getRedirectResult(auth)
+  .then((result) => {
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    if (credential) {
+      // Accounts successfully linked.
+      const user = result.user;
+      // ...
+    }
+  })
+  .catch((error) => {
+    // Handle Errors here.
     // ...
-  }
-}).catch((error) => {
-  // Handle Errors here.
-  // ...
-});
+  });
 // [END auth_get_redirect_result_modular]

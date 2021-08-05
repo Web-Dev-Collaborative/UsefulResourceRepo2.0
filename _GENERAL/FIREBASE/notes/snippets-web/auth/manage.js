@@ -42,16 +42,19 @@ function updateUserProfile() {
   // [START auth_update_user_profile]
   const user = firebase.auth().currentUser;
 
-  user.updateProfile({
-    displayName: "Jane Q. User",
-    photoURL: "https://example.com/jane-q-user/profile.jpg"
-  }).then(() => {
-    // Update successful
-    // ...
-  }).catch((error) => {
-    // An error occurred
-    // ...
-  });  
+  user
+    .updateProfile({
+      displayName: "Jane Q. User",
+      photoURL: "https://example.com/jane-q-user/profile.jpg",
+    })
+    .then(() => {
+      // Update successful
+      // ...
+    })
+    .catch((error) => {
+      // An error occurred
+      // ...
+    });
   // [END auth_update_user_profile]
 }
 
@@ -59,13 +62,16 @@ function updateUserEmail() {
   // [START auth_update_user_email]
   const user = firebase.auth().currentUser;
 
-  user.updateEmail("user@example.com").then(() => {
-    // Update successful
-    // ...
-  }).catch((error) => {
-    // An error occurred
-    // ...
-  });
+  user
+    .updateEmail("user@example.com")
+    .then(() => {
+      // Update successful
+      // ...
+    })
+    .catch((error) => {
+      // An error occurred
+      // ...
+    });
   // [END auth_update_user_email]
 }
 
@@ -73,12 +79,15 @@ function sendEmailVerification() {
   // [START send_email_verification]
   const user = firebase.auth().currentUser;
 
-  user.sendEmailVerification().then(() => {
-    // Email sent.
-  }).catch((error) => {
-    // An error ocurred
-    // ...
-  });
+  user
+    .sendEmailVerification()
+    .then(() => {
+      // Email sent.
+    })
+    .catch((error) => {
+      // An error ocurred
+      // ...
+    });
   // [END send_email_verification]
 }
 
@@ -91,12 +100,15 @@ function updatePassword() {
   const user = firebase.auth().currentUser;
   const newPassword = getASecureRandomPassword();
 
-  user.updatePassword(newPassword).then(() => {
-    // Update successful.
-  }).catch((error) => {
-    // An error ocurred
-    // ...
-  });
+  user
+    .updatePassword(newPassword)
+    .then(() => {
+      // Update successful.
+    })
+    .catch((error) => {
+      // An error ocurred
+      // ...
+    });
   // [END auth_update_password]
 }
 
@@ -105,12 +117,15 @@ function sendPasswordReset() {
   const auth = firebase.auth();
   const emailAddress = "user@example.com";
 
-  auth.sendPasswordResetEmail(emailAddress).then(() => {
-    // Email sent.
-  }).catch((error) => {
-    // An error ocurred
-    // ...
-  });
+  auth
+    .sendPasswordResetEmail(emailAddress)
+    .then(() => {
+      // Email sent.
+    })
+    .catch((error) => {
+      // An error ocurred
+      // ...
+    });
   // [END auth_send_password_reset]
 }
 
@@ -118,12 +133,15 @@ function deleteUser() {
   // [START auth_delete_user]
   const user = firebase.auth().currentUser;
 
-  user.delete().then(() => {
-    // User deleted.
-  }).catch((error) => {
-    // An error ocurred
-    // ...
-  });
+  user
+    .delete()
+    .then(() => {
+      // User deleted.
+    })
+    .catch((error) => {
+      // An error ocurred
+      // ...
+    });
   // [END auth_delete_user]
 }
 
@@ -141,11 +159,14 @@ function reauthenticateWithCredential() {
   // TODO(you): prompt the user to re-provide their sign-in credentials
   const credential = promptForCredentials();
 
-  user.reauthenticateWithCredential(credential).then(() => {
-    // User re-authenticated.
-  }).catch((error) => {
-    // An error ocurred
-    // ...
-  });
+  user
+    .reauthenticateWithCredential(credential)
+    .then(() => {
+      // User re-authenticated.
+    })
+    .catch((error) => {
+      // An error ocurred
+      // ...
+    });
   // [END auth_reauth_with_credential]
 }

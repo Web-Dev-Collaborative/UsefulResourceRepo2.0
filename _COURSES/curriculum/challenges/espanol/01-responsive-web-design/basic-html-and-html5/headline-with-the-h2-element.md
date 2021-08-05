@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf0887a
 title: Título con el elemento h2
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cE8Gqf3'
+videoUrl: "https://scrimba.com/p/pVMPUv/cE8Gqf3"
 forumTopicId: 18196
 dashedName: headline-with-the-h2-element
 ---
@@ -24,7 +24,7 @@ Añade una etiqueta `h2` que diga "CatPhotoApp" para crear un segundo elemento H
 Debes crear un elemento `h2`.
 
 ```js
-assert($('h2').length > 0);
+assert($("h2").length > 0);
 ```
 
 Tu elemento `h2` debe tener una etiqueta de cierre.
@@ -39,13 +39,13 @@ assert(
 Tu elemento `h2` debe contener el texto `CatPhotoApp`.
 
 ```js
-assert.isTrue(/cat(\s)?photo(\s)?app/gi.test($('h2').text()));
+assert.isTrue(/cat(\s)?photo(\s)?app/gi.test($("h2").text()));
 ```
 
 Tu elemento `h1` debe contener el texto `Hello World`.
 
 ```js
-assert.isTrue(/hello(\s)+world/gi.test($('h1').text()));
+assert.isTrue(/hello(\s)+world/gi.test($("h1").text()));
 ```
 
 Tu elemento `h1` debe estar antes que tu elemento `h2`.

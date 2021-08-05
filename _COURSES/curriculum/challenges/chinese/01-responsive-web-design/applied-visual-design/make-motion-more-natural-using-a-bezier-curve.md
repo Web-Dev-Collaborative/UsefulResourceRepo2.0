@@ -2,7 +2,7 @@
 id: 587d78a9367417b2b2512aea
 title: 使用贝塞尔曲线让运动更加自然
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c7akWUv'
+videoUrl: "https://scrimba.com/c/c7akWUv"
 forumTopicId: 301063
 dashedName: make-motion-more-natural-using-a-bezier-curve
 ---
@@ -19,7 +19,7 @@ dashedName: make-motion-more-natural-using-a-bezier-curve
 cubic-bezier(0.3, 0.4, 0.5, 1.6);
 ```
 
-注意 y2 的值是大于 1 的。 虽然贝塞尔曲线是在 1*1 的坐标系统内，x 值只能在 0 到 1，但是 y 值是可以大于 1 的。 这样才能模拟杂耍球运动。
+注意 y2 的值是大于 1 的。 虽然贝塞尔曲线是在 1\*1 的坐标系统内，x 值只能在 0 到 1，但是 y 值是可以大于 1 的。 这样才能模拟杂耍球运动。
 
 # --instructions--
 
@@ -31,8 +31,8 @@ id 为 `green` 的元素的 `animation-timing-function` 值应为 `cubic-bezier`
 
 ```js
 assert(
-  $('#green').css('animation-timing-function') ==
-    'cubic-bezier(0.311, 0.441, 0.444, 1.649)'
+  $("#green").css("animation-timing-function") ==
+    "cubic-bezier(0.311, 0.441, 0.444, 1.649)"
 );
 ```
 

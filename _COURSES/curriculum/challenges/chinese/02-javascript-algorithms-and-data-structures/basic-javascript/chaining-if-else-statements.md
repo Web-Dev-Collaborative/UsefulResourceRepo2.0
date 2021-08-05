@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244dc
 title: 多个 if else 语句
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/caeJgsw'
+videoUrl: "https://scrimba.com/c/caeJgsw"
 forumTopicId: 16772
 dashedName: chaining-if-else-statements
 ---
@@ -57,61 +57,61 @@ assert(code.match(/return/g).length >= 1);
 `testSize(0)` 应该返回字符串 `Tiny`
 
 ```js
-assert(testSize(0) === 'Tiny');
+assert(testSize(0) === "Tiny");
 ```
 
 `testSize(4)` 应该返回字符串 `Tiny`
 
 ```js
-assert(testSize(4) === 'Tiny');
+assert(testSize(4) === "Tiny");
 ```
 
 `testSize(5)` 应该返回字符串 `Small`
 
 ```js
-assert(testSize(5) === 'Small');
+assert(testSize(5) === "Small");
 ```
 
 `testSize(8)` 应该返回字符串 `Small`
 
 ```js
-assert(testSize(8) === 'Small');
+assert(testSize(8) === "Small");
 ```
 
 `testSize(10)` 应该返回字符串 `Medium`
 
 ```js
-assert(testSize(10) === 'Medium');
+assert(testSize(10) === "Medium");
 ```
 
 `testSize(14)` 应该返回字符串 `Medium`
 
 ```js
-assert(testSize(14) === 'Medium');
+assert(testSize(14) === "Medium");
 ```
 
 `testSize(15)` 应该返回字符串 `Large`
 
 ```js
-assert(testSize(15) === 'Large');
+assert(testSize(15) === "Large");
 ```
 
 `testSize(17)` 应该返回字符串 `Large`
 
 ```js
-assert(testSize(17) === 'Large');
+assert(testSize(17) === "Large");
 ```
 
 `testSize(20)` 应该返回字符串 `Huge`
 
 ```js
-assert(testSize(20) === 'Huge');
+assert(testSize(20) === "Huge");
 ```
 
 `testSize(25)` 应该返回字符串 `Huge`
 
 ```js
-assert(testSize(25) === 'Huge');
+assert(testSize(25) === "Huge");
 ```
 
 # --seed--
@@ -121,7 +121,6 @@ assert(testSize(25) === 'Huge');
 ```js
 function testSize(num) {
   // Only change code below this line
-
 
   return "Change Me";
   // Only change code above this line

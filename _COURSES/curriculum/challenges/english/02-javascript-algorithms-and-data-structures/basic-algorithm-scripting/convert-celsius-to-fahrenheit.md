@@ -17,7 +17,7 @@ You are given a variable `celsius` representing a temperature in Celsius. Use th
 `convertToF(0)` should return a number
 
 ```js
-assert(typeof convertToF(0) === 'number');
+assert(typeof convertToF(0) === "number");
 ```
 
 `convertToF(-30)` should return a value of `-22`
@@ -67,7 +67,7 @@ convertToF(30);
 
 ```js
 function convertToF(celsius) {
-  let fahrenheit = celsius * 9/5 + 32;
+  let fahrenheit = (celsius * 9) / 5 + 32;
 
   return fahrenheit;
 }

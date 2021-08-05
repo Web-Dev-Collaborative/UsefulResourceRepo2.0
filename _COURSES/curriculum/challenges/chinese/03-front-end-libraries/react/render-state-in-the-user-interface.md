@@ -28,8 +28,8 @@ dashedName: render-state-in-the-user-interface
 
 ```js
 assert(
-  Enzyme.mount(React.createElement(MyComponent)).state('name') ===
-    'freeCodeCamp'
+  Enzyme.mount(React.createElement(MyComponent)).state("name") ===
+    "freeCodeCamp"
 );
 ```
 
@@ -51,12 +51,12 @@ async () => {
     new Promise((resolve, reject) => setTimeout(() => resolve(fn()), 250));
   const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
   const first = () => {
-    mockedComponent.setState({ name: 'TestName' });
+    mockedComponent.setState({ name: "TestName" });
     return waitForIt(() => mockedComponent.html());
   };
   const firstValue = await first();
-  const getValue = firstValue.replace(/\s/g, '');
-  assert(getValue === '<div><h1>TestName</h1></div>');
+  const getValue = firstValue.replace(/\s/g, "");
+  assert(getValue === "<div><h1>TestName</h1></div>");
 };
 ```
 
@@ -65,7 +65,7 @@ async () => {
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyComponent />, document.getElementById('root'))
+ReactDOM.render(<MyComponent />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -75,19 +75,19 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'freeCodeCamp'
-    }
+      name: "freeCodeCamp",
+    };
   }
   render() {
     return (
       <div>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
 
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -97,17 +97,17 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'freeCodeCamp'
-    }
+      name: "freeCodeCamp",
+    };
   }
   render() {
     return (
       <div>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
         <h1>{this.state.name}</h1>
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 ```

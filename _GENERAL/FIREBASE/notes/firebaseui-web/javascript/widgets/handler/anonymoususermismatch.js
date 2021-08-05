@@ -16,14 +16,13 @@
  * @fileoverview Anonymous user mismatch handler.
  */
 
-goog.provide('firebaseui.auth.widget.handler.handleAnonymousUserMismatch');
+goog.provide("firebaseui.auth.widget.handler.handleAnonymousUserMismatch");
 
-goog.require('firebaseui.auth.ui.page.AnonymousUserMismatch');
-goog.require('firebaseui.auth.widget.HandlerName');
-goog.require('firebaseui.auth.widget.handler');
-goog.require('firebaseui.auth.widget.handler.common');
-goog.requireType('firebaseui.auth.widget.Handler');
-
+goog.require("firebaseui.auth.ui.page.AnonymousUserMismatch");
+goog.require("firebaseui.auth.widget.HandlerName");
+goog.require("firebaseui.auth.widget.handler");
+goog.require("firebaseui.auth.widget.handler.common");
+goog.requireType("firebaseui.auth.widget.Handler");
 
 /**
  * Handles the anonymous user mismatch.
@@ -31,22 +30,25 @@ goog.requireType('firebaseui.auth.widget.Handler');
  *     configuration is used.
  * @param {!Element} container The container DOM element.
  */
-firebaseui.auth.widget.handler.handleAnonymousUserMismatch = function(
-    app, container) {
+firebaseui.auth.widget.handler.handleAnonymousUserMismatch = function (
+  app,
+  container
+) {
   // Render the UI.
-  var component =
-      new firebaseui.auth.ui.page.AnonymousUserMismatch(function() {
-    component.dispose();
-    firebaseui.auth.widget.handler.common.handleSignInStart(app, container);
-  });
+  var component = new firebaseui.auth.ui.page.AnonymousUserMismatch(
+    function () {
+      component.dispose();
+      firebaseui.auth.widget.handler.common.handleSignInStart(app, container);
+    }
+  );
   component.render(container);
   // Set current UI component.
   app.setCurrentComponent(component);
 };
 
-
 // Register handler.
 firebaseui.auth.widget.handler.register(
-    firebaseui.auth.widget.HandlerName.ANONYMOUS_USER_MISMATCH,
-    /** @type {!firebaseui.auth.widget.Handler} */
-    (firebaseui.auth.widget.handler.handleAnonymousUserMismatch));
+  firebaseui.auth.widget.HandlerName.ANONYMOUS_USER_MISMATCH,
+  /** @type {!firebaseui.auth.widget.Handler} */
+  (firebaseui.auth.widget.handler.handleAnonymousUserMismatch)
+);

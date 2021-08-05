@@ -1,6 +1,6 @@
 ---
 id: 5900f3e01000cf542c50fef2
-title: 'Problem 114: Counting block combinations I'
+title: "Problem 114: Counting block combinations I"
 challengeType: 5
 forumTopicId: 301740
 dashedName: problem-114-counting-block-combinations-i
@@ -26,7 +26,6 @@ assert.strictEqual(euler114(), 16475640049);
 
 ```js
 function euler114() {
-
   return true;
 }
 

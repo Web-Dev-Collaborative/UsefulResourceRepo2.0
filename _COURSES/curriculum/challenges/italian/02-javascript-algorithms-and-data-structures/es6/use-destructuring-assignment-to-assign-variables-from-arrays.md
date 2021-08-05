@@ -24,7 +24,7 @@ La console mostrerà i valori di `a` e `b` come `1, 2`.
 Alla variabile `a` viene assegnato il primo valore dell'array, e a `b` viene assegnato il secondo valore dell'array. Possiamo anche accedere al valore a qualsiasi indice di un array tramite destrutturazione, utilizzando le virgole per raggiungere l'indice desiderato:
 
 ```js
-const [a, b,,, c] = [1, 2, 3, 4, 5, 6];
+const [a, b, , , c] = [1, 2, 3, 4, 5, 6];
 console.log(a, b, c);
 ```
 
@@ -59,13 +59,15 @@ assert(/\[\s*(\w)\s*,\s*(\w)\s*\]\s*=\s*\[\s*\2\s*,\s*\1\s*\]/g.test(code));
 ## --seed-contents--
 
 ```js
-let a = 8, b = 6;
+let a = 8,
+  b = 6;
 // Only change code below this line
 ```
 
 # --solutions--
 
 ```js
-let a = 8, b = 6;
+let a = 8,
+  b = 6;
 [a, b] = [b, a];
 ```

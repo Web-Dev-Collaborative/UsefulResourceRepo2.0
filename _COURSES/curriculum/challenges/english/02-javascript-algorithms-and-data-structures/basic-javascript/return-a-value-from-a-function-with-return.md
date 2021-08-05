@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244c2
 title: Return a Value from a Function with Return
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cy87wue'
+videoUrl: "https://scrimba.com/c/cy87wue"
 forumTopicId: 18271
 dashedName: return-a-value-from-a-function-with-return
 ---
@@ -33,7 +33,7 @@ Create a function `timesFive` that accepts one argument, multiplies it by `5`, a
 `timesFive` should be a function
 
 ```js
-assert(typeof timesFive === 'function');
+assert(typeof timesFive === "function");
 ```
 
 `timesFive(5)` should return `25`

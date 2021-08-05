@@ -1,6 +1,6 @@
 ---
 id: 5900f3ad1000cf542c50fec0
-title: 'Problem 65: Convergents of e'
+title: "Problem 65: Convergents of e"
 challengeType: 5
 forumTopicId: 302177
 dashedName: problem-65-convergents-of-e
@@ -12,7 +12,7 @@ The square root of 2 can be written as an infinite continued fraction.
 
 $\\sqrt{2} = 1 + \\dfrac{1}{2 + \\dfrac{1}{2 + \\dfrac{1}{2 + \\dfrac{1}{2 + ...}}}}$
 
-The infinite continued fraction can be written, $\\sqrt{2} = \[1; (2)]$ indicates that 2 repeats *ad infinitum*. In a similar way, $\\sqrt{23} = \[4; (1, 3, 1, 8)]$. It turns out that the sequence of partial values of continued fractions for square roots provide the best rational approximations. Let us consider the convergents for $\\sqrt{2}$.
+The infinite continued fraction can be written, $\\sqrt{2} = \[1; (2)]$ indicates that 2 repeats _ad infinitum_. In a similar way, $\\sqrt{23} = \[4; (1, 3, 1, 8)]$. It turns out that the sequence of partial values of continued fractions for square roots provide the best rational approximations. Let us consider the convergents for $\\sqrt{2}$.
 
 $1 + \\dfrac{1}{2} = \\dfrac{3}{2}\\\\ 1 + \\dfrac{1}{2 + \\dfrac{1}{2}} = \\dfrac{7}{5}\\\\ 1 + \\dfrac{1}{2 + \\dfrac{1}{2 + \\dfrac{1}{2}}} = \\dfrac{17}{12}\\\\ 1 + \\dfrac{1}{2 + \\dfrac{1}{2 + \\dfrac{1}{2 + \\dfrac{1}{2}}}} = \\dfrac{41}{29}$
 
@@ -33,7 +33,7 @@ Find the sum of digits in the numerator of the 100<sup>th</sup> convergent of th
 `convergentsOfE()` should return a number.
 
 ```js
-assert(typeof convergentsOfE() === 'number');
+assert(typeof convergentsOfE() === "number");
 ```
 
 `convergentsOfE()` should return 272.
@@ -48,7 +48,6 @@ assert.strictEqual(convergentsOfE(), 272);
 
 ```js
 function convergentsOfE() {
-
   return true;
 }
 

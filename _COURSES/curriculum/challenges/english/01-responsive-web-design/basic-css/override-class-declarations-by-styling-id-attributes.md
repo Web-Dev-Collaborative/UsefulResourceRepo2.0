@@ -2,7 +2,7 @@
 id: bad87fee1348bd8aedf06756
 title: Override Class Declarations by Styling ID Attributes
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cRkpDhB'
+videoUrl: "https://scrimba.com/c/cRkpDhB"
 forumTopicId: 18251
 dashedName: override-class-declarations-by-styling-id-attributes
 ---
@@ -20,7 +20,7 @@ Let's override your `pink-text` and `blue-text` classes, and make your `h1` elem
 Give your `h1` element the `id` attribute of `orange-text`. Remember, id styles look like this:
 
 ```html
-<h1 id="orange-text">
+<h1 id="orange-text"></h1>
 ```
 
 Leave the `blue-text` and `pink-text` classes on your `h1` element.
@@ -40,25 +40,25 @@ Create a CSS declaration for your `orange-text` id in your `style` element. Here
 Your `h1` element should have the class `pink-text`.
 
 ```js
-assert($('h1').hasClass('pink-text'));
+assert($("h1").hasClass("pink-text"));
 ```
 
 Your `h1` element should have the class `blue-text`.
 
 ```js
-assert($('h1').hasClass('blue-text'));
+assert($("h1").hasClass("blue-text"));
 ```
 
 Your `h1` element should have the id of `orange-text`.
 
 ```js
-assert($('h1').attr('id') === 'orange-text');
+assert($("h1").attr("id") === "orange-text");
 ```
 
 There should be only one `h1` element.
 
 ```js
-assert($('h1').length === 1);
+assert($("h1").length === 1);
 ```
 
 Your `orange-text` id should have a CSS declaration.
@@ -76,7 +76,7 @@ assert(!code.match(/<h1.*style.*>/gi));
 Your `h1` element should be orange.
 
 ```js
-assert($('h1').css('color') === 'rgb(255, 165, 0)');
+assert($("h1").css("color") === "rgb(255, 165, 0)");
 ```
 
 # --seed--
@@ -117,7 +117,7 @@ assert($('h1').css('color') === 'rgb(255, 165, 0)');
   }
   #orange-text {
     color: orange;
-  }  
+  }
 </style>
-<h1 id="orange-text"  class="pink-text blue-text">Hello World!</h1>
+<h1 id="orange-text" class="pink-text blue-text">Hello World!</h1>
 ```

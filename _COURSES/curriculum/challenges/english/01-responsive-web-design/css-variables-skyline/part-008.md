@@ -14,7 +14,7 @@ It's tough to see now, but there's a border at the edge of your preview, that's 
 test-text
 
 ```js
-assert($('#display-body')[0].contains($('div.background-buildings')[0]));
+assert($("#display-body")[0].contains($("div.background-buildings")[0]));
 ```
 
 # --seed--
@@ -23,7 +23,7 @@ assert($('#display-body')[0].contains($('div.background-buildings')[0]));
 
 ```html
 <!DOCTYPE html>
-<html>    
+<html>
   <head>
     <title>freeCodeCamp Skyline Project</title>
     <style>
@@ -40,8 +40,7 @@ assert($('#display-body')[0].contains($('div.background-buildings')[0]));
     </style>
   </head>
 
-  <body>
-  </body>
+  <body></body>
 </html>
 ```
 
@@ -49,7 +48,7 @@ assert($('#display-body')[0].contains($('div.background-buildings')[0]));
 
 ```html
 <!DOCTYPE html>
-<html>    
+<html>
   <head>
     <title>freeCodeCamp Skyline Project</title>
     <style>

@@ -1,10 +1,9 @@
-
-import { PageTitle, Section } from 'components/shared';
+import { PageTitle, Section } from "components/shared";
 
 const Posts = () => {
   return (
     <>
-      <PageTitle text="Specific Topic"/>
+      <PageTitle text="Specific Topic" />
       <Section>
         <div className="fj-post-list">
           <div className="row">
@@ -16,7 +15,8 @@ const Posts = () => {
                       <div className="main-avatar">
                         <img
                           className="avatar subtle-shadow"
-                          src="https://i.imgur.com/cVDadwb.png"></img>
+                          src="https://i.imgur.com/cVDadwb.png"
+                        ></img>
                       </div>
                     </div>
                     <div className="topic-body">
@@ -25,12 +25,20 @@ const Posts = () => {
                           <div className="name-container">
                             <span className="name">Filip Jerga</span>
                           </div>
-                          <div className="date-container"><span className="date">21h</span></div>
+                          <div className="date-container">
+                            <span className="date">21h</span>
+                          </div>
                         </div>
                       </div>
                       <div className="topic-content">
                         <div className="cooked">
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                          <p>
+                            Lorem Ipsum is simply dummy text of the printing and
+                            typesetting industry. Lorem Ipsum has been the
+                            industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and
+                            scrambled it to make a type specimen book.
+                          </p>
                         </div>
                         <section className="post-menu-area">
                           <nav className="post-controls">
@@ -55,7 +63,8 @@ const Posts = () => {
                       <div className="main-avatar">
                         <img
                           className="avatar subtle-shadow"
-                          src="https://i.imgur.com/cVDadwb.png"></img>
+                          src="https://i.imgur.com/cVDadwb.png"
+                        ></img>
                       </div>
                     </div>
                     <div className="topic-body">
@@ -64,12 +73,20 @@ const Posts = () => {
                           <div className="name-container">
                             <span className="name">Filip Jerga</span>
                           </div>
-                          <div className="date-container"><span className="date">21h</span></div>
+                          <div className="date-container">
+                            <span className="date">21h</span>
+                          </div>
                         </div>
                       </div>
                       <div className="topic-content">
                         <div className="cooked">
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                          <p>
+                            Lorem Ipsum is simply dummy text of the printing and
+                            typesetting industry. Lorem Ipsum has been the
+                            industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and
+                            scrambled it to make a type specimen book.
+                          </p>
                         </div>
                         <section className="post-menu-area">
                           <nav className="post-controls">
@@ -94,7 +111,8 @@ const Posts = () => {
                       <div className="main-avatar">
                         <img
                           className="avatar subtle-shadow"
-                          src="https://i.imgur.com/cVDadwb.png"></img>
+                          src="https://i.imgur.com/cVDadwb.png"
+                        ></img>
                       </div>
                     </div>
                     <div className="topic-body">
@@ -103,12 +121,20 @@ const Posts = () => {
                           <div className="name-container">
                             <span className="name">Filip Jerga</span>
                           </div>
-                          <div className="date-container"><span className="date">21h</span></div>
+                          <div className="date-container">
+                            <span className="date">21h</span>
+                          </div>
                         </div>
                       </div>
                       <div className="topic-content">
                         <div className="cooked">
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                          <p>
+                            Lorem Ipsum is simply dummy text of the printing and
+                            typesetting industry. Lorem Ipsum has been the
+                            industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and
+                            scrambled it to make a type specimen book.
+                          </p>
                         </div>
                         <section className="post-menu-area">
                           <nav className="post-controls">
@@ -127,9 +153,7 @@ const Posts = () => {
         </div>
       </Section>
     </>
-  )
-}
-
-
+  );
+};
 
 export default Posts;

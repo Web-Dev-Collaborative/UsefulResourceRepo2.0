@@ -5,15 +5,19 @@
 
 // [START start_multiple_orderby_modular]
 // Will return all Springfields
-import { collection, query, orderBy, startAt } from "firebase/firestore";  
-const q1 = query(collection(db, "cities"),
-   orderBy("name"),
-   orderBy("state"),
-   startAt("Springfield"));
+import { collection, query, orderBy, startAt } from "firebase/firestore";
+const q1 = query(
+  collection(db, "cities"),
+  orderBy("name"),
+  orderBy("state"),
+  startAt("Springfield")
+);
 
 // Will return "Springfield, Missouri" and "Springfield, Wisconsin"
-const q2 = query(collection(db, "cities"),
-   orderBy("name"),
-   orderBy("state"),
-   startAt("Springfield", "Missouri"));
+const q2 = query(
+  collection(db, "cities"),
+  orderBy("name"),
+  orderBy("state"),
+  startAt("Springfield", "Missouri")
+);
 // [END start_multiple_orderby_modular]

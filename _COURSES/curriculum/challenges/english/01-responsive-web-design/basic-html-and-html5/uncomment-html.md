@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08802
 title: Uncomment HTML
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cBmG9T7'
+videoUrl: "https://scrimba.com/p/pVMPUv/cBmG9T7"
 forumTopicId: 18329
 dashedName: uncomment-html
 ---
@@ -24,19 +24,19 @@ Uncomment your `h1`, `h2` and `p` elements.
 Your `h1` element should be visible on the page by uncommenting it.
 
 ```js
-assert($('h1').length > 0);
+assert($("h1").length > 0);
 ```
 
 Your `h2` element should be visible on the page by uncommenting it.
 
 ```js
-assert($('h2').length > 0);
+assert($("h2").length > 0);
 ```
 
 Your `p` element should be visible on the page by uncommenting it.
 
 ```js
-assert($('p').length > 0);
+assert($("p").length > 0);
 ```
 
 No trailing comment tags should be visible on the page (i.e. `-->`).
@@ -66,5 +66,8 @@ assert(!$('*:contains("-->")')[1]);
 
 <h2>CatPhotoApp</h2>
 
-<p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p>
+<p>
+  Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack
+  your ankles chase the red dot, hairball run catnip eat the grass sniff.
+</p>
 ```

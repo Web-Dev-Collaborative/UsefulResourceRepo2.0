@@ -16,7 +16,7 @@ Add the anchor text `cat photos` to the anchor element. This will become the lin
 Your anchor (`a`) element should have an opening tag. Opening tags have this syntax: `<elementName>`.
 
 ```js
-assert(document.querySelector('a'));
+assert(document.querySelector("a"));
 ```
 
 Your anchor (`a`) element should have a closing tag. Closing tags have a `/` just after the `<` character.
@@ -29,8 +29,8 @@ Your anchor (`a`) element's text should be `cat photos`. Make sure to put the li
 
 ```js
 assert(
-  document.querySelector('a').innerText.toLowerCase().replace(/\s+/g, ' ') ===
-    'cat photos'
+  document.querySelector("a").innerText.toLowerCase().replace(/\s+/g, " ") ===
+    "cat photos"
 );
 ```
 
@@ -46,12 +46,14 @@ assert(
       <h2>Cat Photos</h2>
       <!-- TODO: Add link to cat photos -->
       <p>Click here to view more cat photos.</p>
---fcc-editable-region--
+      --fcc-editable-region--
       <a href="https://freecatphotoapp.com"></a>
---fcc-editable-region--
-      <img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back.">
+      --fcc-editable-region--
+      <img
+        src="https://bit.ly/fcc-relaxing-cat"
+        alt="A cute orange cat lying on its back."
+      />
     </main>
   </body>
 </html>
 ```
-

@@ -2,7 +2,7 @@
 id: 587d7791367417b2b2512ab4
 title: Regolare la larghezza di un elemento usando la proprietà width
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cvVLPtN'
+videoUrl: "https://scrimba.com/c/cvVLPtN"
 forumTopicId: 301039
 dashedName: adjust-the-width-of-an-element-using-the-width-property
 ---
@@ -30,7 +30,7 @@ const fullCard = code.match(/\.fullCard\s*{[\s\S]+?[^}]}/g);
 assert(
   fullCard &&
     /width\s*:\s*245px\s*(;|})/gi.test(fullCard[0]) &&
-    $('.fullCard').css('maxWidth') === 'none'
+    $(".fullCard").css("maxWidth") === "none"
 );
 ```
 
@@ -51,7 +51,6 @@ assert(
     text-align: left;
   }
   .fullCard {
-
     border: 1px solid #ccc;
     border-radius: 5px;
     margin: 10px 5px;
@@ -65,11 +64,24 @@ assert(
   <div class="cardContent">
     <div class="cardText">
       <h4>Google</h4>
-      <p>Google was founded by Larry Page and Sergey Brin while they were Ph.D. students at Stanford University.</p>
+      <p>
+        Google was founded by Larry Page and Sergey Brin while they were Ph.D.
+        students at Stanford University.
+      </p>
     </div>
     <div class="cardLinks">
-      <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a>
-      <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+      <a
+        href="https://en.wikipedia.org/wiki/Larry_Page"
+        target="_blank"
+        class="links"
+        >Larry Page</a
+      >
+      <a
+        href="https://en.wikipedia.org/wiki/Sergey_Brin"
+        target="_blank"
+        class="links"
+        >Sergey Brin</a
+      >
     </div>
   </div>
 </div>
@@ -104,11 +116,24 @@ assert(
   <div class="cardContent">
     <div class="cardText">
       <h4>Google</h4>
-      <p>Google was founded by Larry Page and Sergey Brin while they were Ph.D. students at Stanford University.</p>
+      <p>
+        Google was founded by Larry Page and Sergey Brin while they were Ph.D.
+        students at Stanford University.
+      </p>
     </div>
     <div class="cardLinks">
-      <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a>
-      <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+      <a
+        href="https://en.wikipedia.org/wiki/Larry_Page"
+        target="_blank"
+        class="links"
+        >Larry Page</a
+      >
+      <a
+        href="https://en.wikipedia.org/wiki/Sergey_Brin"
+        target="_blank"
+        class="links"
+        >Sergey Brin</a
+      >
     </div>
   </div>
 </div>

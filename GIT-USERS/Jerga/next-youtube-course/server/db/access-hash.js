@@ -1,4 +1,3 @@
+const fileDb = require("./model");
 
-const fileDb = require('./model');
-
-module.exports = fileDb.register('activation-hashes');
+module.exports = fileDb.register("activation-hashes");

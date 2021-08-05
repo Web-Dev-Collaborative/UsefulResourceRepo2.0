@@ -258,9 +258,8 @@ export function buildSlice({
               const subscribedQueries = ((draft[type] ??= {})[
                 id || '__internal_without_id'
               ] ??= [])
-              const alreadySubscribed = subscribedQueries.includes(
-                queryCacheKey
-              )
+              const alreadySubscribed =
+                subscribedQueries.includes(queryCacheKey)
               if (!alreadySubscribed) {
                 subscribedQueries.push(queryCacheKey)
               }

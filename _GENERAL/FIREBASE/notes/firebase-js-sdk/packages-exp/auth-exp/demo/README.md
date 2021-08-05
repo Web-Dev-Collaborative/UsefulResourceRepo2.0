@@ -6,6 +6,7 @@ You need to have created a Firebase Project in the
 [Firebase Console](https://firebase.google.com/console/) as well as configured a web app.
 
 ## Installation
+
 Make sure you run `yarn` to install all dependencies in the root directory.
 
 Enable the Auth providers you would like to offer your users in the console, under
@@ -43,6 +44,7 @@ in the `config.js` file.
 ## Deploy
 
 Before deploying, you may need to build the auth-exp package:
+
 ```bash
 yarn build:deps
 ```
@@ -57,4 +59,3 @@ yarn run demo
 
 This will compile all the files needed to run Firebase Auth, and start a Firebase server locally at
 [http://localhost:5000](http://localhost:5000).
-

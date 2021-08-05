@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244aa
 title: Comprendere le variabili non inizializzate
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cBa2JAL'
+videoUrl: "https://scrimba.com/c/cBa2JAL"
 forumTopicId: 18335
 dashedName: understanding-uninitialized-variables
 ---
@@ -20,19 +20,19 @@ Inizializza le tre variabili `a`, `b` e `c` con `5`, `10`, e `"I am a"` rispetti
 `a` dovrebbe essere definito e avere il valore `6`.
 
 ```js
-assert(typeof a === 'number' && a === 6);
+assert(typeof a === "number" && a === 6);
 ```
 
 `b` dovrebbe essere definito e avere il valore `15`.
 
 ```js
-assert(typeof b === 'number' && b === 15);
+assert(typeof b === "number" && b === 15);
 ```
 
 `c` non dovrebbe contenere `undefined` e dovrebbe avere un valore stringa `I am a String!`
 
 ```js
-assert(!/undefined/.test(c) && c === 'I am a String!');
+assert(!/undefined/.test(c) && c === "I am a String!");
 ```
 
 Non modificare il codice sotto il commento specificato.
@@ -50,7 +50,9 @@ assert(
 ## --after-user-code--
 
 ```js
-(function(a,b,c){ return "a = " + a + ", b = " + b + ", c = '" + c + "'"; })(a,b,c);
+(function (a, b, c) {
+  return "a = " + a + ", b = " + b + ", c = '" + c + "'";
+})(a, b, c);
 ```
 
 ## --seed-contents--

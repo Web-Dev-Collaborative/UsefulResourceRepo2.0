@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08822
 title: 調整元素的外邊距
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cVJarHW'
+videoUrl: "https://scrimba.com/c/cVJarHW"
 forumTopicId: 16654
 dashedName: adjust-the-margin-of-an-element
 ---
@@ -24,7 +24,7 @@ dashedName: adjust-the-margin-of-an-element
 class 爲 `blue-box` 的元素的 `margin` 值應爲 `20px`。
 
 ```js
-assert($('.blue-box').css('margin-top') === '20px');
+assert($(".blue-box").css("margin-top") === "20px");
 ```
 
 # --seed--

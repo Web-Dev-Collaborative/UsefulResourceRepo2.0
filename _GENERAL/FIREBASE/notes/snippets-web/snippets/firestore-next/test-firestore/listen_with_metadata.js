@@ -7,9 +7,10 @@
 import { doc, onSnapshot } from "firebase/firestore";
 
 const unsub = onSnapshot(
-  doc(db, "cities", "SF"), 
-  { includeMetadataChanges: true }, 
+  doc(db, "cities", "SF"),
+  { includeMetadataChanges: true },
   (doc) => {
     // ...
-  });
+  }
+);
 // [END listen_with_metadata_modular]

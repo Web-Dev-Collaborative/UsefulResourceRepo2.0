@@ -17,26 +17,26 @@ Bird.prototype.numLegs = 2;
 Esto se vuelve tedioso después de varias propiedades.
 
 ```js
-Bird.prototype.eat = function() {
+Bird.prototype.eat = function () {
   console.log("nom nom nom");
-}
+};
 
-Bird.prototype.describe = function() {
+Bird.prototype.describe = function () {
   console.log("My name is " + this.name);
-}
+};
 ```
 
 Una forma más eficiente es establecer el `prototype` a un nuevo objeto que ya contenga las propiedades. De esta forma, las propiedades son añadidas todas a la vez:
 
 ```js
 Bird.prototype = {
-  numLegs: 2, 
-  eat: function() {
+  numLegs: 2,
+  eat: function () {
     console.log("nom nom nom");
   },
-  describe: function() {
+  describe: function () {
     console.log("My name is " + this.name);
-  }
+  },
 };
 ```
 
@@ -61,13 +61,13 @@ assert(Dog.prototype.numLegs !== undefined);
 `Dog.prototype` debe tener el método `eat()`.
 
 ```js
-assert(typeof Dog.prototype.eat === 'function');
+assert(typeof Dog.prototype.eat === "function");
 ```
 
 `Dog.prototype` debe tener el método `describe()`.
 
 ```js
-assert(typeof Dog.prototype.describe === 'function');
+assert(typeof Dog.prototype.describe === "function");
 ```
 
 # --seed--
@@ -81,7 +81,6 @@ function Dog(name) {
 
 Dog.prototype = {
   // Only change code below this line
-
 };
 ```
 
@@ -92,12 +91,12 @@ function Dog(name) {
   this.name = name;
 }
 Dog.prototype = {
-numLegs: 4,
-  eat () {
-    console.log('nom nom nom');
+  numLegs: 4,
+  eat() {
+    console.log("nom nom nom");
   },
-  describe () {
-    console.log('My name is ' + this.name);
-  }
+  describe() {
+    console.log("My name is " + this.name);
+  },
 };
 ```

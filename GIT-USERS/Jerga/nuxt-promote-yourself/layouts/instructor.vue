@@ -3,14 +3,14 @@
 </template>
 <script>
 export default {
-  middleware: 'admin',
-}
+  middleware: "admin",
+};
 </script>
 <style lang="scss">
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  color: #505763;;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #505763;
   background-color: #f2f3f5;
   font-size: 16px;
   word-spacing: 1px;

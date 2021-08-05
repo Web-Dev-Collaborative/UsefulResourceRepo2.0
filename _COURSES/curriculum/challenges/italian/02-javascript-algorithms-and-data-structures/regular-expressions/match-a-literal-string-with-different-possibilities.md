@@ -25,43 +25,43 @@ Completa l'espressione regolare `petRegex` per riconoscere gli animali domestici
 La tua espressione regolare `petRegex` dovrebbe restituire `true` per la stringa `John has a pet dog.`
 
 ```js
-assert(petRegex.test('John has a pet dog.'));
+assert(petRegex.test("John has a pet dog."));
 ```
 
 La tua espressione regolare `petRegex` dovrebbe restituire `false` per la stringa `Emma has a pet rock.`
 
 ```js
-assert(!petRegex.test('Emma has a pet rock.'));
+assert(!petRegex.test("Emma has a pet rock."));
 ```
 
 La tua espressione regolare `petRegex` dovrebbe restituire `true` per la stringa `Emma has a pet bird.`
 
 ```js
-assert(petRegex.test('Emma has a pet bird.'));
+assert(petRegex.test("Emma has a pet bird."));
 ```
 
 La tua espressione regolare `petRegex` dovrebbe restituire `true` per la stringa `Liz has a pet cat.`
 
 ```js
-assert(petRegex.test('Liz has a pet cat.'));
+assert(petRegex.test("Liz has a pet cat."));
 ```
 
 La tua espressione regolare `petRegex` dovrebbe restituire `false` per la stringa `Kara has a pet dolphin.`
 
 ```js
-assert(!petRegex.test('Kara has a pet dolphin.'));
+assert(!petRegex.test("Kara has a pet dolphin."));
 ```
 
 La tua espressione regolare `petRegex` dovrebbe restituire `true` per la stringa `Alice has a pet fish.`
 
 ```js
-assert(petRegex.test('Alice has a pet fish.'));
+assert(petRegex.test("Alice has a pet fish."));
 ```
 
 La tua espressione regolare `petRegex` dovrebbe restituire `false` per la stringa `Jimmy has a pet computer.`
 
 ```js
-assert(!petRegex.test('Jimmy has a pet computer.'));
+assert(!petRegex.test("Jimmy has a pet computer."));
 ```
 
 # --seed--

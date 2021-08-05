@@ -1,15 +1,15 @@
-import React from 'react'
-import withAuthorization from 'components/hoc/withAuthorization'
-import ServiceItem from 'components/service/ServiceItem'
+import React from "react";
+import withAuthorization from "components/hoc/withAuthorization";
+import ServiceItem from "components/service/ServiceItem";
 
-const SentOffers = ({auth}) => {
+const SentOffers = ({ auth }) => {
   return (
     <div class="container">
       <div className="content-wrapper">
         <h1 class="title">Received Offers</h1>
         <div className="columns">
           <div className="column is-one-third">
-            { /* <ServiceItem
+            {/* <ServiceItem
               noButton
               className="offer-card"
               service={o.service}>
@@ -32,12 +32,12 @@ const SentOffers = ({auth}) => {
                 </div>
               </div>
             </ServiceItem>
-            */ }
+            */}
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default withAuthorization(SentOffers)
+export default withAuthorization(SentOffers);

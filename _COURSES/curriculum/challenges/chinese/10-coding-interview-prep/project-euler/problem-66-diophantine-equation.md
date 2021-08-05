@@ -1,6 +1,6 @@
 ---
 id: 5900f3ae1000cf542c50fec1
-title: 'Problem 66: Diophantine equation'
+title: "Problem 66: Diophantine equation"
 challengeType: 5
 forumTopicId: 302178
 dashedName: problem-66-diophantine-equation
@@ -35,7 +35,7 @@ Find the value of D ≤ 1000 in minimal solutions of `x` for which the largest v
 `diophantineEquation()` should return a number.
 
 ```js
-assert(typeof diophantineEquation() === 'number');
+assert(typeof diophantineEquation() === "number");
 ```
 
 `diophantineEquation()` should return 661.
@@ -50,7 +50,6 @@ assert.strictEqual(diophantineEquation(), 661);
 
 ```js
 function diophantineEquation() {
-
   return true;
 }
 

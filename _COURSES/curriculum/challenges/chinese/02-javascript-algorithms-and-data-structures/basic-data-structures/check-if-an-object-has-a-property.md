@@ -11,8 +11,8 @@ dashedName: check-if-an-object-has-a-property
 我们已经学习了如何添加、修改和移除对象中的属性。 但如果我们想知道一个对象中是否包含某个属性呢？ JavaScript 为我们提供了两种不同的方式来实现这个功能： 一个是通过 `hasOwnProperty()` 方法，另一个是使用 `in` 关键字。 假如我们有一个 `users` 对象，为检查它是否含有 `Alan` 属性，可以这样写：
 
 ```js
-users.hasOwnProperty('Alan');
-'Alan' in users;
+users.hasOwnProperty("Alan");
+"Alan" in users;
 ```
 
 这两者结果都应该为 `true`。
@@ -25,20 +25,18 @@ users.hasOwnProperty('Alan');
 
 不应直接访问 `users` 对象。
 
-```js 
-
-assert(code.match(/users/gm).length <= 2)
-
+```js
+assert(code.match(/users/gm).length <= 2);
 ```
 
 `users` 对象应该只包含 `Alan`、`Jeff`、`Sarah`、`Ryan` 4 个键。
 
 ```js
 assert(
-  'Alan' in users &&
-    'Jeff' in users &&
-    'Sarah' in users &&
-    'Ryan' in users &&
+  "Alan" in users &&
+    "Jeff" in users &&
+    "Sarah" in users &&
+    "Ryan" in users &&
     Object.keys(users).length === 4
 );
 ```
@@ -101,25 +99,24 @@ assert(
 let users = {
   Alan: {
     age: 27,
-    online: true
+    online: true,
   },
   Jeff: {
     age: 32,
-    online: true
+    online: true,
   },
   Sarah: {
     age: 48,
-    online: true
+    online: true,
   },
   Ryan: {
     age: 19,
-    online: true
-  }
+    online: true,
+  },
 };
 
 function isEveryoneHere(userObj) {
   // Only change code below this line
-
   // Only change code above this line
 }
 
@@ -132,29 +129,26 @@ console.log(isEveryoneHere(users));
 let users = {
   Alan: {
     age: 27,
-    online: true
+    online: true,
   },
   Jeff: {
     age: 32,
-    online: true
+    online: true,
   },
   Sarah: {
     age: 48,
-    online: true
+    online: true,
   },
   Ryan: {
     age: 19,
-    online: true
-  }
+    online: true,
+  },
 };
 
 function isEveryoneHere(userObj) {
-  return [
-    'Alan',
-    'Jeff',
-    'Sarah',
-    'Ryan'
-  ].every(user => userObj.hasOwnProperty(user));
+  return ["Alan", "Jeff", "Sarah", "Ryan"].every((user) =>
+    userObj.hasOwnProperty(user)
+  );
 }
 
 console.log(isEveryoneHere(users));

@@ -37,13 +37,13 @@ Test your function with the following series of inputs showing your output here 
 `quibble` should be a function.
 
 ```js
-assert(typeof quibble === 'function');
+assert(typeof quibble === "function");
 ```
 
 `quibble(["ABC"])` should return a string.
 
 ```js
-assert(typeof quibble(['ABC']) === 'string');
+assert(typeof quibble(["ABC"]) === "string");
 ```
 
 `quibble([])` should return "{}".
@@ -83,7 +83,6 @@ const results = ["{}", "{ABC}", "{ABC and DEF}", "{ABC,DEF,G and H}"];
 
 ```js
 function quibble(words) {
-
   return true;
 }
 ```
@@ -92,10 +91,12 @@ function quibble(words) {
 
 ```js
 function quibble(words) {
-  return "{" +
+  return (
+    "{" +
     words.slice(0, words.length - 1).join(",") +
-   (words.length > 1 ? " and " : "") +
-   (words[words.length - 1] || '') +
-  "}";
+    (words.length > 1 ? " and " : "") +
+    (words[words.length - 1] || "") +
+    "}"
+  );
 }
 ```

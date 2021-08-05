@@ -1,6 +1,6 @@
 ---
 id: 5900f5331000cf542c510045
-title: 'Problem 454: Diophantine reciprocals III'
+title: "Problem 454: Diophantine reciprocals III"
 challengeType: 5
 forumTopicId: 302127
 dashedName: problem-454-diophantine-reciprocals-iii
@@ -30,7 +30,6 @@ assert.strictEqual(euler454(), 5435004633092);
 
 ```js
 function euler454() {
-
   return true;
 }
 

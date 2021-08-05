@@ -27,7 +27,7 @@ assert(Object.keys(styles).length === 3);
 The `styles` variable should have a `color` property set to a value of `purple`.
 
 ```js
-assert(styles.color === 'purple');
+assert(styles.color === "purple");
 ```
 
 The `styles` variable should have a `fontSize` property set to a value of `40`.
@@ -39,7 +39,7 @@ assert(styles.fontSize === 40);
 The `styles` variable should have a `border` property set to a value of `2px solid purple`.
 
 ```js
-assert(styles.border === '2px solid purple');
+assert(styles.border === "2px solid purple");
 ```
 
 The component should render a `div` element.
@@ -48,7 +48,7 @@ The component should render a `div` element.
 assert(
   (function () {
     const mockedComponent = Enzyme.shallow(React.createElement(Colorful));
-    return mockedComponent.type() === 'div';
+    return mockedComponent.type() === "div";
   })()
 );
 ```
@@ -60,9 +60,9 @@ assert(
   (function () {
     const mockedComponent = Enzyme.shallow(React.createElement(Colorful));
     return (
-      mockedComponent.props().style.color === 'purple' &&
+      mockedComponent.props().style.color === "purple" &&
       mockedComponent.props().style.fontSize === 40 &&
-      mockedComponent.props().style.border === '2px solid purple'
+      mockedComponent.props().style.border === "2px solid purple"
     );
   })()
 );
@@ -73,7 +73,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<Colorful />, document.getElementById('root'))
+ReactDOM.render(<Colorful />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -83,12 +83,10 @@ ReactDOM.render(<Colorful />, document.getElementById('root'))
 class Colorful extends React.Component {
   render() {
     // Change code below this line
-    return (
-      <div style={{color: "yellow", fontSize: 24}}>Style Me!</div>
-    );
+    return <div style={{ color: "yellow", fontSize: 24 }}>Style Me!</div>;
     // Change code above this line
   }
-};
+}
 ```
 
 # --solutions--
@@ -97,16 +95,14 @@ class Colorful extends React.Component {
 const styles = {
   color: "purple",
   fontSize: 40,
-  border: "2px solid purple"
+  border: "2px solid purple",
 };
 // Change code above this line
 class Colorful extends React.Component {
   render() {
     // Change code below this line
-    return (
-      <div style={styles}>Style Me!</div>
-    );
+    return <div style={styles}>Style Me!</div>;
     // Change code above this line
   }
-};
+}
 ```

@@ -24,16 +24,16 @@ goog.provide('fireauth.IdToken');
 goog.require('goog.crypt');
 goog.require('goog.crypt.base64');
 
-
 /**
  * Parses the token string into a {@code Token} object.
  * @param {?string} tokenString The JWT token string.
  * @constructor
  */
-fireauth.IdToken = function(tokenString) {
+fireauth.IdToken = function (tokenString) {
   const token = fireauth.IdToken.parseIdTokenClaims(tokenString);
-  if (!(token && token['sub'] && token['iss'] &&
-        token['aud'] && token['exp'])) {
+  if (
+    !(token && token['sub'] && token['iss'] && token['aud'] && token['exp'])
+  ) {
     throw new Error('Invalid JWT');
   }
   /** @const @private {string} The plain JWT string. */
@@ -54,9 +54,10 @@ fireauth.IdToken = function(tokenString) {
   /** @const @private {boolean} Whether the user is verified. */
   this.verified_ = !!token['verified'];
   /** @const @private {?string} The provider ID of the token. */
-  this.providerId_ = token['provider_id'] ||
-      (token['firebase'] && token['firebase']['sign_in_provider']) ||
-      null;
+  this.providerId_ =
+    token['provider_id'] ||
+    (token['firebase'] && token['firebase']['sign_in_provider']) ||
+    null;
   /** @const @private {?string} The tenant ID of the token. */
   this.tenantId_ = (token['firebase'] && token['firebase']['tenant']) || null;
   /** @const @private {boolean} Whether the user is anonymous. */
@@ -74,7 +75,6 @@ fireauth.IdToken = function(tokenString) {
   this.phoneNumber_ = token['phone_number'] || null;
 };
 
-
 /**
  * @typedef {{
  *   identities: (?Object|undefined),
@@ -83,7 +83,6 @@ fireauth.IdToken = function(tokenString) {
  * }}
  */
 fireauth.IdToken.Firebase;
-
 
 /**
  * @typedef {{
@@ -105,110 +104,94 @@ fireauth.IdToken.Firebase;
  */
 fireauth.IdToken.JsonToken;
 
-
 /** @return {?string} The email address of the account. */
-fireauth.IdToken.prototype.getEmail = function() {
+fireauth.IdToken.prototype.getEmail = function () {
   return this.email_;
 };
-
 
 /**
  * @deprecated Use client side clock to calculate when the token expires.
  * @return {number} The expire time in seconds.
  */
-fireauth.IdToken.prototype.getExp = function() {
+fireauth.IdToken.prototype.getExp = function () {
   return this.exp_;
 };
-
 
 /**
  * @return {number} The difference in seconds between when the token was
  *     issued and when it expires.
  */
-fireauth.IdToken.prototype.getExpiresIn = function() {
+fireauth.IdToken.prototype.getExpiresIn = function () {
   return this.exp_ - this.iat_;
 };
 
-
 /** @return {?string} The ID of the identity provider. */
-fireauth.IdToken.prototype.getProviderId = function() {
+fireauth.IdToken.prototype.getProviderId = function () {
   return this.providerId_;
 };
 
-
 /** @return {?string} The tenant ID. */
-fireauth.IdToken.prototype.getTenantId = function() {
+fireauth.IdToken.prototype.getTenantId = function () {
   return this.tenantId_;
 };
 
-
 /** @return {?string} The display name of the account. */
-fireauth.IdToken.prototype.getDisplayName = function() {
+fireauth.IdToken.prototype.getDisplayName = function () {
   return this.displayName_;
 };
 
-
 /** @return {?string} The photo URL of the account. */
-fireauth.IdToken.prototype.getPhotoUrl = function() {
+fireauth.IdToken.prototype.getPhotoUrl = function () {
   return this.photoURL_;
 };
 
-
 /** @return {string} The user ID of the account. */
-fireauth.IdToken.prototype.getLocalId = function() {
+fireauth.IdToken.prototype.getLocalId = function () {
   return this.localId_;
 };
 
-
 /** @return {?string} The federated ID of the account. */
-fireauth.IdToken.prototype.getFederatedId = function() {
+fireauth.IdToken.prototype.getFederatedId = function () {
   return this.federatedId_;
 };
 
-
 /** @return {boolean} Whether the user is anonymous. */
-fireauth.IdToken.prototype.isAnonymous = function() {
+fireauth.IdToken.prototype.isAnonymous = function () {
   return this.anonymous_;
 };
 
-
 /** @return {boolean} Whether the user email is verified. */
-fireauth.IdToken.prototype.isVerified = function() {
+fireauth.IdToken.prototype.isVerified = function () {
   return this.verified_;
 };
-
 
 /**
  * @deprecated Use client side clock to calculate when the token expires.
  * @return {boolean} Whether token is expired.
  */
-fireauth.IdToken.prototype.isExpired = function() {
+fireauth.IdToken.prototype.isExpired = function () {
   const now = Math.floor(Date.now() / 1000);
   // It is expired if token expiration time is less than current time.
   return this.getExp() <= now;
 };
 
-
 /** @return {string} The issuer of the token. */
-fireauth.IdToken.prototype.getIssuer = function() {
+fireauth.IdToken.prototype.getIssuer = function () {
   return this.iss_;
 };
 
-
 /** @return {?string} The phone number of the account. */
-fireauth.IdToken.prototype.getPhoneNumber = function() {
+fireauth.IdToken.prototype.getPhoneNumber = function () {
   return this.phoneNumber_;
 };
-
 
 /**
  * @return {string} The JWT string.
  * @override
  */
-fireauth.IdToken.prototype.toString = function() {
+fireauth.IdToken.prototype.toString = function () {
   return this.jwt_;
 };
-
 
 /**
  * Parses the JWT token and extracts the information part without verifying the
@@ -216,7 +199,7 @@ fireauth.IdToken.prototype.toString = function() {
  * @param {string} tokenString The JWT token.
  * @return {?fireauth.IdToken} The decoded token.
  */
-fireauth.IdToken.parse = function(tokenString) {
+fireauth.IdToken.parse = function (tokenString) {
   try {
     return new fireauth.IdToken(tokenString);
   } catch (e) {
@@ -229,7 +212,7 @@ fireauth.IdToken.parse = function(tokenString) {
  * @param {?string} tokenString The JWT token.
  * @return {?Object}
  */
-fireauth.IdToken.parseIdTokenClaims = function(tokenString) {
+fireauth.IdToken.parseIdTokenClaims = function (tokenString) {
   if (!tokenString) {
     return null;
   }
@@ -240,13 +223,14 @@ fireauth.IdToken.parseIdTokenClaims = function(tokenString) {
   }
   let jsonInfo = fields[1];
   // Google base64 library does not handle padding.
-  const padLen = (4 - jsonInfo.length % 4) % 4;
+  const padLen = (4 - (jsonInfo.length % 4)) % 4;
   for (let i = 0; i < padLen; i++) {
     jsonInfo += '.';
   }
   try {
     const decodedClaims = goog.crypt.utf8ByteArrayToString(
-        goog.crypt.base64.decodeStringToByteArray(jsonInfo));
+      goog.crypt.base64.decodeStringToByteArray(jsonInfo)
+    );
     const token = JSON.parse(decodedClaims);
     return /** @type {?Object} */ (token);
   } catch (e) {}

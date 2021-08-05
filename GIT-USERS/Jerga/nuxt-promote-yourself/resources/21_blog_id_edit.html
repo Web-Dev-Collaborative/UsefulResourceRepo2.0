@@ -1,9 +1,7 @@
 <template>
   <!-- Finish handling of URL -->
   <div>
-    <Header
-      title="Write your blog"
-      exitLink="/instructor/blogs">
+    <header title="Write your blog" exitLink="/instructor/blogs">
       <!-- TODO: Check if blog status is active -->
       <template #actionMenu>
         <div class="full-page-takeover-header-button">
@@ -11,9 +9,12 @@
           <Modal
             openTitle="Publish"
             openBtnClass="button is-success is-medium is-inverted is-outlined"
-            title="Review Details">
+            title="Review Details"
+          >
             <div>
-              <div class="title">Once you publish blog you cannot change url to a blog.</div>
+              <div class="title">
+                Once you publish blog you cannot change url to a blog.
+              </div>
               <!-- Check for error -->
               <div>
                 <div class="subtitle">Current Url is:</div>
@@ -45,22 +46,24 @@
           </Modal>
         </div>
       </template> -->
-    </Header>
+    </header>
     <div class="blog-editor-container">
       <div class="container">
-        <editor/>
+        <editor />
       </div>
     </div>
   </div>
 </template>
 <script>
-import Editor from '~/components/editor'
-import Header from '~/components/shared/Header'
-import Modal from '~/components/shared/Modal'
-export default {
-  layout: 'instructor',
-  components: {
-    Editor, Header, Modal
-  }
-}
+  import Editor from "~/components/editor";
+  import Header from "~/components/shared/Header";
+  import Modal from "~/components/shared/Modal";
+  export default {
+    layout: "instructor",
+    components: {
+      Editor,
+      Header,
+      Modal,
+    },
+  };
 </script>

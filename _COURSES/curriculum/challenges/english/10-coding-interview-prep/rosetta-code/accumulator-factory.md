@@ -8,7 +8,7 @@ dashedName: accumulator-factory
 
 # --description--
 
-A problem posed by [Paul Graham](https://en.wikipedia.org/wiki/Paul_Graham_(programmer)) is that of creating a function that takes a single (numeric) argument and which returns another function that is an accumulator. The returned accumulator function in turn also takes a single numeric argument, and returns the sum of all the numeric values passed in so far to that accumulator (including the initial value passed when the accumulator was created).
+A problem posed by [Paul Graham](<https://en.wikipedia.org/wiki/Paul_Graham_(programmer)>) is that of creating a function that takes a single (numeric) argument and which returns another function that is an accumulator. The returned accumulator function in turn also takes a single numeric argument, and returns the sum of all the numeric values passed in so far to that accumulator (including the initial value passed when the accumulator was created).
 
 # --instructions--
 
@@ -27,19 +27,19 @@ Closures save outer state.
 `accumulator` should be a function.
 
 ```js
-assert(typeof accumulator === 'function');
+assert(typeof accumulator === "function");
 ```
 
 `accumulator(0)` should return a function.
 
 ```js
-assert(typeof accumulator(0) === 'function');
+assert(typeof accumulator(0) === "function");
 ```
 
 `accumulator(0)(2)` should return a number.
 
 ```js
-assert(typeof accumulator(0)(2) === 'number');
+assert(typeof accumulator(0)(2) === "number");
 ```
 
 Passing in the values 3, -4, 1.5, and 5 should return 5.5.
@@ -53,7 +53,7 @@ assert(testFn(5) === 5.5);
 ## --after-user-code--
 
 ```js
-const testFn = typeof accumulator(3) === 'function' && accumulator(3);
+const testFn = typeof accumulator(3) === "function" && accumulator(3);
 if (testFn) {
   testFn(-4);
   testFn(1.5);
@@ -63,17 +63,15 @@ if (testFn) {
 ## --seed-contents--
 
 ```js
-function accumulator(sum) {
-
-}
+function accumulator(sum) {}
 ```
 
 # --solutions--
 
 ```js
 function accumulator(sum) {
-  return function(n) {
-    return sum += n;
+  return function (n) {
+    return (sum += n);
   };
 }
 ```

@@ -20,14 +20,12 @@
  * credential, a subclass of fireauth.AuthError.
  */
 
-
 goog.provide('fireauth.AuthErrorWithCredential');
 
 goog.require('fireauth.AuthError');
 goog.require('fireauth.AuthProvider');
 goog.require('fireauth.object');
 goog.require('goog.object');
-
 
 /**
  * Error with email and credential that can be returned to the developer.
@@ -38,10 +36,12 @@ goog.require('goog.object');
  * @constructor
  * @extends {fireauth.AuthError}
  */
-fireauth.AuthErrorWithCredential =
-    function(code, opt_credentialInfo, opt_message) {
-  fireauth.AuthErrorWithCredential.base(
-      this, 'constructor', code, opt_message);
+fireauth.AuthErrorWithCredential = function (
+  code,
+  opt_credentialInfo,
+  opt_message
+) {
+  fireauth.AuthErrorWithCredential.base(this, 'constructor', code, opt_message);
   var credentialInfo = opt_credentialInfo || {};
 
   // These properties are public.
@@ -49,20 +49,28 @@ fireauth.AuthErrorWithCredential =
     fireauth.object.setReadonlyProperty(this, 'email', credentialInfo.email);
   }
   if (credentialInfo.phoneNumber) {
-    fireauth.object.setReadonlyProperty(this, 'phoneNumber',
-        credentialInfo.phoneNumber);
+    fireauth.object.setReadonlyProperty(
+      this,
+      'phoneNumber',
+      credentialInfo.phoneNumber
+    );
   }
   if (credentialInfo.credential) {
-    fireauth.object.setReadonlyProperty(this, 'credential',
-        credentialInfo.credential);
+    fireauth.object.setReadonlyProperty(
+      this,
+      'credential',
+      credentialInfo.credential
+    );
   }
   if (credentialInfo.tenantId) {
-    fireauth.object.setReadonlyProperty(this, 'tenantId',
-        credentialInfo.tenantId);
+    fireauth.object.setReadonlyProperty(
+      this,
+      'tenantId',
+      credentialInfo.tenantId
+    );
   }
 };
 goog.inherits(fireauth.AuthErrorWithCredential, fireauth.AuthError);
-
 
 /**
  * Additional credential information to associate with an error, so that the
@@ -76,12 +84,11 @@ goog.inherits(fireauth.AuthErrorWithCredential, fireauth.AuthError);
  */
 fireauth.AuthErrorWithCredential.CredentialInfo;
 
-
 /**
  * @return {!Object} The plain object form of the error.
  * @override
  */
-fireauth.AuthErrorWithCredential.prototype.toPlainObject = function() {
+fireauth.AuthErrorWithCredential.prototype.toPlainObject = function () {
   var obj = {
     'code': this['code'],
     'message': this.message
@@ -97,31 +104,29 @@ fireauth.AuthErrorWithCredential.prototype.toPlainObject = function() {
   }
 
   var credential = this['credential'] && this['credential'].toPlainObject();
-  if (credential){
+  if (credential) {
     goog.object.extend(obj, credential);
   }
   return obj;
 };
-
 
 /**
  * @return {!Object} The plain object form of the error. This is used by
  *     JSON.toStringify() to return the stringified representation of the error;
  * @override
  */
-fireauth.AuthErrorWithCredential.prototype.toJSON = function() {
+fireauth.AuthErrorWithCredential.prototype.toJSON = function () {
   // Return the plain object representation in case JSON.stringify is called on
   // an Auth error instance.
   return this.toPlainObject();
 };
-
 
 /**
  * @param {?Object|undefined} response The object response to convert to a
  *     fireauth.AuthErrorWithCredential.
  * @return {?fireauth.AuthError} The error representation of the response.
  */
-fireauth.AuthErrorWithCredential.fromPlainObject = function(response) {
+fireauth.AuthErrorWithCredential.fromPlainObject = function (response) {
   // Code included.
   if (response['code']) {
     var code = response['code'] || '';
@@ -145,8 +150,11 @@ fireauth.AuthErrorWithCredential.fromPlainObject = function(response) {
       return new fireauth.AuthError(code, response['message'] || undefined);
     }
 
-    return new fireauth.AuthErrorWithCredential(code, credentialInfo,
-        response['message']);
+    return new fireauth.AuthErrorWithCredential(
+      code,
+      credentialInfo,
+      response['message']
+    );
   }
   // No error or invalid response.
   return null;

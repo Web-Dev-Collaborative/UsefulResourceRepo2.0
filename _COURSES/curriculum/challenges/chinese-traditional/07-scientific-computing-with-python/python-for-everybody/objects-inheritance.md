@@ -1,6 +1,6 @@
 ---
 id: 5e7b9f170b6c005b0e76f088
-title: '對象：繼承'
+title: "對象：繼承"
 challengeType: 11
 videoId: FBL3alYrxRM
 dashedName: objects-inheritance
@@ -31,4 +31,3 @@ dashedName: objects-inheritance
 ## --video-solution--
 
 3
-

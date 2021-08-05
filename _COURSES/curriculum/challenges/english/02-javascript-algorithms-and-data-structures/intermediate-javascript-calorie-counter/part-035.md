@@ -13,7 +13,7 @@ Some people consider this a little cumbersome and prefer to use template literal
 
 Template literals are enclosed in backticks (\`\`), and JavaScript expressions and variables can be embedded by enclosing them in `${}`.
 
-For example, ``console.log(`Hello ${firstName}, today is ${Date.now()}`)`` is the same as writing `console.log('Hello ' + firstName + ', today is ' + Date.now())`.
+For example, `` console.log(`Hello ${firstName}, today is ${Date.now()}`) `` is the same as writing `console.log('Hello ' + firstName + ', today is ' + Date.now())`.
 
 Convert the data inside of `createTextNode()` to be a template literal.
 
@@ -24,7 +24,7 @@ See description above for instructions.
 ```js
 assert(
   code
-    .replace(/\s/g, '')
+    .replace(/\s/g, "")
     .match(
       /document\.createTextNode\(\`\$\{Math\.abs\(difference\)\}Calorie\$\{surplusOrDeficit\}\`/
     )
@@ -53,15 +53,11 @@ assert(
           <legend>Sex</legend>
           <div>
             <input type="radio" name="sex" id="female" value="F" checked />
-            <label for="female">
-              Female (2,000 calories)
-            </label>
+            <label for="female"> Female (2,000 calories) </label>
 
             <div>
               <input type="radio" name="sex" id="male" value="M" />
-              <label for="male">
-                Male (2,500 calories)
-              </label>
+              <label for="male"> Male (2,500 calories) </label>
             </div>
           </div>
         </div>
@@ -77,15 +73,11 @@ assert(
           <input type="number" min="0" class="cal-control" id="lunch" /><br />
           Dinner <input type="number" min="0" class="cal-control" id="dinner" />
         </div>
-        <button type="button" class="btn-add" id="add">
-          Add Entry
-        </button>
+        <button type="button" class="btn-add" id="add">Add Entry</button>
         <button type="submit" class="btn-solid" id="calculate">
           Calculate
         </button>
-        <button type="button" class="btn-outline" id="clear">
-          Clear
-        </button>
+        <button type="button" class="btn-outline" id="clear">Clear</button>
       </form>
       <div id="output"></div>
     </div>
@@ -104,26 +96,26 @@ assert(
 
 ```html
 <script>
-  document.getElementById('calorie-form').onsubmit = calculate;
+  document.getElementById("calorie-form").onsubmit = calculate;
 
   function calculate(e) {
     e.preventDefault();
 
-    const total = Array.from(document.getElementsByClassName('cal-control'))
-      .map(meal => Number(meal.value))
+    const total = Array.from(document.getElementsByClassName("cal-control"))
+      .map((meal) => Number(meal.value))
       .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
-    const maxCalories = document.getElementById('female').checked ? 2000 : 2500;
+    const maxCalories = document.getElementById("female").checked ? 2000 : 2500;
 
     const difference = total - maxCalories;
 
-    const surplusOrDeficit = difference > 0 ? 'Surplus' : 'Deficit';
+    const surplusOrDeficit = difference > 0 ? "Surplus" : "Deficit";
 
-    const output = document.getElementById('output');
+    const output = document.getElementById("output");
 
-    const result = document.createElement('h3');
+    const result = document.createElement("h3");
     const resultText = document.createTextNode(
-      Math.abs(difference) + ' Calorie ' + surplusOrDeficit
+      Math.abs(difference) + " Calorie " + surplusOrDeficit
     );
   }
 </script>
@@ -133,24 +125,24 @@ assert(
 
 ```html
 <script>
-  document.getElementById('calorie-form').onsubmit = calculate;
+  document.getElementById("calorie-form").onsubmit = calculate;
 
   function calculate(e) {
     e.preventDefault();
 
-    const total = Array.from(document.getElementsByClassName('cal-control'))
-      .map(meal => Number(meal.value))
+    const total = Array.from(document.getElementsByClassName("cal-control"))
+      .map((meal) => Number(meal.value))
       .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
-    const maxCalories = document.getElementById('female').checked ? 2000 : 2500;
+    const maxCalories = document.getElementById("female").checked ? 2000 : 2500;
 
     const difference = total - maxCalories;
 
-    const surplusOrDeficit = difference > 0 ? 'Surplus' : 'Deficit';
+    const surplusOrDeficit = difference > 0 ? "Surplus" : "Deficit";
 
-    const output = document.getElementById('output');
+    const output = document.getElementById("output");
 
-    const result = document.createElement('h3');
+    const result = document.createElement("h3");
     const resultText = document.createTextNode(
       `${Math.abs(difference)} Calorie ${surplusOrDeficit}`
     );

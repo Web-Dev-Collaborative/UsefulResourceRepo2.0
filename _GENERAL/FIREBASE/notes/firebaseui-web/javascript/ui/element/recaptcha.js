@@ -16,33 +16,29 @@
  * @fileoverview Binds handlers for reCAPTCHA UI element.
  */
 
-goog.provide('firebaseui.auth.ui.element.recaptcha');
+goog.provide("firebaseui.auth.ui.element.recaptcha");
 
-goog.require('firebaseui.auth.ui.element');
-goog.requireType('goog.ui.Component');
+goog.require("firebaseui.auth.ui.element");
+goog.requireType("goog.ui.Component");
 
+goog.scope(function () {
+  var element = firebaseui.auth.ui.element;
 
-goog.scope(function() {
-var element = firebaseui.auth.ui.element;
+  /**
+   * @return {Element} The error element for reCAPTCHA.
+   * @this {goog.ui.Component}
+   */
+  element.recaptcha.getRecaptchaErrorElement = function () {
+    // Listener needs to be set on grecaptcha callback to hide this error when
+    // triggered.
+    return this.getElementByClass("firebaseui-id-recaptcha-error");
+  };
 
-
-/**
- * @return {Element} The error element for reCAPTCHA.
- * @this {goog.ui.Component}
- */
-element.recaptcha.getRecaptchaErrorElement = function() {
-  // Listener needs to be set on grecaptcha callback to hide this error when
-  // triggered.
-  return this.getElementByClass('firebaseui-id-recaptcha-error');
-};
-
-
-
-/**
- * @return {Element} The container element for reCAPTCHA.
- * @this {goog.ui.Component}
- */
-element.recaptcha.getRecaptchaElement = function() {
-  return this.getElementByClass('firebaseui-recaptcha-container');
-};
+  /**
+   * @return {Element} The container element for reCAPTCHA.
+   * @this {goog.ui.Component}
+   */
+  element.recaptcha.getRecaptchaElement = function () {
+    return this.getElementByClass("firebaseui-recaptcha-container");
+  };
 });

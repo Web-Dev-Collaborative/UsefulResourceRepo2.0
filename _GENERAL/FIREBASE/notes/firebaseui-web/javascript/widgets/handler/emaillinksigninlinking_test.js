@@ -16,19 +16,18 @@
  * @fileoverview Test for email link sign in linking handler.
  */
 
-goog.provide('firebaseui.auth.widget.handler.EmailLinkSignInLinkingTest');
-goog.setTestOnly('firebaseui.auth.widget.handler.EmailLinkSignInLinkingTest');
+goog.provide("firebaseui.auth.widget.handler.EmailLinkSignInLinkingTest");
+goog.setTestOnly("firebaseui.auth.widget.handler.EmailLinkSignInLinkingTest");
 
-goog.require('firebaseui.auth.PendingEmailCredential');
-goog.require('firebaseui.auth.idp');
-goog.require('firebaseui.auth.storage');
-goog.require('firebaseui.auth.widget.handler.common');
-goog.require('firebaseui.auth.widget.handler.handleEmailLinkSignInLinking');
+goog.require("firebaseui.auth.PendingEmailCredential");
+goog.require("firebaseui.auth.idp");
+goog.require("firebaseui.auth.storage");
+goog.require("firebaseui.auth.widget.handler.common");
+goog.require("firebaseui.auth.widget.handler.handleEmailLinkSignInLinking");
 /** @suppress {extraRequire} */
-goog.require('firebaseui.auth.widget.handler.handleEmailLinkSignInSent');
+goog.require("firebaseui.auth.widget.handler.handleEmailLinkSignInSent");
 /** @suppress {extraRequire} */
-goog.require('firebaseui.auth.widget.handler.testHelper');
-
+goog.require("firebaseui.auth.widget.handler.testHelper");
 
 var pendingEmailCred = null;
 
@@ -38,163 +37,220 @@ var pendingEmailCred = null;
 function setPendingEmailCredentials() {
   // Pending credential stored.
   var credential = firebaseui.auth.idp.getAuthCredential({
-    'accessToken': 'facebookAccessToken',
-    'providerId': 'facebook.com'
+    accessToken: "facebookAccessToken",
+    providerId: "facebook.com",
   });
   pendingEmailCred = new firebaseui.auth.PendingEmailCredential(
-     'user@example.com', credential);
+    "user@example.com",
+    credential
+  );
   firebaseui.auth.storage.setPendingEmailCredential(
-      pendingEmailCred, app.getAppId());
+    pendingEmailCred,
+    app.getAppId()
+  );
 }
-
 
 function testHandleEmailLinkSignInLinking() {
   setPendingEmailCredentials();
-  app.updateConfig('signInOptions', emailLinkSignInOptions);
+  app.updateConfig("signInOptions", emailLinkSignInOptions);
   var expectedActionCodeSettings = buildActionCodeSettings(
-      false, 'facebook.com');
+    false,
+    "facebook.com"
+  );
 
   firebaseui.auth.widget.handler.handleEmailLinkSignInLinking(
-      app, container, 'user@example.com');
-  assertEmailLinkSignInLinkingPage('user@example.com', 'Facebook');
+    app,
+    container,
+    "user@example.com"
+  );
+  assertEmailLinkSignInLinkingPage("user@example.com", "Facebook");
 
   // Click sign in button.
   submitForm();
 
-  return testAuth.process().then(function() {
-    testAuth.assertSendSignInLinkToEmail(
-        ['user@example.com', expectedActionCodeSettings]);
-    return testAuth.process();
-  }).then(function() {
-    assertEmailLinkSignInSentPage();
-    // Pending credential should be deleted.
-    assertFalse(firebaseui.auth.storage.hasPendingEmailCredential(
-        app.getAppId()));
-    // Email for email link sign in should be stored.
-    assertEquals(
-        'user@example.com',
-        firebaseui.auth.storage.getEmailForSignIn('SESSIONID', app.getAppId()));
-    // Pending credential should be encrypted and saved in cookie storage.
-    assertObjectEquals(
+  return testAuth
+    .process()
+    .then(function () {
+      testAuth.assertSendSignInLinkToEmail([
+        "user@example.com",
+        expectedActionCodeSettings,
+      ]);
+      return testAuth.process();
+    })
+    .then(function () {
+      assertEmailLinkSignInSentPage();
+      // Pending credential should be deleted.
+      assertFalse(
+        firebaseui.auth.storage.hasPendingEmailCredential(app.getAppId())
+      );
+      // Email for email link sign in should be stored.
+      assertEquals(
+        "user@example.com",
+        firebaseui.auth.storage.getEmailForSignIn("SESSIONID", app.getAppId())
+      );
+      // Pending credential should be encrypted and saved in cookie storage.
+      assertObjectEquals(
         pendingEmailCred,
         firebaseui.auth.storage.getEncryptedPendingCredential(
-            'SESSIONID', app.getAppId()));
-  });
+          "SESSIONID",
+          app.getAppId()
+        )
+      );
+    });
 }
-
 
 function testHandleEmailLinkSignInLinking_anonymousUpgrade() {
   // Test email link linking handler for anonymous upgrade flow.
   setPendingEmailCredentials();
-  app.updateConfig('autoUpgradeAnonymousUsers', true);
-  app.updateConfig('signInOptions', emailLinkSignInOptions);
+  app.updateConfig("autoUpgradeAnonymousUsers", true);
+  app.updateConfig("signInOptions", emailLinkSignInOptions);
   // Simulate anonymous current user on external Auth instance.
   externalAuth.setUser(anonymousUser);
   var expectedActionCodeSettings = buildActionCodeSettings(
-      false, 'facebook.com', anonymousUser['uid']);
+    false,
+    "facebook.com",
+    anonymousUser["uid"]
+  );
 
   firebaseui.auth.widget.handler.handleEmailLinkSignInLinking(
-      app, container, 'user@example.com');
-  assertEmailLinkSignInLinkingPage('user@example.com', 'Facebook');
+    app,
+    container,
+    "user@example.com"
+  );
+  assertEmailLinkSignInLinkingPage("user@example.com", "Facebook");
 
   // Click sign in button.
   submitForm();
 
   // Trigger onAuthStateChanged listener.
   externalAuth.runAuthChangeHandler();
-  return externalAuth.process().then(function() {
-    testAuth.assertSendSignInLinkToEmail(
-        ['user@example.com', expectedActionCodeSettings]);
-    return testAuth.process();
-  }).then(function() {
-    assertEmailLinkSignInSentPage();
-    // Pending credential should be deleted.
-    assertFalse(firebaseui.auth.storage.hasPendingEmailCredential(
-        app.getAppId()));
-    // Email for email link sign in should be stored.
-    assertEquals(
-        'user@example.com',
-        firebaseui.auth.storage.getEmailForSignIn('SESSIONID', app.getAppId()));
-    // Pending credential should be encrypted and saved in cookie storage.
-    assertObjectEquals(
+  return externalAuth
+    .process()
+    .then(function () {
+      testAuth.assertSendSignInLinkToEmail([
+        "user@example.com",
+        expectedActionCodeSettings,
+      ]);
+      return testAuth.process();
+    })
+    .then(function () {
+      assertEmailLinkSignInSentPage();
+      // Pending credential should be deleted.
+      assertFalse(
+        firebaseui.auth.storage.hasPendingEmailCredential(app.getAppId())
+      );
+      // Email for email link sign in should be stored.
+      assertEquals(
+        "user@example.com",
+        firebaseui.auth.storage.getEmailForSignIn("SESSIONID", app.getAppId())
+      );
+      // Pending credential should be encrypted and saved in cookie storage.
+      assertObjectEquals(
         pendingEmailCred,
         firebaseui.auth.storage.getEncryptedPendingCredential(
-            'SESSIONID', app.getAppId()));
-  });
+          "SESSIONID",
+          app.getAppId()
+        )
+      );
+    });
 }
-
 
 function testHandleEmailLinkSignInLinking_networkError() {
   // Test that if network error is thrown while sending the email, it should
   // remain on the same page so user can re-try.
   setPendingEmailCredentials();
-  app.updateConfig('signInOptions', emailLinkSignInOptions);
+  app.updateConfig("signInOptions", emailLinkSignInOptions);
   var expectedActionCodeSettings = buildActionCodeSettings(
-      false, 'facebook.com');
+    false,
+    "facebook.com"
+  );
   var networkError = {
-    'code': 'auth/network-request-failed',
-    'message': 'MESSAGE.'
+    code: "auth/network-request-failed",
+    message: "MESSAGE.",
   };
 
   firebaseui.auth.widget.handler.handleEmailLinkSignInLinking(
-      app, container, 'user@example.com');
-  assertEmailLinkSignInLinkingPage('user@example.com', 'Facebook');
+    app,
+    container,
+    "user@example.com"
+  );
+  assertEmailLinkSignInLinkingPage("user@example.com", "Facebook");
 
   // Click sign in button.
   submitForm();
 
-  return testAuth.process().then(function() {
-    // Simulate network error is thrown.
-    testAuth.assertSendSignInLinkToEmail(
-        ['user@example.com', expectedActionCodeSettings], null, networkError);
-    return testAuth.process();
-  }).then(function() {
-    // If network error is thrown, it should remain on the same page.
-    assertEmailLinkSignInLinkingPage('user@example.com', 'Facebook');
-    // Show error in info bar.
-    assertInfoBarMessage(
-        firebaseui.auth.widget.handler.common.getErrorMessage(networkError));
-    // Pending credential and email for email link sign in should be cleared.
-    assertFalse(firebaseui.auth.storage.hasPendingEmailCredential(
-        app.getAppId()));
-    assertFalse(
-        firebaseui.auth.storage.hasEncryptedPendingCredential(app.getAppId()));
-    assertFalse(
-        firebaseui.auth.storage.hasEmailForSignIn(app.getAppId()));
-  });
+  return testAuth
+    .process()
+    .then(function () {
+      // Simulate network error is thrown.
+      testAuth.assertSendSignInLinkToEmail(
+        ["user@example.com", expectedActionCodeSettings],
+        null,
+        networkError
+      );
+      return testAuth.process();
+    })
+    .then(function () {
+      // If network error is thrown, it should remain on the same page.
+      assertEmailLinkSignInLinkingPage("user@example.com", "Facebook");
+      // Show error in info bar.
+      assertInfoBarMessage(
+        firebaseui.auth.widget.handler.common.getErrorMessage(networkError)
+      );
+      // Pending credential and email for email link sign in should be cleared.
+      assertFalse(
+        firebaseui.auth.storage.hasPendingEmailCredential(app.getAppId())
+      );
+      assertFalse(
+        firebaseui.auth.storage.hasEncryptedPendingCredential(app.getAppId())
+      );
+      assertFalse(firebaseui.auth.storage.hasEmailForSignIn(app.getAppId()));
+    });
 }
-
 
 function testHandleEmailLinkSignInLinking_error() {
   setPendingEmailCredentials();
-  app.updateConfig('signInOptions', emailLinkSignInOptions);
+  app.updateConfig("signInOptions", emailLinkSignInOptions);
   var expectedActionCodeSettings = buildActionCodeSettings(
-      false, 'facebook.com');
+    false,
+    "facebook.com"
+  );
 
   firebaseui.auth.widget.handler.handleEmailLinkSignInLinking(
-      app, container, 'user@example.com');
-  assertEmailLinkSignInLinkingPage('user@example.com', 'Facebook');
+    app,
+    container,
+    "user@example.com"
+  );
+  assertEmailLinkSignInLinkingPage("user@example.com", "Facebook");
 
   // Click sign in button.
   submitForm();
 
-  return testAuth.process().then(function() {
-    // Simulate internal error is thrown.
-    testAuth.assertSendSignInLinkToEmail(
-        ['user@example.com', expectedActionCodeSettings], null, internalError);
-    return testAuth.process();
-  }).then(function() {
-    // Go back to the starting page for error cases.
-    assertProviderSignInPage();
-    // Show error in info bar.
-    assertInfoBarMessage(
-        firebaseui.auth.widget.handler.common.getErrorMessage(internalError));
-    // Pending credential and email for email link sign in should be cleared.
-    assertFalse(firebaseui.auth.storage.hasPendingEmailCredential(
-        app.getAppId()));
-    assertFalse(
-        firebaseui.auth.storage.hasEncryptedPendingCredential(app.getAppId()));
-    assertFalse(
-        firebaseui.auth.storage.hasEmailForSignIn(app.getAppId()));
-  });
+  return testAuth
+    .process()
+    .then(function () {
+      // Simulate internal error is thrown.
+      testAuth.assertSendSignInLinkToEmail(
+        ["user@example.com", expectedActionCodeSettings],
+        null,
+        internalError
+      );
+      return testAuth.process();
+    })
+    .then(function () {
+      // Go back to the starting page for error cases.
+      assertProviderSignInPage();
+      // Show error in info bar.
+      assertInfoBarMessage(
+        firebaseui.auth.widget.handler.common.getErrorMessage(internalError)
+      );
+      // Pending credential and email for email link sign in should be cleared.
+      assertFalse(
+        firebaseui.auth.storage.hasPendingEmailCredential(app.getAppId())
+      );
+      assertFalse(
+        firebaseui.auth.storage.hasEncryptedPendingCredential(app.getAppId())
+      );
+      assertFalse(firebaseui.auth.storage.hasEmailForSignIn(app.getAppId()));
+    });
 }

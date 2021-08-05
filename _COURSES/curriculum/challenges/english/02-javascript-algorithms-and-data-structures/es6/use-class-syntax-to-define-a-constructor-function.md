@@ -15,10 +15,10 @@ It should be noted that the `class` syntax is just syntax, and not a full-fledge
 In ES5, we usually define a `constructor` function and use the `new` keyword to instantiate an object.
 
 ```js
-var SpaceShuttle = function(targetPlanet){
+var SpaceShuttle = function (targetPlanet) {
   this.targetPlanet = targetPlanet;
-}
-var zeus = new SpaceShuttle('Jupiter');
+};
+var zeus = new SpaceShuttle("Jupiter");
 ```
 
 The `class` syntax simply replaces the `constructor` function creation:
@@ -29,7 +29,7 @@ class SpaceShuttle {
     this.targetPlanet = targetPlanet;
   }
 }
-const zeus = new SpaceShuttle('Jupiter');
+const zeus = new SpaceShuttle("Jupiter");
 ```
 
 It should be noted that the `class` keyword declares a new function, to which a constructor is added. This constructor is invoked when `new` is called to create a new object.
@@ -50,7 +50,7 @@ The `Vegetable` class allows you to create a vegetable object with a property `n
 
 ```js
 assert(
-  typeof Vegetable === 'function' && typeof Vegetable.constructor === 'function'
+  typeof Vegetable === "function" && typeof Vegetable.constructor === "function"
 );
 ```
 
@@ -64,15 +64,15 @@ assert(code.match(/class/g));
 
 ```js
 assert(() => {
-  const a = new Vegetable('apple');
-  return typeof a === 'object';
+  const a = new Vegetable("apple");
+  return typeof a === "object";
 });
 ```
 
 `carrot.name` should return `carrot`.
 
 ```js
-assert(carrot.name == 'carrot');
+assert(carrot.name == "carrot");
 ```
 
 # --seed--
@@ -84,7 +84,7 @@ assert(carrot.name == 'carrot');
 
 // Only change code above this line
 
-const carrot = new Vegetable('carrot');
+const carrot = new Vegetable("carrot");
 console.log(carrot.name); // Should display 'carrot'
 ```
 
@@ -96,5 +96,5 @@ class Vegetable {
     this.name = name;
   }
 }
-const carrot = new Vegetable('carrot');
+const carrot = new Vegetable("carrot");
 ```

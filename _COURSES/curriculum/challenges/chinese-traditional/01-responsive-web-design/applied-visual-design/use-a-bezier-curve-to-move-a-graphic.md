@@ -2,7 +2,7 @@
 id: 587d78a9367417b2b2512ae9
 title: 使用貝塞爾曲線移動圖形
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c6bnRCK'
+videoUrl: "https://scrimba.com/c/c6bnRCK"
 forumTopicId: 301071
 dashedName: use-a-bezier-curve-to-move-a-graphic
 ---
@@ -29,25 +29,25 @@ id 爲 `red` 的元素的 `animation-timing-function` 屬性應爲 `cubic-bezier
 
 ```js
 assert(
-  $('#red').css('animation-timing-function') == 'cubic-bezier(0, 0, 0.58, 1)'
+  $("#red").css("animation-timing-function") == "cubic-bezier(0, 0, 0.58, 1)"
 );
 ```
 
 id 爲 `red` 的元素不應有值爲 `linear` 的 `animation-timing-function` 屬性。
 
 ```js
-assert($('#red').css('animation-timing-function') !== 'linear');
+assert($("#red").css("animation-timing-function") !== "linear");
 ```
 
 id 爲 `blue` 的元素的 `animation-timing-function` 屬性值不應該改變。
 
 ```js
 const blueBallAnimation = __helpers.removeWhiteSpace(
-  $('#blue').css('animation-timing-function')
+  $("#blue").css("animation-timing-function")
 );
 assert(
-  blueBallAnimation == 'ease-out' ||
-    blueBallAnimation == 'cubic-bezier(0,0,0.58,1)'
+  blueBallAnimation == "ease-out" ||
+    blueBallAnimation == "cubic-bezier(0,0,0.58,1)"
 );
 ```
 
@@ -57,7 +57,7 @@ assert(
 
 ```html
 <style>
-  .balls{
+  .balls {
     border-radius: 50%;
     position: fixed;
     width: 50px;
@@ -86,15 +86,15 @@ assert(
     }
   }
 </style>
-<div class="balls" id= "red"></div>
-<div class="balls" id= "blue"></div>
+<div class="balls" id="red"></div>
+<div class="balls" id="blue"></div>
 ```
 
 # --solutions--
 
 ```html
 <style>
-  .balls{
+  .balls {
     border-radius: 50%;
     position: fixed;
     width: 50px;
@@ -123,6 +123,6 @@ assert(
     }
   }
 </style>
-<div class="balls" id= "red"></div>
-<div class="balls" id= "blue"></div>
+<div class="balls" id="red"></div>
+<div class="balls" id="blue"></div>
 ```

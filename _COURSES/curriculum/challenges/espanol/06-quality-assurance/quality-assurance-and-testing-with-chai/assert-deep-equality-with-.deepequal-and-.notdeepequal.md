@@ -22,9 +22,9 @@ All tests should pass.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=6').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=6").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -36,12 +36,12 @@ You should choose the correct method for the first assertion - `deepEqual` vs. `
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=6').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=6").then(
     (data) => {
       assert.equal(
         data.assertions[0].method,
-        'deepEqual',
-        'The order of the keys does not matter'
+        "deepEqual",
+        "The order of the keys does not matter"
       );
     },
     (xhr) => {
@@ -54,12 +54,12 @@ You should choose the correct method for the second assertion - `deepEqual` vs. 
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=6').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=6").then(
     (data) => {
       assert.equal(
         data.assertions[1].method,
-        'notDeepEqual',
-        'The position of elements within an array does matter'
+        "notDeepEqual",
+        "The position of elements within an array does matter"
       );
     },
     (xhr) => {

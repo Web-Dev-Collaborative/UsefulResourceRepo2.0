@@ -10,13 +10,13 @@ const q = query(collection(db, "cities"), where("state", "==", "CA"));
 const unsubscribe = onSnapshot(q, (snapshot) => {
   snapshot.docChanges().forEach((change) => {
     if (change.type === "added") {
-        console.log("New city: ", change.doc.data());
+      console.log("New city: ", change.doc.data());
     }
     if (change.type === "modified") {
-        console.log("Modified city: ", change.doc.data());
+      console.log("Modified city: ", change.doc.data());
     }
     if (change.type === "removed") {
-        console.log("Removed city: ", change.doc.data());
+      console.log("Removed city: ", change.doc.data());
     }
   });
 });

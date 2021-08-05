@@ -34,10 +34,10 @@ describe('Firebase Perofmrance > iid_service', () => {
   before(() => {
     const getId = stub().resolves(IID);
     const getToken = stub().resolves(AUTH_TOKEN);
-    SettingsService.prototype.installationsService = ({
+    SettingsService.prototype.installationsService = {
       getId,
       getToken
-    } as unknown) as FirebaseInstallations;
+    } as unknown as FirebaseInstallations;
   });
 
   describe('getIidPromise', () => {

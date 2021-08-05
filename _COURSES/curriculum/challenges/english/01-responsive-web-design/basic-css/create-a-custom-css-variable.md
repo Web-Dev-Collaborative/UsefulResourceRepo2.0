@@ -2,7 +2,7 @@
 id: 5a9d726c424fe3d0e10cad11
 title: Create a custom CSS Variable
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cQd27Hr'
+videoUrl: "https://scrimba.com/c/cQd27Hr"
 forumTopicId: 301086
 dashedName: create-a-custom-css-variable
 ---
@@ -202,7 +202,7 @@ assert(
   }
 
   body {
-    background:#c6faf1;
+    background: #c6faf1;
   }
 
   .penguin * {
@@ -237,5 +237,9 @@ assert(
 # --solutions--
 
 ```html
-<style>.penguin {--penguin-skin: gray;}</style>
+<style>
+  .penguin {
+    --penguin-skin: gray;
+  }
+</style>
 ```

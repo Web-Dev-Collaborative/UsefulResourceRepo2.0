@@ -14,13 +14,13 @@ Nest a `p` element with the text `No Copyright - freeCodeCamp.org` within the `f
 You have either deleted the `footer` element or it is missing an opening tag or closing tag."
 
 ```js
-assert(document.querySelector('footer') && code.match(/<\/footer>/));
+assert(document.querySelector("footer") && code.match(/<\/footer>/));
 ```
 
 Your `footer` element should have a `p` element. Make sure to added an opening tag and closing tag for the `p` element.
 
 ```js
-assert(document.querySelector('footer > p'));
+assert(document.querySelector("footer > p"));
 ```
 
 Your `footer` element should have a closing tag. Closing tags have a `/` just after the `<` character.
@@ -33,7 +33,7 @@ assert(pElemClosingTags && pElemClosingTags.length === 2);
 Your `p` element's text should be `No Copyright - freeCodeCamp.org`. You have either omitted the text, have a typo, or it is not between the `legend` element's opening and closing tags.
 
 ```js
-const extraSpacesRemoved = $('footer > p')[0].innerText.replace(/\s+/g, ' ');
+const extraSpacesRemoved = $("footer > p")[0].innerText.replace(/\s+/g, " ");
 assert(extraSpacesRemoved.match(/No Copyright - freeCodeCamp\.org$/i));
 ```
 
@@ -49,8 +49,15 @@ assert(extraSpacesRemoved.match(/No Copyright - freeCodeCamp\.org$/i));
       <section>
         <h2>Cat Photos</h2>
         <!-- TODO: Add link to cat photos -->
-        <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        <p>
+          Click here to view more
+          <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+        </p>
+        <a href="https://freecatphotoapp.com"
+          ><img
+            src="https://bit.ly/fcc-relaxing-cat"
+            alt="A cute orange cat lying on its back."
+        /></a>
       </section>
       <section>
         <h2>Cat Lists</h2>
@@ -61,8 +68,11 @@ assert(extraSpacesRemoved.match(/No Copyright - freeCodeCamp\.org$/i));
           <li>lasagna</li>
         </ul>
         <figure>
-          <img src="https://bit.ly/fcc-lasagna" alt="A slice of lasagna on a plate.">
-          <figcaption>Cats <em>love</em> lasagna.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-lasagna"
+            alt="A slice of lasagna on a plate."
+          />
+          <figcaption>Cats <em>love</em> lasagna.</figcaption>
         </figure>
         <h3>Top 3 things cats hate:</h3>
         <ol>
@@ -71,8 +81,11 @@ assert(extraSpacesRemoved.match(/No Copyright - freeCodeCamp\.org$/i));
           <li>other cats</li>
         </ol>
         <figure>
-          <img src="https://bit.ly/fcc-cats" alt="Five cats looking around a field.">
-          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-cats"
+            alt="Five cats looking around a field."
+          />
+          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>
         </figure>
       </section>
       <section>
@@ -80,25 +93,59 @@ assert(extraSpacesRemoved.match(/No Copyright - freeCodeCamp\.org$/i));
         <form action="https://freecatphotoapp.com/submit-cat-photo">
           <fieldset>
             <legend>Is your cat an indoor or outdoor cat?</legend>
-            <label><input id="indoor" type="radio" name="indoor-outdoor" value="indoor" checked> Indoor</label>
-            <label><input id="outdoor" type="radio" name="indoor-outdoor" value="outdoor"> Outdoor</label>
+            <label
+              ><input
+                id="indoor"
+                type="radio"
+                name="indoor-outdoor"
+                value="indoor"
+                checked
+              />
+              Indoor</label
+            >
+            <label
+              ><input
+                id="outdoor"
+                type="radio"
+                name="indoor-outdoor"
+                value="outdoor"
+              />
+              Outdoor</label
+            >
           </fieldset>
           <fieldset>
             <legend>What's your cat's personality?</legend>
-            <input id="loving" type="checkbox" name="personality" value="loving" checked> <label for="loving">Loving</label>
-            <input id="lazy" type="checkbox" name="personality" value="lazy"> <label for="lazy">Lazy</label>
-            <input id="energetic" type="checkbox" name="personality" value="energetic"> <label for="energetic">Energetic</label>
+            <input
+              id="loving"
+              type="checkbox"
+              name="personality"
+              value="loving"
+              checked
+            />
+            <label for="loving">Loving</label>
+            <input id="lazy" type="checkbox" name="personality" value="lazy" />
+            <label for="lazy">Lazy</label>
+            <input
+              id="energetic"
+              type="checkbox"
+              name="personality"
+              value="energetic"
+            />
+            <label for="energetic">Energetic</label>
           </fieldset>
-          <input type="text" name="catphotourl" placeholder="cat photo URL" required>
+          <input
+            type="text"
+            name="catphotourl"
+            placeholder="cat photo URL"
+            required
+          />
           <button type="submit">Submit</button>
         </form>
       </section>
     </main>
---fcc-editable-region--
-    <footer>
-    </footer>
---fcc-editable-region--
+    --fcc-editable-region--
+    <footer></footer>
+    --fcc-editable-region--
   </body>
 </html>
 ```
-

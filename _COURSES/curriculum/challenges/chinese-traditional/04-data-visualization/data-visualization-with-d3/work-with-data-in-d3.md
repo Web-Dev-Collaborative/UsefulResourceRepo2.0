@@ -23,7 +23,8 @@ D3 是數據驅動的庫。 可以使用 D3 的方法將數組形式的數據顯
   <ul></ul>
   <script>
     const dataset = ["a", "b", "c"];
-    d3.select("ul").selectAll("li")
+    d3.select("ul")
+      .selectAll("li")
       .data(dataset)
       .enter()
       .append("li")
@@ -43,14 +44,14 @@ D3 是數據驅動的庫。 可以使用 D3 的方法將數組形式的數據顯
 文檔應該有 9 個 `h2` 元素。
 
 ```js
-assert($('h2').length == 9);
+assert($("h2").length == 9);
 ```
 
 `h2` 元素的文本應爲 `New Title`。 大小寫和空格必須一致。
 
 ```js
 assert(
-  $('h2')
+  $("h2")
     .text()
     .match(/New Title/g).length == 9
 );
@@ -79,8 +80,6 @@ assert(code.match(/\.enter/g));
 
     // Add your code below this line
 
-
-
     // Add your code above this line
   </script>
 </body>
@@ -98,8 +97,7 @@ assert(code.match(/\.enter/g));
       .data(dataset)
       .enter()
       .append("h2")
-      .text("New Title")
-
+      .text("New Title");
   </script>
 </body>
 ```

@@ -1,6 +1,6 @@
 ---
 id: 5900f5361000cf542c510049
-title: 'Problem 458: Permutations of Project'
+title: "Problem 458: Permutations of Project"
 challengeType: 5
 forumTopicId: 302132
 dashedName: problem-458-permutations-of-project
@@ -30,7 +30,6 @@ assert.strictEqual(euler458(), 423341841);
 
 ```js
 function euler458() {
-
   return true;
 }
 

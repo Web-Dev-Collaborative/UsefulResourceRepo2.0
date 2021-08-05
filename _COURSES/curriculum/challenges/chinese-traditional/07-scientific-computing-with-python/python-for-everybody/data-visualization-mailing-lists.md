@@ -1,6 +1,6 @@
 ---
 id: 5e7b9f6a0b6c005b0e76f097
-title: '數據可視化：郵件列表'
+title: "數據可視化：郵件列表"
 challengeType: 11
 videoId: RYdW660KkaQ
 dashedName: data-visualization-mailing-lists
@@ -49,4 +49,3 @@ DATA6
 ## --video-solution--
 
 2
-

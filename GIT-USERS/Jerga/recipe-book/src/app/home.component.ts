@@ -1,19 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'rb-home',
-  template: `
-    <p>
-      Hello to the Recipe Book!
-    </p>
-  `,
-  styles: []
+  selector: "rb-home",
+  template: ` <p>Hello to the Recipe Book!</p> `,
+  styles: [],
 })
 export class HomeComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

@@ -745,9 +745,7 @@ function refNotFoundError(
  * @param ref user-friendly identifier
  * @return array of ref split into publisher id, extension id, and version id (if applicable)
  */
-export function parseRef(
-  ref: string
-): {
+export function parseRef(ref: string): {
   publisherId: string;
   extensionId: string;
   version?: string;
@@ -772,9 +770,7 @@ export function parseRef(
  * @param extensionVersionName resource name of the format `publishers/<publisherID>/extensions/<extensionID>/versions/<versionID>`
  * @return array of ref split into publisher id, extension id, and version id (if applicable)
  */
-export function parseExtensionVersionName(
-  extensionVersionName: string
-): {
+export function parseExtensionVersionName(extensionVersionName: string): {
   publisherId: string;
   extensionId: string;
   version?: string;

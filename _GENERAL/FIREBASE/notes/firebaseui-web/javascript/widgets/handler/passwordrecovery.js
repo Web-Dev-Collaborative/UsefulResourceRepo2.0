@@ -16,17 +16,16 @@
  * @fileoverview Password recovery handler.
  */
 
-goog.provide('firebaseui.auth.widget.handler.handlePasswordRecovery');
+goog.provide("firebaseui.auth.widget.handler.handlePasswordRecovery");
 
-goog.require('firebaseui.auth.ui.element');
-goog.require('firebaseui.auth.ui.page.PasswordRecovery');
-goog.require('firebaseui.auth.ui.page.PasswordRecoveryEmailSent');
-goog.require('firebaseui.auth.widget.Handler');
-goog.require('firebaseui.auth.widget.HandlerName');
-goog.require('firebaseui.auth.widget.handler');
-goog.require('firebaseui.auth.widget.handler.common');
-goog.requireType('goog.Promise');
-
+goog.require("firebaseui.auth.ui.element");
+goog.require("firebaseui.auth.ui.page.PasswordRecovery");
+goog.require("firebaseui.auth.ui.page.PasswordRecoveryEmailSent");
+goog.require("firebaseui.auth.widget.Handler");
+goog.require("firebaseui.auth.widget.HandlerName");
+goog.require("firebaseui.auth.widget.handler");
+goog.require("firebaseui.auth.widget.handler.common");
+goog.requireType("goog.Promise");
 
 /**
  * Handles password recovery.
@@ -38,25 +37,30 @@ goog.requireType('goog.Promise');
  * @param {boolean=} opt_disableCancel Whether to disable the cancel link.
  * @param {string=} opt_infoBarMessage The message to show on info bar.
  */
-firebaseui.auth.widget.handler.handlePasswordRecovery = function(
-    app, container, opt_email, opt_disableCancel, opt_infoBarMessage) {
-  var onCancel = function() {
+firebaseui.auth.widget.handler.handlePasswordRecovery = function (
+  app,
+  container,
+  opt_email,
+  opt_disableCancel,
+  opt_infoBarMessage
+) {
+  var onCancel = function () {
     component.dispose();
     // On cancel, return to widget start page.
     firebaseui.auth.widget.handler.common.handleSignInStart(app, container);
   };
   // Render the UI.
   var component = new firebaseui.auth.ui.page.PasswordRecovery(
-      // On submit.
-      function() {
-        firebaseui.auth.widget.handler.onPasswordRecoverySubmit_(app,
-            component);
-      },
-      // On cancel.
-      opt_disableCancel ? undefined : onCancel,
-      opt_email,
-      app.getConfig().getTosUrl(),
-      app.getConfig().getPrivacyPolicyUrl());
+    // On submit.
+    function () {
+      firebaseui.auth.widget.handler.onPasswordRecoverySubmit_(app, component);
+    },
+    // On cancel.
+    opt_disableCancel ? undefined : onCancel,
+    opt_email,
+    app.getConfig().getTosUrl(),
+    app.getConfig().getPrivacyPolicyUrl()
+  );
   component.render(container);
   // Set current UI component.
   app.setCurrentComponent(component);
@@ -66,15 +70,16 @@ firebaseui.auth.widget.handler.handlePasswordRecovery = function(
   }
 };
 
-
 /**
  * @param {firebaseui.auth.AuthUI} app The current FirebaseUI instance whose
  *     configuration is used.
  * @param {firebaseui.auth.ui.page.PasswordRecovery} component The UI component.
  * @private
  */
-firebaseui.auth.widget.handler.onPasswordRecoverySubmit_ =
-    function(app, component) {
+firebaseui.auth.widget.handler.onPasswordRecoverySubmit_ = function (
+  app,
+  component
+) {
   // Check fields are valid.
   var email = component.checkAndGetEmail();
   if (!email) {
@@ -83,7 +88,7 @@ firebaseui.auth.widget.handler.onPasswordRecoverySubmit_ =
   }
 
   var container = component.getContainer();
-  var emailSentSuccessCallback = function() {
+  var emailSentSuccessCallback = function () {
     // Render the notification UI.
     component.dispose();
     // Do not show a continue button since the only option here is to
@@ -92,36 +97,42 @@ firebaseui.auth.widget.handler.onPasswordRecoverySubmit_ =
     // the web login page when the app is embedded in a webview (used for
     // password reset).
     var noticeComponent = new firebaseui.auth.ui.page.PasswordRecoveryEmailSent(
-        /** @type {string} */ (email),
-        function() {
-          // Return to start page after the password recovery flow.
-          noticeComponent.dispose();
-          firebaseui.auth.widget.handler.common.handleSignInStart(app,
-              container);
-        },
-        app.getConfig().getTosUrl(),
-        app.getConfig().getPrivacyPolicyUrl());
+      /** @type {string} */ (email),
+      function () {
+        // Return to start page after the password recovery flow.
+        noticeComponent.dispose();
+        firebaseui.auth.widget.handler.common.handleSignInStart(app, container);
+      },
+      app.getConfig().getTosUrl(),
+      app.getConfig().getPrivacyPolicyUrl()
+    );
     noticeComponent.render(container);
     // Set current UI component.
     app.setCurrentComponent(noticeComponent);
   };
-  var emailSentFailedCallback = function(error) {
+  var emailSentFailedCallback = function (error) {
     firebaseui.auth.ui.element.setValid(component.getEmailElement(), false);
-    firebaseui.auth.ui.element.show(component.getEmailErrorElement(),
-        firebaseui.auth.widget.handler.common.getErrorMessage(error));
+    firebaseui.auth.ui.element.show(
+      component.getEmailErrorElement(),
+      firebaseui.auth.widget.handler.common.getErrorMessage(error)
+    );
   };
 
-
-  app.registerPending(component.executePromiseRequest(
+  app.registerPending(
+    component.executePromiseRequest(
       /** @type {function (): !goog.Promise} */ (
-          goog.bind(app.getAuth().sendPasswordResetEmail, app.getAuth())),
+        goog.bind(app.getAuth().sendPasswordResetEmail, app.getAuth())
+      ),
       [email],
-      emailSentSuccessCallback, emailSentFailedCallback));
+      emailSentSuccessCallback,
+      emailSentFailedCallback
+    )
+  );
 };
-
 
 // Register handler.
 firebaseui.auth.widget.handler.register(
-    firebaseui.auth.widget.HandlerName.PASSWORD_RECOVERY,
-    /** @type {firebaseui.auth.widget.Handler} */
-    (firebaseui.auth.widget.handler.handlePasswordRecovery));
+  firebaseui.auth.widget.HandlerName.PASSWORD_RECOVERY,
+  /** @type {firebaseui.auth.widget.Handler} */
+  (firebaseui.auth.widget.handler.handlePasswordRecovery)
+);

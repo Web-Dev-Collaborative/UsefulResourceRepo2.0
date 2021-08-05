@@ -4,8 +4,7 @@ title: Apunta a elementos por clase usando jQuery
 challengeType: 6
 forumTopicId: 18317
 required:
-  - 
-    link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: target-elements-by-id-using-jquery
 ---
 
@@ -30,14 +29,14 @@ $("#target6").addClass("animated fadeOut");
 Debes seleccionar el elemento `button` con el `id` de `target3` y utilizar la función jQuery `addClass()` para darle la clase `animated`.
 
 ```js
-assert($('#target3').hasClass('animated'));
+assert($("#target3").hasClass("animated"));
 ```
 
 Debes seleccionar el elemento con el id `target3` y utilizar la función jQuery `addClass()` para darle la clase `fadeOut`.
 
 ```js
 assert(
-  ($('#target3').hasClass('fadeOut') || $('#target3').hasClass('fadeout')) &&
+  ($("#target3").hasClass("fadeOut") || $("#target3").hasClass("fadeout")) &&
     code.match(/\$\(\s*.#target3.\s*\)/g)
 );
 ```
@@ -54,10 +53,9 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
     $(".well").addClass("animated shake");
-
   });
 </script>
 
@@ -90,7 +88,7 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
     $(".well").addClass("animated shake");
     $("#target3").addClass("animated fadeOut");

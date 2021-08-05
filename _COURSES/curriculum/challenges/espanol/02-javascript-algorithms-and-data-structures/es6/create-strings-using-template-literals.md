@@ -17,7 +17,7 @@ Fíjese en el código debajo:
 ```js
 const person = {
   name: "Zodiac Hasbro",
-  age: 56
+  age: 56,
 };
 
 const greeting = `Hello, my name is ${person.name}!
@@ -40,8 +40,8 @@ Utiliza un método de iteración (cualquier tipo de bucle) para obtener el resul
 [
   '<li class="text-warning">no-var</li>',
   '<li class="text-warning">var-on-top</li>',
-  '<li class="text-warning">linebreak</li>'
-]
+  '<li class="text-warning">linebreak</li>',
+];
 ```
 
 # --hints--
@@ -50,7 +50,7 @@ Utiliza un método de iteración (cualquier tipo de bucle) para obtener el resul
 
 ```js
 assert(
-  typeof makeList(result.failure) === 'object' && failuresList.length === 3
+  typeof makeList(result.failure) === "object" && failuresList.length === 3
 );
 ```
 
@@ -69,14 +69,14 @@ assert(
 Las cadenas de plantillas y la interpolación de expresiones deben ser usadas.
 
 ```js
-(getUserInput) => assert(getUserInput('index').match(/(`.*\${.*}.*`)/));
+(getUserInput) => assert(getUserInput("index").match(/(`.*\${.*}.*`)/));
 ```
 
 Debe utilizarse un iterador.
 
 ```js
 (getUserInput) =>
-  assert(getUserInput('index').match(/for|map|reduce|forEach|while/));
+  assert(getUserInput("index").match(/for|map|reduce|forEach|while/));
 ```
 
 # --seed--
@@ -87,7 +87,7 @@ Debe utilizarse un iterador.
 const result = {
   success: ["max-length", "no-amd", "prefer-arrow-functions"],
   failure: ["no-var", "var-on-top", "linebreak"],
-  skipped: ["no-extra-semi", "no-dup-keys"]
+  skipped: ["no-extra-semi", "no-dup-keys"],
 };
 function makeList(arr) {
   // Only change code below this line
@@ -106,10 +106,10 @@ const failuresList = makeList(result.failure);
 const result = {
   success: ["max-length", "no-amd", "prefer-arrow-functions"],
   failure: ["no-var", "var-on-top", "linebreak"],
-  skipped: ["no-extra-semi", "no-dup-keys"]
+  skipped: ["no-extra-semi", "no-dup-keys"],
 };
 function makeList(arr) {
-  return arr.map(val => `<li class="text-warning">${val}</li>`);
+  return arr.map((val) => `<li class="text-warning">${val}</li>`);
 }
 
 const failuresList = makeList(result.failure);

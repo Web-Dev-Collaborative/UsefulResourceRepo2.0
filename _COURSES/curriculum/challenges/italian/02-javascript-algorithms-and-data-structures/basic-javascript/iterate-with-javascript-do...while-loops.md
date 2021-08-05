@@ -2,7 +2,7 @@
 id: 5a2efd662fb457916e1fe604
 title: Iterare con i cicli Do...While in Javascript
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cDqWGcp'
+videoUrl: "https://scrimba.com/c/cDqWGcp"
 forumTopicId: 301172
 dashedName: iterate-with-javascript-do---while-loops
 ---
@@ -23,7 +23,7 @@ do {
 L'esempio sopra si comporta come altri tipi di cicli, e l'array risultante sarà `[0, 1, 2, 3, 4]`. Tuttavia, ciò che rende il `do...while` diverso da altri cicli è come si comporta quando la condizione fallisce al primo controllo. Vediamolo in azione: ecco un normale ciclo `while` che eseguirà il codice nel ciclo finché `i < 5`:
 
 ```js
-var ourArray = []; 
+var ourArray = [];
 var i = 5;
 while (i < 5) {
   ourArray.push(i);
@@ -34,7 +34,7 @@ while (i < 5) {
 In questo esempio, inizializziamo il valore di `ourArray` a un array vuoto e il valore di `i` a 5. Quando eseguiamo il ciclo `while`, la condizione vale `false` perché `i` non è inferiore a 5, e in questo modo non eseguiremo il codice all'interno del ciclo. Il risultato è che `ourArray` finirà per non avere valori aggiunti, e sarà ancora simile a `[]` quando tutto il codice nell'esempio precedente sarà stato completato. Ora, dai un'occhiata a un ciclo `do...while`:
 
 ```js
-var ourArray = []; 
+var ourArray = [];
 var i = 5;
 do {
   ourArray.push(i);
@@ -73,7 +73,11 @@ assert.equal(i, 11);
 ## --after-user-code--
 
 ```js
-if(typeof myArray !== "undefined"){(function(){return myArray;})();}
+if (typeof myArray !== "undefined") {
+  (function () {
+    return myArray;
+  })();
+}
 ```
 
 ## --seed-contents--
@@ -98,5 +102,5 @@ var i = 10;
 do {
   myArray.push(i);
   i++;
-} while (i < 5)
+} while (i < 5);
 ```

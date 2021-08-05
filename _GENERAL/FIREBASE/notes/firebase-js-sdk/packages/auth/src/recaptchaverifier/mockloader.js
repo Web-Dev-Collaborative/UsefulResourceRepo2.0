@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
- /**
+/**
  * @fileoverview Defines the RecaptchaLoader implementation used to mock loading
  * of grecaptcha dependencies.
  */
@@ -26,15 +26,13 @@ goog.require('fireauth.GRecaptchaMockFactory');
 goog.require('fireauth.RecaptchaLoader');
 goog.require('goog.Promise');
 
-
 /**
  * Defines a mock reCAPTCHA loader by implementing the fireauth.RecaptchaLoader
  * interface.
  * @constructor
  * @implements {fireauth.RecaptchaLoader}
  */
-fireauth.RecaptchaMockLoader = function() {};
-
+fireauth.RecaptchaMockLoader = function () {};
 
 /**
  * Loads the grecaptcha mock library if it is not loaded and returns a promise
@@ -45,20 +43,19 @@ fireauth.RecaptchaMockLoader = function() {};
  *     grecaptcha is loaded.
  * @override
  */
-fireauth.RecaptchaMockLoader.prototype.loadRecaptchaDeps =
-    function(hl) {
+fireauth.RecaptchaMockLoader.prototype.loadRecaptchaDeps = function (hl) {
   return goog.Promise.resolve(
-  	/** @type {!fireauth.grecaptcha} */ (fireauth.GRecaptchaMockFactory.getInstance()));
+    /** @type {!fireauth.grecaptcha} */ (
+      fireauth.GRecaptchaMockFactory.getInstance()
+    )
+  );
 };
-
 
 /**
  * Decrements the reCAPTCHA instance counter.
  * @override
  */
-fireauth.RecaptchaMockLoader.prototype.clearSingleRecaptcha =
-    function() {};
-
+fireauth.RecaptchaMockLoader.prototype.clearSingleRecaptcha = function () {};
 
 /**
  * @private {?fireauth.RecaptchaMockLoader} The singleton instance
@@ -66,16 +63,14 @@ fireauth.RecaptchaMockLoader.prototype.clearSingleRecaptcha =
  */
 fireauth.RecaptchaMockLoader.instance_ = null;
 
-
 /**
  * @return {!fireauth.RecaptchaMockLoader} The singleton mock reCAPTCHA
  *     dependency loader instance.
  */
-fireauth.RecaptchaMockLoader.getInstance = function() {
+fireauth.RecaptchaMockLoader.getInstance = function () {
   // Check if there is an existing instance. Otherwise create one and cache it.
   if (!fireauth.RecaptchaMockLoader.instance_) {
-    fireauth.RecaptchaMockLoader.instance_ =
-        new fireauth.RecaptchaMockLoader();
+    fireauth.RecaptchaMockLoader.instance_ = new fireauth.RecaptchaMockLoader();
   }
   return fireauth.RecaptchaMockLoader.instance_;
 };

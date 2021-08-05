@@ -1,6 +1,6 @@
 ---
 id: 5900f4431000cf542c50ff56
-title: 'Problem 215: Crack-free Walls'
+title: "Problem 215: Crack-free Walls"
 challengeType: 5
 forumTopicId: 301857
 dashedName: problem-215-crack-free-walls
@@ -30,7 +30,6 @@ assert.strictEqual(euler215(), 806844323190414);
 
 ```js
 function euler215() {
-
   return true;
 }
 

@@ -13,7 +13,7 @@ dashedName: use-a-constructor-to-create-objects
 ```js
 function Bird() {
   this.name = "Albert";
-  this.color  = "blue";
+  this.color = "blue";
   this.numLegs = 2;
 }
 
@@ -33,7 +33,7 @@ blueBird.numLegs;
 由構造函數創建的實例也和其他對象一樣，它的屬性可以被訪問和修改：
 
 ```js
-blueBird.name = 'Elvira';
+blueBird.name = "Elvira";
 blueBird.name;
 ```
 

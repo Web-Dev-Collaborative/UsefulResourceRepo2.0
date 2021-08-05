@@ -15,20 +15,20 @@ respected.
 ## #3 Follow these grammar rules
 
 - Functions descriptions have to start with a verb using the third person of the
-singular.
-  - *Ex: `/** Tests the validity of the input. */`*
+  singular.
+  - _Ex: `/\*\* Tests the validity of the input. _/`\*
 - Inline comments within procedures should always use the imperative.
-  - *Ex: `// Check whether the value is true.`*
+  - _Ex: `// Check whether the value is true.`_
 - Acronyms have to be uppercased in comments.
-  - *Ex: `// IP, DOM, CORS, URL...`*
-  - *Exception: Identity Provider = IdP*
+  - _Ex: `// IP, DOM, CORS, URL...`_
+  - _Exception: Identity Provider = IdP_
 - Acronyms have to be capitalized (but not uppercased) in variable names.
-  - *Ex: `redirectUrl()`, `signInIdp()`*
+  - _Ex: `redirectUrl()`, `signInIdp()`_
 - Never use login/log in in comments. Use “sign-in” if it’s a noun, “sign in” if
-it’s a verb. The same goes for the variable name. Never use `login`; always use
-`signIn`.
-  - *Ex: `// The sign-in method.`*
-  - *Ex: `// Signs in the user.`*
+  it’s a verb. The same goes for the variable name. Never use `login`; always use
+  `signIn`.
+  - _Ex: `// The sign-in method.`_
+  - _Ex: `// Signs in the user.`_
 - Always start an inline comment with a capital (unless referring to the name of
-a variable/function), and end it with a period.
-  - *Ex: `// This is a valid inline comment.`*
+  a variable/function), and end it with a period.
+  - _Ex: `// This is a valid inline comment.`_

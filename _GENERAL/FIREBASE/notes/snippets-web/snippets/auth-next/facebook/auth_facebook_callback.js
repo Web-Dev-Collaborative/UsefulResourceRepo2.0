@@ -4,7 +4,13 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START auth_facebook_callback_modular]
-import { getAuth, onAuthStateChanged, signInWithCredential, signOut, FacebookAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithCredential,
+  signOut,
+  FacebookAuthProvider,
+} from "firebase/auth";
 const auth = getAuth();
 
 function checkLoginState(response) {
@@ -16,20 +22,20 @@ function checkLoginState(response) {
       if (!isUserEqual(response.authResponse, firebaseUser)) {
         // Build Firebase credential with the Facebook auth token.
         const credential = FacebookAuthProvider.credential(
-            response.authResponse.accessToken);
+          response.authResponse.accessToken
+        );
 
         // Sign in with the credential from the Facebook user.
-        signInWithCredential(auth, credential)
-          .catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.email;
-            // The AuthCredential type that was used.
-            const credential = FacebookAuthProvider.credentialFromError(error);
-            // ...
-          });
+        signInWithCredential(auth, credential).catch((error) => {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // The email of the user's account used.
+          const email = error.email;
+          // The AuthCredential type that was used.
+          const credential = FacebookAuthProvider.credentialFromError(error);
+          // ...
+        });
       } else {
         // User is already signed-in Firebase with the correct user.
       }

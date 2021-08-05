@@ -2,7 +2,7 @@
 id: 5a9d7295424fe3d0e10cad14
 title: 繼承 CSS 變量
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cyLZZhZ'
+videoUrl: "https://scrimba.com/c/cyLZZhZ"
 forumTopicId: 301088
 dashedName: inherit-css-variables
 ---
@@ -240,5 +240,9 @@ assert(
 # --solutions--
 
 ```html
-<style>:root {--penguin-belly: pink;}</style>
+<style>
+  :root {
+    --penguin-belly: pink;
+  }
+</style>
 ```

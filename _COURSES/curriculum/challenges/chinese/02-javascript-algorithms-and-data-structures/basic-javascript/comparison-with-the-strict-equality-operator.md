@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244d1
 title: 严格相等运算符
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cy87atr'
+videoUrl: "https://scrimba.com/c/cy87atr"
 forumTopicId: 16790
 dashedName: comparison-with-the-strict-equality-operator
 ---
@@ -16,8 +16,8 @@ dashedName: comparison-with-the-strict-equality-operator
 **示例**
 
 ```js
-3 ===  3
-3 === '3'
+3 === 3;
+3 === "3";
 ```
 
 这些条件将分别返回 `true` and `false`。
@@ -33,19 +33,19 @@ dashedName: comparison-with-the-strict-equality-operator
 `testStrict(10)` 应该返回字符串 `Not Equal`
 
 ```js
-assert(testStrict(10) === 'Not Equal');
+assert(testStrict(10) === "Not Equal");
 ```
 
 `testStrict(7)` 应该返回字符串 `Equal`
 
 ```js
-assert(testStrict(7) === 'Equal');
+assert(testStrict(7) === "Equal");
 ```
 
 `testStrict("7")` 应该返回字符串 `Not Equal`
 
 ```js
-assert(testStrict('7') === 'Not Equal');
+assert(testStrict("7") === "Not Equal");
 ```
 
 你应该使用 `===` 运算符。
@@ -61,7 +61,8 @@ assert(code.match(/(val\s*===\s*\d+)|(\d+\s*===\s*val)/g).length > 0);
 ```js
 // Setup
 function testStrict(val) {
-  if (val) { // Change this line
+  if (val) {
+    // Change this line
     return "Equal";
   }
   return "Not Equal";

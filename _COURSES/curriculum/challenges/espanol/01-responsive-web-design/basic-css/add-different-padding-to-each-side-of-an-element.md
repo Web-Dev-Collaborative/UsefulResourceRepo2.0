@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08824
 title: Añade un "padding" o relleno diferente a cada lado de un elemento
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cB7mwUw'
+videoUrl: "https://scrimba.com/c/cB7mwUw"
 forumTopicId: 16634
 dashedName: add-different-padding-to-each-side-of-an-element
 ---
@@ -22,25 +22,25 @@ Asigna a la caja azul un `padding` de `40px` en sus lados superior e izquierdo, 
 Tu clase `blue-box` debe asignar al lado superior (top) de los elementos `40px` de `padding`.
 
 ```js
-assert($('.blue-box').css('padding-top') === '40px');
+assert($(".blue-box").css("padding-top") === "40px");
 ```
 
 Tu clase `blue-box` debe asignar al lado derecho (right) de los elementos `20px` de `padding`.
 
 ```js
-assert($('.blue-box').css('padding-right') === '20px');
+assert($(".blue-box").css("padding-right") === "20px");
 ```
 
 Tu clase `blue-box` debe asignar al lado inferior (bottom) de los elementos `20px` de `padding`.
 
 ```js
-assert($('.blue-box').css('padding-bottom') === '20px');
+assert($(".blue-box").css("padding-bottom") === "20px");
 ```
 
 Tu clase `blue-box` debe asignar al lado izquierlo (left) de los elementos `40px` de `padding`.
 
 ```js
-assert($('.blue-box').css('padding-left') === '40px');
+assert($(".blue-box").css("padding-left") === "40px");
 ```
 
 # --seed--

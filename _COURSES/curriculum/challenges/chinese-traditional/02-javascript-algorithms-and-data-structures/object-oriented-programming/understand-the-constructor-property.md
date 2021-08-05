@@ -14,7 +14,7 @@ dashedName: understand-the-constructor-property
 let duck = new Bird();
 let beagle = new Dog();
 
-console.log(duck.constructor === Bird); 
+console.log(duck.constructor === Bird);
 console.log(beagle.constructor === Dog);
 ```
 
@@ -43,13 +43,13 @@ function joinBirdFraternity(candidate) {
 `joinDogFraternity` 應該被定義爲一個函數。
 
 ```js
-assert(typeof joinDogFraternity === 'function');
+assert(typeof joinDogFraternity === "function");
 ```
 
 如果 `candidate` 是 `Dog` 的一個對象實例，則 `joinDogFraternity` 函數應該返回 `true`。
 
 ```js
-assert(joinDogFraternity(new Dog('')) === true);
+assert(joinDogFraternity(new Dog("")) === true);
 ```
 
 `joinDogFraternity` 中應該用到 `constructor` 屬性。
@@ -68,9 +68,7 @@ function Dog(name) {
 }
 
 // Only change code below this line
-function joinDogFraternity(candidate) {
-
-}
+function joinDogFraternity(candidate) {}
 ```
 
 # --solutions--

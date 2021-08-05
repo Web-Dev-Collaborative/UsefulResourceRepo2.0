@@ -23,15 +23,15 @@ ChildObject.prototype.methodName = function() {...};
 È possibile sovrascrivere un metodo ereditato. Lo si fa nello stesso modo: aggiungendo un metodo a `ChildObject.prototype` usando lo stesso nome di metodo di quello da sovrascrivere. Ecco un esempio di `Bird` che sovrascrive il metodo `eat()` ereditato da `Animal`:
 
 ```js
-function Animal() { }
-Animal.prototype.eat = function() {
+function Animal() {}
+Animal.prototype.eat = function () {
   return "nom nom nom";
 };
-function Bird() { }
+function Bird() {}
 
 Bird.prototype = Object.create(Animal.prototype);
 
-Bird.prototype.eat = function() {
+Bird.prototype.eat = function () {
   return "peck peck peck";
 };
 ```
@@ -52,13 +52,13 @@ Sovrascrivi il metodo `fly()` di `Penguin` in modo che restituisca la stringa `A
 `penguin.fly()` dovrebbe restituire la stringa `Alas, this is a flightless bird.`
 
 ```js
-assert(penguin.fly() === 'Alas, this is a flightless bird.');
+assert(penguin.fly() === "Alas, this is a flightless bird.");
 ```
 
 Il metodo `bird.fly()` dovrebbe restituire la stringa `I am flying!`
 
 ```js
-assert(new Bird().fly() === 'I am flying!');
+assert(new Bird().fly() === "I am flying!");
 ```
 
 # --seed--
@@ -66,17 +66,17 @@ assert(new Bird().fly() === 'I am flying!');
 ## --seed-contents--
 
 ```js
-function Bird() { }
+function Bird() {}
 
-Bird.prototype.fly = function() { return "I am flying!"; };
+Bird.prototype.fly = function () {
+  return "I am flying!";
+};
 
-function Penguin() { }
+function Penguin() {}
 Penguin.prototype = Object.create(Bird.prototype);
 Penguin.prototype.constructor = Penguin;
 
 // Only change code below this line
-
-
 
 // Only change code above this line
 
@@ -87,14 +87,16 @@ console.log(penguin.fly());
 # --solutions--
 
 ```js
-function Bird() { }
+function Bird() {}
 
-Bird.prototype.fly = function() { return "I am flying!"; };
+Bird.prototype.fly = function () {
+  return "I am flying!";
+};
 
-function Penguin() { }
+function Penguin() {}
 Penguin.prototype = Object.create(Bird.prototype);
 Penguin.prototype.constructor = Penguin;
-Penguin.prototype.fly = () => 'Alas, this is a flightless bird.';
+Penguin.prototype.fly = () => "Alas, this is a flightless bird.";
 let penguin = new Penguin();
 console.log(penguin.fly());
 ```

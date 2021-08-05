@@ -15,7 +15,7 @@ Your `section` element should have an opening tag. Opening tags have this syntax
 
 ```js
 assert(
-  document.querySelectorAll('section').length === 2 &&
+  document.querySelectorAll("section").length === 2 &&
     code.match(/<\/section>/g).length === 2
 );
 ```
@@ -23,7 +23,7 @@ assert(
 Your `h2` element should have an opening tag. Opening tags have this syntax: `<elementName>`.
 
 ```js
-assert(document.querySelectorAll('h2').length === 2);
+assert(document.querySelectorAll("h2").length === 2);
 ```
 
 Your `h2` element should have a closing tag. Closing tags have a `/` just after the `<` character.
@@ -35,8 +35,8 @@ assert(code.match(/<\/h2\>/g).length === 2);
 Your second `h2` element should be right above the second `section` element's closing tag. It is not in the correct position.
 
 ```js
-const secondSection = document.querySelectorAll('section')[1];
-assert(secondSection.lastElementChild.nodeName === 'H2');
+const secondSection = document.querySelectorAll("section")[1];
+assert(secondSection.lastElementChild.nodeName === "H2");
 ```
 
 The second `h2` element should have the text `Cat Lists`. You have either omitted the text or have a typo.
@@ -44,8 +44,8 @@ The second `h2` element should have the text `Cat Lists`. You have either omitte
 ```js
 assert(
   document
-    .querySelectorAll('main > section')[1]
-    .lastElementChild.innerText.toLowerCase() === 'cat lists'
+    .querySelectorAll("main > section")[1]
+    .lastElementChild.innerText.toLowerCase() === "cat lists"
 );
 ```
 
@@ -61,15 +61,20 @@ assert(
       <section>
         <h2>Cat Photos</h2>
         <!-- TODO: Add link to cat photos -->
-        <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        <p>
+          Click here to view more
+          <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+        </p>
+        <a href="https://freecatphotoapp.com"
+          ><img
+            src="https://bit.ly/fcc-relaxing-cat"
+            alt="A cute orange cat lying on its back."
+        /></a>
       </section>
---fcc-editable-region--
-      <section>
-      </section>
---fcc-editable-region--
+      --fcc-editable-region--
+      <section></section>
+      --fcc-editable-region--
     </main>
   </body>
 </html>
 ```
-

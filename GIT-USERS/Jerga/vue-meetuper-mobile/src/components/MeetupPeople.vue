@@ -6,11 +6,11 @@
         <nb-list-item avatar>
           <nb-left>
             <!-- Display person avatar -->
-            <nb-thumbnail large :source="{uri: person.avatar}"/>
+            <nb-thumbnail large :source="{ uri: person.avatar }" />
           </nb-left>
           <nb-body>
             <!-- Display person username -->
-            <nb-text>{{person.username}}</nb-text>
+            <nb-text>{{ person.username }}</nb-text>
           </nb-body>
         </nb-list-item>
       </view>
@@ -19,12 +19,12 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      people: {
-        type: Array,
-        required: true
-      }
-    }
-  }
+export default {
+  props: {
+    people: {
+      type: Array,
+      required: true,
+    },
+  },
+};
 </script>

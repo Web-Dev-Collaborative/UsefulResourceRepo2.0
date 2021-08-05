@@ -1,6 +1,6 @@
 ---
 id: 5900f4091000cf542c50ff1b
-title: 'Problem 156: Counting Digits'
+title: "Problem 156: Counting Digits"
 challengeType: 5
 forumTopicId: 301787
 dashedName: problem-156-counting-digits
@@ -38,7 +38,6 @@ assert.strictEqual(euler156(), 21295121502550);
 
 ```js
 function euler156() {
-
   return true;
 }
 

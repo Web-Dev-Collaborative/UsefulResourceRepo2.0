@@ -2,7 +2,7 @@
 id: 5a9036ee38fddaf9a66b5d35
 title: Crea un espacio entre columnas usando grid-column-gap
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pByETK/cVZ8vfD'
+videoUrl: "https://scrimba.com/p/pByETK/cVZ8vfD"
 forumTopicId: 301124
 dashedName: create-a-column-gap-using-grid-column-gap
 ---
@@ -39,11 +39,21 @@ assert(
 
 ```html
 <style>
-  .d1{background:LightSkyBlue;}
-  .d2{background:LightSalmon;}
-  .d3{background:PaleTurquoise;}
-  .d4{background:LightPink;}
-  .d5{background:PaleGreen;}
+  .d1 {
+    background: LightSkyBlue;
+  }
+  .d2 {
+    background: LightSalmon;
+  }
+  .d3 {
+    background: PaleTurquoise;
+  }
+  .d4 {
+    background: LightPink;
+  }
+  .d5 {
+    background: PaleGreen;
+  }
 
   .container {
     font-size: 40px;
@@ -54,7 +64,6 @@ assert(
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     /* Only change code below this line */
-
 
     /* Only change code above this line */
   }
@@ -72,5 +81,9 @@ assert(
 # --solutions--
 
 ```html
-<style>.container {grid-column-gap: 20px;}</style>
+<style>
+  .container {
+    grid-column-gap: 20px;
+  }
+</style>
 ```

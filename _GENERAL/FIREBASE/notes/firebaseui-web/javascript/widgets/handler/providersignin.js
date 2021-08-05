@@ -16,15 +16,14 @@
  * @fileoverview Start provider sign in handler.
  */
 
-goog.provide('firebaseui.auth.widget.handler.handleProviderSignIn');
+goog.provide("firebaseui.auth.widget.handler.handleProviderSignIn");
 
-goog.require('firebaseui.auth.ui.page.ProviderSignIn');
-goog.require('firebaseui.auth.widget.Config');
-goog.require('firebaseui.auth.widget.Handler');
-goog.require('firebaseui.auth.widget.HandlerName');
-goog.require('firebaseui.auth.widget.handler');
-goog.require('firebaseui.auth.widget.handler.common');
-
+goog.require("firebaseui.auth.ui.page.ProviderSignIn");
+goog.require("firebaseui.auth.widget.Config");
+goog.require("firebaseui.auth.widget.Handler");
+goog.require("firebaseui.auth.widget.HandlerName");
+goog.require("firebaseui.auth.widget.handler");
+goog.require("firebaseui.auth.widget.handler.common");
 
 /**
  * Handles provider sign in.
@@ -35,47 +34,57 @@ goog.require('firebaseui.auth.widget.handler.common');
  * @param {string=} infoBarMessage The optional message to show on info bar.
  * @param {string=} email The optional email to prefill.
  */
-firebaseui.auth.widget.handler.handleProviderSignIn = function(
-    app,
-    container,
-    infoBarMessage = undefined,
-    email = undefined) {
+firebaseui.auth.widget.handler.handleProviderSignIn = function (
+  app,
+  container,
+  infoBarMessage = undefined,
+  email = undefined
+) {
   var component = new firebaseui.auth.ui.page.ProviderSignIn(
-      function(providerId) {
-        // TODO: Consider deleting pending credentials on new sign in.
-        if (providerId == firebase.auth.EmailAuthProvider.PROVIDER_ID) {
-          // User clicks create password account button.
-          component.dispose();
-          // Handle sign in with email.
-          firebaseui.auth.widget.handler.common.handleSignInWithEmail(
-              app, container, email);
-        } else if (providerId ==
-                   firebase.auth.PhoneAuthProvider.PROVIDER_ID) {
-          // User clicks sign in with phone number button.
-          component.dispose();
-          // Handle start sign in with phone number.
-          firebaseui.auth.widget.handler.handle(
-              firebaseui.auth.widget.HandlerName.PHONE_SIGN_IN_START, app,
-              container);
-        } else if (providerId ==
-                   firebaseui.auth.widget.Config.ANONYMOUS_PROVIDER_ID) {
-          // User clicks continue as guest button.
-          firebaseui.auth.widget.handler.common.handleSignInAnonymously(
-              /** @type {!firebaseui.auth.AuthUI} */ (app), component);
-        } else {
-          // User clicks other IdP.
-          firebaseui.auth.widget.handler.common.federatedSignIn(
-              /** @type {!firebaseui.auth.AuthUI} */ (app),
-              component,
-              providerId,
-              email);
-        }
-        // Cancel One-Tap on any button click.
-        app.cancelOneTapSignIn();
-      },
-      app.getConfig().getProviderConfigs(),
-      app.getConfig().getTosUrl(),
-      app.getConfig().getPrivacyPolicyUrl());
+    function (providerId) {
+      // TODO: Consider deleting pending credentials on new sign in.
+      if (providerId == firebase.auth.EmailAuthProvider.PROVIDER_ID) {
+        // User clicks create password account button.
+        component.dispose();
+        // Handle sign in with email.
+        firebaseui.auth.widget.handler.common.handleSignInWithEmail(
+          app,
+          container,
+          email
+        );
+      } else if (providerId == firebase.auth.PhoneAuthProvider.PROVIDER_ID) {
+        // User clicks sign in with phone number button.
+        component.dispose();
+        // Handle start sign in with phone number.
+        firebaseui.auth.widget.handler.handle(
+          firebaseui.auth.widget.HandlerName.PHONE_SIGN_IN_START,
+          app,
+          container
+        );
+      } else if (
+        providerId == firebaseui.auth.widget.Config.ANONYMOUS_PROVIDER_ID
+      ) {
+        // User clicks continue as guest button.
+        firebaseui.auth.widget.handler.common.handleSignInAnonymously(
+          /** @type {!firebaseui.auth.AuthUI} */ (app),
+          component
+        );
+      } else {
+        // User clicks other IdP.
+        firebaseui.auth.widget.handler.common.federatedSignIn(
+          /** @type {!firebaseui.auth.AuthUI} */ (app),
+          component,
+          providerId,
+          email
+        );
+      }
+      // Cancel One-Tap on any button click.
+      app.cancelOneTapSignIn();
+    },
+    app.getConfig().getProviderConfigs(),
+    app.getConfig().getTosUrl(),
+    app.getConfig().getPrivacyPolicyUrl()
+  );
   component.render(container);
   // Set current UI component.
   app.setCurrentComponent(component);
@@ -85,12 +94,13 @@ firebaseui.auth.widget.handler.handleProviderSignIn = function(
   }
   // Show One-Tap UI if available.
   app.showOneTapSignIn(
-      firebaseui.auth.widget.handler.common.handleGoogleYoloCredential);
+    firebaseui.auth.widget.handler.common.handleGoogleYoloCredential
+  );
 };
-
 
 // Register handler.
 firebaseui.auth.widget.handler.register(
-    firebaseui.auth.widget.HandlerName.PROVIDER_SIGN_IN,
-    /** @type {firebaseui.auth.widget.Handler} */
-    (firebaseui.auth.widget.handler.handleProviderSignIn));
+  firebaseui.auth.widget.HandlerName.PROVIDER_SIGN_IN,
+  /** @type {firebaseui.auth.widget.Handler} */
+  (firebaseui.auth.widget.handler.handleProviderSignIn)
+);

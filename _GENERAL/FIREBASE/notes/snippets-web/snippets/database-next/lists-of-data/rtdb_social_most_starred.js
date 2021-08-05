@@ -11,5 +11,8 @@ const db = getDatabase();
 const auth = getAuth();
 
 const myUserId = auth.currentUser.uid;
-const topUserPostsRef = query(ref(db, 'user-posts/' + myUserId), orderByChild('starCount'));
+const topUserPostsRef = query(
+  ref(db, "user-posts/" + myUserId),
+  orderByChild("starCount")
+);
 // [END rtdb_social_most_starred_modular]

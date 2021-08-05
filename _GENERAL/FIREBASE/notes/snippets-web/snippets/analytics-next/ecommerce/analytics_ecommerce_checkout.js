@@ -8,13 +8,13 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 
 // Prepare ecommerce params
 const params7 = {
-  currency: 'USD',
+  currency: "USD",
   value: 14.98, // Total Revenue
-  coupon: 'SUMMER_FUN',
-  items: [item_jeggings]
+  coupon: "SUMMER_FUN",
+  items: [item_jeggings],
 };
 
 // Log event
 const analytics = getAnalytics();
-logEvent(analytics, 'begin_checkout', params7);
+logEvent(analytics, "begin_checkout", params7);
 // [END analytics_ecommerce_checkout_modular]

@@ -26,28 +26,24 @@ goog.provide('fireauth.OAuthSignInHandler');
  * The interface that represents an OAuth sign-in handler.
  * @interface
  */
-fireauth.OAuthSignInHandler = function() {};
-
+fireauth.OAuthSignInHandler = function () {};
 
 /**
  * @return {boolean} Whether the handler should be initialized early.
  */
-fireauth.OAuthSignInHandler.prototype.shouldBeInitializedEarly = function() {};
-
+fireauth.OAuthSignInHandler.prototype.shouldBeInitializedEarly = function () {};
 
 /**
  * @return {boolean} Whether the sign-in handler in the current environment
  *     has volatile session storage.
  */
-fireauth.OAuthSignInHandler.prototype.hasVolatileStorage = function() {};
-
+fireauth.OAuthSignInHandler.prototype.hasVolatileStorage = function () {};
 
 /**
  * @return {!goog.Promise} The promise that resolves when the handler is
  *     initialized and ready.
  */
-fireauth.OAuthSignInHandler.prototype.initializeAndWait = function() {};
-
+fireauth.OAuthSignInHandler.prototype.initializeAndWait = function () {};
 
 /**
  * Processes the OAuth popup request. The popup instance must be provided
@@ -63,10 +59,16 @@ fireauth.OAuthSignInHandler.prototype.initializeAndWait = function() {};
  * @param {?string=} opt_tenantId The optional tenant ID.
  * @return {!goog.Promise} The popup window promise.
  */
-fireauth.OAuthSignInHandler.prototype.processPopup =
-    function(popupWin, mode, provider, onInitialize, onError, opt_eventId,
-             opt_alreadyRedirected, opt_tenantId) {};
-
+fireauth.OAuthSignInHandler.prototype.processPopup = function (
+  popupWin,
+  mode,
+  provider,
+  onInitialize,
+  onError,
+  opt_eventId,
+  opt_alreadyRedirected,
+  opt_tenantId
+) {};
 
 /**
  * Processes the OAuth redirect request.
@@ -76,16 +78,18 @@ fireauth.OAuthSignInHandler.prototype.processPopup =
  * @param {?string=} opt_tenantId The optional tenant ID.
  * @return {!goog.Promise}
  */
-fireauth.OAuthSignInHandler.prototype.processRedirect =
-    function(mode, provider, opt_eventId, opt_tenantId) {};
-
+fireauth.OAuthSignInHandler.prototype.processRedirect = function (
+  mode,
+  provider,
+  opt_eventId,
+  opt_tenantId
+) {};
 
 /**
  * @return {boolean} Whether the handler will unload the current page on
  *     redirect operations.
  */
-fireauth.OAuthSignInHandler.prototype.unloadsOnRedirect = function() {};
-
+fireauth.OAuthSignInHandler.prototype.unloadsOnRedirect = function () {};
 
 /**
  * Waits for popup window to close. When closed start timeout listener for popup
@@ -97,21 +101,24 @@ fireauth.OAuthSignInHandler.prototype.unloadsOnRedirect = function() {};
  *     closed before triggering the popup closed by user error.
  * @return {!goog.Promise}
  */
-fireauth.OAuthSignInHandler.prototype.startPopupTimeout =
-    function(popupWin, onError, timeoutDuration) {};
-
+fireauth.OAuthSignInHandler.prototype.startPopupTimeout = function (
+  popupWin,
+  onError,
+  timeoutDuration
+) {};
 
 /**
  * @param {!function(?fireauth.AuthEvent):boolean} listener The Auth event
  *     listener to add.
  */
-fireauth.OAuthSignInHandler.prototype.addAuthEventListener =
-    function(listener) {};
-
+fireauth.OAuthSignInHandler.prototype.addAuthEventListener = function (
+  listener
+) {};
 
 /**
  * @param {!function(?fireauth.AuthEvent):boolean} listener The Auth event
  *     listener to remove.
  */
-fireauth.OAuthSignInHandler.prototype.removeAuthEventListener =
-    function(listener) {};
+fireauth.OAuthSignInHandler.prototype.removeAuthEventListener = function (
+  listener
+) {};

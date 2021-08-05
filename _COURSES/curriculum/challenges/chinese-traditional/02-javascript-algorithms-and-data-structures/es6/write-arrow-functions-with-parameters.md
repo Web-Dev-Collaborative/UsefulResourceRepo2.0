@@ -20,7 +20,7 @@ doubler(4);
 如果箭頭函數只有一個參數，則可以省略參數外面的括號。
 
 ```js
-const doubler = item => item * 2;
+const doubler = (item) => item * 2;
 ```
 
 可以給箭頭函數傳遞多個參數。
@@ -41,21 +41,21 @@ multiplier(4, 2);
 應替換 `var` 關鍵詞。
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/var/g));
+(getUserInput) => assert(!getUserInput("index").match(/var/g));
 ```
 
 `myConcat` 應該是一個常量（使用`const`）。
 
 ```js
-(getUserInput) => assert(getUserInput('index').match(/const\s+myConcat/g));
+(getUserInput) => assert(getUserInput("index").match(/const\s+myConcat/g));
 ```
 
 `myConcat` 應該是一個帶有兩個參數的箭頭函數。
 
 ```js
 assert(
-  /myConcat=\(\w+,\w+\)=>/.test(code.replace(/\s/g, '')) &&
-    typeof myConcat === 'function'
+  /myConcat=\(\w+,\w+\)=>/.test(code.replace(/\s/g, "")) &&
+    typeof myConcat === "function"
 );
 ```
 
@@ -68,7 +68,7 @@ assert.deepEqual(myConcat([1, 2], [3, 4, 5]), [1, 2, 3, 4, 5]);
 不能使用 `function` 關鍵字。
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/function/g));
+(getUserInput) => assert(!getUserInput("index").match(/function/g));
 ```
 
 # --seed--
@@ -76,7 +76,7 @@ assert.deepEqual(myConcat([1, 2], [3, 4, 5]), [1, 2, 3, 4, 5]);
 ## --seed-contents--
 
 ```js
-var myConcat = function(arr1, arr2) {
+var myConcat = function (arr1, arr2) {
   return arr1.concat(arr2);
 };
 
@@ -86,7 +86,7 @@ console.log(myConcat([1, 2], [3, 4, 5]));
 # --solutions--
 
 ```js
-const myConcat = (arr1, arr2) =>  {
+const myConcat = (arr1, arr2) => {
   return arr1.concat(arr2);
 };
 

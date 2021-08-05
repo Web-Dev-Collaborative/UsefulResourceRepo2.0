@@ -2,7 +2,7 @@
 id: 567af2437cbaa8c51670a16c
 title: 測試對象的屬性
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c6Wz4ySr'
+videoUrl: "https://scrimba.com/c/c6Wz4ySr"
 forumTopicId: 18324
 dashedName: testing-objects-for-properties
 ---
@@ -16,7 +16,7 @@ dashedName: testing-objects-for-properties
 ```js
 var myObj = {
   top: "hat",
-  bottom: "pants"
+  bottom: "pants",
 };
 myObj.hasOwnProperty("top");
 myObj.hasOwnProperty("middle");
@@ -34,7 +34,7 @@ myObj.hasOwnProperty("middle");
 
 ```js
 assert(
-  checkObj({ gift: 'pony', pet: 'kitten', bed: 'sleigh' }, 'gift') === 'pony'
+  checkObj({ gift: "pony", pet: "kitten", bed: "sleigh" }, "gift") === "pony"
 );
 ```
 
@@ -42,7 +42,7 @@ assert(
 
 ```js
 assert(
-  checkObj({ gift: 'pony', pet: 'kitten', bed: 'sleigh' }, 'pet') === 'kitten'
+  checkObj({ gift: "pony", pet: "kitten", bed: "sleigh" }, "pet") === "kitten"
 );
 ```
 
@@ -50,27 +50,27 @@ assert(
 
 ```js
 assert(
-  checkObj({ gift: 'pony', pet: 'kitten', bed: 'sleigh' }, 'house') ===
-    'Not Found'
+  checkObj({ gift: "pony", pet: "kitten", bed: "sleigh" }, "house") ===
+    "Not Found"
 );
 ```
 
 `checkObj({city: "Seattle"}, "city")` 應該返回字符串 `Seattle`。
 
 ```js
-assert(checkObj({ city: 'Seattle' }, 'city') === 'Seattle');
+assert(checkObj({ city: "Seattle" }, "city") === "Seattle");
 ```
 
 `checkObj({city: "Seattle"}, "district")` 應該返回字符串 `Not Found`。
 
 ```js
-assert(checkObj({ city: 'Seattle' }, 'district') === 'Not Found');
+assert(checkObj({ city: "Seattle" }, "district") === "Not Found");
 ```
 
 `checkObj({pet: "kitten", bed: "sleigh"}, "gift")` 應該返回字符串 `Not Found`。
 
 ```js
-assert(checkObj({ pet: 'kitten', bed: 'sleigh' }, 'gift') === 'Not Found');
+assert(checkObj({ pet: "kitten", bed: "sleigh" }, "gift") === "Not Found");
 ```
 
 # --seed--
@@ -89,7 +89,7 @@ function checkObj(obj, checkProp) {
 
 ```js
 function checkObj(obj, checkProp) {
-  if(obj.hasOwnProperty(checkProp)) {
+  if (obj.hasOwnProperty(checkProp)) {
     return obj[checkProp];
   } else {
     return "Not Found";

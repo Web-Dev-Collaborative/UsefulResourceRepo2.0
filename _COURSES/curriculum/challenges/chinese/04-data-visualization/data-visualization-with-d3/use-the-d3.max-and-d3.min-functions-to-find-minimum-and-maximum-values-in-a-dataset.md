@@ -18,14 +18,18 @@ D3 有两个方法——`min()` 和 `max()` 来返回这些值。 下面是一�
 
 ```js
 const exampleData = [34, 234, 73, 90, 6, 52];
-d3.min(exampleData)
-d3.max(exampleData)
+d3.min(exampleData);
+d3.max(exampleData);
 ```
 
 像在散点图的例子中的 `[x, y]` 坐标对一样，数据集有可能嵌套数组。 在这种情况下，你需要告诉 D3 怎么计算最大值和最小值。 幸运的是，`min()` 和 `max()` 都可以使用回调函数。 在下面这个例子中，回调函数的参数 `d` 是当前的内部数组。 回调函数需要从内数组中返回你想比较大小的元素（`x` 值或 `y` 值）。 下面是一个如何找到二维数组的最大值和最小值的例子：
 
 ```js
-const locationData = [[1, 7],[6, 3],[8, 3]];
+const locationData = [
+  [1, 7],
+  [6, 3],
+  [8, 3],
+];
 const minX = d3.min(locationData, (d) => d[0]);
 ```
 
@@ -40,7 +44,7 @@ const minX = d3.min(locationData, (d) => d[0]);
 `h2` 文本应为 `8`。
 
 ```js
-assert(output == 8 && $('h2').text() == '8');
+assert(output == 8 && $("h2").text() == "8");
 ```
 
 应使用 `max()` 方法。
@@ -48,7 +52,7 @@ assert(output == 8 && $('h2').text() == '8');
 ```js
 assert(
   code.match(/\.max/g),
-  'Your code should use the <code>max()</code> method.'
+  "Your code should use the <code>max()</code> method."
 );
 ```
 
@@ -59,16 +63,18 @@ assert(
 ```html
 <body>
   <script>
-    const positionData = [[1, 7, -4],[6, 3, 8],[2, 9, 3]]
+    const positionData = [
+      [1, 7, -4],
+      [6, 3, 8],
+      [2, 9, 3],
+    ];
     // Add your code below this line
 
     const output = undefined; // Change this line
 
     // Add your code above this line
 
-    d3.select("body")
-      .append("h2")
-      .text(output)
+    d3.select("body").append("h2").text(output);
   </script>
 </body>
 ```
@@ -78,13 +84,15 @@ assert(
 ```html
 <body>
   <script>
-    const positionData = [[1, 7, -4],[6, 3, 8],[2, 9, 3]]
+    const positionData = [
+      [1, 7, -4],
+      [6, 3, 8],
+      [2, 9, 3],
+    ];
 
-    const output = d3.max(positionData, (d) => d[2])
+    const output = d3.max(positionData, (d) => d[2]);
 
-    d3.select("body")
-      .append("h2")
-      .text(output)
+    d3.select("body").append("h2").text(output);
   </script>
 </body>
 ```

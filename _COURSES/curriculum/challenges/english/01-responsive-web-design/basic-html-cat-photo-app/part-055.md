@@ -22,7 +22,7 @@ assert($('input[type="checkbox"]')[0]);
 Your checkbox should still have an `id` attribute with the value `loving`. You may have removed the attribute or changed its value.
 
 ```js
-assert($('input[type="checkbox"]')[0].id === 'loving');
+assert($('input[type="checkbox"]')[0].id === "loving");
 ```
 
 The text ` Loving` should no longer be located directly to the right of your checkbox. It should be wrapped in a `label` element.
@@ -31,7 +31,7 @@ The text ` Loving` should no longer be located directly to the right of your che
 const checkboxInputElem = $('input[type="checkbox"]')[0];
 assert(
   !checkboxInputElem.nextSibling.nodeValue
-    .replace(/\s+/g, ' ')
+    .replace(/\s+/g, " ")
     .match(/ Loving/i)
 );
 ```
@@ -40,7 +40,7 @@ You will need to add a new `label` element in which to nest the text `Loving`. M
 
 ```js
 assert(
-  document.querySelectorAll('label').length === 3 &&
+  document.querySelectorAll("label").length === 3 &&
     code.match(/<\/label\>/g).length === 3
 );
 ```
@@ -49,28 +49,28 @@ The new `label` element should be located directly to the right of your checkbox
 
 ```js
 const checkboxInputElem = $('input[type="checkbox"]')[0];
-assert(checkboxInputElem.nextElementSibling.nodeName === 'LABEL');
+assert(checkboxInputElem.nextElementSibling.nodeName === "LABEL");
 ```
 
 The new `label` element does not have a `for` attribute. Check that there is a space after the opening tag's name.
 
 ```js
 const labelElem = $('input[type="checkbox"]')[0].nextElementSibling;
-assert(labelElem.hasAttribute('for'));
+assert(labelElem.hasAttribute("for"));
 ```
 
 The new `label` element should have a `for` attribute with the value `loving`. You have either omitted the value or have a typo. Remember that attribute values should be surrounded with quotation marks.
 
 ```js
 const labelElem = $('input[type="checkbox"]')[0].nextElementSibling;
-assert(labelElem.getAttribute('for').match(/^loving$/));
+assert(labelElem.getAttribute("for").match(/^loving$/));
 ```
 
 The text `Loving` should be nested within the new `label` element. You have either omitted the text or have a typo.
 
 ```js
 const labelElem = document.querySelector('label[for="loving"]');
-assert(labelElem.textContent.replace(/\s/g, '').match(/Loving/i));
+assert(labelElem.textContent.replace(/\s/g, "").match(/Loving/i));
 ```
 
 # --seed--
@@ -85,8 +85,15 @@ assert(labelElem.textContent.replace(/\s/g, '').match(/Loving/i));
       <section>
         <h2>Cat Photos</h2>
         <!-- TODO: Add link to cat photos -->
-        <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        <p>
+          Click here to view more
+          <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+        </p>
+        <a href="https://freecatphotoapp.com"
+          ><img
+            src="https://bit.ly/fcc-relaxing-cat"
+            alt="A cute orange cat lying on its back."
+        /></a>
       </section>
       <section>
         <h2>Cat Lists</h2>
@@ -97,8 +104,11 @@ assert(labelElem.textContent.replace(/\s/g, '').match(/Loving/i));
           <li>lasagna</li>
         </ul>
         <figure>
-          <img src="https://bit.ly/fcc-lasagna" alt="A slice of lasagna on a plate.">
-          <figcaption>Cats <em>love</em> lasagna.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-lasagna"
+            alt="A slice of lasagna on a plate."
+          />
+          <figcaption>Cats <em>love</em> lasagna.</figcaption>
         </figure>
         <h3>Top 3 things cats hate:</h3>
         <ol>
@@ -107,8 +117,11 @@ assert(labelElem.textContent.replace(/\s/g, '').match(/Loving/i));
           <li>other cats</li>
         </ol>
         <figure>
-          <img src="https://bit.ly/fcc-cats" alt="Five cats looking around a field.">
-          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-cats"
+            alt="Five cats looking around a field."
+          />
+          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>
         </figure>
       </section>
       <section>
@@ -116,16 +129,36 @@ assert(labelElem.textContent.replace(/\s/g, '').match(/Loving/i));
         <form action="https://freecatphotoapp.com/submit-cat-photo">
           <fieldset>
             <legend>Is your cat an indoor or outdoor cat?</legend>
-            <label><input id="indoor" type="radio" name="indoor-outdoor" value="indoor"> Indoor</label>
-            <label><input id="outdoor" type="radio" name="indoor-outdoor" value="outdoor"> Outdoor</label>
+            <label
+              ><input
+                id="indoor"
+                type="radio"
+                name="indoor-outdoor"
+                value="indoor"
+              />
+              Indoor</label
+            >
+            <label
+              ><input
+                id="outdoor"
+                type="radio"
+                name="indoor-outdoor"
+                value="outdoor"
+              />
+              Outdoor</label
+            >
           </fieldset>
           <fieldset>
             <legend>What's your cat's personality?</legend>
---fcc-editable-region--
-            <input id="loving" type="checkbox"> Loving
---fcc-editable-region--
+            --fcc-editable-region--
+            <input id="loving" type="checkbox" /> Loving --fcc-editable-region--
           </fieldset>
-          <input type="text" name="catphotourl" placeholder="cat photo URL" required>
+          <input
+            type="text"
+            name="catphotourl"
+            placeholder="cat photo URL"
+            required
+          />
           <button type="submit">Submit</button>
         </form>
       </section>
@@ -133,4 +166,3 @@ assert(labelElem.textContent.replace(/\s/g, '').match(/Loving/i));
   </body>
 </html>
 ```
-

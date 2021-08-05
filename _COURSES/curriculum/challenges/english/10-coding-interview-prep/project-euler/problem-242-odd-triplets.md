@@ -1,6 +1,6 @@
 ---
 id: 5900f45f1000cf542c50ff71
-title: 'Problem 242: Odd Triplets'
+title: "Problem 242: Odd Triplets"
 challengeType: 5
 forumTopicId: 301889
 dashedName: problem-242-odd-triplets
@@ -30,7 +30,6 @@ assert.strictEqual(euler242(), 997104142249036700);
 
 ```js
 function euler242() {
-
   return true;
 }
 

@@ -37,7 +37,8 @@ const createPostData = (): Post => {
 ;[...new Array(50)].forEach((_) => db.post.create(createPostData()))
 
 type PaginationOptions = {
-  page: number; per_page: number
+  page: number
+  per_page: number
 }
 
 interface Posts extends Pagination {
@@ -52,13 +53,13 @@ export const handlers = [
 
     const posts = db.post.findMany({
       take: per_page,
-      skip: Math.max(per_page * (page - 1), 0)
+      skip: Math.max(per_page * (page - 1), 0),
     })
 
     return res(
       ctx.data({
         data: {
-          posts
+          posts,
         } as { posts: Post[] },
         per_page,
         page,

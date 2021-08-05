@@ -2,11 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "noEmit": true,
-    "removeComments": false,
+    "removeComments": false
   },
-  "include": [
-    "scripts/**/*",
-    ".eslintrc.js",
-    ".prettierrc.js",
-  ]
+  "include": ["scripts/**/*", ".eslintrc.js", ".prettierrc.js"]
 }

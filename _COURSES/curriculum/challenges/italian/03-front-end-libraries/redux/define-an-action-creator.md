@@ -19,19 +19,19 @@ Definisci una funzione `actionCreator()` che restituisce l'oggetto `action` quan
 La funzione `actionCreator` dovrebbe esistere.
 
 ```js
-assert(typeof actionCreator === 'function');
+assert(typeof actionCreator === "function");
 ```
 
 L'esecuzione della funzione `actionCreator` dovrebbe restituire l'oggetto `action`.
 
 ```js
-assert(typeof action === 'object');
+assert(typeof action === "object");
 ```
 
 L'`action` restituita dovrebbe avere una proprietà di chiave `type` con valore `LOGIN`.
 
 ```js
-assert(action.type === 'LOGIN');
+assert(action.type === "LOGIN");
 ```
 
 # --seed--
@@ -40,8 +40,8 @@ assert(action.type === 'LOGIN');
 
 ```js
 const action = {
-  type: 'LOGIN'
-}
+  type: "LOGIN",
+};
 // Define an action creator here:
 ```
 
@@ -49,8 +49,8 @@ const action = {
 
 ```js
 const action = {
-  type: 'LOGIN'
-}
+  type: "LOGIN",
+};
 const actionCreator = () => {
   return action;
 };

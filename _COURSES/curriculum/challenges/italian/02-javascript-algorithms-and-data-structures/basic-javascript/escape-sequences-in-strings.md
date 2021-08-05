@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244b6
 title: Sequenze di escape nelle stringhe
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cvmqRh6'
+videoUrl: "https://scrimba.com/c/cvmqRh6"
 forumTopicId: 17567
 dashedName: escape-sequences-in-strings
 ---
@@ -18,7 +18,7 @@ Lo abbiamo imparato nella sfida precedente.
 
 <table class='table table-striped'><thead><tr><th>Codice</th><th>Output</th></tr></thead><tbody><tr><td><code>\'</code></td><td>virgoletta singola</td></tr><tr><td><code>\"</code></td><td>doppia citazione</td></tr><tr><td><code>\\</code></td><td>barra rovesciata</td></tr><tr><td><code>\n</code></td><td>nuova riga</td></tr><tr><td><code>\r</code></td><td>ritorno a capo</td></tr><tr><td><code>\t</code></td><td>tabulazione</td></tr><tr><td><code>\b</code></td><td>delimitatore di parola</td></tr><tr><td><code>\f</code></td><td>avanzamento carta (form feed)</td></tr></tbody></table>
 
-*Nota che la barra rovesciata necessita di escaping perché appaia come barra rovesciata.*
+_Nota che la barra rovesciata necessita di escaping perché appaia come barra rovesciata._
 
 # --instructions--
 
@@ -73,7 +73,7 @@ assert(/SecondLine\nThirdLine/.test(myStr));
 `myStr` dovrebbe contenere solo i caratteri mostrati nelle istruzioni
 
 ```js
-assert(myStr === 'FirstLine\n\t\\SecondLine\nThirdLine');
+assert(myStr === "FirstLine\n\t\\SecondLine\nThirdLine");
 ```
 
 # --seed--
@@ -81,9 +81,11 @@ assert(myStr === 'FirstLine\n\t\\SecondLine\nThirdLine');
 ## --after-user-code--
 
 ```js
-(function(){
-if (myStr !== undefined){
-console.log('myStr:\n' + myStr);}})();
+(function () {
+  if (myStr !== undefined) {
+    console.log("myStr:\n" + myStr);
+  }
+})();
 ```
 
 ## --seed-contents--

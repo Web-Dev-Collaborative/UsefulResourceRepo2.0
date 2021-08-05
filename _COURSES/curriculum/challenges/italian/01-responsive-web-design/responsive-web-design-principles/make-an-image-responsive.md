@@ -2,7 +2,7 @@
 id: 587d78b1367417b2b2512b09
 title: Rendere un'immagine responsiva
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pzrPu4/cz763UD'
+videoUrl: "https://scrimba.com/p/pzrPu4/cz763UD"
 forumTopicId: 301140
 dashedName: make-an-image-responsive
 ---
@@ -29,7 +29,7 @@ Aggiungi le regole di stile alla classe `responsive-img` per renderla responsiva
 La tua classe `responsive-img` dovrebbe avere una `max-width` impostata a `100%`.
 
 ```js
-assert(getComputedStyle($('.responsive-img')[0]).maxWidth === '100%');
+assert(getComputedStyle($(".responsive-img")[0]).maxWidth === "100%");
 ```
 
 La tua classe `responsive-img` dovrebbe avere una `height` impostata su `auto`.
@@ -44,34 +44,46 @@ assert(code.match(/height:\s*?auto;/g));
 
 ```html
 <style>
-.responsive-img {
+  .responsive-img {
+  }
 
-
-}
-
-img {
-  width: 600px;
-}
+  img {
+    width: 600px;
+  }
 </style>
 
-<img class="responsive-img" src="https://s3.amazonaws.com/freecodecamp/FCCStickerPack.jpg" alt="freeCodeCamp stickers set">
-<img src="https://s3.amazonaws.com/freecodecamp/FCCStickerPack.jpg" alt="freeCodeCamp stickers set">
+<img
+  class="responsive-img"
+  src="https://s3.amazonaws.com/freecodecamp/FCCStickerPack.jpg"
+  alt="freeCodeCamp stickers set"
+/>
+<img
+  src="https://s3.amazonaws.com/freecodecamp/FCCStickerPack.jpg"
+  alt="freeCodeCamp stickers set"
+/>
 ```
 
 # --solutions--
 
 ```html
 <style>
-.responsive-img {
-  max-width: 100%;
-  height: auto;
-}
+  .responsive-img {
+    max-width: 100%;
+    height: auto;
+  }
 
-img {
-  width: 600px;
-}
+  img {
+    width: 600px;
+  }
 </style>
 
-<img class="responsive-img" src="https://s3.amazonaws.com/freecodecamp/FCCStickerPack.jpg" alt="freeCodeCamp stickers set">
-<img src="https://s3.amazonaws.com/freecodecamp/FCCStickerPack.jpg" alt="freeCodeCamp stickers set">
+<img
+  class="responsive-img"
+  src="https://s3.amazonaws.com/freecodecamp/FCCStickerPack.jpg"
+  alt="freeCodeCamp stickers set"
+/>
+<img
+  src="https://s3.amazonaws.com/freecodecamp/FCCStickerPack.jpg"
+  alt="freeCodeCamp stickers set"
+/>
 ```

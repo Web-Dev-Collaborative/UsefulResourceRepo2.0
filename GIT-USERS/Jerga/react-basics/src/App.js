@@ -1,24 +1,17 @@
+import React from "react";
+import ResourceHome from "./pages/ResourceHome";
+import ResourceNew from "./pages/ResourceNew";
+import ResourceDetail from "./pages/ResourceDetail";
+import About from "./pages/About";
+import Header from "./components/Header";
+import SettingsProvider from "./context/SettingsProvider";
 
-
-import React from 'react';
-import ResourceHome from './pages/ResourceHome';
-import ResourceNew from './pages/ResourceNew';
-import ResourceDetail from './pages/ResourceDetail';
-import About from './pages/About';
-import Header from './components/Header';
-import SettingsProvider from './context/SettingsProvider';
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const App = () => {
-
   return (
     <SettingsProvider>
-      {settings =>
+      {(settings) => (
         <div className={`resource-app ${settings.theme}`}>
           <div className="container">
             <Router>
@@ -40,9 +33,9 @@ const App = () => {
             </Router>
           </div>
         </div>
-      }
+      )}
     </SettingsProvider>
-  )
-}
+  );
+};
 
 export default App;

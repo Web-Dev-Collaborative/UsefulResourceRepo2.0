@@ -1,6 +1,6 @@
 ---
 id: 5900f3851000cf542c50fe98
-title: 'Problem 25: 1000-digit Fibonacci number'
+title: "Problem 25: 1000-digit Fibonacci number"
 challengeType: 5
 forumTopicId: 301897
 dashedName: problem-25-1000-digit-fibonacci-number
@@ -25,7 +25,7 @@ What is the index of the first term in the Fibonacci sequence to contain `n` dig
 `digitFibonacci(5)` should return a number.
 
 ```js
-assert(typeof digitFibonacci(5) === 'number');
+assert(typeof digitFibonacci(5) === "number");
 ```
 
 `digitFibonacci(5)` should return 21.
@@ -58,7 +58,6 @@ assert.strictEqual(digitFibonacci(20), 93);
 
 ```js
 function digitFibonacci(n) {
-
   return n;
 }
 

@@ -1,6 +1,6 @@
 ---
 id: 5900f3721000cf542c50fe85
-title: 'Problem 6: Sum square difference'
+title: "Problem 6: Sum square difference"
 challengeType: 5
 forumTopicId: 302171
 dashedName: problem-6-sum-square-difference
@@ -25,7 +25,7 @@ Find the difference between the sum of the squares of the first `n` natural numb
 `sumSquareDifference(10)` should return a number.
 
 ```js
-assert(typeof sumSquareDifference(10) === 'number');
+assert(typeof sumSquareDifference(10) === "number");
 ```
 
 `sumSquareDifference(10)` should return 2640.
@@ -52,7 +52,6 @@ assert.strictEqual(sumSquareDifference(100), 25164150);
 
 ```js
 function sumSquareDifference(n) {
-
   return true;
 }
 
@@ -62,17 +61,17 @@ sumSquareDifference(100);
 # --solutions--
 
 ```js
-const sumSquareDifference = (number)=>{
-  let squareOfSum = Math.pow(sumOfArithmeticSeries(1,1,number),2);
+const sumSquareDifference = (number) => {
+  let squareOfSum = Math.pow(sumOfArithmeticSeries(1, 1, number), 2);
   let sumOfSquare = sumOfSquareOfNumbers(number);
- return squareOfSum - sumOfSquare;
+  return squareOfSum - sumOfSquare;
+};
+
+function sumOfArithmeticSeries(a, d, n) {
+  return (n / 2) * (2 * a + (n - 1) * d);
 }
 
-function sumOfArithmeticSeries(a,d,n){
-  return (n/2)*(2*a+(n-1)*d);
-}
-
-function sumOfSquareOfNumbers(n){
- return (n*(n+1)*(2*n+1))/6;
+function sumOfSquareOfNumbers(n) {
+  return (n * (n + 1) * (2 * n + 1)) / 6;
 }
 ```

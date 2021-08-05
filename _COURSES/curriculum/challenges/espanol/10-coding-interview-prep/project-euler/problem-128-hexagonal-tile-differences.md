@@ -1,6 +1,6 @@
 ---
 id: 5900f3ec1000cf542c50feff
-title: 'Problem 128: Hexagonal tile differences'
+title: "Problem 128: Hexagonal tile differences"
 challengeType: 5
 forumTopicId: 301755
 dashedName: problem-128-hexagonal-tile-differences
@@ -28,7 +28,6 @@ assert.strictEqual(euler128(), 14516824220);
 
 ```js
 function euler128() {
-
   return true;
 }
 

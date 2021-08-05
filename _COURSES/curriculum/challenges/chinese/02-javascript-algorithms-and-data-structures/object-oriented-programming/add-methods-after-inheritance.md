@@ -13,11 +13,11 @@ dashedName: add-methods-after-inheritance
 请看举例：`Bird` 是一个构造函数，它继承了 `Animal` 的 `prototype`：
 
 ```js
-function Animal() { }
-Animal.prototype.eat = function() {
+function Animal() {}
+Animal.prototype.eat = function () {
   console.log("nom nom nom");
 };
-function Bird() { }
+function Bird() {}
 Bird.prototype = Object.create(Animal.prototype);
 Bird.prototype.constructor = Bird;
 ```
@@ -25,7 +25,7 @@ Bird.prototype.constructor = Bird;
 除了从 `Animal` 构造函数继承的行为之外，还需要给 `Bird` 对象添加它独有的行为。 这里，我们给 `Bird` 对象添加一个 `fly()` 函数。 函数会以一种与其他构造函数相同的方式添加到 `Bird's` 的 `prototype` 中：
 
 ```js
-Bird.prototype.fly = function() {
+Bird.prototype.fly = function () {
   console.log("I'm flying!");
 };
 ```
@@ -49,19 +49,19 @@ duck.fly();
 `Animal` 应该没有 `bark()` 方法。
 
 ```js
-assert(typeof Animal.prototype.bark == 'undefined');
+assert(typeof Animal.prototype.bark == "undefined");
 ```
 
 `Dog` 应该继承了 `Animal` 的 `eat()` 方法。
 
 ```js
-assert(typeof Dog.prototype.eat == 'function');
+assert(typeof Dog.prototype.eat == "function");
 ```
 
 `Dog` 原型应该有一个 `bark()` 方法。
 
 ```js
-assert('bark' in Dog.prototype);
+assert("bark" in Dog.prototype);
 ```
 
 `beagle` 应该是 `Animal` 的一个 `instanceof`。
@@ -82,7 +82,7 @@ assert(beagle.constructor === Dog);
 console.log = function (msg) {
   throw msg;
 };
-assert.throws(() => beagle.eat(), 'nom nom nom');
+assert.throws(() => beagle.eat(), "nom nom nom");
 ```
 
 `beagle.bark()` 应该将字符串 `Woof!` 打印到控制台
@@ -91,7 +91,7 @@ assert.throws(() => beagle.eat(), 'nom nom nom');
 console.log = function (msg) {
   throw msg;
 };
-assert.throws(() => beagle.bark(), 'Woof!');
+assert.throws(() => beagle.bark(), "Woof!");
 ```
 
 # --seed--
@@ -99,15 +99,14 @@ assert.throws(() => beagle.bark(), 'Woof!');
 ## --seed-contents--
 
 ```js
-function Animal() { }
-Animal.prototype.eat = function() { console.log("nom nom nom"); };
+function Animal() {}
+Animal.prototype.eat = function () {
+  console.log("nom nom nom");
+};
 
-function Dog() { }
+function Dog() {}
 
 // Only change code below this line
-
-
-
 
 // Only change code above this line
 
@@ -117,14 +116,16 @@ let beagle = new Dog();
 # --solutions--
 
 ```js
-function Animal() { }
-Animal.prototype.eat = function() { console.log("nom nom nom"); };
+function Animal() {}
+Animal.prototype.eat = function () {
+  console.log("nom nom nom");
+};
 
-function Dog() { }
+function Dog() {}
 Dog.prototype = Object.create(Animal.prototype);
 Dog.prototype.constructor = Dog;
 Dog.prototype.bark = function () {
-  console.log('Woof!');
+  console.log("Woof!");
 };
 let beagle = new Dog();
 

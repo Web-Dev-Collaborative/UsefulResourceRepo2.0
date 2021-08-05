@@ -2,7 +2,7 @@
 id: 587d78a8367417b2b2512ae3
 title: Animate Elements Continually Using an Infinite Animation Count
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cVJDVfq'
+videoUrl: "https://scrimba.com/c/cVJDVfq"
 forumTopicId: 301041
 dashedName: animate-elements-continually-using-an-infinite-animation-count
 ---
@@ -26,7 +26,7 @@ To keep the ball bouncing on the right on a continuous loop, change the `animati
 The `animation-iteration-count` property should have a value of `infinite`.
 
 ```js
-assert($('#ball').css('animation-iteration-count') == 'infinite');
+assert($("#ball").css("animation-iteration-count") == "infinite");
 ```
 
 # --seed--
@@ -35,24 +35,19 @@ assert($('#ball').css('animation-iteration-count') == 'infinite');
 
 ```html
 <style>
-
   #ball {
     width: 100px;
     height: 100px;
     margin: 50px auto;
     position: relative;
     border-radius: 50%;
-    background: linear-gradient(
-      35deg,
-      #ccffff,
-      #ffcccc
-    );
+    background: linear-gradient(35deg, #ccffff, #ffcccc);
     animation-name: bounce;
     animation-duration: 1s;
     animation-iteration-count: 3;
   }
 
-  @keyframes bounce{
+  @keyframes bounce {
     0% {
       top: 0px;
     }
@@ -79,17 +74,13 @@ assert($('#ball').css('animation-iteration-count') == 'infinite');
     margin: 50px auto;
     position: relative;
     border-radius: 50%;
-    background: linear-gradient(
-      35deg,
-      #ccffff,
-      #ffcccc
-    );
+    background: linear-gradient(35deg, #ccffff, #ffcccc);
     animation-name: bounce;
     animation-duration: 1s;
     animation-iteration-count: infinite;
   }
 
-  @keyframes bounce{
+  @keyframes bounce {
     0% {
       top: 0px;
     }

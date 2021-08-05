@@ -28,7 +28,6 @@ goog.require('fireauth.OAuthHelperState');
 goog.require('fireauth.authStorage');
 goog.require('fireauth.storage.AuthEventManager.Keys');
 
-
 /**
  * Defines the OAuth handler storage manager. It provides methods to
  * store, load and delete OAuth handler widget state, properties and setting
@@ -37,14 +36,13 @@ goog.require('fireauth.storage.AuthEventManager.Keys');
  *     manager to use. If none is provided, the default global instance is used.
  * @constructor @struct @final
  */
-fireauth.storage.OAuthHandlerManager = function(opt_manager) {
+fireauth.storage.OAuthHandlerManager = function (opt_manager) {
   /**
    * @const @private{!fireauth.authStorage.Manager} The underlying storage
    *     manager.
    */
   this.manager_ = opt_manager || fireauth.authStorage.Manager.getInstance();
 };
-
 
 /**
  * Valid keys for OAuth handler manager data.
@@ -61,29 +59,31 @@ fireauth.storage.OAuthHandlerManager.Keys_ = {
   }
 };
 
-
 /**
  * @param {string} appId The Auth state's application ID.
  * @return {!goog.Promise<?string|undefined>} A promise that resolves on success
  *     with the stored session ID.
  */
-fireauth.storage.OAuthHandlerManager.prototype.getSessionId = function(appId) {
+fireauth.storage.OAuthHandlerManager.prototype.getSessionId = function (appId) {
   return this.manager_.get(
-      fireauth.storage.OAuthHandlerManager.Keys_.SESSION_ID, appId);
+    fireauth.storage.OAuthHandlerManager.Keys_.SESSION_ID,
+    appId
+  );
 };
-
 
 /**
  * Removes the session ID string if it exists.
  * @param {string} appId The Auth state's application ID.
  * @return {!goog.Promise<void>} A promise that resolves on success.
  */
-fireauth.storage.OAuthHandlerManager.prototype.removeSessionId =
-    function(appId) {
+fireauth.storage.OAuthHandlerManager.prototype.removeSessionId = function (
+  appId
+) {
   return this.manager_.remove(
-      fireauth.storage.OAuthHandlerManager.Keys_.SESSION_ID, appId);
+    fireauth.storage.OAuthHandlerManager.Keys_.SESSION_ID,
+    appId
+  );
 };
-
 
 /**
  * Stores the session ID string.
@@ -91,50 +91,54 @@ fireauth.storage.OAuthHandlerManager.prototype.removeSessionId =
  * @param {string} sessionId The session ID string to store.
  * @return {!goog.Promise<void>} A promise that resolves on success.
  */
-fireauth.storage.OAuthHandlerManager.prototype.setSessionId =
-    function(appId, sessionId) {
+fireauth.storage.OAuthHandlerManager.prototype.setSessionId = function (
+  appId,
+  sessionId
+) {
   return this.manager_.set(
-      fireauth.storage.OAuthHandlerManager.Keys_.SESSION_ID, sessionId, appId);
+    fireauth.storage.OAuthHandlerManager.Keys_.SESSION_ID,
+    sessionId,
+    appId
+  );
 };
-
 
 /**
  * @return {!goog.Promise<?fireauth.OAuthHelperState>} A promise that resolves
  *     on success with the stored OAuth helper state.
  */
 fireauth.storage.OAuthHandlerManager.prototype.getOAuthHelperState =
-    function() {
-  return this.manager_.get(
-      fireauth.storage.OAuthHandlerManager.Keys_.OAUTH_HELPER_STATE)
-      .then(function(response) {
+  function () {
+    return this.manager_
+      .get(fireauth.storage.OAuthHandlerManager.Keys_.OAUTH_HELPER_STATE)
+      .then(function (response) {
         return fireauth.OAuthHelperState.fromPlainObject(response);
       });
-};
-
+  };
 
 /**
  * Removes the current OAuth helper state if it exists.
  * @return {!goog.Promise<void>} A promise that resolves on success.
  */
 fireauth.storage.OAuthHandlerManager.prototype.removeOAuthHelperState =
-    function() {
-  return this.manager_.remove(
-      fireauth.storage.OAuthHandlerManager.Keys_.OAUTH_HELPER_STATE);
-};
-
+  function () {
+    return this.manager_.remove(
+      fireauth.storage.OAuthHandlerManager.Keys_.OAUTH_HELPER_STATE
+    );
+  };
 
 /**
  * Stores the current OAuth helper state.
  * @param {!fireauth.OAuthHelperState} state The OAuth helper state.
  * @return {!goog.Promise<void>} A promise that resolves on success.
  */
-fireauth.storage.OAuthHandlerManager.prototype.setOAuthHelperState =
-    function(state) {
+fireauth.storage.OAuthHandlerManager.prototype.setOAuthHelperState = function (
+  state
+) {
   return this.manager_.set(
-      fireauth.storage.OAuthHandlerManager.Keys_.OAUTH_HELPER_STATE,
-      state.toPlainObject());
+    fireauth.storage.OAuthHandlerManager.Keys_.OAUTH_HELPER_STATE,
+    state.toPlainObject()
+  );
 };
-
 
 /**
  * Stores the Auth event for specified identifier.
@@ -142,14 +146,16 @@ fireauth.storage.OAuthHandlerManager.prototype.setOAuthHelperState =
  * @param {!fireauth.AuthEvent} authEvent The Auth event.
  * @return {!goog.Promise<void>} A promise that resolves on success.
  */
-fireauth.storage.OAuthHandlerManager.prototype.setAuthEvent =
-    function(appId, authEvent) {
+fireauth.storage.OAuthHandlerManager.prototype.setAuthEvent = function (
+  appId,
+  authEvent
+) {
   return this.manager_.set(
-      fireauth.storage.AuthEventManager.Keys.AUTH_EVENT,
-      authEvent.toPlainObject(),
-      appId);
+    fireauth.storage.AuthEventManager.Keys.AUTH_EVENT,
+    authEvent.toPlainObject(),
+    appId
+  );
 };
-
 
 /**
  * Stores the redirect Auth event for specified identifier.
@@ -157,10 +163,13 @@ fireauth.storage.OAuthHandlerManager.prototype.setAuthEvent =
  * @param {!fireauth.AuthEvent} authEvent The redirect Auth event.
  * @return {!goog.Promise<void>} A promise that resolves on success.
  */
-fireauth.storage.OAuthHandlerManager.prototype.setRedirectEvent =
-    function(appId, authEvent) {
+fireauth.storage.OAuthHandlerManager.prototype.setRedirectEvent = function (
+  appId,
+  authEvent
+) {
   return this.manager_.set(
-      fireauth.storage.AuthEventManager.Keys.REDIRECT_EVENT,
-      authEvent.toPlainObject(),
-      appId);
+    fireauth.storage.AuthEventManager.Keys.REDIRECT_EVENT,
+    authEvent.toPlainObject(),
+    appId
+  );
 };

@@ -26,7 +26,7 @@ Your `LinkedList` class should have an `isEmpty` method.
 assert(
   (function () {
     var test = new LinkedList();
-    return typeof test.isEmpty === 'function';
+    return typeof test.isEmpty === "function";
   })()
 );
 ```
@@ -37,9 +37,9 @@ Your `isEmpty` method should return `false` when there is at least one element i
 assert(
   (function () {
     var test = new LinkedList();
-    test.add('cat');
-    test.add('dog');
-    test.add('kitten');
+    test.add("cat");
+    test.add("dog");
+    test.add("kitten");
     return test.isEmpty() === false;
   })()
 );
@@ -62,7 +62,7 @@ Your `LinkedList` class should have an `indexOf` method.
 assert(
   (function () {
     var test = new LinkedList();
-    return typeof test.indexOf === 'function';
+    return typeof test.indexOf === "function";
   })()
 );
 ```
@@ -73,10 +73,10 @@ Your `indexOf` method should return the index of a given element found in linked
 assert(
   (function () {
     var test = new LinkedList();
-    test.add('cat');
-    test.add('dog');
-    test.add('kitten');
-    return test.indexOf('cat') === 0;
+    test.add("cat");
+    test.add("dog");
+    test.add("kitten");
+    return test.indexOf("cat") === 0;
   })()
 );
 ```
@@ -87,10 +87,10 @@ Your `indexOf` method should return `-1` if the given element is not found in li
 assert(
   (function () {
     var test = new LinkedList();
-    test.add('cat');
-    test.add('dog');
-    test.add('kitten');
-    return test.indexOf('pony') === -1;
+    test.add("cat");
+    test.add("dog");
+    test.add("kitten");
+    return test.indexOf("pony") === -1;
   })()
 );
 ```
@@ -101,7 +101,7 @@ Your `LinkedList` class should have an `elementAt` method.
 assert(
   (function () {
     var test = new LinkedList();
-    return typeof test.elementAt === 'function';
+    return typeof test.elementAt === "function";
   })()
 );
 ```
@@ -112,10 +112,10 @@ Your `elementAt` method should return the element found at a given index in link
 assert(
   (function () {
     var test = new LinkedList();
-    test.add('cat');
-    test.add('dog');
-    test.add('kitten');
-    return test.elementAt(1) === 'dog';
+    test.add("cat");
+    test.add("dog");
+    test.add("kitten");
+    return test.elementAt(1) === "dog";
   })()
 );
 ```
@@ -126,9 +126,9 @@ Your `elementAt` method should return `undefined` if the given element is not fo
 assert(
   (function () {
     var test = new LinkedList();
-    test.add('cat');
-    test.add('dog');
-    test.add('kitten');
+    test.add("cat");
+    test.add("dog");
+    test.add("kitten");
     return test.elementAt(5) === undefined;
   })()
 );
@@ -143,27 +143,27 @@ function LinkedList() {
   var length = 0;
   var head = null;
 
-  var Node = function(element){
+  var Node = function (element) {
     this.element = element;
     this.next = null;
   };
 
-  this.size = function() {
+  this.size = function () {
     return length;
   };
 
-  this.head = function(){
+  this.head = function () {
     return head;
   };
 
-  this.add = function(element){
+  this.add = function (element) {
     var node = new Node(element);
-    if(head === null){
-        head = node;
+    if (head === null) {
+      head = node;
     } else {
       var currentNode = head;
 
-      while(currentNode.next){
+      while (currentNode.next) {
         currentNode = currentNode.next;
       }
 
@@ -173,13 +173,13 @@ function LinkedList() {
     length++;
   };
 
-  this.remove = function(element){
+  this.remove = function (element) {
     var currentNode = head;
     var previousNode;
-    if(currentNode.element === element){
+    if (currentNode.element === element) {
       head = currentNode.next;
     } else {
-      while(currentNode.element !== element) {
+      while (currentNode.element !== element) {
         previousNode = currentNode;
         currentNode = currentNode.next;
       }
@@ -187,7 +187,7 @@ function LinkedList() {
       previousNode.next = currentNode.next;
     }
 
-    length --;
+    length--;
   };
 
   // Only change code below this line
@@ -203,72 +203,72 @@ function LinkedList() {
   var length = 0;
   var head = null;
 
-  var Node = function(element){
+  var Node = function (element) {
     this.element = element;
     this.next = null;
   };
 
-  this.size = function() {
+  this.size = function () {
     return length;
   };
 
-  this.head = function(){
+  this.head = function () {
     return head;
   };
 
-  this.add = function(element){
+  this.add = function (element) {
     var node = new Node(element);
-    if(head === null){
-        head = node;
+    if (head === null) {
+      head = node;
     } else {
-        var currentNode = head;
+      var currentNode = head;
 
-        while(currentNode.next){
-            currentNode  = currentNode.next;
-        }
+      while (currentNode.next) {
+        currentNode = currentNode.next;
+      }
 
-        currentNode.next = node;
+      currentNode.next = node;
     }
 
     length++;
   };
 
-  this.remove = function(element){
+  this.remove = function (element) {
     var currentNode = head;
     var previousNode;
-    if(currentNode.element === element){
-        head = currentNode.next;
+    if (currentNode.element === element) {
+      head = currentNode.next;
     } else {
-        while(currentNode.element !== element) {
-            previousNode = currentNode;
-            currentNode = currentNode.next;
-        }
+      while (currentNode.element !== element) {
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+      }
 
-        previousNode.next = currentNode.next;
+      previousNode.next = currentNode.next;
     }
 
-    length --;
+    length--;
   };
 
-  this.indexOf = function(element) {
-    if (head === null) return -1
+  this.indexOf = function (element) {
+    if (head === null) return -1;
 
     let current = head;
     let index = 0;
 
     while (current.element !== element && current.next !== null) {
       current = current.next;
-      index++
+      index++;
     }
 
     if (current.element !== element && current.next === null) {
-      return -1
+      return -1;
     }
 
     return index;
-  }
+  };
 
-  this.elementAt = function(index) {
+  this.elementAt = function (index) {
     if (head === null) return undefined;
 
     let current = head;
@@ -276,7 +276,7 @@ function LinkedList() {
 
     while (currentIndex !== index && current.next !== null) {
       current = current.next;
-      currentIndex++
+      currentIndex++;
     }
 
     if (currentIndex !== index && current.next === null) {
@@ -284,10 +284,10 @@ function LinkedList() {
     }
 
     return current.element;
-  }
+  };
 
-  this.isEmpty = function() {
+  this.isEmpty = function () {
     return length === 0;
-  }
+  };
 }
 ```

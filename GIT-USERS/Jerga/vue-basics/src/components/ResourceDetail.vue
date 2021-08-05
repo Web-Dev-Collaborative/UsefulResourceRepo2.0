@@ -1,22 +1,22 @@
 <template>
   <div v-if="!resource?._id" class="card">
-    <div class="card-body">
-      No Resource is selected  :(
-    </div>
+    <div class="card-body">No Resource is selected :(</div>
   </div>
   <div v-else :class="`card ${getTheme()}`">
     <div class="card-header">
-      {{resource.title}}
+      {{ resource.title }}
     </div>
     <div class="card-body">
       <blockquote class="blockquote mb-0">
-        <p>{{resource.description}}</p>
-        <footer class="text-muted mb-2">{{resource.type}}</footer>
+        <p>{{ resource.description }}</p>
+        <footer class="text-muted mb-2">{{ resource.type }}</footer>
       </blockquote>
       <a
         target="_blank"
         :href="resource.link"
-        class="btn btn-outline-primary mr-2">Resource Link</a>
+        class="btn btn-outline-primary mr-2"
+        >Resource Link</a
+      >
       <slot name="buttonLink"></slot>
     </div>
   </div>
@@ -26,17 +26,16 @@
 export default {
   props: {
     resource: {
-      validator: prop => typeof prop === 'object' || prop === null,
-      required: true
-    }
+      validator: (prop) => typeof prop === "object" || prop === null,
+      required: true,
+    },
   },
-  inject: ['getTheme']
-}
+  inject: ["getTheme"],
+};
 </script>
 
 <style>
-  .card.dark {
-    color: black;
-  }
+.card.dark {
+  color: black;
+}
 </style>
-

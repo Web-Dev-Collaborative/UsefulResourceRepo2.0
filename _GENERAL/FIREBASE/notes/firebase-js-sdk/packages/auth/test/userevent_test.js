@@ -27,7 +27,6 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.UserEventTest');
 
-
 function testUserEvent() {
   var props = {
     a: 'foo',
@@ -38,8 +37,9 @@ function testUserEvent() {
     }
   };
   var event = new fireauth.UserEvent(
-      fireauth.UserEventType.TOKEN_CHANGED,
-      props);
+    fireauth.UserEventType.TOKEN_CHANGED,
+    props
+  );
   assertEquals(fireauth.UserEventType.TOKEN_CHANGED, event.type);
   for (var key in props) {
     assertEquals(props[key], event[key]);

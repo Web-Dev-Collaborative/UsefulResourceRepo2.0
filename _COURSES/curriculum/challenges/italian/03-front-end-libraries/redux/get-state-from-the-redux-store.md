@@ -27,7 +27,7 @@ Una variabile `currentState` dovrebbe esistere e dovrebbe esserle assegnato lo s
 ```js
 (getUserInput) =>
   assert(
-    currentState === 5 && getUserInput('index').includes('store.getState()')
+    currentState === 5 && getUserInput("index").includes("store.getState()")
   );
 ```
 
@@ -36,9 +36,7 @@ Una variabile `currentState` dovrebbe esistere e dovrebbe esserle assegnato lo s
 ## --seed-contents--
 
 ```js
-const store = Redux.createStore(
-  (state = 5) => state
-);
+const store = Redux.createStore((state = 5) => state);
 
 // Change code below this line
 ```
@@ -46,9 +44,7 @@ const store = Redux.createStore(
 # --solutions--
 
 ```js
-const store = Redux.createStore(
-  (state = 5) => state
-);
+const store = Redux.createStore((state = 5) => state);
 
 // Change code below this line
 const currentState = store.getState();

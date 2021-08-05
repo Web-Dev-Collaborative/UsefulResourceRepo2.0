@@ -13,6 +13,7 @@ with the Firebase Admin SDK session management API.
 
 To set up a development environment to build the sample from source, you must
 have the following installed:
+
 - Node.js (>= 6.0.0)
 - npm (should be included with Node.js)
 
@@ -42,10 +43,11 @@ const config = {
   authDomain: "...",
   databaseURL: "...",
   storageBucket: "...",
-  messagingSenderId: "..."
+  messagingSenderId: "...",
 };
 module.exports = config;
 ```
+
 Copy and paste the Web snippet code configuration found in the console to the `config.js` file.
 You can find the snippet by clicking the "Web setup" button in the Firebase Console
 Authentication page.
@@ -64,11 +66,10 @@ Make sure to keep these credentials secret and never expose them in public.
 ### Building Sample app
 
 To build and run the sample app, run:
+
 ```bash
 npm run demo
 ```
 
 This will launch a local server using port 3000.
 To access the app, go to [http://localhost:3000/](http://localhost:3000)
-
-

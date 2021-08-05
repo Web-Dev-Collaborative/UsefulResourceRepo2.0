@@ -1,15 +1,16 @@
 {
   "presets": [
     "react",
-    ["env", {
-      "targets": {
-        "browsers": "last 2 versions"
-      },
-      "loose": true,
-      "modules": "commonjs"
-    }]
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": "last 2 versions"
+        },
+        "loose": true,
+        "modules": "commonjs"
+      }
+    ]
   ],
-  "plugins": [
-    "transform-class-properties"
-  ]
+  "plugins": ["transform-class-properties"]
 }

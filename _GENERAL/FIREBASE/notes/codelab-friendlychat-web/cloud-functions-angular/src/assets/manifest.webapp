@@ -7,12 +7,9 @@
     "name": "Google inc.",
     "url": "https://firebase.google.com"
   },
-  "installs_allowed_from": [
-    "*"
-  ],
+  "installs_allowed_from": ["*"],
   "default_locale": "en",
-  "permissions": {
-  },
+  "permissions": {},
   "locales": {
     "en": {
       "name": "Friendly Chat",

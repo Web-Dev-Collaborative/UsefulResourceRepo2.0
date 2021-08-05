@@ -2,7 +2,7 @@
 id: 587d78a8367417b2b2512ae4
 title: Haz latir un corazón con CSS usando un recuento de animación infinita
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cDZpDUr'
+videoUrl: "https://scrimba.com/c/cDZpDUr"
 forumTopicId: 301062
 dashedName: make-a-css-heartbeat-using-an-infinite-animation-count
 ---
@@ -22,13 +22,13 @@ Mantén el corazón latiendo agregando la propiedad `animation-iteration-count` 
 La propiedad `animation-iteration-count` para la clase `heart` debe tener un valor de `infinite`.
 
 ```js
-assert($('.heart').css('animation-iteration-count') == 'infinite');
+assert($(".heart").css("animation-iteration-count") == "infinite");
 ```
 
 La propiedad `animation-iteration-count` para la clase `back` debe tener un valor de `infinite`.
 
 ```js
-assert($('.back').css('animation-iteration-count') == 'infinite');
+assert($(".back").css("animation-iteration-count") == "infinite");
 ```
 
 # --seed--
@@ -48,7 +48,6 @@ assert($('.back').css('animation-iteration-count') == 'infinite');
     background: white;
     animation-name: backdiv;
     animation-duration: 1s;
-
   }
 
   .heart {
@@ -64,7 +63,6 @@ assert($('.back').css('animation-iteration-count') == 'infinite');
     transform: rotate(-45deg);
     animation-name: beat;
     animation-duration: 1s;
-
   }
   .heart:after {
     background-color: pink;
@@ -101,7 +99,6 @@ assert($('.back').css('animation-iteration-count') == 'infinite');
       transform: scale(0.6) rotate(-45deg);
     }
   }
-
 </style>
 <div class="back"></div>
 <div class="heart"></div>

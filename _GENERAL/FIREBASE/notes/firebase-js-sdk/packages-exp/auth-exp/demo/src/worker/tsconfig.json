@@ -3,12 +3,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "target": "es2015",
-    "lib": [
-      "es2015",
-      "webworker"
-    ]
+    "lib": ["es2015", "webworker"]
   },
-  "exclude": [
-    "dist/**/*"
-  ]
+  "exclude": ["dist/**/*"]
 }

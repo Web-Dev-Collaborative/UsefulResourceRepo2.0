@@ -2,7 +2,7 @@
 id: 5a94fe3669fb03452672e45f
 title: Reduce repeticiones usando la función repeat
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pByETK/cQvqyHR'
+videoUrl: "https://scrimba.com/p/pByETK/cQvqyHR"
 forumTopicId: 301133
 dashedName: reduce-repetition-using-the-repeat-function
 ---
@@ -55,11 +55,21 @@ assert(
 
 ```html
 <style>
-  .item1{background:LightSkyBlue;}
-  .item2{background:LightSalmon;}
-  .item3{background:PaleTurquoise;}
-  .item4{background:LightPink;}
-  .item5{background:PaleGreen;}
+  .item1 {
+    background: LightSkyBlue;
+  }
+  .item2 {
+    background: LightSalmon;
+  }
+  .item3 {
+    background: PaleTurquoise;
+  }
+  .item4 {
+    background: LightPink;
+  }
+  .item5 {
+    background: PaleGreen;
+  }
 
   .container {
     font-size: 40px;
@@ -89,5 +99,9 @@ assert(
 # --solutions--
 
 ```html
-<style>.container {grid-template-columns: repeat(3, 1fr);}</style>
+<style>
+  .container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+</style>
 ```

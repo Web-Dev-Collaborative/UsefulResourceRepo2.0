@@ -16,52 +16,48 @@
  * @fileoverview Binds handlers for form (submit button and link) UI element.
  */
 
-goog.provide('firebaseui.auth.ui.element.form');
+goog.provide("firebaseui.auth.ui.element.form");
 
-goog.require('firebaseui.auth.ui.element');
-goog.require('goog.ui.Component');
+goog.require("firebaseui.auth.ui.element");
+goog.require("goog.ui.Component");
 
+goog.scope(function () {
+  var element = firebaseui.auth.ui.element;
 
-goog.scope(function() {
-var element = firebaseui.auth.ui.element;
+  /**
+   * @return {Element} The submit button.
+   * @this {goog.ui.Component}
+   */
+  element.form.getSubmitElement = function () {
+    return this.getElementByClass("firebaseui-id-submit");
+  };
 
+  /**
+   * @return {Element} The secondary link.
+   * @this {goog.ui.Component}
+   */
+  element.form.getSecondaryLinkElement = function () {
+    return this.getElementByClass("firebaseui-id-secondary-link");
+  };
 
-/**
- * @return {Element} The submit button.
- * @this {goog.ui.Component}
- */
-element.form.getSubmitElement = function() {
-  return this.getElementByClass('firebaseui-id-submit');
-};
-
-
-/**
- * @return {Element} The secondary link.
- * @this {goog.ui.Component}
- */
-element.form.getSecondaryLinkElement = function() {
-  return this.getElementByClass('firebaseui-id-secondary-link');
-};
-
-
-/**
- * Initializes the form element.
- * @param {function(?)} onSubmit Callback to invoke when the form is submitted
- *     (the submit button is clicked).
- * @param {function(?)=} opt_onLinkClick Callback to invoke when the secondary
- *     link (if there is one) in the form is clicked.
- * @this {goog.ui.Component}
- */
-element.form.initFormElement = function(onSubmit, opt_onLinkClick) {
-  var submitElement = element.form.getSubmitElement.call(this);
-  element.listenForActionEvent(this, submitElement, function(e) {
-    onSubmit(e);
-  });
-  var linkElement = element.form.getSecondaryLinkElement.call(this);
-  if (linkElement && opt_onLinkClick) {
-    element.listenForActionEvent(this, linkElement, function(e) {
-      opt_onLinkClick(e);
+  /**
+   * Initializes the form element.
+   * @param {function(?)} onSubmit Callback to invoke when the form is submitted
+   *     (the submit button is clicked).
+   * @param {function(?)=} opt_onLinkClick Callback to invoke when the secondary
+   *     link (if there is one) in the form is clicked.
+   * @this {goog.ui.Component}
+   */
+  element.form.initFormElement = function (onSubmit, opt_onLinkClick) {
+    var submitElement = element.form.getSubmitElement.call(this);
+    element.listenForActionEvent(this, submitElement, function (e) {
+      onSubmit(e);
     });
-  }
-};
+    var linkElement = element.form.getSecondaryLinkElement.call(this);
+    if (linkElement && opt_onLinkClick) {
+      element.listenForActionEvent(this, linkElement, function (e) {
+        opt_onLinkClick(e);
+      });
+    }
+  };
 });

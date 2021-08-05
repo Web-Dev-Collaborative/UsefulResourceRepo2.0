@@ -13,7 +13,7 @@ dashedName: remove-items-using-splice
 `splice()` 最多可以接受 3 個參數，但現在我們先關注前兩個。 `splice()` 接收的前兩個參數是整數，表示正在調用 的`splice()` 數組中的元素的索引或位置。 別忘了，數組的索引是*從 0 開始的*，所以我們要用 `0` 來表示數組中的第一個元素。 `splice()` 的第一個參數代表從數組中的哪個索引開始移除元素，而第二個參數表示要從數組中的這個位置開始刪除多少個元素。 例如：
 
 ```js
-let array = ['today', 'was', 'not', 'so', 'great'];
+let array = ["today", "was", "not", "so", "great"];
 
 array.splice(2, 2);
 ```
@@ -23,7 +23,7 @@ array.splice(2, 2);
 `splice()` 不僅會修改調用該方法的數組，還會返回一個包含被移除元素的數組：
 
 ```js
-let array = ['I', 'am', 'feeling', 'really', 'happy'];
+let array = ["I", "am", "feeling", "really", "happy"];
 
 let newArray = array.splice(3, 2);
 ```

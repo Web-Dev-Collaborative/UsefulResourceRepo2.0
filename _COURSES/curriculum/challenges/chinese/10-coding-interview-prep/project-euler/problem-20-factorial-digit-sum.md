@@ -1,6 +1,6 @@
 ---
 id: 5900f3801000cf542c50fe93
-title: 'Problem 20: Factorial digit sum'
+title: "Problem 20: Factorial digit sum"
 challengeType: 5
 forumTopicId: 301839
 dashedName: problem-20-factorial-digit-sum
@@ -20,7 +20,7 @@ Find the sum of the digits `n`!
 `sumFactorialDigits(10)` should return a number.
 
 ```js
-assert(typeof sumFactorialDigits(10) === 'number');
+assert(typeof sumFactorialDigits(10) === "number");
 ```
 
 `sumFactorialDigits(10)` should return 27.
@@ -59,7 +59,6 @@ assert.strictEqual(sumFactorialDigits(100), 648);
 
 ```js
 function sumFactorialDigits(n) {
-
   return n;
 }
 
@@ -69,9 +68,15 @@ sumFactorialDigits(100);
 # --solutions--
 
 ```js
-let factorial = (n) => n <= 1 ? BigInt(n) : BigInt(n) * BigInt(factorial(--n));
+let factorial = (n) =>
+  n <= 1 ? BigInt(n) : BigInt(n) * BigInt(factorial(--n));
 
-let sumDigits = n => n.toString().split('').map(x => parseInt(x)).reduce((a,b) => a + b);
+let sumDigits = (n) =>
+  n
+    .toString()
+    .split("")
+    .map((x) => parseInt(x))
+    .reduce((a, b) => a + b);
 
 function sumFactorialDigits(n) {
   return sumDigits(factorial(n));

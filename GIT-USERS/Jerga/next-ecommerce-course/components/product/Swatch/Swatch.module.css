@@ -36,7 +36,8 @@
 }
 
 .active {
-  &.size, &.color {
+  &.size,
+  &.color {
     @apply border-accents-9 border-2;
   }
 }

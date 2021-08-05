@@ -6,7 +6,9 @@
 // [START query_in_category_timestamp_modular]
 import { collection, query, where, orderBy } from "firebase/firestore";
 
-const q = query(collection(db, "posts"),
-    where("categories.cats", ">", 0),
-    orderBy("categories.cats"));
+const q = query(
+  collection(db, "posts"),
+  where("categories.cats", ">", 0),
+  orderBy("categories.cats")
+);
 // [END query_in_category_timestamp_modular]

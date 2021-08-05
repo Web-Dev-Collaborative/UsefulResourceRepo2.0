@@ -2,7 +2,7 @@
 id: bad82fee1348bd9aedf08721
 title: 使用 RGB 混合顏色
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cm24JU6'
+videoUrl: "https://scrimba.com/c/cm24JU6"
 forumTopicId: 18368
 dashedName: use-rgb-to-mix-colors
 ---
@@ -22,7 +22,7 @@ dashedName: use-rgb-to-mix-colors
 文本內容爲 `I am red!` 的 `h1` 元素的 `color` 值應爲紅色。
 
 ```js
-assert($('.red-text').css('color') === 'rgb(255, 0, 0)');
+assert($(".red-text").css("color") === "rgb(255, 0, 0)");
 ```
 
 紅色應使用 `rgb` 值來表示。
@@ -38,7 +38,7 @@ assert(
 文本內容爲 `I am orchid!` 的 `h1` 元素的 `color` 應爲淡紫色。
 
 ```js
-assert($('.orchid-text').css('color') === 'rgb(218, 112, 214)');
+assert($(".orchid-text").css("color") === "rgb(218, 112, 214)");
 ```
 
 淡紫色應使用 `rgb` 值來表示。
@@ -54,7 +54,7 @@ assert(
 文本內容爲 `I am blue!` 的 `h1` 元素的 `color` 應爲藍色。
 
 ```js
-assert($('.blue-text').css('color') === 'rgb(0, 0, 255)');
+assert($(".blue-text").css("color") === "rgb(0, 0, 255)");
 ```
 
 藍色應使用 `rgb` 值來表示。
@@ -70,7 +70,7 @@ assert(
 文本內容爲 `I am sienna!` 的 `h1` 元素的 `color` 應爲赭黃色。
 
 ```js
-assert($('.sienna-text').css('color') === 'rgb(160, 82, 45)');
+assert($(".sienna-text").css("color") === "rgb(160, 82, 45)");
 ```
 
 赭黃色應使用 `rgb` 值來表示。
@@ -126,7 +126,7 @@ assert(
     color: rgb(160, 82, 45);
   }
   .blue-text {
-    color:rgb(0, 0, 255);
+    color: rgb(0, 0, 255);
   }
 </style>
 

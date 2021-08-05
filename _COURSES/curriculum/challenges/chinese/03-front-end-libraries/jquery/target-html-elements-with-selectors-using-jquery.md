@@ -4,8 +4,7 @@ title: 使用 jQuery 选择器选择元素
 challengeType: 6
 forumTopicId: 18319
 required:
-  - 
-    link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: target-html-elements-with-selectors-using-jquery
 ---
 
@@ -30,7 +29,7 @@ $("button").addClass("animated bounce");
 应该用 jQuery 的 `addClass()` 函数给 `button` 元素添加 `animated` 和 `bounce` class。
 
 ```js
-assert($('button').hasClass('animated') && $('button').hasClass('bounce'));
+assert($("button").hasClass("animated") && $("button").hasClass("bounce"));
 ```
 
 应该仅用 jQuery 给元素添加 class。
@@ -43,7 +42,7 @@ jQuery 代码应该放在 `$(document).ready();` 函数里。
 
 ```js
 assert(
-  code.replace(/\s/g, '').match(/\$\(document\)\.ready\(function\(\)\{\$/g)
+  code.replace(/\s/g, "").match(/\$\(document\)\.ready\(function\(\)\{\$/g)
 );
 ```
 
@@ -53,9 +52,7 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
-
-  });
+  $(document).ready(function () {});
 </script>
 
 <!-- Only change code above this line -->
@@ -87,7 +84,7 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
   });
 </script>

@@ -16,211 +16,223 @@
  * @fileoverview Tests for auth.js
  */
 
-goog.provide('firebaseui.auth.AuthTest');
+goog.provide("firebaseui.auth.AuthTest");
 
-goog.require('firebaseui.auth.testing.FakeAppClient');
-goog.require('goog.Promise');
-goog.require('goog.testing.AsyncTestCase');
-goog.require('goog.testing.jsunit');
+goog.require("firebaseui.auth.testing.FakeAppClient");
+goog.require("goog.Promise");
+goog.require("goog.testing.AsyncTestCase");
+goog.require("goog.testing.jsunit");
 
-goog.setTestOnly('firebaseui.auth.AuthTest');
-
+goog.setTestOnly("firebaseui.auth.AuthTest");
 
 var asyncTestCase = goog.testing.AsyncTestCase.createAndInstall();
 var app;
 var auth;
 
-
 function setUp() {
-  app = new firebaseui.auth.testing.FakeAppClient({
-    'apiKey': 'API_KEY',
-    'authDomain': 'example.firebaseapp.com'
-  }, 'app1');
+  app = new firebaseui.auth.testing.FakeAppClient(
+    {
+      apiKey: "API_KEY",
+      authDomain: "example.firebaseapp.com",
+    },
+    "app1"
+  );
   auth = app.auth();
 }
 
-
 function testFakeAppClient() {
-  assertEquals('app1', app['name']);
-  assertEquals('API_KEY', app['options']['apiKey']);
-  assertEquals('example.firebaseapp.com', app['options']['authDomain']);
-  assertEquals(auth['app'], app);
+  assertEquals("app1", app["name"]);
+  assertEquals("API_KEY", app["options"]["apiKey"]);
+  assertEquals("example.firebaseapp.com", app["options"]["authDomain"]);
+  assertEquals(auth["app"], app);
 }
-
 
 function testFakeAuthClient_success() {
   asyncTestCase.waitForSignals(3);
   auth.install();
-  var email = 'user@example.com';
-  var email2 = 'user2@example.com';
-  var password = 'password';
-  var user = {'uid': 'USER_ID'};
+  var email = "user@example.com";
+  var email2 = "user2@example.com";
+  var password = "password";
+  var user = { uid: "USER_ID" };
   // This block will be called in UI interactions.
-  auth.fetchSignInMethodsForEmail(email).then(function(arr) {
-    return auth.signInWithEmailAndPassword(email, password)
-        .then(function(user) {
+  auth.fetchSignInMethodsForEmail(email).then(
+    function (arr) {
+      return auth
+        .signInWithEmailAndPassword(email, password)
+        .then(function (user) {
           return auth.signOut();
         });
-  }, function(error) {
-    return auth.createUserWithEmailAndPassword(email, password);
-  });
-  auth.fetchSignInMethodsForEmail(email2).thenCatch(function(error) {
+    },
+    function (error) {
+      return auth.createUserWithEmailAndPassword(email, password);
+    }
+  );
+  auth.fetchSignInMethodsForEmail(email2).thenCatch(function (error) {
     return auth.createUserWithEmailAndPassword(email2, password);
   });
-  auth.sendPasswordResetEmail(email2).thenCatch(function(error) {
+  auth.sendPasswordResetEmail(email2).thenCatch(function (error) {
     return auth.signInWithEmailAndPassword(email2, password);
   });
-  auth.checkActionCode('actionCode').then(function(result) {
+  auth.checkActionCode("actionCode").then(function (result) {
     assertEquals(true, result);
     asyncTestCase.signal();
   });
-  auth.applyActionCode('actionCode2').thenCatch(function(result) {
+  auth.applyActionCode("actionCode2").thenCatch(function (result) {
     assertEquals(false, result);
     asyncTestCase.signal();
   });
 
   // Simulate API calls in tests.
   auth.assertFetchSignInMethodsForEmail(
-      [email], ['google.com', 'facebook.com']);
+    [email],
+    ["google.com", "facebook.com"]
+  );
   auth.assertSignInWithEmailAndPassword([email, password], user);
   auth.assertSignOut([]);
   auth.assertFetchSignInMethodsForEmail([email2], null, new Error());
   auth.assertCreateUserWithEmailAndPassword([email2, password], user);
   // It also works when passing in a function.
-  auth.assertCheckActionCode(['actionCode'], function() {
+  auth.assertCheckActionCode(["actionCode"], function () {
     return goog.Promise.resolve(true);
   });
-  auth.assertApplyActionCode(['actionCode2'], function() {
+  auth.assertApplyActionCode(["actionCode2"], function () {
     return goog.Promise.reject(false);
   });
-  auth.process().then(function() {
+  auth.process().then(function () {
     // These asserts can also be chained with process.
     auth.assertSendPasswordResetEmail([email2], null, new Error());
     auth.assertSignInWithEmailAndPassword([email2, password], user);
-    auth.process().then(function() {
+    auth.process().then(function () {
       auth.uninstall();
       asyncTestCase.signal();
     });
   });
 }
 
-
 function testFakeAuthClient_setUser() {
   auth.install();
-  assertNull(auth['currentUser']);
+  assertNull(auth["currentUser"]);
 
   auth.setUser({
-    'uid': '123456',
-    'email': 'user@example.com'
+    uid: "123456",
+    email: "user@example.com",
   });
-  assertEquals('123456', auth['currentUser']['uid']);
-  assertEquals('user@example.com', auth['currentUser']['email']);
-  assertUndefined(auth['currentUser']['emailVerified']);
+  assertEquals("123456", auth["currentUser"]["uid"]);
+  assertEquals("user@example.com", auth["currentUser"]["email"]);
+  assertUndefined(auth["currentUser"]["emailVerified"]);
 
   auth.setUser({
-    'uid': '789012',
-    'displayName': 'John Smith'
+    uid: "789012",
+    displayName: "John Smith",
   });
-  assertEquals('789012', auth['currentUser']['uid']);
-  assertEquals('John Smith', auth['currentUser']['displayName']);
-  assertUndefined(auth['currentUser']['email']);
+  assertEquals("789012", auth["currentUser"]["uid"]);
+  assertEquals("John Smith", auth["currentUser"]["displayName"]);
+  assertUndefined(auth["currentUser"]["email"]);
 
   auth.setUser(null);
-  assertNull(auth['currentUser']);
+  assertNull(auth["currentUser"]);
 }
-
 
 function testFakeAuthClient_logFramework() {
   auth.install();
-  auth.INTERNAL.logFramework('firebaseui');
-  auth.INTERNAL.logFramework('angularfire');
-  auth.assertFrameworksLogged(['firebaseui', 'angularfire']);
+  auth.INTERNAL.logFramework("firebaseui");
+  auth.INTERNAL.logFramework("angularfire");
+  auth.assertFrameworksLogged(["firebaseui", "angularfire"]);
 }
-
 
 function testFakeAuthClient_withUser_Success() {
   asyncTestCase.waitForSignals(1);
   // Test with combination of authentication and user methods.
   auth.install();
   // The following code will mimic the UI interactions flow.
-  var newEmail = 'user@example.com';
-  var actionCode = 'EMAIL_VERIFICATION_CODE';
+  var newEmail = "user@example.com";
+  var actionCode = "EMAIL_VERIFICATION_CODE";
   // User would be signed in somewhere.
-  auth.setUser({'uid': '123456'});
-  auth.currentUser.updateEmail(newEmail)
-      .then(function() {
-        return auth.currentUser.sendEmailVerification();
-      })
-      .then(function() {
-        return auth.applyActionCode(actionCode);
-      });
+  auth.setUser({ uid: "123456" });
+  auth.currentUser
+    .updateEmail(newEmail)
+    .then(function () {
+      return auth.currentUser.sendEmailVerification();
+    })
+    .then(function () {
+      return auth.applyActionCode(actionCode);
+    });
   // For testing, the following calls are used.
   auth.currentUser.assertUpdateEmail([newEmail]);
   auth.currentUser.assertSendEmailVerification([]);
   auth.assertApplyActionCode([actionCode]);
-  auth.process().then(function() {
+  auth.process().then(function () {
     auth.uninstall();
     asyncTestCase.signal();
   });
 }
 
-
 function testFakeAuthClient_expectedUncalledApiError() {
   asyncTestCase.waitForSignals(1);
   // Asserting a different API than the one actually called.
   auth.install();
-  var email = 'user@example.com';
-  var password = 'password';
+  var email = "user@example.com";
+  var password = "password";
   auth.signInWithEmailAndPassword(email, password);
 
   auth.assertSignOut([]);
-  auth.process().then(function() {
-    return auth.uninstall();
-  }).thenCatch(function(e) {
-    assertEquals(
-        'missing API request: signOut', e.message);
-    asyncTestCase.signal();
-  });
+  auth
+    .process()
+    .then(function () {
+      return auth.uninstall();
+    })
+    .thenCatch(function (e) {
+      assertEquals("missing API request: signOut", e.message);
+      asyncTestCase.signal();
+    });
 }
-
 
 function testFakeAuthClient_unexpectedApiError() {
   asyncTestCase.waitForSignals(1);
   // Forgetting to assert API calls that were actually called.
   auth.install();
-  var email = 'user@example.com';
-  var password = 'password';
-  var user = {'uid': 'USER_ID'};
-  auth.fetchSignInMethodsForEmail(email).then(function(arr) {
-    return auth.signInWithEmailAndPassword(email, password);
-  }, function(error) {
-    return auth.createUserWithEmailAndPassword(email, password);
-  });
+  var email = "user@example.com";
+  var password = "password";
+  var user = { uid: "USER_ID" };
+  auth.fetchSignInMethodsForEmail(email).then(
+    function (arr) {
+      return auth.signInWithEmailAndPassword(email, password);
+    },
+    function (error) {
+      return auth.createUserWithEmailAndPassword(email, password);
+    }
+  );
   // Simulate API calls.
   auth.assertFetchSignInMethodsForEmail(
-      [email], ['google.com', 'facebook.com']);
-  auth.process().then(function() {
-    return auth.uninstall();
-  }).thenCatch(function(e) {
-    assertEquals(
-        'unexpected API request(s): signInWithEmailAndPassword', e.message);
-    asyncTestCase.signal();
-  });
+    [email],
+    ["google.com", "facebook.com"]
+  );
+  auth
+    .process()
+    .then(function () {
+      return auth.uninstall();
+    })
+    .thenCatch(function (e) {
+      assertEquals(
+        "unexpected API request(s): signInWithEmailAndPassword",
+        e.message
+      );
+      asyncTestCase.signal();
+    });
 }
-
 
 function testFakeAuthClient_runAuthChangeHandler() {
   var called1 = 0;
   var called2 = 0;
-  var cb1 = function(passedUser) {
-    assertEquals(auth['currentUser'], passedUser);
+  var cb1 = function (passedUser) {
+    assertEquals(auth["currentUser"], passedUser);
     called1++;
   };
-  var cb2 = function(passedUser) {
-    assertEquals(auth['currentUser'], passedUser);
+  var cb2 = function (passedUser) {
+    assertEquals(auth["currentUser"], passedUser);
     called2++;
   };
-  auth.setUser({email: 'test@example.com'});
+  auth.setUser({ email: "test@example.com" });
   // Add both listeners.
   var unsubscribe1 = auth.onAuthStateChanged(cb1);
   var unsubscribe2 = auth.onAuthStateChanged(cb2);
@@ -245,19 +257,18 @@ function testFakeAuthClient_runAuthChangeHandler() {
   assertEquals(2, called2);
 }
 
-
 function testFakeAuthClient_runIdTokenChangeHandler() {
   var called1 = 0;
   var called2 = 0;
-  var cb1 = function(passedUser) {
-    assertEquals(auth['currentUser'], passedUser);
+  var cb1 = function (passedUser) {
+    assertEquals(auth["currentUser"], passedUser);
     called1++;
   };
-  var cb2 = function(passedUser) {
-    assertEquals(auth['currentUser'], passedUser);
+  var cb2 = function (passedUser) {
+    assertEquals(auth["currentUser"], passedUser);
     called2++;
   };
-  auth.setUser({email: 'test@example.com'});
+  auth.setUser({ email: "test@example.com" });
   // Add both listeners.
   var unsubscribe1 = auth.onIdTokenChanged(cb1);
   var unsubscribe2 = auth.onIdTokenChanged(cb2);

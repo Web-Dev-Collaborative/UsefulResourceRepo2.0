@@ -25,13 +25,13 @@ let currentUsers = 0;
 最後，在監聽連接的地方發出（emit）該事件即可。 這個事件應命名爲 “user count”，且數據應該爲 `currentUsers`：
 
 ```js
-io.emit('user count', currentUsers);
+io.emit("user count", currentUsers);
 ```
 
 現在，你實現了在客戶端監聽此事件。 類似在服務器上監聽連接，你將使用 `on` 關鍵字。
 
 ```js
-socket.on('user count', function(data) {
+socket.on("user count", function (data) {
   console.log(data);
 });
 ```
@@ -46,12 +46,12 @@ socket.on('user count', function(data) {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
         /currentUsers/gi,
-        'You should have variable currentUsers defined'
+        "You should have variable currentUsers defined"
       );
     },
     (xhr) => {
@@ -64,7 +64,7 @@ socket.on('user count', function(data) {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
@@ -82,12 +82,12 @@ socket.on('user count', function(data) {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/public/client.js').then(
+  $.get(getUserInput("url") + "/public/client.js").then(
     (data) => {
       assert.match(
         data,
         /socket.on.*('|")user count('|")/gi,
-        'Your client should be connection to server with the connection defined as socket'
+        "Your client should be connection to server with the connection defined as socket"
       );
     },
     (xhr) => {

@@ -13,11 +13,11 @@ A constructor function that inherits its `prototype` object from a supertype con
 For example, `Bird` is a constructor that inherits its `prototype` from `Animal`:
 
 ```js
-function Animal() { }
-Animal.prototype.eat = function() {
+function Animal() {}
+Animal.prototype.eat = function () {
   console.log("nom nom nom");
 };
-function Bird() { }
+function Bird() {}
 Bird.prototype = Object.create(Animal.prototype);
 Bird.prototype.constructor = Bird;
 ```
@@ -25,7 +25,7 @@ Bird.prototype.constructor = Bird;
 In addition to what is inherited from `Animal`, you want to add behavior that is unique to `Bird` objects. Here, `Bird` will get a `fly()` function. Functions are added to `Bird's` `prototype` the same way as any constructor function:
 
 ```js
-Bird.prototype.fly = function() {
+Bird.prototype.fly = function () {
   console.log("I'm flying!");
 };
 ```
@@ -49,19 +49,19 @@ Add all necessary code so the `Dog` object inherits from `Animal` and the `Dog`'
 `Animal` should not respond to the `bark()` method.
 
 ```js
-assert(typeof Animal.prototype.bark == 'undefined');
+assert(typeof Animal.prototype.bark == "undefined");
 ```
 
 `Dog` should inherit the `eat()` method from `Animal`.
 
 ```js
-assert(typeof Dog.prototype.eat == 'function');
+assert(typeof Dog.prototype.eat == "function");
 ```
 
 The `Dog` prototype should have a `bark()` method.
 
 ```js
-assert('bark' in Dog.prototype);
+assert("bark" in Dog.prototype);
 ```
 
 `beagle` should be an `instanceof` `Animal`.
@@ -82,7 +82,7 @@ assert(beagle.constructor === Dog);
 console.log = function (msg) {
   throw msg;
 };
-assert.throws(() => beagle.eat(), 'nom nom nom');
+assert.throws(() => beagle.eat(), "nom nom nom");
 ```
 
 `beagle.bark()` should log the string `Woof!`
@@ -91,7 +91,7 @@ assert.throws(() => beagle.eat(), 'nom nom nom');
 console.log = function (msg) {
   throw msg;
 };
-assert.throws(() => beagle.bark(), 'Woof!');
+assert.throws(() => beagle.bark(), "Woof!");
 ```
 
 # --seed--
@@ -99,15 +99,14 @@ assert.throws(() => beagle.bark(), 'Woof!');
 ## --seed-contents--
 
 ```js
-function Animal() { }
-Animal.prototype.eat = function() { console.log("nom nom nom"); };
+function Animal() {}
+Animal.prototype.eat = function () {
+  console.log("nom nom nom");
+};
 
-function Dog() { }
+function Dog() {}
 
 // Only change code below this line
-
-
-
 
 // Only change code above this line
 
@@ -117,14 +116,16 @@ let beagle = new Dog();
 # --solutions--
 
 ```js
-function Animal() { }
-Animal.prototype.eat = function() { console.log("nom nom nom"); };
+function Animal() {}
+Animal.prototype.eat = function () {
+  console.log("nom nom nom");
+};
 
-function Dog() { }
+function Dog() {}
 Dog.prototype = Object.create(Animal.prototype);
 Dog.prototype.constructor = Dog;
 Dog.prototype.bark = function () {
-  console.log('Woof!');
+  console.log("Woof!");
 };
 let beagle = new Dog();
 

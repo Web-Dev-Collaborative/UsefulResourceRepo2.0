@@ -11,8 +11,8 @@ dashedName: explore-differences-between-the-var-and-let-keywords
 Uno de los mayores problemas con la declaración de variables utilizando la palabra clave `var` es que tú puedes sobrescribir declaraciones de variables sin un error.
 
 ```js
-var camper = 'James';
-var camper = 'David';
+var camper = "James";
+var camper = "David";
 console.log(camper);
 ```
 
@@ -22,8 +22,8 @@ Como puedes ver en el código anterior, la variable `camper` es originalmente de
 Una nueva palabra clave llamada `let` que fue introducida en ES6 para resolver este posible problema con la palabra clave `var`. Si reemplazas `var` por `let` en las declaraciones de variables del código anterior, el resultado será un error.
 
 ```js
-let camper = 'James';
-let camper = 'David';
+let camper = "James";
+let camper = "David";
 ```
 
 Este error se puede ver en la consola de tu navegador. Así que a diferencia de `var`, al usar `let`, una variable con el mismo nombre solo puede declararse una vez. Toma en cuenta el `"use strict"` (uso estricto). Esto habilita el modo estricto, el cual captura errores comunes de programación y acciones "inseguras". Por ejemplo:
@@ -44,19 +44,19 @@ Actualiza el código para que solo utilice la palabra clave `let`.
 `var` no debe existir en el código.
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/var/g));
+(getUserInput) => assert(!getUserInput("index").match(/var/g));
 ```
 
 `catName` debe ser la cadena `Oliver`.
 
 ```js
-assert(catName === 'Oliver');
+assert(catName === "Oliver");
 ```
 
 `quote` debe ser la cadena `Oliver says Meow!`
 
 ```js
-assert(quote === 'Oliver says Meow!');
+assert(quote === "Oliver says Meow!");
 ```
 
 # --seed--
@@ -71,7 +71,6 @@ function catTalk() {
 
   catName = "Oliver";
   quote = catName + " says Meow!";
-
 }
 catTalk();
 ```
@@ -82,10 +81,10 @@ catTalk();
 let catName;
 let quote;
 function catTalk() {
-  'use strict';
+  "use strict";
 
-  catName = 'Oliver';
-  quote = catName + ' says Meow!';
+  catName = "Oliver";
+  quote = catName + " says Meow!";
 }
 catTalk();
 ```

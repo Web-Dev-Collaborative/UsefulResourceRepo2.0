@@ -16,26 +16,24 @@
  * @fileoverview Tests for the spinner page.
  */
 
-goog.provide('firebaseui.auth.ui.page.SpinnerTest');
-goog.setTestOnly('firebaseui.auth.ui.page.SpinnerTest');
+goog.provide("firebaseui.auth.ui.page.SpinnerTest");
+goog.setTestOnly("firebaseui.auth.ui.page.SpinnerTest");
 
-goog.require('firebaseui.auth.ui.page.PageTestHelper');
-goog.require('firebaseui.auth.ui.page.Spinner');
-goog.require('goog.dom');
-goog.require('goog.dom.TagName');
-goog.require('goog.testing.MockClock');
-goog.require('goog.testing.jsunit');
-
+goog.require("firebaseui.auth.ui.page.PageTestHelper");
+goog.require("firebaseui.auth.ui.page.Spinner");
+goog.require("goog.dom");
+goog.require("goog.dom.TagName");
+goog.require("goog.testing.MockClock");
+goog.require("goog.testing.jsunit");
 
 var mockClock;
 var root;
 var component;
 var pageTestHelper = new firebaseui.auth.ui.page.PageTestHelper()
-    // Spinner already has a progress bar. No need to use
-    // executePromiseRequest.
-    .excludeTests('testExecutePromiseRequest_')
-    .registerTests();
-
+  // Spinner already has a progress bar. No need to use
+  // executePromiseRequest.
+  .excludeTests("testExecutePromiseRequest_")
+  .registerTests();
 
 function setUp() {
   // Set up clock.
@@ -48,7 +46,6 @@ function setUp() {
   pageTestHelper.setClock(mockClock).setComponent(component);
 }
 
-
 function tearDown() {
   // Tear down clock.
   mockClock.tick(Infinity);
@@ -57,11 +54,9 @@ function tearDown() {
   goog.dom.removeNode(root);
 }
 
-
 function testSpinner_getPageId() {
-  assertEquals('spinner', component.getPageId());
+  assertEquals("spinner", component.getPageId());
 }
-
 
 function testSpinner_pageEvents() {
   // Run page event tests.

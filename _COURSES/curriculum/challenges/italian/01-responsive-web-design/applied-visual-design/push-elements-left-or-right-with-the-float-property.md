@@ -2,7 +2,7 @@
 id: 587d78a3367417b2b2512ace
 title: Spingere gli elementi a sinistra o a destra con la proprietà float
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c2MDqu2'
+videoUrl: "https://scrimba.com/c/c2MDqu2"
 forumTopicId: 301066
 dashedName: push-elements-left-or-right-with-the-float-property
 ---
@@ -20,13 +20,13 @@ Il "markup" dato funzionerebbe bene con un layout a due colonne, con gli element
 L'elemento con id `left` dovrebbe avere un `float` di `left`.
 
 ```js
-assert($('#left').css('float') == 'left');
+assert($("#left").css("float") == "left");
 ```
 
 L'elemento con id `right` dovrebbe avere un `float` di `right`.
 
 ```js
-assert($('#right').css('float') == 'right');
+assert($("#right").css("float") == "right");
 ```
 
 # --seed--
@@ -37,14 +37,13 @@ assert($('#right').css('float') == 'right');
 <head>
   <style>
     #left {
-
       width: 50%;
     }
     #right {
-
       width: 40%;
     }
-    aside, section {
+    aside,
+    section {
       padding: 2px;
       background-color: #ccc;
     }
@@ -78,7 +77,8 @@ assert($('#right').css('float') == 'right');
       float: right;
       width: 40%;
     }
-    aside, section {
+    aside,
+    section {
       padding: 2px;
       background-color: #ccc;
     }

@@ -27,7 +27,6 @@ goog.provide('fireauth.idp.SignInMethod');
 
 goog.require('fireauth.constants');
 
-
 /**
  * Enums for supported provider IDs. These provider IDs correspond to the
  * sign_in_provider in the Firebase ID token and do not correspond to the
@@ -46,7 +45,6 @@ fireauth.idp.ProviderId = {
   TWITTER: 'twitter.com'
 };
 
-
 /**
  * Enums for supported sign in methods.
  * @enum {string}
@@ -60,7 +58,6 @@ fireauth.idp.SignInMethod = {
   PHONE: 'phone',
   TWITTER: 'twitter.com'
 };
-
 
 /**
  * The settings of an identity provider. The fields are:
@@ -81,24 +78,31 @@ fireauth.idp.SignInMethod = {
  */
 fireauth.idp.IdpSettings;
 
-
 /**
  * The list of reserved OAuth 1.0 parameters.
  * @const {!Array<string>}
  */
-fireauth.idp.RESERVED_OAUTH1_PARAMS =
-    ['oauth_consumer_key', 'oauth_nonce', 'oauth_signature',
-     'oauth_signature_method', 'oauth_timestamp', 'oauth_token',
-     'oauth_version'];
-
+fireauth.idp.RESERVED_OAUTH1_PARAMS = [
+  'oauth_consumer_key',
+  'oauth_nonce',
+  'oauth_signature',
+  'oauth_signature_method',
+  'oauth_timestamp',
+  'oauth_token',
+  'oauth_version'
+];
 
 /**
  * The list of reserved OAuth 2.0 parameters.
  * @const {!Array<string>}
  */
-fireauth.idp.RESERVED_OAUTH2_PARAMS =
-    ['client_id', 'response_type', 'scope', 'redirect_uri', 'state'];
-
+fireauth.idp.RESERVED_OAUTH2_PARAMS = [
+  'client_id',
+  'response_type',
+  'scope',
+  'redirect_uri',
+  'state'
+];
 
 /**
  * The recommendations for the different IdP display settings.
@@ -110,44 +114,43 @@ fireauth.idp.Settings = {
     popupWidth: 700,
     popupHeight: 600,
     providerId: fireauth.idp.ProviderId.FACEBOOK,
-    reservedOAuthParameters: fireauth.idp.RESERVED_OAUTH2_PARAMS,
+    reservedOAuthParameters: fireauth.idp.RESERVED_OAUTH2_PARAMS
   },
   GITHUB: {
     languageParam: null,
     popupWidth: 500,
     popupHeight: 750,
     providerId: fireauth.idp.ProviderId.GITHUB,
-    reservedOAuthParameters: fireauth.idp.RESERVED_OAUTH2_PARAMS,
+    reservedOAuthParameters: fireauth.idp.RESERVED_OAUTH2_PARAMS
   },
   GOOGLE: {
     languageParam: 'hl',
     popupWidth: 515,
     popupHeight: 680,
     providerId: fireauth.idp.ProviderId.GOOGLE,
-    reservedOAuthParameters: fireauth.idp.RESERVED_OAUTH2_PARAMS,
+    reservedOAuthParameters: fireauth.idp.RESERVED_OAUTH2_PARAMS
   },
   TWITTER: {
     languageParam: 'lang',
     popupWidth: 485,
     popupHeight: 705,
     providerId: fireauth.idp.ProviderId.TWITTER,
-    reservedOAuthParameters: fireauth.idp.RESERVED_OAUTH1_PARAMS,
+    reservedOAuthParameters: fireauth.idp.RESERVED_OAUTH1_PARAMS
   },
   APPLE: {
     languageParam: 'locale',
     popupWidth: 640,
     popupHeight: 600,
     providerId: 'apple.com',
-    reservedOAuthParameters: [],
-  },
+    reservedOAuthParameters: []
+  }
 };
-
 
 /**
  * @param {!fireauth.idp.ProviderId} providerId The requested provider ID.
  * @return {?fireauth.idp.Settings} The settings for the requested provider ID.
  */
-fireauth.idp.getIdpSettings = function(providerId) {
+fireauth.idp.getIdpSettings = function (providerId) {
   for (var key in fireauth.idp.Settings) {
     if (fireauth.idp.Settings[key].providerId == providerId) {
       return fireauth.idp.Settings[key];
@@ -156,22 +159,22 @@ fireauth.idp.getIdpSettings = function(providerId) {
   return null;
 };
 
-
 /**
  * @param {!fireauth.idp.ProviderId} providerId The requested provider ID.
  * @return {!Array<string>} The list of reserved OAuth parameters.
  */
-fireauth.idp.getReservedOAuthParams = function(providerId) {
+fireauth.idp.getReservedOAuthParams = function (providerId) {
   var settings = fireauth.idp.getIdpSettings(providerId);
   return (settings && settings.reservedOAuthParameters) || [];
 };
-
 
 /**
  * @param {?string|undefined} identifier The provider identifier.
  * @return {boolean} Whether the identifier provided is a SAML provider ID.
  */
-fireauth.idp.isSaml = function(identifier) {
-   return typeof identifier === 'string' &&
-     identifier.indexOf(fireauth.constants.SAML_PREFIX) == 0;
+fireauth.idp.isSaml = function (identifier) {
+  return (
+    typeof identifier === 'string' &&
+    identifier.indexOf(fireauth.constants.SAML_PREFIX) == 0
+  );
 };

@@ -25,21 +25,21 @@ action creator `addNoteText` 应该返回一个包含 `type` 和 `text` 的对�
 ```js
 assert(
   (function () {
-    const addNoteFn = addNoteText('__TEST__NOTE');
-    return addNoteFn.type === ADD_NOTE && addNoteFn.text === '__TEST__NOTE';
+    const addNoteFn = addNoteText("__TEST__NOTE");
+    return addNoteFn.type === ADD_NOTE && addNoteFn.text === "__TEST__NOTE";
   })()
 );
 ```
 
-dispatch 一个 action creator 是 `addNoteText` 的action `ADD_NOTE`，应将 `state` 更新为 action creator 传递的字符串。
+dispatch 一个 action creator 是 `addNoteText` 的 action `ADD_NOTE`，应将 `state` 更新为 action creator 传递的字符串。
 
 ```js
 assert(
   (function () {
     const initialState = store.getState();
-    store.dispatch(addNoteText('__TEST__NOTE'));
+    store.dispatch(addNoteText("__TEST__NOTE"));
     const newState = store.getState();
-    return initialState !== newState && newState === '__TEST__NOTE';
+    return initialState !== newState && newState === "__TEST__NOTE";
   })()
 );
 ```
@@ -49,10 +49,10 @@ assert(
 ## --seed-contents--
 
 ```js
-const ADD_NOTE = 'ADD_NOTE';
+const ADD_NOTE = "ADD_NOTE";
 
-const notesReducer = (state = 'Initial State', action) => {
-  switch(action.type) {
+const notesReducer = (state = "Initial State", action) => {
+  switch (action.type) {
     // Change code below this line
 
     // Change code above this line
@@ -63,24 +63,23 @@ const notesReducer = (state = 'Initial State', action) => {
 
 const addNoteText = (note) => {
   // Change code below this line
-
   // Change code above this line
 };
 
 const store = Redux.createStore(notesReducer);
 
 console.log(store.getState());
-store.dispatch(addNoteText('Hello!'));
+store.dispatch(addNoteText("Hello!"));
 console.log(store.getState());
 ```
 
 # --solutions--
 
 ```js
-const ADD_NOTE = 'ADD_NOTE';
+const ADD_NOTE = "ADD_NOTE";
 
-const notesReducer = (state = 'Initial State', action) => {
-  switch(action.type) {
+const notesReducer = (state = "Initial State", action) => {
+  switch (action.type) {
     // Change code below this line
     case ADD_NOTE:
       return action.text;
@@ -94,14 +93,14 @@ const addNoteText = (note) => {
   // Change code below this line
   return {
     type: ADD_NOTE,
-    text: note
-  }
+    text: note,
+  };
   // Change code above this line
 };
 
 const store = Redux.createStore(notesReducer);
 
 console.log(store.getState());
-store.dispatch(addNoteText('Hello Redux!'));
+store.dispatch(addNoteText("Hello Redux!"));
 console.log(store.getState());
 ```

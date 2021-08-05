@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08828
 title: Create an Ordered List
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cQ3B8TM'
+videoUrl: "https://scrimba.com/p/pVMPUv/cQ3B8TM"
 forumTopicId: 16824
 dashedName: create-an-ordered-list
 ---
@@ -33,37 +33,37 @@ Create an ordered list of the top 3 things cats hate the most.
 You should have an ordered list for `Top 3 things cats hate:`
 
 ```js
-assert(/Top 3 things cats hate:/i.test($('ol').prev().text()));
+assert(/Top 3 things cats hate:/i.test($("ol").prev().text()));
 ```
 
 You should have an unordered list for `Things cats love:`
 
 ```js
-assert(/Things cats love:/i.test($('ul').prev().text()));
+assert(/Things cats love:/i.test($("ul").prev().text()));
 ```
 
 You should have only one `ul` element.
 
 ```js
-assert.equal($('ul').length, 1);
+assert.equal($("ul").length, 1);
 ```
 
 You should have only one `ol` element.
 
 ```js
-assert.equal($('ol').length, 1);
+assert.equal($("ol").length, 1);
 ```
 
 You should have three `li` elements within your `ul` element.
 
 ```js
-assert.equal($('ul li').length, 3);
+assert.equal($("ul li").length, 3);
 ```
 
 You should have three `li` elements within your `ol` element.
 
 ```js
-assert.equal($('ol li').length, 3);
+assert.equal($("ol li").length, 3);
 ```
 
 Your `ul` element should have a closing tag.
@@ -97,7 +97,7 @@ assert(
 The `li` elements in your unordered list should not be empty.
 
 ```js
-$('ul li').each((i, val) =>
+$("ul li").each((i, val) =>
   assert(__helpers.removeWhiteSpace(val.textContent))
 );
 ```
@@ -105,7 +105,7 @@ $('ul li').each((i, val) =>
 The `li` elements in your ordered list should not be empty.
 
 ```js
-$('ol li').each((i, val) =>
+$("ol li").each((i, val) =>
   assert(!!__helpers.removeWhiteSpace(val.textContent))
 );
 ```
@@ -119,7 +119,11 @@ $('ol li').each((i, val) =>
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -128,7 +132,6 @@ $('ol li').each((i, val) =>
     <li>lasagna</li>
   </ul>
   <p>Top 3 things cats hate:</p>
-
 </main>
 ```
 
@@ -139,7 +142,11 @@ $('ol li').each((i, val) =>
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>

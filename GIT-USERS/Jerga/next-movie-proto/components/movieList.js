@@ -1,19 +1,23 @@
-import React from 'react'
-import Link from 'next/link'
+import React from "react";
+import Link from "next/link";
 
 const MovieList = (props) => {
-  const { movies } = props
-  const shorten = (text) => text.substr(0, 100) + '...'
+  const { movies } = props;
+  const shorten = (text) => text.substr(0, 100) + "...";
   return (
     <React.Fragment>
-      { movies.length > 0 ?
-          movies.map(movie => {
+      {movies.length > 0 ? (
+        movies.map((movie) => {
           return (
             <div key={movie.id} className="col-lg-4 col-md-6 mb-4">
               <div className="card h-100">
                 <Link href="/movies/[id]" as={`/movies/${movie.id}`}>
                   <a>
-                    <img className="card-img-top img-fluid" src={movie.image} alt="" />
+                    <img
+                      className="card-img-top img-fluid"
+                      src={movie.image}
+                      alt=""
+                    />
                   </a>
                 </Link>
                 <div className="card-body">
@@ -30,22 +34,24 @@ const MovieList = (props) => {
                 </div>
               </div>
             </div>
-            )
-          })
-        : <div class="ml-3 alert alert-warning" role="alert">
-            There are no movies for selected category :(
-          </div>
-      }
-      <style jsx>{`
-        .card-footer {
-          text-align: center;
-          font-size: 20px;
-          font-weight: bold;
-        }
-      `}
+          );
+        })
+      ) : (
+        <div class="ml-3 alert alert-warning" role="alert">
+          There are no movies for selected category :(
+        </div>
+      )}
+      <style jsx>
+        {`
+          .card-footer {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+          }
+        `}
       </style>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default MovieList
+export default MovieList;

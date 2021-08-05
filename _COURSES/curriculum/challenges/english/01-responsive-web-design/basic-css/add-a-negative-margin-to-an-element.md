@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08823
 title: Add a Negative Margin to an Element
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cnpyGs3'
+videoUrl: "https://scrimba.com/c/cnpyGs3"
 forumTopicId: 16166
 dashedName: add-a-negative-margin-to-an-element
 ---
@@ -24,7 +24,7 @@ Change the `margin` of the blue box to `-15px`, so it fills the entire horizonta
 Your `blue-box` class should give elements `-15px` of `margin`.
 
 ```js
-assert($('.blue-box').css('margin-top') === '-15px');
+assert($(".blue-box").css("margin-top") === "-15px");
 ```
 
 # --seed--

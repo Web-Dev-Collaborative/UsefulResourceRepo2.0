@@ -16,19 +16,19 @@
  * @fileoverview UI component for the email mismatch page.
  */
 
-goog.provide('firebaseui.auth.ui.page.EmailMismatch');
+goog.provide("firebaseui.auth.ui.page.EmailMismatch");
 
-goog.require('firebaseui.auth.soy2.page');
-goog.require('firebaseui.auth.ui.element.form');
-goog.require('firebaseui.auth.ui.page.Base');
-goog.requireType('goog.dom.DomHelper');
-
+goog.require("firebaseui.auth.soy2.page");
+goog.require("firebaseui.auth.ui.element.form");
+goog.require("firebaseui.auth.ui.page.Base");
+goog.requireType("goog.dom.DomHelper");
 
 /**
  * Email mismatch UI component.
  */
-firebaseui.auth.ui.page.EmailMismatch =
-    class extends firebaseui.auth.ui.page.Base {
+firebaseui.auth.ui.page.EmailMismatch = class extends (
+  firebaseui.auth.ui.page.Base
+) {
   /**
    * @param {string} userEmail The email returned by identity provider.
    * @param {string} pendingEmail The email formerly used to sign in.
@@ -43,16 +43,25 @@ firebaseui.auth.ui.page.EmailMismatch =
    * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
    */
   constructor(
-      userEmail, pendingEmail, onContinueClick, onCancelClick, opt_tosCallback,
-      opt_privacyPolicyCallback, opt_domHelper) {
+    userEmail,
+    pendingEmail,
+    onContinueClick,
+    onCancelClick,
+    opt_tosCallback,
+    opt_privacyPolicyCallback,
+    opt_domHelper
+  ) {
     // Extend base page class and render email mismatch soy template.
     super(
-        firebaseui.auth.soy2.page.emailMismatch,
-        {userEmail: userEmail, pendingEmail: pendingEmail}, opt_domHelper,
-        'emailMismatch', {
-          tosCallback: opt_tosCallback,
-          privacyPolicyCallback: opt_privacyPolicyCallback
-        });
+      firebaseui.auth.soy2.page.emailMismatch,
+      { userEmail: userEmail, pendingEmail: pendingEmail },
+      opt_domHelper,
+      "emailMismatch",
+      {
+        tosCallback: opt_tosCallback,
+        privacyPolicyCallback: opt_privacyPolicyCallback,
+      }
+    );
     this.onContinueClick_ = onContinueClick;
     this.onCancelClick_ = onCancelClick;
     /** @type {?} */
@@ -76,16 +85,14 @@ firebaseui.auth.ui.page.EmailMismatch =
   }
 };
 
-
 goog.mixin(
-    firebaseui.auth.ui.page.EmailMismatch.prototype,
-    /** @lends {firebaseui.auth.ui.page.EmailMismatch.prototype} */
-    {
-      // For form.
-      getSubmitElement:
-          firebaseui.auth.ui.element.form.getSubmitElement,
-      getSecondaryLinkElement:
-          firebaseui.auth.ui.element.form.getSecondaryLinkElement,
-      initFormElement:
-          firebaseui.auth.ui.element.form.initFormElement
-    });
+  firebaseui.auth.ui.page.EmailMismatch.prototype,
+  /** @lends {firebaseui.auth.ui.page.EmailMismatch.prototype} */
+  {
+    // For form.
+    getSubmitElement: firebaseui.auth.ui.element.form.getSubmitElement,
+    getSecondaryLinkElement:
+      firebaseui.auth.ui.element.form.getSecondaryLinkElement,
+    initFormElement: firebaseui.auth.ui.element.form.initFormElement,
+  }
+);

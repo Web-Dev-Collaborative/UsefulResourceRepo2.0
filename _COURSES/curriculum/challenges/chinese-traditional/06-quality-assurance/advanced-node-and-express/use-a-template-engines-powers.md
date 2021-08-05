@@ -14,9 +14,9 @@ dashedName: use-a-template-engines-powers
 
 建議大家在 [Pug 的 README](https://github.com/pugjs/pug) 裏看看它的語法和用法，這樣你寫出的代碼會相對簡練。 另外要注意，Pug 使用縮進來表示嵌套的代碼塊。
 
-在 pug 的 'index.pug' 文件中，我們使用了 *title* 和 *message* 兩個變量。
+在 pug 的 'index.pug' 文件中，我們使用了 _title_ 和 _message_ 兩個變量。
 
-爲了從服務器傳遞這些信息，你需要給 *res.render* 的第二個參數傳入一個對象，其中包含變量對應的值。 比如，如果你想傳遞對象 `{title: 'Hello', message: 'Please login'}` 到你的主頁，
+爲了從服務器傳遞這些信息，你需要給 _res.render_ 的第二個參數傳入一個對象，其中包含變量對應的值。 比如，如果你想傳遞對象 `{title: 'Hello', message: 'Please login'}` 到你的主頁，
 
 看起來應該像這樣：`res.render(process.cwd() + '/views/pug/index', {title: 'Hello', message: 'Please login'});`。現在刷新頁面，你應該看到那些值就像在 index.pug 文件中一樣被渲染在頁面上正確的位置。
 
@@ -28,12 +28,12 @@ Pug 應正確地展示變量。
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/').then(
+  $.get(getUserInput("url") + "/").then(
     (data) => {
       assert.match(
         data,
         /pug-variable("|')>Please login/gi,
-        'Your projects home page should now be rendered by pug with the projects .pug file unaltered'
+        "Your projects home page should now be rendered by pug with the projects .pug file unaltered"
       );
     },
     (xhr) => {

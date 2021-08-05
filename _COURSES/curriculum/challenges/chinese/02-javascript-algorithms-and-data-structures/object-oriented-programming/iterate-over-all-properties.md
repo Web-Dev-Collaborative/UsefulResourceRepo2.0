@@ -12,7 +12,7 @@ dashedName: iterate-over-all-properties
 
 ```js
 function Bird(name) {
-  this.name = name;  //own property
+  this.name = name; //own property
 }
 
 Bird.prototype.numLegs = 2; // prototype property
@@ -27,7 +27,7 @@ let ownProps = [];
 let prototypeProps = [];
 
 for (let property in duck) {
-  if(duck.hasOwnProperty(property)) {
+  if (duck.hasOwnProperty(property)) {
     ownProps.push(property);
   } else {
     prototypeProps.push(property);
@@ -49,13 +49,13 @@ console.log(prototypeProps);
 `ownProps` 数组应该包含 `name`。
 
 ```js
-assert.deepEqual(ownProps, ['name']);
+assert.deepEqual(ownProps, ["name"]);
 ```
 
 `prototypeProps` 数组应该包含 `numLegs`。
 
 ```js
-assert.deepEqual(prototypeProps, ['numLegs']);
+assert.deepEqual(prototypeProps, ["numLegs"]);
 ```
 
 在不使用内置方法 `Object.keys()` 的前提下完成这个挑战。

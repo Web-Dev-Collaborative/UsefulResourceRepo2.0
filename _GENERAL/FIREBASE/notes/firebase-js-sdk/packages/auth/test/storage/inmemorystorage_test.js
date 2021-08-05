@@ -25,25 +25,20 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.storage.InMemoryStorageTest');
 
-
 var storage;
-
 
 function setUp() {
   storage = new fireauth.storage.InMemoryStorage();
 }
 
-
 function tearDown() {
   storage = null;
 }
-
 
 function testBasicStorageOperations() {
   assertEquals(fireauth.storage.Storage.Type.IN_MEMORY, storage.type);
   return assertBasicStorageOperations(storage);
 }
-
 
 function testDifferentTypes() {
   return assertDifferentTypes(storage);

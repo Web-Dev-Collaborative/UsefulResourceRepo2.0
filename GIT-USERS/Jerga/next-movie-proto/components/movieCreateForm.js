@@ -109,53 +109,51 @@
 
 // export default MovieCreateForm
 
-
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React from "react";
+import { useState, useEffect } from "react";
 
 class MovieCreateForm extends React.Component {
-
   constructor(props) {
-    super(props)
-    this.state = {}
+    super(props);
+    this.state = {};
 
     this.state = {
       hasInitialDataLoaded: false,
       form: {
-        name: '',
-        releaseYear: '',
-        description: '',
-        longDesc: '',
-        rating: '',
-        genre: '',
-        cover: '',
-        image: ''
-      }
-    }
+        name: "",
+        releaseYear: "",
+        description: "",
+        longDesc: "",
+        rating: "",
+        genre: "",
+        cover: "",
+        image: "",
+      },
+    };
   }
 
   componentDidUpdate() {
     if (this.props.initialData && !this.state.hasInitialDataLoaded) {
       this.setState({
         form: this.props.initialData,
-        hasInitialDataLoaded: true
-      })
+        hasInitialDataLoaded: true,
+      });
     }
   }
 
   handleChange = (event) => {
-    const target = event.target
-    const name = target.name
+    const target = event.target;
+    const name = target.name;
     this.setState({
       form: {
         ...this.state.form,
-        [name]: target.value
-      }
-    })
-  }
+        [name]: target.value,
+      },
+    });
+  };
 
   handleGenreChange = (event) => {
-    const { options } = event.target
+    const { options } = event.target;
     let value = [];
     for (let i = 0, l = options.length; i < l; i++) {
       if (options[i].selected) {
@@ -166,28 +164,30 @@ class MovieCreateForm extends React.Component {
     this.setState({
       form: {
         ...this.state.form,
-        genre: value.toString()
-      }
-    })
-  }
+        genre: value.toString(),
+      },
+    });
+  };
 
   submitForm = () => {
     this.props.handleFormSubmit(this.state.form, () => {
-      this.setState({form: {
-        name: '',
-        releaseYear: '',
-        description: '',
-        longDesc: '',
-        rating: '',
-        genre: '',
-        cover: '',
-        image: ''
-      }})
-    })
-  }
+      this.setState({
+        form: {
+          name: "",
+          releaseYear: "",
+          description: "",
+          longDesc: "",
+          rating: "",
+          genre: "",
+          cover: "",
+          image: "",
+        },
+      });
+    });
+  };
 
   render() {
-    const { form } = this.state
+    const { form } = this.state;
     return (
       <form>
         <div className="form-group">
@@ -197,7 +197,11 @@ class MovieCreateForm extends React.Component {
             onChange={this.handleChange}
             name="name"
             type="text"
-            className="form-control" id="name" aria-describedby="emailHelp" placeholder="Lord of the Rings" />
+            className="form-control"
+            id="name"
+            aria-describedby="emailHelp"
+            placeholder="Lord of the Rings"
+          />
         </div>
         <div className="form-group">
           <label htmlFor="description">Description</label>
@@ -206,7 +210,10 @@ class MovieCreateForm extends React.Component {
             onChange={this.handleChange}
             name="description"
             type="text"
-            className="form-control" id="description" placeholder="Somewhere in Middle-earth..." />
+            className="form-control"
+            id="description"
+            placeholder="Somewhere in Middle-earth..."
+          />
         </div>
         <div className="form-group">
           <label htmlFor="description">Rating</label>
@@ -215,8 +222,15 @@ class MovieCreateForm extends React.Component {
             onChange={this.handleChange}
             type="number"
             name="rating"
-            max="5" min="0" className="form-control" id="rating" placeholder="3" />
-          <small id="emailHelp" className="form-text text-muted">Max: 5, Min: 0 </small>
+            max="5"
+            min="0"
+            className="form-control"
+            id="rating"
+            placeholder="3"
+          />
+          <small id="emailHelp" className="form-text text-muted">
+            Max: 5, Min: 0{" "}
+          </small>
         </div>
         <div className="form-group">
           <label htmlFor="image">Image</label>
@@ -225,7 +239,10 @@ class MovieCreateForm extends React.Component {
             onChange={this.handleChange}
             name="image"
             type="text"
-            className="form-control" id="image" placeholder="http://....." />
+            className="form-control"
+            id="image"
+            placeholder="http://....."
+          />
         </div>
         <div className="form-group">
           <label htmlFor="cover">Cover</label>
@@ -234,7 +251,10 @@ class MovieCreateForm extends React.Component {
             onChange={this.handleChange}
             name="cover"
             type="text"
-            className="form-control" id="cover" placeholder="http://......" />
+            className="form-control"
+            id="cover"
+            placeholder="http://......"
+          />
         </div>
         <div className="form-group">
           <label htmlFor="longDesc">Long Description</label>
@@ -243,13 +263,18 @@ class MovieCreateForm extends React.Component {
             onChange={this.handleChange}
             name="longDesc"
             className="form-control"
-            id="longDesc" rows="3"></textarea>
+            id="longDesc"
+            rows="3"
+          ></textarea>
         </div>
         <div className="form-group">
           <label htmlFor="genre">Genre</label>
           <select
             onChange={this.handleGenreChange}
-            multiple className="form-control" id="genre">
+            multiple
+            className="form-control"
+            id="genre"
+          >
             <option>drama</option>
             <option>music</option>
             <option>adventure</option>
@@ -257,11 +282,16 @@ class MovieCreateForm extends React.Component {
             <option>action</option>
           </select>
         </div>
-        <button onClick={this.submitForm} type="button" className="btn btn-primary">Save changes</button>
+        <button
+          onClick={this.submitForm}
+          type="button"
+          className="btn btn-primary"
+        >
+          Save changes
+        </button>
       </form>
-    )
+    );
   }
 }
 
-export default MovieCreateForm
-
+export default MovieCreateForm;

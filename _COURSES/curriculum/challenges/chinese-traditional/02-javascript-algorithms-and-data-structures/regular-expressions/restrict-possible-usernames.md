@@ -12,13 +12,13 @@ dashedName: restrict-possible-usernames
 
 需要檢索數據庫中的所有用戶名。 以下是用戶在創建用戶名時必須遵守的一些簡單規則。
 
-1) 用戶名只能是數字字母字符。
+1. 用戶名只能是數字字母字符。
 
-2) 用戶名中的數字必須在最後。 數字可以有零個或多個。 用戶名不能以數字開頭。
+2. 用戶名中的數字必須在最後。 數字可以有零個或多個。 用戶名不能以數字開頭。
 
-3) 用戶名字母可以是小寫字母和大寫字母。
+3. 用戶名字母可以是小寫字母和大寫字母。
 
-4) 用戶名長度必須至少爲兩個字符。 兩位用戶名只能使用字母。
+4. 用戶名長度必須至少爲兩個字符。 兩位用戶名只能使用字母。
 
 # --instructions--
 
@@ -29,79 +29,79 @@ dashedName: restrict-possible-usernames
 你的正則表達式應該匹配字符串 `JACK`
 
 ```js
-assert(userCheck.test('JACK'));
+assert(userCheck.test("JACK"));
 ```
 
 你的正則表達式不應匹配字符串 `J`
 
 ```js
-assert(!userCheck.test('J'));
+assert(!userCheck.test("J"));
 ```
 
 你的正則表達式應該匹配字符串 `Jo`
 
 ```js
-assert(userCheck.test('Jo'));
+assert(userCheck.test("Jo"));
 ```
 
 你的正則表達式應該匹配字符串 `Oceans11`
 
 ```js
-assert(userCheck.test('Oceans11'));
+assert(userCheck.test("Oceans11"));
 ```
 
 你的正則表達式應該匹配字符串 `RegexGuru`
 
 ```js
-assert(userCheck.test('RegexGuru'));
+assert(userCheck.test("RegexGuru"));
 ```
 
 你的正則表達式不應匹配字符串 `007`
 
 ```js
-assert(!userCheck.test('007'));
+assert(!userCheck.test("007"));
 ```
 
 你的正則表達式不應匹配字符串 `9`
 
 ```js
-assert(!userCheck.test('9'));
+assert(!userCheck.test("9"));
 ```
 
 你的正則表達式不應匹配字符串 `A1`
 
 ```js
-assert(!userCheck.test('A1'));
+assert(!userCheck.test("A1"));
 ```
 
 你的正則表達式不應匹配字符串 `BadUs3rnam3`
 
 ```js
-assert(!userCheck.test('BadUs3rnam3'));
+assert(!userCheck.test("BadUs3rnam3"));
 ```
 
 你的正則表達式應該匹配字符串 `Z97`
 
 ```js
-assert(userCheck.test('Z97'));
+assert(userCheck.test("Z97"));
 ```
 
 你的正則表達式不應匹配字符串 `c57bT3`
 
 ```js
-assert(!userCheck.test('c57bT3'));
+assert(!userCheck.test("c57bT3"));
 ```
 
 你的正則表達式應該匹配字符串 `AB1`
 
 ```js
-assert(userCheck.test('AB1'));
+assert(userCheck.test("AB1"));
 ```
 
 你的正則表達式不應匹配字符串 `J%4`
 
 ```js
-assert(!userCheck.test('J%4'))
+assert(!userCheck.test("J%4"));
 ```
 
 # --seed--

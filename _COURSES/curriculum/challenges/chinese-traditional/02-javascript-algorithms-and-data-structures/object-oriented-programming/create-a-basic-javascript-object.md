@@ -19,7 +19,7 @@ JavaScript 中的對象可以用來描述現實世界中的物體，並賦予他
 ```js
 let duck = {
   name: "Aflac",
-  numLegs: 2
+  numLegs: 2,
 };
 ```
 
@@ -34,19 +34,19 @@ let duck = {
 `dog` 應該是一個 object。
 
 ```js
-assert(typeof dog === 'object');
+assert(typeof dog === "object");
 ```
 
 `dog` 應該有一個 `name` 屬性且它的值是一個字符串。
 
 ```js
-assert(typeof dog.name === 'string');
+assert(typeof dog.name === "string");
 ```
 
 `dog` 應該有一個 `numLegs` 屬性且它的值是一個數字。
 
 ```js
-assert(typeof dog.numLegs === 'number');
+assert(typeof dog.numLegs === "number");
 ```
 
 # --seed--
@@ -54,16 +54,14 @@ assert(typeof dog.numLegs === 'number');
 ## --seed-contents--
 
 ```js
-let dog = {
-
-};
+let dog = {};
 ```
 
 # --solutions--
 
 ```js
 let dog = {
-  name: '',
-  numLegs: 4
+  name: "",
+  numLegs: 4,
 };
 ```

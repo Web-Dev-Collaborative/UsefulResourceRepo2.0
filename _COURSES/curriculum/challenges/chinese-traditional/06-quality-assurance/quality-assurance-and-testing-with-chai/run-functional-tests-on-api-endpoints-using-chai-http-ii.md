@@ -22,9 +22,9 @@ dashedName: run-functional-tests-on-api-endpoints-using-chai-http-ii
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=1').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=1").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -36,11 +36,11 @@ dashedName: run-functional-tests-on-api-endpoints-using-chai-http-ii
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=1').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=1").then(
     (data) => {
-      assert.equal(data.assertions[0].method, 'equal');
-      assert.equal(data.assertions[0].args[0], 'res.status');
-      assert.equal(data.assertions[0].args[1], '200');
+      assert.equal(data.assertions[0].method, "equal");
+      assert.equal(data.assertions[0].args[0], "res.status");
+      assert.equal(data.assertions[0].args[1], "200");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -52,10 +52,10 @@ dashedName: run-functional-tests-on-api-endpoints-using-chai-http-ii
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=1').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=1").then(
     (data) => {
-      assert.equal(data.assertions[1].method, 'equal');
-      assert.equal(data.assertions[1].args[0], 'res.text');
+      assert.equal(data.assertions[1].method, "equal");
+      assert.equal(data.assertions[1].args[0], "res.text");
       assert.match(data.assertions[1].args[1], /hello [\w\d_-]/);
     },
     (xhr) => {

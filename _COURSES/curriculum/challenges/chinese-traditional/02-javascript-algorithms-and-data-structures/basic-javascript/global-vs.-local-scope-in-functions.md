@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244c0
 title: 函數中的全局作用域和局部作用域
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c2QwKH2'
+videoUrl: "https://scrimba.com/c/c2QwKH2"
 forumTopicId: 18194
 dashedName: global-vs--local-scope-in-functions
 ---
@@ -32,13 +32,13 @@ function myFun() {
 不要修改全局變量 `outerWear` 的值。
 
 ```js
-assert(outerWear === 'T-Shirt');
+assert(outerWear === "T-Shirt");
 ```
 
 `myOutfit` 應該返回 `sweater`。
 
 ```js
-assert(myOutfit() === 'sweater');
+assert(myOutfit() === "sweater");
 ```
 
 不要修改 return 語句。
@@ -57,8 +57,6 @@ var outerWear = "T-Shirt";
 
 function myOutfit() {
   // Only change code below this line
-
-
 
   // Only change code above this line
   return outerWear;

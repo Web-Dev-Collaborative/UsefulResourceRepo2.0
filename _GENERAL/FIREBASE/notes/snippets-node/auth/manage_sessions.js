@@ -1,9 +1,9 @@
-'use strict';
-const admin = require('firebase-admin');
+"use strict";
+const admin = require("firebase-admin");
 admin.initializeApp();
 
-const uid = 'some_uid_1234';
-const idToken = 'some_id_token';
+const uid = "some_uid_1234";
+const idToken = "some_id_token";
 const utcRevocationTimeSecs = 60 * 60;
 
 // [START revoke_tokens]
@@ -24,9 +24,9 @@ admin
 // [END revoke_tokens]
 
 // [START save_revocation_in_db]
-const metadataRef = admin.database().ref('metadata/' + uid);
+const metadataRef = admin.database().ref("metadata/" + uid);
 metadataRef.set({ revokeTime: utcRevocationTimeSecs }).then(() => {
-  console.log('Database updated successfully.');
+  console.log("Database updated successfully.");
 });
 // [END save_revocation_in_db]
 
@@ -41,7 +41,7 @@ admin
     // Token is valid.
   })
   .catch((error) => {
-    if (error.code == 'auth/id-token-revoked') {
+    if (error.code == "auth/id-token-revoked") {
       // Token has been revoked. Inform the user to reauthenticate or signOut() the user.
     } else {
       // Token is invalid.

@@ -24,19 +24,21 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.storage.NullStorageTest');
 
-
-
 function testNullStorage() {
   var storage = new fireauth.storage.NullStorage();
-  var listener = function() {};
+  var listener = function () {};
   assertEquals(fireauth.storage.Storage.Type.NULL_STORAGE, storage.type);
   storage.addStorageListener(listener);
   storage.removeStorageListener(listener);
   return goog.Promise.resolve()
-      .then(function() { return storage.set('foo', 'bar'); })
-      .then(function() { return storage.get('foo'); })
-      .then(function(value) {
-        assertNull(value);
-        return storage.remove('foo');
-      });
+    .then(function () {
+      return storage.set('foo', 'bar');
+    })
+    .then(function () {
+      return storage.get('foo');
+    })
+    .then(function (value) {
+      assertNull(value);
+      return storage.remove('foo');
+    });
 }

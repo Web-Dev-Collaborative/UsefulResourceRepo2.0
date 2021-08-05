@@ -1,6 +1,6 @@
 ---
 id: 5900f4241000cf542c50ff37
-title: 'Problem 184: Triangles containing the origin'
+title: "Problem 184: Triangles containing the origin"
 challengeType: 5
 forumTopicId: 301820
 dashedName: problem-184-triangles-containing-the-origin
@@ -30,7 +30,6 @@ assert.strictEqual(euler184(), 1725323624056);
 
 ```js
 function euler184() {
-
   return true;
 }
 

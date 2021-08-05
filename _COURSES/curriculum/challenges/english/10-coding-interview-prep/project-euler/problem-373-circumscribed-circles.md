@@ -1,6 +1,6 @@
 ---
 id: 5900f4e11000cf542c50fff4
-title: 'Problem 373: Circumscribed Circles'
+title: "Problem 373: Circumscribed Circles"
 challengeType: 5
 forumTopicId: 302035
 dashedName: problem-373-circumscribed-circles
@@ -32,7 +32,6 @@ assert.strictEqual(euler373(), 727227472448913);
 
 ```js
 function euler373() {
-
   return true;
 }
 

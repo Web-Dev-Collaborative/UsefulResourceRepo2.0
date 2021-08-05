@@ -31,13 +31,13 @@ assert(requestingData().type === REQUESTING_DATA);
 `receivedData` action creator 應返回類型和值都等於 `RECEIVED_DATA` 的對象。
 
 ```js
-assert(receivedData('data').type === RECEIVED_DATA);
+assert(receivedData("data").type === RECEIVED_DATA);
 ```
 
 `asyncDataReducer` 必須是個函數。
 
 ```js
-assert(typeof asyncDataReducer === 'function');
+assert(typeof asyncDataReducer === "function");
 ```
 
 分發 `requestingData` 後 action creator 應該將 store 中 `state` 的 fetching 值更新爲 `true`。
@@ -60,8 +60,8 @@ assert(
   (function () {
     const noWhiteSpace = __helpers.removeWhiteSpace(handleAsync.toString());
     return (
-      noWhiteSpace.includes('dispatch(requestingData())') === true &&
-      noWhiteSpace.includes('dispatch(receivedData(data))') === true
+      noWhiteSpace.includes("dispatch(requestingData())") === true &&
+      noWhiteSpace.includes("dispatch(receivedData(data))") === true
     );
   })()
 );
@@ -72,43 +72,46 @@ assert(
 ## --seed-contents--
 
 ```js
-const REQUESTING_DATA = 'REQUESTING_DATA'
-const RECEIVED_DATA = 'RECEIVED_DATA'
+const REQUESTING_DATA = "REQUESTING_DATA";
+const RECEIVED_DATA = "RECEIVED_DATA";
 
-const requestingData = () => { return {type: REQUESTING_DATA} }
-const receivedData = (data) => { return {type: RECEIVED_DATA, users: data.users} }
+const requestingData = () => {
+  return { type: REQUESTING_DATA };
+};
+const receivedData = (data) => {
+  return { type: RECEIVED_DATA, users: data.users };
+};
 
 const handleAsync = () => {
-  return function(dispatch) {
+  return function (dispatch) {
     // Dispatch request action here
 
-    setTimeout(function() {
+    setTimeout(function () {
       let data = {
-        users: ['Jeff', 'William', 'Alice']
-      }
+        users: ["Jeff", "William", "Alice"],
+      };
       // Dispatch received data action here
-
     }, 2500);
-  }
+  };
 };
 
 const defaultState = {
   fetching: false,
-  users: []
+  users: [],
 };
 
 const asyncDataReducer = (state = defaultState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case REQUESTING_DATA:
       return {
         fetching: true,
-        users: []
-      }
+        users: [],
+      };
     case RECEIVED_DATA:
       return {
         fetching: false,
-        users: action.users
-      }
+        users: action.users,
+      };
     default:
       return state;
   }
@@ -123,41 +126,45 @@ const store = Redux.createStore(
 # --solutions--
 
 ```js
-const REQUESTING_DATA = 'REQUESTING_DATA'
-const RECEIVED_DATA = 'RECEIVED_DATA'
+const REQUESTING_DATA = "REQUESTING_DATA";
+const RECEIVED_DATA = "RECEIVED_DATA";
 
-const requestingData = () => { return {type: REQUESTING_DATA} }
-const receivedData = (data) => { return {type: RECEIVED_DATA, users: data.users} }
+const requestingData = () => {
+  return { type: REQUESTING_DATA };
+};
+const receivedData = (data) => {
+  return { type: RECEIVED_DATA, users: data.users };
+};
 
 const handleAsync = () => {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(requestingData());
-    setTimeout(function() {
+    setTimeout(function () {
       let data = {
-        users: ['Jeff', 'William', 'Alice']
-      }
+        users: ["Jeff", "William", "Alice"],
+      };
       dispatch(receivedData(data));
     }, 2500);
-  }
+  };
 };
 
 const defaultState = {
   fetching: false,
-  users: []
+  users: [],
 };
 
 const asyncDataReducer = (state = defaultState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case REQUESTING_DATA:
       return {
         fetching: true,
-        users: []
-      }
+        users: [],
+      };
     case RECEIVED_DATA:
       return {
         fetching: false,
-        users: action.users
-      }
+        users: action.users,
+      };
     default:
       return state;
   }

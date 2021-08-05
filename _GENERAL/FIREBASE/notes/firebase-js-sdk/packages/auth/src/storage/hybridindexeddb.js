@@ -33,7 +33,7 @@ goog.require('goog.array');
  * @constructor
  * @implements {fireauth.storage.Storage}
  */
-fireauth.storage.HybridIndexedDB = function(fallbackStorage) {
+fireauth.storage.HybridIndexedDB = function (fallbackStorage) {
   var self = this;
   var storage = null;
   /**
@@ -54,53 +54,55 @@ fireauth.storage.HybridIndexedDB = function(fallbackStorage) {
    *     resolves with the underlying indexedDB storage or a fallback when not
    *     supported.
    */
-  this.underlyingStoragePromise_ = goog.Promise.resolve().then(function() {
-    // Initial check shows indexedDB is available. This is not enough.
-    // Try to write/read from indexedDB. If it fails, switch to fallback.
-    if (fireauth.storage.IndexedDB.isAvailable()) {
-      // Test write/read using a random key. This is important for the following
-      // reasons:
-      // 1. Double inclusion of the firebase-auth.js library.
-      // 2. Multiple windows opened at the same time.
-      // The above may cause collision if multiple instances try to
-      // write/read/delete from the same entry.
-      var randomId = fireauth.util.generateEventId();
-      var randomKey = fireauth.storage.HybridIndexedDB.KEY_ + randomId;
-      storage = fireauth.storage.IndexedDB.getFireauthManager();
-      return storage.set(randomKey, randomId)
-          .then(function() {
+  this.underlyingStoragePromise_ = goog.Promise.resolve()
+    .then(function () {
+      // Initial check shows indexedDB is available. This is not enough.
+      // Try to write/read from indexedDB. If it fails, switch to fallback.
+      if (fireauth.storage.IndexedDB.isAvailable()) {
+        // Test write/read using a random key. This is important for the following
+        // reasons:
+        // 1. Double inclusion of the firebase-auth.js library.
+        // 2. Multiple windows opened at the same time.
+        // The above may cause collision if multiple instances try to
+        // write/read/delete from the same entry.
+        var randomId = fireauth.util.generateEventId();
+        var randomKey = fireauth.storage.HybridIndexedDB.KEY_ + randomId;
+        storage = fireauth.storage.IndexedDB.getFireauthManager();
+        return storage
+          .set(randomKey, randomId)
+          .then(function () {
             return storage.get(randomKey);
           })
-          .then(function(value) {
+          .then(function (value) {
             if (value !== randomId) {
               throw new Error('indexedDB not supported!');
             }
             return storage.remove(randomKey);
           })
-          .then(function() {
+          .then(function () {
             return storage;
           })
-          .thenCatch(function(error) {
+          .thenCatch(function (error) {
             return self.fallbackStorage_;
           });
-    } else {
-      // indexedDB not available, use fallback.
-      return self.fallbackStorage_;
-    }
-  }).then(function(storage) {
-    // Update type.
-    self.type = storage.type;
-    // Listen to all storage changes.
-    storage.addStorageListener(function(key) {
-      // Trigger all attached storage listeners.
-      goog.array.forEach(self.storageListeners_, function(listener) {
-        listener(key);
+      } else {
+        // indexedDB not available, use fallback.
+        return self.fallbackStorage_;
+      }
+    })
+    .then(function (storage) {
+      // Update type.
+      self.type = storage.type;
+      // Listen to all storage changes.
+      storage.addStorageListener(function (key) {
+        // Trigger all attached storage listeners.
+        goog.array.forEach(self.storageListeners_, function (listener) {
+          listener(key);
+        });
       });
+      return storage;
     });
-    return storage;
-  });
 };
-
 
 /**
  * The key used to check if the storage instance is available.
@@ -109,19 +111,17 @@ fireauth.storage.HybridIndexedDB = function(fallbackStorage) {
  */
 fireauth.storage.HybridIndexedDB.KEY_ = '__sak';
 
-
 /**
  * Retrieves the value stored at the key.
  * @param {string} key
  * @return {!goog.Promise<*>}
  * @override
  */
-fireauth.storage.HybridIndexedDB.prototype.get = function(key) {
-  return this.underlyingStoragePromise_.then(function(storage) {
+fireauth.storage.HybridIndexedDB.prototype.get = function (key) {
+  return this.underlyingStoragePromise_.then(function (storage) {
     return storage.get(key);
   });
 };
-
 
 /**
  * Stores the value at the specified key.
@@ -130,12 +130,11 @@ fireauth.storage.HybridIndexedDB.prototype.get = function(key) {
  * @return {!goog.Promise<void>}
  * @override
  */
-fireauth.storage.HybridIndexedDB.prototype.set = function(key, value) {
-  return this.underlyingStoragePromise_.then(function(storage) {
+fireauth.storage.HybridIndexedDB.prototype.set = function (key, value) {
+  return this.underlyingStoragePromise_.then(function (storage) {
     return storage.set(key, value);
   });
 };
-
 
 /**
  * Removes the value at the specified key.
@@ -143,12 +142,11 @@ fireauth.storage.HybridIndexedDB.prototype.set = function(key, value) {
  * @return {!goog.Promise<void>}
  * @override
  */
-fireauth.storage.HybridIndexedDB.prototype.remove = function(key) {
-  return this.underlyingStoragePromise_.then(function(storage) {
+fireauth.storage.HybridIndexedDB.prototype.remove = function (key) {
+  return this.underlyingStoragePromise_.then(function (storage) {
     return storage.remove(key);
   });
 };
-
 
 /**
  * Adds a listener to storage event change.
@@ -156,11 +154,11 @@ fireauth.storage.HybridIndexedDB.prototype.remove = function(key) {
  *     storage event listener.
  * @override
  */
-fireauth.storage.HybridIndexedDB.prototype.addStorageListener =
-    function(listener) {
+fireauth.storage.HybridIndexedDB.prototype.addStorageListener = function (
+  listener
+) {
   this.storageListeners_.push(listener);
 };
-
 
 /**
  * Removes a listener to storage event change.
@@ -168,9 +166,10 @@ fireauth.storage.HybridIndexedDB.prototype.addStorageListener =
  *     listener.
  * @override
  */
-fireauth.storage.HybridIndexedDB.prototype.removeStorageListener =
-    function(listener) {
-  goog.array.removeAllIf(this.storageListeners_, function(ele) {
+fireauth.storage.HybridIndexedDB.prototype.removeStorageListener = function (
+  listener
+) {
+  goog.array.removeAllIf(this.storageListeners_, function (ele) {
     return ele == listener;
   });
 };

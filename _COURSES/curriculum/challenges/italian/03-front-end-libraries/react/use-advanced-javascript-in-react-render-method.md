@@ -10,7 +10,7 @@ dashedName: use-advanced-javascript-in-react-render-method
 
 Nelle sfide precedenti, hai imparato come iniettare il codice JavaScript nel codice JSX utilizzando le parentesi graffe, `{ }`, per attività come accedere alle props, passare props, accedere allo stato, inserire commenti nel codice e, più recentemente, stilizzare i componenti. Questi sono tutti casi in cui normalmente si inserisce del JavaScript in JSX, ma non sono l'unico modo in cui è possibile utilizzare il codice JavaScript nei componenti React.
 
-Puoi anche scrivere JavaScript direttamente nei tuoi metodi `render`, prima dell'istruzione `return`, ***senza*** inserirlo all'interno delle parentesi graffe. Questo perché non è ancora all'interno del codice JSX. Quando successivamente vorrai utilizzare una variabile nel codice JSX *all'interno* dell'istruzione `return`, posizionerai il nome della variabile all'interno delle parentesi graffe.
+Puoi anche scrivere JavaScript direttamente nei tuoi metodi `render`, prima dell'istruzione `return`, **_senza_** inserirlo all'interno delle parentesi graffe. Questo perché non è ancora all'interno del codice JSX. Quando successivamente vorrai utilizzare una variabile nel codice JSX _all'interno_ dell'istruzione `return`, posizionerai il nome della variabile all'interno delle parentesi graffe.
 
 # --instructions--
 
@@ -22,7 +22,7 @@ Il componente `MagicEightBall` dovrebbe esistere ed essere presentato nella pagi
 
 ```js
 assert.strictEqual(
-  Enzyme.mount(React.createElement(MagicEightBall)).find('MagicEightBall')
+  Enzyme.mount(React.createElement(MagicEightBall)).find("MagicEightBall")
     .length,
   1
 );
@@ -36,7 +36,7 @@ assert.strictEqual(
     .children()
     .childAt(0)
     .name(),
-  'input'
+  "input"
 );
 ```
 
@@ -48,7 +48,7 @@ assert.strictEqual(
     .children()
     .childAt(2)
     .name(),
-  'button'
+  "button"
 );
 ```
 
@@ -56,9 +56,9 @@ Lo stato di `MagicEightBall` dovrebbe essere inizializzato con una proprietà `u
 
 ```js
 assert(
-  Enzyme.mount(React.createElement(MagicEightBall)).state('randomIndex') ===
-    '' &&
-    Enzyme.mount(React.createElement(MagicEightBall)).state('userInput') === ''
+  Enzyme.mount(React.createElement(MagicEightBall)).state("randomIndex") ===
+    "" &&
+    Enzyme.mount(React.createElement(MagicEightBall)).state("userInput") === ""
 );
 ```
 
@@ -66,8 +66,8 @@ Quando `MagicEightBall` viene montato per la prima volta sul DOM, dovrebbe resti
 
 ```js
 assert(
-  Enzyme.mount(React.createElement(MagicEightBall)).find('p').length === 1 &&
-    Enzyme.mount(React.createElement(MagicEightBall)).find('p').text() === ''
+  Enzyme.mount(React.createElement(MagicEightBall)).find("p").length === 1 &&
+    Enzyme.mount(React.createElement(MagicEightBall)).find("p").text() === ""
 );
 ```
 
@@ -77,10 +77,10 @@ Quando il testo viene inserito nell'elemento `input` e il pulsante viene cliccat
 (() => {
   const comp = Enzyme.mount(React.createElement(MagicEightBall));
   const simulate = () => {
-    comp.find('input').simulate('change', { target: { value: 'test?' } });
-    comp.find('button').simulate('click');
+    comp.find("input").simulate("change", { target: { value: "test?" } });
+    comp.find("button").simulate("click");
   };
-  const result = () => comp.find('p').text();
+  const result = () => comp.find("p").text();
   const _1 = () => {
     simulate();
     return result();
@@ -141,7 +141,7 @@ Quando il testo viene inserito nell'elemento `input` e il pulsante viene cliccat
     _7_val,
     _8_val,
     _9_val,
-    _10_val
+    _10_val,
   ];
   const hasIndex = actualAnswers.filter(
     (answer, i) => possibleAnswers.indexOf(answer) !== -1
@@ -157,28 +157,28 @@ Quando il testo viene inserito nell'elemento `input` e il pulsante viene cliccat
 
 ```jsx
 var possibleAnswers = [
-  'It is certain',
-  'It is decidedly so',
-  'Without a doubt',
-  'Yes, definitely',
-  'You may rely on it',
-  'As I see it, yes',
-  'Outlook good',
-  'Yes',
-  'Signs point to yes',
-  'Reply hazy try again',
-  'Ask again later',
-  'Better not tell you now',
-  'Cannot predict now',
-  'Concentrate and ask again',
+  "It is certain",
+  "It is decidedly so",
+  "Without a doubt",
+  "Yes, definitely",
+  "You may rely on it",
+  "As I see it, yes",
+  "Outlook good",
+  "Yes",
+  "Signs point to yes",
+  "Reply hazy try again",
+  "Ask again later",
+  "Better not tell you now",
+  "Cannot predict now",
+  "Concentrate and ask again",
   "Don't count on it",
-  'My reply is no',
-  'My sources say no',
-  'Outlook not so good',
-  'Very doubtful',
-  'Most likely'
+  "My reply is no",
+  "My sources say no",
+  "Outlook not so good",
+  "Very doubtful",
+  "Most likely",
 ];
-ReactDOM.render(<MagicEightBall />, document.getElementById('root'));
+ReactDOM.render(<MagicEightBall />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -186,15 +186,15 @@ ReactDOM.render(<MagicEightBall />, document.getElementById('root'));
 ```jsx
 const inputStyle = {
   width: 235,
-  margin: 5
+  margin: 5,
 };
 
 class MagicEightBall extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInput: '',
-      randomIndex: ''
+      userInput: "",
+      randomIndex: "",
     };
     this.ask = this.ask.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -203,43 +203,43 @@ class MagicEightBall extends React.Component {
     if (this.state.userInput) {
       this.setState({
         randomIndex: Math.floor(Math.random() * 20),
-        userInput: ''
+        userInput: "",
       });
     }
   }
   handleChange(event) {
     this.setState({
-      userInput: event.target.value
+      userInput: event.target.value,
     });
   }
   render() {
     const possibleAnswers = [
-      'It is certain',
-      'It is decidedly so',
-      'Without a doubt',
-      'Yes, definitely',
-      'You may rely on it',
-      'As I see it, yes',
-      'Outlook good',
-      'Yes',
-      'Signs point to yes',
-      'Reply hazy try again',
-      'Ask again later',
-      'Better not tell you now',
-      'Cannot predict now',
-      'Concentrate and ask again',
+      "It is certain",
+      "It is decidedly so",
+      "Without a doubt",
+      "Yes, definitely",
+      "You may rely on it",
+      "As I see it, yes",
+      "Outlook good",
+      "Yes",
+      "Signs point to yes",
+      "Reply hazy try again",
+      "Ask again later",
+      "Better not tell you now",
+      "Cannot predict now",
+      "Concentrate and ask again",
       "Don't count on it",
-      'My reply is no',
-      'My sources say no',
-      'Most likely',
-      'Outlook not so good',
-      'Very doubtful'
+      "My reply is no",
+      "My sources say no",
+      "Most likely",
+      "Outlook not so good",
+      "Very doubtful",
     ];
-    const answer = 'change me!'; // Change this line
+    const answer = "change me!"; // Change this line
     return (
       <div>
         <input
-          type='text'
+          type="text"
           value={this.state.userInput}
           onChange={this.handleChange}
           style={inputStyle}
@@ -264,15 +264,15 @@ class MagicEightBall extends React.Component {
 ```jsx
 const inputStyle = {
   width: 235,
-  margin: 5
+  margin: 5,
 };
 
 class MagicEightBall extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInput: '',
-      randomIndex: ''
+      userInput: "",
+      randomIndex: "",
     };
     this.ask = this.ask.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -281,43 +281,43 @@ class MagicEightBall extends React.Component {
     if (this.state.userInput) {
       this.setState({
         randomIndex: Math.floor(Math.random() * 20),
-        userInput: ''
+        userInput: "",
       });
     }
   }
   handleChange(event) {
     this.setState({
-      userInput: event.target.value
+      userInput: event.target.value,
     });
   }
   render() {
     const possibleAnswers = [
-      'It is certain',
-      'It is decidedly so',
-      'Without a doubt',
-      'Yes, definitely',
-      'You may rely on it',
-      'As I see it, yes',
-      'Outlook good',
-      'Yes',
-      'Signs point to yes',
-      'Reply hazy try again',
-      'Ask again later',
-      'Better not tell you now',
-      'Cannot predict now',
-      'Concentrate and ask again',
+      "It is certain",
+      "It is decidedly so",
+      "Without a doubt",
+      "Yes, definitely",
+      "You may rely on it",
+      "As I see it, yes",
+      "Outlook good",
+      "Yes",
+      "Signs point to yes",
+      "Reply hazy try again",
+      "Ask again later",
+      "Better not tell you now",
+      "Cannot predict now",
+      "Concentrate and ask again",
       "Don't count on it",
-      'My reply is no',
-      'My sources say no',
-      'Outlook not so good',
-      'Very doubtful',
-      'Most likely'
+      "My reply is no",
+      "My sources say no",
+      "Outlook not so good",
+      "Very doubtful",
+      "Most likely",
     ];
     const answer = possibleAnswers[this.state.randomIndex];
     return (
       <div>
         <input
-          type='text'
+          type="text"
           value={this.state.userInput}
           onChange={this.handleChange}
           style={inputStyle}

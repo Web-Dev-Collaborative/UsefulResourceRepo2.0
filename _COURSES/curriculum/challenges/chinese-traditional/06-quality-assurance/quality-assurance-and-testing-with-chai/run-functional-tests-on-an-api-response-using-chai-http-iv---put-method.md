@@ -39,9 +39,9 @@ dashedName: run-functional-tests-on-an-api-response-using-chai-http-iv---put-met
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=3').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=3").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -53,11 +53,11 @@ dashedName: run-functional-tests-on-an-api-response-using-chai-http-iv---put-met
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=3').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=3").then(
     (data) => {
-      assert.equal(data.assertions[0].method, 'equal');
-      assert.equal(data.assertions[0].args[0], 'res.status');
-      assert.equal(data.assertions[0].args[1], '200');
+      assert.equal(data.assertions[0].method, "equal");
+      assert.equal(data.assertions[0].args[0], "res.status");
+      assert.equal(data.assertions[0].args[1], "200");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -69,10 +69,10 @@ dashedName: run-functional-tests-on-an-api-response-using-chai-http-iv---put-met
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=3').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=3").then(
     (data) => {
-      assert.equal(data.assertions[1].method, 'equal');
-      assert.equal(data.assertions[1].args[0], 'res.type');
+      assert.equal(data.assertions[1].method, "equal");
+      assert.equal(data.assertions[1].args[0], "res.type");
       assert.match(data.assertions[1].args[1], /('|")application\/json\1/);
     },
     (xhr) => {
@@ -85,10 +85,10 @@ dashedName: run-functional-tests-on-an-api-response-using-chai-http-iv---put-met
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=3').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=3").then(
     (data) => {
-      assert.equal(data.assertions[2].method, 'equal');
-      assert.equal(data.assertions[2].args[0], 'res.body.name');
+      assert.equal(data.assertions[2].method, "equal");
+      assert.equal(data.assertions[2].args[0], "res.body.name");
       assert.match(data.assertions[2].args[1], /('|")Giovanni\1/);
     },
     (xhr) => {
@@ -101,10 +101,10 @@ dashedName: run-functional-tests-on-an-api-response-using-chai-http-iv---put-met
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=3').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=3").then(
     (data) => {
-      assert.equal(data.assertions[3].method, 'equal');
-      assert.equal(data.assertions[3].args[0], 'res.body.surname');
+      assert.equal(data.assertions[3].method, "equal");
+      assert.equal(data.assertions[3].args[0], "res.body.surname");
       assert.match(data.assertions[3].args[1], /('|")da Verrazzano\1/);
     },
     (xhr) => {

@@ -19,8 +19,6 @@ goog.provide('fireauth.storage.InMemoryStorage');
 
 goog.require('goog.Promise');
 
-
-
 /**
  * InMemoryStorage provides an implementation of Storage that will only persist
  * data in memory. This data is volatile and in a browser environment, will
@@ -31,23 +29,21 @@ goog.require('goog.Promise');
  * @constructor
  * @implements {fireauth.storage.Storage}
  */
-fireauth.storage.InMemoryStorage = function() {
+fireauth.storage.InMemoryStorage = function () {
   /** @protected {!Object} The object where we store values. */
   this.storage = {};
   /** @public {string} The storage type identifier. */
   this.type = fireauth.storage.Storage.Type.IN_MEMORY;
 };
 
-
 /**
  * @param {string} key
  * @return {!goog.Promise<*>}
  * @override
  */
-fireauth.storage.InMemoryStorage.prototype.get = function(key) {
+fireauth.storage.InMemoryStorage.prototype.get = function (key) {
   return goog.Promise.resolve(/** @type {*} */ (this.storage[key]));
 };
-
 
 /**
  * @param {string} key
@@ -55,37 +51,35 @@ fireauth.storage.InMemoryStorage.prototype.get = function(key) {
  * @return {!goog.Promise<void>}
  * @override
  */
-fireauth.storage.InMemoryStorage.prototype.set = function(key, value) {
+fireauth.storage.InMemoryStorage.prototype.set = function (key, value) {
   this.storage[key] = value;
   return goog.Promise.resolve();
 };
-
 
 /**
  * @param {string} key
  * @return {!goog.Promise<void>}
  * @override
  */
-fireauth.storage.InMemoryStorage.prototype.remove = function(key) {
+fireauth.storage.InMemoryStorage.prototype.remove = function (key) {
   delete this.storage[key];
   return goog.Promise.resolve();
 };
 
+/**
+ * @param {function((!goog.events.BrowserEvent|!Array<string>))} listener The
+ *     storage event listener.
+ * @override
+ */
+fireauth.storage.InMemoryStorage.prototype.addStorageListener = function (
+  listener
+) {};
 
 /**
  * @param {function((!goog.events.BrowserEvent|!Array<string>))} listener The
  *     storage event listener.
  * @override
  */
-fireauth.storage.InMemoryStorage.prototype.addStorageListener =
-    function(listener) {
-};
-
-
-/**
- * @param {function((!goog.events.BrowserEvent|!Array<string>))} listener The
- *     storage event listener.
- * @override
- */
-fireauth.storage.InMemoryStorage.prototype.removeStorageListener = function(
-    listener) {};
+fireauth.storage.InMemoryStorage.prototype.removeStorageListener = function (
+  listener
+) {};

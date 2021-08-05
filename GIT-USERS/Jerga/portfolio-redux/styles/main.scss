@@ -1,4 +1,4 @@
-@import './shared/variables';
+@import "./shared/variables";
 
 @font-face {
   font-family: "Open Sans";
@@ -22,17 +22,18 @@
 }
 
 @font-face {
-font-family: 'Montserrat';
-src: url("/static/fonts/Montserrat-Bold.ttf");
-font-weight: bold;
-font-style: normal;
+  font-family: "Montserrat";
+  src: url("/static/fonts/Montserrat-Bold.ttf");
+  font-weight: bold;
+  font-style: normal;
 }
 
-html, body {
-  height:100%;
-  width:100%;
+html,
+body {
+  height: 100%;
+  width: 100%;
   background-color: black;
-  font-family: 'Montserrat', 'Lato', 'Roboto', 'Helvetica' !important;
+  font-family: "Montserrat", "Lato", "Roboto", "Helvetica" !important;
 }
 
 .absolute {
@@ -87,7 +88,7 @@ html, body {
   }
 
   .nav-link {
-    font-family: 'Montserrat', 'Lato', 'Roboto', 'Helvetica' !important;
+    font-family: "Montserrat", "Lato", "Roboto", "Helvetica" !important;
     color: white;
     font-weight: bold;
     letter-spacing: 0.8px;
@@ -98,7 +99,8 @@ html, body {
       color: #dba919;
     }
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       color: #dba919;
     }
   }
@@ -126,7 +128,7 @@ html, body {
 
 // WRAPPER
 .cover {
-  background-image: linear-gradient(45deg,#00aeef 0%,#096fb9 100%);
+  background-image: linear-gradient(45deg, #00aeef 0%, #096fb9 100%);
   overflow: hidden;
   position: relative;
 }
@@ -139,17 +141,35 @@ html, body {
 }
 
 .cover-0 {
-  background-image: linear-gradient(45deg,#00aeef 0%,#096fb9 100%);
+  background-image: linear-gradient(45deg, #00aeef 0%, #096fb9 100%);
   animation: fgradient 1s ease;
 }
 
 .cover-1 {
-  background-image: linear-gradient(45deg, rgb(254, 202, 83), rgb(253, 157, 97));
+  background-image: linear-gradient(
+    45deg,
+    rgb(254, 202, 83),
+    rgb(253, 157, 97)
+  );
   animation: sgradient 1s ease;
 }
 
-@keyframes fgradient { 0% { opacity: 0.7; } 100% { opacity: 1; } }
-@keyframes sgradient { 0% { opacity: 0.7; } 100% { opacity: 1; } }
+@keyframes fgradient {
+  0% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes sgradient {
+  0% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 .main-section {
   top: 150px;
@@ -172,7 +192,7 @@ html, body {
   font-size: 31px;
 }
 
-.hero-section{
+.hero-section {
   h2 {
     color: white;
     font-weight: bold;
@@ -227,7 +247,6 @@ html, body {
 
 .hero-welcome-wrapper {
   justify-content: flex-end;
-
 }
 
 @media (max-width: 991px) {
@@ -255,22 +274,20 @@ html, body {
   height: 100%;
   position: absolute;
   top: 0;
-  box-shadow: -17px 13px 41px rgba(13,78,158,0.6);
+  box-shadow: -17px 13px 41px rgba(13, 78, 158, 0.6);
   border: 2px solid #3bace5;
 
   .shadow-inner {
     width: 100%;
     height: 100%;
-    box-shadow: -17px 13px 13px rgba(0,0,0,0.09);
+    box-shadow: -17px 13px 13px rgba(0, 0, 0, 0.09);
   }
 }
 
 .shadow-custom-2 {
   border: 2px solid #f37d49;
-  box-shadow: -17px 13px 41px rgba(13,78,158,0.3);
+  box-shadow: -17px 13px 41px rgba(13, 78, 158, 0.3);
 }
-
-
 
 /* flip speed goes here */
 .flipper {
@@ -279,7 +296,6 @@ html, body {
   position: relative;
 }
 
-
 .flipper.isActive {
   -ms-transform: rotateY(-180deg); /* IE 9 */
   -webkit-transform: rotateY(-180deg); /* Safari Chrome */
@@ -287,7 +303,8 @@ html, body {
 }
 
 /* hide back of pane during swap */
-.front, .back {
+.front,
+.back {
   backface-visibility: hidden;
 
   position: absolute;
@@ -306,7 +323,6 @@ html, body {
 .back {
   transform: rotateY(180deg);
 }
-
 
 .page-container {
   margin-bottom: 3vh;
@@ -336,60 +352,63 @@ html, body {
 }
 
 .fadein {
+  opacity: 0;
+
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 2s; /* Firefox < 16 */
+  -ms-animation: fadein 2s; /* Internet Explorer */
+  -o-animation: fadein 2s; /* Opera < 12.1 */
+  animation: fadein 2s;
+
+  -webkit-animation-fill-mode: forwards; /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.title {
+  -webkit-animation-delay: 0.7s;
+  -moz-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+  font-size: 42px;
+  font-weight: bold;
+}
+
+.subTitle {
+  -webkit-animation-delay: 2.2s;
+  -moz-animation-delay: 2.2s;
+  animation-delay: 2.2s;
+  font-size: 33px;
+}
+
+.subsubTitle {
+  -webkit-animation-delay: 3.6s;
+  -moz-animation-delay: 3.6s;
+  animation-delay: 3.6s;
+  font-size: 18px;
+}
+
+@keyframes fadein {
+  from {
     opacity: 0;
-
-    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-       -moz-animation: fadein 2s; /* Firefox < 16 */
-        -ms-animation: fadein 2s; /* Internet Explorer */
-         -o-animation: fadein 2s; /* Opera < 12.1 */
-            animation: fadein 2s;
-
-    -webkit-animation-fill-mode: forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
-    -moz-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
   }
-
-  .title {
-    -webkit-animation-delay: 0.7s;
-    -moz-animation-delay: 0.7s;
-    animation-delay: 0.7s;
-    font-size: 42px;
-    font-weight: bold;
+  to {
+    opacity: 1;
   }
-
-  .subTitle {
-    -webkit-animation-delay: 2.2s;
-    -moz-animation-delay:2.2s;
-    animation-delay: 2.2s;
-    font-size: 33px;
-  }
-
-  .subsubTitle {
-    -webkit-animation-delay: 3.6s;
-    -moz-animation-delay: 3.6s;
-    animation-delay: 3.6s;
-    font-size: 18px;
-  }
-
-  @keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
+}
 
 .myStory {
   -webkit-animation-delay: 4.6s;
-    -moz-animation-delay: 4.6s;
-    animation-delay: 4.6s;
+  -moz-animation-delay: 4.6s;
+  animation-delay: 4.6s;
 
-    padding-top: 100px;
+  padding-top: 100px;
 
-    &-content {
-      .intro {
-        font-size: 21px;
-      }
+  &-content {
+    .intro {
+      font-size: 21px;
     }
- }
-
+  }
+}
 
 /* intro */
 .section.intro {
@@ -411,58 +430,54 @@ html, body {
 3- Medium devices (tablets, 768px and up)
 ========================================*/
 @media (min-width: 768px) {
-
 }
 
 /* =======================================
 4- Large devices (desktops, 992px and up)
 ========================================*/
 @media (min-width: 992px) {
+  /* === page-container ===*/
+  .page-container {
+    margin-bottom: 8vh;
+    margin-top: 7vh;
+    margin-right: 8vw;
+    margin-left: 8vw;
 
-/* === page-container ===*/
-.page-container {
-  margin-bottom: 8vh;
-  margin-top: 7vh;
-  margin-right: 8vw;
-  margin-left: 8vw;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .left-side,
+  .right-side {
+    width: 50%;
 
-  padding-right: 10px;
-  padding-left: 10px;
-}
-.left-side,
-.right-side {
-  width: 50%;
+    padding: 10px;
+  }
 
-  padding:10px;
-}
+  /* === left-side ===*/
+  .left-side {
+  }
+  .brand {
+    min-height: 40vh;
+    margin-top: 30vh;
+  }
 
-/* === left-side ===*/
-.left-side {
-}
-.brand {
-  min-height: 40vh;
-  margin-top: 30vh;
-}
+  /* === wall ===*/
+  .wall {
+    // height: calc(85vh);
+    // overflow-x: hidden!important;
 
-/* === wall ===*/
-.wall {
-  // height: calc(85vh);
-  // overflow-x: hidden!important;
+    // box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  }
 
-  // box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-}
-
-/* === wall content ===*/
-.wall .section {
-
-}
-/* intro */
-.section.intro {
-  /*
+  /* === wall content ===*/
+  .wall .section {
+  }
+  /* intro */
+  .section.intro {
+    /*
   any spacial css for this section
   */
-}
-
+  }
 }
 
 /* =======================================
@@ -471,14 +486,11 @@ html, body {
 @media (min-width: 1200px) {
 }
 
-
-
 // MODAL
 .modal-title {
   font-size: 30px;
   text-align: center;
 }
-
 
 // BIO
 .bio-page {
@@ -487,7 +499,6 @@ html, body {
   padding: 150px 0 0;
   background-color: $white;
 }
-
 
 // Header 2
 .mainNav {
@@ -498,7 +509,9 @@ html, body {
     color: $white;
   }
 
-  &.bg-secondary{background-color:#2c3e50!important;}
+  &.bg-secondary {
+    background-color: #2c3e50 !important;
+  }
 
   .navbar-nav {
     margin-top: 1rem;
@@ -526,7 +539,7 @@ html, body {
     padding: 0.8rem;
   }
 }
-@media(min-width:992px) {
+@media (min-width: 992px) {
   .mainNav {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
@@ -561,8 +574,6 @@ html, body {
   }
 }
 
-
-
 // PORTFOLIO
 .portfolio-page {
   min-height: 100vh;
@@ -584,7 +595,7 @@ html, body {
 
     &:hover {
       transform: rotate(90deg);
-      cursor:pointer;
+      cursor: pointer;
     }
   }
 
@@ -601,7 +612,7 @@ html, body {
     }
 
     &:hover .readMore:before {
-      background: linear-gradient(to right, #ffffff 0%,#ffffff 100%);
+      background: linear-gradient(to right, #ffffff 0%, #ffffff 100%);
     }
 
     &-header {
@@ -614,7 +625,6 @@ html, body {
     }
 
     &-city {
-
     }
 
     &-title {
@@ -642,13 +652,18 @@ html, body {
     bottom: 28px;
 
     &:before {
-      content: '';
+      content: "";
       display: block;
       position: absolute;
       top: 6px;
       height: 2px;
-      width: calc(100% );
-      background: linear-gradient(to right,rgba(255,255,255,0) 0%,#ffffff 50%,#ffffff 100%);
+      width: calc(100%);
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        #ffffff 50%,
+        #ffffff 100%
+      );
     }
   }
 }
@@ -658,10 +673,6 @@ html, body {
   padding: 150px 0 0;
   background-color: #ecedee;
 }
-
-
-
-
 
 // Blog LISTING!
 
@@ -723,7 +734,6 @@ html, body {
   -o-background-size: cover;
   background-size: cover;
 }
-
 
 header.masthead {
   // TIP: Background images are set within the HTML using inline CSS!
@@ -806,7 +816,6 @@ header.masthead {
   }
 }
 
-
 // Styling for the footer
 footer {
   padding: 50px 0 65px;
@@ -828,7 +837,6 @@ footer {
   background-color: #ecedee;
 }
 
-
 // EDITOR
 .editor {
   box-sizing: border-box;
@@ -837,7 +845,7 @@ footer {
   padding: 16px;
   border-radius: 2px;
   margin-bottom: 2em;
-  box-shadow: inset 0px 1px 8px -3px #ABABAB;
+  box-shadow: inset 0px 1px 8px -3px #ababab;
   background: #fefefe;
 }
 
@@ -865,11 +873,9 @@ footer {
   background: #f3f3f3;
 }
 
-
 .blog-image {
   max-height: 720px;
 }
-
 
 .my-blogs-page {
   min-height: 100vh;
@@ -893,7 +899,6 @@ footer {
     }
   }
 }
-
 
 .blogDetail-page {
   min-height: 100vh;

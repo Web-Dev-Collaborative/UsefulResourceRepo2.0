@@ -1,6 +1,6 @@
 ---
 id: 5900f3ca1000cf542c50fedd
-title: 'Problem 94: Almost equilateral triangles'
+title: "Problem 94: Almost equilateral triangles"
 challengeType: 5
 forumTopicId: 302211
 dashedName: problem-94-almost-equilateral-triangles
@@ -19,7 +19,7 @@ Find the sum of the perimeters of all <dfn>almost equilateral triangle</dfn> wit
 `almostEquilateralTriangles()` should return a number.
 
 ```js
-assert(typeof almostEquilateralTriangles() === 'number');
+assert(typeof almostEquilateralTriangles() === "number");
 ```
 
 `almostEquilateralTriangles()` should return 518408346.
@@ -34,7 +34,6 @@ assert.strictEqual(almostEquilateralTriangles(), 518408346);
 
 ```js
 function almostEquilateralTriangles() {
-
   return true;
 }
 

@@ -38,7 +38,7 @@ assert(nonAlphabetRegex.global);
 
 ```js
 assert(
-  'The five boxing wizards jump quickly.'.match(nonAlphabetRegex).length == 6
+  "The five boxing wizards jump quickly.".match(nonAlphabetRegex).length == 6
 );
 ```
 
@@ -52,7 +52,7 @@ assert(/\\W/.test(nonAlphabetRegex.source));
 
 ```js
 assert(
-  'Pack my box with five dozen liquor jugs.'.match(nonAlphabetRegex).length == 8
+  "Pack my box with five dozen liquor jugs.".match(nonAlphabetRegex).length == 8
 );
 ```
 
@@ -60,15 +60,15 @@ assert(
 
 ```js
 assert(
-  'How vexingly quick daft zebras jump!'.match(nonAlphabetRegex).length == 6
+  "How vexingly quick daft zebras jump!".match(nonAlphabetRegex).length == 6
 );
 ```
 
-你的正则表达式应该在字符串 `123 456 7890 ABC def GHI jkl MNO pqr STU vwx YZ.` 中找到12个非字母数字字符。
+你的正则表达式应该在字符串 `123 456 7890 ABC def GHI jkl MNO pqr STU vwx YZ.` 中找到 12 个非字母数字字符。
 
 ```js
 assert(
-  '123 456 7890 ABC def GHI jkl MNO pqr STU vwx YZ.'.match(nonAlphabetRegex)
+  "123 456 7890 ABC def GHI jkl MNO pqr STU vwx YZ.".match(nonAlphabetRegex)
     .length == 12
 );
 ```

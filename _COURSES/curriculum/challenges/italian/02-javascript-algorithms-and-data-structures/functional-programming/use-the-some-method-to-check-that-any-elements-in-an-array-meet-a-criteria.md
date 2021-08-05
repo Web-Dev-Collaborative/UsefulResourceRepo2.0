@@ -8,13 +8,13 @@ dashedName: use-the-some-method-to-check-that-any-elements-in-an-array-meet-a-cr
 
 # --description--
 
-Il metodo `some` funziona con gli array per verificare se *un qualunque* elemento supera un test particolare. Restituisce un valore booleano: `true` se uno qualsiasi dei valori soddisfa i criteri, `false` altrimenti.
+Il metodo `some` funziona con gli array per verificare se _un qualunque_ elemento supera un test particolare. Restituisce un valore booleano: `true` se uno qualsiasi dei valori soddisfa i criteri, `false` altrimenti.
 
 Ad esempio, il seguente codice controllerà se almeno un elemento nell'array `numbers` è inferiore a 10:
 
 ```js
 var numbers = [10, 50, 8, 220, 110, 11];
-numbers.some(function(currentValue) {
+numbers.some(function (currentValue) {
   return currentValue < 10;
 });
 ```
@@ -58,8 +58,6 @@ assert(!checkPositive([-1, -2, -3, -4, -5]));
 ```js
 function checkPositive(arr) {
   // Only change code below this line
-
-
   // Only change code above this line
 }
 checkPositive([1, 2, 3, -4, 5]);
@@ -70,7 +68,7 @@ checkPositive([1, 2, 3, -4, 5]);
 ```js
 function checkPositive(arr) {
   // Only change code below this line
-  return arr.some(elem => elem > 0);
+  return arr.some((elem) => elem > 0);
   // Only change code above this line
 }
 checkPositive([1, 2, 3, -4, 5]);

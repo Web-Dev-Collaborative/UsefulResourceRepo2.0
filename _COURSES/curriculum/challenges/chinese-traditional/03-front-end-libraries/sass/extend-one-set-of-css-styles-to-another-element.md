@@ -13,7 +13,7 @@ Sass 有一個名爲 `extend` 的功能，可以很容易地從一個元素中�
 例如，下面的 CSS 規則塊設置了 `.panel` class 的樣式。 它有 `background-color`，`height` 和 `border`。
 
 ```scss
-.panel{
+.panel {
   background-color: red;
   height: 70px;
   border: 2px solid green;
@@ -23,7 +23,7 @@ Sass 有一個名爲 `extend` 的功能，可以很容易地從一個元素中�
 現在需要另一個名爲 `.big-panel` 的面板。 它具有與 `.panel` 相同的基本屬性，但還需要 `width` 和 `font-size`。 可以從 `.panel` 複製並粘貼初始 CSS 規則，但是當添加更多類型的面板時，代碼會變得重複。 `extend` 指令是一種重用爲一個元素編寫的規則的簡單方法，可以爲另一個元素重用並添加更多規則：
 
 ```scss
-.big-panel{
+.big-panel {
   @extend .panel;
   width: 150px;
   font-size: 2em;
@@ -61,56 +61,61 @@ assert(
 ## --seed-contents--
 
 ```html
-<style type='text/scss'>
-  h3{
+<style type="text/scss">
+  h3 {
     text-align: center;
   }
-  .info{
+  .info {
     width: 200px;
     border: 1px solid black;
     margin: 0 auto;
   }
-
-
-
-
 </style>
 <h3>Posts</h3>
 <div class="info-important">
-  <p>This is an important post. It should extend the class ".info" and have its own CSS styles.</p>
+  <p>
+    This is an important post. It should extend the class ".info" and have its
+    own CSS styles.
+  </p>
 </div>
 
 <div class="info">
-  <p>This is a simple post. It has basic styling and can be extended for other uses.</p>
+  <p>
+    This is a simple post. It has basic styling and can be extended for other
+    uses.
+  </p>
 </div>
 ```
 
 # --solutions--
 
 ```html
-<style type='text/scss'>
-  h3{
+<style type="text/scss">
+  h3 {
     text-align: center;
   }
-  .info{
+  .info {
     width: 200px;
     border: 1px solid black;
     margin: 0 auto;
   }
-  .info-important{
+  .info-important {
     @extend .info;
     background-color: magenta;
   }
-
-
-
 </style>
 <h3>Posts</h3>
 <div class="info-important">
-  <p>This is an important post. It should extend the class ".info" and have its own CSS styles.</p>
+  <p>
+    This is an important post. It should extend the class ".info" and have its
+    own CSS styles.
+  </p>
 </div>
 
 <div class="info">
-  <p>This is a simple post. It has basic styling and can be extended for other uses.</p>
+  <p>
+    This is a simple post. It has basic styling and can be extended for other
+    uses.
+  </p>
 </div>
 ```

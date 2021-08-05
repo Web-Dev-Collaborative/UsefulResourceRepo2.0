@@ -48,9 +48,9 @@ suite('GET /hello?name=[name] => "hello [name]"', function () {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=0').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=0").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -62,11 +62,11 @@ suite('GET /hello?name=[name] => "hello [name]"', function () {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=0').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=0").then(
     (data) => {
-      assert.equal(data.assertions[0].method, 'equal');
-      assert.equal(data.assertions[0].args[0], 'res.status');
-      assert.equal(data.assertions[0].args[1], '200');
+      assert.equal(data.assertions[0].method, "equal");
+      assert.equal(data.assertions[0].args[0], "res.status");
+      assert.equal(data.assertions[0].args[1], "200");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -78,10 +78,10 @@ suite('GET /hello?name=[name] => "hello [name]"', function () {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=0').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=0").then(
     (data) => {
-      assert.equal(data.assertions[1].method, 'equal');
-      assert.equal(data.assertions[1].args[0], 'res.text');
+      assert.equal(data.assertions[1].method, "equal");
+      assert.equal(data.assertions[1].args[0], "res.text");
       assert.match(data.assertions[1].args[1], /('|")hello Guest\1/);
     },
     (xhr) => {

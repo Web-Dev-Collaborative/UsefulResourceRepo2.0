@@ -1,7 +1,6 @@
+import { useForm } from "react-hook-form";
 
-import { useForm } from 'react-hook-form'
-
-const LoginForm = ({onSubmit, loading}) => {
+const LoginForm = ({ onSubmit, loading }) => {
   const { handleSubmit, register } = useForm();
 
   return (
@@ -13,7 +12,8 @@ const LoginForm = ({onSubmit, loading}) => {
           type="email"
           name="email"
           className="form-control"
-          id="email" />
+          id="email"
+        />
       </div>
       <div className="form-group">
         <label htmlFor="password">Password</label>
@@ -22,20 +22,17 @@ const LoginForm = ({onSubmit, loading}) => {
           name="password"
           type="password"
           className="form-control"
-          id="password" />
+          id="password"
+        />
       </div>
-      { loading &&
-        'Signing in...'
-      }
-      { !loading &&
-        <button
-          type="submit"
-          className="btn btn-main bg-blue py-2 ttu">Submit
+      {loading && "Signing in..."}
+      {!loading && (
+        <button type="submit" className="btn btn-main bg-blue py-2 ttu">
+          Submit
         </button>
-      }
+      )}
     </form>
-  )
-}
-
+  );
+};
 
 export default LoginForm;

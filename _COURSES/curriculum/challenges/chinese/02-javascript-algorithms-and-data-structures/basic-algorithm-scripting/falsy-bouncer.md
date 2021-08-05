@@ -19,19 +19,19 @@ JavaScript 中的假值有 `false`、`null`、`0`、`""`、`undefined`、`NaN`�
 `bouncer([7, "ate", "", false, 9])` 应返回 `[7, "ate", 9]`。
 
 ```js
-assert.deepEqual(bouncer([7, 'ate', '', false, 9]), [7, 'ate', 9]);
+assert.deepEqual(bouncer([7, "ate", "", false, 9]), [7, "ate", 9]);
 ```
 
 `bouncer(["a", "b", "c"])` 应返回 `["a", "b", "c"]`。
 
 ```js
-assert.deepEqual(bouncer(['a', 'b', 'c']), ['a', 'b', 'c']);
+assert.deepEqual(bouncer(["a", "b", "c"]), ["a", "b", "c"]);
 ```
 
 `bouncer([false, null, 0, NaN, undefined, ""])` 应返回 `[]`。
 
 ```js
-assert.deepEqual(bouncer([false, null, 0, NaN, undefined, '']), []);
+assert.deepEqual(bouncer([false, null, 0, NaN, undefined, ""]), []);
 ```
 
 `bouncer([null, NaN, 1, 2, undefined])` 应返回 `[1, 2]`。
@@ -56,7 +56,7 @@ bouncer([7, "ate", "", false, 9]);
 
 ```js
 function bouncer(arr) {
-  return arr.filter(e => e);
+  return arr.filter((e) => e);
 }
 
 bouncer([7, "ate", "", false, 9]);

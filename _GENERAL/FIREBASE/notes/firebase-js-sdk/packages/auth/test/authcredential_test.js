@@ -55,7 +55,6 @@ goog.require('goog.testing.recordFunction');
 
 goog.setTestOnly('fireauth.AuthCredentialTest');
 
-
 var mockControl;
 var stubs = new goog.testing.PropertyReplacer();
 var rpcHandler = new fireauth.RpcHandler('apiKey');
@@ -83,71 +82,74 @@ var successTokenResponse = {
 };
 var now = new Date();
 
-
 function setUp() {
   responseForIdToken = {
     'idToken': 'ID_TOKEN'
   };
+  stubs.replace(fireauth.util, 'getCurrentUrl', function () {
+    // Simulates a non http://localhost current URL.
+    return 'http://www.example.com';
+  });
   stubs.replace(
-      fireauth.util,
-      'getCurrentUrl',
-      function() {
-        // Simulates a non http://localhost current URL.
-        return 'http://www.example.com';
-      });
+    fireauth.RpcHandler.prototype,
+    'verifyAssertion',
+    goog.testing.recordFunction(function (request) {
+      return goog.Promise.resolve(responseForIdToken);
+    })
+  );
   stubs.replace(
-      fireauth.RpcHandler.prototype,
-      'verifyAssertion',
-      goog.testing.recordFunction(function(request) {
-        return goog.Promise.resolve(responseForIdToken);
-      }));
+    fireauth.RpcHandler.prototype,
+    'verifyPassword',
+    goog.testing.recordFunction(function (request) {
+      return goog.Promise.resolve(responseForIdToken);
+    })
+  );
   stubs.replace(
-      fireauth.RpcHandler.prototype,
-      'verifyPassword',
-      goog.testing.recordFunction(function(request) {
-        return goog.Promise.resolve(responseForIdToken);
-      }));
+    fireauth.RpcHandler.prototype,
+    'emailLinkSignIn',
+    goog.testing.recordFunction(function (request) {
+      return goog.Promise.resolve(responseForIdToken);
+    })
+  );
   stubs.replace(
-      fireauth.RpcHandler.prototype, 'emailLinkSignIn',
-      goog.testing.recordFunction(function(request) {
-        return goog.Promise.resolve(responseForIdToken);
-      }));
+    fireauth.RpcHandler.prototype,
+    'emailLinkSignInForLinking',
+    goog.testing.recordFunction(function (request) {
+      return goog.Promise.resolve(responseForIdToken);
+    })
+  );
   stubs.replace(
-      fireauth.RpcHandler.prototype, 'emailLinkSignInForLinking',
-      goog.testing.recordFunction(function(request) {
-        return goog.Promise.resolve(responseForIdToken);
-      }));
+    fireauth.RpcHandler.prototype,
+    'verifyAssertionForLinking',
+    goog.testing.recordFunction(function (request) {
+      return goog.Promise.resolve(responseForIdToken);
+    })
+  );
   stubs.replace(
-      fireauth.RpcHandler.prototype,
-      'verifyAssertionForLinking',
-      goog.testing.recordFunction(function(request) {
-        return goog.Promise.resolve(responseForIdToken);
-      }));
+    fireauth.RpcHandler.prototype,
+    'verifyAssertionForExisting',
+    goog.testing.recordFunction(function (request) {
+      return goog.Promise.resolve(responseForIdToken);
+    })
+  );
   stubs.replace(
-      fireauth.RpcHandler.prototype,
-      'verifyAssertionForExisting',
-      goog.testing.recordFunction(function(request) {
-        return goog.Promise.resolve(responseForIdToken);
-      }));
-  stubs.replace(
-      fireauth.RpcHandler.prototype,
-      'updateEmailAndPassword',
-      goog.testing.recordFunction(goog.Promise.resolve));
+    fireauth.RpcHandler.prototype,
+    'updateEmailAndPassword',
+    goog.testing.recordFunction(goog.Promise.resolve)
+  );
 
   // Internally we should not be using any deprecated methods.
-  stubs.replace(fireauth.deprecation, 'log', function(message) {
+  stubs.replace(fireauth.deprecation, 'log', function (message) {
     fail('Deprecation message unexpectedly displayed: ' + message);
   });
   mockControl = new goog.testing.MockControl();
 }
-
 
 function tearDown() {
   mockControl.$verifyAll();
   mockControl.$tearDown();
   stubs.reset();
 }
-
 
 /**
  * Initialize the IdToken mocks for parsing an expected ID token and returning
@@ -172,23 +174,18 @@ function initializeIdTokenMocks(expectedIdToken, expectedUid) {
   mockControl.$replayAll();
 }
 
-
 /**
  * Assert that the correct request is sent to RPC handler
  * verifyAssertionFor.
  * @param {?Object} request The verifyAssertion request.
  */
 function assertRpcHandlerVerifyAssertion(request) {
-  assertEquals(
-      1,
-      fireauth.RpcHandler.prototype.verifyAssertion.getCallCount());
+  assertEquals(1, fireauth.RpcHandler.prototype.verifyAssertion.getCallCount());
   assertObjectEquals(
-      request,
-      fireauth.RpcHandler.prototype.verifyAssertion
-      .getLastCall()
-      .getArgument(0));
+    request,
+    fireauth.RpcHandler.prototype.verifyAssertion.getLastCall().getArgument(0)
+  );
 }
-
 
 /**
  * Asserts that the correct request is sent to RPC handler verifyPassword.
@@ -196,21 +193,16 @@ function assertRpcHandlerVerifyAssertion(request) {
  * @param {string} password The password in verifyPassword request.
  */
 function assertRpcHandlerVerifyPassword(email, password) {
-  assertEquals(
-      1,
-      fireauth.RpcHandler.prototype.verifyPassword.getCallCount());
+  assertEquals(1, fireauth.RpcHandler.prototype.verifyPassword.getCallCount());
   assertObjectEquals(
-      email,
-      fireauth.RpcHandler.prototype.verifyPassword
-      .getLastCall()
-      .getArgument(0));
+    email,
+    fireauth.RpcHandler.prototype.verifyPassword.getLastCall().getArgument(0)
+  );
   assertObjectEquals(
-      password,
-      fireauth.RpcHandler.prototype.verifyPassword
-      .getLastCall()
-      .getArgument(1));
+    password,
+    fireauth.RpcHandler.prototype.verifyPassword.getLastCall().getArgument(1)
+  );
 }
-
 
 /**
  * Asserts that the correct request is sent to RPC handler emailLinkSignIn.
@@ -220,15 +212,14 @@ function assertRpcHandlerVerifyPassword(email, password) {
 function assertRpcHandlerEmailLinkSignIn(email, oobCode) {
   assertEquals(1, fireauth.RpcHandler.prototype.emailLinkSignIn.getCallCount());
   assertObjectEquals(
-      email,
-      fireauth.RpcHandler.prototype.emailLinkSignIn.getLastCall().getArgument(
-          0));
+    email,
+    fireauth.RpcHandler.prototype.emailLinkSignIn.getLastCall().getArgument(0)
+  );
   assertObjectEquals(
-      oobCode,
-      fireauth.RpcHandler.prototype.emailLinkSignIn.getLastCall().getArgument(
-          1));
+    oobCode,
+    fireauth.RpcHandler.prototype.emailLinkSignIn.getLastCall().getArgument(1)
+  );
 }
-
 
 /**
  * Asserts that the correct request is sent to RPC handler
@@ -238,19 +229,29 @@ function assertRpcHandlerEmailLinkSignIn(email, oobCode) {
  * @param {string} oobCode The oobCode in emailLinkSignInForLinking request.
  */
 function assertRpcHandlerEmailLinkSignInForLinking(idToken, email, oobCode) {
-  assertEquals(1, fireauth.RpcHandler.prototype.emailLinkSignInForLinking
-      .getCallCount());
+  assertEquals(
+    1,
+    fireauth.RpcHandler.prototype.emailLinkSignInForLinking.getCallCount()
+  );
   assertObjectEquals(
-      idToken, fireauth.RpcHandler.prototype.emailLinkSignInForLinking
-      .getLastCall().getArgument(0));
+    idToken,
+    fireauth.RpcHandler.prototype.emailLinkSignInForLinking
+      .getLastCall()
+      .getArgument(0)
+  );
   assertObjectEquals(
-      email, fireauth.RpcHandler.prototype.emailLinkSignInForLinking
-      .getLastCall().getArgument(1));
+    email,
+    fireauth.RpcHandler.prototype.emailLinkSignInForLinking
+      .getLastCall()
+      .getArgument(1)
+  );
   assertObjectEquals(
-      oobCode, fireauth.RpcHandler.prototype.emailLinkSignInForLinking
-      .getLastCall().getArgument(2));
+    oobCode,
+    fireauth.RpcHandler.prototype.emailLinkSignInForLinking
+      .getLastCall()
+      .getArgument(2)
+  );
 }
-
 
 /**
  * Assert that the correct request is sent to RPC handler
@@ -259,15 +260,16 @@ function assertRpcHandlerEmailLinkSignInForLinking(idToken, email, oobCode) {
  */
 function assertRpcHandlerVerifyAssertionForLinking(request) {
   assertEquals(
-      1,
-      fireauth.RpcHandler.prototype.verifyAssertionForLinking.getCallCount());
+    1,
+    fireauth.RpcHandler.prototype.verifyAssertionForLinking.getCallCount()
+  );
   assertObjectEquals(
-      request,
-      fireauth.RpcHandler.prototype.verifyAssertionForLinking
+    request,
+    fireauth.RpcHandler.prototype.verifyAssertionForLinking
       .getLastCall()
-      .getArgument(0));
+      .getArgument(0)
+  );
 }
-
 
 /**
  * Assert that the correct request is sent to RPC handler
@@ -276,15 +278,16 @@ function assertRpcHandlerVerifyAssertionForLinking(request) {
  */
 function assertRpcHandlerVerifyAssertionForExisting(request) {
   assertEquals(
-      1,
-      fireauth.RpcHandler.prototype.verifyAssertionForExisting.getCallCount());
+    1,
+    fireauth.RpcHandler.prototype.verifyAssertionForExisting.getCallCount()
+  );
   assertObjectEquals(
-      request,
-      fireauth.RpcHandler.prototype.verifyAssertionForExisting
+    request,
+    fireauth.RpcHandler.prototype.verifyAssertionForExisting
       .getLastCall()
-      .getArgument(0));
+      .getArgument(0)
+  );
 }
-
 
 /**
  * Assert that the correct request is sent to RPC handler
@@ -295,42 +298,46 @@ function assertRpcHandlerVerifyAssertionForExisting(request) {
  */
 function assertRpcHandlerUpdateEmailAndPassword(idToken, email, password) {
   assertEquals(
-      1,
-      fireauth.RpcHandler.prototype.updateEmailAndPassword.getCallCount());
+    1,
+    fireauth.RpcHandler.prototype.updateEmailAndPassword.getCallCount()
+  );
   assertObjectEquals(
-      idToken,
-      fireauth.RpcHandler.prototype.updateEmailAndPassword
+    idToken,
+    fireauth.RpcHandler.prototype.updateEmailAndPassword
       .getLastCall()
-      .getArgument(0));
+      .getArgument(0)
+  );
   assertObjectEquals(
-      email,
-      fireauth.RpcHandler.prototype.updateEmailAndPassword
+    email,
+    fireauth.RpcHandler.prototype.updateEmailAndPassword
       .getLastCall()
-      .getArgument(1));
+      .getArgument(1)
+  );
   assertObjectEquals(
-      password,
-      fireauth.RpcHandler.prototype.updateEmailAndPassword
+    password,
+    fireauth.RpcHandler.prototype.updateEmailAndPassword
       .getLastCall()
-      .getArgument(2));
+      .getArgument(2)
+  );
 }
-
 
 /**
  * Test invalid Auth credential.
  */
 function testInvalidCredential() {
   var errorOAuth1 = new fireauth.AuthError(
-      fireauth.authenum.Error.ARGUMENT_ERROR,
-      'credential failed: expected 2 arguments ' +
-      '(the OAuth access token and secret).');
+    fireauth.authenum.Error.ARGUMENT_ERROR,
+    'credential failed: expected 2 arguments ' +
+      '(the OAuth access token and secret).'
+  );
   var errorOAuth2 = new fireauth.AuthError(
-      fireauth.authenum.Error.ARGUMENT_ERROR,
-      'credential failed: expected 1 argument ' +
-      '(the OAuth access token).');
+    fireauth.authenum.Error.ARGUMENT_ERROR,
+    'credential failed: expected 1 argument ' + '(the OAuth access token).'
+  );
   var errorOidc = new fireauth.AuthError(
-      fireauth.authenum.Error.ARGUMENT_ERROR,
-      'credential failed: must provide the ID token and/or the access ' +
-      'token.');
+    fireauth.authenum.Error.ARGUMENT_ERROR,
+    'credential failed: must provide the ID token and/or the access ' + 'token.'
+  );
 
   try {
     fireauth.FacebookAuthProvider.credential('');
@@ -367,11 +374,11 @@ function testInvalidCredential() {
   assertNull(fireauth.AuthProvider.getCredentialFromResponse({}));
   // Missing OAuth response.
   assertNull(
-      fireauth.AuthProvider.getCredentialFromResponse({
-        'providerId': 'facebook.com'
-      }));
+    fireauth.AuthProvider.getCredentialFromResponse({
+      'providerId': 'facebook.com'
+    })
+  );
 }
-
 
 function testOAuthCredential() {
   var provider = new fireauth.OAuthProvider('example.com');
@@ -385,68 +392,78 @@ function testOAuthCredential() {
   assertEquals('example.com', authCredential['signInMethod']);
   authCredential.getIdTokenProvider(rpcHandler);
   assertObjectEquals(
-      {
-        'oauthAccessToken': 'exampleAccessToken',
-        'oauthIdToken': 'exampleIdToken',
-        'providerId': 'example.com',
-        'signInMethod': 'example.com'
-      },
-      authCredential.toPlainObject());
+    {
+      'oauthAccessToken': 'exampleAccessToken',
+      'oauthIdToken': 'exampleIdToken',
+      'providerId': 'example.com',
+      'signInMethod': 'example.com'
+    },
+    authCredential.toPlainObject()
+  );
   assertRpcHandlerVerifyAssertion({
     // requestUri should be http://localhost regardless of current URL.
     'requestUri': 'http://localhost',
-    'postBody': 'id_token=exampleIdToken&access_token=exampleAccessToken' +
-        '&providerId=example.com'
+    'postBody':
+      'id_token=exampleIdToken&access_token=exampleAccessToken' +
+      '&providerId=example.com'
   });
 
   // Test toJSON and fromJSON for current OAuthCredential.
   assertObjectEquals(
-      authCredential,
-      fireauth.OAuthCredential.fromJSON(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.OAuthCredential.fromJSON(authCredential.toPlainObject())
+  );
   assertObjectEquals(
-      authCredential,
-      fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject())
+  );
   assertObjectEquals(
-      authCredential,
-      fireauth.AuthCredential.fromPlainObject(
-          JSON.stringify(authCredential.toPlainObject())));
+    authCredential,
+    fireauth.AuthCredential.fromPlainObject(
+      JSON.stringify(authCredential.toPlainObject())
+    )
+  );
 }
-
 
 function testOAuthCredential_oldAPI() {
   var provider = new fireauth.OAuthProvider('example.com');
   // Initialize the OAuth credential using the old API.
   var authCredential = provider.credential(
-      'exampleIdToken', 'exampleAccessToken');
+    'exampleIdToken',
+    'exampleAccessToken'
+  );
   assertEquals('exampleIdToken', authCredential['idToken']);
   assertEquals('exampleAccessToken', authCredential['accessToken']);
   assertEquals('example.com', authCredential['providerId']);
   assertEquals('example.com', authCredential['signInMethod']);
   authCredential.getIdTokenProvider(rpcHandler);
   assertObjectEquals(
-      {
-        'oauthAccessToken': 'exampleAccessToken',
-        'oauthIdToken': 'exampleIdToken',
-        'providerId': 'example.com',
-        'signInMethod': 'example.com'
-      },
-      authCredential.toPlainObject());
+    {
+      'oauthAccessToken': 'exampleAccessToken',
+      'oauthIdToken': 'exampleIdToken',
+      'providerId': 'example.com',
+      'signInMethod': 'example.com'
+    },
+    authCredential.toPlainObject()
+  );
   assertRpcHandlerVerifyAssertion({
     // requestUri should be http://localhost regardless of current URL.
     'requestUri': 'http://localhost',
-    'postBody': 'id_token=exampleIdToken&access_token=exampleAccessToken' +
-        '&providerId=example.com'
+    'postBody':
+      'id_token=exampleIdToken&access_token=exampleAccessToken' +
+      '&providerId=example.com'
   });
 
   // Test toJSON and fromJSON for current OAuthCredential.
   assertObjectEquals(
-      authCredential,
-      fireauth.OAuthCredential.fromJSON(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.OAuthCredential.fromJSON(authCredential.toPlainObject())
+  );
   assertObjectEquals(
-      authCredential,
-      fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject())
+  );
 }
-
 
 function testOAuthCredential_idTokenNonce() {
   // Test using an OIDC ID token/nonce credential.
@@ -462,13 +479,14 @@ function testOAuthCredential_idTokenNonce() {
   assertEquals('oidc.provider', authCredential['signInMethod']);
   authCredential.getIdTokenProvider(rpcHandler);
   assertObjectEquals(
-      {
-        'oauthIdToken': 'OIDC_ID_TOKEN',
-        'nonce': 'NONCE',
-        'providerId': 'oidc.provider',
-        'signInMethod': 'oidc.provider'
-      },
-      authCredential.toPlainObject());
+    {
+      'oauthIdToken': 'OIDC_ID_TOKEN',
+      'nonce': 'NONCE',
+      'providerId': 'oidc.provider',
+      'signInMethod': 'oidc.provider'
+    },
+    authCredential.toPlainObject()
+  );
 
   // Confirm expected verifyAssertion request sent. nonce is passed in postBody.
   assertRpcHandlerVerifyAssertion({
@@ -478,25 +496,27 @@ function testOAuthCredential_idTokenNonce() {
 
   // Test toJSON and fromJSON for current OAuthCredential.
   assertObjectEquals(
-      authCredential,
-      fireauth.OAuthCredential.fromJSON(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.OAuthCredential.fromJSON(authCredential.toPlainObject())
+  );
   assertObjectEquals(
-      authCredential,
-      fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject())
+  );
 }
-
 
 function testOAuthCredential_pendingToken() {
   // Test using an OIDC ID token/pending token credential.
   var authCredential = new fireauth.OAuthCredential(
-      'oidc.provider',
-      {
-        'pendingToken': 'PENDING_TOKEN',
-        // Nonce should be ignored.
-        'nonce': 'NONCE',
-        'idToken': 'OIDC_ID_TOKEN'
-      },
-      'oidc.provider');
+    'oidc.provider',
+    {
+      'pendingToken': 'PENDING_TOKEN',
+      // Nonce should be ignored.
+      'nonce': 'NONCE',
+      'idToken': 'OIDC_ID_TOKEN'
+    },
+    'oidc.provider'
+  );
   assertEquals('OIDC_ID_TOKEN', authCredential['idToken']);
   assertUndefined('NONCE', authCredential['nonce']);
   assertUndefined(authCredential['accessToken']);
@@ -504,13 +524,14 @@ function testOAuthCredential_pendingToken() {
   assertEquals('oidc.provider', authCredential['signInMethod']);
   authCredential.getIdTokenProvider(rpcHandler);
   assertObjectEquals(
-      {
-        'oauthIdToken': 'OIDC_ID_TOKEN',
-        'pendingToken': 'PENDING_TOKEN',
-        'providerId': 'oidc.provider',
-        'signInMethod': 'oidc.provider'
-      },
-      authCredential.toPlainObject());
+    {
+      'oauthIdToken': 'OIDC_ID_TOKEN',
+      'pendingToken': 'PENDING_TOKEN',
+      'providerId': 'oidc.provider',
+      'signInMethod': 'oidc.provider'
+    },
+    authCredential.toPlainObject()
+  );
   // Confirm only pending token passed in request.
   assertRpcHandlerVerifyAssertion({
     'requestUri': 'http://localhost',
@@ -519,13 +540,14 @@ function testOAuthCredential_pendingToken() {
 
   // Test toJSON and fromJSON for current OAuthCredential.
   assertObjectEquals(
-      authCredential,
-      fireauth.OAuthCredential.fromJSON(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.OAuthCredential.fromJSON(authCredential.toPlainObject())
+  );
   assertObjectEquals(
-      authCredential,
-      fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject())
+  );
 }
-
 
 function testInvalidOAuthCredential() {
   // Test the case where invalid arguments were passed to the OAuthCredential
@@ -542,17 +564,15 @@ function testInvalidOAuthCredential() {
   }
 }
 
-
 function testOAuthProvider_constructor() {
   var provider = new fireauth.OAuthProvider('example.com');
   assertTrue(provider['isOAuthProvider']);
   assertEquals('example.com', provider['providerId']);
   // Should not throw an error.
-  assertNotThrows(function() {
+  assertNotThrows(function () {
     fireauth.AuthProvider.checkIfOAuthSupported(provider);
   });
 }
-
 
 function testOAuthProvider_scopes() {
   var provider = new fireauth.OAuthProvider('example.com');
@@ -561,7 +581,6 @@ function testOAuthProvider_scopes() {
   provider.addScope('scope2').addScope('scope3');
   assertArrayEquals(['scope1', 'scope2', 'scope3'], provider.getScopes());
 }
-
 
 function testOAuthProvider_customParameters() {
   var provider = new fireauth.OAuthProvider('example.com');
@@ -579,40 +598,49 @@ function testOAuthProvider_customParameters() {
     'state': 'STATE'
   });
   // Get custom parameters should only return the valid parameters.
-  assertObjectEquals({
-    'login_hint': 'user@example.com',
-    'prompt': 'consent',
-    'include_granted_scopes': 'true',
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'login_hint': 'user@example.com',
+      'prompt': 'consent',
+      'include_granted_scopes': 'true'
+    },
+    provider.getCustomParameters()
+  );
 
   // Modify custom parameters.
-  provider.setCustomParameters({
-    'login_hint': 'user2@example.com'
-  }).setCustomParameters({
-    'login_hint': 'user3@example.com'
-  });
+  provider
+    .setCustomParameters({
+      'login_hint': 'user2@example.com'
+    })
+    .setCustomParameters({
+      'login_hint': 'user3@example.com'
+    });
   // Parameters should be updated.
-  assertObjectEquals({
-    'login_hint': 'user3@example.com'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'login_hint': 'user3@example.com'
+    },
+    provider.getCustomParameters()
+  );
 }
-
 
 function testOAuthProvider_chainedMethods() {
   // Test that method chaining works.
   var provider = new fireauth.OAuthProvider('example.com')
-      .addScope('scope1')
-      .addScope('scope2')
-      .setCustomParameters({
-        'login_hint': 'user@example.com'
-      })
-      .addScope('scope3');
+    .addScope('scope1')
+    .addScope('scope2')
+    .setCustomParameters({
+      'login_hint': 'user@example.com'
+    })
+    .addScope('scope3');
   assertArrayEquals(['scope1', 'scope2', 'scope3'], provider.getScopes());
-  assertObjectEquals({
-    'login_hint': 'user@example.com'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'login_hint': 'user@example.com'
+    },
+    provider.getCustomParameters()
+  );
 }
-
 
 function testOAuthProvider_getCredentialFromResponse() {
   var provider = new fireauth.OAuthProvider('example.com');
@@ -621,15 +649,15 @@ function testOAuthProvider_getCredentialFromResponse() {
     'accessToken': 'exampleAccessToken'
   });
   assertObjectEquals(
-      authCredential.toPlainObject(),
-      fireauth.AuthProvider.getCredentialFromResponse({
-        'oauthAccessToken': 'exampleAccessToken',
-        'oauthIdToken': 'exampleIdToken',
-        'providerId': 'example.com',
-        'signInMethod': 'example.com'
-      }).toPlainObject());
+    authCredential.toPlainObject(),
+    fireauth.AuthProvider.getCredentialFromResponse({
+      'oauthAccessToken': 'exampleAccessToken',
+      'oauthIdToken': 'exampleIdToken',
+      'providerId': 'example.com',
+      'signInMethod': 'example.com'
+    }).toPlainObject()
+  );
 }
-
 
 function testOAuthProvider_getCredentialFromResponse_accessTokenOnly() {
   // Test Auth credential from response with access token only.
@@ -638,14 +666,14 @@ function testOAuthProvider_getCredentialFromResponse_accessTokenOnly() {
     'accessToken': 'exampleAccessToken'
   });
   assertObjectEquals(
-      authCredential.toPlainObject(),
-      fireauth.AuthProvider.getCredentialFromResponse({
-        'oauthAccessToken': 'exampleAccessToken',
-        'providerId': 'example.com',
-        'signInMethod': 'example.com'
-      }).toPlainObject());
+    authCredential.toPlainObject(),
+    fireauth.AuthProvider.getCredentialFromResponse({
+      'oauthAccessToken': 'exampleAccessToken',
+      'providerId': 'example.com',
+      'signInMethod': 'example.com'
+    }).toPlainObject()
+  );
 }
-
 
 function testOAuthProvider_getCredentialFromResponse_idTokenOnly() {
   // Test Auth credential from response with ID token only.
@@ -654,14 +682,14 @@ function testOAuthProvider_getCredentialFromResponse_idTokenOnly() {
     'idToken': 'exampleIdToken'
   });
   assertObjectEquals(
-      authCredential.toPlainObject(),
-      fireauth.AuthProvider.getCredentialFromResponse({
-        'oauthIdToken': 'exampleIdToken',
-        'providerId': 'example.com',
-        'signInMethod': 'example.com'
-      }).toPlainObject());
+    authCredential.toPlainObject(),
+    fireauth.AuthProvider.getCredentialFromResponse({
+      'oauthIdToken': 'exampleIdToken',
+      'providerId': 'example.com',
+      'signInMethod': 'example.com'
+    }).toPlainObject()
+  );
 }
-
 
 function testOAuthProvider_getCredentialFromResponse_idTokenAndNonce() {
   // Test Auth credential from response with ID token/nonce.
@@ -671,75 +699,78 @@ function testOAuthProvider_getCredentialFromResponse_idTokenAndNonce() {
     'rawNonce': 'NONCE'
   });
   assertObjectEquals(
-      authCredential.toPlainObject(),
-      fireauth.AuthProvider.getCredentialFromResponse({
-        'oauthIdToken': 'exampleIdToken',
-        'providerId': 'example.com',
-        // This will be injected in rpcHandler.
-        'nonce': 'NONCE'
-      }).toPlainObject());
+    authCredential.toPlainObject(),
+    fireauth.AuthProvider.getCredentialFromResponse({
+      'oauthIdToken': 'exampleIdToken',
+      'providerId': 'example.com',
+      // This will be injected in rpcHandler.
+      'nonce': 'NONCE'
+    }).toPlainObject()
+  );
 }
-
 
 function testOAuthProvider_getCredentialFromResponse_pendingTokenIdToken() {
   // Test Auth credential from response with ID token/pending token.
   var authCredential = new fireauth.OAuthCredential(
-      'oidc.provider',
-      {
-        'pendingToken': 'PENDING_TOKEN',
-        'idToken': 'OIDC_ID_TOKEN'
-      },
-      'oidc.provider');
+    'oidc.provider',
+    {
+      'pendingToken': 'PENDING_TOKEN',
+      'idToken': 'OIDC_ID_TOKEN'
+    },
+    'oidc.provider'
+  );
   assertObjectEquals(
-      authCredential.toPlainObject(),
-      fireauth.AuthProvider.getCredentialFromResponse({
-        'oauthIdToken': 'OIDC_ID_TOKEN',
-        'pendingToken': 'PENDING_TOKEN',
-        'providerId': 'oidc.provider'
-      }).toPlainObject());
+    authCredential.toPlainObject(),
+    fireauth.AuthProvider.getCredentialFromResponse({
+      'oauthIdToken': 'OIDC_ID_TOKEN',
+      'pendingToken': 'PENDING_TOKEN',
+      'providerId': 'oidc.provider'
+    }).toPlainObject()
+  );
 }
-
 
 function testOAuthProvider_getCredentialFromResponse_pendingTokenAccessToken() {
   // Test Auth credential from response with access token/pending token.
   var authCredential = new fireauth.OAuthCredential(
-      'oidc.provider',
-      {
-        'pendingToken': 'PENDING_TOKEN',
-        'accessToken': 'ACCESS_TOKEN'
-      },
-      'oidc.provider');
+    'oidc.provider',
+    {
+      'pendingToken': 'PENDING_TOKEN',
+      'accessToken': 'ACCESS_TOKEN'
+    },
+    'oidc.provider'
+  );
   assertObjectEquals(
-      authCredential.toPlainObject(),
-      fireauth.AuthProvider.getCredentialFromResponse({
-        'oauthAccessToken': 'ACCESS_TOKEN',
-        'pendingToken': 'PENDING_TOKEN',
-        'providerId': 'oidc.provider'
-      }).toPlainObject());
+    authCredential.toPlainObject(),
+    fireauth.AuthProvider.getCredentialFromResponse({
+      'oauthAccessToken': 'ACCESS_TOKEN',
+      'pendingToken': 'PENDING_TOKEN',
+      'providerId': 'oidc.provider'
+    }).toPlainObject()
+  );
 }
-
 
 function testOAuthProvider_getCredentialFromResponse_pendingTokenAndNonce() {
   // Test nonce ignored for pending token.
   var authCredential = new fireauth.OAuthCredential(
-      'oidc.provider',
-      {
-        'pendingToken': 'PENDING_TOKEN',
-        'idToken': 'OIDC_ID_TOKEN'
-      },
-      'oidc.provider');
+    'oidc.provider',
+    {
+      'pendingToken': 'PENDING_TOKEN',
+      'idToken': 'OIDC_ID_TOKEN'
+    },
+    'oidc.provider'
+  );
   assertObjectEquals(
-      authCredential.toPlainObject(),
-      fireauth.AuthProvider.getCredentialFromResponse({
-        'oauthIdToken': 'OIDC_ID_TOKEN',
-        'pendingToken': 'PENDING_TOKEN',
-        'providerId': 'oidc.provider',
-        // This shouldn't be injected but if it did, it will be ignored in
-        // favor of pending token.
-        'nonce': 'NONCE'
-      }).toPlainObject());
+    authCredential.toPlainObject(),
+    fireauth.AuthProvider.getCredentialFromResponse({
+      'oauthIdToken': 'OIDC_ID_TOKEN',
+      'pendingToken': 'PENDING_TOKEN',
+      'providerId': 'oidc.provider',
+      // This shouldn't be injected but if it did, it will be ignored in
+      // favor of pending token.
+      'nonce': 'NONCE'
+    }).toPlainObject()
+  );
 }
-
 
 function testOAuthCredential_linkToIdToken() {
   var provider = new fireauth.OAuthProvider('example.com');
@@ -751,12 +782,12 @@ function testOAuthCredential_linkToIdToken() {
   assertRpcHandlerVerifyAssertionForLinking({
     // requestUri should be http://localhost regardless of current URL.
     'requestUri': 'http://localhost',
-    'postBody': 'id_token=exampleIdToken&access_token=exampleAccessToken' +
-        '&providerId=example.com',
+    'postBody':
+      'id_token=exampleIdToken&access_token=exampleAccessToken' +
+      '&providerId=example.com',
     'idToken': 'myIdToken'
   });
 }
-
 
 function testOAuthCredential_matchIdTokenWithUid() {
   // Mock idToken parsing.
@@ -771,12 +802,12 @@ function testOAuthCredential_matchIdTokenWithUid() {
   assertRpcHandlerVerifyAssertionForExisting({
     // requestUri should be http://localhost regardless of current URL.
     'requestUri': 'http://localhost',
-    'postBody': 'id_token=exampleIdToken&access_token=exampleAccessToken' +
-        '&providerId=example.com'
+    'postBody':
+      'id_token=exampleIdToken&access_token=exampleAccessToken' +
+      '&providerId=example.com'
   });
   return p;
 }
-
 
 function testOAuthCredential_withNonce_linkToIdToken() {
   var provider = new fireauth.OAuthProvider('oidc.provider');
@@ -790,13 +821,12 @@ function testOAuthCredential_withNonce_linkToIdToken() {
   assertRpcHandlerVerifyAssertionForLinking({
     'requestUri': 'http://localhost',
     // nonce is appended to postBody.
-    'postBody': 'id_token=exampleIdToken&providerId=oidc.provider' +
-        '&nonce=NONCE',
+    'postBody':
+      'id_token=exampleIdToken&providerId=oidc.provider' + '&nonce=NONCE',
     'idToken': 'myIdToken'
   });
   return p;
 }
-
 
 function testOAuthCredential_withNonce_matchIdTokenWithUid() {
   // Mock idToken parsing.
@@ -813,21 +843,21 @@ function testOAuthCredential_withNonce_matchIdTokenWithUid() {
   assertRpcHandlerVerifyAssertionForExisting({
     'requestUri': 'http://localhost',
     // nonce is appended to postBody.
-    'postBody': 'id_token=exampleIdToken&providerId=oidc.provider' +
-        '&nonce=NONCE',
+    'postBody':
+      'id_token=exampleIdToken&providerId=oidc.provider' + '&nonce=NONCE'
   });
   return p;
 }
 
-
 function testOAuthCredential_withPendingToken_linkToIdToken() {
   var authCredential = new fireauth.OAuthCredential(
-      'oidc.provider',
-      {
-        'pendingToken': 'PENDING_TOKEN',
-        'idToken': 'OIDC_ID_TOKEN'
-      },
-      'oidc.provider');
+    'oidc.provider',
+    {
+      'pendingToken': 'PENDING_TOKEN',
+      'idToken': 'OIDC_ID_TOKEN'
+    },
+    'oidc.provider'
+  );
   var p = authCredential.linkToIdToken(rpcHandler, 'myIdToken');
   // Confirm expected verifyAssertion request for linking flow using pending
   // token.
@@ -839,18 +869,18 @@ function testOAuthCredential_withPendingToken_linkToIdToken() {
   return p;
 }
 
-
 function testOAuthCredential_withPendingToken_matchIdTokenWithUid() {
   // Mock idToken parsing.
   initializeIdTokenMocks('ID_TOKEN', '1234');
 
   var authCredential = new fireauth.OAuthCredential(
-      'oidc.provider',
-      {
-        'pendingToken': 'PENDING_TOKEN',
-        'idToken': 'OIDC_ID_TOKEN'
-      },
-      'oidc.provider');
+    'oidc.provider',
+    {
+      'pendingToken': 'PENDING_TOKEN',
+      'idToken': 'OIDC_ID_TOKEN'
+    },
+    'oidc.provider'
+  );
   var p = authCredential.matchIdTokenWithUid(rpcHandler, '1234');
   // Confirm expected verifyAssertion request for match ID token flow using
   // pending token.
@@ -861,20 +891,22 @@ function testOAuthCredential_withPendingToken_matchIdTokenWithUid() {
   return p;
 }
 
-
 function testSAMLAuthCredential() {
   var authCredential = new fireauth.SAMLAuthCredential(
-      'saml.provider', 'PENDING_TOKEN');
+    'saml.provider',
+    'PENDING_TOKEN'
+  );
   assertEquals('saml.provider', authCredential['providerId']);
   assertEquals('saml.provider', authCredential['signInMethod']);
   authCredential.getIdTokenProvider(rpcHandler);
   assertObjectEquals(
-      {
-        'pendingToken': 'PENDING_TOKEN',
-        'providerId': 'saml.provider',
-        'signInMethod': 'saml.provider'
-      },
-      authCredential.toPlainObject());
+    {
+      'pendingToken': 'PENDING_TOKEN',
+      'providerId': 'saml.provider',
+      'signInMethod': 'saml.provider'
+    },
+    authCredential.toPlainObject()
+  );
   assertRpcHandlerVerifyAssertion({
     'requestUri': 'http://localhost',
     'pendingToken': 'PENDING_TOKEN'
@@ -882,21 +914,26 @@ function testSAMLAuthCredential() {
 
   // Test toJSON and fromJSON for current SAMLAuthCredential.
   assertObjectEquals(
-      authCredential,
-      fireauth.SAMLAuthCredential.fromJSON(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.SAMLAuthCredential.fromJSON(authCredential.toPlainObject())
+  );
   assertObjectEquals(
-      authCredential,
-      fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject())
+  );
   assertObjectEquals(
-      authCredential,
-      fireauth.AuthCredential.fromPlainObject(
-          JSON.stringify(authCredential.toPlainObject())));
+    authCredential,
+    fireauth.AuthCredential.fromPlainObject(
+      JSON.stringify(authCredential.toPlainObject())
+    )
+  );
 }
-
 
 function testSAMLAuthCredential_linkToIdToken() {
   var authCredential = new fireauth.SAMLAuthCredential(
-      'saml.provider', 'PENDING_TOKEN');
+    'saml.provider',
+    'PENDING_TOKEN'
+  );
   var p = authCredential.linkToIdToken(rpcHandler, 'myIdToken');
   // Confirm expected verifyAssertion request for linking flow using pending
   // token.
@@ -908,13 +945,14 @@ function testSAMLAuthCredential_linkToIdToken() {
   return p;
 }
 
-
 function testSAMLAuthCredential_matchIdTokenWithUid() {
   // Mock idToken parsing.
   initializeIdTokenMocks('ID_TOKEN', '1234');
 
   var authCredential = new fireauth.SAMLAuthCredential(
-      'saml.provider', 'PENDING_TOKEN');
+    'saml.provider',
+    'PENDING_TOKEN'
+  );
   var p = authCredential.matchIdTokenWithUid(rpcHandler, '1234');
   // Confirm expected verifyAssertion request for match ID token flow using
   // pending token.
@@ -925,13 +963,12 @@ function testSAMLAuthCredential_matchIdTokenWithUid() {
   return p;
 }
 
-
 function testSAMLAuthProvider_constructor() {
   var provider = new fireauth.SAMLAuthProvider('saml.provider');
   assertTrue(provider['isOAuthProvider']);
   assertEquals('saml.provider', provider['providerId']);
   // Should not throw an error.
-  assertNotThrows(function() {
+  assertNotThrows(function () {
     fireauth.AuthProvider.checkIfOAuthSupported(provider);
   });
   // This is unused as of now and no reserved parameters used.
@@ -949,79 +986,92 @@ function testSAMLAuthProvider_constructor() {
   };
   provider.setCustomParameters(expectedParameters);
   assertObjectEquals(expectedParameters, provider.getCustomParameters());
-  assertNull(fireauth.AuthProvider.getCredentialFromResponse({
-    'providerId': 'saml.provider'
-  }));
+  assertNull(
+    fireauth.AuthProvider.getCredentialFromResponse({
+      'providerId': 'saml.provider'
+    })
+  );
 }
-
 
 function testSAMLAuthCredential_getCredentialFromResponse() {
   // Confirm expected SAML Auth credential constructed with SAML pending token.
   var authCredential = new fireauth.SAMLAuthCredential(
-      'saml.provider', 'PENDING_TOKEN');
+    'saml.provider',
+    'PENDING_TOKEN'
+  );
   assertObjectEquals(
-      authCredential.toPlainObject(),
-      fireauth.AuthProvider.getCredentialFromResponse({
-        'pendingToken': 'PENDING_TOKEN',
-        'providerId': 'saml.provider'
-      }).toPlainObject());
+    authCredential.toPlainObject(),
+    fireauth.AuthProvider.getCredentialFromResponse({
+      'pendingToken': 'PENDING_TOKEN',
+      'providerId': 'saml.provider'
+    }).toPlainObject()
+  );
 }
-
 
 function testSAMLAuthProvider_invalid() {
   // SAML provider initialized with an invalid provider ID.
-  assertThrows(function() {
+  assertThrows(function () {
     new fireauth.SAMLAuthProvider('provider.com');
   });
 }
-
 
 /**
  * Test Facebook Auth credential.
  */
 function testFacebookAuthCredential() {
   assertEquals(
-      fireauth.idp.ProviderId.FACEBOOK,
-      fireauth.FacebookAuthProvider['PROVIDER_ID']);
+    fireauth.idp.ProviderId.FACEBOOK,
+    fireauth.FacebookAuthProvider['PROVIDER_ID']
+  );
   assertEquals(
-      fireauth.idp.SignInMethod.FACEBOOK,
-      fireauth.FacebookAuthProvider['FACEBOOK_SIGN_IN_METHOD']);
+    fireauth.idp.SignInMethod.FACEBOOK,
+    fireauth.FacebookAuthProvider['FACEBOOK_SIGN_IN_METHOD']
+  );
   var authCredential = fireauth.FacebookAuthProvider.credential(
-      'facebookAccessToken');
+    'facebookAccessToken'
+  );
   assertEquals('facebookAccessToken', authCredential['accessToken']);
   assertEquals(fireauth.idp.ProviderId.FACEBOOK, authCredential['providerId']);
   assertEquals(
-      fireauth.idp.SignInMethod.FACEBOOK, authCredential['signInMethod']);
+    fireauth.idp.SignInMethod.FACEBOOK,
+    authCredential['signInMethod']
+  );
   authCredential.getIdTokenProvider(rpcHandler);
   assertObjectEquals(
-      {
-        'oauthAccessToken': 'facebookAccessToken',
-        'providerId': fireauth.idp.ProviderId.FACEBOOK,
-        'signInMethod': fireauth.idp.SignInMethod.FACEBOOK
-      },
-      authCredential.toPlainObject());
+    {
+      'oauthAccessToken': 'facebookAccessToken',
+      'providerId': fireauth.idp.ProviderId.FACEBOOK,
+      'signInMethod': fireauth.idp.SignInMethod.FACEBOOK
+    },
+    authCredential.toPlainObject()
+  );
 
   // Test toJSON and fromJSON for current Facebook OAuthCredential.
   assertObjectEquals(
-      authCredential,
-      fireauth.OAuthCredential.fromJSON(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.OAuthCredential.fromJSON(authCredential.toPlainObject())
+  );
   assertObjectEquals(
-      authCredential,
-      fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject())
+  );
   assertObjectEquals(
-      authCredential,
-      fireauth.AuthCredential.fromPlainObject(
-          JSON.stringify(authCredential.toPlainObject())));
+    authCredential,
+    fireauth.AuthCredential.fromPlainObject(
+      JSON.stringify(authCredential.toPlainObject())
+    )
+  );
 
   assertRpcHandlerVerifyAssertion({
     // requestUri should be http://localhost regardless of current URL.
     'requestUri': 'http://localhost',
-    'postBody': 'access_token=facebookAccessToken&providerId=' +
-        fireauth.idp.ProviderId.FACEBOOK
+    'postBody':
+      'access_token=facebookAccessToken&providerId=' +
+      fireauth.idp.ProviderId.FACEBOOK
   });
   var provider = new fireauth.FacebookAuthProvider();
   // Should not throw an error.
-  assertNotThrows(function() {
+  assertNotThrows(function () {
     fireauth.AuthProvider.checkIfOAuthSupported(provider);
   });
   assertArrayEquals([], provider.getScopes());
@@ -1047,38 +1097,47 @@ function testFacebookAuthCredential() {
     'state': 'STATE'
   });
   // Get custom parameters should only return the valid parameters.
-  assertObjectEquals({
-    'display': 'popup',
-    'auth_type': 'rerequest',
-    'locale': 'pt_BR'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'display': 'popup',
+      'auth_type': 'rerequest',
+      'locale': 'pt_BR'
+    },
+    provider.getCustomParameters()
+  );
   // Modify custom parameters.
   provider.setCustomParameters({
     // Valid Facebook OAuth 2.0 parameters.
     'auth_type': 'rerequest'
   });
   // Parameters should be updated.
-  assertObjectEquals({
-    'auth_type': 'rerequest'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'auth_type': 'rerequest'
+    },
+    provider.getCustomParameters()
+  );
   // Test Auth credential from response.
   assertObjectEquals(
-      authCredential.toPlainObject(),
-      fireauth.AuthProvider.getCredentialFromResponse({
-        'providerId': 'facebook.com',
-        'oauthAccessToken': 'facebookAccessToken'
-      }).toPlainObject());
+    authCredential.toPlainObject(),
+    fireauth.AuthProvider.getCredentialFromResponse({
+      'providerId': 'facebook.com',
+      'oauthAccessToken': 'facebookAccessToken'
+    }).toPlainObject()
+  );
 }
-
 
 function testFacebookAuthProvider_localization() {
   var provider = new fireauth.FacebookAuthProvider();
   // Set default language on provider.
   provider.setDefaultLanguage('fr_FR');
   // Default language should be set as custom param.
-  assertObjectEquals({
-    'locale': 'fr_FR'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'locale': 'fr_FR'
+    },
+    provider.getCustomParameters()
+  );
   // Set some other parameters without the provider's language.
   provider.setCustomParameters({
     'display': 'popup',
@@ -1087,162 +1146,190 @@ function testFacebookAuthProvider_localization() {
     'hl': 'de'
   });
   // The expected parameters include the provider's default language.
-  assertObjectEquals({
-    'display': 'popup',
-    'lang': 'de',
-    'hl': 'de',
-    'locale': 'fr_FR'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'display': 'popup',
+      'lang': 'de',
+      'hl': 'de',
+      'locale': 'fr_FR'
+    },
+    provider.getCustomParameters()
+  );
   // Set custom parameters with the provider's language.
   provider.setCustomParameters({
-    'locale': 'pt_BR',
+    'locale': 'pt_BR'
   });
   // Default language should be overwritten.
-  assertObjectEquals({
-    'locale': 'pt_BR'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'locale': 'pt_BR'
+    },
+    provider.getCustomParameters()
+  );
   // Even after setting the default language, the non-default should still
   // apply.
   provider.setDefaultLanguage('fr_FR');
-  assertObjectEquals({
-    'locale': 'pt_BR'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'locale': 'pt_BR'
+    },
+    provider.getCustomParameters()
+  );
   // Update custom parameters to not include a language field.
   provider.setCustomParameters({});
   // Default should apply again.
-  assertObjectEquals({
-    'locale': 'fr_FR'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'locale': 'fr_FR'
+    },
+    provider.getCustomParameters()
+  );
   // Set default language to null.
   provider.setDefaultLanguage(null);
   // No language should be returned anymore.
   assertObjectEquals({}, provider.getCustomParameters());
 }
 
-
 function testFacebookAuthCredential_alternateConstructor() {
-  var authCredential = fireauth.FacebookAuthProvider.credential(
-      {'accessToken': 'facebookAccessToken'});
+  var authCredential = fireauth.FacebookAuthProvider.credential({
+    'accessToken': 'facebookAccessToken'
+  });
   assertEquals('facebookAccessToken', authCredential['accessToken']);
   assertEquals(fireauth.idp.ProviderId.FACEBOOK, authCredential['providerId']);
   assertEquals(
-      fireauth.idp.SignInMethod.FACEBOOK, authCredential['signInMethod']);
+    fireauth.idp.SignInMethod.FACEBOOK,
+    authCredential['signInMethod']
+  );
   assertObjectEquals(
-      {
-        'oauthAccessToken': 'facebookAccessToken',
-        'providerId': fireauth.idp.ProviderId.FACEBOOK,
-        'signInMethod': fireauth.idp.SignInMethod.FACEBOOK
-      },
-      authCredential.toPlainObject());
+    {
+      'oauthAccessToken': 'facebookAccessToken',
+      'providerId': fireauth.idp.ProviderId.FACEBOOK,
+      'signInMethod': fireauth.idp.SignInMethod.FACEBOOK
+    },
+    authCredential.toPlainObject()
+  );
 
   // Missing token.
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.ARGUMENT_ERROR);
-  var error = assertThrows(function() {
+    fireauth.authenum.Error.ARGUMENT_ERROR
+  );
+  var error = assertThrows(function () {
     fireauth.FacebookAuthProvider.credential({});
   });
   assertEquals(expectedError.code, error.code);
 }
 
-
 function testFacebookAuthProvider_chainedMethods() {
   // Test that method chaining works.
   var provider = new fireauth.FacebookAuthProvider()
-      .addScope('scope1')
-      .addScope('scope2')
-      .setCustomParameters({
-        'locale': 'pt_BR'
-      })
-      .addScope('scope3');
+    .addScope('scope1')
+    .addScope('scope2')
+    .setCustomParameters({
+      'locale': 'pt_BR'
+    })
+    .addScope('scope3');
   assertArrayEquals(['scope1', 'scope2', 'scope3'], provider.getScopes());
-  assertObjectEquals({
-    'locale': 'pt_BR'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'locale': 'pt_BR'
+    },
+    provider.getCustomParameters()
+  );
 }
-
 
 /**
  * Test Facebook Auth credential with non HTTP request.
  */
 function testFacebookAuthCredential_nonHttp() {
   // Non http or https environment.
-  stubs.replace(
-      fireauth.util,
-      'getCurrentUrl',
-      function() {return 'chrome-extension://SOME_LONG_ID';});
-  stubs.replace(
-      fireauth.util,
-      'getCurrentScheme',
-      function() {return 'chrome-extension:';});
+  stubs.replace(fireauth.util, 'getCurrentUrl', function () {
+    return 'chrome-extension://SOME_LONG_ID';
+  });
+  stubs.replace(fireauth.util, 'getCurrentScheme', function () {
+    return 'chrome-extension:';
+  });
   assertEquals(
-      fireauth.idp.ProviderId.FACEBOOK,
-      fireauth.FacebookAuthProvider['PROVIDER_ID']);
+    fireauth.idp.ProviderId.FACEBOOK,
+    fireauth.FacebookAuthProvider['PROVIDER_ID']
+  );
   var authCredential = fireauth.FacebookAuthProvider.credential(
-      'facebookAccessToken');
+    'facebookAccessToken'
+  );
   assertEquals('facebookAccessToken', authCredential['accessToken']);
   assertEquals(fireauth.idp.ProviderId.FACEBOOK, authCredential['providerId']);
   assertEquals(
-      fireauth.idp.SignInMethod.FACEBOOK, authCredential['signInMethod']);
+    fireauth.idp.SignInMethod.FACEBOOK,
+    authCredential['signInMethod']
+  );
   authCredential.getIdTokenProvider(rpcHandler);
   assertObjectEquals(
-      {
-        'oauthAccessToken': 'facebookAccessToken',
-        'providerId': fireauth.idp.ProviderId.FACEBOOK,
-        'signInMethod': fireauth.idp.SignInMethod.FACEBOOK
-      },
-      authCredential.toPlainObject());
+    {
+      'oauthAccessToken': 'facebookAccessToken',
+      'providerId': fireauth.idp.ProviderId.FACEBOOK,
+      'signInMethod': fireauth.idp.SignInMethod.FACEBOOK
+    },
+    authCredential.toPlainObject()
+  );
   // http://localhost should be used instead of the real current URL.
   assertRpcHandlerVerifyAssertion({
     // requestUri should be http://localhost regardless of current URL.
     'requestUri': 'http://localhost',
-    'postBody': 'access_token=facebookAccessToken&providerId=' +
-        fireauth.idp.ProviderId.FACEBOOK
+    'postBody':
+      'access_token=facebookAccessToken&providerId=' +
+      fireauth.idp.ProviderId.FACEBOOK
   });
 }
-
 
 /**
  * Test GitHub Auth credential.
  */
 function testGithubAuthCredential() {
   assertEquals(
-      fireauth.idp.ProviderId.GITHUB,
-      fireauth.GithubAuthProvider['PROVIDER_ID']);
+    fireauth.idp.ProviderId.GITHUB,
+    fireauth.GithubAuthProvider['PROVIDER_ID']
+  );
   assertEquals(
-      fireauth.idp.SignInMethod.GITHUB,
-      fireauth.GithubAuthProvider['GITHUB_SIGN_IN_METHOD']);
-  var authCredential = fireauth.GithubAuthProvider.credential(
-      'githubAccessToken');
+    fireauth.idp.SignInMethod.GITHUB,
+    fireauth.GithubAuthProvider['GITHUB_SIGN_IN_METHOD']
+  );
+  var authCredential =
+    fireauth.GithubAuthProvider.credential('githubAccessToken');
   assertEquals('githubAccessToken', authCredential['accessToken']);
   assertEquals(fireauth.idp.ProviderId.GITHUB, authCredential['providerId']);
   assertEquals(
-      fireauth.idp.SignInMethod.GITHUB, authCredential['signInMethod']);
+    fireauth.idp.SignInMethod.GITHUB,
+    authCredential['signInMethod']
+  );
   authCredential.getIdTokenProvider(rpcHandler);
   assertObjectEquals(
-      {
-        'oauthAccessToken': 'githubAccessToken',
-        'providerId': fireauth.idp.ProviderId.GITHUB,
-        'signInMethod':fireauth.idp.SignInMethod.GITHUB
-      },
-      authCredential.toPlainObject());
+    {
+      'oauthAccessToken': 'githubAccessToken',
+      'providerId': fireauth.idp.ProviderId.GITHUB,
+      'signInMethod': fireauth.idp.SignInMethod.GITHUB
+    },
+    authCredential.toPlainObject()
+  );
 
   // Test toJSON and fromJSON for current GitHub OAuthCredential.
   assertObjectEquals(
-      authCredential,
-      fireauth.OAuthCredential.fromJSON(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.OAuthCredential.fromJSON(authCredential.toPlainObject())
+  );
   assertObjectEquals(
-      authCredential,
-      fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject())
+  );
 
   assertRpcHandlerVerifyAssertion({
     // requestUri should be http://localhost regardless of current URL.
     'requestUri': 'http://localhost',
-    'postBody': 'access_token=githubAccessToken&providerId=' +
-        fireauth.idp.ProviderId.GITHUB
+    'postBody':
+      'access_token=githubAccessToken&providerId=' +
+      fireauth.idp.ProviderId.GITHUB
   });
   var provider = new fireauth.GithubAuthProvider();
   // Should not throw an error.
-  assertNotThrows(function() {
+  assertNotThrows(function () {
     fireauth.AuthProvider.checkIfOAuthSupported(provider);
   });
   assertArrayEquals([], provider.getScopes());
@@ -1264,27 +1351,33 @@ function testGithubAuthCredential() {
     'state': 'STATE'
   });
   // Get custom parameters should only return the valid parameters.
-  assertObjectEquals({
-    'allow_signup': 'false'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'allow_signup': 'false'
+    },
+    provider.getCustomParameters()
+  );
   // Modify custom parameters.
   provider.setCustomParameters({
     // Valid GitHub OAuth 2.0 parameters.
     'allow_signup': true
   });
   // Parameters should be updated.
-  assertObjectEquals({
-    'allow_signup': 'true'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'allow_signup': 'true'
+    },
+    provider.getCustomParameters()
+  );
   // Test Auth credential from response.
   assertObjectEquals(
-      authCredential.toPlainObject(),
-      fireauth.AuthProvider.getCredentialFromResponse({
-        'providerId': 'github.com',
-        'oauthAccessToken': 'githubAccessToken'
-      }).toPlainObject());
+    authCredential.toPlainObject(),
+    fireauth.AuthProvider.getCredentialFromResponse({
+      'providerId': 'github.com',
+      'oauthAccessToken': 'githubAccessToken'
+    }).toPlainObject()
+  );
 }
-
 
 function testGithubAuthProvider_localization() {
   var provider = new fireauth.GithubAuthProvider();
@@ -1299,13 +1392,15 @@ function testGithubAuthProvider_localization() {
     'lang': 'ar'
   });
   // All language parameters just piped through without the default.
-  assertObjectEquals({
-    'locale': 'ar',
-    'hl': 'ar',
-    'lang': 'ar'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'locale': 'ar',
+      'hl': 'ar',
+      'lang': 'ar'
+    },
+    provider.getCustomParameters()
+  );
 }
-
 
 function testOAuthProvider_localization() {
   var provider = new fireauth.OAuthProvider('yahoo.com');
@@ -1321,128 +1416,145 @@ function testOAuthProvider_localization() {
     'lang': 'ar'
   });
   // All language parameters just piped through without the default.
-  assertObjectEquals({
-    'locale': 'ar',
-    'hl': 'ar',
-    'lang': 'ar'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'locale': 'ar',
+      'hl': 'ar',
+      'lang': 'ar'
+    },
+    provider.getCustomParameters()
+  );
 }
 
-
 function testGithubAuthCredential_alternateConstructor() {
-  var authCredential = fireauth.GithubAuthProvider.credential(
-      {'accessToken': 'githubAccessToken'});
+  var authCredential = fireauth.GithubAuthProvider.credential({
+    'accessToken': 'githubAccessToken'
+  });
   assertEquals('githubAccessToken', authCredential['accessToken']);
   assertEquals(fireauth.idp.ProviderId.GITHUB, authCredential['providerId']);
   assertObjectEquals(
-      {
-        'oauthAccessToken': 'githubAccessToken',
-        'providerId': fireauth.idp.ProviderId.GITHUB,
-        'signInMethod':fireauth.idp.SignInMethod.GITHUB
-      },
-      authCredential.toPlainObject());
+    {
+      'oauthAccessToken': 'githubAccessToken',
+      'providerId': fireauth.idp.ProviderId.GITHUB,
+      'signInMethod': fireauth.idp.SignInMethod.GITHUB
+    },
+    authCredential.toPlainObject()
+  );
 
   // Missing token.
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.ARGUMENT_ERROR);
-  var error = assertThrows(function() {
+    fireauth.authenum.Error.ARGUMENT_ERROR
+  );
+  var error = assertThrows(function () {
     fireauth.GithubAuthProvider.credential({});
   });
   assertEquals(expectedError.code, error.code);
 }
 
-
 function testGithubAuthProvider_chainedMethods() {
   // Test that method chaining works.
   var provider = new fireauth.GithubAuthProvider()
-      .addScope('scope1')
-      .addScope('scope2')
-      .setCustomParameters({
-        'allow_signup': false
-      })
-      .addScope('scope3');
+    .addScope('scope1')
+    .addScope('scope2')
+    .setCustomParameters({
+      'allow_signup': false
+    })
+    .addScope('scope3');
   assertArrayEquals(['scope1', 'scope2', 'scope3'], provider.getScopes());
-  assertObjectEquals({
-    'allow_signup': 'false'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'allow_signup': 'false'
+    },
+    provider.getCustomParameters()
+  );
 }
 
-
 function testGithubAuthCredential_linkToIdToken() {
-  var authCredential = fireauth.GithubAuthProvider.credential(
-      'githubAccessToken');
+  var authCredential =
+    fireauth.GithubAuthProvider.credential('githubAccessToken');
   authCredential.linkToIdToken(rpcHandler, 'myIdToken');
   assertRpcHandlerVerifyAssertionForLinking({
     // requestUri should be http://localhost regardless of current URL.
     'requestUri': 'http://localhost',
-    'postBody': 'access_token=githubAccessToken&providerId=' +
-        fireauth.idp.ProviderId.GITHUB,
+    'postBody':
+      'access_token=githubAccessToken&providerId=' +
+      fireauth.idp.ProviderId.GITHUB,
     'idToken': 'myIdToken'
   });
 }
-
 
 function testGithubAuthCredential_matchIdTokenWithUid() {
   // Mock idToken parsing.
   initializeIdTokenMocks('ID_TOKEN', '1234');
 
-  var authCredential = fireauth.GithubAuthProvider.credential(
-      'githubAccessToken');
+  var authCredential =
+    fireauth.GithubAuthProvider.credential('githubAccessToken');
   var p = authCredential.matchIdTokenWithUid(rpcHandler, '1234');
   assertRpcHandlerVerifyAssertionForExisting({
     // requestUri should be http://localhost regardless of current URL.
     'requestUri': 'http://localhost',
-    'postBody': 'access_token=githubAccessToken&providerId=' +
-        fireauth.idp.ProviderId.GITHUB,
+    'postBody':
+      'access_token=githubAccessToken&providerId=' +
+      fireauth.idp.ProviderId.GITHUB
   });
   return p;
 }
-
 
 /**
  * Test Google Auth credential.
  */
 function testGoogleAuthCredential() {
   assertEquals(
-      fireauth.idp.ProviderId.GOOGLE,
-      fireauth.GoogleAuthProvider['PROVIDER_ID']);
+    fireauth.idp.ProviderId.GOOGLE,
+    fireauth.GoogleAuthProvider['PROVIDER_ID']
+  );
   assertEquals(
-      fireauth.idp.SignInMethod.GOOGLE,
-      fireauth.GoogleAuthProvider['GOOGLE_SIGN_IN_METHOD']);
+    fireauth.idp.SignInMethod.GOOGLE,
+    fireauth.GoogleAuthProvider['GOOGLE_SIGN_IN_METHOD']
+  );
   var authCredential = fireauth.GoogleAuthProvider.credential(
-      'googleIdToken', 'googleAccessToken');
+    'googleIdToken',
+    'googleAccessToken'
+  );
   assertEquals('googleIdToken', authCredential['idToken']);
   assertEquals('googleAccessToken', authCredential['accessToken']);
   assertEquals(fireauth.idp.ProviderId.GOOGLE, authCredential['providerId']);
   assertEquals(
-      fireauth.idp.SignInMethod.GOOGLE, authCredential['signInMethod']);
+    fireauth.idp.SignInMethod.GOOGLE,
+    authCredential['signInMethod']
+  );
   authCredential.getIdTokenProvider(rpcHandler);
   assertObjectEquals(
-      {
-        'oauthAccessToken': 'googleAccessToken',
-        'oauthIdToken': 'googleIdToken',
-        'providerId': fireauth.idp.ProviderId.GOOGLE,
-        'signInMethod': fireauth.idp.SignInMethod.GOOGLE
-      },
-      authCredential.toPlainObject());
+    {
+      'oauthAccessToken': 'googleAccessToken',
+      'oauthIdToken': 'googleIdToken',
+      'providerId': fireauth.idp.ProviderId.GOOGLE,
+      'signInMethod': fireauth.idp.SignInMethod.GOOGLE
+    },
+    authCredential.toPlainObject()
+  );
 
   // Test toJSON and fromJSON for current Google OAuthCredential.
   assertObjectEquals(
-      authCredential,
-      fireauth.OAuthCredential.fromJSON(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.OAuthCredential.fromJSON(authCredential.toPlainObject())
+  );
   assertObjectEquals(
-      authCredential,
-      fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject())
+  );
 
   assertRpcHandlerVerifyAssertion({
     // requestUri should be http://localhost regardless of current URL.
     'requestUri': 'http://localhost',
-    'postBody': 'id_token=googleIdToken&access_token=googleAccessToken&provi' +
-        'derId=' + fireauth.idp.ProviderId.GOOGLE
+    'postBody':
+      'id_token=googleIdToken&access_token=googleAccessToken&provi' +
+      'derId=' +
+      fireauth.idp.ProviderId.GOOGLE
   });
   var provider = new fireauth.GoogleAuthProvider();
   // Should not throw an error.
-  assertNotThrows(function() {
+  assertNotThrows(function () {
     fireauth.AuthProvider.checkIfOAuthSupported(provider);
   });
   assertArrayEquals(['profile'], provider.getScopes());
@@ -1468,57 +1580,70 @@ function testGoogleAuthCredential() {
     'state': 'STATE'
   });
   // Get custom parameters should only return the valid parameters.
-  assertObjectEquals({
-    'login_hint': 'user@example.com',
-    'hd': 'example.com',
-    'hl': 'fr',
-    'prompt': 'consent',
-    'include_granted_scopes': 'true'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'login_hint': 'user@example.com',
+      'hd': 'example.com',
+      'hl': 'fr',
+      'prompt': 'consent',
+      'include_granted_scopes': 'true'
+    },
+    provider.getCustomParameters()
+  );
   // Modify custom parameters.
   provider.setCustomParameters({
     // Valid Google OAuth 2.0 parameters.
     'login_hint': 'user2@example.com'
   });
   // Parameters should be updated.
-  assertObjectEquals({
-    'login_hint': 'user2@example.com'
-  }, provider.getCustomParameters());
   assertObjectEquals(
-      authCredential.toPlainObject(),
-      fireauth.AuthProvider.getCredentialFromResponse({
-        'providerId': 'google.com',
-        'oauthAccessToken': 'googleAccessToken',
-        'oauthIdToken': 'googleIdToken'
-      }).toPlainObject());
+    {
+      'login_hint': 'user2@example.com'
+    },
+    provider.getCustomParameters()
+  );
+  assertObjectEquals(
+    authCredential.toPlainObject(),
+    fireauth.AuthProvider.getCredentialFromResponse({
+      'providerId': 'google.com',
+      'oauthAccessToken': 'googleAccessToken',
+      'oauthIdToken': 'googleIdToken'
+    }).toPlainObject()
+  );
   // Test Auth credential from response with access token only.
-  authCredential = fireauth.GoogleAuthProvider.credential(null,
-      'googleAccessToken');
+  authCredential = fireauth.GoogleAuthProvider.credential(
+    null,
+    'googleAccessToken'
+  );
   assertObjectEquals(
-      authCredential.toPlainObject(),
-      fireauth.AuthProvider.getCredentialFromResponse({
-        'providerId': 'google.com',
-        'oauthAccessToken': 'googleAccessToken'
-      }).toPlainObject());
+    authCredential.toPlainObject(),
+    fireauth.AuthProvider.getCredentialFromResponse({
+      'providerId': 'google.com',
+      'oauthAccessToken': 'googleAccessToken'
+    }).toPlainObject()
+  );
   // Test Auth credential from response with ID token only.
   authCredential = fireauth.GoogleAuthProvider.credential('googleIdToken');
   assertObjectEquals(
-      authCredential.toPlainObject(),
-      fireauth.AuthProvider.getCredentialFromResponse({
-        'providerId': 'google.com',
-        'oauthIdToken': 'googleIdToken'
-      }).toPlainObject());
+    authCredential.toPlainObject(),
+    fireauth.AuthProvider.getCredentialFromResponse({
+      'providerId': 'google.com',
+      'oauthIdToken': 'googleIdToken'
+    }).toPlainObject()
+  );
 }
-
 
 function testGoogleAuthProvider_localization() {
   var provider = new fireauth.GoogleAuthProvider();
   // Set default language on provider.
   provider.setDefaultLanguage('fr');
   // Default language should be set as custom param.
-  assertObjectEquals({
-    'hl': 'fr'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'hl': 'fr'
+    },
+    provider.getCustomParameters()
+  );
   // Set some other parameters without the provider's language.
   provider.setCustomParameters({
     'prompt': 'consent',
@@ -1527,210 +1652,250 @@ function testGoogleAuthProvider_localization() {
     'locale': 'ar'
   });
   // The expected parameters include the provider's default language.
-  assertObjectEquals({
-    'prompt': 'consent',
-    'hl': 'fr',
-    'lang': 'ar',
-    'locale': 'ar'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'prompt': 'consent',
+      'hl': 'fr',
+      'lang': 'ar',
+      'locale': 'ar'
+    },
+    provider.getCustomParameters()
+  );
   // Set custom parameters with the provider's language.
   provider.setCustomParameters({
     'hl': 'de'
   });
   // Default language should be overwritten.
-  assertObjectEquals({
-    'hl': 'de'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'hl': 'de'
+    },
+    provider.getCustomParameters()
+  );
   // Even after setting the default language, the non-default should still
   // apply.
   provider.setDefaultLanguage('fr');
-  assertObjectEquals({
-    'hl': 'de'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'hl': 'de'
+    },
+    provider.getCustomParameters()
+  );
   // Update custom parameters to not include a language field.
   provider.setCustomParameters({});
   // Default should apply again.
-  assertObjectEquals({
-    'hl': 'fr'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'hl': 'fr'
+    },
+    provider.getCustomParameters()
+  );
   // Set default language to null.
   provider.setDefaultLanguage(null);
   // No language should be returned anymore.
   assertObjectEquals({}, provider.getCustomParameters());
 }
 
-
 function testGoogleAuthProvider_chainedMethods() {
   // Test that method chaining works.
   var provider = new fireauth.GoogleAuthProvider()
-      .addScope('scope1')
-      .addScope('scope2')
-      .setCustomParameters({
-        'login_hint': 'user@example.com'
-      })
-      .addScope('scope3');
-  assertArrayEquals(['profile', 'scope1', 'scope2', 'scope3'],
-      provider.getScopes());
-  assertObjectEquals({
-    'login_hint': 'user@example.com'
-  }, provider.getCustomParameters());
+    .addScope('scope1')
+    .addScope('scope2')
+    .setCustomParameters({
+      'login_hint': 'user@example.com'
+    })
+    .addScope('scope3');
+  assertArrayEquals(
+    ['profile', 'scope1', 'scope2', 'scope3'],
+    provider.getScopes()
+  );
+  assertObjectEquals(
+    {
+      'login_hint': 'user@example.com'
+    },
+    provider.getCustomParameters()
+  );
 }
 
-
 function testGoogleAuthCredential_idTokenConstructor() {
-  var authCredential = fireauth.GoogleAuthProvider.credential(
-      'googleIdToken');
+  var authCredential = fireauth.GoogleAuthProvider.credential('googleIdToken');
   assertEquals('googleIdToken', authCredential['idToken']);
   assertUndefined(authCredential['accessToken']);
 }
 
-
 function testGoogleAuthCredential_accessTokenConstructor() {
   var authCredential = fireauth.GoogleAuthProvider.credential(
-      null, 'googleAccessToken');
+    null,
+    'googleAccessToken'
+  );
   assertEquals('googleAccessToken', authCredential['accessToken']);
   assertUndefined(authCredential['idToken']);
 }
 
-
 function testGoogleAuthCredential_idAndAccessTokenConstructor() {
   var authCredential = fireauth.GoogleAuthProvider.credential(
-      'googleIdToken', 'googleAccessToken');
+    'googleIdToken',
+    'googleAccessToken'
+  );
   assertEquals('googleIdToken', authCredential['idToken']);
   assertEquals('googleAccessToken', authCredential['accessToken']);
 }
 
-
 function testGoogleAuthCredential_alternateConstructor() {
   // Only ID token.
-  var authCredentialIdToken = fireauth.GoogleAuthProvider.credential(
-      {'idToken': 'googleIdToken'});
+  var authCredentialIdToken = fireauth.GoogleAuthProvider.credential({
+    'idToken': 'googleIdToken'
+  });
   assertEquals('googleIdToken', authCredentialIdToken['idToken']);
   assertUndefined(authCredentialIdToken['accessToken']);
   assertObjectEquals(
-      {
-        'oauthIdToken': 'googleIdToken',
-        'providerId': fireauth.idp.ProviderId.GOOGLE,
-        'signInMethod': fireauth.idp.SignInMethod.GOOGLE
-      },
-      authCredentialIdToken.toPlainObject());
+    {
+      'oauthIdToken': 'googleIdToken',
+      'providerId': fireauth.idp.ProviderId.GOOGLE,
+      'signInMethod': fireauth.idp.SignInMethod.GOOGLE
+    },
+    authCredentialIdToken.toPlainObject()
+  );
 
   // Only access token.
-  var authCredentialAccessToken = fireauth.GoogleAuthProvider.credential(
-      {'accessToken': 'googleAccessToken'});
+  var authCredentialAccessToken = fireauth.GoogleAuthProvider.credential({
+    'accessToken': 'googleAccessToken'
+  });
   assertEquals('googleAccessToken', authCredentialAccessToken['accessToken']);
   assertUndefined(authCredentialAccessToken['idToken']);
   assertObjectEquals(
-      {
-        'oauthIdToken': 'googleIdToken',
-        'providerId': fireauth.idp.ProviderId.GOOGLE,
-        'signInMethod': fireauth.idp.SignInMethod.GOOGLE
-      },
-      authCredentialIdToken.toPlainObject());
+    {
+      'oauthIdToken': 'googleIdToken',
+      'providerId': fireauth.idp.ProviderId.GOOGLE,
+      'signInMethod': fireauth.idp.SignInMethod.GOOGLE
+    },
+    authCredentialIdToken.toPlainObject()
+  );
 
   // Both tokens.
-  var authCredentialBoth = fireauth.GoogleAuthProvider.credential(
-      {'idToken': 'googleIdToken', 'accessToken': 'googleAccessToken'});
+  var authCredentialBoth = fireauth.GoogleAuthProvider.credential({
+    'idToken': 'googleIdToken',
+    'accessToken': 'googleAccessToken'
+  });
   assertEquals('googleAccessToken', authCredentialBoth['accessToken']);
   assertEquals('googleIdToken', authCredentialBoth['idToken']);
   assertObjectEquals(
-      {
-        'oauthIdToken': 'googleIdToken',
-        'providerId': fireauth.idp.ProviderId.GOOGLE,
-        'signInMethod': fireauth.idp.SignInMethod.GOOGLE
-      },
-      authCredentialIdToken.toPlainObject());
+    {
+      'oauthIdToken': 'googleIdToken',
+      'providerId': fireauth.idp.ProviderId.GOOGLE,
+      'signInMethod': fireauth.idp.SignInMethod.GOOGLE
+    },
+    authCredentialIdToken.toPlainObject()
+  );
 
   // Neither token.
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.ARGUMENT_ERROR);
-  var error = assertThrows(function() {
+    fireauth.authenum.Error.ARGUMENT_ERROR
+  );
+  var error = assertThrows(function () {
     fireauth.GoogleAuthProvider.credential({});
   });
   assertEquals(expectedError.code, error.code);
 }
 
-
 function testGoogleAuthCredential_linkToIdToken() {
   var authCredential = fireauth.GoogleAuthProvider.credential(
-      'googleIdToken', 'googleAccessToken');
+    'googleIdToken',
+    'googleAccessToken'
+  );
   authCredential.linkToIdToken(rpcHandler, 'myIdToken');
   assertRpcHandlerVerifyAssertionForLinking({
     // requestUri should be http://localhost regardless of current URL.
     'requestUri': 'http://localhost',
-    'postBody': 'id_token=googleIdToken&access_token=googleAccessToken&provi' +
-        'derId=' + fireauth.idp.ProviderId.GOOGLE,
+    'postBody':
+      'id_token=googleIdToken&access_token=googleAccessToken&provi' +
+      'derId=' +
+      fireauth.idp.ProviderId.GOOGLE,
     'idToken': 'myIdToken'
   });
 }
-
 
 function testGoogleAuthCredential_matchIdTokenWithUid() {
   // Mock idToken parsing.
   initializeIdTokenMocks('ID_TOKEN', '1234');
 
   var authCredential = fireauth.GoogleAuthProvider.credential(
-      'googleIdToken', 'googleAccessToken');
+    'googleIdToken',
+    'googleAccessToken'
+  );
   var p = authCredential.matchIdTokenWithUid(rpcHandler, '1234');
   assertRpcHandlerVerifyAssertionForExisting({
     // requestUri should be http://localhost regardless of current URL.
     'requestUri': 'http://localhost',
-    'postBody': 'id_token=googleIdToken&access_token=googleAccessToken&provi' +
-        'derId=' + fireauth.idp.ProviderId.GOOGLE
+    'postBody':
+      'id_token=googleIdToken&access_token=googleAccessToken&provi' +
+      'derId=' +
+      fireauth.idp.ProviderId.GOOGLE
   });
   return p;
 }
-
 
 /**
  * Test Twitter Auth credential.
  */
 function testTwitterAuthCredential() {
   assertEquals(
-      fireauth.idp.ProviderId.TWITTER,
-      fireauth.TwitterAuthProvider['PROVIDER_ID']);
+    fireauth.idp.ProviderId.TWITTER,
+    fireauth.TwitterAuthProvider['PROVIDER_ID']
+  );
   assertEquals(
-      fireauth.idp.SignInMethod.TWITTER,
-      fireauth.TwitterAuthProvider['TWITTER_SIGN_IN_METHOD']);
+    fireauth.idp.SignInMethod.TWITTER,
+    fireauth.TwitterAuthProvider['TWITTER_SIGN_IN_METHOD']
+  );
   var authCredential = fireauth.TwitterAuthProvider.credential(
-      'twitterOauthToken', 'twitterOauthTokenSecret');
+    'twitterOauthToken',
+    'twitterOauthTokenSecret'
+  );
   assertEquals('twitterOauthToken', authCredential['accessToken']);
   assertEquals('twitterOauthTokenSecret', authCredential['secret']);
   assertEquals(fireauth.idp.ProviderId.TWITTER, authCredential['providerId']);
   assertEquals(
-      fireauth.idp.SignInMethod.TWITTER, authCredential['signInMethod']);
+    fireauth.idp.SignInMethod.TWITTER,
+    authCredential['signInMethod']
+  );
   assertObjectEquals(
-      {
-        'oauthAccessToken': 'twitterOauthToken',
-        'oauthTokenSecret': 'twitterOauthTokenSecret',
-        'providerId': fireauth.idp.ProviderId.TWITTER,
-        'signInMethod': fireauth.idp.SignInMethod.TWITTER
-      },
-      authCredential.toPlainObject());
+    {
+      'oauthAccessToken': 'twitterOauthToken',
+      'oauthTokenSecret': 'twitterOauthTokenSecret',
+      'providerId': fireauth.idp.ProviderId.TWITTER,
+      'signInMethod': fireauth.idp.SignInMethod.TWITTER
+    },
+    authCredential.toPlainObject()
+  );
 
   // Test toJSON and fromJSON for current Twitter OAuthCredential.
   assertObjectEquals(
-      authCredential,
-      fireauth.OAuthCredential.fromJSON(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.OAuthCredential.fromJSON(authCredential.toPlainObject())
+  );
   assertObjectEquals(
-      authCredential,
-      fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject())
+  );
   assertObjectEquals(
-      authCredential,
-      fireauth.AuthCredential.fromPlainObject(
-          JSON.stringify(authCredential.toPlainObject())));
+    authCredential,
+    fireauth.AuthCredential.fromPlainObject(
+      JSON.stringify(authCredential.toPlainObject())
+    )
+  );
 
   authCredential.getIdTokenProvider(rpcHandler);
   assertRpcHandlerVerifyAssertion({
     // requestUri should be http://localhost regardless of current URL.
     'requestUri': 'http://localhost',
-    'postBody': 'access_token=twitterOauthToken&oauth_token_secret=twitter' +
-        'OauthTokenSecret&providerId=' +
-        fireauth.idp.ProviderId.TWITTER
+    'postBody':
+      'access_token=twitterOauthToken&oauth_token_secret=twitter' +
+      'OauthTokenSecret&providerId=' +
+      fireauth.idp.ProviderId.TWITTER
   });
   var provider = new fireauth.TwitterAuthProvider();
   // Should not throw an error.
-  assertNotThrows(function() {
+  assertNotThrows(function () {
     fireauth.AuthProvider.checkIfOAuthSupported(provider);
   });
   assertEquals(fireauth.idp.ProviderId.TWITTER, provider['providerId']);
@@ -1748,36 +1913,45 @@ function testTwitterAuthCredential() {
     'oauth_version': '1.0'
   });
   // Get custom parameters should only return the valid parameters.
-  assertObjectEquals({
-    'lang': 'es'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'lang': 'es'
+    },
+    provider.getCustomParameters()
+  );
   // Modify custom parameters.
   provider.setCustomParameters({
     'lang': 'en'
   });
   // Parameters should be updated.
-  assertObjectEquals({
-    'lang': 'en'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'lang': 'en'
+    },
+    provider.getCustomParameters()
+  );
   // Test Auth credential from response.
   assertObjectEquals(
-      authCredential.toPlainObject(),
-      fireauth.AuthProvider.getCredentialFromResponse({
-        'providerId': 'twitter.com',
-        'oauthAccessToken': 'twitterOauthToken',
-        'oauthTokenSecret': 'twitterOauthTokenSecret'
-      }).toPlainObject());
+    authCredential.toPlainObject(),
+    fireauth.AuthProvider.getCredentialFromResponse({
+      'providerId': 'twitter.com',
+      'oauthAccessToken': 'twitterOauthToken',
+      'oauthTokenSecret': 'twitterOauthTokenSecret'
+    }).toPlainObject()
+  );
 }
-
 
 function testTwitterAuthProvider_localization() {
   var provider = new fireauth.TwitterAuthProvider();
   // Set default language on provider.
   provider.setDefaultLanguage('fr');
   // Default language should be set as custom param.
-  assertObjectEquals({
-    'lang': 'fr'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'lang': 'fr'
+    },
+    provider.getCustomParameters()
+  );
   // Set some other parameters without the provider's language.
   provider.setCustomParameters({
     'foo': 'bar',
@@ -1786,61 +1960,75 @@ function testTwitterAuthProvider_localization() {
     'hl': 'ar'
   });
   // The expected parameters include the provider's default language.
-  assertObjectEquals({
-    'foo': 'bar',
-    'lang': 'fr',
-    'locale': 'ar',
-    'hl': 'ar'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'foo': 'bar',
+      'lang': 'fr',
+      'locale': 'ar',
+      'hl': 'ar'
+    },
+    provider.getCustomParameters()
+  );
   // Set custom parameters with the provider's language.
   provider.setCustomParameters({
-    'lang': 'de',
+    'lang': 'de'
   });
   // Default language should be overwritten.
-  assertObjectEquals({
-    'lang': 'de'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'lang': 'de'
+    },
+    provider.getCustomParameters()
+  );
   // Even after setting the default language, the non-default should still
   // apply.
   provider.setDefaultLanguage('fr');
-  assertObjectEquals({
-    'lang': 'de'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'lang': 'de'
+    },
+    provider.getCustomParameters()
+  );
   // Update custom parameters to not include a language field.
   provider.setCustomParameters({});
   // Default should apply again.
-  assertObjectEquals({
-    'lang': 'fr'
-  }, provider.getCustomParameters());
+  assertObjectEquals(
+    {
+      'lang': 'fr'
+    },
+    provider.getCustomParameters()
+  );
   // Set default language to null.
   provider.setDefaultLanguage(null);
   // No language should be returned anymore.
   assertObjectEquals({}, provider.getCustomParameters());
 }
 
-
 function testTwitterAuthProvider_chainedMethods() {
   // Test that method chaining works.
   var provider = new fireauth.TwitterAuthProvider()
-      .setCustomParameters({
-        'lang': 'en'
-      })
-      .setCustomParameters({
-        'lang': 'es'
-      });
-  assertObjectEquals({
-    'lang': 'es'
-  }, provider.getCustomParameters());
+    .setCustomParameters({
+      'lang': 'en'
+    })
+    .setCustomParameters({
+      'lang': 'es'
+    });
+  assertObjectEquals(
+    {
+      'lang': 'es'
+    },
+    provider.getCustomParameters()
+  );
 }
-
 
 function testTwitterAuthCredential_tokenSecretConstructor() {
   var authCredential = fireauth.TwitterAuthProvider.credential(
-      'twitterOauthToken', 'twitterOauthTokenSecret');
+    'twitterOauthToken',
+    'twitterOauthTokenSecret'
+  );
   assertEquals('twitterOauthToken', authCredential['accessToken']);
   assertEquals('twitterOauthTokenSecret', authCredential['secret']);
 }
-
 
 function testTwitterAuthCredential_alternateConstructor() {
   var authCredential = fireauth.TwitterAuthProvider.credential({
@@ -1851,25 +2039,27 @@ function testTwitterAuthCredential_alternateConstructor() {
   assertEquals('twitterOauthTokenSecret', authCredential['secret']);
   assertEquals(fireauth.idp.ProviderId.TWITTER, authCredential['providerId']);
   assertObjectEquals(
-      {
-        'oauthAccessToken': 'twitterOauthToken',
-        'oauthTokenSecret': 'twitterOauthTokenSecret',
-        'providerId': fireauth.idp.ProviderId.TWITTER,
-        'signInMethod':fireauth.idp.SignInMethod.TWITTER
-      },
-      authCredential.toPlainObject());
+    {
+      'oauthAccessToken': 'twitterOauthToken',
+      'oauthTokenSecret': 'twitterOauthTokenSecret',
+      'providerId': fireauth.idp.ProviderId.TWITTER,
+      'signInMethod': fireauth.idp.SignInMethod.TWITTER
+    },
+    authCredential.toPlainObject()
+  );
 
   // Missing token or secret should be an error.
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.ARGUMENT_ERROR);
-  var error = assertThrows(function() {
+    fireauth.authenum.Error.ARGUMENT_ERROR
+  );
+  var error = assertThrows(function () {
     fireauth.TwitterAuthProvider.credential({
       'oauthToken': 'twitterOauthToken'
     });
   });
   assertEquals(expectedError.code, error.code);
 
-  error = assertThrows(function() {
+  error = assertThrows(function () {
     fireauth.TwitterAuthProvider.credential({
       'oauthTokenSecret': 'twitterOauthTokenSecret'
     });
@@ -1877,291 +2067,331 @@ function testTwitterAuthCredential_alternateConstructor() {
   assertEquals(expectedError.code, error.code);
 }
 
-
 /**
  * Test Email Password Auth credential.
  */
 function testEmailAuthCredential() {
   assertEquals(
-      fireauth.idp.ProviderId.PASSWORD,
-      fireauth.EmailAuthProvider['PROVIDER_ID']);
+    fireauth.idp.ProviderId.PASSWORD,
+    fireauth.EmailAuthProvider['PROVIDER_ID']
+  );
   assertEquals(
-      fireauth.idp.SignInMethod.EMAIL_PASSWORD,
-      fireauth.EmailAuthProvider['EMAIL_PASSWORD_SIGN_IN_METHOD']);
+    fireauth.idp.SignInMethod.EMAIL_PASSWORD,
+    fireauth.EmailAuthProvider['EMAIL_PASSWORD_SIGN_IN_METHOD']
+  );
   var authCredential = fireauth.EmailAuthProvider.credential(
-      'user@example.com', 'password');
+    'user@example.com',
+    'password'
+  );
   assertObjectEquals(
-      {
-        'email': 'user@example.com',
-        'password': 'password',
-        'signInMethod': 'password'
-      },
-      authCredential.toPlainObject());
+    {
+      'email': 'user@example.com',
+      'password': 'password',
+      'signInMethod': 'password'
+    },
+    authCredential.toPlainObject()
+  );
   assertEquals(fireauth.idp.ProviderId.PASSWORD, authCredential['providerId']);
   authCredential.getIdTokenProvider(rpcHandler);
   assertRpcHandlerVerifyPassword('user@example.com', 'password');
   var provider = new fireauth.EmailAuthProvider();
   // Should throw an invalid OAuth provider error.
-  var error = assertThrows(function() {
+  var error = assertThrows(function () {
     fireauth.AuthProvider.checkIfOAuthSupported(provider);
   });
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.INVALID_OAUTH_PROVIDER);
+    fireauth.authenum.Error.INVALID_OAUTH_PROVIDER
+  );
   fireauth.common.testHelper.assertErrorEquals(expectedError, error);
   assertEquals(fireauth.idp.ProviderId.PASSWORD, provider['providerId']);
   assertFalse(provider['isOAuthProvider']);
 
   // Test toJSON and fromJSON for current email/password EmailAuthCredential.
   assertObjectEquals(
-      authCredential,
-      fireauth.EmailAuthCredential.fromJSON(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.EmailAuthCredential.fromJSON(authCredential.toPlainObject())
+  );
   assertObjectEquals(
-      authCredential,
-      fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject())
+  );
   assertObjectEquals(
-      authCredential,
-      fireauth.AuthCredential.fromPlainObject(
-          JSON.stringify(authCredential.toPlainObject())));
+    authCredential,
+    fireauth.AuthCredential.fromPlainObject(
+      JSON.stringify(authCredential.toPlainObject())
+    )
+  );
 }
-
 
 function testEmailAuthCredential_linkToIdToken() {
   var authCredential = fireauth.EmailAuthProvider.credential(
-      'foo@bar.com', '123123');
+    'foo@bar.com',
+    '123123'
+  );
   authCredential.linkToIdToken(rpcHandler, 'myIdToken');
-  assertRpcHandlerUpdateEmailAndPassword(
-      'myIdToken', 'foo@bar.com', '123123');
+  assertRpcHandlerUpdateEmailAndPassword('myIdToken', 'foo@bar.com', '123123');
 }
-
 
 function testEmailAuthCredentialWithEmailLink_linkToIdToken() {
   var authCredential = fireauth.EmailAuthProvider.credentialWithLink(
-      'user@example.com',
-      'https://www.example.com?mode=signIn&oobCode=code&apiKey=API_KEY');
+    'user@example.com',
+    'https://www.example.com?mode=signIn&oobCode=code&apiKey=API_KEY'
+  );
   authCredential.linkToIdToken(rpcHandler, 'myIdToken');
   assertRpcHandlerEmailLinkSignInForLinking(
-      'myIdToken', 'user@example.com', 'code');
+    'myIdToken',
+    'user@example.com',
+    'code'
+  );
 }
-
 
 function testEmailAuthCredential_matchIdTokenWithUid() {
   // Mock idToken parsing.
   initializeIdTokenMocks('ID_TOKEN', '1234');
   var authCredential = fireauth.EmailAuthProvider.credential(
-      'user@example.com', 'password');
+    'user@example.com',
+    'password'
+  );
   var p = authCredential.matchIdTokenWithUid(rpcHandler, '1234');
   assertRpcHandlerVerifyPassword('user@example.com', 'password');
   return p;
 }
 
-
 function testEmailAuthCredentialWithEmailLink_matchIdTokenWithUid() {
   // Mock idToken parsing.
   initializeIdTokenMocks('ID_TOKEN', '1234');
   var authCredential = fireauth.EmailAuthProvider.credentialWithLink(
-      'user@example.com',
-      'https://www.example.com?mode=signIn&oobCode=code&apiKey=API_KEY');
+    'user@example.com',
+    'https://www.example.com?mode=signIn&oobCode=code&apiKey=API_KEY'
+  );
   var p = authCredential.matchIdTokenWithUid(rpcHandler, '1234');
   assertRpcHandlerEmailLinkSignIn('user@example.com', 'code');
   return p;
 }
-
 
 /**
  * Test Email Link Auth credential.
  */
 function testEmailAuthCredentialWithLink() {
   assertEquals(
-      fireauth.idp.ProviderId.PASSWORD,
-      fireauth.EmailAuthProvider['PROVIDER_ID']);
+    fireauth.idp.ProviderId.PASSWORD,
+    fireauth.EmailAuthProvider['PROVIDER_ID']
+  );
   assertEquals(
-      fireauth.idp.SignInMethod.EMAIL_LINK,
-      fireauth.EmailAuthProvider['EMAIL_LINK_SIGN_IN_METHOD']);
+    fireauth.idp.SignInMethod.EMAIL_LINK,
+    fireauth.EmailAuthProvider['EMAIL_LINK_SIGN_IN_METHOD']
+  );
   var authCredential = fireauth.EmailAuthProvider.credentialWithLink(
-      'user@example.com',
-      'https://www.example.com?mode=signIn&oobCode=code&apiKey=API_KEY');
+    'user@example.com',
+    'https://www.example.com?mode=signIn&oobCode=code&apiKey=API_KEY'
+  );
   assertObjectEquals(
-      {
-        'email': 'user@example.com',
-        'password': 'code',
-        'signInMethod': 'emailLink'
-      },
-      authCredential.toPlainObject());
+    {
+      'email': 'user@example.com',
+      'password': 'code',
+      'signInMethod': 'emailLink'
+    },
+    authCredential.toPlainObject()
+  );
 
   // Test toJSON and fromJSON for current email/link EmailAuthCredential.
   assertObjectEquals(
-      authCredential,
-      fireauth.EmailAuthCredential.fromJSON(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.EmailAuthCredential.fromJSON(authCredential.toPlainObject())
+  );
   assertObjectEquals(
-      authCredential,
-      fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject())
+  );
   assertObjectEquals(
-      authCredential,
-      fireauth.AuthCredential.fromPlainObject(
-          JSON.stringify(authCredential.toPlainObject())));
+    authCredential,
+    fireauth.AuthCredential.fromPlainObject(
+      JSON.stringify(authCredential.toPlainObject())
+    )
+  );
 
   assertEquals(fireauth.idp.ProviderId.PASSWORD, authCredential['providerId']);
   assertEquals(
-      fireauth.idp.SignInMethod.EMAIL_LINK, authCredential['signInMethod']);
+    fireauth.idp.SignInMethod.EMAIL_LINK,
+    authCredential['signInMethod']
+  );
   authCredential.getIdTokenProvider(rpcHandler);
   assertRpcHandlerEmailLinkSignIn('user@example.com', 'code');
   var provider = new fireauth.EmailAuthProvider();
   // Should throw an invalid OAuth provider error.
-  var error = assertThrows(function() {
+  var error = assertThrows(function () {
     fireauth.AuthProvider.checkIfOAuthSupported(provider);
   });
-  var expectedError =
-      new fireauth.AuthError(fireauth.authenum.Error.INVALID_OAUTH_PROVIDER);
+  var expectedError = new fireauth.AuthError(
+    fireauth.authenum.Error.INVALID_OAUTH_PROVIDER
+  );
   fireauth.common.testHelper.assertErrorEquals(expectedError, error);
   assertEquals(fireauth.idp.ProviderId.PASSWORD, provider['providerId']);
   assertFalse(provider['isOAuthProvider']);
 }
-
 
 function testEmailAuthCredentialWithLink_deepLink() {
   assertEquals(
-      fireauth.idp.ProviderId.PASSWORD,
-      fireauth.EmailAuthProvider['PROVIDER_ID']);
+    fireauth.idp.ProviderId.PASSWORD,
+    fireauth.EmailAuthProvider['PROVIDER_ID']
+  );
   assertEquals(
-      fireauth.idp.SignInMethod.EMAIL_LINK,
-      fireauth.EmailAuthProvider['EMAIL_LINK_SIGN_IN_METHOD']);
-  var deepLink = 'https://www.example.com?mode=signIn&oobCode=code' +
-      '&apiKey=API_KEY';
-  var emailLink = 'https://example.app.goo.gl/?link=' +
-      encodeURIComponent(deepLink);
+    fireauth.idp.SignInMethod.EMAIL_LINK,
+    fireauth.EmailAuthProvider['EMAIL_LINK_SIGN_IN_METHOD']
+  );
+  var deepLink =
+    'https://www.example.com?mode=signIn&oobCode=code' + '&apiKey=API_KEY';
+  var emailLink =
+    'https://example.app.goo.gl/?link=' + encodeURIComponent(deepLink);
   var authCredential = fireauth.EmailAuthProvider.credentialWithLink(
-      'user@example.com', emailLink);
+    'user@example.com',
+    emailLink
+  );
   assertObjectEquals(
-      {
-        'email': 'user@example.com',
-        'password': 'code',
-        'signInMethod': 'emailLink'
-      },
-      authCredential.toPlainObject());
+    {
+      'email': 'user@example.com',
+      'password': 'code',
+      'signInMethod': 'emailLink'
+    },
+    authCredential.toPlainObject()
+  );
 
   // Test toJSON and fromJSON for current email/link EmailAuthCredential.
   assertObjectEquals(
-      authCredential,
-      fireauth.EmailAuthCredential.fromJSON(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.EmailAuthCredential.fromJSON(authCredential.toPlainObject())
+  );
   assertObjectEquals(
-      authCredential,
-      fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject()));
+    authCredential,
+    fireauth.AuthCredential.fromPlainObject(authCredential.toPlainObject())
+  );
 
   assertEquals(fireauth.idp.ProviderId.PASSWORD, authCredential['providerId']);
   assertEquals(
-      fireauth.idp.SignInMethod.EMAIL_LINK, authCredential['signInMethod']);
+    fireauth.idp.SignInMethod.EMAIL_LINK,
+    authCredential['signInMethod']
+  );
   authCredential.getIdTokenProvider(rpcHandler);
   assertRpcHandlerEmailLinkSignIn('user@example.com', 'code');
   var provider = new fireauth.EmailAuthProvider();
   // Should throw an invalid OAuth provider error.
-  var error = assertThrows(function() {
+  var error = assertThrows(function () {
     fireauth.AuthProvider.checkIfOAuthSupported(provider);
   });
-  var expectedError =
-      new fireauth.AuthError(fireauth.authenum.Error.INVALID_OAUTH_PROVIDER);
+  var expectedError = new fireauth.AuthError(
+    fireauth.authenum.Error.INVALID_OAUTH_PROVIDER
+  );
   fireauth.common.testHelper.assertErrorEquals(expectedError, error);
   assertEquals(fireauth.idp.ProviderId.PASSWORD, provider['providerId']);
   assertFalse(provider['isOAuthProvider']);
 }
 
-
 function testEmailAuthCredentialWithLink_invalidLink_error() {
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.ARGUMENT_ERROR, 'Invalid email link!');
-  var error = assertThrows(function() {
+    fireauth.authenum.Error.ARGUMENT_ERROR,
+    'Invalid email link!'
+  );
+  var error = assertThrows(function () {
     fireauth.EmailAuthProvider.credentialWithLink(
-        'user@example.com', 'invalidLink');
+      'user@example.com',
+      'invalidLink'
+    );
   });
   fireauth.common.testHelper.assertErrorEquals(expectedError, error);
 }
 
-
 function testEmailAuthProvider_getActionCodeUrlFromSignInEmailLink() {
-  var emailLink1 = 'https://www.example.com/action?mode=signIn&' +
-      'oobCode=oobCode&apiKey=API_KEY';
-  var emailLink2 = 'https://www.example.com/action?mode=verifyEmail&' +
-      'oobCode=oobCode&apiKey=API_KEY';
+  var emailLink1 =
+    'https://www.example.com/action?mode=signIn&' +
+    'oobCode=oobCode&apiKey=API_KEY';
+  var emailLink2 =
+    'https://www.example.com/action?mode=verifyEmail&' +
+    'oobCode=oobCode&apiKey=API_KEY';
   var emailLink3 = 'https://www.example.com/action?mode=signIn';
-  var emailLink4 = 'https://www.example.com/action?mode=signIn&' +
-      'oobCode=oobCode&apiKey=API_KEY&tenantId=TENANT_ID';
+  var emailLink4 =
+    'https://www.example.com/action?mode=signIn&' +
+    'oobCode=oobCode&apiKey=API_KEY&tenantId=TENANT_ID';
 
-  var actionCodeUrl1 = fireauth.EmailAuthProvider
-      .getActionCodeUrlFromSignInEmailLink(emailLink1);
+  var actionCodeUrl1 =
+    fireauth.EmailAuthProvider.getActionCodeUrlFromSignInEmailLink(emailLink1);
   assertEquals('oobCode', actionCodeUrl1['code']);
   assertNull(actionCodeUrl1['tenantId']);
-  var actionCodeUrl2 = fireauth.EmailAuthProvider
-      .getActionCodeUrlFromSignInEmailLink(emailLink2);
+  var actionCodeUrl2 =
+    fireauth.EmailAuthProvider.getActionCodeUrlFromSignInEmailLink(emailLink2);
   assertNull(actionCodeUrl2);
-  var actionCodeUrl3 = fireauth.EmailAuthProvider
-      .getActionCodeUrlFromSignInEmailLink(emailLink3);
+  var actionCodeUrl3 =
+    fireauth.EmailAuthProvider.getActionCodeUrlFromSignInEmailLink(emailLink3);
   assertNull(actionCodeUrl3);
-  var actionCodeUrl4 = fireauth.EmailAuthProvider
-      .getActionCodeUrlFromSignInEmailLink(emailLink4);
+  var actionCodeUrl4 =
+    fireauth.EmailAuthProvider.getActionCodeUrlFromSignInEmailLink(emailLink4);
   assertEquals('oobCode', actionCodeUrl4['code']);
   assertEquals('TENANT_ID', actionCodeUrl4['tenantId']);
 }
 
-
 function testEmailAuthProvider_getActionCodeUrlFromSignInEmailLink_deepLink() {
-  var deepLink1 = 'https://www.example.com/action?mode=signIn&' +
-      'oobCode=oobCode&apiKey=API_KEY';
-  var deepLink2 = 'https://www.example.com/action?mode=verifyEmail&' +
-      'oobCode=oobCode&apiKey=API_KEY';
+  var deepLink1 =
+    'https://www.example.com/action?mode=signIn&' +
+    'oobCode=oobCode&apiKey=API_KEY';
+  var deepLink2 =
+    'https://www.example.com/action?mode=verifyEmail&' +
+    'oobCode=oobCode&apiKey=API_KEY';
   var deepLink3 = 'https://www.example.com/action?mode=signIn';
-  var deepLink4 = 'https://www.example.com/action?mode=signIn&' +
-      'oobCode=oobCode&apiKey=API_KEY&tenantId=TENANT_ID';
+  var deepLink4 =
+    'https://www.example.com/action?mode=signIn&' +
+    'oobCode=oobCode&apiKey=API_KEY&tenantId=TENANT_ID';
 
-  var emailLink1 = 'https://example.app.goo.gl/?link=' +
-      encodeURIComponent(deepLink1);
-  var emailLink2 = 'https://example.app.goo.gl/?link=' +
-      encodeURIComponent(deepLink2);
-  var emailLink3 = 'https://example.app.goo.gl/?link=' +
-      encodeURIComponent(deepLink3);
-  var emailLink4 = 'https://example.app.goo.gl/?link=' +
-      encodeURIComponent(deepLink4);
-  var emailLink5 = 'comexampleiosurl://google/link?deep_link_id=' +
-      encodeURIComponent(deepLink1);
+  var emailLink1 =
+    'https://example.app.goo.gl/?link=' + encodeURIComponent(deepLink1);
+  var emailLink2 =
+    'https://example.app.goo.gl/?link=' + encodeURIComponent(deepLink2);
+  var emailLink3 =
+    'https://example.app.goo.gl/?link=' + encodeURIComponent(deepLink3);
+  var emailLink4 =
+    'https://example.app.goo.gl/?link=' + encodeURIComponent(deepLink4);
+  var emailLink5 =
+    'comexampleiosurl://google/link?deep_link_id=' +
+    encodeURIComponent(deepLink1);
 
-  var actionCodeUrl1 = fireauth.EmailAuthProvider
-      .getActionCodeUrlFromSignInEmailLink(emailLink1);
+  var actionCodeUrl1 =
+    fireauth.EmailAuthProvider.getActionCodeUrlFromSignInEmailLink(emailLink1);
   assertEquals('oobCode', actionCodeUrl1['code']);
   assertNull(actionCodeUrl1['tenantId']);
-  var actionCodeUrl2 = fireauth.EmailAuthProvider
-      .getActionCodeUrlFromSignInEmailLink(emailLink2);
+  var actionCodeUrl2 =
+    fireauth.EmailAuthProvider.getActionCodeUrlFromSignInEmailLink(emailLink2);
   assertNull(actionCodeUrl2);
-  var actionCodeUrl3 = fireauth.EmailAuthProvider
-      .getActionCodeUrlFromSignInEmailLink(emailLink3);
+  var actionCodeUrl3 =
+    fireauth.EmailAuthProvider.getActionCodeUrlFromSignInEmailLink(emailLink3);
   assertNull(actionCodeUrl3);
-  var actionCodeUrl4 = fireauth.EmailAuthProvider
-      .getActionCodeUrlFromSignInEmailLink(emailLink4);
+  var actionCodeUrl4 =
+    fireauth.EmailAuthProvider.getActionCodeUrlFromSignInEmailLink(emailLink4);
   assertEquals('oobCode', actionCodeUrl4['code']);
   assertEquals('TENANT_ID', actionCodeUrl4['tenantId']);
-  var actionCodeUrl5 = fireauth.EmailAuthProvider
-      .getActionCodeUrlFromSignInEmailLink(emailLink5);
+  var actionCodeUrl5 =
+    fireauth.EmailAuthProvider.getActionCodeUrlFromSignInEmailLink(emailLink5);
   assertEquals('oobCode', actionCodeUrl5['code']);
 }
 
-
 function testPhoneAuthProvider() {
-  assertEquals(fireauth.PhoneAuthProvider['PROVIDER_ID'],
-      fireauth.idp.ProviderId.PHONE);
+  assertEquals(
+    fireauth.PhoneAuthProvider['PROVIDER_ID'],
+    fireauth.idp.ProviderId.PHONE
+  );
   var provider = new fireauth.PhoneAuthProvider(auth);
   assertEquals(provider['providerId'], fireauth.idp.ProviderId.PHONE);
 }
 
-
 function testPhoneAuthProvider_noAuth() {
-  stubs.set(firebase, 'auth', function() {
+  stubs.set(firebase, 'auth', function () {
     throw new Error('app not initialized');
   });
-  var error = assertThrows(function() {
+  var error = assertThrows(function () {
     new fireauth.PhoneAuthProvider();
   });
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.ARGUMENT_ERROR);
+    fireauth.authenum.Error.ARGUMENT_ERROR
+  );
   assertEquals(expectedError.code, error.code);
 }
-
 
 function testVerifyPhoneNumber() {
   var phoneNumber = '+16505550101';
@@ -2170,7 +2400,7 @@ function testVerifyPhoneNumber() {
 
   var applicationVerifier = {
     'type': 'recaptcha',
-    'verify': function() {
+    'verify': function () {
       return goog.Promise.resolve(recaptchaToken);
     }
   };
@@ -2181,19 +2411,20 @@ function testVerifyPhoneNumber() {
   var auth = mockControl.createStrictMock(fireauth.Auth);
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
   auth.getRpcHandler().$once().$returns(rpcHandler);
-  rpcHandler.sendVerificationCode(expectedSendVerificationCodeRequest)
-      .$once()
-      .$returns(goog.Promise.resolve(verificationId));
+  rpcHandler
+    .sendVerificationCode(expectedSendVerificationCodeRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(verificationId));
 
   mockControl.$replayAll();
 
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber(phoneNumber, applicationVerifier)
-      .then(function(actualVerificationId) {
-        assertEquals(verificationId, actualVerificationId);
-      });
+  return provider
+    .verifyPhoneNumber(phoneNumber, applicationVerifier)
+    .then(function (actualVerificationId) {
+      assertEquals(verificationId, actualVerificationId);
+    });
 }
-
 
 function testVerifyPhoneNumber_phoneInfoOptions() {
   var phoneNumber = '+16505550101';
@@ -2202,7 +2433,7 @@ function testVerifyPhoneNumber_phoneInfoOptions() {
 
   var applicationVerifier = {
     'type': 'recaptcha',
-    'verify': function() {
+    'verify': function () {
       return goog.Promise.resolve(recaptchaToken);
     }
   };
@@ -2213,20 +2444,25 @@ function testVerifyPhoneNumber_phoneInfoOptions() {
   var auth = mockControl.createStrictMock(fireauth.Auth);
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
   auth.getRpcHandler().$once().$returns(rpcHandler);
-  rpcHandler.sendVerificationCode(expectedSendVerificationCodeRequest)
-      .$once()
-      .$returns(goog.Promise.resolve(verificationId));
+  rpcHandler
+    .sendVerificationCode(expectedSendVerificationCodeRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(verificationId));
 
   mockControl.$replayAll();
 
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber({
-    'phoneNumber': phoneNumber
-  }, applicationVerifier).then(function(actualVerificationId) {
-    assertEquals(verificationId, actualVerificationId);
-  });
+  return provider
+    .verifyPhoneNumber(
+      {
+        'phoneNumber': phoneNumber
+      },
+      applicationVerifier
+    )
+    .then(function (actualVerificationId) {
+      assertEquals(verificationId, actualVerificationId);
+    });
 }
-
 
 function testVerifyPhoneNumber_reset_sendVerificationCodeTwice() {
   var phoneNumber = '+16505550101';
@@ -2259,26 +2495,29 @@ function testVerifyPhoneNumber_reset_sendVerificationCodeTwice() {
   var auth = mockControl.createStrictMock(fireauth.Auth);
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
   auth.getRpcHandler().$times(2).$returns(rpcHandler);
-  rpcHandler.sendVerificationCode(expectedSendVerificationCodeRequest1)
-      .$once()
-      .$returns(goog.Promise.resolve(verificationId1));
-  rpcHandler.sendVerificationCode(expectedSendVerificationCodeRequest2)
-      .$once()
-      .$returns(goog.Promise.resolve(verificationId2));
+  rpcHandler
+    .sendVerificationCode(expectedSendVerificationCodeRequest1)
+    .$once()
+    .$returns(goog.Promise.resolve(verificationId1));
+  rpcHandler
+    .sendVerificationCode(expectedSendVerificationCodeRequest2)
+    .$once()
+    .$returns(goog.Promise.resolve(verificationId2));
 
   mockControl.$replayAll();
 
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber(phoneNumber, applicationVerifier)
-      .then(function(actualVerificationId1) {
-        assertEquals(verificationId1, actualVerificationId1);
-        return provider.verifyPhoneNumber(phoneNumber, applicationVerifier)
-            .then(function(actualVerificationId2) {
-              assertEquals(verificationId2, actualVerificationId2);
-            });
-      });
+  return provider
+    .verifyPhoneNumber(phoneNumber, applicationVerifier)
+    .then(function (actualVerificationId1) {
+      assertEquals(verificationId1, actualVerificationId1);
+      return provider
+        .verifyPhoneNumber(phoneNumber, applicationVerifier)
+        .then(function (actualVerificationId2) {
+          assertEquals(verificationId2, actualVerificationId2);
+        });
+    });
 }
-
 
 function testVerifyPhoneNumber_reset_sendVerificationCodeError() {
   var phoneNumber = '+16505550101';
@@ -2287,10 +2526,10 @@ function testVerifyPhoneNumber_reset_sendVerificationCodeError() {
 
   var applicationVerifier = {
     'type': 'recaptcha',
-    'verify': function() {
+    'verify': function () {
       return goog.Promise.resolve(recaptchaToken);
     },
-    'reset': goog.testing.recordFunction(function() {})
+    'reset': goog.testing.recordFunction(function () {})
   };
   var expectedSendVerificationCodeRequest = {
     'phoneNumber': phoneNumber,
@@ -2299,22 +2538,23 @@ function testVerifyPhoneNumber_reset_sendVerificationCodeError() {
   var auth = mockControl.createStrictMock(fireauth.Auth);
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
   auth.getRpcHandler().$once().$returns(rpcHandler);
-  rpcHandler.sendVerificationCode(expectedSendVerificationCodeRequest)
-      .$once()
-      .$does(function() {
-        return goog.Promise.reject(expectedError);
-      });
+  rpcHandler
+    .sendVerificationCode(expectedSendVerificationCodeRequest)
+    .$once()
+    .$does(function () {
+      return goog.Promise.reject(expectedError);
+    });
 
   mockControl.$replayAll();
 
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber(phoneNumber, applicationVerifier)
-      .then(fail, function(error) {
-        assertEquals(1, applicationVerifier.reset.getCallCount());
-        assertEquals(expectedError, error);
-      });
+  return provider
+    .verifyPhoneNumber(phoneNumber, applicationVerifier)
+    .then(fail, function (error) {
+      assertEquals(1, applicationVerifier.reset.getCallCount());
+      assertEquals(expectedError, error);
+    });
 }
-
 
 function testVerifyPhoneNumber_defaultAuthInstance() {
   // Tests that verifyPhoneNumber works when using the default Auth instance.
@@ -2324,7 +2564,7 @@ function testVerifyPhoneNumber_defaultAuthInstance() {
 
   var applicationVerifier = {
     'type': 'recaptcha',
-    'verify': function() {
+    'verify': function () {
       return goog.Promise.resolve(recaptchaToken);
     }
   };
@@ -2334,76 +2574,79 @@ function testVerifyPhoneNumber_defaultAuthInstance() {
   };
   var auth = mockControl.createStrictMock(fireauth.Auth);
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  stubs.set(firebase, 'auth', function() {
+  stubs.set(firebase, 'auth', function () {
     return auth;
   });
   auth.getRpcHandler().$once().$returns(rpcHandler);
-  rpcHandler.sendVerificationCode(expectedSendVerificationCodeRequest)
-      .$once()
-      .$returns(goog.Promise.resolve(verificationId));
+  rpcHandler
+    .sendVerificationCode(expectedSendVerificationCodeRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(verificationId));
 
   mockControl.$replayAll();
 
   var provider = new fireauth.PhoneAuthProvider();
-  return provider.verifyPhoneNumber(phoneNumber, applicationVerifier)
-      .then(function(actualVerificationId) {
-        assertEquals(verificationId, actualVerificationId);
-      });
+  return provider
+    .verifyPhoneNumber(phoneNumber, applicationVerifier)
+    .then(function (actualVerificationId) {
+      assertEquals(verificationId, actualVerificationId);
+    });
 }
-
 
 function testVerifyPhoneNumber_notRecaptcha() {
   var applicationVerifier = {
     // The ApplicationVerifier type is not supported.
     'type': 'some-unsupported-type',
-    'verify': function() {
+    'verify': function () {
       return goog.Promise.resolve('some assertion');
     }
   };
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber('+16505550101', applicationVerifier)
-      .then(fail, function(error) {
-        var expectedError = new fireauth.AuthError(
-            fireauth.authenum.Error.ARGUMENT_ERROR);
-        assertEquals(expectedError.code, error.code);
-      });
+  return provider
+    .verifyPhoneNumber('+16505550101', applicationVerifier)
+    .then(fail, function (error) {
+      var expectedError = new fireauth.AuthError(
+        fireauth.authenum.Error.ARGUMENT_ERROR
+      );
+      assertEquals(expectedError.code, error.code);
+    });
 }
-
 
 function testVerifyPhoneNumber_verifierReturnsUnexpectedType() {
   var applicationVerifier = {
     'type': 'recaptcha',
-    'verify': function() {
+    'verify': function () {
       // The assertion is not a string.
       return goog.Promise.resolve(12345);
     }
   };
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber('+16505550101', applicationVerifier)
-      .then(fail, function(error) {
-        var expectedError = new fireauth.AuthError(
-            fireauth.authenum.Error.ARGUMENT_ERROR);
-        assertEquals(expectedError.code, error.code);
-      });
+  return provider
+    .verifyPhoneNumber('+16505550101', applicationVerifier)
+    .then(fail, function (error) {
+      var expectedError = new fireauth.AuthError(
+        fireauth.authenum.Error.ARGUMENT_ERROR
+      );
+      assertEquals(expectedError.code, error.code);
+    });
 }
-
 
 function testVerifyPhoneNumber_verifierThrowsError() {
   var expectedError = 'something bad happened!!!';
   var applicationVerifier = {
     'type': 'recaptcha',
-    'verify': function() {
+    'verify': function () {
       // The verifier throws its own error.
       return goog.Promise.reject(expectedError);
     }
   };
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber('+16505550101', applicationVerifier)
-      .then(fail, function(error) {
-        assertEquals(expectedError, error);
-      });
+  return provider
+    .verifyPhoneNumber('+16505550101', applicationVerifier)
+    .then(fail, function (error) {
+      assertEquals(expectedError, error);
+    });
 }
-
 
 function testVerifyPhoneNumber_enrollMfa() {
   var phoneNumber = '+16505550101';
@@ -2413,7 +2656,7 @@ function testVerifyPhoneNumber_enrollMfa() {
 
   var applicationVerifier = {
     'type': 'recaptcha',
-    'verify': function() {
+    'verify': function () {
       return goog.Promise.resolve(recaptchaToken);
     }
   };
@@ -2427,21 +2670,26 @@ function testVerifyPhoneNumber_enrollMfa() {
   var auth = mockControl.createStrictMock(fireauth.Auth);
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
   auth.getRpcHandler().$once().$returns(rpcHandler);
-  rpcHandler.startPhoneMfaEnrollment(expectedEnrollmentRequest)
-      .$once()
-      .$returns(goog.Promise.resolve(verificationId));
+  rpcHandler
+    .startPhoneMfaEnrollment(expectedEnrollmentRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(verificationId));
 
   mockControl.$replayAll();
 
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber({
-    'phoneNumber': phoneNumber,
-    'session': enrollSession
-  }, applicationVerifier).then(function(actualVerificationId) {
-    assertEquals(verificationId, actualVerificationId);
-  });
+  return provider
+    .verifyPhoneNumber(
+      {
+        'phoneNumber': phoneNumber,
+        'session': enrollSession
+      },
+      applicationVerifier
+    )
+    .then(function (actualVerificationId) {
+      assertEquals(verificationId, actualVerificationId);
+    });
 }
-
 
 function testVerifyPhoneNumber_enrollMfa_reset_sendCodeTwice() {
   var phoneNumber = '+16505550101';
@@ -2481,44 +2729,55 @@ function testVerifyPhoneNumber_enrollMfa_reset_sendCodeTwice() {
   var auth = mockControl.createStrictMock(fireauth.Auth);
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
   auth.getRpcHandler().$times(2).$returns(rpcHandler);
-  rpcHandler.startPhoneMfaEnrollment(expectedEnrollmentRequest1)
-      .$once()
-      .$returns(goog.Promise.resolve(verificationId1));
-  rpcHandler.startPhoneMfaEnrollment(expectedEnrollmentRequest2)
-      .$once()
-      .$returns(goog.Promise.resolve(verificationId2));
+  rpcHandler
+    .startPhoneMfaEnrollment(expectedEnrollmentRequest1)
+    .$once()
+    .$returns(goog.Promise.resolve(verificationId1));
+  rpcHandler
+    .startPhoneMfaEnrollment(expectedEnrollmentRequest2)
+    .$once()
+    .$returns(goog.Promise.resolve(verificationId2));
 
   mockControl.$replayAll();
 
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber({
-    'phoneNumber': phoneNumber,
-    'session': enrollSession
-  }, applicationVerifier).then(function(actualVerificationId1) {
-    assertEquals(verificationId1, actualVerificationId1);
-    return provider.verifyPhoneNumber({
-      'phoneNumber': phoneNumber,
-      'session': enrollSession
-    }, applicationVerifier);
-  }).then(function(actualVerificationId2) {
-    assertEquals(verificationId2, actualVerificationId2);
-  });
+  return provider
+    .verifyPhoneNumber(
+      {
+        'phoneNumber': phoneNumber,
+        'session': enrollSession
+      },
+      applicationVerifier
+    )
+    .then(function (actualVerificationId1) {
+      assertEquals(verificationId1, actualVerificationId1);
+      return provider.verifyPhoneNumber(
+        {
+          'phoneNumber': phoneNumber,
+          'session': enrollSession
+        },
+        applicationVerifier
+      );
+    })
+    .then(function (actualVerificationId2) {
+      assertEquals(verificationId2, actualVerificationId2);
+    });
 }
-
 
 function testVerifyPhoneNumber_enrollMfa_reset_sendCodeError() {
   var phoneNumber = '+16505550101';
   var enrollSession = new fireauth.MultiFactorSession(jwt);
   var recaptchaToken = 'theRecaptchaToken';
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.INTERNAL_ERROR);
+    fireauth.authenum.Error.INTERNAL_ERROR
+  );
 
   var applicationVerifier = {
     'type': 'recaptcha',
-    'verify': function() {
+    'verify': function () {
       return goog.Promise.resolve(recaptchaToken);
     },
-    'reset': goog.testing.recordFunction(function() {})
+    'reset': goog.testing.recordFunction(function () {})
   };
   var expectedEnrollmentRequest = {
     'idToken': jwt,
@@ -2530,63 +2789,78 @@ function testVerifyPhoneNumber_enrollMfa_reset_sendCodeError() {
   var auth = mockControl.createStrictMock(fireauth.Auth);
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
   auth.getRpcHandler().$once().$returns(rpcHandler);
-  rpcHandler.startPhoneMfaEnrollment(expectedEnrollmentRequest)
-      .$once()
-      .$does(function() {
-        return goog.Promise.reject(expectedError);
-      });
+  rpcHandler
+    .startPhoneMfaEnrollment(expectedEnrollmentRequest)
+    .$once()
+    .$does(function () {
+      return goog.Promise.reject(expectedError);
+    });
 
   mockControl.$replayAll();
 
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber({
-    'phoneNumber': phoneNumber,
-    'session': enrollSession
-  }, applicationVerifier).then(fail, function(error) {
-    assertEquals(1, applicationVerifier.reset.getCallCount());
-    assertEquals(expectedError, error);
-  });
+  return provider
+    .verifyPhoneNumber(
+      {
+        'phoneNumber': phoneNumber,
+        'session': enrollSession
+      },
+      applicationVerifier
+    )
+    .then(fail, function (error) {
+      assertEquals(1, applicationVerifier.reset.getCallCount());
+      assertEquals(expectedError, error);
+    });
 }
-
 
 function testVerifyPhoneNumber_enrollMfa_getSessionError() {
   var phoneNumber = '+16505550101';
   var enrollSession = new fireauth.MultiFactorSession(jwt);
   var recaptchaToken = 'theRecaptchaToken';
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.INTERNAL_ERROR);
+    fireauth.authenum.Error.INTERNAL_ERROR
+  );
 
   var applicationVerifier = {
     'type': 'recaptcha',
-    'verify': function() {
+    'verify': function () {
       return goog.Promise.resolve(recaptchaToken);
     },
-    'reset': goog.testing.recordFunction(function() {})
+    'reset': goog.testing.recordFunction(function () {})
   };
 
   var auth = mockControl.createStrictMock(fireauth.Auth);
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
   auth.getRpcHandler().$once().$returns(rpcHandler);
-  rpcHandler.startPhoneMfaEnrollment(goog.testing.mockmatchers.ignoreArgument)
-      .$times(0);
+  rpcHandler
+    .startPhoneMfaEnrollment(goog.testing.mockmatchers.ignoreArgument)
+    .$times(0);
   var getRawSession = mockControl.createMethodMock(
-      fireauth.MultiFactorSession.prototype, 'getRawSession');
-  getRawSession().$once().$does(function() {
-    return goog.Promise.reject(expectedError);
-  });
+    fireauth.MultiFactorSession.prototype,
+    'getRawSession'
+  );
+  getRawSession()
+    .$once()
+    .$does(function () {
+      return goog.Promise.reject(expectedError);
+    });
 
   mockControl.$replayAll();
 
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber({
-    'phoneNumber': phoneNumber,
-    'session': enrollSession
-  }, applicationVerifier).then(fail, function(error) {
-    assertEquals(1, applicationVerifier.reset.getCallCount());
-    assertEquals(expectedError, error);
-  });
+  return provider
+    .verifyPhoneNumber(
+      {
+        'phoneNumber': phoneNumber,
+        'session': enrollSession
+      },
+      applicationVerifier
+    )
+    .then(fail, function (error) {
+      assertEquals(1, applicationVerifier.reset.getCallCount());
+      assertEquals(expectedError, error);
+    });
 }
-
 
 function testVerifyPhoneNumber_enrollMfa_defaultAuthInstance() {
   // Tests that verifyPhoneNumber works when using the default Auth instance.
@@ -2597,7 +2871,7 @@ function testVerifyPhoneNumber_enrollMfa_defaultAuthInstance() {
 
   var applicationVerifier = {
     'type': 'recaptcha',
-    'verify': function() {
+    'verify': function () {
       return goog.Promise.resolve(recaptchaToken);
     }
   };
@@ -2610,87 +2884,106 @@ function testVerifyPhoneNumber_enrollMfa_defaultAuthInstance() {
   };
   var auth = mockControl.createStrictMock(fireauth.Auth);
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  stubs.set(firebase, 'auth', function() {
+  stubs.set(firebase, 'auth', function () {
     return auth;
   });
   auth.getRpcHandler().$once().$returns(rpcHandler);
-  rpcHandler.startPhoneMfaEnrollment(expectedEnrollmentRequest)
-      .$once()
-      .$returns(goog.Promise.resolve(verificationId));
+  rpcHandler
+    .startPhoneMfaEnrollment(expectedEnrollmentRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(verificationId));
 
   mockControl.$replayAll();
 
   var provider = new fireauth.PhoneAuthProvider();
-  return provider.verifyPhoneNumber({
-    'phoneNumber': phoneNumber,
-    'session': enrollSession
-  }, applicationVerifier).then(function(actualVerificationId) {
-    assertEquals(verificationId, actualVerificationId);
-  });
+  return provider
+    .verifyPhoneNumber(
+      {
+        'phoneNumber': phoneNumber,
+        'session': enrollSession
+      },
+      applicationVerifier
+    )
+    .then(function (actualVerificationId) {
+      assertEquals(verificationId, actualVerificationId);
+    });
 }
-
 
 function testVerifyPhoneNumber_enrollMfa_notRecaptcha() {
   var applicationVerifier = {
     // The ApplicationVerifier type is not supported.
     'type': 'some-unsupported-type',
-    'verify': function() {
+    'verify': function () {
       return goog.Promise.resolve('some assertion');
     }
   };
   var enrollSession = new fireauth.MultiFactorSession(jwt);
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber({
-    'phoneNumber': '+16505550101',
-    'session': enrollSession
-  }, applicationVerifier).then(fail, function(error) {
-    var expectedError = new fireauth.AuthError(
-        fireauth.authenum.Error.ARGUMENT_ERROR);
-    assertEquals(expectedError.code, error.code);
-  });
+  return provider
+    .verifyPhoneNumber(
+      {
+        'phoneNumber': '+16505550101',
+        'session': enrollSession
+      },
+      applicationVerifier
+    )
+    .then(fail, function (error) {
+      var expectedError = new fireauth.AuthError(
+        fireauth.authenum.Error.ARGUMENT_ERROR
+      );
+      assertEquals(expectedError.code, error.code);
+    });
 }
-
 
 function testVerifyPhoneNumber_enrollMfa_verifierReturnsUnexpectedType() {
   var applicationVerifier = {
     'type': 'recaptcha',
-    'verify': function() {
+    'verify': function () {
       // The assertion is not a string.
       return goog.Promise.resolve(12345);
     }
   };
   var enrollSession = new fireauth.MultiFactorSession(jwt);
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber({
-    'phoneNumber': '+16505550101',
-    'session': enrollSession
-  }, applicationVerifier).then(fail, function(error) {
-    var expectedError = new fireauth.AuthError(
-        fireauth.authenum.Error.ARGUMENT_ERROR);
-    assertEquals(expectedError.code, error.code);
-  });
+  return provider
+    .verifyPhoneNumber(
+      {
+        'phoneNumber': '+16505550101',
+        'session': enrollSession
+      },
+      applicationVerifier
+    )
+    .then(fail, function (error) {
+      var expectedError = new fireauth.AuthError(
+        fireauth.authenum.Error.ARGUMENT_ERROR
+      );
+      assertEquals(expectedError.code, error.code);
+    });
 }
-
 
 function testVerifyPhoneNumber_enrollMfa_verifierThrowsError() {
   var expectedError = new Error('verifier error!');
   var applicationVerifier = {
     'type': 'recaptcha',
-    'verify': function() {
+    'verify': function () {
       // The verifier throws its own error.
       return goog.Promise.reject(expectedError);
     }
   };
   var enrollSession = new fireauth.MultiFactorSession(jwt);
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber({
-    'phoneNumber': '+16505550101',
-    'session': enrollSession
-  }, applicationVerifier).then(fail, function(error) {
-    assertEquals(expectedError, error);
-  });
+  return provider
+    .verifyPhoneNumber(
+      {
+        'phoneNumber': '+16505550101',
+        'session': enrollSession
+      },
+      applicationVerifier
+    )
+    .then(fail, function (error) {
+      assertEquals(expectedError, error);
+    });
 }
-
 
 function testVerifyPhoneNumber_signInMfa_hint() {
   var hint = new fireauth.PhoneMultiFactorInfo({
@@ -2702,11 +2995,13 @@ function testVerifyPhoneNumber_signInMfa_hint() {
   var recaptchaToken = 'theRecaptchaToken';
   var verificationId = 'theVerificationId';
   var signInSession = new fireauth.MultiFactorSession(
-      null, 'MFA_PENDING_CREDENTIAL');
+    null,
+    'MFA_PENDING_CREDENTIAL'
+  );
 
   var applicationVerifier = {
     'type': 'recaptcha',
-    'verify': function() {
+    'verify': function () {
       return goog.Promise.resolve(recaptchaToken);
     }
   };
@@ -2720,31 +3015,38 @@ function testVerifyPhoneNumber_signInMfa_hint() {
   var auth = mockControl.createStrictMock(fireauth.Auth);
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
   auth.getRpcHandler().$once().$returns(rpcHandler);
-  rpcHandler.startPhoneMfaSignIn(expectedSignInRequest)
-      .$once()
-      .$returns(goog.Promise.resolve(verificationId));
+  rpcHandler
+    .startPhoneMfaSignIn(expectedSignInRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(verificationId));
 
   mockControl.$replayAll();
 
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber({
-    'multiFactorHint': hint,
-    'session': signInSession
-  }, applicationVerifier).then(function(actualVerificationId) {
-    assertEquals(verificationId, actualVerificationId);
-  });
+  return provider
+    .verifyPhoneNumber(
+      {
+        'multiFactorHint': hint,
+        'session': signInSession
+      },
+      applicationVerifier
+    )
+    .then(function (actualVerificationId) {
+      assertEquals(verificationId, actualVerificationId);
+    });
 }
-
 
 function testVerifyPhoneNumber_signInMfa_uid() {
   var recaptchaToken = 'theRecaptchaToken';
   var verificationId = 'theVerificationId';
   var signInSession = new fireauth.MultiFactorSession(
-      null, 'MFA_PENDING_CREDENTIAL');
+    null,
+    'MFA_PENDING_CREDENTIAL'
+  );
 
   var applicationVerifier = {
     'type': 'recaptcha',
-    'verify': function() {
+    'verify': function () {
       return goog.Promise.resolve(recaptchaToken);
     }
   };
@@ -2758,21 +3060,26 @@ function testVerifyPhoneNumber_signInMfa_uid() {
   var auth = mockControl.createStrictMock(fireauth.Auth);
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
   auth.getRpcHandler().$once().$returns(rpcHandler);
-  rpcHandler.startPhoneMfaSignIn(expectedSignInRequest)
-      .$once()
-      .$returns(goog.Promise.resolve(verificationId));
+  rpcHandler
+    .startPhoneMfaSignIn(expectedSignInRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(verificationId));
 
   mockControl.$replayAll();
 
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber({
-    'multiFactorUid': 'ENROLLMENT_UID',
-    'session': signInSession
-  }, applicationVerifier).then(function(actualVerificationId) {
-    assertEquals(verificationId, actualVerificationId);
-  });
+  return provider
+    .verifyPhoneNumber(
+      {
+        'multiFactorUid': 'ENROLLMENT_UID',
+        'session': signInSession
+      },
+      applicationVerifier
+    )
+    .then(function (actualVerificationId) {
+      assertEquals(verificationId, actualVerificationId);
+    });
 }
-
 
 function testVerifyPhoneNumber_signInMfa_reset_sendCodeTwice() {
   var hint = new fireauth.PhoneMultiFactorInfo({
@@ -2782,7 +3089,9 @@ function testVerifyPhoneNumber_signInMfa_reset_sendCodeTwice() {
     'phoneInfo': '+16505551234'
   });
   var signInSession = new fireauth.MultiFactorSession(
-      null, 'MFA_PENDING_CREDENTIAL');
+    null,
+    'MFA_PENDING_CREDENTIAL'
+  );
   var recaptchaToken1 = 'theRecaptchaToken1';
   var recaptchaToken2 = 'theRecaptchaToken2';
   var verificationId1 = 'theVerificationId1';
@@ -2818,30 +3127,40 @@ function testVerifyPhoneNumber_signInMfa_reset_sendCodeTwice() {
   var auth = mockControl.createStrictMock(fireauth.Auth);
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
   auth.getRpcHandler().$times(2).$returns(rpcHandler);
-  rpcHandler.startPhoneMfaSignIn(expectedSignInRequest1)
-      .$once()
-      .$returns(goog.Promise.resolve(verificationId1));
-  rpcHandler.startPhoneMfaSignIn(expectedSignInRequest2)
-      .$once()
-      .$returns(goog.Promise.resolve(verificationId2));
+  rpcHandler
+    .startPhoneMfaSignIn(expectedSignInRequest1)
+    .$once()
+    .$returns(goog.Promise.resolve(verificationId1));
+  rpcHandler
+    .startPhoneMfaSignIn(expectedSignInRequest2)
+    .$once()
+    .$returns(goog.Promise.resolve(verificationId2));
 
   mockControl.$replayAll();
 
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber({
-    'multiFactorHint': hint,
-    'session': signInSession
-  }, applicationVerifier).then(function(actualVerificationId1) {
-    assertEquals(verificationId1, actualVerificationId1);
-    return provider.verifyPhoneNumber({
-      'multiFactorHint': hint,
-      'session': signInSession
-    }, applicationVerifier);
-  }).then(function(actualVerificationId2) {
-    assertEquals(verificationId2, actualVerificationId2);
-  });
+  return provider
+    .verifyPhoneNumber(
+      {
+        'multiFactorHint': hint,
+        'session': signInSession
+      },
+      applicationVerifier
+    )
+    .then(function (actualVerificationId1) {
+      assertEquals(verificationId1, actualVerificationId1);
+      return provider.verifyPhoneNumber(
+        {
+          'multiFactorHint': hint,
+          'session': signInSession
+        },
+        applicationVerifier
+      );
+    })
+    .then(function (actualVerificationId2) {
+      assertEquals(verificationId2, actualVerificationId2);
+    });
 }
-
 
 function testVerifyPhoneNumber_signInMfa_reset_sendCodeError() {
   var hint = new fireauth.PhoneMultiFactorInfo({
@@ -2851,17 +3170,20 @@ function testVerifyPhoneNumber_signInMfa_reset_sendCodeError() {
     'phoneInfo': '+16505551234'
   });
   var signInSession = new fireauth.MultiFactorSession(
-      null, 'MFA_PENDING_CREDENTIAL');
+    null,
+    'MFA_PENDING_CREDENTIAL'
+  );
   var recaptchaToken = 'theRecaptchaToken';
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.INTERNAL_ERROR);
+    fireauth.authenum.Error.INTERNAL_ERROR
+  );
 
   var applicationVerifier = {
     'type': 'recaptcha',
-    'verify': function() {
+    'verify': function () {
       return goog.Promise.resolve(recaptchaToken);
     },
-    'reset': goog.testing.recordFunction(function() {})
+    'reset': goog.testing.recordFunction(function () {})
   };
   var expectedSignInRequest = {
     'mfaPendingCredential': 'MFA_PENDING_CREDENTIAL',
@@ -2873,24 +3195,29 @@ function testVerifyPhoneNumber_signInMfa_reset_sendCodeError() {
   var auth = mockControl.createStrictMock(fireauth.Auth);
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
   auth.getRpcHandler().$once().$returns(rpcHandler);
-  rpcHandler.startPhoneMfaSignIn(expectedSignInRequest)
-      .$once()
-      .$does(function() {
-        return goog.Promise.reject(expectedError);
-      });
+  rpcHandler
+    .startPhoneMfaSignIn(expectedSignInRequest)
+    .$once()
+    .$does(function () {
+      return goog.Promise.reject(expectedError);
+    });
 
   mockControl.$replayAll();
 
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber({
-    'multiFactorHint': hint,
-    'session': signInSession
-  }, applicationVerifier).then(fail, function(error) {
-    assertEquals(1, applicationVerifier.reset.getCallCount());
-    assertEquals(expectedError, error);
-  });
+  return provider
+    .verifyPhoneNumber(
+      {
+        'multiFactorHint': hint,
+        'session': signInSession
+      },
+      applicationVerifier
+    )
+    .then(fail, function (error) {
+      assertEquals(1, applicationVerifier.reset.getCallCount());
+      assertEquals(expectedError, error);
+    });
 }
-
 
 function testVerifyPhoneNumber_signInMfa_getSessionError() {
   var hint = new fireauth.PhoneMultiFactorInfo({
@@ -2900,42 +3227,54 @@ function testVerifyPhoneNumber_signInMfa_getSessionError() {
     'phoneInfo': '+16505551234'
   });
   var signInSession = new fireauth.MultiFactorSession(
-      null, 'MFA_PENDING_CREDENTIAL');
+    null,
+    'MFA_PENDING_CREDENTIAL'
+  );
   var recaptchaToken = 'theRecaptchaToken';
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.INTERNAL_ERROR);
+    fireauth.authenum.Error.INTERNAL_ERROR
+  );
 
   var applicationVerifier = {
     'type': 'recaptcha',
-    'verify': function() {
+    'verify': function () {
       return goog.Promise.resolve(recaptchaToken);
     },
-    'reset': goog.testing.recordFunction(function() {})
+    'reset': goog.testing.recordFunction(function () {})
   };
 
   var auth = mockControl.createStrictMock(fireauth.Auth);
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
   auth.getRpcHandler().$once().$returns(rpcHandler);
-  rpcHandler.startPhoneMfaSignIn(goog.testing.mockmatchers.ignoreArgument)
-      .$times(0);
+  rpcHandler
+    .startPhoneMfaSignIn(goog.testing.mockmatchers.ignoreArgument)
+    .$times(0);
   var getRawSession = mockControl.createMethodMock(
-      fireauth.MultiFactorSession.prototype, 'getRawSession');
-  getRawSession().$once().$does(function() {
-    return goog.Promise.reject(expectedError);
-  });
+    fireauth.MultiFactorSession.prototype,
+    'getRawSession'
+  );
+  getRawSession()
+    .$once()
+    .$does(function () {
+      return goog.Promise.reject(expectedError);
+    });
 
   mockControl.$replayAll();
 
   var provider = new fireauth.PhoneAuthProvider(auth);
-  return provider.verifyPhoneNumber({
-    'multiFactorHint': hint,
-    'session': signInSession
-  }, applicationVerifier).then(fail, function(error) {
-    assertEquals(1, applicationVerifier.reset.getCallCount());
-    assertEquals(expectedError, error);
-  });
+  return provider
+    .verifyPhoneNumber(
+      {
+        'multiFactorHint': hint,
+        'session': signInSession
+      },
+      applicationVerifier
+    )
+    .then(fail, function (error) {
+      assertEquals(1, applicationVerifier.reset.getCallCount());
+      assertEquals(expectedError, error);
+    });
 }
-
 
 function testVerifyPhoneNumber_signInMfa_defaultAuthInstance() {
   // Tests that verifyPhoneNumber works when using the default Auth instance.
@@ -2946,13 +3285,15 @@ function testVerifyPhoneNumber_signInMfa_defaultAuthInstance() {
     'phoneInfo': '+16505551234'
   });
   var signInSession = new fireauth.MultiFactorSession(
-      null, 'MFA_PENDING_CREDENTIAL');
+    null,
+    'MFA_PENDING_CREDENTIAL'
+  );
   var recaptchaToken = 'theRecaptchaToken';
   var verificationId = 'theVerificationId';
 
   var applicationVerifier = {
     'type': 'recaptcha',
-    'verify': function() {
+    'verify': function () {
       return goog.Promise.resolve(recaptchaToken);
     }
   };
@@ -2965,52 +3306,58 @@ function testVerifyPhoneNumber_signInMfa_defaultAuthInstance() {
   };
   var auth = mockControl.createStrictMock(fireauth.Auth);
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  stubs.set(firebase, 'auth', function() {
+  stubs.set(firebase, 'auth', function () {
     return auth;
   });
   auth.getRpcHandler().$once().$returns(rpcHandler);
-  rpcHandler.startPhoneMfaSignIn(expectedSignInRequest)
-      .$once()
-      .$returns(goog.Promise.resolve(verificationId));
+  rpcHandler
+    .startPhoneMfaSignIn(expectedSignInRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(verificationId));
 
   mockControl.$replayAll();
 
   var provider = new fireauth.PhoneAuthProvider();
-  return provider.verifyPhoneNumber({
-    'multiFactorHint': hint,
-    'session': signInSession
-  }, applicationVerifier).then(function(actualVerificationId) {
-    assertEquals(verificationId, actualVerificationId);
-  });
+  return provider
+    .verifyPhoneNumber(
+      {
+        'multiFactorHint': hint,
+        'session': signInSession
+      },
+      applicationVerifier
+    )
+    .then(function (actualVerificationId) {
+      assertEquals(verificationId, actualVerificationId);
+    });
 }
-
 
 function testPhoneAuthCredential_validateArguments() {
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.INTERNAL_ERROR);
+    fireauth.authenum.Error.INTERNAL_ERROR
+  );
   var error;
 
-  error = assertThrows(function() {
-    fireauth.PhoneAuthCredential({verificationId: 'foo'});
+  error = assertThrows(function () {
+    fireauth.PhoneAuthCredential({ verificationId: 'foo' });
   });
   fireauth.common.testHelper.assertErrorEquals(expectedError, error);
 
-  error = assertThrows(function() {
-    fireauth.PhoneAuthCredential({verificationCode: 'foo'});
+  error = assertThrows(function () {
+    fireauth.PhoneAuthCredential({ verificationCode: 'foo' });
   });
   fireauth.common.testHelper.assertErrorEquals(expectedError, error);
 
-  error = assertThrows(function() {
-    fireauth.PhoneAuthCredential({temporaryProof: 'foo'});
+  error = assertThrows(function () {
+    fireauth.PhoneAuthCredential({ temporaryProof: 'foo' });
   });
   fireauth.common.testHelper.assertErrorEquals(expectedError, error);
 
-  error = assertThrows(function() {
-    fireauth.PhoneAuthCredential({phoneNumber: 'foo'});
+  error = assertThrows(function () {
+    fireauth.PhoneAuthCredential({ phoneNumber: 'foo' });
   });
   fireauth.common.testHelper.assertErrorEquals(expectedError, error);
 
-  error = assertThrows(function() {
+  error = assertThrows(function () {
     fireauth.PhoneAuthCredential({
       verificationCode: 'foo',
       phoneNumber: 'bar'
@@ -3018,7 +3365,7 @@ function testPhoneAuthCredential_validateArguments() {
   });
   fireauth.common.testHelper.assertErrorEquals(expectedError, error);
 
-  error = assertThrows(function() {
+  error = assertThrows(function () {
     fireauth.PhoneAuthCredential({
       verificationCode: 'foo',
       temporaryProof: 'bar'
@@ -3027,70 +3374,81 @@ function testPhoneAuthCredential_validateArguments() {
   fireauth.common.testHelper.assertErrorEquals(expectedError, error);
 }
 
-
 function testPhoneAuthCredential() {
   var verificationId = 'theVerificationId';
   var verificationCode = 'theVerificationCode';
 
   var credential = fireauth.PhoneAuthProvider.credential(
-      verificationId, verificationCode);
+    verificationId,
+    verificationCode
+  );
   assertEquals(fireauth.idp.ProviderId.PHONE, credential['providerId']);
   assertEquals(fireauth.idp.SignInMethod.PHONE, credential['signInMethod']);
   assertEquals(
-      fireauth.idp.SignInMethod.PHONE,
-      fireauth.PhoneAuthProvider['PHONE_SIGN_IN_METHOD']);
-  assertObjectEquals({
-    'providerId': fireauth.idp.ProviderId.PHONE,
-    'verificationId': verificationId,
-    'verificationCode': verificationCode
-  }, credential.toPlainObject());
+    fireauth.idp.SignInMethod.PHONE,
+    fireauth.PhoneAuthProvider['PHONE_SIGN_IN_METHOD']
+  );
+  assertObjectEquals(
+    {
+      'providerId': fireauth.idp.ProviderId.PHONE,
+      'verificationId': verificationId,
+      'verificationCode': verificationCode
+    },
+    credential.toPlainObject()
+  );
 
   assertNull(
-      fireauth.AuthProvider.getCredentialFromResponse({
-        'providerId': 'phone'
-      }));
+    fireauth.AuthProvider.getCredentialFromResponse({
+      'providerId': 'phone'
+    })
+  );
 
   // Test toJSON and fromJSON for current verificationId/verificationCode
   // PhoneAuthCredential.
   assertObjectEquals(
-      credential,
-      fireauth.PhoneAuthCredential.fromJSON(credential.toPlainObject()));
+    credential,
+    fireauth.PhoneAuthCredential.fromJSON(credential.toPlainObject())
+  );
   assertObjectEquals(
-      credential,
-      fireauth.AuthCredential.fromPlainObject(credential.toPlainObject()));
+    credential,
+    fireauth.AuthCredential.fromPlainObject(credential.toPlainObject())
+  );
   assertObjectEquals(
-      credential,
-      fireauth.AuthCredential.fromPlainObject(
-          JSON.stringify(credential.toPlainObject())));
+    credential,
+    fireauth.AuthCredential.fromPlainObject(
+      JSON.stringify(credential.toPlainObject())
+    )
+  );
 }
-
 
 function testPhoneAuthCredential_missingFieldsErrors() {
   var verificationId = 'theVerificationId';
   var verificationCode = 'theVerificationCode';
 
-  var error = assertThrows(function() {
+  var error = assertThrows(function () {
     fireauth.PhoneAuthProvider.credential('', verificationCode);
   });
   fireauth.common.testHelper.assertErrorEquals(
-      new fireauth.AuthError(fireauth.authenum.Error.MISSING_SESSION_INFO),
-      error);
+    new fireauth.AuthError(fireauth.authenum.Error.MISSING_SESSION_INFO),
+    error
+  );
 
-  error = assertThrows(function() {
+  error = assertThrows(function () {
     fireauth.PhoneAuthProvider.credential(verificationId, '');
   });
   fireauth.common.testHelper.assertErrorEquals(
-      new fireauth.AuthError(fireauth.authenum.Error.MISSING_CODE),
-      error);
+    new fireauth.AuthError(fireauth.authenum.Error.MISSING_CODE),
+    error
+  );
 
-  error = assertThrows(function() {
+  error = assertThrows(function () {
     fireauth.PhoneAuthProvider.credential('', '');
   });
   fireauth.common.testHelper.assertErrorEquals(
-      new fireauth.AuthError(fireauth.authenum.Error.MISSING_SESSION_INFO),
-      error);
+    new fireauth.AuthError(fireauth.authenum.Error.MISSING_SESSION_INFO),
+    error
+  );
 }
-
 
 function testPhoneAuthCredential_getIdTokenProvider() {
   var verificationId = 'theVerificationId';
@@ -3101,27 +3459,29 @@ function testPhoneAuthCredential_getIdTokenProvider() {
     'code': verificationCode
   };
   var verifyPhoneNumberResponse = {
-   'idToken': 'myIdToken',
-   'refreshToken': 'myRefreshToken',
-   'expiresIn': '3600',
-   'localId': 'myLocalId',
-   'isNewUser': false,
-   'phoneNumber': '+16505550101'
+    'idToken': 'myIdToken',
+    'refreshToken': 'myRefreshToken',
+    'expiresIn': '3600',
+    'localId': 'myLocalId',
+    'isNewUser': false,
+    'phoneNumber': '+16505550101'
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  rpcHandler.verifyPhoneNumber(expectedVerifyPhoneNumberRequest).$once()
-      .$returns(goog.Promise.resolve(verifyPhoneNumberResponse));
+  rpcHandler
+    .verifyPhoneNumber(expectedVerifyPhoneNumberRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(verifyPhoneNumberResponse));
 
   mockControl.$replayAll();
 
   var credential = fireauth.PhoneAuthProvider.credential(
-      verificationId, verificationCode);
-  return credential.getIdTokenProvider(rpcHandler)
-      .then(function(response) {
-        assertObjectEquals(verifyPhoneNumberResponse, response);
-      });
+    verificationId,
+    verificationCode
+  );
+  return credential.getIdTokenProvider(rpcHandler).then(function (response) {
+    assertObjectEquals(verifyPhoneNumberResponse, response);
+  });
 }
-
 
 function testPhoneAuthCredential_linkToIdToken() {
   var verificationId = 'theVerificationId';
@@ -3134,28 +3494,31 @@ function testPhoneAuthCredential_linkToIdToken() {
     'code': verificationCode
   };
   var verifyPhoneNumberResponse = {
-   'idToken': 'myNewIdToken',
-   'refreshToken': 'myRefreshToken',
-   'expiresIn': '3600',
-   'localId': 'myLocalId',
-   'isNewUser': false,
-   'phoneNumber': '+16505550101'
+    'idToken': 'myNewIdToken',
+    'refreshToken': 'myRefreshToken',
+    'expiresIn': '3600',
+    'localId': 'myLocalId',
+    'isNewUser': false,
+    'phoneNumber': '+16505550101'
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  rpcHandler.verifyPhoneNumberForLinking(expectedVerifyPhoneNumberRequest)
-      .$once()
-      .$returns(goog.Promise.resolve(verifyPhoneNumberResponse));
+  rpcHandler
+    .verifyPhoneNumberForLinking(expectedVerifyPhoneNumberRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(verifyPhoneNumberResponse));
 
   mockControl.$replayAll();
 
   var credential = fireauth.PhoneAuthProvider.credential(
-      verificationId, verificationCode);
-  return credential.linkToIdToken(rpcHandler, idToken)
-      .then(function(response) {
-        assertObjectEquals(verifyPhoneNumberResponse, response);
-      });
+    verificationId,
+    verificationCode
+  );
+  return credential
+    .linkToIdToken(rpcHandler, idToken)
+    .then(function (response) {
+      assertObjectEquals(verifyPhoneNumberResponse, response);
+    });
 }
-
 
 function testPhoneAuthCredential_matchIdTokenWithUid() {
   var verificationId = 'theVerificationId';
@@ -3169,28 +3532,31 @@ function testPhoneAuthCredential_matchIdTokenWithUid() {
     'code': verificationCode
   };
   var verifyPhoneNumberResponse = {
-   'idToken': idToken,
-   'refreshToken': 'myRefreshToken',
-   'expiresIn': '3600',
-   'localId': uid,
-   'isNewUser': false,
-   'phoneNumber': '+16505550101'
+    'idToken': idToken,
+    'refreshToken': 'myRefreshToken',
+    'expiresIn': '3600',
+    'localId': uid,
+    'isNewUser': false,
+    'phoneNumber': '+16505550101'
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  rpcHandler.verifyPhoneNumberForExisting(expectedVerifyPhoneNumberRequest)
-      .$once()
-      .$returns(goog.Promise.resolve(verifyPhoneNumberResponse));
+  rpcHandler
+    .verifyPhoneNumberForExisting(expectedVerifyPhoneNumberRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(verifyPhoneNumberResponse));
 
   mockControl.$replayAll();
 
   var credential = fireauth.PhoneAuthProvider.credential(
-      verificationId, verificationCode);
-  return credential.matchIdTokenWithUid(rpcHandler, uid)
-      .then(function(response) {
-        assertObjectEquals(verifyPhoneNumberResponse, response);
-      });
+    verificationId,
+    verificationCode
+  );
+  return credential
+    .matchIdTokenWithUid(rpcHandler, uid)
+    .then(function (response) {
+      assertObjectEquals(verifyPhoneNumberResponse, response);
+    });
 }
-
 
 function testPhoneAuthCredential_matchIdTokenWithUid_mismatch() {
   var verificationId = 'theVerificationId';
@@ -3205,30 +3571,34 @@ function testPhoneAuthCredential_matchIdTokenWithUid_mismatch() {
     'code': verificationCode
   };
   var verifyPhoneNumberResponse = {
-   'idToken': idToken,
-   'refreshToken': 'myRefreshToken',
-   'expiresIn': '3600',
-   'localId': uid,
-   'isNewUser': false,
-   'phoneNumber': '+16505550101'
+    'idToken': idToken,
+    'refreshToken': 'myRefreshToken',
+    'expiresIn': '3600',
+    'localId': uid,
+    'isNewUser': false,
+    'phoneNumber': '+16505550101'
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  rpcHandler.verifyPhoneNumberForExisting(expectedVerifyPhoneNumberRequest)
-      .$once()
-      .$returns(goog.Promise.resolve(verifyPhoneNumberResponse));
+  rpcHandler
+    .verifyPhoneNumberForExisting(expectedVerifyPhoneNumberRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(verifyPhoneNumberResponse));
 
   mockControl.$replayAll();
 
   var credential = fireauth.PhoneAuthProvider.credential(
-      verificationId, verificationCode);
-  return credential.matchIdTokenWithUid(rpcHandler, passedUid)
-      .then(fail, function(error) {
-        fireauth.common.testHelper.assertErrorEquals(
-            new fireauth.AuthError(fireauth.authenum.Error.USER_MISMATCH),
-            error);
-      });
+    verificationId,
+    verificationCode
+  );
+  return credential
+    .matchIdTokenWithUid(rpcHandler, passedUid)
+    .then(fail, function (error) {
+      fireauth.common.testHelper.assertErrorEquals(
+        new fireauth.AuthError(fireauth.authenum.Error.USER_MISMATCH),
+        error
+      );
+    });
 }
-
 
 function testPhoneAuthCredential_finalizeMfaEnrollment_success() {
   var verificationId = 'SESSION_INFO';
@@ -3246,21 +3616,23 @@ function testPhoneAuthCredential_finalizeMfaEnrollment_success() {
     'displayName': factorDisplayName
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  rpcHandler.finalizePhoneMfaEnrollment(expectedEnrollRequest)
-      .$once()
-      .$returns(goog.Promise.resolve(successTokenResponse));
+  rpcHandler
+    .finalizePhoneMfaEnrollment(expectedEnrollRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(successTokenResponse));
 
   mockControl.$replayAll();
 
   var credential = fireauth.PhoneAuthProvider.credential(
-      verificationId, verificationCode);
+    verificationId,
+    verificationCode
+  );
   return credential
-      .finalizeMfaEnrollment(rpcHandler, enrollmentRequestIdentifier)
-      .then(function(result) {
-        assertObjectEquals(successTokenResponse, result);
-      });
+    .finalizeMfaEnrollment(rpcHandler, enrollmentRequestIdentifier)
+    .then(function (result) {
+      assertObjectEquals(successTokenResponse, result);
+    });
 }
-
 
 function testPhoneAuthCredential_finalizeMfaEnrollment_success_noDisplayName() {
   var verificationId = 'SESSION_INFO';
@@ -3276,25 +3648,28 @@ function testPhoneAuthCredential_finalizeMfaEnrollment_success_noDisplayName() {
     'idToken': jwt
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  rpcHandler.finalizePhoneMfaEnrollment(expectedEnrollRequest)
-      .$once()
-      .$returns(goog.Promise.resolve(successTokenResponse));
+  rpcHandler
+    .finalizePhoneMfaEnrollment(expectedEnrollRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(successTokenResponse));
 
   mockControl.$replayAll();
 
   var credential = fireauth.PhoneAuthProvider.credential(
-      verificationId, verificationCode);
+    verificationId,
+    verificationCode
+  );
   return credential
-      .finalizeMfaEnrollment(rpcHandler, enrollmentRequestIdentifier)
-      .then(function(result) {
-        assertObjectEquals(successTokenResponse, result);
-      });
+    .finalizeMfaEnrollment(rpcHandler, enrollmentRequestIdentifier)
+    .then(function (result) {
+      assertObjectEquals(successTokenResponse, result);
+    });
 }
-
 
 function testPhoneAuthCredential_finalizeMfaEnrollment_error() {
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.CODE_EXPIRED);
+    fireauth.authenum.Error.CODE_EXPIRED
+  );
   var verificationId = 'SESSION_INFO';
   var verificationCode = '123456';
   var expectedEnrollRequest = {
@@ -3310,22 +3685,24 @@ function testPhoneAuthCredential_finalizeMfaEnrollment_error() {
     'displayName': factorDisplayName
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  rpcHandler.finalizePhoneMfaEnrollment(expectedEnrollRequest)
-      .$once()
-      .$returns(goog.Promise.reject(expectedError));
+  rpcHandler
+    .finalizePhoneMfaEnrollment(expectedEnrollRequest)
+    .$once()
+    .$returns(goog.Promise.reject(expectedError));
 
   mockControl.$replayAll();
 
   var credential = fireauth.PhoneAuthProvider.credential(
-      verificationId, verificationCode);
+    verificationId,
+    verificationCode
+  );
   return credential
-      .finalizeMfaEnrollment(rpcHandler, enrollmentRequestIdentifier)
-      .then(fail)
-      .thenCatch(function(error) {
-        fireauth.common.testHelper.assertErrorEquals(expectedError, error);
-      });
+    .finalizeMfaEnrollment(rpcHandler, enrollmentRequestIdentifier)
+    .then(fail)
+    .thenCatch(function (error) {
+      fireauth.common.testHelper.assertErrorEquals(expectedError, error);
+    });
 }
-
 
 function testPhoneAuthCredential_finalizeMfaSignIn_success() {
   var verificationId = 'SESSION_INFO';
@@ -3341,25 +3718,28 @@ function testPhoneAuthCredential_finalizeMfaSignIn_success() {
     'mfaPendingCredential': pendingCredential
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  rpcHandler.finalizePhoneMfaSignIn(expectedSignInRequest)
-      .$once()
-      .$returns(goog.Promise.resolve(successTokenResponse));
+  rpcHandler
+    .finalizePhoneMfaSignIn(expectedSignInRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(successTokenResponse));
 
   mockControl.$replayAll();
 
   var credential = fireauth.PhoneAuthProvider.credential(
-      verificationId, verificationCode);
+    verificationId,
+    verificationCode
+  );
   return credential
-      .finalizeMfaSignIn(rpcHandler, signInRequestIdentifier)
-      .then(function(result) {
-        assertObjectEquals(successTokenResponse, result);
-      });
+    .finalizeMfaSignIn(rpcHandler, signInRequestIdentifier)
+    .then(function (result) {
+      assertObjectEquals(successTokenResponse, result);
+    });
 }
-
 
 function testPhoneAuthCredential_finalizeMfaSignIn_error() {
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.CODE_EXPIRED);
+    fireauth.authenum.Error.CODE_EXPIRED
+  );
   var verificationId = 'SESSION_INFO';
   var verificationCode = '123456';
   var expectedSignInRequest = {
@@ -3373,22 +3753,24 @@ function testPhoneAuthCredential_finalizeMfaSignIn_error() {
     'mfaPendingCredential': pendingCredential
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  rpcHandler.finalizePhoneMfaSignIn(expectedSignInRequest)
-      .$once()
-      .$returns(goog.Promise.reject(expectedError));
+  rpcHandler
+    .finalizePhoneMfaSignIn(expectedSignInRequest)
+    .$once()
+    .$returns(goog.Promise.reject(expectedError));
 
   mockControl.$replayAll();
 
   var credential = fireauth.PhoneAuthProvider.credential(
-      verificationId, verificationCode);
+    verificationId,
+    verificationCode
+  );
   return credential
-      .finalizeMfaSignIn(rpcHandler, signInRequestIdentifier)
-      .then(fail)
-      .thenCatch(function(error) {
-        fireauth.common.testHelper.assertErrorEquals(expectedError, error);
-      });
+    .finalizeMfaSignIn(rpcHandler, signInRequestIdentifier)
+    .then(fail)
+    .thenCatch(function (error) {
+      fireauth.common.testHelper.assertErrorEquals(expectedError, error);
+    });
 }
-
 
 function testPhoneAuthCredential_temporaryProof() {
   var temporaryProof = 'theTempProof';
@@ -3401,23 +3783,28 @@ function testPhoneAuthCredential_temporaryProof() {
   assertEquals(fireauth.idp.ProviderId.PHONE, credential['providerId']);
   assertEquals(fireauth.idp.SignInMethod.PHONE, credential['signInMethod']);
   assertEquals(
-      fireauth.idp.SignInMethod.PHONE,
-      fireauth.PhoneAuthProvider['PHONE_SIGN_IN_METHOD']);
-  assertObjectEquals({
-    'providerId': fireauth.idp.ProviderId.PHONE,
-    'temporaryProof': temporaryProof,
-    'phoneNumber': phoneNumber
-  }, credential.toPlainObject());
+    fireauth.idp.SignInMethod.PHONE,
+    fireauth.PhoneAuthProvider['PHONE_SIGN_IN_METHOD']
+  );
+  assertObjectEquals(
+    {
+      'providerId': fireauth.idp.ProviderId.PHONE,
+      'temporaryProof': temporaryProof,
+      'phoneNumber': phoneNumber
+    },
+    credential.toPlainObject()
+  );
 
   // Test toJSON and fromJSON for current temporaryProof PhoneAuthCredential.
   assertObjectEquals(
-      credential,
-      fireauth.PhoneAuthCredential.fromJSON(credential.toPlainObject()));
+    credential,
+    fireauth.PhoneAuthCredential.fromJSON(credential.toPlainObject())
+  );
   assertObjectEquals(
-      credential,
-      fireauth.AuthCredential.fromPlainObject(credential.toPlainObject()));
+    credential,
+    fireauth.AuthCredential.fromPlainObject(credential.toPlainObject())
+  );
 }
-
 
 function testPhoneAuthCredential_temporaryProof_getIdTokenProvider() {
   var temporaryProof = 'theTempProof';
@@ -3428,16 +3815,18 @@ function testPhoneAuthCredential_temporaryProof_getIdTokenProvider() {
     'phoneNumber': phoneNumber
   };
   var verifyPhoneNumberResponse = {
-   'idToken': 'myIdToken',
-   'refreshToken': 'myRefreshToken',
-   'expiresIn': '3600',
-   'localId': 'myLocalId',
-   'isNewUser': false,
-   'phoneNumber': '+16505550101'
+    'idToken': 'myIdToken',
+    'refreshToken': 'myRefreshToken',
+    'expiresIn': '3600',
+    'localId': 'myLocalId',
+    'isNewUser': false,
+    'phoneNumber': '+16505550101'
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  rpcHandler.verifyPhoneNumber(expectedVerifyPhoneNumberRequest).$once()
-      .$returns(goog.Promise.resolve(verifyPhoneNumberResponse));
+  rpcHandler
+    .verifyPhoneNumber(expectedVerifyPhoneNumberRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(verifyPhoneNumberResponse));
 
   mockControl.$replayAll();
 
@@ -3445,12 +3834,10 @@ function testPhoneAuthCredential_temporaryProof_getIdTokenProvider() {
     'temporaryProof': temporaryProof,
     'phoneNumber': phoneNumber
   });
-  return credential.getIdTokenProvider(rpcHandler)
-      .then(function(response) {
-        assertObjectEquals(verifyPhoneNumberResponse, response);
-      });
+  return credential.getIdTokenProvider(rpcHandler).then(function (response) {
+    assertObjectEquals(verifyPhoneNumberResponse, response);
+  });
 }
-
 
 function testPhoneAuthCredential_temporaryProof_linkToIdToken() {
   var temporaryProof = 'theTempProof';
@@ -3463,17 +3850,18 @@ function testPhoneAuthCredential_temporaryProof_linkToIdToken() {
     'phoneNumber': phoneNumber
   };
   var verifyPhoneNumberResponse = {
-   'idToken': 'myNewIdToken',
-   'refreshToken': 'myRefreshToken',
-   'expiresIn': '3600',
-   'localId': 'myLocalId',
-   'isNewUser': false,
-   'phoneNumber': '+16505550101'
+    'idToken': 'myNewIdToken',
+    'refreshToken': 'myRefreshToken',
+    'expiresIn': '3600',
+    'localId': 'myLocalId',
+    'isNewUser': false,
+    'phoneNumber': '+16505550101'
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  rpcHandler.verifyPhoneNumberForLinking(expectedVerifyPhoneNumberRequest)
-      .$once()
-      .$returns(goog.Promise.resolve(verifyPhoneNumberResponse));
+  rpcHandler
+    .verifyPhoneNumberForLinking(expectedVerifyPhoneNumberRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(verifyPhoneNumberResponse));
 
   mockControl.$replayAll();
 
@@ -3481,12 +3869,12 @@ function testPhoneAuthCredential_temporaryProof_linkToIdToken() {
     'temporaryProof': temporaryProof,
     'phoneNumber': phoneNumber
   });
-  return credential.linkToIdToken(rpcHandler, idToken)
-      .then(function(response) {
-        assertObjectEquals(verifyPhoneNumberResponse, response);
-      });
+  return credential
+    .linkToIdToken(rpcHandler, idToken)
+    .then(function (response) {
+      assertObjectEquals(verifyPhoneNumberResponse, response);
+    });
 }
-
 
 function testPhoneAuthCredential_temporaryProof_matchIdTokenWithUid() {
   var temporaryProof = 'theTempProof';
@@ -3500,17 +3888,18 @@ function testPhoneAuthCredential_temporaryProof_matchIdTokenWithUid() {
     'phoneNumber': phoneNumber
   };
   var verifyPhoneNumberResponse = {
-   'idToken': idToken,
-   'refreshToken': 'myRefreshToken',
-   'expiresIn': '3600',
-   'localId': uid,
-   'isNewUser': false,
-   'phoneNumber': '+16505550101'
+    'idToken': idToken,
+    'refreshToken': 'myRefreshToken',
+    'expiresIn': '3600',
+    'localId': uid,
+    'isNewUser': false,
+    'phoneNumber': '+16505550101'
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  rpcHandler.verifyPhoneNumberForExisting(expectedVerifyPhoneNumberRequest)
-      .$once()
-      .$returns(goog.Promise.resolve(verifyPhoneNumberResponse));
+  rpcHandler
+    .verifyPhoneNumberForExisting(expectedVerifyPhoneNumberRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(verifyPhoneNumberResponse));
 
   mockControl.$replayAll();
 
@@ -3518,12 +3907,12 @@ function testPhoneAuthCredential_temporaryProof_matchIdTokenWithUid() {
     'temporaryProof': temporaryProof,
     'phoneNumber': phoneNumber
   });
-  return credential.matchIdTokenWithUid(rpcHandler, uid)
-      .then(function(response) {
-        assertObjectEquals(verifyPhoneNumberResponse, response);
-      });
+  return credential
+    .matchIdTokenWithUid(rpcHandler, uid)
+    .then(function (response) {
+      assertObjectEquals(verifyPhoneNumberResponse, response);
+    });
 }
-
 
 function testPhoneAuthCredential_temporaryProof_matchIdTokenWithUid_mismatch() {
   var temporaryProof = 'theTempProof';
@@ -3538,17 +3927,18 @@ function testPhoneAuthCredential_temporaryProof_matchIdTokenWithUid_mismatch() {
     'phoneNumber': phoneNumber
   };
   var verifyPhoneNumberResponse = {
-   'idToken': idToken,
-   'refreshToken': 'myRefreshToken',
-   'expiresIn': '3600',
-   'localId': uid,
-   'isNewUser': false,
-   'phoneNumber': '+16505550101'
+    'idToken': idToken,
+    'refreshToken': 'myRefreshToken',
+    'expiresIn': '3600',
+    'localId': uid,
+    'isNewUser': false,
+    'phoneNumber': '+16505550101'
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  rpcHandler.verifyPhoneNumberForExisting(expectedVerifyPhoneNumberRequest)
-      .$once()
-      .$returns(goog.Promise.resolve(verifyPhoneNumberResponse));
+  rpcHandler
+    .verifyPhoneNumberForExisting(expectedVerifyPhoneNumberRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(verifyPhoneNumberResponse));
 
   mockControl.$replayAll();
 
@@ -3556,70 +3946,76 @@ function testPhoneAuthCredential_temporaryProof_matchIdTokenWithUid_mismatch() {
     'temporaryProof': temporaryProof,
     'phoneNumber': phoneNumber
   });
-  return credential.matchIdTokenWithUid(rpcHandler, passedUid)
-      .then(fail, function(error) {
-        fireauth.common.testHelper.assertErrorEquals(
-            new fireauth.AuthError(fireauth.authenum.Error.USER_MISMATCH),
-            error);
-      });
+  return credential
+    .matchIdTokenWithUid(rpcHandler, passedUid)
+    .then(fail, function (error) {
+      fireauth.common.testHelper.assertErrorEquals(
+        new fireauth.AuthError(fireauth.authenum.Error.USER_MISMATCH),
+        error
+      );
+    });
 }
-
 
 function testVerifyTokenResponseUid_match() {
   // Mock idToken parsing.
   initializeIdTokenMocks('ID_TOKEN', '1234');
   return fireauth.AuthCredential.verifyTokenResponseUid(
-      goog.Promise.resolve(responseForIdToken), '1234');
+    goog.Promise.resolve(responseForIdToken),
+    '1234'
+  );
 }
-
 
 function testVerifyTokenResponseUid_idTokenNotFound_mismatch() {
   // No ID token returned.
   var noIdTokenResponse = {};
   return fireauth.AuthCredential.verifyTokenResponseUid(
-      goog.Promise.resolve(noIdTokenResponse), '1234')
-      .thenCatch(function(error) {
-        fireauth.common.testHelper.assertErrorEquals(
-            new fireauth.AuthError(fireauth.authenum.Error.USER_MISMATCH),
-            error);
-      });
+    goog.Promise.resolve(noIdTokenResponse),
+    '1234'
+  ).thenCatch(function (error) {
+    fireauth.common.testHelper.assertErrorEquals(
+      new fireauth.AuthError(fireauth.authenum.Error.USER_MISMATCH),
+      error
+    );
+  });
 }
-
 
 function testVerifyTokenResponseUid_userFound_mismatch() {
   // Mock idToken parsing.
   initializeIdTokenMocks('ID_TOKEN', '1234');
   return fireauth.AuthCredential.verifyTokenResponseUid(
-      // The UID does not match the ID token UID.
-      goog.Promise.resolve(responseForIdToken), '5678')
-      .thenCatch(function(error) {
-        fireauth.common.testHelper.assertErrorEquals(
-            new fireauth.AuthError(fireauth.authenum.Error.USER_MISMATCH),
-            error);
-      });
+    // The UID does not match the ID token UID.
+    goog.Promise.resolve(responseForIdToken),
+    '5678'
+  ).thenCatch(function (error) {
+    fireauth.common.testHelper.assertErrorEquals(
+      new fireauth.AuthError(fireauth.authenum.Error.USER_MISMATCH),
+      error
+    );
+  });
 }
-
 
 function testVerifyTokenResponseUid_passThroughError() {
-  var expectedError =
-      new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
+  var expectedError = new fireauth.AuthError(
+    fireauth.authenum.Error.INTERNAL_ERROR
+  );
   return fireauth.AuthCredential.verifyTokenResponseUid(
-      goog.Promise.reject(expectedError), '1234')
-      .thenCatch(function(error) {
-        assertEquals(expectedError, error);
-      });
+    goog.Promise.reject(expectedError),
+    '1234'
+  ).thenCatch(function (error) {
+    assertEquals(expectedError, error);
+  });
 }
-
 
 function testVerifyTokenResponseUid_userNotFound() {
   // Confirm USER_DELETED error is translated to USER_MISMATCH.
-  var error =
-      new fireauth.AuthError(fireauth.authenum.Error.USER_DELETED);
-  var expectedError =
-      new fireauth.AuthError(fireauth.authenum.Error.USER_MISMATCH);
+  var error = new fireauth.AuthError(fireauth.authenum.Error.USER_DELETED);
+  var expectedError = new fireauth.AuthError(
+    fireauth.authenum.Error.USER_MISMATCH
+  );
   return fireauth.AuthCredential.verifyTokenResponseUid(
-      goog.Promise.reject(error), '1234')
-      .thenCatch(function(error) {
-        fireauth.common.testHelper.assertErrorEquals(expectedError, error);
-      });
+    goog.Promise.reject(error),
+    '1234'
+  ).thenCatch(function (error) {
+    fireauth.common.testHelper.assertErrorEquals(expectedError, error);
+  });
 }

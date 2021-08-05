@@ -13,7 +13,7 @@ You may notice that up to now you have only been increasing the user count. Hand
 To do this, add another listener inside the existing `'connect'` listener that listens for `'disconnect'` on the socket with no data passed through. You can test this functionality by just logging that a user has disconnected to the console.
 
 ```js
-socket.on('disconnect', () => {
+socket.on("disconnect", () => {
   /*anything you want to do on disconnect*/
 });
 ```
@@ -30,9 +30,9 @@ Server should handle the event disconnect from a socket.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
-      assert.match(data, /socket.on.*('|")disconnect('|")/gi, '');
+      assert.match(data, /socket.on.*('|")disconnect('|")/gi, "");
     },
     (xhr) => {
       throw new Error(xhr.statusText);
@@ -44,12 +44,12 @@ Your client should be listening for 'user count' event.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/public/client.js').then(
+  $.get(getUserInput("url") + "/public/client.js").then(
     (data) => {
       assert.match(
         data,
         /socket.on.*('|")user count('|")/gi,
-        'Your client should be connection to server with the connection defined as socket'
+        "Your client should be connection to server with the connection defined as socket"
       );
     },
     (xhr) => {

@@ -2,7 +2,7 @@
 id: 587d78a7367417b2b2512ae1
 title: Crear movimiento usando animación CSS
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c7amZfW'
+videoUrl: "https://scrimba.com/c/c7amZfW"
 forumTopicId: 301051
 dashedName: create-movement-using-css-animation
 ---
@@ -78,17 +78,14 @@ assert(code.match(/100%\s*?{[\s\S]*?left:\s*?-25px(;[\s\S]*?|\s*?)}/gi));
     0% {
       background-color: blue;
       top: 0px;
-
     }
     50% {
       background-color: green;
       top: 50px;
-
     }
     100% {
       background-color: yellow;
       top: 0px;
-
     }
   }
 </style>

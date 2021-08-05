@@ -16,18 +16,18 @@ function createRefChild() {
 
   // [START storage_create_ref_child]
   // Create a child reference
-  var imagesRef = storageRef.child('images');
+  var imagesRef = storageRef.child("images");
   // imagesRef now points to 'images'
 
   // Child references can also take paths delimited by '/'
-  var spaceRef = storageRef.child('images/space.jpg');
+  var spaceRef = storageRef.child("images/space.jpg");
   // spaceRef now points to "images/space.jpg"
   // imagesRef still points to "images"
   // [END storage_create_ref_child]
 }
 
 function navigateRef() {
-  const spaceRef = firebase.storage().ref().child('images/space.jpg');
+  const spaceRef = firebase.storage().ref().child("images/space.jpg");
 
   // [START storage_navigate_ref]
   // Parent allows us to move to the parent of a reference
@@ -41,11 +41,11 @@ function navigateRef() {
 }
 
 function navigateRefChain() {
-  const spaceRef = firebase.storage().ref().child('images/space.jpg');
+  const spaceRef = firebase.storage().ref().child("images/space.jpg");
 
   // [START storage_navigate_ref_chain]
   // References can be chained together multiple times
-  var earthRef = spaceRef.parent.child('earth.jpg');
+  var earthRef = spaceRef.parent.child("earth.jpg");
   // earthRef points to 'images/earth.jpg'
 
   // nullRef is null, since the parent of root is null
@@ -54,7 +54,7 @@ function navigateRefChain() {
 }
 
 function refProperties() {
-  const spaceRef = firebase.storage().ref().child('images/space.jpg');
+  const spaceRef = firebase.storage().ref().child("images/space.jpg");
 
   // [START storage_ref_properties]
   // Reference's path is: 'images/space.jpg'
@@ -76,11 +76,11 @@ function refFullExample() {
   var storageRef = firebase.storage().ref();
 
   // Points to 'images'
-  var imagesRef = storageRef.child('images');
+  var imagesRef = storageRef.child("images");
 
   // Points to 'images/space.jpg'
   // Note that you can use variables to create child values
-  var fileName = 'space.jpg';
+  var fileName = "space.jpg";
   var spaceRef = imagesRef.child(fileName);
 
   // File path is 'images/space.jpg'

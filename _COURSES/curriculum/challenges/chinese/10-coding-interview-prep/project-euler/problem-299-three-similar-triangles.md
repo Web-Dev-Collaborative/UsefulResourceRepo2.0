@@ -1,6 +1,6 @@
 ---
 id: 5900f4971000cf542c50ffaa
-title: 'Problem 299: Three similar triangles'
+title: "Problem 299: Three similar triangles"
 challengeType: 5
 forumTopicId: 301951
 dashedName: problem-299-three-similar-triangles
@@ -36,7 +36,6 @@ assert.strictEqual(euler299(), 549936643);
 
 ```js
 function euler299() {
-
   return true;
 }
 

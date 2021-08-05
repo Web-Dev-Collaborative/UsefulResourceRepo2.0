@@ -47,7 +47,7 @@ export class TestRestConnection extends RestConnection {
     body: Req
   ): Promise<Resp> {
     this.lastUrl = url;
-    this.lastRequestBody = (body as unknown) as Indexable;
+    this.lastRequestBody = body as unknown as Indexable;
     this.lastHeaders = headers;
     const response = this.nextResponse;
     this.nextResponse = Promise.resolve<unknown>({});

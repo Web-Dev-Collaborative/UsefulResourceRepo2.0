@@ -16,22 +16,22 @@
  * @fileoverview UI component for the password account linking page.
  */
 
-goog.provide('firebaseui.auth.ui.page.PasswordLinking');
+goog.provide("firebaseui.auth.ui.page.PasswordLinking");
 
-goog.require('firebaseui.auth.soy2.page');
-goog.require('firebaseui.auth.ui.element');
-goog.require('firebaseui.auth.ui.element.form');
-goog.require('firebaseui.auth.ui.element.password');
-goog.require('firebaseui.auth.ui.page.Base');
-goog.require('goog.asserts');
-goog.requireType('goog.dom.DomHelper');
-
+goog.require("firebaseui.auth.soy2.page");
+goog.require("firebaseui.auth.ui.element");
+goog.require("firebaseui.auth.ui.element.form");
+goog.require("firebaseui.auth.ui.element.password");
+goog.require("firebaseui.auth.ui.page.Base");
+goog.require("goog.asserts");
+goog.requireType("goog.dom.DomHelper");
 
 /**
  * Password linking UI component.
  */
-firebaseui.auth.ui.page.PasswordLinking =
-    class extends firebaseui.auth.ui.page.Base {
+firebaseui.auth.ui.page.PasswordLinking = class extends (
+  firebaseui.auth.ui.page.Base
+) {
   /**
    * @param {string} email The user's email.
    * @param {function()} onSubmitClick Callback to invoke when the submit button
@@ -45,14 +45,23 @@ firebaseui.auth.ui.page.PasswordLinking =
    * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
    */
   constructor(
-      email, onSubmitClick, onForgotClick, opt_tosCallback,
-      opt_privacyPolicyCallback, opt_domHelper) {
+    email,
+    onSubmitClick,
+    onForgotClick,
+    opt_tosCallback,
+    opt_privacyPolicyCallback,
+    opt_domHelper
+  ) {
     super(
-        firebaseui.auth.soy2.page.passwordLinking, {email: email},
-        opt_domHelper, 'passwordLinking', {
-          tosCallback: opt_tosCallback,
-          privacyPolicyCallback: opt_privacyPolicyCallback
-        });
+      firebaseui.auth.soy2.page.passwordLinking,
+      { email: email },
+      opt_domHelper,
+      "passwordLinking",
+      {
+        tosCallback: opt_tosCallback,
+        privacyPolicyCallback: opt_privacyPolicyCallback,
+      }
+    );
     this.onSubmitClick_ = onSubmitClick;
     this.onForgotClick_ = onForgotClick;
   }
@@ -75,31 +84,31 @@ firebaseui.auth.ui.page.PasswordLinking =
 
   /** @return {string} The email address of the account. */
   checkAndGetEmail() {
-    return goog.asserts.assertString(firebaseui.auth.ui.element.getInputValue(
-        this.getElementByClass('firebaseui-id-email')));
+    return goog.asserts.assertString(
+      firebaseui.auth.ui.element.getInputValue(
+        this.getElementByClass("firebaseui-id-email")
+      )
+    );
   }
 };
 
-
 goog.mixin(
-    firebaseui.auth.ui.page.PasswordLinking.prototype,
-    /** @lends {firebaseui.auth.ui.page.PasswordLinking.prototype} */
-    {
-      // For password.
-      getPasswordElement:
-          firebaseui.auth.ui.element.password.getPasswordElement,
-      getPasswordErrorElement:
-          firebaseui.auth.ui.element.password.getPasswordErrorElement,
-      initPasswordElement:
-          firebaseui.auth.ui.element.password.initPasswordElement,
-      checkAndGetPassword:
-          firebaseui.auth.ui.element.password.checkAndGetPassword,
+  firebaseui.auth.ui.page.PasswordLinking.prototype,
+  /** @lends {firebaseui.auth.ui.page.PasswordLinking.prototype} */
+  {
+    // For password.
+    getPasswordElement: firebaseui.auth.ui.element.password.getPasswordElement,
+    getPasswordErrorElement:
+      firebaseui.auth.ui.element.password.getPasswordErrorElement,
+    initPasswordElement:
+      firebaseui.auth.ui.element.password.initPasswordElement,
+    checkAndGetPassword:
+      firebaseui.auth.ui.element.password.checkAndGetPassword,
 
-      // For form.
-      getSubmitElement:
-          firebaseui.auth.ui.element.form.getSubmitElement,
-      getSecondaryLinkElement:
-          firebaseui.auth.ui.element.form.getSecondaryLinkElement,
-      initFormElement:
-          firebaseui.auth.ui.element.form.initFormElement
-    });
+    // For form.
+    getSubmitElement: firebaseui.auth.ui.element.form.getSubmitElement,
+    getSecondaryLinkElement:
+      firebaseui.auth.ui.element.form.getSecondaryLinkElement,
+    initFormElement: firebaseui.auth.ui.element.form.initFormElement,
+  }
+);

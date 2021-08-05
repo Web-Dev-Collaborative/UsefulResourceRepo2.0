@@ -7,15 +7,19 @@
 import { getAuth, RecaptchaVerifier } from "firebase/auth";
 
 const auth = getAuth();
-window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
-  'size': 'normal',
-  'callback': (response) => {
-    // reCAPTCHA solved, allow signInWithPhoneNumber.
-    // ...
+window.recaptchaVerifier = new RecaptchaVerifier(
+  "recaptcha-container",
+  {
+    size: "normal",
+    callback: (response) => {
+      // reCAPTCHA solved, allow signInWithPhoneNumber.
+      // ...
+    },
+    "expired-callback": () => {
+      // Response expired. Ask user to solve reCAPTCHA again.
+      // ...
+    },
   },
-  'expired-callback': () => {
-    // Response expired. Ask user to solve reCAPTCHA again.
-    // ...
-  }
-}, auth);
+  auth
+);
 // [END auth_phone_recaptcha_verifier_visible_modular]

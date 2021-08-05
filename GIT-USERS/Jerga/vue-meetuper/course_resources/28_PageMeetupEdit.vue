@@ -10,14 +10,13 @@
           <div class="field">
             <!-- TODO: Bind meetup title -->
             Some Meetup Title
-            <input class="title input w-50"
-                   type="text">
+            <input class="title input w-50" type="text" />
           </div>
           <article class="media v-center">
             <figure class="media-left">
               <p class="image is-64x64">
                 <!-- TODO: Display meetup creator avatar -->
-                <img class="is-rounded">
+                <img class="is-rounded" />
               </p>
             </figure>
             <div class="media-content">
@@ -32,8 +31,7 @@
         </div>
         <div class="is-pulled-right">
           <!-- Update Button -->
-          <button
-            class="button is-success is-large">Update</button>
+          <button class="button is-success is-large">Update</button>
         </div>
       </div>
     </section>
@@ -44,7 +42,7 @@
             <aside class="is-medium menu">
               <div class="meetup-side-box">
                 <div class="meetup-side-box-date m-b-sm">
-                  <!-- TIMES START --> 
+                  <!-- TIMES START -->
                   <p><b>Time</b></p>
                   <!-- TODO - OPTIONAL - Make dates and times working -->
                   <!-- Implementation almost the same as in create meetup -->
@@ -54,10 +52,11 @@
                   <!-- 3. Display actual meetup startDate in :value -->
                   <datepicker
                     :value="new Date()"
-                    :input-class="'input'"></datepicker>
-                    <div class="field m-t-md">
-                      <!-- TODO: Implement @change Event -->
-                      <!-- TODO: Bind timeFrom value with v-model -->
+                    :input-class="'input'"
+                  ></datepicker>
+                  <div class="field m-t-md">
+                    <!-- TODO: Implement @change Event -->
+                    <!-- TODO: Bind timeFrom value with v-model -->
                     <vue-timepicker :minute-interval="10"></vue-timepicker>
                   </div>
                   <div class="field">
@@ -71,21 +70,23 @@
                   <p><b>How to find us</b></p>
                   <div class="field">
                     <!-- TODO: Bind meetup location -->
-                    <input class="input"
-                           type="text">
+                    <input class="input" type="text" />
                   </div>
                 </div>
                 <div class="meetup-side-box-more-info">
                   <p><b>Additional Info</b></p>
                   <div class="field">
                     <!-- TODO: Bind meetup short info -->
-                    <textarea class="textarea"
-                              rows="5"></textarea>
+                    <textarea class="textarea" rows="5"></textarea>
                   </div>
                 </div>
               </div>
               <div class="meetup-side-box-map">
-                <img src="https://cnet2.cbsistatic.com/img/H_zPLL8-QTZOLxJvgHQ1Jkz0EgY=/830x467/2013/07/10/f0bcef02-67c2-11e3-a665-14feb5ca9861/maps_routemap.png" class="venueMap-mapImg span--100" alt="Location image of meetup venue">
+                <img
+                  src="https://cnet2.cbsistatic.com/img/H_zPLL8-QTZOLxJvgHQ1Jkz0EgY=/830x467/2013/07/10/f0bcef02-67c2-11e3-a665-14feb5ca9861/maps_routemap.png"
+                  class="venueMap-mapImg span--100"
+                  alt="Location image of meetup venue"
+                />
               </div>
             </aside>
           </div>
@@ -93,8 +94,7 @@
             <div class="content is-medium">
               <h3 class="title is-3">About the Meetup</h3>
               <!-- TODO: Bind meetup description -->
-              <textarea class="textarea"
-                        rows="5"></textarea>
+              <textarea class="textarea" rows="5"></textarea>
             </div>
           </div>
         </div>
@@ -103,11 +103,7 @@
   </div>
 </template>
 
-
-
-
 <style lang="scss">
-
 .w-50 {
   width: 50%;
 }
@@ -119,22 +115,36 @@
 .meetup-detail-page {
   background-color: #f5f5f5;
 
-  .mapouter{text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}
+  .mapouter {
+    text-align: right;
+    height: 500px;
+    width: 600px;
+  }
+  .gmap_canvas {
+    overflow: hidden;
+    background: none !important;
+    height: 500px;
+    width: 600px;
+  }
 
   .hero-body {
     background-color: white;
-    border: 1px solid rgba(46,62,72,.12);
+    border: 1px solid rgba(46, 62, 72, 0.12);
     color: white;
 
-      background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1531263060782-b024de9b9793?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      url("https://images.unsplash.com/photo-1531263060782-b024de9b9793?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
 
-      > p,h1,h2, strong {
-        color: white;
-      }
+    > p,
+    h1,
+    h2,
+    strong {
+      color: white;
     }
+  }
 
   .meetup-side-box {
     background-color: white;
@@ -153,10 +163,12 @@ pre,
   align-items: center;
 }
 
-li {margin: 10px}
+li {
+  margin: 10px;
+}
 
 .hero.is-primary {
-background: linear-gradient(to top right, #524ad0 10%, #D099FA);
+  background: linear-gradient(to top right, #524ad0 10%, #d099fa);
 }
 
 .box {
@@ -178,7 +190,9 @@ background: linear-gradient(to top right, #524ad0 10%, #D099FA);
   margin-left: 0.2em;
 }
 
-.media-content {overflow: hidden;}
+.media-content {
+  overflow: hidden;
+}
 
 .menu-list li a:hover {
   background: #d9d9d9;
@@ -197,5 +211,7 @@ background: linear-gradient(to top right, #524ad0 10%, #D099FA);
   background: inherit;
   margin: inherit;
 }
-.footer {background-color: white;}
+.footer {
+  background-color: white;
+}
 </style>

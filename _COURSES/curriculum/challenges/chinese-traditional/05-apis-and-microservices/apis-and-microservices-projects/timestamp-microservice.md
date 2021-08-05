@@ -10,9 +10,9 @@ dashedName: timestamp-microservice
 
 構建一個 JavaScript 的全棧應用，在功能上與這個應用相似：<https://timestamp-microservice.freecodecamp.rocks/>。 可以採用下面的任意一種方式完成這個挑戰：
 
--   克隆 [this GitHub repo](https://github.com/freeCodeCamp/boilerplate-project-timestamp/) 並在本地完成項目。
--   使用[我們的 Replit 初始化項目](https://replit.com/github/freeCodeCamp/boilerplate-project-timestamp)來完成你的項目。
--   使用你選擇的網站生成器來完成項目， 並確保包含了我們 GitHub 倉庫的所有文件。
+- 克隆 [this GitHub repo](https://github.com/freeCodeCamp/boilerplate-project-timestamp/) 並在本地完成項目。
+- 使用[我們的 Replit 初始化項目](https://replit.com/github/freeCodeCamp/boilerplate-project-timestamp)來完成你的項目。
+- 使用你選擇的網站生成器來完成項目， 並確保包含了我們 GitHub 倉庫的所有文件。
 
 當完成本項目，請確認有一個正常運行的 demo 可以公開訪問。 然後將 URL 提交到 `Solution Link` 中。 此外，還可以將項目的源碼提交到 `GitHub Link` 中。
 
@@ -23,7 +23,7 @@ dashedName: timestamp-microservice
 ```js
 (getUserInput) => {
   assert(
-    !/.*\/timestamp-microservice\.freecodecamp\.rocks/.test(getUserInput('url'))
+    !/.*\/timestamp-microservice\.freecodecamp\.rocks/.test(getUserInput("url"))
   );
 };
 ```
@@ -32,12 +32,12 @@ dashedName: timestamp-microservice
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/api/2016-12-25').then(
+  $.get(getUserInput("url") + "/api/2016-12-25").then(
     (data) => {
       assert.equal(
         data.unix,
         1482624000000,
-        'Should be a valid unix timestamp'
+        "Should be a valid unix timestamp"
       );
     },
     (xhr) => {
@@ -50,12 +50,12 @@ dashedName: timestamp-microservice
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/api/2016-12-25').then(
+  $.get(getUserInput("url") + "/api/2016-12-25").then(
     (data) => {
       assert.equal(
         data.utc,
-        'Sun, 25 Dec 2016 00:00:00 GMT',
-        'Should be a valid UTC date string'
+        "Sun, 25 Dec 2016 00:00:00 GMT",
+        "Should be a valid UTC date string"
       );
     },
     (xhr) => {
@@ -68,11 +68,11 @@ dashedName: timestamp-microservice
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/api/1451001600000').then(
+  $.get(getUserInput("url") + "/api/1451001600000").then(
     (data) => {
       assert(
         data.unix === 1451001600000 &&
-          data.utc === 'Fri, 25 Dec 2015 00:00:00 GMT'
+          data.utc === "Fri, 25 Dec 2015 00:00:00 GMT"
       );
     },
     (xhr) => {
@@ -85,11 +85,11 @@ dashedName: timestamp-microservice
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/api/05 October 2011').then(
+  $.get(getUserInput("url") + "/api/05 October 2011").then(
     (data) => {
       assert(
         data.unix === 1317772800000 &&
-          data.utc === 'Wed, 05 Oct 2011 00:00:00 GMT'
+          data.utc === "Wed, 05 Oct 2011 00:00:00 GMT"
       );
     },
     (xhr) => {
@@ -102,12 +102,12 @@ dashedName: timestamp-microservice
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/api/this-is-not-a-date').then(
+  $.get(getUserInput("url") + "/api/this-is-not-a-date").then(
     (data) => {
-      assert.equal(data.error.toLowerCase(), 'invalid date');
+      assert.equal(data.error.toLowerCase(), "invalid date");
     },
     (xhr) => {
-      assert(xhr.responseJSON.error.toLowerCase() === 'invalid date');
+      assert(xhr.responseJSON.error.toLowerCase() === "invalid date");
     }
   );
 ```
@@ -116,7 +116,7 @@ dashedName: timestamp-microservice
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/api').then(
+  $.get(getUserInput("url") + "/api").then(
     (data) => {
       var now = Date.now();
       assert.approximately(data.unix, now, 20000);
@@ -131,7 +131,7 @@ dashedName: timestamp-microservice
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/api').then(
+  $.get(getUserInput("url") + "/api").then(
     (data) => {
       var now = Date.now();
       var serverTime = new Date(data.utc).getTime();

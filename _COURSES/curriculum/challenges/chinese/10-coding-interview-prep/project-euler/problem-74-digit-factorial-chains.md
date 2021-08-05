@@ -1,6 +1,6 @@
 ---
 id: 5900f3b61000cf542c50fec9
-title: 'Problem 74: Digit factorial chains'
+title: "Problem 74: Digit factorial chains"
 challengeType: 5
 forumTopicId: 302187
 dashedName: problem-74-digit-factorial-chains
@@ -36,7 +36,7 @@ How many chains, with a starting number below one million, contain exactly sixty
 `digitFactorialChains()` should return a number.
 
 ```js
-assert(typeof digitFactorialChains() === 'number');
+assert(typeof digitFactorialChains() === "number");
 ```
 
 `digitFactorialChains()` should return 402.
@@ -51,7 +51,6 @@ assert.strictEqual(digitFactorialChains(), 402);
 
 ```js
 function digitFactorialChains() {
-
   return true;
 }
 

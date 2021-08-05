@@ -4,13 +4,13 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START add_ada_lovelace_modular]
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc } from "firebase/firestore";
 
 try {
   const docRef = await addDoc(collection(db, "users"), {
     first: "Ada",
     last: "Lovelace",
-    born: 1815
+    born: 1815,
   });
   console.log("Document written with ID: ", docRef.id);
 } catch (e) {

@@ -37,4 +37,3 @@ dashedName: files-as-a-sequence
 ## --video-solution--
 
 3
-

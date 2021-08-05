@@ -12,7 +12,7 @@ You saw a lot of examples that passed props to child JSX elements and child Reac
 
 For example, maybe you have an `App` component that renders a `Navbar`, among other components. In your `App`, you have `state` that contains a lot of user information, but the `Navbar` only needs access to the user's username so it can display it. You pass that piece of `state` to the `Navbar` component as a prop.
 
-This pattern illustrates some important paradigms in React. The first is *unidirectional data flow*. State flows in one direction down the tree of your application's components, from the stateful parent component to child components. The child components only receive the state data they need. The second is that complex stateful apps can be broken down into just a few, or maybe a single, stateful component. The rest of your components simply receive state from the parent as props, and render a UI from that state. It begins to create a separation where state management is handled in one part of code and UI rendering in another. This principle of separating state logic from UI logic is one of React's key principles. When it's used correctly, it makes the design of complex, stateful applications much easier to manage.
+This pattern illustrates some important paradigms in React. The first is _unidirectional data flow_. State flows in one direction down the tree of your application's components, from the stateful parent component to child components. The child components only receive the state data they need. The second is that complex stateful apps can be broken down into just a few, or maybe a single, stateful component. The rest of your components simply receive state from the parent as props, and render a UI from that state. It begins to create a separation where state management is handled in one part of code and UI rendering in another. This principle of separating state logic from UI logic is one of React's key principles. When it's used correctly, it makes the design of complex, stateful applications much easier to manage.
 
 # --instructions--
 
@@ -27,8 +27,8 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(MyApp));
     return (
-      mockedComponent.find('MyApp').length === 1 &&
-      mockedComponent.find('Navbar').length === 1
+      mockedComponent.find("MyApp").length === 1 &&
+      mockedComponent.find("Navbar").length === 1
     );
   })()
 );
@@ -42,11 +42,11 @@ async () => {
     new Promise((resolve, reject) => setTimeout(() => resolve(fn()), 250));
   const mockedComponent = Enzyme.mount(React.createElement(MyApp));
   const setState = () => {
-    mockedComponent.setState({ name: 'TestName' });
-    return waitForIt(() => mockedComponent.find('Navbar').props());
+    mockedComponent.setState({ name: "TestName" });
+    return waitForIt(() => mockedComponent.find("Navbar").props());
   };
   const navProps = await setState();
-  assert(navProps.name === 'TestName');
+  assert(navProps.name === "TestName");
 };
 ```
 
@@ -57,13 +57,13 @@ async () => {
   const waitForIt = (fn) =>
     new Promise((resolve, reject) => setTimeout(() => resolve(fn()), 250));
   const mockedComponent = Enzyme.mount(React.createElement(MyApp));
-  const navH1Before = mockedComponent.find('Navbar').find('h1').text();
+  const navH1Before = mockedComponent.find("Navbar").find("h1").text();
   const setState = () => {
-    mockedComponent.setState({ name: 'TestName' });
-    return waitForIt(() => mockedComponent.find('Navbar').find('h1').text());
+    mockedComponent.setState({ name: "TestName" });
+    return waitForIt(() => mockedComponent.find("Navbar").find("h1").text());
   };
   const navH1After = await setState();
-  assert(new RegExp('TestName').test(navH1After) && navH1After !== navH1Before);
+  assert(new RegExp("TestName").test(navH1After) && navH1After !== navH1Before);
 };
 ```
 
@@ -72,7 +72,7 @@ async () => {
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyApp />, document.getElementById('root'))
+ReactDOM.render(<MyApp />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -82,19 +82,19 @@ class MyApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'CamperBot'
-    }
+      name: "CamperBot",
+    };
   }
   render() {
     return (
-       <div>
-         {/* Change code below this line */}
-         <Navbar />
-         {/* Change code above this line */}
-       </div>
+      <div>
+        {/* Change code below this line */}
+        <Navbar />
+        {/* Change code above this line */}
+      </div>
     );
   }
-};
+}
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -102,14 +102,14 @@ class Navbar extends React.Component {
   }
   render() {
     return (
-    <div>
-      {/* Change code below this line */}
-      <h1>Hello, my name is: </h1>
-      {/* Change code above this line */}
-    </div>
+      <div>
+        {/* Change code below this line */}
+        <h1>Hello, my name is: </h1>
+        {/* Change code above this line */}
+      </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -119,27 +119,27 @@ class MyApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'CamperBot'
-    }
+      name: "CamperBot",
+    };
   }
   render() {
     return (
-       <div>
-         <Navbar name={this.state.name}/>
-       </div>
+      <div>
+        <Navbar name={this.state.name} />
+      </div>
     );
   }
-};
+}
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
     return (
-    <div>
-      <h1>Hello, my name is: {this.props.name}</h1>
-    </div>
+      <div>
+        <h1>Hello, my name is: {this.props.name}</h1>
+      </div>
     );
   }
-};
+}
 ```

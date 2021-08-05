@@ -1,18 +1,18 @@
-
 // Components
-@import './components/header';
+@import "./components/header";
 
 // Pages
-@import './index';
-@import './portfolios';
-@import './portfolio-detail';
-@import './blogs';
-@import './about';
+@import "./index";
+@import "./portfolios";
+@import "./portfolio-detail";
+@import "./blogs";
+@import "./about";
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
-  font-family: 'Montserrat', 'Helvetica' !important;
+  font-family: "Montserrat", "Helvetica" !important;
 }
 
 .clickable {
@@ -30,7 +30,6 @@ html, body {
     display: inline-block;
     margin-bottom: 20px;
   }
-
 }
 
 .absolute {

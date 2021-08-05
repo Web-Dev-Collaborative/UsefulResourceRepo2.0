@@ -20,11 +20,11 @@ function createRefChild() {
   const storage = getStorage();
 
   // Create a child reference
-  const imagesRef = ref(storage, 'images');
+  const imagesRef = ref(storage, "images");
   // imagesRef now points to 'images'
 
   // Child references can also take paths delimited by '/'
-  const spaceRef = ref(storage, 'images/space.jpg');
+  const spaceRef = ref(storage, "images/space.jpg");
   // spaceRef now points to "images/space.jpg"
   // imagesRef still points to "images"
   // [END storage_create_ref_child]
@@ -35,7 +35,7 @@ function navigateRef() {
   const { getStorage, ref } = require("firebase/storage");
 
   const storage = getStorage();
-  const spaceRef = ref(storage, 'images/space.jpg');
+  const spaceRef = ref(storage, "images/space.jpg");
 
   // Parent allows us to move to the parent of a reference
   const imagesRef = spaceRef.parent;
@@ -52,10 +52,10 @@ function navigateRefChain() {
   const { getStorage, ref } = require("firebase/storage");
 
   const storage = getStorage();
-  const spaceRef = ref(storage, 'images/space.jpg');
+  const spaceRef = ref(storage, "images/space.jpg");
 
   // References can be chained together multiple times
-  const earthRef = ref(spaceRef.parent, 'earth.jpg');
+  const earthRef = ref(spaceRef.parent, "earth.jpg");
   // earthRef points to 'images/earth.jpg'
 
   // nullRef is null, since the parent of root is null
@@ -68,7 +68,7 @@ function refProperties() {
   const { getStorage, ref } = require("firebase/storage");
 
   const storage = getStorage();
-  const spaceRef = ref(storage, 'images/space.jpg');
+  const spaceRef = ref(storage, "images/space.jpg");
 
   // Reference's path is: 'images/space.jpg'
   // This is analogous to a file path on disk
@@ -93,11 +93,11 @@ function refFullExample() {
   const storageRef = ref(storage);
 
   // Points to 'images'
-  const imagesRef = ref(storageRef, 'images');
+  const imagesRef = ref(storageRef, "images");
 
   // Points to 'images/space.jpg'
   // Note that you can use variables to create child values
-  const fileName = 'space.jpg';
+  const fileName = "space.jpg";
   const spaceRef = ref(imagesRef, fileName);
 
   // File path is 'images/space.jpg'

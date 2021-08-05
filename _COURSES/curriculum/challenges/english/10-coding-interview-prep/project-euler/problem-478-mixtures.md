@@ -1,6 +1,6 @@
 ---
 id: 5900f54c1000cf542c51005e
-title: 'Problem 478: Mixtures'
+title: "Problem 478: Mixtures"
 challengeType: 5
 forumTopicId: 302155
 dashedName: problem-478-mixtures
@@ -36,7 +36,6 @@ assert.strictEqual(euler478(), 59510340);
 
 ```js
 function euler478() {
-
   return true;
 }
 

@@ -181,9 +181,9 @@ describe('core/auth/emulator', () => {
     });
 
     it('also stringifies the current user', () => {
-      auth.currentUser = ({
+      auth.currentUser = {
         toJSON: (): object => ({ foo: 'bar' })
-      } as unknown) as UserInternal;
+      } as unknown as UserInternal;
       expect(JSON.stringify(auth)).to.eq(
         '{"apiKey":"test-api-key","authDomain":"localhost",' +
           '"appName":"test-app","currentUser":{"foo":"bar"}}'

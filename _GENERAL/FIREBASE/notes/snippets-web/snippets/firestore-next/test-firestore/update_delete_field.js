@@ -6,10 +6,10 @@
 // [START update_delete_field_modular]
 import { doc, updateDoc, deleteField } from "firebase/firestore";
 
-const cityRef = doc(db, 'cities', 'BJ');
+const cityRef = doc(db, "cities", "BJ");
 
 // Remove the 'capital' field from the document
 await updateDoc(cityRef, {
-    capital: deleteField()
+  capital: deleteField(),
 });
 // [END update_delete_field_modular]

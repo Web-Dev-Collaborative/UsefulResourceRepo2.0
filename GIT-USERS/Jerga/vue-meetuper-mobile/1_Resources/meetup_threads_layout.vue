@@ -6,7 +6,7 @@
         <nb-list-item avatar>
           <nb-left>
             <!-- Thread User Avatar -->
-            <nb-thumbnail small/>
+            <nb-thumbnail small />
           </nb-left>
           <nb-body>
             <!-- Thread User Name -->
@@ -24,7 +24,7 @@
           <nb-list-item avatar>
             <nb-left>
               <!-- Post User Avatar -->
-              <nb-thumbnail small/>
+              <nb-thumbnail small />
             </nb-left>
             <nb-body>
               <!-- Post User Name -->
@@ -42,10 +42,9 @@
   </nb-container>
 </template>
 
-
 <style>
-  .post-container {
-    padding-right: 20px;
-    padding-left: 20px;
-  }
+.post-container {
+  padding-right: 20px;
+  padding-left: 20px;
+}
 </style>

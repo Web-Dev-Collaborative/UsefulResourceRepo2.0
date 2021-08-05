@@ -16,23 +16,21 @@
  * @fileoverview Tests for the blank page.
  */
 
-goog.provide('firebaseui.auth.ui.page.BlankTest');
-goog.setTestOnly('firebaseui.auth.ui.page.BlankTest');
+goog.provide("firebaseui.auth.ui.page.BlankTest");
+goog.setTestOnly("firebaseui.auth.ui.page.BlankTest");
 
-goog.require('firebaseui.auth.ui.page.Blank');
-goog.require('firebaseui.auth.ui.page.PageTestHelper');
-goog.require('goog.dom');
-goog.require('goog.dom.TagName');
-goog.require('goog.testing.MockClock');
-goog.require('goog.testing.jsunit');
-
+goog.require("firebaseui.auth.ui.page.Blank");
+goog.require("firebaseui.auth.ui.page.PageTestHelper");
+goog.require("goog.dom");
+goog.require("goog.dom.TagName");
+goog.require("goog.testing.MockClock");
+goog.require("goog.testing.jsunit");
 
 var mockClock;
 var root;
 var component;
 var pageTestHelper =
-    new firebaseui.auth.ui.page.PageTestHelper().registerTests();
-
+  new firebaseui.auth.ui.page.PageTestHelper().registerTests();
 
 function setUp() {
   // Set up clock.
@@ -45,7 +43,6 @@ function setUp() {
   pageTestHelper.setClock(mockClock).setComponent(component);
 }
 
-
 function tearDown() {
   // Tear down clock.
   mockClock.tick(Infinity);
@@ -54,11 +51,9 @@ function tearDown() {
   goog.dom.removeNode(root);
 }
 
-
 function testBlank_getPageId() {
-  assertEquals('blank', component.getPageId());
+  assertEquals("blank", component.getPageId());
 }
-
 
 function testBlank_pageEvents() {
   // Run page event tests.

@@ -1,6 +1,6 @@
 ---
 id: 5900f3c51000cf542c50fed8
-title: 'Problem 87: Prime power triples'
+title: "Problem 87: Prime power triples"
 challengeType: 5
 forumTopicId: 302201
 dashedName: problem-87-prime-power-triples
@@ -24,7 +24,7 @@ How many numbers below fifty million can be expressed as the sum of a prime squa
 `primePowerTriples()` should return a number.
 
 ```js
-assert(typeof primePowerTriples() === 'number');
+assert(typeof primePowerTriples() === "number");
 ```
 
 `primePowerTriples()` should return 1097343.
@@ -39,7 +39,6 @@ assert.strictEqual(primePowerTriples(), 1097343);
 
 ```js
 function primePowerTriples() {
-
   return true;
 }
 

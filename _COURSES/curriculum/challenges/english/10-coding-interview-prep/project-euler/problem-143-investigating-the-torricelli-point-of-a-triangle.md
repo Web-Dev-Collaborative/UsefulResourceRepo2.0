@@ -1,6 +1,6 @@
 ---
 id: 5900f3fc1000cf542c50ff0e
-title: 'Problem 143: Investigating the Torricelli point of a triangle'
+title: "Problem 143: Investigating the Torricelli point of a triangle"
 challengeType: 5
 forumTopicId: 301772
 dashedName: problem-143-investigating-the-torricelli-point-of-a-triangle
@@ -30,7 +30,6 @@ assert.strictEqual(euler143(), 30758397);
 
 ```js
 function euler143() {
-
   return true;
 }
 

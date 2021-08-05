@@ -21,7 +21,6 @@
  * @externs
  */
 
-
 var gapi = {};
 
 /**
@@ -81,7 +80,7 @@ gapi.iframes.RpcFilter;
  * @param {gapi.iframes.OptionsBag=} opt_options extra options for the iframe.
  * @return {Element} the new iframe dom element.
  */
-gapi.iframes.create = function(url, whereToPut, opt_options) {};
+gapi.iframes.create = function (url, whereToPut, opt_options) {};
 
 /**
  * Class to handle the iframes context.
@@ -92,13 +91,13 @@ gapi.iframes.create = function(url, whereToPut, opt_options) {};
  * @param {gapi.iframes.OptionsBag=} opt_options Context override options.
  * @constructor
  */
-gapi.iframes.Context = function(opt_options) {};
+gapi.iframes.Context = function (opt_options) {};
 
 /**
  * Get the default context for current frame.
  * @return {gapi.iframes.Context} The current context.
  */
-gapi.iframes.getContext = function() {};
+gapi.iframes.getContext = function () {};
 
 /**
  * Implement an iframes filter to check same origin connection.
@@ -106,7 +105,7 @@ gapi.iframes.getContext = function() {};
  *      origin as current context.
  * @return {boolean} true if the iframe has same domain has the context.
  */
-gapi.iframes.SAME_ORIGIN_IFRAMES_FILTER = function(iframe) {};
+gapi.iframes.SAME_ORIGIN_IFRAMES_FILTER = function (iframe) {};
 
 /**
  * Implement a filter that accept any iframe.
@@ -115,7 +114,7 @@ gapi.iframes.SAME_ORIGIN_IFRAMES_FILTER = function(iframe) {};
  * @param {gapi.iframes.Iframe} iframe The iframe to check.
  * @return {boolean} always true.
  */
-gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER = function(iframe) {};
+gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER = function (iframe) {};
 
 /**
  * Create an iframes filter that allow iframes from a list of origins.
@@ -123,73 +122,73 @@ gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER = function(iframe) {};
  * @return {gapi.iframes.IframesFilter} New iframes filter that allow,
  *     iframes only from the provided origins.
  */
-gapi.iframes.makeWhiteListIframesFilter = function(origins) {};
+gapi.iframes.makeWhiteListIframesFilter = function (origins) {};
 
 /**
  * Check if the context was disposed.
  * @return {boolean} True if the context was disposed.
  */
-gapi.iframes.Context.prototype.isDisposed = function() {};
+gapi.iframes.Context.prototype.isDisposed = function () {};
 
 /**
  * @return {string} Iframe current page frame name.
  */
-gapi.iframes.Context.prototype.getFrameName = function() {};
+gapi.iframes.Context.prototype.getFrameName = function () {};
 
 /**
  * Get the context window object.
  * @return {Window} The window object.
  */
-gapi.iframes.Context.prototype.getWindow = function() {};
+gapi.iframes.Context.prototype.getWindow = function () {};
 
 /**
  * Get context global parameters.
  * @param {string} key Parameter name.
  * @return {*} Parameter value.
  */
-gapi.iframes.Context.prototype.getGlobalParam = function(key) {};
+gapi.iframes.Context.prototype.getGlobalParam = function (key) {};
 
 /**
  * Set context global parameters.
  * @param {string} key Parameter name.
  * @param {*} value Parameter value.
  */
-gapi.iframes.Context.prototype.setGlobalParam = function(key, value) {};
+gapi.iframes.Context.prototype.setGlobalParam = function (key, value) {};
 
 /**
  * Register a new style.
  * @param {string} style The new style name.
  * @param {gapi.iframes.StyleHandler} func The style handler.
  */
-gapi.iframes.registerStyle = function(style, func) {};
+gapi.iframes.registerStyle = function (style, func) {};
 
 /**
  * Register a new style to handle options before relaying request.
  * @param {string} style The new style name.
  * @param {gapi.iframes.StyleHandler} func The style handler.
  */
-gapi.iframes.registerBeforeOpenStyle = function(style, func) {};
+gapi.iframes.registerBeforeOpenStyle = function (style, func) {};
 
 /**
  * Get style hanlder.
  * @param {string} style The new style name.
  * @return {gapi.iframes.StyleHandler} The style handler.
  */
-gapi.iframes.getStyle = function(style) {};
+gapi.iframes.getStyle = function (style) {};
 
 /**
  * Get a style hanlder for open options before relaying request.
  * @param {string} style The new style name.
  * @return {gapi.iframes.StyleHandler} The style handler.
  */
-gapi.iframes.getBeforeOpenStyle = function(style) {};
+gapi.iframes.getBeforeOpenStyle = function (style) {};
 
 /**
  * Open a new child iframe and attach rpc to it.
  * @param {!gapi.iframes.OptionsBag} options Open parameters.
  * @return {!gapi.iframes.Iframe} The new Iframe object.
  */
-gapi.iframes.Context.prototype.openChild = function(options) {};
+gapi.iframes.Context.prototype.openChild = function (options) {};
 
 /**
  * Open a new iframe, support relay open to parent or other iframe.
@@ -198,14 +197,14 @@ gapi.iframes.Context.prototype.openChild = function(options) {};
  *      with the created iframe.
  * @return {!IThenable<gapi.iframes.Iframe>} The created iframe.
  */
-gapi.iframes.Context.prototype.open = function(options, opt_callback) {};
+gapi.iframes.Context.prototype.open = function (options, opt_callback) {};
 
 /**
  * Get the context parent Iframe if available.
  * (Available if current iframe has an id).
  * @return {gapi.iframes.Iframe} Parent iframe.
  */
-gapi.iframes.Context.prototype.getParentIframe = function() {};
+gapi.iframes.Context.prototype.getParentIframe = function () {};
 
 /**
  * An Iframe object to represent an iframe that can be communicated with.
@@ -217,44 +216,44 @@ gapi.iframes.Context.prototype.getParentIframe = function() {};
  * @param {gapi.iframes.OptionsBag} options Iframe options.
  * @constructor
  */
-gapi.iframes.Iframe = function(context, rpcAddr, frameName, options) {};
+gapi.iframes.Iframe = function (context, rpcAddr, frameName, options) {};
 
 /**
  * Check if the iframe was disposed.
  * @return {boolean} True if the iframe was disposed.
  */
-gapi.iframes.Iframe.prototype.isDisposed = function() {};
+gapi.iframes.Iframe.prototype.isDisposed = function () {};
 
 /**
  * Get the Iframe context.
  * @return {gapi.iframes.Context} Iframe context.
  */
-gapi.iframes.Iframe.prototype.getContext = function() {};
+gapi.iframes.Iframe.prototype.getContext = function () {};
 
 /**
  * Get the Iframe name.
  * @return {string} Iframe frame-name.
  */
-gapi.iframes.Iframe.prototype.getFrameName = function() {};
+gapi.iframes.Iframe.prototype.getFrameName = function () {};
 
 /**
  * @return {string} Iframe id.
  */
-gapi.iframes.Iframe.prototype.getId = function() {};
+gapi.iframes.Iframe.prototype.getId = function () {};
 
 /**
  * Get Iframe parameters.
  * @param {string} key Parameter name.
  * @return {*} Parameter value.
  */
-gapi.iframes.Iframe.prototype.getParam = function(key) {};
+gapi.iframes.Iframe.prototype.getParam = function (key) {};
 
 /**
  * Get Iframe parameters.
  * @param {string} key Parameter name.
  * @param {*} value Parameter value.
  */
-gapi.iframes.Iframe.prototype.setParam = function(key, value) {};
+gapi.iframes.Iframe.prototype.setParam = function (key, value) {};
 
 /**
  * Register a message handler.
@@ -264,7 +263,11 @@ gapi.iframes.Iframe.prototype.setParam = function(key, value) {};
  * @param {gapi.iframes.IframesFilter=} opt_filter Optional iframe filter,
  *     Default is same origin filter, which is not used if overridden.
  */
-gapi.iframes.Iframe.prototype.register = function(message, func, opt_filter) {};
+gapi.iframes.Iframe.prototype.register = function (
+  message,
+  func,
+  opt_filter
+) {};
 
 /**
  * Un-register a message handler.
@@ -273,7 +276,7 @@ gapi.iframes.Iframe.prototype.register = function(message, func, opt_filter) {};
  *     if specified only that handler is unregistered,
  *     otherwise all handlers for the message are unregistered.
  */
-gapi.iframes.Iframe.prototype.unregister = function(message, opt_func) {};
+gapi.iframes.Iframe.prototype.unregister = function (message, opt_func) {};
 
 /**
  * Send a message to the Iframe.
@@ -287,8 +290,12 @@ gapi.iframes.Iframe.prototype.unregister = function(message, opt_func) {};
  *     Default is same origin filter, which is not used if overridden.
  * @return {!IThenable<Array>} Array of return values of all handlers.
  */
-gapi.iframes.Iframe.prototype.send =
-    function(message, opt_data, opt_callback, opt_filter) {};
+gapi.iframes.Iframe.prototype.send = function (
+  message,
+  opt_data,
+  opt_callback,
+  opt_filter
+) {};
 
 /**
 `* Send a ping to the iframe whcih echo back the optional data.
@@ -298,7 +305,7 @@ gapi.iframes.Iframe.prototype.send =
  * @param {*=} opt_data The data to send to the iframe.
  * @return {!IThenable<Array>} Array of return values of all handlers.
  */
-gapi.iframes.Iframe.prototype.ping = function(callback, opt_data) {};
+gapi.iframes.Iframe.prototype.ping = function (callback, opt_data) {};
 
 /**
  * Add iframes api registry.
@@ -308,7 +315,7 @@ gapi.iframes.Iframe.prototype.ping = function(callback, opt_data) {};
  * @param {gapi.iframes.IframesFilter=} opt_filter Optional iframe filter,
  *     Default is same origin filter, which is not used if overridden.
  */
-gapi.iframes.registerIframesApi = function(apiName, registry, opt_filter) {};
+gapi.iframes.registerIframesApi = function (apiName, registry, opt_filter) {};
 
 /**
  * Utility function to build api by adding handler one by one.
@@ -318,20 +325,24 @@ gapi.iframes.registerIframesApi = function(apiName, registry, opt_filter) {};
  * @param {string} message The message name to register an handler for.
  * @param {gapi.iframes.MessageHandler} handler The handler to register.
  */
-gapi.iframes.registerIframesApiHandler = function(apiName, message, handler) {};
+gapi.iframes.registerIframesApiHandler = function (
+  apiName,
+  message,
+  handler
+) {};
 
 /**
  * Apply an iframes api on the iframe.
  * @param {string} api Name of the api.
  */
-gapi.iframes.Iframe.prototype.applyIframesApi = function(api) {};
+gapi.iframes.Iframe.prototype.applyIframesApi = function (api) {};
 
 /**
  * Get the dom node for the iframe.
  * Return null if the iframe is not a direct child iframe.
  * @return {?Element} the iframe dom node.
  */
-gapi.iframes.Iframe.prototype.getIframeEl = function() {};
+gapi.iframes.Iframe.prototype.getIframeEl = function () {};
 
 /**
  * Get the iframe container dom node.
@@ -341,7 +352,7 @@ gapi.iframes.Iframe.prototype.getIframeEl = function() {};
  * other iframes relative the an iframe.
  * @return {?Element} The iframe container dom node.
  */
-gapi.iframes.Iframe.prototype.getSiteEl = function() {};
+gapi.iframes.Iframe.prototype.getSiteEl = function () {};
 
 /**
  * Set the iframe container dom node.
@@ -349,20 +360,20 @@ gapi.iframes.Iframe.prototype.getSiteEl = function() {};
  * to contain the iframe.
  * @param {!Element} el The iframe container dom node.
  */
-gapi.iframes.Iframe.prototype.setSiteEl = function(el) {};
+gapi.iframes.Iframe.prototype.setSiteEl = function (el) {};
 
 /**
  * Get the Window object of the remote iframe.
  * It is only supported for same origin iframes, otherwise return null.
  * @return {?Window} The window object for the iframe or null.
  */
-gapi.iframes.Iframe.prototype.getWindow = function() {};
+gapi.iframes.Iframe.prototype.getWindow = function () {};
 
 /**
  * Get the iframe url origin.
  * @return {string} Iframe url origin.
  */
-gapi.iframes.Iframe.prototype.getOrigin = function() {};
+gapi.iframes.Iframe.prototype.getOrigin = function () {};
 
 /**
  * Send a request to close the iframe.
@@ -371,7 +382,7 @@ gapi.iframes.Iframe.prototype.getOrigin = function() {};
  *     Optional callback to indicate close was done or canceled.
  * @return {!IThenable<Array>} Array of return values of all handlers.
  */
-gapi.iframes.Iframe.prototype.close = function(opt_params, opt_callback) {};
+gapi.iframes.Iframe.prototype.close = function (opt_params, opt_callback) {};
 
 /**
  * Send a request to change the iframe style.
@@ -380,7 +391,7 @@ gapi.iframes.Iframe.prototype.close = function(opt_params, opt_callback) {};
  *     Optional callback to indicate restyle was done or canceled.
  * @return {!IThenable<Array>} Array of return values of all handlers.
  */
-gapi.iframes.Iframe.prototype.restyle = function(styleData, opt_callback) {};
+gapi.iframes.Iframe.prototype.restyle = function (styleData, opt_callback) {};
 
 /**
  * Register a handler on relayed open iframe to get restyle status.
@@ -389,8 +400,10 @@ gapi.iframes.Iframe.prototype.restyle = function(styleData, opt_callback) {};
  * @param {gapi.iframes.IframesFilter=} opt_filter Optional iframe filter,
  *     default is same origin filter, which is not used if overridden.
  */
-gapi.iframes.Iframe.prototype.registerWasRestyled =
-    function(handler, opt_filter) {};
+gapi.iframes.Iframe.prototype.registerWasRestyled = function (
+  handler,
+  opt_filter
+) {};
 
 /**
  * Register a callback to be notified on iframe closed.
@@ -399,8 +412,10 @@ gapi.iframes.Iframe.prototype.registerWasRestyled =
  * @param {gapi.iframes.IframesFilter=} opt_filter Optional iframe filter,
  *   Default is same origin filter, which is not used if overrided.
  */
-gapi.iframes.Iframe.prototype.registerWasClosed = function(
-    handler, opt_filter) {};
+gapi.iframes.Iframe.prototype.registerWasClosed = function (
+  handler,
+  opt_filter
+) {};
 
 /**
  * Close current iframe (send request to parent).
@@ -410,8 +425,10 @@ gapi.iframes.Iframe.prototype.registerWasClosed = function(
  * @return {!IThenable<boolean>} True if close request was issued,
  *     false if close was denied.
  */
-gapi.iframes.Context.prototype.closeSelf =
-    function(opt_params, opt_callback) {};
+gapi.iframes.Context.prototype.closeSelf = function (
+  opt_params,
+  opt_callback
+) {};
 
 /**
  * Restyle current iframe (send request to parent).
@@ -421,8 +438,10 @@ gapi.iframes.Context.prototype.closeSelf =
  * @return {!IThenable<boolean>} True if restyle request was issued,
  *     false if restyle was denied.
  */
-gapi.iframes.Context.prototype.restyleSelf =
-    function(styleData, opt_callback) {};
+gapi.iframes.Context.prototype.restyleSelf = function (
+  styleData,
+  opt_callback
+) {};
 
 /**
  * Style helper function to indicate current iframe is ready.
@@ -436,23 +455,26 @@ gapi.iframes.Context.prototype.restyleSelf =
  * @param {gapi.iframes.IframesFilter=} opt_filter Optional iframe filter,
  *     used for sending ready and register provided methods to opener.
  */
-gapi.iframes.Context.prototype.ready =
-    function(opt_params, opt_methods, opt_callback, opt_filter) {};
+gapi.iframes.Context.prototype.ready = function (
+  opt_params,
+  opt_methods,
+  opt_callback,
+  opt_filter
+) {};
 
 /**
  * Provide a filter for close request on current iframe.
  * @param {gapi.iframes.RpcFilter} filter Filter function.
  * @return {undefined}
  */
-gapi.iframes.Context.prototype.setCloseSelfFilter = function(filter) {};
+gapi.iframes.Context.prototype.setCloseSelfFilter = function (filter) {};
 
 /**
  * Provide a filter for restyle request on current iframe.
  * @param {gapi.iframes.RpcFilter} filter Filter function.
  * @return {undefined}
  */
-gapi.iframes.Context.prototype.setRestyleSelfFilter = function(filter) {};
-
+gapi.iframes.Context.prototype.setRestyleSelfFilter = function (filter) {};
 
 /**
  * Connect between two iframes, provide the subject each side
@@ -465,8 +487,10 @@ gapi.iframes.Context.prototype.setRestyleSelfFilter = function(filter) {};
  *  data: the data to send to that iframe (optional).
  *  isReady: indicate that we do not need for ready from the other side.
  */
-gapi.iframes.Context.prototype.connectIframes =
-    function(iframe1Data, opt_iframe2Data) {};
+gapi.iframes.Context.prototype.connectIframes = function (
+  iframe1Data,
+  opt_iframe2Data
+) {};
 
 /**
  * Configure how to handle new connection by role.
@@ -482,14 +506,18 @@ gapi.iframes.Context.prototype.connectIframes =
  * @param {gapi.iframes.IframesFilter=} opt_filter Optional iframe filter,
  *     Default is same origin filter, which is not used if overridden.
  */
-gapi.iframes.Context.prototype.addOnConnectHandler =
-    function(optionsOrRole, opt_handler, opt_apis, opt_filter) {};
+gapi.iframes.Context.prototype.addOnConnectHandler = function (
+  optionsOrRole,
+  opt_handler,
+  opt_apis,
+  opt_filter
+) {};
 
 /**
  * Remove all on connect handlers for a role.
  * @param {string} role Connection role.
  */
-gapi.iframes.Context.prototype.removeOnConnectHandler = function(role) {};
+gapi.iframes.Context.prototype.removeOnConnectHandler = function (role) {};
 
 /**
  * Helper function to set handler for the opener connection.
@@ -499,5 +527,8 @@ gapi.iframes.Context.prototype.removeOnConnectHandler = function(role) {};
  * @param {gapi.iframes.IframesFilter=} opt_filter Optional iframe filter,
  *     Default is same origin filter, which is not used if overridden.
  */
-gapi.iframes.Context.prototype.addOnOpenerHandler =
-    function(handler, opt_apis, opt_filter) {};
+gapi.iframes.Context.prototype.addOnOpenerHandler = function (
+  handler,
+  opt_apis,
+  opt_filter
+) {};

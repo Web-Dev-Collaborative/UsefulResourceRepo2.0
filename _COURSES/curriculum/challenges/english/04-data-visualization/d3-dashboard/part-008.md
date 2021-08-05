@@ -14,10 +14,10 @@ Give the dashboard a `background-color` of `white` and a `box-shadow` of `5px 5p
 test-text
 
 ```js
-const dashboard = $('.dashboard');
+const dashboard = $(".dashboard");
 assert(
-  dashboard.css('background-color') === 'rgb(255, 255, 255)' &&
-    dashboard.css('box-shadow') === 'rgb(136, 136, 136) 5px 5px 5px 5px'
+  dashboard.css("background-color") === "rgb(255, 255, 255)" &&
+    dashboard.css("box-shadow") === "rgb(136, 136, 136) 5px 5px 5px 5px"
 );
 ```
 
@@ -42,16 +42,14 @@ assert(
 
 ```html
 <style>
-body {
-  background-color: #ccc;
-}
+  body {
+    background-color: #ccc;
+  }
 
-.dashboard {
-  width: 980px;
-  height: 500px;
-
-  
-}
+  .dashboard {
+    width: 980px;
+    height: 500px;
+  }
 </style>
 ```
 
@@ -59,15 +57,15 @@ body {
 
 ```html
 <style>
-body {
-  background-color: #ccc;
-}
+  body {
+    background-color: #ccc;
+  }
 
-.dashboard {
-  width: 980px;
-  height: 500px;
-  background-color: white;
-  box-shadow: 5px 5px 5px 5px #888;
-}
+  .dashboard {
+    width: 980px;
+    height: 500px;
+    background-color: white;
+    box-shadow: 5px 5px 5px 5px #888;
+  }
 </style>
 ```

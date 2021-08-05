@@ -17,8 +17,8 @@ import * as myMathModule from "./math_functions.js";
 上面的 `import` 語句會創建一個叫作 `myMathModule` 的對象。 這只是一個變量名，可以隨便命名。 對象包含 `math_functions.js` 文件裏的所有導出，可以像訪問對象的屬性那樣訪問裏面的函數。 下面是使用導入的 `add` 和 `subtract` 函數的例子：
 
 ```js
-myMathModule.add(2,3);
-myMathModule.subtract(5,3);
+myMathModule.add(2, 3);
+myMathModule.subtract(5, 3);
 ```
 
 # --instructions--
@@ -42,7 +42,6 @@ assert(
 ## --seed-contents--
 
 ```js
-
 // Only change code above this line
 
 stringFunctions.uppercaseString("hello");

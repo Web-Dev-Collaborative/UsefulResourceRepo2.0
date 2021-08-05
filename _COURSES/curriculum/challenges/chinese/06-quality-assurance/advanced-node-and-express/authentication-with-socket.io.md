@@ -13,7 +13,7 @@ dashedName: authentication-with-socket-io
 添加 `passport.socketio@~3.7.0`、`connect-mongo@~3.2.0`、`cookie-parser@~1.4.5` 作为依赖，把它们分别赋值给 `passportSocketIo`、`MongoStore`、`cookieParser`。 同时，我们需要从之前引入的 `express-session` 中开辟新的内存空间， 就像这样：
 
 ```js
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require("connect-mongo")(session);
 const URI = process.env.MONGO_URI;
 const store = new MongoStore({ url: URI });
 ```
@@ -24,16 +24,16 @@ const store = new MongoStore({ url: URI });
 io.use(
   passportSocketIo.authorize({
     cookieParser: cookieParser,
-    key: 'express.sid',
+    key: "express.sid",
     secret: process.env.SESSION_SECRET,
     store: store,
     success: onAuthorizeSuccess,
-    fail: onAuthorizeFail
+    fail: onAuthorizeFail,
   })
 );
 ```
 
-记得要把 `key` 和 `store` 加到 app 的 `session` 中间件。 这样，*SocketIO* 才知道该对哪个 session 执行此配置。
+记得要把 `key` 和 `store` 加到 app 的 `session` 中间件。 这样，_SocketIO_ 才知道该对哪个 session 执行此配置。
 
 <hr />
 
@@ -41,14 +41,14 @@ io.use(
 
 ```js
 function onAuthorizeSuccess(data, accept) {
-  console.log('successful connection to socket.io');
+  console.log("successful connection to socket.io");
 
   accept(null, true);
 }
 
 function onAuthorizeFail(data, message, error, accept) {
   if (error) throw new Error(message);
-  console.log('failed connection to socket.io:', message);
+  console.log("failed connection to socket.io:", message);
   accept(null, false);
 }
 ```
@@ -56,7 +56,7 @@ function onAuthorizeFail(data, message, error, accept) {
 现在，我们可以通过 `socket.request.user` 访问用户数据。 为此，你可以这样做：
 
 ```js
-console.log('user ' + socket.request.user.name + ' connected');
+console.log("user " + socket.request.user.name + " connected");
 ```
 
 这样，我们可以在 console 里看到谁连接到了我们的服务器。
@@ -69,12 +69,12 @@ console.log('user ' + socket.request.user.name + ' connected');
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.property(
         packJson.dependencies,
-        'passport.socketio',
+        "passport.socketio",
         'Your project should list "passport.socketio" as a dependency'
       );
     },
@@ -88,12 +88,12 @@ console.log('user ' + socket.request.user.name + ' connected');
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.property(
         packJson.dependencies,
-        'cookie-parser',
+        "cookie-parser",
         'Your project should list "cookie-parser" as a dependency'
       );
     },
@@ -107,7 +107,7 @@ console.log('user ' + socket.request.user.name + ' connected');
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
@@ -125,7 +125,7 @@ console.log('user ' + socket.request.user.name + ' connected');
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,

@@ -1,10 +1,10 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
   facebookId: String,
   name: String,
-  email: String
+  email: String,
 });
 
-mongoose.model('users', userSchema);
+mongoose.model("users", userSchema);

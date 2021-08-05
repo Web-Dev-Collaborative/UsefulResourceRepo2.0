@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244bb
 title: Word Blanks
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/caqn8zuP'
+videoUrl: "https://scrimba.com/c/caqn8zuP"
 forumTopicId: 18377
 dashedName: word-blanks
 ---
@@ -16,7 +16,14 @@ In a "Mad Libs" game, you are provided sentences with some missing words, like n
 Consider this sentence - It was really **\_\_\_\_**, and we **\_\_\_\_** ourselves **\_\_\_\_**. This sentence has three missing pieces- an adjective, a verb and an adverb, and we can add words of our choice to complete it. We can then assign the completed sentence to a variable as follows:
 
 ```js
-var sentence = "It was really " + "hot" + ", and we " + "laughed" + " ourselves " + "silly" + ".";
+var sentence =
+  "It was really " +
+  "hot" +
+  ", and we " +
+  "laughed" +
+  " ourselves " +
+  "silly" +
+  ".";
 ```
 
 # --instructions--
@@ -32,17 +39,17 @@ You will also need to account for spaces in your string, so that the final sente
 `wordBlanks` should be a string.
 
 ```js
-assert(typeof wordBlanks === 'string');
+assert(typeof wordBlanks === "string");
 ```
 
 You should not change the values assigned to `myNoun`, `myVerb`, `myAdjective` or `myAdverb`.
 
 ```js
 assert(
-  myNoun === 'dog' &&
-    myVerb === 'ran' &&
-    myAdjective === 'big' &&
-    myAdverb === 'quickly'
+  myNoun === "dog" &&
+    myVerb === "ran" &&
+    myAdjective === "big" &&
+    myAdverb === "quickly"
 );
 ```
 
@@ -74,11 +81,12 @@ assert(
 ## --after-user-code--
 
 ```js
-const removeAssignments = str => str
-  .replace(/myNoun\s*=\s*["']dog["']/g, '')
-  .replace(/myAdjective\s*=\s*["']big["']/g, '')
-  .replace(/myVerb\s*=\s*["']ran["']/g, '')
-  .replace(/myAdverb\s*=\s*["']quickly["']/g, '');
+const removeAssignments = (str) =>
+  str
+    .replace(/myNoun\s*=\s*["']dog["']/g, "")
+    .replace(/myAdjective\s*=\s*["']big["']/g, "")
+    .replace(/myVerb\s*=\s*["']ran["']/g, "")
+    .replace(/myAdverb\s*=\s*["']quickly["']/g, "");
 ```
 
 ## --seed-contents--
@@ -102,6 +110,7 @@ var myAdjective = "big";
 var myVerb = "ran";
 var myAdverb = "quickly";
 
-var wordBlanks = "Once there was a " + myNoun + " which was very " + myAdjective + ". ";
+var wordBlanks =
+  "Once there was a " + myNoun + " which was very " + myAdjective + ". ";
 wordBlanks += "It " + myVerb + " " + myAdverb + " around the yard.";
 ```

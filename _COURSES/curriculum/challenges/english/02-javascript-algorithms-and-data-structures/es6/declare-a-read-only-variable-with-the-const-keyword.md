@@ -32,26 +32,26 @@ Change the code so that all variables are declared using `let` or `const`. Use `
 `var` should not exist in your code.
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/var/g));
+(getUserInput) => assert(!getUserInput("index").match(/var/g));
 ```
 
 `SENTENCE` should be a constant variable declared with `const`.
 
 ```js
-(getUserInput) => assert(getUserInput('index').match(/(const SENTENCE)/g));
+(getUserInput) => assert(getUserInput("index").match(/(const SENTENCE)/g));
 ```
 
 `i` should be declared with `let`.
 
 ```js
-(getUserInput) => assert(getUserInput('index').match(/(let i)/g));
+(getUserInput) => assert(getUserInput("index").match(/(let i)/g));
 ```
 
 `console.log` should be changed to print the `SENTENCE` variable.
 
 ```js
 (getUserInput) =>
-  assert(getUserInput('index').match(/console\.log\(\s*SENTENCE\s*\)\s*;?/g));
+  assert(getUserInput("index").match(/console\.log\(\s*SENTENCE\s*\)\s*;?/g));
 ```
 
 # --seed--
@@ -60,16 +60,14 @@ Change the code so that all variables are declared using `let` or `const`. Use `
 
 ```js
 function printManyTimes(str) {
-
   // Only change code below this line
 
   var sentence = str + " is cool!";
-  for (var i = 0; i < str.length; i+=2) {
+  for (var i = 0; i < str.length; i += 2) {
     console.log(sentence);
   }
 
   // Only change code above this line
-
 }
 printManyTimes("freeCodeCamp");
 ```
@@ -78,12 +76,10 @@ printManyTimes("freeCodeCamp");
 
 ```js
 function printManyTimes(str) {
-
   const SENTENCE = str + " is cool!";
-  for (let i = 0; i < str.length; i+=2) {
+  for (let i = 0; i < str.length; i += 2) {
     console.log(SENTENCE);
   }
-
 }
 printManyTimes("freeCodeCamp");
 ```

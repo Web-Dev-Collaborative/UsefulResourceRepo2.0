@@ -2,7 +2,7 @@
 id: 587d78ae367417b2b2512afc
 title: 使用 flex-grow 屬性定義 flex 子元素的增長係數
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/c2p78cg'
+videoUrl: "https://scrimba.com/p/pVaDAv/c2p78cg"
 forumTopicId: 301111
 dashedName: use-the-flex-grow-property-to-expand-items
 ---
@@ -22,13 +22,13 @@ dashedName: use-the-flex-grow-property-to-expand-items
 `#box-1` 元素應具有 `flex-grow` 屬性，其屬性值應爲 `1`。
 
 ```js
-assert($('#box-1').css('flex-grow') == '1');
+assert($("#box-1").css("flex-grow") == "1");
 ```
 
 `#box-2` 元素應具有 `flex-grow` 屬性，其屬性值應爲 `2`。
 
 ```js
-assert($('#box-2').css('flex-grow') == '2');
+assert($("#box-2").css("flex-grow") == "2");
 ```
 
 # --seed--
@@ -45,13 +45,11 @@ assert($('#box-2').css('flex-grow') == '2');
   #box-1 {
     background-color: dodgerblue;
     height: 200px;
-
   }
 
   #box-2 {
     background-color: orangered;
     height: 200px;
-
   }
 </style>
 

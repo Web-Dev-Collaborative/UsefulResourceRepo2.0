@@ -1,10 +1,11 @@
 # portfolio-jerga-app
-Next.js Serverless App - Udemy course material
 
+Next.js Serverless App - Udemy course material
 
 ### 1. Run `npm install` to install all of the dependencies
 
 ### 2. in root folder create `env.development.local` file with following content:
+
 ```javascript
 AUTH0_DOMAIN=YOUR_AUTH0_DOMAIN
 AUTH0_CLIENT_ID=YOUR_AUTH0_CLIENT_ID

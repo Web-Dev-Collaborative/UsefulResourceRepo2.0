@@ -1,6 +1,6 @@
 ---
 id: 5900f3c71000cf542c50feda
-title: 'Problem 91: Right triangles with integer coordinates'
+title: "Problem 91: Right triangles with integer coordinates"
 challengeType: 5
 forumTopicId: 302208
 dashedName: problem-91-right-triangles-with-integer-coordinates
@@ -23,7 +23,7 @@ Given that $0 ≤ x_1, y_1, x_2, y_2 ≤ limit$, how many right triangles can be
 `rightTrianglesIntCoords(2)` should return a number.
 
 ```js
-assert(typeof rightTrianglesIntCoords(2) === 'number');
+assert(typeof rightTrianglesIntCoords(2) === "number");
 ```
 
 `rightTrianglesIntCoords(2)` should return `14`.
@@ -56,7 +56,6 @@ assert.strictEqual(rightTrianglesIntCoords(50), 14234);
 
 ```js
 function rightTrianglesIntCoords(limit) {
-
   return true;
 }
 
@@ -88,11 +87,11 @@ function rightTrianglesIntCoords(limit) {
 
   function getSetKey(points) {
     return (
-      '0.0,' +
+      "0.0," +
       points
         .sort((a, b) => a[0] - b[0])
-        .map(point => point.join('.'))
-        .join(',')
+        .map((point) => point.join("."))
+        .join(",")
     );
   }
 

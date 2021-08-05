@@ -2,7 +2,7 @@
 id: 587d78af367417b2b2512b00
 title: Use the align-self Property
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cMbvzfv'
+videoUrl: "https://scrimba.com/p/pVaDAv/cMbvzfv"
 forumTopicId: 301107
 dashedName: use-the-align-self-property
 ---
@@ -22,13 +22,13 @@ Add the CSS property `align-self` to both `#box-1` and `#box-2`. Give `#box-1` a
 The `#box-1` element should have the `align-self` property set to a value of `center`.
 
 ```js
-assert($('#box-1').css('align-self') == 'center');
+assert($("#box-1").css("align-self") == "center");
 ```
 
 The `#box-2` element should have the `align-self` property set to a value of `flex-end`.
 
 ```js
-assert($('#box-2').css('align-self') == 'flex-end');
+assert($("#box-2").css("align-self") == "flex-end");
 ```
 
 # --seed--

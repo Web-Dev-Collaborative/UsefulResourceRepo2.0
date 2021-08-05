@@ -29,9 +29,9 @@ function Bird(name, color) {
 Then pass in the values as arguments to define each unique bird into the `Bird` constructor: `let cardinal = new Bird("Bruce", "red");` This gives a new instance of `Bird` with `name` and `color` properties set to `Bruce` and `red`, respectively. The `numLegs` property is still set to 2. The `cardinal` has these properties:
 
 ```js
-cardinal.name
-cardinal.color
-cardinal.numLegs
+cardinal.name;
+cardinal.color;
+cardinal.numLegs;
 ```
 
 The constructor is more flexible. It's now possible to define the properties for each `Bird` at the time it is created, which is one way that JavaScript constructors are so useful. They group objects together based on shared characteristics and behavior and define a blueprint that automates their creation.
@@ -45,19 +45,19 @@ Create another `Dog` constructor. This time, set it up to take the parameters `n
 `Dog` should receive an argument for `name`.
 
 ```js
-assert(new Dog('Clifford').name === 'Clifford');
+assert(new Dog("Clifford").name === "Clifford");
 ```
 
 `Dog` should receive an argument for `color`.
 
 ```js
-assert(new Dog('Clifford', 'yellow').color === 'yellow');
+assert(new Dog("Clifford", "yellow").color === "yellow");
 ```
 
 `Dog` should have property `numLegs` set to 4.
 
 ```js
-assert(new Dog('Clifford').numLegs === 4);
+assert(new Dog("Clifford").numLegs === 4);
 ```
 
 `terrier` should be created using the `Dog` constructor.
@@ -71,15 +71,13 @@ assert(terrier instanceof Dog);
 ## --seed-contents--
 
 ```js
-function Dog() {
-
-}
+function Dog() {}
 ```
 
 # --solutions--
 
 ```js
-function Dog (name, color) {
+function Dog(name, color) {
   this.numLegs = 4;
   this.name = name;
   this.color = color;

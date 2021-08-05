@@ -1,5 +1,4 @@
-
-import { checkoutDetailFragment } from "../common"
+import { checkoutDetailFragment } from "../common";
 
 const checkoutLineItemsAdd = `
   mutation(
@@ -15,6 +14,6 @@ const checkoutLineItemsAdd = `
       }
     }
   }
-`
+`;
 
-export default checkoutLineItemsAdd
+export default checkoutLineItemsAdd;

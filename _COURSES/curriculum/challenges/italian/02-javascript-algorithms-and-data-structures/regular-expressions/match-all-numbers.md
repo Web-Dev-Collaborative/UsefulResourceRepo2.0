@@ -33,37 +33,37 @@ assert(numRegex.global);
 La tua espressione regolare dovrebbe trovare una cifra nella stringa `9`.
 
 ```js
-assert('9'.match(numRegex).length == 1);
+assert("9".match(numRegex).length == 1);
 ```
 
 La tua espressione regolare dovrebbe trovare 2 cifre nella stringa `Catch 22`.
 
 ```js
-assert('Catch 22'.match(numRegex).length == 2);
+assert("Catch 22".match(numRegex).length == 2);
 ```
 
 La tua espressione regolare dovrebbe trovare 3 cifre nella stringa `101 Dalmatians`.
 
 ```js
-assert('101 Dalmatians'.match(numRegex).length == 3);
+assert("101 Dalmatians".match(numRegex).length == 3);
 ```
 
 La tua espressione regolare non dovrebbe trovare cifre nella stringa `One, Two, Three`.
 
 ```js
-assert('One, Two, Three'.match(numRegex) == null);
+assert("One, Two, Three".match(numRegex) == null);
 ```
 
 La tua espressione regolare dovrebbe trovare 2 cifre nella stringa `21 Jump Street`.
 
 ```js
-assert('21 Jump Street'.match(numRegex).length == 2);
+assert("21 Jump Street".match(numRegex).length == 2);
 ```
 
 La tua espressione regolare dovrebbe trovare 4 cifre nella stringa `2001: A Space Odyssey`.
 
 ```js
-assert('2001: A Space Odyssey'.match(numRegex).length == 4);
+assert("2001: A Space Odyssey".match(numRegex).length == 4);
 ```
 
 # --seed--

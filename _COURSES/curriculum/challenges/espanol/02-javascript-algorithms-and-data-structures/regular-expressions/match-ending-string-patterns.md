@@ -31,19 +31,19 @@ Usa el carácter de ancla (`$`) para coincidir la cadena `caboose` al final de l
 Debes buscar `caboose` con el ancla de signo de dólar `$` en tu expresión regular.
 
 ```js
-assert(lastRegex.source == 'caboose$');
+assert(lastRegex.source == "caboose$");
 ```
 
 Tu expresión regular no debe usar ninguna bandera.
 
 ```js
-assert(lastRegex.flags == '');
+assert(lastRegex.flags == "");
 ```
 
 Debes coincidir `caboose` al final de la cadena `The last car on a train is the caboose`
 
 ```js
-assert(lastRegex.test('The last car on a train is the caboose'));
+assert(lastRegex.test("The last car on a train is the caboose"));
 ```
 
 # --seed--

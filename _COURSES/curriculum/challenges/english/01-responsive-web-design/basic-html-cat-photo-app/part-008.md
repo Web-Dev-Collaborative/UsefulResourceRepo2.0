@@ -16,19 +16,19 @@ Add an `src` attribute to the existing `img` element that is set to the followin
 Your code should have an `img` element. You may have removed the `img` element or you have not surrounded the `src` attribute's value with quotes.
 
 ```js
-assert(document.querySelector('img'));
+assert(document.querySelector("img"));
 ```
 
 Your `img` element should have an `src` attribute. You have either omitted the attribute or have a typo. Make sure there is a space between the element name and the attribute name.
 
 ```js
-assert(document.querySelector('img').src);
+assert(document.querySelector("img").src);
 ```
 
 Your `img` element's `src` attribute should be set to '`https://bit.ly/fcc-relaxing-cat`'. You have either omitted the URL or have a typo. The case of the URL is important.
 
 ```js
-assert(document.querySelector('img').src === 'https://bit.ly/fcc-relaxing-cat');
+assert(document.querySelector("img").src === "https://bit.ly/fcc-relaxing-cat");
 ```
 
 Although you have set the `img` element's `src` to the correct URL, it is recommended to always surround the value of an attribute with quotation marks.
@@ -49,11 +49,10 @@ assert(!/\<img\s+src\s*=\s*https:\/\/bit\.ly\/fcc-relaxing-cat/.test(code));
       <h2>Cat Photos</h2>
       <!-- TODO: Add link to cat photos -->
       <p>Click here to view more cat photos.</p>
---fcc-editable-region--
-      <img>
---fcc-editable-region--
+      --fcc-editable-region--
+      <img />
+      --fcc-editable-region--
     </main>
   </body>
 </html>
 ```
-

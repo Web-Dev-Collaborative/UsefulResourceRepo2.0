@@ -2,7 +2,7 @@
 id: bd7123c8c441eddfaeb5bdef
 title: 向 HTML 元素问好
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cE8Gpt2'
+videoUrl: "https://scrimba.com/p/pVMPUv/cE8Gpt2"
 forumTopicId: 18276
 dashedName: say-hello-to-html-elements
 ---
@@ -20,7 +20,7 @@ dashedName: say-hello-to-html-elements
 开始标签像这样：
 
 ```html
-<h1>
+<h1></h1>
 ```
 
 结束标签像这样：
@@ -42,7 +42,7 @@ dashedName: say-hello-to-html-elements
 `h1` 元素的内容文本应为 `Hello World`。
 
 ```js
-assert.isTrue(/hello(\s)+world/gi.test($('h1').text()));
+assert.isTrue(/hello(\s)+world/gi.test($("h1").text()));
 ```
 
 # --seed--

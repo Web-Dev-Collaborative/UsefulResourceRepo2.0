@@ -24,33 +24,33 @@ dashedName: give-sibling-elements-a-unique-key-attribute
 
 ```js
 assert(
-  Enzyme.mount(React.createElement(Frameworks)).find('Frameworks').length === 1
+  Enzyme.mount(React.createElement(Frameworks)).find("Frameworks").length === 1
 );
 ```
 
 `Frameworks` 應該渲染一個 `h1` 元素。
 
 ```js
-assert(Enzyme.mount(React.createElement(Frameworks)).find('h1').length === 1);
+assert(Enzyme.mount(React.createElement(Frameworks)).find("h1").length === 1);
 ```
 
 `Frameworks` 應該渲染一個 `ul` 元素。
 
 ```js
-assert(Enzyme.mount(React.createElement(Frameworks)).find('ul').length === 1);
+assert(Enzyme.mount(React.createElement(Frameworks)).find("ul").length === 1);
 ```
 
 `ul` 標籤應該渲染 6 個子 `li` 元素。
 
 ```js
 assert(
-  Enzyme.mount(React.createElement(Frameworks)).find('ul').children().length ===
+  Enzyme.mount(React.createElement(Frameworks)).find("ul").children().length ===
     6 &&
     Enzyme.mount(React.createElement(Frameworks))
-      .find('ul')
+      .find("ul")
       .childAt(0)
-      .name() === 'li' &&
-    Enzyme.mount(React.createElement(Frameworks)).find('li').length === 6
+      .name() === "li" &&
+    Enzyme.mount(React.createElement(Frameworks)).find("li").length === 6
 );
 ```
 
@@ -59,14 +59,14 @@ assert(
 ```js
 assert(
   (() => {
-    const ul = Enzyme.mount(React.createElement(Frameworks)).find('ul');
+    const ul = Enzyme.mount(React.createElement(Frameworks)).find("ul");
     const keys = new Set([
       ul.childAt(0).key(),
       ul.childAt(1).key(),
       ul.childAt(2).key(),
       ul.childAt(3).key(),
       ul.childAt(4).key(),
-      ul.childAt(5).key()
+      ul.childAt(5).key(),
     ]);
     return keys.size === 6;
   })()
@@ -79,7 +79,7 @@ assert(
 assert(
   (() => {
     const li = Enzyme.mount(React.createElement(Frameworks))
-      .find('ul')
+      .find("ul")
       .children();
     return [...Array(5)].every((_, i) =>
       frontEndFrameworks.includes(li.at(i).text())
@@ -93,19 +93,19 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<Frameworks />, document.getElementById('root'))
+ReactDOM.render(<Frameworks />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
 
 ```jsx
 const frontEndFrameworks = [
-  'React',
-  'Angular',
-  'Ember',
-  'Knockout',
-  'Backbone',
-  'Vue'
+  "React",
+  "Angular",
+  "Ember",
+  "Knockout",
+  "Backbone",
+  "Vue",
 ];
 
 function Frameworks() {
@@ -113,35 +113,33 @@ function Frameworks() {
   return (
     <div>
       <h1>Popular Front End JavaScript Frameworks</h1>
-      <ul>
-        {renderFrameworks}
-      </ul>
+      <ul>{renderFrameworks}</ul>
     </div>
   );
-};
+}
 ```
 
 # --solutions--
 
 ```jsx
 const frontEndFrameworks = [
-  'React',
-  'Angular',
-  'Ember',
-  'Knockout',
-  'Backbone',
-  'Vue'
+  "React",
+  "Angular",
+  "Ember",
+  "Knockout",
+  "Backbone",
+  "Vue",
 ];
 
 function Frameworks() {
-  const renderFrameworks = frontEndFrameworks.map((fw, i) => <li key={i}>{fw}</li>);
+  const renderFrameworks = frontEndFrameworks.map((fw, i) => (
+    <li key={i}>{fw}</li>
+  ));
   return (
     <div>
       <h1>Popular Front End JavaScript Frameworks</h1>
-      <ul>
-        {renderFrameworks}
-      </ul>
+      <ul>{renderFrameworks}</ul>
     </div>
   );
-};
+}
 ```

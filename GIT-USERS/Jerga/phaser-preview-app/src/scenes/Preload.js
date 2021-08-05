@@ -1,9 +1,8 @@
-import Phaser from 'phaser';
+import Phaser from "phaser";
 
 class PreloadScene extends Phaser.Scene {
-
   constructor() {
-    super('PreloadScene');
+    super("PreloadScene");
   }
 
   // To setup App:
@@ -18,29 +17,29 @@ class PreloadScene extends Phaser.Scene {
   // To test App:
   // // https://www.facebook.com/embed/instantgames/YOUR_GAME_ID/player?game_url=https://localhost:8080
   preload() {
-    this.load.image('sky', 'assets/sky.png');
-    this.load.image('player', 'assets/player.png');
-    this.load.image('bomb', 'assets/bomb.png');
+    this.load.image("sky", "assets/sky.png");
+    this.load.image("player", "assets/player.png");
+    this.load.image("bomb", "assets/bomb.png");
 
-    const isProd = process.env.FB_ENV || process.env.NODE_ENV === 'production';
+    const isProd = process.env.FB_ENV || process.env.NODE_ENV === "production";
 
-    this.load.on('progress', (value) => {
+    this.load.on("progress", (value) => {
       isProd && FBInstant.setLoadingProgress(value * 100);
-    })
+    });
 
-    this.load.once('complete', () => {
+    this.load.once("complete", () => {
       if (isProd) {
         FBInstant.startGameAsync().then(() => {
           this.startGame();
-        })
+        });
       } else {
         this.startGame();
       }
-    })
+    });
   }
 
-  startGame () {
-    this.scene.start('PlayScene');
+  startGame() {
+    this.scene.start("PlayScene");
   }
 }
 

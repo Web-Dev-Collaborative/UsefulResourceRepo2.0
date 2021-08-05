@@ -17,7 +17,7 @@ El método `console.log()`, que "imprime" la salida de lo que está dentro de su
 Aquí hay un ejemplo para imprimir la cadena `Hello world!` en la consola:
 
 ```js
-console.log('Hello world!');
+console.log("Hello world!");
 ```
 
 # --instructions--
@@ -42,7 +42,6 @@ let b = 1;
 a++;
 // Only change code below this line
 
-
 let sumAB = a + b;
 console.log(sumAB);
 ```
@@ -50,5 +49,6 @@ console.log(sumAB);
 # --solutions--
 
 ```js
-var a = 5; console.log(a);
+var a = 5;
+console.log(a);
 ```

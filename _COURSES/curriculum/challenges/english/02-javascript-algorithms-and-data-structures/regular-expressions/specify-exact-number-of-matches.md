@@ -42,35 +42,35 @@ Your regex should not match the string `Timber`
 
 ```js
 timRegex.lastIndex = 0;
-assert(!timRegex.test('Timber'));
+assert(!timRegex.test("Timber"));
 ```
 
 Your regex should not match the string `Timmber`
 
 ```js
 timRegex.lastIndex = 0;
-assert(!timRegex.test('Timmber'));
+assert(!timRegex.test("Timmber"));
 ```
 
 Your regex should not match the string `Timmmber`
 
 ```js
 timRegex.lastIndex = 0;
-assert(!timRegex.test('Timmmber'));
+assert(!timRegex.test("Timmmber"));
 ```
 
 Your regex should match the string `Timmmmber`
 
 ```js
 timRegex.lastIndex = 0;
-assert(timRegex.test('Timmmmber'));
+assert(timRegex.test("Timmmmber"));
 ```
 
 Your regex should not match the string `Timber` with 30 `m`'s in it.
 
 ```js
 timRegex.lastIndex = 0;
-assert(!timRegex.test('Ti' + 'm'.repeat(30) + 'ber'));
+assert(!timRegex.test("Ti" + "m".repeat(30) + "ber"));
 ```
 
 # --seed--

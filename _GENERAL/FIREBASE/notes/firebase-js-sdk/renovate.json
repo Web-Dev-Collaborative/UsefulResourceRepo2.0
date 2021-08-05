@@ -1,7 +1,5 @@
 {
-  "extends": [
-    "config:js-lib"
-  ],
+  "extends": ["config:js-lib"],
   "lockFileMaintenance": {
     "enabled": true
   },
@@ -24,9 +22,6 @@
     "typedoc",
     "@microsoft/tsdoc"
   ],
-  "assignees": [
-    "@Feiyang1",
-    "@hsubox76"
-  ],
+  "assignees": ["@Feiyang1", "@hsubox76"],
   "schedule": "before 3am on Friday"
 }

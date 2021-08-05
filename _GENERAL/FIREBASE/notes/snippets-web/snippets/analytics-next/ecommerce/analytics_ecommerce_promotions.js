@@ -8,18 +8,18 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 
 // Prepare ecommerce params
 const params12 = {
-  promotion_id: 'ABC123',
-  promotion_name: 'Summer Sale',
-  creative_name: 'summer2020_promo.jpg',
-  creative_slot: 'featured_app_1',
-  location_id: 'HERO_BANNER',
-  items: [item_jeggings]
+  promotion_id: "ABC123",
+  promotion_name: "Summer Sale",
+  creative_name: "summer2020_promo.jpg",
+  creative_slot: "featured_app_1",
+  location_id: "HERO_BANNER",
+  items: [item_jeggings],
 };
 
 // Log event when a promotion is displayed
 const analytics = getAnalytics();
-logEvent(analytics, 'view_promotion', params12);
+logEvent(analytics, "view_promotion", params12);
 
 // Log event when a promotion is selected
-logEvent(analytics, 'select_promotion', params12);
+logEvent(analytics, "select_promotion", params12);
 // [END analytics_ecommerce_promotions_modular]

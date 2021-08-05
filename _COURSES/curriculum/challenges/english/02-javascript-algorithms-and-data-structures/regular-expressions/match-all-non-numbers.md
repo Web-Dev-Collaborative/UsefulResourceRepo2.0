@@ -33,37 +33,37 @@ assert(noNumRegex.global);
 Your regex should find no non-digits in the string `9`.
 
 ```js
-assert('9'.match(noNumRegex) == null);
+assert("9".match(noNumRegex) == null);
 ```
 
 Your regex should find 6 non-digits in the string `Catch 22`.
 
 ```js
-assert('Catch 22'.match(noNumRegex).length == 6);
+assert("Catch 22".match(noNumRegex).length == 6);
 ```
 
 Your regex should find 11 non-digits in the string `101 Dalmatians`.
 
 ```js
-assert('101 Dalmatians'.match(noNumRegex).length == 11);
+assert("101 Dalmatians".match(noNumRegex).length == 11);
 ```
 
 Your regex should find 15 non-digits in the string `One, Two, Three`.
 
 ```js
-assert('One, Two, Three'.match(noNumRegex).length == 15);
+assert("One, Two, Three".match(noNumRegex).length == 15);
 ```
 
 Your regex should find 12 non-digits in the string `21 Jump Street`.
 
 ```js
-assert('21 Jump Street'.match(noNumRegex).length == 12);
+assert("21 Jump Street".match(noNumRegex).length == 12);
 ```
 
 Your regex should find 17 non-digits in the string `2001: A Space Odyssey`.
 
 ```js
-assert('2001: A Space Odyssey'.match(noNumRegex).length == 17);
+assert("2001: A Space Odyssey".match(noNumRegex).length == 17);
 ```
 
 # --seed--

@@ -1,6 +1,6 @@
 ---
 id: 5e7b9f0d0b6c005b0e76f076
-title: '网络：使用 Python 进行 Web 爬取'
+title: "网络：使用 Python 进行 Web 爬取"
 challengeType: 11
 videoId: Uyioq2q4cEg
 dashedName: networking-web-scraping-with-python
@@ -53,4 +53,3 @@ GrunkleStan
 ## --video-solution--
 
 3
-

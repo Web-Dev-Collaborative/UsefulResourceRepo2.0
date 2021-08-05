@@ -51,25 +51,25 @@ and using `|` as a separator and `^` as escape character, your function should o
 `tokenize` should be a function.
 
 ```js
-assert(typeof tokenize === 'function');
+assert(typeof tokenize === "function");
 ```
 
 `tokenize` should return an array.
 
 ```js
-assert(typeof tokenize('a', 'b', 'c') === 'object');
+assert(typeof tokenize("a", "b", "c") === "object");
 ```
 
 `tokenize('one^|uno||three^^^^|four^^^|^cuatro|', '|', '^')` should return `['one|uno', '', 'three^^', 'four^|cuatro', '']`
 
 ```js
-assert.deepEqual(tokenize(testStr1, '|', '^'), res1);
+assert.deepEqual(tokenize(testStr1, "|", "^"), res1);
 ```
 
 `tokenize('a@&bcd&ef&&@@hi', '&', '@')` should return `['a&bcd', 'ef', '', '@hi']`
 
 ```js
-assert.deepEqual(tokenize(testStr2, '&', '@'), res2);
+assert.deepEqual(tokenize(testStr2, "&", "@"), res2);
 ```
 
 # --seed--
@@ -77,12 +77,12 @@ assert.deepEqual(tokenize(testStr2, '&', '@'), res2);
 ## --after-user-code--
 
 ```js
-const testStr1 = 'one^|uno||three^^^^|four^^^|^cuatro|';
-const res1 = ['one|uno', '', 'three^^', 'four^|cuatro', ''];
+const testStr1 = "one^|uno||three^^^^|four^^^|^cuatro|";
+const res1 = ["one|uno", "", "three^^", "four^|cuatro", ""];
 
 // TODO add more tests
-const testStr2 = 'a@&bcd&ef&&@@hi';
-const res2 = ['a&bcd', 'ef', '', '@hi'];
+const testStr2 = "a@&bcd&ef&&@@hi";
+const res2 = ["a&bcd", "ef", "", "@hi"];
 ```
 
 ## --seed-contents--
@@ -98,27 +98,25 @@ function tokenize(str, sep, esc) {
 ```js
 // tokenize :: String -> Character -> Character -> [String]
 function tokenize(str, charDelim, charEsc) {
-  const dctParse = str.split('')
-    .reduce((a, x) => {
+  const dctParse = str.split("").reduce(
+    (a, x) => {
       const blnEsc = a.esc;
       const blnBreak = !blnEsc && x === charDelim;
       const blnEscChar = !blnEsc && x === charEsc;
 
       return {
         esc: blnEscChar,
-        token: blnBreak ? '' : (
-          a.token + (blnEscChar ? '' : x)
-        ),
-        list: a.list.concat(blnBreak ? a.token : [])
+        token: blnBreak ? "" : a.token + (blnEscChar ? "" : x),
+        list: a.list.concat(blnBreak ? a.token : []),
       };
-    }, {
+    },
+    {
       esc: false,
-      token: '',
-      list: []
-    });
-
-  return dctParse.list.concat(
-    dctParse.token
+      token: "",
+      list: [],
+    }
   );
+
+  return dctParse.list.concat(dctParse.token);
 }
 ```

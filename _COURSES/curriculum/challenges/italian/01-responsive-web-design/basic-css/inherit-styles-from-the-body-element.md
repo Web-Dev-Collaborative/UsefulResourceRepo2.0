@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08746
 title: Ereditare gli stili dall'elemento Body
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c9bmdtR'
+videoUrl: "https://scrimba.com/c/c9bmdtR"
 forumTopicId: 18204
 dashedName: inherit-styles-from-the-body-element
 ---
@@ -26,15 +26,15 @@ Infine, dai al tuo elemento `body` la font-family di `monospace` aggiungendo `fo
 Dovresti creare un elemento `h1`.
 
 ```js
-assert($('h1').length > 0);
+assert($("h1").length > 0);
 ```
 
 Il tuo elemento `h1` dovrebbe contenere il testo `Hello World`.
 
 ```js
 assert(
-  $('h1').length > 0 &&
-    $('h1')
+  $("h1").length > 0 &&
+    $("h1")
       .text()
       .match(/hello world/i)
 );
@@ -53,15 +53,15 @@ assert(
 Il tuo elemento `body` dovrebbe avere la proprietà `color` di `green`.
 
 ```js
-assert($('body').css('color') === 'rgb(0, 128, 0)');
+assert($("body").css("color") === "rgb(0, 128, 0)");
 ```
 
 Il tuo elemento `body` dovrebbe avere la proprietà `font-family` di `monospace`.
 
 ```js
 assert(
-  $('body')
-    .css('font-family')
+  $("body")
+    .css("font-family")
     .match(/monospace/i)
 );
 ```
@@ -70,9 +70,9 @@ Il tuo elemento `h1` dovrebbe ereditare il font `monospace` dal tuo elemento `bo
 
 ```js
 assert(
-  $('h1').length > 0 &&
-    $('h1')
-      .css('font-family')
+  $("h1").length > 0 &&
+    $("h1")
+      .css("font-family")
       .match(/monospace/i)
 );
 ```
@@ -80,7 +80,7 @@ assert(
 Il tuo elemento `h1` dovrebbe ereditare il colore verde dal tuo elemento`body`.
 
 ```js
-assert($('h1').length > 0 && $('h1').css('color') === 'rgb(0, 128, 0)');
+assert($("h1").length > 0 && $("h1").css("color") === "rgb(0, 128, 0)");
 ```
 
 # --seed--
@@ -92,7 +92,6 @@ assert($('h1').length > 0 && $('h1').css('color') === 'rgb(0, 128, 0)');
   body {
     background-color: black;
   }
-
 </style>
 ```
 
@@ -105,7 +104,6 @@ assert($('h1').length > 0 && $('h1').css('color') === 'rgb(0, 128, 0)');
     font-family: monospace;
     color: green;
   }
-
 </style>
 <h1>Hello World!</h1>
 ```

@@ -29,13 +29,13 @@ JavaScript 中的一个常见模式就是，函数在声明后立刻执行：
 该函数应该是匿名的。
 
 ```js
-assert(/\((function|\(\))(=>|\(\)){?/.test(code.replace(/\s/g, '')));
+assert(/\((function|\(\))(=>|\(\)){?/.test(code.replace(/\s/g, "")));
 ```
 
 函数应该在表达式的末尾有括号，以便立即调用它。
 
 ```js
-assert(/\(.*(\)\(|\}\(\))\)/.test(code.replace(/[\s;]/g, '')));
+assert(/\(.*(\)\(|\}\(\))\)/.test(code.replace(/[\s;]/g, "")));
 ```
 
 # --seed--
@@ -63,7 +63,7 @@ makeNest();
 ```js
 (function () {
   console.log("A cozy nest is ready");
-}());
+})();
 ```
 
 ---
@@ -77,7 +77,5 @@ makeNest();
 ---
 
 ```js
-(() =>
-  console.log("A cozy nest is ready")
-)();
+(() => console.log("A cozy nest is ready"))();
 ```

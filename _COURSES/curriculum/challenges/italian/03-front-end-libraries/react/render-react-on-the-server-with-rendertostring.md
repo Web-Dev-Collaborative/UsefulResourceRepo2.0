@@ -23,10 +23,10 @@ Il componente `App` dovrebbe fare il rendering in una stringa usando `ReactDOMSe
 ```js
 (getUserInput) =>
   assert(
-    getUserInput('index')
-      .replace(/ /g, '')
-      .includes('ReactDOMServer.renderToString(<App/>)') &&
-      Enzyme.mount(React.createElement(App)).children().name() === 'div'
+    getUserInput("index")
+      .replace(/ /g, "")
+      .includes("ReactDOMServer.renderToString(<App/>)") &&
+      Enzyme.mount(React.createElement(App)).children().name() === "div"
   );
 ```
 
@@ -35,13 +35,17 @@ Il componente `App` dovrebbe fare il rendering in una stringa usando `ReactDOMSe
 ## --before-user-code--
 
 ```jsx
-var ReactDOMServer = { renderToString(x) { return null; } };
+var ReactDOMServer = {
+  renderToString(x) {
+    return null;
+  },
+};
 ```
 
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -52,9 +56,9 @@ class App extends React.Component {
     super(props);
   }
   render() {
-    return <div/>
+    return <div />;
   }
-};
+}
 
 // Change code below this line
 ```
@@ -67,10 +71,10 @@ class App extends React.Component {
     super(props);
   }
   render() {
-    return <div/>
+    return <div />;
   }
-};
+}
 
 // Change code below this line
-ReactDOMServer.renderToString(<App/>);
+ReactDOMServer.renderToString(<App />);
 ```

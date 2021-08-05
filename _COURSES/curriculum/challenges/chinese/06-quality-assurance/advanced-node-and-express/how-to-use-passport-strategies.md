@@ -26,7 +26,7 @@ server.js 中应正确执行所有步骤。
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
@@ -41,7 +41,7 @@ server.js 中应正确执行所有步骤。
       assert.match(
         data,
         /login[^]*post[^]*local/gi,
-        'You should have a route for login which accepts a POST and passport.authenticates local'
+        "You should have a route for login which accepts a POST and passport.authenticates local"
       );
     },
     (xhr) => {
@@ -54,12 +54,12 @@ server.js 中应正确执行所有步骤。
 
 ```js
 (getUserInput) =>
-  $.post(getUserInput('url') + '/login').then(
+  $.post(getUserInput("url") + "/login").then(
     (data) => {
       assert.match(
         data,
         /Looks like this page is being rendered from Pug into HTML!/gi,
-        'A login attempt at this point should redirect to the homepage since we do not have any registered users'
+        "A login attempt at this point should redirect to the homepage since we do not have any registered users"
       );
     },
     (xhr) => {

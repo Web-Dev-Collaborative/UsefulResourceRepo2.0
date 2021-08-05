@@ -8,7 +8,7 @@ const performance = window.performance;
 
 performance.mark("measurementStart");
 
-// Code that you want to trace 
+// Code that you want to trace
 // ...
 
 performance.mark("measurementStop");

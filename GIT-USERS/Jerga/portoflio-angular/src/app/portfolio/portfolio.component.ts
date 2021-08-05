@@ -1,15 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {Repo} from "./service/repo.model";
-import {PortfolioService} from "./service/portfolio.service";
+import { Component, OnInit } from "@angular/core";
+import { Repo } from "./service/repo.model";
+import { PortfolioService } from "./service/portfolio.service";
 
-@Component ({
-  selector: 'portfolio-cv',
-  templateUrl: 'portfolio.component.html',
-  styleUrls: ['./portfolio.component.scss']
+@Component({
+  selector: "portfolio-cv",
+  templateUrl: "portfolio.component.html",
+  styleUrls: ["./portfolio.component.scss"],
 })
-
-export class PortfolioComponent implements OnInit{
-
+export class PortfolioComponent implements OnInit {
   public repos: Repo[] = [];
 
   constructor(private service: PortfolioService) {}
@@ -20,10 +18,10 @@ export class PortfolioComponent implements OnInit{
         this.repos = repos;
       },
       (errors: string) => console.log(errors)
-    )
+    );
   }
 
   public navigateTo(url: string): void {
-    window.open(url, '_blank');
+    window.open(url, "_blank");
   }
 }

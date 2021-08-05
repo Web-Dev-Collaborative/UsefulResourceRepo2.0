@@ -69,13 +69,13 @@ function samplePresenceApp() {
   // [START rtdb_sample_presence_app]
   // Since I can connect from multiple devices or browser tabs, we store each connection instance separately
   // any time that connectionsRef's value is null (i.e. has no children) I am offline
-  var myConnectionsRef = firebase.database().ref('users/joe/connections');
+  var myConnectionsRef = firebase.database().ref("users/joe/connections");
 
   // stores the timestamp of my last disconnect (the last time I was seen online)
-  var lastOnlineRef = firebase.database().ref('users/joe/lastOnline');
+  var lastOnlineRef = firebase.database().ref("users/joe/lastOnline");
 
-  var connectedRef = firebase.database().ref('.info/connected');
-  connectedRef.on('value', (snap) => {
+  var connectedRef = firebase.database().ref(".info/connected");
+  connectedRef.on("value", (snap) => {
     if (snap.val() === true) {
       // We're connected (or reconnected)! Do anything here that should happen only if online (or on reconnect)
       var con = myConnectionsRef.push();

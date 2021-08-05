@@ -16,7 +16,7 @@ dashedName: match-numbers-and-letters-of-the-alphabet
 
 ```js
 let jennyStr = "Jenny8675309";
-let myRegex = /[a-z0-9]/ig;
+let myRegex = /[a-z0-9]/gi;
 jennyStr.match(myRegex);
 ```
 

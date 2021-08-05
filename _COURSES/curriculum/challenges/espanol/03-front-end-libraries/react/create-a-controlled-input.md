@@ -29,13 +29,13 @@ Por último, pero no menos importante, no olvides añadir los enlaces necesarios
 ```js
 assert(
   Enzyme.mount(React.createElement(ControlledInput))
-    .find('div')
+    .find("div")
     .children()
-    .find('input').length === 1 &&
+    .find("input").length === 1 &&
     Enzyme.mount(React.createElement(ControlledInput))
-      .find('div')
+      .find("div")
       .children()
-      .find('p').length === 1
+      .find("p").length === 1
 );
 ```
 
@@ -43,8 +43,8 @@ El estado de `ControlledInput` debe inicializarse con una propiedad `input` esta
 
 ```js
 assert.strictEqual(
-  Enzyme.mount(React.createElement(ControlledInput)).state('input'),
-  ''
+  Enzyme.mount(React.createElement(ControlledInput)).state("input"),
+  ""
 );
 ```
 
@@ -56,26 +56,26 @@ async () => {
     new Promise((resolve, reject) => setTimeout(() => resolve(fn()), 250));
   const mockedComponent = Enzyme.mount(React.createElement(ControlledInput));
   const _1 = () => {
-    mockedComponent.setState({ input: '' });
-    return waitForIt(() => mockedComponent.state('input'));
+    mockedComponent.setState({ input: "" });
+    return waitForIt(() => mockedComponent.state("input"));
   };
   const _2 = () => {
     mockedComponent
-      .find('input')
-      .simulate('change', { target: { value: 'TestInput' } });
+      .find("input")
+      .simulate("change", { target: { value: "TestInput" } });
     return waitForIt(() => ({
-      state: mockedComponent.state('input'),
-      text: mockedComponent.find('p').text(),
-      inputVal: mockedComponent.find('input').props().value
+      state: mockedComponent.state("input"),
+      text: mockedComponent.find("p").text(),
+      inputVal: mockedComponent.find("input").props().value,
     }));
   };
   const before = await _1();
   const after = await _2();
   assert(
-    before === '' &&
-      after.state === 'TestInput' &&
-      after.text === 'TestInput' &&
-      after.inputVal === 'TestInput'
+    before === "" &&
+      after.state === "TestInput" &&
+      after.text === "TestInput" &&
+      after.inputVal === "TestInput"
   );
 };
 ```
@@ -85,7 +85,7 @@ async () => {
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<ControlledInput />, document.getElementById('root'))
+ReactDOM.render(<ControlledInput />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -95,7 +95,7 @@ class ControlledInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: ''
+      input: "",
     };
     // Change code below this line
 
@@ -107,15 +107,15 @@ class ControlledInput extends React.Component {
   render() {
     return (
       <div>
-        { /* Change code below this line */}
+        {/* Change code below this line */}
 
-        { /* Change code above this line */}
+        {/* Change code above this line */}
         <h4>Controlled Input:</h4>
         <p>{this.state.input}</p>
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -125,26 +125,24 @@ class ControlledInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: ''
+      input: "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
     this.setState({
-      input: event.target.value
+      input: event.target.value,
     });
   }
   render() {
     return (
       <div>
-        <input
-          value={this.state.input}
-          onChange={this.handleChange} />
+        <input value={this.state.input} onChange={this.handleChange} />
         <h4>Controlled Input:</h4>
 
         <p>{this.state.input}</p>
       </div>
     );
   }
-};
+}
 ```

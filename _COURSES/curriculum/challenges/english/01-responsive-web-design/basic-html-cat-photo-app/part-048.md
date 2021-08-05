@@ -16,11 +16,11 @@ Add a `value` attribute to both radio buttons. For convenience, set the button's
 Both radio buttons should still be located between opening and closing `label` element tags.
 
 ```js
-const labelChildNodes = [...document.querySelectorAll('form > label')].map(
+const labelChildNodes = [...document.querySelectorAll("form > label")].map(
   (node) => node.childNodes
 );
 assert(
-  labelChildNodes.filter((childNode) => childNode[0].nodeName === 'INPUT')
+  labelChildNodes.filter((childNode) => childNode[0].nodeName === "INPUT")
     .length === 2
 );
 ```
@@ -29,21 +29,21 @@ Both radio buttons should have a `value` attribute. Check that there is a space 
 
 ```js
 const radioButtons = [...document.querySelectorAll('input[type="radio"]')];
-assert(radioButtons.every((btn) => btn.hasAttribute('value')));
+assert(radioButtons.every((btn) => btn.hasAttribute("value")));
 ```
 
 The `Indoor` radio button's `value` attribute should be set to `indoor`. You have either omitted the value or have a typo. Remember that attribute values should be surrounded with quotation marks.
 
 ```js
-const indoorRadioButton = document.querySelector('#indoor');
-assert(indoorRadioButton.getAttribute('value').match(/^indoor$/));
+const indoorRadioButton = document.querySelector("#indoor");
+assert(indoorRadioButton.getAttribute("value").match(/^indoor$/));
 ```
 
 The `Outdoor` radio button's `value` attribute should be set to `outdoor`. You have either omitted the value or have a typo. Remember that attribute values should be surrounded with quotation marks.
 
 ```js
-const outdoorRadioButton = document.querySelector('#outdoor');
-assert(outdoorRadioButton.getAttribute('value').match(/^outdoor$/));
+const outdoorRadioButton = document.querySelector("#outdoor");
+assert(outdoorRadioButton.getAttribute("value").match(/^outdoor$/));
 ```
 
 # --seed--
@@ -70,7 +70,7 @@ assert(outdoorRadioButton.getAttribute('value').match(/^outdoor$/));
         </ul>
         <figure>
           <img src="https://bit.ly/fcc-lasagna" alt="A slice of lasagna on a plate.">
-          <figcaption>Cats <em>love</em> lasagna.</figcaption>  
+          <figcaption>Cats <em>love</em> lasagna.</figcaption>
         </figure>
         <h3>Top 3 things cats hate:</h3>
         <ol>
@@ -80,7 +80,7 @@ assert(outdoorRadioButton.getAttribute('value').match(/^outdoor$/));
         </ol>
         <figure>
           <img src="https://bit.ly/fcc-cats" alt="Five cats looking around a field.">
-          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>  
+          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>
         </figure>
       </section>
       <section>
@@ -98,4 +98,3 @@ assert(outdoorRadioButton.getAttribute('value').match(/^outdoor$/));
   </body>
 </html>
 ```
-

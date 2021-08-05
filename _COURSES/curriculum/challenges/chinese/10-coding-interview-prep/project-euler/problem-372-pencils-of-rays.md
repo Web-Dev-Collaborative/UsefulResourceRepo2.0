@@ -1,6 +1,6 @@
 ---
 id: 5900f4e11000cf542c50fff3
-title: 'Problem 372: Pencils of rays'
+title: "Problem 372: Pencils of rays"
 challengeType: 5
 forumTopicId: 302034
 dashedName: problem-372-pencils-of-rays
@@ -26,7 +26,6 @@ assert.strictEqual(euler372(), 301450082318807040);
 
 ```js
 function euler372() {
-
   return true;
 }
 

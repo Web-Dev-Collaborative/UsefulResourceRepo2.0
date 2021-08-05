@@ -26,64 +26,64 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.constantsTest');
 
-
 function testGetEndpointConfig() {
   var boqEndpoint = fireauth.constants.Endpoint.BOQ;
   var productionEndpoint = fireauth.constants.Endpoint.PRODUCTION;
   var stagingEndpoint = fireauth.constants.Endpoint.STAGING;
   var testEndpoint = fireauth.constants.Endpoint.TEST;
   assertObjectEquals(
-      {
-        'firebaseEndpoint': boqEndpoint.firebaseAuthEndpoint,
-        'secureTokenEndpoint': boqEndpoint.secureTokenEndpoint,
-        'identityPlatformEndpoint': boqEndpoint.identityPlatformEndpoint
-      },
-      fireauth.constants.getEndpointConfig(
-          fireauth.constants.Endpoint.BOQ.id));
+    {
+      'firebaseEndpoint': boqEndpoint.firebaseAuthEndpoint,
+      'secureTokenEndpoint': boqEndpoint.secureTokenEndpoint,
+      'identityPlatformEndpoint': boqEndpoint.identityPlatformEndpoint
+    },
+    fireauth.constants.getEndpointConfig(fireauth.constants.Endpoint.BOQ.id)
+  );
   assertObjectEquals(
-      {
-        'firebaseEndpoint': productionEndpoint.firebaseAuthEndpoint,
-        'secureTokenEndpoint': productionEndpoint.secureTokenEndpoint,
-        'identityPlatformEndpoint': productionEndpoint.identityPlatformEndpoint
-      },
-      fireauth.constants.getEndpointConfig(
-          fireauth.constants.Endpoint.PRODUCTION.id));
+    {
+      'firebaseEndpoint': productionEndpoint.firebaseAuthEndpoint,
+      'secureTokenEndpoint': productionEndpoint.secureTokenEndpoint,
+      'identityPlatformEndpoint': productionEndpoint.identityPlatformEndpoint
+    },
+    fireauth.constants.getEndpointConfig(
+      fireauth.constants.Endpoint.PRODUCTION.id
+    )
+  );
   assertObjectEquals(
-      {
-        'firebaseEndpoint': stagingEndpoint.firebaseAuthEndpoint,
-        'secureTokenEndpoint': stagingEndpoint.secureTokenEndpoint,
-        'identityPlatformEndpoint': stagingEndpoint.identityPlatformEndpoint
-      },
-      fireauth.constants.getEndpointConfig(
-          fireauth.constants.Endpoint.STAGING.id));
+    {
+      'firebaseEndpoint': stagingEndpoint.firebaseAuthEndpoint,
+      'secureTokenEndpoint': stagingEndpoint.secureTokenEndpoint,
+      'identityPlatformEndpoint': stagingEndpoint.identityPlatformEndpoint
+    },
+    fireauth.constants.getEndpointConfig(fireauth.constants.Endpoint.STAGING.id)
+  );
   assertObjectEquals(
-      {
-        'firebaseEndpoint': testEndpoint.firebaseAuthEndpoint,
-        'secureTokenEndpoint': testEndpoint.secureTokenEndpoint,
-        'identityPlatformEndpoint': testEndpoint.identityPlatformEndpoint
-      },
-      fireauth.constants.getEndpointConfig(
-          fireauth.constants.Endpoint.TEST.id));
+    {
+      'firebaseEndpoint': testEndpoint.firebaseAuthEndpoint,
+      'secureTokenEndpoint': testEndpoint.secureTokenEndpoint,
+      'identityPlatformEndpoint': testEndpoint.identityPlatformEndpoint
+    },
+    fireauth.constants.getEndpointConfig(fireauth.constants.Endpoint.TEST.id)
+  );
   assertNull(fireauth.constants.getEndpointConfig());
   assertNull(fireauth.constants.getEndpointConfig(null));
   assertNull(fireauth.constants.getEndpointConfig(undefined));
   assertNull(fireauth.constants.getEndpointConfig('invalid'));
 }
 
-
 function testGetEndpointId() {
   assertEquals(
-      fireauth.constants.Endpoint.PRODUCTION.id,
-      fireauth.constants.getEndpointId(
-          fireauth.constants.Endpoint.PRODUCTION.id));
+    fireauth.constants.Endpoint.PRODUCTION.id,
+    fireauth.constants.getEndpointId(fireauth.constants.Endpoint.PRODUCTION.id)
+  );
   assertEquals(
-      fireauth.constants.Endpoint.STAGING.id,
-      fireauth.constants.getEndpointId(
-          fireauth.constants.Endpoint.STAGING.id));
+    fireauth.constants.Endpoint.STAGING.id,
+    fireauth.constants.getEndpointId(fireauth.constants.Endpoint.STAGING.id)
+  );
   assertEquals(
-      fireauth.constants.Endpoint.TEST.id,
-      fireauth.constants.getEndpointId(
-          fireauth.constants.Endpoint.TEST.id));
+    fireauth.constants.Endpoint.TEST.id,
+    fireauth.constants.getEndpointId(fireauth.constants.Endpoint.TEST.id)
+  );
   assertUndefined(fireauth.constants.getEndpointId());
   assertUndefined(fireauth.constants.getEndpointId(null));
   assertUndefined(fireauth.constants.getEndpointId(undefined));

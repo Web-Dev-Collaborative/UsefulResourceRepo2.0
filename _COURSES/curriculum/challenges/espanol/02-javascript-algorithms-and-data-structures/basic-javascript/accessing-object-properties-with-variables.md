@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244c9
 title: Accede a propiedades de objetos con variables
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cnQyKur'
+videoUrl: "https://scrimba.com/c/cnQyKur"
 forumTopicId: 16165
 dashedName: accessing-object-properties-with-variables
 ---
@@ -15,7 +15,9 @@ Aquí hay un ejemplo del uso de una variable para acceder a una propiedad:
 
 ```js
 var dogs = {
-  Fido: "Mutt",  Hunter: "Doberman",  Snoopie: "Beagle"
+  Fido: "Mutt",
+  Hunter: "Doberman",
+  Snoopie: "Beagle",
 };
 var myDog = "Hunter";
 var myBreed = dogs[myDog];
@@ -28,7 +30,7 @@ Otra forma de usar este concepto es cuando el nombre de la propiedad se recoge d
 
 ```js
 var someObj = {
-  propName: "John"
+  propName: "John",
 };
 function propPrefix(str) {
   var s = "prop";
@@ -40,7 +42,7 @@ console.log(someObj[someProp]);
 
 `someProp` tendrá una cadena con un valor `propName` y la cadena `John` se mostrará en la consola.
 
-Ten en cuenta que *no* usamos comillas alrededor del nombre de la variable cuando la usamos para acceder a la propiedad porque utilizamos el *valor* de la variable, no el *nombre*.
+Ten en cuenta que _no_ usamos comillas alrededor del nombre de la variable cuando la usamos para acceder a la propiedad porque utilizamos el _valor_ de la variable, no el _nombre_.
 
 # --instructions--
 
@@ -51,19 +53,19 @@ Establece la variable `playerNumber` a `16`. Luego, usa la variable para buscar 
 `playerNumber` debe ser un número
 
 ```js
-assert(typeof playerNumber === 'number');
+assert(typeof playerNumber === "number");
 ```
 
 La variable `player` debe ser una cadena
 
 ```js
-assert(typeof player === 'string');
+assert(typeof player === "string");
 ```
 
 El valor de `player` debe ser la cadena `Montana`
 
 ```js
-assert(player === 'Montana');
+assert(player === "Montana");
 ```
 
 Debes usar la notación de corchete para acceder a `testObj`
@@ -89,7 +91,11 @@ assert(/testObj\s*?\[\s*playerNumber\s*\]/.test(code));
 ## --after-user-code--
 
 ```js
-if(typeof player !== "undefined"){(function(v){return v;})(player);}
+if (typeof player !== "undefined") {
+  (function (v) {
+    return v;
+  })(player);
+}
 ```
 
 ## --seed-contents--
@@ -99,13 +105,13 @@ if(typeof player !== "undefined"){(function(v){return v;})(player);}
 var testObj = {
   12: "Namath",
   16: "Montana",
-  19: "Unitas"
+  19: "Unitas",
 };
 
 // Only change code below this line
 
-var playerNumber;       // Change this line
-var player = testObj;   // Change this line
+var playerNumber; // Change this line
+var player = testObj; // Change this line
 ```
 
 # --solutions--
@@ -114,7 +120,7 @@ var player = testObj;   // Change this line
 var testObj = {
   12: "Namath",
   16: "Montana",
-  19: "Unitas"
+  19: "Unitas",
 };
 var playerNumber = 16;
 var player = testObj[playerNumber];

@@ -25,7 +25,8 @@ const uhOhGroucho = 'I've had a perfectly wonderful evening, but this wasn't it.
 當然，只使用一種引號也是可以的。 可以使用反斜槓（`\`）來轉義字符串內的引號：
 
 ```js
-const allSameQuotes = 'I\'ve had a perfectly wonderful evening, but this wasn\'t it.';
+const allSameQuotes =
+  "I've had a perfectly wonderful evening, but this wasn't it.";
 ```
 
 # --instructions--
@@ -58,6 +59,6 @@ console.log(innerHtml);
 # --solutions--
 
 ```js
-let innerHtml = "<p>Click here to <a href=\"#Home\">return home</a></p>";
+let innerHtml = '<p>Click here to <a href="#Home">return home</a></p>';
 console.log(innerHtml);
 ```

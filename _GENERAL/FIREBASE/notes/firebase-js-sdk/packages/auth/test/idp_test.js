@@ -26,61 +26,59 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.idpTest');
 
-
 function testGetIdpSetting_unknown() {
   var settings = fireauth.idp.getIdpSettings('unknown');
   assertNull(settings);
-  assertArrayEquals(
-      [],
-      fireauth.idp.getReservedOAuthParams('unknown'));
+  assertArrayEquals([], fireauth.idp.getReservedOAuthParams('unknown'));
   settings = fireauth.idp.getIdpSettings('password');
-  assertArrayEquals(
-      [],
-      fireauth.idp.getReservedOAuthParams('password'));
+  assertArrayEquals([], fireauth.idp.getReservedOAuthParams('password'));
   assertNull(settings);
-  assertArrayEquals(
-      [],
-      fireauth.idp.getReservedOAuthParams('anonymous'));
+  assertArrayEquals([], fireauth.idp.getReservedOAuthParams('anonymous'));
 }
-
 
 function testGetIdpSetting_google() {
   var settings = fireauth.idp.getIdpSettings('google.com');
   assertObjectEquals(fireauth.idp.Settings.GOOGLE, settings);
   assertArrayEquals(
-      ['client_id', 'response_type', 'scope', 'redirect_uri', 'state'],
-      fireauth.idp.getReservedOAuthParams('google.com'));
+    ['client_id', 'response_type', 'scope', 'redirect_uri', 'state'],
+    fireauth.idp.getReservedOAuthParams('google.com')
+  );
 }
-
 
 function testGetIdpSetting_facebook() {
   var settings = fireauth.idp.getIdpSettings('facebook.com');
   assertObjectEquals(fireauth.idp.Settings.FACEBOOK, settings);
   assertArrayEquals(
-      ['client_id', 'response_type', 'scope', 'redirect_uri', 'state'],
-      fireauth.idp.getReservedOAuthParams('facebook.com'));
+    ['client_id', 'response_type', 'scope', 'redirect_uri', 'state'],
+    fireauth.idp.getReservedOAuthParams('facebook.com')
+  );
 }
-
 
 function testGetIdpSetting_github() {
   var settings = fireauth.idp.getIdpSettings('github.com');
   assertObjectEquals(fireauth.idp.Settings.GITHUB, settings);
   assertArrayEquals(
-      ['client_id', 'response_type', 'scope', 'redirect_uri', 'state'],
-      fireauth.idp.getReservedOAuthParams('github.com'));
+    ['client_id', 'response_type', 'scope', 'redirect_uri', 'state'],
+    fireauth.idp.getReservedOAuthParams('github.com')
+  );
 }
-
 
 function testGetIdpSetting_twitter() {
   var settings = fireauth.idp.getIdpSettings('twitter.com');
   assertObjectEquals(fireauth.idp.Settings.TWITTER, settings);
   assertArrayEquals(
-      ['oauth_consumer_key', 'oauth_nonce', 'oauth_signature',
-       'oauth_signature_method', 'oauth_timestamp', 'oauth_token',
-       'oauth_version'],
-      fireauth.idp.getReservedOAuthParams('twitter.com'));
+    [
+      'oauth_consumer_key',
+      'oauth_nonce',
+      'oauth_signature',
+      'oauth_signature_method',
+      'oauth_timestamp',
+      'oauth_token',
+      'oauth_version'
+    ],
+    fireauth.idp.getReservedOAuthParams('twitter.com')
+  );
 }
-
 
 function testIsSaml() {
   assertTrue(fireauth.idp.isSaml('saml.provider'));

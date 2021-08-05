@@ -4,7 +4,12 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START auth_cordova_sign_in_redirect_modular]
-import { getAuth, signInWithRedirect, getRedirectResult, GoogleAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  signInWithRedirect,
+  getRedirectResult,
+  GoogleAuthProvider,
+} from "firebase/auth";
 
 const auth = getAuth();
 signInWithRedirect(auth, new GoogleAuthProvider())
@@ -21,7 +26,8 @@ signInWithRedirect(auth, new GoogleAuthProvider())
     // The signed-in user info.
     const user = result.user;
     // ...
-  }).catch((error) => {
+  })
+  .catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;

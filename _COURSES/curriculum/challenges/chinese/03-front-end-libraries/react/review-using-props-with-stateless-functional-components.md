@@ -26,7 +26,7 @@ dashedName: review-using-props-with-stateless-functional-components
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(CampSite));
-    return mockedComponent.find('CampSite').length === 1;
+    return mockedComponent.find("CampSite").length === 1;
   })()
 );
 ```
@@ -37,7 +37,7 @@ assert(
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(CampSite));
-    return mockedComponent.find('Camper').length === 1;
+    return mockedComponent.find("Camper").length === 1;
   })()
 );
 ```
@@ -69,8 +69,8 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(CampSite));
     return (
-      mockedComponent.find('p').text() ===
-      mockedComponent.find('Camper').props().name
+      mockedComponent.find("p").text() ===
+      mockedComponent.find("Camper").props().name
     );
   })()
 );
@@ -82,14 +82,14 @@ assert(
 
 ```jsx
 var PropTypes = {
-   string: { isRequired: true }
+  string: { isRequired: true },
 };
 ```
 
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<CampSite />, document.getElementById('root'))
+ReactDOM.render(<CampSite />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -102,11 +102,11 @@ class CampSite extends React.Component {
   render() {
     return (
       <div>
-        <Camper/>
+        <Camper />
       </div>
     );
   }
-};
+}
 // Change code below this line
 ```
 
@@ -120,26 +120,26 @@ class CampSite extends React.Component {
   render() {
     return (
       <div>
-        <Camper/>
+        <Camper />
       </div>
     );
   }
-};
+}
 // Change code below this line
 
 const Camper = (props) => {
-   return (
-     <div>
-       <p>{props.name}</p>
-     </div>
-   );
+  return (
+    <div>
+      <p>{props.name}</p>
+    </div>
+  );
 };
 
 Camper.propTypes = {
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
 };
 
 Camper.defaultProps = {
-  name: 'CamperBot'
+  name: "CamperBot",
 };
 ```

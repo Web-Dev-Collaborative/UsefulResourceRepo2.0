@@ -27,7 +27,7 @@ selection.attr("class", "container");
 `div` 元素应该一个 `bar` class。
 
 ```js
-assert($('div').attr('class').trim().split(/\s+/g).includes('bar'));
+assert($("div").attr("class").trim().split(/\s+/g).includes("bar"));
 ```
 
 应该使用 `attr()` 方法。
@@ -53,15 +53,10 @@ assert(code.match(/\.attr/g));
   <script>
     const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
-    d3.select("body").selectAll("div")
-      .data(dataset)
-      .enter()
-      .append("div")
-      // Add your code below this line
+    d3.select("body").selectAll("div").data(dataset).enter().append("div");
+    // Add your code below this line
 
-
-
-      // Add your code above this line
+    // Add your code above this line
   </script>
 </body>
 ```
@@ -81,13 +76,14 @@ assert(code.match(/\.attr/g));
   <script>
     const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
-    d3.select("body").selectAll("div")
+    d3.select("body")
+      .selectAll("div")
       .data(dataset)
       .enter()
       .append("div")
       // Add your code below this line
-      .attr("class","bar");
-      // Add your code above this line
+      .attr("class", "bar");
+    // Add your code above this line
   </script>
 </body>
 ```

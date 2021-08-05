@@ -1,5 +1,4 @@
-
-import SpriteEffect from './SpriteEffect';
+import SpriteEffect from "./SpriteEffect";
 
 class EffectManager {
   constructor(scene) {
@@ -7,9 +6,15 @@ class EffectManager {
   }
 
   playEffectOn(effectName, target, impactPosition) {
-    const effect = new SpriteEffect(this.scene, 0, 0, effectName, impactPosition);
+    const effect = new SpriteEffect(
+      this.scene,
+      0,
+      0,
+      effectName,
+      impactPosition
+    );
     effect.playOn(target);
   }
 }
 
-export default EffectManager
+export default EffectManager;

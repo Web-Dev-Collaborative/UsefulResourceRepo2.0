@@ -13,7 +13,7 @@ dashedName: match-non-whitespace-characters
 使用 `\S` 搜尋非空白字符，其中 `s` 是大寫。 此匹配模式將不匹配空格、回車符、製表符、換頁符和換行符。 可以認爲這類似於元字符 `[^ \r\t\f\n\v]`。
 
 ```js
-let whiteSpace = "Whitespace. Whitespace everywhere!"
+let whiteSpace = "Whitespace. Whitespace everywhere!";
 let nonSpaceRegex = /\S/g;
 whiteSpace.match(nonSpaceRegex).length;
 ```
@@ -42,7 +42,7 @@ assert(/\\S/.test(countNonWhiteSpace.source));
 
 ```js
 assert(
-  'Men are from Mars and women are from Venus.'.match(countNonWhiteSpace)
+  "Men are from Mars and women are from Venus.".match(countNonWhiteSpace)
     .length == 35
 );
 ```
@@ -50,13 +50,13 @@ assert(
 你的正則表達式應該在 `Space: the final frontier.` 中匹配到 23 個非空白字符。
 
 ```js
-assert('Space: the final frontier.'.match(countNonWhiteSpace).length == 23);
+assert("Space: the final frontier.".match(countNonWhiteSpace).length == 23);
 ```
 
 你的正則表達式應該在 `MindYourPersonalSpace` 中匹配到 21 個非空白字符。
 
 ```js
-assert('MindYourPersonalSpace'.match(countNonWhiteSpace).length == 21);
+assert("MindYourPersonalSpace".match(countNonWhiteSpace).length == 21);
 ```
 
 # --seed--

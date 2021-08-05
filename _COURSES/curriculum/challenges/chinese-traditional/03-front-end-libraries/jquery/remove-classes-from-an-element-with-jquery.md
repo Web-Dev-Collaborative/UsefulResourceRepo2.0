@@ -4,8 +4,7 @@ title: 使用 jQuery 從元素中移除 class
 challengeType: 6
 forumTopicId: 18264
 required:
-  - 
-    link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: remove-classes-from-an-element-with-jquery
 ---
 
@@ -26,7 +25,7 @@ $("#target2").removeClass("btn-default");
 應該移除所有 `button` 元素 `btn-default` class。
 
 ```js
-assert($('.btn-default').length === 0);
+assert($(".btn-default").length === 0);
 ```
 
 應該僅用 jQuery 從元素中移除 class。
@@ -51,11 +50,10 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
     $(".well").addClass("animated shake");
     $("#target3").addClass("animated fadeOut");
-
   });
 </script>
 
@@ -88,7 +86,7 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
     $(".well").addClass("animated shake");
     $("#target3").addClass("animated fadeOut");

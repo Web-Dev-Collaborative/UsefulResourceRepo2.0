@@ -1,4 +1,4 @@
- <nb-container>
+<nb-container>
   <!-- meetup title -->
   <nb-h1>Hiking in Almada</nb-h1>
   <!-- meetup creator avatar  -->
@@ -69,21 +69,7 @@
   </nb-content>
 </nb-container>
 
-export default {
-  headerOne: {
-    fontWeight: 'bold',
-    fontSize: 23
-  },
-  label: {
-    fontWeight: 'bold',
-    marginBottom: 3,
-    fontSize: 17
-  },
-  centerContainer: {
-    justifyContent: "space-between",
-    alignItems: "center"
-  },
-  container: {
-    padding: 20
-  }
-}
+export default { headerOne: { fontWeight: 'bold', fontSize: 23 }, label: {
+fontWeight: 'bold', marginBottom: 3, fontSize: 17 }, centerContainer: {
+justifyContent: "space-between", alignItems: "center" }, container: { padding:
+20 } }

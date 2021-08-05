@@ -2,7 +2,7 @@
 id: bd7123c9c549eddfaeb5bdef
 title: 使用方括號查找字符串中的第一個字符
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/ca8JwhW'
+videoUrl: "https://scrimba.com/c/ca8JwhW"
 forumTopicId: 18341
 dashedName: use-bracket-notation-to-find-the-first-character-in-a-string
 ---
@@ -35,7 +35,7 @@ var firstLetter = firstName[0];
 `firstLetterOfLastName` 變量值應該爲 `L` 。
 
 ```js
-assert(firstLetterOfLastName === 'L');
+assert(firstLetterOfLastName === "L");
 ```
 
 應該使用方括號表示法。
@@ -49,7 +49,9 @@ assert(code.match(/firstLetterOfLastName\s*?=\s*?lastName\[.*?\]/));
 ## --after-user-code--
 
 ```js
-(function(v){return v;})(firstLetterOfLastName);
+(function (v) {
+  return v;
+})(firstLetterOfLastName);
 ```
 
 ## --seed-contents--

@@ -1,6 +1,6 @@
 ---
 id: 5900f3d51000cf542c50fee6
-title: 'Problem 104: Pandigital Fibonacci ends'
+title: "Problem 104: Pandigital Fibonacci ends"
 challengeType: 5
 forumTopicId: 301728
 dashedName: problem-104-pandigital-fibonacci-ends
@@ -30,7 +30,6 @@ assert.strictEqual(pandigitalFibonacciEnds(), 329468);
 
 ```js
 function pandigitalFibonacciEnds() {
-
   return true;
 }
 

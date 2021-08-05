@@ -15,7 +15,7 @@ jQuery 有一個 `children()` 方法，可以訪問被選取標籤的子標籤�
 下面的代碼展示了用 `children()` 方法把 `left-well` 標籤的子標籤的顏色設置成 `blue`（藍色）：
 
 ```js
-$("#left-well").children().css("color", "blue")
+$("#left-well").children().css("color", "blue");
 ```
 
 # --instructions--
@@ -27,7 +27,7 @@ $("#left-well").children().css("color", "blue")
 `#right-well` 的所有子元素應該有橙色文本。
 
 ```js
-assert($('#right-well').children().css('color') === 'rgb(255, 165, 0)');
+assert($("#right-well").children().css("color") === "rgb(255, 165, 0)");
 ```
 
 應該用 `children()` 函數修改這些元素。
@@ -48,14 +48,13 @@ assert(code.match(/<div class="well" id="right-well">/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();
     $("#target2").appendTo("#right-well");
     $("#target5").clone().appendTo("#left-well");
     $("#target1").parent().css("background-color", "red");
-
   });
 </script>
 
@@ -88,7 +87,7 @@ assert(code.match(/<div class="well" id="right-well">/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();

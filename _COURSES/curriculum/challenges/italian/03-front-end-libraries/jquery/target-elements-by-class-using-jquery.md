@@ -4,8 +4,7 @@ title: Individuare elementi per classe usando jQuery
 challengeType: 6
 forumTopicId: 18316
 required:
-  - 
-    link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: target-elements-by-class-using-jquery
 ---
 
@@ -32,7 +31,7 @@ $(".text-primary").addClass("animated shake");
 Dovresti usare la funzione jQuery `addClass()` per dare le classi `animated` e `shake` a tutti i tuoi elementi di classe `well`.
 
 ```js
-assert($('.well').hasClass('animated') && $('.well').hasClass('shake'));
+assert($(".well").hasClass("animated") && $(".well").hasClass("shake"));
 ```
 
 Dovresti usare solo jQuery per aggiungere queste classi all'elemento.
@@ -47,7 +46,7 @@ assert(!code.match(/class\.\*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
   });
 </script>
@@ -81,7 +80,7 @@ assert(!code.match(/class\.\*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
     $(".well").addClass("animated shake");
   });

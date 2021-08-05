@@ -17,22 +17,18 @@
 
 goog.provide('fireauth.storage.Storage');
 
-
-
 /**
  * Defines a generic interface to storage APIs across platforms.
  * @interface
  */
-fireauth.storage.Storage = function() {};
-
+fireauth.storage.Storage = function () {};
 
 /**
  * Retrieves the value stored at the key.
  * @param {string} key
  * @return {!goog.Promise<*>}
  */
-fireauth.storage.Storage.prototype.get = function(key) {};
-
+fireauth.storage.Storage.prototype.get = function (key) {};
 
 /**
  * Stores the value at the specified key.
@@ -40,37 +36,33 @@ fireauth.storage.Storage.prototype.get = function(key) {};
  * @param {*} value
  * @return {!goog.Promise<void>}
  */
-fireauth.storage.Storage.prototype.set = function(key, value) {};
-
+fireauth.storage.Storage.prototype.set = function (key, value) {};
 
 /**
  * Removes the value at the specified key.
  * @param {string} key
  * @return {!goog.Promise<void>}
  */
-fireauth.storage.Storage.prototype.remove = function(key) {};
-
+fireauth.storage.Storage.prototype.remove = function (key) {};
 
 /**
  * Adds a listener to storage event change.
  * @param {function(!goog.events.BrowserEvent)|function(!Array<string>)}
  *     listener The storage event listener.
  */
-fireauth.storage.Storage.prototype.addStorageListener = function(listener) {};
-
+fireauth.storage.Storage.prototype.addStorageListener = function (listener) {};
 
 /**
  * Removes a listener to storage event change.
  * @param {function(!goog.events.BrowserEvent)|function(!Array<string>)}
  *     listener The storage event listener.
  */
-fireauth.storage.Storage.prototype.removeStorageListener = function(listener) {
-};
-
+fireauth.storage.Storage.prototype.removeStorageListener = function (
+  listener
+) {};
 
 /** @type {string} The storage type identifier. */
 fireauth.storage.Storage.prototype.type;
-
 
 /**
  * Enum for the identifier of the type of underlying storage.

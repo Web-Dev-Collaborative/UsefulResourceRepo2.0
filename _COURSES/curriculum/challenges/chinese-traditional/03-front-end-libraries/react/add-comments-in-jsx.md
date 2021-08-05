@@ -21,26 +21,26 @@ JSX 是一種可以編譯成 JavaScript 的語法。 有時，爲了便於閱讀
 常量 `JSX` 應該返回一個 `div` 元素。
 
 ```js
-assert(JSX.type === 'div');
+assert(JSX.type === "div");
 ```
 
 `div` 應該包含一個 `h1` 標籤作爲第一個元素。
 
 ```js
-assert(JSX.props.children[0].type === 'h1');
+assert(JSX.props.children[0].type === "h1");
 ```
 
 `div` 應該包含一個 `p` 標籤作爲第二個元素。
 
 ```js
-assert(JSX.props.children[1].type === 'p');
+assert(JSX.props.children[1].type === "p");
 ```
 
 當前的 `h1` 和 `p` 元素不能被修改。
 
 ```js
 assert(
-  JSX.props.children[0].props.children === 'This is a block of JSX' &&
+  JSX.props.children[0].props.children === "This is a block of JSX" &&
     JSX.props.children[1].props.children === "Here's a subtitle"
 );
 ```
@@ -56,7 +56,7 @@ assert(/<div>[\s\S]*{\s*\/\*[\s\S]*\*\/\s*}[\s\S]*<\/div>/.test(code));
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(JSX, document.getElementById('root'))
+ReactDOM.render(JSX, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -74,9 +74,10 @@ const JSX = (
 
 ```jsx
 const JSX = (
-<div>
-  <h1>This is a block of JSX</h1>
-  { /* this is a JSX comment */ }
-  <p>Here's a subtitle</p>
-</div>);
+  <div>
+    <h1>This is a block of JSX</h1>
+    {/* this is a JSX comment */}
+    <p>Here's a subtitle</p>
+  </div>
+);
 ```

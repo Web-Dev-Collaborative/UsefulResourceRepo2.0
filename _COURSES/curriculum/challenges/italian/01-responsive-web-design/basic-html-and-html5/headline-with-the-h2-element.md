@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf0887a
 title: Creare un titolo con l'elemento h2
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cE8Gqf3'
+videoUrl: "https://scrimba.com/p/pVMPUv/cE8Gqf3"
 forumTopicId: 18196
 dashedName: headline-with-the-h2-element
 ---
@@ -24,7 +24,7 @@ Aggiungi un tag `h2` che dice "CatPhotoApp" per creare un secondo elemento HTML 
 Dovresti creare un elemento `h2`.
 
 ```js
-assert($('h2').length > 0);
+assert($("h2").length > 0);
 ```
 
 Il tuo elemento `h2` dovrebbe avere un tag di chiusura.
@@ -39,13 +39,13 @@ assert(
 Il tuo elemento `h2` dovrebbe contenere il testo `CatPhotoApp`.
 
 ```js
-assert.isTrue(/cat(\s)?photo(\s)?app/gi.test($('h2').text()));
+assert.isTrue(/cat(\s)?photo(\s)?app/gi.test($("h2").text()));
 ```
 
 Il tuo elemento `h1` dovrebbe contenere il testo `Hello World`.
 
 ```js
-assert.isTrue(/hello(\s)+world/gi.test($('h1').text()));
+assert.isTrue(/hello(\s)+world/gi.test($("h1").text()));
 ```
 
 Il tuo elemento `h1` dovrebbe venire prima del tuo elemento `h2`.

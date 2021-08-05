@@ -2,7 +2,7 @@
 id: 56bbb991ad1ed5201cd392ca
 title: Accedere ai dati degli Array con gli indici
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cBZQbTz'
+videoUrl: "https://scrimba.com/c/cBZQbTz"
 forumTopicId: 16158
 dashedName: access-array-data-with-indexes
 ---
@@ -18,7 +18,7 @@ Gli indici degli array sono scritti nella stessa notazione tra parentesi usata d
 **Esempio**
 
 ```js
-var array = [50,60,70];
+var array = [50, 60, 70];
 array[0];
 var data = array[1];
 ```
@@ -39,8 +39,8 @@ La variabile `myData` dovrebbe essere uguale al primo valore di `myArray`.
 assert(
   (function () {
     if (
-      typeof myArray !== 'undefined' &&
-      typeof myData !== 'undefined' &&
+      typeof myArray !== "undefined" &&
+      typeof myData !== "undefined" &&
       myArray[0] === myData
     ) {
       return true;
@@ -70,20 +70,22 @@ assert(
 ## --after-user-code--
 
 ```js
-if(typeof myArray !== "undefined" && typeof myData !== "undefined"){(function(y,z){return 'myArray = ' + JSON.stringify(y) + ', myData = ' + JSON.stringify(z);})(myArray, myData);}
+if (typeof myArray !== "undefined" && typeof myData !== "undefined") {
+  (function (y, z) {
+    return "myArray = " + JSON.stringify(y) + ", myData = " + JSON.stringify(z);
+  })(myArray, myData);
+}
 ```
 
 ## --seed-contents--
 
 ```js
-var myArray = [50,60,70];
-
-
+var myArray = [50, 60, 70];
 ```
 
 # --solutions--
 
 ```js
-var myArray = [50,60,70];
+var myArray = [50, 60, 70];
 var myData = myArray[0];
 ```

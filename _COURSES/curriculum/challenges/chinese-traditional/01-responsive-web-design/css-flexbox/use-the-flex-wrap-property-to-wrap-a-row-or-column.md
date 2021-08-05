@@ -2,7 +2,7 @@
 id: 587d78ad367417b2b2512afa
 title: 使用 flex-wrap 屬性包裹一行或一列
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cQv9ZtG'
+videoUrl: "https://scrimba.com/p/pVaDAv/cQv9ZtG"
 forumTopicId: 301114
 dashedName: use-the-flex-wrap-property-to-wrap-a-row-or-column
 ---
@@ -26,7 +26,7 @@ CSS flexbox 有一個把 flex 子元素拆分爲多行（或多列）的特性�
 `#box-container` 元素應具有 `flex-wrap` 屬性，其屬性值應爲 `wrap`。
 
 ```js
-assert($('#box-container').css('flex-wrap') == 'wrap');
+assert($("#box-container").css("flex-wrap") == "wrap");
 ```
 
 # --seed--
@@ -39,7 +39,6 @@ assert($('#box-container').css('flex-wrap') == 'wrap');
     background: gray;
     display: flex;
     height: 100%;
-
   }
   #box-1 {
     background-color: dodgerblue;

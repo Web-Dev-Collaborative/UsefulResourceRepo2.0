@@ -2,7 +2,7 @@
 id: 587d774c367417b2b2512a9d
 title: Aprende cuando el texto alternativo debe dejarse en blanco
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cM9P4t2'
+videoUrl: "https://scrimba.com/c/cM9P4t2"
 forumTopicId: 301019
 dashedName: know-when-alt-text-should-be-left-blank
 ---
@@ -14,7 +14,7 @@ En el último desafío, aprendiste que es obligatorio incluir un atributo `alt` 
 Cuando una imagen ya se explica con el contenido de texto o no agrega significado a una página, `img` todavía necesita un atributo `alt`, pero se puede establecer en una cadena vacía. Aquí hay un ejemplo:
 
 ```html
-<img src="visualDecoration.jpeg" alt="">
+<img src="visualDecoration.jpeg" alt="" />
 ```
 
 Las imágenes de fondo generalmente también caen bajo la etiqueta "decorativa". Sin embargo, normalmente se aplican con reglas CSS y, por lo tanto, no forman parte del proceso de lectores de pantalla del lenguaje de marcado.
@@ -30,13 +30,13 @@ Camper Cat ha programado una página esqueleto para la parte del blog de su siti
 Tu etiqueta `img` debe tener un atributo `alt`.
 
 ```js
-assert(!($('img').attr('alt') == undefined));
+assert(!($("img").attr("alt") == undefined));
 ```
 
 El atributo `alt` debe establecerse en una cadena vacía.
 
 ```js
-assert($('img').attr('alt') == '');
+assert($("img").attr("alt") == "");
 ```
 
 # --seed--
@@ -50,7 +50,7 @@ assert($('img').attr('alt') == '');
   <p>To Come...</p>
 </article>
 
-<img src="samuraiSwords.jpeg">
+<img src="samuraiSwords.jpeg" />
 
 <article>
   <h2>Is Chuck Norris a Cat Person?</h2>
@@ -67,7 +67,7 @@ assert($('img').attr('alt') == '');
   <p>To Come...</p>
 </article>
 
-<img src="samuraiSwords.jpeg" alt="">
+<img src="samuraiSwords.jpeg" alt="" />
 
 <article>
   <h2>Is Chuck Norris a Cat Person?</h2>

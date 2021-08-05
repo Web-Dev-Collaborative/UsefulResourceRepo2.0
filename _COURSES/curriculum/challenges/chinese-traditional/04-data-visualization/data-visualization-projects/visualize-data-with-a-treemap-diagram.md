@@ -38,9 +38,9 @@ dashedName: visualize-data-with-a-treemap-diagram
 
 對於此項目，您可以使用以下任何數據集：
 
--   **Kickstarter Pledges：** `https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/kickstarter-funding-data.json`
--   **Movie Sales：** `https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/movie-data.json`
--   **Video Game Sales：** `https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/video-game-sales-data.json`
+- **Kickstarter Pledges：** `https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/kickstarter-funding-data.json`
+- **Movie Sales：** `https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/movie-data.json`
+- **Video Game Sales：** `https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/video-game-sales-data.json`
 
 你可以<a href='https://codepen.io/pen?template=MJjpwO' target='_blank' rel='nofollow'>使用 CodePen 模板</a>來創建你的項目，點擊 `Save` 即可創建你的項目。 或者你可以在任何你喜歡的環境中使用以下 CDN 鏈接來運行測試：`https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js`.
 

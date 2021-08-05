@@ -14,13 +14,13 @@ I don't like how spaced out the buildings are. Squeeze them together by adding t
 test-text
 
 ```js
-const bb = $('.background-buildings').children('div');
+const bb = $(".background-buildings").children("div");
 assert(
   bb.length === 9 &&
-    bb[2] === $('div.bb1')[0] &&
-    bb[3] === $('div.bb2')[0] &&
-    bb[4] === $('div.bb3')[0] &&
-    bb[6] === $('div.bb4')[0]
+    bb[2] === $("div.bb1")[0] &&
+    bb[3] === $("div.bb2")[0] &&
+    bb[4] === $("div.bb3")[0] &&
+    bb[6] === $("div.bb4")[0]
 );
 ```
 
@@ -30,7 +30,7 @@ assert(
 
 ```html
 <!DOCTYPE html>
-<html>    
+<html>
   <head>
     <title>freeCodeCamp Skyline Project</title>
     <style>
@@ -67,13 +67,13 @@ assert(
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1b {
         width: 80%;
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1c {
         width: 90%;
         height: 10%;
@@ -123,7 +123,7 @@ assert(
 
 ```html
 <!DOCTYPE html>
-<html>    
+<html>
   <head>
     <title>freeCodeCamp Skyline Project</title>
     <style>
@@ -160,13 +160,13 @@ assert(
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1b {
         width: 80%;
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1c {
         width: 90%;
         height: 10%;

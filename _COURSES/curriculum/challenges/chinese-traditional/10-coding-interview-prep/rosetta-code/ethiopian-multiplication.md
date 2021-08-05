@@ -88,7 +88,7 @@ Use these functions to create a function that does Ethiopian multiplication.
 `eth_mult` should be a function.
 
 ```js
-assert(typeof eth_mult === 'function');
+assert(typeof eth_mult === "function");
 ```
 
 `eth_mult(17,34)` should return `578`.
@@ -126,20 +126,20 @@ assert.equal(eth_mult(63, 74), 4662);
 ## --seed-contents--
 
 ```js
-function eth_mult(a, b) {
-
-}
+function eth_mult(a, b) {}
 ```
 
 # --solutions--
 
 ```js
 function eth_mult(a, b) {
-  let sum = 0; a = [a]; b = [b];
+  let sum = 0;
+  a = [a];
+  b = [b];
 
-  let half = a => a / 2,
-    double = a => a * 2,
-    is_even = a => a % 2 == 0;
+  let half = (a) => a / 2,
+    double = (a) => a * 2,
+    is_even = (a) => a % 2 == 0;
 
   while (a[0] !== 1) {
     a.unshift(Math.floor(half(a[0])));

@@ -21,7 +21,7 @@ For example, the array `[['A', 'C'], ['B', 'A']]` indicates that the 1st move wa
 `towerOfHanoi` should be a function.
 
 ```js
-assert(typeof towerOfHanoi === 'function');
+assert(typeof towerOfHanoi === "function");
 ```
 
 `towerOfHanoi(3, ...)` should return 7 moves.
@@ -33,19 +33,19 @@ assert(res3.length === 7);
 `towerOfHanoi(3, 'A', 'B', 'C')` should return `[['A','B'], ['A','C'], ['B','C'], ['A','B'], ['C','A'], ['C','B'], ['A','B']]`.
 
 ```js
-assert.deepEqual(towerOfHanoi(3, 'A', 'B', 'C'), res3Moves);
+assert.deepEqual(towerOfHanoi(3, "A", "B", "C"), res3Moves);
 ```
 
 `towerOfHanoi(5, "X", "Y", "Z")` 10th move should be Y -> X.
 
 ```js
-assert.deepEqual(res5[9], ['Y', 'X']);
+assert.deepEqual(res5[9], ["Y", "X"]);
 ```
 
 `towerOfHanoi(7, 'A', 'B', 'C')` first ten moves should be `[['A','B'], ['A','C'], ['B','C'], ['A','B'], ['C','A'], ['C','B'], ['A','B'], ['A','C'], ['B','C'], ['B','A']]`
 
 ```js
-assert.deepEqual(towerOfHanoi(7, 'A', 'B', 'C').slice(0, 10), res7First10Moves);
+assert.deepEqual(towerOfHanoi(7, "A", "B", "C").slice(0, 10), res7First10Moves);
 ```
 
 # --seed--
@@ -53,17 +53,35 @@ assert.deepEqual(towerOfHanoi(7, 'A', 'B', 'C').slice(0, 10), res7First10Moves);
 ## --after-user-code--
 
 ```js
-const res3 = towerOfHanoi(3, 'A', 'B', 'C');
-const res3Moves = [['A', 'B'], ['A', 'C'], ['B', 'C'], ['A', 'B'], ['C', 'A'], ['C', 'B'], ['A', 'B']];
-const res5 = towerOfHanoi(5, 'X', 'Y', 'Z');
-const res7First10Moves = [['A', 'B'], ['A', 'C'], ['B', 'C'], ['A', 'B'], ['C', 'A'], ['C', 'B'], ['A', 'B'], ['A', 'C'], ['B', 'C'], ['B', 'A']];
+const res3 = towerOfHanoi(3, "A", "B", "C");
+const res3Moves = [
+  ["A", "B"],
+  ["A", "C"],
+  ["B", "C"],
+  ["A", "B"],
+  ["C", "A"],
+  ["C", "B"],
+  ["A", "B"],
+];
+const res5 = towerOfHanoi(5, "X", "Y", "Z");
+const res7First10Moves = [
+  ["A", "B"],
+  ["A", "C"],
+  ["B", "C"],
+  ["A", "B"],
+  ["C", "A"],
+  ["C", "B"],
+  ["A", "B"],
+  ["A", "C"],
+  ["B", "C"],
+  ["B", "A"],
+];
 ```
 
 ## --seed-contents--
 
 ```js
 function towerOfHanoi(n, a, b, c) {
-
   return [[]];
 }
 ```

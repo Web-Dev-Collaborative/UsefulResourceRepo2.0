@@ -1,6 +1,6 @@
 ---
 id: 5900f3d21000cf542c50fee5
-title: 'Problem 102: Triangle containment'
+title: "Problem 102: Triangle containment"
 challengeType: 5
 forumTopicId: 301726
 dashedName: problem-102-triangle-containment
@@ -36,7 +36,6 @@ assert.strictEqual(euler102(), 228);
 
 ```js
 function euler102() {
-
   return true;
 }
 

@@ -16,22 +16,22 @@
  * @fileoverview UI component for the password sign-in page.
  */
 
-goog.provide('firebaseui.auth.ui.page.PasswordSignIn');
+goog.provide("firebaseui.auth.ui.page.PasswordSignIn");
 
-goog.require('firebaseui.auth.soy2.page');
-goog.require('firebaseui.auth.ui.element');
-goog.require('firebaseui.auth.ui.element.email');
-goog.require('firebaseui.auth.ui.element.form');
-goog.require('firebaseui.auth.ui.element.password');
-goog.require('firebaseui.auth.ui.page.Base');
-goog.requireType('goog.dom.DomHelper');
-
+goog.require("firebaseui.auth.soy2.page");
+goog.require("firebaseui.auth.ui.element");
+goog.require("firebaseui.auth.ui.element.email");
+goog.require("firebaseui.auth.ui.element.form");
+goog.require("firebaseui.auth.ui.element.password");
+goog.require("firebaseui.auth.ui.page.Base");
+goog.requireType("goog.dom.DomHelper");
 
 /**
  * Password sign-in UI component.
  */
-firebaseui.auth.ui.page.PasswordSignIn =
-    class extends firebaseui.auth.ui.page.Base {
+firebaseui.auth.ui.page.PasswordSignIn = class extends (
+  firebaseui.auth.ui.page.Base
+) {
   /**
    * @param {function()} onSubmitClick Callback to invoke when the submit button
    *     is clicked.
@@ -47,17 +47,27 @@ firebaseui.auth.ui.page.PasswordSignIn =
    * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
    */
   constructor(
-      onSubmitClick, onForgotClick, opt_email, opt_tosCallback,
-      opt_privacyPolicyCallback, opt_displayFullTosPpMessage, opt_domHelper) {
+    onSubmitClick,
+    onForgotClick,
+    opt_email,
+    opt_tosCallback,
+    opt_privacyPolicyCallback,
+    opt_displayFullTosPpMessage,
+    opt_domHelper
+  ) {
     super(
-        firebaseui.auth.soy2.page.passwordSignIn, {
-          email: opt_email,
-          displayFullTosPpMessage: !!opt_displayFullTosPpMessage
-        },
-        opt_domHelper, 'passwordSignIn', {
-          tosCallback: opt_tosCallback,
-          privacyPolicyCallback: opt_privacyPolicyCallback
-        });
+      firebaseui.auth.soy2.page.passwordSignIn,
+      {
+        email: opt_email,
+        displayFullTosPpMessage: !!opt_displayFullTosPpMessage,
+      },
+      opt_domHelper,
+      "passwordSignIn",
+      {
+        tosCallback: opt_tosCallback,
+        privacyPolicyCallback: opt_privacyPolicyCallback,
+      }
+    );
     this.onSubmitClick_ = onSubmitClick;
     this.onForgotClick_ = onForgotClick;
   }
@@ -87,38 +97,30 @@ firebaseui.auth.ui.page.PasswordSignIn =
   }
 };
 
-
 goog.mixin(
-    firebaseui.auth.ui.page.PasswordSignIn.prototype,
-    /** @lends {firebaseui.auth.ui.page.PasswordSignIn.prototype} */
-    {
-      // For email.
-      getEmailElement:
-          firebaseui.auth.ui.element.email.getEmailElement,
-      getEmailErrorElement:
-          firebaseui.auth.ui.element.email.getEmailErrorElement,
-      initEmailElement:
-          firebaseui.auth.ui.element.email.initEmailElement,
-      getEmail:
-          firebaseui.auth.ui.element.email.getEmail,
-      checkAndGetEmail:
-          firebaseui.auth.ui.element.email.checkAndGetEmail,
+  firebaseui.auth.ui.page.PasswordSignIn.prototype,
+  /** @lends {firebaseui.auth.ui.page.PasswordSignIn.prototype} */
+  {
+    // For email.
+    getEmailElement: firebaseui.auth.ui.element.email.getEmailElement,
+    getEmailErrorElement: firebaseui.auth.ui.element.email.getEmailErrorElement,
+    initEmailElement: firebaseui.auth.ui.element.email.initEmailElement,
+    getEmail: firebaseui.auth.ui.element.email.getEmail,
+    checkAndGetEmail: firebaseui.auth.ui.element.email.checkAndGetEmail,
 
-      // For password.
-      getPasswordElement:
-          firebaseui.auth.ui.element.password.getPasswordElement,
-      getPasswordErrorElement:
-          firebaseui.auth.ui.element.password.getPasswordErrorElement,
-      initPasswordElement:
-          firebaseui.auth.ui.element.password.initPasswordElement,
-      checkAndGetPassword:
-          firebaseui.auth.ui.element.password.checkAndGetPassword,
+    // For password.
+    getPasswordElement: firebaseui.auth.ui.element.password.getPasswordElement,
+    getPasswordErrorElement:
+      firebaseui.auth.ui.element.password.getPasswordErrorElement,
+    initPasswordElement:
+      firebaseui.auth.ui.element.password.initPasswordElement,
+    checkAndGetPassword:
+      firebaseui.auth.ui.element.password.checkAndGetPassword,
 
-      // For form.
-      getSubmitElement:
-          firebaseui.auth.ui.element.form.getSubmitElement,
-      getSecondaryLinkElement:
-          firebaseui.auth.ui.element.form.getSecondaryLinkElement,
-      initFormElement:
-          firebaseui.auth.ui.element.form.initFormElement
-    });
+    // For form.
+    getSubmitElement: firebaseui.auth.ui.element.form.getSubmitElement,
+    getSecondaryLinkElement:
+      firebaseui.auth.ui.element.form.getSecondaryLinkElement,
+    initFormElement: firebaseui.auth.ui.element.form.initFormElement,
+  }
+);

@@ -13,7 +13,12 @@ function createGoogleProvider() {
 
 function cordovaSignInRedirect() {
   // [START auth_cordova_sign_in_redirect]
-  const { getAuth, signInWithRedirect, getRedirectResult, GoogleAuthProvider } = require("firebase/auth");
+  const {
+    getAuth,
+    signInWithRedirect,
+    getRedirectResult,
+    GoogleAuthProvider,
+  } = require("firebase/auth");
 
   const auth = getAuth();
   signInWithRedirect(auth, new GoogleAuthProvider())
@@ -30,7 +35,8 @@ function cordovaSignInRedirect() {
       // The signed-in user info.
       const user = result.user;
       // ...
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -40,13 +46,17 @@ function cordovaSignInRedirect() {
 
 function cordovaRedirectResult() {
   // [START auth_cordova_redirect_result]
-  const { getAuth, getRedirectResult, GoogleAuthProvider } = require("firebase/auth");
+  const {
+    getAuth,
+    getRedirectResult,
+    GoogleAuthProvider,
+  } = require("firebase/auth");
 
   const auth = getAuth();
   getRedirectResult(auth)
     .then((result) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
-      if (credential) {        
+      if (credential) {
         // This gives you a Google Access Token.
         // You can use it to access the Google API.
         const token = credential.accessToken;

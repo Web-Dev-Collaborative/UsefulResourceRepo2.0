@@ -15,13 +15,13 @@ Create a function, to compute the **[dot product](https://en.wikipedia.org/wiki/
 `dotProduct` should be a function.
 
 ```js
-assert(typeof dotProduct == 'function');
+assert(typeof dotProduct == "function");
 ```
 
 `dotProduct([1, 3, -5], [4, -2, -1])` should return a number.
 
 ```js
-assert(typeof dotProduct([1, 3, -5], [4, -2, -1]) == 'number');
+assert(typeof dotProduct([1, 3, -5], [4, -2, -1]) == "number");
 ```
 
 `dotProduct([1, 3, -5], [4, -2, -1])` should return `3`.
@@ -59,9 +59,7 @@ assert.equal(dotProduct([17, 27, 34, 43, 15], [62, 73, 48, 95, 110]), 10392);
 ## --seed-contents--
 
 ```js
-function dotProduct(ary1, ary2) {
-
-}
+function dotProduct(ary1, ary2) {}
 ```
 
 # --solutions--

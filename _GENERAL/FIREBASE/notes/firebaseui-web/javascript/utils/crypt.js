@@ -16,12 +16,11 @@
  * @fileoverview Defines crypto related utilities.
  */
 
-goog.provide('firebaseui.auth.crypt');
+goog.provide("firebaseui.auth.crypt");
 
-goog.require('goog.array');
-goog.require('goog.crypt');
-goog.require('goog.crypt.Aes');
-
+goog.require("goog.array");
+goog.require("goog.crypt");
+goog.require("goog.crypt.Aes");
 
 /**
  * 256 bit AES encrypt data string using provided key. For data messages longer
@@ -30,12 +29,12 @@ goog.require('goog.crypt.Aes');
  * @param {string} data in plain string format.
  * @return {string} Encrypted data in hex encoding.
  */
-firebaseui.auth.crypt.aesEncrypt = function(key, data) {
+firebaseui.auth.crypt.aesEncrypt = function (key, data) {
   var aes = new goog.crypt.Aes(firebaseui.auth.crypt.getAesKeyArray_(key));
   var inputArr = goog.crypt.stringToByteArray(data);
   // Split into 16 byte chunks (block size per AES spec).
   var chunk = goog.array.splice(inputArr, 0, 16);
-  var stream  = '';
+  var stream = "";
   var paddingLength = 0;
   while (chunk.length) {
     // Pad with zeros.
@@ -49,28 +48,26 @@ firebaseui.auth.crypt.aesEncrypt = function(key, data) {
   return stream;
 };
 
-
 /**
  * 256 bit AES decrypt data string using provided key.
  * @param {string} key The AES encryption key. This is in plain string form.
  * @param {string} data Encrypted data in hex encoding.
  * @return {string} Decrypted plain text string.
  */
-firebaseui.auth.crypt.aesDecrypt = function(key, data) {
+firebaseui.auth.crypt.aesDecrypt = function (key, data) {
   var aes = new goog.crypt.Aes(firebaseui.auth.crypt.getAesKeyArray_(key));
   var inputArr = goog.crypt.hexToByteArray(data);
 
   // Split into 16 byte chunks (block size per AES spec).
   var chunk = goog.array.splice(inputArr, 0, 16);
-  var stream  = '';
+  var stream = "";
   while (chunk.length) {
     stream += goog.crypt.byteArrayToString(aes.decrypt(chunk));
     chunk = goog.array.splice(inputArr, 0, 16);
   }
   // Remove trailing padding.
-  return stream.replace(/(\x00)+$/, '');
+  return stream.replace(/(\x00)+$/, "");
 };
-
 
 /**
  * Generates the AES byte array key representation of the plain string key
@@ -79,7 +76,7 @@ firebaseui.auth.crypt.aesDecrypt = function(key, data) {
  * @return {!Array<number>} The 32 byte array key.
  * @private
  */
-firebaseui.auth.crypt.getAesKeyArray_ = function(key) {
+firebaseui.auth.crypt.getAesKeyArray_ = function (key) {
   // Trim key to 32 characters.
   var keyArray = goog.crypt.stringToByteArray(key.substring(0, 32));
   // Pad to 32 characters if needed.

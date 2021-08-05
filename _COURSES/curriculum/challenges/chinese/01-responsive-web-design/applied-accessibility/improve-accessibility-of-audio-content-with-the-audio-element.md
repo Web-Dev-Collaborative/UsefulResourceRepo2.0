@@ -2,7 +2,7 @@
 id: 587d7789367417b2b2512aa4
 title: 使用 audio 元素提高音频内容的可访问性
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cVJVkcZ'
+videoUrl: "https://scrimba.com/c/cVJVkcZ"
 forumTopicId: 301014
 dashedName: improve-accessibility-of-audio-content-with-the-audio-element
 ---
@@ -17,8 +17,8 @@ HTML5 的 `audio` 标签用于呈现音频内容或音频流，它也具有语�
 
 ```html
 <audio id="meowClip" controls>
-  <source src="audio/meow.mp3" type="audio/mpeg">
-  <source src="audio/meow.ogg" type="audio/ogg">
+  <source src="audio/meow.mp3" type="audio/mpeg" />
+  <source src="audio/meow.ogg" type="audio/ogg" />
 </audio>
 ```
 
@@ -35,7 +35,7 @@ HTML5 的 `audio` 标签用于呈现音频内容或音频流，它也具有语�
 应该包含一个 `audio` 标签。
 
 ```js
-assert($('audio').length === 1);
+assert($("audio").length === 1);
 ```
 
 确保 `audio` 元素有结束标签。
@@ -50,34 +50,34 @@ assert(
 `audio` 标签应存在 `controls` 属性。
 
 ```js
-assert($('audio').attr('controls'));
+assert($("audio").attr("controls"));
 ```
 
 代码中应存在 `source` 标签。
 
 ```js
-assert($('source').length === 1);
+assert($("source").length === 1);
 ```
 
 `source` 标签应位于 `audio` 标签中。
 
 ```js
-assert($('audio').children('source').length === 1);
+assert($("audio").children("source").length === 1);
 ```
 
 `source` 标签中 `src` 的属性值应该与教程中的链接一致。
 
 ```js
 assert(
-  $('source').attr('src') ===
-    'https://s3.amazonaws.com/freecodecamp/screen-reader.mp3'
+  $("source").attr("src") ===
+    "https://s3.amazonaws.com/freecodecamp/screen-reader.mp3"
 );
 ```
 
 `source` 标签中应具有 `type` 属性，其属性值应为 audio/mpeg。
 
 ```js
-assert($('source').attr('type') === 'audio/mpeg');
+assert($("source").attr("type") === "audio/mpeg");
 ```
 
 # --seed--
@@ -91,9 +91,6 @@ assert($('source').attr('type') === 'audio/mpeg');
   </header>
   <main>
     <p>A sound clip of Zersiax's screen reader in action.</p>
-
-
-
   </main>
 </body>
 ```
@@ -108,7 +105,10 @@ assert($('source').attr('type') === 'audio/mpeg');
   <main>
     <p>A sound clip of Zersiax's screen reader in action.</p>
     <audio controls>
-      <source src="https://s3.amazonaws.com/freecodecamp/screen-reader.mp3" type="audio/mpeg"/>
+      <source
+        src="https://s3.amazonaws.com/freecodecamp/screen-reader.mp3"
+        type="audio/mpeg"
+      />
     </audio>
   </main>
 </body>

@@ -9,7 +9,7 @@
               <div class="section">
                 <div class="title">
                   <h1>Newest Posts</h1>
-                  <hr>
+                  <hr />
                 </div>
                 <div v-if="posts && posts.length > 0">
                   <post-item
@@ -22,9 +22,7 @@
                     :id="post._id"
                   />
                 </div>
-                <div v-else>
-                  No Posts :(
-                </div>
+                <div v-else>No Posts :(</div>
               </div>
             </div>
           </div>
@@ -40,58 +38,50 @@
 </template>
 
 <script>
-import Navbar from '~/components/Navbar'
-import PostItem from '~/components/PostItem'
-import { fetchPostsAPI } from '~/store/post'
+import Navbar from "~/components/Navbar";
+import PostItem from "~/components/PostItem";
+import { fetchPostsAPI } from "~/store/post";
 export default {
   components: {
-    Navbar, PostItem
+    Navbar,
+    PostItem,
   },
   data() {
     return {
-      title: 'My Title From Page',
+      title: "My Title From Page",
       form: {
-        title: 'some title',
-        subtitle: 'some subtitle'
-      }
-    }
+        title: "some title",
+        subtitle: "some subtitle",
+      },
+    };
   },
-  fetch({store}) {
-    if (store.getters['post/hasEmptyItems']) {
-      return store.dispatch('post/fetchPosts')
+  fetch({ store }) {
+    if (store.getters["post/hasEmptyItems"]) {
+      return store.dispatch("post/fetchPosts");
     }
   },
   mounted() {
-    this.$store.dispatch('post/getArchivedPosts')
+    this.$store.dispatch("post/getArchivedPosts");
   },
   computed: {
     posts() {
-      return this.$store.state.post.items
+      return this.$store.state.post.items;
     },
     archivedPosts() {
-      debugger
-      return this.$store.state.post.archivedItems
-    }
+      debugger;
+      return this.$store.state.post.archivedItems;
+    },
   },
   methods: {
     isFormValid() {
-      console.log('isFormValid has been called')
+      console.log("isFormValid has been called");
       if (this.form.title) {
-        return true
+        return true;
       }
 
-      return false
-    }
-  }
-}
+      return false;
+    },
+  },
+};
 </script>
-<style scoped>
-</style>
-
-
-
-
-
-
-
-
+<style scoped></style>

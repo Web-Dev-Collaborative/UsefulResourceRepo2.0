@@ -34,13 +34,13 @@ console.log(s);
 不要替換 `const` 關鍵字。
 
 ```js
-(getUserInput) => assert(getUserInput('index').match(/const/g));
+(getUserInput) => assert(getUserInput("index").match(/const/g));
 ```
 
 `s` 應該爲常量（使用 `const`）。
 
 ```js
-(getUserInput) => assert(getUserInput('index').match(/const\s+s/g));
+(getUserInput) => assert(getUserInput("index").match(/const\s+s/g));
 ```
 
 不要改變原數組的聲明。
@@ -48,7 +48,7 @@ console.log(s);
 ```js
 (getUserInput) =>
   assert(
-    getUserInput('index').match(
+    getUserInput("index").match(
       /const\s+s\s*=\s*\[\s*5\s*,\s*7\s*,\s*2\s*\]\s*;?/g
     )
   );
@@ -68,9 +68,7 @@ assert.deepEqual(s, [2, 5, 7]);
 const s = [5, 7, 2];
 function editInPlace() {
   // Only change code below this line
-
   // Using s = [2, 5, 7] would be invalid
-
   // Only change code above this line
 }
 editInPlace();

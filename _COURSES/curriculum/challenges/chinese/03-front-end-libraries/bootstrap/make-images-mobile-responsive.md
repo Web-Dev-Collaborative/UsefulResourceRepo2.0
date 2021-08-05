@@ -19,25 +19,25 @@ dashedName: make-images-mobile-responsive
 该页面共有两张图片。
 
 ```js
-assert($('img').length === 2);
+assert($("img").length === 2);
 ```
 
 新的图片应该在旧的图片下面并且有值包含 `img-responsive` 的 class 属性。
 
 ```js
-assert($('img:eq(1)').hasClass('img-responsive'));
+assert($("img:eq(1)").hasClass("img-responsive"));
 ```
 
 新图片的 class 不应该包含 `smaller-image`。
 
 ```js
-assert(!$('img:eq(1)').hasClass('smaller-image'));
+assert(!$("img:eq(1)").hasClass("smaller-image"));
 ```
 
 新图片的 `src` 属性值应该为 `https://bit.ly/fcc-running-cats`。
 
 ```js
-assert($('img:eq(1)').attr('src') === 'https://bit.ly/fcc-running-cats');
+assert($("img:eq(1)").attr("src") === "https://bit.ly/fcc-running-cats");
 ```
 
 确保新的 `img` 元素有一个闭合的尖括号。
@@ -55,7 +55,11 @@ assert(
 ## --seed-contents--
 
 ```html
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link
+  href="https://fonts.googleapis.com/css?family=Lobster"
+  rel="stylesheet"
+  type="text/css"
+/>
 <style>
   .red-text {
     color: red;
@@ -87,7 +91,12 @@ assert(
 
   <p>Click here for <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img class="smaller-image thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      class="smaller-image thick-green-border"
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -102,12 +111,12 @@ assert(
     <li>other cats</li>
   </ol>
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor"> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label>
-    <label><input type="checkbox" name="personality"> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Crazy</label>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label>
+    <label><input type="checkbox" name="personality" /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Crazy</label>
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </div>
@@ -116,7 +125,11 @@ assert(
 # --solutions--
 
 ```html
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link
+  href="https://fonts.googleapis.com/css?family=Lobster"
+  rel="stylesheet"
+  type="text/css"
+/>
 <style>
   .red-text {
     color: red;
@@ -148,8 +161,13 @@ assert(
 
   <p>Click here for <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img class="smaller-image thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
-  <img src="https://bit.ly/fcc-running-cats" class="img-responsive">
+  <a href="#"
+    ><img
+      class="smaller-image thick-green-border"
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
+  <img src="https://bit.ly/fcc-running-cats" class="img-responsive" />
 
   <p>Things cats love:</p>
   <ul>
@@ -164,12 +182,12 @@ assert(
     <li>other cats</li>
   </ol>
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor"> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label>
-    <label><input type="checkbox" name="personality"> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Crazy</label>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label>
+    <label><input type="checkbox" name="personality" /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Crazy</label>
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </div>

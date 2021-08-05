@@ -1,6 +1,6 @@
 ---
 id: 587d7fb8367417b2b2512c0e
-title: '通过执行查询、编辑、保存来执行经典更新流程'
+title: "通过执行查询、编辑、保存来执行经典更新流程"
 challengeType: 2
 forumTopicId: 301541
 dashedName: perform-classic-updates-by-running-find-edit-then-save
@@ -22,20 +22,20 @@ dashedName: perform-classic-updates-by-running-find-edit-then-save
 
 ```js
 (getUserInput) =>
-  $.post(getUserInput('url') + '/_api/find-edit-save', {
-    name: 'Poldo',
+  $.post(getUserInput("url") + "/_api/find-edit-save", {
+    name: "Poldo",
     age: 40,
-    favoriteFoods: ['spaghetti']
+    favoriteFoods: ["spaghetti"],
   }).then(
     (data) => {
-      assert.equal(data.name, 'Poldo', 'item.name is not what is expected');
-      assert.equal(data.age, 40, 'item.age is not what expected');
+      assert.equal(data.name, "Poldo", "item.name is not what is expected");
+      assert.equal(data.age, 40, "item.age is not what expected");
       assert.deepEqual(
         data.favoriteFoods,
-        ['spaghetti', 'hamburger'],
-        'item.favoriteFoods is not what expected'
+        ["spaghetti", "hamburger"],
+        "item.favoriteFoods is not what expected"
       );
-      assert.equal(data.__v, 1, 'The item should be previously edited');
+      assert.equal(data.__v, 1, "The item should be previously edited");
     },
     (xhr) => {
       throw new Error(xhr.responseText);

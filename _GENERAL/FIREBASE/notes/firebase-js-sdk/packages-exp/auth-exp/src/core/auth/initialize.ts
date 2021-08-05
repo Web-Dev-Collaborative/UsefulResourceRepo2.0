@@ -67,9 +67,8 @@ export function _initializeAuthInstance(
   deps?: Dependencies
 ): void {
   const persistence = deps?.persistence || [];
-  const hierarchy = (Array.isArray(persistence)
-    ? persistence
-    : [persistence]
+  const hierarchy = (
+    Array.isArray(persistence) ? persistence : [persistence]
   ).map<PersistenceInternal>(_getInstance);
   if (deps?.errorMap) {
     auth._updateErrorMap(deps.errorMap);

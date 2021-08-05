@@ -25,13 +25,13 @@ JSX 的一個關鍵區別是你不能再使用 `class` 這個單詞來做爲 HTM
 常量`JSX`應該返回一個`div`元素。
 
 ```js
-assert.strictEqual(JSX.type, 'div');
+assert.strictEqual(JSX.type, "div");
 ```
 
 `div` 應該有一個 `myDiv` class。
 
 ```js
-assert.strictEqual(JSX.props.className, 'myDiv');
+assert.strictEqual(JSX.props.className, "myDiv");
 ```
 
 # --seed--
@@ -39,7 +39,7 @@ assert.strictEqual(JSX.props.className, 'myDiv');
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(JSX, document.getElementById('root'))
+ReactDOM.render(JSX, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -56,7 +56,8 @@ const JSX = (
 
 ```jsx
 const JSX = (
-<div className = 'myDiv'>
-  <h1>Add a class to this div</h1>
-</div>);
+  <div className="myDiv">
+    <h1>Add a class to this div</h1>
+  </div>
+);
 ```

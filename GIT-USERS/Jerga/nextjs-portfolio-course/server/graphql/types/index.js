@@ -1,4 +1,3 @@
-
 const portfolioFields = `
   title: String,
   company: String,
@@ -8,7 +7,7 @@ const portfolioFields = `
   description: String,
   startDate: String,
   endDate: String
-`
+`;
 
 exports.portfolioTypes = `
   type Portfolio {
@@ -19,7 +18,7 @@ exports.portfolioTypes = `
   input PortfolioInput {
     ${portfolioFields}
   }
-`
+`;
 exports.userTypes = `
   type User {
     _id: ID,
@@ -43,7 +42,7 @@ exports.userTypes = `
     email: String!
     password: String!
   }
-`
+`;
 
 exports.forumTypes = `
   type ForumCategory {
@@ -100,4 +99,4 @@ exports.forumTypes = `
     portfolios: [Portfolio]
     topics: [Topic]
   }
-`
+`;

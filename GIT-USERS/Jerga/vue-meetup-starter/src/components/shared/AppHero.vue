@@ -3,12 +3,8 @@
     <div class="hero-bg">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">
-            Welcome to VueMeetuper
-          </h1>
-          <h2 class="subtitle">
-            Plan your meetups simple and anywhere
-          </h2>
+          <h1 class="title">Welcome to VueMeetuper</h1>
+          <h2 class="subtitle">Plan your meetups simple and anywhere</h2>
         </div>
       </div>
     </div>
@@ -16,8 +12,7 @@
 </template>
 
 <script>
-  export default {}
+export default {};
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

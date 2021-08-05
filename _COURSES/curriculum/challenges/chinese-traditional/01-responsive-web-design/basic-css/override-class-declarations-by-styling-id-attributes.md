@@ -2,7 +2,7 @@
 id: bad87fee1348bd8aedf06756
 title: ID 選擇器優先級高於 Class 選擇器
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cRkpDhB'
+videoUrl: "https://scrimba.com/c/cRkpDhB"
 forumTopicId: 18251
 dashedName: override-class-declarations-by-styling-id-attributes
 ---
@@ -20,7 +20,7 @@ dashedName: override-class-declarations-by-styling-id-attributes
 給 `h1` 元素添加 `id` 屬性，屬性值爲 `orange-text`。 設置方式如下：
 
 ```html
-<h1 id="orange-text">
+<h1 id="orange-text"></h1>
 ```
 
 `h1` 元素需繼續保留 `blue-text` 和 `pink-text` 這兩個 class。
@@ -40,25 +40,25 @@ dashedName: override-class-declarations-by-styling-id-attributes
 `h1` 元素的應有一個 class 爲 `pink-text`。
 
 ```js
-assert($('h1').hasClass('pink-text'));
+assert($("h1").hasClass("pink-text"));
 ```
 
 `h1` 元素應包含 `blue-text` class。
 
 ```js
-assert($('h1').hasClass('blue-text'));
+assert($("h1").hasClass("blue-text"));
 ```
 
 `h1` 元素的 id 應爲 `orange-text`。
 
 ```js
-assert($('h1').attr('id') === 'orange-text');
+assert($("h1").attr("id") === "orange-text");
 ```
 
 應只有一個 `h1` 元素。
 
 ```js
-assert($('h1').length === 1);
+assert($("h1").length === 1);
 ```
 
 應存在名爲 `orange-text` 的 id 選擇器。
@@ -76,7 +76,7 @@ assert(!code.match(/<h1.*style.*>/gi));
 `h1` 元素的字體顏色應爲橘色。
 
 ```js
-assert($('h1').css('color') === 'rgb(255, 165, 0)');
+assert($("h1").css("color") === "rgb(255, 165, 0)");
 ```
 
 # --seed--
@@ -117,7 +117,7 @@ assert($('h1').css('color') === 'rgb(255, 165, 0)');
   }
   #orange-text {
     color: orange;
-  }  
+  }
 </style>
-<h1 id="orange-text"  class="pink-text blue-text">Hello World!</h1>
+<h1 id="orange-text" class="pink-text blue-text">Hello World!</h1>
 ```

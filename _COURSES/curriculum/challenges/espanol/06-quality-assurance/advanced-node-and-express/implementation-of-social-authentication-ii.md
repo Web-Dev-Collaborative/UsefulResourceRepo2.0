@@ -10,7 +10,7 @@ dashedName: implementation-of-social-authentication-ii
 
 The last part of setting up your GitHub authentication is to create the strategy itself. For this, you will need to add the dependency of 'passport-github' to your project and require it in your `auth.js` as `GithubStrategy` like this: `const GitHubStrategy = require('passport-github').Strategy;`. Do not forget to require and configure `dotenv` to use your environment variables.
 
-To set up the GitHub strategy, you have to tell Passport to use an instantiated `GitHubStrategy`, which accepts 2 arguments: an object (containing `clientID`, `clientSecret`, and `callbackURL`) and a function to be called when a user is successfully authenticated, which will determine if the user is new and what fields to save initially in the user's database object. This is common across many strategies, but some may require more information as outlined in that specific strategy's GitHub README. For example, Google requires a *scope* as well which determines what kind of information your request is asking to be returned and asks the user to approve such access. The current strategy we are implementing has its usage outlined [here](https://github.com/jaredhanson/passport-github/), but we're going through it all right here on freeCodeCamp!
+To set up the GitHub strategy, you have to tell Passport to use an instantiated `GitHubStrategy`, which accepts 2 arguments: an object (containing `clientID`, `clientSecret`, and `callbackURL`) and a function to be called when a user is successfully authenticated, which will determine if the user is new and what fields to save initially in the user's database object. This is common across many strategies, but some may require more information as outlined in that specific strategy's GitHub README. For example, Google requires a _scope_ as well which determines what kind of information your request is asking to be returned and asks the user to approve such access. The current strategy we are implementing has its usage outlined [here](https://github.com/jaredhanson/passport-github/), but we're going through it all right here on freeCodeCamp!
 
 Here's how your new strategy should look at this point:
 
@@ -37,12 +37,12 @@ passport-github dependency should be added.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.property(
         packJson.dependencies,
-        'passport-github',
+        "passport-github",
         'Your project should list "passport-github" as a dependency'
       );
     },
@@ -56,12 +56,12 @@ passport-github should be required.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/auth.js').then(
+  $.get(getUserInput("url") + "/_api/auth.js").then(
     (data) => {
       assert.match(
         data,
         /require.*("|')passport-github("|')/gi,
-        'You should have required passport-github'
+        "You should have required passport-github"
       );
     },
     (xhr) => {
@@ -74,27 +74,27 @@ GitHub strategy should be setup correctly thus far.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/auth.js').then(
+  $.get(getUserInput("url") + "/_api/auth.js").then(
     (data) => {
       assert.match(
         data,
         /passport\.use.*new GitHubStrategy/gi,
-        'Passport should use a new GitHubStrategy'
+        "Passport should use a new GitHubStrategy"
       );
       assert.match(
         data,
         /callbackURL:\s*("|').*("|')/gi,
-        'You should have a callbackURL'
+        "You should have a callbackURL"
       );
       assert.match(
         data,
         /process.env.GITHUB_CLIENT_SECRET/g,
-        'You should use process.env.GITHUB_CLIENT_SECRET'
+        "You should use process.env.GITHUB_CLIENT_SECRET"
       );
       assert.match(
         data,
         /process.env.GITHUB_CLIENT_ID/g,
-        'You should use process.env.GITHUB_CLIENT_ID'
+        "You should use process.env.GITHUB_CLIENT_ID"
       );
     },
     (xhr) => {

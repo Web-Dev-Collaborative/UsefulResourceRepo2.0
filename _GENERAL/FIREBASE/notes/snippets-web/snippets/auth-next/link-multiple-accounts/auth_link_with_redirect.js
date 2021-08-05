@@ -8,7 +8,5 @@ import { getAuth, linkWithRedirect, GoogleAuthProvider } from "firebase/auth";
 const provider = new GoogleAuthProvider();
 
 const auth = getAuth();
-linkWithRedirect(auth.currentUser, provider)
-  .then(/* ... */)
-  .catch(/* ... */);
+linkWithRedirect(auth.currentUser, provider).then(/* ... */).catch(/* ... */);
 // [END auth_link_with_redirect_modular]

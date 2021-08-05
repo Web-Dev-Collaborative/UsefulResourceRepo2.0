@@ -2,7 +2,7 @@
 id: cf1391c1c11feddfaeb4bdef
 title: 創建一個小數
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/ca8GEuW'
+videoUrl: "https://scrimba.com/c/ca8GEuW"
 forumTopicId: 16826
 dashedName: create-decimal-numbers-with-javascript
 ---
@@ -22,7 +22,7 @@ dashedName: create-decimal-numbers-with-javascript
 `myDecimal` 應該是一個數字。
 
 ```js
-assert(typeof myDecimal === 'number');
+assert(typeof myDecimal === "number");
 ```
 
 `myDecimal` 應該包含小數點。
@@ -36,7 +36,11 @@ assert(myDecimal % 1 != 0);
 ## --after-user-code--
 
 ```js
-(function(){if(typeof myDecimal !== "undefined"){return myDecimal;}})();
+(function () {
+  if (typeof myDecimal !== "undefined") {
+    return myDecimal;
+  }
+})();
 ```
 
 ## --seed-contents--

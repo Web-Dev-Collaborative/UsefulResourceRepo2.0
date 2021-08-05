@@ -16,7 +16,7 @@ Take all the elements currently located within the `main` element and nest them 
 Your `section` element should have an opening tag. Opening tags have the following syntax: `<elementName>`.
 
 ```js
-assert(document.querySelector('section'));
+assert(document.querySelector("section"));
 ```
 
 Your `section` element should have a closing tag. Closing tags have a `/` just after the `<` character.
@@ -28,15 +28,15 @@ assert(code.match(/<\/section\>/));
 The entire `section` element should be between the opening and closing tags of the `main` element.
 
 ```js
-assert(document.querySelector('section').parentNode.nodeName === 'MAIN');
+assert(document.querySelector("section").parentNode.nodeName === "MAIN");
 ```
 
 The existing `h2`, comment, `p` element, and anchor (`a`) element should be between the opening and closing tags of the `section` element.
 
 ```js
-const childrenOfSection = [...document.querySelector('section').childNodes];
+const childrenOfSection = [...document.querySelector("section").childNodes];
 const foundElems = childrenOfSection.filter((child) => {
-  return ['H2', 'A', 'P'].includes(child.nodeName);
+  return ["H2", "A", "P"].includes(child.nodeName);
 });
 assert(foundElems.length === 3);
 ```
@@ -49,15 +49,21 @@ assert(foundElems.length === 3);
 <html>
   <body>
     <h1>CatPhotoApp</h1>
---fcc-editable-region--
+    --fcc-editable-region--
     <main>
       <h2>Cat Photos</h2>
       <!-- TODO: Add link to cat photos -->
-      <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-      <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+      <p>
+        Click here to view more
+        <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+      </p>
+      <a href="https://freecatphotoapp.com"
+        ><img
+          src="https://bit.ly/fcc-relaxing-cat"
+          alt="A cute orange cat lying on its back."
+      /></a>
     </main>
---fcc-editable-region--
+    --fcc-editable-region--
   </body>
 </html>
 ```
-

@@ -27,7 +27,6 @@ goog.require('fireauth.authenum.Error');
 goog.require('fireauth.constants');
 goog.require('fireauth.object');
 
-
 /**
  * Abstract class representing a `firebase.auth.MultiFactorInfo` interface.
  * This is typically parsed from a server response.
@@ -35,18 +34,23 @@ goog.require('fireauth.object');
  * @abstract
  * @constructor
  */
-fireauth.MultiFactorInfo = function(resp) {
+fireauth.MultiFactorInfo = function (resp) {
   var factorId = resp && this.getFactorId(resp);
-  if (factorId && resp &&
-      resp[fireauth.MultiFactorInfo.MfaEnrollmentField.MFA_ENROLLMENT_ID]) {
+  if (
+    factorId &&
+    resp &&
+    resp[fireauth.MultiFactorInfo.MfaEnrollmentField.MFA_ENROLLMENT_ID]
+  ) {
     fireauth.object.setReadonlyProperty(
-        this,
-        'uid',
-        resp[fireauth.MultiFactorInfo.MfaEnrollmentField.MFA_ENROLLMENT_ID]);
+      this,
+      'uid',
+      resp[fireauth.MultiFactorInfo.MfaEnrollmentField.MFA_ENROLLMENT_ID]
+    );
     fireauth.object.setReadonlyProperty(
-        this,
-        'displayName',
-        resp[fireauth.MultiFactorInfo.MfaEnrollmentField.DISPLAY_NAME] || null);
+      this,
+      'displayName',
+      resp[fireauth.MultiFactorInfo.MfaEnrollmentField.DISPLAY_NAME] || null
+    );
     var enrollmentTime = null;
     // Encoded using [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format.
     // For example, "2017-01-15T01:30:15.01Z".
@@ -54,27 +58,21 @@ fireauth.MultiFactorInfo = function(resp) {
     // This can be computed using Data.prototype.toISOString.
     if (resp[fireauth.MultiFactorInfo.MfaEnrollmentField.ENROLLED_AT]) {
       enrollmentTime = new Date(
-            resp[fireauth.MultiFactorInfo.MfaEnrollmentField.ENROLLED_AT])
-                .toUTCString();
+        resp[fireauth.MultiFactorInfo.MfaEnrollmentField.ENROLLED_AT]
+      ).toUTCString();
     }
-    fireauth.object.setReadonlyProperty(
-        this,
-        'enrollmentTime',
-        enrollmentTime);
-    fireauth.object.setReadonlyProperty(
-        this,
-        'factorId',
-        factorId);
+    fireauth.object.setReadonlyProperty(this, 'enrollmentTime', enrollmentTime);
+    fireauth.object.setReadonlyProperty(this, 'factorId', factorId);
   } else {
     throw new fireauth.AuthError(
-        fireauth.authenum.Error.INTERNAL_ERROR,
-        'Internal assert: invalid MultiFactorInfo object');
+      fireauth.authenum.Error.INTERNAL_ERROR,
+      'Internal assert: invalid MultiFactorInfo object'
+    );
   }
 };
 
-
 /** @return {!Object} The plain object representation. */
-fireauth.MultiFactorInfo.prototype.toPlainObject = function() {
+fireauth.MultiFactorInfo.prototype.toPlainObject = function () {
   return {
     'uid': this['uid'],
     'displayName': this['displayName'],
@@ -82,7 +80,6 @@ fireauth.MultiFactorInfo.prototype.toPlainObject = function() {
     'enrollmentTime': this['enrollmentTime']
   };
 };
-
 
 /**
  * Returns the factor ID based on the server response. This function needs to be
@@ -94,7 +91,6 @@ fireauth.MultiFactorInfo.prototype.toPlainObject = function() {
  */
 fireauth.MultiFactorInfo.prototype.getFactorId = goog.abstractMethod;
 
-
 /**
  * Returns the corresponding `firebase.auth.MultiFactor` instance if the
  * server response maps to one. Otherwise, null is returned.
@@ -102,7 +98,7 @@ fireauth.MultiFactorInfo.prototype.getFactorId = goog.abstractMethod;
  * @return {?fireauth.MultiFactorInfo} The corresponding
  *     `firebase.auth.MultiFactorInfo` instance, null otherwise.
  */
-fireauth.MultiFactorInfo.fromServerResponse = function(resp) {
+fireauth.MultiFactorInfo.fromServerResponse = function (resp) {
   var multiFactorInfo;
   // Only PhoneMultiFactorInfo currently available.
   try {
@@ -113,7 +109,6 @@ fireauth.MultiFactorInfo.fromServerResponse = function(resp) {
   return multiFactorInfo;
 };
 
-
 /**
  * Returns the corresponding `firebase.auth.MultiFactor` instance if the
  * plain object maps to one. Otherwise, null is returned.
@@ -121,7 +116,7 @@ fireauth.MultiFactorInfo.fromServerResponse = function(resp) {
  * @return {?fireauth.MultiFactorInfo} The corresponding
  *     `firebase.auth.MultiFactorInfo` instance, null otherwise.
  */
-fireauth.MultiFactorInfo.fromPlainObject = function(obj) {
+fireauth.MultiFactorInfo.fromPlainObject = function (obj) {
   var multiFactorInfo = null;
   var resp = {};
   if (!obj) {
@@ -129,19 +124,20 @@ fireauth.MultiFactorInfo.fromPlainObject = function(obj) {
   }
   if (obj['uid']) {
     resp[fireauth.MultiFactorInfo.MfaEnrollmentField.MFA_ENROLLMENT_ID] =
-        obj['uid'];
+      obj['uid'];
   }
   if (obj['displayName']) {
     resp[fireauth.MultiFactorInfo.MfaEnrollmentField.DISPLAY_NAME] =
-        obj['displayName'];
+      obj['displayName'];
   }
   if (obj['enrollmentTime']) {
-    resp[fireauth.MultiFactorInfo.MfaEnrollmentField.ENROLLED_AT] =
-        new Date(obj['enrollmentTime']).toISOString();
+    resp[fireauth.MultiFactorInfo.MfaEnrollmentField.ENROLLED_AT] = new Date(
+      obj['enrollmentTime']
+    ).toISOString();
   }
   if (obj['phoneNumber']) {
     resp[fireauth.MultiFactorInfo.MfaEnrollmentField.PHONE_INFO] =
-        obj['phoneNumber'];
+      obj['phoneNumber'];
   }
 
   // Only PhoneMultiFactorInfo currently available.
@@ -152,7 +148,6 @@ fireauth.MultiFactorInfo.fromPlainObject = function(obj) {
   }
   return multiFactorInfo;
 };
-
 
 /**
  * MfaEnrollment server side response fields.
@@ -165,7 +160,6 @@ fireauth.MultiFactorInfo.MfaEnrollmentField = {
   PHONE_INFO: 'phoneInfo'
 };
 
-
 /**
  * Initializes a `firebase.auth.PhoneMultiFactorInfo` instance from the provided
  * server response.
@@ -173,21 +167,20 @@ fireauth.MultiFactorInfo.MfaEnrollmentField = {
  * @constructor
  * @extends {fireauth.MultiFactorInfo}
  */
-fireauth.PhoneMultiFactorInfo = function(resp) {
+fireauth.PhoneMultiFactorInfo = function (resp) {
   fireauth.PhoneMultiFactorInfo.base(this, 'constructor', resp);
   fireauth.object.setReadonlyProperty(
-      this,
-      'phoneNumber',
-      // PhoneInfo may be masked for security reasons for sign-in flows after
-      // the user signs in with the first factor but hasn't yet proven ownership
-      // of the second factor yet.
-      // For enrollment flows or for a user already signed in with a second
-      // factor, this field should not be masked.
-      resp[fireauth.MultiFactorInfo.MfaEnrollmentField.PHONE_INFO]);
+    this,
+    'phoneNumber',
+    // PhoneInfo may be masked for security reasons for sign-in flows after
+    // the user signs in with the first factor but hasn't yet proven ownership
+    // of the second factor yet.
+    // For enrollment flows or for a user already signed in with a second
+    // factor, this field should not be masked.
+    resp[fireauth.MultiFactorInfo.MfaEnrollmentField.PHONE_INFO]
+  );
 };
-goog.inherits(
-    fireauth.PhoneMultiFactorInfo, fireauth.MultiFactorInfo);
-
+goog.inherits(fireauth.PhoneMultiFactorInfo, fireauth.MultiFactorInfo);
 
 /**
  * Implements the factor ID getter based on the response. If the response is an
@@ -197,17 +190,17 @@ goog.inherits(
  * @protected
  * @override
  */
-fireauth.PhoneMultiFactorInfo.prototype.getFactorId = function(resp) {
-  return !!resp[fireauth.MultiFactorInfo.MfaEnrollmentField.PHONE_INFO] ?
-      fireauth.constants.SecondFactorType.PHONE : null;
+fireauth.PhoneMultiFactorInfo.prototype.getFactorId = function (resp) {
+  return !!resp[fireauth.MultiFactorInfo.MfaEnrollmentField.PHONE_INFO]
+    ? fireauth.constants.SecondFactorType.PHONE
+    : null;
 };
-
 
 /**
  * @return {!Object} The plain object representation.
  * @override
  */
-fireauth.PhoneMultiFactorInfo.prototype.toPlainObject = function() {
+fireauth.PhoneMultiFactorInfo.prototype.toPlainObject = function () {
   var obj = fireauth.PhoneMultiFactorInfo.base(this, 'toPlainObject');
   obj['phoneNumber'] = this['phoneNumber'];
   return obj;

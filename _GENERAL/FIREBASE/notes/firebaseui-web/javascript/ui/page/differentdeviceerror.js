@@ -16,20 +16,20 @@
  * @fileoverview UI component for the different device error page.
  */
 
-goog.provide('firebaseui.auth.ui.page.DifferentDeviceError');
+goog.provide("firebaseui.auth.ui.page.DifferentDeviceError");
 
-goog.require('firebaseui.auth.soy2.page');
-goog.require('firebaseui.auth.ui.element');
-goog.require('firebaseui.auth.ui.element.form');
-goog.require('firebaseui.auth.ui.page.Base');
-goog.requireType('goog.dom.DomHelper');
-
+goog.require("firebaseui.auth.soy2.page");
+goog.require("firebaseui.auth.ui.element");
+goog.require("firebaseui.auth.ui.element.form");
+goog.require("firebaseui.auth.ui.page.Base");
+goog.requireType("goog.dom.DomHelper");
 
 /**
  * Different device error UI component.
  */
-firebaseui.auth.ui.page.DifferentDeviceError =
-    class extends firebaseui.auth.ui.page.Base {
+firebaseui.auth.ui.page.DifferentDeviceError = class extends (
+  firebaseui.auth.ui.page.Base
+) {
   /**
    * @param {function()} onDismissClick Callback to invoke when dismiss button
    *     is clicked.
@@ -37,8 +37,11 @@ firebaseui.auth.ui.page.DifferentDeviceError =
    */
   constructor(onDismissClick, opt_domHelper) {
     super(
-        firebaseui.auth.soy2.page.differentDeviceError, undefined,
-        opt_domHelper, 'differentDeviceError');
+      firebaseui.auth.soy2.page.differentDeviceError,
+      undefined,
+      opt_domHelper,
+      "differentDeviceError"
+    );
     this.onDismissClick_ = onDismissClick;
   }
 
@@ -47,9 +50,12 @@ firebaseui.auth.ui.page.DifferentDeviceError =
     var self = this;
     // Handle action event for dismiss button.
     firebaseui.auth.ui.element.listenForActionEvent(
-        this, this.getSecondaryLinkElement(), function(e) {
-          self.onDismissClick_();
-        });
+      this,
+      this.getSecondaryLinkElement(),
+      function (e) {
+        self.onDismissClick_();
+      }
+    );
     // Set initial focus on the dismiss button.
     this.getSecondaryLinkElement().focus();
     super.enterDocument();
@@ -62,14 +68,14 @@ firebaseui.auth.ui.page.DifferentDeviceError =
   }
 };
 
-
 goog.mixin(
-    firebaseui.auth.ui.page.DifferentDeviceError.prototype,
-    /**
-     * @lends {firebaseui.auth.ui.page.DifferentDeviceError.prototype}
-     */
-    {
-      // For form.
-      getSecondaryLinkElement:
-          firebaseui.auth.ui.element.form.getSecondaryLinkElement
-    });
+  firebaseui.auth.ui.page.DifferentDeviceError.prototype,
+  /**
+   * @lends {firebaseui.auth.ui.page.DifferentDeviceError.prototype}
+   */
+  {
+    // For form.
+    getSecondaryLinkElement:
+      firebaseui.auth.ui.element.form.getSecondaryLinkElement,
+  }
+);

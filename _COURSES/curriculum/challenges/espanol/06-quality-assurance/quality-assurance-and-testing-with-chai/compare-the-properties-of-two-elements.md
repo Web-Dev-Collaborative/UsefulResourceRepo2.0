@@ -20,9 +20,9 @@ All tests should pass.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=7').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=7").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -34,12 +34,12 @@ You should choose the correct method for the first assertion - `isAbove` vs. `is
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=7').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=7").then(
     (data) => {
       assert.equal(
         data.assertions[0].method,
-        'isAtMost',
-        '5 is at most (<=) 5'
+        "isAtMost",
+        "5 is at most (<=) 5"
       );
     },
     (xhr) => {
@@ -52,9 +52,9 @@ You should choose the correct method for the second assertion - `isAbove` vs. `i
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=7').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=7").then(
     (data) => {
-      assert.equal(data.assertions[1].method, 'isAbove', '1 is greater than 0');
+      assert.equal(data.assertions[1].method, "isAbove", "1 is greater than 0");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -66,12 +66,12 @@ You should choose the correct method for the third assertion - `isAbove` vs. `is
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=7').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=7").then(
     (data) => {
       assert.equal(
         data.assertions[2].method,
-        'isAbove',
-        'Math.PI = 3.14159265 is greater than 3'
+        "isAbove",
+        "Math.PI = 3.14159265 is greater than 3"
       );
     },
     (xhr) => {
@@ -84,12 +84,12 @@ You should choose the correct method for the fourth assertion - `isAbove` vs. `i
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=7').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=7").then(
     (data) => {
       assert.equal(
         data.assertions[3].method,
-        'isAtMost',
-        '1 - Math.random() is > 0 and <= 1. It is atMost 1 !'
+        "isAtMost",
+        "1 - Math.random() is > 0 and <= 1. It is atMost 1 !"
       );
     },
     (xhr) => {

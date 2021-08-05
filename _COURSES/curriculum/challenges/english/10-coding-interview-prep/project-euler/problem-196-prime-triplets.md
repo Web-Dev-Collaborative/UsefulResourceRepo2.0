@@ -1,6 +1,6 @@
 ---
 id: 5900f4301000cf542c50ff42
-title: 'Problem 196: Prime triplets'
+title: "Problem 196: Prime triplets"
 challengeType: 5
 forumTopicId: 301834
 dashedName: problem-196-prime-triplets
@@ -40,7 +40,6 @@ assert.strictEqual(euler196(), 322303240771079940);
 
 ```js
 function euler196() {
-
   return true;
 }
 

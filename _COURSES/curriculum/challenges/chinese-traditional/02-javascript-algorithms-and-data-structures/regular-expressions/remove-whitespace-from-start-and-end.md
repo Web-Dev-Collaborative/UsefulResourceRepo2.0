@@ -21,7 +21,7 @@ dashedName: remove-whitespace-from-start-and-end
 `result` 應該等於 `Hello, World!`
 
 ```js
-assert(result === 'Hello, World!');
+assert(result === "Hello, World!");
 ```
 
 你不應該使用 `String.prototype.trim()` 方法。
@@ -51,5 +51,5 @@ let result = hello; // Change this line
 ```js
 let hello = "   Hello, World!  ";
 let wsRegex = /^(\s+)(.+[^\s])(\s+)$/;
-let result = hello.replace(wsRegex, '$2');
+let result = hello.replace(wsRegex, "$2");
 ```

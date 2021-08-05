@@ -10,9 +10,9 @@ dashedName: refactor-global-variables-out-of-functions
 
 Finora abbiamo visto due principi distinti per la programmazione funzionale:
 
-1) Non modificare una variabile o un oggetto - se necessario creare nuove variabili e oggetti e restituirli da una funzione. Suggerimento: usando qualcosa come `var newArr = arrVar`, dove `arrVar` è un array, creerai semplicemente un riferimento alla variabile esistente e non una copia. Quindi cambiando un valore in `newArr` cambierà anche il valore in `arrVar`.
+1. Non modificare una variabile o un oggetto - se necessario creare nuove variabili e oggetti e restituirli da una funzione. Suggerimento: usando qualcosa come `var newArr = arrVar`, dove `arrVar` è un array, creerai semplicemente un riferimento alla variabile esistente e non una copia. Quindi cambiando un valore in `newArr` cambierà anche il valore in `arrVar`.
 
-2) Dichiarare i parametri della funzione - qualsiasi calcolo all'interno di una funzione deve dipendere solo dagli argomenti passati alla funzione, e non da qualsiasi oggetto o variabile globale.
+2. Dichiarare i parametri della funzione - qualsiasi calcolo all'interno di una funzione deve dipendere solo dagli argomenti passati alla funzione, e non da qualsiasi oggetto o variabile globale.
 
 Aggiungere uno a un certo numero non è molto eccitante, ma potremo applicare questi stessi principi quando lavoreremo con array o oggetti più complessi.
 
@@ -30,10 +30,10 @@ Riscrivi il codice in modo che l'array globale `bookList` non venga modificato a
 assert(
   JSON.stringify(bookList) ===
     JSON.stringify([
-      'The Hound of the Baskervilles',
-      'On The Electrodynamics of Moving Bodies',
-      'Philosophiæ Naturalis Principia Mathematica',
-      'Disquisitiones Arithmeticae'
+      "The Hound of the Baskervilles",
+      "On The Electrodynamics of Moving Bodies",
+      "Philosophiæ Naturalis Principia Mathematica",
+      "Disquisitiones Arithmeticae",
     ])
 );
 ```
@@ -44,11 +44,11 @@ assert(
 assert(
   JSON.stringify(newBookList) ===
     JSON.stringify([
-      'The Hound of the Baskervilles',
-      'On The Electrodynamics of Moving Bodies',
-      'Philosophiæ Naturalis Principia Mathematica',
-      'Disquisitiones Arithmeticae',
-      'A Brief History of Time'
+      "The Hound of the Baskervilles",
+      "On The Electrodynamics of Moving Bodies",
+      "Philosophiæ Naturalis Principia Mathematica",
+      "Disquisitiones Arithmeticae",
+      "A Brief History of Time",
     ])
 );
 ```
@@ -59,9 +59,9 @@ assert(
 assert(
   JSON.stringify(newerBookList) ===
     JSON.stringify([
-      'The Hound of the Baskervilles',
-      'Philosophiæ Naturalis Principia Mathematica',
-      'Disquisitiones Arithmeticae'
+      "The Hound of the Baskervilles",
+      "Philosophiæ Naturalis Principia Mathematica",
+      "Disquisitiones Arithmeticae",
     ])
 );
 ```
@@ -72,10 +72,10 @@ assert(
 assert(
   JSON.stringify(newestBookList) ===
     JSON.stringify([
-      'The Hound of the Baskervilles',
-      'Philosophiæ Naturalis Principia Mathematica',
-      'Disquisitiones Arithmeticae',
-      'A Brief History of Time'
+      "The Hound of the Baskervilles",
+      "Philosophiæ Naturalis Principia Mathematica",
+      "Disquisitiones Arithmeticae",
+      "A Brief History of Time",
     ])
 );
 ```
@@ -86,11 +86,15 @@ assert(
 
 ```js
 // The global variable
-var bookList = ["The Hound of the Baskervilles", "On The Electrodynamics of Moving Bodies", "Philosophiæ Naturalis Principia Mathematica", "Disquisitiones Arithmeticae"];
+var bookList = [
+  "The Hound of the Baskervilles",
+  "On The Electrodynamics of Moving Bodies",
+  "Philosophiæ Naturalis Principia Mathematica",
+  "Disquisitiones Arithmeticae",
+];
 
 // Change code below this line
-function add (bookName) {
-
+function add(bookName) {
   bookList.push(bookName);
   return bookList;
 
@@ -98,20 +102,22 @@ function add (bookName) {
 }
 
 // Change code below this line
-function remove (bookName) {
+function remove(bookName) {
   var book_index = bookList.indexOf(bookName);
   if (book_index >= 0) {
-
     bookList.splice(book_index, 1);
     return bookList;
 
     // Change code above this line
-    }
+  }
 }
 
-var newBookList = add(bookList, 'A Brief History of Time');
-var newerBookList = remove(bookList, 'On The Electrodynamics of Moving Bodies');
-var newestBookList = remove(add(bookList, 'A Brief History of Time'), 'On The Electrodynamics of Moving Bodies');
+var newBookList = add(bookList, "A Brief History of Time");
+var newerBookList = remove(bookList, "On The Electrodynamics of Moving Bodies");
+var newestBookList = remove(
+  add(bookList, "A Brief History of Time"),
+  "On The Electrodynamics of Moving Bodies"
+);
 
 console.log(bookList);
 ```
@@ -120,13 +126,18 @@ console.log(bookList);
 
 ```js
 // The global variable
-var bookList = ["The Hound of the Baskervilles", "On The Electrodynamics of Moving Bodies", "Philosophiæ Naturalis Principia Mathematica", "Disquisitiones Arithmeticae"];
+var bookList = [
+  "The Hound of the Baskervilles",
+  "On The Electrodynamics of Moving Bodies",
+  "Philosophiæ Naturalis Principia Mathematica",
+  "Disquisitiones Arithmeticae",
+];
 
-function add (bookList, bookName) {
+function add(bookList, bookName) {
   return [...bookList, bookName];
 }
 
-function remove (bookList, bookName) {
+function remove(bookList, bookName) {
   const bookListCopy = [...bookList];
   const bookNameIndex = bookList.indexOf(bookName);
   if (bookNameIndex >= 0) {
@@ -135,7 +146,10 @@ function remove (bookList, bookName) {
   return bookListCopy;
 }
 
-var newBookList = add(bookList, 'A Brief History of Time');
-var newerBookList = remove(bookList, 'On The Electrodynamics of Moving Bodies');
-var newestBookList = remove(add(bookList, 'A Brief History of Time'), 'On The Electrodynamics of Moving Bodies');
+var newBookList = add(bookList, "A Brief History of Time");
+var newerBookList = remove(bookList, "On The Electrodynamics of Moving Bodies");
+var newestBookList = remove(
+  add(bookList, "A Brief History of Time"),
+  "On The Electrodynamics of Moving Bodies"
+);
 ```

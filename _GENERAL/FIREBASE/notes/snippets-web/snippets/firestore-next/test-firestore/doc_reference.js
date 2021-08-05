@@ -6,5 +6,5 @@
 // [START doc_reference_modular]
 import { doc } from "firebase/firestore";
 
-const alovelaceDocumentRef = doc(db, 'users', 'alovelace');
+const alovelaceDocumentRef = doc(db, "users", "alovelace");
 // [END doc_reference_modular]

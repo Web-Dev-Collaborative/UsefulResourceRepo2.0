@@ -16,20 +16,20 @@
  * @fileoverview UI component for the federated account linking page.
  */
 
-goog.provide('firebaseui.auth.ui.page.FederatedLinking');
+goog.provide("firebaseui.auth.ui.page.FederatedLinking");
 
-goog.require('firebaseui.auth.soy2.page');
-goog.require('firebaseui.auth.ui.element');
-goog.require('firebaseui.auth.ui.element.form');
-goog.require('firebaseui.auth.ui.page.Base');
-goog.requireType('goog.dom.DomHelper');
-
+goog.require("firebaseui.auth.soy2.page");
+goog.require("firebaseui.auth.ui.element");
+goog.require("firebaseui.auth.ui.element.form");
+goog.require("firebaseui.auth.ui.page.Base");
+goog.requireType("goog.dom.DomHelper");
 
 /**
  * Federated account linking UI component.
  */
-firebaseui.auth.ui.page.FederatedLinking =
-    class extends firebaseui.auth.ui.page.Base {
+firebaseui.auth.ui.page.FederatedLinking = class extends (
+  firebaseui.auth.ui.page.Base
+) {
   /**
    * @param {string} email The user's email.
    * @param {?} providerConfig The provider config of the IdP we should
@@ -43,15 +43,23 @@ firebaseui.auth.ui.page.FederatedLinking =
    * @param {?goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
    */
   constructor(
-      email, providerConfig, onSubmitClick, opt_tosCallback,
-      opt_privacyPolicyCallback, opt_domHelper) {
+    email,
+    providerConfig,
+    onSubmitClick,
+    opt_tosCallback,
+    opt_privacyPolicyCallback,
+    opt_domHelper
+  ) {
     super(
-        firebaseui.auth.soy2.page.federatedLinking,
-        {email: email, providerConfig: providerConfig}, opt_domHelper,
-        'federatedLinking', {
-          tosCallback: opt_tosCallback,
-          privacyPolicyCallback: opt_privacyPolicyCallback
-        });
+      firebaseui.auth.soy2.page.federatedLinking,
+      { email: email, providerConfig: providerConfig },
+      opt_domHelper,
+      "federatedLinking",
+      {
+        tosCallback: opt_tosCallback,
+        privacyPolicyCallback: opt_privacyPolicyCallback,
+      }
+    );
     this.onSubmitClick_ = onSubmitClick;
   }
 
@@ -69,14 +77,12 @@ firebaseui.auth.ui.page.FederatedLinking =
   }
 };
 
-
 goog.mixin(
-    firebaseui.auth.ui.page.FederatedLinking.prototype,
-    /** @lends {firebaseui.auth.ui.page.FederatedLinking.prototype} */
-    {
-      // For form.
-      getSubmitElement:
-          firebaseui.auth.ui.element.form.getSubmitElement,
-      initFormElement:
-          firebaseui.auth.ui.element.form.initFormElement
-    });
+  firebaseui.auth.ui.page.FederatedLinking.prototype,
+  /** @lends {firebaseui.auth.ui.page.FederatedLinking.prototype} */
+  {
+    // For form.
+    getSubmitElement: firebaseui.auth.ui.element.form.getSubmitElement,
+    initFormElement: firebaseui.auth.ui.element.form.initFormElement,
+  }
+);

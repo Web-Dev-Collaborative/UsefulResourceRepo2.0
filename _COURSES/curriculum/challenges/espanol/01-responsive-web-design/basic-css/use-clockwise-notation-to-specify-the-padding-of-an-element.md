@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08826
 title: Utiliza clockwise notation para especificar el relleno (padding) de un elemento
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cB7mBS9'
+videoUrl: "https://scrimba.com/c/cB7mBS9"
 forumTopicId: 18346
 dashedName: use-clockwise-notation-to-specify-the-padding-of-an-element
 ---
@@ -26,25 +26,25 @@ Utiliza clockwise notation (notación en el sentido de las agujas del reloj) par
 Tu clase `blue-box` debe asignar al lado superior (top) de los elementos `40px` de `padding`.
 
 ```js
-assert($('.blue-box').css('padding-top') === '40px');
+assert($(".blue-box").css("padding-top") === "40px");
 ```
 
 Tu clase `blue-box` debe asignar al lado derecho (right) de los elementos `20px` de `padding`.
 
 ```js
-assert($('.blue-box').css('padding-right') === '20px');
+assert($(".blue-box").css("padding-right") === "20px");
 ```
 
 Tu clase `blue-box` debe asignar al lado inferior (bottom) de los elementos `20px` de `padding`.
 
 ```js
-assert($('.blue-box').css('padding-bottom') === '20px');
+assert($(".blue-box").css("padding-bottom") === "20px");
 ```
 
 Tu clase `blue-box` debe asignar al lado izquierlo (left) de los elementos `40px` de `padding`.
 
 ```js
-assert($('.blue-box').css('padding-left') === '40px');
+assert($(".blue-box").css("padding-left") === "40px");
 ```
 
 Debes usar clockwise notation para establecer el padding de la clase `blue-box`.
@@ -52,7 +52,7 @@ Debes usar clockwise notation para establecer el padding de la clase `blue-box`.
 ```js
 assert(
   /\.blue-box\s*{[\s\S]*padding[\s]*:\s*\d+px\s+\d+px\s+\d+px\s+\d+px(;\s*[^}]+\s*}|;?\s*})/.test(
-    __helpers.removeCssComments($('style').text())
+    __helpers.removeCssComments($("style").text())
   )
 );
 ```

@@ -6,10 +6,10 @@ function initialize() {
   // Set the configuration for your app
   // TODO: Replace with your app's config object
   var firebaseConfig = {
-    apiKey: '<your-api-key>',
-    authDomain: '<your-auth-domain>',
-    databaseURL: '<your-database-url>',
-    storageBucket: '<your-storage-bucket-url>'
+    apiKey: "<your-api-key>",
+    authDomain: "<your-auth-domain>",
+    databaseURL: "<your-database-url>",
+    storageBucket: "<your-storage-bucket-url>",
   };
   firebase.initializeApp(firebaseConfig);
 
@@ -40,7 +40,7 @@ function storageCustomApp() {
 }
 
 /**
- * @param {File} file 
+ * @param {File} file
  */
 function storageOnComplete(file) {
   // The file param would be a File object from a file selection event in the browser.
@@ -49,22 +49,25 @@ function storageOnComplete(file) {
   // - https://developer.mozilla.org/en-US/docs/Web/API/File
 
   const metadata = {
-    'contentType': file.type
+    contentType: file.type,
   };
 
   // [START storage_on_complete]
   const storageRef = firebase.storage().ref();
-  storageRef.child('images/' + file.name).put(file, metadata)
+  storageRef
+    .child("images/" + file.name)
+    .put(file, metadata)
     .then((snapshot) => {
-      console.log('Uploaded', snapshot.totalBytes, 'bytes.');
-      console.log('File metadata:', snapshot.metadata);
+      console.log("Uploaded", snapshot.totalBytes, "bytes.");
+      console.log("File metadata:", snapshot.metadata);
       // Let's get a download URL for the file.
       snapshot.ref.getDownloadURL().then((url) => {
-        console.log('File available at', url);
+        console.log("File available at", url);
         // ...
       });
-    }).catch((error) => {
-      console.error('Upload failed', error);
+    })
+    .catch((error) => {
+      console.error("Upload failed", error);
       // ...
     });
   // [END storage_on_complete]

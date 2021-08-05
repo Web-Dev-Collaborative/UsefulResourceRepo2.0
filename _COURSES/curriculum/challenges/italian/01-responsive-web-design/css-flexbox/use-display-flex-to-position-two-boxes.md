@@ -1,8 +1,8 @@
 ---
 id: 587d78ab367417b2b2512af0
-title: 'Usare display: flex per posizionare due riquadri'
+title: "Usare display: flex per posizionare due riquadri"
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cgz3QS7'
+videoUrl: "https://scrimba.com/p/pVaDAv/cgz3QS7"
 forumTopicId: 301105
 dashedName: use-display-flex-to-position-two-boxes
 ---
@@ -22,7 +22,7 @@ Aggiungi la proprietà CSS `display` a `#box-container` e imposta il suo valore 
 `#box-container` dovrebbe avere la proprietà `display` impostata su un valore di `flex`.
 
 ```js
-assert($('#box-container').css('display') == 'flex');
+assert($("#box-container").css("display") == "flex");
 ```
 
 # --seed--
@@ -33,7 +33,6 @@ assert($('#box-container').css('display') == 'flex');
 <style>
   #box-container {
     height: 500px;
-
   }
 
   #box-1 {

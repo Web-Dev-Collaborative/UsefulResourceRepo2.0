@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244d0
 title: 相等運算符
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cKyVMAL'
+videoUrl: "https://scrimba.com/c/cKyVMAL"
 forumTopicId: 16784
 dashedName: comparison-with-the-equality-operator
 ---
@@ -16,7 +16,7 @@ dashedName: comparison-with-the-equality-operator
 ```js
 function equalityTest(myVal) {
   if (myVal == 10) {
-     return "Equal";
+    return "Equal";
   }
   return "Not Equal";
 }
@@ -25,10 +25,10 @@ function equalityTest(myVal) {
 如果 `myVal` 等於 `10`，相等運算符會返回 `true`，因此大括號裏面的代碼會被執行，函數將返回 `Equal`。 否則，函數返回 `Not Equal`。 在 JavaScript 中，爲了讓兩個不同的<dfn>數據類型</dfn>（例如 `numbers` 和 `strings`）的值可以作比較，它必須把一種類型轉換爲另一種類型。 這叫作 “類型強制轉換”。 轉換之後，可以像下面這樣來比較：
 
 ```js
-1   ==  1
-1   ==  2
-1   == '1'
-"3" ==  3
+1 == 1;
+1 == 2;
+1 == "1";
+"3" == 3;
 ```
 
 按順序，這些表達式會返回 `true`、`false`、`true`、`true`。
@@ -42,19 +42,19 @@ function equalityTest(myVal) {
 `testEqual(10)` 應該返回字符串 `Not Equal`
 
 ```js
-assert(testEqual(10) === 'Not Equal');
+assert(testEqual(10) === "Not Equal");
 ```
 
 `testEqual(12)` 應該返回字符串 `Equal`
 
 ```js
-assert(testEqual(12) === 'Equal');
+assert(testEqual(12) === "Equal");
 ```
 
 `testEqual("12")` 應該返回字符串 `Equal`
 
 ```js
-assert(testEqual('12') === 'Equal');
+assert(testEqual("12") === "Equal");
 ```
 
 應該使用 `==` 運算符。
@@ -70,7 +70,8 @@ assert(code.match(/==/g) && !code.match(/===/g));
 ```js
 // Setup
 function testEqual(val) {
-  if (val) { // Change this line
+  if (val) {
+    // Change this line
     return "Equal";
   }
   return "Not Equal";

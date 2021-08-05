@@ -2,7 +2,7 @@
 id: 587d781d367417b2b2512ac8
 title: Regolare lo stato di hover di un tag di ancoraggio
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cakRGcm'
+videoUrl: "https://scrimba.com/c/cakRGcm"
 forumTopicId: 301035
 dashedName: adjust-the-hover-state-of-an-anchor-tag
 ---
@@ -28,7 +28,7 @@ L'editor ha una regola CSS per stilizzare tutti i tag `a` in nero. Aggiungi una 
 Il `color` del tag di ancoraggio dovrebbe rimanere nero, aggiungi solo regole CSS per lo stato di `:hover`.
 
 ```js
-assert($('a').css('color') == 'rgb(0, 0, 0)');
+assert($("a").css("color") == "rgb(0, 0, 0)");
 ```
 
 Il tag di ancoraggio dovrebbe avere un `color` blu al passaggio del mouse.
@@ -50,9 +50,6 @@ assert(
   a {
     color: #000;
   }
-
-
-
 </style>
 <a href="https://freecatphotoapp.com/" target="_blank">CatPhotoApp</a>
 ```
@@ -65,7 +62,7 @@ assert(
     color: #000;
   }
   a:hover {
-    color: rgba(0,0,255,1);
+    color: rgba(0, 0, 255, 1);
   }
 </style>
 <a href="https://freecatphotoapp.com/" target="_blank">CatPhotoApp</a>

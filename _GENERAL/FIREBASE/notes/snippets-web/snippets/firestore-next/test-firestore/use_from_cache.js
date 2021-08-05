@@ -4,17 +4,17 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START use_from_cache_modular]
-import { collection, onSnapshot, where, query } from "firebase/firestore"; 
+import { collection, onSnapshot, where, query } from "firebase/firestore";
 
 const q = query(collection(db, "cities"), where("state", "==", "CA"));
 onSnapshot(q, { includeMetadataChanges: true }, (snapshot) => {
-    snapshot.docChanges().forEach((change) => {
-        if (change.type === "added") {
-            console.log("New city: ", change.doc.data());
-        }
+  snapshot.docChanges().forEach((change) => {
+    if (change.type === "added") {
+      console.log("New city: ", change.doc.data());
+    }
 
-        const source = snapshot.metadata.fromCache ? "local cache" : "server";
-        console.log("Data came from " + source);
-    });
+    const source = snapshot.metadata.fromCache ? "local cache" : "server";
+    console.log("Data came from " + source);
+  });
 });
 // [END use_from_cache_modular]

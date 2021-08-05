@@ -1,6 +1,6 @@
 ---
 id: 5900f4dd1000cf542c50ffef
-title: 'Problem 368: A Kempner-like series'
+title: "Problem 368: A Kempner-like series"
 challengeType: 5
 forumTopicId: 302029
 dashedName: problem-368-a-kempner-like-series
@@ -32,7 +32,6 @@ assert.strictEqual(euler368(), 253.6135092068);
 
 ```js
 function euler368() {
-
   return true;
 }
 

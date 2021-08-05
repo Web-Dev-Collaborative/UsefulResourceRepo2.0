@@ -17,7 +17,7 @@ dashedName: sum-all-numbers-in-a-range
 `sumAll([1, 4])` 应返回一个数字。
 
 ```js
-assert(typeof sumAll([1, 4]) === 'number');
+assert(typeof sumAll([1, 4]) === "number");
 ```
 
 `sumAll([1, 4])` 应返回 10。
@@ -61,7 +61,9 @@ sumAll([1, 4]);
 ```js
 function sumAll(arr) {
   var sum = 0;
-  arr.sort(function(a,b) {return a-b;});
+  arr.sort(function (a, b) {
+    return a - b;
+  });
   for (var i = arr[0]; i <= arr[1]; i++) {
     sum += i;
   }

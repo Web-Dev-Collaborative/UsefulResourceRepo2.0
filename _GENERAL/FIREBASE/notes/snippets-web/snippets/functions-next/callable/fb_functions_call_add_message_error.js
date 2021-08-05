@@ -7,7 +7,7 @@
 import { getFunctions, httpsCallable } from "firebase/functions";
 
 const functions = getFunctions();
-const addMessage = httpsCallable(functions, 'addMessage');
+const addMessage = httpsCallable(functions, "addMessage");
 addMessage({ text: messageText })
   .then((result) => {
     // Read result of the Cloud Function.

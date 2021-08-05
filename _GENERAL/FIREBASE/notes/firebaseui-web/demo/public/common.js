@@ -21,29 +21,24 @@
  */
 function getRecaptchaMode() {
   var config = parseQueryString(location.hash);
-  return config['recaptcha'] === 'invisible' ?
-      'invisible' : 'normal';
+  return config["recaptcha"] === "invisible" ? "invisible" : "normal";
 }
-
 
 /**
  * @return {string} The email signInMethod from the configuration.
  */
 function getEmailSignInMethod() {
   var config = parseQueryString(location.hash);
-  return config['emailSignInMethod'] === 'password' ?
-      'password' : 'emailLink';
+  return config["emailSignInMethod"] === "password" ? "password" : "emailLink";
 }
-
 
 /**
  * @return {boolean} The disable sign up status from the configuration.
  */
 function getDisableSignUpStatus() {
   var config = parseQueryString(location.hash);
-  return config['disableEmailSignUpStatus'] === 'true';
+  return config["disableEmailSignUpStatus"] === "true";
 }
-
 
 /**
  * @param {string} queryString The full query string.
@@ -51,14 +46,16 @@ function getDisableSignUpStatus() {
  */
 function parseQueryString(queryString) {
   // Remove first character if it is ? or #.
-  if (queryString.length &&
-      (queryString.charAt(0) == '#' || queryString.charAt(0) == '?')) {
+  if (
+    queryString.length &&
+    (queryString.charAt(0) == "#" || queryString.charAt(0) == "?")
+  ) {
     queryString = queryString.substring(1);
   }
   var config = {};
-  var pairs = queryString.split('&');
+  var pairs = queryString.split("&");
   for (var i = 0; i < pairs.length; i++) {
-    var pair = pairs[i].split('=');
+    var pair = pairs[i].split("=");
     if (pair.length == 2) {
       config[pair[0]] = pair[1];
     }

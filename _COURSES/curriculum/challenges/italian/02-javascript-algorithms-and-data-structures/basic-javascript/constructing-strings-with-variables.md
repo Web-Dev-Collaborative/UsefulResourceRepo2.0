@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244b9
 title: Costruire stringhe con le variabili
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cqk8rf4'
+videoUrl: "https://scrimba.com/c/cqk8rf4"
 forumTopicId: 16805
 dashedName: constructing-strings-with-variables
 ---
@@ -29,7 +29,7 @@ Assegna una stringa con valore pari al tuo nome a `myName` e crea `myStr` con `m
 `myName` dovrebbe avere il valore di una stringa lunga almeno 3 caratteri.
 
 ```js
-assert(typeof myName !== 'undefined' && myName.length > 2);
+assert(typeof myName !== "undefined" && myName.length > 2);
 ```
 
 Dovresti usare due operatori `+` per costruire `myStr` con `myName` al suo interno.
@@ -43,19 +43,19 @@ assert(code.match(/["']\s*\+\s*myName\s*\+\s*["']/g).length > 0);
 ## --after-user-code--
 
 ```js
-(function(){
+(function () {
   var output = [];
-  if(typeof myName === 'string') {
+  if (typeof myName === "string") {
     output.push('myName = "' + myName + '"');
   } else {
-    output.push('myName is not a string');
+    output.push("myName is not a string");
   }
-  if(typeof myStr === 'string') {
+  if (typeof myStr === "string") {
     output.push('myStr = "' + myStr + '"');
   } else {
-    output.push('myStr is not a string');
+    output.push("myStr is not a string");
   }
-  return output.join('\n');
+  return output.join("\n");
 })();
 ```
 

@@ -2,7 +2,7 @@
 id: 587d78a9367417b2b2512aea
 title: Haz que el movimiento sea más natural usando una curva de Bezier
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c7akWUv'
+videoUrl: "https://scrimba.com/c/c7akWUv"
 forumTopicId: 301063
 dashedName: make-motion-more-natural-using-a-bezier-curve
 ---
@@ -31,8 +31,8 @@ El valor de la propiedad `animation-timing-function` para el elemento con el id 
 
 ```js
 assert(
-  $('#green').css('animation-timing-function') ==
-    'cubic-bezier(0.311, 0.441, 0.444, 1.649)'
+  $("#green").css("animation-timing-function") ==
+    "cubic-bezier(0.311, 0.441, 0.444, 1.649)"
 );
 ```
 

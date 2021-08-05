@@ -25,13 +25,13 @@ Now, when someone connects, you should increment the count before emitting the c
 Finally, after incrementing the count, you should emit the event (still within the connection listener). The event should be named 'user count', and the data should just be the `currentUsers`.
 
 ```js
-io.emit('user count', currentUsers);
+io.emit("user count", currentUsers);
 ```
 
 Now, you can implement a way for your client to listen for this event! Similar to listening for a connection on the server, you will use the `on` keyword.
 
 ```js
-socket.on('user count', function(data) {
+socket.on("user count", function (data) {
   console.log(data);
 });
 ```
@@ -46,12 +46,12 @@ currentUsers should be defined.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
         /currentUsers/gi,
-        'You should have variable currentUsers defined'
+        "You should have variable currentUsers defined"
       );
     },
     (xhr) => {
@@ -64,7 +64,7 @@ Server should emit the current user count at each new connection.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
@@ -82,12 +82,12 @@ Your client should be listening for 'user count' event.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/public/client.js').then(
+  $.get(getUserInput("url") + "/public/client.js").then(
     (data) => {
       assert.match(
         data,
         /socket.on.*('|")user count('|")/gi,
-        'Your client should be connection to server with the connection defined as socket'
+        "Your client should be connection to server with the connection defined as socket"
       );
     },
     (xhr) => {

@@ -17,13 +17,13 @@ Aplica las clases `btn` y `btn-default` a cada uno de tus elementos `button`.
 Debes aplicar la clase `btn` a cada uno de tus elementos `button`.
 
 ```js
-assert($('.btn').length > 5);
+assert($(".btn").length > 5);
 ```
 
 Debes aplicar la clase `btn-default` a cada uno de tus elementos `button`.
 
 ```js
-assert($('.btn-default').length > 5);
+assert($(".btn-default").length > 5);
 ```
 
 # --seed--

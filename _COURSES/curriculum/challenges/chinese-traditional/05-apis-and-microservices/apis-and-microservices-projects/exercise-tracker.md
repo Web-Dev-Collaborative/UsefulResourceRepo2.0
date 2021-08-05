@@ -10,9 +10,9 @@ dashedName: exercise-tracker
 
 構建一個 JavaScript 的全棧應用，在功能上與這個應用相似： <https://exercise-tracker.freecodecamp.rocks/>。 可以採用下面的一種方式完成這個挑戰：
 
--   克隆 [GitHub 倉庫](https://github.com/freeCodeCamp/boilerplate-project-exercisetracker/) 並在本地完成你的項目。
--   使用[我們的 Replit 初始化項目](https://replit.com/github/freeCodeCamp/boilerplate-project-exercisetracker)來完成你的項目。
--   使用你選擇的網站生成器來完成項目， 並確保包含了我們 GitHub 倉庫的所有文件。
+- 克隆 [GitHub 倉庫](https://github.com/freeCodeCamp/boilerplate-project-exercisetracker/) 並在本地完成你的項目。
+- 使用[我們的 Replit 初始化項目](https://replit.com/github/freeCodeCamp/boilerplate-project-exercisetracker)來完成你的項目。
+- 使用你選擇的網站生成器來完成項目， 並確保包含了我們 GitHub 倉庫的所有文件。
 
 當完成本項目，請確認有一個正常運行的 demo 可以公開訪問。 然後將 URL 提交到 `Solution Link` 中。 此外，還可以將項目的源碼提交到 `GitHub Link` 中。
 
@@ -22,9 +22,9 @@ dashedName: exercise-tracker
 
 ```js
 (getUserInput) => {
-  const url = getUserInput('url');
+  const url = getUserInput("url");
   assert(
-    !/.*\/exercise-tracker\.freecodecamp\.rocks/.test(getUserInput('url'))
+    !/.*\/exercise-tracker\.freecodecamp\.rocks/.test(getUserInput("url"))
   );
 };
 ```
@@ -33,11 +33,11 @@ dashedName: exercise-tracker
 
 ```js
 async (getUserInput) => {
-  const url = getUserInput('url');
-  const res = await fetch(url + '/api/users', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `username=fcc_test_${Date.now()}`.substr(0, 29)
+  const url = getUserInput("url");
+  const res = await fetch(url + "/api/users", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `username=fcc_test_${Date.now()}`.substr(0, 29),
   });
   if (res.ok) {
     const { _id, username } = await res.json();
@@ -53,8 +53,8 @@ async (getUserInput) => {
 
 ```js
 async (getUserInput) => {
-  const url = getUserInput('url');
-  const res = await fetch(url + '/api/users');
+  const url = getUserInput("url");
+  const res = await fetch(url + "/api/users");
   if (res.ok) {
     const data = await res.json();
     assert.isArray(data);
@@ -70,25 +70,25 @@ async (getUserInput) => {
 
 ```js
 async (getUserInput) => {
-  const url = getUserInput('url');
-  const res = await fetch(url + '/api/users', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `username=fcc_test_${Date.now()}`.substr(0, 29)
+  const url = getUserInput("url");
+  const res = await fetch(url + "/api/users", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `username=fcc_test_${Date.now()}`.substr(0, 29),
   });
   if (res.ok) {
     const { _id, username } = await res.json();
     const expected = {
       username,
-      description: 'test',
+      description: "test",
       duration: 60,
       _id,
-      date: 'Mon Jan 01 1990'
+      date: "Mon Jan 01 1990",
     };
     const addRes = await fetch(url + `/api/users/${_id}/exercises`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `description=${expected.description}&duration=${expected.duration}&date=1990-01-01`
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `description=${expected.description}&duration=${expected.duration}&date=1990-01-01`,
     });
     if (addRes.ok) {
       const actual = await addRes.json();
@@ -106,25 +106,25 @@ async (getUserInput) => {
 
 ```js
 async (getUserInput) => {
-  const url = getUserInput('url');
-  const res = await fetch(url + '/api/users', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `username=fcc_test_${Date.now()}`.substr(0, 29)
+  const url = getUserInput("url");
+  const res = await fetch(url + "/api/users", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `username=fcc_test_${Date.now()}`.substr(0, 29),
   });
   if (res.ok) {
     const { _id, username } = await res.json();
     const expected = {
       username,
-      description: 'test',
+      description: "test",
       duration: 60,
       _id,
-      date: new Date().toDateString()
+      date: new Date().toDateString(),
     };
     const addRes = await fetch(url + `/api/users/${_id}/exercises`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `description=${expected.description}&duration=${expected.duration}`
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `description=${expected.description}&duration=${expected.duration}`,
     });
     if (addRes.ok) {
       const logRes = await fetch(url + `/api/users/${_id}/logs`);
@@ -148,25 +148,25 @@ async (getUserInput) => {
 
 ```js
 async (getUserInput) => {
-  const url = getUserInput('url');
-  const res = await fetch(url + '/api/users', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `username=fcc_test_${Date.now()}`.substr(0, 29)
+  const url = getUserInput("url");
+  const res = await fetch(url + "/api/users", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `username=fcc_test_${Date.now()}`.substr(0, 29),
   });
   if (res.ok) {
     const { _id, username } = await res.json();
     const expected = {
       username,
-      description: 'test',
+      description: "test",
       duration: 60,
       _id,
-      date: new Date().toDateString()
+      date: new Date().toDateString(),
     };
     const addRes = await fetch(url + `/api/users/${_id}/exercises`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `description=${expected.description}&duration=${expected.duration}`
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `description=${expected.description}&duration=${expected.duration}`,
     });
     if (addRes.ok) {
       const logRes = await fetch(url + `/api/users/${_id}/logs`);
@@ -189,30 +189,30 @@ async (getUserInput) => {
 
 ```js
 async (getUserInput) => {
-  const url = getUserInput('url');
-  const res = await fetch(url + '/api/users', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `username=fcc_test_${Date.now()}`.substr(0, 29)
+  const url = getUserInput("url");
+  const res = await fetch(url + "/api/users", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `username=fcc_test_${Date.now()}`.substr(0, 29),
   });
   if (res.ok) {
     const { _id, username } = await res.json();
     const expected = {
       username,
-      description: 'test',
+      description: "test",
       duration: 60,
       _id,
-      date: new Date().toDateString()
+      date: new Date().toDateString(),
     };
     const addExerciseRes = await fetch(url + `/api/users/${_id}/exercises`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `description=${expected.description}&duration=${expected.duration}&date=1990-01-01`
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `description=${expected.description}&duration=${expected.duration}&date=1990-01-01`,
     });
     const addExerciseTwoRes = await fetch(url + `/api/users/${_id}/exercises`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `description=${expected.description}&duration=${expected.duration}&date=1990-01-02`
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `description=${expected.description}&duration=${expected.duration}&date=1990-01-02`,
     });
     if (addExerciseRes.ok && addExerciseTwoRes.ok) {
       const logRes = await fetch(
@@ -225,9 +225,7 @@ async (getUserInput) => {
       } else {
         throw new Error(`${logRes.status} ${logRes.statusText}`);
       }
-      const limitRes = await fetch(
-        url + `/api/users/${_id}/logs?limit=1`
-      );
+      const limitRes = await fetch(url + `/api/users/${_id}/logs?limit=1`);
       if (limitRes.ok) {
         const { log } = await limitRes.json();
         assert.isArray(log);

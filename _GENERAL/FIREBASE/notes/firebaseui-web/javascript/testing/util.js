@@ -16,14 +16,13 @@
  * @fileoverview Fake utils for testing.
  */
 
-goog.module('firebaseui.auth.testing.FakeUtil');
+goog.module("firebaseui.auth.testing.FakeUtil");
 goog.module.declareLegacyNamespace();
 goog.setTestOnly();
 
-var Disposable = goog.require('goog.Disposable');
-var PropertyReplacer = goog.require('goog.testing.PropertyReplacer');
-var util = goog.require('firebaseui.auth.util');
-
+var Disposable = goog.require("goog.Disposable");
+var PropertyReplacer = goog.require("goog.testing.PropertyReplacer");
+var util = goog.require("firebaseui.auth.util");
 
 /**
  * Fake utils class.
@@ -48,28 +47,28 @@ class FakeUtil extends Disposable {
    * @return {!FakeUtil} The fake util.
    */
   install() {
-    var r = this.replacer_ = new PropertyReplacer();
+    var r = (this.replacer_ = new PropertyReplacer());
     var self = this;
-    r.set(util, 'goTo', function(url) {
+    r.set(util, "goTo", function (url) {
       self.goToUrl_ = url;
     });
-    r.set(util, 'openerGoTo', function(url) {
+    r.set(util, "openerGoTo", function (url) {
       self.openerGoToUrl_ = url;
     });
-    r.set(util, 'hasOpener', function() {
+    r.set(util, "hasOpener", function () {
       return !!self.hasOpener_;
     });
-    r.set(util, 'close', function(window) {
+    r.set(util, "close", function (window) {
       self.closedWindow_ = window;
     });
-    r.set(util, 'popup', function(url) {
+    r.set(util, "popup", function (url) {
       self.popupUrl_ = url;
     });
-    r.set(util, 'open', function(url, windowName) {
+    r.set(util, "open", function (url, windowName) {
       self.openUrl_ = url;
       self.windowName_ = windowName;
     });
-    r.set(util, 'replaceHistoryState', function(state, title, url) {
+    r.set(util, "replaceHistoryState", function (state, title, url) {
       self.lastHistoryState_ = state;
       self.lastHistoryTitle_ = title;
       self.lastHistoryUrl_ = url;
@@ -79,11 +78,11 @@ class FakeUtil extends Disposable {
 
   /** Removes the fake utils hooks. */
   uninstall() {
-    assertNull('unexpected goTo', this.goToUrl_);
-    assertNull('unexpected openerGoTo', this.openerGoToUrl_);
-    assertNull('unexpected window close', this.closedWindow_);
-    assertNull('unexpected popup window', this.popupUrl_);
-    assertNull('unexpected replaceHistoryState', this.lastHistoryUrl_);
+    assertNull("unexpected goTo", this.goToUrl_);
+    assertNull("unexpected openerGoTo", this.openerGoToUrl_);
+    assertNull("unexpected window close", this.closedWindow_);
+    assertNull("unexpected popup window", this.popupUrl_);
+    assertNull("unexpected replaceHistoryState", this.lastHistoryUrl_);
     this.hasOpener_ = null;
     this.goToUrl_ = null;
     this.openerGoToUrl_ = null;
@@ -182,6 +181,5 @@ class FakeUtil extends Disposable {
     this.lastHistoryUrl_ = null;
   }
 }
-
 
 exports = FakeUtil;

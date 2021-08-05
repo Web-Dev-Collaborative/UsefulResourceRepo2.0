@@ -1,4 +1,5 @@
 <!-- [SNIPPET_REGISTRY disabled] -->
+
 # Firebase Web Snippets
 
 This repository holds code snippets used in Web documentation

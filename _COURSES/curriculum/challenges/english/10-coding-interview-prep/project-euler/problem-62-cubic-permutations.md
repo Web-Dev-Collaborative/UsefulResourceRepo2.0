@@ -1,6 +1,6 @@
 ---
 id: 5900f3aa1000cf542c50febd
-title: 'Problem 62: Cubic permutations'
+title: "Problem 62: Cubic permutations"
 challengeType: 5
 forumTopicId: 302174
 dashedName: problem-62-cubic-permutations
@@ -17,7 +17,7 @@ Find the smallest cube for which exactly `n` permutations of its digits are cube
 `cubicPermutations(2)` should return a number.
 
 ```js
-assert(typeof cubicPermutations(2) === 'number');
+assert(typeof cubicPermutations(2) === "number");
 ```
 
 `cubicPermutations(2)` should return `125`.
@@ -50,7 +50,6 @@ assert.strictEqual(cubicPermutations(5), 127035954683);
 
 ```js
 function cubicPermutations(n) {
-
   return true;
 }
 
@@ -84,7 +83,7 @@ function cubicPermutations(n) {
     if (!digitsToCubeCounts[digits]) {
       digitsToCubeCounts[digits] = {
         count: 1,
-        smallestCube: cube
+        smallestCube: cube,
       };
     } else {
       digitsToCubeCounts[digits].count += 1;

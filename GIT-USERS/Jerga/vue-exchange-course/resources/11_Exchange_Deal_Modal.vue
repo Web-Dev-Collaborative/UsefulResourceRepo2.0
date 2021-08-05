@@ -1,5 +1,4 @@
- <app-modal
-  :onModalSubmit="submitModal">
+<app-modal :onModalSubmit="submitModal">
   <div class="deal">
     <!-- TODO: replace by actual name -->
     <div class="deal-highlight">Exchange Owner Offer</div>
@@ -51,32 +50,33 @@
   </template>
 </app-modal>
 
-
-
 <style scoped lang="scss">
-  .deal-wrapper {
-    margin-bottom: 10px
+.deal-wrapper {
+  margin-bottom: 10px;
+}
+.counter-offer,
+.deal-wrapper {
+  border: 2px solid grey;
+  padding: 10px;
+  margin-top: 10px;
+  &-title {
+    font-size: 21px;
+    margin: 5px 0;
+    font-weight: bold;
   }
-  .counter-offer, .deal-wrapper {
-    border: 2px solid grey;
-    padding: 10px;
-    margin-top: 10px;
-    &-title {
-      font-size: 21px;
-      margin: 5px 0;
-      font-weight: bold;
-    }
-  }
-  .deal {
+}
+.deal {
+  font-size: 19px;
+  &-highlight {
     font-size: 19px;
-    &-highlight {
-      font-size: 19px;
-      font-weight: bold;
-    }
+    font-weight: bold;
   }
-  .disabled {
+}
+.disabled {
   &.field {
-    input, textarea, select {
+    input,
+    textarea,
+    select {
       pointer-events: none;
       color: grey;
     }

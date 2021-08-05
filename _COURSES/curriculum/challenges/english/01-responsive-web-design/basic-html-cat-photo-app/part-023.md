@@ -17,16 +17,16 @@ The Lasagna `img` element should be nested in the `figure` element.
 
 ```js
 assert(
-  document.querySelector('figure > img') &&
-    document.querySelector('figure > img').getAttribute('src').toLowerCase() ===
-      'https://bit.ly/fcc-lasagna'
+  document.querySelector("figure > img") &&
+    document.querySelector("figure > img").getAttribute("src").toLowerCase() ===
+      "https://bit.ly/fcc-lasagna"
 );
 ```
 
 Your `figcaption` element should have an opening tag. Opening tags have the following syntax: `<elementName>`.
 
 ```js
-assert(document.querySelector('figcaption'));
+assert(document.querySelector("figcaption"));
 ```
 
 Your `figcaption` element should have a closing tag. Closing tags have a `/` just after the `<` character.
@@ -39,8 +39,8 @@ The `figcaption` element should be nested in the `figure` element.
 
 ```js
 assert(
-  document.querySelector('figure > figcaption') &&
-    document.querySelector('figure > figcaption')
+  document.querySelector("figure > figcaption") &&
+    document.querySelector("figure > figcaption")
 );
 ```
 
@@ -48,9 +48,9 @@ The lasagna `img` element should be nested in the `figure` element.
 
 ```js
 assert(
-  document.querySelector('figure > img') &&
-    document.querySelector('figure > img').getAttribute('src').toLowerCase() ===
-      'https://bit.ly/fcc-lasagna'
+  document.querySelector("figure > img") &&
+    document.querySelector("figure > img").getAttribute("src").toLowerCase() ===
+      "https://bit.ly/fcc-lasagna"
 );
 ```
 
@@ -58,7 +58,7 @@ The `figcaption` element nested in the `figure` element should be below the `img
 
 ```js
 assert(
-  document.querySelector('figcaption').previousElementSibling.nodeName === 'IMG'
+  document.querySelector("figcaption").previousElementSibling.nodeName === "IMG"
 );
 ```
 
@@ -66,7 +66,7 @@ Your `figcaption` element's text should be `Cats love lasagna.` You have either 
 
 ```js
 assert(
-  document.querySelector('figcaption').innerText.match(/Cats love lasagna.?$/i)
+  document.querySelector("figcaption").innerText.match(/Cats love lasagna.?$/i)
 );
 ```
 
@@ -82,8 +82,15 @@ assert(
       <section>
         <h2>Cat Photos</h2>
         <!-- TODO: Add link to cat photos -->
-        <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        <p>
+          Click here to view more
+          <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+        </p>
+        <a href="https://freecatphotoapp.com"
+          ><img
+            src="https://bit.ly/fcc-relaxing-cat"
+            alt="A cute orange cat lying on its back."
+        /></a>
       </section>
       <section>
         <h2>Cat Lists</h2>
@@ -94,13 +101,15 @@ assert(
           <li>lasagna</li>
         </ul>
         <figure>
---fcc-editable-region--
-          <img src="https://bit.ly/fcc-lasagna" alt="A slice of lasagna on a plate.">
---fcc-editable-region--
+          --fcc-editable-region--
+          <img
+            src="https://bit.ly/fcc-lasagna"
+            alt="A slice of lasagna on a plate."
+          />
+          --fcc-editable-region--
         </figure>
       </section>
     </main>
   </body>
 </html>
 ```
-

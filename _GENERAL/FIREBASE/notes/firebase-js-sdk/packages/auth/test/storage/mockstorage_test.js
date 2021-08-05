@@ -29,30 +29,24 @@ goog.require('goog.testing.recordFunction');
 
 goog.setTestOnly('fireauth.storage.MockStorageTest');
 
-
 var storage;
-
 
 function setUp() {
   storage = new fireauth.storage.MockStorage();
 }
 
-
 function tearDown() {
   storage = null;
 }
-
 
 function testBasicStorageOperations() {
   assertEquals(fireauth.storage.Storage.Type.MOCK_STORAGE, storage.type);
   return assertBasicStorageOperations(storage);
 }
 
-
 function testDifferentTypes() {
   return assertDifferentTypes(storage);
 }
-
 
 function testListeners() {
   var storageEvent;
@@ -64,8 +58,10 @@ function testListeners() {
   storage.addStorageListener(listener1);
   storage.addStorageListener(listener3);
 
-  storageEvent =
-      new goog.testing.events.Event(goog.events.EventType.STORAGE, window);
+  storageEvent = new goog.testing.events.Event(
+    goog.events.EventType.STORAGE,
+    window
+  );
   storageEvent.key = 'myKey1';
   storageEvent.newValue = JSON.stringify('value1');
   storage.fireBrowserEvent(storageEvent);
@@ -73,57 +69,64 @@ function testListeners() {
   assertEquals(1, listener1.getCallCount());
   assertEquals(1, listener3.getCallCount());
   assertEquals(0, listener2.getCallCount());
-  return storage.get('myKey1').then(function(value) {
-    assertEquals('value1', value);
+  return storage
+    .get('myKey1')
+    .then(function (value) {
+      assertEquals('value1', value);
 
-    storage.removeStorageListener(listener3);
+      storage.removeStorageListener(listener3);
 
-    storageEvent.key = 'myKey2';
-    storageEvent.newValue = JSON.stringify('value2');
-    storage.fireBrowserEvent(storageEvent);
+      storageEvent.key = 'myKey2';
+      storageEvent.newValue = JSON.stringify('value2');
+      storage.fireBrowserEvent(storageEvent);
 
-    assertEquals(2, listener1.getCallCount());
-    assertEquals(1, listener3.getCallCount());
-    assertEquals(0, listener2.getCallCount());
-    return storage.get('myKey2');
-  }).then(function(value) {
-    assertEquals('value2', value);
-    storageEvent.key = 'myKey1';
-    storageEvent.newValue = null;
-    storage.fireBrowserEvent(storageEvent);
+      assertEquals(2, listener1.getCallCount());
+      assertEquals(1, listener3.getCallCount());
+      assertEquals(0, listener2.getCallCount());
+      return storage.get('myKey2');
+    })
+    .then(function (value) {
+      assertEquals('value2', value);
+      storageEvent.key = 'myKey1';
+      storageEvent.newValue = null;
+      storage.fireBrowserEvent(storageEvent);
 
-    assertEquals(3, listener1.getCallCount());
-    assertEquals(1, listener3.getCallCount());
-    assertEquals(0, listener2.getCallCount());
+      assertEquals(3, listener1.getCallCount());
+      assertEquals(1, listener3.getCallCount());
+      assertEquals(0, listener2.getCallCount());
 
-    return storage.get('myKey1');
-  }).then(function(value) {
-    assertUndefined(value);
+      return storage.get('myKey1');
+    })
+    .then(function (value) {
+      assertUndefined(value);
 
-    storage.removeStorageListener(listener1);
+      storage.removeStorageListener(listener1);
 
-    storageEvent.key = null;
-    storage.fireBrowserEvent(storageEvent);
+      storageEvent.key = null;
+      storage.fireBrowserEvent(storageEvent);
 
-    assertEquals(3, listener1.getCallCount());
-    assertEquals(1, listener3.getCallCount());
-    assertEquals(0, listener2.getCallCount());
+      assertEquals(3, listener1.getCallCount());
+      assertEquals(1, listener3.getCallCount());
+      assertEquals(0, listener2.getCallCount());
 
-    return storage.get('myKey2');
-  }).then(function(value) {
-    assertUndefined(value);
-  });
+      return storage.get('myKey2');
+    })
+    .then(function (value) {
+      assertUndefined(value);
+    });
 }
-
 
 function testClear() {
   storage.set('myKey1', 'value1');
   storage.set('myKey2', 'value2');
   storage.clear();
-  return storage.get('myKey1').then(function(value) {
-    assertUndefined(value);
-    return storage.get('myKey2');
-  }).then(function(value) {
-    assertUndefined(value);
-  });
+  return storage
+    .get('myKey1')
+    .then(function (value) {
+      assertUndefined(value);
+      return storage.get('myKey2');
+    })
+    .then(function (value) {
+      assertUndefined(value);
+    });
 }

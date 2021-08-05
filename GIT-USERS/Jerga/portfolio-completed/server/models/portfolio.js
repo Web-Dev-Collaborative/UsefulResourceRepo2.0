@@ -1,7 +1,11 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const setStringType = (maxLength) => ({ type: String, required: true, maxlength: maxLength })
+const setStringType = (maxLength) => ({
+  type: String,
+  required: true,
+  maxlength: maxLength,
+});
 
 const portfolioSchema = new Schema({
   userId: setStringType(512),
@@ -10,8 +14,8 @@ const portfolioSchema = new Schema({
   location: setStringType(128),
   position: setStringType(256),
   description: setStringType(2048),
-  startDate: { type: Date, required: true},
-  endDate: Date
+  startDate: { type: Date, required: true },
+  endDate: Date,
 });
 
-module.exports = mongoose.model('Portfolio', portfolioSchema);
+module.exports = mongoose.model("Portfolio", portfolioSchema);

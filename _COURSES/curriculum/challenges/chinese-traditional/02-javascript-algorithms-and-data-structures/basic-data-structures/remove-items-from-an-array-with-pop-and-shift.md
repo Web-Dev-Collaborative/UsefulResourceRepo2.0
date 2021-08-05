@@ -13,7 +13,7 @@ dashedName: remove-items-from-an-array-with-pop-and-shift
 讓我們來看以下的例子：
 
 ```js
-let greetings = ['whats up?', 'hello', 'see ya!'];
+let greetings = ["whats up?", "hello", "see ya!"];
 
 greetings.pop();
 ```
@@ -43,9 +43,9 @@ let popped = greetings.pop();
 `popShift(["challenge", "is", "not", "complete"])` 應返回 `["challenge", "complete"]`。
 
 ```js
-assert.deepEqual(popShift(['challenge', 'is', 'not', 'complete']), [
-  'challenge',
-  'complete'
+assert.deepEqual(popShift(["challenge", "is", "not", "complete"]), [
+  "challenge",
+  "complete",
 ]);
 ```
 
@@ -72,7 +72,7 @@ function popShift(arr) {
   return [shifted, popped];
 }
 
-console.log(popShift(['challenge', 'is', 'not', 'complete']));
+console.log(popShift(["challenge", "is", "not", "complete"]));
 ```
 
 # --solutions--

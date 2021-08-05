@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08822
 title: Regolare il margine di un elemento
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cVJarHW'
+videoUrl: "https://scrimba.com/c/cVJarHW"
 forumTopicId: 16654
 dashedName: adjust-the-margin-of-an-element
 ---
@@ -24,7 +24,7 @@ Cambia il `margin` del riquadro blu per farlo corrispondere a quello del riquadr
 La tua classe `blue-box` dovrebbe dare agli elementi `20px` di `margin`.
 
 ```js
-assert($('.blue-box').css('margin-top') === '20px');
+assert($(".blue-box").css("margin-top") === "20px");
 ```
 
 # --seed--

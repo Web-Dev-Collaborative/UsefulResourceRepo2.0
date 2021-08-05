@@ -41,7 +41,7 @@ assert(
       [0, 1, 0, 0],
       [1, 0, 1, 0],
       [0, 1, 0, 1],
-      [0, 0, 1, 0]
+      [0, 0, 1, 0],
     ];
     var results = bfs(graph, 1);
     return isEquivalent(results, { 0: 1, 1: 0, 2: 1, 3: 2 });
@@ -58,7 +58,7 @@ assert(
       [0, 1, 0, 0],
       [1, 0, 1, 0],
       [0, 1, 0, 0],
-      [0, 0, 0, 0]
+      [0, 0, 0, 0],
     ];
     var results = bfs(graph, 1);
     return isEquivalent(results, { 0: 1, 1: 0, 2: 1, 3: Infinity });
@@ -75,7 +75,7 @@ assert(
       [0, 1, 0, 0],
       [1, 0, 1, 0],
       [0, 1, 0, 1],
-      [0, 0, 1, 0]
+      [0, 0, 1, 0],
     ];
     var results = bfs(graph, 0);
     return isEquivalent(results, { 0: 0, 1: 1, 2: 2, 3: 3 });
@@ -90,7 +90,7 @@ assert(
   (function () {
     var graph = [
       [0, 1],
-      [1, 0]
+      [1, 0],
     ];
     var results = bfs(graph, 0);
     return isEquivalent(results, { 0: 0, 1: 1 });
@@ -105,25 +105,25 @@ assert(
 ```js
 // Source: http://adripofjavascript.com/blog/drips/object-equality-in-javascript.html
 function isEquivalent(a, b) {
-    // Create arrays of property names
-    var aProps = Object.getOwnPropertyNames(a);
-    var bProps = Object.getOwnPropertyNames(b);
-    // If number of properties is different,
+  // Create arrays of property names
+  var aProps = Object.getOwnPropertyNames(a);
+  var bProps = Object.getOwnPropertyNames(b);
+  // If number of properties is different,
+  // objects are not equivalent
+  if (aProps.length != bProps.length) {
+    return false;
+  }
+  for (var i = 0; i < aProps.length; i++) {
+    var propName = aProps[i];
+    // If values of same property are not equal,
     // objects are not equivalent
-    if (aProps.length != bProps.length) {
-        return false;
+    if (a[propName] !== b[propName]) {
+      return false;
     }
-    for (var i = 0; i < aProps.length; i++) {
-        var propName = aProps[i];
-        // If values of same property are not equal,
-        // objects are not equivalent
-        if (a[propName] !== b[propName]) {
-            return false;
-        }
-    }
-    // If we made it this far, objects
-    // are considered equivalent
-    return true;
+  }
+  // If we made it this far, objects
+  // are considered equivalent
+  return true;
 }
 ```
 
@@ -134,13 +134,13 @@ function bfs(graph, root) {
   var nodesLen = {};
 
   return nodesLen;
-};
+}
 
 var exBFSGraph = [
   [0, 1, 0, 0],
   [1, 0, 1, 0],
   [0, 1, 0, 1],
-  [0, 0, 1, 0]
+  [0, 0, 1, 0],
 ];
 console.log(bfs(exBFSGraph, 3));
 ```

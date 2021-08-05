@@ -49,13 +49,13 @@ b[i] = g[i] xor b[i-1]
 `gray` should be a function.
 
 ```js
-assert(typeof gray == 'function');
+assert(typeof gray == "function");
 ```
 
 `gray(true,177)` should return a number.
 
 ```js
-assert(typeof gray(true, 177) == 'number');
+assert(typeof gray(true, 177) == "number");
 ```
 
 `gray(true,177)` should return `233`.
@@ -99,24 +99,22 @@ assert.equal(gray(false, 725), 870);
 ## --seed-contents--
 
 ```js
-function gray(enc, number) {
-
-}
+function gray(enc, number) {}
 ```
 
 # --solutions--
 
 ```js
-function gray(enc, number){
-  if(enc){
-      return number ^ (number >> 1);
-  }else{
-      let n = number;
+function gray(enc, number) {
+  if (enc) {
+    return number ^ (number >> 1);
+  } else {
+    let n = number;
 
-      while (number >>= 1) {
-          n ^= number;
-      }
-      return n;
+    while ((number >>= 1)) {
+      n ^= number;
+    }
+    return n;
   }
 }
 ```

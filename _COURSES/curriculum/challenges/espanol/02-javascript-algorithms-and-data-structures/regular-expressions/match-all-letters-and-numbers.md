@@ -49,7 +49,7 @@ Tu expresión regular debe encontrar 31 caracteres alfanuméricos en la cadena `
 
 ```js
 assert(
-  'The five boxing wizards jump quickly.'.match(alphabetRegexV2).length === 31
+  "The five boxing wizards jump quickly.".match(alphabetRegexV2).length === 31
 );
 ```
 
@@ -57,7 +57,7 @@ Tu expresión regular debe encontrar 32 caracteres alfanuméricos en la cadena `
 
 ```js
 assert(
-  'Pack my box with five dozen liquor jugs.'.match(alphabetRegexV2).length ===
+  "Pack my box with five dozen liquor jugs.".match(alphabetRegexV2).length ===
     32
 );
 ```
@@ -66,7 +66,7 @@ Tu expresión regular debe encontrar 30 caracteres alfanuméricos en la cadena `
 
 ```js
 assert(
-  'How vexingly quick daft zebras jump!'.match(alphabetRegexV2).length === 30
+  "How vexingly quick daft zebras jump!".match(alphabetRegexV2).length === 30
 );
 ```
 
@@ -74,7 +74,7 @@ Tu expresión regular debe encontrar 36 caracteres alfanuméricos en la cadena `
 
 ```js
 assert(
-  '123 456 7890 ABC def GHI jkl MNO pqr STU vwx YZ.'.match(alphabetRegexV2)
+  "123 456 7890 ABC def GHI jkl MNO pqr STU vwx YZ.".match(alphabetRegexV2)
     .length === 36
 );
 ```

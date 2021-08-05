@@ -1,19 +1,19 @@
-const jwt = require('express-jwt');
-const jwksRsa = require('jwks-rsa');
+const jwt = require("express-jwt");
+const jwksRsa = require("jwks-rsa");
 
-const namespace = 'https://portfel.com/';
+const namespace = "https://portfel.com/";
 
 exports.checkJwt = jwt({
   secret: jwksRsa.expressJwtSecret({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `https://eincode.eu.auth0.com/.well-known/jwks.json`
+    jwksUri: `https://eincode.eu.auth0.com/.well-known/jwks.json`,
   }),
   // Validate the audience and the issuer.
-  audience: 'N1hKhhP0PacJO4EjIWURIcnzBt88P3Q1',
+  audience: "N1hKhhP0PacJO4EjIWURIcnzBt88P3Q1",
   issuer: `https://eincode.eu.auth0.com/`,
-  algorithms: ['RS256']
+  algorithms: ["RS256"],
 });
 
 // exports.checkJwt;
@@ -21,12 +21,14 @@ exports.checkJwt = jwt({
 exports.checkSuperAdmin = (req, res, next) => {
   const user = req.user;
 
-  if (user && (user[namespace + 'role'] === 'admin')) {
+  if (user && user[namespace + "role"] === "admin") {
     next();
   } else {
-    return res.status(401).send([{title: 'Not Authirized', detail: 'Not Sufictient Rights'}]);
+    return res
+      .status(401)
+      .send([{ title: "Not Authirized", detail: "Not Sufictient Rights" }]);
   }
-}
+};
 
 // getToken: function fromHeaderOrQuerystring (req) {
 //     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {

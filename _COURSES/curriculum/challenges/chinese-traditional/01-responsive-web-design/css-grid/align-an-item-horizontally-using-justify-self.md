@@ -2,7 +2,7 @@
 id: 5a90374338fddaf9a66b5d3a
 title: 使用 justify-self 水平對齊項目
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pByETK/cJbpKHq'
+videoUrl: "https://scrimba.com/p/pByETK/cJbpKHq"
 forumTopicId: 301122
 dashedName: align-an-item-horizontally-using-justify-self
 ---
@@ -37,19 +37,26 @@ assert(
 
 ```html
 <style>
-  .item1{background: LightSkyBlue;}
+  .item1 {
+    background: LightSkyBlue;
+  }
 
   .item2 {
     background: LightSalmon;
     /* Only change code below this line */
 
-
     /* Only change code above this line */
   }
 
-  .item3{background:PaleTurquoise;}
-  .item4{background:LightPink;}
-  .item5{background:PaleGreen;}
+  .item3 {
+    background: PaleTurquoise;
+  }
+  .item4 {
+    background: LightPink;
+  }
+  .item5 {
+    background: PaleGreen;
+  }
 
   .container {
     font-size: 40px;
@@ -75,5 +82,9 @@ assert(
 # --solutions--
 
 ```html
-<style>.item2 {justify-self: center;}</style>
+<style>
+  .item2 {
+    justify-self: center;
+  }
+</style>
 ```

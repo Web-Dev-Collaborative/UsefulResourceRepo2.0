@@ -2,7 +2,7 @@
 id: 587d778b367417b2b2512aa8
 title: 添加可訪問的日期選擇器
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cR3bRbCV'
+videoUrl: "https://scrimba.com/c/cR3bRbCV"
 forumTopicId: 301008
 dashedName: add-an-accessible-date-picker
 ---
@@ -19,7 +19,7 @@ dashedName: add-an-accessible-date-picker
 
 ```html
 <label for="input1">Enter a date:</label>
-<input type="date" id="input1" name="input1">
+<input type="date" id="input1" name="input1" />
 ```
 
 # --instructions--
@@ -31,25 +31,25 @@ Camper Cat 想舉辦一場比武大會，他想收集參賽者的最佳參賽時
 日期選擇器應有一個 `input` 標籤。
 
 ```js
-assert($('input').length == 2);
+assert($("input").length == 2);
 ```
 
 `input` 標籤應有一個值爲 `date` 的 `type` 屬性。
 
 ```js
-assert($('input').attr('type') == 'date');
+assert($("input").attr("type") == "date");
 ```
 
 `input` 標籤應有一個值爲 `pickdate` 的 `id` 屬性。
 
 ```js
-assert($('input').attr('id') == 'pickdate');
+assert($("input").attr("id") == "pickdate");
 ```
 
 `input` 標籤應有一個值爲 `date` 的 `name` 屬性。
 
 ```js
-assert($('input').attr('name') == 'date');
+assert($("input").attr("name") == "date");
 ```
 
 # --seed--
@@ -70,11 +70,9 @@ assert($('input').attr('name') == 'date');
 
         <!-- Only change code below this line -->
 
-
-
         <!-- Only change code above this line -->
 
-        <input type="submit" name="submit" value="Submit">
+        <input type="submit" name="submit" value="Submit" />
       </form>
     </section>
   </main>
@@ -95,8 +93,8 @@ assert($('input').attr('name') == 'date');
       <form>
         <p>Tell us the best date for the competition</p>
         <label for="pickdate">Preferred Date:</label>
-        <input type="date" id="pickdate" name="date">
-        <input type="submit" name="submit" value="Submit">
+        <input type="date" id="pickdate" name="date" />
+        <input type="submit" name="submit" value="Submit" />
       </form>
     </section>
   </main>

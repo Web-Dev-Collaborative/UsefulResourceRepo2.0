@@ -16,26 +16,26 @@ After the `Cat Form` heading, add a `form` element.
 Your `form` element should have an opening tag and closing tag. You may be missing one or both of the required tags, or have them in the wrong order.
 
 ```js
-assert(document.querySelector('form') && code.match(/<\/form>/g));
+assert(document.querySelector("form") && code.match(/<\/form>/g));
 ```
 
 Your `form` element tags are not in the correct order.
 
 ```js
-const noSpaces = code.replace(/\s/g, '');
-assert(noSpaces.indexOf('<form>') < noSpaces.indexOf('</form>'));
+const noSpaces = code.replace(/\s/g, "");
+assert(noSpaces.indexOf("<form>") < noSpaces.indexOf("</form>"));
 ```
 
 The `form` element nested in the last `section` element should be below the `h2` element. You have the `h2` element and the `form` element in the wrong order.
 
 ```js
-assert(document.querySelector('form').previousElementSibling.nodeName === 'H2');
+assert(document.querySelector("form").previousElementSibling.nodeName === "H2");
 ```
 
 The `form` element should have no content. Remove any HTML elements or text between the `form` element's tags.
 
 ```js
-assert($('form')[0].innerHTML.trim().length === 0);
+assert($("form")[0].innerHTML.trim().length === 0);
 ```
 
 # --seed--
@@ -50,8 +50,15 @@ assert($('form')[0].innerHTML.trim().length === 0);
       <section>
         <h2>Cat Photos</h2>
         <!-- TODO: Add link to cat photos -->
-        <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        <p>
+          Click here to view more
+          <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+        </p>
+        <a href="https://freecatphotoapp.com"
+          ><img
+            src="https://bit.ly/fcc-relaxing-cat"
+            alt="A cute orange cat lying on its back."
+        /></a>
       </section>
       <section>
         <h2>Cat Lists</h2>
@@ -62,8 +69,11 @@ assert($('form')[0].innerHTML.trim().length === 0);
           <li>lasagna</li>
         </ul>
         <figure>
-          <img src="https://bit.ly/fcc-lasagna" alt="A slice of lasagna on a plate.">
-          <figcaption>Cats <em>love</em> lasagna.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-lasagna"
+            alt="A slice of lasagna on a plate."
+          />
+          <figcaption>Cats <em>love</em> lasagna.</figcaption>
         </figure>
         <h3>Top 3 things cats hate:</h3>
         <ol>
@@ -72,17 +82,19 @@ assert($('form')[0].innerHTML.trim().length === 0);
           <li>other cats</li>
         </ol>
         <figure>
-          <img src="https://bit.ly/fcc-cats" alt="Five cats looking around a field.">
-          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-cats"
+            alt="Five cats looking around a field."
+          />
+          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>
         </figure>
       </section>
       <section>
---fcc-editable-region--
+        --fcc-editable-region--
         <h2>Cat Form</h2>
---fcc-editable-region--
+        --fcc-editable-region--
       </section>
     </main>
   </body>
 </html>
 ```
-

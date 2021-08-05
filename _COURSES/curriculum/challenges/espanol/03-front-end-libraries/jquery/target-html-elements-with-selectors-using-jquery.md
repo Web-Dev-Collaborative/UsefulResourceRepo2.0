@@ -4,8 +4,7 @@ title: Apunta a elementos HTML con selectores usando jQuery
 challengeType: 6
 forumTopicId: 18319
 required:
-  - 
-    link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: target-html-elements-with-selectors-using-jquery
 ---
 
@@ -30,7 +29,7 @@ Ten en cuenta que ya hemos incluido tanto la librería jQuery como la librería 
 Debes usar la función de jQuery `addClass()` para dar las clases `animated` y `bounce` a tus elementos `button`.
 
 ```js
-assert($('button').hasClass('animated') && $('button').hasClass('bounce'));
+assert($("button").hasClass("animated") && $("button").hasClass("bounce"));
 ```
 
 Solo debes usar jQuery para añadir estas clases al elemento.
@@ -43,7 +42,7 @@ Tu código de jQuery debería estar dentro de la función `$(document).ready();`
 
 ```js
 assert(
-  code.replace(/\s/g, '').match(/\$\(document\)\.ready\(function\(\)\{\$/g)
+  code.replace(/\s/g, "").match(/\$\(document\)\.ready\(function\(\)\{\$/g)
 );
 ```
 
@@ -53,9 +52,7 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
-
-  });
+  $(document).ready(function () {});
 </script>
 
 <!-- Only change code above this line -->
@@ -87,7 +84,7 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
   });
 </script>

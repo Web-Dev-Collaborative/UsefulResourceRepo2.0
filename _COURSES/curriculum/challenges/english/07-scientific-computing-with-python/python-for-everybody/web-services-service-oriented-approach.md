@@ -1,6 +1,6 @@
 ---
 id: 5e7b9f140b6c005b0e76f07e
-title: 'Web Services: Service Oriented Approach'
+title: "Web Services: Service Oriented Approach"
 challengeType: 11
 videoId: muerlsCHExI
 dashedName: web-services-service-oriented-approach
@@ -27,4 +27,3 @@ On a separate database server.
 ## --video-solution--
 
 1
-

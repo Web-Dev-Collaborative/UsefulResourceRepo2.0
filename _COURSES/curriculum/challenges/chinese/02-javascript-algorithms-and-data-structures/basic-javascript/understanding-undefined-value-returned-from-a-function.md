@@ -2,7 +2,7 @@
 id: 598e8944f009e646fc236146
 title: 函数也可以返回 undefined
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/ce2p7cL'
+videoUrl: "https://scrimba.com/c/ce2p7cL"
 forumTopicId: 301177
 dashedName: understanding-undefined-value-returned-from-a-function
 ---
@@ -32,7 +32,7 @@ addSum(3);
 `addFive` 应该是一个函数。
 
 ```js
-assert(typeof addFive === 'function');
+assert(typeof addFive === "function");
 ```
 
 两个函数运行后，`sum` 应该等于 `8`。
@@ -68,7 +68,6 @@ function addThree() {
 }
 
 // Only change code below this line
-
 
 // Only change code above this line
 

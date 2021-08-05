@@ -19,7 +19,7 @@ Your comment should start with `<!--`. You are missing one or more of the charac
 assert(code.match(/<!--/));
 ```
 
-Your comment should end with `-->`.  You are missing one or more of the characters that define the end of a comment.
+Your comment should end with `-->`. You are missing one or more of the characters that define the end of a comment.
 
 ```js
 assert(code.match(/-->/));
@@ -28,7 +28,7 @@ assert(code.match(/-->/));
 Your code should not have extra opening/closing comment characters. You have an extra `<!--` or `-->` displaying in the browser.
 
 ```js
-const noSpaces = code.replace(/\s/g, '');
+const noSpaces = code.replace(/\s/g, "");
 assert(noSpaces.match(/<!--/g).length < 2 && noSpaces.match(/-->/g).length < 2);
 ```
 
@@ -43,7 +43,7 @@ Your comment should be above the `p` element. You have them in the wrong order.
 ```js
 assert(
   code
-    .replace(/\s/g, '')
+    .replace(/\s/g, "")
     .match(
       /<!--todo:addlinktocatphotos--><p>clickheretoviewmorecatphotos\.?<\/p>/i
     )
@@ -59,10 +59,9 @@ assert(
   <body>
     <h1>CatPhotoApp</h1>
     <h2>Cat Photos</h2>
---fcc-editable-region--
+    --fcc-editable-region--
     <p>Click here to view more cat photos.</p>
---fcc-editable-region--
+    --fcc-editable-region--
   </body>
 </html>
 ```
-

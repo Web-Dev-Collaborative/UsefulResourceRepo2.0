@@ -2,7 +2,7 @@
 id: 5a9d72ad424fe3d0e10cad16
 title: 使用媒體查詢更改變量
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cWmL8UP'
+videoUrl: "https://scrimba.com/c/cWmL8UP"
 forumTopicId: 301091
 dashedName: use-a-media-query-to-change-a-variable
 ---
@@ -126,24 +126,24 @@ assert(
     animation-duration: 3s;
     animation-name: wave;
     animation-iteration-count: infinite;
-    transform-origin:0% 0%;
+    transform-origin: 0% 0%;
     animation-timing-function: linear;
   }
 
   @keyframes wave {
-      10% {
-        transform: rotate(110deg);
-      }
-      20% {
-        transform: rotate(130deg);
-      }
-      30% {
-        transform: rotate(110deg);
-      }
-      40% {
-        transform: rotate(130deg);
-      }
+    10% {
+      transform: rotate(110deg);
     }
+    20% {
+      transform: rotate(130deg);
+    }
+    30% {
+      transform: rotate(110deg);
+    }
+    40% {
+      transform: rotate(130deg);
+    }
+  }
 
   .left-hand {
     top: 0%;
@@ -198,7 +198,7 @@ assert(
 
   .sparkle {
     top: 25%;
-    left:-23%;
+    left: -23%;
     background: white;
     width: 150%;
     height: 100%;
@@ -242,7 +242,7 @@ assert(
   }
 
   body {
-    background:#c6faf1;
+    background: #c6faf1;
   }
 
   .penguin * {
@@ -277,5 +277,12 @@ assert(
 # --solutions--
 
 ```html
-<style>@media (max-width: 350px) {:root {--penguin-size: 200px; --penguin-skin: black;}}</style>
+<style>
+  @media (max-width: 350px) {
+    :root {
+      --penguin-size: 200px;
+      --penguin-skin: black;
+    }
+  }
+</style>
 ```

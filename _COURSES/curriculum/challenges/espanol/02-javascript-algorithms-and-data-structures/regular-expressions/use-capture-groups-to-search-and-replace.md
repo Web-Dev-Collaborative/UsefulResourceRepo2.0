@@ -23,7 +23,7 @@ La llamada `replace` devolverá la cadena `The sky is blue.`.
 También puedes acceder a grupos de captura en la cadena de reemplazo con signos de dólar. (`$`).
 
 ```js
-"Code Camp".replace(/(\w+)\s(\w+)/, '$2 $1');
+"Code Camp".replace(/(\w+)\s(\w+)/, "$2 $1");
 ```
 
 La llamada `replace` devolverá la cadena `Camp Code`.
@@ -43,7 +43,7 @@ assert(code.match(/\.replace\(.*\)/));
 Tu expresión regular debe cambiar la cadena `one two three` a la cadena `three two one`
 
 ```js
-assert(result === 'three two one');
+assert(result === "three two one");
 ```
 
 No debes cambiar la última línea.
@@ -55,7 +55,7 @@ assert(code.match(/result\s*=\s*str\.replace\(.*?\)/));
 `fixRegex` debe usar al menos tres grupos de captura.
 
 ```js
-assert(new RegExp(fixRegex.source + '|').exec('').length - 1 >= 3);
+assert(new RegExp(fixRegex.source + "|").exec("").length - 1 >= 3);
 ```
 
 `replaceText` debe usar cadena(s) de subcoincidencia entre paréntesis (es decir, la enésima cadena de subcoincidencia entre parentesis, $n, corresponde al enésimo grupo de captura).

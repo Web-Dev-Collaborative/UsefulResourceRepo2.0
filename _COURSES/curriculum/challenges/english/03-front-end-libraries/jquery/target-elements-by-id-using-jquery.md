@@ -4,7 +4,7 @@ title: Target Elements by id Using jQuery
 challengeType: 6
 forumTopicId: 18317
 required:
-  - link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: target-elements-by-id-using-jquery
 ---
 
@@ -29,14 +29,14 @@ $("#target6").addClass("animated fadeOut");
 You should select the `button` element with the `id` of `target3` and use the jQuery `addClass()` function to give it the class of `animated`.
 
 ```js
-assert($('#target3').hasClass('animated'));
+assert($("#target3").hasClass("animated"));
 ```
 
 You should target the element with the id `target3` and use the jQuery `addClass()` function to give it the class `fadeOut`.
 
 ```js
 assert(
-  ($('#target3').hasClass('fadeOut') || $('#target3').hasClass('fadeout')) &&
+  ($("#target3").hasClass("fadeOut") || $("#target3").hasClass("fadeout")) &&
     code.match(/\$\(\s*.#target3.\s*\)/g)
 );
 ```
@@ -53,10 +53,9 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
     $(".well").addClass("animated shake");
-
   });
 </script>
 
@@ -89,7 +88,7 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
     $(".well").addClass("animated shake");
     $("#target3").addClass("animated fadeOut");

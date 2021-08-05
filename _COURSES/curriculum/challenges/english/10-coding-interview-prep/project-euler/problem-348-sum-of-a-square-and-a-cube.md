@@ -1,6 +1,6 @@
 ---
 id: 5900f4c81000cf542c50ffdb
-title: 'Problem 348: Sum of a square and a cube'
+title: "Problem 348: Sum of a square and a cube"
 challengeType: 5
 forumTopicId: 302007
 dashedName: problem-348-sum-of-a-square-and-a-cube
@@ -28,7 +28,6 @@ assert.strictEqual(euler348(), 1004195061);
 
 ```js
 function euler348() {
-
   return true;
 }
 

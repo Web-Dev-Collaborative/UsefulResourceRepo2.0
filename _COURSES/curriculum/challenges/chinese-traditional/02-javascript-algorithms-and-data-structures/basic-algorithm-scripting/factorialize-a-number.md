@@ -23,7 +23,7 @@ dashedName: factorialize-a-number
 `factorialize(5)` 應返回一個數字。
 
 ```js
-assert(typeof factorialize(5) === 'number');
+assert(typeof factorialize(5) === "number");
 ```
 
 `factorialize(5)` 應該返回 `120`。

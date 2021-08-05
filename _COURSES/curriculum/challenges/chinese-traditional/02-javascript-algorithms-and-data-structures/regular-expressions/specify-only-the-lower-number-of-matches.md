@@ -41,37 +41,37 @@ assert(haRegex.source.match(/{.*?}/).length > 0);
 你的正則表達式不應匹配字符串 `Hazzah`
 
 ```js
-assert(!haRegex.test('Hazzah'));
+assert(!haRegex.test("Hazzah"));
 ```
 
 你的正則表達式不應匹配字符串 `Hazzzah`
 
 ```js
-assert(!haRegex.test('Hazzzah'));
+assert(!haRegex.test("Hazzzah"));
 ```
 
 你的正則表達式應該匹配字符串 `Hazzzzah`
 
 ```js
-assert('Hazzzzah'.match(haRegex)[0].length === 8);
+assert("Hazzzzah".match(haRegex)[0].length === 8);
 ```
 
 你的正則表達式應該匹配字符串 `Hazzzzzah`
 
 ```js
-assert('Hazzzzzah'.match(haRegex)[0].length === 9);
+assert("Hazzzzzah".match(haRegex)[0].length === 9);
 ```
 
 你的正則表達式應該匹配字符串 `Hazzzzzzah`
 
 ```js
-assert('Hazzzzzzah'.match(haRegex)[0].length === 10);
+assert("Hazzzzzzah".match(haRegex)[0].length === 10);
 ```
 
 你的正則表達式應該匹配包含 30 個字母 `z` 的 `Hazzah`。
 
 ```js
-assert('Hazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzah'.match(haRegex)[0].length === 34);
+assert("Hazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzah".match(haRegex)[0].length === 34);
 ```
 
 # --seed--

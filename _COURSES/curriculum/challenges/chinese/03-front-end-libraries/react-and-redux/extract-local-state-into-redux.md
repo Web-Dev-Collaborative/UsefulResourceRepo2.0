@@ -24,7 +24,7 @@ dashedName: extract-local-state-into-redux
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(AppWrapper));
-    return mockedComponent.find('AppWrapper').length === 1;
+    return mockedComponent.find("AppWrapper").length === 1;
   })()
 );
 ```
@@ -35,7 +35,7 @@ assert(
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(AppWrapper));
-    return mockedComponent.find('Presentational').length === 1;
+    return mockedComponent.find("Presentational").length === 1;
   })()
 );
 ```
@@ -46,12 +46,12 @@ assert(
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(AppWrapper));
-    const PresentationalComponent = mockedComponent.find('Presentational');
+    const PresentationalComponent = mockedComponent.find("Presentational");
     return (
-      PresentationalComponent.find('div').length === 1 &&
-      PresentationalComponent.find('h2').length === 1 &&
-      PresentationalComponent.find('button').length === 1 &&
-      PresentationalComponent.find('ul').length === 1
+      PresentationalComponent.find("div").length === 1 &&
+      PresentationalComponent.find("h2").length === 1 &&
+      PresentationalComponent.find("button").length === 1 &&
+      PresentationalComponent.find("ul").length === 1
     );
   })()
 );
@@ -63,7 +63,7 @@ assert(
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(AppWrapper));
-    const PresentationalComponent = mockedComponent.find('Presentational');
+    const PresentationalComponent = mockedComponent.find("Presentational");
     const props = PresentationalComponent.props();
     return Array.isArray(props.messages);
   })()
@@ -76,9 +76,9 @@ assert(
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(AppWrapper));
-    const PresentationalComponent = mockedComponent.find('Presentational');
+    const PresentationalComponent = mockedComponent.find("Presentational");
     const props = PresentationalComponent.props();
-    return typeof props.submitNewMessage === 'function';
+    return typeof props.submitNewMessage === "function";
   })()
 );
 ```
@@ -90,10 +90,10 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(AppWrapper));
     const PresentationalState = mockedComponent
-      .find('Presentational')
+      .find("Presentational")
       .instance().state;
     return (
-      typeof PresentationalState.input === 'string' &&
+      typeof PresentationalState.input === "string" &&
       Object.keys(PresentationalState).length === 1
     );
   })()
@@ -105,21 +105,21 @@ assert(
 ```js
 async () => {
   const mockedComponent = Enzyme.mount(React.createElement(AppWrapper));
-  const testValue = '__MOCK__INPUT__';
+  const testValue = "__MOCK__INPUT__";
   const waitForIt = (fn) =>
     new Promise((resolve, reject) => setTimeout(() => resolve(fn()), 100));
   const causeChange = (c, v) =>
-    c.find('input').simulate('change', { target: { value: v } });
-  let initialInput = mockedComponent.find('Presentational').find('input');
+    c.find("input").simulate("change", { target: { value: v } });
+  let initialInput = mockedComponent.find("Presentational").find("input");
   const changed = () => {
     causeChange(mockedComponent, testValue);
     return waitForIt(() => mockedComponent);
   };
   const updated = await changed();
-  const updatedInput = updated.find('Presentational').find('input');
+  const updatedInput = updated.find("Presentational").find("input");
   assert(
-    initialInput.props().value === '' &&
-      updatedInput.props().value === '__MOCK__INPUT__'
+    initialInput.props().value === "" &&
+      updatedInput.props().value === "__MOCK__INPUT__"
   );
 };
 ```
@@ -131,27 +131,27 @@ async () => {
   const mockedComponent = Enzyme.mount(React.createElement(AppWrapper));
   const waitForIt = (fn) =>
     new Promise((resolve, reject) => setTimeout(() => resolve(fn()), 100));
-  let beforeProps = mockedComponent.find('Presentational').props();
-  const testValue = '__TEST__EVENT__INPUT__';
+  let beforeProps = mockedComponent.find("Presentational").props();
+  const testValue = "__TEST__EVENT__INPUT__";
   const causeChange = (c, v) =>
-    c.find('input').simulate('change', { target: { value: v } });
+    c.find("input").simulate("change", { target: { value: v } });
   const changed = () => {
     causeChange(mockedComponent, testValue);
     return waitForIt(() => mockedComponent);
   };
   const clickButton = () => {
-    mockedComponent.find('button').simulate('click');
+    mockedComponent.find("button").simulate("click");
     return waitForIt(() => mockedComponent);
   };
   const afterChange = await changed();
-  const afterChangeInput = afterChange.find('input').props().value;
+  const afterChangeInput = afterChange.find("input").props().value;
   const afterClick = await clickButton();
-  const afterProps = mockedComponent.find('Presentational').props();
+  const afterProps = mockedComponent.find("Presentational").props();
   assert(
     beforeProps.messages.length === 0 &&
       afterChangeInput === testValue &&
       afterProps.messages.pop() === testValue &&
-      afterClick.find('input').props().value === ''
+      afterClick.find("input").props().value === ""
   );
 };
 ```
@@ -163,28 +163,28 @@ async () => {
   const mockedComponent = Enzyme.mount(React.createElement(AppWrapper));
   const waitForIt = (fn) =>
     new Promise((resolve, reject) => setTimeout(() => resolve(fn()), 100));
-  let beforeProps = mockedComponent.find('Presentational').props();
-  const testValue = '__TEST__EVENT__INPUT__';
+  let beforeProps = mockedComponent.find("Presentational").props();
+  const testValue = "__TEST__EVENT__INPUT__";
   const causeChange = (c, v) =>
-    c.find('input').simulate('change', { target: { value: v } });
+    c.find("input").simulate("change", { target: { value: v } });
   const changed = () => {
     causeChange(mockedComponent, testValue);
     return waitForIt(() => mockedComponent);
   };
   const clickButton = () => {
-    mockedComponent.find('button').simulate('click');
+    mockedComponent.find("button").simulate("click");
     return waitForIt(() => mockedComponent);
   };
   const afterChange = await changed();
-  const afterChangeInput = afterChange.find('input').props().value;
+  const afterChangeInput = afterChange.find("input").props().value;
   const afterClick = await clickButton();
-  const afterProps = mockedComponent.find('Presentational').props();
+  const afterProps = mockedComponent.find("Presentational").props();
   assert(
     beforeProps.messages.length === 0 &&
       afterChangeInput === testValue &&
       afterProps.messages.pop() === testValue &&
-      afterClick.find('input').props().value === '' &&
-      afterClick.find('ul').childAt(0).text() === testValue
+      afterClick.find("input").props().value === "" &&
+      afterClick.find("ul").childAt(0).text() === testValue
   );
 };
 ```
@@ -194,29 +194,26 @@ async () => {
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<AppWrapper />, document.getElementById('root'))
+ReactDOM.render(<AppWrapper />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
 
 ```jsx
 // Redux:
-const ADD = 'ADD';
+const ADD = "ADD";
 
 const addMessage = (message) => {
   return {
     type: ADD,
-    message: message
-  }
+    message: message,
+  };
 };
 
 const messageReducer = (state = [], action) => {
   switch (action.type) {
     case ADD:
-      return [
-        ...state,
-        action.message
-      ];
+      return [...state, action.message];
     default:
       return state;
   }
@@ -233,55 +230,51 @@ class Presentational extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: '',
-      messages: []
-    }
+      input: "",
+      messages: [],
+    };
     this.handleChange = this.handleChange.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
   }
   handleChange(event) {
     this.setState({
-      input: event.target.value
+      input: event.target.value,
     });
   }
   submitMessage() {
     this.setState((state) => ({
-      input: '',
-      messages: state.messages.concat(state.input)
+      input: "",
+      messages: state.messages.concat(state.input),
     }));
   }
   render() {
     return (
       <div>
         <h2>Type in a new Message:</h2>
-        <input
-          value={this.state.input}
-          onChange={this.handleChange}/><br/>
+        <input value={this.state.input} onChange={this.handleChange} />
+        <br />
         <button onClick={this.submitMessage}>Submit</button>
         <ul>
-          {this.state.messages.map( (message, idx) => {
-              return (
-                 <li key={idx}>{message}</li>
-              )
-            })
-          }
+          {this.state.messages.map((message, idx) => {
+            return <li key={idx}>{message}</li>;
+          })}
         </ul>
       </div>
     );
   }
-};
+}
 // Change code above this line
 
 const mapStateToProps = (state) => {
-  return {messages: state}
+  return { messages: state };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     submitNewMessage: (message) => {
-      dispatch(addMessage(message))
-    }
-  }
+      dispatch(addMessage(message));
+    },
+  };
 };
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Presentational);
@@ -290,33 +283,30 @@ class AppWrapper extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Container/>
+        <Container />
       </Provider>
     );
   }
-};
+}
 ```
 
 # --solutions--
 
 ```jsx
 // Redux:
-const ADD = 'ADD';
+const ADD = "ADD";
 
 const addMessage = (message) => {
   return {
     type: ADD,
-    message: message
-  }
+    message: message,
+  };
 };
 
 const messageReducer = (state = [], action) => {
   switch (action.type) {
     case ADD:
-      return [
-        ...state,
-        action.message
-      ];
+      return [...state, action.message];
     default:
       return state;
   }
@@ -333,54 +323,50 @@ class Presentational extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: ''
-    }
- this.handleChange = this.handleChange.bind(this);
- this.submitMessage = this.submitMessage.bind(this);
+      input: "",
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.submitMessage = this.submitMessage.bind(this);
   }
   handleChange(event) {
     this.setState({
-      input: event.target.value
+      input: event.target.value,
     });
   }
   submitMessage() {
     this.props.submitNewMessage(this.state.input);
     this.setState({
-      input: ''
+      input: "",
     });
   }
   render() {
     return (
       <div>
         <h2>Type in a new Message:</h2>
-        <input
-          value={this.state.input}
-          onChange={this.handleChange}/><br/>
+        <input value={this.state.input} onChange={this.handleChange} />
+        <br />
         <button onClick={this.submitMessage}>Submit</button>
         <ul>
-          {this.props.messages.map( (message, idx) => {
-              return (
-                 <li key={idx}>{message}</li>
-              )
-            })
-          }
+          {this.props.messages.map((message, idx) => {
+            return <li key={idx}>{message}</li>;
+          })}
         </ul>
       </div>
     );
   }
-};
+}
 // Change code above this line
 
 const mapStateToProps = (state) => {
-  return {messages: state}
+  return { messages: state };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     submitNewMessage: (message) => {
-      dispatch(addMessage(message))
-    }
-  }
+      dispatch(addMessage(message));
+    },
+  };
 };
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Presentational);
@@ -389,9 +375,9 @@ class AppWrapper extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Container/>
+        <Container />
       </Provider>
     );
   }
-};
+}
 ```

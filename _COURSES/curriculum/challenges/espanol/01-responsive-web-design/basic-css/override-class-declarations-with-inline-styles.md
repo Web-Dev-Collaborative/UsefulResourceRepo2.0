@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf06756
 title: Sobreescribe declaraciones de clase con inline styles (estilos en línea)
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cGJDRha'
+videoUrl: "https://scrimba.com/c/cGJDRha"
 forumTopicId: 18252
 dashedName: override-class-declarations-with-inline-styles
 ---
@@ -18,7 +18,7 @@ Pero existen otras formas de sobreescribir código CSS. ¿Recuerdas los "inline 
 Usa un inline style para hacer que nuestro elemento `h1` sea de color blanco. Recuerda, los estilos en línea se ven así:
 
 ```html
-<h1 style="color: green;">
+<h1 style="color: green;"></h1>
 ```
 
 Deja las clases `blue-text` y `pink-text` en tu elemento `h1`.
@@ -28,31 +28,31 @@ Deja las clases `blue-text` y `pink-text` en tu elemento `h1`.
 Tu elemento `h1` debe incluir la clase `pink-text`.
 
 ```js
-assert($('h1').hasClass('pink-text'));
+assert($("h1").hasClass("pink-text"));
 ```
 
 Tu elemento `h1` debe incluir la clase `blue-text`.
 
 ```js
-assert($('h1').hasClass('blue-text'));
+assert($("h1").hasClass("blue-text"));
 ```
 
 Tu elemento `h1` debe incluir el id `orange-text`.
 
 ```js
-assert($('h1').attr('id') === 'orange-text');
+assert($("h1").attr("id") === "orange-text");
 ```
 
 Tu elemento `h1` debe tener un inline style.
 
 ```js
-assert(document.querySelector('h1[style]'));
+assert(document.querySelector("h1[style]"));
 ```
 
 Tu elemento `h1` debe ser de color blanco ("white").
 
 ```js
-assert($('h1').css('color') === 'rgb(255, 255, 255)');
+assert($("h1").css("color") === "rgb(255, 255, 255)");
 ```
 
 # --seed--
@@ -98,5 +98,7 @@ assert($('h1').css('color') === 'rgb(255, 255, 255)');
     color: blue;
   }
 </style>
-<h1 id="orange-text" class="pink-text blue-text" style="color: white">Hello World!</h1>
+<h1 id="orange-text" class="pink-text blue-text" style="color: white">
+  Hello World!
+</h1>
 ```

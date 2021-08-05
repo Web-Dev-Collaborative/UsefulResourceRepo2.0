@@ -2,7 +2,7 @@
 id: 587d781c367417b2b2512ac2
 title: Establece el tamaño de fuente para varios elementos de títulos
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cPpQNT3'
+videoUrl: "https://scrimba.com/c/cPpQNT3"
 forumTopicId: 301067
 dashedName: set-the-font-size-for-multiple-heading-elements
 ---
@@ -27,31 +27,31 @@ La propiedad `font-size` se usa para especificar que tan grande es el texto en u
 Tu código debe establecer la propiedad `font-size` para la etiqueta `h1` en 68 píxeles.
 
 ```js
-assert($('h1').css('font-size') == '68px');
+assert($("h1").css("font-size") == "68px");
 ```
 
 Tu código debe establecer la propiedad `font-size` para la etiqueta `h2` en 52 píxeles.
 
 ```js
-assert($('h2').css('font-size') == '52px');
+assert($("h2").css("font-size") == "52px");
 ```
 
 Tu código debe establecer la propiedad `font-size` para la etiqueta `h3` en 40 píxeles.
 
 ```js
-assert($('h3').css('font-size') == '40px');
+assert($("h3").css("font-size") == "40px");
 ```
 
 Tu código debe establecer la propiedad `font-size` para la etiqueta `h4` en 32 píxeles.
 
 ```js
-assert($('h4').css('font-size') == '32px');
+assert($("h4").css("font-size") == "32px");
 ```
 
 Tu código debe establecer la propiedad `font-size` para la etiqueta `h5` en 21 píxeles.
 
 ```js
-assert($('h5').css('font-size') == '21px');
+assert($("h5").css("font-size") == "21px");
 ```
 
 Tu código debe establecer la propiedad `font-size` para la etiqueta `h6` en 14 píxeles.
@@ -66,14 +66,7 @@ assert.strictEqual(true, regex.test(code));
 ## --seed-contents--
 
 ```html
-<style>
-
-
-
-
-
-
-</style>
+<style></style>
 <h1>This is h1 text</h1>
 <h2>This is h2 text</h2>
 <h3>This is h3 text</h3>

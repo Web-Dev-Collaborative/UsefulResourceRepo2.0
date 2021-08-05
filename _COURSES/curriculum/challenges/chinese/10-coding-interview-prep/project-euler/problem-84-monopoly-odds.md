@@ -1,6 +1,6 @@
 ---
 id: 5900f3c11000cf542c50fed3
-title: 'Problem 84: Monopoly odds'
+title: "Problem 84: Monopoly odds"
 challengeType: 5
 forumTopicId: 302198
 dashedName: problem-84-monopoly-odds
@@ -8,7 +8,7 @@ dashedName: problem-84-monopoly-odds
 
 # --description--
 
-In the game, *Monopoly*, the standard board is set up in the following way:
+In the game, _Monopoly_, the standard board is set up in the following way:
 
 <div style="text-align: center;">
   <table cellspacing="1" cellpadding="5" border="0" style="background-color: black; color: black;" align="center">
@@ -129,7 +129,7 @@ If, instead of using two 6-sided dice, two 4-sided dice are used, find the six-d
 `monopolyOdds()` should return a number.
 
 ```js
-assert(typeof monopolyOdds() === 'number');
+assert(typeof monopolyOdds() === "number");
 ```
 
 `monopolyOdds()` should return 101524.
@@ -144,7 +144,6 @@ assert.strictEqual(monopolyOdds(), 101524);
 
 ```js
 function monopolyOdds() {
-
   return true;
 }
 

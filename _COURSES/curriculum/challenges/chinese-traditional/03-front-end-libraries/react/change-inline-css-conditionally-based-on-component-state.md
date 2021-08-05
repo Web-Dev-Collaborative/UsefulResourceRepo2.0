@@ -10,7 +10,7 @@ dashedName: change-inline-css-conditionally-based-on-component-state
 
 此時，已經看到了一些條件渲染的應用程序和內聯樣式的使用。 這裏還有一個將這兩個主題結合在一起的例子。 你也可以根據 React 組件的 state 有條件地渲染 CSS。 要執行此操作，請檢查條件，如果滿足該條件，則修改在 render 方法中分配給 JSX 元素的樣式對象。
 
-理解這個模式很重要，因爲相比傳統的方式（這在 jQuery 中非常常見），直接修改 DOM 元素來應用樣式的方法是一個戲劇性的轉變。 在該方法中，必須跟蹤元素何時更改並直接處理實際操作。 跟蹤更改可能變得很困難，可能會使 UI無法預測。 當根據一個條件設置一個樣式對象時，描述了 UI 作爲應用程序的狀態函數應當如何展現。 如此便有一個清晰的單向流動的信息流。 這是使用 React 編寫應用程序時的首選方法。
+理解這個模式很重要，因爲相比傳統的方式（這在 jQuery 中非常常見），直接修改 DOM 元素來應用樣式的方法是一個戲劇性的轉變。 在該方法中，必須跟蹤元素何時更改並直接處理實際操作。 跟蹤更改可能變得很困難，可能會使 UI 無法預測。 當根據一個條件設置一個樣式對象時，描述了 UI 作爲應用程序的狀態函數應當如何展現。 如此便有一個清晰的單向流動的信息流。 這是使用 React 編寫應用程序時的首選方法。
 
 # --instructions--
 
@@ -24,7 +24,7 @@ dashedName: change-inline-css-conditionally-based-on-component-state
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(GateKeeper));
-    return mockedComponent.find('div').length === 1;
+    return mockedComponent.find("div").length === 1;
   })()
 );
 ```
@@ -35,7 +35,7 @@ assert(
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(GateKeeper));
-    return mockedComponent.state().input === '';
+    return mockedComponent.state().input === "";
   })()
 );
 ```
@@ -47,8 +47,8 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(GateKeeper));
     return (
-      mockedComponent.find('h3').length === 1 &&
-      mockedComponent.find('input').length === 1
+      mockedComponent.find("h3").length === 1 &&
+      mockedComponent.find("input").length === 1
     );
   })()
 );
@@ -61,7 +61,7 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(GateKeeper));
     return (
-      mockedComponent.find('input').props().style.border === '1px solid black'
+      mockedComponent.find("input").props().style.border === "1px solid black"
     );
   })()
 );
@@ -75,24 +75,24 @@ async () => {
     new Promise((resolve, reject) => setTimeout(() => resolve(fn()), 100));
   const mockedComponent = Enzyme.mount(React.createElement(GateKeeper));
   const simulateChange = (el, value) =>
-    el.simulate('change', { target: { value } });
-  let initialStyle = mockedComponent.find('input').props().style.border;
+    el.simulate("change", { target: { value } });
+  let initialStyle = mockedComponent.find("input").props().style.border;
   const state_1 = () => {
-    mockedComponent.setState({ input: 'this is 15 char' });
-    return waitForIt(() => mockedComponent.find('input').props().style.border);
+    mockedComponent.setState({ input: "this is 15 char" });
+    return waitForIt(() => mockedComponent.find("input").props().style.border);
   };
   const state_2 = () => {
     mockedComponent.setState({
-      input: 'A very long string longer than 15 characters.'
+      input: "A very long string longer than 15 characters.",
     });
-    return waitForIt(() => mockedComponent.find('input').props().style.border);
+    return waitForIt(() => mockedComponent.find("input").props().style.border);
   };
   const style_1 = await state_1();
   const style_2 = await state_2();
   assert(
-    initialStyle === '1px solid black' &&
-      style_1 === '1px solid black' &&
-      style_2 === '3px solid red'
+    initialStyle === "1px solid black" &&
+      style_1 === "1px solid black" &&
+      style_2 === "3px solid red"
   );
 };
 ```
@@ -102,7 +102,7 @@ async () => {
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<GateKeeper />, document.getElementById('root'))
+ReactDOM.render(<GateKeeper />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -112,16 +112,16 @@ class GateKeeper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: ''
+      input: "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
-    this.setState({ input: event.target.value })
+    this.setState({ input: event.target.value });
   }
   render() {
     let inputStyle = {
-      border: '1px solid black'
+      border: "1px solid black",
     };
     // Change code below this line
 
@@ -133,11 +133,12 @@ class GateKeeper extends React.Component {
           type="text"
           style={inputStyle}
           value={this.state.input}
-          onChange={this.handleChange} />
+          onChange={this.handleChange}
+        />
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -147,20 +148,20 @@ class GateKeeper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: ''
+      input: "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
-    this.setState({ input: event.target.value })
+    this.setState({ input: event.target.value });
   }
   render() {
     let inputStyle = {
-      border: '1px solid black'
+      border: "1px solid black",
     };
     if (this.state.input.length > 15) {
-      inputStyle.border = '3px solid red';
-    };
+      inputStyle.border = "3px solid red";
+    }
     return (
       <div>
         <h3>Don't Type Too Much:</h3>
@@ -168,9 +169,10 @@ class GateKeeper extends React.Component {
           type="text"
           style={inputStyle}
           value={this.state.input}
-          onChange={this.handleChange} />
+          onChange={this.handleChange}
+        />
       </div>
     );
   }
-};
+}
 ```

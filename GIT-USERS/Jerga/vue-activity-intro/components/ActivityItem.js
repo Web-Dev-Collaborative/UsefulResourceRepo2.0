@@ -1,5 +1,5 @@
-Vue.component('activity-item', {
-  props: ['activity'],
+Vue.component("activity-item", {
+  props: ["activity"],
   template: `
     <article class="post">
       <h4>{{activity.title}}</h4>
@@ -21,5 +21,5 @@ Vue.component('activity-item', {
         </div>
       </div>
     </article>
-  `
-})
+  `,
+});

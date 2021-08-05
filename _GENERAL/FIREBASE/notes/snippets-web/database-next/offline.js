@@ -19,11 +19,13 @@ function onDisconnectCallback() {
   const presenceRef = ref(db, "disconnectmessage");
 
   // [START rtdb_ondisconnect_callback]
-  onDisconnect(presenceRef).remove().catch((err) => {
-    if (err) {
-      console.error("could not establish onDisconnect event", err);
-    }
-  });
+  onDisconnect(presenceRef)
+    .remove()
+    .catch((err) => {
+      if (err) {
+        console.error("could not establish onDisconnect event", err);
+      }
+    });
   // [END rtdb_ondisconnect_callback]
 }
 
@@ -59,7 +61,12 @@ function detectConnectionState() {
 
 function setServerTimestamp() {
   // [START rtdb_set_server_timestamp]
-  const { getDatabase, ref, onDisconnect, serverTimestamp } = require("firebase/database");
+  const {
+    getDatabase,
+    ref,
+    onDisconnect,
+    serverTimestamp,
+  } = require("firebase/database");
 
   const db = getDatabase();
   const userLastOnlineRef = ref(db, "users/joe/lastOnline");
@@ -82,17 +89,25 @@ function estimateClockSkew() {
 
 function samplePresenceApp() {
   // [START rtdb_sample_presence_app]
-  const { getDatabase, ref, onValue, push, onDisconnect, set, serverTimestamp } = require("firebase/database");
+  const {
+    getDatabase,
+    ref,
+    onValue,
+    push,
+    onDisconnect,
+    set,
+    serverTimestamp,
+  } = require("firebase/database");
 
   // Since I can connect from multiple devices or browser tabs, we store each connection instance separately
   // any time that connectionsRef's value is null (i.e. has no children) I am offline
   const db = getDatabase();
-  const myConnectionsRef = ref(db, 'users/joe/connections');
+  const myConnectionsRef = ref(db, "users/joe/connections");
 
   // stores the timestamp of my last disconnect (the last time I was seen online)
-  const lastOnlineRef = ref(db, 'users/joe/lastOnline');
+  const lastOnlineRef = ref(db, "users/joe/lastOnline");
 
-  const connectedRef = ref(db, '.info/connected');
+  const connectedRef = ref(db, ".info/connected");
   onValue(connectedRef, (snap) => {
     if (snap.val() === true) {
       // We're connected (or reconnected)! Do anything here that should happen only if online (or on reconnect)

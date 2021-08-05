@@ -1,6 +1,6 @@
 ---
 id: 5900f3911000cf542c50fea4
-title: 'Problem 37: Truncatable primes'
+title: "Problem 37: Truncatable primes"
 challengeType: 5
 forumTopicId: 302031
 dashedName: problem-37-truncatable-primes
@@ -19,7 +19,7 @@ NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
 `truncatablePrimes(8)` should return a number.
 
 ```js
-assert(typeof truncatablePrimes(8) === 'number');
+assert(typeof truncatablePrimes(8) === "number");
 ```
 
 `truncatablePrimes(8)` should return 1986.
@@ -52,7 +52,6 @@ assert(truncatablePrimes(11) == 748317);
 
 ```js
 function truncatablePrimes(n) {
-
   return n;
 }
 

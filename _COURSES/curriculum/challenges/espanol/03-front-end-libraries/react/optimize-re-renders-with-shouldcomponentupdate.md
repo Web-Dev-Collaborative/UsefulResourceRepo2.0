@@ -25,8 +25,8 @@ assert(
   (() => {
     const mockedComponent = Enzyme.mount(React.createElement(Controller));
     return (
-      mockedComponent.find('Controller').length === 1 &&
-      mockedComponent.find('OnlyEvens').length === 1
+      mockedComponent.find("Controller").length === 1 &&
+      mockedComponent.find("OnlyEvens").length === 1
     );
   })()
 );
@@ -39,8 +39,8 @@ assert(
   (() => {
     const child = React.createElement(OnlyEvens)
       .type.prototype.shouldComponentUpdate.toString()
-      .replace(/s/g, '');
-    return child !== 'undefined';
+      .replace(/s/g, "");
+    return child !== "undefined";
   })()
 );
 ```
@@ -52,15 +52,15 @@ The `OnlyEvens` component should return an `h1` tag which renders the value of `
   const mockedComponent = Enzyme.mount(React.createElement(Controller));
   const first = () => {
     mockedComponent.setState({ value: 1000 });
-    return mockedComponent.find('h1').html();
+    return mockedComponent.find("h1").html();
   };
   const second = () => {
     mockedComponent.setState({ value: 10 });
-    return mockedComponent.find('h1').html();
+    return mockedComponent.find("h1").html();
   };
   const firstValue = first();
   const secondValue = second();
-  assert(firstValue === '<h1>1000</h1>' && secondValue === '<h1>10</h1>');
+  assert(firstValue === "<h1>1000</h1>" && secondValue === "<h1>10</h1>");
 })();
 ```
 
@@ -71,20 +71,20 @@ The `OnlyEvens` component should return an `h1` tag which renders the value of `
   const mockedComponent = Enzyme.mount(React.createElement(Controller));
   const first = () => {
     mockedComponent.setState({ value: 8 });
-    return mockedComponent.find('h1').text();
+    return mockedComponent.find("h1").text();
   };
   const second = () => {
     mockedComponent.setState({ value: 7 });
-    return mockedComponent.find('h1').text();
+    return mockedComponent.find("h1").text();
   };
   const third = () => {
     mockedComponent.setState({ value: 42 });
-    return mockedComponent.find('h1').text();
+    return mockedComponent.find("h1").text();
   };
   const firstValue = first();
   const secondValue = second();
   const thirdValue = third();
-  assert(firstValue === '8' && secondValue === '8' && thirdValue === '42');
+  assert(firstValue === "8" && secondValue === "8" && thirdValue === "42");
 })();
 ```
 
@@ -93,7 +93,7 @@ The `OnlyEvens` component should return an `h1` tag which renders the value of `
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<Controller />, document.getElementById('root'));
+ReactDOM.render(<Controller />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -104,13 +104,13 @@ class OnlyEvens extends React.Component {
     super(props);
   }
   shouldComponentUpdate(nextProps, nextState) {
-    console.log('Should I update?');
+    console.log("Should I update?");
     // Change code below this line
     return true;
     // Change code above this line
   }
   componentDidUpdate() {
-    console.log('Component re-rendered.');
+    console.log("Component re-rendered.");
   }
   render() {
     return <h1>{this.props.value}</h1>;
@@ -121,13 +121,13 @@ class Controller extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 0
+      value: 0,
     };
     this.addValue = this.addValue.bind(this);
   }
   addValue() {
-    this.setState(state => ({
-      value: state.value + 1
+    this.setState((state) => ({
+      value: state.value + 1,
     }));
   }
   render() {
@@ -149,13 +149,13 @@ class OnlyEvens extends React.Component {
     super(props);
   }
   shouldComponentUpdate(nextProps, nextState) {
-    console.log('Should I update?');
+    console.log("Should I update?");
     // Change code below this line
     return nextProps.value % 2 === 0;
     // Change code above this line
   }
   componentDidUpdate() {
-    console.log('Component re-rendered.');
+    console.log("Component re-rendered.");
   }
   render() {
     return <h1>{this.props.value}</h1>;
@@ -166,13 +166,13 @@ class Controller extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 0
+      value: 0,
     };
     this.addValue = this.addValue.bind(this);
   }
   addValue() {
-    this.setState(state => ({
-      value: state.value + 1
+    this.setState((state) => ({
+      value: state.value + 1,
     }));
   }
   render() {

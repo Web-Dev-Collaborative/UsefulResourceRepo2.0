@@ -7,7 +7,7 @@
 import { getStorage, ref } from "firebase/storage";
 
 const storage = getStorage();
-const spaceRef = ref(storage, 'images/space.jpg');
+const spaceRef = ref(storage, "images/space.jpg");
 
 // Reference's path is: 'images/space.jpg'
 // This is analogous to a file path on disk

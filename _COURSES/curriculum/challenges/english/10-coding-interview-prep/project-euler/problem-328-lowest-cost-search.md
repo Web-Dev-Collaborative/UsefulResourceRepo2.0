@@ -1,6 +1,6 @@
 ---
 id: 5900f4b41000cf542c50ffc7
-title: 'Problem 328: Lowest-cost Search'
+title: "Problem 328: Lowest-cost Search"
 challengeType: 5
 forumTopicId: 301985
 dashedName: problem-328-lowest-cost-search
@@ -42,7 +42,6 @@ assert.strictEqual(euler328(), 260511850222);
 
 ```js
 function euler328() {
-
   return true;
 }
 

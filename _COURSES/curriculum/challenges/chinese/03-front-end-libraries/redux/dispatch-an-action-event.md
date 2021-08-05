@@ -14,7 +14,7 @@ dashedName: dispatch-an-action-event
 
 ```js
 store.dispatch(actionCreator());
-store.dispatch({ type: 'LOGIN' });
+store.dispatch({ type: "LOGIN" });
 ```
 
 # --instructions--
@@ -26,7 +26,7 @@ store.dispatch({ type: 'LOGIN' });
 调用函数 `loginAction` 应该返回一个 `type` 属性设置为字符串 `LOGIN` 的对象。
 
 ```js
-assert(loginAction().type === 'LOGIN');
+assert(loginAction().type === "LOGIN");
 ```
 
 store 应该用属性 `login` 设置为 `false` 的对象初始化。
@@ -41,9 +41,9 @@ assert(store.getState().login === false);
 (getUserInput) =>
   assert(
     (function () {
-      let noWhiteSpace = getUserInput('index').replace(/\s/g, '');
+      let noWhiteSpace = getUserInput("index").replace(/\s/g, "");
       return (
-        noWhiteSpace.includes('store.dispatch(loginAction())') ||
+        noWhiteSpace.includes("store.dispatch(loginAction())") ||
         noWhiteSpace.includes("store.dispatch({type: 'LOGIN'})") === true
       );
     })()
@@ -55,14 +55,12 @@ assert(store.getState().login === false);
 ## --seed-contents--
 
 ```js
-const store = Redux.createStore(
-  (state = {login: false}) => state
-);
+const store = Redux.createStore((state = { login: false }) => state);
 
 const loginAction = () => {
   return {
-    type: 'LOGIN'
-  }
+    type: "LOGIN",
+  };
 };
 
 // Dispatch the action here:
@@ -71,14 +69,12 @@ const loginAction = () => {
 # --solutions--
 
 ```js
-const store = Redux.createStore(
-  (state = {login: false}) => state
-);
+const store = Redux.createStore((state = { login: false }) => state);
 
 const loginAction = () => {
   return {
-    type: 'LOGIN'
-  }
+    type: "LOGIN",
+  };
 };
 
 store.dispatch(loginAction());

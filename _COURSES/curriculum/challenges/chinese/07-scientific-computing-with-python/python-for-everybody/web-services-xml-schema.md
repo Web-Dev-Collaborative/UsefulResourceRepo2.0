@@ -1,6 +1,6 @@
 ---
 id: 5e7b9f0e0b6c005b0e76f07c
-title: 'Web 服务：XML 模式'
+title: "Web 服务：XML 模式"
 challengeType: 11
 videoId: yWU9kTxW-nc
 dashedName: web-services-xml-schema
@@ -27,4 +27,3 @@ XML 的 W3C 模式规范。
 ## --video-solution--
 
 1
-

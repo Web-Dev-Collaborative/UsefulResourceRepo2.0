@@ -13,10 +13,10 @@ In JavaScript, spesso non abbiamo bisogno di dare un nome alle nostre funzioni, 
 Per raggiungere questo obiettivo, utilizziamo spesso la seguente sintassi:
 
 ```js
-const myFunc = function() {
+const myFunc = function () {
   const myVar = "value";
   return myVar;
-}
+};
 ```
 
 ES6 ci fornisce lo zucchero sintattico di non dover scrivere funzioni anonime in questo modo. Invece, puoi usare la **sintassi delle funzioni freccia**:
@@ -25,7 +25,7 @@ ES6 ci fornisce lo zucchero sintattico di non dover scrivere funzioni anonime in
 const myFunc = () => {
   const myVar = "value";
   return myVar;
-}
+};
 ```
 
 Quando la funzione non ha un corpo, ma solo un valore di ritorno, la sintassi della funzione freccia ti permette di omettere la parola chiave `return` e le parentesi che circondano il codice. Ciò aiuta a condensare le funzioni più piccole in una riga di dichiarazione:
@@ -45,19 +45,19 @@ Riscrivi la funzione assegnata alla variabile `magic`, che restituisce una `new 
 Dovresti sostituire la parola chiave `var`.
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/var/g));
+(getUserInput) => assert(!getUserInput("index").match(/var/g));
 ```
 
 `magic` dovrebbe essere una variabile costante (usando `const`).
 
 ```js
-(getUserInput) => assert(getUserInput('index').match(/const\s+magic/g));
+(getUserInput) => assert(getUserInput("index").match(/const\s+magic/g));
 ```
 
 `magic` dovrebbe essere una `function`.
 
 ```js
-assert(typeof magic === 'function');
+assert(typeof magic === "function");
 ```
 
 `magic()` dovrebbe restituire la data corretta.
@@ -69,7 +69,7 @@ assert(magic().setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0));
 La parola chiave `function` non dovrebbe essere utilizzata.
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/function/g));
+(getUserInput) => assert(!getUserInput("index").match(/function/g));
 ```
 
 # --seed--
@@ -77,7 +77,7 @@ La parola chiave `function` non dovrebbe essere utilizzata.
 ## --seed-contents--
 
 ```js
-var magic = function() {
+var magic = function () {
   return new Date();
 };
 ```

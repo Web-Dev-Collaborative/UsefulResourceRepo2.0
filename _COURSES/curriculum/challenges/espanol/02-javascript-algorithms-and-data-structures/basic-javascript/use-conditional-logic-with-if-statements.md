@@ -2,7 +2,7 @@
 id: cf1111c1c12feddfaeb3bdef
 title: Usa lógica condicional con las sentencias "If"
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cy87mf3'
+videoUrl: "https://scrimba.com/c/cy87mf3"
 forumTopicId: 18348
 dashedName: use-conditional-logic-with-if-statements
 ---
@@ -20,9 +20,9 @@ Cuando la condición se evalúa como `true`, el programa ejecuta el comando dent
 **Ejemplo**
 
 ```js
-function test (myCondition) {
+function test(myCondition) {
   if (myCondition) {
-     return "It was true";
+    return "It was true";
   }
   return "It was false";
 }
@@ -32,7 +32,7 @@ test(false);
 
 `test(true)` devuelve la cadena `It was true` y `test(false)` devuelve la cadena `It was false`.
 
-Cuando `test` es llamada con un valor de `true`, la sentencia `if` evalúa `myCondition` (mi condición) para ver si es `true` o no. Puesto que es `true`, la función devuelve `It was true`. Cuando llamamos a `test` con un valor de `false`, `myCondition` *no* es `true`, la sentencia dentro de las llaves no se ejecuta y la función devuelve `It was false`.
+Cuando `test` es llamada con un valor de `true`, la sentencia `if` evalúa `myCondition` (mi condición) para ver si es `true` o no. Puesto que es `true`, la función devuelve `It was true`. Cuando llamamos a `test` con un valor de `false`, `myCondition` _no_ es `true`, la sentencia dentro de las llaves no se ejecuta y la función devuelve `It was false`.
 
 # --instructions--
 
@@ -43,31 +43,31 @@ Crea una sentencia `if` dentro de la función que devuelva `Yes, that was true` 
 `trueOrFalse` debe ser una función
 
 ```js
-assert(typeof trueOrFalse === 'function');
+assert(typeof trueOrFalse === "function");
 ```
 
 `trueOrFalse(true)` debe devolver una cadena
 
 ```js
-assert(typeof trueOrFalse(true) === 'string');
+assert(typeof trueOrFalse(true) === "string");
 ```
 
 `trueOrFalse(false)` debe devolver una cadena
 
 ```js
-assert(typeof trueOrFalse(false) === 'string');
+assert(typeof trueOrFalse(false) === "string");
 ```
 
 `trueOrFalse(true)` debe devolver la cadena `Yes, that was true`
 
 ```js
-assert(trueOrFalse(true) === 'Yes, that was true');
+assert(trueOrFalse(true) === "Yes, that was true");
 ```
 
 `trueOrFalse(false)` debe devolver la cadena `No, that was false`
 
 ```js
-assert(trueOrFalse(false) === 'No, that was false');
+assert(trueOrFalse(false) === "No, that was false");
 ```
 
 # --seed--
@@ -77,11 +77,7 @@ assert(trueOrFalse(false) === 'No, that was false');
 ```js
 function trueOrFalse(wasThatTrue) {
   // Only change code below this line
-
-
-
   // Only change code above this line
-
 }
 ```
 

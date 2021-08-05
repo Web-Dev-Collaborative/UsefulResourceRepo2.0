@@ -33,13 +33,11 @@ goog.require('fireauth.idp');
 goog.require('fireauth.object');
 goog.require('fireauth.util');
 
-
 /**
  * The interface that represents additional user info.
  * @interface
  */
-fireauth.AdditionalUserInfo = function() {};
-
+fireauth.AdditionalUserInfo = function () {};
 
 /**
  * Constructs the corresponding additional user info for the backend
@@ -49,20 +47,16 @@ fireauth.AdditionalUserInfo = function() {};
  * @return {?fireauth.AdditionalUserInfo} The fireauth.AdditionalUserInfo
  *     instance.
  */
-fireauth.AdditionalUserInfo.fromPlainObject = function(resp) {
+fireauth.AdditionalUserInfo.fromPlainObject = function (resp) {
   var factory = {};
   factory[fireauth.idp.ProviderId.FACEBOOK] =
-      fireauth.FacebookAdditionalUserInfo;
-  factory[fireauth.idp.ProviderId.GOOGLE] =
-      fireauth.GoogleAdditionalUserInfo;
-  factory[fireauth.idp.ProviderId.GITHUB] =
-      fireauth.GithubAdditionalUserInfo;
-  factory[fireauth.idp.ProviderId.TWITTER] =
-      fireauth.TwitterAdditionalUserInfo;
+    fireauth.FacebookAdditionalUserInfo;
+  factory[fireauth.idp.ProviderId.GOOGLE] = fireauth.GoogleAdditionalUserInfo;
+  factory[fireauth.idp.ProviderId.GITHUB] = fireauth.GithubAdditionalUserInfo;
+  factory[fireauth.idp.ProviderId.TWITTER] = fireauth.TwitterAdditionalUserInfo;
   // Provider ID and UID are required.
   var providerId =
-      resp &&
-      resp[fireauth.AdditionalUserInfo.VerifyAssertionField.PROVIDER_ID];
+    resp && resp[fireauth.AdditionalUserInfo.VerifyAssertionField.PROVIDER_ID];
   try {
     // Provider ID already present.
     if (providerId) {
@@ -72,22 +66,24 @@ fireauth.AdditionalUserInfo.fromPlainObject = function(resp) {
       } else {
         // Generic federated providers.
         return new fireauth.FederatedAdditionalUserInfo(
-            /** @type {!Object} */ (resp));
+          /** @type {!Object} */ (resp)
+        );
       }
-    } else if (typeof resp[fireauth.AdditionalUserInfo.VerifyAssertionField
-                           .ID_TOKEN] !== 'undefined') {
+    } else if (
+      typeof resp[fireauth.AdditionalUserInfo.VerifyAssertionField.ID_TOKEN] !==
+      'undefined'
+    ) {
       // For all other ID token responses with no providerId, get the required
       // providerId from the ID token itself.
       return new fireauth.GenericAdditionalUserInfo(
-          /** @type {!Object} */ (resp));
+        /** @type {!Object} */ (resp)
+      );
     }
   } catch (e) {
     // Do nothing, null will be returned.
   }
   return null;
 };
-
-
 
 /**
  * verifyAssertion response additional user info fields.
@@ -102,7 +98,6 @@ fireauth.AdditionalUserInfo.VerifyAssertionField = {
   SCREEN_NAME: 'screenName'
 };
 
-
 /**
  * Constructs a generic additional user info object from the backend
  * verifyPhoneNumber and verifyPassword provider response.
@@ -111,18 +106,21 @@ fireauth.AdditionalUserInfo.VerifyAssertionField = {
  * @constructor
  * @implements {fireauth.AdditionalUserInfo}
  */
-fireauth.GenericAdditionalUserInfo = function(info) {
+fireauth.GenericAdditionalUserInfo = function (info) {
   // Federated provider profile data.
   var providerId =
-      info[fireauth.AdditionalUserInfo.VerifyAssertionField.PROVIDER_ID];
+    info[fireauth.AdditionalUserInfo.VerifyAssertionField.PROVIDER_ID];
   // Try to get providerId from the ID token if available.
-  if (!providerId &&
-      info[fireauth.AdditionalUserInfo.VerifyAssertionField.ID_TOKEN]) {
+  if (
+    !providerId &&
+    info[fireauth.AdditionalUserInfo.VerifyAssertionField.ID_TOKEN]
+  ) {
     // verifyPassword/setAccountInfo and verifyPhoneNumber return an ID token
     // but no providerId. Get providerId from the token itself.
     // isNewUser will be returned for verifyPhoneNumber.
     var idToken = fireauth.IdToken.parse(
-        info[fireauth.AdditionalUserInfo.VerifyAssertionField.ID_TOKEN]);
+      info[fireauth.AdditionalUserInfo.VerifyAssertionField.ID_TOKEN]
+    );
     if (idToken && idToken.getProviderId()) {
       providerId = idToken.getProviderId();
     }
@@ -132,19 +130,26 @@ fireauth.GenericAdditionalUserInfo = function(info) {
     throw new Error('Invalid additional user info!');
   }
   // For custom token and anonymous token, set provider ID to null.
-  if (providerId == fireauth.idp.ProviderId.ANONYMOUS ||
-      providerId == fireauth.idp.ProviderId.CUSTOM) {
-      providerId = null;
+  if (
+    providerId == fireauth.idp.ProviderId.ANONYMOUS ||
+    providerId == fireauth.idp.ProviderId.CUSTOM
+  ) {
+    providerId = null;
   }
   // Check whether user is new. Temporary Solution since backend does not return
   // isNewUser field for SignupNewUserResponse.
   var isNewUser = false;
-  if (typeof info[fireauth.AdditionalUserInfo.VerifyAssertionField.IS_NEW_USER]
-      !== 'undefined') {
+  if (
+    typeof info[
+      fireauth.AdditionalUserInfo.VerifyAssertionField.IS_NEW_USER
+    ] !== 'undefined'
+  ) {
     isNewUser =
-        !!info[fireauth.AdditionalUserInfo.VerifyAssertionField.IS_NEW_USER];
-  } else if (info[fireauth.AdditionalUserInfo.VerifyAssertionField.KIND]
-             === 'identitytoolkit#SignupNewUserResponse') {
+      !!info[fireauth.AdditionalUserInfo.VerifyAssertionField.IS_NEW_USER];
+  } else if (
+    info[fireauth.AdditionalUserInfo.VerifyAssertionField.KIND] ===
+    'identitytoolkit#SignupNewUserResponse'
+  ) {
     //For SignupNewUserResponse, always set isNewUser to true.
     isNewUser = true;
   }
@@ -154,7 +159,6 @@ fireauth.GenericAdditionalUserInfo = function(info) {
   fireauth.object.setReadonlyProperty(this, 'isNewUser', isNewUser);
 };
 
-
 /**
  * Constructs a federated additional user info object from the backend
  * verifyAssertion federated provider response.
@@ -162,22 +166,24 @@ fireauth.GenericAdditionalUserInfo = function(info) {
  * @constructor
  * @extends {fireauth.GenericAdditionalUserInfo}
  */
-fireauth.FederatedAdditionalUserInfo = function(info) {
+fireauth.FederatedAdditionalUserInfo = function (info) {
   fireauth.FederatedAdditionalUserInfo.base(this, 'constructor', info);
   // Federated provider profile data.
   // This structure will also be used for generic IdPs.
   var profile = fireauth.util.parseJSON(
-      info[fireauth.AdditionalUserInfo.VerifyAssertionField.RAW_USER_INFO] ||
-      '{}');
+    info[fireauth.AdditionalUserInfo.VerifyAssertionField.RAW_USER_INFO] || '{}'
+  );
   // Set read-only profile property.
   fireauth.object.setReadonlyProperty(
-      this,
-      'profile',
-      fireauth.object.unsafeCreateReadOnlyCopy(profile || {}));
+    this,
+    'profile',
+    fireauth.object.unsafeCreateReadOnlyCopy(profile || {})
+  );
 };
 goog.inherits(
-    fireauth.FederatedAdditionalUserInfo, fireauth.GenericAdditionalUserInfo);
-
+  fireauth.FederatedAdditionalUserInfo,
+  fireauth.GenericAdditionalUserInfo
+);
 
 /**
  * Constructs a Facebook additional user info object from the backend
@@ -186,7 +192,7 @@ goog.inherits(
  * @constructor
  * @extends {fireauth.FederatedAdditionalUserInfo}
  */
-fireauth.FacebookAdditionalUserInfo = function(info) {
+fireauth.FacebookAdditionalUserInfo = function (info) {
   fireauth.FacebookAdditionalUserInfo.base(this, 'constructor', info);
   // This should not happen as this object is initialized via fromPlainObject.
   if (this['providerId'] != fireauth.idp.ProviderId.FACEBOOK) {
@@ -194,9 +200,9 @@ fireauth.FacebookAdditionalUserInfo = function(info) {
   }
 };
 goog.inherits(
-    fireauth.FacebookAdditionalUserInfo, fireauth.FederatedAdditionalUserInfo);
-
-
+  fireauth.FacebookAdditionalUserInfo,
+  fireauth.FederatedAdditionalUserInfo
+);
 
 /**
  * Constructs a GitHub additional user info object from the backend
@@ -205,7 +211,7 @@ goog.inherits(
  * @constructor
  * @extends {fireauth.FederatedAdditionalUserInfo}
  */
-fireauth.GithubAdditionalUserInfo = function(info) {
+fireauth.GithubAdditionalUserInfo = function (info) {
   fireauth.GithubAdditionalUserInfo.base(this, 'constructor', info);
   // This should not happen as this object is initialized via fromPlainObject.
   if (this['providerId'] != fireauth.idp.ProviderId.GITHUB) {
@@ -213,14 +219,15 @@ fireauth.GithubAdditionalUserInfo = function(info) {
   }
   // GitHub username.
   fireauth.object.setReadonlyProperty(
-      this,
-      'username',
-      (this['profile'] && this['profile']['login']) || null);
+    this,
+    'username',
+    (this['profile'] && this['profile']['login']) || null
+  );
 };
 goog.inherits(
-    fireauth.GithubAdditionalUserInfo, fireauth.FederatedAdditionalUserInfo);
-
-
+  fireauth.GithubAdditionalUserInfo,
+  fireauth.FederatedAdditionalUserInfo
+);
 
 /**
  * Constructs a Google additional user info object from the backend
@@ -229,7 +236,7 @@ goog.inherits(
  * @constructor
  * @extends {fireauth.FederatedAdditionalUserInfo}
  */
-fireauth.GoogleAdditionalUserInfo = function(info) {
+fireauth.GoogleAdditionalUserInfo = function (info) {
   fireauth.GoogleAdditionalUserInfo.base(this, 'constructor', info);
   // This should not happen as this object is initialized via fromPlainObject.
   if (this['providerId'] != fireauth.idp.ProviderId.GOOGLE) {
@@ -237,9 +244,9 @@ fireauth.GoogleAdditionalUserInfo = function(info) {
   }
 };
 goog.inherits(
-    fireauth.GoogleAdditionalUserInfo, fireauth.FederatedAdditionalUserInfo);
-
-
+  fireauth.GoogleAdditionalUserInfo,
+  fireauth.FederatedAdditionalUserInfo
+);
 
 /**
  * Constructs a Twitter additional user info object from the backend
@@ -248,7 +255,7 @@ goog.inherits(
  * @constructor
  * @extends {fireauth.FederatedAdditionalUserInfo}
  */
-fireauth.TwitterAdditionalUserInfo = function(info) {
+fireauth.TwitterAdditionalUserInfo = function (info) {
   fireauth.TwitterAdditionalUserInfo.base(this, 'constructor', info);
   // This should not happen as this object is initialized via fromPlainObject.
   if (this['providerId'] != fireauth.idp.ProviderId.TWITTER) {
@@ -256,10 +263,12 @@ fireauth.TwitterAdditionalUserInfo = function(info) {
   }
   // Twitter user name.
   fireauth.object.setReadonlyProperty(
-      this,
-      'username',
-      info[fireauth.AdditionalUserInfo.VerifyAssertionField.SCREEN_NAME] ||
-      null);
+    this,
+    'username',
+    info[fireauth.AdditionalUserInfo.VerifyAssertionField.SCREEN_NAME] || null
+  );
 };
 goog.inherits(
-    fireauth.TwitterAdditionalUserInfo, fireauth.FederatedAdditionalUserInfo);
+  fireauth.TwitterAdditionalUserInfo,
+  fireauth.FederatedAdditionalUserInfo
+);

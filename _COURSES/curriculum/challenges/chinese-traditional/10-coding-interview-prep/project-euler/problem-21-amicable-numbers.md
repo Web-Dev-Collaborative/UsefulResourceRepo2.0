@@ -1,6 +1,6 @@
 ---
 id: 5900f3811000cf542c50fe94
-title: 'Problem 21: Amicable numbers'
+title: "Problem 21: Amicable numbers"
 challengeType: 5
 forumTopicId: 301851
 dashedName: problem-21-amicable-numbers
@@ -21,7 +21,7 @@ Evaluate the sum of all the amicable numbers under `n`.
 `sumAmicableNum(1000)` should return a number.
 
 ```js
-assert(typeof sumAmicableNum(1000) === 'number');
+assert(typeof sumAmicableNum(1000) === "number");
 ```
 
 `sumAmicableNum(1000)` should return 504.
@@ -54,7 +54,6 @@ assert.strictEqual(sumAmicableNum(10000), 31626);
 
 ```js
 function sumAmicableNum(n) {
-
   return n;
 }
 
@@ -68,17 +67,16 @@ const sumAmicableNum = (n) => {
   const fsum = (n) => {
     let sum = 1;
     for (let i = 2; i <= Math.floor(Math.sqrt(n)); i++)
-      if (Math.floor(n % i) === 0)
-        sum += i + Math.floor(n / i);
+      if (Math.floor(n % i) === 0) sum += i + Math.floor(n / i);
     return sum;
   };
   let d = [];
   let amicableSum = 0;
-  for (let i=2; i<n; i++) d[i] = fsum(i);
-  for (let i=2; i<n; i++) {
+  for (let i = 2; i < n; i++) d[i] = fsum(i);
+  for (let i = 2; i < n; i++) {
     let dsum = d[i];
-    if (d[dsum]===i && i!==dsum) amicableSum += i+dsum;
+    if (d[dsum] === i && i !== dsum) amicableSum += i + dsum;
   }
-  return amicableSum/2;
+  return amicableSum / 2;
 };
 ```

@@ -1,26 +1,24 @@
 {
-    "name": "Firebase Quickstarts for Web",
-    "type": "sample",
+  "name": "Firebase Quickstarts for Web",
+  "type": "sample",
 
-    "platforms": [
-      "Web"
-    ],
+  "platforms": ["Web"],
 
-    "content": "README.md",
+  "content": "README.md",
 
-    "subprojects": [],
+  "subprojects": [],
 
-    // Other markdown pages that should be rendered nicely
-    "pages" : [
-      "auth/README.md",
-      "auth/chromextension/README.md",
-      "database/README.md",
-      "firestore/README.md",
-      "messaging/README.md",
-      "storage/README.md"
-    ],
+  // Other markdown pages that should be rendered nicely
+  "pages": [
+    "auth/README.md",
+    "auth/chromextension/README.md",
+    "database/README.md",
+    "firestore/README.md",
+    "messaging/README.md",
+    "storage/README.md"
+  ],
 
-    "related": [],
+  "related": [],
 
-    "tags": []
-  }
+  "tags": []
+}

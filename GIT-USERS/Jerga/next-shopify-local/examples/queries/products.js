@@ -36,4 +36,4 @@ query getAllProducts($first: Int = 250) {
     }
   }
 }
-`
+`;

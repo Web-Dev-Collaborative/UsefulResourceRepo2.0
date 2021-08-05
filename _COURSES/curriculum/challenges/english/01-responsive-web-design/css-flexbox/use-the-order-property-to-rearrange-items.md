@@ -2,7 +2,7 @@
 id: 587d78ae367417b2b2512aff
 title: Use the order Property to Rearrange Items
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cMbvNAG'
+videoUrl: "https://scrimba.com/p/pVaDAv/cMbvNAG"
 forumTopicId: 301116
 dashedName: use-the-order-property-to-rearrange-items
 ---
@@ -20,13 +20,13 @@ Add the CSS property `order` to both `#box-1` and `#box-2`. Give `#box-1` a valu
 The `#box-1` element should have the `order` property set to a value of `2`.
 
 ```js
-assert($('#box-1').css('order') == '2');
+assert($("#box-1").css("order") == "2");
 ```
 
 The `#box-2` element should have the `order` property set to a value of `1`.
 
 ```js
-assert($('#box-2').css('order') == '1');
+assert($("#box-2").css("order") == "1");
 ```
 
 # --seed--

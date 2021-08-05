@@ -6,7 +6,7 @@ one:
   end_at: 2018-02-21
   total_price: 9.99
   rental: one
-  user: 
+  user:
 
 two:
   guests: 9.99
@@ -14,4 +14,4 @@ two:
   end_at: 2018-02-21
   total_price: 9.99
   rental: two
-  user: 
+  user:

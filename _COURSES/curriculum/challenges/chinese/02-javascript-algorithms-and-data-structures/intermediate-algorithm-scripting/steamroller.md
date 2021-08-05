@@ -15,7 +15,7 @@ dashedName: steamroller
 `steamrollArray([[["a"]], [["b"]]])` 应返回 `["a", "b"]`。
 
 ```js
-assert.deepEqual(steamrollArray([[['a']], [['b']]]), ['a', 'b']);
+assert.deepEqual(steamrollArray([[["a"]], [["b"]]]), ["a", "b"]);
 ```
 
 `steamrollArray([1, [2], [3, [[4]]]])` 应返回 `[1, 2, 3, 4]`。
@@ -62,8 +62,8 @@ function steamrollArray(arr) {
     return [arr];
   }
   var out = [];
-  arr.forEach(function(e) {
-    steamrollArray(e).forEach(function(v) {
+  arr.forEach(function (e) {
+    steamrollArray(e).forEach(function (v) {
       out.push(v);
     });
   });

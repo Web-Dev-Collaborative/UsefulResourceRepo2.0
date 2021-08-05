@@ -1,6 +1,6 @@
 ---
 id: 5900f45b1000cf542c50ff6d
-title: 'Problem 238: Infinite string tour'
+title: "Problem 238: Infinite string tour"
 challengeType: 5
 forumTopicId: 301883
 dashedName: problem-238-infinite-string-tour
@@ -44,7 +44,6 @@ assert.strictEqual(euler238(), 9922545104535660);
 
 ```js
 function euler238() {
-
   return true;
 }
 

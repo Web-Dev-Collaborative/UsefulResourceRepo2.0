@@ -226,9 +226,11 @@ export function functionName(cloudFunction: TargetIds): string {
  * This is useful for list comprehensions, e.g.
  * const newFunctions = wantFunctions.filter(fn => !haveFunctions.some(sameFunctionName(fn)));
  */
-export const sameFunctionName = (func: TargetIds) => (test: TargetIds): boolean => {
-  return func.id === test.id && func.region === test.region && func.project == test.project;
-};
+export const sameFunctionName =
+  (func: TargetIds) =>
+  (test: TargetIds): boolean => {
+    return func.id === test.id && func.region === test.region && func.project == test.project;
+  };
 
 /**
  * Gets the formal resource name for a Cloud Scheduler job.

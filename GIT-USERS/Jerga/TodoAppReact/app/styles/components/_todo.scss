@@ -3,9 +3,10 @@
   cursor: pointer;
   display: flex;
   padding: 1rem;
-  transition: background .3s ease;
+  transition: background 0.3s ease;
 
-  p, input {
+  p,
+  input {
     margin: 0;
   }
 
@@ -23,7 +24,8 @@
 }
 
 .todo-completed {
-  p, .todo-subtext {
+  p,
+  .todo-subtext {
     color: $light-color;
     text-decoration: line-through;
   }

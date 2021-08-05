@@ -8,15 +8,12 @@
         <label class="label">Status</label>
         <div class="select is-medium">
           <select
-              :value="course.status"
-              @change="($event) => emitCourseValue($event, 'status')">
+            :value="course.status"
+            @change="($event) => emitCourseValue($event, 'status')"
+          >
             <option value="default">Change Status</option>
-            <option value="active">
-              Active
-            </option>
-            <option value="published">
-              Published
-            </option>
+            <option value="active">Active</option>
+            <option value="published">Published</option>
           </select>
         </div>
       </div>
@@ -28,13 +25,13 @@ export default {
   props: {
     course: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     emitCourseValue(e, field) {
-      this.$emit('courseValueUpdated', {value: e.target.value, field})
-    }
-  }
-}
+      this.$emit("courseValueUpdated", { value: e.target.value, field });
+    },
+  },
+};
 </script>

@@ -19,7 +19,7 @@ If it is not appropriate or possible to support a general collection, use a vect
 `mode` should be a function.
 
 ```js
-assert(typeof mode === 'function');
+assert(typeof mode === "function");
 ```
 
 `mode([1, 3, 6, 6, 6, 6, 7, 7, 12, 12, 17])` should equal `[6]`
@@ -47,7 +47,6 @@ const arr2 = [1, 2, 4, 4, 1];
 
 ```js
 function mode(arr) {
-
   return true;
 }
 ```
@@ -60,7 +59,7 @@ function mode(arr) {
   let result = [];
   let max = 0;
   // for (const i in arr) {
-  arr.forEach(el => {
+  arr.forEach((el) => {
     if (!(el in counter)) {
       counter[el] = 0;
     }
@@ -68,8 +67,7 @@ function mode(arr) {
 
     if (counter[el] === max) {
       result.push(el);
-    }
-    else if (counter[el] > max) {
+    } else if (counter[el] > max) {
       max = counter[el];
       result = [el];
     }

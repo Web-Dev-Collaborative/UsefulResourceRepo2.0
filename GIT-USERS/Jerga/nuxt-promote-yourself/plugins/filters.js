@@ -1,17 +1,17 @@
-import Vue from 'vue'
-import moment from 'moment'
+import Vue from "vue";
+import moment from "moment";
 
-Vue.filter('shortenText', function(text, maxLength = 300) {
-  if (text && typeof text === 'string') {
-    const finalChar = text.length > maxLength ? '...' : ''
-    return text.substr(0, maxLength) + finalChar
+Vue.filter("shortenText", function (text, maxLength = 300) {
+  if (text && typeof text === "string") {
+    const finalChar = text.length > maxLength ? "..." : "";
+    return text.substr(0, maxLength) + finalChar;
   }
 
-  return ''
-})
+  return "";
+});
 
-Vue.filter('formatDate', function(date, dateFormat = 'LL') {
-  if (!date) return ''
+Vue.filter("formatDate", function (date, dateFormat = "LL") {
+  if (!date) return "";
 
-  return moment(date).format(dateFormat)
-})
+  return moment(date).format(dateFormat);
+});

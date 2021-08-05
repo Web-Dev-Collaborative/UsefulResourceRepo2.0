@@ -14,7 +14,7 @@ After the `h3` element with the `Things cats love:` text, add an unordered list 
 Your `ul` element should have an opening tag. Opening tags have this syntax: `<elementName>`.
 
 ```js
-assert(document.querySelector('ul'));
+assert(document.querySelector("ul"));
 ```
 
 Your `ul` element should have a closing tag. Closing tags have a `/` just after the `<` character.
@@ -26,8 +26,8 @@ assert(code.match(/<\/ul>/));
 The `ul` element should be above the second `section` element's closing tag.
 
 ```js
-const secondSectionLastElemNode = $('main > section')[1].lastElementChild;
-assert(secondSectionLastElemNode.nodeName === 'UL');
+const secondSectionLastElemNode = $("main > section")[1].lastElementChild;
+assert(secondSectionLastElemNode.nodeName === "UL");
 ```
 
 # --seed--
@@ -40,19 +40,25 @@ assert(secondSectionLastElemNode.nodeName === 'UL');
     <h1>CatPhotoApp</h1>
     <main>
       <section>
-      <h2>Cat Photos</h2>
+        <h2>Cat Photos</h2>
         <!-- TODO: Add link to cat photos -->
-        <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        <p>
+          Click here to view more
+          <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+        </p>
+        <a href="https://freecatphotoapp.com"
+          ><img
+            src="https://bit.ly/fcc-relaxing-cat"
+            alt="A cute orange cat lying on its back."
+        /></a>
       </section>
       <section>
---fcc-editable-region--
+        --fcc-editable-region--
         <h2>Cat Lists</h2>
         <h3>Things cats love:</h3>
---fcc-editable-region--
+        --fcc-editable-region--
       </section>
     </main>
   </body>
 </html>
 ```
-

@@ -44,35 +44,35 @@ assert(/\./.test(unRegex.source));
 
 ```js
 unRegex.lastIndex = 0;
-assert(unRegex.test('Let us go on a run.'));
+assert(unRegex.test("Let us go on a run."));
 ```
 
 你的正则表达式 `unRegex` 应该在字符串 `The sun is out today.` 中匹配到 `sun` 单词。
 
 ```js
 unRegex.lastIndex = 0;
-assert(unRegex.test('The sun is out today.'));
+assert(unRegex.test("The sun is out today."));
 ```
 
 你的正则表达式 `unRegex` 应该在字符串 `Coding is a lot of fun.` 中匹配到 `fun` 单词。
 
 ```js
 unRegex.lastIndex = 0;
-assert(unRegex.test('Coding is a lot of fun.'));
+assert(unRegex.test("Coding is a lot of fun."));
 ```
 
 你的正则表达式 `unRegex` 应该在字符串 `Seven days without a pun makes one weak.` 中匹配到 `pun`单词。
 
 ```js
 unRegex.lastIndex = 0;
-assert(unRegex.test('Seven days without a pun makes one weak.'));
+assert(unRegex.test("Seven days without a pun makes one weak."));
 ```
 
 你的正则表达式 `unRegex` 应该在字符串 `One takes a vow to be a nun.` 中匹配到 `nun` 单词。
 
 ```js
 unRegex.lastIndex = 0;
-assert(unRegex.test('One takes a vow to be a nun.'));
+assert(unRegex.test("One takes a vow to be a nun."));
 ```
 
 你的正则表达式 `unRegex` 应该在字符串 `She got fired from the hot dog stand for putting her hair in a bun.` 中匹配到 `bun` 单词。
@@ -81,7 +81,7 @@ assert(unRegex.test('One takes a vow to be a nun.'));
 unRegex.lastIndex = 0;
 assert(
   unRegex.test(
-    'She got fired from the hot dog stand for putting her hair in a bun.'
+    "She got fired from the hot dog stand for putting her hair in a bun."
   )
 );
 ```
@@ -90,14 +90,14 @@ assert(
 
 ```js
 unRegex.lastIndex = 0;
-assert(!unRegex.test('There is a bug in my code.'));
+assert(!unRegex.test("There is a bug in my code."));
 ```
 
 你的正则表达式 `unRegex` 不应该匹配 `Catch me if you can.`。
 
 ```js
 unRegex.lastIndex = 0;
-assert(!unRegex.test('Catch me if you can.'));
+assert(!unRegex.test("Catch me if you can."));
 ```
 
 # --seed--

@@ -2,7 +2,7 @@
 id: 5e7b9f180b6c005b0e76f08d
 title: 在關係型數據庫中表示關係
 challengeType: 11
-videoId: '-orenCNdC2Q'
+videoId: "-orenCNdC2Q"
 dashedName: representing-relationships-in-a-relational-database
 ---
 
@@ -31,4 +31,3 @@ dashedName: representing-relationships-in-a-relational-database
 ## --video-solution--
 
 3
-

@@ -2,7 +2,7 @@
 id: 5a9d72a1424fe3d0e10cad15
 title: Cambia una variable para un área específica
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cdRwbuW'
+videoUrl: "https://scrimba.com/c/cdRwbuW"
 forumTopicId: 301085
 dashedName: change-a-variable-for-a-specific-area
 ---
@@ -23,18 +23,17 @@ La clase `penguin` debe reasignar la variable `--penguin-belly` a `white`.
 
 ```js
 assert(
-  code.match(/\.penguin\s*?{[\s\S]*--penguin-belly\s*?:\s*?white\s*?;[\s\S]*}/gi)
+  code.match(
+    /\.penguin\s*?{[\s\S]*--penguin-belly\s*?:\s*?white\s*?;[\s\S]*}/gi
+  )
 );
 ```
 
 La clase `penguin` no debe contener la propiedad `background-color`
 
 ```js
-assert(
-  code.match(/^((?!background-color\s*?:\s*?)[\s\S])*$/g)
-);
+assert(code.match(/^((?!background-color\s*?:\s*?)[\s\S])*$/g));
 ```
-
 
 # --seed--
 
@@ -249,6 +248,8 @@ assert(
 
 ```html
 <style>
-.penguin {--penguin-belly: white;}
+  .penguin {
+    --penguin-belly: white;
+  }
 </style>
 ```

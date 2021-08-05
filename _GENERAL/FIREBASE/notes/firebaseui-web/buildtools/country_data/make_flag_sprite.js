@@ -23,24 +23,29 @@
  * $ ./make_flag_sprite.js ./source_images_dir ./out_dir
  */
 
-var fs = require('fs');
-var getDirectoryArgs = require('./get_directory_args.js');
-var path = require('path');
-var sprity = require('sprity');
+var fs = require("fs");
+var getDirectoryArgs = require("./get_directory_args.js");
+var path = require("path");
+var sprity = require("sprity");
 
 var dirs = getDirectoryArgs();
 
 var options = {
   out: dirs.to,
-  src: dirs.from + '/*',
-  style: 'flags.css',
+  src: dirs.from + "/*",
+  style: "flags.css",
   margin: 0,
   // Generate both standard-res and high-res images.
-  dimension: [{
-    ratio: 1, dpi: 72
-  }, {
-    ratio: 2, dpi: 192
-  }],
-  template: 'css.hbs'
+  dimension: [
+    {
+      ratio: 1,
+      dpi: 72,
+    },
+    {
+      ratio: 2,
+      dpi: 192,
+    },
+  ],
+  template: "css.hbs",
 };
 sprity.create(options);

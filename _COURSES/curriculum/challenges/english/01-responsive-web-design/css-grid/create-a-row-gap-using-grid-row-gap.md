@@ -2,7 +2,7 @@
 id: 5a9036ee38fddaf9a66b5d36
 title: Create a Row Gap using grid-row-gap
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pByETK/cPbJ2Cv'
+videoUrl: "https://scrimba.com/p/pByETK/cPbJ2Cv"
 forumTopicId: 301125
 dashedName: create-a-row-gap-using-grid-row-gap
 ---
@@ -31,11 +31,21 @@ assert(
 
 ```html
 <style>
-  .d1{background:LightSkyBlue;}
-  .d2{background:LightSalmon;}
-  .d3{background:PaleTurquoise;}
-  .d4{background:LightPink;}
-  .d5{background:PaleGreen;}
+  .d1 {
+    background: LightSkyBlue;
+  }
+  .d2 {
+    background: LightSalmon;
+  }
+  .d3 {
+    background: PaleTurquoise;
+  }
+  .d4 {
+    background: LightPink;
+  }
+  .d5 {
+    background: PaleGreen;
+  }
 
   .container {
     font-size: 40px;
@@ -47,7 +57,6 @@ assert(
     grid-template-rows: 1fr 1fr 1fr;
     /* Only change code below this line */
 
-    
     /* Only change code above this line */
   }
 </style>
@@ -64,5 +73,9 @@ assert(
 # --solutions--
 
 ```html
-<style>.container {grid-row-gap: 5px;}</style>
+<style>
+  .container {
+    grid-row-gap: 5px;
+  }
+</style>
 ```

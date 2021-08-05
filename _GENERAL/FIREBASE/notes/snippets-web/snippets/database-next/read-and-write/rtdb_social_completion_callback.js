@@ -7,15 +7,15 @@
 import { getDatabase, ref, set } from "firebase/database";
 
 const db = getDatabase();
-set(ref(db, 'users/' + userId), {
+set(ref(db, "users/" + userId), {
   username: name,
   email: email,
-  profile_picture : imageUrl
+  profile_picture: imageUrl,
 })
-.then(() => {
-  // Data saved successfully!
-})
-.catch((error) => {
-  // The write failed...
-});
+  .then(() => {
+    // Data saved successfully!
+  })
+  .catch((error) => {
+    // The write failed...
+  });
 // [END rtdb_social_completion_callback_modular]

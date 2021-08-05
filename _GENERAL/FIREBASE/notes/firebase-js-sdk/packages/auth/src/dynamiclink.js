@@ -27,7 +27,6 @@ goog.require('fireauth.object');
 goog.require('fireauth.util');
 goog.require('goog.Uri');
 
-
 /**
  * Dynamic link builder used to help build the FDL link to redirect to an app
  * while passing some payload or error.
@@ -42,15 +41,29 @@ goog.require('goog.Uri');
  * @param {?string=} opt_clientId The optional OAuth client ID.
  * @constructor
  */
-fireauth.DynamicLink = function(fdlDomain, platform, appIdentifier, authDomain,
-    payload, opt_clientId) {
+fireauth.DynamicLink = function (
+  fdlDomain,
+  platform,
+  appIdentifier,
+  authDomain,
+  payload,
+  opt_clientId
+) {
   // The fallback error when the app is not installed on the device.
-  var defaultError =
-      new fireauth.AuthError(fireauth.authenum.Error.APP_NOT_INSTALLED);
+  var defaultError = new fireauth.AuthError(
+    fireauth.authenum.Error.APP_NOT_INSTALLED
+  );
   /** @private {string} The fallback URL when the app is not installed. */
-  this.fallbackUrl_ = 'https://' + authDomain + '/__/auth/handler?' +
-      'firebaseError=' + encodeURIComponent(/** @type {string} */ (
-          fireauth.util.stringifyJSON(defaultError.toPlainObject())));
+  this.fallbackUrl_ =
+    'https://' +
+    authDomain +
+    '/__/auth/handler?' +
+    'firebaseError=' +
+    encodeURIComponent(
+      /** @type {string} */ (
+        fireauth.util.stringifyJSON(defaultError.toPlainObject())
+      )
+    );
   fireauth.object.setReadonlyProperty(this, 'fallbackUrl', this.fallbackUrl_);
   /** @private {?string} The FDL domain if available. */
   this.fdlDomain_ = fdlDomain;
@@ -75,34 +88,31 @@ fireauth.DynamicLink = function(fdlDomain, platform, appIdentifier, authDomain,
   fireauth.object.setReadonlyProperty(this, 'clientId', this.clientId_);
 };
 
-
 /**
  * Sets the app name for the current dynamic link.
  * @param {?string|undefined} appName The app name typically displayed in an FDL
  *     button.
  */
-fireauth.DynamicLink.prototype.setAppName = function(appName) {
+fireauth.DynamicLink.prototype.setAppName = function (appName) {
   this.appName_ = appName || null;
   fireauth.object.setReadonlyProperty(this, 'appName', appName);
 };
-
 
 /**
  * Sets the dynamic link fallback URL overriding the default one.
  * @param {string} fallbackUrl The dynamic link fallback URL.
  */
-fireauth.DynamicLink.prototype.setFallbackUrl = function(fallbackUrl) {
+fireauth.DynamicLink.prototype.setFallbackUrl = function (fallbackUrl) {
   this.fallbackUrl_ = fallbackUrl;
   fireauth.object.setReadonlyProperty(this, 'fallbackUrl', fallbackUrl);
 };
-
 
 /**
  * Parses a dynamic link object from an automatic FDL redirect link.
  * @param {string} url The URL string to parse and convert to a dynamic link.
  * @return {?fireauth.DynamicLink} The corresponding dynamic link if applicable.
  */
-fireauth.DynamicLink.fromURL = function(url) {
+fireauth.DynamicLink.fromURL = function (url) {
   // This constructs the Dynamic link from the URL provided.
   var uri = goog.Uri.parse(url);
   var fdlDomain = uri.getParameterValue('fdlDomain');
@@ -111,26 +121,32 @@ fireauth.DynamicLink.fromURL = function(url) {
   var authDomain = uri.getParameterValue('authDomain');
   var payload = uri.getParameterValue('link');
   var appName = uri.getParameterValue('appName');
-  if (fdlDomain && platform && appIdentifier && authDomain && payload &&
-      appName) {
+  if (
+    fdlDomain &&
+    platform &&
+    appIdentifier &&
+    authDomain &&
+    payload &&
+    appName
+  ) {
     var dl = new fireauth.DynamicLink(
-        /** @type {string} */ (fdlDomain),
-        /** @type {!fireauth.DynamicLink.Platform} */ (platform),
-        /** @type {string} */ (appIdentifier),
-        /** @type {string} */ (authDomain),
-        /** @type {string} */ (payload));
+      /** @type {string} */ (fdlDomain),
+      /** @type {!fireauth.DynamicLink.Platform} */ (platform),
+      /** @type {string} */ (appIdentifier),
+      /** @type {string} */ (authDomain),
+      /** @type {string} */ (payload)
+    );
     dl.setAppName(appName);
     return dl;
   }
   return null;
 };
 
-
 /**
  * @param {string} url The dynamic link URL.
  * @return {string} The deep link embedded within the dynamic link.
  */
-fireauth.DynamicLink.parseDeepLink = function(url) {
+fireauth.DynamicLink.parseDeepLink = function (url) {
   var uri = goog.Uri.parse(url);
   var link = uri.getParameterValue('link');
   // Double link case (automatic redirect).
@@ -139,10 +155,9 @@ fireauth.DynamicLink.parseDeepLink = function(url) {
   var iOSdeepLink = uri.getParameterValue('deep_link_id');
   var iOSDoubledeepLink = goog.Uri.parse(iOSdeepLink).getParameterValue('link');
   var callbackUrl =
-      iOSDoubledeepLink || iOSdeepLink || doubleDeepLink || link || url;
+    iOSDoubledeepLink || iOSdeepLink || doubleDeepLink || link || url;
   return callbackUrl;
 };
-
 
 /**
  * The supported FDL platforms.
@@ -153,7 +168,6 @@ fireauth.DynamicLink.Platform = {
   IOS: 'ios'
 };
 
-
 /**
  * Constructs the common FDL link base used for building the button link or the
  * automatic redirect link.
@@ -162,13 +176,8 @@ fireauth.DynamicLink.Platform = {
  *     button link or the automatic redirect link.
  * @private
  */
-fireauth.DynamicLink.prototype.constructFdlBase_ = function(fallbackUrl) {
-  var uri = goog.Uri.create(
-      'https',
-      null,
-      this.fdlDomain_,
-      null,
-      '/');
+fireauth.DynamicLink.prototype.constructFdlBase_ = function (fallbackUrl) {
+  var uri = goog.Uri.create('https', null, this.fdlDomain_, null, '/');
   if (this.platform_ == fireauth.DynamicLink.Platform.ANDROID) {
     uri.setParameterValue('apn', this.appIdentifier_);
     uri.setParameterValue('afl', fallbackUrl);
@@ -179,7 +188,6 @@ fireauth.DynamicLink.prototype.constructFdlBase_ = function(fallbackUrl) {
   return uri;
 };
 
-
 /**
  * Constructs the custom scheme URL. This is used when no FDL domain is
  * available.
@@ -187,21 +195,22 @@ fireauth.DynamicLink.prototype.constructFdlBase_ = function(fallbackUrl) {
  *      button link or the automatic redirect link.
  * @private
  */
-fireauth.DynamicLink.prototype.constructCustomSchemeUrl_ = function() {
+fireauth.DynamicLink.prototype.constructCustomSchemeUrl_ = function () {
   // This mimics the FDL custom scheme URL format.
   var uri = goog.Uri.create(
-      this.clientId_ ? this.clientId_.split('.').reverse().join('.') :
-          this.appIdentifier_,
-      null,
-      // 'firebaseauth' is used in the app verification flow.
-      // 'google' is used for the Cordova iOS flow.
-      this.clientId_ ? 'firebaseauth' : 'google',
-      null,
-      '/link');
+    this.clientId_
+      ? this.clientId_.split('.').reverse().join('.')
+      : this.appIdentifier_,
+    null,
+    // 'firebaseauth' is used in the app verification flow.
+    // 'google' is used for the Cordova iOS flow.
+    this.clientId_ ? 'firebaseauth' : 'google',
+    null,
+    '/link'
+  );
   uri.setParameterValue('deep_link_id', this.link_);
   return uri;
 };
-
 
 /**
  * @param {boolean=} opt_isAutoRedirect Whether the link is an auto redirect
@@ -209,7 +218,7 @@ fireauth.DynamicLink.prototype.constructCustomSchemeUrl_ = function() {
  * @return {string} The generated dynamic link string.
  * @override
  */
-fireauth.DynamicLink.prototype.toString = function(opt_isAutoRedirect) {
+fireauth.DynamicLink.prototype.toString = function (opt_isAutoRedirect) {
   // When FDL domain is not available, always returns the custom scheme URL.
   if (!this.fdlDomain_) {
     return this.constructCustomSchemeUrl_().toString();
@@ -220,30 +229,28 @@ fireauth.DynamicLink.prototype.toString = function(opt_isAutoRedirect) {
   return this.generateButtonLink_();
 };
 
-
 /**
  * @return {string} The final FDL button link.
  * @private
  */
-fireauth.DynamicLink.prototype.generateButtonLink_ = function() {
+fireauth.DynamicLink.prototype.generateButtonLink_ = function () {
   var fdlLink = this.constructFdlBase_(this.fallbackUrl_);
   fdlLink.setParameterValue('link', this.link_);
   return fdlLink.toString();
 };
 
-
 /**
  * @return {string} The final FDL automatic redirect link.
  * @private
  */
-fireauth.DynamicLink.prototype.generateAutomaticRedirectLink_ =
-    function() {
+fireauth.DynamicLink.prototype.generateAutomaticRedirectLink_ = function () {
   var doubleDeeplink = goog.Uri.create(
-      'https',
-      null,
-      this.authDomain_,
-      null,
-      '/__/auth/callback');
+    'https',
+    null,
+    this.authDomain_,
+    null,
+    '/__/auth/callback'
+  );
   doubleDeeplink.setParameterValue('fdlDomain', this.fdlDomain_);
   doubleDeeplink.setParameterValue('platform', this.platform_);
   doubleDeeplink.setParameterValue('appIdentifier', this.appIdentifier_);

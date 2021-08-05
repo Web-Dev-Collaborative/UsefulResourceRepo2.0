@@ -11,8 +11,8 @@ dashedName: explore-differences-between-the-var-and-let-keywords
 使用 `var` 关键字来声明变量，会出现重复声明导致变量被覆盖却不会报错的问题。
 
 ```js
-var camper = 'James';
-var camper = 'David';
+var camper = "James";
+var camper = "David";
 console.log(camper);
 ```
 
@@ -22,8 +22,8 @@ console.log(camper);
 在 ES6 中引入了新的关键字 `let` 来解决 `var` 关键字带来的潜在问题。 如果你在上面的代码中使用 `let` 关键字来代替 `var` 关键字，结果会是一个报错。
 
 ```js
-let camper = 'James';
-let camper = 'David';
+let camper = "James";
+let camper = "David";
 ```
 
 你可以在浏览器的控制台里看见这个错误。 与 `var` 不同的是，当使用 `let` 的时候，同一名字的变量只能被声明一次。 请注意 `"use strict"`。 这代表着开启了严格模式，用于检测常见的代码错误以及“不安全”的行为， 例如：
@@ -44,19 +44,19 @@ x = 3.14;
 代码中不应有 `var`
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/var/g));
+(getUserInput) => assert(!getUserInput("index").match(/var/g));
 ```
 
 `catName` 变量的值应该为 `Oliver`
 
 ```js
-assert(catName === 'Oliver');
+assert(catName === "Oliver");
 ```
 
 `quote` 变量的值应该为 `Oliver says Meow!`
 
 ```js
-assert(quote === 'Oliver says Meow!');
+assert(quote === "Oliver says Meow!");
 ```
 
 # --seed--
@@ -71,7 +71,6 @@ function catTalk() {
 
   catName = "Oliver";
   quote = catName + " says Meow!";
-
 }
 catTalk();
 ```
@@ -82,10 +81,10 @@ catTalk();
 let catName;
 let quote;
 function catTalk() {
-  'use strict';
+  "use strict";
 
-  catName = 'Oliver';
-  quote = catName + ' says Meow!';
+  catName = "Oliver";
+  quote = catName + " says Meow!";
 }
 catTalk();
 ```

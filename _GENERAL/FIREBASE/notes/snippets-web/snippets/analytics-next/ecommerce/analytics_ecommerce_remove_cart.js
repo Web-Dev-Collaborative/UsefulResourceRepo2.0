@@ -8,12 +8,12 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 
 // Prepare ecommerce params
 const params6 = {
-  currency: 'USD',
+  currency: "USD",
   value: 24.99,
-  items: [item_jeggings]
+  items: [item_jeggings],
 };
 
 // Log event
 const analytics = getAnalytics();
-logEvent(analytics, 'remove_from_cart', params6);
+logEvent(analytics, "remove_from_cart", params6);
 // [END analytics_ecommerce_remove_cart_modular]

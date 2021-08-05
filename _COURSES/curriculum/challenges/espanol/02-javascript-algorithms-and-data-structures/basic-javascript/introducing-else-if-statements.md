@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244db
 title: Introducción a las sentencias "Else If"
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/caeJ2hm'
+videoUrl: "https://scrimba.com/c/caeJ2hm"
 forumTopicId: 18206
 dashedName: introducing-else-if-statements
 ---
@@ -52,31 +52,31 @@ assert(
 `testElseIf(0)` debe devolver la cadena `Smaller than 5`
 
 ```js
-assert(testElseIf(0) === 'Smaller than 5');
+assert(testElseIf(0) === "Smaller than 5");
 ```
 
 `testElseIf(5)` debe devolver la cadena `Between 5 and 10`
 
 ```js
-assert(testElseIf(5) === 'Between 5 and 10');
+assert(testElseIf(5) === "Between 5 and 10");
 ```
 
 `testElseIf(7)` debe devolver la cadena `Between 5 and 10`
 
 ```js
-assert(testElseIf(7) === 'Between 5 and 10');
+assert(testElseIf(7) === "Between 5 and 10");
 ```
 
 `testElseIf(10)` debe devolver la cadena `Between 5 and 10`
 
 ```js
-assert(testElseIf(10) === 'Between 5 and 10');
+assert(testElseIf(10) === "Between 5 and 10");
 ```
 
 `testElseIf(12)` debe devolver la cadena `Greater than 10`
 
 ```js
-assert(testElseIf(12) === 'Greater than 10');
+assert(testElseIf(12) === "Greater than 10");
 ```
 
 # --seed--
@@ -103,9 +103,9 @@ testElseIf(7);
 
 ```js
 function testElseIf(val) {
-  if(val > 10) {
+  if (val > 10) {
     return "Greater than 10";
-  } else if(val < 5) {
+  } else if (val < 5) {
     return "Smaller than 5";
   } else {
     return "Between 5 and 10";

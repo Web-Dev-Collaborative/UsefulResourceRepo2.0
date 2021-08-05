@@ -1,16 +1,16 @@
 // [SNIPPET_REGISTRY disabled]
 // [SNIPPETS_SEPARATION enabled]
 
-const { FirebaseFirestore } = require('firebase/firestore');
+const { FirebaseFirestore } = require("firebase/firestore");
 
-const geofire = require('geofire-common');
+const geofire = require("geofire-common");
 
 /** @type {FirebaseFirestore} */
 let db;
 
 async function addHash(done) {
   // [START fs_geo_add_hash]
-  const { doc, updateDoc } = require('firebase/firestore');
+  const { doc, updateDoc } = require("firebase/firestore");
 
   // Compute the GeoHash for a lat/lng point
   const lat = 51.5074;
@@ -19,11 +19,11 @@ async function addHash(done) {
 
   // Add the hash and the lat/lng to the document. We will use the hash
   // for queries and the lat/lng for distance comparisons.
-  const londonRef = doc(db, 'cities', 'LON');
+  const londonRef = doc(db, "cities", "LON");
   await updateDoc(londonRef, {
     geohash: hash,
     lat: lat,
-    lng: lng
+    lng: lng,
   });
   // [END fs_geo_add_hash]
   done();
@@ -31,7 +31,14 @@ async function addHash(done) {
 
 async function queryHashes(done) {
   // [START fs_geo_query_hashes]
-  const { collection, query, orderBy, startAt, endAt, getDocs } = require('firebase/firestore');
+  const {
+    collection,
+    query,
+    orderBy,
+    startAt,
+    endAt,
+    getDocs,
+  } = require("firebase/firestore");
 
   // Find cities within 50km of London
   const center = [51.5074, 0.1278];
@@ -44,10 +51,11 @@ async function queryHashes(done) {
   const promises = [];
   for (const b of bounds) {
     const q = query(
-      collection(db, 'cities'), 
-      orderBy('geohash'), 
-      startAt(b[0]), 
-      endAt(b[1]));
+      collection(db, "cities"),
+      orderBy("geohash"),
+      startAt(b[0]),
+      endAt(b[1])
+    );
 
     promises.push(getDocs(q));
   }
@@ -58,8 +66,8 @@ async function queryHashes(done) {
   const matchingDocs = [];
   for (const snap of snapshots) {
     for (const doc of snap.docs) {
-      const lat = doc.get('lat');
-      const lng = doc.get('lng');
+      const lat = doc.get("lat");
+      const lng = doc.get("lng");
 
       // We have to filter out a few false positives due to GeoHash
       // accuracy, but most will match
@@ -75,29 +83,26 @@ async function queryHashes(done) {
 }
 
 describe("firestore-solution-geoqueries", () => {
-    before(() => {
-      const { initializeApp } = require("firebase/app");
-      const { getFirestore} = require("firebase/firestore");
+  before(() => {
+    const { initializeApp } = require("firebase/app");
+    const { getFirestore } = require("firebase/firestore");
 
-      const config = {
-          apiKey: "AIzaSyArvVh6VSdXicubcvIyuB-GZs8ua0m0DTI",
-          authDomain: "firestorequickstarts.firebaseapp.com",
-          projectId: "firestorequickstarts",
-      };
-      const app = initializeApp(config, "solution-geoqueries");
-      db = getFirestore(app);
+    const config = {
+      apiKey: "AIzaSyArvVh6VSdXicubcvIyuB-GZs8ua0m0DTI",
+      authDomain: "firestorequickstarts.firebaseapp.com",
+      projectId: "firestorequickstarts",
+    };
+    const app = initializeApp(config, "solution-geoqueries");
+    db = getFirestore(app);
+  });
+
+  describe("solution-geoqueries", () => {
+    it("should add a hash to a doc", (done) => {
+      addHash(done);
     });
 
-    describe("solution-geoqueries", () => {
-      it("should add a hash to a doc", (done) => {
-        addHash(done);
-      });
-
-      it("should query hashes", (done) => {
-        queryHashes(done);
-      });
+    it("should query hashes", (done) => {
+      queryHashes(done);
     });
+  });
 });
-
-
-

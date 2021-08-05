@@ -34,28 +34,28 @@ Your regex `myRegex` should return `true` for the string `Franklin D. Roosevelt`
 
 ```js
 myRegex.lastIndex = 0;
-assert(myRegex.test('Franklin D. Roosevelt'));
+assert(myRegex.test("Franklin D. Roosevelt"));
 ```
 
 Your regex `myRegex` should return `true` for the string `Eleanor Roosevelt`
 
 ```js
 myRegex.lastIndex = 0;
-assert(myRegex.test('Eleanor Roosevelt'));
+assert(myRegex.test("Eleanor Roosevelt"));
 ```
 
 Your regex `myRegex` should return `false` for the string `Franklin Rosevelt`
 
 ```js
 myRegex.lastIndex = 0;
-assert(!myRegex.test('Franklin Rosevelt'));
+assert(!myRegex.test("Franklin Rosevelt"));
 ```
 
 Your regex `myRegex` should return `false` for the string `Frank Roosevelt`
 
 ```js
 myRegex.lastIndex = 0;
-assert(!myRegex.test('Frank Roosevelt'));
+assert(!myRegex.test("Frank Roosevelt"));
 ```
 
 You should use `.test()` to test the regex.

@@ -1,6 +1,6 @@
 ---
 id: 5e7b9f0b0b6c005b0e76f06f
-title: '正則表達式：匹配和提取數據'
+title: "正則表達式：匹配和提取數據"
 challengeType: 11
 videoId: LaCZnTbQGkE
 dashedName: regular-expressions-matching-and-extracting-data
@@ -38,4 +38,3 @@ print(lst)
 ## --video-solution--
 
 1
-

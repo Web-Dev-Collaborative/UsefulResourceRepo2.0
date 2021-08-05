@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244c8
 title: 使用方括号表示法访问对象属性
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cBvmEHP'
+videoUrl: "https://scrimba.com/c/cBvmEHP"
 forumTopicId: 16163
 dashedName: accessing-object-properties-with-bracket-notation
 ---
@@ -19,10 +19,10 @@ dashedName: accessing-object-properties-with-bracket-notation
 var myObj = {
   "Space Name": "Kirk",
   "More Space": "Spock",
-  "NoSpace": "USS Enterprise"
+  NoSpace: "USS Enterprise",
 };
 myObj["Space Name"];
-myObj['More Space'];
+myObj["More Space"];
 myObj["NoSpace"];
 ```
 
@@ -39,25 +39,25 @@ myObj["NoSpace"];
 `entreeValue` 应该是一个字符串。
 
 ```js
-assert(typeof entreeValue === 'string');
+assert(typeof entreeValue === "string");
 ```
 
 `entreeValue` 的值应该为字符串 `hamburger`
 
 ```js
-assert(entreeValue === 'hamburger');
+assert(entreeValue === "hamburger");
 ```
 
 `drinkValue` 应该是一个字符串
 
 ```js
-assert(typeof drinkValue === 'string');
+assert(typeof drinkValue === "string");
 ```
 
 `drinkValue` 的值应该为字符串 `water`
 
 ```js
-assert(drinkValue === 'water');
+assert(drinkValue === "water");
 ```
 
 你应该使用两次方括号
@@ -71,7 +71,9 @@ assert(code.match(/testObj\s*?\[('|")[^'"]+\1\]/g).length > 1);
 ## --after-user-code--
 
 ```js
-(function(a,b) { return "entreeValue = '" + a + "', drinkValue = '" + b + "'"; })(entreeValue,drinkValue);
+(function (a, b) {
+  return "entreeValue = '" + a + "', drinkValue = '" + b + "'";
+})(entreeValue, drinkValue);
 ```
 
 ## --seed-contents--
@@ -81,13 +83,13 @@ assert(code.match(/testObj\s*?\[('|")[^'"]+\1\]/g).length > 1);
 var testObj = {
   "an entree": "hamburger",
   "my side": "veggies",
-  "the drink": "water"
+  "the drink": "water",
 };
 
 // Only change code below this line
 
-var entreeValue = testObj;   // Change this line
-var drinkValue = testObj;    // Change this line
+var entreeValue = testObj; // Change this line
+var drinkValue = testObj; // Change this line
 ```
 
 # --solutions--
@@ -96,8 +98,8 @@ var drinkValue = testObj;    // Change this line
 var testObj = {
   "an entree": "hamburger",
   "my side": "veggies",
-  "the drink": "water"
+  "the drink": "water",
 };
 var entreeValue = testObj["an entree"];
-var drinkValue = testObj['the drink'];
+var drinkValue = testObj["the drink"];
 ```

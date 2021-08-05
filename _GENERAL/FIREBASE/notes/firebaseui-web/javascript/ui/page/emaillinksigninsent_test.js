@@ -16,59 +16,64 @@
  * @fileoverview Tests for the email link sign in sent page.
  */
 
-goog.provide('firebaseui.auth.ui.page.EmailLinkSignInSentTest');
-goog.setTestOnly('firebaseui.auth.ui.page.EmailLinkSignInSentTest');
+goog.provide("firebaseui.auth.ui.page.EmailLinkSignInSentTest");
+goog.setTestOnly("firebaseui.auth.ui.page.EmailLinkSignInSentTest");
 
-goog.require('firebaseui.auth.ui.element.FormTestHelper');
-goog.require('firebaseui.auth.ui.element.TosPpTestHelper');
-goog.require('firebaseui.auth.ui.page.EmailLinkSignInSent');
-goog.require('firebaseui.auth.ui.page.PageTestHelper');
+goog.require("firebaseui.auth.ui.element.FormTestHelper");
+goog.require("firebaseui.auth.ui.element.TosPpTestHelper");
+goog.require("firebaseui.auth.ui.page.EmailLinkSignInSent");
+goog.require("firebaseui.auth.ui.page.PageTestHelper");
 
-goog.require('goog.dom');
-goog.require('goog.dom.TagName');
-goog.require('goog.testing.MockClock');
-goog.require('goog.testing.events');
-goog.require('goog.testing.jsunit');
-
+goog.require("goog.dom");
+goog.require("goog.dom.TagName");
+goog.require("goog.testing.MockClock");
+goog.require("goog.testing.events");
+goog.require("goog.testing.jsunit");
 
 var mockClock;
 var root;
 var component;
 var formTestHelper = new firebaseui.auth.ui.element.FormTestHelper()
-    .excludeTests(
-        'testGetSubmitElement_', 'testOnSubmitClick_', 'testOnSubmitEnter_')
-    .registerTests();
+  .excludeTests(
+    "testGetSubmitElement_",
+    "testOnSubmitClick_",
+    "testOnSubmitEnter_"
+  )
+  .registerTests();
 var tosPpTestHelper =
-    new firebaseui.auth.ui.element.TosPpTestHelper().registerTests();
+  new firebaseui.auth.ui.element.TosPpTestHelper().registerTests();
 var pageTestHelper =
-    new firebaseui.auth.ui.page.PageTestHelper().registerTests();
+  new firebaseui.auth.ui.page.PageTestHelper().registerTests();
 
 var troubleGettingEmailClicked;
 var onTroubleGetingEmailLinkClick;
-
 
 function setUp() {
   // Set up clock.
   mockClock = new goog.testing.MockClock();
   mockClock.install();
   troubleGettingEmailClicked = false;
-  onTroubleGetingEmailLinkClick = function() {
+  onTroubleGetingEmailLinkClick = function () {
     troubleGettingEmailClicked = true;
   };
   root = goog.dom.createDom(goog.dom.TagName.DIV);
   document.body.appendChild(root);
   component = new firebaseui.auth.ui.page.EmailLinkSignInSent(
-      'user@example.com',
-      onTroubleGetingEmailLinkClick,
-      goog.bind(
-          firebaseui.auth.ui.element.FormTestHelper.prototype.onLinkClick,
-          formTestHelper),
-      goog.bind(
-          firebaseui.auth.ui.element.TosPpTestHelper.prototype.onTosLinkClick,
-          tosPpTestHelper),
-      goog.bind(
-          firebaseui.auth.ui.element.TosPpTestHelper.prototype.onPpLinkClick,
-          tosPpTestHelper));
+    "user@example.com",
+    onTroubleGetingEmailLinkClick,
+    goog.bind(
+      firebaseui.auth.ui.element.FormTestHelper.prototype.onLinkClick,
+      formTestHelper
+    ),
+    goog.bind(
+      firebaseui.auth.ui.element.TosPpTestHelper.prototype.onTosLinkClick,
+      tosPpTestHelper
+    ),
+    goog.bind(
+      firebaseui.auth.ui.element.TosPpTestHelper.prototype.onPpLinkClick,
+      tosPpTestHelper
+    )
+  );
   component.render(root);
   formTestHelper.setComponent(component);
   // Reset previous state of form helper.
@@ -79,7 +84,6 @@ function setUp() {
   pageTestHelper.setClock(mockClock).setComponent(component);
 }
 
-
 function tearDown() {
   // Tear down clock.
   mockClock.tick(Infinity);
@@ -87,7 +91,6 @@ function tearDown() {
   component.dispose();
   goog.dom.removeNode(root);
 }
-
 
 function testEmailLinkSignInSent_troubleGettingEmailLinkClicked() {
   var troubleGettingEmaillink = component.getTroubleGettingEmailLink();
@@ -97,13 +100,12 @@ function testEmailLinkSignInSent_troubleGettingEmailLinkClicked() {
   assertTrue(troubleGettingEmailClicked);
 }
 
-
 function testInitialFocus_cancelButton() {
   assertEquals(
-      component.getSecondaryLinkElement(),
-      goog.dom.getActiveElement(document));
+    component.getSecondaryLinkElement(),
+    goog.dom.getActiveElement(document)
+  );
 }
-
 
 function testEmailLinkSignInSent_pageEvents() {
   // Run page event tests.
@@ -112,16 +114,17 @@ function testEmailLinkSignInSent_pageEvents() {
   component.dispose();
   // Initialize component.
   component = new firebaseui.auth.ui.page.EmailLinkSignInSent(
-      'user@example.com',
-      onTroubleGetingEmailLinkClick,
-      goog.bind(
-          firebaseui.auth.ui.element.FormTestHelper.prototype.onLinkClick,
-          formTestHelper));
+    "user@example.com",
+    onTroubleGetingEmailLinkClick,
+    goog.bind(
+      firebaseui.auth.ui.element.FormTestHelper.prototype.onLinkClick,
+      formTestHelper
+    )
+  );
   // Run all page helper tests.
   pageTestHelper.runTests(component, root);
 }
 
-
 function testEmailLinkSignInSent_getPageId() {
-  assertEquals('emailLinkSignInSent', component.getPageId());
+  assertEquals("emailLinkSignInSent", component.getPageId());
 }

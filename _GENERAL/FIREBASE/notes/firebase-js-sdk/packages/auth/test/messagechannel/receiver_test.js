@@ -30,16 +30,13 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.messagechannel.ReceiverTest');
 
-
 var mockControl;
-
 
 function setUp() {
   ignoreArgument = goog.testing.mockmatchers.ignoreArgument;
   mockControl = new goog.testing.MockControl();
   mockControl.$resetAll();
 }
-
 
 function tearDown() {
   try {
@@ -48,7 +45,6 @@ function tearDown() {
     mockControl.$tearDown();
   }
 }
-
 
 function testReceiver_singleHandler_success() {
   // Used to prevent the test from finishing prematurely before the underlying
@@ -70,7 +66,7 @@ function testReceiver_singleHandler_success() {
   var handler2 = mockControl.createFunctionMock('handler2');
   var event = new goog.events.Event('message');
   event.origin = origin;
-  event.ports = [{'postMessage': postMessage}];
+  event.ports = [{ 'postMessage': postMessage }];
   event.data = {
     'eventId': eventId,
     'eventType': eventType,
@@ -82,20 +78,26 @@ function testReceiver_singleHandler_success() {
     'eventType': eventType,
     'response': null
   }).$once();
-  handler1(origin, data).$does(function() {
-    return expectedResponse;
-  }).$once();
+  handler1(origin, data)
+    .$does(function () {
+      return expectedResponse;
+    })
+    .$once();
   postMessage({
     'status': 'done',
     'eventId': eventId,
     'eventType': eventType,
-    'response': [{
-      'fulfilled': true,
-      'value': expectedResponse
-    }]
-  }).$does(function() {
-    sendCompletionSignal();
-  }).$once();
+    'response': [
+      {
+        'fulfilled': true,
+        'value': expectedResponse
+      }
+    ]
+  })
+    .$does(function () {
+      sendCompletionSignal();
+    })
+    .$once();
   handler2().$never();
   mockControl.$replayAll();
 
@@ -110,11 +112,10 @@ function testReceiver_singleHandler_success() {
   // Second event should not have any effect.
   eventTarget.dispatchEvent(event);
 
-  return new goog.Promise(function(resolve, reject) {
+  return new goog.Promise(function (resolve, reject) {
     sendCompletionSignal = resolve;
   });
 }
-
 
 function testReceiver_singleHandler_error() {
   var sendCompletionSignal;
@@ -132,7 +133,7 @@ function testReceiver_singleHandler_error() {
   var handler2 = mockControl.createFunctionMock('handler2');
   var event = new goog.events.Event('message');
   event.origin = origin;
-  event.ports = [{'postMessage': postMessage}];
+  event.ports = [{ 'postMessage': postMessage }];
   event.data = {
     'eventId': eventId,
     'eventType': eventType,
@@ -144,20 +145,26 @@ function testReceiver_singleHandler_error() {
     'eventType': eventType,
     'response': null
   }).$once();
-  handler1(origin, data).$does(function() {
-    throw expectedError;
-  }).$once();
+  handler1(origin, data)
+    .$does(function () {
+      throw expectedError;
+    })
+    .$once();
   postMessage({
     'status': 'done',
     'eventId': eventId,
     'eventType': eventType,
-    'response': [{
-      'fulfilled': false,
-      'reason': expectedError.message
-    }]
-  }).$does(function() {
-    sendCompletionSignal();
-  }).$once();
+    'response': [
+      {
+        'fulfilled': false,
+        'reason': expectedError.message
+      }
+    ]
+  })
+    .$does(function () {
+      sendCompletionSignal();
+    })
+    .$once();
   handler2().$never();
   mockControl.$replayAll();
 
@@ -170,11 +177,10 @@ function testReceiver_singleHandler_error() {
   // Second event should not have any effect.
   eventTarget.dispatchEvent(event);
 
-  return new goog.Promise(function(resolve, reject) {
+  return new goog.Promise(function (resolve, reject) {
     sendCompletionSignal = resolve;
   });
 }
-
 
 function testReceiver_multipleHandler_singleEvent_success() {
   var sendCompletionSignal;
@@ -198,7 +204,7 @@ function testReceiver_multipleHandler_singleEvent_success() {
   var handler3 = mockControl.createFunctionMock('handler3');
   var event = new goog.events.Event('message');
   event.origin = origin;
-  event.ports = [{'postMessage': postMessage}];
+  event.ports = [{ 'postMessage': postMessage }];
   event.data = {
     'eventId': eventId,
     'eventType': eventType,
@@ -211,27 +217,36 @@ function testReceiver_multipleHandler_singleEvent_success() {
     'eventType': eventType,
     'response': null
   }).$once();
-  handler1(origin, data).$does(function() {
-    return expectedResponse1;
-  }).$once();
+  handler1(origin, data)
+    .$does(function () {
+      return expectedResponse1;
+    })
+    .$once();
   // Second handler.
-  handler2(origin, data).$does(function() {
-    return expectedResponse2;
-  }).$once();
+  handler2(origin, data)
+    .$does(function () {
+      return expectedResponse2;
+    })
+    .$once();
   postMessage({
     'status': 'done',
     'eventId': eventId,
     'eventType': eventType,
-    'response': [{
-      'fulfilled': true,
-      'value': expectedResponse1
-    }, {
-      'fulfilled': true,
-      'value': expectedResponse2
-    }]
-  }).$does(function() {
-    sendCompletionSignal();
-  }).$once();
+    'response': [
+      {
+        'fulfilled': true,
+        'value': expectedResponse1
+      },
+      {
+        'fulfilled': true,
+        'value': expectedResponse2
+      }
+    ]
+  })
+    .$does(function () {
+      sendCompletionSignal();
+    })
+    .$once();
   // Third handler.
   handler3().$never();
   mockControl.$replayAll();
@@ -250,11 +265,10 @@ function testReceiver_multipleHandler_singleEvent_success() {
   // Second event should not have any effect.
   eventTarget.dispatchEvent(event);
 
-  return new goog.Promise(function(resolve, reject) {
+  return new goog.Promise(function (resolve, reject) {
     sendCompletionSignal = resolve;
   });
 }
-
 
 function testReceiver_multipleHandler_singleEvent_error() {
   var sendCompletionSignal;
@@ -276,7 +290,7 @@ function testReceiver_multipleHandler_singleEvent_error() {
   var handler3 = mockControl.createFunctionMock('handler3');
   var event = new goog.events.Event('message');
   event.origin = origin;
-  event.ports = [{'postMessage': postMessage}];
+  event.ports = [{ 'postMessage': postMessage }];
   event.data = {
     'eventId': eventId,
     'eventType': eventType,
@@ -289,27 +303,36 @@ function testReceiver_multipleHandler_singleEvent_error() {
     'eventType': eventType,
     'response': null
   }).$once();
-  handler1(origin, data).$does(function() {
-    return expectedResponse1;
-  }).$once();
+  handler1(origin, data)
+    .$does(function () {
+      return expectedResponse1;
+    })
+    .$once();
   // Second handler.
-  handler2(origin, data).$does(function() {
-    throw expectedError;
-  }).$once();
+  handler2(origin, data)
+    .$does(function () {
+      throw expectedError;
+    })
+    .$once();
   postMessage({
     'status': 'done',
     'eventId': eventId,
     'eventType': eventType,
-    'response': [{
-      'fulfilled': true,
-      'value': expectedResponse1
-    }, {
-      'fulfilled': false,
-      'reason': expectedError.message
-    }]
-  }).$does(function() {
-    sendCompletionSignal();
-  }).$once();
+    'response': [
+      {
+        'fulfilled': true,
+        'value': expectedResponse1
+      },
+      {
+        'fulfilled': false,
+        'reason': expectedError.message
+      }
+    ]
+  })
+    .$does(function () {
+      sendCompletionSignal();
+    })
+    .$once();
   // Third handler.
   handler3().$never();
   mockControl.$replayAll();
@@ -328,11 +351,10 @@ function testReceiver_multipleHandler_singleEvent_error() {
   // Second event should not have any effect.
   eventTarget.dispatchEvent(event);
 
-  return new goog.Promise(function(resolve, reject) {
+  return new goog.Promise(function (resolve, reject) {
     sendCompletionSignal = resolve;
   });
 }
-
 
 function testReceiver_multipleHandler_multipleEvent_success() {
   var sendCompletionSignal;
@@ -363,7 +385,7 @@ function testReceiver_multipleHandler_multipleEvent_success() {
   var handler3 = mockControl.createFunctionMock('handler3');
   var event1 = new goog.events.Event('message');
   event1.origin = origin1;
-  event1.ports = [{'postMessage': postMessage}];
+  event1.ports = [{ 'postMessage': postMessage }];
   event1.data = {
     'eventId': eventId1,
     'eventType': eventType1,
@@ -371,7 +393,7 @@ function testReceiver_multipleHandler_multipleEvent_success() {
   };
   var event2 = new goog.events.Event('message');
   event2.origin = origin2;
-  event2.ports = [{'postMessage': postMessage}];
+  event2.ports = [{ 'postMessage': postMessage }];
   event2.data = {
     'eventId': eventId2,
     'eventType': eventType2,
@@ -390,33 +412,43 @@ function testReceiver_multipleHandler_multipleEvent_success() {
     'eventType': eventType2,
     'response': null
   }).$once();
-  handler1(origin1, data1).$does(function() {
-    return expectedResponse1;
-  }).$once();
+  handler1(origin1, data1)
+    .$does(function () {
+      return expectedResponse1;
+    })
+    .$once();
   // Second handler.
-  handler2(origin2, data2).$does(function() {
-    return expectedResponse2;
-  }).$once();
+  handler2(origin2, data2)
+    .$does(function () {
+      return expectedResponse2;
+    })
+    .$once();
   postMessage({
     'status': 'done',
     'eventId': eventId1,
     'eventType': eventType1,
-    'response': [{
-      'fulfilled': true,
-      'value': expectedResponse1
-    }]
+    'response': [
+      {
+        'fulfilled': true,
+        'value': expectedResponse1
+      }
+    ]
   }).$once();
   postMessage({
     'status': 'done',
     'eventId': eventId2,
     'eventType': eventType2,
-    'response': [{
-      'fulfilled': true,
-      'value': expectedResponse2
-    }]
-  }).$does(function() {
-    sendCompletionSignal();
-  }).$once();
+    'response': [
+      {
+        'fulfilled': true,
+        'value': expectedResponse2
+      }
+    ]
+  })
+    .$does(function () {
+      sendCompletionSignal();
+    })
+    .$once();
   // Third handler.
   handler3().$never();
   mockControl.$replayAll();
@@ -436,11 +468,10 @@ function testReceiver_multipleHandler_multipleEvent_success() {
   eventTarget.dispatchEvent(event1);
   eventTarget.dispatchEvent(event2);
 
-  return new goog.Promise(function(resolve, reject) {
+  return new goog.Promise(function (resolve, reject) {
     sendCompletionSignal = resolve;
   });
 }
-
 
 function testReceiver_singleHandler_unsubscribeAll() {
   var eventType = 'eventType1';
@@ -456,7 +487,7 @@ function testReceiver_singleHandler_unsubscribeAll() {
   var handler2 = mockControl.createFunctionMock('handler2');
   var event = new goog.events.Event('message');
   event.origin = origin;
-  event.ports = [{'postMessage': postMessage}];
+  event.ports = [{ 'postMessage': postMessage }];
   event.data = {
     'eventId': eventId,
     'eventType': eventType,

@@ -1,7 +1,7 @@
 import {
   createAsyncThunk,
   createReducer,
-  PayloadAction
+  PayloadAction,
 } from '@reduxjs/toolkit'
 
 export interface Data {
@@ -36,7 +36,7 @@ export interface ExampleState {
 
 export const initialState = {
   isSpecial: false,
-  isInteresting: false
+  isInteresting: false,
 } as ExampleState
 
 export const isSpecialAndInterestingThunk = createAsyncThunk(
@@ -44,7 +44,7 @@ export const isSpecialAndInterestingThunk = createAsyncThunk(
   () => {
     return {
       isSpecial: true,
-      isInteresting: true
+      isInteresting: true,
     }
   }
 )
@@ -53,7 +53,7 @@ export const requestThunk1 = createAsyncThunk('requestThunk1', () => ({}))
 
 export const requestThunk2 = createAsyncThunk('requestThunk2', () => ({}))
 
-export const loadingReducer = createReducer(initialState, builder => {
+export const loadingReducer = createReducer(initialState, (builder) => {
   builder.addCase(isSpecialAndInterestingThunk.fulfilled, (state, action) => {
     if (isSpecial(action)) {
       state.isSpecial = true

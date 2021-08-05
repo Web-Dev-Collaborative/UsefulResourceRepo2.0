@@ -31,19 +31,19 @@ Use the anchor character (`$`) to match the string `caboose` at the end of the s
 You should search for `caboose` with the dollar sign `$` anchor in your regex.
 
 ```js
-assert(lastRegex.source == 'caboose$');
+assert(lastRegex.source == "caboose$");
 ```
 
 Your regex should not use any flags.
 
 ```js
-assert(lastRegex.flags == '');
+assert(lastRegex.flags == "");
 ```
 
 You should match `caboose` at the end of the string `The last car on a train is the caboose`
 
 ```js
-assert(lastRegex.test('The last car on a train is the caboose'));
+assert(lastRegex.test("The last car on a train is the caboose"));
 ```
 
 # --seed--

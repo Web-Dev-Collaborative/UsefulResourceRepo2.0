@@ -31,11 +31,7 @@ dashedName: understanding-the-differences-between-the-freecodecamp-and-browser-c
 應該使用 `console.clear()` 清除瀏覽器控制檯。
 
 ```js
-assert(
-  __helpers
-    .removeWhiteSpace(code)
-    .match(/console.clear\(\)/)
-);
+assert(__helpers.removeWhiteSpace(code).match(/console.clear\(\)/));
 ```
 
 應該使用 `console.log()` 打印 `output` 變量。
@@ -50,7 +46,8 @@ assert(__helpers.removeWhiteSpace(code).match(/console\.log\(output\)/));
 
 ```js
 // Open your browser console.
-let output = "Get this to log once in the freeCodeCamp console and twice in the browser console";
+let output =
+  "Get this to log once in the freeCodeCamp console and twice in the browser console";
 // Use console.log() to print the output variable.
 
 // Run the tests to see the difference between the two consoles.
@@ -62,7 +59,8 @@ let output = "Get this to log once in the freeCodeCamp console and twice in the 
 
 ```js
 // Open your browser console.
-let output = "Get this to log once in the freeCodeCamp console and twice in the browser console";
+let output =
+  "Get this to log once in the freeCodeCamp console and twice in the browser console";
 // Use console.log() to print the output variable.
 console.clear();
 console.log(output);

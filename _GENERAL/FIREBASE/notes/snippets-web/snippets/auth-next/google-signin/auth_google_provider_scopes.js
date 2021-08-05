@@ -4,5 +4,5 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START auth_google_provider_scopes_modular]
-provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
 // [END auth_google_provider_scopes_modular]

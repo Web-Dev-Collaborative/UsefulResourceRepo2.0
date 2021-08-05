@@ -10,12 +10,12 @@ import { getStorage, ref } from "firebase/storage";
 const storage = getStorage();
 
 // Create a reference to 'mountains.jpg'
-const mountainsRef = ref(storage, 'mountains.jpg');
+const mountainsRef = ref(storage, "mountains.jpg");
 
 // Create a reference to 'images/mountains.jpg'
-const mountainImagesRef = ref(storage, 'images/mountains.jpg');
+const mountainImagesRef = ref(storage, "images/mountains.jpg");
 
 // While the file names are the same, the references point to different files
-mountainsRef.name === mountainImagesRef.name;           // true
-mountainsRef.fullPath === mountainImagesRef.fullPath;   // false 
+mountainsRef.name === mountainImagesRef.name; // true
+mountainsRef.fullPath === mountainImagesRef.fullPath; // false
 // [END storage_upload_ref_modular]

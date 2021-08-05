@@ -2,7 +2,7 @@
 id: bd7123c9c451eddfaeb5bdef
 title: Usare la notazione a parentesi per trovare l'ultimo carattere in una stringa
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cBZQGcv'
+videoUrl: "https://scrimba.com/c/cBZQGcv"
 forumTopicId: 18342
 dashedName: use-bracket-notation-to-find-the-last-character-in-a-string
 ---
@@ -33,7 +33,7 @@ Usa <dfn>la notazione a parentesi</dfn> per trovare l'ultimo carattere nella var
 `lastLetterOfLastName` dovrebbe essere la lettera `e`.
 
 ```js
-assert(lastLetterOfLastName === 'e');
+assert(lastLetterOfLastName === "e");
 ```
 
 Dovresti usare `.length` per ottenere l'ultima lettera.
@@ -47,7 +47,9 @@ assert(code.match(/\.length/g).length > 0);
 ## --after-user-code--
 
 ```js
-(function(v){return v;})(lastLetterOfLastName);
+(function (v) {
+  return v;
+})(lastLetterOfLastName);
 ```
 
 ## --seed-contents--

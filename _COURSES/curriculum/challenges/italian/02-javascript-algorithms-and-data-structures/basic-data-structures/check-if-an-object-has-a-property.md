@@ -11,8 +11,8 @@ dashedName: check-if-an-object-has-a-property
 Adesso possiamo aggiungere, modificare e rimuovere chiavi dagli oggetti. Ma se volessimo solo sapere se un oggetto ha una determinata proprietà? JavaScript ci fornisce due modi diversi per farlo. Uno utilizza il metodo `hasOwnProperty()` e l'altro usa la parola chiave `in`. Se abbiamo un oggetto `users` con una proprietà `Alan`, potremmo verificare la sua presenza in uno dei seguenti modi:
 
 ```js
-users.hasOwnProperty('Alan');
-'Alan' in users;
+users.hasOwnProperty("Alan");
+"Alan" in users;
 ```
 
 Entrambi restituirebbero `true`.
@@ -25,20 +25,18 @@ Finisci di scrivere la funzione in modo che restituisca true se l'oggetto ad ess
 
 Non dovresti accedere direttamente all'oggetto `users`
 
-```js 
-
-assert(code.match(/users/gm).length <= 2)
-
+```js
+assert(code.match(/users/gm).length <= 2);
 ```
 
 L'oggetto `users` dovrebbe contenere solo le chiavi `Alan`, `Jeff`, `Sarah`e `Ryan`
 
 ```js
 assert(
-  'Alan' in users &&
-    'Jeff' in users &&
-    'Sarah' in users &&
-    'Ryan' in users &&
+  "Alan" in users &&
+    "Jeff" in users &&
+    "Sarah" in users &&
+    "Ryan" in users &&
     Object.keys(users).length === 4
 );
 ```
@@ -101,25 +99,24 @@ assert(
 let users = {
   Alan: {
     age: 27,
-    online: true
+    online: true,
   },
   Jeff: {
     age: 32,
-    online: true
+    online: true,
   },
   Sarah: {
     age: 48,
-    online: true
+    online: true,
   },
   Ryan: {
     age: 19,
-    online: true
-  }
+    online: true,
+  },
 };
 
 function isEveryoneHere(userObj) {
   // Only change code below this line
-
   // Only change code above this line
 }
 
@@ -132,29 +129,26 @@ console.log(isEveryoneHere(users));
 let users = {
   Alan: {
     age: 27,
-    online: true
+    online: true,
   },
   Jeff: {
     age: 32,
-    online: true
+    online: true,
   },
   Sarah: {
     age: 48,
-    online: true
+    online: true,
   },
   Ryan: {
     age: 19,
-    online: true
-  }
+    online: true,
+  },
 };
 
 function isEveryoneHere(userObj) {
-  return [
-    'Alan',
-    'Jeff',
-    'Sarah',
-    'Ryan'
-  ].every(user => userObj.hasOwnProperty(user));
+  return ["Alan", "Jeff", "Sarah", "Ryan"].every((user) =>
+    userObj.hasOwnProperty(user)
+  );
 }
 
 console.log(isEveryoneHere(users));

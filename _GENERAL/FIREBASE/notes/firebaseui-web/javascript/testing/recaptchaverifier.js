@@ -16,14 +16,12 @@
  * @fileoverview Fake Firebase reCAPTCHA verifier for testing.
  */
 
-
-goog.module('firebaseui.auth.testing.RecaptchaVerifier');
+goog.module("firebaseui.auth.testing.RecaptchaVerifier");
 goog.module.declareLegacyNamespace();
 goog.setTestOnly();
 
-var MockHelper = goog.require('firebaseui.auth.testing.MockHelper');
-var object = goog.require('goog.object');
-
+var MockHelper = goog.require("firebaseui.auth.testing.MockHelper");
+var object = goog.require("goog.object");
 
 /**
  * Creates the fake firebase reCAPTCHA app verifier for the Firebase app
@@ -50,7 +48,7 @@ class RecaptchaVerifier extends MockHelper {
    */
   constructor(container, opt_parameters, opt_app) {
     super();
-    this['type'] = 'recaptcha';
+    this["type"] = "recaptcha";
     /** @private {!Element|string} The reCAPTCHA container parameter. */
     this.container_ = container;
     /** @private {?Object|undefined} The optional reCAPTCHA parameters. */
@@ -65,8 +63,8 @@ class RecaptchaVerifier extends MockHelper {
     var asyncMethods = {};
     for (var key in RecaptchaVerifier.AsyncMethod) {
       asyncMethods[key] = {
-        'context': this,
-        'name': RecaptchaVerifier.AsyncMethod[key]
+        context: this,
+        name: RecaptchaVerifier.AsyncMethod[key],
       };
     }
     // Pass async methods enum to base class.
@@ -89,8 +87,8 @@ class RecaptchaVerifier extends MockHelper {
     // It is not useful to assert the callbacks as they are not provided
     // externally and are injected in the process of rendering a reCAPTCHA.
     var filteredParams = object.clone(this.parameters_);
-    delete filteredParams['callback'];
-    delete filteredParams['expired-callback'];
+    delete filteredParams["callback"];
+    delete filteredParams["expired-callback"];
     assertObjectEquals(opt_parameters, filteredParams);
     assertEquals(opt_app, this.app_);
   }
@@ -110,27 +108,25 @@ class RecaptchaVerifier extends MockHelper {
   /** Asserts reCAPTCHA is cleared. */
   assertClear() {
     if (!this.cleared_) {
-      throw new Error('reCAPTCHA verifier not cleared!');
+      throw new Error("reCAPTCHA verifier not cleared!");
     }
   }
 
   /** Asserts reCAPTCHA is not cleared. */
   assertNotClear() {
     if (this.cleared_) {
-      throw new Error('reCAPTCHA verifier cleared!');
+      throw new Error("reCAPTCHA verifier cleared!");
     }
   }
 }
-
 
 /**
  * Firebase reCAPTCHA verifier async promise based method names.
  * @enum {string}
  */
 RecaptchaVerifier.AsyncMethod = {
-  RENDER: 'render',
-  VERIFY: 'verify'
+  RENDER: "render",
+  VERIFY: "verify",
 };
-
 
 exports = RecaptchaVerifier;

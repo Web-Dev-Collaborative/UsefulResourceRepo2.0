@@ -1,6 +1,6 @@
 ---
 id: 5900f44b1000cf542c50ff5d
-title: 'Problem 222: Sphere Packing'
+title: "Problem 222: Sphere Packing"
 challengeType: 5
 forumTopicId: 301865
 dashedName: problem-222-sphere-packing
@@ -26,7 +26,6 @@ assert.strictEqual(euler222(), 1590933);
 
 ```js
 function euler222() {
-
   return true;
 }
 

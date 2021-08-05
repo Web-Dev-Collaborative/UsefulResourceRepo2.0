@@ -43,13 +43,13 @@ Create a function that returns the position in the Stern-Brocot sequence at whic
 `sternBrocot` should be a function.
 
 ```js
-assert(typeof sternBrocot == 'function');
+assert(typeof sternBrocot == "function");
 ```
 
 `sternBrocot(2)` should return a number.
 
 ```js
-assert(typeof sternBrocot(2) == 'number');
+assert(typeof sternBrocot(2) == "number");
 ```
 
 `sternBrocot(2)` should return `3`.
@@ -87,9 +87,7 @@ assert.equal(sternBrocot(10), 39);
 ## --seed-contents--
 
 ```js
-function sternBrocot(num) {
-
-}
+function sternBrocot(num) {}
 ```
 
 # --solutions--

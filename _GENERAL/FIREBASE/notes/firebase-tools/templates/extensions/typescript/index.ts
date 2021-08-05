@@ -10,7 +10,7 @@
  * Learn more about parameters in the docs
  */
 
-import * as functions from 'firebase-functions';
+import * as functions from "firebase-functions";
 
 exports.greetTheWorld = functions.handler.https.onRequest((req, res) => {
   // Here we reference a user-provided parameter (its value is provided by the user during installation)

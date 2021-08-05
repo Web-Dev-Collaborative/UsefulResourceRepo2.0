@@ -14,14 +14,14 @@
 
 /** @fileoverview UI component for the list of tenants to select from. */
 
-goog.module('firebaseui.auth.ui.page.SelectTenant');
+goog.module("firebaseui.auth.ui.page.SelectTenant");
 goog.module.declareLegacyNamespace();
 
-const Base = goog.require('firebaseui.auth.ui.page.Base');
-const DomHelper = goog.requireType('goog.dom.DomHelper');
-const dataset = goog.require('goog.dom.dataset');
-const element = goog.require('firebaseui.auth.ui.element');
-const page = goog.require('firebaseui.auth.soy2.page');
+const Base = goog.require("firebaseui.auth.ui.page.Base");
+const DomHelper = goog.requireType("goog.dom.DomHelper");
+const dataset = goog.require("goog.dom.dataset");
+const element = goog.require("firebaseui.auth.ui.element");
+const page = goog.require("firebaseui.auth.soy2.page");
 
 /** UI component that displays a list of tenants to select from. */
 class SelectTenant extends Base {
@@ -37,19 +37,24 @@ class SelectTenant extends Base {
    * @param {?DomHelper=} domHelper Optional DOM helper.
    */
   constructor(
-      onTenantClick, tenantConfigs, tosCallback = undefined,
-      privacyPolicyCallback = undefined, domHelper = undefined) {
+    onTenantClick,
+    tenantConfigs,
+    tosCallback = undefined,
+    privacyPolicyCallback = undefined,
+    domHelper = undefined
+  ) {
     super(
-        page.selectTenant,
-        {
-          tenantConfigs: tenantConfigs,
-        },
-        domHelper,
-        'selectTenant',
-        {
-          tosCallback: tosCallback,
-          privacyPolicyCallback: privacyPolicyCallback,
-        });
+      page.selectTenant,
+      {
+        tenantConfigs: tenantConfigs,
+      },
+      domHelper,
+      "selectTenant",
+      {
+        tosCallback: tosCallback,
+        privacyPolicyCallback: privacyPolicyCallback,
+      }
+    );
     this.onTenantClick_ = onTenantClick;
   }
 
@@ -72,14 +77,15 @@ class SelectTenant extends Base {
    * @private
    */
   initTenantList_(onClick) {
-    const buttons =
-        this.getElementsByClass('firebaseui-id-tenant-selection-button');
+    const buttons = this.getElementsByClass(
+      "firebaseui-id-tenant-selection-button"
+    );
     const cb = (tenantId, e) => {
       onClick(tenantId);
     };
     for (let i = 0; i < buttons.length; i++) {
       const button = buttons[i];
-      const tenantId = dataset.get(button, 'tenantId');
+      const tenantId = dataset.get(button, "tenantId");
       element.listenForActionEvent(this, button, goog.partial(cb, tenantId));
     }
   }

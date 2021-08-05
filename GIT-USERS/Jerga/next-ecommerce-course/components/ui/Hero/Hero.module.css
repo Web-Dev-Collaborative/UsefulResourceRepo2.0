@@ -1,5 +1,3 @@
-
-
 .root {
   @apply flex flex-col py-32 justify-center;
 
@@ -17,6 +15,6 @@
   @apply mt-5 text-xl leading-7 text-white;
 }
 
-.link  {
+.link {
   @apply block text-white pt-3 font-bold hover:underline cursor-pointer;
 }

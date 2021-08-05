@@ -2,7 +2,7 @@
 id: 587d78ad367417b2b2512af8
 title: Align Elements Using the align-items Property
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/c8aggtk'
+videoUrl: "https://scrimba.com/p/pVaDAv/c8aggtk"
 forumTopicId: 301101
 dashedName: align-elements-using-the-align-items-property
 ---
@@ -31,7 +31,7 @@ Try the other options for the `align-items` property in the code editor to see t
 The `#box-container` element should have an `align-items` property set to a value of `center`.
 
 ```js
-assert($('#box-container').css('align-items') == 'center');
+assert($("#box-container").css("align-items") == "center");
 ```
 
 # --seed--
@@ -44,7 +44,6 @@ assert($('#box-container').css('align-items') == 'center');
     background: gray;
     display: flex;
     height: 500px;
-
   }
   #box-1 {
     background-color: dodgerblue;

@@ -1,21 +1,15 @@
+import { MutationHook } from "@common/types/hooks";
+import { useHook, useMutationHook } from "@common/utils/use-hook";
 
-
-import { MutationHook } from "@common/types/hooks"
-import {
-  useHook,
-  useMutationHook
-} from "@common/utils/use-hook"
-
-export type UseRemoveItem<
-  H extends MutationHook = MutationHook<any>
-> = ReturnType<H["useHook"]>
+export type UseRemoveItem<H extends MutationHook = MutationHook<any>> =
+  ReturnType<H["useHook"]>;
 
 const useRemoveItem: UseRemoveItem = () => {
   const hook = useHook((hooks) => {
-    return hooks.cart.useRemoveItem
-  })
+    return hooks.cart.useRemoveItem;
+  });
 
-  return useMutationHook({...hook})()
-}
+  return useMutationHook({ ...hook })();
+};
 
-export default useRemoveItem
+export default useRemoveItem;

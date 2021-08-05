@@ -13,7 +13,7 @@ Aquí tenemos el constructor `Bird` del desafío anterior:
 ```js
 function Bird() {
   this.name = "Albert";
-  this.color  = "blue";
+  this.color = "blue";
   this.numLegs = 2;
 }
 
@@ -33,7 +33,7 @@ blueBird.numLegs;
 Al igual que cualquier otro objeto, sus propiedades pueden ser accedidas y modificadas:
 
 ```js
-blueBird.name = 'Elvira';
+blueBird.name = "Elvira";
 blueBird.name;
 ```
 

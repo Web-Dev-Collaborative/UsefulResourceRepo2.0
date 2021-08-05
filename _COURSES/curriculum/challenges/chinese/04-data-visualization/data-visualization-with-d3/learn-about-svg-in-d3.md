@@ -27,19 +27,19 @@ SVG 用于制作常见的几何图形。 由于 D3 将数据映射成可视化�
 文档应该有 1 个 `svg` 元素。
 
 ```js
-assert($('svg').length == 1);
+assert($("svg").length == 1);
 ```
 
 `svg` 元素应有一个 `width` 属性，值为 `500`，或者在样式中 width 值为 `500px`。
 
 ```js
-assert($('svg').attr('width') == '500' || $('svg').css('width') == '500px');
+assert($("svg").attr("width") == "500" || $("svg").css("width") == "500px");
 ```
 
 `svg` 元素应有一个 `height` 属性，值为 `100`，或者在样式中 height 值为 `100px`。
 
 ```js
-assert($('svg').attr('height') == '100' || $('svg').css('height') == '100px');
+assert($("svg").attr("height") == "100" || $("svg").css("height") == "100px");
 ```
 
 # --seed--
@@ -59,12 +59,10 @@ assert($('svg').attr('height') == '100' || $('svg').css('height') == '100px');
     const w = 500;
     const h = 100;
 
-    const svg = d3.select("body")
-                  // Add your code below this line
+    const svg = d3.select("body");
+    // Add your code below this line
 
-
-
-                  // Add your code above this line
+    // Add your code above this line
   </script>
 </body>
 ```
@@ -84,10 +82,11 @@ assert($('svg').attr('height') == '100' || $('svg').css('height') == '100px');
     const w = 500;
     const h = 100;
 
-    const svg = d3.select("body")
-                  .append("svg")
-                  .attr("width", w)
-                  .attr("height", h)
+    const svg = d3
+      .select("body")
+      .append("svg")
+      .attr("width", w)
+      .attr("height", h);
   </script>
 </body>
 ```

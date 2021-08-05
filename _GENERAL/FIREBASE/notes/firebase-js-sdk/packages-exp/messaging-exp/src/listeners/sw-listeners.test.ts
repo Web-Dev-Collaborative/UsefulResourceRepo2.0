@@ -470,5 +470,5 @@ function makeEvent<K extends keyof ServiceWorkerGlobalScopeEventMap>(
 ): Writable<ServiceWorkerGlobalScopeEventMap[K]> {
   const event = new FakeEvent(type);
   Object.assign(event, data);
-  return (event as unknown) as ServiceWorkerGlobalScopeEventMap[K];
+  return event as unknown as ServiceWorkerGlobalScopeEventMap[K];
 }

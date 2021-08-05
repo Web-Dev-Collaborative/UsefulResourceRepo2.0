@@ -1,6 +1,6 @@
 ---
 id: 5e6a54ba58d3af90110a60a2
-title: '導言：Python 這門編程語言'
+title: "導言：Python 這門編程語言"
 challengeType: 11
 videoId: 0QeGbZNS_bY
 dashedName: introduction-python-as-a-language
@@ -36,4 +36,3 @@ x = 6
 ## --video-solution--
 
 2
-

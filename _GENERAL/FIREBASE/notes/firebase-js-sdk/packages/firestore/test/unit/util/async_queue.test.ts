@@ -142,7 +142,7 @@ describe('AsyncQueue', () => {
       }).to.throw(/already failed:.*Simulated Error/);
 
       // Finally, restore log level.
-      setLogLevel((oldLogLevel as unknown) as LogLevelString);
+      setLogLevel(oldLogLevel as unknown as LogLevelString);
     });
   });
 

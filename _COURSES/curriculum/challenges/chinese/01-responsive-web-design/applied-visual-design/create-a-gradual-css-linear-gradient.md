@@ -2,7 +2,7 @@
 id: 587d78a5367417b2b2512ad6
 title: 创建一个 CSS 线性渐变
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cg4dpt9'
+videoUrl: "https://scrimba.com/c/cg4dpt9"
 forumTopicId: 301047
 dashedName: create-a-gradual-css-linear-gradient
 ---
@@ -33,8 +33,8 @@ background: linear-gradient(90deg, red, yellow, rgb(204, 204, 255));
 
 ```js
 assert(
-  $('div')
-    .css('background-image')
+  $("div")
+    .css("background-image")
     .match(
       /linear-gradient\(35deg, rgb\(204, 255, 255\), rgb\(255, 204, 204\)\)/gi
     )
@@ -52,9 +52,7 @@ assert(
     width: 70%;
     height: 400px;
     margin: 50px auto;
-
   }
-
 </style>
 
 <div></div>
@@ -69,7 +67,7 @@ assert(
     width: 70%;
     height: 400px;
     margin: 50px auto;
-    background: linear-gradient(35deg, #CCFFFF, #FFCCCC);
+    background: linear-gradient(35deg, #ccffff, #ffcccc);
   }
 </style>
 <div></div>

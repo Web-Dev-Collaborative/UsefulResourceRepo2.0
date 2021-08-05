@@ -11,7 +11,7 @@ dashedName: copy-array-items-using-slice
 接下來我們要介紹 `slice()` 方法。 `slice()` 不會修改數組，而是會複製，或者說*提取（extract）*給定數量的元素到一個新數組。 `slice()` 只接收 2 個輸入參數：第一個是開始提取元素的位置（索引），第二個是提取元素的結束位置（索引）。 提取的元素中不包括第二個參數所對應的元素。 如下示例：
 
 ```js
-let weatherConditions = ['rain', 'snow', 'sleet', 'hail', 'clear'];
+let weatherConditions = ["rain", "snow", "sleet", "hail", "clear"];
 
 let todaysWeather = weatherConditions.slice(1, 3);
 ```
@@ -30,8 +30,8 @@ let todaysWeather = weatherConditions.slice(1, 3);
 
 ```js
 assert.deepEqual(
-  forecast(['cold', 'rainy', 'warm', 'sunny', 'cool', 'thunderstorms']),
-  ['warm', 'sunny']
+  forecast(["cold", "rainy", "warm", "sunny", "cool", "thunderstorms"]),
+  ["warm", "sunny"]
 );
 ```
 
@@ -53,13 +53,15 @@ function forecast(arr) {
 }
 
 // Only change code above this line
-console.log(forecast(['cold', 'rainy', 'warm', 'sunny', 'cool', 'thunderstorms']));
+console.log(
+  forecast(["cold", "rainy", "warm", "sunny", "cool", "thunderstorms"])
+);
 ```
 
 # --solutions--
 
 ```js
 function forecast(arr) {
-  return arr.slice(2,4);
+  return arr.slice(2, 4);
 }
 ```

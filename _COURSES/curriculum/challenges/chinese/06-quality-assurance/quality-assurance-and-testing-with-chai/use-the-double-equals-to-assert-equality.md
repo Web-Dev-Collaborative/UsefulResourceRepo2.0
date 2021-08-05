@@ -22,9 +22,9 @@ dashedName: use-the-double-equals-to-assert-equality
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=4').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=4").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -36,12 +36,12 @@ dashedName: use-the-double-equals-to-assert-equality
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=4').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=4").then(
     (data) => {
       assert.equal(
         data.assertions[0].method,
-        'equal',
-        'Numbers are coerced into strings with == '
+        "equal",
+        "Numbers are coerced into strings with == "
       );
     },
     (xhr) => {
@@ -54,12 +54,12 @@ dashedName: use-the-double-equals-to-assert-equality
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=4').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=4").then(
     (data) => {
       assert.equal(
         data.assertions[1].method,
-        'notEqual',
-        ' == compares object references'
+        "notEqual",
+        " == compares object references"
       );
     },
     (xhr) => {
@@ -72,11 +72,11 @@ dashedName: use-the-double-equals-to-assert-equality
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=4').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=4").then(
     (data) => {
       assert.equal(
         data.assertions[2].method,
-        'equal',
+        "equal",
         "6 * '2' is 12 ! It should be equal to '12'"
       );
     },
@@ -90,9 +90,9 @@ dashedName: use-the-double-equals-to-assert-equality
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=4').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=4").then(
     (data) => {
-      assert.equal(data.assertions[3].method, 'notEqual', "6 + '2' is '62'...");
+      assert.equal(data.assertions[3].method, "notEqual", "6 + '2' is '62'...");
     },
     (xhr) => {
       throw new Error(xhr.responseText);

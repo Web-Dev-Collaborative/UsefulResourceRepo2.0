@@ -31,4 +31,3 @@ dashedName: relational-databases-and-sqlite
 ## --video-solution--
 
 1
-

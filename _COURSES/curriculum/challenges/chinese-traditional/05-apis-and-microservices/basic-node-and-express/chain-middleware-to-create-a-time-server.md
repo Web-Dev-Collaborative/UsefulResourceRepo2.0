@@ -13,12 +13,16 @@ dashedName: chain-middleware-to-create-a-time-server
 請看以下示例：
 
 ```js
-app.get('/user', function(req, res, next) {
-  req.user = getTheUserSync();  // Hypothetical synchronous operation
-  next();
-}, function(req, res) {
-  res.send(req.user);
-});
+app.get(
+  "/user",
+  function (req, res, next) {
+    req.user = getTheUserSync(); // Hypothetical synchronous operation
+    next();
+  },
+  function (req, res) {
+    res.send(req.user);
+  }
+);
 ```
 
 此方法可用於將服務操作拆分爲較小的單元， 這可以讓應用擁有更好的結構，也便於在不同的位置上覆用代碼； 此方法還可用於對數據執行某些驗證。 可以在每一箇中間件堆棧中，阻止當前鏈的執行，並將控制權傳遞給專門設計用於處理錯誤的函數； 或者可以將控制權傳遞給下一個匹配的路由，以處理特殊情況， 我們將在高級 Express 章節中看到這些內容。
@@ -35,7 +39,7 @@ app.get('/user', function(req, res, next) {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/chain-middleware-time').then(
+  $.get(getUserInput("url") + "/_api/chain-middleware-time").then(
     (data) => {
       assert.equal(
         data.stackLength,
@@ -53,13 +57,13 @@ app.get('/user', function(req, res, next) {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/chain-middleware-time').then(
+  $.get(getUserInput("url") + "/_api/chain-middleware-time").then(
     (data) => {
       var now = new Date();
       assert.isAtMost(
         Math.abs(new Date(data.time) - now),
         20000,
-        'the returned time is not between +- 20 secs from now'
+        "the returned time is not between +- 20 secs from now"
       );
     },
     (xhr) => {

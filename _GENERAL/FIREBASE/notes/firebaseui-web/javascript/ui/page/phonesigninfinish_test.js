@@ -18,47 +18,45 @@
  * @fileoverview Tests for the phone confirmation code entry page.
  */
 
-goog.provide('firebaseui.auth.ui.page.PhoneSignInFinishTest');
-goog.setTestOnly('firebaseui.auth.ui.page.PhoneSignInFinishTest');
+goog.provide("firebaseui.auth.ui.page.PhoneSignInFinishTest");
+goog.setTestOnly("firebaseui.auth.ui.page.PhoneSignInFinishTest");
 
-goog.require('firebaseui.auth.ui.element.FormTestHelper');
-goog.require('firebaseui.auth.ui.element.InfoBarTestHelper');
-goog.require('firebaseui.auth.ui.element.PhoneConfirmationCodeTestHelper');
-goog.require('firebaseui.auth.ui.element.ResendTestHelper');
-goog.require('firebaseui.auth.ui.element.TosPpTestHelper');
-goog.require('firebaseui.auth.ui.page.PageTestHelper');
-goog.require('firebaseui.auth.ui.page.PhoneSignInFinish');
-goog.require('goog.dom');
-goog.require('goog.dom.TagName');
-goog.require('goog.dom.classlist');
-goog.require('goog.events.KeyCodes');
-goog.require('goog.testing.MockClock');
-goog.require('goog.testing.events');
-goog.require('goog.testing.jsunit');
-goog.requireType('goog.ui.Component');
-
+goog.require("firebaseui.auth.ui.element.FormTestHelper");
+goog.require("firebaseui.auth.ui.element.InfoBarTestHelper");
+goog.require("firebaseui.auth.ui.element.PhoneConfirmationCodeTestHelper");
+goog.require("firebaseui.auth.ui.element.ResendTestHelper");
+goog.require("firebaseui.auth.ui.element.TosPpTestHelper");
+goog.require("firebaseui.auth.ui.page.PageTestHelper");
+goog.require("firebaseui.auth.ui.page.PhoneSignInFinish");
+goog.require("goog.dom");
+goog.require("goog.dom.TagName");
+goog.require("goog.dom.classlist");
+goog.require("goog.events.KeyCodes");
+goog.require("goog.testing.MockClock");
+goog.require("goog.testing.events");
+goog.require("goog.testing.jsunit");
+goog.requireType("goog.ui.Component");
 
 var mockClock;
 var root;
 var component;
-var phoneNumber = '+13115552368';
+var phoneNumber = "+13115552368";
 var wasChangePhoneLinkClicked;
 var onChangePhoneClick;
 var wasResendLinkClicked;
 var onResendClick;
 var phoneConfirmationCodeTestHelper =
-    new firebaseui.auth.ui.element.PhoneConfirmationCodeTestHelper()
-        .registerTests();
+  new firebaseui.auth.ui.element.PhoneConfirmationCodeTestHelper().registerTests();
 var formTestHelper =
-    new firebaseui.auth.ui.element.FormTestHelper().registerTests();
+  new firebaseui.auth.ui.element.FormTestHelper().registerTests();
 var infoBarTestHelper =
-    new firebaseui.auth.ui.element.InfoBarTestHelper().registerTests();
+  new firebaseui.auth.ui.element.InfoBarTestHelper().registerTests();
 var resendTestHelper =
-    new firebaseui.auth.ui.element.ResendTestHelper().registerTests();
+  new firebaseui.auth.ui.element.ResendTestHelper().registerTests();
 var tosPpTestHelper =
-    new firebaseui.auth.ui.element.TosPpTestHelper().registerTests();
+  new firebaseui.auth.ui.element.TosPpTestHelper().registerTests();
 var pageTestHelper =
-    new firebaseui.auth.ui.page.PageTestHelper().registerTests();
+  new firebaseui.auth.ui.page.PageTestHelper().registerTests();
 
 function setUp() {
   // Set up clock.
@@ -66,11 +64,11 @@ function setUp() {
   mockClock.install();
 
   wasChangePhoneLinkClicked = false;
-  onChangePhoneClick = function() {
+  onChangePhoneClick = function () {
     wasChangePhoneLinkClicked = true;
   };
   wasResendLinkClicked = false;
-  onResendClick = function() {
+  onResendClick = function () {
     wasResendLinkClicked = true;
   };
   root = goog.dom.createDom(goog.dom.TagName.DIV);
@@ -89,7 +87,6 @@ function tearDown() {
   goog.dom.removeNode(root);
 }
 
-
 /**
  * @param {string} phoneNumber The phone number being confirmed.
  * @param {number=} opt_delay The resend delay.
@@ -97,20 +94,27 @@ function tearDown() {
  */
 function createComponent(phoneNumber, opt_delay) {
   var component = new firebaseui.auth.ui.page.PhoneSignInFinish(
-      onChangePhoneClick,
-      goog.bind(
-          firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
-          formTestHelper),
-      goog.bind(
-          firebaseui.auth.ui.element.FormTestHelper.prototype.onLinkClick,
-          formTestHelper),
-      onResendClick, phoneNumber, opt_delay || 0,
-      goog.bind(
-          firebaseui.auth.ui.element.TosPpTestHelper.prototype.onTosLinkClick,
-          tosPpTestHelper),
-      goog.bind(
-          firebaseui.auth.ui.element.TosPpTestHelper.prototype.onPpLinkClick,
-          tosPpTestHelper));
+    onChangePhoneClick,
+    goog.bind(
+      firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
+      formTestHelper
+    ),
+    goog.bind(
+      firebaseui.auth.ui.element.FormTestHelper.prototype.onLinkClick,
+      formTestHelper
+    ),
+    onResendClick,
+    phoneNumber,
+    opt_delay || 0,
+    goog.bind(
+      firebaseui.auth.ui.element.TosPpTestHelper.prototype.onTosLinkClick,
+      tosPpTestHelper
+    ),
+    goog.bind(
+      firebaseui.auth.ui.element.TosPpTestHelper.prototype.onPpLinkClick,
+      tosPpTestHelper
+    )
+  );
   phoneConfirmationCodeTestHelper.setComponent(component);
   formTestHelper.setComponent(component);
   formTestHelper.resetState();
@@ -124,7 +128,6 @@ function createComponent(phoneNumber, opt_delay) {
   return component;
 }
 
-
 /**
  * Asserts the resend link is hidden.
  * @param {!goog.ui.Component} component The PhoneSignInFinish component.
@@ -132,9 +135,8 @@ function createComponent(phoneNumber, opt_delay) {
  */
 function assertResendLinkIsHidden(component, isHidden) {
   var el = component.getResendLink();
-  assertEquals(isHidden, goog.dom.classlist.contains(el, 'firebaseui-hidden'));
+  assertEquals(isHidden, goog.dom.classlist.contains(el, "firebaseui-hidden"));
 }
-
 
 /**
  * Asserts the resend countdown is hidden.
@@ -143,9 +145,8 @@ function assertResendLinkIsHidden(component, isHidden) {
  */
 function assertResendCountdownIsHidden(component, isHidden) {
   var el = component.getResendCountdown();
-  assertEquals(isHidden, goog.dom.classlist.contains(el, 'firebaseui-hidden'));
+  assertEquals(isHidden, goog.dom.classlist.contains(el, "firebaseui-hidden"));
 }
-
 
 /**
  * Asserts the resend countdown indicates the given time remaining.
@@ -154,11 +155,10 @@ function assertResendCountdownIsHidden(component, isHidden) {
  */
 function assertResendCountdown(component, timeRemaining) {
   var el = component.getResendCountdown();
-  var expected = 'Resend code in ' + timeRemaining;
+  var expected = "Resend code in " + timeRemaining;
   var actual = goog.dom.getTextContent(el);
   assertEquals(expected, actual);
 }
-
 
 function testPhoneSignInFinish_componentRendering() {
   component.dispose();
@@ -168,15 +168,14 @@ function testPhoneSignInFinish_componentRendering() {
   assertNotNull(component.getPhoneConfirmationCodeErrorElement());
 }
 
-
 function testPhoneSignInFinish_initialFocus() {
   component.dispose();
   component = createComponent(phoneNumber);
   assertEquals(
-      component.getPhoneConfirmationCodeElement(),
-      goog.dom.getActiveElement(document));
+    component.getPhoneConfirmationCodeElement(),
+    goog.dom.getActiveElement(document)
+  );
 }
-
 
 function testPhoneSignInFinish_changePhoneNumberLink() {
   component.dispose();
@@ -187,7 +186,6 @@ function testPhoneSignInFinish_changePhoneNumberLink() {
   assertTrue(wasChangePhoneLinkClicked);
 }
 
-
 function testPhoneSignInFinish_resendLink() {
   component.dispose();
   component = createComponent(phoneNumber);
@@ -196,7 +194,6 @@ function testPhoneSignInFinish_resendLink() {
   goog.testing.events.fireClickSequence(link);
   assertTrue(wasResendLinkClicked);
 }
-
 
 function testPhoneSignInFinish_timer() {
   component.dispose();
@@ -207,15 +204,15 @@ function testPhoneSignInFinish_timer() {
   assertResendCountdownIsHidden(component, false);
 
   // Assert double-digit display.
-  assertResendCountdown(component, '0:10');
+  assertResendCountdown(component, "0:10");
 
   // Assert single-digit display.
   mockClock.tick(1000);
-  assertResendCountdown(component, '0:09');
+  assertResendCountdown(component, "0:09");
 
   // Assert we only show whole seconds.
   mockClock.tick(500);
-  assertResendCountdown(component, '0:09');
+  assertResendCountdown(component, "0:09");
 
   // Assert link/countdown are toggled when timer expires.
   mockClock.tick(9000);
@@ -223,15 +220,15 @@ function testPhoneSignInFinish_timer() {
   assertResendCountdownIsHidden(component, true);
 }
 
-
 function testPhoneSignInFinish_submitOnEnter() {
   component.dispose();
   component = createComponent(phoneNumber);
   goog.testing.events.fireKeySequence(
-      component.getPhoneConfirmationCodeElement(), goog.events.KeyCodes.ENTER);
+    component.getPhoneConfirmationCodeElement(),
+    goog.events.KeyCodes.ENTER
+  );
   formTestHelper.assertSubmitted();
 }
-
 
 function testSubmitOnSubmitElementClick() {
   component.dispose();
@@ -241,21 +238,24 @@ function testSubmitOnSubmitElementClick() {
   formTestHelper.assertSubmitted();
 }
 
-
 function testPhoneSignInFinish_pageEvents() {
   component = new firebaseui.auth.ui.page.PhoneSignInFinish(
-      onChangePhoneClick,
-      goog.bind(
-          firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
-          formTestHelper),
-      goog.bind(
-          firebaseui.auth.ui.element.FormTestHelper.prototype.onLinkClick,
-          formTestHelper),
-      onResendClick, phoneNumber, 0);
+    onChangePhoneClick,
+    goog.bind(
+      firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
+      formTestHelper
+    ),
+    goog.bind(
+      firebaseui.auth.ui.element.FormTestHelper.prototype.onLinkClick,
+      formTestHelper
+    ),
+    onResendClick,
+    phoneNumber,
+    0
+  );
   pageTestHelper.runTests(component, root);
 }
 
-
 function testPhoneSignInFinish_getPageId() {
-  assertEquals('phoneSignInFinish', component.getPageId());
+  assertEquals("phoneSignInFinish", component.getPageId());
 }

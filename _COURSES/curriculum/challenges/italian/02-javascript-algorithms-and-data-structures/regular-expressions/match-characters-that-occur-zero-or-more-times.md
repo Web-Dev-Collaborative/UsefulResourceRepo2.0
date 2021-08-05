@@ -39,13 +39,13 @@ assert(/\*/.test(chewieRegex.source));
 La tua espressione regolare dovrebbe riconoscere la stringa `A` in `chewieQuote`.
 
 ```js
-assert(result[0][0] === 'A');
+assert(result[0][0] === "A");
 ```
 
 La tua espressione regolare dovrebbe riconoscdre la stringa `Aaaaaaaaaaaaaaaa` in `chewieQuote`.
 
 ```js
-assert(result[0] === 'Aaaaaaaaaaaaaaaa');
+assert(result[0] === "Aaaaaaaaaaaaaaaa");
 ```
 
 La tua espressione regolare `chewieRegex` dovrebbe riconoscere 16 caratteri in `chewieQuote`.
@@ -91,6 +91,6 @@ let result = chewieQuote.match(chewieRegex);
 # --solutions--
 
 ```js
-  let chewieRegex = /Aa*/;
-  let result = chewieQuote.match(chewieRegex);
+let chewieRegex = /Aa*/;
+let result = chewieQuote.match(chewieRegex);
 ```

@@ -1,6 +1,6 @@
 ---
 id: 5900f5431000cf542c510056
-title: 'Problem 471: Triangle inscribed in ellipse'
+title: "Problem 471: Triangle inscribed in ellipse"
 challengeType: 5
 forumTopicId: 302148
 dashedName: problem-471-triangle-inscribed-in-ellipse
@@ -30,7 +30,6 @@ assert.strictEqual(euler471(), 1.895093981e31);
 
 ```js
 function euler471() {
-
   return true;
 }
 

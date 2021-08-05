@@ -8,7 +8,7 @@ dashedName: set-up-passport
 
 # --description--
 
-现在我们来创建 *Passport*，最终我们需要用它来实现用户注册和登录。 除了 Passport，我们还会用 Express-session 来处理 session（会话）。 在客户端，我们可以用这个中间件把 session id 储存到 cookie。同时，我们可以在服务器上通过这个 id 访问 session 数据。 通过这种方式，我们无需把用户的个人账号信息存到 cookie，来完成用户的验证。只需要用这个 id 作为 *key* 来访问服务器上用户的数据即可。
+现在我们来创建 _Passport_，最终我们需要用它来实现用户注册和登录。 除了 Passport，我们还会用 Express-session 来处理 session（会话）。 在客户端，我们可以用这个中间件把 session id 储存到 cookie。同时，我们可以在服务器上通过这个 id 访问 session 数据。 通过这种方式，我们无需把用户的个人账号信息存到 cookie，来完成用户的验证。只需要用这个 id 作为 _key_ 来访问服务器上用户的数据即可。
 
 为了在你的项目中使用 Passport，首先你需要在 package.json 文件中添加依赖： `passport@~0.4.1`
 
@@ -19,12 +19,14 @@ dashedName: set-up-passport
 为了让 express 应用可以使用 session，我们需要添加一些基础选项。 请在 .env 文件中添加字段 “SESSION_SECRET”，并给它赋一个随机值， 便于加密 cookie、计算哈希。
 
 ```js
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: true,
-  cookie: { secure: false }
-}));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  })
+);
 ```
 
 还有，我们需要让 express **使用** “passport.initialize()” 和 “passport.session()”。 （例如，`app.use(passport.initialize());`）。
@@ -37,17 +39,17 @@ app.use(session({
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.property(
         packJson.dependencies,
-        'passport',
+        "passport",
         'Your project should list "passport" as a dependency'
       );
       assert.property(
         packJson.dependencies,
-        'express-session',
+        "express-session",
         'Your project should list "express-session" as a dependency'
       );
     },
@@ -61,17 +63,17 @@ app.use(session({
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
         /require.*("|')passport("|')/gi,
-        'You should have required passport'
+        "You should have required passport"
       );
       assert.match(
         data,
         /require.*("|')express-session("|')/gi,
-        'You should have required express-session'
+        "You should have required express-session"
       );
     },
     (xhr) => {
@@ -84,7 +86,7 @@ Express app 可以使用新的依赖。
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
@@ -107,12 +109,12 @@ Express app 可以使用新的依赖。
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
         /secret:( |)process.env.SESSION_SECRET/gi,
-        'Your express app should have express-session set up with your secret as process.env.SESSION_SECRET'
+        "Your express app should have express-session set up with your secret as process.env.SESSION_SECRET"
       );
     },
     (xhr) => {

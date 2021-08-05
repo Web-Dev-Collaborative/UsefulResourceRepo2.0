@@ -1,6 +1,6 @@
 ---
 id: 5900f4d01000cf542c50ffe3
-title: 'Problem 356: Largest roots of cubic polynomials'
+title: "Problem 356: Largest roots of cubic polynomials"
 challengeType: 5
 forumTopicId: 302016
 dashedName: problem-356-largest-roots-of-cubic-polynomials
@@ -30,7 +30,6 @@ assert.strictEqual(euler356(), 28010159);
 
 ```js
 function euler356() {
-
   return true;
 }
 

@@ -27,19 +27,19 @@ Correggi gli errori nell'editor di codice in modo che sia JSX valido e venga tra
 La costante `JSX` dovrebbe restituire un elemento `div`.
 
 ```js
-assert.strictEqual(JSX.type, 'div');
+assert.strictEqual(JSX.type, "div");
 ```
 
 Il `div` dovrebbe contenere un tag `br`.
 
 ```js
-assert(Enzyme.shallow(JSX).find('br').length === 1);
+assert(Enzyme.shallow(JSX).find("br").length === 1);
 ```
 
 Il `div` dovrebbe contenere un tag `hr`.
 
 ```js
-assert(Enzyme.shallow(JSX).find('hr').length === 1);
+assert(Enzyme.shallow(JSX).find("hr").length === 1);
 ```
 
 # --seed--
@@ -47,7 +47,7 @@ assert(Enzyme.shallow(JSX).find('hr').length === 1);
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(JSX, document.getElementById('root'))
+ReactDOM.render(JSX, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -66,10 +66,10 @@ const JSX = (
 
 ```jsx
 const JSX = (
-<div>
-  <h2>Welcome to React!</h2> <br />
-  <p>Be sure to close all tags!</p>
-  <hr />
-</div>
+  <div>
+    <h2>Welcome to React!</h2> <br />
+    <p>Be sure to close all tags!</p>
+    <hr />
+  </div>
 );
 ```

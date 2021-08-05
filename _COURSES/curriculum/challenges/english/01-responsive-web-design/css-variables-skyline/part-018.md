@@ -14,11 +14,11 @@ Your first building looks pretty good now. Let's make some more! Nest three new 
 test-text
 
 ```js
-const bb = $('.background-buildings');
+const bb = $(".background-buildings");
 assert(
-  bb.children('.bb2').length === 1 &&
-    bb.children('.bb3').length === 1 &&
-    bb.children('.bb4').length === 1
+  bb.children(".bb2").length === 1 &&
+    bb.children(".bb3").length === 1 &&
+    bb.children(".bb4").length === 1
 );
 ```
 
@@ -28,7 +28,7 @@ assert(
 
 ```html
 <!DOCTYPE html>
-<html>    
+<html>
   <head>
     <title>freeCodeCamp Skyline Project</title>
     <style>
@@ -62,13 +62,13 @@ assert(
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1b {
         width: 80%;
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1c {
         width: 90%;
         height: 10%;
@@ -100,7 +100,7 @@ assert(
 
 ```html
 <!DOCTYPE html>
-<html>    
+<html>
   <head>
     <title>freeCodeCamp Skyline Project</title>
     <style>
@@ -134,13 +134,13 @@ assert(
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1b {
         width: 80%;
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1c {
         width: 90%;
         height: 10%;

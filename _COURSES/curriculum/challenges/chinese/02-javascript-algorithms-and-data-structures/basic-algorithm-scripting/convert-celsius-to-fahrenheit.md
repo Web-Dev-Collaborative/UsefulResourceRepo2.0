@@ -17,7 +17,7 @@ dashedName: convert-celsius-to-fahrenheit
 `convertToF(0)` 应返回一个数字。
 
 ```js
-assert(typeof convertToF(0) === 'number');
+assert(typeof convertToF(0) === "number");
 ```
 
 `convertToF(-30)` 应返回 `-22`。
@@ -67,7 +67,7 @@ convertToF(30);
 
 ```js
 function convertToF(celsius) {
-  let fahrenheit = celsius * 9/5 + 32;
+  let fahrenheit = (celsius * 9) / 5 + 32;
 
   return fahrenheit;
 }

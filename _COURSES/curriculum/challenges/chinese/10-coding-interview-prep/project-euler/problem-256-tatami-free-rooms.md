@@ -1,6 +1,6 @@
 ---
 id: 5900f46c1000cf542c50ff7e
-title: 'Problem 256: Tatami-Free Rooms'
+title: "Problem 256: Tatami-Free Rooms"
 challengeType: 5
 forumTopicId: 301904
 dashedName: problem-256-tatami-free-rooms
@@ -40,7 +40,6 @@ assert.strictEqual(euler256(), 85765680);
 
 ```js
 function euler256() {
-
   return true;
 }
 

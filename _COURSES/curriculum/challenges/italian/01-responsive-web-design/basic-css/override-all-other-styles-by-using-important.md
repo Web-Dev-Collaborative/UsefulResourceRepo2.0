@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf07756
 title: Sovrascrivere tutti gli altri stili usando Important
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cm24rcp'
+videoUrl: "https://scrimba.com/c/cm24rcp"
 forumTopicId: 18249
 dashedName: override-all-other-styles-by-using-important
 ---
@@ -32,19 +32,19 @@ color: red !important;
 Il tuo elemento `h1` dovrebbe avere la classe `pink-text`.
 
 ```js
-assert($('h1').hasClass('pink-text'));
+assert($("h1").hasClass("pink-text"));
 ```
 
 Il tuo elemento `h1` dovrebbe avere la classe `blue-text`.
 
 ```js
-assert($('h1').hasClass('blue-text'));
+assert($("h1").hasClass("blue-text"));
 ```
 
 Il tuo elemento `h1` dovrebbe avere l'`id` di `orange-text`.
 
 ```js
-assert($('h1').attr('id') === 'orange-text');
+assert($("h1").attr("id") === "orange-text");
 ```
 
 Il tuo elemento `h1` dovrebbe avere lo stile inline di `color: white`.
@@ -64,7 +64,7 @@ assert(
 Il tuo elemento `h1` dovrebbe essere rosa.
 
 ```js
-assert($('h1').css('color') === 'rgb(255, 192, 203)');
+assert($("h1").css("color") === "rgb(255, 192, 203)");
 ```
 
 # --seed--
@@ -88,7 +88,9 @@ assert($('h1').css('color') === 'rgb(255, 192, 203)');
     color: blue;
   }
 </style>
-<h1 id="orange-text" class="pink-text blue-text" style="color: white">Hello World!</h1>
+<h1 id="orange-text" class="pink-text blue-text" style="color: white">
+  Hello World!
+</h1>
 ```
 
 # --solutions--
@@ -110,5 +112,7 @@ assert($('h1').css('color') === 'rgb(255, 192, 203)');
     color: blue;
   }
 </style>
-<h1 id="orange-text" class="pink-text blue-text" style="color: white">Hello World!</h1>
+<h1 id="orange-text" class="pink-text blue-text" style="color: white">
+  Hello World!
+</h1>
 ```

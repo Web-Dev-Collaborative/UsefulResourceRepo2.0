@@ -2,7 +2,7 @@
 id: 56bbb991ad1ed5201cd392d2
 title: Aggiungere nuove proprietà a un oggetto JavaScript
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cQe38UD'
+videoUrl: "https://scrimba.com/c/cQe38UD"
 forumTopicId: 301169
 dashedName: add-new-properties-to-a-javascript-object
 ---
@@ -29,10 +29,10 @@ Esempio:
 
 ```js
 var ourDog = {
-  "name": "Camper",
-  "legs": 4,
-  "tails": 1,
-  "friends": ["everything!"]
+  name: "Camper",
+  legs: 4,
+  tails: 1,
+  friends: ["everything!"],
 };
 
 ourDog.bark = "bow-wow";
@@ -61,30 +61,30 @@ assert(!/bark[^\n]:/.test(code));
 ## --after-user-code--
 
 ```js
-(function(z){return z;})(myDog);
+(function (z) {
+  return z;
+})(myDog);
 ```
 
 ## --seed-contents--
 
 ```js
 var myDog = {
-  "name": "Happy Coder",
-  "legs": 4,
-  "tails": 1,
-  "friends": ["freeCodeCamp Campers"]
+  name: "Happy Coder",
+  legs: 4,
+  tails: 1,
+  friends: ["freeCodeCamp Campers"],
 };
-
-
 ```
 
 # --solutions--
 
 ```js
 var myDog = {
-  "name": "Happy Coder",
-  "legs": 4,
-  "tails": 1,
-  "friends": ["freeCodeCamp Campers"]
+  name: "Happy Coder",
+  legs: 4,
+  tails: 1,
+  friends: ["freeCodeCamp Campers"],
 };
 myDog.bark = "Woof Woof";
 ```

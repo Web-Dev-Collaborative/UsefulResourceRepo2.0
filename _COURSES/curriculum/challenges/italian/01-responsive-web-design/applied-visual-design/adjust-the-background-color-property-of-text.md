@@ -2,7 +2,7 @@
 id: 587d781b367417b2b2512abc
 title: Regolare il colore di sfondo del testo
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cEDqwA6'
+videoUrl: "https://scrimba.com/c/cEDqwA6"
 forumTopicId: 301032
 dashedName: adjust-the-background-color-property-of-text
 ---
@@ -30,7 +30,7 @@ Il tuo codice dovrebbe aggiungere una proprietà `background-color` all'elemento
 ```js
 assert(
   /(background-color|background):rgba\(45,45,45,0?\.1\)(;?}|;)/gi.test(
-    code.replace(/\s/g, '')
+    code.replace(/\s/g, "")
   )
 );
 ```
@@ -39,17 +39,17 @@ Il tuo codice dovrebbe aggiungere una proprietà `padding` all'elemento `h4` e i
 
 ```js
 assert(
-  $('h4').css('padding-top') == '10px' &&
-    $('h4').css('padding-right') == '10px' &&
-    $('h4').css('padding-bottom') == '10px' &&
-    $('h4').css('padding-left') == '10px'
+  $("h4").css("padding-top") == "10px" &&
+    $("h4").css("padding-right") == "10px" &&
+    $("h4").css("padding-bottom") == "10px" &&
+    $("h4").css("padding-left") == "10px"
 );
 ```
 
 La proprietà `height` dell'elemento `h4` dovrebbe essere rimossa.
 
 ```js
-assert(!($('h4').css('height') == '25px'));
+assert(!($("h4").css("height") == "25px"));
 ```
 
 # --seed--
@@ -61,8 +61,6 @@ assert(!($('h4').css('height') == '25px'));
   h4 {
     text-align: center;
     height: 25px;
-
-
   }
   p {
     text-align: justify;
@@ -89,12 +87,27 @@ assert(!($('h4').css('height') == '25px'));
   <div class="cardContent">
     <div class="cardText">
       <h4>Alphabet</h4>
-      <hr>
-      <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>
+      <hr />
+      <p>
+        <em
+          >Google was founded by Larry Page and Sergey Brin while they were
+          <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em
+        >
+      </p>
     </div>
     <div class="cardLinks">
-      <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
-      <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+      <a
+        href="https://en.wikipedia.org/wiki/Larry_Page"
+        target="_blank"
+        class="links"
+        >Larry Page</a
+      ><br /><br />
+      <a
+        href="https://en.wikipedia.org/wiki/Sergey_Brin"
+        target="_blank"
+        class="links"
+        >Sergey Brin</a
+      >
     </div>
   </div>
 </div>
@@ -134,12 +147,27 @@ assert(!($('h4').css('height') == '25px'));
   <div class="cardContent">
     <div class="cardText">
       <h4>Alphabet</h4>
-      <hr>
-      <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>
+      <hr />
+      <p>
+        <em
+          >Google was founded by Larry Page and Sergey Brin while they were
+          <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em
+        >
+      </p>
     </div>
     <div class="cardLinks">
-      <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
-      <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+      <a
+        href="https://en.wikipedia.org/wiki/Larry_Page"
+        target="_blank"
+        class="links"
+        >Larry Page</a
+      ><br /><br />
+      <a
+        href="https://en.wikipedia.org/wiki/Sergey_Brin"
+        target="_blank"
+        class="links"
+        >Sergey Brin</a
+      >
     </div>
   </div>
 </div>

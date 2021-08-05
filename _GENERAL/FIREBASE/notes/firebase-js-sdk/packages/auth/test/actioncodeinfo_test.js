@@ -27,7 +27,6 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.ActionCodeInfoTest');
 
-
 var now = new Date();
 var verifyEmailServerResponse = {
   'kind': 'identitytoolkit#ResetPasswordResponse',
@@ -67,24 +66,20 @@ var revertSecondFactorAdditionResponse = {
   'requestType': 'REVERT_SECOND_FACTOR_ADDITION'
 };
 
-
-
 function testActionCodeInfo_invalid_missingOperation() {
-  assertThrows(function() {
-    new fireauth.ActionCodeInfo({'email': 'user@example.com'});
+  assertThrows(function () {
+    new fireauth.ActionCodeInfo({ 'email': 'user@example.com' });
   });
 }
-
 
 function testActionCodeInfo_invalid_missingEmail() {
-  assertThrows(function() {
-    new fireauth.ActionCodeInfo({'requestType': 'PASSWORD_RESET'});
+  assertThrows(function () {
+    new fireauth.ActionCodeInfo({ 'requestType': 'PASSWORD_RESET' });
   });
 }
 
-
 function testActionCodeInfo_invalid_missingNewEmail() {
-  assertThrows(function() {
+  assertThrows(function () {
     new fireauth.ActionCodeInfo({
       'requestType': 'VERIFY_AND_CHANGE_EMAIL',
       'email': 'user@example.com'
@@ -92,17 +87,14 @@ function testActionCodeInfo_invalid_missingNewEmail() {
   });
 }
 
-
 function testActionCodeInfo_invalid_missingMfaInfo() {
-  assertThrows(function() {
+  assertThrows(function () {
     new fireauth.ActionCodeInfo({
       'requestType': 'REVERT_SECOND_FACTOR_ADDITION',
       'email': 'user@example.com'
     });
   });
 }
-
-
 
 function testActionCodeInfo_verifyEmail() {
   var expectedData = {
@@ -120,20 +112,13 @@ function testActionCodeInfo_verifyEmail() {
   assertEquals('VERIFY_EMAIL', actionCodeInfo['operation']);
 
   // Check data.
-  assertObjectEquals(
-      expectedData,
-      actionCodeInfo['data']);
+  assertObjectEquals(expectedData, actionCodeInfo['data']);
   // Property should be read-only.
   actionCodeInfo['data']['email'] = 'other@example.com';
-  assertObjectEquals(
-      expectedData,
-      actionCodeInfo['data']);
+  assertObjectEquals(expectedData, actionCodeInfo['data']);
   actionCodeInfo['data'] = 'BLA';
-  assertObjectEquals(
-      expectedData,
-      actionCodeInfo['data']);
+  assertObjectEquals(expectedData, actionCodeInfo['data']);
 }
-
 
 function testActionCodeInfo_verifyAndChangeEmail() {
   var expectedData = {
@@ -142,8 +127,9 @@ function testActionCodeInfo_verifyAndChangeEmail() {
     previousEmail: 'old@example.com',
     multiFactorInfo: null
   };
-  var actionCodeInfo =
-      new fireauth.ActionCodeInfo(verifyAndChangeEmailResponse);
+  var actionCodeInfo = new fireauth.ActionCodeInfo(
+    verifyAndChangeEmailResponse
+  );
 
   // Check operation.
   assertEquals('VERIFY_AND_CHANGE_EMAIL', actionCodeInfo['operation']);
@@ -151,23 +137,16 @@ function testActionCodeInfo_verifyAndChangeEmail() {
   actionCodeInfo['operation'] = 'BLA';
   assertEquals('VERIFY_AND_CHANGE_EMAIL', actionCodeInfo['operation']);
 
- // Check data.
-  assertObjectEquals(
-      expectedData,
-      actionCodeInfo['data']);
+  // Check data.
+  assertObjectEquals(expectedData, actionCodeInfo['data']);
   // Property should be read-only.
   actionCodeInfo['data']['email'] = 'other@example.com';
   actionCodeInfo['data']['fromEmail'] = 'unknown@example.com';
   actionCodeInfo['data']['previousEmail'] = 'unknown@example.com';
-  assertObjectEquals(
-      expectedData,
-      actionCodeInfo['data']);
+  assertObjectEquals(expectedData, actionCodeInfo['data']);
   actionCodeInfo['data'] = 'BLA';
-  assertObjectEquals(
-      expectedData,
-      actionCodeInfo['data']);
+  assertObjectEquals(expectedData, actionCodeInfo['data']);
 }
-
 
 function testActionCodeInfo_verifyAndChangeEmail_noPreviousEmail() {
   var verifyAndChangeEmailNoEmailResponse = {
@@ -182,28 +161,29 @@ function testActionCodeInfo_verifyAndChangeEmail_noPreviousEmail() {
     previousEmail: null,
     multiFactorInfo: null
   };
-  var actionCodeInfo =
-      new fireauth.ActionCodeInfo(verifyAndChangeEmailNoEmailResponse);
+  var actionCodeInfo = new fireauth.ActionCodeInfo(
+    verifyAndChangeEmailNoEmailResponse
+  );
 
   // Check operation.
   assertEquals('VERIFY_AND_CHANGE_EMAIL', actionCodeInfo['operation']);
- // Check data.
-  assertObjectEquals(
-      expectedData,
-      actionCodeInfo['data']);
+  // Check data.
+  assertObjectEquals(expectedData, actionCodeInfo['data']);
 }
 
 function testActionCodeInfo_revertSecondFactorAddition() {
   var info = new fireauth.PhoneMultiFactorInfo(
-      revertSecondFactorAdditionResponse['mfaInfo']);
+    revertSecondFactorAdditionResponse['mfaInfo']
+  );
   var expectedData = {
     email: 'user@example.com',
     fromEmail: null,
     previousEmail: null,
     multiFactorInfo: info
   };
-  var actionCodeInfo =
-      new fireauth.ActionCodeInfo(revertSecondFactorAdditionResponse);
+  var actionCodeInfo = new fireauth.ActionCodeInfo(
+    revertSecondFactorAdditionResponse
+  );
 
   // Check operation.
   assertEquals('REVERT_SECOND_FACTOR_ADDITION', actionCodeInfo['operation']);
@@ -211,22 +191,15 @@ function testActionCodeInfo_revertSecondFactorAddition() {
   actionCodeInfo['operation'] = 'BLA';
   assertEquals('REVERT_SECOND_FACTOR_ADDITION', actionCodeInfo['operation']);
 
- // Check data.
-  assertObjectEquals(
-      expectedData,
-      actionCodeInfo['data']);
+  // Check data.
+  assertObjectEquals(expectedData, actionCodeInfo['data']);
   // Property should be read-only.
   actionCodeInfo['data']['email'] = 'other@example.com';
   actionCodeInfo['data']['multiFactorInfo'] = {};
-  assertObjectEquals(
-      expectedData,
-      actionCodeInfo['data']);
+  assertObjectEquals(expectedData, actionCodeInfo['data']);
   actionCodeInfo['data'] = 'BLA';
-  assertObjectEquals(
-      expectedData,
-      actionCodeInfo['data']);
+  assertObjectEquals(expectedData, actionCodeInfo['data']);
 }
-
 
 function testActionCodeInfo_passwordReset() {
   var expectedData = {
@@ -244,20 +217,13 @@ function testActionCodeInfo_passwordReset() {
   assertEquals('PASSWORD_RESET', actionCodeInfo['operation']);
 
   // Check data.
-  assertObjectEquals(
-      expectedData,
-      actionCodeInfo['data']);
+  assertObjectEquals(expectedData, actionCodeInfo['data']);
   // Property should be read-only.
   actionCodeInfo['data']['email'] = 'other@example.com';
-  assertObjectEquals(
-      expectedData,
-      actionCodeInfo['data']);
+  assertObjectEquals(expectedData, actionCodeInfo['data']);
   actionCodeInfo['data'] = 'BLA';
-  assertObjectEquals(
-      expectedData,
-      actionCodeInfo['data']);
+  assertObjectEquals(expectedData, actionCodeInfo['data']);
 }
-
 
 function testActionCodeInfo_recoverEmail() {
   var expectedData = {
@@ -275,20 +241,14 @@ function testActionCodeInfo_recoverEmail() {
   assertEquals('RECOVER_EMAIL', actionCodeInfo['operation']);
 
   // Check data.
-  assertObjectEquals(
-      expectedData,
-      actionCodeInfo['data']);
+  assertObjectEquals(expectedData, actionCodeInfo['data']);
   // Property should be read-only.
   actionCodeInfo['data']['email'] = 'other@example.com';
   actionCodeInfo['data']['fromEmail'] = 'unknown@example.com';
   actionCodeInfo['data']['previousEmail'] = 'unknown@example.com';
-  assertObjectEquals(
-      expectedData,
-      actionCodeInfo['data']);
+  assertObjectEquals(expectedData, actionCodeInfo['data']);
   actionCodeInfo['data'] = 'BLA';
-  assertObjectEquals(
-      expectedData,
-      actionCodeInfo['data']);
+  assertObjectEquals(expectedData, actionCodeInfo['data']);
 }
 
 function testActionCodeInfo_signInWithEmailLink() {
@@ -298,8 +258,9 @@ function testActionCodeInfo_signInWithEmailLink() {
     previousEmail: null,
     multiFactorInfo: null
   };
-  var actionCodeInfo =
-      new fireauth.ActionCodeInfo(signInWithEmailLinkServerResponse);
+  var actionCodeInfo = new fireauth.ActionCodeInfo(
+    signInWithEmailLinkServerResponse
+  );
 
   // Check operation.
   assertEquals('EMAIL_SIGNIN', actionCodeInfo['operation']);

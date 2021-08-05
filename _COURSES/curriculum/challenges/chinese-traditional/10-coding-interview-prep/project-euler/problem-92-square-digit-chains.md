@@ -1,6 +1,6 @@
 ---
 id: 5900f3c81000cf542c50fedb
-title: 'Problem 92: Square digit chains'
+title: "Problem 92: Square digit chains"
 challengeType: 5
 forumTopicId: 302209
 dashedName: problem-92-square-digit-chains
@@ -26,7 +26,7 @@ How many starting numbers below ten million will arrive at 89?
 `squareDigitChains()` should return a number.
 
 ```js
-assert(typeof squareDigitChains() === 'number');
+assert(typeof squareDigitChains() === "number");
 ```
 
 `squareDigitChains()` should return 8581146.
@@ -41,7 +41,6 @@ assert.strictEqual(squareDigitChains(), 8581146);
 
 ```js
 function squareDigitChains() {
-
   return true;
 }
 

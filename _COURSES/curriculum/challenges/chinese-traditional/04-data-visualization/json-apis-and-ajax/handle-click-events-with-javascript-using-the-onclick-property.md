@@ -11,15 +11,13 @@ dashedName: handle-click-events-with-javascript-using-the-onclick-property
 你希望代碼僅在頁面完成加載後執行。 爲此，你可將名爲`DOMContentLoaded`的 JavaScript 事件附加到文檔中。 以下是實現的代碼：
 
 ```js
-document.addEventListener('DOMContentLoaded', function() {
-
-});
+document.addEventListener("DOMContentLoaded", function () {});
 ```
 
 你可以在`DOMContentLoaded`函數內部添加事件處理方法。 你可以添加`onclick`事件處理器，當用戶點擊 id 爲`getMessage`的元素時會觸發事件。 添加以下代碼：
 
 ```js
-document.getElementById('getMessage').onclick = function(){};
+document.getElementById("getMessage").onclick = function () {};
 ```
 
 # --instructions--
@@ -37,7 +35,7 @@ assert(code.match(/document\s*\.getElementById\(\s*?('|")getMessage\1\s*?\)/g));
 你的代碼應該添加`onclick`事件處理器。
 
 ```js
-assert(typeof document.getElementById('getMessage').onclick === 'function');
+assert(typeof document.getElementById("getMessage").onclick === "function");
 ```
 
 # --seed--
@@ -46,10 +44,8 @@ assert(typeof document.getElementById('getMessage').onclick === 'function');
 
 ```html
 <script>
-  document.addEventListener('DOMContentLoaded', function(){
+  document.addEventListener("DOMContentLoaded", function () {
     // Add your code below this line
-
-
     // Add your code above this line
   });
 </script>
@@ -76,18 +72,14 @@ assert(typeof document.getElementById('getMessage').onclick === 'function');
     padding: 5px 10px 8px 10px;
   }
   button:hover {
-    background-color: #0F5897;
-    border: 1px solid #0F5897;
+    background-color: #0f5897;
+    border: 1px solid #0f5897;
   }
 </style>
 <h1>Cat Photo Finder</h1>
-<p class="message box">
-  The message will go here
-</p>
+<p class="message box">The message will go here</p>
 <p>
-  <button id="getMessage">
-    Get Message
-  </button>
+  <button id="getMessage">Get Message</button>
 </p>
 ```
 
@@ -95,9 +87,9 @@ assert(typeof document.getElementById('getMessage').onclick === 'function');
 
 ```html
 <script>
-  document.addEventListener('DOMContentLoaded', function(){
+  document.addEventListener("DOMContentLoaded", function () {
     // Add your code below this line
-    document.getElementById('getMessage').onclick = function(){ };
+    document.getElementById("getMessage").onclick = function () {};
     // Add your code above this line
   });
 </script>
@@ -124,17 +116,13 @@ assert(typeof document.getElementById('getMessage').onclick === 'function');
     padding: 5px 10px 8px 10px;
   }
   button:hover {
-    background-color: #0F5897;
-    border: 1px solid #0F5897;
+    background-color: #0f5897;
+    border: 1px solid #0f5897;
   }
 </style>
-<h1>Cat Photo Finder</h1> 
-<p class="message box">
-  The message will go here
-</p>
+<h1>Cat Photo Finder</h1>
+<p class="message box">The message will go here</p>
 <p>
-  <button id="getMessage">
-    Get Message
-  </button>
+  <button id="getMessage">Get Message</button>
 </p>
 ```

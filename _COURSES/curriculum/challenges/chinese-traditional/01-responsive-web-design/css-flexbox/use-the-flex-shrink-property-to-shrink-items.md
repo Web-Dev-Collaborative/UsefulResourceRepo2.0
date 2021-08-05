@@ -2,7 +2,7 @@
 id: 587d78ad367417b2b2512afb
 title: 使用 flex-shrink 屬性定義 flex 子元素的收縮規則
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cd3PBfr'
+videoUrl: "https://scrimba.com/p/pVaDAv/cd3PBfr"
 forumTopicId: 301113
 dashedName: use-the-flex-shrink-property-to-shrink-items
 ---
@@ -24,13 +24,13 @@ dashedName: use-the-flex-shrink-property-to-shrink-items
 `#box-1` 元素應具有 `flex-shrink` 屬性，其屬性值應爲 `1`。
 
 ```js
-assert($('#box-1').css('flex-shrink') == '1');
+assert($("#box-1").css("flex-shrink") == "1");
 ```
 
 `#box-2` 元素應具有 `flex-shrink` 屬性，其屬性值應爲 `2`。
 
 ```js
-assert($('#box-2').css('flex-shrink') == '2');
+assert($("#box-2").css("flex-shrink") == "2");
 ```
 
 # --seed--
@@ -47,14 +47,12 @@ assert($('#box-2').css('flex-shrink') == '2');
     background-color: dodgerblue;
     width: 100%;
     height: 200px;
-
   }
 
   #box-2 {
     background-color: orangered;
     width: 100%;
     height: 200px;
-
   }
 </style>
 

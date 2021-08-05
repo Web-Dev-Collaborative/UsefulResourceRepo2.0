@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244d0
 title: Comparison with the Equality Operator
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cKyVMAL'
+videoUrl: "https://scrimba.com/c/cKyVMAL"
 forumTopicId: 16784
 dashedName: comparison-with-the-equality-operator
 ---
@@ -16,7 +16,7 @@ The most basic operator is the equality operator `==`. The equality operator com
 ```js
 function equalityTest(myVal) {
   if (myVal == 10) {
-     return "Equal";
+    return "Equal";
   }
   return "Not Equal";
 }
@@ -25,10 +25,10 @@ function equalityTest(myVal) {
 If `myVal` is equal to `10`, the equality operator returns `true`, so the code in the curly braces will execute, and the function will return `Equal`. Otherwise, the function will return `Not Equal`. In order for JavaScript to compare two different <dfn>data types</dfn> (for example, `numbers` and `strings`), it must convert one type to another. This is known as Type Coercion. Once it does, however, it can compare terms as follows:
 
 ```js
-1   ==  1
-1   ==  2
-1   == '1'
-"3" ==  3
+1 == 1;
+1 == 2;
+1 == "1";
+"3" == 3;
 ```
 
 In order, these expressions would evaluate to `true`, `false`, `true`, and `true`.
@@ -42,19 +42,19 @@ Add the equality operator to the indicated line so that the function will return
 `testEqual(10)` should return the string `Not Equal`
 
 ```js
-assert(testEqual(10) === 'Not Equal');
+assert(testEqual(10) === "Not Equal");
 ```
 
 `testEqual(12)` should return the string `Equal`
 
 ```js
-assert(testEqual(12) === 'Equal');
+assert(testEqual(12) === "Equal");
 ```
 
 `testEqual("12")` should return the string `Equal`
 
 ```js
-assert(testEqual('12') === 'Equal');
+assert(testEqual("12") === "Equal");
 ```
 
 You should use the `==` operator
@@ -70,7 +70,8 @@ assert(code.match(/==/g) && !code.match(/===/g));
 ```js
 // Setup
 function testEqual(val) {
-  if (val) { // Change this line
+  if (val) {
+    // Change this line
     return "Equal";
   }
   return "Not Equal";

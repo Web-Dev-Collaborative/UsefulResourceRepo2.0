@@ -18,23 +18,23 @@ dashedName: create-a-bootstrap-row
 
 ```js
 assert(
-  $('div').length > 1 &&
-    $('div.row h3.text-primary').length == 0 &&
-    $('div.row + h3.text-primary').length == 0 &&
-    $('h3.text-primary + div.row').length > 0
+  $("div").length > 1 &&
+    $("div.row h3.text-primary").length == 0 &&
+    $("div.row + h3.text-primary").length == 0 &&
+    $("h3.text-primary + div.row").length > 0
 );
 ```
 
 `div` 元素的 class 屬性應爲 `row`。
 
 ```js
-assert($('div').hasClass('row'));
+assert($("div").hasClass("row"));
 ```
 
 `row div` 應該內嵌於 `container-fluid div`。
 
 ```js
-assert($('div.container-fluid div.row').length > 0);
+assert($("div.container-fluid div.row").length > 0);
 ```
 
 確保所有 `div` 元素都有一個閉合標籤。
@@ -54,7 +54,6 @@ assert(
 ```html
 <div class="container-fluid">
   <h3 class="text-primary text-center">jQuery Playground</h3>
-
 </div>
 ```
 

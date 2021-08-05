@@ -13,12 +13,13 @@ Le sfide finora hanno riguardato il riconoscimento delle lettere dell'alfabeto e
 Puoi cercare spazi bianchi usando `\s`, che è una `s` minuscola. Questo pattern non coincide solo con lo spazio bianco, ma anche con il ritorno a capo, la tabulazione, il ritorno carrello e i caratteri di nuova riga. Potresti pensarlo simile alla classe di caratteri `[ \r\t\f\n\v]`.
 
 ```js
-let whiteSpace = "Whitespace. Whitespace everywhere!"
+let whiteSpace = "Whitespace. Whitespace everywhere!";
 let spaceRegex = /\s/g;
 whiteSpace.match(spaceRegex);
 ```
 
 Questa chiamata a `match` restituirà `[" ", " "]`.
+
 # --instructions--
 
 Cambia l'espressione regolare `countWhiteSpace` in modo da cercare spazi bianchi multipli in una stringa.
@@ -41,7 +42,7 @@ La tua espressione regolare dovrebbe trovare otto spazi nella stringa `Men are f
 
 ```js
 assert(
-  'Men are from Mars and women are from Venus.'.match(countWhiteSpace).length ==
+  "Men are from Mars and women are from Venus.".match(countWhiteSpace).length ==
     8
 );
 ```
@@ -49,13 +50,13 @@ assert(
 La tua espressione regolare dovrebbe trovare tre spazi nella stringa `Space: the final frontier.`
 
 ```js
-assert('Space: the final frontier.'.match(countWhiteSpace).length == 3);
+assert("Space: the final frontier.".match(countWhiteSpace).length == 3);
 ```
 
 La tua espressione finale non dovrebbe trovare spazi nella stringa `MindYourPersonalSpace`
 
 ```js
-assert('MindYourPersonalSpace'.match(countWhiteSpace) == null);
+assert("MindYourPersonalSpace".match(countWhiteSpace) == null);
 ```
 
 # --seed--

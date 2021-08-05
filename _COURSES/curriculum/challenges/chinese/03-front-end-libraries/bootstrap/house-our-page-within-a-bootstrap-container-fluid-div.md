@@ -17,7 +17,7 @@ dashedName: house-our-page-within-a-bootstrap-container-fluid-div
 `div` 元素 class 属性应该为 `container-fluid`。
 
 ```js
-assert($('div').hasClass('container-fluid'));
+assert($("div").hasClass("container-fluid"));
 ```
 
 确保每一个 `div` 元素都有一个闭合标签。
@@ -33,7 +33,7 @@ assert(
 `h3` 元素应该内嵌于 `div` 元素。
 
 ```js
-assert($('div').children('h3').length > 0);
+assert($("div").children("h3").length > 0);
 ```
 
 # --seed--
@@ -48,6 +48,6 @@ assert($('div').children('h3').length > 0);
 
 ```html
 <div class="container-fluid">
-    <h3 class="text-primary text-center">jQuery Playground</h3>
+  <h3 class="text-primary text-center">jQuery Playground</h3>
 </div>
 ```

@@ -4,8 +4,7 @@ title: Apunta a un hijo específico de un elemento usando jQuery
 challengeType: 6
 forumTopicId: 18315
 required:
-  - 
-    link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: target-a-specific-child-of-an-element-using-jquery
 ---
 
@@ -31,15 +30,15 @@ El segundo elemento en tus elementos `target` deben rebotar.
 
 ```js
 assert(
-  $('.target:nth-child(2)').hasClass('animated') &&
-    $('.target:nth-child(2)').hasClass('bounce')
+  $(".target:nth-child(2)").hasClass("animated") &&
+    $(".target:nth-child(2)").hasClass("bounce")
 );
 ```
 
 Solo deben elegirse dos elementos.
 
 ```js
-assert($('.animated.bounce').length === 2);
+assert($(".animated.bounce").length === 2);
 ```
 
 Debes usar el selector `:nth-child()` para modificar estos elementos.
@@ -65,7 +64,7 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();
@@ -73,7 +72,6 @@ assert(
     $("#target5").clone().appendTo("#left-well");
     $("#target1").parent().css("background-color", "red");
     $("#right-well").children().css("color", "orange");
-
   });
 </script>
 
@@ -106,7 +104,7 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();

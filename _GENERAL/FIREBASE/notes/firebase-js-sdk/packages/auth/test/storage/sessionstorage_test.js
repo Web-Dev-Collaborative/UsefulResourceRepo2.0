@@ -29,15 +29,12 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.storage.SessionStorageTest');
 
-
 var stubs = new goog.testing.PropertyReplacer();
 var storage;
-
 
 function setUp() {
   storage = new fireauth.storage.SessionStorage();
 }
-
 
 function tearDown() {
   storage = null;
@@ -45,45 +42,43 @@ function tearDown() {
   sessionStorage.clear();
 }
 
-
 /** Simulates a Node.js environment. */
 function simulateNodeEnvironment() {
   // Node.js environment.
-  stubs.replace(
-      fireauth.util,
-      'getEnvironment',
-      function() {return fireauth.util.Env.NODE;});
+  stubs.replace(fireauth.util, 'getEnvironment', function () {
+    return fireauth.util.Env.NODE;
+  });
   // No window.sessionStorage.
   stubs.replace(
-      fireauth.storage.SessionStorage,
-      'getGlobalStorage',
-      function() {return null;});
+    fireauth.storage.SessionStorage,
+    'getGlobalStorage',
+    function () {
+      return null;
+    }
+  );
 }
-
 
 function testBasicStorageOperations() {
   assertEquals(fireauth.storage.Storage.Type.SESSION_STORAGE, storage.type);
   return assertBasicStorageOperations(storage);
 }
 
-
 function testDifferentTypes() {
   return assertDifferentTypes(storage);
 }
 
-
 function testNotAvailable() {
-  stubs.replace(
-      fireauth.storage.SessionStorage, 'isAvailable',
-      function() { return false; });
-  var error = assertThrows(function() {
+  stubs.replace(fireauth.storage.SessionStorage, 'isAvailable', function () {
+    return false;
+  });
+  var error = assertThrows(function () {
     new fireauth.storage.SessionStorage();
   });
   assertErrorEquals(
-      new fireauth.AuthError(fireauth.authenum.Error.WEB_STORAGE_UNSUPPORTED),
-      error);
+    new fireauth.AuthError(fireauth.authenum.Error.WEB_STORAGE_UNSUPPORTED),
+    error
+  );
 }
-
 
 function testBasicStorageOperations_node() {
   simulateNodeEnvironment();
@@ -91,13 +86,11 @@ function testBasicStorageOperations_node() {
   return assertBasicStorageOperations(storage);
 }
 
-
 function testDifferentTypes_node() {
   simulateNodeEnvironment();
   storage = new fireauth.storage.SessionStorage();
   return assertDifferentTypes(storage);
 }
-
 
 function testNotAvailable_node() {
   // Compatibility libraries not included.
@@ -105,12 +98,11 @@ function testNotAvailable_node() {
   // Simulate Node.js environment.
   simulateNodeEnvironment();
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.INTERNAL_ERROR,
-      'The SessionStorage compatibility library was not found.');
-  var error = assertThrows(function() {
+    fireauth.authenum.Error.INTERNAL_ERROR,
+    'The SessionStorage compatibility library was not found.'
+  );
+  var error = assertThrows(function () {
     new fireauth.storage.SessionStorage();
   });
-  assertErrorEquals(
-      expectedError,
-      error);
+  assertErrorEquals(expectedError, error);
 }

@@ -32,20 +32,20 @@ Dovresti enfatizzare il testo nel tuo pulsante `target4` aggiungendo dei tag HTM
 
 ```js
 assert.isTrue(
-  /<em>|<i>\s*#target4\s*<\/em>|<\/i>/gi.test($('#target4').html())
+  /<em>|<i>\s*#target4\s*<\/em>|<\/i>/gi.test($("#target4").html())
 );
 ```
 
 Il testo dovrebbe rimanere invariato.
 
 ```js
-assert($('#target4') && $('#target4').text().trim() === '#target4');
+assert($("#target4") && $("#target4").text().trim() === "#target4");
 ```
 
 Non dovresti modificare nessun altro testo.
 
 ```js
-assert.isFalse(/<em>|<i>/gi.test($('h3').html()));
+assert.isFalse(/<em>|<i>/gi.test($("h3").html()));
 ```
 
 Dovresti usare `.html()` e non `.text()`.
@@ -66,9 +66,8 @@ assert(code.match(/\$\(\s*?(\"|\')#target4(\"|\')\s*?\)\.html\(/));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
-
   });
 </script>
 
@@ -101,9 +100,9 @@ assert(code.match(/\$\(\s*?(\"|\')#target4(\"|\')\s*?\)\.html\(/));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
-    $("#target4").html('<em>#target4</em>');
+    $("#target4").html("<em>#target4</em>");
   });
 </script>
 

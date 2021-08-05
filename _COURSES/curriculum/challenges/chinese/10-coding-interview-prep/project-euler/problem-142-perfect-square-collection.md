@@ -1,6 +1,6 @@
 ---
 id: 5900f3fa1000cf542c50ff0d
-title: 'Problem 142: Perfect Square Collection'
+title: "Problem 142: Perfect Square Collection"
 challengeType: 5
 forumTopicId: 301771
 dashedName: problem-142-perfect-square-collection
@@ -24,7 +24,6 @@ assert.strictEqual(euler142(), 1006193);
 
 ```js
 function euler142() {
-
   return true;
 }
 

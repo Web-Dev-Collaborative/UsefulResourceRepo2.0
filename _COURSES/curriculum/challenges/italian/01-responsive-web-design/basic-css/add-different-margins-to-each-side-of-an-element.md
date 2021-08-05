@@ -2,7 +2,7 @@
 id: bad87fee1248bd9aedf08824
 title: Aggiungere margini differenti ad ogni lato di un elemento
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cg4RWh4'
+videoUrl: "https://scrimba.com/c/cg4RWh4"
 forumTopicId: 16633
 dashedName: add-different-margins-to-each-side-of-an-element
 ---
@@ -22,25 +22,25 @@ Dài al riquadro blu un `margin` di `40px` sul lato superiore e sinistro, ma di 
 La tua classe `blue-box` dovrebbe dare alla parte superiore degli elementi `40px` di `margin`.
 
 ```js
-assert($('.blue-box').css('margin-top') === '40px');
+assert($(".blue-box").css("margin-top") === "40px");
 ```
 
 La tua classe `blue-box` dovrebbe dare alla parte destra degli elementi `20px` di `margin`.
 
 ```js
-assert($('.blue-box').css('margin-right') === '20px');
+assert($(".blue-box").css("margin-right") === "20px");
 ```
 
 La tua classe `blue-box` dovrebbe dare alla parte inferiore degli elementi `20px` di `margin`.
 
 ```js
-assert($('.blue-box').css('margin-bottom') === '20px');
+assert($(".blue-box").css("margin-bottom") === "20px");
 ```
 
 La tua classe `blue-box` dovrebbe dare alla parte sinistra degli elementi `40px` di `margin`.
 
 ```js
-assert($('.blue-box').css('margin-left') === '40px');
+assert($(".blue-box").css("margin-left") === "40px");
 ```
 
 # --seed--

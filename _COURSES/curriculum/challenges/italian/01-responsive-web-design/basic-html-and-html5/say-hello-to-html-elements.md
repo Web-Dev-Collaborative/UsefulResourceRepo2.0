@@ -2,7 +2,7 @@
 id: bd7123c8c441eddfaeb5bdef
 title: Fare conoscenza con gli elementi HTML
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cE8Gpt2'
+videoUrl: "https://scrimba.com/p/pVMPUv/cE8Gpt2"
 forumTopicId: 18276
 dashedName: say-hello-to-html-elements
 ---
@@ -20,7 +20,7 @@ La maggior parte degli elementi HTML hanno un tag di apertura e un tag di chiusu
 Questo è un tag di apertura:
 
 ```html
-<h1>
+<h1></h1>
 ```
 
 Questo è un tag di chiusura:
@@ -42,7 +42,7 @@ Per superare il test di questa sfida, modifica il testo dell'elemento `h1` per d
 Il tuo elemento `h1` dovrebbe avere il testo `Hello World`.
 
 ```js
-assert.isTrue(/hello(\s)+world/gi.test($('h1').text()));
+assert.isTrue(/hello(\s)+world/gi.test($("h1").text()));
 ```
 
 # --seed--

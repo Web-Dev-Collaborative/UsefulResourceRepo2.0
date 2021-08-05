@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08736
 title: Stilizzare l'elemento Body
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cB77PHW'
+videoUrl: "https://scrimba.com/c/cB77PHW"
 forumTopicId: 18313
 dashedName: style-the-html-body-element
 ---
@@ -30,7 +30,7 @@ body {
 Il tuo elemento `body` dovrebbe avere il `background-color` nero.
 
 ```js
-assert($('body').css('background-color') === 'rgb(0, 0, 0)');
+assert($("body").css("background-color") === "rgb(0, 0, 0)");
 ```
 
 La regola CSS dovrebbe essere formattata correttamente con entrambe le parentesi graffe di apertura e chiusura.
@@ -54,17 +54,15 @@ assert(
 ## --seed-contents--
 
 ```html
-<style>
-
-</style>
+<style></style>
 ```
 
 # --solutions--
 
 ```html
 <style>
-body {
-  background-color: black;
-}
+  body {
+    background-color: black;
+  }
 </style>
 ```

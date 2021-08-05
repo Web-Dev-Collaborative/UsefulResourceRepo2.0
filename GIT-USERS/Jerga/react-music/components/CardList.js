@@ -1,9 +1,8 @@
-import React from 'react';
-import { View, FlatList } from 'react-native';
-import { Card, Text, Button } from 'react-native-elements';
+import React from "react";
+import { View, FlatList } from "react-native";
+import { Card, Text, Button } from "react-native-elements";
 
 export class CardList extends React.Component {
-
   renderData() {
     const { data, imageKey, titleKey, buttonText, bottomView } = this.props;
 
@@ -19,20 +18,22 @@ export class CardList extends React.Component {
     // })
 
     return (
-      <FlatList data={data}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({item, index}) => {
-                  return (
-                    <Card
-                      key={index}
-                      title={item[titleKey]}
-                      image={{uri: item[imageKey]}}>
-                      { bottomView(item) }
-                    </Card>
-                  )
-                }}>
-      </FlatList>
-    )
+      <FlatList
+        data={data}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item, index }) => {
+          return (
+            <Card
+              key={index}
+              title={item[titleKey]}
+              image={{ uri: item[imageKey] }}
+            >
+              {bottomView(item)}
+            </Card>
+          );
+        }}
+      ></FlatList>
+    );
   }
 
   render() {
@@ -41,7 +42,7 @@ export class CardList extends React.Component {
     if (data && data.length > 0) {
       return this.renderData();
     } else {
-      return <View>  </View>
+      return <View> </View>;
     }
   }
 }

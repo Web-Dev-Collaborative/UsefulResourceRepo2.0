@@ -2,7 +2,7 @@
 id: 587d78a3367417b2b2512ace
 title: 使用 float 屬性將元素左浮動或右浮動
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c2MDqu2'
+videoUrl: "https://scrimba.com/c/c2MDqu2"
 forumTopicId: 301066
 dashedName: push-elements-left-or-right-with-the-float-property
 ---
@@ -20,13 +20,13 @@ dashedName: push-elements-left-or-right-with-the-float-property
 id 爲 `left` 的元素的 `float` 屬性值應爲 `left`。
 
 ```js
-assert($('#left').css('float') == 'left');
+assert($("#left").css("float") == "left");
 ```
 
 id 爲 `right` 的元素的 `float` 屬性值應爲 `right`。
 
 ```js
-assert($('#right').css('float') == 'right');
+assert($("#right").css("float") == "right");
 ```
 
 # --seed--
@@ -37,14 +37,13 @@ assert($('#right').css('float') == 'right');
 <head>
   <style>
     #left {
-
       width: 50%;
     }
     #right {
-
       width: 40%;
     }
-    aside, section {
+    aside,
+    section {
       padding: 2px;
       background-color: #ccc;
     }
@@ -78,7 +77,8 @@ assert($('#right').css('float') == 'right');
       float: right;
       width: 40%;
     }
-    aside, section {
+    aside,
+    section {
       padding: 2px;
       background-color: #ccc;
     }

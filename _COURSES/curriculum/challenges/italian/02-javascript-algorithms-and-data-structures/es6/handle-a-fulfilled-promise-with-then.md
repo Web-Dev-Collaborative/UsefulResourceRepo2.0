@@ -11,9 +11,7 @@ dashedName: handle-a-fulfilled-promise-with-then
 Le promise sono più utili quando hai nel codice un processo che richiede una quantità sconosciuta di tempo (cioè qualcosa di asincrono), spesso una richiesta al server. Quando si effettua una richiesta ad un server questa prende un certo lasso di tempo, e, dopo che si è conclusa, di solito si desidera fare qualcosa con la risposta del server. Questo risultato può essere ottenuto utilizzando il metodo `then`. Il metodo `then` viene eseguito immediatamente dopo che la promise è stata mantenuta con `resolve`. Ecco un esempio:
 
 ```js
-myPromise.then(result => {
-
-});
+myPromise.then((result) => {});
 ```
 
 `result` deriva dall'argomento dato al metodo `resolve`.
@@ -54,7 +52,10 @@ assert(
 ## --after-user-code--
 
 ```js
-const resultIsParameter = /\.then\((function\(result\){|result|\(result\)=>)/.test(__helpers.removeWhiteSpace(code));
+const resultIsParameter =
+  /\.then\((function\(result\){|result|\(result\)=>)/.test(
+    __helpers.removeWhiteSpace(code)
+  );
 ```
 
 ## --seed-contents--
@@ -64,9 +65,9 @@ const makeServerRequest = new Promise((resolve, reject) => {
   // responseFromServer is set to true to represent a successful response from a server
   let responseFromServer = true;
 
-  if(responseFromServer) {
+  if (responseFromServer) {
     resolve("We got the data");
-  } else {  
+  } else {
     reject("Data not received");
   }
 });
@@ -79,14 +80,14 @@ const makeServerRequest = new Promise((resolve, reject) => {
   // responseFromServer is set to true to represent a successful response from a server
   let responseFromServer = true;
 
-  if(responseFromServer) {
+  if (responseFromServer) {
     resolve("We got the data");
-  } else {  
+  } else {
     reject("Data not received");
   }
 });
 
-makeServerRequest.then(result => {
+makeServerRequest.then((result) => {
   console.log(result);
 });
 ```

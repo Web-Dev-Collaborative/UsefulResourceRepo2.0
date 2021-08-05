@@ -7,5 +7,6 @@
 import { FacebookAuthProvider } from "firebase/auth";
 
 const credential = FacebookAuthProvider.credential(
-  response.authResponse.accessToken);
+  response.authResponse.accessToken
+);
 // [END auth_make_facebook_credential_modular]

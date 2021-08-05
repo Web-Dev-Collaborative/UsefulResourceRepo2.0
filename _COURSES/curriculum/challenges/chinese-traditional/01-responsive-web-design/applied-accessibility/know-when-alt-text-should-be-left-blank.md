@@ -2,7 +2,7 @@
 id: 587d774c367417b2b2512a9d
 title: 瞭解 Alt 文本留空的情景
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cM9P4t2'
+videoUrl: "https://scrimba.com/c/cM9P4t2"
 forumTopicId: 301019
 dashedName: know-when-alt-text-should-be-left-blank
 ---
@@ -14,7 +14,7 @@ dashedName: know-when-alt-text-should-be-left-blank
 在圖片已經有了文字說明，或者僅僅爲了美化頁面的情況下，`img` 仍然需要一個 `alt` 屬性，但可以設置爲空字符串。 例如：
 
 ```html
-<img src="visualDecoration.jpeg" alt="">
+<img src="visualDecoration.jpeg" alt="" />
 ```
 
 比如，背景圖片通常起裝飾作用。 但這些圖片通常都是通過 CSS 規則而非 HTML 引入的，因此屏幕閱讀器毋需讀取。
@@ -30,13 +30,13 @@ Camper Cat 已經大體寫好了博客頁面。 他打算在他的兩篇文章�
 `img` 標籤應具有 `alt` 屬性。
 
 ```js
-assert(!($('img').attr('alt') == undefined));
+assert(!($("img").attr("alt") == undefined));
 ```
 
 `alt` 的屬性值應爲空。
 
 ```js
-assert($('img').attr('alt') == '');
+assert($("img").attr("alt") == "");
 ```
 
 # --seed--
@@ -50,7 +50,7 @@ assert($('img').attr('alt') == '');
   <p>To Come...</p>
 </article>
 
-<img src="samuraiSwords.jpeg">
+<img src="samuraiSwords.jpeg" />
 
 <article>
   <h2>Is Chuck Norris a Cat Person?</h2>
@@ -67,7 +67,7 @@ assert($('img').attr('alt') == '');
   <p>To Come...</p>
 </article>
 
-<img src="samuraiSwords.jpeg" alt="">
+<img src="samuraiSwords.jpeg" alt="" />
 
 <article>
   <h2>Is Chuck Norris a Cat Person?</h2>

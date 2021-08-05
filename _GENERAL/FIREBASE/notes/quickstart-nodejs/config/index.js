@@ -1,5 +1,5 @@
-const fs = require('fs');
-const admin = require('firebase-admin');
+const fs = require("fs");
+const admin = require("firebase-admin");
 admin.initializeApp();
 
 /**
@@ -7,14 +7,16 @@ admin.initializeApp();
  */
 // [START retrieve_access_token]
 function getAccessToken() {
-  return admin.credential.applicationDefault().getAccessToken()
-      .then(accessToken => {
-        return accessToken.access_token;
-      })
-      .catch(err => {
-        console.error('Unable to get access token');
-        console.error(err);
-      });
+  return admin.credential
+    .applicationDefault()
+    .getAccessToken()
+    .then((accessToken) => {
+      return accessToken.access_token;
+    })
+    .catch((err) => {
+      console.error("Unable to get access token");
+      console.error(err);
+    });
 }
 // [END retrieve_access_token]
 
@@ -25,16 +27,17 @@ function getAccessToken() {
 // [START retrieve_template]
 function getTemplate() {
   const config = admin.remoteConfig();
-  config.getTemplate()
-      .then(template => {
-        console.log('ETag from server: ' + template.etag);
-        const templateStr = JSON.stringify(template);
-        fs.writeFileSync('config.json', templateStr);
-      })
-      .catch(err => {
-        console.error('Unable to get template');
-        console.error(err);
-      });
+  config
+    .getTemplate()
+    .then((template) => {
+      console.log("ETag from server: " + template.etag);
+      const templateStr = JSON.stringify(template);
+      fs.writeFileSync("config.json", templateStr);
+    })
+    .catch((err) => {
+      console.error("Unable to get template");
+      console.error(err);
+    });
 }
 // [END retrieve_template]
 
@@ -45,16 +48,18 @@ function getTemplate() {
 function publishTemplate() {
   const config = admin.remoteConfig();
   const template = config.createTemplateFromJSON(
-      fs.readFileSync('config.json', 'utf-8'));
-  config.publishTemplate(template)
-      .then(updatedTemplate => {
-        console.log('Template has been published');
-        console.log('ETag from server: ' + updatedTemplate.etag);
-      })
-      .catch(err => {
-        console.error('Unable to publish template.');
-        console.error(err);
-      });
+    fs.readFileSync("config.json", "utf-8")
+  );
+  config
+    .publishTemplate(template)
+    .then((updatedTemplate) => {
+      console.log("Template has been published");
+      console.log("ETag from server: " + updatedTemplate.etag);
+    })
+    .catch((err) => {
+      console.error("Unable to publish template.");
+      console.error(err);
+    });
 }
 // [END publish_template]
 
@@ -66,28 +71,28 @@ async function getAndUpdateTemplate() {
     const template = await config.getTemplate();
     // Set "android_en" condition.
     template.conditions.push({
-      name: 'android_en',
-      expression: 'device.os == \'android\' && device.country in [\'us\', \'uk\']',
-      tagColor: 'BLUE',
+      name: "android_en",
+      expression: "device.os == 'android' && device.country in ['us', 'uk']",
+      tagColor: "BLUE",
     });
     // Set "header_text" parameter.
-    template.parameters['header_text'] = {
+    template.parameters["header_text"] = {
       defaultValue: {
-        value: 'A Gryffindor must be brave, talented and helpful.'
+        value: "A Gryffindor must be brave, talented and helpful.",
       },
       conditionalValues: {
         android_en: {
-          value: 'A Droid must be brave, talented and helpful.'
+          value: "A Droid must be brave, talented and helpful.",
         },
       },
     };
     // Validate template after updating it.
     await config.validateTemplate(template);
     // Publish updated template.
-    const updatedTemplate= await config.publishTemplate(template);
-    console.log('Latest etag: ' + updatedTemplate.etag);
+    const updatedTemplate = await config.publishTemplate(template);
+    console.log("Latest etag: " + updatedTemplate.etag);
   } catch (err) {
-    console.error('Unable to get and update template.');
+    console.error("Unable to get and update template.");
     console.error(err);
   }
 }
@@ -95,15 +100,15 @@ async function getAndUpdateTemplate() {
 
 const action = process.argv[2];
 
-if (action && action === 'get') {
+if (action && action === "get") {
   getTemplate();
-} else if (action && action === 'publish') {
+} else if (action && action === "publish") {
   publishTemplate();
-} else if (action && action === 'update') {
+} else if (action && action === "update") {
   getAndUpdateTemplate();
 } else {
   console.log(
-`
+    `
 Invalid command. Please use one of the following:
 node index.js get
 node index.js publish

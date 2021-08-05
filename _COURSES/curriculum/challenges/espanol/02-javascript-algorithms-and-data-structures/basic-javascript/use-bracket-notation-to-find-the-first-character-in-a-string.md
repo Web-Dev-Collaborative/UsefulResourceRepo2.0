@@ -2,7 +2,7 @@
 id: bd7123c9c549eddfaeb5bdef
 title: Utiliza la notación de corchetes para encontrar el primer carácter en una cadena
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/ca8JwhW'
+videoUrl: "https://scrimba.com/c/ca8JwhW"
 forumTopicId: 18341
 dashedName: use-bracket-notation-to-find-the-first-character-in-a-string
 ---
@@ -35,7 +35,7 @@ Utiliza notación de corchetes para encontrar el primer carácter en la variable
 La variable `firstLetterOfLastName` debe tener el valor de `L`.
 
 ```js
-assert(firstLetterOfLastName === 'L');
+assert(firstLetterOfLastName === "L");
 ```
 
 Debes usar la notación de corchetes.
@@ -49,7 +49,9 @@ assert(code.match(/firstLetterOfLastName\s*?=\s*?lastName\[.*?\]/));
 ## --after-user-code--
 
 ```js
-(function(v){return v;})(firstLetterOfLastName);
+(function (v) {
+  return v;
+})(firstLetterOfLastName);
 ```
 
 ## --seed-contents--

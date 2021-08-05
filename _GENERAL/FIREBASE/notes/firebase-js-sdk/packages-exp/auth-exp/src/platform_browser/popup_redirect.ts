@@ -177,4 +177,5 @@ class BrowserPopupRedirectResolver implements PopupRedirectResolverInternal {
  *
  * @public
  */
-export const browserPopupRedirectResolver: PopupRedirectResolver = BrowserPopupRedirectResolver;
+export const browserPopupRedirectResolver: PopupRedirectResolver =
+  BrowserPopupRedirectResolver;

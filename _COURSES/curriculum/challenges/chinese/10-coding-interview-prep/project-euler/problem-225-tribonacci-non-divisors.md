@@ -1,6 +1,6 @@
 ---
 id: 5900f44e1000cf542c50ff60
-title: 'Problem 225: Tribonacci non-divisors'
+title: "Problem 225: Tribonacci non-divisors"
 challengeType: 5
 forumTopicId: 301868
 dashedName: problem-225-tribonacci-non-divisors
@@ -30,7 +30,6 @@ assert.strictEqual(euler225(), 2009);
 
 ```js
 function euler225() {
-
   return true;
 }
 

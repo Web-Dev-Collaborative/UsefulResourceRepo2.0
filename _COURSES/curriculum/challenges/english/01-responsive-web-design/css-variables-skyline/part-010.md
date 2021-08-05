@@ -16,7 +16,7 @@ test-text
 ```js
 const bb1 = code.match(/\.bb1\s*{[\s\S]+?[^}]}/g)[0];
 assert(
-  $('.background-buildings')[0].contains($('div.bb1')[0]) &&
+  $(".background-buildings")[0].contains($("div.bb1")[0]) &&
     /width\s*:\s*10%\s*(;|})/g.test(bb1) &&
     /height\s*:\s*70%\s*(;|})/g.test(bb1)
 );
@@ -28,7 +28,7 @@ assert(
 
 ```html
 <!DOCTYPE html>
-<html>    
+<html>
   <head>
     <title>freeCodeCamp Skyline Project</title>
     <style>
@@ -60,7 +60,7 @@ assert(
 
 ```html
 <!DOCTYPE html>
-<html>    
+<html>
   <head>
     <title>freeCodeCamp Skyline Project</title>
     <style>

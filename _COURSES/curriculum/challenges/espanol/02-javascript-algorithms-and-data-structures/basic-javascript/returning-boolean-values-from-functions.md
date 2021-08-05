@@ -2,7 +2,7 @@
 id: 5679ceb97cbaa8c51670a16b
 title: Devuelve valores booleanos desde funciones
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cp62qAQ'
+videoUrl: "https://scrimba.com/c/cp62qAQ"
 forumTopicId: 18273
 dashedName: returning-boolean-values-from-functions
 ---
@@ -14,7 +14,7 @@ Podrás recordar que en [Comparación con el operador de igualdad](/learn/javasc
 A veces la gente usa una sentencia `if/else` para hacer una comparación, como esta:
 
 ```js
-function isEqual(a,b) {
+function isEqual(a, b) {
   if (a === b) {
     return true;
   } else {
@@ -26,7 +26,7 @@ function isEqual(a,b) {
 Pero hay una mejor manera de hacer esto. Puesto que `===` devuelve `true` o `false`, podemos devolver el resultado de la comparación:
 
 ```js
-function isEqual(a,b) {
+function isEqual(a, b) {
   return a === b;
 }
 ```

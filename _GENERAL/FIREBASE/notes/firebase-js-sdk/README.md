@@ -1,10 +1,12 @@
 # Firebase Javascript SDK
 
 <!-- BADGES -->
+
 ![Build Status](https://img.shields.io/github/workflow/status/firebase/firebase-js-sdk/Run%20All%20Tests.svg)
 [![Build Status](https://saucelabs.com/buildstatus/firebase-oss)](https://saucelabs.com/u/firebase-oss)
 [![Version](https://img.shields.io/npm/v/firebase.svg?label=version)](https://www.npmjs.com/package/firebase)
 [![Coverage Status](https://coveralls.io/repos/github/firebase/firebase-js-sdk/badge.svg?branch=master)](https://coveralls.io/github/firebase/firebase-js-sdk?branch=master)
+
 <!-- END BADGES -->
 
 The Firebase JavaScript SDK implements the client-side libraries used by
@@ -20,6 +22,7 @@ To get started using Firebase, see
 [![Release Notes](https://img.shields.io/npm/v/firebase.svg?style=flat-square&label=Release%20Notes%20for&labelColor=039be5&color=666)](https://firebase.google.com/support/release-notes/js)
 
 ## Supported Environments
+
 Please see [Environment Support](https://firebase.google.com/support/guides/environments_js-sdk).
 
 ## SDK Dev Workflow
@@ -106,7 +109,6 @@ The tests need to be configured to use the Firebase production project that you
 created in the "Test Setup" section above. To do this, run the `yarn test:setup`
 command, as follows:
 
-
 ```bash
 # Select the Firebase project via the text-based UI.
 $ yarn test:setup
@@ -116,9 +118,11 @@ $ yarn test:setup --projectId=<test_firebase_project_id>
 ```
 
 If you see an error like
+
 ```
 HTTP Error: 404, Project '<test_firebase_project_id>' does not exist.
 ```
+
 then make sure that you have created the database as specified in the "Firestore
 Database Setup" section above.
 
@@ -126,7 +130,7 @@ Database Setup" section above.
 
 Each of the directories in the `integration` directory as well as the `packages`
 directory have their own test suites. You will need to build the SDK before
-running tests. Test suites can be run all together by running the following 
+running tests. Test suites can be run all together by running the following
 command at the root of the package:
 
 ```bash

@@ -19,10 +19,8 @@ Il codice qui sotto assegna a `x` il valore 2, che viene valutato come `true`. Q
 ```js
 let x = 1;
 let y = 2;
-if (x = y) {
-
+if ((x = y)) {
 } else {
-
 }
 ```
 
@@ -37,7 +35,7 @@ Correggi la condizione in modo che il programma esegua il ramo giusto e il valor
 Il tuo codice dovrebbe aggiustare la condizione in modo che controlli l'uguaglianza invece di utilizzare l'assegnazione.
 
 ```js
-assert(result == 'Not equal!');
+assert(result == "Not equal!");
 ```
 
 La condizione dovrebbe usare `==` o `===` per verificare l'uguaglianza.
@@ -55,7 +53,7 @@ let x = 7;
 let y = 9;
 let result = "to come";
 
-if(x = y) {
+if ((x = y)) {
   result = "Equal!";
 } else {
   result = "Not equal!";
@@ -71,10 +69,10 @@ let x = 7;
 let y = 9;
 let result = "to come";
 
-if(x === y) {
- result = "Equal!";
+if (x === y) {
+  result = "Equal!";
 } else {
- result = "Not equal!";
+  result = "Not equal!";
 }
 
 console.log(result);

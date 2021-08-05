@@ -1,11 +1,11 @@
-import { helper } from '@ember/component/helper';
+import { helper } from "@ember/component/helper";
 
 export function formatError(errorsArr) {
   const errorMap = [];
   const errors = errorsArr[0];
 
   if (errors) {
-    Object.keys(errors).forEach(error => {
+    Object.keys(errors).forEach((error) => {
       errorMap.push(`${error} ${errors[error]}`);
     });
   }

@@ -70,7 +70,6 @@ goog.require('fireauth.authStorage');
 goog.require('fireauth.constants');
 goog.require('goog.Promise');
 
-
 /**
  * Defines the Auth user storage manager. It provides methods to
  * store, load and delete an authenticated current user. It also provides
@@ -80,7 +79,7 @@ goog.require('goog.Promise');
  *     manager to use. If none is provided, the default global instance is used.
  * @constructor @struct @final
  */
-fireauth.storage.UserManager = function(appId, opt_manager) {
+fireauth.storage.UserManager = function (appId, opt_manager) {
   /** @const @private{string} appId The Auth state's application ID. */
   this.appId_ = appId;
   /**
@@ -106,12 +105,13 @@ fireauth.storage.UserManager = function(appId, opt_manager) {
   // This is needed to queue processing of this first before any getCurrentUser
   // is called from external listeners.
   this.manager_.addListener(
-      fireauth.storage.UserManager.getAuthUserKey_(
-          fireauth.authStorage.Persistence.LOCAL),
-      this.appId_,
-      goog.bind(this.switchToLocalOnExternalEvent_, this));
+    fireauth.storage.UserManager.getAuthUserKey_(
+      fireauth.authStorage.Persistence.LOCAL
+    ),
+    this.appId_,
+    goog.bind(this.switchToLocalOnExternalEvent_, this)
+  );
 };
-
 
 /**
  * Switches to local storage on external storage event. This will happen when
@@ -121,37 +121,42 @@ fireauth.storage.UserManager = function(appId, opt_manager) {
  * @private
  */
 fireauth.storage.UserManager.prototype.switchToLocalOnExternalEvent_ =
-    function() {
-  var self = this;
-  var localKey = fireauth.storage.UserManager.getAuthUserKey_(
-      fireauth.authStorage.Persistence.LOCAL);
-  // Wait for any pending operation to finish first.
-  // Block next read/write operation until persistence is transitioned to
-  // local.
-  this.waitForReady_(function() {
-    return goog.Promise.resolve().then(function() {
-      // If current persistence is not already local.
-      if (self.currentAuthUserKey_ &&
-          self.currentAuthUserKey_.persistent !=
-          fireauth.authStorage.Persistence.LOCAL) {
-        // Check if new current user is available in local storage.
-        return self.manager_.get(localKey, self.appId_);
-      }
-      return null;
-    }).then(function(response) {
-      // Sign in on an external tab.
-      if (response) {
-        // Remove any existing non-local user.
-        return self.removeAllExcept_(
-            fireauth.authStorage.Persistence.LOCAL).then(function() {
-              // Set persistence to local.
-              self.currentAuthUserKey_ = localKey;
-            });
-      }
+  function () {
+    var self = this;
+    var localKey = fireauth.storage.UserManager.getAuthUserKey_(
+      fireauth.authStorage.Persistence.LOCAL
+    );
+    // Wait for any pending operation to finish first.
+    // Block next read/write operation until persistence is transitioned to
+    // local.
+    this.waitForReady_(function () {
+      return goog.Promise.resolve()
+        .then(function () {
+          // If current persistence is not already local.
+          if (
+            self.currentAuthUserKey_ &&
+            self.currentAuthUserKey_.persistent !=
+              fireauth.authStorage.Persistence.LOCAL
+          ) {
+            // Check if new current user is available in local storage.
+            return self.manager_.get(localKey, self.appId_);
+          }
+          return null;
+        })
+        .then(function (response) {
+          // Sign in on an external tab.
+          if (response) {
+            // Remove any existing non-local user.
+            return self
+              .removeAllExcept_(fireauth.authStorage.Persistence.LOCAL)
+              .then(function () {
+                // Set persistence to local.
+                self.currentAuthUserKey_ = localKey;
+              });
+          }
+        });
     });
-  });
-};
-
+  };
 
 /**
  * Removes all states stored in all supported persistence types excluding the
@@ -163,28 +168,35 @@ fireauth.storage.UserManager.prototype.switchToLocalOnExternalEvent_ =
  *     ensure there is always one type of persistence at any time.
  * @private
  */
-fireauth.storage.UserManager.prototype.removeAllExcept_ =
-    function(persistence) {
+fireauth.storage.UserManager.prototype.removeAllExcept_ = function (
+  persistence
+) {
   var promises = [];
   // Queue all promises to remove current user in any other persistence type.
   for (var key in fireauth.authStorage.Persistence) {
     // Skip specified persistence.
     if (fireauth.authStorage.Persistence[key] !== persistence) {
       var storageKey = fireauth.storage.UserManager.getAuthUserKey_(
-          fireauth.authStorage.Persistence[key]);
-      promises.push(this.manager_.remove(
+        fireauth.authStorage.Persistence[key]
+      );
+      promises.push(
+        this.manager_.remove(
           /** @type {!fireauth.authStorage.Key} */ (storageKey),
-          this.appId_));
+          this.appId_
+        )
+      );
     }
   }
   // Clear persistence key (only useful for initial load upon returning from a
   // a redirect sign-in operation).
-  promises.push(this.manager_.remove(
+  promises.push(
+    this.manager_.remove(
       fireauth.storage.UserManager.PERSISTENCE_KEY_,
-      this.appId_));
+      this.appId_
+    )
+  );
   return goog.Promise.all(promises);
 };
-
 
 /**
  * Initializes the current persistence state. This will check the 3 supported
@@ -197,83 +209,94 @@ fireauth.storage.UserManager.prototype.removeAllExcept_ =
  *     is resolved.
  * @private
  */
-fireauth.storage.UserManager.prototype.initialize_ = function() {
+fireauth.storage.UserManager.prototype.initialize_ = function () {
   var self = this;
   // Local key.
   var localKey = fireauth.storage.UserManager.getAuthUserKey_(
-      fireauth.authStorage.Persistence.LOCAL);
+    fireauth.authStorage.Persistence.LOCAL
+  );
   // Session key.
   var sessionKey = fireauth.storage.UserManager.getAuthUserKey_(
-      fireauth.authStorage.Persistence.SESSION);
+    fireauth.authStorage.Persistence.SESSION
+  );
   // In memory key. This is unlikely to contain anything on load.
   var inMemoryKey = fireauth.storage.UserManager.getAuthUserKey_(
-      fireauth.authStorage.Persistence.NONE);
+    fireauth.authStorage.Persistence.NONE
+  );
   // Migrate any old currentUser from localStorage to indexedDB.
   // This keeps any user signed in without the need for reauthentication and
   // minimizes risks of dangling Auth states.
-  return this.manager_.migrateFromLocalStorage(
-      localKey, this.appId_).then(function() {
-    // Check if state is stored in session storage.
-    return self.manager_.get(sessionKey, self.appId_);
-  }).then(function(response) {
-    if (response) {
-      // Session storage is being used.
-      return sessionKey;
-    } else {
-      // Session storage is empty. Check in memory storage.
-      return self.manager_.get(inMemoryKey, self.appId_)
-          .then(function(response) {
+  return this.manager_
+    .migrateFromLocalStorage(localKey, this.appId_)
+    .then(function () {
+      // Check if state is stored in session storage.
+      return self.manager_.get(sessionKey, self.appId_);
+    })
+    .then(function (response) {
+      if (response) {
+        // Session storage is being used.
+        return sessionKey;
+      } else {
+        // Session storage is empty. Check in memory storage.
+        return self.manager_
+          .get(inMemoryKey, self.appId_)
+          .then(function (response) {
             if (response) {
               // In memory storage being used.
               return inMemoryKey;
             } else {
               // Check local storage.
-              return self.manager_.get(localKey, self.appId_)
-                  .then(function(response) {
-                    if (response) {
-                      // Local storage being used.
-                      return localKey;
-                    } else {
-                      // Nothing found in any supported storage.
-                      // Check current user persistence in storage.
-                      return self.manager_.get(
-                          fireauth.storage.UserManager.PERSISTENCE_KEY_,
-                          self.appId_).then(function(persistence) {
-                            if (persistence) {
-                              // Sign in with redirect operation, apply this
-                              // persistence to any current user.
-                              return fireauth.storage.UserManager
-                                  .getAuthUserKey_(persistence);
-                            } else {
-                              // No persistence found, use the default.
-                              return localKey;
-                            }
-                          });
-                    }
-                  });
+              return self.manager_
+                .get(localKey, self.appId_)
+                .then(function (response) {
+                  if (response) {
+                    // Local storage being used.
+                    return localKey;
+                  } else {
+                    // Nothing found in any supported storage.
+                    // Check current user persistence in storage.
+                    return self.manager_
+                      .get(
+                        fireauth.storage.UserManager.PERSISTENCE_KEY_,
+                        self.appId_
+                      )
+                      .then(function (persistence) {
+                        if (persistence) {
+                          // Sign in with redirect operation, apply this
+                          // persistence to any current user.
+                          return fireauth.storage.UserManager.getAuthUserKey_(
+                            persistence
+                          );
+                        } else {
+                          // No persistence found, use the default.
+                          return localKey;
+                        }
+                      });
+                  }
+                });
             }
           });
-    }
-  }).then(function(currentKey) {
-    // Set current key according to the persistence detected.
-    self.currentAuthUserKey_ = currentKey;
-    // Make sure only one state available. Clean up everything else.
-    return self.removeAllExcept_(currentKey.persistent);
-  }).thenCatch(function(error) {
-    // If an error occurs in the process and no current key detected, set to
-    // persistence value to default.
-    if (!self.currentAuthUserKey_) {
-      self.currentAuthUserKey_ = localKey;
-    }
-  });
+      }
+    })
+    .then(function (currentKey) {
+      // Set current key according to the persistence detected.
+      self.currentAuthUserKey_ = currentKey;
+      // Make sure only one state available. Clean up everything else.
+      return self.removeAllExcept_(currentKey.persistent);
+    })
+    .thenCatch(function (error) {
+      // If an error occurs in the process and no current key detected, set to
+      // persistence value to default.
+      if (!self.currentAuthUserKey_) {
+        self.currentAuthUserKey_ = localKey;
+      }
+    });
 };
-
 
 /**
  * @const @private {string} The Auth current user storage identifier name.
  */
 fireauth.storage.UserManager.AUTH_USER_KEY_NAME_ = 'authUser';
-
 
 /**
  * @const @private{!fireauth.authStorage.Key} The Auth user storage persistence
@@ -285,7 +308,6 @@ fireauth.storage.UserManager.PERSISTENCE_KEY_ = {
   persistent: fireauth.authStorage.Persistence.SESSION
 };
 
-
 /**
  * Returns the Auth user key corresponding to the persistence type provided.
  * @param {!fireauth.authStorage.Persistence} persistence The key for the
@@ -294,13 +316,12 @@ fireauth.storage.UserManager.PERSISTENCE_KEY_ = {
  *     identifier.
  * @private
  */
-fireauth.storage.UserManager.getAuthUserKey_ = function(persistence) {
+fireauth.storage.UserManager.getAuthUserKey_ = function (persistence) {
   return {
     name: fireauth.storage.UserManager.AUTH_USER_KEY_NAME_,
     persistent: persistence
   };
 };
-
 
 /**
  * Sets the persistence to the specified type.
@@ -311,43 +332,48 @@ fireauth.storage.UserManager.getAuthUserKey_ = function(persistence) {
  * @return {!goog.Promise} A promise that resolves when persistence change is
  *     applied.
  */
-fireauth.storage.UserManager.prototype.setPersistence = function(persistence) {
+fireauth.storage.UserManager.prototype.setPersistence = function (persistence) {
   var currentUser = null;
   var self = this;
   // Validate the persistence type provided. This will throw a synchronous error
   // if invalid.
   fireauth.authStorage.validatePersistenceArgument(persistence);
   // Wait for turn in queue.
-  return this.waitForReady_(function() {
+  return this.waitForReady_(function () {
     // If persistence hasn't changed, do nothing.
     if (persistence != self.currentAuthUserKey_.persistent) {
       // Persistence changed. Copy from current storage to new one.
-      return self.manager_.get(
-        /** @type {!fireauth.authStorage.Key} */ (self.currentAuthUserKey_),
-        self.appId_).then(function(result) {
-        // Save current user.
-        currentUser = result;
-        // Clear from current storage.
-        return self.removeAllExcept_(persistence);
-      }).then(function() {
-        // Update persistence key to the new one.
-        self.currentAuthUserKey_ =
+      return self.manager_
+        .get(
+          /** @type {!fireauth.authStorage.Key} */ (self.currentAuthUserKey_),
+          self.appId_
+        )
+        .then(function (result) {
+          // Save current user.
+          currentUser = result;
+          // Clear from current storage.
+          return self.removeAllExcept_(persistence);
+        })
+        .then(function () {
+          // Update persistence key to the new one.
+          self.currentAuthUserKey_ =
             fireauth.storage.UserManager.getAuthUserKey_(persistence);
-        // Copy current storage type to the new one.
-        if (currentUser) {
-          return self.manager_.set(
+          // Copy current storage type to the new one.
+          if (currentUser) {
+            return self.manager_.set(
               /** @type {!fireauth.authStorage.Key} */ (
-                  self.currentAuthUserKey_),
+                self.currentAuthUserKey_
+              ),
               currentUser,
-              self.appId_);
-        }
-      });
+              self.appId_
+            );
+          }
+        });
     }
     // No change in persistence type.
     return goog.Promise.resolve();
   });
 };
-
 
 /**
  * Saves the current persistence type so it can be retrieved after a page
@@ -355,49 +381,50 @@ fireauth.storage.UserManager.prototype.setPersistence = function(persistence) {
  * @return {!goog.Promise} Promise that resolve when current persistence is
  *     saved.
  */
-fireauth.storage.UserManager.prototype.savePersistenceForRedirect = function() {
-  var self = this;
-  return this.waitForReady_(function() {
-    // Save persistence to survive redirect.
-    return self.manager_.set(
+fireauth.storage.UserManager.prototype.savePersistenceForRedirect =
+  function () {
+    var self = this;
+    return this.waitForReady_(function () {
+      // Save persistence to survive redirect.
+      return self.manager_.set(
         fireauth.storage.UserManager.PERSISTENCE_KEY_,
         self.currentAuthUserKey_.persistent,
-        self.appId_);
-  });
-};
-
+        self.appId_
+      );
+    });
+  };
 
 /**
  * Stores the current Auth user for the provided application ID.
  * @param {!fireauth.AuthUser} currentUser The app current Auth user to save.
  * @return {!goog.Promise<void>} A promise that resolves on success.
  */
-fireauth.storage.UserManager.prototype.setCurrentUser = function(currentUser) {
+fireauth.storage.UserManager.prototype.setCurrentUser = function (currentUser) {
   var self = this;
   // Wait for any pending persistence change to be resolved.
-  return this.waitForReady_(function() {
+  return this.waitForReady_(function () {
     return self.manager_.set(
-        /** @type {!fireauth.authStorage.Key} */ (self.currentAuthUserKey_),
-        currentUser.toPlainObject(),
-        self.appId_);
+      /** @type {!fireauth.authStorage.Key} */ (self.currentAuthUserKey_),
+      currentUser.toPlainObject(),
+      self.appId_
+    );
   });
 };
-
 
 /**
  * Removes the stored current user for provided app ID.
  * @return {!goog.Promise<void>} A promise that resolves on success.
  */
-fireauth.storage.UserManager.prototype.removeCurrentUser = function() {
+fireauth.storage.UserManager.prototype.removeCurrentUser = function () {
   var self = this;
   // Wait for any pending persistence change to be resolved.
-  return this.waitForReady_(function() {
+  return this.waitForReady_(function () {
     return self.manager_.remove(
-        /** @type {!fireauth.authStorage.Key} */ (self.currentAuthUserKey_),
-        self.appId_);
+      /** @type {!fireauth.authStorage.Key} */ (self.currentAuthUserKey_),
+      self.appId_
+    );
   });
 };
-
 
 /**
  * @param {?string=} authDomain The optional Auth domain to override if
@@ -407,32 +434,37 @@ fireauth.storage.UserManager.prototype.removeCurrentUser = function() {
  * @return {!goog.Promise<?fireauth.AuthUser>} A promise that resolves with
  *     the stored current user for the provided app ID.
  */
-fireauth.storage.UserManager.prototype.getCurrentUser = function(authDomain, emulatorConfig) {
+fireauth.storage.UserManager.prototype.getCurrentUser = function (
+  authDomain,
+  emulatorConfig
+) {
   var self = this;
   // Wait for any pending persistence change to be resolved.
-  return this.waitForReady_(function() {
-    return self.manager_.get(
+  return this.waitForReady_(function () {
+    return self.manager_
+      .get(
         /** @type {!fireauth.authStorage.Key} */ (self.currentAuthUserKey_),
-        self.appId_).then(function(response) {
-          // If potential user saved, override Auth domain if authDomain is
-          // provided.
-          // This is useful in cases where on one page the developer initializes
-          // the Auth instance without authDomain and signs in user using
-          // headless methods. On another page, Auth is initialized with
-          // authDomain for the purpose of linking with a popup. The loaded user
-          // (stored without the authDomain) must have this field updated with
-          // the current authDomain.
-          if (response && authDomain) {
-            response['authDomain'] = authDomain;
-          }
-          if (response && emulatorConfig) {
-            response['emulatorConfig'] = emulatorConfig;
-          }
-          return fireauth.AuthUser.fromPlainObject(response || {});
-        });
+        self.appId_
+      )
+      .then(function (response) {
+        // If potential user saved, override Auth domain if authDomain is
+        // provided.
+        // This is useful in cases where on one page the developer initializes
+        // the Auth instance without authDomain and signs in user using
+        // headless methods. On another page, Auth is initialized with
+        // authDomain for the purpose of linking with a popup. The loaded user
+        // (stored without the authDomain) must have this field updated with
+        // the current authDomain.
+        if (response && authDomain) {
+          response['authDomain'] = authDomain;
+        }
+        if (response && emulatorConfig) {
+          response['emulatorConfig'] = emulatorConfig;
+        }
+        return fireauth.AuthUser.fromPlainObject(response || {});
+      });
   });
 };
-
 
 /**
  * Serializes storage access operations especially since persistence
@@ -445,7 +477,7 @@ fireauth.storage.UserManager.prototype.getCurrentUser = function(authDomain, emu
  * @template T
  * @private
  */
-fireauth.storage.UserManager.prototype.waitForReady_ = function(cb) {
+fireauth.storage.UserManager.prototype.waitForReady_ = function (cb) {
   // Wait for any pending persistence change to be resolved before running
   // storage related operation. Chain to onReady so next call will wait for
   // this operation to resolve.
@@ -455,24 +487,25 @@ fireauth.storage.UserManager.prototype.waitForReady_ = function(cb) {
   return this.onReady_;
 };
 
-
 /**
  * Adds a listener to Auth current user change event for app ID provided.
  * @param {!function()} listener The listener to run on current user change
  *     event.
  */
-fireauth.storage.UserManager.prototype.addCurrentUserChangeListener =
-    function(listener) {
+fireauth.storage.UserManager.prototype.addCurrentUserChangeListener = function (
+  listener
+) {
   // When this is triggered, getCurrentUser is called, that will have to wait
   // for switchToLocalOnExternalEvent_ to resolve which is ahead of it in the
   // queue.
   this.manager_.addListener(
-      fireauth.storage.UserManager.getAuthUserKey_(
-          fireauth.authStorage.Persistence.LOCAL),
-      this.appId_,
-      listener);
+    fireauth.storage.UserManager.getAuthUserKey_(
+      fireauth.authStorage.Persistence.LOCAL
+    ),
+    this.appId_,
+    listener
+  );
 };
-
 
 /**
  * Removes a listener to Auth current user change event for app ID provided.
@@ -480,10 +513,12 @@ fireauth.storage.UserManager.prototype.addCurrentUserChangeListener =
  *     event changes.
  */
 fireauth.storage.UserManager.prototype.removeCurrentUserChangeListener =
-    function(listener) {
-  this.manager_.removeListener(
+  function (listener) {
+    this.manager_.removeListener(
       fireauth.storage.UserManager.getAuthUserKey_(
-          fireauth.authStorage.Persistence.LOCAL),
+        fireauth.authStorage.Persistence.LOCAL
+      ),
       this.appId_,
-      listener);
-};
+      listener
+    );
+  };

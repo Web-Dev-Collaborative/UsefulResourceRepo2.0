@@ -24,10 +24,10 @@ Install Helmet version `3.21.3`, then require it.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
-      assert(packJson.dependencies.helmet === '3.21.3');
+      assert(packJson.dependencies.helmet === "3.21.3");
     },
     (xhr) => {
       throw new Error(xhr.responseText);

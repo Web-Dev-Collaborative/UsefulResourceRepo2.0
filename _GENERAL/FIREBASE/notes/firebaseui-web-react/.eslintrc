@@ -4,9 +4,7 @@
     "google",
     "plugin:react/recommended"
   ],
-  "plugins": [
-    "flowtype"
-  ],
+  "plugins": ["flowtype"],
   "rules": {
     "max-len": [2, 100, 2]
   },

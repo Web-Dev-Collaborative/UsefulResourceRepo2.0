@@ -75,9 +75,11 @@ describe('popup_redirect/CompatPopupRedirectResolver', () => {
 
     beforeEach(() => {
       underlyingResolver = sinon.createStubInstance(FakeResolver);
-      ((compatResolver as unknown) as {
-        underlyingResolver: exp.PopupRedirectResolverInternal;
-      }).underlyingResolver = underlyingResolver;
+      (
+        compatResolver as unknown as {
+          underlyingResolver: exp.PopupRedirectResolverInternal;
+        }
+      ).underlyingResolver = underlyingResolver;
       provider = new exp.GoogleAuthProvider();
     });
 

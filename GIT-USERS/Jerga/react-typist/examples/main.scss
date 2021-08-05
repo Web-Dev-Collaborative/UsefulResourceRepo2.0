@@ -1,6 +1,5 @@
 $bg-color: #333;
-$bl-color: #22BAD9;
-
+$bl-color: #22bad9;
 
 body {
   font-family: monospace;
@@ -11,7 +10,6 @@ body {
 }
 
 .TypistExample {
-
   a {
     color: inherit;
     &:hover {
@@ -42,9 +40,15 @@ body {
       animation-timing-function: linear;
       animation-iteration-count: infinite;
       @keyframes blinker {
-        0% { opacity: 1.0; }
-        50% { opacity: 0.0; }
-        100% { opacity: 1.0; }
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
       }
     }
   }

@@ -21,7 +21,8 @@ import firebase from '@firebase/app-compat';
 import { Compat } from '@firebase/util';
 
 export class PhoneAuthProvider
-  implements compat.PhoneAuthProvider, Compat<exp.PhoneAuthProvider> {
+  implements compat.PhoneAuthProvider, Compat<exp.PhoneAuthProvider>
+{
   providerId = 'phone';
   readonly _delegate: exp.PhoneAuthProvider;
 

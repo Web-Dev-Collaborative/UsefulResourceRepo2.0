@@ -12,9 +12,15 @@
       {/* Seach Inputs Starts */}
       <form className="card p-2">
         <div className="input-group">
-          <input type="text" className="form-control" placeholder="Some title" />
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Some title"
+          />
           <div className="input-group-append">
-            <button type="submit" className="btn btn-secondary">Search</button>
+            <button type="submit" className="btn btn-secondary">
+              Search
+            </button>
           </div>
         </div>
       </form>
@@ -97,18 +103,18 @@
     <div className="col-md-8 order-md-1">
       <h4 className="mb-3">Update Resource</h4>
       <div className="card">
-        <div className="card-header">
-          Resource Name
-        </div>
+        <div className="card-header">Resource Name</div>
         <div className="card-body">
           <blockquote className="blockquote mb-0">
             <p>Resource description...</p>
             <footer className="text-muted mb-2">Type</footer>
           </blockquote>
-          <a href="#" className="btn btn-primary">Edit</a>
+          <a href="#" className="btn btn-primary">
+            Edit
+          </a>
         </div>
       </div>
     </div>
     {/* Detail View Ends */}
   </div>
-</div>
+</div>;

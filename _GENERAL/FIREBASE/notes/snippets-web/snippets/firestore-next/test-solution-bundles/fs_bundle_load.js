@@ -9,13 +9,13 @@ import { loadBundle, namedQuery, getDocsFromCache } from "firebase/firestore";
 async function fetchFromBundle() {
   // Fetch the bundle from Firebase Hosting, if the CDN cache is hit the 'X-Cache'
   // response header will be set to 'HIT'
-  const resp = await fetch('/createBundle');
+  const resp = await fetch("/createBundle");
 
   // Load the bundle contents into the Firestore SDK
   await loadBundle(db, resp.body);
 
   // Query the results from the cache
-  const query = await namedQuery(db, 'latest-stories-query');
+  const query = await namedQuery(db, "latest-stories-query");
   const storiesSnap = await getDocsFromCache(query);
 
   // Use the results

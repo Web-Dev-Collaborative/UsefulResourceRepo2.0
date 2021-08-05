@@ -25,9 +25,7 @@ The `text()` method either sets the text of the selected node, or gets the curre
 Here's an example that selects an unordered list, appends a list item, and adds text:
 
 ```js
-d3.select("ul")
-  .append("li")
-  .text("Very important item");
+d3.select("ul").append("li").text("Very important item");
 ```
 
 D3 allows you to chain several methods together with periods to perform a number of actions in a row.
@@ -41,13 +39,13 @@ Use the `select` method to select the `body` tag in the document. Then `append` 
 The `body` should have one `h1` element.
 
 ```js
-assert($('body').children('h1').length == 1);
+assert($("body").children("h1").length == 1);
 ```
 
 The `h1` element should have the text "Learning D3" in it.
 
 ```js
-assert($('h1').text() == 'Learning D3');
+assert($("h1").text() == "Learning D3");
 ```
 
 Your code should access the `d3` object.
@@ -83,8 +81,6 @@ assert(code.match(/\.text/g));
   <script>
     // Add your code below this line
 
-
-
     // Add your code above this line
   </script>
 </body>
@@ -95,9 +91,7 @@ assert(code.match(/\.text/g));
 ```html
 <body>
   <script>
-    d3.select("body")
-      .append("h1")
-      .text("Learning D3")
+    d3.select("body").append("h1").text("Learning D3");
   </script>
 </body>
 ```

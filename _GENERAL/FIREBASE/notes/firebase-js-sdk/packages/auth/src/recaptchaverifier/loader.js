@@ -15,20 +15,18 @@
  * limitations under the License.
  */
 
- /**
+/**
  * @fileoverview Defines the RecaptchaLoader interface used to load grecaptcha
  * dependencies.
  */
 
 goog.provide('fireauth.RecaptchaLoader');
 
-
 /**
  * Defines a generic interface to load grecaptcha dependencies.
  * @interface
  */
-fireauth.RecaptchaLoader = function() {};
-
+fireauth.RecaptchaLoader = function () {};
 
 /**
  * Loads the grecaptcha client library if it is not loaded and returns a promise
@@ -38,10 +36,7 @@ fireauth.RecaptchaLoader = function() {};
  * @return {!goog.Promise<!fireauth.grecaptcha>} A promise that resolves when
  *     grecaptcha is loaded.
  */
-fireauth.RecaptchaLoader.prototype.loadRecaptchaDeps =
-    function(hl) {};
-
+fireauth.RecaptchaLoader.prototype.loadRecaptchaDeps = function (hl) {};
 
 /** Decrements the reCAPTCHA instance counter. */
-fireauth.RecaptchaLoader.prototype.clearSingleRecaptcha =
-    function() {};
+fireauth.RecaptchaLoader.prototype.clearSingleRecaptcha = function () {};

@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244a8
 title: 使用賦值運算符存儲值
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cEanysE'
+videoUrl: "https://scrimba.com/c/cEanysE"
 forumTopicId: 18310
 dashedName: storing-values-with-the-assignment-operator
 ---
@@ -41,7 +41,7 @@ assert(/var a;/.test(code));
 `a` 的值應該爲 7。
 
 ```js
-assert(typeof a === 'number' && a === 7);
+assert(typeof a === "number" && a === 7);
 ```
 
 # --seed--
@@ -49,7 +49,7 @@ assert(typeof a === 'number' && a === 7);
 ## --before-user-code--
 
 ```js
-if (typeof a != 'undefined') {
+if (typeof a != "undefined") {
   a = undefined;
 }
 ```
@@ -57,7 +57,9 @@ if (typeof a != 'undefined') {
 ## --after-user-code--
 
 ```js
-(function(a){return "a = " + a;})(a);
+(function (a) {
+  return "a = " + a;
+})(a);
 ```
 
 ## --seed-contents--

@@ -6,8 +6,8 @@
 // [START auth_msft_provider_params_modular]
 provider.setCustomParameters({
   // Force re-consent.
-  prompt: 'consent',
+  prompt: "consent",
   // Target specific email with login hint.
-  login_hint: 'user@firstadd.onmicrosoft.com'
+  login_hint: "user@firstadd.onmicrosoft.com",
 });
 // [END auth_msft_provider_params_modular]

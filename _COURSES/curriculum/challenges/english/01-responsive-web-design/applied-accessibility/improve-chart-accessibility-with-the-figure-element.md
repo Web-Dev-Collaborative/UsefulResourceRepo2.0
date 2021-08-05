@@ -2,7 +2,7 @@
 id: 587d778a367417b2b2512aa5
 title: Improve Chart Accessibility with the figure Element
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cGJMqtE'
+videoUrl: "https://scrimba.com/c/cGJMqtE"
 forumTopicId: 301015
 dashedName: improve-chart-accessibility-with-the-figure-element
 ---
@@ -17,8 +17,11 @@ Here's an example - note that the `figcaption` goes inside the `figure` tags and
 
 ```html
 <figure>
-  <img src="roundhouseDestruction.jpeg" alt="Photo of Camper Cat executing a roundhouse kick">
-  <br>
+  <img
+    src="roundhouseDestruction.jpeg"
+    alt="Photo of Camper Cat executing a roundhouse kick"
+  />
+  <br />
   <figcaption>
     Master Camper Cat demonstrates proper form of a roundhouse kick.
   </figcaption>
@@ -34,31 +37,31 @@ Camper Cat is hard at work creating a stacked bar chart showing the amount of ti
 Your code should have one `figure` tag.
 
 ```js
-assert($('figure').length == 1);
+assert($("figure").length == 1);
 ```
 
 Your code should have one `figcaption` tag.
 
 ```js
-assert($('figcaption').length == 1);
+assert($("figcaption").length == 1);
 ```
 
 Your code should not have any `div` tags.
 
 ```js
-assert($('div').length == 0);
+assert($("div").length == 0);
 ```
 
 Your code should not have any `p` tags.
 
 ```js
-assert($('p').length == 0);
+assert($("p").length == 0);
 ```
 
 The `figcaption` should be a child of the `figure` tag.
 
 ```js
-assert($('figure').children('figcaption').length == 1);
+assert($("figure").children("figcaption").length == 1);
 ```
 
 Your `figure` element should have a closing tag.
@@ -88,30 +91,41 @@ assert(
   </header>
   <main>
     <section>
-
       <!-- Only change code below this line -->
       <div>
         <!-- Stacked bar chart will go here -->
-        <br>
-        <p>Breakdown per week of time to spend training in stealth, combat, and weapons.</p>
+        <br />
+        <p>
+          Breakdown per week of time to spend training in stealth, combat, and
+          weapons.
+        </p>
       </div>
       <!-- Only change code above this line -->
-
     </section>
     <section id="stealth">
       <h2>Stealth &amp; Agility Training</h2>
-      <article><h3>Climb foliage quickly using a minimum spanning tree approach</h3></article>
+      <article>
+        <h3>Climb foliage quickly using a minimum spanning tree approach</h3>
+      </article>
       <article><h3>No training is NP-complete without parkour</h3></article>
     </section>
     <section id="combat">
       <h2>Combat Training</h2>
-      <article><h3>Dispatch multiple enemies with multithreaded tactics</h3></article>
-      <article><h3>Goodbye world: 5 proven ways to knock out an opponent</h3></article>
+      <article>
+        <h3>Dispatch multiple enemies with multithreaded tactics</h3>
+      </article>
+      <article>
+        <h3>Goodbye world: 5 proven ways to knock out an opponent</h3>
+      </article>
     </section>
     <section id="weapons">
       <h2>Weapons Training</h2>
-      <article><h3>Swords: the best tool to literally divide and conquer</h3></article>
-      <article><h3>Breadth-first or depth-first in multi-weapon training?</h3></article>
+      <article>
+        <h3>Swords: the best tool to literally divide and conquer</h3>
+      </article>
+      <article>
+        <h3>Breadth-first or depth-first in multi-weapon training?</h3>
+      </article>
     </section>
   </main>
   <footer>&copy; 2018 Camper Cat</footer>
@@ -136,24 +150,37 @@ assert(
     <section>
       <figure>
         <!-- Stacked bar chart will go here -->
-        <br>
-        <figcaption>Breakdown per week of time to spend training in stealth, combat, and weapons.</figcaption>
+        <br />
+        <figcaption>
+          Breakdown per week of time to spend training in stealth, combat, and
+          weapons.
+        </figcaption>
       </figure>
     </section>
     <section id="stealth">
       <h2>Stealth &amp; Agility Training</h2>
-      <article><h3>Climb foliage quickly using a minimum spanning tree approach</h3></article>
+      <article>
+        <h3>Climb foliage quickly using a minimum spanning tree approach</h3>
+      </article>
       <article><h3>No training is NP-complete without parkour</h3></article>
     </section>
     <section id="combat">
       <h2>Combat Training</h2>
-      <article><h3>Dispatch multiple enemies with multithreaded tactics</h3></article>
-      <article><h3>Goodbye world: 5 proven ways to knock out an opponent</h3></article>
+      <article>
+        <h3>Dispatch multiple enemies with multithreaded tactics</h3>
+      </article>
+      <article>
+        <h3>Goodbye world: 5 proven ways to knock out an opponent</h3>
+      </article>
     </section>
     <section id="weapons">
       <h2>Weapons Training</h2>
-      <article><h3>Swords: the best tool to literally divide and conquer</h3></article>
-      <article><h3>Breadth-first or depth-first in multi-weapon training?</h3></article>
+      <article>
+        <h3>Swords: the best tool to literally divide and conquer</h3>
+      </article>
+      <article>
+        <h3>Breadth-first or depth-first in multi-weapon training?</h3>
+      </article>
     </section>
   </main>
   <footer>&copy; 2018 Camper Cat</footer>

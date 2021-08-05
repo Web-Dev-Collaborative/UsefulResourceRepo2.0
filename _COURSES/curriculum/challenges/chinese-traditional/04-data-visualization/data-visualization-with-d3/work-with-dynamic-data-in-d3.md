@@ -15,7 +15,7 @@ dashedName: work-with-dynamic-data-in-d3
 `text()` 方法以字符串或者回調函數作爲參數：
 
 ```js
-selection.text((d) => d)
+selection.text((d) => d);
 ```
 
 上面這個例子中的參數 `d` 指關聯數據集的一個對象。
@@ -31,55 +31,55 @@ selection.text((d) => d)
 第一個 `h2` 的文本爲 `12 USD`。
 
 ```js
-assert($('h2').eq(0).text() == '12 USD');
+assert($("h2").eq(0).text() == "12 USD");
 ```
 
 第二個 `h2` 的文本爲 `31 USD`。
 
 ```js
-assert($('h2').eq(1).text() == '31 USD');
+assert($("h2").eq(1).text() == "31 USD");
 ```
 
 第三個 `h2` 的文本爲 `22 USD`。
 
 ```js
-assert($('h2').eq(2).text() == '22 USD');
+assert($("h2").eq(2).text() == "22 USD");
 ```
 
 第四個 `h2` 的文本爲 `17 USD`。
 
 ```js
-assert($('h2').eq(3).text() == '17 USD');
+assert($("h2").eq(3).text() == "17 USD");
 ```
 
 第五個 `h2` 的文本爲 `25 USD`。
 
 ```js
-assert($('h2').eq(4).text() == '25 USD');
+assert($("h2").eq(4).text() == "25 USD");
 ```
 
 第六個 `h2` 的文本爲 `18 USD`。
 
 ```js
-assert($('h2').eq(5).text() == '18 USD');
+assert($("h2").eq(5).text() == "18 USD");
 ```
 
 第七個 `h2` 的文本爲 `29 USD`。
 
 ```js
-assert($('h2').eq(6).text() == '29 USD');
+assert($("h2").eq(6).text() == "29 USD");
 ```
 
 第八個 `h2` 的文本爲 `14 USD`。
 
 ```js
-assert($('h2').eq(7).text() == '14 USD');
+assert($("h2").eq(7).text() == "14 USD");
 ```
 
 第九個 `h2` 的文本爲 `9 USD`。
 
 ```js
-assert($('h2').eq(8).text() == '9 USD');
+assert($("h2").eq(8).text() == "9 USD");
 ```
 
 # --seed--
@@ -91,7 +91,8 @@ assert($('h2').eq(8).text() == '9 USD');
   <script>
     const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
-    d3.select("body").selectAll("h2")
+    d3.select("body")
+      .selectAll("h2")
       .data(dataset)
       .enter()
       .append("h2")
@@ -99,7 +100,7 @@ assert($('h2').eq(8).text() == '9 USD');
 
       .text("New Title");
 
-      // Add your code above this line
+    // Add your code above this line
   </script>
 </body>
 ```
@@ -111,12 +112,12 @@ assert($('h2').eq(8).text() == '9 USD');
   <script>
     const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
-    d3.select("body").selectAll("h2")
+    d3.select("body")
+      .selectAll("h2")
       .data(dataset)
       .enter()
       .append("h2")
       .text((d) => `${d} USD`);
-
   </script>
 </body>
 ```

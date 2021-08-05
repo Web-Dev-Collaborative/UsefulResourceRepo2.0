@@ -1,30 +1,34 @@
-
-import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
-import { useState } from 'react';
-import { PageTitle } from 'components/shared';
-import { useForm } from 'react-hook-form';
-import { useMutate } from 'restful-react';
-import { useRouter } from 'next/router';
+import { Form, Row, Col, Button, Alert } from "react-bootstrap";
+import { useState } from "react";
+import { PageTitle } from "components/shared";
+import { useForm } from "react-hook-form";
+import { useMutate } from "restful-react";
+import { useRouter } from "next/router";
 
 const Register = () => {
   const [info, setInfo] = useState();
-  const { mutate: registerUser, loading, error } = useMutate({
-    verb: 'POST',
-    path: 'register'
+  const {
+    mutate: registerUser,
+    loading,
+    error,
+  } = useMutate({
+    verb: "POST",
+    path: "register",
   });
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     setInfo();
-    registerUser(data)
-      .then(_ => setInfo('Please visit your email address and active your account'));
-  }
+    registerUser(data).then((_) =>
+      setInfo("Please visit your email address and active your account")
+    );
+  };
 
   return (
     <div className="bwm-form">
       <Row>
         <Col md={{ span: 6, offset: 3 }}>
-          <PageTitle text="Register"/>
+          <PageTitle text="Register" />
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group controlId="formUsername">
               <Form.Label>Username</Form.Label>
@@ -41,7 +45,8 @@ const Register = () => {
                 ref={register}
                 name="email"
                 type="email"
-                placeholder="Enter email" />
+                placeholder="Enter email"
+              />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
               </Form.Text>
@@ -52,31 +57,19 @@ const Register = () => {
                 ref={register}
                 name="password"
                 type="password"
-                placeholder="Password" />
+                placeholder="Password"
+              />
             </Form.Group>
-            { info &&
-              <Alert variant="success">
-                {info}
-              </Alert>
-            }
-            { error &&
-              <Alert variant="danger">
-                {error?.data}
-              </Alert>
-            }
-            <Button
-              disabled={loading}
-              variant="primary"
-              type="submit">
+            {info && <Alert variant="success">{info}</Alert>}
+            {error && <Alert variant="danger">{error?.data}</Alert>}
+            <Button disabled={loading} variant="primary" type="submit">
               Submit
             </Button>
           </Form>
         </Col>
       </Row>
     </div>
-  )
-}
-
-
+  );
+};
 
 export default Register;

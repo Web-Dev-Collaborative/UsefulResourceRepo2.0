@@ -16,13 +16,12 @@
  * @fileoverview Test for different device error handler.
  */
 
-goog.provide('firebaseui.auth.widget.handler.DifferentDeviceErrorTest');
-goog.setTestOnly('firebaseui.auth.widget.handler.DifferentDeviceErrorTest');
+goog.provide("firebaseui.auth.widget.handler.DifferentDeviceErrorTest");
+goog.setTestOnly("firebaseui.auth.widget.handler.DifferentDeviceErrorTest");
 
-goog.require('firebaseui.auth.widget.handler.handleDifferentDeviceError');
+goog.require("firebaseui.auth.widget.handler.handleDifferentDeviceError");
 /** @suppress {extraRequire} Required for accessing test helper utilities. */
-goog.require('firebaseui.auth.widget.handler.testHelper');
-
+goog.require("firebaseui.auth.widget.handler.testHelper");
 
 function testHandleDifferentDeviceError() {
   firebaseui.auth.widget.handler.handleDifferentDeviceError(app, container);

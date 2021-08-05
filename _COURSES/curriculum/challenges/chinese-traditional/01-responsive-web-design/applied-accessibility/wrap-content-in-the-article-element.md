@@ -2,7 +2,7 @@
 id: 587d774e367417b2b2512aa0
 title: 使用 article 元素包裹文章內容
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cPp79S3'
+videoUrl: "https://scrimba.com/c/cPp79S3"
 forumTopicId: 301029
 dashedName: wrap-content-in-the-article-element
 ---
@@ -28,13 +28,13 @@ Camper Cat 打算使用 `article` 標籤來呈現他的博客頁面裏的帖子�
 應有三個 `article` 標籤。
 
 ```js
-assert($('article').length == 3);
+assert($("article").length == 3);
 ```
 
 不應有 `div` 標籤。
 
 ```js
-assert($('div').length == 0);
+assert($("div").length == 0);
 ```
 
 # --seed--
@@ -46,21 +46,35 @@ assert($('div').length == 0);
 <main>
   <div>
     <h2>The Garfield Files: Lasagna as Training Fuel?</h2>
-    <p>The internet is littered with varying opinions on nutritional paradigms, from catnip paleo to hairball cleanses. But let's turn our attention to an often overlooked fitness fuel, and examine the protein-carb-NOM trifecta that is lasagna...</p>
+    <p>
+      The internet is littered with varying opinions on nutritional paradigms,
+      from catnip paleo to hairball cleanses. But let's turn our attention to an
+      often overlooked fitness fuel, and examine the protein-carb-NOM trifecta
+      that is lasagna...
+    </p>
   </div>
 
-  <img src="samuraiSwords.jpeg" alt="">
+  <img src="samuraiSwords.jpeg" alt="" />
 
   <article>
     <h2>Defeating your Foe: the Red Dot is Ours!</h2>
-    <p>Felines the world over have been waging war on the most persistent of foes. This red nemesis combines both cunning stealth and lightning speed. But chin up, fellow fighters, our time for victory may soon be near...</p>
+    <p>
+      Felines the world over have been waging war on the most persistent of
+      foes. This red nemesis combines both cunning stealth and lightning speed.
+      But chin up, fellow fighters, our time for victory may soon be near...
+    </p>
   </article>
 
-  <img src="samuraiSwords.jpeg" alt="">
+  <img src="samuraiSwords.jpeg" alt="" />
 
   <article>
     <h2>Is Chuck Norris a Cat Person?</h2>
-    <p>Chuck Norris is widely regarded as the premier martial artist on the planet, and it's a complete coincidence anyone who disagrees with this fact mysteriously disappears soon after. But the real question is, is he a cat person?...</p>
+    <p>
+      Chuck Norris is widely regarded as the premier martial artist on the
+      planet, and it's a complete coincidence anyone who disagrees with this
+      fact mysteriously disappears soon after. But the real question is, is he a
+      cat person?...
+    </p>
   </article>
 </main>
 ```
@@ -72,21 +86,35 @@ assert($('div').length == 0);
 <main>
   <article>
     <h2>The Garfield Files: Lasagna as Training Fuel?</h2>
-    <p>The internet is littered with varying opinions on nutritional paradigms, from catnip paleo to hairball cleanses. But let's turn our attention to an often overlooked fitness fuel, and examine the protein-carb-NOM trifecta that is lasagna...</p>
+    <p>
+      The internet is littered with varying opinions on nutritional paradigms,
+      from catnip paleo to hairball cleanses. But let's turn our attention to an
+      often overlooked fitness fuel, and examine the protein-carb-NOM trifecta
+      that is lasagna...
+    </p>
   </article>
 
-  <img src="samuraiSwords.jpeg" alt="">
+  <img src="samuraiSwords.jpeg" alt="" />
 
   <article>
     <h2>Defeating your Foe: the Red Dot is Ours!</h2>
-    <p>Felines the world over have been waging war on the most persistent of foes. This red nemesis combines both cunning stealth and lightning speed. But chin up, fellow fighters, our time for victory may soon be near...</p>
+    <p>
+      Felines the world over have been waging war on the most persistent of
+      foes. This red nemesis combines both cunning stealth and lightning speed.
+      But chin up, fellow fighters, our time for victory may soon be near...
+    </p>
   </article>
 
-  <img src="samuraiSwords.jpeg" alt="">
+  <img src="samuraiSwords.jpeg" alt="" />
 
   <article>
     <h2>Is Chuck Norris a Cat Person?</h2>
-    <p>Chuck Norris is widely regarded as the premier martial artist on the planet, and it's a complete coincidence anyone who disagrees with this fact mysteriously disappears soon after. But the real question is, is he a cat person?...</p>
+    <p>
+      Chuck Norris is widely regarded as the premier martial artist on the
+      planet, and it's a complete coincidence anyone who disagrees with this
+      fact mysteriously disappears soon after. But the real question is, is he a
+      cat person?...
+    </p>
   </article>
 </main>
 ```

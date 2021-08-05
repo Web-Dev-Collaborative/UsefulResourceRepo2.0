@@ -2,7 +2,7 @@
 id: bd7123c9c452eddfaeb5bdef
 title: 使用方括號查找字符串中的倒數第 N 個字符
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cw4vkh9'
+videoUrl: "https://scrimba.com/c/cw4vkh9"
 forumTopicId: 18344
 dashedName: use-bracket-notation-to-find-the-nth-to-last-character-in-a-string
 ---
@@ -33,7 +33,7 @@ var thirdToLastLetter = firstName[firstName.length - 3];
 `secondToLastLetterOfLastName` 應該是字母 `c`。
 
 ```js
-assert(secondToLastLetterOfLastName === 'c');
+assert(secondToLastLetterOfLastName === "c");
 ```
 
 您應該使用 `.length` 獲取倒數第二個字母。
@@ -47,7 +47,9 @@ assert(code.match(/\.length/g).length > 0);
 ## --after-user-code--
 
 ```js
-(function(v){return v;})(secondToLastLetterOfLastName);
+(function (v) {
+  return v;
+})(secondToLastLetterOfLastName);
 ```
 
 ## --seed-contents--

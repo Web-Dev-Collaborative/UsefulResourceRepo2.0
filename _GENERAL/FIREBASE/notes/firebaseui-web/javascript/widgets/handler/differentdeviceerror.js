@@ -16,14 +16,13 @@
  * @fileoverview Different device error handler.
  */
 
-goog.provide('firebaseui.auth.widget.handler.handleDifferentDeviceError');
+goog.provide("firebaseui.auth.widget.handler.handleDifferentDeviceError");
 
-goog.require('firebaseui.auth.ui.page.DifferentDeviceError');
-goog.require('firebaseui.auth.widget.HandlerName');
-goog.require('firebaseui.auth.widget.handler');
-goog.require('firebaseui.auth.widget.handler.common');
-goog.requireType('firebaseui.auth.widget.Handler');
-
+goog.require("firebaseui.auth.ui.page.DifferentDeviceError");
+goog.require("firebaseui.auth.widget.HandlerName");
+goog.require("firebaseui.auth.widget.handler");
+goog.require("firebaseui.auth.widget.handler.common");
+goog.requireType("firebaseui.auth.widget.Handler");
 
 /**
  * Handles the different device error.
@@ -31,10 +30,12 @@ goog.requireType('firebaseui.auth.widget.Handler');
  *     configuration is used.
  * @param {!Element} container The container DOM element.
  */
-firebaseui.auth.widget.handler.handleDifferentDeviceError = function(
-    app, container) {
+firebaseui.auth.widget.handler.handleDifferentDeviceError = function (
+  app,
+  container
+) {
   // Render the UI.
-  var component = new firebaseui.auth.ui.page.DifferentDeviceError(function() {
+  var component = new firebaseui.auth.ui.page.DifferentDeviceError(function () {
     component.dispose();
     firebaseui.auth.widget.handler.common.handleSignInStart(app, container);
   });
@@ -43,9 +44,9 @@ firebaseui.auth.widget.handler.handleDifferentDeviceError = function(
   app.setCurrentComponent(component);
 };
 
-
 // Register handler.
 firebaseui.auth.widget.handler.register(
-    firebaseui.auth.widget.HandlerName.DIFFERENT_DEVICE_ERROR,
-    /** @type {!firebaseui.auth.widget.Handler} */
-    (firebaseui.auth.widget.handler.handleDifferentDeviceError));
+  firebaseui.auth.widget.HandlerName.DIFFERENT_DEVICE_ERROR,
+  /** @type {!firebaseui.auth.widget.Handler} */
+  (firebaseui.auth.widget.handler.handleDifferentDeviceError)
+);

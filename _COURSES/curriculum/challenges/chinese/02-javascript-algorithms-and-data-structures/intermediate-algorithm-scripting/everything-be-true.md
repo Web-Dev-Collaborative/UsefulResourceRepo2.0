@@ -24,12 +24,12 @@ JavaScript 中，如果一个值在 Boolean 的上下文中的执行结果为 `t
 assert.strictEqual(
   truthCheck(
     [
-      { user: 'Tinky-Winky', sex: 'male' },
-      { user: 'Dipsy', sex: 'male' },
-      { user: 'Laa-Laa', sex: 'female' },
-      { user: 'Po', sex: 'female' }
+      { user: "Tinky-Winky", sex: "male" },
+      { user: "Dipsy", sex: "male" },
+      { user: "Laa-Laa", sex: "female" },
+      { user: "Po", sex: "female" },
     ],
-    'sex'
+    "sex"
   ),
   true
 );
@@ -41,12 +41,12 @@ assert.strictEqual(
 assert.strictEqual(
   truthCheck(
     [
-      { user: 'Tinky-Winky', sex: 'male' },
-      { user: 'Dipsy' },
-      { user: 'Laa-Laa', sex: 'female' },
-      { user: 'Po', sex: 'female' }
+      { user: "Tinky-Winky", sex: "male" },
+      { user: "Dipsy" },
+      { user: "Laa-Laa", sex: "female" },
+      { user: "Po", sex: "female" },
     ],
-    'sex'
+    "sex"
   ),
   false
 );
@@ -58,12 +58,12 @@ assert.strictEqual(
 assert.strictEqual(
   truthCheck(
     [
-      { user: 'Tinky-Winky', sex: 'male', age: 2 },
-      { user: 'Dipsy', sex: 'male', age: 0 },
-      { user: 'Laa-Laa', sex: 'female', age: 5 },
-      { user: 'Po', sex: 'female', age: 4 }
+      { user: "Tinky-Winky", sex: "male", age: 2 },
+      { user: "Dipsy", sex: "male", age: 0 },
+      { user: "Laa-Laa", sex: "female", age: 5 },
+      { user: "Po", sex: "female", age: 4 },
     ],
-    'age'
+    "age"
   ),
   false
 );
@@ -75,11 +75,11 @@ assert.strictEqual(
 assert.strictEqual(
   truthCheck(
     [
-      { name: 'Pete', onBoat: true },
-      { name: 'Repeat', onBoat: true },
-      { name: 'FastForward', onBoat: null }
+      { name: "Pete", onBoat: true },
+      { name: "Repeat", onBoat: true },
+      { name: "FastForward", onBoat: null },
     ],
-    'onBoat'
+    "onBoat"
   ),
   false
 );
@@ -91,11 +91,11 @@ assert.strictEqual(
 assert.strictEqual(
   truthCheck(
     [
-      { name: 'Pete', onBoat: true },
-      { name: 'Repeat', onBoat: true, alias: 'Repete' },
-      { name: 'FastForward', onBoat: true }
+      { name: "Pete", onBoat: true },
+      { name: "Repeat", onBoat: true, alias: "Repete" },
+      { name: "FastForward", onBoat: true },
     ],
-    'onBoat'
+    "onBoat"
   ),
   true
 );
@@ -104,14 +104,14 @@ assert.strictEqual(
 `truthCheck([{"single": "yes"}], "single")` 应返回 `true`。
 
 ```js
-assert.strictEqual(truthCheck([{ single: 'yes' }], 'single'), true);
+assert.strictEqual(truthCheck([{ single: "yes" }], "single"), true);
 ```
 
 `truthCheck([{"single": ""}, {"single": "double"}], "single")` 应返回 `false`。
 
 ```js
 assert.strictEqual(
-  truthCheck([{ single: '' }, { single: 'double' }], 'single'),
+  truthCheck([{ single: "" }, { single: "double" }], "single"),
   false
 );
 ```
@@ -120,7 +120,7 @@ assert.strictEqual(
 
 ```js
 assert.strictEqual(
-  truthCheck([{ single: 'double' }, { single: undefined }], 'single'),
+  truthCheck([{ single: "double" }, { single: undefined }], "single"),
   false
 );
 ```
@@ -129,7 +129,7 @@ assert.strictEqual(
 
 ```js
 assert.strictEqual(
-  truthCheck([{ single: 'double' }, { single: NaN }], 'single'),
+  truthCheck([{ single: "double" }, { single: NaN }], "single"),
   false
 );
 ```
@@ -143,13 +143,23 @@ function truthCheck(collection, pre) {
   return pre;
 }
 
-truthCheck([{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy", "sex": "male"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex");
+truthCheck(
+  [
+    { user: "Tinky-Winky", sex: "male" },
+    { user: "Dipsy", sex: "male" },
+    { user: "Laa-Laa", sex: "female" },
+    { user: "Po", sex: "female" },
+  ],
+  "sex"
+);
 ```
 
 # --solutions--
 
 ```js
 function truthCheck(collection, pre) {
-  return collection.every(function(e) { return e[pre]; });
+  return collection.every(function (e) {
+    return e[pre];
+  });
 }
 ```

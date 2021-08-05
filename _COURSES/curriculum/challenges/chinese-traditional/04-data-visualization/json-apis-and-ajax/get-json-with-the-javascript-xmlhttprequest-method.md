@@ -10,7 +10,7 @@ dashedName: get-json-with-the-javascript-xmlhttprequest-method
 
 你還可以從外部來源請求數據。 這就是 API 發揮作用的地方。
 
-請記住，API（或叫應用程序編程接口）是計算機用來互相通信的工具。 你將學習如何通過 AJAX技術 從 API 獲得的數據來更新 HTML。
+請記住，API（或叫應用程序編程接口）是計算機用來互相通信的工具。 你將學習如何通過 AJAX 技術 從 API 獲得的數據來更新 HTML。
 
 大部分 web APIs 以 JSON 格式傳輸數據。 JSON 是 JavaScript Object Notation 的簡寫。
 
@@ -24,15 +24,16 @@ JSON 語法與 JavaScript 對象字面符號非常相似。 JSON 具有對象屬
 
 ```js
 const req = new XMLHttpRequest();
-req.open("GET",'/json/cats.json',true);
+req.open("GET", "/json/cats.json", true);
 req.send();
-req.onload = function(){
+req.onload = function () {
   const json = JSON.parse(req.responseText);
-  document.getElementsByClassName('message')[0].innerHTML = JSON.stringify(json);
+  document.getElementsByClassName("message")[0].innerHTML =
+    JSON.stringify(json);
 };
 ```
 
-這裏介紹每行代碼的作用。 JavaScript `XMLHttpRequest` 對象具有許多用於傳輸數據的屬性和方法。 首先，創建一個`XMLHttpRequest`對象實例，並保存在`req`變量裏 。 然後，`open` 方法初始化一個請求——這個例子是從 API 請求數據，因此它是一個 `GET` 請求。 第二個參數 `open` 是你要從中請求數據的 API 的 URL。 第三個參數是一個布爾值， `true` 使其成爲異步請求。 `send` 方法發送請求。 最後，`onload` 事件處理程序解析返回的數據並應用該 `JSON.stringify` 方法將JavaScript對象轉換爲字符串， 然後將此字符串作爲消息文本插入。
+這裏介紹每行代碼的作用。 JavaScript `XMLHttpRequest` 對象具有許多用於傳輸數據的屬性和方法。 首先，創建一個`XMLHttpRequest`對象實例，並保存在`req`變量裏 。 然後，`open` 方法初始化一個請求——這個例子是從 API 請求數據，因此它是一個 `GET` 請求。 第二個參數 `open` 是你要從中請求數據的 API 的 URL。 第三個參數是一個布爾值， `true` 使其成爲異步請求。 `send` 方法發送請求。 最後，`onload` 事件處理程序解析返回的數據並應用該 `JSON.stringify` 方法將 JavaScript 對象轉換爲字符串， 然後將此字符串作爲消息文本插入。
 
 # --instructions--
 
@@ -92,11 +93,9 @@ assert(
 
 ```html
 <script>
-  document.addEventListener('DOMContentLoaded', function(){
-    document.getElementById('getMessage').onclick = function(){
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("getMessage").onclick = function () {
       // Add your code below this line
-
-
       // Add your code above this line
     };
   });
@@ -124,19 +123,15 @@ assert(
     padding: 5px 10px 8px 10px;
   }
   button:hover {
-    background-color: #0F5897;
-    border: 1px solid #0F5897;
+    background-color: #0f5897;
+    border: 1px solid #0f5897;
   }
 </style>
 
 <h1>Cat Photo Finder</h1>
-<p class="message box">
-  The message will go here
-</p>
+<p class="message box">The message will go here</p>
 <p>
-  <button id="getMessage">
-    Get Message
-  </button>
+  <button id="getMessage">Get Message</button>
 </p>
 ```
 
@@ -144,14 +139,15 @@ assert(
 
 ```html
 <script>
-  document.addEventListener('DOMContentLoaded',function(){
-    document.getElementById('getMessage').onclick = function(){
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("getMessage").onclick = function () {
       const req = new XMLHttpRequest();
-      req.open('GET', '/json/cats.json', true);
+      req.open("GET", "/json/cats.json", true);
       req.send();
       req.onload = () => {
         const json = JSON.parse(req.responseText);
-        document.getElementsByClassName('message')[0].innerHTML = JSON.stringify(json);
+        document.getElementsByClassName("message")[0].innerHTML =
+          JSON.stringify(json);
       };
     };
   });
@@ -179,18 +175,14 @@ assert(
     padding: 5px 10px 8px 10px;
   }
   button:hover {
-    background-color: #0F5897;
-    border: 1px solid #0F5897;
+    background-color: #0f5897;
+    border: 1px solid #0f5897;
   }
 </style>
 
 <h1>Cat Photo Finder</h1>
-<p class="message box">
-  The message will go here
-</p>
+<p class="message box">The message will go here</p>
 <p>
-  <button id="getMessage">
-    Get Message
-  </button>
+  <button id="getMessage">Get Message</button>
 </p>
 ```

@@ -11,7 +11,9 @@ dashedName: use--for-a-more-concise-conditional
 The `if/else` statements worked in the last challenge, but there's a more concise way to achieve the same result. Imagine that you are tracking several conditions in a component and you want different elements to render depending on each of these conditions. If you write a lot of `else if` statements to return slightly different UIs, you may repeat code which leaves room for error. Instead, you can use the `&&` logical operator to perform conditional logic in a more concise way. This is possible because you want to check if a condition is `true`, and if it is, return some markup. Here's an example:
 
 ```jsx
-{condition && <p>markup</p>}
+{
+  condition && <p>markup</p>;
+}
 ```
 
 If the `condition` is `true`, the markup will be returned. If the condition is `false`, the operation will immediately return `false` after evaluating the `condition` and return nothing. You can include these statements directly in your JSX and string multiple conditions together by writing `&&` after each one. This allows you to handle more complex conditional logic in your `render()` method without repeating a lot of code.
@@ -28,7 +30,7 @@ Solve the previous example again, so the `h1` only renders if `display` is `true
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
-    return mockedComponent.find('MyComponent').length;
+    return mockedComponent.find("MyComponent").length;
   })()
 );
 ```
@@ -46,10 +48,10 @@ async () => {
   };
   const updated = await state_1();
   assert(
-    updated.find('div').length === 1 &&
-      updated.find('div').children().length === 2 &&
-      updated.find('button').length === 1 &&
-      updated.find('h1').length === 1
+    updated.find("div").length === 1 &&
+      updated.find("div").children().length === 2 &&
+      updated.find("button").length === 1 &&
+      updated.find("h1").length === 1
   );
 };
 ```
@@ -67,10 +69,10 @@ async () => {
   };
   const updated = await state_1();
   assert(
-    updated.find('div').length === 1 &&
-      updated.find('div').children().length === 1 &&
-      updated.find('button').length === 1 &&
-      updated.find('h1').length === 0
+    updated.find("div").length === 1 &&
+      updated.find("div").children().length === 1 &&
+      updated.find("button").length === 1 &&
+      updated.find("h1").length === 0
   );
 };
 ```
@@ -78,7 +80,7 @@ async () => {
 The render method should use the `&&` logical operator to check the condition of `this.state.display`.
 
 ```js
-(getUserInput) => assert(getUserInput('index').includes('&&'));
+(getUserInput) => assert(getUserInput("index").includes("&&"));
 ```
 
 # --seed--
@@ -86,7 +88,7 @@ The render method should use the `&&` logical operator to check the condition of
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyComponent />, document.getElementById('root'))
+ReactDOM.render(<MyComponent />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -96,25 +98,25 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      display: true
-    }
+      display: true,
+    };
     this.toggleDisplay = this.toggleDisplay.bind(this);
   }
   toggleDisplay() {
-    this.setState(state => ({
-      display: !state.display
+    this.setState((state) => ({
+      display: !state.display,
     }));
   }
   render() {
     // Change code below this line
     return (
-       <div>
-         <button onClick={this.toggleDisplay}>Toggle Display</button>
-         <h1>Displayed!</h1>
-       </div>
+      <div>
+        <button onClick={this.toggleDisplay}>Toggle Display</button>
+        <h1>Displayed!</h1>
+      </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -124,23 +126,23 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      display: true
-    }
- this.toggleDisplay = this.toggleDisplay.bind(this);
+      display: true,
+    };
+    this.toggleDisplay = this.toggleDisplay.bind(this);
   }
   toggleDisplay() {
-    this.setState(state => ({
-      display: !state.display
+    this.setState((state) => ({
+      display: !state.display,
     }));
   }
   render() {
     // Change code below this line
     return (
-       <div>
-         <button onClick={this.toggleDisplay}>Toggle Display</button>
-         {this.state.display && <h1>Displayed!</h1>}
-       </div>
+      <div>
+        <button onClick={this.toggleDisplay}>Toggle Display</button>
+        {this.state.display && <h1>Displayed!</h1>}
+      </div>
     );
   }
-};
+}
 ```

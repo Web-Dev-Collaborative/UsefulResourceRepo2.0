@@ -12,7 +12,7 @@ dashedName: render-a-class-component-to-the-dom
 
 複習一下語法： `ReactDOM.render(componentToRender, targetNode)`。 第一個參數是要渲染的 React 組件。 第二個參數是要在其中渲染該組件的 DOM 節點。
 
-傳遞到`ReactDOM.render()` 的React 組件與 JSX 元素略有不同。 對於 JSX 元素，傳入的是要渲染的元素的名稱。 但是，對於 React 組件，需要使用與渲染嵌套組件相同的語法，例如`ReactDOM.render(<ComponentToRender />, targetNode)`。 此語法用於 ES6 class 組件和函數組件都可以。
+傳遞到`ReactDOM.render()` 的 React 組件與 JSX 元素略有不同。 對於 JSX 元素，傳入的是要渲染的元素的名稱。 但是，對於 React 組件，需要使用與渲染嵌套組件相同的語法，例如`ReactDOM.render(<ComponentToRender />, targetNode)`。 此語法用於 ES6 class 組件和函數組件都可以。
 
 # --instructions--
 
@@ -26,7 +26,7 @@ dashedName: render-a-class-component-to-the-dom
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(TypesOfFood));
-    return mockedComponent.children().type() === 'div';
+    return mockedComponent.children().type() === "div";
   })()
 );
 ```
@@ -37,7 +37,7 @@ assert(
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(TypesOfFood));
-    return mockedComponent.children().childAt(1).name() === 'Fruits';
+    return mockedComponent.children().childAt(1).name() === "Fruits";
   })()
 );
 ```
@@ -48,7 +48,7 @@ assert(
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(TypesOfFood));
-    return mockedComponent.children().childAt(2).name() === 'Vegetables';
+    return mockedComponent.children().childAt(2).name() === "Vegetables";
   })()
 );
 ```
@@ -58,14 +58,14 @@ assert(
 ```js
 assert(
   (function () {
-    const html = document.getElementById('challenge-node').childNodes[0]
-      .innerHTML;
+    const html =
+      document.getElementById("challenge-node").childNodes[0].innerHTML;
     return (
       html.includes(
-        '<div><h2>Fruits:</h2><h4>Non-Citrus:</h4><ul><li>Apples</li><li>Blueberries</li><li>Strawberries</li><li>Bananas</li></ul><h4>Citrus:</h4><ul><li>Lemon</li><li>Lime</li><li>Orange</li><li>Grapefruit</li></ul></div>'
+        "<div><h2>Fruits:</h2><h4>Non-Citrus:</h4><ul><li>Apples</li><li>Blueberries</li><li>Strawberries</li><li>Bananas</li></ul><h4>Citrus:</h4><ul><li>Lemon</li><li>Lime</li><li>Orange</li><li>Grapefruit</li></ul></div>"
       ) &&
       html.includes(
-        '<div><h2>Vegetables:</h2><ul><li>Brussel Sprouts</li><li>Broccoli</li><li>Squash</li></ul></div>'
+        "<div><h2>Vegetables:</h2><ul><li>Brussel Sprouts</li><li>Broccoli</li><li>Squash</li></ul></div>"
       )
     );
   })()
@@ -82,19 +82,19 @@ const Fruits = () => {
     <div>
       <h2>Fruits:</h2>
       <h4>Non-Citrus:</h4>
-        <ul>
-          <li>Apples</li>
-          <li>Blueberries</li>
-          <li>Strawberries</li>
-          <li>Bananas</li>
-        </ul>
+      <ul>
+        <li>Apples</li>
+        <li>Blueberries</li>
+        <li>Strawberries</li>
+        <li>Bananas</li>
+      </ul>
       <h4>Citrus:</h4>
-        <ul>
-          <li>Lemon</li>
-          <li>Lime</li>
-          <li>Orange</li>
-          <li>Grapefruit</li>
-        </ul>
+      <ul>
+        <li>Lemon</li>
+        <li>Lime</li>
+        <li>Orange</li>
+        <li>Grapefruit</li>
+      </ul>
     </div>
   );
 };
@@ -129,7 +129,7 @@ class TypesOfFood extends React.Component {
       </div>
     );
   }
-};
+}
 
 // Change code below this line
 ```
@@ -146,14 +146,14 @@ class TypesOfFood extends React.Component {
       <div>
         <h1>Types of Food:</h1>
         {/* Change code below this line */}
-          <Fruits />
-           <Vegetables />
-         {/* Change code above this line */}
+        <Fruits />
+        <Vegetables />
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 
 // Change code below this line
-ReactDOM.render(<TypesOfFood />, document.getElementById('challenge-node'));
+ReactDOM.render(<TypesOfFood />, document.getElementById("challenge-node"));
 ```

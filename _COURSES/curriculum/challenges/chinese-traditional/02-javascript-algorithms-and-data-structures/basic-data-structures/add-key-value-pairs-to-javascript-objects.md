@@ -12,30 +12,30 @@ dashedName: add-key-value-pairs-to-javascript-objects
 
 ```js
 const tekkenCharacter = {
-  player: 'Hwoarang',
-  fightingStyle: 'Tae Kwon Doe',
-  human: true
+  player: "Hwoarang",
+  fightingStyle: "Tae Kwon Doe",
+  human: true,
 };
 ```
 
 上面的代碼定義了一個叫做 `tekkenCharacter` 的“鐵拳”遊戲人物對象。 它有三個屬性，每個屬性都對應一個特定的值。 如果我們想爲它再添加一個叫做 `origin` 的屬性，可以這樣寫：
 
 ```js
-tekkenCharacter.origin = 'South Korea';
+tekkenCharacter.origin = "South Korea";
 ```
 
 上面的代碼中，我們使用了點號表示法。 如果我們現在輸出 `tekkenCharacter` 對象，便可以看到它具有 `origin` 屬性。 接下來，因爲這個人物在遊戲中有着與衆不同的橘色頭髮， 我們可以通過方括號表示法來爲它添加這個屬性，像這樣：
 
 ```js
-tekkenCharacter['hair color'] = 'dyed orange';
+tekkenCharacter["hair color"] = "dyed orange";
 ```
 
 如果要設置的屬性中存在空格，或者要設置的屬性是一個變量，那我們必須使用方括號表示法（bracket notation）來爲對象添加屬性。 在上面的代碼中，我們把屬性（hair color）放到引號裏，以此來表示整個字符串都是需要設置的屬性。 如果我們不加上引號，那麼中括號裏的內容會被當作一個變量來解析，這個變量對應的值就會作爲要設置的屬性， 請看這段代碼：
 
 ```js
-const eyes = 'eye color';
+const eyes = "eye color";
 
-tekkenCharacter[eyes] = 'brown';
+tekkenCharacter[eyes] = "brown";
 ```
 
 執行以上所有示例代碼後，對象會變成這樣：
@@ -60,7 +60,7 @@ tekkenCharacter[eyes] = 'brown';
 `foods` 應爲一個對象。
 
 ```js
-assert(typeof foods === 'object');
+assert(typeof foods === "object");
 ```
 
 `foods` 應有一個值爲 `13` 的 `bananas` 屬性。
@@ -99,7 +99,7 @@ assert(
 let foods = {
   apples: 25,
   oranges: 32,
-  plums: 28
+  plums: 28,
 };
 
 // Only change code below this line
@@ -115,10 +115,10 @@ console.log(foods);
 let foods = {
   apples: 25,
   oranges: 32,
-  plums: 28
+  plums: 28,
 };
 
-foods['bananas'] = 13;
-foods['grapes']  = 35;
-foods['strawberries'] = 27;
+foods["bananas"] = 13;
+foods["grapes"] = 35;
+foods["strawberries"] = 27;
 ```

@@ -8,13 +8,20 @@
  * Delete a collection, in batches of batchSize. Note that this does
  * not recursively delete subcollections of documents in the collection
  */
-import { collection, query, orderBy, limit, getDocs, writeBatch } from "firebase/firestore"; 
+import {
+  collection,
+  query,
+  orderBy,
+  limit,
+  getDocs,
+  writeBatch,
+} from "firebase/firestore";
 
 function deleteCollection(db, collectionRef, batchSize) {
-  const q = query(collectionRef, orderBy('__name__'), limit(batchSize));
+  const q = query(collectionRef, orderBy("__name__"), limit(batchSize));
 
   return new Promise((resolve) => {
-      deleteQueryBatch(db, q, batchSize, resolve);
+    deleteQueryBatch(db, q, batchSize, resolve);
   });
 }
 
@@ -42,7 +49,7 @@ async function deleteQueryBatch(db, query, batchSize, resolve) {
   // Recurse on the next process tick, to avoid
   // exploding the stack.
   setTimeout(() => {
-      deleteQueryBatch(db, query, batchSize, resolve);
+    deleteQueryBatch(db, query, batchSize, resolve);
   }, 0);
 }
 // [END delete_collection_modular]

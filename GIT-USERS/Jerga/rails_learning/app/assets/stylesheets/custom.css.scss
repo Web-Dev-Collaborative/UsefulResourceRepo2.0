@@ -1,5 +1,4 @@
 .user-name {
-
   padding: 0 !important ;
 
   padding-left: 5px;
@@ -9,94 +8,71 @@
   text-align: center;
 
   a {
+    color: black !important;
 
-  color: black !important;
+    margin: 0 !important;
 
-  margin: 0 !important;
-
-  padding: 5px!important;
-
+    padding: 5px !important;
   }
 
-  a:hover, a:focus {
-
-  color: #000 !important;
-
+  a:hover,
+  a:focus {
+    color: #000 !important;
   }
+}
 
-  }
-
-  .logout {
-
+.logout {
   padding-left: 0;
+}
 
-  }
-
-  .nav.navbar-right {
-
+.nav.navbar-right {
   padding-bottom: 10px;
 
   padding-top: 5px;
+}
 
-  }
-
-  .nav.navbar-nav {
-
+.nav.navbar-nav {
   .navbar-link {
+    border-radius: 5px;
 
-  border-radius: 5px;
+    color: #fff;
 
-  color: #fff;
+    margin-top: 15px;
 
-  margin-top: 15px;
-
-  padding: 8px;
-
+    padding: 8px;
   }
 
-  .navbar-link:focus, .navbar-link:hover {
+  .navbar-link:focus,
+  .navbar-link:hover {
+    background: #3071a9;
 
-  background: #3071a9;
-
-  color: #fff;
-
+    color: #fff;
   }
 
   li a {
-
-  margin-right: 5px;
-
+    margin-right: 5px;
   }
+}
 
-  }
-
-  .nav.navbar-right li {
-
+.nav.navbar-right li {
   .btn {
+    color: #fff !important;
 
-  color: #fff !important;
-
-  margin-top: 5%;
-
+    margin-top: 5%;
   }
 
-  .btn-danger:hover, .btn-danger:focus {
-
-  background-color: darken(#d9534f,20%) !important;
-
+  .btn-danger:hover,
+  .btn-danger:focus {
+    background-color: darken(#d9534f, 20%) !important;
   }
 
-  .btn-primary:hover, .btn-primary:focus {
-
-  background-color: darken(#428bca,20%) !important;
-
+  .btn-primary:hover,
+  .btn-primary:focus {
+    background-color: darken(#428bca, 20%) !important;
   }
+}
 
-  }
-
-  .btn-primary:visited, .btn-danger:visited {
-
+.btn-primary:visited,
+.btn-danger:visited {
   color: #fff;
-
-  }
-
+}

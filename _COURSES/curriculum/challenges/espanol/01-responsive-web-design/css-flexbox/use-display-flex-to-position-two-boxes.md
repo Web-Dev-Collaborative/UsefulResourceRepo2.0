@@ -1,8 +1,8 @@
 ---
 id: 587d78ab367417b2b2512af0
-title: 'Utiliza display: flex para posicionar dos cajas'
+title: "Utiliza display: flex para posicionar dos cajas"
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cgz3QS7'
+videoUrl: "https://scrimba.com/p/pVaDAv/cgz3QS7"
 forumTopicId: 301105
 dashedName: use-display-flex-to-position-two-boxes
 ---
@@ -22,7 +22,7 @@ Agrega la propiedad CSS `display` a `#box-container` y establece su valor como `
 `#box-container` debería tener la propiedad `display` establecida en un valor de `flex`.
 
 ```js
-assert($('#box-container').css('display') == 'flex');
+assert($("#box-container").css("display") == "flex");
 ```
 
 # --seed--
@@ -33,7 +33,6 @@ assert($('#box-container').css('display') == 'flex');
 <style>
   #box-container {
     height: 500px;
-
   }
 
   #box-1 {

@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244cb
 title: 操作复杂对象
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c9yNMfR'
+videoUrl: "https://scrimba.com/c/c9yNMfR"
 forumTopicId: 18208
 dashedName: manipulating-complex-objects
 ---
@@ -16,16 +16,12 @@ dashedName: manipulating-complex-objects
 ```js
 var ourMusic = [
   {
-    "artist": "Daft Punk",
-    "title": "Homework",
-    "release_year": 1997,
-    "formats": [ 
-      "CD", 
-      "Cassette", 
-      "LP"
-    ],
-    "gold": true
-  }
+    artist: "Daft Punk",
+    title: "Homework",
+    release_year: 1997,
+    formats: ["CD", "Cassette", "LP"],
+    gold: true,
+  },
 ];
 ```
 
@@ -36,11 +32,7 @@ var ourMusic = [
   "artist": "Daft Punk",
   "title": "Homework",
   "release_year": 1997,
-  "formats": [ 
-    "CD",
-    "Cassette",
-    "LP"
-  ],
+  "formats": ["CD", "Cassette", "LP"],
   "gold": true
 }
 ```
@@ -59,7 +51,7 @@ var ourMusic = [
 assert(Array.isArray(myMusic));
 ```
 
-`myMusic`应该有至少2个元素。
+`myMusic`应该有至少 2 个元素。
 
 ```js
 assert(myMusic.length > 1);
@@ -68,60 +60,64 @@ assert(myMusic.length > 1);
 `myMusic`元素数组中应该是物体
 
 ```js
-myMusic.forEach(object => {assert.typeOf(object, 'object')})
+myMusic.forEach((object) => {
+  assert.typeOf(object, "object");
+});
 ```
 
 `myMusic` 中的对象应该至少有 4 个属性。
 
 ```js
-myMusic.forEach(object => {assert(Object.keys(object).length > 3); });
+myMusic.forEach((object) => {
+  assert(Object.keys(object).length > 3);
+});
 ```
 
 `myMusic` 中的对象应该包含一个类型为字符串的属性 `artist`。
 
 ```js
-myMusic.forEach(object => {
-  assert.containsAllKeys(object, ['artist']);
-  assert.typeOf(object.artist, 'string')
-})
+myMusic.forEach((object) => {
+  assert.containsAllKeys(object, ["artist"]);
+  assert.typeOf(object.artist, "string");
+});
 ```
 
 `myMusic` 中的对象应该包含一个类型为字符串的属性 `title`。
 
 ```js
-myMusic.forEach(object => {
-  assert.containsAllKeys(object, ['title']);
-  assert.typeOf(object.title, 'string')
-})
+myMusic.forEach((object) => {
+  assert.containsAllKeys(object, ["title"]);
+  assert.typeOf(object.title, "string");
+});
 ```
 
 `myMusic` 中的对象应该包含一个类型为数字的属性 `release_year`。
 
 ```js
-myMusic.forEach(object => {
-  assert.containsAllKeys(object, ['release_year']);
-  assert.typeOf(object.release_year, 'number')
-})
+myMusic.forEach((object) => {
+  assert.containsAllKeys(object, ["release_year"]);
+  assert.typeOf(object.release_year, "number");
+});
 ```
 
 `myMusic` 中的对象应该包含一个类型为数组的 `formats` 属性。
 
 ```js
-myMusic.forEach(object => {
-  assert.containsAllKeys(object, ['formats']);
-  assert.typeOf(object.formats, 'array')
-})
+myMusic.forEach((object) => {
+  assert.containsAllKeys(object, ["formats"]);
+  assert.typeOf(object.formats, "array");
+});
 ```
 
 `formats`应该是一个至少包含两个字符串元素的数组
 
 ```js
-myMusic.forEach(object => {
-  object.formats.forEach(format => {
-    assert.typeOf(format, 'string')
+myMusic.forEach((object) => {
+  object.formats.forEach((format) => {
+    assert.typeOf(format, "string");
   });
-  assert.isAtLeast(object.formats.length, 2)
-})
+  assert.isAtLeast(object.formats.length, 2);
+});
 ```
 
 # --seed--
@@ -129,7 +125,12 @@ myMusic.forEach(object => {
 ## --after-user-code--
 
 ```js
-(function(x){ if (Array.isArray(x)) { return JSON.stringify(x); } return "myMusic is not an array"})(myMusic);
+(function (x) {
+  if (Array.isArray(x)) {
+    return JSON.stringify(x);
+  }
+  return "myMusic is not an array";
+})(myMusic);
 ```
 
 ## --seed-contents--
@@ -137,16 +138,12 @@ myMusic.forEach(object => {
 ```js
 var myMusic = [
   {
-    "artist": "Billy Joel",
-    "title": "Piano Man",
-    "release_year": 1973,
-    "formats": [
-      "CD",
-      "8T",
-      "LP"
-    ],
-    "gold": true
-  }
+    artist: "Billy Joel",
+    title: "Piano Man",
+    release_year: 1973,
+    formats: ["CD", "8T", "LP"],
+    gold: true,
+  },
 ];
 ```
 
@@ -155,25 +152,17 @@ var myMusic = [
 ```js
 var myMusic = [
   {
-    "artist": "Billy Joel",
-    "title": "Piano Man",
-    "release_year": 1973,
-    "formats": [
-      "CS",
-      "8T",
-      "LP" ],
-    "gold": true
+    artist: "Billy Joel",
+    title: "Piano Man",
+    release_year: 1973,
+    formats: ["CS", "8T", "LP"],
+    gold: true,
   },
   {
-    "artist": "ABBA",
-    "title": "Ring Ring",
-    "release_year": 1973,
-    "formats": [
-      "CS",
-      "8T",
-      "LP",
-    "CD",
-  ]
-  }
+    artist: "ABBA",
+    title: "Ring Ring",
+    release_year: 1973,
+    formats: ["CS", "8T", "LP", "CD"],
+  },
 ];
 ```

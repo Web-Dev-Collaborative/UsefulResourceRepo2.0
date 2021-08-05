@@ -8,7 +8,7 @@ dashedName: use-the-delete-keyword-to-remove-object-properties
 
 # --description--
 
-現在我們已經學習了什麼是對象以及對象的基本特性和用途。 總之，對象是以鍵值對的形式，靈活、直觀地存儲結構化數據的一種方式，***而且***，通過對象的屬性查找屬性值是速度很快的操作。 在本章餘下的挑戰中，我們來了解一下對象的幾種常用操作，這樣你能更好地在代碼中使用這個十分有用的數據結構：對象。
+現在我們已經學習了什麼是對象以及對象的基本特性和用途。 總之，對象是以鍵值對的形式，靈活、直觀地存儲結構化數據的一種方式，**_而且_**，通過對象的屬性查找屬性值是速度很快的操作。 在本章餘下的挑戰中，我們來了解一下對象的幾種常用操作，這樣你能更好地在代碼中使用這個十分有用的數據結構：對象。
 
 在之前的挑戰中，我們已經試過添加和修改對象中的鍵值對。 現在我們來看看如何從一個對象中*移除*一個鍵值對。
 
@@ -28,9 +28,9 @@ delete foods.apples;
 
 ```js
 assert(
-  !foods.hasOwnProperty('oranges') &&
-    !foods.hasOwnProperty('plums') &&
-    !foods.hasOwnProperty('strawberries') &&
+  !foods.hasOwnProperty("oranges") &&
+    !foods.hasOwnProperty("plums") &&
+    !foods.hasOwnProperty("strawberries") &&
     Object.keys(foods).length === 3
 );
 ```
@@ -56,7 +56,7 @@ let foods = {
   plums: 28,
   bananas: 13,
   grapes: 35,
-  strawberries: 27
+  strawberries: 27,
 };
 
 // Only change code below this line
@@ -75,7 +75,7 @@ let foods = {
   plums: 28,
   bananas: 13,
   grapes: 35,
-  strawberries: 27
+  strawberries: 27,
 };
 
 delete foods.oranges;

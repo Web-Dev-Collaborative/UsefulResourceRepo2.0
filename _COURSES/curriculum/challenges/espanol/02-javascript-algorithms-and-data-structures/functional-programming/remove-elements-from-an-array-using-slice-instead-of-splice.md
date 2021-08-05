@@ -44,7 +44,7 @@ El arreglo `inputCities` no debe ser cambiado.
 ```js
 assert(
   JSON.stringify(inputCities) ===
-    JSON.stringify(['Chicago', 'Delhi', 'Islamabad', 'London', 'Berlin'])
+    JSON.stringify(["Chicago", "Delhi", "Islamabad", "London", "Berlin"])
 );
 ```
 
@@ -53,8 +53,8 @@ assert(
 ```js
 assert(
   JSON.stringify(
-    nonMutatingSplice(['Chicago', 'Delhi', 'Islamabad', 'London', 'Berlin'])
-  ) === JSON.stringify(['Chicago', 'Delhi', 'Islamabad'])
+    nonMutatingSplice(["Chicago", "Delhi", "Islamabad", "London", "Berlin"])
+  ) === JSON.stringify(["Chicago", "Delhi", "Islamabad"])
 );
 ```
 
@@ -78,7 +78,7 @@ nonMutatingSplice(inputCities);
 ```js
 function nonMutatingSplice(cities) {
   // Only change code below this line
-  return cities.slice(0,3);
+  return cities.slice(0, 3);
   // Only change code above this line
 }
 var inputCities = ["Chicago", "Delhi", "Islamabad", "London", "Berlin"];

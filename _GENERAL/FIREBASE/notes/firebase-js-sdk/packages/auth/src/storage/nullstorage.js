@@ -20,31 +20,27 @@ goog.provide('fireauth.storage.NullStorage');
 goog.require('fireauth.storage.Storage');
 goog.require('goog.Promise');
 
-
-
 /**
  * NullStorage provides an implementation of Storage that does always returns
  * null. This can be used if a type of storage is unsupported on a platform.
  * @constructor
  * @implements {fireauth.storage.Storage}
  */
-fireauth.storage.NullStorage = function() {
+fireauth.storage.NullStorage = function () {
   /** @private {!Object} The object where we store values. */
   this.storage_ = {};
   /** @public {string} The storage type identifier. */
   this.type = fireauth.storage.Storage.Type.NULL_STORAGE;
 };
 
-
 /**
  * @param {string} key
  * @return {!goog.Promise<*>}
  * @override
  */
-fireauth.storage.NullStorage.prototype.get = function(key) {
+fireauth.storage.NullStorage.prototype.get = function (key) {
   return goog.Promise.resolve(/** @type {*} */ (null));
 };
-
 
 /**
  * @param {string} key
@@ -52,34 +48,33 @@ fireauth.storage.NullStorage.prototype.get = function(key) {
  * @return {!goog.Promise<void>}
  * @override
  */
-fireauth.storage.NullStorage.prototype.set = function(key, value) {
+fireauth.storage.NullStorage.prototype.set = function (key, value) {
   return goog.Promise.resolve();
 };
-
 
 /**
  * @param {string} key
  * @return {!goog.Promise<void>}
  * @override
  */
-fireauth.storage.NullStorage.prototype.remove = function(key) {
+fireauth.storage.NullStorage.prototype.remove = function (key) {
   return goog.Promise.resolve();
 };
 
+/**
+ * @param {function(!goog.events.BrowserEvent)} listener The storage event
+ *     listener.
+ * @override
+ */
+fireauth.storage.NullStorage.prototype.addStorageListener = function (
+  listener
+) {};
 
 /**
  * @param {function(!goog.events.BrowserEvent)} listener The storage event
  *     listener.
  * @override
  */
-fireauth.storage.NullStorage.prototype.addStorageListener = function(listener) {
-};
-
-
-/**
- * @param {function(!goog.events.BrowserEvent)} listener The storage event
- *     listener.
- * @override
- */
-fireauth.storage.NullStorage.prototype.removeStorageListener = function(
-    listener) {};
+fireauth.storage.NullStorage.prototype.removeStorageListener = function (
+  listener
+) {};

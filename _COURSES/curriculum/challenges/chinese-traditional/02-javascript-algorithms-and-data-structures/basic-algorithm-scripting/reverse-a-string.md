@@ -19,25 +19,25 @@ dashedName: reverse-a-string
 `reverseString("hello")` 應返回一個字符串。
 
 ```js
-assert(typeof reverseString('hello') === 'string');
+assert(typeof reverseString("hello") === "string");
 ```
 
 `reverseString("hello")` 應返回 `olleh`。
 
 ```js
-assert(reverseString('hello') === 'olleh');
+assert(reverseString("hello") === "olleh");
 ```
 
 `reverseString("Howdy")` 應返回 `ydwoH`。
 
 ```js
-assert(reverseString('Howdy') === 'ydwoH');
+assert(reverseString("Howdy") === "ydwoH");
 ```
 
 `reverseString("Greetings from Earth")` 應返回 `htraE morf sgniteerG`。
 
 ```js
-assert(reverseString('Greetings from Earth') === 'htraE morf sgniteerG');
+assert(reverseString("Greetings from Earth") === "htraE morf sgniteerG");
 ```
 
 # --seed--
@@ -56,7 +56,7 @@ reverseString("hello");
 
 ```js
 function reverseString(str) {
-  return str.split('').reverse().join('');
+  return str.split("").reverse().join("");
 }
 
 reverseString("hello");

@@ -14,13 +14,12 @@
 
 /** @fileoverview Defines all configurations used by FirebaseUI handler. */
 
-goog.module('firebaseui.auth.widget.UiHandlerConfig');
+goog.module("firebaseui.auth.widget.UiHandlerConfig");
 goog.module.declareLegacyNamespace();
 
-const AuthConfig = goog.require('firebaseui.auth.Config');
-const log = goog.require('firebaseui.auth.log');
-const util = goog.require('firebaseui.auth.util');
-
+const AuthConfig = goog.require("firebaseui.auth.Config");
+const log = goog.require("firebaseui.auth.log");
+const util = goog.require("firebaseui.auth.util");
 
 /** The UI handler configuration settings. */
 class UiHandlerConfig {
@@ -28,18 +27,20 @@ class UiHandlerConfig {
     /** @const @private {!AuthConfig} The AuthUI config object. */
     this.config_ = new AuthConfig();
     // The Auth domain of the Auth instance.
-    this.config_.define('authDomain');
+    this.config_.define("authDomain");
     // The display mode for tenant selection, default to 'optionFirst'.
     this.config_.define(
-        'displayMode', UiHandlerConfig.DisplayMode.OPTION_FIRST);
+      "displayMode",
+      UiHandlerConfig.DisplayMode.OPTION_FIRST
+    );
     // The UI configuration for each tenant.
-    this.config_.define('tenants');
+    this.config_.define("tenants");
     // The callbacks configuration.
-    this.config_.define('callbacks');
+    this.config_.define("callbacks");
     // The terms of service URL configuration for tenant selection UI.
-    this.config_.define('tosUrl');
+    this.config_.define("tosUrl");
     // The privacy policy URL configuration for tenant selection UI.
-    this.config_.define('privacyPolicyUrl');
+    this.config_.define("privacyPolicyUrl");
     this.setConfig(config);
   }
 
@@ -65,9 +66,9 @@ class UiHandlerConfig {
    * @return {string} The Auth domain.
    */
   getAuthDomain() {
-    const authDomain = this.config_.get('authDomain');
+    const authDomain = this.config_.get("authDomain");
     if (!authDomain) {
-      throw new Error('Invalid project configuration: authDomain is required!');
+      throw new Error("Invalid project configuration: authDomain is required!");
     }
     return /** @type {string} */ (authDomain);
   }
@@ -78,7 +79,7 @@ class UiHandlerConfig {
    * @return {!UiHandlerConfig.DisplayMode} The display mode.
    */
   getDisplayMode() {
-    const displayMode = this.config_.get('displayMode');
+    const displayMode = this.config_.get("displayMode");
     // Make sure the display mode is valid.
     for (let key in UiHandlerConfig.DisplayMode) {
       if (UiHandlerConfig.DisplayMode[key] === displayMode) {
@@ -96,7 +97,7 @@ class UiHandlerConfig {
    * @private
    */
   getCallbacks_() {
-    return /** @type {!Object} */ (this.config_.get('callbacks') || {});
+    return /** @type {!Object} */ (this.config_.get("callbacks") || {});
   }
 
   /**
@@ -107,7 +108,8 @@ class UiHandlerConfig {
    */
   getSignInUiShownCallback() {
     return /** @type {?function(?string)} */ (
-        this.getCallbacks_()['signInUiShown'] || null);
+      this.getCallbacks_()["signInUiShown"] || null
+    );
   }
 
   /**
@@ -118,7 +120,8 @@ class UiHandlerConfig {
    */
   getSelectTenantUiShownCallback() {
     return /** @type {?function()} */ (
-        this.getCallbacks_()['selectTenantUiShown'] || null);
+      this.getCallbacks_()["selectTenantUiShown"] || null
+    );
   }
 
   /**
@@ -129,7 +132,8 @@ class UiHandlerConfig {
    */
   getSelectTenantUiHiddenCallback() {
     return /** @type {?function()} */ (
-        this.getCallbacks_()['selectTenantUiHidden'] || null);
+      this.getCallbacks_()["selectTenantUiHidden"] || null
+    );
   }
 
   /**
@@ -140,7 +144,8 @@ class UiHandlerConfig {
    */
   getBeforeSignInSuccessCallback() {
     return /** @type {?function(!firebase.User)} */ (
-        this.getCallbacks_()['beforeSignInSuccess'] || null);
+      this.getCallbacks_()["beforeSignInSuccess"] || null
+    );
   }
 
   /**
@@ -151,21 +156,22 @@ class UiHandlerConfig {
    *     function.
    */
   getTosUrl() {
-    const tosUrl = this.config_.get('tosUrl') || null;
-    const privacyPolicyUrl = this.config_.get('privacyPolicyUrl') || null;
+    const tosUrl = this.config_.get("tosUrl") || null;
+    const privacyPolicyUrl = this.config_.get("privacyPolicyUrl") || null;
     if (tosUrl && !privacyPolicyUrl) {
       log.warning(
-          'Privacy Policy URL is missing, the link will not be displayed.');
+        "Privacy Policy URL is missing, the link will not be displayed."
+      );
     }
     if (tosUrl && privacyPolicyUrl) {
-      if (typeof tosUrl === 'function') {
+      if (typeof tosUrl === "function") {
         return /** @type {function()} */ (tosUrl);
-      } else if (typeof tosUrl === 'string') {
+      } else if (typeof tosUrl === "string") {
         return () => {
           util.open(
-              /** @type {string} */ (tosUrl),
-              util.isCordovaInAppBrowserInstalled() ?
-              '_system' : '_blank');
+            /** @type {string} */ (tosUrl),
+            util.isCordovaInAppBrowserInstalled() ? "_system" : "_blank"
+          );
         };
       }
     }
@@ -179,21 +185,22 @@ class UiHandlerConfig {
    *     UI. If URL is provided, wraps the URL with a callback function.
    */
   getPrivacyPolicyUrl() {
-    const tosUrl = this.config_.get('tosUrl') || null;
-    const privacyPolicyUrl = this.config_.get('privacyPolicyUrl') || null;
+    const tosUrl = this.config_.get("tosUrl") || null;
+    const privacyPolicyUrl = this.config_.get("privacyPolicyUrl") || null;
     if (privacyPolicyUrl && !tosUrl) {
       log.warning(
-          'Terms of Service URL is missing, the link will not be displayed.');
+        "Terms of Service URL is missing, the link will not be displayed."
+      );
     }
     if (tosUrl && privacyPolicyUrl) {
-      if (typeof privacyPolicyUrl === 'function') {
-          return /** @type {function()} */ (privacyPolicyUrl);
-      } else if (typeof privacyPolicyUrl === 'string') {
+      if (typeof privacyPolicyUrl === "function") {
+        return /** @type {function()} */ (privacyPolicyUrl);
+      } else if (typeof privacyPolicyUrl === "string") {
         return () => {
           util.open(
-              /** @type {string} */ (privacyPolicyUrl),
-              util.isCordovaInAppBrowserInstalled() ?
-              '_system' : '_blank');
+            /** @type {string} */ (privacyPolicyUrl),
+            util.isCordovaInAppBrowserInstalled() ? "_system" : "_blank"
+          );
         };
       }
     }
@@ -205,12 +212,15 @@ class UiHandlerConfig {
    * @param {string} tenantId The tenantId or top-level project config key.
    */
   validateTenantId(tenantId) {
-    const uiConfigs = this.config_.get('tenants');
-    if (!uiConfigs ||
-        (!uiConfigs.hasOwnProperty(tenantId) &&
-         !uiConfigs.hasOwnProperty(
-             UiHandlerConfig.ConfigKeys.DEFAULT_CONFIG_KEY))) {
-      throw new Error('Invalid tenant configuration!');
+    const uiConfigs = this.config_.get("tenants");
+    if (
+      !uiConfigs ||
+      (!uiConfigs.hasOwnProperty(tenantId) &&
+        !uiConfigs.hasOwnProperty(
+          UiHandlerConfig.ConfigKeys.DEFAULT_CONFIG_KEY
+        ))
+    ) {
+      throw new Error("Invalid tenant configuration!");
     }
   }
 
@@ -223,9 +233,11 @@ class UiHandlerConfig {
    */
   getTenantConfig_(tenantId) {
     this.validateTenantId(tenantId);
-    const uiConfigs = this.config_.get('tenants');
-    return uiConfigs[tenantId] ||
-        uiConfigs[UiHandlerConfig.ConfigKeys.DEFAULT_CONFIG_KEY];
+    const uiConfigs = this.config_.get("tenants");
+    return (
+      uiConfigs[tenantId] ||
+      uiConfigs[UiHandlerConfig.ConfigKeys.DEFAULT_CONFIG_KEY]
+    );
   }
 
   /**
@@ -238,45 +250,50 @@ class UiHandlerConfig {
    * @return {!Array<string>} The list of enabled provider IDs.
    */
   getProvidersForTenant(tenantId, email = undefined) {
-    const uiConfigs = this.config_.get('tenants');
+    const uiConfigs = this.config_.get("tenants");
     if (!uiConfigs) {
-      throw new Error('Invalid tenant configuration!');
+      throw new Error("Invalid tenant configuration!");
     }
     const providers = [];
     const tenantConfig =
-        uiConfigs[tenantId] ||
-        uiConfigs[UiHandlerConfig.ConfigKeys.DEFAULT_CONFIG_KEY];
+      uiConfigs[tenantId] ||
+      uiConfigs[UiHandlerConfig.ConfigKeys.DEFAULT_CONFIG_KEY];
     if (!tenantConfig) {
-      log.error(`Invalid tenant configuration: `+
-                `${tenantId} is not configured!`);
+      log.error(
+        `Invalid tenant configuration: ` + `${tenantId} is not configured!`
+      );
       return providers;
     }
-    const signInOptions = tenantConfig['signInOptions'];
+    const signInOptions = tenantConfig["signInOptions"];
     if (!signInOptions) {
       throw new Error(
-          'Invalid tenant configuration: signInOptions are invalid!');
+        "Invalid tenant configuration: signInOptions are invalid!"
+      );
     }
     signInOptions.forEach((option) => {
-      if (typeof option === 'string') {
+      if (typeof option === "string") {
         // No hd configured, treat like a match for any email.
         providers.push(option);
-      } else if (typeof option['provider'] === 'string') {
-        const hd = option['hd'];
+      } else if (typeof option["provider"] === "string") {
+        const hd = option["hd"];
         // If hd is configured, match the email with the hd.
         if (hd && email) {
-          const regex = hd instanceof RegExp ?
-              hd : new RegExp('@' + hd.replace('.', '\\.') + '$');
+          const regex =
+            hd instanceof RegExp
+              ? hd
+              : new RegExp("@" + hd.replace(".", "\\.") + "$");
           if (regex.test(email)) {
-            providers.push(option['provider']);
+            providers.push(option["provider"]);
           }
         } else {
-           // No hd configured, treat like a match for any email.
-          providers.push(option['provider']);
+          // No hd configured, treat like a match for any email.
+          providers.push(option["provider"]);
         }
       } else {
         log.error(
-            `Invalid tenant configuration: signInOption ` +
-            `${JSON.stringify(option)} is invalid!`);
+          `Invalid tenant configuration: signInOption ` +
+            `${JSON.stringify(option)} is invalid!`
+        );
       }
     });
     return providers;
@@ -290,20 +307,21 @@ class UiHandlerConfig {
    */
   getSignInConfigForTenant(tenantId, providerIds = undefined) {
     const signInConfig = this.filterTenantConfig_(
-        tenantId,
-        UiHandlerConfig.SUPPORTED_SIGN_IN_CONFIG_KEYS);
+      tenantId,
+      UiHandlerConfig.SUPPORTED_SIGN_IN_CONFIG_KEYS
+    );
     // If eligible providers are provided, only returns eligible providers in
     // the sign in options.
-    const signInOptions = signInConfig['signInOptions'];
+    const signInOptions = signInConfig["signInOptions"];
     if (signInOptions && providerIds) {
       const eligibleOptions = signInOptions.filter((option) => {
-        if (typeof option === 'string') {
+        if (typeof option === "string") {
           return providerIds.includes(option);
         } else {
-          return providerIds.includes(option['provider']);
+          return providerIds.includes(option["provider"]);
         }
       });
-      signInConfig['signInOptions'] = eligibleOptions;
+      signInConfig["signInOptions"] = eligibleOptions;
     }
     return signInConfig;
   }
@@ -315,27 +333,30 @@ class UiHandlerConfig {
    * @return {?Object} The tenant selection button config object for the tenant.
    */
   getSelectionButtonConfigForTenant(tenantId) {
-    const uiConfigs = this.config_.get('tenants');
+    const uiConfigs = this.config_.get("tenants");
     if (!uiConfigs) {
-      throw new Error('Invalid tenant configuration!');
+      throw new Error("Invalid tenant configuration!");
     }
     const tenantConfig =
-        uiConfigs[tenantId] ||
-        uiConfigs[UiHandlerConfig.ConfigKeys.DEFAULT_CONFIG_KEY];
+      uiConfigs[tenantId] ||
+      uiConfigs[UiHandlerConfig.ConfigKeys.DEFAULT_CONFIG_KEY];
     if (!tenantConfig) {
-      log.error(`Invalid tenant configuration: `+
-                `${tenantId} is not configured!`);
+      log.error(
+        `Invalid tenant configuration: ` + `${tenantId} is not configured!`
+      );
       return null;
     }
     // The button config key cannot have the quote mark, since the key name will
     // be renamed in the soy template.
     return {
-      tenantId: tenantId !== UiHandlerConfig.ConfigKeys.TOP_LEVEL_CONFIG_KEY ?
-          tenantId : null,
-      fullLabel: tenantConfig['fullLabel'] || null,
-      displayName: tenantConfig['displayName'],
-      iconUrl: tenantConfig['iconUrl'],
-      buttonColor: tenantConfig['buttonColor'],
+      tenantId:
+        tenantId !== UiHandlerConfig.ConfigKeys.TOP_LEVEL_CONFIG_KEY
+          ? tenantId
+          : null,
+      fullLabel: tenantConfig["fullLabel"] || null,
+      displayName: tenantConfig["displayName"],
+      iconUrl: tenantConfig["iconUrl"],
+      buttonColor: tenantConfig["buttonColor"],
     };
   }
 
@@ -352,7 +373,10 @@ class UiHandlerConfig {
   filterTenantConfig_(tenantId, keys, baseConfig = {}) {
     const uiConfig = this.getTenantConfig_(tenantId);
     return util.filterProperties(
-        /** @type {!Object} */ (uiConfig), keys, baseConfig);
+      /** @type {!Object} */ (uiConfig),
+      keys,
+      baseConfig
+    );
   }
 }
 
@@ -361,11 +385,11 @@ class UiHandlerConfig {
  * @const {!Array<string>}
  */
 UiHandlerConfig.SUPPORTED_SIGN_IN_CONFIG_KEYS = [
-  'immediateFederatedRedirect',
-  'privacyPolicyUrl',
-  'signInFlow',
-  'signInOptions',
-  'tosUrl',
+  "immediateFederatedRedirect",
+  "privacyPolicyUrl",
+  "signInFlow",
+  "signInOptions",
+  "tosUrl",
 ];
 
 /**
@@ -373,8 +397,8 @@ UiHandlerConfig.SUPPORTED_SIGN_IN_CONFIG_KEYS = [
  * @enum {string}
  */
 UiHandlerConfig.DisplayMode = {
-  OPTION_FIRST: 'optionFirst',
-  IDENTIFIER_FIRST: 'identifierFirst',
+  OPTION_FIRST: "optionFirst",
+  IDENTIFIER_FIRST: "identifierFirst",
 };
 
 /**
@@ -383,9 +407,9 @@ UiHandlerConfig.DisplayMode = {
  */
 UiHandlerConfig.ConfigKeys = {
   // The UI configuration key for default configuration.
-  DEFAULT_CONFIG_KEY: '*',
+  DEFAULT_CONFIG_KEY: "*",
   // The UI configuration key for top-level project.
-  TOP_LEVEL_CONFIG_KEY: '_',
+  TOP_LEVEL_CONFIG_KEY: "_",
 };
 
 exports = UiHandlerConfig;

@@ -2,7 +2,7 @@
 id: 5a90372638fddaf9a66b5d38
 title: Usare grid-column per controllare la spaziatura
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pByETK/cnzkDSr'
+videoUrl: "https://scrimba.com/p/pByETK/cnzkDSr"
 forumTopicId: 301136
 dashedName: use-grid-column-to-control-spacing
 ---
@@ -38,7 +38,7 @@ La classe `item5` dovrebbe avere una proprietà `grid-column`.
 ```js
 assert(
   __helpers
-    .removeWhiteSpace($('style').text())
+    .removeWhiteSpace($("style").text())
     .match(/\.item5{.*grid-column:.*}/g)
 );
 ```
@@ -46,19 +46,19 @@ assert(
 La classe `item5` dovrebbe avere una proprietà `grid-column` che produca l'occupazione delle ultime due colonne della griglia.
 
 ```js
-const colStart = getComputedStyle($('.item5')[0]).gridColumnStart;
-const colEnd = getComputedStyle($('.item5')[0]).gridColumnEnd;
+const colStart = getComputedStyle($(".item5")[0]).gridColumnStart;
+const colEnd = getComputedStyle($(".item5")[0]).gridColumnEnd;
 const result = colStart.toString() + colEnd.toString();
 const correctResults = [
-  '24',
-  '2-1',
-  '2span 2',
-  '2span2',
-  'span 2-1',
-  '-12',
-  'span 2span 2',
-  'span 2auto',
-  'autospan 2'
+  "24",
+  "2-1",
+  "2span 2",
+  "2span2",
+  "span 2-1",
+  "-12",
+  "span 2span 2",
+  "span 2auto",
+  "autospan 2",
 ];
 assert(correctResults.includes(result));
 ```
@@ -69,15 +69,22 @@ assert(correctResults.includes(result));
 
 ```html
 <style>
-  .item1{background:LightSkyBlue;}
-  .item2{background:LightSalmon;}
-  .item3{background:PaleTurquoise;}
-  .item4{background:LightPink;}
+  .item1 {
+    background: LightSkyBlue;
+  }
+  .item2 {
+    background: LightSalmon;
+  }
+  .item3 {
+    background: PaleTurquoise;
+  }
+  .item4 {
+    background: LightPink;
+  }
 
   .item5 {
     background: PaleGreen;
     /* Only change code below this line */
-
 
     /* Only change code above this line */
   }
@@ -107,10 +114,18 @@ assert(correctResults.includes(result));
 
 ```html
 <style>
-  .item1{background:LightSkyBlue;}
-  .item2{background:LightSalmon;}
-  .item3{background:PaleTurquoise;}
-  .item4{background:LightPink;}
+  .item1 {
+    background: LightSkyBlue;
+  }
+  .item2 {
+    background: LightSalmon;
+  }
+  .item3 {
+    background: PaleTurquoise;
+  }
+  .item4 {
+    background: LightPink;
+  }
 
   .item5 {
     background: PaleGreen;

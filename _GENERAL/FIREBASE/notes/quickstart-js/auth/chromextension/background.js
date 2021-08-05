@@ -1,9 +1,9 @@
 // TODO(DEVELOPER): Change the values below using values from the initialization snippet: Firebase Console > Overview > Add Firebase to your web app.
 // Initialize Firebase
 var config = {
-  apiKey: '<YOUR_API_KEY>',
-  databaseURL: '<YOUR_DATABASE_URL>',
-  storageBucket: '<YOUR_STORAGE_BUCKET_NAME>'
+  apiKey: "<YOUR_API_KEY>",
+  databaseURL: "<YOUR_DATABASE_URL>",
+  storageBucket: "<YOUR_STORAGE_BUCKET_NAME>",
 };
 firebase.initializeApp(config);
 
@@ -23,11 +23,14 @@ firebase.initializeApp(config);
  */
 function initApp() {
   // Listen for auth state changes.
-  firebase.auth().onAuthStateChanged(function(user) {
-    console.log('User state change detected from the Background script of the Chrome Extension:', user);
+  firebase.auth().onAuthStateChanged(function (user) {
+    console.log(
+      "User state change detected from the Background script of the Chrome Extension:",
+      user
+    );
   });
 }
 
-window.onload = function() {
+window.onload = function () {
   initApp();
 };

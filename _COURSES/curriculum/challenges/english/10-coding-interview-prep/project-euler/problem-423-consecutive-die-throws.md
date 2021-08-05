@@ -1,6 +1,6 @@
 ---
 id: 5900f5141000cf542c510027
-title: 'Problem 423: Consecutive die throws'
+title: "Problem 423: Consecutive die throws"
 challengeType: 5
 forumTopicId: 302093
 dashedName: problem-423-consecutive-die-throws
@@ -36,7 +36,6 @@ assert.strictEqual(euler423(), 653972374);
 
 ```js
 function euler423() {
-
   return true;
 }
 

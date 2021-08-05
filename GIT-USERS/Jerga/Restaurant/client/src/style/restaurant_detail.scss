@@ -19,18 +19,17 @@
 /* FEATURES */
 /* -------------------------------- */
 
-.welcome .long-copy{
+.welcome .long-copy {
   margin-bottom: 30px;
 }
 
-.welcome h2{
+.welcome h2 {
   text-align: center;
   margin-bottom: 10px;
   font-size: 400%;
-
 }
 
-.welcome p{
+.welcome p {
   color: gray;
   text-align: center;
 }
@@ -47,7 +46,6 @@
 .restaurant {
   padding-bottom: 0;
   border-bottom: 30px solid #171717;
-
 }
 
 .restaurant img {
@@ -60,17 +58,16 @@
 }
 
 .restaurant h2 {
-  z-index:100;
-  position:absolute;
-  color:white;
-  font-size:400%;
-  font-weight:bold;
-  left:150px;
-  top:100px;
+  z-index: 100;
+  position: absolute;
+  color: white;
+  font-size: 400%;
+  font-weight: bold;
+  left: 150px;
+  top: 100px;
   font-weight: 400;
-  text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
-  0px 8px 13px rgba(0,0,0,0.1),
-  0px 18px 23px rgba(0,0,0,0.1);
+  text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1),
+    0px 18px 23px rgba(0, 0, 0, 0.1);
 }
 
 .restaurant .img-container {
@@ -80,11 +77,12 @@
 }
 
 .content p {
-  color:white;
+  color: white;
 }
 
-.content h3, h2 {
-  color:white;
+.content h3,
+h2 {
+  color: white;
 }
 
 .content h2 {
@@ -106,17 +104,13 @@
   float: right;
 }
 
-.restaurant-info
-{
-
+.restaurant-info {
 }
 
-.restaurant-info .title .value
-{
+.restaurant-info .title .value {
   font-size: 300%;
 }
 
-.restaurant-info .title
-{
+.restaurant-info .title {
   text-align: center;
 }

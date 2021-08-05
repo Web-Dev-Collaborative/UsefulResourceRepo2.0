@@ -2,7 +2,7 @@
 id: 5a9d727a424fe3d0e10cad12
 title: Use a custom CSS Variable
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cM989ck'
+videoUrl: "https://scrimba.com/c/cM989ck"
 forumTopicId: 301090
 dashedName: use-a-custom-css-variable
 ---
@@ -248,7 +248,7 @@ assert(
   }
 
   body {
-    background:#c6faf1;
+    background: #c6faf1;
   }
 
   .penguin * {
@@ -283,5 +283,18 @@ assert(
 # --solutions--
 
 ```html
-<style>.penguin-top {background: var(--penguin-skin);} .penguin-bottom {background: var(--penguin-skin);} .right-hand {background: var(--penguin-skin);} .left-hand {background: var(--penguin-skin);}</style>
+<style>
+  .penguin-top {
+    background: var(--penguin-skin);
+  }
+  .penguin-bottom {
+    background: var(--penguin-skin);
+  }
+  .right-hand {
+    background: var(--penguin-skin);
+  }
+  .left-hand {
+    background: var(--penguin-skin);
+  }
+</style>
 ```

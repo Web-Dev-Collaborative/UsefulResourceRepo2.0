@@ -1,3 +1,3 @@
-const PortfolioDetail = () => <div> PortfolioDetail </div>
+const PortfolioDetail = () => <div> PortfolioDetail </div>;
 
 export default PortfolioDetail;

@@ -25,72 +25,72 @@ should be split as:
 `split` should be a function.
 
 ```js
-assert(typeof split == 'function');
+assert(typeof split == "function");
 ```
 
 `split("hello")` should return an array.
 
 ```js
-assert(Array.isArray(split('hello')));
+assert(Array.isArray(split("hello")));
 ```
 
 `split("hello")` should return `["h", "e", "ll", "o"]`.
 
 ```js
-assert.deepEqual(split('hello'), ['h', 'e', 'll', 'o']);
+assert.deepEqual(split("hello"), ["h", "e", "ll", "o"]);
 ```
 
 `split("commission")` should return `["c", "o", "mm", "i", "ss", "i", "o", "n"]`.
 
 ```js
-assert.deepEqual(split('commission'), [
-  'c',
-  'o',
-  'mm',
-  'i',
-  'ss',
-  'i',
-  'o',
-  'n'
+assert.deepEqual(split("commission"), [
+  "c",
+  "o",
+  "mm",
+  "i",
+  "ss",
+  "i",
+  "o",
+  "n",
 ]);
 ```
 
 `split("ssss----====llloooo")` should return `["ssss", "----", "====", "lll", "oooo"]`.
 
 ```js
-assert.deepEqual(split('ssss----====llloooo'), [
-  'ssss',
-  '----',
-  '====',
-  'lll',
-  'oooo'
+assert.deepEqual(split("ssss----====llloooo"), [
+  "ssss",
+  "----",
+  "====",
+  "lll",
+  "oooo",
 ]);
 ```
 
 `split("sssmmmaaammmaaat")` should return `["sss", "mmm", "aaa", "mmm", "aaa", "t"]`.
 
 ```js
-assert.deepEqual(split('sssmmmaaammmaaat'), [
-  'sss',
-  'mmm',
-  'aaa',
-  'mmm',
-  'aaa',
-  't'
+assert.deepEqual(split("sssmmmaaammmaaat"), [
+  "sss",
+  "mmm",
+  "aaa",
+  "mmm",
+  "aaa",
+  "t",
 ]);
 ```
 
 `split("gHHH5YY++///\")` should return `["g", "HHH", "5", "YY", "++", "///", "\\"]`.
 
 ```js
-assert.deepEqual(split('gHHH5YY++///\\'), [
-  'g',
-  'HHH',
-  '5',
-  'YY',
-  '++',
-  '///',
-  '\\'
+assert.deepEqual(split("gHHH5YY++///\\"), [
+  "g",
+  "HHH",
+  "5",
+  "YY",
+  "++",
+  "///",
+  "\\",
 ]);
 ```
 
@@ -99,24 +99,22 @@ assert.deepEqual(split('gHHH5YY++///\\'), [
 ## --seed-contents--
 
 ```js
-function split(str) {
-
-}
+function split(str) {}
 ```
 
 # --solutions--
 
 ```js
 function split(str) {
-  const concat = xs =>
+  const concat = (xs) =>
     xs.length > 0
       ? (() => {
-          const unit = typeof xs[0] === 'string' ? '' : [];
+          const unit = typeof xs[0] === "string" ? "" : [];
           return unit.concat.apply(unit, xs);
         })()
       : [];
 
-  const group = xs => groupBy((a, b) => a === b, xs);
+  const group = (xs) => groupBy((a, b) => a === b, xs);
 
   const groupBy = (f, xs) => {
     const dct = xs.slice(1).reduce(
@@ -125,12 +123,12 @@ function split(str) {
           blnGroup = h !== undefined && f(h, x);
         return {
           active: blnGroup ? a.active.concat([x]) : [x],
-          sofar: blnGroup ? a.sofar : a.sofar.concat([a.active])
+          sofar: blnGroup ? a.sofar : a.sofar.concat([a.active]),
         };
       },
       {
         active: xs.length > 0 ? [xs[0]] : [],
-        sofar: []
+        sofar: [],
       }
     );
     return dct.sofar.concat(dct.active.length > 0 ? [dct.active] : []);
@@ -138,7 +136,7 @@ function split(str) {
 
   const map = (f, xs) => xs.map(f);
 
-  const stringChars = s => s.split('');
+  const stringChars = (s) => s.split("");
 
   return map(concat, group(stringChars(str)));
 }

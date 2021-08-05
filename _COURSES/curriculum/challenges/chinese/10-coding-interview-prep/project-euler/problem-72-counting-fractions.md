@@ -1,6 +1,6 @@
 ---
 id: 5900f3b41000cf542c50fec7
-title: 'Problem 72: Counting fractions'
+title: "Problem 72: Counting fractions"
 challengeType: 5
 forumTopicId: 302185
 dashedName: problem-72-counting-fractions
@@ -23,7 +23,7 @@ How many elements would be contained in the set of reduced proper fractions for 
 `countingFractions()` should return a number.
 
 ```js
-assert(typeof countingFractions() === 'number');
+assert(typeof countingFractions() === "number");
 ```
 
 `countingFractions()` should return 303963552391.
@@ -38,7 +38,6 @@ assert.strictEqual(countingFractions(), 303963552391);
 
 ```js
 function countingFractions() {
-
   return true;
 }
 

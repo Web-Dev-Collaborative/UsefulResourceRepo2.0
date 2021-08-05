@@ -24,7 +24,7 @@ console.log(a, b);
 數組的第一個值被賦值給變量 `a`，數組的第二個值被賦值給變量 `b`。 我們甚至能在數組解構中使用逗號分隔符，來獲取任意一個想要的值：
 
 ```js
-const [a, b,,, c] = [1, 2, 3, 4, 5, 6];
+const [a, b, , , c] = [1, 2, 3, 4, 5, 6];
 console.log(a, b, c);
 ```
 
@@ -59,13 +59,15 @@ assert(/\[\s*(\w)\s*,\s*(\w)\s*\]\s*=\s*\[\s*\2\s*,\s*\1\s*\]/g.test(code));
 ## --seed-contents--
 
 ```js
-let a = 8, b = 6;
+let a = 8,
+  b = 6;
 // Only change code below this line
 ```
 
 # --solutions--
 
 ```js
-let a = 8, b = 6;
+let a = 8,
+  b = 6;
 [a, b] = [b, a];
 ```

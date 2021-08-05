@@ -9,6 +9,6 @@ provider.setCustomParameters({
   // eg. '8eaef023-2b34-4da1-9baa-8bc8c9d6a490' or 'contoso.onmicrosoft.com'
   // or "common" for tenant-independent tokens.
   // The default value is "common".
-  tenant: 'TENANT_ID'
+  tenant: "TENANT_ID",
 });
 // [END auth_msft_provider_params_tenant_modular]

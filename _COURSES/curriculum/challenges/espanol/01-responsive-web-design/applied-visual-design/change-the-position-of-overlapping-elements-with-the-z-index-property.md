@@ -2,7 +2,7 @@
 id: 587d78a3367417b2b2512acf
 title: Cambia la posición de los elementos superpuestos con la propiedad z-index
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cM94aHk'
+videoUrl: "https://scrimba.com/c/cM94aHk"
 forumTopicId: 301046
 dashedName: change-the-position-of-overlapping-elements-with-the-z-index-property
 ---
@@ -20,7 +20,7 @@ Agrega una propiedad `z-index` al elemento con la clase `first` (el rectángulo 
 El elemento con clase `first` debe tener un valor `z-index` de 2.
 
 ```js
-assert($('.first').css('z-index') == '2');
+assert($(".first").css("z-index") == "2");
 ```
 
 # --seed--
@@ -38,7 +38,6 @@ assert($('.first').css('z-index') == '2');
   .first {
     background-color: red;
     position: absolute;
-
   }
   .second {
     background-color: blue;

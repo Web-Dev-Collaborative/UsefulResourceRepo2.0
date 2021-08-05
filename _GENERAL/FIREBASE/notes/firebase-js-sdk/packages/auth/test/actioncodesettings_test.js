@@ -26,7 +26,6 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.ActionCodeSettingsTest');
 
-
 /**
  * Asserts that the provided settings will throw an error in action code
  * settings initialization.
@@ -34,12 +33,11 @@ goog.setTestOnly('fireauth.ActionCodeSettingsTest');
  * @param {string} expectedCode The expected error code thrown.
  */
 function assertActionCodeSettingsErrorThrown(settings, expectedCode) {
-  var error = assertThrows(function() {
+  var error = assertThrows(function () {
     new fireauth.ActionCodeSettings(settings);
   });
   assertEquals(expectedCode, error.code);
 }
-
 
 function testActionCodeSettings_success_allParameters() {
   var settings = {
@@ -68,7 +66,6 @@ function testActionCodeSettings_success_allParameters() {
   assertObjectEquals(expectedRequest, actionCodeSettings.buildRequest());
 }
 
-
 function testActionCodeSettings_success_partialParameters() {
   var settings = {
     'url': 'https://www.example.com/?state=abc',
@@ -83,7 +80,6 @@ function testActionCodeSettings_success_partialParameters() {
   var actionCodeSettings = new fireauth.ActionCodeSettings(settings);
   assertObjectEquals(expectedRequest, actionCodeSettings.buildRequest());
 }
-
 
 function testActionCodeSettings_success_partialParameters_fdlDomain() {
   var settings = {
@@ -102,7 +98,6 @@ function testActionCodeSettings_success_partialParameters_fdlDomain() {
   assertObjectEquals(expectedRequest, actionCodeSettings.buildRequest());
 }
 
-
 function testActionCodeSettings_success_partialParameters_android() {
   var settings = {
     'url': 'https://www.example.com/?state=abc',
@@ -119,7 +114,6 @@ function testActionCodeSettings_success_partialParameters_android() {
   var actionCodeSettings = new fireauth.ActionCodeSettings(settings);
   assertObjectEquals(expectedRequest, actionCodeSettings.buildRequest());
 }
-
 
 function testActionCodeSettings_success_partialParameters_android_fdlDomain() {
   var settings = {
@@ -140,7 +134,6 @@ function testActionCodeSettings_success_partialParameters_android_fdlDomain() {
   assertObjectEquals(expectedRequest, actionCodeSettings.buildRequest());
 }
 
-
 function testActionCodeSettings_success_partialParameters_ios() {
   var settings = {
     'url': 'https://www.example.com/?state=abc',
@@ -156,7 +149,6 @@ function testActionCodeSettings_success_partialParameters_ios() {
   var actionCodeSettings = new fireauth.ActionCodeSettings(settings);
   assertObjectEquals(expectedRequest, actionCodeSettings.buildRequest());
 }
-
 
 function testActionCodeSettings_success_partialParameters_ios_fdlDomain() {
   var settings = {
@@ -176,36 +168,37 @@ function testActionCodeSettings_success_partialParameters_ios_fdlDomain() {
   assertObjectEquals(expectedRequest, actionCodeSettings.buildRequest());
 }
 
-
 function testActionCodeSettings_error_continueUrl() {
   // Missing continue URL.
   assertActionCodeSettingsErrorThrown(
-      {
-        'android': {
-          'packageName': 'com.example.android'
-        }
-      },
-      'auth/missing-continue-uri');
+    {
+      'android': {
+        'packageName': 'com.example.android'
+      }
+    },
+    'auth/missing-continue-uri'
+  );
   // Invalid continue URL.
   assertActionCodeSettingsErrorThrown(
-      {
-        'url': '',
-        'android': {
-          'packageName': 'com.example.android'
-        }
-      },
-      'auth/invalid-continue-uri');
+    {
+      'url': '',
+      'android': {
+        'packageName': 'com.example.android'
+      }
+    },
+    'auth/invalid-continue-uri'
+  );
   // Invalid continue URL.
   assertActionCodeSettingsErrorThrown(
-      {
-        'url': ['https://www.example.com/?state=abc'],
-        'android': {
-          'packageName': 'com.example.android'
-        }
-      },
-      'auth/invalid-continue-uri');
+    {
+      'url': ['https://www.example.com/?state=abc'],
+      'android': {
+        'packageName': 'com.example.android'
+      }
+    },
+    'auth/invalid-continue-uri'
+  );
 }
-
 
 function testActionCodeSettings_success_urlOnly_canHandleCodeInApp() {
   var settings = {
@@ -220,127 +213,135 @@ function testActionCodeSettings_success_urlOnly_canHandleCodeInApp() {
   assertObjectEquals(expectedRequest, actionCodeSettings.buildRequest());
 }
 
-
 function testActionCodeSettings_error_canHandleCodeInApp() {
   // Non-boolean can handle code in app.
   assertActionCodeSettingsErrorThrown(
-      {
-        'url': 'https://www.example.com/?state=abc',
-        'handleCodeInApp': 'false'
-      },
-      'auth/argument-error');
+    {
+      'url': 'https://www.example.com/?state=abc',
+      'handleCodeInApp': 'false'
+    },
+    'auth/argument-error'
+  );
 }
-
 
 function testActionCodeSettings_error_android() {
   // Invalid Android field.
   assertActionCodeSettingsErrorThrown(
-      {
-        'url': 'https://www.example.com/?state=abc',
-        'android': 'bla'
-      },
-      'auth/argument-error');
+    {
+      'url': 'https://www.example.com/?state=abc',
+      'android': 'bla'
+    },
+    'auth/argument-error'
+  );
   // Android package name set to empty string.
   assertActionCodeSettingsErrorThrown(
-      {
-        'url': 'https://www.example.com/?state=abc',
-        'android': {
-          'packageName': ''
-        }
-      },
-      'auth/argument-error');
+    {
+      'url': 'https://www.example.com/?state=abc',
+      'android': {
+        'packageName': ''
+      }
+    },
+    'auth/argument-error'
+  );
   // Android package missing when other Android parameters specified.
   assertActionCodeSettingsErrorThrown(
-      {
-        'url': 'https://www.example.com/?state=abc',
-        'android': {
-          'installApp': true,
-          'minimumVersion': '12'
-        }
-      },
-      'auth/missing-android-pkg-name');
+    {
+      'url': 'https://www.example.com/?state=abc',
+      'android': {
+        'installApp': true,
+        'minimumVersion': '12'
+      }
+    },
+    'auth/missing-android-pkg-name'
+  );
   // Invalid Android package name.
   assertActionCodeSettingsErrorThrown(
-      {
-        'url': 'https://www.example.com/?state=abc',
-        'android': {
-          'packageName': {}
-        }
-      },
-      'auth/argument-error');
+    {
+      'url': 'https://www.example.com/?state=abc',
+      'android': {
+        'packageName': {}
+      }
+    },
+    'auth/argument-error'
+  );
   // Invalid installApp field.
   assertActionCodeSettingsErrorThrown(
-      {
-        'url': 'https://www.example.com/?state=abc',
-        'android': {
-          'packageName': 'com.example.android',
-          'installApp': 'bla'
-        }
-      },
-      'auth/argument-error');
+    {
+      'url': 'https://www.example.com/?state=abc',
+      'android': {
+        'packageName': 'com.example.android',
+        'installApp': 'bla'
+      }
+    },
+    'auth/argument-error'
+  );
   // Invalid minimumVersion field.
   assertActionCodeSettingsErrorThrown(
-      {
-        'url': 'https://www.example.com/?state=abc',
-        'android': {
-          'packageName': 'com.example.android',
-          'minimumVersion': false
-        }
-      },
-      'auth/argument-error');
+    {
+      'url': 'https://www.example.com/?state=abc',
+      'android': {
+        'packageName': 'com.example.android',
+        'minimumVersion': false
+      }
+    },
+    'auth/argument-error'
+  );
 }
-
 
 function testActionCodeSettings_error_ios() {
   // Invalid iOS field.
   assertActionCodeSettingsErrorThrown(
-      {
-        'url': 'https://www.example.com/?state=abc',
-        'iOS': 'bla'
-      },
-      'auth/argument-error');
+    {
+      'url': 'https://www.example.com/?state=abc',
+      'iOS': 'bla'
+    },
+    'auth/argument-error'
+  );
   // iOS bundle ID set to empty string.
   assertActionCodeSettingsErrorThrown(
-      {
-        'url': 'https://www.example.com/?state=abc',
-        'iOS': {
-          'bundleId': ''
-        }
-      },
-      'auth/argument-error');
+    {
+      'url': 'https://www.example.com/?state=abc',
+      'iOS': {
+        'bundleId': ''
+      }
+    },
+    'auth/argument-error'
+  );
   // Invalid iOS bundle ID.
   assertActionCodeSettingsErrorThrown(
-      {
-        'url': 'https://www.example.com/?state=abc',
-        'iOS': {
-          'bundleId': {}
-        }
-      },
-      'auth/argument-error');
+    {
+      'url': 'https://www.example.com/?state=abc',
+      'iOS': {
+        'bundleId': {}
+      }
+    },
+    'auth/argument-error'
+  );
 }
-
 
 function testActionCodeSettings_error_dynamicLinkDomain() {
   // Invalid dynamic link domain.
   assertActionCodeSettingsErrorThrown(
-      {
-        'url': 'https://www.example.com/?state=abc',
-        'dynamicLinkDomain': ['example.page.link']
-
-      },
-      'auth/argument-error');
+    {
+      'url': 'https://www.example.com/?state=abc',
+      'dynamicLinkDomain': ['example.page.link']
+    },
+    'auth/argument-error'
+  );
   // Dynamic link domain set to empty string.
   assertActionCodeSettingsErrorThrown(
-      {
-        'url': 'https://www.example.com/?state=abc',
-        'dynamicLinkDomain': ''
-      },
-      'auth/argument-error');
+    {
+      'url': 'https://www.example.com/?state=abc',
+      'dynamicLinkDomain': ''
+    },
+    'auth/argument-error'
+  );
   // Dynamic link domain set to null.
   assertActionCodeSettingsErrorThrown(
-      {
-        'url': 'https://www.example.com/?state=abc',
-        'dynamicLinkDomain': null
-      },
-      'auth/argument-error');
+    {
+      'url': 'https://www.example.com/?state=abc',
+      'dynamicLinkDomain': null
+    },
+    'auth/argument-error'
+  );
 }

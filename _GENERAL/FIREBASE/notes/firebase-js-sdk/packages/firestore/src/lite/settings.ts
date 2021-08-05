@@ -123,7 +123,8 @@ export class FirestoreSettings {
     }
 
     this.experimentalForceLongPolling = !!settings.experimentalForceLongPolling;
-    this.experimentalAutoDetectLongPolling = !!settings.experimentalAutoDetectLongPolling;
+    this.experimentalAutoDetectLongPolling =
+      !!settings.experimentalAutoDetectLongPolling;
     this.useFetchStreams = !!settings.useFetchStreams;
 
     validateIsNotUsedTogether(

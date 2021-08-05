@@ -40,8 +40,8 @@ assert(code.match(/\.split/g));
 
 ```js
 assert(
-  JSON.stringify(splitify('Hello World,I-am code')) ===
-    JSON.stringify(['Hello', 'World', 'I', 'am', 'code'])
+  JSON.stringify(splitify("Hello World,I-am code")) ===
+    JSON.stringify(["Hello", "World", "I", "am", "code"])
 );
 ```
 
@@ -49,8 +49,8 @@ assert(
 
 ```js
 assert(
-  JSON.stringify(splitify('Earth-is-our home')) ===
-    JSON.stringify(['Earth', 'is', 'our', 'home'])
+  JSON.stringify(splitify("Earth-is-our home")) ===
+    JSON.stringify(["Earth", "is", "our", "home"])
 );
 ```
 
@@ -58,8 +58,8 @@ assert(
 
 ```js
 assert(
-  JSON.stringify(splitify('This.is.a-sentence')) ===
-    JSON.stringify(['This', 'is', 'a', 'sentence'])
+  JSON.stringify(splitify("This.is.a-sentence")) ===
+    JSON.stringify(["This", "is", "a", "sentence"])
 );
 ```
 
@@ -70,8 +70,6 @@ assert(
 ```js
 function splitify(str) {
   // Only change code below this line
-
-
   // Only change code above this line
 }
 splitify("Hello World,I-am code");

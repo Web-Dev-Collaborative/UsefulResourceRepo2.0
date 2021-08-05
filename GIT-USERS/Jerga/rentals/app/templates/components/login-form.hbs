@@ -9,19 +9,29 @@
   {{/if}}
   <form {{action "authenticate" on="submit"}}>
     <div class="form-group">
-     <label for="identification">Email</label>
-      {{input value=identification placeholder="Enter Login" class="form-control"}}
+      <label for="identification">Email</label>
+      {{input
+        value=identification
+        placeholder="Enter Login"
+        class="form-control"
+      }}
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      {{input value=password type="password" class="form-control" placeholder="Enter Password"}}
+      {{input
+        value=password
+        type="password"
+        class="form-control"
+        placeholder="Enter Password"
+      }}
     </div>
     <button class="btn btn-primary clickable" type="submit">Login</button>
   </form>
   {{#if errorMessage}}
     {{#each errorMessage as |error|}}
       <div class="alert alert-danger">
-        {{error.name}} {{error.detail}}
+        {{error.name}}
+        {{error.detail}}
       </div>
     {{/each}}
   {{/if}}

@@ -10,15 +10,13 @@ dashedName: create-a-stateless-functional-component
 
 I componenti sono il nucleo di React. Tutto in React è un componente e qui imparerai a crearne uno.
 
-Ci sono due modi per creare un componente React. Il primo modo è quello di utilizzare una funzione JavaScript. Definendo un componente in questo modo si crea un *componente funzionale senza stato*. Il concetto di stato in un'applicazione sarà affrontato nelle sfide successive. Per ora, pensa a un componente senza stato (stateless) come a uno che può ricevere i dati e farne il rendering, ma non gestisce o tiene traccia delle modifiche a tali dati. (Copriremo il secondo modo per creare un componente React nella prossima sfida.)
+Ci sono due modi per creare un componente React. Il primo modo è quello di utilizzare una funzione JavaScript. Definendo un componente in questo modo si crea un _componente funzionale senza stato_. Il concetto di stato in un'applicazione sarà affrontato nelle sfide successive. Per ora, pensa a un componente senza stato (stateless) come a uno che può ricevere i dati e farne il rendering, ma non gestisce o tiene traccia delle modifiche a tali dati. (Copriremo il secondo modo per creare un componente React nella prossima sfida.)
 
 Per creare un componente con una funzione, basta scrivere una funzione JavaScript che restituisce JSX o `null`. Una cosa importante da notare è che React richiede che il nome della funzione inizi con una lettera maiuscola. Ecco un esempio di componente funzionale senza stato che assegna una classe HTML in JSX:
 
 ```jsx
-const DemoComponent = function() {
-  return (
-    <div className='customClass' />
-  );
+const DemoComponent = function () {
+  return <div className="customClass" />;
 };
 ```
 
@@ -51,7 +49,7 @@ assert(
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
-    return mockedComponent.children().type() === 'div';
+    return mockedComponent.children().type() === "div";
   })()
 );
 ```
@@ -62,7 +60,7 @@ L'elemento `div` dovrebbe contenere una stringa di testo.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
-    return mockedComponent.find('div').text() !== '';
+    return mockedComponent.find("div").text() !== "";
   })()
 );
 ```
@@ -72,31 +70,24 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyComponent />, document.getElementById('root'))
+ReactDOM.render(<MyComponent />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
 
 ```jsx
-const MyComponent = function() {
+const MyComponent = function () {
   // Change code below this line
-
-
-
   // Change code above this line
-}
+};
 ```
 
 # --solutions--
 
 ```jsx
-const MyComponent = function() {
+const MyComponent = function () {
   // Change code below this line
-  return (
-    <div>
-      Demo Solution
-    </div>
-  );
+  return <div>Demo Solution</div>;
   // Change code above this line
-}
+};
 ```

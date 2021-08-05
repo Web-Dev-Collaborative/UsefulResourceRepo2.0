@@ -44,8 +44,6 @@ goog.require('goog.net.jsloader');
 goog.require('goog.object');
 goog.require('goog.string.Const');
 
-
-
 /**
  * Firebase Auth XmlHttpRequest factory. This is useful for environments like
  * Node.js where XMLHttpRequest does not exist. XmlHttpFactory would be
@@ -56,7 +54,7 @@ goog.require('goog.string.Const');
  * @extends {goog.net.XmlHttpFactory}
  * @final
  */
-fireauth.XmlHttpFactory = function(xmlHttpRequest) {
+fireauth.XmlHttpFactory = function (xmlHttpRequest) {
   /**
    * @private {function(new:XMLHttpRequest)} The underlying XHR reference.
    */
@@ -65,26 +63,22 @@ fireauth.XmlHttpFactory = function(xmlHttpRequest) {
 };
 goog.inherits(fireauth.XmlHttpFactory, goog.net.XmlHttpFactory);
 
-
 /**
  * @return {!goog.net.XhrLike|!XMLHttpRequest} A new XhrLike instance.
  * @override
  */
-fireauth.XmlHttpFactory.prototype.createInstance = function() {
+fireauth.XmlHttpFactory.prototype.createInstance = function () {
   return new this.xmlHttpRequest_();
 };
-
 
 /**
  * @return {!Object} Options describing how XHR objects obtained from this
  *     factory should be used.
  * @override
  */
-fireauth.XmlHttpFactory.prototype.internalGetOptions = function() {
+fireauth.XmlHttpFactory.prototype.internalGetOptions = function () {
   return {};
 };
-
-
 
 /**
  * Creates an RPC request handler for the project specified by the API key.
@@ -95,37 +89,40 @@ fireauth.XmlHttpFactory.prototype.internalGetOptions = function() {
  *     version to log with requests to Firebase Auth server.
  * @constructor
  */
-fireauth.RpcHandler = function(apiKey, opt_config, opt_firebaseClientVersion) {
+fireauth.RpcHandler = function (apiKey, opt_config, opt_firebaseClientVersion) {
   /** @private {string} The project API key. */
   this.apiKey_ = apiKey;
   var config = opt_config || {};
-  this.secureTokenEndpoint_ = config['secureTokenEndpoint'] ||
-      fireauth.RpcHandler.SECURE_TOKEN_ENDPOINT_;
+  this.secureTokenEndpoint_ =
+    config['secureTokenEndpoint'] || fireauth.RpcHandler.SECURE_TOKEN_ENDPOINT_;
   /**
    * @private @const {!fireauth.util.Delay} The delay for secure token endpoint
    *     network timeout.
    */
-  this.secureTokenTimeout_ = config['secureTokenTimeout'] ||
-      fireauth.RpcHandler.DEFAULT_SECURE_TOKEN_TIMEOUT_;
+  this.secureTokenTimeout_ =
+    config['secureTokenTimeout'] ||
+    fireauth.RpcHandler.DEFAULT_SECURE_TOKEN_TIMEOUT_;
   /** @private @const {!Object} The secure token server headers. */
   this.secureTokenHeaders_ = goog.object.clone(
-      config['secureTokenHeaders'] ||
-      fireauth.RpcHandler.DEFAULT_SECURE_TOKEN_HEADERS_);
+    config['secureTokenHeaders'] ||
+      fireauth.RpcHandler.DEFAULT_SECURE_TOKEN_HEADERS_
+  );
   /** @private {string} The Firebase Auth endpoint. */
-  this.firebaseEndpoint_ = config['firebaseEndpoint'] ||
-      fireauth.RpcHandler.FIREBASE_ENDPOINT_;
+  this.firebaseEndpoint_ =
+    config['firebaseEndpoint'] || fireauth.RpcHandler.FIREBASE_ENDPOINT_;
   /** @private {string} The identity platform endpoint. */
-  this.identityPlatformEndpoint_ = config['identityPlatformEndpoint'] ||
-      fireauth.RpcHandler.IDENTITY_PLATFORM_ENDPOINT_;
+  this.identityPlatformEndpoint_ =
+    config['identityPlatformEndpoint'] ||
+    fireauth.RpcHandler.IDENTITY_PLATFORM_ENDPOINT_;
   /**
    * @private @const {!fireauth.util.Delay} The delay for Firebase Auth endpoint
    *     network timeout.
    */
-  this.firebaseTimeout_ = config['firebaseTimeout'] ||
-      fireauth.RpcHandler.DEFAULT_FIREBASE_TIMEOUT_;
+  this.firebaseTimeout_ =
+    config['firebaseTimeout'] || fireauth.RpcHandler.DEFAULT_FIREBASE_TIMEOUT_;
   this.firebaseHeaders_ = goog.object.clone(
-      config['firebaseHeaders'] ||
-      fireauth.RpcHandler.DEFAULT_FIREBASE_HEADERS_);
+    config['firebaseHeaders'] || fireauth.RpcHandler.DEFAULT_FIREBASE_HEADERS_
+  );
   // If Firebase client version needs to be logged too.
   if (opt_firebaseClientVersion) {
     // Log client version for Firebase Auth server.
@@ -138,8 +135,10 @@ fireauth.RpcHandler = function(apiKey, opt_config, opt_firebaseClientVersion) {
   var XMLHttpRequest = fireauth.RpcHandler.getXMLHttpRequest();
   if (!XMLHttpRequest && !fireauth.util.isWorker()) {
     // In a Node.js environment, xmlhttprequest module needs to be required.
-    throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR,
-        'The XMLHttpRequest compatibility library was not found.');
+    throw new fireauth.AuthError(
+      fireauth.authenum.Error.INTERNAL_ERROR,
+      'The XMLHttpRequest compatibility library was not found.'
+    );
   }
   /** @private {!goog.net.XmlHttpFactory|undefined} The XHR factory. */
   this.rpcHandlerXhrFactory_ = undefined;
@@ -148,12 +147,14 @@ fireauth.RpcHandler = function(apiKey, opt_config, opt_firebaseClientVersion) {
   if (fireauth.util.isWorker()) {
     // For worker environment use FetchXmlHttpFactory.
     this.rpcHandlerXhrFactory_ = new goog.net.FetchXmlHttpFactory(
-        /** @type {!WorkerGlobalScope} */ (self));
+      /** @type {!WorkerGlobalScope} */ (self)
+    );
   } else if (fireauth.util.isNativeEnvironment()) {
     // For Node.js, this is the polyfill library. For other environments,
     // this is the native global XMLHttpRequest.
     this.rpcHandlerXhrFactory_ = new fireauth.XmlHttpFactory(
-        /** @type {function(new:XMLHttpRequest)} */ (XMLHttpRequest));
+      /** @type {function(new:XMLHttpRequest)} */ (XMLHttpRequest)
+    );
   } else {
     // CORS Browser environment.
     this.rpcHandlerXhrFactory_ = new goog.net.CorsXmlHttpFactory();
@@ -162,21 +163,20 @@ fireauth.RpcHandler = function(apiKey, opt_config, opt_firebaseClientVersion) {
   this.tenantId_ = null;
 };
 
-
 /**
  * @return {?function(new:XMLHttpRequest)|undefined} The current environment
  *     XMLHttpRequest. This is undefined for worker environment.
  */
-fireauth.RpcHandler.getXMLHttpRequest = function() {
+fireauth.RpcHandler.getXMLHttpRequest = function () {
   // In Node.js XMLHttpRequest is polyfilled.
   var isNode = fireauth.util.getEnvironment() == fireauth.util.Env.NODE;
-  var XMLHttpRequest = goog.global['XMLHttpRequest'] ||
-      (isNode &&
-       firebase.INTERNAL['node'] &&
-       firebase.INTERNAL['node']['XMLHttpRequest']);
+  var XMLHttpRequest =
+    goog.global['XMLHttpRequest'] ||
+    (isNode &&
+      firebase.INTERNAL['node'] &&
+      firebase.INTERNAL['node']['XMLHttpRequest']);
   return XMLHttpRequest;
 };
-
 
 /**
  * Enums for HTTP request methods.
@@ -186,7 +186,6 @@ fireauth.RpcHandler.HttpMethod = {
   POST: 'POST',
   GET: 'GET'
 };
-
 
 /**
  * Firebase Auth server error codes.
@@ -263,14 +262,12 @@ fireauth.RpcHandler.ServerError = {
   WEAK_PASSWORD: 'WEAK_PASSWORD'
 };
 
-
 /**
  * A map of server error codes to client errors.
  * @typedef {!Object<
  *     !fireauth.RpcHandler.ServerError, !fireauth.authenum.Error>}
  */
 fireauth.RpcHandler.ServerErrorMap;
-
 
 /**
  * Firebase Auth response field names.
@@ -302,7 +299,6 @@ fireauth.RpcHandler.AuthServerField = {
   TEMPORARY_PROOF: 'temporaryProof'
 };
 
-
 /**
  * Firebase Auth response injected fields.
  * @enum {string}
@@ -310,7 +306,6 @@ fireauth.RpcHandler.AuthServerField = {
 fireauth.RpcHandler.InjectedResponseField = {
   NONCE: 'nonce'
 };
-
 
 /**
  * Firebase Auth getOobConfirmationCode requestType possible values.
@@ -324,7 +319,6 @@ fireauth.RpcHandler.GetOobCodeRequestType = {
   VERIFY_EMAIL: 'VERIFY_EMAIL'
 };
 
-
 /**
  * Firebase Auth response field names.
  * @enum {string}
@@ -335,14 +329,12 @@ fireauth.RpcHandler.StsServerField = {
   REFRESH_TOKEN: 'refresh_token'
 };
 
-
 /**
  * @return {string} The API key.
  */
-fireauth.RpcHandler.prototype.getApiKey = function() {
+fireauth.RpcHandler.prototype.getApiKey = function () {
   return this.apiKey_;
 };
-
 
 /**
  * The Firebase custom locale header.
@@ -351,15 +343,13 @@ fireauth.RpcHandler.prototype.getApiKey = function() {
  */
 fireauth.RpcHandler.FIREBASE_LOCALE_KEY_ = 'X-Firebase-Locale';
 
-
 /**
  * The secure token endpoint.
  * @const {string}
  * @private
  */
 fireauth.RpcHandler.SECURE_TOKEN_ENDPOINT_ =
-    'https://securetoken.googleapis.com/v1/token';
-
+  'https://securetoken.googleapis.com/v1/token';
 
 /**
  * The default timeout delay (units in milliseconds) for requests sending to
@@ -367,9 +357,10 @@ fireauth.RpcHandler.SECURE_TOKEN_ENDPOINT_ =
  * @const {!fireauth.util.Delay}
  * @private
  */
-fireauth.RpcHandler.DEFAULT_SECURE_TOKEN_TIMEOUT_ =
-    new fireauth.util.Delay(30000, 60000);
-
+fireauth.RpcHandler.DEFAULT_SECURE_TOKEN_TIMEOUT_ = new fireauth.util.Delay(
+  30000,
+  60000
+);
 
 /**
  * The STS token RPC content headers.
@@ -380,15 +371,13 @@ fireauth.RpcHandler.DEFAULT_SECURE_TOKEN_HEADERS_ = {
   'Content-Type': 'application/x-www-form-urlencoded'
 };
 
-
 /**
  * The Firebase endpoint.
  * @const {string}
  * @private
  */
 fireauth.RpcHandler.FIREBASE_ENDPOINT_ =
-    'https://www.googleapis.com/identitytoolkit/v3/relyingparty/';
-
+  'https://www.googleapis.com/identitytoolkit/v3/relyingparty/';
 
 /**
  * The Identity Platform endpoint.
@@ -396,8 +385,7 @@ fireauth.RpcHandler.FIREBASE_ENDPOINT_ =
  * @private
  */
 fireauth.RpcHandler.IDENTITY_PLATFORM_ENDPOINT_ =
-    'https://identitytoolkit.googleapis.com/v2/';
-
+  'https://identitytoolkit.googleapis.com/v2/';
 
 /**
  * The default timeout delay (units in milliseconds) for requests sending to
@@ -405,9 +393,10 @@ fireauth.RpcHandler.IDENTITY_PLATFORM_ENDPOINT_ =
  * @const {!fireauth.util.Delay}
  * @private
  */
-fireauth.RpcHandler.DEFAULT_FIREBASE_TIMEOUT_ =
-    new fireauth.util.Delay(30000, 60000);
-
+fireauth.RpcHandler.DEFAULT_FIREBASE_TIMEOUT_ = new fireauth.util.Delay(
+  30000,
+  60000
+);
 
 /**
  * The Firebase RPC content headers.
@@ -418,54 +407,61 @@ fireauth.RpcHandler.DEFAULT_FIREBASE_HEADERS_ = {
   'Content-Type': 'application/json'
 };
 
-
 /**
  * Updates the custom locale header.
  * @param {?string} languageCode The new languageCode.
  */
-fireauth.RpcHandler.prototype.updateCustomLocaleHeader =
-    function(languageCode) {
+fireauth.RpcHandler.prototype.updateCustomLocaleHeader = function (
+  languageCode
+) {
   if (languageCode) {
     // If a language code is provided, add it to the header.
     this.firebaseHeaders_[fireauth.RpcHandler.FIREBASE_LOCALE_KEY_] =
-        languageCode;
+      languageCode;
   } else {
     // Otherwise remove the custom locale header.
     delete this.firebaseHeaders_[fireauth.RpcHandler.FIREBASE_LOCALE_KEY_];
   }
 };
 
-
 /**
  * Updates the emulator configuration.
  * @param {?fireauth.constants.EmulatorSettings} emulatorConfig The new
  *     emulator config.
  */
-fireauth.RpcHandler.prototype.updateEmulatorConfig = function(emulatorConfig) {
+fireauth.RpcHandler.prototype.updateEmulatorConfig = function (emulatorConfig) {
   if (!emulatorConfig) {
     return;
   }
   // If an emulator config is provided, update the endpoints.
   this.secureTokenEndpoint_ =
     fireauth.RpcHandler.generateEmululatorEndpointUrl_(
-      fireauth.RpcHandler.SECURE_TOKEN_ENDPOINT_, emulatorConfig);
-  this.firebaseEndpoint_ =
-    fireauth.RpcHandler.generateEmululatorEndpointUrl_(
-      fireauth.RpcHandler.FIREBASE_ENDPOINT_, emulatorConfig);
+      fireauth.RpcHandler.SECURE_TOKEN_ENDPOINT_,
+      emulatorConfig
+    );
+  this.firebaseEndpoint_ = fireauth.RpcHandler.generateEmululatorEndpointUrl_(
+    fireauth.RpcHandler.FIREBASE_ENDPOINT_,
+    emulatorConfig
+  );
   this.identityPlatformEndpoint_ =
     fireauth.RpcHandler.generateEmululatorEndpointUrl_(
-      fireauth.RpcHandler.IDENTITY_PLATFORM_ENDPOINT_, emulatorConfig);
-}
+      fireauth.RpcHandler.IDENTITY_PLATFORM_ENDPOINT_,
+      emulatorConfig
+    );
+};
 
-  /**
-   * Creates an endpoint URL intended for use by the emulator.
-   * @param {string} endpoint the production endpoint URL.
-   * @param {?fireauth.constants.EmulatorSettings} emulatorConfig The emulator
-   *     config.
-   * @return {string} The emulator endpoint URL.
-   * @private
-   */
-fireauth.RpcHandler.generateEmululatorEndpointUrl_ = function(endpoint, emulatorConfig) {
+/**
+ * Creates an endpoint URL intended for use by the emulator.
+ * @param {string} endpoint the production endpoint URL.
+ * @param {?fireauth.constants.EmulatorSettings} emulatorConfig The emulator
+ *     config.
+ * @return {string} The emulator endpoint URL.
+ * @private
+ */
+fireauth.RpcHandler.generateEmululatorEndpointUrl_ = function (
+  endpoint,
+  emulatorConfig
+) {
   const uri = goog.Uri.parse(endpoint);
   const emulatorUri = goog.Uri.parse(emulatorConfig.url);
   uri.setPath(uri.getDomain() + uri.getPath());
@@ -473,14 +469,13 @@ fireauth.RpcHandler.generateEmululatorEndpointUrl_ = function(endpoint, emulator
   uri.setDomain(emulatorUri.getDomain());
   uri.setPort(emulatorUri.getPort());
   return uri.toString();
-}
-
+};
 
 /**
  * Updates the X-Client-Version in the header.
  * @param {?string} clientVersion The new client version.
  */
-fireauth.RpcHandler.prototype.updateClientVersion = function(clientVersion) {
+fireauth.RpcHandler.prototype.updateClientVersion = function (clientVersion) {
   if (clientVersion) {
     // Update client version for Firebase Auth server.
     this.firebaseHeaders_['X-Client-Version'] = clientVersion;
@@ -493,24 +488,21 @@ fireauth.RpcHandler.prototype.updateClientVersion = function(clientVersion) {
   }
 };
 
-
 /**
  * Updates the tenant ID in the request.
  * @param {?string} tenantId The new tenant ID.
  */
-fireauth.RpcHandler.prototype.updateTenantId = function(tenantId) {
+fireauth.RpcHandler.prototype.updateTenantId = function (tenantId) {
   this.tenantId_ = tenantId;
 };
-
 
 /**
  * Returns the tenant ID.
  * @return {?string} The tenant ID.
  */
-fireauth.RpcHandler.prototype.getTenantId = function() {
+fireauth.RpcHandler.prototype.getTenantId = function () {
   return this.tenantId_;
 };
-
 
 /**
  * Sends XhrIo request using goog.net.XhrIo.
@@ -523,13 +515,14 @@ fireauth.RpcHandler.prototype.getTenantId = function() {
  * @param {number=} opt_timeout The request timeout.
  * @private
  */
-fireauth.RpcHandler.prototype.sendXhr_ = function(
-    url,
-    opt_callback,
-    opt_httpMethod,
-    opt_data,
-    opt_headers,
-    opt_timeout) {
+fireauth.RpcHandler.prototype.sendXhr_ = function (
+  url,
+  opt_callback,
+  opt_httpMethod,
+  opt_data,
+  opt_headers,
+  opt_timeout
+) {
   var sendXhr;
   if (fireauth.util.supportsCors() || fireauth.util.isWorker()) {
     // If supports CORS use goog.net.XhrIo.
@@ -537,19 +530,26 @@ fireauth.RpcHandler.prototype.sendXhr_ = function(
   } else {
     // Load gapi.client.request and gapi.auth dependency dynamically.
     if (!fireauth.RpcHandler.loadGApi_) {
-      fireauth.RpcHandler.loadGApi_ =
-          new goog.Promise(function(resolve, reject) {
-            // On load, resolve.
-            fireauth.RpcHandler.loadGApiJs_(resolve, reject);
-          });
+      fireauth.RpcHandler.loadGApi_ = new goog.Promise(function (
+        resolve,
+        reject
+      ) {
+        // On load, resolve.
+        fireauth.RpcHandler.loadGApiJs_(resolve, reject);
+      });
     }
     // If does not support CORS, use gapi.client.request.
     sendXhr = goog.bind(this.sendXhrUsingGApiClient_, this);
   }
   sendXhr(
-      url, opt_callback, opt_httpMethod, opt_data, opt_headers, opt_timeout);
+    url,
+    opt_callback,
+    opt_httpMethod,
+    opt_data,
+    opt_headers,
+    opt_timeout
+  );
 };
-
 
 /**
  * Sends XhrIo request using goog.net.XhrIo.
@@ -562,19 +562,21 @@ fireauth.RpcHandler.prototype.sendXhr_ = function(
  * @param {number=} opt_timeout The request timeout.
  * @private
  */
-fireauth.RpcHandler.prototype.sendXhrUsingXhrIo_ = function(
-    url,
-    opt_callback,
-    opt_httpMethod,
-    opt_data,
-    opt_headers,
-    opt_timeout) {
+fireauth.RpcHandler.prototype.sendXhrUsingXhrIo_ = function (
+  url,
+  opt_callback,
+  opt_httpMethod,
+  opt_data,
+  opt_headers,
+  opt_timeout
+) {
   if (fireauth.util.isWorker() && !fireauth.util.isFetchSupported()) {
     throw new fireauth.AuthError(
-        fireauth.authenum.Error.OPERATION_NOT_SUPPORTED,
-        'fetch, Headers and Request native APIs or equivalent Polyfills ' +
+      fireauth.authenum.Error.OPERATION_NOT_SUPPORTED,
+      'fetch, Headers and Request native APIs or equivalent Polyfills ' +
         'must be available to support HTTP requests from a Worker ' +
-        'environment.');
+        'environment.'
+    );
   }
   var xhrIo = new goog.net.XhrIo(this.rpcHandlerXhrFactory_);
 
@@ -582,84 +584,85 @@ fireauth.RpcHandler.prototype.sendXhrUsingXhrIo_ = function(
   var requestTimeout;
   if (opt_timeout) {
     xhrIo.setTimeoutInterval(opt_timeout);
-    requestTimeout = setTimeout(function() {
+    requestTimeout = setTimeout(function () {
       xhrIo.dispatchEvent(goog.net.EventType.TIMEOUT);
     }, opt_timeout);
   }
   // Run callback function on completion.
   xhrIo.listen(
-      goog.net.EventType.COMPLETE,
-      /** @this {goog.net.XhrIo} */
-      function() {
-        // Clear timeout timer.
-        if (requestTimeout) {
-          clearTimeout(requestTimeout);
-        }
-        // Response assumed to be in json format. If not, catch, log error and
-        // pass null to callback.
-        var response = null;
-        try {
-          // Do not use this.responseJson() as it uses goog.json.parse
-          // underneath. Internal goog.json.parse parsing uses eval and since
-          // recommended Content Security Policy does not allow unsafe-eval,
-          // this is failing and throwing an error in chrome extensions and
-          // warnings else where. Use native parsing instead via JSON.parse.
-          response = JSON.parse(this.getResponseText()) || null;
-        } catch (e) {
-          response = null;
-        }
-        if (opt_callback) {
-          opt_callback(/** @type {?Object} */ (response));
-        }
-      });
+    goog.net.EventType.COMPLETE,
+    /** @this {goog.net.XhrIo} */
+    function () {
+      // Clear timeout timer.
+      if (requestTimeout) {
+        clearTimeout(requestTimeout);
+      }
+      // Response assumed to be in json format. If not, catch, log error and
+      // pass null to callback.
+      var response = null;
+      try {
+        // Do not use this.responseJson() as it uses goog.json.parse
+        // underneath. Internal goog.json.parse parsing uses eval and since
+        // recommended Content Security Policy does not allow unsafe-eval,
+        // this is failing and throwing an error in chrome extensions and
+        // warnings else where. Use native parsing instead via JSON.parse.
+        response = JSON.parse(this.getResponseText()) || null;
+      } catch (e) {
+        response = null;
+      }
+      if (opt_callback) {
+        opt_callback(/** @type {?Object} */ (response));
+      }
+    }
+  );
   // Dispose xhrIo on ready.
   xhrIo.listenOnce(
-      goog.net.EventType.READY,
-      /** @this {goog.net.XhrIo} */
-      function() {
-        // Clear timeout timer.
-        if (requestTimeout) {
-          clearTimeout(requestTimeout);
-        }
-        // Dispose xhrIo.
-        this.dispose();
-      });
+    goog.net.EventType.READY,
+    /** @this {goog.net.XhrIo} */
+    function () {
+      // Clear timeout timer.
+      if (requestTimeout) {
+        clearTimeout(requestTimeout);
+      }
+      // Dispose xhrIo.
+      this.dispose();
+    }
+  );
   // Listen to timeout error.
   // This should work when request is aborted too.
   xhrIo.listenOnce(
-      goog.net.EventType.TIMEOUT,
-      /** @this {goog.net.XhrIo} */
-      function() {
-        // Clear timeout timer.
-        if (requestTimeout) {
-          clearTimeout(requestTimeout);
-        }
-        // Dispose xhrIo.
-        this.dispose();
-        // The request timed out.
-        if (opt_callback) {
-          opt_callback(null);
-        }
-      });
+    goog.net.EventType.TIMEOUT,
+    /** @this {goog.net.XhrIo} */
+    function () {
+      // Clear timeout timer.
+      if (requestTimeout) {
+        clearTimeout(requestTimeout);
+      }
+      // Dispose xhrIo.
+      this.dispose();
+      // The request timed out.
+      if (opt_callback) {
+        opt_callback(null);
+      }
+    }
+  );
   xhrIo.send(url, opt_httpMethod, opt_data, opt_headers);
 };
-
 
 /**
  * @const {!goog.string.Const} The GApi client library URL.
  * @private
  */
 fireauth.RpcHandler.GAPI_SRC_ = goog.string.Const.from(
-    'https://apis.google.com/js/client.js?onload=%{onload}');
-
+  'https://apis.google.com/js/client.js?onload=%{onload}'
+);
 
 /**
  * @const {string}
  * @private
  */
 fireauth.RpcHandler.GAPI_CALLBACK_NAME_ =
-    '__fcb' + Math.floor(Math.random() * 1000000).toString();
-
+  '__fcb' + Math.floor(Math.random() * 1000000).toString();
 
 /**
  * Loads the GApi client library if it is not loaded.
@@ -667,10 +670,10 @@ fireauth.RpcHandler.GAPI_CALLBACK_NAME_ =
  * @param {function(?Object)} errback The error callback.
  * @private
  */
-fireauth.RpcHandler.loadGApiJs_ = function(callback, errback) {
+fireauth.RpcHandler.loadGApiJs_ = function (callback, errback) {
   // If gapi.client.request not available, load it dynamically.
   if (!((window['gapi'] || {})['client'] || {})['request']) {
-    goog.global[fireauth.RpcHandler.GAPI_CALLBACK_NAME_] = function() {
+    goog.global[fireauth.RpcHandler.GAPI_CALLBACK_NAME_] = function () {
       // Callback will be called by GApi, test properly loaded here instead of
       // after jsloader resolves.
       if (!((window['gapi'] || {})['client'] || {})['request']) {
@@ -680,11 +683,12 @@ fireauth.RpcHandler.loadGApiJs_ = function(callback, errback) {
       }
     };
     var url = goog.html.TrustedResourceUrl.format(
-        fireauth.RpcHandler.GAPI_SRC_,
-        {'onload': fireauth.RpcHandler.GAPI_CALLBACK_NAME_});
+      fireauth.RpcHandler.GAPI_SRC_,
+      { 'onload': fireauth.RpcHandler.GAPI_CALLBACK_NAME_ }
+    );
     // TODO: replace goog.net.jsloader with our own script includer.
     var result = goog.net.jsloader.safeLoad(url);
-    result.addErrback(function() {
+    result.addErrback(function () {
       // In case file fails to load.
       errback(new Error(fireauth.RpcHandler.ServerError.CORS_UNSUPPORTED));
     });
@@ -692,7 +696,6 @@ fireauth.RpcHandler.loadGApiJs_ = function(callback, errback) {
     callback();
   }
 };
-
 
 /**
  * Sends XhrIo request using gapi.client.
@@ -705,52 +708,55 @@ fireauth.RpcHandler.loadGApiJs_ = function(callback, errback) {
  * @param {number=} opt_timeout The request timeout.
  * @private
  */
-fireauth.RpcHandler.prototype.sendXhrUsingGApiClient_ = function(
-    url,
-    opt_callback,
-    opt_httpMethod,
-    opt_data,
-    opt_headers,
-    opt_timeout) {
+fireauth.RpcHandler.prototype.sendXhrUsingGApiClient_ = function (
+  url,
+  opt_callback,
+  opt_httpMethod,
+  opt_data,
+  opt_headers,
+  opt_timeout
+) {
   var self = this;
   // Wait for GApi dependency to load.
-  fireauth.RpcHandler.loadGApi_.then(function() {
-    window['gapi']['client']['setApiKey'](self.getApiKey());
-    // GApi maintains the Auth result and automatically append the Auth token to
-    // all outgoing requests. Firebase Auth requests will be rejected if there
-    // are others scopes (e.g. google plus) for the Auth token. Need to empty
-    // the token before call gitkit api. Restored in callback.
-    var oauth2Token = window['gapi']['auth']['getToken']();
-    window['gapi']['auth']['setToken'](null);
-    window['gapi']['client']['request']({
-      'path': url,
-      'method': opt_httpMethod,
-      'body': opt_data,
-      'headers': opt_headers,
-      // This needs to be set to none, otherwise the access token will be passed
-      // in the header field causing apiary to complain.
-      'authType': 'none',
-      'callback': function(response) {
-        window['gapi']['auth']['setToken'](oauth2Token);
-        if (opt_callback) {
-          opt_callback(response);
-        }
-      }
-    });
-  }).thenCatch(function(error) {
-    // Catches failure to support CORS and propagates it.
-    if (opt_callback) {
-      // Simulate backend server error to be caught by upper layer.
-      opt_callback({
-        'error': {
-          'message': (error && error['message']) ||
-              fireauth.RpcHandler.ServerError.CORS_UNSUPPORTED
+  fireauth.RpcHandler.loadGApi_
+    .then(function () {
+      window['gapi']['client']['setApiKey'](self.getApiKey());
+      // GApi maintains the Auth result and automatically append the Auth token to
+      // all outgoing requests. Firebase Auth requests will be rejected if there
+      // are others scopes (e.g. google plus) for the Auth token. Need to empty
+      // the token before call gitkit api. Restored in callback.
+      var oauth2Token = window['gapi']['auth']['getToken']();
+      window['gapi']['auth']['setToken'](null);
+      window['gapi']['client']['request']({
+        'path': url,
+        'method': opt_httpMethod,
+        'body': opt_data,
+        'headers': opt_headers,
+        // This needs to be set to none, otherwise the access token will be passed
+        // in the header field causing apiary to complain.
+        'authType': 'none',
+        'callback': function (response) {
+          window['gapi']['auth']['setToken'](oauth2Token);
+          if (opt_callback) {
+            opt_callback(response);
+          }
         }
       });
-    }
-  });
+    })
+    .thenCatch(function (error) {
+      // Catches failure to support CORS and propagates it.
+      if (opt_callback) {
+        // Simulate backend server error to be caught by upper layer.
+        opt_callback({
+          'error': {
+            'message':
+              (error && error['message']) ||
+              fireauth.RpcHandler.ServerError.CORS_UNSUPPORTED
+          }
+        });
+      }
+    });
 };
-
 
 /**
  * Validates the request for the STS access token.
@@ -759,7 +765,7 @@ fireauth.RpcHandler.prototype.sendXhrUsingGApiClient_ = function(
  * @return {boolean} Whether the request is valid.
  * @private
  */
-fireauth.RpcHandler.prototype.validateStsTokenRequest_ = function(data) {
+fireauth.RpcHandler.prototype.validateStsTokenRequest_ = function (data) {
   if (data['grant_type'] == 'refresh_token' && data['refresh_token']) {
     // Exchange refresh token.
     return true;
@@ -772,47 +778,52 @@ fireauth.RpcHandler.prototype.validateStsTokenRequest_ = function(data) {
   }
 };
 
-
 /**
  * Handles the request for the STS access token.
  *
  * @param {!Object} data The STS token request body.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.requestStsToken = function(data) {
+fireauth.RpcHandler.prototype.requestStsToken = function (data) {
   var self = this;
-  return new goog.Promise(function(resolve, reject) {
+  return new goog.Promise(function (resolve, reject) {
     if (self.validateStsTokenRequest_(data)) {
       self.sendXhr_(
-          self.secureTokenEndpoint_ + '?key=' +
+        self.secureTokenEndpoint_ +
+          '?key=' +
           encodeURIComponent(self.getApiKey()),
-          function(response) {
-            if (!response) {
-              // An unparseable response from the XHR most likely indicates some
-              // problem with the network.
-              reject(new fireauth.AuthError(
-                  fireauth.authenum.Error.NETWORK_REQUEST_FAILED));
-            } else if (fireauth.RpcHandler.hasError_(response)) {
-              reject(fireauth.RpcHandler.getDeveloperError_(response));
-            } else if (
-                !response[fireauth.RpcHandler.StsServerField.ACCESS_TOKEN] ||
-                !response[fireauth.RpcHandler.StsServerField.REFRESH_TOKEN]) {
-              reject(new fireauth.AuthError(
-                  fireauth.authenum.Error.INTERNAL_ERROR));
-            } else {
-              resolve(response);
-            }
-          },
-          fireauth.RpcHandler.HttpMethod.POST,
-          goog.Uri.QueryData.createFromMap(data).toString(),
-          self.secureTokenHeaders_,
-          self.secureTokenTimeout_.get());
+        function (response) {
+          if (!response) {
+            // An unparseable response from the XHR most likely indicates some
+            // problem with the network.
+            reject(
+              new fireauth.AuthError(
+                fireauth.authenum.Error.NETWORK_REQUEST_FAILED
+              )
+            );
+          } else if (fireauth.RpcHandler.hasError_(response)) {
+            reject(fireauth.RpcHandler.getDeveloperError_(response));
+          } else if (
+            !response[fireauth.RpcHandler.StsServerField.ACCESS_TOKEN] ||
+            !response[fireauth.RpcHandler.StsServerField.REFRESH_TOKEN]
+          ) {
+            reject(
+              new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR)
+            );
+          } else {
+            resolve(response);
+          }
+        },
+        fireauth.RpcHandler.HttpMethod.POST,
+        goog.Uri.QueryData.createFromMap(data).toString(),
+        self.secureTokenHeaders_,
+        self.secureTokenTimeout_.get()
+      );
     } else {
       reject(new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR));
     }
   });
 };
-
 
 /**
  * @param {!Object} data The object to serialize.
@@ -820,14 +831,13 @@ fireauth.RpcHandler.prototype.requestStsToken = function(data) {
  *     values removed.
  * @private
  */
-fireauth.RpcHandler.serialize_ = function(data) {
+fireauth.RpcHandler.serialize_ = function (data) {
   // goog.json.serialize converts undefined values to null.
   // This helper removes all empty strings, nulls and undefined from serialized
   // object.
   // Serialize trimmed data.
   return goog.json.serialize(fireauth.util.copyWithoutNullsOrUndefined(data));
 };
-
 
 /**
  * Creates and executes a request for the given API method using the legacy
@@ -846,13 +856,22 @@ fireauth.RpcHandler.serialize_ = function(data) {
  *     request to force backend to return an uncached response to request.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.requestFirebaseEndpoint = function(
-    method, httpMethod, data, opt_customErrorMap, opt_cachebuster) {
+fireauth.RpcHandler.prototype.requestFirebaseEndpoint = function (
+  method,
+  httpMethod,
+  data,
+  opt_customErrorMap,
+  opt_cachebuster
+) {
   return this.requestAuthEndpoint_(
-      this.firebaseEndpoint_, method, httpMethod, data, opt_customErrorMap,
-      opt_cachebuster);
+    this.firebaseEndpoint_,
+    method,
+    httpMethod,
+    data,
+    opt_customErrorMap,
+    opt_cachebuster
+  );
 };
-
 
 /**
  * Creates and executes a request for the given API method using the identity
@@ -871,13 +890,22 @@ fireauth.RpcHandler.prototype.requestFirebaseEndpoint = function(
  *     request to force backend to return an uncached response to request.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.requestIdentityPlatformEndpoint = function(
-    method, httpMethod, data, opt_customErrorMap, opt_cachebuster) {
+fireauth.RpcHandler.prototype.requestIdentityPlatformEndpoint = function (
+  method,
+  httpMethod,
+  data,
+  opt_customErrorMap,
+  opt_cachebuster
+) {
   return this.requestAuthEndpoint_(
-      this.identityPlatformEndpoint_, method, httpMethod, data,
-      opt_customErrorMap, opt_cachebuster);
+    this.identityPlatformEndpoint_,
+    method,
+    httpMethod,
+    data,
+    opt_customErrorMap,
+    opt_cachebuster
+  );
 };
-
 
 /**
  * Creates and executes a request for the given API method and Auth endpoint.
@@ -897,8 +925,14 @@ fireauth.RpcHandler.prototype.requestIdentityPlatformEndpoint = function(
  * @return {!goog.Promise<!Object>}
  * @private
  */
-fireauth.RpcHandler.prototype.requestAuthEndpoint_ = function(
-    endpoint, method, httpMethod, data, opt_customErrorMap, opt_cachebuster) {
+fireauth.RpcHandler.prototype.requestAuthEndpoint_ = function (
+  endpoint,
+  method,
+  httpMethod,
+  data,
+  opt_customErrorMap,
+  opt_cachebuster
+) {
   var self = this;
   // Construct endpoint URL.
   var uri = goog.Uri.parse(endpoint + method);
@@ -917,66 +951,70 @@ fireauth.RpcHandler.prototype.requestAuthEndpoint_ = function(
       }
     }
   }
-  return new goog.Promise(function(resolve, reject) {
+  return new goog.Promise(function (resolve, reject) {
     self.sendXhr_(
-        uri.toString(),
-        function(response) {
-          if (!response) {
-            // An unparseable response from the XHR most likely indicates some
-            // problem with the network.
-            reject(new fireauth.AuthError(
-                fireauth.authenum.Error.NETWORK_REQUEST_FAILED));
-          } else if (fireauth.RpcHandler.hasError_(response)) {
-            reject(fireauth.RpcHandler.getDeveloperError_(response,
-                opt_customErrorMap || {}));
-          } else {
-            resolve(response);
-          }
-        },
-        httpMethod,
-        // No post body data in GET requests.
-        isGet ? undefined : fireauth.RpcHandler.serialize_(data),
-        self.firebaseHeaders_,
-        self.firebaseTimeout_.get());
+      uri.toString(),
+      function (response) {
+        if (!response) {
+          // An unparseable response from the XHR most likely indicates some
+          // problem with the network.
+          reject(
+            new fireauth.AuthError(
+              fireauth.authenum.Error.NETWORK_REQUEST_FAILED
+            )
+          );
+        } else if (fireauth.RpcHandler.hasError_(response)) {
+          reject(
+            fireauth.RpcHandler.getDeveloperError_(
+              response,
+              opt_customErrorMap || {}
+            )
+          );
+        } else {
+          resolve(response);
+        }
+      },
+      httpMethod,
+      // No post body data in GET requests.
+      isGet ? undefined : fireauth.RpcHandler.serialize_(data),
+      self.firebaseHeaders_,
+      self.firebaseTimeout_.get()
+    );
   });
 };
-
 
 /**
  * Verifies that the request has a valid email set.
  * @param {!Object} request
  * @private
  */
-fireauth.RpcHandler.validateRequestHasEmail_ = function(request) {
+fireauth.RpcHandler.validateRequestHasEmail_ = function (request) {
   if (!fireauth.util.isValidEmailAddress(request['email'])) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INVALID_EMAIL);
   }
 };
-
 
 /**
  * Verifies that the response has a valid email set.
  * @param {!Object} response
  * @private
  */
-fireauth.RpcHandler.validateResponseHasEmail_ = function(response) {
+fireauth.RpcHandler.validateResponseHasEmail_ = function (response) {
   if (!fireauth.util.isValidEmailAddress(response['email'])) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
   }
 };
-
 
 /**
  * Verifies that the an email is valid, if it is there.
  * @param {!Object} request
  * @private
  */
-fireauth.RpcHandler.validateEmailIfPresent_ = function(request) {
+fireauth.RpcHandler.validateEmailIfPresent_ = function (request) {
   if ('email' in request) {
     fireauth.RpcHandler.validateRequestHasEmail_(request);
   }
 };
-
 
 /**
  * @param {string} providerId The provider ID.
@@ -984,8 +1022,10 @@ fireauth.RpcHandler.validateEmailIfPresent_ = function(request) {
  * @return {?string} The IDP and its comma separated scope strings serialized.
  * @private
  */
-fireauth.RpcHandler.getAdditionalScopes_ =
-    function(providerId, opt_additionalScopes) {
+fireauth.RpcHandler.getAdditionalScopes_ = function (
+  providerId,
+  opt_additionalScopes
+) {
   var scopes = {};
   if (opt_additionalScopes && opt_additionalScopes.length) {
     scopes[providerId] = opt_additionalScopes.join(',');
@@ -995,22 +1035,22 @@ fireauth.RpcHandler.getAdditionalScopes_ =
   return null;
 };
 
-
 /**
  * Validates a response from getAuthUri.
  * @param {?Object} response The getAuthUri response data.
  * @private
  */
-fireauth.RpcHandler.validateGetAuthResponse_ = function(response) {
+fireauth.RpcHandler.validateGetAuthResponse_ = function (response) {
   if (!response[fireauth.RpcHandler.AuthServerField.AUTH_URI]) {
-    throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR,
-        'Unable to determine the authorization endpoint for the specified '+
-        'provider. This may be an issue in the provider configuration.');
-  } else if ( !response[fireauth.RpcHandler.AuthServerField.SESSION_ID]) {
+    throw new fireauth.AuthError(
+      fireauth.authenum.Error.INTERNAL_ERROR,
+      'Unable to determine the authorization endpoint for the specified ' +
+        'provider. This may be an issue in the provider configuration.'
+    );
+  } else if (!response[fireauth.RpcHandler.AuthServerField.SESSION_ID]) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
   }
 };
-
 
 /**
  * Requests createAuthUri endpoint to retrieve the authUri and session ID for
@@ -1024,13 +1064,14 @@ fireauth.RpcHandler.validateGetAuthResponse_ = function(response) {
  * @param {?string=} opt_sessionId The optional session ID.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.getAuthUri = function(
-    providerId,
-    continueUri,
-    opt_customParameters,
-    opt_additionalScopes,
-    opt_email,
-    opt_sessionId) {
+fireauth.RpcHandler.prototype.getAuthUri = function (
+  providerId,
+  continueUri,
+  opt_customParameters,
+  opt_additionalScopes,
+  opt_email,
+  opt_sessionId
+) {
   // SAML provider request is constructed differently than OAuth requests.
   var isSaml = fireauth.idp.isSaml(providerId);
   var request = {
@@ -1039,7 +1080,9 @@ fireauth.RpcHandler.prototype.getAuthUri = function(
     'continueUri': continueUri,
     'customParameter': opt_customParameters || {},
     'oauthScope': fireauth.RpcHandler.getAdditionalScopes_(
-        providerId, opt_additionalScopes),
+      providerId,
+      opt_additionalScopes
+    ),
     'sessionId': opt_sessionId
   };
   // Custom parameters and OAuth scopes should be ignored.
@@ -1053,95 +1096,98 @@ fireauth.RpcHandler.prototype.getAuthUri = function(
   if (opt_sessionId && providerId == fireauth.idp.ProviderId.GOOGLE) {
     request['authFlowType'] = 'CODE_FLOW';
   }
-  return this.invokeRpc(fireauth.RpcHandler.ApiMethod.GET_AUTH_URI,
-      request);
+  return this.invokeRpc(fireauth.RpcHandler.ApiMethod.GET_AUTH_URI, request);
 };
-
 
 /**
  * Gets the list of IDPs that can be used to log in for the given identifier.
  * @param {string} identifier The identifier, such as an email address.
  * @return {!goog.Promise<!Array<string>>}
  */
-fireauth.RpcHandler.prototype.fetchProvidersForIdentifier =
-    function(identifier) {
+fireauth.RpcHandler.prototype.fetchProvidersForIdentifier = function (
+  identifier
+) {
   // createAuthUri returns an error if continue URI is not http or https.
   // For environments like Cordova, Chrome extensions, native frameworks, file
   // systems, etc, use http://localhost as continue URL.
-  var continueUri = fireauth.util.isHttpOrHttps() ?
-      fireauth.util.getCurrentUrl() : 'http://localhost';
+  var continueUri = fireauth.util.isHttpOrHttps()
+    ? fireauth.util.getCurrentUrl()
+    : 'http://localhost';
   var request = {
     'identifier': identifier,
     'continueUri': continueUri
   };
-  return this.invokeRpc(fireauth.RpcHandler.ApiMethod.CREATE_AUTH_URI, request)
-      .then(function(response) {
-        return response[fireauth.RpcHandler.AuthServerField.ALL_PROVIDERS] ||
-            [];
-      });
+  return this.invokeRpc(
+    fireauth.RpcHandler.ApiMethod.CREATE_AUTH_URI,
+    request
+  ).then(function (response) {
+    return response[fireauth.RpcHandler.AuthServerField.ALL_PROVIDERS] || [];
+  });
 };
-
 
 /**
  * Returns the list of sign in methods for the given identifier.
  * @param {string} identifier The identifier, such as an email address.
  * @return {!goog.Promise<!Array<string>>}
  */
-fireauth.RpcHandler.prototype.fetchSignInMethodsForIdentifier = function(
-    identifier) {
+fireauth.RpcHandler.prototype.fetchSignInMethodsForIdentifier = function (
+  identifier
+) {
   // createAuthUri returns an error if continue URI is not http or https.
   // For environments like Cordova, Chrome extensions, native frameworks, file
   // systems, etc, use http://localhost as continue URL.
-  var continueUri = fireauth.util.isHttpOrHttps() ?
-      fireauth.util.getCurrentUrl() :
-      'http://localhost';
+  var continueUri = fireauth.util.isHttpOrHttps()
+    ? fireauth.util.getCurrentUrl()
+    : 'http://localhost';
   var request = {
     'identifier': identifier,
     'continueUri': continueUri
   };
-  return this.invokeRpc(fireauth.RpcHandler.ApiMethod.CREATE_AUTH_URI, request)
-      .then(function(response) {
-        return response[fireauth.RpcHandler.AuthServerField.SIGNIN_METHODS] ||
-            [];
-      });
+  return this.invokeRpc(
+    fireauth.RpcHandler.ApiMethod.CREATE_AUTH_URI,
+    request
+  ).then(function (response) {
+    return response[fireauth.RpcHandler.AuthServerField.SIGNIN_METHODS] || [];
+  });
 };
-
 
 /**
  * Gets the list of authorized domains for the specified project.
  * @return {!goog.Promise<!Array<string>>}
  */
-fireauth.RpcHandler.prototype.getAuthorizedDomains = function() {
-  return this.invokeRpc(fireauth.RpcHandler.ApiMethod.GET_PROJECT_CONFIG, {})
-      .then(function(response) {
-        return response[
-           fireauth.RpcHandler.AuthServerField.AUTHORIZED_DOMAINS] || [];
-      });
+fireauth.RpcHandler.prototype.getAuthorizedDomains = function () {
+  return this.invokeRpc(
+    fireauth.RpcHandler.ApiMethod.GET_PROJECT_CONFIG,
+    {}
+  ).then(function (response) {
+    return (
+      response[fireauth.RpcHandler.AuthServerField.AUTHORIZED_DOMAINS] || []
+    );
+  });
 };
-
 
 /**
  * Gets the reCAPTCHA parameters needed to render the project's provisioned
  * reCAPTCHA.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.getRecaptchaParam = function() {
+fireauth.RpcHandler.prototype.getRecaptchaParam = function () {
   return this.invokeRpc(fireauth.RpcHandler.ApiMethod.GET_RECAPTCHA_PARAM, {});
 };
-
 
 /**
  * Gets the list of authorized domains for the specified project.
  * @return {!goog.Promise<string>}
  */
-fireauth.RpcHandler.prototype.getDynamicLinkDomain = function() {
+fireauth.RpcHandler.prototype.getDynamicLinkDomain = function () {
   var request = {
     'returnDynamicLink': true
   };
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.RETURN_DYNAMIC_LINK, request);
+    fireauth.RpcHandler.ApiMethod.RETURN_DYNAMIC_LINK,
+    request
+  );
 };
-
 
 /**
  * Checks if the provided iOS bundle ID belongs to the project as specified by
@@ -1149,19 +1195,19 @@ fireauth.RpcHandler.prototype.getDynamicLinkDomain = function() {
  * @param {string} iosBundleId  The iOS bundle ID to check.
  * @return {!goog.Promise<void>}
  */
-fireauth.RpcHandler.prototype.isIosBundleIdValid = function(iosBundleId) {
+fireauth.RpcHandler.prototype.isIosBundleIdValid = function (iosBundleId) {
   var request = {
     'iosBundleId': iosBundleId
   };
   // This will either resolve if the identifier is valid or throw INVALID_APP_ID
   // if not.
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.GET_PROJECT_CONFIG, request)
-      .then(function(result) {
-        // Do not return anything.
-      });
+    fireauth.RpcHandler.ApiMethod.GET_PROJECT_CONFIG,
+    request
+  ).then(function (result) {
+    // Do not return anything.
+  });
 };
-
 
 /**
  * Checks if the provided Android package name belongs to the project as
@@ -1170,8 +1216,10 @@ fireauth.RpcHandler.prototype.isIosBundleIdValid = function(iosBundleId) {
  * @param {?string=} opt_sha1Cert The optional SHA-1 Android cert to check.
  * @return {!goog.Promise<void>}
  */
-fireauth.RpcHandler.prototype.isAndroidPackageNameValid =
-    function(androidPackageName, opt_sha1Cert) {
+fireauth.RpcHandler.prototype.isAndroidPackageNameValid = function (
+  androidPackageName,
+  opt_sha1Cert
+) {
   var request = {
     'androidPackageName': androidPackageName
   };
@@ -1186,12 +1234,12 @@ fireauth.RpcHandler.prototype.isAndroidPackageNameValid =
   // When sha1Cert is also passed, this will either resolve or fail with an
   // INVALID_CERT_HASH error.
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.GET_PROJECT_CONFIG, request)
-      .then(function(result) {
-        // Do not return anything.
-      });
+    fireauth.RpcHandler.ApiMethod.GET_PROJECT_CONFIG,
+    request
+  ).then(function (result) {
+    // Do not return anything.
+  });
 };
-
 
 /**
  * Checks if the provided OAuth client ID belongs to the project as specified by
@@ -1199,43 +1247,43 @@ fireauth.RpcHandler.prototype.isAndroidPackageNameValid =
  * @param {string} clientId The OAuth client ID to check.
  * @return {!goog.Promise<void>}
  */
-fireauth.RpcHandler.prototype.isOAuthClientIdValid = function(clientId) {
+fireauth.RpcHandler.prototype.isOAuthClientIdValid = function (clientId) {
   var request = {
     'clientId': clientId
   };
   // This will either resolve if the client ID is valid or throw
   // INVALID_OAUTH_CLIENT_ID if not.
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.GET_PROJECT_CONFIG, request)
-      .then(function(result) {
-        // Do not return anything.
-      });
+    fireauth.RpcHandler.ApiMethod.GET_PROJECT_CONFIG,
+    request
+  ).then(function (result) {
+    // Do not return anything.
+  });
 };
-
 
 /**
  * Requests getAccountInfo endpoint using an ID token.
  * @param {string} idToken The ID token.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.getAccountInfoByIdToken = function(idToken) {
-  var request = {'idToken': idToken};
-  return this.invokeRpc(fireauth.RpcHandler.ApiMethod.GET_ACCOUNT_INFO,
-      request);
+fireauth.RpcHandler.prototype.getAccountInfoByIdToken = function (idToken) {
+  var request = { 'idToken': idToken };
+  return this.invokeRpc(
+    fireauth.RpcHandler.ApiMethod.GET_ACCOUNT_INFO,
+    request
+  );
 };
-
 
 /**
  * Validates a request to sign in with email and password.
  * @param {!Object} request
  * @private
  */
-fireauth.RpcHandler.validateVerifyCustomTokenRequest_ = function(request) {
+fireauth.RpcHandler.validateVerifyCustomTokenRequest_ = function (request) {
   if (!request['token']) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INVALID_CUSTOM_TOKEN);
   }
 };
-
 
 /**
  * Verifies a custom token and returns a Promise that resolves with the ID
@@ -1243,25 +1291,25 @@ fireauth.RpcHandler.validateVerifyCustomTokenRequest_ = function(request) {
  * @param {string} token The custom token.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.verifyCustomToken = function(token) {
-  var request = {'token': token};
-  return this.invokeRpc(fireauth.RpcHandler.ApiMethod.VERIFY_CUSTOM_TOKEN,
-      request);
+fireauth.RpcHandler.prototype.verifyCustomToken = function (token) {
+  var request = { 'token': token };
+  return this.invokeRpc(
+    fireauth.RpcHandler.ApiMethod.VERIFY_CUSTOM_TOKEN,
+    request
+  );
 };
-
 
 /**
  * Validates a request to sign in with email and password.
  * @param {!Object} request
  * @private
  */
-fireauth.RpcHandler.validateVerifyPasswordRequest_ = function(request) {
+fireauth.RpcHandler.validateVerifyPasswordRequest_ = function (request) {
   fireauth.RpcHandler.validateRequestHasEmail_(request);
   if (!request['password']) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INVALID_PASSWORD);
   }
 };
-
 
 /**
  * Verifies a password and returns a Promise that resolves with the ID
@@ -1270,15 +1318,13 @@ fireauth.RpcHandler.validateVerifyPasswordRequest_ = function(request) {
  * @param {string} password The entered password.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.verifyPassword = function(email, password) {
+fireauth.RpcHandler.prototype.verifyPassword = function (email, password) {
   var request = {
     'email': email,
     'password': password
   };
-  return this.invokeRpc(fireauth.RpcHandler.ApiMethod.VERIFY_PASSWORD,
-      request);
+  return this.invokeRpc(fireauth.RpcHandler.ApiMethod.VERIFY_PASSWORD, request);
 };
-
 
 /**
  * Verifies an email link OTP for sign-in and returns a Promise that resolves
@@ -1287,15 +1333,16 @@ fireauth.RpcHandler.prototype.verifyPassword = function(email, password) {
  * @param {string} oobCode The email action OTP.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.emailLinkSignIn = function(email, oobCode) {
+fireauth.RpcHandler.prototype.emailLinkSignIn = function (email, oobCode) {
   var request = {
     'email': email,
     'oobCode': oobCode
   };
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.EMAIL_LINK_SIGNIN, request);
+    fireauth.RpcHandler.ApiMethod.EMAIL_LINK_SIGNIN,
+    request
+  );
 };
-
 
 /**
  * Verifies an email link OTP for linking and returns a Promise that resolves
@@ -1305,18 +1352,21 @@ fireauth.RpcHandler.prototype.emailLinkSignIn = function(email, oobCode) {
  * @param {string} oobCode The email action OTP.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.emailLinkSignInForLinking =
-    function(idToken, email, oobCode) {
+fireauth.RpcHandler.prototype.emailLinkSignInForLinking = function (
+  idToken,
+  email,
+  oobCode
+) {
   var request = {
     'idToken': idToken,
     'email': email,
     'oobCode': oobCode
   };
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.EMAIL_LINK_SIGNIN_FOR_LINKING,
-      request);
+    fireauth.RpcHandler.ApiMethod.EMAIL_LINK_SIGNIN_FOR_LINKING,
+    request
+  );
 };
-
 
 /**
  * Validates a response that should contain an ID token.
@@ -1325,33 +1375,32 @@ fireauth.RpcHandler.prototype.emailLinkSignInForLinking =
  * @param {?Object} response The server response data.
  * @private
  */
-fireauth.RpcHandler.validateIdTokenResponse_ = function(response) {
+fireauth.RpcHandler.validateIdTokenResponse_ = function (response) {
   if (!response[fireauth.RpcHandler.AuthServerField.ID_TOKEN]) {
     // User could be a second factor user.
     // When second factor is required, a pending credential is returned.
     if (response[fireauth.RpcHandler.AuthServerField.MFA_PENDING_CREDENTIAL]) {
       throw new fireauth.AuthError(
-          fireauth.authenum.Error.MFA_REQUIRED,
-          null,
-          goog.object.clone(response));
+        fireauth.authenum.Error.MFA_REQUIRED,
+        null,
+        goog.object.clone(response)
+      );
     }
     throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
   }
 };
-
 
 /**
  * Validates a getRecaptchaParam response.
  * @param {?Object} response The server response data.
  * @private
  */
-fireauth.RpcHandler.validateGetRecaptchaParamResponse_ = function(response) {
+fireauth.RpcHandler.validateGetRecaptchaParamResponse_ = function (response) {
   // Both are required. This could change though.
   if (!response[fireauth.RpcHandler.AuthServerField.RECAPTCHA_SITE_KEY]) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
   }
 };
-
 
 /**
  * Validates a request that sends the verification ID and code for a sign in/up
@@ -1359,7 +1408,7 @@ fireauth.RpcHandler.validateGetRecaptchaParamResponse_ = function(response) {
  * @param {!Object} request The server request object.
  * @private
  */
-fireauth.RpcHandler.validateVerifyPhoneNumberRequest_ = function(request) {
+fireauth.RpcHandler.validateVerifyPhoneNumberRequest_ = function (request) {
   // There are 2 cases here:
   // case 1: sessionInfo and code
   // case 2: phoneNumber and temporaryProof
@@ -1372,7 +1421,8 @@ fireauth.RpcHandler.validateVerifyPhoneNumberRequest_ = function(request) {
     // Otherwise it's case 1, so we expect sessionInfo and code.
     if (!request['sessionInfo']) {
       throw new fireauth.AuthError(
-          fireauth.authenum.Error.MISSING_SESSION_INFO);
+        fireauth.authenum.Error.MISSING_SESSION_INFO
+      );
     }
     if (!request['code']) {
       throw new fireauth.AuthError(fireauth.authenum.Error.MISSING_CODE);
@@ -1380,14 +1430,13 @@ fireauth.RpcHandler.validateVerifyPhoneNumberRequest_ = function(request) {
   }
 };
 
-
 /**
  * Validates a request that sends the verification ID and code for a link/update
  * phone Auth flow.
  * @param {!Object} request The server request object.
  * @private
  */
-fireauth.RpcHandler.validateVerifyPhoneNumberLinkRequest_ = function(request) {
+fireauth.RpcHandler.validateVerifyPhoneNumberLinkRequest_ = function (request) {
   // idToken should be required here.
   if (!request['idToken']) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
@@ -1396,37 +1445,35 @@ fireauth.RpcHandler.validateVerifyPhoneNumberLinkRequest_ = function(request) {
   fireauth.RpcHandler.validateVerifyPhoneNumberRequest_(request);
 };
 
-
 /**
  * Validates a request to create an email and password account.
  * @param {!Object} request
  * @private
  */
-fireauth.RpcHandler.validateCreateAccountRequest_ = function(request) {
+fireauth.RpcHandler.validateCreateAccountRequest_ = function (request) {
   fireauth.RpcHandler.validateRequestHasEmail_(request);
   if (!request['password']) {
     throw new fireauth.AuthError(fireauth.authenum.Error.WEAK_PASSWORD);
   }
 };
 
-
 /**
  * Validates a request to createAuthUri.
  * @param {!Object} request
  * @private
  */
-fireauth.RpcHandler.validateGetAuthUriRequest_ = function(request) {
+fireauth.RpcHandler.validateGetAuthUriRequest_ = function (request) {
   if (!request['continueUri']) {
     throw new fireauth.AuthError(fireauth.authenum.Error.MISSING_CONTINUE_URI);
   }
   // Either a SAML or non SAML providerId must be provided.
   if (!request['providerId']) {
     throw new fireauth.AuthError(
-        fireauth.authenum.Error.INTERNAL_ERROR,
-        'A provider ID must be provided in the request.');
+      fireauth.authenum.Error.INTERNAL_ERROR,
+      'A provider ID must be provided in the request.'
+    );
   }
 };
-
 
 /**
  * Creates an email/password account. Returns a Promise that resolves with the
@@ -1435,39 +1482,34 @@ fireauth.RpcHandler.validateGetAuthUriRequest_ = function(request) {
  * @param {string} password The password.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.createAccount = function(email, password) {
+fireauth.RpcHandler.prototype.createAccount = function (email, password) {
   var request = {
     'email': email,
     'password': password
   };
-  return this.invokeRpc(fireauth.RpcHandler.ApiMethod.CREATE_ACCOUNT,
-      request);
+  return this.invokeRpc(fireauth.RpcHandler.ApiMethod.CREATE_ACCOUNT, request);
 };
-
 
 /**
  * Signs in a user as anonymous. Returns a Promise that resolves with the
  * ID token.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.signInAnonymously = function() {
+fireauth.RpcHandler.prototype.signInAnonymously = function () {
   return this.invokeRpc(fireauth.RpcHandler.ApiMethod.SIGN_IN_ANONYMOUSLY, {});
 };
-
 
 /**
  * Deletes the user's account corresponding to the idToken given.
  * @param {string} idToken The idToken of the user.
  * @return {!goog.Promise<undefined>}
  */
-fireauth.RpcHandler.prototype.deleteAccount = function(idToken) {
+fireauth.RpcHandler.prototype.deleteAccount = function (idToken) {
   var request = {
     'idToken': idToken
   };
-  return this.invokeRpc(fireauth.RpcHandler.ApiMethod.DELETE_ACCOUNT,
-      request);
+  return this.invokeRpc(fireauth.RpcHandler.ApiMethod.DELETE_ACCOUNT, request);
 };
-
 
 /**
  * Requests setAccountInfo endpoint for updateEmail operation.
@@ -1475,28 +1517,28 @@ fireauth.RpcHandler.prototype.deleteAccount = function(idToken) {
  * @param {string} newEmail The new email.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.updateEmail = function(idToken, newEmail) {
+fireauth.RpcHandler.prototype.updateEmail = function (idToken, newEmail) {
   var request = {
     'idToken': idToken,
     'email': newEmail
   };
-  return this.invokeRpc(fireauth.RpcHandler.ApiMethod.SET_ACCOUNT_INFO,
-      request);
+  return this.invokeRpc(
+    fireauth.RpcHandler.ApiMethod.SET_ACCOUNT_INFO,
+    request
+  );
 };
-
 
 /**
  * Validates a setAccountInfo request that updates the password.
  * @param {!Object} request
  * @private
  */
-fireauth.RpcHandler.validateSetAccountInfoSensitive_ = function(request) {
+fireauth.RpcHandler.validateSetAccountInfoSensitive_ = function (request) {
   fireauth.RpcHandler.validateEmailIfPresent_(request);
   if (!request['password']) {
     throw new fireauth.AuthError(fireauth.authenum.Error.WEAK_PASSWORD);
   }
 };
-
 
 /**
  * Requests setAccountInfo endpoint for updatePassword operation.
@@ -1504,15 +1546,16 @@ fireauth.RpcHandler.validateSetAccountInfoSensitive_ = function(request) {
  * @param {string} newPassword The new password.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.updatePassword = function(idToken, newPassword) {
+fireauth.RpcHandler.prototype.updatePassword = function (idToken, newPassword) {
   var request = {
     'idToken': idToken,
     'password': newPassword
   };
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.SET_ACCOUNT_INFO_SENSITIVE, request);
+    fireauth.RpcHandler.ApiMethod.SET_ACCOUNT_INFO_SENSITIVE,
+    request
+  );
 };
-
 
 /**
  * Requests setAccountInfo endpoint to set the email and password. This can be
@@ -1522,17 +1565,21 @@ fireauth.RpcHandler.prototype.updatePassword = function(idToken, newPassword) {
  * @param {string} newPassword The new password.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.updateEmailAndPassword = function(idToken,
-    newEmail, newPassword) {
+fireauth.RpcHandler.prototype.updateEmailAndPassword = function (
+  idToken,
+  newEmail,
+  newPassword
+) {
   var request = {
     'idToken': idToken,
     'email': newEmail,
     'password': newPassword
   };
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.SET_ACCOUNT_INFO_SENSITIVE, request);
+    fireauth.RpcHandler.ApiMethod.SET_ACCOUNT_INFO_SENSITIVE,
+    request
+  );
 };
-
 
 /**
  * Maps the name of a field in the account info object to the backend enum
@@ -1544,7 +1591,6 @@ fireauth.RpcHandler.PROFILE_FIELD_TO_ENUM_NAME_ = {
   'photoUrl': 'PHOTO_URL'
 };
 
-
 /**
  * Updates the profile of the user. When resolved, promise returns a response
  * similar to that of getAccountInfo.
@@ -1552,7 +1598,7 @@ fireauth.RpcHandler.PROFILE_FIELD_TO_ENUM_NAME_ = {
  * @param {!Object} profileData The new profile data.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.updateProfile = function(idToken, profileData) {
+fireauth.RpcHandler.prototype.updateProfile = function (idToken, profileData) {
   var data = {
     'idToken': idToken
   };
@@ -1561,64 +1607,68 @@ fireauth.RpcHandler.prototype.updateProfile = function(idToken, profileData) {
   // Copy over the relevant fields from profileData, or explicitly flag a field
   // for deletion if null is passed as the value. Note that this currently only
   // checks profileData to the first level.
-  goog.object.forEach(fireauth.RpcHandler.PROFILE_FIELD_TO_ENUM_NAME_,
-      function(enumName, fieldName) {
-        var fieldValue = profileData[fieldName];
-        if (fieldValue === null) {
-          // If null is explicitly provided, delete the field.
-          fieldsToDelete.push(enumName);
-        } else if (fieldName in profileData) {
-          // If the field is explicitly set, send it to the backend.
-          data[fieldName] = fieldValue;
-        }
-      });
+  goog.object.forEach(
+    fireauth.RpcHandler.PROFILE_FIELD_TO_ENUM_NAME_,
+    function (enumName, fieldName) {
+      var fieldValue = profileData[fieldName];
+      if (fieldValue === null) {
+        // If null is explicitly provided, delete the field.
+        fieldsToDelete.push(enumName);
+      } else if (fieldName in profileData) {
+        // If the field is explicitly set, send it to the backend.
+        data[fieldName] = fieldValue;
+      }
+    }
+  );
   if (fieldsToDelete.length) {
     data['deleteAttribute'] = fieldsToDelete;
   }
   return this.invokeRpc(fireauth.RpcHandler.ApiMethod.SET_ACCOUNT_INFO, data);
 };
 
-
 /**
  * Validates a request for an email action code for password reset.
  * @param {!Object} request The getOobCode request data for password reset.
  * @private
  */
-fireauth.RpcHandler.validateOobCodeRequest_ = function(request) {
-  if (request['requestType'] !=
-          fireauth.RpcHandler.GetOobCodeRequestType.PASSWORD_RESET) {
+fireauth.RpcHandler.validateOobCodeRequest_ = function (request) {
+  if (
+    request['requestType'] !=
+    fireauth.RpcHandler.GetOobCodeRequestType.PASSWORD_RESET
+  ) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
   }
   fireauth.RpcHandler.validateRequestHasEmail_(request);
 };
-
 
 /**
  * Validates a request for an email action for passwordless email sign-in.
  * @param {!Object} request The getOobCode request data for email sign-in.
  * @private
  */
-fireauth.RpcHandler.validateEmailSignInCodeRequest_ = function(request) {
-  if (request['requestType'] !=
-      fireauth.RpcHandler.GetOobCodeRequestType.EMAIL_SIGNIN) {
+fireauth.RpcHandler.validateEmailSignInCodeRequest_ = function (request) {
+  if (
+    request['requestType'] !=
+    fireauth.RpcHandler.GetOobCodeRequestType.EMAIL_SIGNIN
+  ) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
   }
   fireauth.RpcHandler.validateRequestHasEmail_(request);
 };
-
 
 /**
  * Validates a request for an email action for email verification.
  * @param {!Object} request The getOobCode request data for email verification.
  * @private
  */
-fireauth.RpcHandler.validateEmailVerificationCodeRequest_ = function(request) {
-  if (request['requestType'] !=
-          fireauth.RpcHandler.GetOobCodeRequestType.VERIFY_EMAIL) {
+fireauth.RpcHandler.validateEmailVerificationCodeRequest_ = function (request) {
+  if (
+    request['requestType'] !=
+    fireauth.RpcHandler.GetOobCodeRequestType.VERIFY_EMAIL
+  ) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
   }
 };
-
 
 /**
  * Validates a request for an email action for email verification before update.
@@ -1627,13 +1677,14 @@ fireauth.RpcHandler.validateEmailVerificationCodeRequest_ = function(request) {
  * @private
  */
 fireauth.RpcHandler.validateEmailVerificationCodeBeforeUpdateRequest_ =
-    function(request) {
-  if (request['requestType'] !=
-          fireauth.RpcHandler.GetOobCodeRequestType.VERIFY_AND_CHANGE_EMAIL) {
-    throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
-  }
-};
-
+  function (request) {
+    if (
+      request['requestType'] !=
+      fireauth.RpcHandler.GetOobCodeRequestType.VERIFY_AND_CHANGE_EMAIL
+    ) {
+      throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
+    }
+  };
 
 /**
  * Requests getOobCode endpoint for password reset, returns promise that
@@ -1642,8 +1693,10 @@ fireauth.RpcHandler.validateEmailVerificationCodeBeforeUpdateRequest_ =
  * @param {!Object} additionalRequestData Additional data to add to the request.
  * @return {!goog.Promise<string>}
  */
-fireauth.RpcHandler.prototype.sendPasswordResetEmail =
-    function(email, additionalRequestData) {
+fireauth.RpcHandler.prototype.sendPasswordResetEmail = function (
+  email,
+  additionalRequestData
+) {
   var request = {
     'requestType': fireauth.RpcHandler.GetOobCodeRequestType.PASSWORD_RESET,
     'email': email
@@ -1653,7 +1706,6 @@ fireauth.RpcHandler.prototype.sendPasswordResetEmail =
   return this.invokeRpc(fireauth.RpcHandler.ApiMethod.GET_OOB_CODE, request);
 };
 
-
 /**
  * Requests getOobCode endpoint for passwordless email sign-in, returns promise
  * that resolves with user's email.
@@ -1661,8 +1713,10 @@ fireauth.RpcHandler.prototype.sendPasswordResetEmail =
  * @param {!Object} additionalRequestData Additional data to add to the request.
  * @return {!goog.Promise<string>}
  */
-fireauth.RpcHandler.prototype.sendSignInLinkToEmail = function(
-    email, additionalRequestData) {
+fireauth.RpcHandler.prototype.sendSignInLinkToEmail = function (
+  email,
+  additionalRequestData
+) {
   var request = {
     'requestType': fireauth.RpcHandler.GetOobCodeRequestType.EMAIL_SIGNIN,
     'email': email
@@ -1670,9 +1724,10 @@ fireauth.RpcHandler.prototype.sendSignInLinkToEmail = function(
   // Extend the original request with the additional data.
   goog.object.extend(request, additionalRequestData);
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.GET_EMAIL_SIGNIN_CODE, request);
+    fireauth.RpcHandler.ApiMethod.GET_EMAIL_SIGNIN_CODE,
+    request
+  );
 };
-
 
 /**
  * Requests getOobCode endpoint for email verification, returns promise that
@@ -1681,8 +1736,10 @@ fireauth.RpcHandler.prototype.sendSignInLinkToEmail = function(
  * @param {!Object} additionalRequestData Additional data to add to the request.
  * @return {!goog.Promise<string>}
  */
-fireauth.RpcHandler.prototype.sendEmailVerification =
-    function(idToken, additionalRequestData) {
+fireauth.RpcHandler.prototype.sendEmailVerification = function (
+  idToken,
+  additionalRequestData
+) {
   var request = {
     'requestType': fireauth.RpcHandler.GetOobCodeRequestType.VERIFY_EMAIL,
     'idToken': idToken
@@ -1690,9 +1747,10 @@ fireauth.RpcHandler.prototype.sendEmailVerification =
   // Extend the original request with the additional data.
   goog.object.extend(request, additionalRequestData);
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.GET_EMAIL_VERIFICATION_CODE, request);
+    fireauth.RpcHandler.ApiMethod.GET_EMAIL_VERIFICATION_CODE,
+    request
+  );
 };
-
 
 /**
  * Requests getOobCode endpoint for email verification before updating the
@@ -1702,21 +1760,24 @@ fireauth.RpcHandler.prototype.sendEmailVerification =
  * @param {!Object} additionalRequestData Additional data to add to the request.
  * @return {!goog.Promise<void>}
  */
-fireauth.RpcHandler.prototype.verifyBeforeUpdateEmail =
-    function(idToken, newEmail, additionalRequestData) {
+fireauth.RpcHandler.prototype.verifyBeforeUpdateEmail = function (
+  idToken,
+  newEmail,
+  additionalRequestData
+) {
   var request = {
     'requestType':
-        fireauth.RpcHandler.GetOobCodeRequestType.VERIFY_AND_CHANGE_EMAIL,
+      fireauth.RpcHandler.GetOobCodeRequestType.VERIFY_AND_CHANGE_EMAIL,
     'idToken': idToken,
     'newEmail': newEmail
   };
   // Extend the original request with the additional data.
   goog.object.extend(request, additionalRequestData);
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.GET_EMAIL_VERIFICATION_CODE_BEFORE_UPDATE,
-      request);
+    fireauth.RpcHandler.ApiMethod.GET_EMAIL_VERIFICATION_CODE_BEFORE_UPDATE,
+    request
+  );
 };
-
 
 /**
  * Requests sendVerificationCode endpoint for verifying the user's ownership of
@@ -1725,13 +1786,14 @@ fireauth.RpcHandler.prototype.verifyBeforeUpdateEmail =
  *     number and an assertion.
  * @return {!goog.Promise<string>}
  */
-fireauth.RpcHandler.prototype.sendVerificationCode = function(request) {
+fireauth.RpcHandler.prototype.sendVerificationCode = function (request) {
   // In the future, we could support other types of assertions so for now,
   // we are keeping the request an object.
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.SEND_VERIFICATION_CODE, request);
+    fireauth.RpcHandler.ApiMethod.SEND_VERIFICATION_CODE,
+    request
+  );
 };
-
 
 /**
  * Requests verifyPhoneNumber endpoint for sign in/sign up phone number
@@ -1740,11 +1802,12 @@ fireauth.RpcHandler.prototype.sendVerificationCode = function(request) {
  *     Firebase Auth session.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.verifyPhoneNumber = function(request) {
+fireauth.RpcHandler.prototype.verifyPhoneNumber = function (request) {
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.VERIFY_PHONE_NUMBER, request);
+    fireauth.RpcHandler.ApiMethod.VERIFY_PHONE_NUMBER,
+    request
+  );
 };
-
 
 /**
  * Requests verifyPhoneNumber endpoint for link/update phone number
@@ -1753,19 +1816,21 @@ fireauth.RpcHandler.prototype.verifyPhoneNumber = function(request) {
  *     Firebase Auth session.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.verifyPhoneNumberForLinking = function(request) {
+fireauth.RpcHandler.prototype.verifyPhoneNumberForLinking = function (request) {
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.VERIFY_PHONE_NUMBER_FOR_LINKING, request);
+    fireauth.RpcHandler.ApiMethod.VERIFY_PHONE_NUMBER_FOR_LINKING,
+    request
+  );
 };
-
 
 /**
  * Validates a response to a phone number linking request.
  * @param {?Object} response The server response data.
  * @private
  */
-fireauth.RpcHandler.validateVerifyPhoneNumberForLinkingResponse_ =
-    function(response) {
+fireauth.RpcHandler.validateVerifyPhoneNumberForLinkingResponse_ = function (
+  response
+) {
   if (response[fireauth.RpcHandler.AuthServerField.TEMPORARY_PROOF]) {
     response['code'] = fireauth.authenum.Error.CREDENTIAL_ALREADY_IN_USE;
     throw fireauth.AuthErrorWithCredential.fromPlainObject(response);
@@ -1776,7 +1841,6 @@ fireauth.RpcHandler.validateVerifyPhoneNumberForLinkingResponse_ =
   fireauth.RpcHandler.validateIdTokenResponse_(response);
 };
 
-
 /**
  * Requests verifyPhoneNumber endpoint for reauthenticating with a phone number
  * and resolves with the STS token response.
@@ -1784,21 +1848,24 @@ fireauth.RpcHandler.validateVerifyPhoneNumberForLinkingResponse_ =
  *     exchange for a refreshed Firebase Auth session.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.verifyPhoneNumberForExisting = function(request) {
+fireauth.RpcHandler.prototype.verifyPhoneNumberForExisting = function (
+  request
+) {
   request['operation'] = 'REAUTH';
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.VERIFY_PHONE_NUMBER_FOR_EXISTING,
-      request);
+    fireauth.RpcHandler.ApiMethod.VERIFY_PHONE_NUMBER_FOR_EXISTING,
+    request
+  );
 };
-
 
 /**
  * Validates a request for starting phone MFA enrollment.
  * @param {!Object} request The startPhoneMfaEnrollment request data.
  * @private
  */
-fireauth.RpcHandler.validateStartPhoneMfaEnrollmentRequest_ =
-    function(request) {
+fireauth.RpcHandler.validateStartPhoneMfaEnrollmentRequest_ = function (
+  request
+) {
   if (!request['phoneEnrollmentInfo']) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
   }
@@ -1807,25 +1874,28 @@ fireauth.RpcHandler.validateStartPhoneMfaEnrollmentRequest_ =
   }
   if (!request['phoneEnrollmentInfo']['recaptchaToken']) {
     throw new fireauth.AuthError(
-        fireauth.authenum.Error.MISSING_APP_CREDENTIAL);
+      fireauth.authenum.Error.MISSING_APP_CREDENTIAL
+    );
   }
 };
-
 
 /**
  * Validates a response to a start phone MFA enrollment request.
  * @param {!Object} response The server response data.
  * @private
  */
-fireauth.RpcHandler.validateStartPhoneMfaEnrollmentResponse_ =
-    function(response) {
-  if (!response[fireauth.RpcHandler.AuthServerField.PHONE_SESSION_INFO] ||
-      !response[fireauth.RpcHandler.AuthServerField.PHONE_SESSION_INFO]
-          [fireauth.RpcHandler.AuthServerField.SESSION_INFO]) {
+fireauth.RpcHandler.validateStartPhoneMfaEnrollmentResponse_ = function (
+  response
+) {
+  if (
+    !response[fireauth.RpcHandler.AuthServerField.PHONE_SESSION_INFO] ||
+    !response[fireauth.RpcHandler.AuthServerField.PHONE_SESSION_INFO][
+      fireauth.RpcHandler.AuthServerField.SESSION_INFO
+    ]
+  ) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
   }
 };
-
 
 /**
  * Requests startMfaEnrollment endpoint for verifying the user's ownership of
@@ -1834,16 +1904,17 @@ fireauth.RpcHandler.validateStartPhoneMfaEnrollmentResponse_ =
  * @param {!Object} request The enroll MFA request for phone.
  * @return {!goog.Promise<string>}
  */
-fireauth.RpcHandler.prototype.startPhoneMfaEnrollment = function(request) {
+fireauth.RpcHandler.prototype.startPhoneMfaEnrollment = function (request) {
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.START_PHONE_MFA_ENROLLMENT, request)
-      .then(function(response) {
-        // Extract the sessionInfo(verificationId) from response.
-        return response[fireauth.RpcHandler.AuthServerField.PHONE_SESSION_INFO]
-            [fireauth.RpcHandler.AuthServerField.SESSION_INFO];
-      });
+    fireauth.RpcHandler.ApiMethod.START_PHONE_MFA_ENROLLMENT,
+    request
+  ).then(function (response) {
+    // Extract the sessionInfo(verificationId) from response.
+    return response[
+      fireauth.RpcHandler.AuthServerField.PHONE_SESSION_INFO
+    ][fireauth.RpcHandler.AuthServerField.SESSION_INFO];
+  });
 };
-
 
 /**
  * Validates a request for finalizing phone MFA enrollment or sign-in.
@@ -1851,7 +1922,7 @@ fireauth.RpcHandler.prototype.startPhoneMfaEnrollment = function(request) {
  *     finalizePhoneMfaSignIn request data.
  * @private
  */
-fireauth.RpcHandler.validateFinalizePhoneMfaRequest_ = function(request) {
+fireauth.RpcHandler.validateFinalizePhoneMfaRequest_ = function (request) {
   if (!request['phoneVerificationInfo']) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
   }
@@ -1863,46 +1934,50 @@ fireauth.RpcHandler.validateFinalizePhoneMfaRequest_ = function(request) {
   }
 };
 
-
 /**
  * Requests finalizeMfaEnrollment endpoint to finish the enrollment flow for
  * phone MFA. It resolves with the MFA token response.
  * @param {!Object} request The enroll MFA request for phone.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.finalizePhoneMfaEnrollment = function(request) {
+fireauth.RpcHandler.prototype.finalizePhoneMfaEnrollment = function (request) {
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.FINALIZE_PHONE_MFA_ENROLLMENT, request);
+    fireauth.RpcHandler.ApiMethod.FINALIZE_PHONE_MFA_ENROLLMENT,
+    request
+  );
 };
-
 
 /**
  * Validates a request for starting phone MFA sign-in.
  * @param {!Object} request The startPhoneMfaSignIn request data.
  * @private
  */
-fireauth.RpcHandler.validateStartPhoneMfaSignInRequest_ = function(request) {
-  if (!request['phoneSignInInfo'] ||
-      !request['phoneSignInInfo']['recaptchaToken']) {
+fireauth.RpcHandler.validateStartPhoneMfaSignInRequest_ = function (request) {
+  if (
+    !request['phoneSignInInfo'] ||
+    !request['phoneSignInInfo']['recaptchaToken']
+  ) {
     throw new fireauth.AuthError(
-        fireauth.authenum.Error.MISSING_APP_CREDENTIAL);
+      fireauth.authenum.Error.MISSING_APP_CREDENTIAL
+    );
   }
 };
-
 
 /**
  * Validates a response to a start phone MFA sign-in request.
  * @param {!Object} response The server response data.
  * @private
  */
-fireauth.RpcHandler.validateStartPhoneMfaSignInResponse_ = function(response) {
-  if (!response[fireauth.RpcHandler.AuthServerField.PHONE_RESPONSE_INFO] ||
-      !response[fireauth.RpcHandler.AuthServerField.PHONE_RESPONSE_INFO]
-          [fireauth.RpcHandler.AuthServerField.SESSION_INFO]) {
+fireauth.RpcHandler.validateStartPhoneMfaSignInResponse_ = function (response) {
+  if (
+    !response[fireauth.RpcHandler.AuthServerField.PHONE_RESPONSE_INFO] ||
+    !response[fireauth.RpcHandler.AuthServerField.PHONE_RESPONSE_INFO][
+      fireauth.RpcHandler.AuthServerField.SESSION_INFO
+    ]
+  ) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
   }
 };
-
 
 /**
  * Requests startMfaSignIn endpoint for verifying the user's ownership of
@@ -1911,16 +1986,17 @@ fireauth.RpcHandler.validateStartPhoneMfaSignInResponse_ = function(response) {
  * @param {!Object} request The sign in MFA request for phone.
  * @return {!goog.Promise<string>}
  */
-fireauth.RpcHandler.prototype.startPhoneMfaSignIn = function(request) {
+fireauth.RpcHandler.prototype.startPhoneMfaSignIn = function (request) {
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.START_PHONE_MFA_SIGN_IN, request)
-      .then(function(response) {
-        // Extract the sessionInfo(verificationId) from response.
-        return response[fireauth.RpcHandler.AuthServerField.PHONE_RESPONSE_INFO]
-            [fireauth.RpcHandler.AuthServerField.SESSION_INFO];
-      });
+    fireauth.RpcHandler.ApiMethod.START_PHONE_MFA_SIGN_IN,
+    request
+  ).then(function (response) {
+    // Extract the sessionInfo(verificationId) from response.
+    return response[
+      fireauth.RpcHandler.AuthServerField.PHONE_RESPONSE_INFO
+    ][fireauth.RpcHandler.AuthServerField.SESSION_INFO];
+  });
 };
-
 
 /**
  * Requests finalizeMfaSignIn endpoint to finish the sign-in flow for
@@ -1928,11 +2004,12 @@ fireauth.RpcHandler.prototype.startPhoneMfaSignIn = function(request) {
  * @param {!Object} request The sign in MFA request for phone.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.finalizePhoneMfaSignIn = function(request) {
+fireauth.RpcHandler.prototype.finalizePhoneMfaSignIn = function (request) {
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.FINALIZE_PHONE_MFA_SIGN_IN, request);
+    fireauth.RpcHandler.ApiMethod.FINALIZE_PHONE_MFA_SIGN_IN,
+    request
+  );
 };
-
 
 /**
  * Validates the response for unenrolling a second factor. If the user is still
@@ -1941,16 +2018,15 @@ fireauth.RpcHandler.prototype.finalizePhoneMfaSignIn = function(request) {
  * @param {!Object} response The server response data.
  * @private
  */
-fireauth.RpcHandler.validateWithdrawMfaResponse_ = function(response) {
+fireauth.RpcHandler.validateWithdrawMfaResponse_ = function (response) {
   var hasIdToken = !!response[fireauth.RpcHandler.AuthServerField.ID_TOKEN];
   var hasRefreshToken =
-      !!response[fireauth.RpcHandler.AuthServerField.REFRESH_TOKEN];
+    !!response[fireauth.RpcHandler.AuthServerField.REFRESH_TOKEN];
 
   if (hasIdToken ^ hasRefreshToken) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
   }
 };
-
 
 /**
  * Requests the withdraw endpoint to unenroll a second factor. Returns new
@@ -1960,14 +2036,16 @@ fireauth.RpcHandler.validateWithdrawMfaResponse_ = function(response) {
  * @param {string} mfaEnrollmentId The MFA enrollment ID.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.withdrawMfa = function(idToken, mfaEnrollmentId) {
+fireauth.RpcHandler.prototype.withdrawMfa = function (
+  idToken,
+  mfaEnrollmentId
+) {
   var request = {
     'idToken': idToken,
     'mfaEnrollmentId': mfaEnrollmentId
   };
   return this.invokeRpc(fireauth.RpcHandler.ApiMethod.WITHDRAW_MFA, request);
 };
-
 
 /**
  * The custom error map for reauth with verifyPhoneNumber.
@@ -1979,21 +2057,19 @@ fireauth.RpcHandler.verifyPhoneNumberForExistingErrorMap_ = {};
 // token is invalid. However, for this specific case, USER_NOT_FOUND actually
 // means that the sent credential is invalid.
 fireauth.RpcHandler.verifyPhoneNumberForExistingErrorMap_[
-  fireauth.RpcHandler.ServerError.USER_NOT_FOUND] =
-    fireauth.authenum.Error.USER_DELETED;
-
+  fireauth.RpcHandler.ServerError.USER_NOT_FOUND
+] = fireauth.authenum.Error.USER_DELETED;
 
 /**
  * Validates a request to deleteLinkedAccounts.
  * @param {?Object} request
  * @private
  */
-fireauth.RpcHandler.validateDeleteLinkedAccountsRequest_ = function(request) {
+fireauth.RpcHandler.validateDeleteLinkedAccountsRequest_ = function (request) {
   if (!Array.isArray(request['deleteProvider'])) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
   }
 };
-
 
 /**
  * Updates the providers for the account associated with the idToken.
@@ -2001,33 +2077,37 @@ fireauth.RpcHandler.validateDeleteLinkedAccountsRequest_ = function(request) {
  * @param {!Array<string>} providersToDelete The array of providers to delete.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.deleteLinkedAccounts =
-    function(idToken, providersToDelete) {
+fireauth.RpcHandler.prototype.deleteLinkedAccounts = function (
+  idToken,
+  providersToDelete
+) {
   var request = {
     'idToken': idToken,
     'deleteProvider': providersToDelete
   };
-  return this.invokeRpc(fireauth.RpcHandler.ApiMethod.DELETE_LINKED_ACCOUNTS,
-      request);
+  return this.invokeRpc(
+    fireauth.RpcHandler.ApiMethod.DELETE_LINKED_ACCOUNTS,
+    request
+  );
 };
-
 
 /**
  * Validates a verifyAssertion request.
  * @param {?Object} request The verifyAssertion request data.
  * @private
  */
-fireauth.RpcHandler.validateVerifyAssertionRequest_ = function(request) {
+fireauth.RpcHandler.validateVerifyAssertionRequest_ = function (request) {
   // Either (requestUri and sessionId), (requestUri and postBody) or
   // (requestUri and pendingToken) are required.
-  if (!request[fireauth.RpcHandler.AuthServerField.REQUEST_URI] ||
-      (!request[fireauth.RpcHandler.AuthServerField.SESSION_ID] &&
-       !request[fireauth.RpcHandler.AuthServerField.POST_BODY] &&
-       !request[fireauth.RpcHandler.AuthServerField.PENDING_TOKEN])) {
+  if (
+    !request[fireauth.RpcHandler.AuthServerField.REQUEST_URI] ||
+    (!request[fireauth.RpcHandler.AuthServerField.SESSION_ID] &&
+      !request[fireauth.RpcHandler.AuthServerField.POST_BODY] &&
+      !request[fireauth.RpcHandler.AuthServerField.PENDING_TOKEN])
+  ) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
   }
 };
-
 
 /**
  * Processes the verifyAssertion response and injects the same raw nonce
@@ -2037,59 +2117,69 @@ fireauth.RpcHandler.validateVerifyAssertionRequest_ = function(request) {
  * @return {!Object} The modified verifyAssertion response.
  * @private
  */
-fireauth.RpcHandler.processVerifyAssertionResponse_ =
-    function(request, response) {
+fireauth.RpcHandler.processVerifyAssertionResponse_ = function (
+  request,
+  response
+) {
   // This makes it possible for OIDC providers to:
   // 1. Initialize an OIDC Auth credential on successful response.
   // 2. Initialize an OIDC Auth credential within the recovery error.
 
   // When request has sessionId and response has OIDC ID token and no pending
   // token, a credential with raw nonce and OIDC ID token needs to be returned.
-  if (response[fireauth.RpcHandler.AuthServerField.OAUTH_ID_TOKEN] &&
-      response[fireauth.RpcHandler.AuthServerField.PROVIDER_ID] &&
-      response[fireauth.RpcHandler.AuthServerField.PROVIDER_ID]
-          .indexOf(fireauth.constants.OIDC_PREFIX) == 0 &&
-      // Use pendingToken instead of idToken and rawNonce when available.
-      !response[fireauth.RpcHandler.AuthServerField.PENDING_TOKEN]) {
+  if (
+    response[fireauth.RpcHandler.AuthServerField.OAUTH_ID_TOKEN] &&
+    response[fireauth.RpcHandler.AuthServerField.PROVIDER_ID] &&
+    response[fireauth.RpcHandler.AuthServerField.PROVIDER_ID].indexOf(
+      fireauth.constants.OIDC_PREFIX
+    ) == 0 &&
+    // Use pendingToken instead of idToken and rawNonce when available.
+    !response[fireauth.RpcHandler.AuthServerField.PENDING_TOKEN]
+  ) {
     if (request[fireauth.RpcHandler.AuthServerField.SESSION_ID]) {
       // For full OAuth flow, the nonce is in the session ID.
       response[fireauth.RpcHandler.InjectedResponseField.NONCE] =
-          request[fireauth.RpcHandler.AuthServerField.SESSION_ID];
+        request[fireauth.RpcHandler.AuthServerField.SESSION_ID];
     } else if (request[fireauth.RpcHandler.AuthServerField.POST_BODY]) {
       // For credential flow, the nonce is in the postBody nonce field.
       var queryData = new goog.Uri.QueryData(
-          request[fireauth.RpcHandler.AuthServerField.POST_BODY]);
-      if (queryData.containsKey(
-              fireauth.RpcHandler.InjectedResponseField.NONCE)) {
+        request[fireauth.RpcHandler.AuthServerField.POST_BODY]
+      );
+      if (
+        queryData.containsKey(fireauth.RpcHandler.InjectedResponseField.NONCE)
+      ) {
         response[fireauth.RpcHandler.InjectedResponseField.NONCE] =
-            queryData.get(fireauth.RpcHandler.InjectedResponseField.NONCE);
+          queryData.get(fireauth.RpcHandler.InjectedResponseField.NONCE);
       }
     }
   }
   return response;
 };
 
-
 /**
  * Validates a response from verifyAssertionForExisting.
  * @param {?Object} response The verifyAssertionForExisting response data.
  * @private
  */
-fireauth.RpcHandler.validateVerifyAssertionForExistingResponse_ =
-    function(response) {
+fireauth.RpcHandler.validateVerifyAssertionForExistingResponse_ = function (
+  response
+) {
   // When returnIdpCredential is set to true and the account is new, no error
   // is thrown but an errorMessage is added to the response. No idToken is
   // passed.
-  if (response[fireauth.RpcHandler.AuthServerField.ERROR_MESSAGE] &&
-      response[fireauth.RpcHandler.AuthServerField.ERROR_MESSAGE] ==
-          fireauth.RpcHandler.ServerError.USER_NOT_FOUND) {
+  if (
+    response[fireauth.RpcHandler.AuthServerField.ERROR_MESSAGE] &&
+    response[fireauth.RpcHandler.AuthServerField.ERROR_MESSAGE] ==
+      fireauth.RpcHandler.ServerError.USER_NOT_FOUND
+  ) {
     // This corresponds to user-not-found.
     throw new fireauth.AuthError(fireauth.authenum.Error.USER_DELETED);
   } else if (response[fireauth.RpcHandler.AuthServerField.ERROR_MESSAGE]) {
     // Construct developer facing error message from server code in errorMessage
     // field.
     throw fireauth.RpcHandler.getDeveloperErrorFromCode_(
-        response[fireauth.RpcHandler.AuthServerField.ERROR_MESSAGE]);
+      response[fireauth.RpcHandler.AuthServerField.ERROR_MESSAGE]
+    );
   }
   // Need confirmation should not be returned when do not create new user flag
   // is set.
@@ -2097,13 +2187,12 @@ fireauth.RpcHandler.validateVerifyAssertionForExistingResponse_ =
   fireauth.RpcHandler.validateIdTokenResponse_(response);
 };
 
-
 /**
  * Validates a response from verifyAssertion.
  * @param {?Object} response The verifyAssertion response data.
  * @private
  */
-fireauth.RpcHandler.validateVerifyAssertionResponse_ = function(response) {
+fireauth.RpcHandler.validateVerifyAssertionResponse_ = function (response) {
   var error = null;
   if (response[fireauth.RpcHandler.AuthServerField.NEED_CONFIRMATION]) {
     // Account linking required, previously logged in to another account
@@ -2115,8 +2204,10 @@ fireauth.RpcHandler.validateVerifyAssertionResponse_ = function(response) {
     // If missing information, return regular Auth error.
     response['code'] = fireauth.authenum.Error.NEED_CONFIRMATION;
     error = fireauth.AuthErrorWithCredential.fromPlainObject(response);
-  } else if (response[fireauth.RpcHandler.AuthServerField.ERROR_MESSAGE] ==
-             fireauth.RpcHandler.ServerError.FEDERATED_USER_ID_ALREADY_LINKED) {
+  } else if (
+    response[fireauth.RpcHandler.AuthServerField.ERROR_MESSAGE] ==
+    fireauth.RpcHandler.ServerError.FEDERATED_USER_ID_ALREADY_LINKED
+  ) {
     // When FEDERATED_USER_ID_ALREADY_LINKED returned in error message, auth
     // credential and email will also be returned, throw relevant error in that
     // case.
@@ -2124,8 +2215,10 @@ fireauth.RpcHandler.validateVerifyAssertionResponse_ = function(response) {
     // credentials.
     response['code'] = fireauth.authenum.Error.CREDENTIAL_ALREADY_IN_USE;
     error = fireauth.AuthErrorWithCredential.fromPlainObject(response);
-  } else if (response[fireauth.RpcHandler.AuthServerField.ERROR_MESSAGE] ==
-             fireauth.RpcHandler.ServerError.EMAIL_EXISTS) {
+  } else if (
+    response[fireauth.RpcHandler.AuthServerField.ERROR_MESSAGE] ==
+    fireauth.RpcHandler.ServerError.EMAIL_EXISTS
+  ) {
     // When EMAIL_EXISTS returned in error message, Auth credential and email
     // will also be returned, throw relevant error in that case.
     // In this case, the developers needs to sign in the user to the original
@@ -2136,7 +2229,8 @@ fireauth.RpcHandler.validateVerifyAssertionResponse_ = function(response) {
     // Construct developer facing error message from server code in errorMessage
     // field.
     error = fireauth.RpcHandler.getDeveloperErrorFromCode_(
-        response[fireauth.RpcHandler.AuthServerField.ERROR_MESSAGE]);
+      response[fireauth.RpcHandler.AuthServerField.ERROR_MESSAGE]
+    );
   }
   // If error found, throw it.
   if (error) {
@@ -2146,13 +2240,12 @@ fireauth.RpcHandler.validateVerifyAssertionResponse_ = function(response) {
   fireauth.RpcHandler.validateIdTokenResponse_(response);
 };
 
-
 /**
  * Validates a verifyAssertion with linking request.
  * @param {?Object} request The verifyAssertion request data.
  * @private
  */
-fireauth.RpcHandler.validateVerifyAssertionLinkRequest_ = function(request) {
+fireauth.RpcHandler.validateVerifyAssertionLinkRequest_ = function (request) {
   // idToken with either (requestUri and sessionId) or (requestUri and postBody)
   // are required.
   fireauth.RpcHandler.validateVerifyAssertionRequest_(request);
@@ -2160,7 +2253,6 @@ fireauth.RpcHandler.validateVerifyAssertionLinkRequest_ = function(request) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
   }
 };
-
 
 /**
  * @typedef {{
@@ -2176,23 +2268,22 @@ fireauth.RpcHandler.validateVerifyAssertionLinkRequest_ = function(request) {
  */
 fireauth.RpcHandler.VerifyAssertionData;
 
-
 /**
  * Requests verifyAssertion endpoint. When resolved, promise returns the whole
  * response.
  * @param {!fireauth.RpcHandler.VerifyAssertionData} request
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.verifyAssertion = function(request) {
+fireauth.RpcHandler.prototype.verifyAssertion = function (request) {
   // Force Auth credential to be returned on the following errors:
   // FEDERATED_USER_ID_ALREADY_LINKED
   // EMAIL_EXISTS
   request['returnIdpCredential'] = true;
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.VERIFY_ASSERTION,
-      request);
+    fireauth.RpcHandler.ApiMethod.VERIFY_ASSERTION,
+    request
+  );
 };
-
 
 /**
  * Requests verifyAssertion endpoint for federated account linking. When
@@ -2200,16 +2291,16 @@ fireauth.RpcHandler.prototype.verifyAssertion = function(request) {
  * @param {!fireauth.RpcHandler.VerifyAssertionData} request
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.verifyAssertionForLinking = function(request) {
+fireauth.RpcHandler.prototype.verifyAssertionForLinking = function (request) {
   // Force Auth credential to be returned on the following errors:
   // FEDERATED_USER_ID_ALREADY_LINKED
   // EMAIL_EXISTS
   request['returnIdpCredential'] = true;
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.VERIFY_ASSERTION_FOR_LINKING,
-      request);
+    fireauth.RpcHandler.ApiMethod.VERIFY_ASSERTION_FOR_LINKING,
+    request
+  );
 };
-
 
 /**
  * Requests verifyAssertion endpoint for an existing federated account. When
@@ -2218,7 +2309,7 @@ fireauth.RpcHandler.prototype.verifyAssertionForLinking = function(request) {
  * @param {!fireauth.RpcHandler.VerifyAssertionData} request
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.verifyAssertionForExisting = function(request) {
+fireauth.RpcHandler.prototype.verifyAssertionForExisting = function (request) {
   // Since we are setting returnIdpCredential to true, a response will be
   // returned even though the account doesn't exist but an error message is
   // appended with value set to USER_NOT_FOUND. If this flag is not passed, only
@@ -2227,22 +2318,21 @@ fireauth.RpcHandler.prototype.verifyAssertionForExisting = function(request) {
   // Do not create a new account if the user doesn't exist.
   request['autoCreate'] = false;
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.VERIFY_ASSERTION_FOR_EXISTING,
-      request);
+    fireauth.RpcHandler.ApiMethod.VERIFY_ASSERTION_FOR_EXISTING,
+    request
+  );
 };
-
 
 /**
  * Validates a request that should contain an action code.
  * @param {!Object} request
  * @private
  */
-fireauth.RpcHandler.validateApplyActionCodeRequest_ = function(request) {
+fireauth.RpcHandler.validateApplyActionCodeRequest_ = function (request) {
   if (!request['oobCode']) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INVALID_OOB_CODE);
   }
 };
-
 
 /**
  * Validates that a checkActionCode response contains the email and requestType
@@ -2250,18 +2340,20 @@ fireauth.RpcHandler.validateApplyActionCodeRequest_ = function(request) {
  * @param {!Object} response The raw response returned by the server.
  * @private
  */
-fireauth.RpcHandler.validateCheckActionCodeResponse_ = function(response) {
+fireauth.RpcHandler.validateCheckActionCodeResponse_ = function (response) {
   // If the code is invalid, usually a clear error would be returned.
   // In this case, something unexpected happened.
   // Email could be empty only if the request type is EMAIL_SIGNIN.
   var operation = response['requestType'];
-  if (!operation ||
-      (!response['email'] && operation != 'EMAIL_SIGNIN' &&
-       operation != 'VERIFY_AND_CHANGE_EMAIL')) {
+  if (
+    !operation ||
+    (!response['email'] &&
+      operation != 'EMAIL_SIGNIN' &&
+      operation != 'VERIFY_AND_CHANGE_EMAIL')
+  ) {
     throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
   }
 };
-
 
 /**
  * Requests resetPassword endpoint for password reset, returns promise that
@@ -2270,8 +2362,10 @@ fireauth.RpcHandler.validateCheckActionCodeResponse_ = function(response) {
  * @param {string} newPassword The new password.
  * @return {!goog.Promise<string>}
  */
-fireauth.RpcHandler.prototype.confirmPasswordReset =
-    function(code, newPassword) {
+fireauth.RpcHandler.prototype.confirmPasswordReset = function (
+  code,
+  newPassword
+) {
   var request = {
     'oobCode': code,
     'newPassword': newPassword
@@ -2279,21 +2373,21 @@ fireauth.RpcHandler.prototype.confirmPasswordReset =
   return this.invokeRpc(fireauth.RpcHandler.ApiMethod.RESET_PASSWORD, request);
 };
 
-
 /**
  * Checks the validity of an email action code and returns the response
  * received.
  * @param {string} code The email action code to check.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.RpcHandler.prototype.checkActionCode = function(code) {
+fireauth.RpcHandler.prototype.checkActionCode = function (code) {
   var request = {
     'oobCode': code
   };
   return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.CHECK_ACTION_CODE, request);
+    fireauth.RpcHandler.ApiMethod.CHECK_ACTION_CODE,
+    request
+  );
 };
-
 
 /**
  * Applies an out-of-band email action code, such as an email verification code.
@@ -2301,14 +2395,12 @@ fireauth.RpcHandler.prototype.checkActionCode = function(code) {
  * @return {!goog.Promise<string>} A promise that resolves with the user's
  *     email.
  */
-fireauth.RpcHandler.prototype.applyActionCode = function(code) {
+fireauth.RpcHandler.prototype.applyActionCode = function (code) {
   var request = {
     'oobCode': code
   };
-  return this.invokeRpc(
-      fireauth.RpcHandler.ApiMethod.APPLY_OOB_CODE, request);
+  return this.invokeRpc(fireauth.RpcHandler.ApiMethod.APPLY_OOB_CODE, request);
 };
-
 
 /**
  * The specification of an RPC call. The fields are:
@@ -2356,7 +2448,6 @@ fireauth.RpcHandler.prototype.applyActionCode = function(code) {
  * }}
  */
 fireauth.RpcHandler.ApiMethodHandler;
-
 
 /**
  * The specifications for the backend API methods.
@@ -2413,8 +2504,7 @@ fireauth.RpcHandler.ApiMethod = {
   FINALIZE_PHONE_MFA_ENROLLMENT: {
     endpoint: 'accounts/mfaEnrollment:finalize',
     requestRequiredFields: ['idToken', 'phoneVerificationInfo'],
-    requestValidator:
-        fireauth.RpcHandler.validateFinalizePhoneMfaRequest_,
+    requestValidator: fireauth.RpcHandler.validateFinalizePhoneMfaRequest_,
     responseValidator: fireauth.RpcHandler.validateIdTokenResponse_,
     requireTenantId: true,
     useIdentityPlatformEndpoint: true
@@ -2422,8 +2512,7 @@ fireauth.RpcHandler.ApiMethod = {
   FINALIZE_PHONE_MFA_SIGN_IN: {
     endpoint: 'accounts/mfaSignIn:finalize',
     requestRequiredFields: ['mfaPendingCredential', 'phoneVerificationInfo'],
-    requestValidator:
-        fireauth.RpcHandler.validateFinalizePhoneMfaRequest_,
+    requestValidator: fireauth.RpcHandler.validateFinalizePhoneMfaRequest_,
     responseValidator: fireauth.RpcHandler.validateIdTokenResponse_,
     requireTenantId: true,
     useIdentityPlatformEndpoint: true
@@ -2455,7 +2544,7 @@ fireauth.RpcHandler.ApiMethod = {
     endpoint: 'getOobConfirmationCode',
     requestRequiredFields: ['idToken', 'newEmail', 'requestType'],
     requestValidator:
-        fireauth.RpcHandler.validateEmailVerificationCodeBeforeUpdateRequest_,
+      fireauth.RpcHandler.validateEmailVerificationCodeBeforeUpdateRequest_,
     responseField: fireauth.RpcHandler.AuthServerField.EMAIL,
     requireTenantId: true
   },
@@ -2507,7 +2596,7 @@ fireauth.RpcHandler.ApiMethod = {
     requestRequiredFields: ['idToken'],
     requestValidator: fireauth.RpcHandler.validateEmailIfPresent_,
     returnSecureToken: true // Maybe updating email will invalidate token in the
-                            // future, this will prevent breaking the client.
+    // future, this will prevent breaking the client.
   },
   SET_ACCOUNT_INFO_SENSITIVE: {
     endpoint: 'setAccountInfo',
@@ -2526,20 +2615,21 @@ fireauth.RpcHandler.ApiMethod = {
     endpoint: 'accounts/mfaEnrollment:start',
     requestRequiredFields: ['idToken', 'phoneEnrollmentInfo'],
     requestValidator:
-        fireauth.RpcHandler.validateStartPhoneMfaEnrollmentRequest_,
+      fireauth.RpcHandler.validateStartPhoneMfaEnrollmentRequest_,
     responseValidator:
-        fireauth.RpcHandler.validateStartPhoneMfaEnrollmentResponse_,
+      fireauth.RpcHandler.validateStartPhoneMfaEnrollmentResponse_,
     requireTenantId: true,
     useIdentityPlatformEndpoint: true
   },
   START_PHONE_MFA_SIGN_IN: {
     endpoint: 'accounts/mfaSignIn:start',
-    requestRequiredFields: ['mfaPendingCredential', 'mfaEnrollmentId',
-                            'phoneSignInInfo'],
-    requestValidator:
-        fireauth.RpcHandler.validateStartPhoneMfaSignInRequest_,
-    responseValidator:
-        fireauth.RpcHandler.validateStartPhoneMfaSignInResponse_,
+    requestRequiredFields: [
+      'mfaPendingCredential',
+      'mfaEnrollmentId',
+      'phoneSignInInfo'
+    ],
+    requestValidator: fireauth.RpcHandler.validateStartPhoneMfaSignInRequest_,
+    responseValidator: fireauth.RpcHandler.validateStartPhoneMfaSignInResponse_,
     requireTenantId: true,
     useIdentityPlatformEndpoint: true
   },
@@ -2562,7 +2652,7 @@ fireauth.RpcHandler.ApiMethod = {
     requestValidator: fireauth.RpcHandler.validateVerifyAssertionRequest_,
     responsePreprocessor: fireauth.RpcHandler.processVerifyAssertionResponse_,
     responseValidator:
-        fireauth.RpcHandler.validateVerifyAssertionForExistingResponse_,
+      fireauth.RpcHandler.validateVerifyAssertionForExistingResponse_,
     returnSecureToken: true,
     // Tenant ID is required for this endpoint. But for
     // reauthenticateWithRedirect/Popup APIs, to make createAuthUri call and
@@ -2604,7 +2694,7 @@ fireauth.RpcHandler.ApiMethod = {
     endpoint: 'verifyPhoneNumber',
     requestValidator: fireauth.RpcHandler.validateVerifyPhoneNumberLinkRequest_,
     responseValidator:
-        fireauth.RpcHandler.validateVerifyPhoneNumberForLinkingResponse_
+      fireauth.RpcHandler.validateVerifyPhoneNumberForLinkingResponse_
   },
   VERIFY_PHONE_NUMBER_FOR_EXISTING: {
     customErrorMap: fireauth.RpcHandler.verifyPhoneNumberForExistingErrorMap_,
@@ -2622,7 +2712,6 @@ fireauth.RpcHandler.ApiMethod = {
   }
 };
 
-
 /**
  * @const {string} The parameter to send to the backend to specify that the
  *     client accepts STS tokens directly from Firebear backends.
@@ -2630,14 +2719,12 @@ fireauth.RpcHandler.ApiMethod = {
  */
 fireauth.RpcHandler.USE_STS_TOKEN_PARAM_ = 'returnSecureToken';
 
-
 /**
  * @const {string} The parameter to send to the backend to specify the tenant
  *     ID.
  * @private
  */
 fireauth.RpcHandler.TENANT_ID_PARAM_ = 'tenantId';
-
 
 /**
  * Invokes an RPC method according to the specification defined by
@@ -2648,11 +2735,13 @@ fireauth.RpcHandler.TENANT_ID_PARAM_ = 'tenantId';
  *     The format of the results can be modified in
  *     {@code fireauth.RpcHandler.ApiMethod}.
  */
-fireauth.RpcHandler.prototype.invokeRpc = function(method, request) {
-  if (!fireauth.object.hasNonEmptyFields(
-      request, method.requestRequiredFields)) {
-    return goog.Promise.reject(new fireauth.AuthError(
-        fireauth.authenum.Error.INTERNAL_ERROR));
+fireauth.RpcHandler.prototype.invokeRpc = function (method, request) {
+  if (
+    !fireauth.object.hasNonEmptyFields(request, method.requestRequiredFields)
+  ) {
+    return goog.Promise.reject(
+      new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR)
+    );
   }
 
   var useIdentityPlatformEndpoint = !!method.useIdentityPlatformEndpoint;
@@ -2660,48 +2749,58 @@ fireauth.RpcHandler.prototype.invokeRpc = function(method, request) {
   var self = this;
   var response;
   return goog.Promise.resolve(request)
-      .then(method.requestValidator)
-      .then(function() {
-        if (method.returnSecureToken) {
-          // Signal that the client accepts STS tokens, for the legacy Google
-          // Identity Toolkit token to STS token migration.
-          request[fireauth.RpcHandler.USE_STS_TOKEN_PARAM_] = true;
-        }
-        // If tenant ID is explicitly passed in the request, it will override
-        // the tenant ID on RPC handler.
-        if (method.requireTenantId && self.tenantId_ &&
-            (typeof request[fireauth.RpcHandler.TENANT_ID_PARAM_] ===
-             'undefined')) {
-          request[fireauth.RpcHandler.TENANT_ID_PARAM_] = self.tenantId_;
-        }
-        return useIdentityPlatformEndpoint ?
-            self.requestIdentityPlatformEndpoint(method.endpoint, httpMethod,
-                request, method.customErrorMap, method.cachebuster || false) :
-            self.requestFirebaseEndpoint(method.endpoint, httpMethod,
-                request, method.customErrorMap, method.cachebuster || false);
-      })
-      .then(function(tempResponse) {
-        response = tempResponse;
-        // If response processor is available, pass request and response through
-        // it. Modifications would be made using response reference.
-        if (method.responsePreprocessor) {
-          return method.responsePreprocessor(request, response);
-        }
+    .then(method.requestValidator)
+    .then(function () {
+      if (method.returnSecureToken) {
+        // Signal that the client accepts STS tokens, for the legacy Google
+        // Identity Toolkit token to STS token migration.
+        request[fireauth.RpcHandler.USE_STS_TOKEN_PARAM_] = true;
+      }
+      // If tenant ID is explicitly passed in the request, it will override
+      // the tenant ID on RPC handler.
+      if (
+        method.requireTenantId &&
+        self.tenantId_ &&
+        typeof request[fireauth.RpcHandler.TENANT_ID_PARAM_] === 'undefined'
+      ) {
+        request[fireauth.RpcHandler.TENANT_ID_PARAM_] = self.tenantId_;
+      }
+      return useIdentityPlatformEndpoint
+        ? self.requestIdentityPlatformEndpoint(
+            method.endpoint,
+            httpMethod,
+            request,
+            method.customErrorMap,
+            method.cachebuster || false
+          )
+        : self.requestFirebaseEndpoint(
+            method.endpoint,
+            httpMethod,
+            request,
+            method.customErrorMap,
+            method.cachebuster || false
+          );
+    })
+    .then(function (tempResponse) {
+      response = tempResponse;
+      // If response processor is available, pass request and response through
+      // it. Modifications would be made using response reference.
+      if (method.responsePreprocessor) {
+        return method.responsePreprocessor(request, response);
+      }
+      return response;
+    })
+    .then(method.responseValidator)
+    .then(function () {
+      if (!method.responseField) {
         return response;
-      })
-      .then(method.responseValidator)
-      .then(function() {
-        if (!method.responseField) {
-          return response;
-        }
-        if (!(method.responseField in response)) {
-          throw new fireauth.AuthError(
-              fireauth.authenum.Error.INTERNAL_ERROR);
-        }
-        return response[method.responseField];
-      });
+      }
+      if (!(method.responseField in response)) {
+        throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR);
+      }
+      return response[method.responseField];
+    });
 };
-
 
 /**
  * Checks if the server response contains errors.
@@ -2709,10 +2808,9 @@ fireauth.RpcHandler.prototype.invokeRpc = function(method, request) {
  * @return {boolean} {@code true} if the response contains errors.
  * @private
  */
-fireauth.RpcHandler.hasError_ = function(resp) {
+fireauth.RpcHandler.hasError_ = function (resp) {
   return !!resp['error'];
 };
-
 
 /**
  * Returns the developer facing error corresponding to the server code provided.
@@ -2720,7 +2818,7 @@ fireauth.RpcHandler.hasError_ = function(resp) {
  * @return {!fireauth.AuthError} The corresponding error object.
  * @private
  */
-fireauth.RpcHandler.getDeveloperErrorFromCode_ = function(serverErrorCode) {
+fireauth.RpcHandler.getDeveloperErrorFromCode_ = function (serverErrorCode) {
   // Encapsulate the server error code in a typical server error response with
   // the code populated within. This will convert the response to a developer
   // facing one.
@@ -2737,7 +2835,6 @@ fireauth.RpcHandler.getDeveloperErrorFromCode_ = function(serverErrorCode) {
   });
 };
 
-
 /**
  * Converts a server response with errors to a developer-facing AuthError.
  * @param {!Object} response The server response.
@@ -2747,8 +2844,10 @@ fireauth.RpcHandler.getDeveloperErrorFromCode_ = function(serverErrorCode) {
  * @return {!fireauth.AuthError} The corresponding error object.
  * @private
  */
-fireauth.RpcHandler.getDeveloperError_ =
-    function(response, opt_customErrorMap) {
+fireauth.RpcHandler.getDeveloperError_ = function (
+  response,
+  opt_customErrorMap
+) {
   var errorMessage;
   var apiaryError = fireauth.RpcHandler.getApiaryError_(response);
   if (apiaryError) {
@@ -2761,186 +2860,186 @@ fireauth.RpcHandler.getDeveloperError_ =
 
   // Custom token errors.
   errorMap[fireauth.RpcHandler.ServerError.INVALID_CUSTOM_TOKEN] =
-      fireauth.authenum.Error.INVALID_CUSTOM_TOKEN;
+    fireauth.authenum.Error.INVALID_CUSTOM_TOKEN;
   errorMap[fireauth.RpcHandler.ServerError.CREDENTIAL_MISMATCH] =
-      fireauth.authenum.Error.CREDENTIAL_MISMATCH;
+    fireauth.authenum.Error.CREDENTIAL_MISMATCH;
   // This can only happen if the SDK sends a bad request.
   errorMap[fireauth.RpcHandler.ServerError.MISSING_CUSTOM_TOKEN] =
-      fireauth.authenum.Error.INTERNAL_ERROR;
+    fireauth.authenum.Error.INTERNAL_ERROR;
 
   // Create Auth URI errors.
   errorMap[fireauth.RpcHandler.ServerError.INVALID_IDENTIFIER] =
-      fireauth.authenum.Error.INVALID_EMAIL;
+    fireauth.authenum.Error.INVALID_EMAIL;
   // This can only happen if the SDK sends a bad request.
   errorMap[fireauth.RpcHandler.ServerError.MISSING_CONTINUE_URI] =
-      fireauth.authenum.Error.INTERNAL_ERROR;
+    fireauth.authenum.Error.INTERNAL_ERROR;
 
   // Sign in with email and password errors (some apply to sign up too).
   errorMap[fireauth.RpcHandler.ServerError.INVALID_EMAIL] =
-      fireauth.authenum.Error.INVALID_EMAIL;
+    fireauth.authenum.Error.INVALID_EMAIL;
   errorMap[fireauth.RpcHandler.ServerError.INVALID_PASSWORD] =
-      fireauth.authenum.Error.INVALID_PASSWORD;
+    fireauth.authenum.Error.INVALID_PASSWORD;
   errorMap[fireauth.RpcHandler.ServerError.USER_DISABLED] =
-      fireauth.authenum.Error.USER_DISABLED;
+    fireauth.authenum.Error.USER_DISABLED;
   // This can only happen if the SDK sends a bad request.
   errorMap[fireauth.RpcHandler.ServerError.MISSING_PASSWORD] =
-      fireauth.authenum.Error.INTERNAL_ERROR;
+    fireauth.authenum.Error.INTERNAL_ERROR;
 
   // Sign up with email and password errors.
   errorMap[fireauth.RpcHandler.ServerError.EMAIL_EXISTS] =
-      fireauth.authenum.Error.EMAIL_EXISTS;
+    fireauth.authenum.Error.EMAIL_EXISTS;
   errorMap[fireauth.RpcHandler.ServerError.PASSWORD_LOGIN_DISABLED] =
-      fireauth.authenum.Error.OPERATION_NOT_ALLOWED;
+    fireauth.authenum.Error.OPERATION_NOT_ALLOWED;
 
   // Verify assertion for sign in with credential errors:
   errorMap[fireauth.RpcHandler.ServerError.INVALID_IDP_RESPONSE] =
-      fireauth.authenum.Error.INVALID_IDP_RESPONSE;
+    fireauth.authenum.Error.INVALID_IDP_RESPONSE;
   errorMap[fireauth.RpcHandler.ServerError.INVALID_PENDING_TOKEN] =
-      fireauth.authenum.Error.INVALID_IDP_RESPONSE;
+    fireauth.authenum.Error.INVALID_IDP_RESPONSE;
   errorMap[fireauth.RpcHandler.ServerError.FEDERATED_USER_ID_ALREADY_LINKED] =
-      fireauth.authenum.Error.CREDENTIAL_ALREADY_IN_USE;
+    fireauth.authenum.Error.CREDENTIAL_ALREADY_IN_USE;
   errorMap[fireauth.RpcHandler.ServerError.MISSING_OR_INVALID_NONCE] =
-      fireauth.authenum.Error.MISSING_OR_INVALID_NONCE;
+    fireauth.authenum.Error.MISSING_OR_INVALID_NONCE;
 
   // Email template errors while sending emails:
   errorMap[fireauth.RpcHandler.ServerError.INVALID_MESSAGE_PAYLOAD] =
-      fireauth.authenum.Error.INVALID_MESSAGE_PAYLOAD;
+    fireauth.authenum.Error.INVALID_MESSAGE_PAYLOAD;
   errorMap[fireauth.RpcHandler.ServerError.INVALID_RECIPIENT_EMAIL] =
-      fireauth.authenum.Error.INVALID_RECIPIENT_EMAIL;
+    fireauth.authenum.Error.INVALID_RECIPIENT_EMAIL;
   errorMap[fireauth.RpcHandler.ServerError.INVALID_SENDER] =
-      fireauth.authenum.Error.INVALID_SENDER;
+    fireauth.authenum.Error.INVALID_SENDER;
 
   // Send Password reset email errors:
   errorMap[fireauth.RpcHandler.ServerError.EMAIL_NOT_FOUND] =
-      fireauth.authenum.Error.USER_DELETED;
+    fireauth.authenum.Error.USER_DELETED;
   errorMap[fireauth.RpcHandler.ServerError.RESET_PASSWORD_EXCEED_LIMIT] =
-      fireauth.authenum.Error.TOO_MANY_ATTEMPTS_TRY_LATER;
+    fireauth.authenum.Error.TOO_MANY_ATTEMPTS_TRY_LATER;
 
   // Reset password errors:
   errorMap[fireauth.RpcHandler.ServerError.EXPIRED_OOB_CODE] =
-      fireauth.authenum.Error.EXPIRED_OOB_CODE;
+    fireauth.authenum.Error.EXPIRED_OOB_CODE;
   errorMap[fireauth.RpcHandler.ServerError.INVALID_OOB_CODE] =
-      fireauth.authenum.Error.INVALID_OOB_CODE;
+    fireauth.authenum.Error.INVALID_OOB_CODE;
   // This can only happen if the SDK sends a bad request.
   errorMap[fireauth.RpcHandler.ServerError.MISSING_OOB_CODE] =
-      fireauth.authenum.Error.INTERNAL_ERROR;
+    fireauth.authenum.Error.INTERNAL_ERROR;
 
   // Get Auth URI errors:
   errorMap[fireauth.RpcHandler.ServerError.INVALID_PROVIDER_ID] =
-      fireauth.authenum.Error.INVALID_PROVIDER_ID;
+    fireauth.authenum.Error.INVALID_PROVIDER_ID;
 
   // Operations that require ID token in request:
   errorMap[fireauth.RpcHandler.ServerError.CREDENTIAL_TOO_OLD_LOGIN_AGAIN] =
-      fireauth.authenum.Error.CREDENTIAL_TOO_OLD_LOGIN_AGAIN;
+    fireauth.authenum.Error.CREDENTIAL_TOO_OLD_LOGIN_AGAIN;
   errorMap[fireauth.RpcHandler.ServerError.INVALID_ID_TOKEN] =
-      fireauth.authenum.Error.INVALID_AUTH;
+    fireauth.authenum.Error.INVALID_AUTH;
   errorMap[fireauth.RpcHandler.ServerError.TOKEN_EXPIRED] =
-      fireauth.authenum.Error.TOKEN_EXPIRED;
+    fireauth.authenum.Error.TOKEN_EXPIRED;
   errorMap[fireauth.RpcHandler.ServerError.USER_NOT_FOUND] =
-      fireauth.authenum.Error.TOKEN_EXPIRED;
+    fireauth.authenum.Error.TOKEN_EXPIRED;
 
   // CORS issues.
   errorMap[fireauth.RpcHandler.ServerError.CORS_UNSUPPORTED] =
-      fireauth.authenum.Error.CORS_UNSUPPORTED;
+    fireauth.authenum.Error.CORS_UNSUPPORTED;
 
   // Dynamic link not activated.
   errorMap[fireauth.RpcHandler.ServerError.DYNAMIC_LINK_NOT_ACTIVATED] =
-      fireauth.authenum.Error.DYNAMIC_LINK_NOT_ACTIVATED;
+    fireauth.authenum.Error.DYNAMIC_LINK_NOT_ACTIVATED;
 
   // iosBundleId or androidPackageName not valid error.
   errorMap[fireauth.RpcHandler.ServerError.INVALID_APP_ID] =
-      fireauth.authenum.Error.INVALID_APP_ID;
+    fireauth.authenum.Error.INVALID_APP_ID;
 
   // Other errors.
   errorMap[fireauth.RpcHandler.ServerError.TOO_MANY_ATTEMPTS_TRY_LATER] =
-      fireauth.authenum.Error.TOO_MANY_ATTEMPTS_TRY_LATER;
+    fireauth.authenum.Error.TOO_MANY_ATTEMPTS_TRY_LATER;
   errorMap[fireauth.RpcHandler.ServerError.WEAK_PASSWORD] =
-      fireauth.authenum.Error.WEAK_PASSWORD;
+    fireauth.authenum.Error.WEAK_PASSWORD;
   errorMap[fireauth.RpcHandler.ServerError.OPERATION_NOT_ALLOWED] =
-      fireauth.authenum.Error.OPERATION_NOT_ALLOWED;
+    fireauth.authenum.Error.OPERATION_NOT_ALLOWED;
   errorMap[fireauth.RpcHandler.ServerError.USER_CANCELLED] =
-      fireauth.authenum.Error.USER_CANCELLED;
+    fireauth.authenum.Error.USER_CANCELLED;
 
   // Phone Auth related errors.
   errorMap[fireauth.RpcHandler.ServerError.CAPTCHA_CHECK_FAILED] =
-      fireauth.authenum.Error.CAPTCHA_CHECK_FAILED;
+    fireauth.authenum.Error.CAPTCHA_CHECK_FAILED;
   errorMap[fireauth.RpcHandler.ServerError.INVALID_APP_CREDENTIAL] =
-      fireauth.authenum.Error.INVALID_APP_CREDENTIAL;
+    fireauth.authenum.Error.INVALID_APP_CREDENTIAL;
   errorMap[fireauth.RpcHandler.ServerError.INVALID_CODE] =
-      fireauth.authenum.Error.INVALID_CODE;
+    fireauth.authenum.Error.INVALID_CODE;
   errorMap[fireauth.RpcHandler.ServerError.INVALID_PHONE_NUMBER] =
-      fireauth.authenum.Error.INVALID_PHONE_NUMBER;
+    fireauth.authenum.Error.INVALID_PHONE_NUMBER;
   errorMap[fireauth.RpcHandler.ServerError.INVALID_SESSION_INFO] =
-      fireauth.authenum.Error.INVALID_SESSION_INFO;
+    fireauth.authenum.Error.INVALID_SESSION_INFO;
   errorMap[fireauth.RpcHandler.ServerError.INVALID_TEMPORARY_PROOF] =
-      fireauth.authenum.Error.INVALID_IDP_RESPONSE;
+    fireauth.authenum.Error.INVALID_IDP_RESPONSE;
   errorMap[fireauth.RpcHandler.ServerError.MISSING_APP_CREDENTIAL] =
-      fireauth.authenum.Error.MISSING_APP_CREDENTIAL;
+    fireauth.authenum.Error.MISSING_APP_CREDENTIAL;
   errorMap[fireauth.RpcHandler.ServerError.MISSING_CODE] =
-      fireauth.authenum.Error.MISSING_CODE;
+    fireauth.authenum.Error.MISSING_CODE;
   errorMap[fireauth.RpcHandler.ServerError.MISSING_PHONE_NUMBER] =
-      fireauth.authenum.Error.MISSING_PHONE_NUMBER;
+    fireauth.authenum.Error.MISSING_PHONE_NUMBER;
   errorMap[fireauth.RpcHandler.ServerError.MISSING_SESSION_INFO] =
-      fireauth.authenum.Error.MISSING_SESSION_INFO;
+    fireauth.authenum.Error.MISSING_SESSION_INFO;
   errorMap[fireauth.RpcHandler.ServerError.QUOTA_EXCEEDED] =
-      fireauth.authenum.Error.QUOTA_EXCEEDED;
+    fireauth.authenum.Error.QUOTA_EXCEEDED;
   errorMap[fireauth.RpcHandler.ServerError.SESSION_EXPIRED] =
-      fireauth.authenum.Error.CODE_EXPIRED;
+    fireauth.authenum.Error.CODE_EXPIRED;
   errorMap[fireauth.RpcHandler.ServerError.REJECTED_CREDENTIAL] =
-      fireauth.authenum.Error.REJECTED_CREDENTIAL;
+    fireauth.authenum.Error.REJECTED_CREDENTIAL;
 
   // Other action code errors when additional settings passed.
   errorMap[fireauth.RpcHandler.ServerError.INVALID_CONTINUE_URI] =
-      fireauth.authenum.Error.INVALID_CONTINUE_URI;
+    fireauth.authenum.Error.INVALID_CONTINUE_URI;
   // MISSING_CONTINUE_URI is getting mapped to INTERNAL_ERROR above.
   // This is OK as this error will be caught by client side validation.
   errorMap[fireauth.RpcHandler.ServerError.MISSING_ANDROID_PACKAGE_NAME] =
-      fireauth.authenum.Error.MISSING_ANDROID_PACKAGE_NAME;
+    fireauth.authenum.Error.MISSING_ANDROID_PACKAGE_NAME;
   errorMap[fireauth.RpcHandler.ServerError.MISSING_IOS_BUNDLE_ID] =
-      fireauth.authenum.Error.MISSING_IOS_BUNDLE_ID;
+    fireauth.authenum.Error.MISSING_IOS_BUNDLE_ID;
   errorMap[fireauth.RpcHandler.ServerError.UNAUTHORIZED_DOMAIN] =
-      fireauth.authenum.Error.UNAUTHORIZED_DOMAIN;
+    fireauth.authenum.Error.UNAUTHORIZED_DOMAIN;
   errorMap[fireauth.RpcHandler.ServerError.INVALID_DYNAMIC_LINK_DOMAIN] =
-      fireauth.authenum.Error.INVALID_DYNAMIC_LINK_DOMAIN;
+    fireauth.authenum.Error.INVALID_DYNAMIC_LINK_DOMAIN;
 
   // getProjectConfig errors when clientId is passed.
   errorMap[fireauth.RpcHandler.ServerError.INVALID_OAUTH_CLIENT_ID] =
-      fireauth.authenum.Error.INVALID_OAUTH_CLIENT_ID;
+    fireauth.authenum.Error.INVALID_OAUTH_CLIENT_ID;
   // getProjectConfig errors when sha1Cert is passed.
   errorMap[fireauth.RpcHandler.ServerError.INVALID_CERT_HASH] =
-      fireauth.authenum.Error.INVALID_CERT_HASH;
+    fireauth.authenum.Error.INVALID_CERT_HASH;
 
   // Multi-tenant related errors.
   errorMap[fireauth.RpcHandler.ServerError.UNSUPPORTED_TENANT_OPERATION] =
-      fireauth.authenum.Error.UNSUPPORTED_TENANT_OPERATION;
+    fireauth.authenum.Error.UNSUPPORTED_TENANT_OPERATION;
   errorMap[fireauth.RpcHandler.ServerError.INVALID_TENANT_ID] =
-      fireauth.authenum.Error.INVALID_TENANT_ID;
+    fireauth.authenum.Error.INVALID_TENANT_ID;
   errorMap[fireauth.RpcHandler.ServerError.TENANT_ID_MISMATCH] =
-      fireauth.authenum.Error.TENANT_ID_MISMATCH;
+    fireauth.authenum.Error.TENANT_ID_MISMATCH;
 
   // User actions (sign-up or deletion) disabled errors.
   errorMap[fireauth.RpcHandler.ServerError.ADMIN_ONLY_OPERATION] =
-      fireauth.authenum.Error.ADMIN_ONLY_OPERATION;
+    fireauth.authenum.Error.ADMIN_ONLY_OPERATION;
 
   // Multi-factor related errors.
   errorMap[fireauth.RpcHandler.ServerError.INVALID_MFA_PENDING_CREDENTIAL] =
-      fireauth.authenum.Error.INVALID_MFA_PENDING_CREDENTIAL;
+    fireauth.authenum.Error.INVALID_MFA_PENDING_CREDENTIAL;
   errorMap[fireauth.RpcHandler.ServerError.MFA_ENROLLMENT_NOT_FOUND] =
-      fireauth.authenum.Error.MFA_ENROLLMENT_NOT_FOUND;
+    fireauth.authenum.Error.MFA_ENROLLMENT_NOT_FOUND;
   errorMap[fireauth.RpcHandler.ServerError.MISSING_MFA_PENDING_CREDENTIAL] =
-      fireauth.authenum.Error.MISSING_MFA_PENDING_CREDENTIAL;
+    fireauth.authenum.Error.MISSING_MFA_PENDING_CREDENTIAL;
   errorMap[fireauth.RpcHandler.ServerError.MISSING_MFA_ENROLLMENT_ID] =
-      fireauth.authenum.Error.MISSING_MFA_ENROLLMENT_ID;
+    fireauth.authenum.Error.MISSING_MFA_ENROLLMENT_ID;
   errorMap[fireauth.RpcHandler.ServerError.EMAIL_CHANGE_NEEDS_VERIFICATION] =
-      fireauth.authenum.Error.EMAIL_CHANGE_NEEDS_VERIFICATION;
+    fireauth.authenum.Error.EMAIL_CHANGE_NEEDS_VERIFICATION;
   errorMap[fireauth.RpcHandler.ServerError.SECOND_FACTOR_EXISTS] =
-      fireauth.authenum.Error.SECOND_FACTOR_EXISTS;
+    fireauth.authenum.Error.SECOND_FACTOR_EXISTS;
   errorMap[fireauth.RpcHandler.ServerError.SECOND_FACTOR_LIMIT_EXCEEDED] =
-      fireauth.authenum.Error.SECOND_FACTOR_LIMIT_EXCEEDED;
+    fireauth.authenum.Error.SECOND_FACTOR_LIMIT_EXCEEDED;
   errorMap[fireauth.RpcHandler.ServerError.UNSUPPORTED_FIRST_FACTOR] =
-      fireauth.authenum.Error.UNSUPPORTED_FIRST_FACTOR;
+    fireauth.authenum.Error.UNSUPPORTED_FIRST_FACTOR;
   errorMap[fireauth.RpcHandler.ServerError.UNVERIFIED_EMAIL] =
-      fireauth.authenum.Error.UNVERIFIED_EMAIL;
+    fireauth.authenum.Error.UNVERIFIED_EMAIL;
 
   // Override errors set in the custom map.
   var customErrorMap = opt_customErrorMap || {};
@@ -2963,20 +3062,21 @@ fireauth.RpcHandler.getDeveloperError_ =
   // This is likely to be an Apiary error for unexpected cases like keyExpired,
   // etc.
   if (!errorMessage && response) {
-     errorMessage = fireauth.util.stringifyJSON(response);
+    errorMessage = fireauth.util.stringifyJSON(response);
   }
   // The backend returned some error we don't recognize; this is an error on
   // our side.
   return new fireauth.AuthError(
-      fireauth.authenum.Error.INTERNAL_ERROR, errorMessage);
+    fireauth.authenum.Error.INTERNAL_ERROR,
+    errorMessage
+  );
 };
-
 
 /**
  * @param {string} serverMessage The server error code.
  * @return {string|undefined} The detailed error code message.
  */
-fireauth.RpcHandler.getErrorCodeDetails = function(serverMessage) {
+fireauth.RpcHandler.getErrorCodeDetails = function (serverMessage) {
   // Use the error details part as the autherror message.
   // For a message INVALID_CUSTOM_TOKEN : [error detail here],
   // The Auth error message should be [error detail here].
@@ -2989,16 +3089,18 @@ fireauth.RpcHandler.getErrorCodeDetails = function(serverMessage) {
   return undefined;
 };
 
-
 /**
  * Gets the Apiary error from a backend response, if applicable.
  * @param {!Object} response The API response.
  * @return {?fireauth.AuthError} The error, if applicable.
  * @private
  */
-fireauth.RpcHandler.getApiaryError_ = function(response) {
-  var error = response['error'] && response['error']['errors'] &&
-      response['error']['errors'][0] || {};
+fireauth.RpcHandler.getApiaryError_ = function (response) {
+  var error =
+    (response['error'] &&
+      response['error']['errors'] &&
+      response['error']['errors'][0]) ||
+    {};
   var reason = error['reason'] || '';
 
   var errorReasonMap = {
@@ -3013,13 +3115,12 @@ fireauth.RpcHandler.getApiaryError_ = function(response) {
   return null;
 };
 
-
 /**
  * Gets the server error code from the response.
  * @param {!Object} resp The API response.
  * @return {string} The error code if present.
  * @private
  */
-fireauth.RpcHandler.getErrorCode_ = function(resp) {
+fireauth.RpcHandler.getErrorCode_ = function (resp) {
   return (resp['error'] && resp['error']['message']) || '';
 };

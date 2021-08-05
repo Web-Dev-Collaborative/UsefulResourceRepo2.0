@@ -15,12 +15,14 @@ Sass 中的 `@while` 指令与 JavaScript 中的 `while` 类似。 只要满足�
 ```scss
 $x: 1;
 @while $x < 13 {
-  .col-#{$x} { width: 100%/12 * $x;}
+  .col-#{$x} {
+    width: 100%/12 * $x;
+  }
   $x: $x + 1;
 }
 ```
 
-首先，定义变量 `$x` 并将其设置为 1。 接下来，使用 `@while` 指令，*while* `$x` 小于 13 时创建网格系统 。 在设置 `width` 的 CSS 规则后，`$x` 增加 1 以避免无限循环。
+首先，定义变量 `$x` 并将其设置为 1。 接下来，使用 `@while` 指令，_while_ `$x` 小于 13 时创建网格系统 。 在设置 `width` 的 CSS 规则后，`$x` 增加 1 以避免无限循环。
 
 # --instructions--
 
@@ -51,31 +53,31 @@ assert(code.match(/\$(.*)\s*?:\s*\$\1\s*\+\s*1\s*;/gi));
 `.text-1` class 的 `font-size` 应为 `15px`。
 
 ```js
-assert($('.text-1').css('font-size') == '15px');
+assert($(".text-1").css("font-size") == "15px");
 ```
 
 `.text-2` class 的 `font-size` 应为 `30px`。
 
 ```js
-assert($('.text-2').css('font-size') == '30px');
+assert($(".text-2").css("font-size") == "30px");
 ```
 
 `.text-3` class 的 `font-size` 应为 `45px`。
 
 ```js
-assert($('.text-3').css('font-size') == '45px');
+assert($(".text-3").css("font-size") == "45px");
 ```
 
 `.text-4` class 的 `font-size` 应为 `60px`。
 
 ```js
-assert($('.text-4').css('font-size') == '60px');
+assert($(".text-4").css("font-size") == "60px");
 ```
 
 `.text-5` class 的 `font-size` 应为 `75px`。
 
 ```js
-assert($('.text-5').css('font-size') == '75px');
+assert($(".text-5").css("font-size") == "75px");
 ```
 
 # --seed--
@@ -83,11 +85,7 @@ assert($('.text-5').css('font-size') == '75px');
 ## --seed-contents--
 
 ```html
-<style type='text/scss'>
-
-
-
-</style>
+<style type="text/scss"></style>
 
 <p class="text-1">Hello</p>
 <p class="text-2">Hello</p>
@@ -99,10 +97,10 @@ assert($('.text-5').css('font-size') == '75px');
 # --solutions--
 
 ```html
-<style type='text/scss'>
+<style type="text/scss">
   $x: 1;
   @while $x < 6 {
-    .text-#{$x}{
+    .text-#{$x} {
       font-size: 15px * $x;
     }
     $x: $x + 1;

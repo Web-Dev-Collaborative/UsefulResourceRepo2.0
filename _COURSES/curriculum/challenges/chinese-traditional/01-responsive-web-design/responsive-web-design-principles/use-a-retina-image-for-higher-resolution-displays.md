@@ -2,7 +2,7 @@
 id: 587d78b1367417b2b2512b0a
 title: 針對高分辨率屏幕應使用視網膜圖片
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pzrPu4/cVZ4Rfp'
+videoUrl: "https://scrimba.com/p/pzrPu4/cVZ4Rfp"
 forumTopicId: 301142
 dashedName: use-a-retina-image-for-higher-resolution-displays
 ---
@@ -15,9 +15,12 @@ dashedName: use-a-retina-image-for-higher-resolution-displays
 
 ```html
 <style>
-  img { height: 250px; width: 250px; }
+  img {
+    height: 250px;
+    width: 250px;
+  }
 </style>
-<img src="coolPic500x500" alt="A most excellent picture">
+<img src="coolPic500x500" alt="A most excellent picture" />
 ```
 
 # --instructions--
@@ -29,13 +32,13 @@ dashedName: use-a-retina-image-for-higher-resolution-displays
 `img` 標籤的 `width` 屬性值應爲 100px。
 
 ```js
-assert(document.querySelector('img').width === 100);
+assert(document.querySelector("img").width === 100);
 ```
 
 `img` 標籤的 `height` 屬性值應爲 100px。
 
 ```js
-assert(document.querySelector('img').height === 100);
+assert(document.querySelector("img").height === 100);
 ```
 
 # --seed--
@@ -43,22 +46,26 @@ assert(document.querySelector('img').height === 100);
 ## --seed-contents--
 
 ```html
-<style>
+<style></style>
 
-</style>
-
-<img src="https://s3.amazonaws.com/freecodecamp/FCCStickers-CamperBot200x200.jpg" alt="freeCodeCamp sticker that says 'Because CamperBot Cares'">
+<img
+  src="https://s3.amazonaws.com/freecodecamp/FCCStickers-CamperBot200x200.jpg"
+  alt="freeCodeCamp sticker that says 'Because CamperBot Cares'"
+/>
 ```
 
 # --solutions--
 
 ```html
 <style>
-  img { 
-    height: 100px; 
-    width: 100px; 
+  img {
+    height: 100px;
+    width: 100px;
   }
 </style>
 
-<img src="https://s3.amazonaws.com/freecodecamp/FCCStickers-CamperBot200x200.jpg" alt="freeCodeCamp sticker that says 'Because CamperBot Cares'">
+<img
+  src="https://s3.amazonaws.com/freecodecamp/FCCStickers-CamperBot200x200.jpg"
+  alt="freeCodeCamp sticker that says 'Because CamperBot Cares'"
+/>
 ```

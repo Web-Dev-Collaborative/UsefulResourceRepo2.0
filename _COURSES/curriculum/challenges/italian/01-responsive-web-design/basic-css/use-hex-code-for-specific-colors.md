@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08726
 title: Usare il codice esadecimale per colori specifici
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c8W9mHM'
+videoUrl: "https://scrimba.com/c/c8W9mHM"
 forumTopicId: 18350
 dashedName: use-hex-code-for-specific-colors
 ---
@@ -30,7 +30,7 @@ Sostituisci la parola `black` nel colore di sfondo dell'elemento `body` con la s
 Il tuo elemento `body` dovrebbe avere un colore di sfondo nero.
 
 ```js
-assert($('body').css('background-color') === 'rgb(0, 0, 0)');
+assert($("body").css("background-color") === "rgb(0, 0, 0)");
 ```
 
 L'`hex code` per il colore nero dovrebbe essere utilizzato al posto della parola `black`.

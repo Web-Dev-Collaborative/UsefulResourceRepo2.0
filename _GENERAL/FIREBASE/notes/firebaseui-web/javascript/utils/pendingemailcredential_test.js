@@ -16,13 +16,12 @@
  * @fileoverview Tests for pendingemailcredential.js.
  */
 
-goog.provide('firebaseui.auth.PendingEmailCredentialTest');
+goog.provide("firebaseui.auth.PendingEmailCredentialTest");
 
-goog.require('firebaseui.auth.PendingEmailCredential');
-goog.require('goog.testing.jsunit');
+goog.require("firebaseui.auth.PendingEmailCredential");
+goog.require("goog.testing.jsunit");
 
-goog.setTestOnly('firebaseui.auth.PendingEmailCredentialTest');
-
+goog.setTestOnly("firebaseui.auth.PendingEmailCredentialTest");
 
 var credential;
 var credentialObject;
@@ -32,52 +31,53 @@ var pendingEmailCredentialObject;
 var pendingEmailCredentialObject2;
 var firebase = firebase || {};
 
-
 function setUp() {
   // Mock credential.
-  firebase['auth'] = firebase['auth'] || {
-    'GoogleAuthProvider' : {
-      'credential' : function(idToken, accessToken) {
-        assertEquals(credential['idToken'], idToken);
-        assertEquals(credential['accessToken'], accessToken);
+  firebase["auth"] = firebase["auth"] || {
+    GoogleAuthProvider: {
+      credential: function (idToken, accessToken) {
+        assertEquals(credential["idToken"], idToken);
+        assertEquals(credential["accessToken"], accessToken);
         return credential;
       },
-      'PROVIDER_ID': 'google.com'
+      PROVIDER_ID: "google.com",
     },
-    'AuthCredential': {
-      'fromJSON': function(json) {
+    AuthCredential: {
+      fromJSON: function (json) {
         assertObjectEquals(credentialObject, json);
         return credential;
-      }
-    }
+      },
+    },
   };
   credentialObject = {
-    'providerId': 'google.com',
-    'signInMethod': 'google.com',
-    'oauthAcessToken': 'ACCESS_TOKEN'
+    providerId: "google.com",
+    signInMethod: "google.com",
+    oauthAcessToken: "ACCESS_TOKEN",
   };
   credential = {
-    'providerId': 'google.com',
-    'signInMethod': 'google.com',
-    'accessToken': 'ACCESS_TOKEN',
-    'toJSON': function() {
+    providerId: "google.com",
+    signInMethod: "google.com",
+    accessToken: "ACCESS_TOKEN",
+    toJSON: function () {
       return credentialObject;
-    }
+    },
   };
   pendingEmailCredential = new firebaseui.auth.PendingEmailCredential(
-      'user@example.com', credential);
-  pendingEmailCredentialObject  = {
-    'email': 'user@example.com',
-    'credential': credentialObject
+    "user@example.com",
+    credential
+  );
+  pendingEmailCredentialObject = {
+    email: "user@example.com",
+    credential: credentialObject,
   };
-  pendingEmailCredential2 =
-      new firebaseui.auth.PendingEmailCredential('other@example.com');
-  pendingEmailCredentialObject2  = {
-    'email': 'other@example.com',
-    'credential': null
+  pendingEmailCredential2 = new firebaseui.auth.PendingEmailCredential(
+    "other@example.com"
+  );
+  pendingEmailCredentialObject2 = {
+    email: "other@example.com",
+    credential: null,
   };
 }
-
 
 function tearDown() {
   credential = null;
@@ -87,33 +87,36 @@ function tearDown() {
   pendingEmailCredentialObject2 = null;
 }
 
-
 function testPendingEmailCredential() {
-  assertEquals('user@example.com', pendingEmailCredential.getEmail());
+  assertEquals("user@example.com", pendingEmailCredential.getEmail());
   assertObjectEquals(credential, pendingEmailCredential.getCredential());
-  assertEquals('other@example.com', pendingEmailCredential2.getEmail());
+  assertEquals("other@example.com", pendingEmailCredential2.getEmail());
   assertNull(pendingEmailCredential2.getCredential());
 }
 
-
 function testToPlainObject() {
   assertObjectEquals(
-      pendingEmailCredentialObject,
-      pendingEmailCredential.toPlainObject());
+    pendingEmailCredentialObject,
+    pendingEmailCredential.toPlainObject()
+  );
   assertObjectEquals(
-      pendingEmailCredentialObject2,
-      pendingEmailCredential2.toPlainObject());
+    pendingEmailCredentialObject2,
+    pendingEmailCredential2.toPlainObject()
+  );
 }
-
 
 function testFromPlainObject() {
   assertObjectEquals(
-      pendingEmailCredential,
-      firebaseui.auth.PendingEmailCredential.fromPlainObject(
-          pendingEmailCredentialObject));
+    pendingEmailCredential,
+    firebaseui.auth.PendingEmailCredential.fromPlainObject(
+      pendingEmailCredentialObject
+    )
+  );
   assertObjectEquals(
-      pendingEmailCredential2,
-      firebaseui.auth.PendingEmailCredential.fromPlainObject(
-          pendingEmailCredentialObject2));
+    pendingEmailCredential2,
+    firebaseui.auth.PendingEmailCredential.fromPlainObject(
+      pendingEmailCredentialObject2
+    )
+  );
   assertNull(firebaseui.auth.PendingEmailCredential.fromPlainObject({}));
 }

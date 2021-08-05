@@ -7,7 +7,7 @@ function getMetadata() {
 
   // Create a reference to the file whose metadata we want to retrieve
   const storage = getStorage();
-  const forestRef = ref(storage, 'images/forest.jpg');
+  const forestRef = ref(storage, "images/forest.jpg");
 
   // Get metadata properties
   getMetadata(forestRef)
@@ -26,19 +26,20 @@ function updateMetadata() {
 
   // Create a reference to the file whose metadata we want to change
   const storage = getStorage();
-  const forestRef = ref(storage, 'images/forest.jpg');
+  const forestRef = ref(storage, "images/forest.jpg");
 
   // Create file metadata to update
   const newMetadata = {
-    cacheControl: 'public,max-age=300',
-    contentType: 'image/jpeg'
+    cacheControl: "public,max-age=300",
+    contentType: "image/jpeg",
   };
 
   // Update metadata properties
   updateMetadata(forestRef, newMetadata)
     .then((metadata) => {
       // Updated metadata for 'images/forest.jpg' is returned in the Promise
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Uh-oh, an error occurred!
     });
   // [END storage_update_metadata]
@@ -49,18 +50,19 @@ function deleteMetadata() {
   const { getStorage, ref, updateMetadata } = require("firebase/storage");
 
   const storage = getStorage();
-  const forestRef = ref(storage, 'images/forest.jpg');
+  const forestRef = ref(storage, "images/forest.jpg");
 
   // Create file metadata with property to delete
   const deleteMetadata = {
-    contentType: null
+    contentType: null,
   };
 
   // Delete the metadata property
   updateMetadata(forestRef, deleteMetadata)
     .then((metadata) => {
       // metadata.contentType should be null
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Uh-oh, an error occurred!
     });
   // [END storage_delete_metadata]
@@ -70,9 +72,9 @@ function customMetadata() {
   // [START storage_custom_metadata]
   const metadata = {
     customMetadata: {
-      'location': 'Yosemite, CA, USA',
-      'activity': 'Hiking'
-    }
+      location: "Yosemite, CA, USA",
+      activity: "Hiking",
+    },
   };
   // [END storage_custom_metadata]
 }

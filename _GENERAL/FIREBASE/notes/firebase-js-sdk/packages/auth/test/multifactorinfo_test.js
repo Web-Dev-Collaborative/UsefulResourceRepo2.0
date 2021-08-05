@@ -31,7 +31,6 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.MultiFactorInfoTest');
 
-
 var now = new Date();
 var phoneServerResponse = {
   'mfaEnrollmentId': 'ENROLLMENT_UID',
@@ -39,7 +38,6 @@ var phoneServerResponse = {
   'enrolledAt': now.toISOString(),
   'phoneInfo': '+16505551234'
 };
-
 
 function testPhoneMultiFactorInfo_valid() {
   var info = new fireauth.PhoneMultiFactorInfo(phoneServerResponse);
@@ -51,16 +49,16 @@ function testPhoneMultiFactorInfo_valid() {
   assertEquals(phoneServerResponse['phoneInfo'], info['phoneNumber']);
 
   assertObjectEquals(
-      {
-        'uid': phoneServerResponse['mfaEnrollmentId'],
-        'displayName': phoneServerResponse['displayName'],
-        'factorId': fireauth.constants.SecondFactorType.PHONE,
-        'enrollmentTime': now.toUTCString(),
-        'phoneNumber': phoneServerResponse['phoneInfo']
-      },
-      info.toPlainObject());
+    {
+      'uid': phoneServerResponse['mfaEnrollmentId'],
+      'displayName': phoneServerResponse['displayName'],
+      'factorId': fireauth.constants.SecondFactorType.PHONE,
+      'enrollmentTime': now.toUTCString(),
+      'phoneNumber': phoneServerResponse['phoneInfo']
+    },
+    info.toPlainObject()
+  );
 }
-
 
 function testPhoneMultiFactorInfo_valid_missingFields() {
   // Remove all non-required fields.
@@ -77,52 +75,49 @@ function testPhoneMultiFactorInfo_valid_missingFields() {
   assertEquals(phoneServerResponse['phoneInfo'], info['phoneNumber']);
 
   assertObjectEquals(
-      {
-        'uid': phoneServerResponse['mfaEnrollmentId'],
-        'displayName': null,
-        'factorId': fireauth.constants.SecondFactorType.PHONE,
-        'enrollmentTime': null,
-        'phoneNumber': phoneServerResponse['phoneInfo']
-      },
-      info.toPlainObject());
+    {
+      'uid': phoneServerResponse['mfaEnrollmentId'],
+      'displayName': null,
+      'factorId': fireauth.constants.SecondFactorType.PHONE,
+      'enrollmentTime': null,
+      'phoneNumber': phoneServerResponse['phoneInfo']
+    },
+    info.toPlainObject()
+  );
 }
-
 
 function testPhoneMultiFactorInfo_invalidMultiFactorInfo() {
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.INTERNAL_ERROR,
-      'Internal assert: invalid MultiFactorInfo object');
+    fireauth.authenum.Error.INTERNAL_ERROR,
+    'Internal assert: invalid MultiFactorInfo object'
+  );
 
-  var error = assertThrows(function() {
+  var error = assertThrows(function () {
     return new fireauth.PhoneMultiFactorInfo({});
   });
 
-  fireauth.common.testHelper.assertErrorEquals(
-      expectedError,
-      error);
+  fireauth.common.testHelper.assertErrorEquals(expectedError, error);
 }
-
 
 function testPhoneMultiFactorInfo_invalidPhoneMultiFactorInfo() {
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.INTERNAL_ERROR,
-      'Internal assert: invalid MultiFactorInfo object');
+    fireauth.authenum.Error.INTERNAL_ERROR,
+    'Internal assert: invalid MultiFactorInfo object'
+  );
 
-  var error = assertThrows(function() {
+  var error = assertThrows(function () {
     return new fireauth.PhoneMultiFactorInfo({
       'mfaEnrollmentId': 'ENROLLMENT_UID'
     });
   });
 
-  fireauth.common.testHelper.assertErrorEquals(
-      expectedError,
-      error);
+  fireauth.common.testHelper.assertErrorEquals(expectedError, error);
 }
 
-
 function testMultiFactorInfo_fromServerResponse_phoneMultiFactorInfo() {
-  var expectedPhoneInfo =
-      new fireauth.PhoneMultiFactorInfo(phoneServerResponse);
+  var expectedPhoneInfo = new fireauth.PhoneMultiFactorInfo(
+    phoneServerResponse
+  );
 
   var info = fireauth.MultiFactorInfo.fromServerResponse(phoneServerResponse);
 
@@ -130,32 +125,35 @@ function testMultiFactorInfo_fromServerResponse_phoneMultiFactorInfo() {
   assertObjectEquals(expectedPhoneInfo, info);
 }
 
-
 function testMultiFactorInfo_fromServerResponse_invalid() {
   assertNull(fireauth.MultiFactorInfo.fromServerResponse(null));
   assertNull(fireauth.MultiFactorInfo.fromServerResponse({}));
-  assertNull(fireauth.MultiFactorInfo.fromServerResponse({
-    'mfaEnrollmentId': 'ENROLLMENT_UID'
-  }));
+  assertNull(
+    fireauth.MultiFactorInfo.fromServerResponse({
+      'mfaEnrollmentId': 'ENROLLMENT_UID'
+    })
+  );
 }
 
-
 function testMultiFactorInfo_fromPlainObject_phoneMultiFactorInfo() {
-  var expectedPhoneInfo =
-      new fireauth.PhoneMultiFactorInfo(phoneServerResponse);
+  var expectedPhoneInfo = new fireauth.PhoneMultiFactorInfo(
+    phoneServerResponse
+  );
 
   var info = fireauth.MultiFactorInfo.fromPlainObject(
-      expectedPhoneInfo.toPlainObject());
+    expectedPhoneInfo.toPlainObject()
+  );
 
   assertTrue(info instanceof fireauth.PhoneMultiFactorInfo);
   assertObjectEquals(expectedPhoneInfo, info);
 }
 
-
 function testMultiFactorInfo_fromPlainObject_invalid() {
   assertNull(fireauth.MultiFactorInfo.fromPlainObject(null));
   assertNull(fireauth.MultiFactorInfo.fromPlainObject({}));
-  assertNull(fireauth.MultiFactorInfo.fromPlainObject({
-    'uid': 'ENROLLMENT_UID'
-  }));
+  assertNull(
+    fireauth.MultiFactorInfo.fromPlainObject({
+      'uid': 'ENROLLMENT_UID'
+    })
+  );
 }

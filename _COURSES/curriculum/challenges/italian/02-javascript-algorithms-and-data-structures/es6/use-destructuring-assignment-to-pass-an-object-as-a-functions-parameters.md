@@ -15,16 +15,13 @@ Considera il codice qui sotto:
 ```js
 const profileUpdate = (profileData) => {
   const { name, age, nationality, location } = profileData;
-
-}
+};
 ```
 
 Questo destruttura efficacemente l'oggetto passato alla funzione. Questo può anche essere fatto sul posto:
 
 ```js
-const profileUpdate = ({ name, age, nationality, location }) => {
-
-}
+const profileUpdate = ({ name, age, nationality, location }) => {};
 ```
 
 Quando `profileData` viene passato alla funzione qui sopra, i valori del parametro vengono destrutturati per l'utilizzo all'interno della funzione.
@@ -38,7 +35,7 @@ Usa l'assegnazione destrutturante all'interno dell'argomento della funzione `hal
 `stats` dovrebbe essere un `object`.
 
 ```js
-assert(typeof stats === 'object');
+assert(typeof stats === "object");
 ```
 
 `half(stats)` dovrebbe essere `28.015`
@@ -70,11 +67,11 @@ const stats = {
   median: 34.54,
   mode: 23.87,
   min: -0.75,
-  average: 35.85
+  average: 35.85,
 };
 
 // Only change code below this line
-const half = (stats) => (stats.max + stats.min) / 2.0; 
+const half = (stats) => (stats.max + stats.min) / 2.0;
 // Only change code above this line
 ```
 
@@ -87,8 +84,8 @@ const stats = {
   median: 34.54,
   mode: 23.87,
   min: -0.75,
-  average: 35.85
+  average: 35.85,
 };
 
-const half = ( {max, min} ) => (max + min) / 2.0;
+const half = ({ max, min }) => (max + min) / 2.0;
 ```

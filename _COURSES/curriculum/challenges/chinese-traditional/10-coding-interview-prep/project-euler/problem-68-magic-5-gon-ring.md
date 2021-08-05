@@ -1,6 +1,6 @@
 ---
 id: 5900f3b01000cf542c50fec3
-title: 'Problem 68: Magic 5-gon ring'
+title: "Problem 68: Magic 5-gon ring"
 challengeType: 5
 forumTopicId: 302180
 dashedName: problem-68-magic-5-gon-ring
@@ -18,16 +18,16 @@ It is possible to complete the ring with four different totals: 9, 10, 11, and 1
 
 <div style='text-align: center;'>
 
-| !!crwdBlockTags_6_sgaTkcolBdwrc!! |!!crwdBlockTags_7_sgaTkcolBdwrc!! |
-| -------------------------------------- | --------------------------------------------- |
-| 9                                      | 4,2,3; 5,3,1; 6,1,2                           |
-| 9                                      | 4,3,2; 6,2,1; 5,1,3                           |
-| 10                                     | 2,3,5; 4,5,1; 6,1,3                           |
-| 10                                     | 2,5,3; 6,3,1; 4,1,5                           |
-| 11                                     | 1,4,6; 3,6,2; 5,2,4                           |
-| 11                                     | 1,6,4; 5,4,2; 3,2,6                           |
-| 12                                     | 1,5,6; 2,6,4; 3,4,5                           |
-| 12                                     | 1,6,5; 3,5,4; 2,4,6                           |
+| !!crwdBlockTags_6_sgaTkcolBdwrc!! | !!crwdBlockTags_7_sgaTkcolBdwrc!! |
+| --------------------------------- | --------------------------------- |
+| 9                                 | 4,2,3; 5,3,1; 6,1,2               |
+| 9                                 | 4,3,2; 6,2,1; 5,1,3               |
+| 10                                | 2,3,5; 4,5,1; 6,1,3               |
+| 10                                | 2,5,3; 6,3,1; 4,1,5               |
+| 11                                | 1,4,6; 3,6,2; 5,2,4               |
+| 11                                | 1,6,4; 5,4,2; 3,2,6               |
+| 12                                | 1,5,6; 2,6,4; 3,4,5               |
+| 12                                | 1,6,5; 3,5,4; 2,4,6               |
 
 </div>
 
@@ -42,7 +42,7 @@ Using the numbers 1 to 10, and depending on arrangements, it is possible to form
 `magic5GonRing()` should return a number.
 
 ```js
-assert(typeof magic5GonRing() === 'number');
+assert(typeof magic5GonRing() === "number");
 ```
 
 `magic5GonRing()` should return 6531031914842725.
@@ -57,7 +57,6 @@ assert.strictEqual(magic5GonRing(), 6531031914842725);
 
 ```js
 function magic5GonRing() {
-
   return true;
 }
 

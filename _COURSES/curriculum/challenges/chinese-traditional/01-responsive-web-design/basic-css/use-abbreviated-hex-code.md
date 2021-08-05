@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08719
 title: 使用縮寫的十六進制編碼
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cRkpKAm'
+videoUrl: "https://scrimba.com/c/cRkpKAm"
 forumTopicId: 18338
 dashedName: use-abbreviated-hex-code
 ---
@@ -26,7 +26,7 @@ dashedName: use-abbreviated-hex-code
 文本內容爲 `I am red!` 的 `h1` 元素的字體顏色 `color` 應該爲紅色。
 
 ```js
-assert($('.red-text').css('color') === 'rgb(255, 0, 0)');
+assert($(".red-text").css("color") === "rgb(255, 0, 0)");
 ```
 
 應使用紅色的 `hex code` 縮寫形式，不應使用 `#FF0000`。
@@ -38,7 +38,7 @@ assert(code.match(/\.red-text\s*?{\s*?color\s*:\s*?#F00\s*?;?\s*?}/gi));
 文本內容爲 `I am green!` 的 `h1` 元素的字體顏色 `color` 應該爲綠色。
 
 ```js
-assert($('.green-text').css('color') === 'rgb(0, 255, 0)');
+assert($(".green-text").css("color") === "rgb(0, 255, 0)");
 ```
 
 應使用綠色的 `hex code` 縮寫形式，不應使用 `#00FF00`。
@@ -50,7 +50,7 @@ assert(code.match(/\.green-text\s*?{\s*?color\s*:\s*?#0F0\s*?;?\s*?}/gi));
 文本內容爲 `I am cyan!` 的 `h1` 元素的字體顏色 `color` 應該爲藍綠色。
 
 ```js
-assert($('.cyan-text').css('color') === 'rgb(0, 255, 255)');
+assert($(".cyan-text").css("color") === "rgb(0, 255, 255)");
 ```
 
 應使用藍綠色的 `hex code` 縮寫形式，不應使用 `#00FFFF`。
@@ -62,7 +62,7 @@ assert(code.match(/\.cyan-text\s*?{\s*?color\s*:\s*?#0FF\s*?;?\s*?}/gi));
 文本內容爲 `I am fuchsia!` 的 `h1` 元素的字體顏色 `color` 應該爲紫紅色。
 
 ```js
-assert($('.fuchsia-text').css('color') === 'rgb(255, 0, 255)');
+assert($(".fuchsia-text").css("color") === "rgb(255, 0, 255)");
 ```
 
 應使用紫紅色的 `hex code` 縮寫形式，不應使用 `#FF00FF`。
@@ -105,16 +105,16 @@ assert(code.match(/\.fuchsia-text\s*?{\s*?color\s*:\s*?#F0F\s*?;?\s*?}/gi));
 ```html
 <style>
   .red-text {
-    color: #F00;
+    color: #f00;
   }
   .fuchsia-text {
-    color: #F0F;
+    color: #f0f;
   }
   .cyan-text {
-    color: #0FF;
+    color: #0ff;
   }
   .green-text {
-    color: #0F0;
+    color: #0f0;
   }
 </style>
 

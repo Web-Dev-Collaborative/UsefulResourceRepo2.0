@@ -12,7 +12,7 @@ dashedName: apply-functional-programming-to-convert-strings-to-url-slugs
 
 讓我們把學到的知識結合起來解決一個實際問題。
 
-許多內容管理站點（CMS）爲了讓添加書籤更簡單，會將帖子的標題添加到 URL 上。 舉個例子，如果你寫了一篇標題爲 `Stop Using Reduce` 的帖子，URL很可能會包含標題字符串的某種形式 (如：`.../stop-using-reduce`)。 你可能已經在 freeCodeCamp 網站上注意到了這一點。
+許多內容管理站點（CMS）爲了讓添加書籤更簡單，會將帖子的標題添加到 URL 上。 舉個例子，如果你寫了一篇標題爲 `Stop Using Reduce` 的帖子，URL 很可能會包含標題字符串的某種形式 (如：`.../stop-using-reduce`)。 你可能已經在 freeCodeCamp 網站上注意到了這一點。
 
 # --instructions--
 
@@ -37,28 +37,28 @@ assert(!code.match(/\.?[\s\S]*?replace/g));
 `urlSlug("Winter Is Coming")` 應返回 `winter-is-coming`。
 
 ```js
-assert(urlSlug('Winter Is Coming') === 'winter-is-coming');
+assert(urlSlug("Winter Is Coming") === "winter-is-coming");
 ```
 
-`urlSlug(" Winter Is  Coming")` 應返回 `winter-is-coming`。
+`urlSlug(" Winter Is Coming")` 應返回 `winter-is-coming`。
 
 ```js
-assert(urlSlug(' Winter Is  Coming') === 'winter-is-coming');
+assert(urlSlug(" Winter Is  Coming") === "winter-is-coming");
 ```
 
 `urlSlug("A Mind Needs Books Like A Sword Needs A Whetstone")` 應返回 `a-mind-needs-books-like-a-sword-needs-a-whetstone`。
 
 ```js
 assert(
-  urlSlug('A Mind Needs Books Like A Sword Needs A Whetstone') ===
-    'a-mind-needs-books-like-a-sword-needs-a-whetstone'
+  urlSlug("A Mind Needs Books Like A Sword Needs A Whetstone") ===
+    "a-mind-needs-books-like-a-sword-needs-a-whetstone"
 );
 ```
 
 `urlSlug("Hold The Door")` 應返回 `hold-the-door`。
 
 ```js
-assert(urlSlug('Hold The Door') === 'hold-the-door');
+assert(urlSlug("Hold The Door") === "hold-the-door");
 ```
 
 # --seed--
@@ -67,10 +67,7 @@ assert(urlSlug('Hold The Door') === 'hold-the-door');
 
 ```js
 // Only change code below this line
-function urlSlug(title) {
-
-
-}
+function urlSlug(title) {}
 // Only change code above this line
 ```
 

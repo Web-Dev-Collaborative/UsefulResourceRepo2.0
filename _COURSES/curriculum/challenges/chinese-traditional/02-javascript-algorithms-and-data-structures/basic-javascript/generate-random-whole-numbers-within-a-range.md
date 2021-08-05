@@ -2,7 +2,7 @@
 id: cf1111c1c12feddfaeb2bdef
 title: 生成某個範圍內的隨機整數
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cm83yu6'
+videoUrl: "https://scrimba.com/c/cm83yu6"
 forumTopicId: 18187
 dashedName: generate-random-whole-numbers-within-a-range
 ---
@@ -16,7 +16,7 @@ dashedName: generate-random-whole-numbers-within-a-range
 下面是我們將要使用的方法， 仔細看看並嘗試理解這行代碼到底在幹嘛：
 
 ```js
-Math.floor(Math.random() * (max - min + 1)) + min
+Math.floor(Math.random() * (max - min + 1)) + min;
 ```
 
 # --instructions--
@@ -69,18 +69,18 @@ assert(
 ```js
 var calcMin = 100;
 var calcMax = -100;
-for(var i = 0; i < 100; i++) {
-  var result = randomRange(5,15);
+for (var i = 0; i < 100; i++) {
+  var result = randomRange(5, 15);
   calcMin = Math.min(calcMin, result);
   calcMax = Math.max(calcMax, result);
 }
-(function(){
-  if(typeof myRandom === 'number') {
+(function () {
+  if (typeof myRandom === "number") {
     return "myRandom = " + myRandom;
   } else {
     return "myRandom undefined";
   }
-})()
+})();
 ```
 
 ## --seed-contents--

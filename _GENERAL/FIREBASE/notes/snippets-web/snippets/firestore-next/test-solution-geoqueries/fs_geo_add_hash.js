@@ -4,7 +4,7 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START fs_geo_add_hash_modular]
-import { doc, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc } from "firebase/firestore";
 
 // Compute the GeoHash for a lat/lng point
 const lat = 51.5074;
@@ -13,10 +13,10 @@ const hash = geofire.geohashForLocation([lat, lng]);
 
 // Add the hash and the lat/lng to the document. We will use the hash
 // for queries and the lat/lng for distance comparisons.
-const londonRef = doc(db, 'cities', 'LON');
+const londonRef = doc(db, "cities", "LON");
 await updateDoc(londonRef, {
   geohash: hash,
   lat: lat,
-  lng: lng
+  lng: lng,
 });
 // [END fs_geo_add_hash_modular]

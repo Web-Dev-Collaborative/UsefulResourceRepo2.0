@@ -13,24 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-'use strict';
+"use strict";
 
 /**
  * Adds a set of mock Restaurants to the Firestore.
  */
-FriendlyEats.prototype.addMockRestaurants = function() {
+FriendlyEats.prototype.addMockRestaurants = function () {
   var promises = [];
 
   for (var i = 0; i < 20; i++) {
     var name =
-        this.getRandomItem(this.data.words) +
-        ' ' +
-        this.getRandomItem(this.data.words);
+      this.getRandomItem(this.data.words) +
+      " " +
+      this.getRandomItem(this.data.words);
     var category = this.getRandomItem(this.data.categories);
     var city = this.getRandomItem(this.data.cities);
     var price = Math.floor(Math.random() * 4) + 1;
     var photoID = Math.floor(Math.random() * 22) + 1;
-    var photo = 'https://storage.googleapis.com/firestorequickstarts.appspot.com/food_' + photoID + '.png';
+    var photo =
+      "https://storage.googleapis.com/firestorequickstarts.appspot.com/food_" +
+      photoID +
+      ".png";
     var numRatings = 0;
     var avgRating = 0;
 
@@ -41,11 +44,11 @@ FriendlyEats.prototype.addMockRestaurants = function() {
       city: city,
       numRatings: numRatings,
       avgRating: avgRating,
-      photo: photo
+      photo: photo,
     });
 
     if (!promise) {
-      alert('addRestaurant() is not implemented yet!');
+      alert("addRestaurant() is not implemented yet!");
       return Promise.reject();
     } else {
       promises.push(promise);
@@ -58,13 +61,12 @@ FriendlyEats.prototype.addMockRestaurants = function() {
 /**
  * Adds a set of mock Ratings to the given Restaurant.
  */
-FriendlyEats.prototype.addMockRatings = function(restaurantID) {
+FriendlyEats.prototype.addMockRatings = function (restaurantID) {
   var ratingPromises = [];
-  for (var r = 0; r < 5*Math.random(); r++) {
-    var rating = this.data.ratings[
-      parseInt(this.data.ratings.length*Math.random())
-    ];
-    rating.userName = 'Bot (Web)';
+  for (var r = 0; r < 5 * Math.random(); r++) {
+    var rating =
+      this.data.ratings[parseInt(this.data.ratings.length * Math.random())];
+    rating.userName = "Bot (Web)";
     rating.timestamp = new Date();
     rating.userId = firebase.auth().currentUser.uid;
     ratingPromises.push(this.addRating(restaurantID, rating));

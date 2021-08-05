@@ -23,7 +23,8 @@ D3 是数据驱动的库。 可以使用 D3 的方法将数组形式的数据显
   <ul></ul>
   <script>
     const dataset = ["a", "b", "c"];
-    d3.select("ul").selectAll("li")
+    d3.select("ul")
+      .selectAll("li")
       .data(dataset)
       .enter()
       .append("li")
@@ -43,14 +44,14 @@ D3 是数据驱动的库。 可以使用 D3 的方法将数组形式的数据显
 文档应该有 9 个 `h2` 元素。
 
 ```js
-assert($('h2').length == 9);
+assert($("h2").length == 9);
 ```
 
 `h2` 元素的文本应为 `New Title`。 大小写和空格必须一致。
 
 ```js
 assert(
-  $('h2')
+  $("h2")
     .text()
     .match(/New Title/g).length == 9
 );
@@ -79,8 +80,6 @@ assert(code.match(/\.enter/g));
 
     // Add your code below this line
 
-
-
     // Add your code above this line
   </script>
 </body>
@@ -98,8 +97,7 @@ assert(code.match(/\.enter/g));
       .data(dataset)
       .enter()
       .append("h2")
-      .text("New Title")
-
+      .text("New Title");
   </script>
 </body>
 ```

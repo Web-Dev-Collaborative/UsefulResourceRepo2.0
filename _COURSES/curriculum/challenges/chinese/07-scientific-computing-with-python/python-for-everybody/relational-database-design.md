@@ -31,4 +31,3 @@ dashedName: relational-database-design
 ## --video-solution--
 
 2
-

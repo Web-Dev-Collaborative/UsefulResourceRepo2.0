@@ -1,6 +1,6 @@
 ---
 id: 5900f3bc1000cf542c50fecf
-title: 'Problem 80: Square root digital expansion'
+title: "Problem 80: Square root digital expansion"
 challengeType: 5
 forumTopicId: 302194
 dashedName: problem-80-square-root-digital-expansion
@@ -19,7 +19,7 @@ For the first one hundred natural numbers, find the total of the digital sums of
 `sqrtDigitalExpansion()` should return a number.
 
 ```js
-assert(typeof sqrtDigitalExpansion() === 'number');
+assert(typeof sqrtDigitalExpansion() === "number");
 ```
 
 `sqrtDigitalExpansion()` should return 40886.
@@ -34,7 +34,6 @@ assert.strictEqual(sqrtDigitalExpansion(), 40886);
 
 ```js
 function sqrtDigitalExpansion() {
-
   return true;
 }
 

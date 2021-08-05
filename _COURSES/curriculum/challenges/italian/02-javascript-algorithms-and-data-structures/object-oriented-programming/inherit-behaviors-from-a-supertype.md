@@ -11,8 +11,8 @@ dashedName: inherit-behaviors-from-a-supertype
 Nella sfida precedente, hai creato un `supertype` chiamato `Animal` che definiva i comportamenti condivisi da tutti gli animali:
 
 ```js
-function Animal() { }
-Animal.prototype.eat = function() {
+function Animal() {}
+Animal.prototype.eat = function () {
   console.log("nom nom nom");
 };
 ```
@@ -47,13 +47,13 @@ Usa `Object.create` per creare due istanze di `Animal` chiamate `duck` e `beagle
 La variabile `duck` dovrebbe essere definita.
 
 ```js
-assert(typeof duck !== 'undefined');
+assert(typeof duck !== "undefined");
 ```
 
 La variabile `beagle` dovrebbe essere definita.
 
 ```js
-assert(typeof beagle !== 'undefined');
+assert(typeof beagle !== "undefined");
 ```
 
 La variabile `duck` dovrebbe essere inizializzata con `Object.create`.
@@ -93,13 +93,13 @@ assert(beagle instanceof Animal);
 ## --seed-contents--
 
 ```js
-function Animal() { }
+function Animal() {}
 
 Animal.prototype = {
   constructor: Animal,
-  eat: function() {
+  eat: function () {
     console.log("nom nom nom");
-  }
+  },
 };
 
 // Only change code below this line
@@ -111,13 +111,13 @@ let beagle; // Change this line
 # --solutions--
 
 ```js
-function Animal() { }
+function Animal() {}
 
 Animal.prototype = {
   constructor: Animal,
-  eat: function() {
+  eat: function () {
     console.log("nom nom nom");
-  }
+  },
 };
 let duck = Object.create(Animal.prototype);
 let beagle = Object.create(Animal.prototype);

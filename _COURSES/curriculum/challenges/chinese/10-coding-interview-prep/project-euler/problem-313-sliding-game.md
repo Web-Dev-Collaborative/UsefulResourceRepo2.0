@@ -1,6 +1,6 @@
 ---
 id: 5900f4a61000cf542c50ffb8
-title: 'Problem 313: Sliding game'
+title: "Problem 313: Sliding game"
 challengeType: 5
 forumTopicId: 301969
 dashedName: problem-313-sliding-game
@@ -30,7 +30,6 @@ assert.strictEqual(euler313(), 2057774861813004);
 
 ```js
 function euler313() {
-
   return true;
 }
 

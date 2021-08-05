@@ -19,13 +19,13 @@ Write a function that returns whether the given Mersenne number is prime or not.
 `lucasLehmer` should be a function.
 
 ```js
-assert(typeof lucasLehmer == 'function');
+assert(typeof lucasLehmer == "function");
 ```
 
 `lucasLehmer(11)` should return a boolean.
 
 ```js
-assert(typeof lucasLehmer(11) == 'boolean');
+assert(typeof lucasLehmer(11) == "boolean");
 ```
 
 `lucasLehmer(11)` should return `false`.
@@ -69,41 +69,33 @@ assert.equal(lucasLehmer(21), false);
 ## --seed-contents--
 
 ```js
-function lucasLehmer(p) {
-
-}
+function lucasLehmer(p) {}
 ```
 
 # --solutions--
 
 ```js
 function lucasLehmer(p) {
-    function isPrime(p) {
-        if (p == 2)
-            return true;
-        else if (p <= 1 || p % 2 == 0)
-            return false;
-        else {
-            var to = Math.sqrt(p);
-            for (var i = 3; i <= to; i += 2)
-                if (p % i == 0)
-                    return false;
-            return true;
-        }
+  function isPrime(p) {
+    if (p == 2) return true;
+    else if (p <= 1 || p % 2 == 0) return false;
+    else {
+      var to = Math.sqrt(p);
+      for (var i = 3; i <= to; i += 2) if (p % i == 0) return false;
+      return true;
     }
+  }
 
-    function isMersennePrime(p) {
-        if (p == 2)
-            return true;
-        else {
-            var m_p = Math.pow(2, p) - 1
-            var s = 4;
-            for (var i = 3; i <= p; i++)
-                s = (s * s - 2) % m_p
-            return s == 0;
-        }
+  function isMersennePrime(p) {
+    if (p == 2) return true;
+    else {
+      var m_p = Math.pow(2, p) - 1;
+      var s = 4;
+      for (var i = 3; i <= p; i++) s = (s * s - 2) % m_p;
+      return s == 0;
     }
+  }
 
-    return isPrime(p) && isMersennePrime(p)
+  return isPrime(p) && isMersennePrime(p);
 }
 ```

@@ -39,13 +39,13 @@ assert(/\*/.test(chewieRegex.source));
 Your regex should match the string `A` in `chewieQuote`.
 
 ```js
-assert(result[0][0] === 'A');
+assert(result[0][0] === "A");
 ```
 
 Your regex should match the string `Aaaaaaaaaaaaaaaa` in `chewieQuote`.
 
 ```js
-assert(result[0] === 'Aaaaaaaaaaaaaaaa');
+assert(result[0] === "Aaaaaaaaaaaaaaaa");
 ```
 
 Your regex `chewieRegex` should match 16 characters in `chewieQuote`.
@@ -91,6 +91,6 @@ let result = chewieQuote.match(chewieRegex);
 # --solutions--
 
 ```js
-  let chewieRegex = /Aa*/;
-  let result = chewieQuote.match(chewieRegex);
+let chewieRegex = /Aa*/;
+let result = chewieQuote.match(chewieRegex);
 ```

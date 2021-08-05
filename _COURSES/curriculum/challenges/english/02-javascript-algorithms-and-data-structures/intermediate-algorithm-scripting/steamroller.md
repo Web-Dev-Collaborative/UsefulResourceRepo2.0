@@ -15,7 +15,7 @@ Flatten a nested array. You must account for varying levels of nesting.
 `steamrollArray([[["a"]], [["b"]]])` should return `["a", "b"]`.
 
 ```js
-assert.deepEqual(steamrollArray([[['a']], [['b']]]), ['a', 'b']);
+assert.deepEqual(steamrollArray([[["a"]], [["b"]]]), ["a", "b"]);
 ```
 
 `steamrollArray([1, [2], [3, [[4]]]])` should return `[1, 2, 3, 4]`.
@@ -62,8 +62,8 @@ function steamrollArray(arr) {
     return [arr];
   }
   var out = [];
-  arr.forEach(function(e) {
-    steamrollArray(e).forEach(function(v) {
+  arr.forEach(function (e) {
+    steamrollArray(e).forEach(function (v) {
       out.push(v);
     });
   });

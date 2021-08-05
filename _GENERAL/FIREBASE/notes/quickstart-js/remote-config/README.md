@@ -1,11 +1,9 @@
-Firebase Remote Config Quickstart
-==============================
+# Firebase Remote Config Quickstart
 
 The Firebase Remote Config Web quickstart app demonstrates using Remote
 Config to define user-facing text in a web app.
 
-Introduction
-------------
+## Introduction
 
 This is a simple example of using Remote Config to override in-app default
 values by defining server-side parameter values in the Firebase console. This
@@ -14,30 +12,29 @@ Config. To learn more about how you can use Firebase Remote Config in your app,
 see
 [the Firebase Remote Config introduction](https://firebase.google.com/docs/remote-config/).
 
-Getting started
----------------
+## Getting started
 
 1. Follow step 1 and 2 [here](https://firebase.google.com/docs/web/setup#register-app) to register a web app with your Firebase project
 1. Set up Remote Config for your Firebase project:
-    1. In the Firebase console, open your project
-    1. Select Remote Config from the menu to view the Remote Config dashboard
-    1. Define a parameter with key `welcome_message` and default value `Hello World`
-    1. Click "Add parameter", and then click "Publish changes"
+   1. In the Firebase console, open your project
+   1. Select Remote Config from the menu to view the Remote Config dashboard
+   1. Define a parameter with key `welcome_message` and default value `Hello World`
+   1. Click "Add parameter", and then click "Publish changes"
 1. You must have the Firebase CLI installed. If you don't have it install it with `npm install -g firebase-tools` and then configure it with `firebase login`.
 1. On the command line run `firebase use --add` and select the Firebase project you have created
 1. On the command line run `firebase serve` using the Firebase CLI tool to serve your web app
 1. Change the parameter value in the Firebase Console (the value of
-  `welcome_message`), and then click "Publish changes"
+   `welcome_message`), and then click "Publish changes"
 1. Tap **Fetch Remote Welcome** in the app to fetch new parameter values and see
-  the resulting change in the app.
+   the resulting change in the app.
 
-Best practices
---------------
+## Best practices
+
 This section provides some additional information about how the quickstart
 example sets in-app default parameter values and fetches values from the Remote
 Config service
 
-### In-app default parameter values ###
+### In-app default parameter values
 
 In-app default values are set using a JSON object using the `setDefaults` method.
 Then, you can override only those values that you need to change from the
@@ -45,7 +42,7 @@ Firebase console or the REST API. This lets you use Remote Config for any defaul
 value that you might want to override in the future, without the need to set all of
 those values in the Firebase console.
 
-### Fetch values from the Remote Config service ###
+### Fetch values from the Remote Config service
 
 When an app calls `fetch`, locally stored parameter values are used unless the
 minimum fetch interval is reached. The minimal fetch interval is determined by:
@@ -73,28 +70,26 @@ parameter values during development.
   behavior and appearance of your app for segments of your userbase, see
   [Remote Config Parameters and Conditions](https://firebase.google.com/docs/remote-config/parameters).
 
-Support
--------
+## Support
 
 - [Stack Overflow](https://stackoverflow.com/questions/tagged/firebase-remote-config)
 - [Firebase Support](https://firebase.google.com/support/)
 
-License
--------
+## License
 
 Copyright 2019 Google, Inc.
 
 Licensed to the Apache Software Foundation (ASF) under one or more contributor
-license agreements.  See the NOTICE file distributed with this work for
-additional information regarding copyright ownership.  The ASF licenses this
+license agreements. See the NOTICE file distributed with this work for
+additional information regarding copyright ownership. The ASF licenses this
 file to you under the Apache License, Version 2.0 (the "License"); you may not
-use this file except in compliance with the License.  You may obtain a copy of
+use this file except in compliance with the License. You may obtain a copy of
 the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.

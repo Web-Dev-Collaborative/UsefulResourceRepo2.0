@@ -15,10 +15,8 @@ dashedName: create-a-stateless-functional-component
 要用函數創建組件，只需編寫一個返回 JSX 或 `null` 的 JavaScript 函數。 需要注意的一點是，React 要求你的函數名以大寫字母開頭。 下面是一個無狀態功能組件的示例，該組件在 JSX 中分配一個 HTML 的 class：
 
 ```jsx
-const DemoComponent = function() {
-  return (
-    <div className='customClass' />
-  );
+const DemoComponent = function () {
+  return <div className="customClass" />;
 };
 ```
 
@@ -51,7 +49,7 @@ assert(
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
-    return mockedComponent.children().type() === 'div';
+    return mockedComponent.children().type() === "div";
   })()
 );
 ```
@@ -62,7 +60,7 @@ assert(
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
-    return mockedComponent.find('div').text() !== '';
+    return mockedComponent.find("div").text() !== "";
   })()
 );
 ```
@@ -72,31 +70,24 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyComponent />, document.getElementById('root'))
+ReactDOM.render(<MyComponent />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
 
 ```jsx
-const MyComponent = function() {
+const MyComponent = function () {
   // Change code below this line
-
-
-
   // Change code above this line
-}
+};
 ```
 
 # --solutions--
 
 ```jsx
-const MyComponent = function() {
+const MyComponent = function () {
   // Change code below this line
-  return (
-    <div>
-      Demo Solution
-    </div>
-  );
+  return <div>Demo Solution</div>;
   // Change code above this line
-}
+};
 ```

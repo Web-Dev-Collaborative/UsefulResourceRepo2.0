@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf0887a
 title: 用 h2 元素代表副標題
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cE8Gqf3'
+videoUrl: "https://scrimba.com/p/pVMPUv/cE8Gqf3"
 forumTopicId: 18196
 dashedName: headline-with-the-h2-element
 ---
@@ -24,7 +24,7 @@ dashedName: headline-with-the-h2-element
 應創建一個 `h2` 元素。
 
 ```js
-assert($('h2').length > 0);
+assert($("h2").length > 0);
 ```
 
 `h2` 元素應該有結束標籤。
@@ -39,13 +39,13 @@ assert(
 `h2` 元素的內容應爲：`CatPhotoApp`。
 
 ```js
-assert.isTrue(/cat(\s)?photo(\s)?app/gi.test($('h2').text()));
+assert.isTrue(/cat(\s)?photo(\s)?app/gi.test($("h2").text()));
 ```
 
 `h1` 元素的內容應爲：`Hello World`。
 
 ```js
-assert.isTrue(/hello(\s)+world/gi.test($('h1').text()));
+assert.isTrue(/hello(\s)+world/gi.test($("h1").text()));
 ```
 
 `h1` 元素應出現在 `h2` 元素之前。

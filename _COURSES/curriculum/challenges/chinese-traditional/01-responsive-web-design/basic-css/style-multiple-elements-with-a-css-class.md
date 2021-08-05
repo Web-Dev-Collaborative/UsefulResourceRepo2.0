@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aefe08806
 title: 使用 class 選擇器設置多個元素的樣式
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cRkVbsQ'
+videoUrl: "https://scrimba.com/c/cRkVbsQ"
 forumTopicId: 18311
 dashedName: style-multiple-elements-with-a-css-class
 ---
@@ -16,34 +16,34 @@ dashedName: style-multiple-elements-with-a-css-class
 `h2` 元素應該是紅色的。
 
 ```js
-assert($('h2').css('color') === 'rgb(255, 0, 0)');
+assert($("h2").css("color") === "rgb(255, 0, 0)");
 ```
 
 `h2` 元素應含有 `red-text` class。
 
 ```js
-assert($('h2').hasClass('red-text'));
+assert($("h2").hasClass("red-text"));
 ```
 
 第一個 `p` 元素應爲紅色。
 
 ```js
-assert($('p:eq(0)').css('color') === 'rgb(255, 0, 0)');
+assert($("p:eq(0)").css("color") === "rgb(255, 0, 0)");
 ```
 
 第二和第三個 `p` 元素不應爲紅色。
 
 ```js
 assert(
-  !($('p:eq(1)').css('color') === 'rgb(255, 0, 0)') &&
-    !($('p:eq(2)').css('color') === 'rgb(255, 0, 0)')
+  !($("p:eq(1)").css("color") === "rgb(255, 0, 0)") &&
+    !($("p:eq(2)").css("color") === "rgb(255, 0, 0)")
 );
 ```
 
 第一個 `p` 元素應該包含 `red-text` class。
 
 ```js
-assert($('p:eq(0)').hasClass('red-text'));
+assert($("p:eq(0)").hasClass("red-text"));
 ```
 
 # --seed--
@@ -61,7 +61,11 @@ assert($('p:eq(0)').hasClass('red-text'));
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -79,12 +83,12 @@ assert($('p:eq(0)').hasClass('red-text'));
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>
@@ -103,7 +107,11 @@ assert($('p:eq(0)').hasClass('red-text'));
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -121,12 +129,12 @@ assert($('p:eq(0)').hasClass('red-text'));
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>

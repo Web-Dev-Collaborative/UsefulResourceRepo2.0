@@ -21,7 +21,7 @@ La siguiente función debe crear un arreglo bidimensional (matriz) con `m` filas
 Tu código debe establecer la variable `matrix` en una matriz que contenga 3 filas de 2 columnas de ceros cada una.
 
 ```js
-assert(JSON.stringify(matrix) == '[[0,0],[0,0],[0,0]]');
+assert(JSON.stringify(matrix) == "[[0,0],[0,0],[0,0]]");
 ```
 
 La variable `matrix` debe tener 3 filas.
@@ -68,20 +68,20 @@ console.log(matrix);
 
 ```js
 function zeroArray(m, n) {
- // Creates a 2-D array with m rows and n columns of zeroes
- let newArray = [];
- for (let i = 0; i < m; i++) {
-   let row = [];
-   // Adds the m-th row into newArray
+  // Creates a 2-D array with m rows and n columns of zeroes
+  let newArray = [];
+  for (let i = 0; i < m; i++) {
+    let row = [];
+    // Adds the m-th row into newArray
 
-   for (let j = 0; j < n; j++) {
-     // Pushes n zeroes into the current row to create the columns
-     row.push(0);
-   }
-   // Pushes the current row, which now has n zeroes in it, to the array
-   newArray.push(row);
- }
- return newArray;
+    for (let j = 0; j < n; j++) {
+      // Pushes n zeroes into the current row to create the columns
+      row.push(0);
+    }
+    // Pushes the current row, which now has n zeroes in it, to the array
+    newArray.push(row);
+  }
+  return newArray;
 }
 
 let matrix = zeroArray(3, 2);

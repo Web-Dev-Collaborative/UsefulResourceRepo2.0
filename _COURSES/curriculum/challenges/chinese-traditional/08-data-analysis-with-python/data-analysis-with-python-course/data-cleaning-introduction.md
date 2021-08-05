@@ -8,12 +8,12 @@ dashedName: data-cleaning-introduction
 
 # --description--
 
-*您可以使用 Google Colab，而不是像視頻中顯示的那樣使用 notebooks.ai。*
+_您可以使用 Google Colab，而不是像視頻中顯示的那樣使用 notebooks.ai。_
 
 以下有更多的資料：
 
--   [在 GitHub 平臺的 Notebooks](https://github.com/ine-rmotr-curriculum/data-cleaning-rmotr-freecodecamp)
--   [如何使用 Google Colab 來打開 GitHub 上的 Notebooks](https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb)
+- [在 GitHub 平臺的 Notebooks](https://github.com/ine-rmotr-curriculum/data-cleaning-rmotr-freecodecamp)
+- [如何使用 Google Colab 來打開 GitHub 上的 Notebooks](https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb)
 
 # --question--
 
@@ -55,4 +55,3 @@ dtype: bool</pre>
 ## --video-solution--
 
 1
-

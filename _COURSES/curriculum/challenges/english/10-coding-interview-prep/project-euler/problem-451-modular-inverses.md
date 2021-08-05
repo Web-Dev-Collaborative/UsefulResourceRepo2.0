@@ -1,6 +1,6 @@
 ---
 id: 5900f5311000cf542c510042
-title: 'Problem 451: Modular inverses'
+title: "Problem 451: Modular inverses"
 challengeType: 5
 forumTopicId: 302124
 dashedName: problem-451-modular-inverses
@@ -46,7 +46,6 @@ assert.strictEqual(euler451(), 153651073760956);
 
 ```js
 function euler451() {
-
   return true;
 }
 

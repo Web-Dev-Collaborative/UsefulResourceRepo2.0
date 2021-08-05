@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244bd
 title: Pasa valores a las funciones utilizando argumentos
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cy8rahW'
+videoUrl: "https://scrimba.com/c/cy8rahW"
 forumTopicId: 18254
 dashedName: passing-values-to-functions-with-arguments
 ---
@@ -30,13 +30,13 @@ Entonces podemos llamar a `testFun` así: `testFun("Hello", "World");`. Hemos pa
 `functionWithArgs` debe ser una función.
 
 ```js
-assert(typeof functionWithArgs === 'function');
+assert(typeof functionWithArgs === "function");
 ```
 
 `functionWithArgs(1,2)` debe mostrar `3`.
 
 ```js
-if (typeof functionWithArgs === 'function') {
+if (typeof functionWithArgs === "function") {
   capture();
   functionWithArgs(1, 2);
   uncapture();
@@ -47,7 +47,7 @@ assert(logOutput == 3);
 `functionWithArgs(7,9)` debe mostrar `16`.
 
 ```js
-if (typeof functionWithArgs === 'function') {
+if (typeof functionWithArgs === "function") {
   capture();
   functionWithArgs(7, 9);
   uncapture();
@@ -60,7 +60,7 @@ Debes llamar `functionWithArgs` con dos números después de definirla.
 ```js
 assert(
   /functionWithArgs\([-+]?\d*\.?\d*,[-+]?\d*\.?\d*\)/.test(
-    code.replace(/\s/g, '')
+    code.replace(/\s/g, "")
   )
 );
 ```
@@ -71,18 +71,18 @@ assert(
 
 ```js
 var logOutput = "";
-var originalConsole = console
+var originalConsole = console;
 function capture() {
-    var nativeLog = console.log;
-    console.log = function (message) {
-        if(message) logOutput = JSON.stringify(message).trim();
-        if(nativeLog.apply) {
-          nativeLog.apply(originalConsole, arguments);
-        } else {
-          var nativeMsg = Array.prototype.slice.apply(arguments).join(' ');
-          nativeLog(nativeMsg);
-        }
-    };
+  var nativeLog = console.log;
+  console.log = function (message) {
+    if (message) logOutput = JSON.stringify(message).trim();
+    if (nativeLog.apply) {
+      nativeLog.apply(originalConsole, arguments);
+    } else {
+      var nativeMsg = Array.prototype.slice.apply(arguments).join(" ");
+      nativeLog(nativeMsg);
+    }
+  };
 }
 
 function uncapture() {
@@ -97,10 +97,14 @@ capture();
 ```js
 uncapture();
 
-if (typeof functionWithArgs !== "function") { 
-  (function() { return "functionWithArgs is not defined"; })();
+if (typeof functionWithArgs !== "function") {
+  (function () {
+    return "functionWithArgs is not defined";
+  })();
 } else {
-  (function() { return logOutput || "console.log never called"; })();
+  (function () {
+    return logOutput || "console.log never called";
+  })();
 }
 ```
 

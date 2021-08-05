@@ -16,20 +16,19 @@
  * @fileoverview Provides utilities for working with Material Design Lite.
  */
 
-goog.provide('firebaseui.auth.ui.mdl');
+goog.provide("firebaseui.auth.ui.mdl");
 
-goog.require('goog.array');
-goog.require('goog.dom');
-goog.require('goog.dom.classlist');
-
+goog.require("goog.array");
+goog.require("goog.dom");
+goog.require("goog.dom.classlist");
 
 /**
  * Initializes MDL for the given element and all MDL-styled children. The MDL
  * library attaches event listeners and modifies the DOM as appropriate here.
  * @param {?Element} element
  */
-firebaseui.auth.ui.mdl.upgrade = function(element) {
-  firebaseui.auth.ui.mdl.performOnMdlComponents_(element, 'upgradeElement');
+firebaseui.auth.ui.mdl.upgrade = function (element) {
+  firebaseui.auth.ui.mdl.performOnMdlComponents_(element, "upgradeElement");
 };
 
 /**
@@ -38,22 +37,20 @@ firebaseui.auth.ui.mdl.upgrade = function(element) {
  * previously did when upgrade()ing.
  * @param {?Element} element
  */
-firebaseui.auth.ui.mdl.downgrade = function(element) {
-  firebaseui.auth.ui.mdl.performOnMdlComponents_(element, 'downgradeElements');
+firebaseui.auth.ui.mdl.downgrade = function (element) {
+  firebaseui.auth.ui.mdl.performOnMdlComponents_(element, "downgradeElements");
 };
-
 
 /**
  * The list of CSS classes to upgrade to MDL components.
  * @private @const {!Array<string>}
  */
 firebaseui.auth.ui.mdl.MDL_COMPONENT_CLASSES_ = [
-  'mdl-js-textfield',
-  'mdl-js-progress',
-  'mdl-js-spinner',
-  'mdl-js-button'
+  "mdl-js-textfield",
+  "mdl-js-progress",
+  "mdl-js-spinner",
+  "mdl-js-button",
 ];
-
 
 /**
  * Performs an operation on all MDL elements within a given element (e.g.
@@ -62,20 +59,25 @@ firebaseui.auth.ui.mdl.MDL_COMPONENT_CLASSES_ = [
  * @param {string} operation
  * @private
  */
-firebaseui.auth.ui.mdl.performOnMdlComponents_ = function(element, operation) {
-  if (!element || !window['componentHandler'] ||
-      !window['componentHandler'][operation]) {
+firebaseui.auth.ui.mdl.performOnMdlComponents_ = function (element, operation) {
+  if (
+    !element ||
+    !window["componentHandler"] ||
+    !window["componentHandler"][operation]
+  ) {
     return;
   }
-  goog.array.forEach(firebaseui.auth.ui.mdl.MDL_COMPONENT_CLASSES_,
-      function(className) {
-    if (goog.dom.classlist.contains(element, className)) {
-      window['componentHandler'][operation](element);
-    }
+  goog.array.forEach(
+    firebaseui.auth.ui.mdl.MDL_COMPONENT_CLASSES_,
+    function (className) {
+      if (goog.dom.classlist.contains(element, className)) {
+        window["componentHandler"][operation](element);
+      }
 
-    var matchingElements = goog.dom.getElementsByClass(className, element);
-    goog.array.forEach(matchingElements, function(mdlElement) {
-      window['componentHandler'][operation](mdlElement);
-    });
-  });
+      var matchingElements = goog.dom.getElementsByClass(className, element);
+      goog.array.forEach(matchingElements, function (mdlElement) {
+        window["componentHandler"][operation](mdlElement);
+      });
+    }
+  );
 };

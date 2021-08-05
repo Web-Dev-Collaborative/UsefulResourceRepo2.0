@@ -16,12 +16,11 @@
  * @fileoverview UI component for the spinner page.
  */
 
-goog.provide('firebaseui.auth.ui.page.Spinner');
+goog.provide("firebaseui.auth.ui.page.Spinner");
 
-goog.require('firebaseui.auth.soy2.page');
-goog.require('firebaseui.auth.ui.page.Base');
-goog.requireType('goog.dom.DomHelper');
-
+goog.require("firebaseui.auth.soy2.page");
+goog.require("firebaseui.auth.ui.page.Base");
+goog.requireType("goog.dom.DomHelper");
 
 /**
  * Spinner page UI componenet.
@@ -32,6 +31,10 @@ firebaseui.auth.ui.page.Spinner = class extends firebaseui.auth.ui.page.Base {
    */
   constructor(opt_domHelper) {
     super(
-        firebaseui.auth.soy2.page.spinner, undefined, opt_domHelper, 'spinner');
+      firebaseui.auth.soy2.page.spinner,
+      undefined,
+      opt_domHelper,
+      "spinner"
+    );
   }
 };

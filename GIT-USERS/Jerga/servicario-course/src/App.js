@@ -1,42 +1,43 @@
-import React from 'react';
+import React from "react";
 
-import { Provider } from 'react-redux'
-import { ToastProvider } from 'react-toast-notifications'
-import initStore from './store'
+import { Provider } from "react-redux";
+import { ToastProvider } from "react-toast-notifications";
+import initStore from "./store";
 
-import { BrowserRouter as Router } from 'react-router-dom'
-import ServiceApp from './ServiceApp'
+import { BrowserRouter as Router } from "react-router-dom";
+import ServiceApp from "./ServiceApp";
 
-import { 
-  onAuthStateChanged, 
-  storeAuthUser, 
+import {
+  onAuthStateChanged,
+  storeAuthUser,
   subscribeToMessages,
-  checkUserConnection } from 'actions'
+  checkUserConnection,
+} from "actions";
 
-const store = initStore()
+const store = initStore();
 
 class App extends React.Component {
-
   componentDidMount() {
-    this.unsubscribeAuth = onAuthStateChanged(authUser => {
-      store.dispatch(storeAuthUser(authUser))
+    this.unsubscribeAuth = onAuthStateChanged((authUser) => {
+      store.dispatch(storeAuthUser(authUser));
 
       if (authUser) {
-        checkUserConnection(authUser.uid)
-        this.unsubscribeMessages = store.dispatch(subscribeToMessages(authUser.uid))        
+        checkUserConnection(authUser.uid);
+        this.unsubscribeMessages = store.dispatch(
+          subscribeToMessages(authUser.uid)
+        );
       }
 
-      if (!authUser) { 
-        this.unsubscribeMessages && this.unsubscribeMessages()
+      if (!authUser) {
+        this.unsubscribeMessages && this.unsubscribeMessages();
       }
-    })
+    });
   }
 
   componentWillUnmount() {
-    this.unsubscribeAuth()
-    this.unsubscribeMessages()
+    this.unsubscribeAuth();
+    this.unsubscribeMessages();
   }
-
 
   render() {
     return (
@@ -47,7 +48,7 @@ class App extends React.Component {
           </Router>
         </ToastProvider>
       </Provider>
-    )
+    );
   }
 }
 

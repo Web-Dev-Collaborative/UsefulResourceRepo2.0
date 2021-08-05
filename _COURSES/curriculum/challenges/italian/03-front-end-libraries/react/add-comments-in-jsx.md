@@ -21,26 +21,26 @@ L'editor di codice contiene un elemento JSX simile a quello creato nell'ultima s
 La costante `JSX` dovrebbe restituire un elemento `div`.
 
 ```js
-assert(JSX.type === 'div');
+assert(JSX.type === "div");
 ```
 
 Il `div` dovrebbe contenere un tag `h1` come primo elemento.
 
 ```js
-assert(JSX.props.children[0].type === 'h1');
+assert(JSX.props.children[0].type === "h1");
 ```
 
 Il `div` dovrebbe contenere un tag `p` come secondo elemento.
 
 ```js
-assert(JSX.props.children[1].type === 'p');
+assert(JSX.props.children[1].type === "p");
 ```
 
 Gli elementi `h1` e `p` esistenti non dovrebbero essere modificati.
 
 ```js
 assert(
-  JSX.props.children[0].props.children === 'This is a block of JSX' &&
+  JSX.props.children[0].props.children === "This is a block of JSX" &&
     JSX.props.children[1].props.children === "Here's a subtitle"
 );
 ```
@@ -56,7 +56,7 @@ assert(/<div>[\s\S]*{\s*\/\*[\s\S]*\*\/\s*}[\s\S]*<\/div>/.test(code));
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(JSX, document.getElementById('root'))
+ReactDOM.render(JSX, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -74,9 +74,10 @@ const JSX = (
 
 ```jsx
 const JSX = (
-<div>
-  <h1>This is a block of JSX</h1>
-  { /* this is a JSX comment */ }
-  <p>Here's a subtitle</p>
-</div>);
+  <div>
+    <h1>This is a block of JSX</h1>
+    {/* this is a JSX comment */}
+    <p>Here's a subtitle</p>
+  </div>
+);
 ```

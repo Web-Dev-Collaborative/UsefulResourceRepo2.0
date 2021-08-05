@@ -1,6 +1,6 @@
 ---
 id: 5900f4e51000cf542c50fff7
-title: 'Problem 376: Nontransitive sets of dice'
+title: "Problem 376: Nontransitive sets of dice"
 challengeType: 5
 forumTopicId: 302038
 dashedName: problem-376-nontransitive-sets-of-dice
@@ -40,7 +40,6 @@ assert.strictEqual(euler376(), 973059630185670);
 
 ```js
 function euler376() {
-
   return true;
 }
 

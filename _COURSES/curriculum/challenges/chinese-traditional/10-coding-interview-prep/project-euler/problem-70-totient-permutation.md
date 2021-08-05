@@ -1,6 +1,6 @@
 ---
 id: 5900f3b21000cf542c50fec5
-title: 'Problem 70: Totient permutation'
+title: "Problem 70: Totient permutation"
 challengeType: 5
 forumTopicId: 302183
 dashedName: problem-70-totient-permutation
@@ -19,7 +19,7 @@ Find the value of `n`, 1 &lt; `n` &lt; 10<sup>7</sup>, for which φ(`n`) is a pe
 `totientPermutation()` should return a number.
 
 ```js
-assert(typeof totientPermutation() === 'number');
+assert(typeof totientPermutation() === "number");
 ```
 
 `totientPermutation()` should return 8319823.
@@ -34,7 +34,6 @@ assert.strictEqual(totientPermutation(), 8319823);
 
 ```js
 function totientPermutation() {
-
   return true;
 }
 

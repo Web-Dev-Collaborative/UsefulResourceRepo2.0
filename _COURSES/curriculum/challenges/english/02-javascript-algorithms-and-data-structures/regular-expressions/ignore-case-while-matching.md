@@ -23,61 +23,61 @@ Write a regex `fccRegex` to match `freeCodeCamp`, no matter its case. Your regex
 Your regex should match the string `freeCodeCamp`
 
 ```js
-assert(fccRegex.test('freeCodeCamp'));
+assert(fccRegex.test("freeCodeCamp"));
 ```
 
 Your regex should match the string `FreeCodeCamp`
 
 ```js
-assert(fccRegex.test('FreeCodeCamp'));
+assert(fccRegex.test("FreeCodeCamp"));
 ```
 
 Your regex should match the string `FreecodeCamp`
 
 ```js
-assert(fccRegex.test('FreecodeCamp'));
+assert(fccRegex.test("FreecodeCamp"));
 ```
 
 Your regex should match the string `FreeCodecamp`
 
 ```js
-assert(fccRegex.test('FreeCodecamp'));
+assert(fccRegex.test("FreeCodecamp"));
 ```
 
 Your regex should not match the string `Free Code Camp`
 
 ```js
-assert(!fccRegex.test('Free Code Camp'));
+assert(!fccRegex.test("Free Code Camp"));
 ```
 
 Your regex should match the string `FreeCOdeCamp`
 
 ```js
-assert(fccRegex.test('FreeCOdeCamp'));
+assert(fccRegex.test("FreeCOdeCamp"));
 ```
 
 Your regex should not match the string `FCC`
 
 ```js
-assert(!fccRegex.test('FCC'));
+assert(!fccRegex.test("FCC"));
 ```
 
 Your regex should match the string `FrEeCoDeCamp`
 
 ```js
-assert(fccRegex.test('FrEeCoDeCamp'));
+assert(fccRegex.test("FrEeCoDeCamp"));
 ```
 
 Your regex should match the string `FrEeCodECamp`
 
 ```js
-assert(fccRegex.test('FrEeCodECamp'));
+assert(fccRegex.test("FrEeCodECamp"));
 ```
 
 Your regex should match the string `FReeCodeCAmp`
 
 ```js
-assert(fccRegex.test('FReeCodeCAmp'));
+assert(fccRegex.test("FReeCodeCAmp"));
 ```
 
 # --seed--

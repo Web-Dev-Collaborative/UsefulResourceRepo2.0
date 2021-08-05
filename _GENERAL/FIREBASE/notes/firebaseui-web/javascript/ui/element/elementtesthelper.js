@@ -16,43 +16,40 @@
  * @fileoverview Base helper class for testing UI elements.
  */
 
-goog.provide('firebaseui.auth.ui.element.ElementTestHelper');
-goog.setTestOnly('firebaseui.auth.ui.element.ElementTestHelper');
+goog.provide("firebaseui.auth.ui.element.ElementTestHelper");
+goog.setTestOnly("firebaseui.auth.ui.element.ElementTestHelper");
 
-goog.require('firebaseui.auth.ui.element');
-goog.require('goog.array');
-goog.require('goog.dom');
-goog.require('goog.dom.classlist');
-goog.require('goog.events.EventType');
-goog.require('goog.object');
-goog.require('goog.testing.events');
-goog.require('goog.testing.events.Event');
-goog.require('goog.ui.Component');
-goog.requireType('goog.events.KeyCodes');
-
-
+goog.require("firebaseui.auth.ui.element");
+goog.require("goog.array");
+goog.require("goog.dom");
+goog.require("goog.dom.classlist");
+goog.require("goog.events.EventType");
+goog.require("goog.object");
+goog.require("goog.testing.events");
+goog.require("goog.testing.events.Event");
+goog.require("goog.ui.Component");
+goog.requireType("goog.events.KeyCodes");
 
 /**
  * @param {string} name The name of the helper.
  * @constructor
  */
-firebaseui.auth.ui.element.ElementTestHelper = function(name) {
+firebaseui.auth.ui.element.ElementTestHelper = function (name) {
   this.name_ = name;
   this.excludes_ = [];
 };
-
 
 /**
  * Sets the component to test.
  * @param {goog.ui.Component} c The component to test.
  * @return {!firebaseui.auth.ui.element.ElementTestHelper}
  */
-firebaseui.auth.ui.element.ElementTestHelper.prototype.setComponent =
-    function(c) {
+firebaseui.auth.ui.element.ElementTestHelper.prototype.setComponent = function (
+  c
+) {
   this.component = c;
   return this;
 };
-
 
 /**
  * Excludes some tests from being run.
@@ -60,13 +57,15 @@ firebaseui.auth.ui.element.ElementTestHelper.prototype.setComponent =
  * @return {!firebaseui.auth.ui.element.ElementTestHelper} The test helper
  *     itself.
  */
-firebaseui.auth.ui.element.ElementTestHelper.prototype.excludeTests =
-    function(var_arg) {
+firebaseui.auth.ui.element.ElementTestHelper.prototype.excludeTests = function (
+  var_arg
+) {
   Array.prototype.push.apply(
-      this.excludes_, Array.prototype.slice.call(arguments));
+    this.excludes_,
+    Array.prototype.slice.call(arguments)
+  );
   return this;
 };
-
 
 /**
  * Registers all tests related to the element into the global namespace.
@@ -74,21 +73,22 @@ firebaseui.auth.ui.element.ElementTestHelper.prototype.excludeTests =
  *     itself.
  */
 firebaseui.auth.ui.element.ElementTestHelper.prototype.registerTests =
-    function() {
-  var self = this;
-  goog.object.forEach(self, function(e, key) {
-    if (typeof e == 'function' &&
-      key.indexOf('test') == 0 &&
-      !goog.array.contains(self.excludes_, key)) {
-      goog.exportSymbol(key + 'for' + self.name_ + 'UiElement', function() {
-        self.resetState();
-        e.call(self);
-      });
-    }
-  });
-  return self;
-};
-
+  function () {
+    var self = this;
+    goog.object.forEach(self, function (e, key) {
+      if (
+        typeof e == "function" &&
+        key.indexOf("test") == 0 &&
+        !goog.array.contains(self.excludes_, key)
+      ) {
+        goog.exportSymbol(key + "for" + self.name_ + "UiElement", function () {
+          self.resetState();
+          e.call(self);
+        });
+      }
+    });
+    return self;
+  };
 
 /**
  * Fires an input event with the given key.
@@ -97,18 +97,18 @@ firebaseui.auth.ui.element.ElementTestHelper.prototype.registerTests =
  * @protected
  */
 firebaseui.auth.ui.element.ElementTestHelper.prototype.fireInputEvent =
-    function(input, keyCode) {
-  // Required by Opera since InputHandler#handleEvent checks if the element is
-  // the active one when receiving an "input" event for Opera.
-  input.focus();
-  var inputEvent = new goog.testing.events.Event(
+  function (input, keyCode) {
+    // Required by Opera since InputHandler#handleEvent checks if the element is
+    // the active one when receiving an "input" event for Opera.
+    input.focus();
+    var inputEvent = new goog.testing.events.Event(
       goog.events.EventType.INPUT,
-      input);
-  inputEvent.keyCode = keyCode;
-  inputEvent.charCode = keyCode;
-  goog.testing.events.fireBrowserEvent(inputEvent);
-};
-
+      input
+    );
+    inputEvent.keyCode = keyCode;
+    inputEvent.charCode = keyCode;
+    goog.testing.events.fireBrowserEvent(inputEvent);
+  };
 
 /**
  * Fires a change event.
@@ -116,13 +116,13 @@ firebaseui.auth.ui.element.ElementTestHelper.prototype.fireInputEvent =
  * @protected
  */
 firebaseui.auth.ui.element.ElementTestHelper.prototype.fireChangeEvent =
-    function(input) {
-  var changeEvent = new goog.testing.events.Event(
+  function (input) {
+    var changeEvent = new goog.testing.events.Event(
       goog.events.EventType.CHANGE,
-      input);
-  goog.testing.events.fireBrowserEvent(changeEvent);
-};
-
+      input
+    );
+    goog.testing.events.fireBrowserEvent(changeEvent);
+  };
 
 /**
  * Checks if the input is in valid state.
@@ -130,11 +130,10 @@ firebaseui.auth.ui.element.ElementTestHelper.prototype.fireChangeEvent =
  * @protected
  */
 firebaseui.auth.ui.element.ElementTestHelper.prototype.checkInputValid =
-    function(input) {
-  assertTrue(goog.dom.classlist.contains(input, 'firebaseui-input'));
-  assertFalse(goog.dom.classlist.contains(input, 'firebaseui-input-invalid'));
-};
-
+  function (input) {
+    assertTrue(goog.dom.classlist.contains(input, "firebaseui-input"));
+    assertFalse(goog.dom.classlist.contains(input, "firebaseui-input-invalid"));
+  };
 
 /**
  * Checks if the input is in invalid state.
@@ -142,11 +141,10 @@ firebaseui.auth.ui.element.ElementTestHelper.prototype.checkInputValid =
  * @protected
  */
 firebaseui.auth.ui.element.ElementTestHelper.prototype.checkInputInvalid =
-    function(input) {
-  assertFalse(goog.dom.classlist.contains(input, 'firebaseui-input'));
-  assertTrue(goog.dom.classlist.contains(input, 'firebaseui-input-invalid'));
-};
-
+  function (input) {
+    assertFalse(goog.dom.classlist.contains(input, "firebaseui-input"));
+    assertTrue(goog.dom.classlist.contains(input, "firebaseui-input-invalid"));
+  };
 
 /**
  * Checks if the error is hidden.
@@ -154,10 +152,9 @@ firebaseui.auth.ui.element.ElementTestHelper.prototype.checkInputInvalid =
  * @protected
  */
 firebaseui.auth.ui.element.ElementTestHelper.prototype.checkErrorHidden =
-    function(error) {
-  assertFalse(firebaseui.auth.ui.element.isShown(error));
-};
-
+  function (error) {
+    assertFalse(firebaseui.auth.ui.element.isShown(error));
+  };
 
 /**
  * Checks if the error is shown.
@@ -165,15 +162,14 @@ firebaseui.auth.ui.element.ElementTestHelper.prototype.checkErrorHidden =
  * @param {string} errorMessage The error message shown.
  */
 firebaseui.auth.ui.element.ElementTestHelper.prototype.checkErrorShown =
-    function(error, errorMessage) {
-  assertTrue(firebaseui.auth.ui.element.isShown(error));
-  assertEquals(errorMessage, goog.dom.getTextContent(error));
-};
-
+  function (error, errorMessage) {
+    assertTrue(firebaseui.auth.ui.element.isShown(error));
+    assertEquals(errorMessage, goog.dom.getTextContent(error));
+  };
 
 /**
  * Resets the test state. Subclasses should implement this method.
  * @protected
  */
 firebaseui.auth.ui.element.ElementTestHelper.prototype.resetState =
-    goog.abstractMethod;
+  goog.abstractMethod;

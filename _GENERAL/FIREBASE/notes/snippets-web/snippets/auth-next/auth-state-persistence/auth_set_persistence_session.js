@@ -4,7 +4,12 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START auth_set_persistence_session_modular]
-import { getAuth, setPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "firebase/auth";
+import {
+  getAuth,
+  setPersistence,
+  signInWithEmailAndPassword,
+  browserSessionPersistence,
+} from "firebase/auth";
 
 const auth = getAuth();
 setPersistence(auth, browserSessionPersistence)

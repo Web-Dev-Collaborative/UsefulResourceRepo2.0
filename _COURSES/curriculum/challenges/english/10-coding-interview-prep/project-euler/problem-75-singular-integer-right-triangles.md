@@ -1,6 +1,6 @@
 ---
 id: 5900f3b71000cf542c50feca
-title: 'Problem 75: Singular integer right triangles'
+title: "Problem 75: Singular integer right triangles"
 challengeType: 5
 forumTopicId: 302188
 dashedName: problem-75-singular-integer-right-triangles
@@ -32,7 +32,7 @@ Given that L is the length of the wire, for how many values of L ≤ `n` can exa
 `singularIntRightTriangles(48)` should return a number.
 
 ```js
-assert(typeof singularIntRightTriangles(48) === 'number');
+assert(typeof singularIntRightTriangles(48) === "number");
 ```
 
 `singularIntRightTriangles(48)` should return `6`.
@@ -65,7 +65,6 @@ assert.strictEqual(singularIntRightTriangles(1500000), 161667);
 
 ```js
 function singularIntRightTriangles(n) {
-
   return true;
 }
 
@@ -111,7 +110,7 @@ function singularIntRightTriangles(limit) {
       }
     }
   }
-  return trianglesWithPerimeter.filter(trianglesCount => trianglesCount === 1)
+  return trianglesWithPerimeter.filter((trianglesCount) => trianglesCount === 1)
     .length;
 }
 ```

@@ -54,12 +54,10 @@ For the example above, the full set of generated hooks for the api would be like
 const { data } = api.endpoints.getPosts.useQuery(arg, options)
 const post = api.endpoints.getPosts.useQueryState(arg, options)
 const { refetch } = api.endpoints.getPosts.useQuerySubscription(arg, options)
-const [getPosts, { data }, { lastArg }] = api.endpoints.getPosts.useLazyQuery(
-  options
-)
-const [getPosts, lastArg] = api.endpoints.getPosts.useLazyQuerySubscription(
-  options
-)
+const [getPosts, { data }, { lastArg }] =
+  api.endpoints.getPosts.useLazyQuery(options)
+const [getPosts, lastArg] =
+  api.endpoints.getPosts.useLazyQuerySubscription(options)
 
 /* Hooks attached to the `updatePost` mutation endpoint definition */
 const [updatePost, { data }] = api.endpoints.updatePost.useMutation(options)

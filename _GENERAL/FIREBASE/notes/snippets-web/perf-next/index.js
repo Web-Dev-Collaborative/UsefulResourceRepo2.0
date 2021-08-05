@@ -38,7 +38,7 @@ export function addCustomTrace() {
   const t = trace(perf, "CUSTOM_TRACE_NAME");
   t.start();
 
-  // Code that you want to trace 
+  // Code that you want to trace
   // ...
 
   t.stop();
@@ -48,10 +48,10 @@ export function addCustomTrace() {
 export function userTimingMarks() {
   // [START perf_user_timing_marks]
   const performance = window.performance;
-  
+
   performance.mark("measurementStart");
 
-  // Code that you want to trace 
+  // Code that you want to trace
   // ...
 
   performance.mark("measurementStop");
@@ -90,15 +90,15 @@ export function addCustomMetrics() {
 
   async function getInventory(inventoryIds) {
     const t = trace(perf, "inventoryRetrieval");
-  
+
     // Tracks the number of IDs fetched (the metric could help you to optimize in the future)
     t.incrementMetric("numberOfIds", inventoryIds.length);
-  
+
     // Measures the time it takes to request inventory based on the amount of inventory
     t.start();
     const inventoryData = await retrieveInventory(inventoryIds);
     t.stop();
-  
+
     return inventoryData;
   }
   // [END perf_add_custom_metrics]

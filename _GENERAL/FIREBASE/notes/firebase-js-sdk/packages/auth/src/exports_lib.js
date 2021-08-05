@@ -25,13 +25,11 @@ goog.provide('fireauth.exportlib.ExportedMethod');
 
 goog.require('fireauth.args');
 
-
 /**
  * Type constant for Firebase Auth.
  * @const {string}
  */
 fireauth.exportlib.AUTH_TYPE = 'auth';
-
 
 /**
  * Represents an exported method, with the exported name of the method and the
@@ -43,7 +41,6 @@ fireauth.exportlib.AUTH_TYPE = 'auth';
  */
 fireauth.exportlib.ExportedMethod;
 
-
 /**
  * Represents an exported property, with the exported name of the property and
  * the expected argument to the setter of this property.
@@ -54,14 +51,13 @@ fireauth.exportlib.ExportedMethod;
  */
 fireauth.exportlib.ExportedProperty;
 
-
 /**
  * Exports prototype methods of an object.
  * @param {!Object} protObj The prototype of an object.
  * @param {!Object<string, fireauth.exportlib.ExportedMethod>} fnMap The map of
  *     prototype functions to their export name and expected arguments.
  */
-fireauth.exportlib.exportPrototypeMethods = function(protObj, fnMap) {
+fireauth.exportlib.exportPrototypeMethods = function (protObj, fnMap) {
   // This method exports methods by aliasing the unobfuscated function name
   // (specified as a string in the "name" field of ExportedMethod) to the
   // obfuscated function name (specified as a key of the fnMap object).
@@ -91,12 +87,13 @@ fireauth.exportlib.exportPrototypeMethods = function(protObj, fnMap) {
   for (var obfuscatedFnName in fnMap) {
     var unobfuscatedFnName = fnMap[obfuscatedFnName].name;
     protObj[unobfuscatedFnName] =
-        fireauth.exportlib.wrapMethodWithArgumentVerifier_(
-        unobfuscatedFnName, protObj[obfuscatedFnName],
-        fnMap[obfuscatedFnName].args);
+      fireauth.exportlib.wrapMethodWithArgumentVerifier_(
+        unobfuscatedFnName,
+        protObj[obfuscatedFnName],
+        fnMap[obfuscatedFnName].args
+      );
   }
 };
-
 
 /**
  * Exports properties of an object. See the docs for exportPrototypeMethods for
@@ -105,7 +102,7 @@ fireauth.exportlib.exportPrototypeMethods = function(protObj, fnMap) {
  * @param {!Object<string, !fireauth.exportlib.ExportedProperty>} propMap The
  *     map of properties to their export names.
  */
-fireauth.exportlib.exportPrototypeProperties = function(protObj, propMap) {
+fireauth.exportlib.exportPrototypeProperties = function (protObj, propMap) {
   for (var obfuscatedPropName in propMap) {
     var unobfuscatedPropName = propMap[obfuscatedPropName].name;
     // Don't alias a property to itself.
@@ -120,7 +117,7 @@ fireauth.exportlib.exportPrototypeProperties = function(protObj, propMap) {
      * @param {string} obfuscatedPropName The obfuscated property name.
      * @return {*} The value of the property.
      */
-    var getter = function(obfuscatedPropName) {
+    var getter = function (obfuscatedPropName) {
       return this[obfuscatedPropName];
     };
     /**
@@ -131,11 +128,19 @@ fireauth.exportlib.exportPrototypeProperties = function(protObj, propMap) {
      *     setter of this property.
      * @param {*} value The new value of the property.
      */
-    var setter = function(unobfuscatedPropName, obfuscatedPropName,
-                          expectedArg, value) {
+    var setter = function (
+      unobfuscatedPropName,
+      obfuscatedPropName,
+      expectedArg,
+      value
+    ) {
       // Validate the argument before setting it.
       fireauth.args.validate(
-          unobfuscatedPropName, [expectedArg], [value], true);
+        unobfuscatedPropName,
+        [expectedArg],
+        [value],
+        true
+      );
       this[obfuscatedPropName] = value;
     };
     // Get the expected argument.
@@ -150,13 +155,16 @@ fireauth.exportlib.exportPrototypeProperties = function(protObj, propMap) {
        * @this {!Object}
        * @param {*} value The new value of the property.
        */
-      set: goog.partial(setter, unobfuscatedPropName, obfuscatedPropName,
-                        expectedArg),
+      set: goog.partial(
+        setter,
+        unobfuscatedPropName,
+        obfuscatedPropName,
+        expectedArg
+      ),
       enumerable: true
     });
   }
 };
-
 
 /**
  * Export a static method as a public API.
@@ -166,12 +174,18 @@ fireauth.exportlib.exportPrototypeProperties = function(protObj, propMap) {
  * @param {?Array<!fireauth.args.Argument>=} opt_expectedArgs The expected
  *     arguments to the method.
  */
-fireauth.exportlib.exportFunction = function(parentObj, name, func,
-    opt_expectedArgs) {
+fireauth.exportlib.exportFunction = function (
+  parentObj,
+  name,
+  func,
+  opt_expectedArgs
+) {
   parentObj[name] = fireauth.exportlib.wrapMethodWithArgumentVerifier_(
-      name, func, opt_expectedArgs);
+    name,
+    func,
+    opt_expectedArgs
+  );
 };
-
 
 /**
  * Wraps a method with a function that first verifies the arguments to the
@@ -184,17 +198,22 @@ fireauth.exportlib.exportFunction = function(parentObj, name, func,
  * @return {!Function} The wrapped method.
  * @private
  */
-fireauth.exportlib.wrapMethodWithArgumentVerifier_ = function(methodName,
-    method, opt_expectedArgs) {
+fireauth.exportlib.wrapMethodWithArgumentVerifier_ = function (
+  methodName,
+  method,
+  opt_expectedArgs
+) {
   if (!opt_expectedArgs) {
     return method;
   }
   var shortName = fireauth.exportlib.extractMethodNameFromFullPath_(methodName);
-  var wrapper = function() {
+  var wrapper = function () {
     var argumentsAsArray = Array.prototype.slice.call(arguments);
-    fireauth.args.validate(shortName,
-        /** @type {!Array<!fireauth.args.Argument>} */ (opt_expectedArgs),
-        argumentsAsArray);
+    fireauth.args.validate(
+      shortName,
+      /** @type {!Array<!fireauth.args.Argument>} */ (opt_expectedArgs),
+      argumentsAsArray
+    );
     return method.apply(this, argumentsAsArray);
   };
   // Reattach all static stuff to wrapper.
@@ -210,7 +229,6 @@ fireauth.exportlib.wrapMethodWithArgumentVerifier_ = function(methodName,
   return wrapper;
 };
 
-
 /**
  * From a full path to a method (e.g. "fireauth.GoogleAuthProvider.credential"),
  * get just the method name ("credential").
@@ -218,7 +236,7 @@ fireauth.exportlib.wrapMethodWithArgumentVerifier_ = function(methodName,
  * @return {string} The method name.
  * @private
  */
-fireauth.exportlib.extractMethodNameFromFullPath_ = function(path) {
+fireauth.exportlib.extractMethodNameFromFullPath_ = function (path) {
   var parts = path.split('.');
   return parts[parts.length - 1];
 };

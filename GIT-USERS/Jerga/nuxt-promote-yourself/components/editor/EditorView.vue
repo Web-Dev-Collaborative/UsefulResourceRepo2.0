@@ -1,14 +1,11 @@
 <template>
   <div class="editor editor-squished">
-    <editor-content
-      class="editor__content"
-      :editor="editor"
-    />
+    <editor-content class="editor__content" :editor="editor" />
   </div>
 </template>
 
 <script>
-import { Editor, EditorContent } from 'tiptap'
+import { Editor, EditorContent } from "tiptap";
 import {
   Heading,
   Bold,
@@ -21,30 +18,30 @@ import {
   OrderedList,
   BulletList,
   ListItem,
-  CodeBlockHighlight
-} from 'tiptap-extensions'
+  CodeBlockHighlight,
+} from "tiptap-extensions";
 
-import Title from '~/components/editor/components/Title'
-import Subtitle from '~/components/editor/components/Subtitle'
-import Doc from '~/components/editor/components/Doc'
+import Title from "~/components/editor/components/Title";
+import Subtitle from "~/components/editor/components/Subtitle";
+import Doc from "~/components/editor/components/Doc";
 
-import javascript from 'highlight.js/lib/languages/javascript'
-import css from 'highlight.js/lib/languages/css'
+import javascript from "highlight.js/lib/languages/javascript";
+import css from "highlight.js/lib/languages/css";
 
 export default {
   components: {
-    EditorContent
+    EditorContent,
   },
   props: {
     initialContent: {
       required: true,
-      type: String
-    }
+      type: String,
+    },
   },
   data() {
     return {
-      editor: null
-    }
+      editor: null,
+    };
   },
   // This is called only on client (in browser)
   mounted() {
@@ -54,7 +51,7 @@ export default {
         new Doc(),
         new Title(),
         new Subtitle(),
-        new Heading({ levels: [1, 2, 3]}),
+        new Heading({ levels: [1, 2, 3] }),
         new Bold(),
         new Code(),
         new Italic(),
@@ -69,23 +66,16 @@ export default {
           languages: {
             javascript,
             css,
-          }
-        })
-      ]
-    })
+          },
+        }),
+      ],
+    });
 
-    this.initialContent && this.editor.setContent(this.initialContent)
+    this.initialContent && this.editor.setContent(this.initialContent);
   },
   beforeDestroy() {
     // Always destroy your editor instance when it's no longer needed
-    this.editor && this.editor.destroy()
-  }
-}
+    this.editor && this.editor.destroy();
+  },
+};
 </script>
-
-
-
-
-
-
-

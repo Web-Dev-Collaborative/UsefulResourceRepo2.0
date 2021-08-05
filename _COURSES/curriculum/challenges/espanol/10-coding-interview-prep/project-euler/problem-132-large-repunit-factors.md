@@ -1,6 +1,6 @@
 ---
 id: 5900f3f11000cf542c50ff03
-title: 'Problem 132: Large repunit factors'
+title: "Problem 132: Large repunit factors"
 challengeType: 5
 forumTopicId: 301760
 dashedName: problem-132-large-repunit-factors
@@ -28,7 +28,6 @@ assert.strictEqual(euler132(), 843296);
 
 ```js
 function euler132() {
-
   return true;
 }
 

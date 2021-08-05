@@ -1,6 +1,6 @@
 ---
 id: 5900f39d1000cf542c50feb0
-title: 'Problem 49: Prime permutations'
+title: "Problem 49: Prime permutations"
 challengeType: 5
 forumTopicId: 302159
 dashedName: problem-49-prime-permutations
@@ -19,7 +19,7 @@ What 12-digit number do you form by concatenating the three terms in this sequen
 `primePermutations()` should return a number.
 
 ```js
-assert(typeof primePermutations() === 'number');
+assert(typeof primePermutations() === "number");
 ```
 
 `primePermutations()` should return 296962999629.
@@ -34,7 +34,6 @@ assert.strictEqual(primePermutations(), 296962999629);
 
 ```js
 function primePermutations() {
-
   return true;
 }
 
@@ -81,10 +80,13 @@ function primePermutations() {
     const num2 = num1 + 3330;
     const num3 = num2 + 3330;
     if (isPrime(num1) && isPrime(num2) && isPrime(num3)) {
-      if (arePermutations(num1, num2) && arePermutations(num1, num3)
-        && num1 !== 1487) {
+      if (
+        arePermutations(num1, num2) &&
+        arePermutations(num1, num3) &&
+        num1 !== 1487
+      ) {
         // concatenate and return numbers
-        return (num1 * 100000000) + (num2 * 10000) + num3;
+        return num1 * 100000000 + num2 * 10000 + num3;
       }
     }
   }

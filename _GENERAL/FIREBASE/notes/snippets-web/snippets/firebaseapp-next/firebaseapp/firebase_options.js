@@ -11,10 +11,10 @@ import { initializeApp } from "firebase/app";
 //  - App ID
 //  - API Key
 const secondaryAppConfig = {
-    projectId: "<PROJECT_ID>",
-    appId: "<APP_ID>",
-    apiKey: "<API_KEY>",
-    // databaseURL: "...",
-    // storageBucket: "...",
+  projectId: "<PROJECT_ID>",
+  appId: "<APP_ID>",
+  apiKey: "<API_KEY>",
+  // databaseURL: "...",
+  // storageBucket: "...",
 };
 // [END firebase_options_modular]

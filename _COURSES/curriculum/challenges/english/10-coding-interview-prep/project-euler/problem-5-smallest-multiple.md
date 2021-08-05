@@ -1,6 +1,6 @@
 ---
 id: 5900f3711000cf542c50fe84
-title: 'Problem 5: Smallest multiple'
+title: "Problem 5: Smallest multiple"
 challengeType: 5
 forumTopicId: 302160
 dashedName: problem-5-smallest-multiple
@@ -17,7 +17,7 @@ What is the smallest positive number that is evenly divisible by all of the numb
 `smallestMult(5)` should return a number.
 
 ```js
-assert(typeof smallestMult(5) === 'number');
+assert(typeof smallestMult(5) === "number");
 ```
 
 `smallestMult(5)` should return 60.
@@ -56,7 +56,6 @@ assert.strictEqual(smallestMult(20), 232792560);
 
 ```js
 function smallestMult(n) {
-
   return true;
 }
 
@@ -66,16 +65,16 @@ smallestMult(20);
 # --solutions--
 
 ```js
-function smallestMult(n){
+function smallestMult(n) {
   function gcd(a, b) {
-    return b === 0 ? a : gcd(b, a%b); // Euclidean algorithm
+    return b === 0 ? a : gcd(b, a % b); // Euclidean algorithm
   }
 
   function lcm(a, b) {
-    return a * b / gcd(a, b);
+    return (a * b) / gcd(a, b);
   }
   var result = 1;
-  for(var i = 2; i <= n; i++) {
+  for (var i = 2; i <= n; i++) {
     result = lcm(result, i);
   }
   return result;

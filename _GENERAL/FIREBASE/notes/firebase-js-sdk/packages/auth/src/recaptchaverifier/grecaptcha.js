@@ -15,20 +15,18 @@
  * limitations under the License.
  */
 
- /**
+/**
  * @fileoverview Defines the grecaptcha interface.
  */
 
 goog.provide('fireauth.grecaptcha');
-
 
 /**
  * The reCAPTCHA interface for initializing and managing visible v2
  * reCAPTCHAs as well as invisible ones.
  * @interface
  */
-fireauth.grecaptcha = function() {};
-
+fireauth.grecaptcha = function () {};
 
 /**
  * Creates a new instance of the recaptcha client.
@@ -38,8 +36,7 @@ fireauth.grecaptcha = function() {};
  * @param {!Object} params Parameters for the recaptcha client.
  * @return {number} The client ID.
  */
-fireauth.grecaptcha.prototype.render = function(elementOrId, params) {};
-
+fireauth.grecaptcha.prototype.render = function (elementOrId, params) {};
 
 /**
  * Resets a client with the given ID.  If an ID is not provided, resets the
@@ -48,8 +45,7 @@ fireauth.grecaptcha.prototype.render = function(elementOrId, params) {};
  * @param {number=} id The ID of the recaptcha client.
  * @param {?Object=} params Parameters for the recaptcha client.
  */
-fireauth.grecaptcha.prototype.reset = function(id, params) {};
-
+fireauth.grecaptcha.prototype.reset = function (id, params) {};
 
 /**
  * Gets the response for the client with the given ID.  If an ID is not
@@ -58,8 +54,7 @@ fireauth.grecaptcha.prototype.reset = function(id, params) {};
  * @param {number=} id The ID of the recaptcha client.
  * @return {?string}
  */
-fireauth.grecaptcha.prototype.getResponse = function(id) {};
-
+fireauth.grecaptcha.prototype.getResponse = function (id) {};
 
 /**
  * Programmatically triggers the invisible reCAPTCHA.
@@ -67,4 +62,4 @@ fireauth.grecaptcha.prototype.getResponse = function(id) {};
  * @param {number=} opt_id The ID of the recaptcha client. Defaults to the
  *     first widget created if unspecified.
  */
-fireauth.grecaptcha.prototype.execute = function(opt_id) {};
+fireauth.grecaptcha.prototype.execute = function (opt_id) {};

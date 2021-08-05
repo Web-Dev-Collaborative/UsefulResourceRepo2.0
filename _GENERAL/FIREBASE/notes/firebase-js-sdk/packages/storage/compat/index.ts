@@ -73,7 +73,7 @@ export function registerStorage(instance: _FirebaseNamespace): void {
   instance.registerVersion(name, version);
 }
 
-registerStorage((firebase as unknown) as _FirebaseNamespace);
+registerStorage(firebase as unknown as _FirebaseNamespace);
 
 /**
  * Define extension behavior for `registerStorage`

@@ -11,8 +11,8 @@ dashedName: explore-differences-between-the-var-and-let-keywords
 Uno dei maggiori problemi quando si dichiarano delle variabili con la parola chiave `var` è che è possibile sovrascrivere le dichiarazioni delle variabili senza errori.
 
 ```js
-var camper = 'James';
-var camper = 'David';
+var camper = "James";
+var camper = "David";
 console.log(camper);
 ```
 
@@ -22,8 +22,8 @@ Come puoi vedere nel codice qui sopra, la variabile `camper` è originariamente 
 Una nuova parola chiave, chiamata `let`, è stata introdotta in ES6 per risolvere questo potenziale problema con la parola chiave `var`. Se dovessi sostituire `var` con `let` nelle dichiarazioni delle variabili nel codice sopra, il risultato sarebbe un errore.
 
 ```js
-let camper = 'James';
-let camper = 'David';
+let camper = "James";
+let camper = "David";
 ```
 
 Questo errore può essere visto nella console del tuo browser. Quindi, a differenza di `var`, quando si utilizza `let`, una variabile con lo stesso nome può essere dichiarata solo una volta. Nota l'`"use strict"`. Questo abilita la Strict Mode (Modalità Rigorosa), che cattura gli errori di codifica comuni e le azioni "non sicure". Per esempio:
@@ -44,19 +44,19 @@ Aggiorna il codice in modo che utilizzi solo la parola chiave `let`.
 `var` non dovrebbe esistere nel codice.
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/var/g));
+(getUserInput) => assert(!getUserInput("index").match(/var/g));
 ```
 
 `catName` dovrebbe essere uguale alla stringa `Oliver`.
 
 ```js
-assert(catName === 'Oliver');
+assert(catName === "Oliver");
 ```
 
 `quote` dovrebbe essere uguale alla stringa `Oliver says Meow!`
 
 ```js
-assert(quote === 'Oliver says Meow!');
+assert(quote === "Oliver says Meow!");
 ```
 
 # --seed--
@@ -71,7 +71,6 @@ function catTalk() {
 
   catName = "Oliver";
   quote = catName + " says Meow!";
-
 }
 catTalk();
 ```
@@ -82,10 +81,10 @@ catTalk();
 let catName;
 let quote;
 function catTalk() {
-  'use strict';
+  "use strict";
 
-  catName = 'Oliver';
-  quote = catName + ' says Meow!';
+  catName = "Oliver";
+  quote = catName + " says Meow!";
 }
 catTalk();
 ```

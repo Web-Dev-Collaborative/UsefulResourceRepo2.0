@@ -27,19 +27,19 @@ Change the `background-color` property of the `orange`, `cyan`, and `raspberry` 
 The `div` element with class `orange` should have a `background-color` of orange.
 
 ```js
-assert($('.orange').css('background-color') == 'rgb(255, 127, 0)');
+assert($(".orange").css("background-color") == "rgb(255, 127, 0)");
 ```
 
 The `div` element with class `cyan` should have a `background-color` of cyan.
 
 ```js
-assert($('.cyan').css('background-color') == 'rgb(0, 255, 255)');
+assert($(".cyan").css("background-color") == "rgb(0, 255, 255)");
 ```
 
 The `div` element with class `raspberry` should have a `background-color` of raspberry.
 
 ```js
-assert($('.raspberry').css('background-color') == 'rgb(255, 0, 127)');
+assert($(".raspberry").css("background-color") == "rgb(255, 0, 127)");
 ```
 
 All `background-color` values for the color classes should be hex codes and not color names.
@@ -55,7 +55,7 @@ assert(!/background-color:\s(orange|cyan|raspberry)/.test(code));
 ```html
 <style>
   body {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
   }
 
   .orange {
@@ -87,19 +87,19 @@ assert(!/background-color:\s(orange|cyan|raspberry)/.test(code));
 ```html
 <style>
   body {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
   }
 
   .orange {
-    background-color: #FF7F00;
+    background-color: #ff7f00;
   }
 
   .cyan {
-    background-color: #00FFFF;
+    background-color: #00ffff;
   }
 
   .raspberry {
-    background-color: #FF007F;
+    background-color: #ff007f;
   }
 
   div {

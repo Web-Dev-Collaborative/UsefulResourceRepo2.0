@@ -4,7 +4,13 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START auth_set_persistence_none_modular]
-import { getAuth, setPersistence, signInWithRedirect, inMemoryPersistence, GoogleAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  setPersistence,
+  signInWithRedirect,
+  inMemoryPersistence,
+  GoogleAuthProvider,
+} from "firebase/auth";
 
 const auth = getAuth();
 setPersistence(auth, inMemoryPersistence)

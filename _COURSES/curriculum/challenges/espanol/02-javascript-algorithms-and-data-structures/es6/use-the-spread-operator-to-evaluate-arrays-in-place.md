@@ -28,7 +28,7 @@ const maximus = Math.max(...arr);
 
 `maximus` tendría un valor de `89`.
 
-`...arr` devuelve un arreglo desempacado. En otras palabras, *propaga* el arreglo. Sin embargo, el operador de propagación sólo funciona en el lugar, como en un argumento de función o en un arreglo literal. El siguiente código no funcionará:
+`...arr` devuelve un arreglo desempacado. En otras palabras, _propaga_ el arreglo. Sin embargo, el operador de propagación sólo funciona en el lugar, como en un argumento de función o en un arreglo literal. El siguiente código no funcionará:
 
 ```js
 const spreaded = ...arr;
@@ -56,7 +56,7 @@ assert(code.match(/Array\(\s*\.\.\.arr1\s*\)|\[\s*\.\.\.arr1\s*\]/));
 
 ```js
 assert((arr1, arr2) => {
-  arr1.push('JUN');
+  arr1.push("JUN");
   return arr2.length < arr1.length;
 });
 ```
@@ -66,10 +66,10 @@ assert((arr1, arr2) => {
 ## --seed-contents--
 
 ```js
-const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY'];
+const arr1 = ["JAN", "FEB", "MAR", "APR", "MAY"];
 let arr2;
 
-arr2 = [];  // Change this line
+arr2 = []; // Change this line
 
 console.log(arr2);
 ```
@@ -77,7 +77,7 @@ console.log(arr2);
 # --solutions--
 
 ```js
-const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY'];
+const arr1 = ["JAN", "FEB", "MAR", "APR", "MAY"];
 let arr2;
 
 arr2 = [...arr1];

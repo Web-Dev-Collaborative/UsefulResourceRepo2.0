@@ -296,7 +296,7 @@ function wrapInternalPayload(
   internalPayload: MessagePayloadInternal
 ): NotificationPayloadInternal {
   const wrappedInternalPayload: NotificationPayloadInternal = {
-    ...((internalPayload.notification as unknown) as NotificationPayloadInternal)
+    ...(internalPayload.notification as unknown as NotificationPayloadInternal)
   };
 
   // Put the message payload under FCM_MSG name so we can identify the notification as being an FCM

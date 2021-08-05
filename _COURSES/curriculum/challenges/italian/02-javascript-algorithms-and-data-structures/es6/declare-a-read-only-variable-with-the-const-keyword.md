@@ -32,26 +32,26 @@ Modifica il codice in modo che tutte le variabili siano dichiarate utilizzando `
 `var` non dovrebbe esistere nel tuo codice.
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/var/g));
+(getUserInput) => assert(!getUserInput("index").match(/var/g));
 ```
 
 `SENTENCE` dovrebbe essere una variabile costante dichiarata con `const`.
 
 ```js
-(getUserInput) => assert(getUserInput('index').match(/(const SENTENCE)/g));
+(getUserInput) => assert(getUserInput("index").match(/(const SENTENCE)/g));
 ```
 
 `i` dovrebbe essere dichiarata con `let`.
 
 ```js
-(getUserInput) => assert(getUserInput('index').match(/(let i)/g));
+(getUserInput) => assert(getUserInput("index").match(/(let i)/g));
 ```
 
 `console.log` dovrebbe essere cambiato per stampare la variabile `SENTENCE`.
 
 ```js
 (getUserInput) =>
-  assert(getUserInput('index').match(/console\.log\(\s*SENTENCE\s*\)\s*;?/g));
+  assert(getUserInput("index").match(/console\.log\(\s*SENTENCE\s*\)\s*;?/g));
 ```
 
 # --seed--
@@ -60,16 +60,14 @@ Modifica il codice in modo che tutte le variabili siano dichiarate utilizzando `
 
 ```js
 function printManyTimes(str) {
-
   // Only change code below this line
 
   var sentence = str + " is cool!";
-  for (var i = 0; i < str.length; i+=2) {
+  for (var i = 0; i < str.length; i += 2) {
     console.log(sentence);
   }
 
   // Only change code above this line
-
 }
 printManyTimes("freeCodeCamp");
 ```
@@ -78,12 +76,10 @@ printManyTimes("freeCodeCamp");
 
 ```js
 function printManyTimes(str) {
-
   const SENTENCE = str + " is cool!";
-  for (let i = 0; i < str.length; i+=2) {
+  for (let i = 0; i < str.length; i += 2) {
     console.log(SENTENCE);
   }
-
 }
 printManyTimes("freeCodeCamp");
 ```

@@ -7,5 +7,6 @@
 import { GoogleAuthProvider } from "firebase/auth";
 
 const credential = GoogleAuthProvider.credential(
-  googleUser.getAuthResponse().id_token);
+  googleUser.getAuthResponse().id_token
+);
 // [END auth_make_google_credential_modular]

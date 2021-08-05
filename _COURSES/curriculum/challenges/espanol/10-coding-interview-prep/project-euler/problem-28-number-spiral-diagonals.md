@@ -1,6 +1,6 @@
 ---
 id: 5900f3881000cf542c50fe9b
-title: 'Problem 28: Number spiral diagonals'
+title: "Problem 28: Number spiral diagonals"
 challengeType: 5
 forumTopicId: 301930
 dashedName: problem-28-number-spiral-diagonals
@@ -27,7 +27,7 @@ What is the sum of the numbers on the diagonals in an `n` by `n` spiral formed i
 `spiralDiagonals(101)` should return a number.
 
 ```js
-assert(typeof spiralDiagonals(101) === 'number');
+assert(typeof spiralDiagonals(101) === "number");
 ```
 
 `spiralDiagonals(101)` should return 692101.
@@ -60,7 +60,6 @@ assert(spiralDiagonals(1001) == 669171001);
 
 ```js
 function spiralDiagonals(n) {
-
   return n;
 }
 
@@ -72,12 +71,12 @@ spiralDiagonals(1001);
 ```js
 const spiralDiagonals = (n) => {
   const Sn2 = (n) => {
-    return n*(n+1)*(2*n+1)/6;
+    return (n * (n + 1) * (2 * n + 1)) / 6;
   };
   const Sn = (n) => {
-    return n*(n+1)/2;
+    return (n * (n + 1)) / 2;
   };
-  let sum = (Sn2(n-1) + Sn(n-1) + n-1) + (Math.floor(n/2) + Sn2(n));
+  let sum = Sn2(n - 1) + Sn(n - 1) + n - 1 + (Math.floor(n / 2) + Sn2(n));
   return sum;
 };
 ```

@@ -59,19 +59,19 @@ assert.strictEqual(booWho(NaN), false);
 `booWho("a")` 應該返回 `false`。
 
 ```js
-assert.strictEqual(booWho('a'), false);
+assert.strictEqual(booWho("a"), false);
 ```
 
 `booWho("true")` 應該返回 `false`。
 
 ```js
-assert.strictEqual(booWho('true'), false);
+assert.strictEqual(booWho("true"), false);
 ```
 
 `booWho("false")` 應該返回 `false`。
 
 ```js
-assert.strictEqual(booWho('false'), false);
+assert.strictEqual(booWho("false"), false);
 ```
 
 # --seed--

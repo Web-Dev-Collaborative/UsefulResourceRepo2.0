@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244b9
 title: 用變量構造字符串
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cqk8rf4'
+videoUrl: "https://scrimba.com/c/cqk8rf4"
 forumTopicId: 16805
 dashedName: constructing-strings-with-variables
 ---
@@ -29,7 +29,7 @@ var ourStr = "Hello, our name is " + ourName + ", how are you?";
 `myName` 應該是一個至少有 3 個字符的字符串。
 
 ```js
-assert(typeof myName !== 'undefined' && myName.length > 2);
+assert(typeof myName !== "undefined" && myName.length > 2);
 ```
 
 使用兩個 `+` 操作符創建包含 `myName` 的 `myStr` 變量。
@@ -43,19 +43,19 @@ assert(code.match(/["']\s*\+\s*myName\s*\+\s*["']/g).length > 0);
 ## --after-user-code--
 
 ```js
-(function(){
+(function () {
   var output = [];
-  if(typeof myName === 'string') {
+  if (typeof myName === "string") {
     output.push('myName = "' + myName + '"');
   } else {
-    output.push('myName is not a string');
+    output.push("myName is not a string");
   }
-  if(typeof myStr === 'string') {
+  if (typeof myStr === "string") {
     output.push('myStr = "' + myStr + '"');
   } else {
-    output.push('myStr is not a string');
+    output.push("myStr is not a string");
   }
-  return output.join('\n');
+  return output.join("\n");
 })();
 ```
 

@@ -203,10 +203,8 @@ export class PhoneAuthProvider {
     if (!tokenResponse) {
       return null;
     }
-    const {
-      phoneNumber,
-      temporaryProof
-    } = tokenResponse as SignInWithPhoneNumberResponse;
+    const { phoneNumber, temporaryProof } =
+      tokenResponse as SignInWithPhoneNumberResponse;
     if (phoneNumber && temporaryProof) {
       return PhoneAuthCredential._fromTokenResponse(
         phoneNumber,

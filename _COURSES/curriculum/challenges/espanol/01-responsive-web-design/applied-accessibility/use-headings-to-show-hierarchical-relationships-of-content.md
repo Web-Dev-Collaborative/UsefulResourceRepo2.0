@@ -2,7 +2,7 @@
 id: 587d774d367417b2b2512a9e
 title: Usa títulos para mostrar relaciones jerárquicas de contenido
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cqVEktm'
+videoUrl: "https://scrimba.com/c/cqVEktm"
 forumTopicId: 301026
 dashedName: use-headings-to-show-hierarchical-relationships-of-content
 ---
@@ -11,7 +11,7 @@ dashedName: use-headings-to-show-hierarchical-relationships-of-content
 
 Los títulos (`h1` a `h6` elementos) son etiquetas de caballo de batalla que ayudan a proporcionar estructura y etiquetado a su contenido. Los lectores de pantalla se pueden configurar para leer solo los títulos de una página para que el usuario obtenga un resumen. Esto significa que es importante que las etiquetas de los títulos en tu lenguaje de marcado tengan un significado semántico y se relacionen entre sí, no se elijan simplemente por sus valores de tamaño.
 
-* Significado semántico* significa que la etiqueta que usas alrededor del contenido indica el tipo de información que contiene.
+- Significado semántico\* significa que la etiqueta que usas alrededor del contenido indica el tipo de información que contiene.
 
 Si estuvieras escribiendo un documento con una introducción, un cuerpo y una conclusión, no tendría mucho sentido poner la conclusión como una subsección del cuerpo en tu esquema. Debería ser su propia sección. Del mismo modo, las etiquetas de los títulos en una página web deben ir en orden e indicar las relaciones jerárquicas de su contenido.
 
@@ -30,7 +30,7 @@ Camper Cat quiere una página en su sitio dedicada a convertirse en un ninja. Ay
 Tu código debe tener 6 etiquetas `h3`.
 
 ```js
-assert($('h3').length === 6);
+assert($("h3").length === 6);
 ```
 
 Tu código debe tener 6 etiquetas de cierre `h3`.
@@ -42,7 +42,7 @@ assert((code.match(/\/h3/g) || []).length === 6);
 Tu código no debe tener ninguna etiqueta `h5`.
 
 ```js
-assert($('h5').length === 0);
+assert($("h5").length === 0);
 ```
 
 Tu código no debe tener ninguna etiqueta de cierre `h5`.

@@ -1,6 +1,6 @@
 ---
 id: 5900f3c71000cf542c50feda
-title: 'Problem 91: Right triangles with integer coordinates'
+title: "Problem 91: Right triangles with integer coordinates"
 challengeType: 5
 forumTopicId: 302208
 dashedName: problem-91-right-triangles-with-integer-coordinates
@@ -23,7 +23,7 @@ Given that 0 ≤ `x`<sub>1</sub>, `y`<sub>1</sub>, `x`<sub>2</sub>, `y`<sub>2</s
 `rightTrianglesIntCoords()` should return a number.
 
 ```js
-assert(typeof rightTrianglesIntCoords() === 'number');
+assert(typeof rightTrianglesIntCoords() === "number");
 ```
 
 `rightTrianglesIntCoords()` should return 14234.
@@ -38,7 +38,6 @@ assert.strictEqual(rightTrianglesIntCoords(), 14234);
 
 ```js
 function rightTrianglesIntCoords() {
-
   return true;
 }
 

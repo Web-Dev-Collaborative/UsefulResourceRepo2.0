@@ -1,10 +1,9 @@
-import io from 'socket.io-client'
+import io from "socket.io-client";
 
 const AppSocket = {
-  install (Vue, options) {
+  install(Vue, options) {
+    Vue.prototype.$socket = io(options.connection);
+  },
+};
 
-    Vue.prototype.$socket = io(options.connection)
-  }
-}
-
-export default AppSocket
+export default AppSocket;

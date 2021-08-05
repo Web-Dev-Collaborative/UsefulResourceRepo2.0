@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08830
 title: Aggiungere un testo segnaposto a un campo di testo
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cKdJDhg'
+videoUrl: "https://scrimba.com/p/pVMPUv/cKdJDhg"
 forumTopicId: 16647
 dashedName: add-placeholder-text-to-a-text-field
 ---
@@ -14,7 +14,7 @@ Il testo segnaposto è quello che viene visualizzato nell'elemento `input` prima
 Puoi creare il testo segnaposto in questo modo:
 
 ```html
-<input type="text" placeholder="this is placeholder text">
+<input type="text" placeholder="this is placeholder text" />
 ```
 
 **Nota:** Ricorda che gli elementi `input` non hanno bisogno di un tag di chiusura.
@@ -28,17 +28,17 @@ Imposta il valore del `placeholder` (segnaposto) per il tuo `input` di testo su 
 Dovresti aggiungere un attributo `placeholder` all'elemento `input` di testo esistente.
 
 ```js
-assert($('input[placeholder]').length > 0);
+assert($("input[placeholder]").length > 0);
 ```
 
 Dovresti impostare il valore del tuo attributo `placeholder` su `cat photo URL`.
 
 ```js
 assert(
-  $('input') &&
-    $('input').attr('placeholder') &&
-    $('input')
-      .attr('placeholder')
+  $("input") &&
+    $("input").attr("placeholder") &&
+    $("input")
+      .attr("placeholder")
       .match(/cat\s+photo\s+URL/gi)
 );
 ```
@@ -52,7 +52,7 @@ assert(!code.match(/<input.*\/?>.*<\/input>/gi));
 L'elemento `input` finito dovrebbe avere una sintassi valida.
 
 ```js
-assert($('input[type=text]').length > 0);
+assert($("input[type=text]").length > 0);
 ```
 
 # --seed--
@@ -64,7 +64,11 @@ assert($('input[type=text]').length > 0);
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -78,7 +82,7 @@ assert($('input[type=text]').length > 0);
     <li>thunder</li>
     <li>other cats</li>
   </ol>
-  <input type="text">
+  <input type="text" />
 </main>
 ```
 
@@ -89,7 +93,11 @@ assert($('input[type=text]').length > 0);
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -103,6 +111,6 @@ assert($('input[type=text]').length > 0);
     <li>thunder</li>
     <li>other cats</li>
   </ol>
-  <input type="text" placeholder="cat photo URL">
+  <input type="text" placeholder="cat photo URL" />
 </main>
 ```

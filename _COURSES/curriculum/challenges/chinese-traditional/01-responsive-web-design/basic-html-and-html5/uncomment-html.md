@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08802
 title: 去除 HTML 的註釋
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cBmG9T7'
+videoUrl: "https://scrimba.com/p/pVMPUv/cBmG9T7"
 forumTopicId: 18329
 dashedName: uncomment-html
 ---
@@ -24,19 +24,19 @@ dashedName: uncomment-html
 頁面上應存在 `h1` 元素。
 
 ```js
-assert($('h1').length > 0);
+assert($("h1").length > 0);
 ```
 
 頁面上應存在 `h2` 元素。
 
 ```js
-assert($('h2').length > 0);
+assert($("h2").length > 0);
 ```
 
 頁面上應存在 `p` 元素。
 
 ```js
-assert($('p').length > 0);
+assert($("p").length > 0);
 ```
 
 應刪除註釋的結束標籤 `-->`。
@@ -66,5 +66,8 @@ assert(!$('*:contains("-->")')[1]);
 
 <h2>CatPhotoApp</h2>
 
-<p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p>
+<p>
+  Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack
+  your ankles chase the red dot, hairball run catnip eat the grass sniff.
+</p>
 ```

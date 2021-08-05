@@ -4,11 +4,11 @@
   },
   "hosting": {
     "public": "public",
-      "rewrites": [
-        {
-          "source": "/checkIfAuthenticated",
-          "function": "checkIfAuthenticated"
-        }
-      ]
+    "rewrites": [
+      {
+        "source": "/checkIfAuthenticated",
+        "function": "checkIfAuthenticated"
+      }
+    ]
   }
 }

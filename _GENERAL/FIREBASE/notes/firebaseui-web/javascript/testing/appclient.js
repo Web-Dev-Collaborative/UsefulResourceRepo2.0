@@ -16,14 +16,13 @@
  * @fileoverview Fake app client for testing.
  */
 
-goog.module('firebaseui.auth.testing.FakeAppClient');
+goog.module("firebaseui.auth.testing.FakeAppClient");
 goog.module.declareLegacyNamespace();
 goog.setTestOnly();
 
-const Disposable = goog.require('goog.Disposable');
-const FakeAuthClient = goog.require('firebaseui.auth.testing.FakeAuthClient');
-const GoogPromise = goog.require('goog.Promise');
-
+const Disposable = goog.require("goog.Disposable");
+const FakeAuthClient = goog.require("firebaseui.auth.testing.FakeAuthClient");
+const GoogPromise = goog.require("goog.Promise");
 
 /**
  * Fake App client class.
@@ -36,11 +35,10 @@ class FakeAppClient extends Disposable {
   constructor(options, name) {
     super();
     this.options = options || {};
-    this.name = name || '[DEFAULT]';
+    this.name = name || "[DEFAULT]";
     // Initialize a fake auth client instance.
     this.auth_ = new FakeAuthClient(this);
-  };
-
+  }
 
   /**
    * @return {!FakeAuthClient} The associated fake Auth client instance.
@@ -48,7 +46,6 @@ class FakeAppClient extends Disposable {
   auth() {
     return this.auth_;
   }
-
 
   /**
    * Dummy app delete method.
@@ -58,6 +55,5 @@ class FakeAppClient extends Disposable {
     return GoogPromise.resolve();
   }
 }
-
 
 exports = FakeAppClient;

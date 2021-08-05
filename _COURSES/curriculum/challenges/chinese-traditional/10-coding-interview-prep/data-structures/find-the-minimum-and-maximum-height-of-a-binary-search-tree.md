@@ -26,10 +26,10 @@ The `BinarySearchTree` data structure should exist.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     }
-    return typeof test == 'object';
+    return typeof test == "object";
   })()
 );
 ```
@@ -40,12 +40,12 @@ The binary search tree should have a method called `findMinHeight`.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    return typeof test.findMinHeight == 'function';
+    return typeof test.findMinHeight == "function";
   })()
 );
 ```
@@ -56,12 +56,12 @@ The binary search tree should have a method called `findMaxHeight`.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    return typeof test.findMaxHeight == 'function';
+    return typeof test.findMaxHeight == "function";
   })()
 );
 ```
@@ -72,12 +72,12 @@ The binary search tree should have a method called `isBalanced`.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    return typeof test.isBalanced == 'function';
+    return typeof test.isBalanced == "function";
   })()
 );
 ```
@@ -88,12 +88,12 @@ The `findMinHeight` method should return the minimum height of the tree.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.findMinHeight !== 'function') {
+    if (typeof test.findMinHeight !== "function") {
       return false;
     }
     test.add(4);
@@ -115,12 +115,12 @@ The `findMaxHeight` method should return the maximum height of the tree.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.findMaxHeight !== 'function') {
+    if (typeof test.findMaxHeight !== "function") {
       return false;
     }
     test.add(4);
@@ -142,12 +142,12 @@ An empty tree should return a height of `-1`.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.findMaxHeight !== 'function') {
+    if (typeof test.findMaxHeight !== "function") {
       return false;
     }
     return test.findMaxHeight() == -1;
@@ -161,12 +161,12 @@ The `isBalanced` method should return `false` if the tree is an unbalanced binar
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.isBalanced !== 'function') {
+    if (typeof test.isBalanced !== "function") {
       return false;
     }
     test.add(4);
@@ -188,12 +188,12 @@ The `isBalanced` method should return `true` if the tree is a balanced binary se
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.isBalanced !== 'function') {
+    if (typeof test.isBalanced !== "function") {
       return false;
     }
     test.add(10);
@@ -213,46 +213,43 @@ assert(
 ## --after-user-code--
 
 ```js
-BinarySearchTree.prototype = Object.assign(
-  BinarySearchTree.prototype,
-  {
-    add: function(value) {
-      function searchTree(node) {
-        if (value < node.value) {
-          if (node.left == null) {
-            node.left = new Node(value);
-            return;
-          } else if (node.left != null) {
-            return searchTree(node.left);
-          }
-        } else if (value > node.value) {
-          if (node.right == null) {
-            node.right = new Node(value);
-            return;
-          } else if (node.right != null) {
-            return searchTree(node.right);
-          }
-        } else {
-          return null;
+BinarySearchTree.prototype = Object.assign(BinarySearchTree.prototype, {
+  add: function (value) {
+    function searchTree(node) {
+      if (value < node.value) {
+        if (node.left == null) {
+          node.left = new Node(value);
+          return;
+        } else if (node.left != null) {
+          return searchTree(node.left);
         }
-      }
-
-      var node = this.root;
-      if (node == null) {
-        this.root = new Node(value);
-        return;
+      } else if (value > node.value) {
+        if (node.right == null) {
+          node.right = new Node(value);
+          return;
+        } else if (node.right != null) {
+          return searchTree(node.right);
+        }
       } else {
-        return searchTree(node);
+        return null;
       }
     }
-  }
-);
+
+    var node = this.root;
+    if (node == null) {
+      this.root = new Node(value);
+      return;
+    } else {
+      return searchTree(node);
+    }
+  },
+});
 ```
 
 ## --seed-contents--
 
 ```js
-var displayTree = tree => console.log(JSON.stringify(tree, null, 2));
+var displayTree = (tree) => console.log(JSON.stringify(tree, null, 2));
 function Node(value) {
   this.value = value;
   this.left = null;
@@ -269,7 +266,7 @@ function BinarySearchTree() {
 # --solutions--
 
 ```js
-var displayTree = tree => console.log(JSON.stringify(tree, null, 2));
+var displayTree = (tree) => console.log(JSON.stringify(tree, null, 2));
 function Node(value) {
   this.value = value;
   this.left = null;
@@ -280,7 +277,7 @@ function BinarySearchTree() {
   // Only change code below this line
 
   // Only change code above this line
-  this.findMinHeight = function(root = this.root) {
+  this.findMinHeight = function (root = this.root) {
     // empty tree.
     if (root === null) {
       return -1;
@@ -299,7 +296,7 @@ function BinarySearchTree() {
     const rHeight = this.findMinHeight(root.right);
     return Math.min(lHeight, rHeight) + 1;
   };
-  this.findMaxHeight = function(root = this.root) {
+  this.findMaxHeight = function (root = this.root) {
     // empty tree.
     if (root === null) {
       return -1;
@@ -318,7 +315,7 @@ function BinarySearchTree() {
     const rHeight = this.findMaxHeight(root.right);
     return Math.max(lHeight, rHeight) + 1;
   };
-  this.isBalanced = function(root = this.root) {
+  this.isBalanced = function (root = this.root) {
     if (root === null) {
       return true;
     }

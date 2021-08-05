@@ -164,9 +164,9 @@ export async function _performFetchWithErrorHandling<V>(
       }
       const authError =
         errorMap[serverErrorCode] ||
-        ((serverErrorCode
+        (serverErrorCode
           .toLowerCase()
-          .replace(/[_\s]+/g, '-') as unknown) as AuthErrorCode);
+          .replace(/[_\s]+/g, '-') as unknown as AuthErrorCode);
       _fail(auth, authError);
     }
   } catch (e) {

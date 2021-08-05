@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 /**
  * @fileoverview Defines the MultiFactorGenerators used to generate
  * MultiFactorAssertions. This currently covers only PhoneMultiFactorGenerator.
@@ -26,17 +26,18 @@ goog.require('fireauth.PhoneMultiFactorAssertion');
 goog.require('fireauth.constants');
 goog.require('fireauth.object');
 
-
 /**
  * Defines the multi-factor generator for PhoneMultiFactorAssertions.
  * This class acts only as a namespace and defines some static methods and
  * properties.
  * @constructor @struct @final
  */
-fireauth.PhoneMultiFactorGenerator = function() {};
-fireauth.object.setReadonlyProperty(fireauth.PhoneMultiFactorGenerator,
-    'FACTOR_ID', fireauth.constants.SecondFactorType.PHONE);
-
+fireauth.PhoneMultiFactorGenerator = function () {};
+fireauth.object.setReadonlyProperty(
+  fireauth.PhoneMultiFactorGenerator,
+  'FACTOR_ID',
+  fireauth.constants.SecondFactorType.PHONE
+);
 
 /**
  * Initializes a `PhoneMultiFactorAssertion` given a `PhoneAuthCredential`.
@@ -44,6 +45,6 @@ fireauth.object.setReadonlyProperty(fireauth.PhoneMultiFactorGenerator,
  * @return {!fireauth.PhoneMultiFactorAssertion} The `MultiFactorAssertion`
  *     corresponding to the provided `PhoneAuthCredential`.
  */
-fireauth.PhoneMultiFactorGenerator.assertion = function(phoneAuthCredential) {
+fireauth.PhoneMultiFactorGenerator.assertion = function (phoneAuthCredential) {
   return new fireauth.PhoneMultiFactorAssertion(phoneAuthCredential);
 };

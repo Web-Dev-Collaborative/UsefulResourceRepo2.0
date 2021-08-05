@@ -6,5 +6,5 @@
 // [START collection_reference_modular]
 import { collection } from "firebase/firestore";
 
-const usersCollectionRef = collection(db, 'users');
+const usersCollectionRef = collection(db, "users");
 // [END collection_reference_modular]

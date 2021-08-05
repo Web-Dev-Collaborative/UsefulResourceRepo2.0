@@ -7,7 +7,7 @@ async function deleteInstallation() {
     await firebase.installations().delete();
     // [END delete_installation]
   } catch (err) {
-    console.error('Unable to delete installation: ', err);
+    console.error("Unable to delete installation: ", err);
   }
 }
 
@@ -18,19 +18,20 @@ async function getInstallationId() {
     console.log(installationId);
     // [END get_installation_id]
   } catch (err) {
-    console.error('Unable to get Installation ID: ', err);
+    console.error("Unable to get Installation ID: ", err);
   }
 }
 
 async function getAuthenticationToken() {
   try {
     // [START get_auth_token]
-    const installationToken = await firebase.installations()
-        .getToken(/* forceRefresh */ true);
+    const installationToken = await firebase
+      .installations()
+      .getToken(/* forceRefresh */ true);
     console.log(installationToken);
     // [END get_auth_token]
   } catch (err) {
-    console.error('Unable to get auth token: ', err);
+    console.error("Unable to get auth token: ", err);
   }
 }
 
@@ -43,6 +44,6 @@ async function setOnIdChangeHandler() {
     });
     // [END set_id_change_handler]
   } catch (err) {
-    console.error('Unable to set ID change handler: ', err);
+    console.error("Unable to set ID change handler: ", err);
   }
 }

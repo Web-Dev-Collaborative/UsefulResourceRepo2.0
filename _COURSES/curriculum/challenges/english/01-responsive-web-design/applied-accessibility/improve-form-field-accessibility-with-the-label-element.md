@@ -2,7 +2,7 @@
 id: 587d778a367417b2b2512aa6
 title: Improve Form Field Accessibility with the label Element
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cGJMMAN'
+videoUrl: "https://scrimba.com/c/cGJMMAN"
 forumTopicId: 301016
 dashedName: improve-form-field-accessibility-with-the-label-element
 ---
@@ -20,7 +20,7 @@ The value of the `for` attribute must be the same as the value of the `id` attri
 ```html
 <form>
   <label for="name">Name:</label>
-  <input type="text" id="name" name="name">
+  <input type="text" id="name" name="name" />
 </form>
 ```
 
@@ -33,13 +33,13 @@ Camper Cat expects a lot of interest in his thoughtful blog posts and wants to i
 Your code should have a `for` attribute on the `label` tag that is not empty.
 
 ```js
-assert($('label').attr('for'));
+assert($("label").attr("for"));
 ```
 
 Your `for` attribute value should match the `id` value on the email `input`.
 
 ```js
-assert($('label').attr('for') == 'email');
+assert($("label").attr("for") == "email");
 ```
 
 # --seed--
@@ -55,27 +55,39 @@ assert($('label').attr('for') == 'email');
     <form>
       <p>Sign up to receive Camper Cat's blog posts by email here!</p>
 
-
       <label>Email:</label>
-      <input type="text" id="email" name="email">
+      <input type="text" id="email" name="email" />
 
-
-      <input type="submit" name="submit" value="Submit">
+      <input type="submit" name="submit" value="Submit" />
     </form>
   </section>
   <article>
     <h2>The Garfield Files: Lasagna as Training Fuel?</h2>
-    <p>The internet is littered with varying opinions on nutritional paradigms, from catnip paleo to hairball cleanses. But let's turn our attention to an often overlooked fitness fuel, and examine the protein-carb-NOM trifecta that is lasagna...</p>
+    <p>
+      The internet is littered with varying opinions on nutritional paradigms,
+      from catnip paleo to hairball cleanses. But let's turn our attention to an
+      often overlooked fitness fuel, and examine the protein-carb-NOM trifecta
+      that is lasagna...
+    </p>
   </article>
-  <img src="samuraiSwords.jpeg" alt="">
+  <img src="samuraiSwords.jpeg" alt="" />
   <article>
     <h2>Defeating your Foe: the Red Dot is Ours!</h2>
-    <p>Felines the world over have been waging war on the most persistent of foes. This red nemesis combines both cunning stealth and lightning speed. But chin up, fellow fighters, our time for victory may soon be near...</p>
+    <p>
+      Felines the world over have been waging war on the most persistent of
+      foes. This red nemesis combines both cunning stealth and lightning speed.
+      But chin up, fellow fighters, our time for victory may soon be near...
+    </p>
   </article>
-  <img src="samuraiSwords.jpeg" alt="">
+  <img src="samuraiSwords.jpeg" alt="" />
   <article>
     <h2>Is Chuck Norris a Cat Person?</h2>
-    <p>Chuck Norris is widely regarded as the premier martial artist on the planet, and it's a complete coincidence anyone who disagrees with this fact mysteriously disappears soon after. But the real question is, is he a cat person?...</p>
+    <p>
+      Chuck Norris is widely regarded as the premier martial artist on the
+      planet, and it's a complete coincidence anyone who disagrees with this
+      fact mysteriously disappears soon after. But the real question is, is he a
+      cat person?...
+    </p>
   </article>
   <footer>&copy; 2018 Camper Cat</footer>
 </body>
@@ -92,27 +104,39 @@ assert($('label').attr('for') == 'email');
     <form>
       <p>Sign up to receive Camper Cat's blog posts by email here!</p>
 
-
       <label for="email">Email:</label>
-      <input type="text" id="email" name="email">
+      <input type="text" id="email" name="email" />
 
-
-      <input type="submit" name="submit" value="Submit">
+      <input type="submit" name="submit" value="Submit" />
     </form>
   </section>
   <article>
     <h2>The Garfield Files: Lasagna as Training Fuel?</h2>
-    <p>The internet is littered with varying opinions on nutritional paradigms, from catnip paleo to hairball cleanses. But let's turn our attention to an often overlooked fitness fuel, and examine the protein-carb-NOM trifecta that is lasagna...</p>
+    <p>
+      The internet is littered with varying opinions on nutritional paradigms,
+      from catnip paleo to hairball cleanses. But let's turn our attention to an
+      often overlooked fitness fuel, and examine the protein-carb-NOM trifecta
+      that is lasagna...
+    </p>
   </article>
-  <img src="samuraiSwords.jpeg" alt="">
+  <img src="samuraiSwords.jpeg" alt="" />
   <article>
     <h2>Defeating your Foe: the Red Dot is Ours!</h2>
-    <p>Felines the world over have been waging war on the most persistent of foes. This red nemesis combines both cunning stealth and lightning speed. But chin up, fellow fighters, our time for victory may soon be near...</p>
+    <p>
+      Felines the world over have been waging war on the most persistent of
+      foes. This red nemesis combines both cunning stealth and lightning speed.
+      But chin up, fellow fighters, our time for victory may soon be near...
+    </p>
   </article>
-  <img src="samuraiSwords.jpeg" alt="">
+  <img src="samuraiSwords.jpeg" alt="" />
   <article>
     <h2>Is Chuck Norris a Cat Person?</h2>
-    <p>Chuck Norris is widely regarded as the premier martial artist on the planet, and it's a complete coincidence anyone who disagrees with this fact mysteriously disappears soon after. But the real question is, is he a cat person?...</p>
+    <p>
+      Chuck Norris is widely regarded as the premier martial artist on the
+      planet, and it's a complete coincidence anyone who disagrees with this
+      fact mysteriously disappears soon after. But the real question is, is he a
+      cat person?...
+    </p>
   </article>
   <footer>&copy; 2018 Camper Cat</footer>
 </body>

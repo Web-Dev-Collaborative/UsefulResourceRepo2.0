@@ -11,10 +11,14 @@ const db = getDatabase();
 const auth = getAuth();
 
 const userId = auth.currentUser.uid;
-return onValue(ref(db, '/users/' + userId), (snapshot) => {
-  const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-  // ...
-}, {
-  onlyOnce: true
-});
+return onValue(
+  ref(db, "/users/" + userId),
+  (snapshot) => {
+    const username = (snapshot.val() && snapshot.val().username) || "Anonymous";
+    // ...
+  },
+  {
+    onlyOnce: true,
+  }
+);
 // [END rtdb_social_single_value_read_modular]

@@ -42,35 +42,35 @@ assert(timRegex.source.match(/{.*?}/).length > 0);
 
 ```js
 timRegex.lastIndex = 0;
-assert(!timRegex.test('Timber'));
+assert(!timRegex.test("Timber"));
 ```
 
 你的正則表達式不應匹配字符串 `Timmber`
 
 ```js
 timRegex.lastIndex = 0;
-assert(!timRegex.test('Timmber'));
+assert(!timRegex.test("Timmber"));
 ```
 
 你的正則表達式不應匹配字符串 `Timmmber`
 
 ```js
 timRegex.lastIndex = 0;
-assert(!timRegex.test('Timmmber'));
+assert(!timRegex.test("Timmmber"));
 ```
 
 你的正則表達式應該匹配字符串 `Timmmmber`
 
 ```js
 timRegex.lastIndex = 0;
-assert(timRegex.test('Timmmmber'));
+assert(timRegex.test("Timmmmber"));
 ```
 
 你的正則表達式不應該匹配包含 30 個字母 `m` 的 `Timber`。
 
 ```js
 timRegex.lastIndex = 0;
-assert(!timRegex.test('Ti' + 'm'.repeat(30) + 'ber'));
+assert(!timRegex.test("Ti" + "m".repeat(30) + "ber"));
 ```
 
 # --seed--

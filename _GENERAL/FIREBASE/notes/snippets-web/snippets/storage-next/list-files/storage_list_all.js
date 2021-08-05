@@ -9,7 +9,7 @@ import { getStorage, ref, listAll } from "firebase/storage";
 const storage = getStorage();
 
 // Create a reference under which you want to list
-const listRef = ref(storage, 'files/uid');
+const listRef = ref(storage, "files/uid");
 
 // Find all the prefixes and items.
 listAll(listRef)
@@ -21,7 +21,8 @@ listAll(listRef)
     res.items.forEach((itemRef) => {
       // All the items under listRef.
     });
-  }).catch((error) => {
+  })
+  .catch((error) => {
     // Uh-oh, an error occurred!
   });
 // [END storage_list_all_modular]

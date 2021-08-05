@@ -1,7 +1,7 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import firebase from "firebase/app";
+import "firebase/firestore";
 
-const geofire = require('geofire-common');
+const geofire = require("geofire-common");
 
 /**
  * @type firebase.firestore.Firestore
@@ -17,16 +17,18 @@ function addHash(done) {
 
   // Add the hash and the lat/lng to the document. We will use the hash
   // for queries and the lat/lng for distance comparisons.
-  const londonRef = db.collection('cities').doc('LON');
-  londonRef.update({
-    geohash: hash,
-    lat: lat,
-    lng: lng
-  }).then(() => {
-    // [START_EXCLUDE]
-    done();
-    // [END_EXCLUDE]
-  });
+  const londonRef = db.collection("cities").doc("LON");
+  londonRef
+    .update({
+      geohash: hash,
+      lat: lat,
+      lng: lng,
+    })
+    .then(() => {
+      // [START_EXCLUDE]
+      done();
+      // [END_EXCLUDE]
+    });
   // [END fs_geo_add_hash]
 }
 
@@ -42,8 +44,9 @@ function queryHashes(done) {
   const bounds = geofire.geohashQueryBounds(center, radiusInM);
   const promises = [];
   for (const b of bounds) {
-    const q = db.collection('cities')
-      .orderBy('geohash')
+    const q = db
+      .collection("cities")
+      .orderBy("geohash")
       .startAt(b[0])
       .endAt(b[1]);
 
@@ -51,53 +54,55 @@ function queryHashes(done) {
   }
 
   // Collect all the query results together into a single list
-  Promise.all(promises).then((snapshots) => {
-    const matchingDocs = [];
+  Promise.all(promises)
+    .then((snapshots) => {
+      const matchingDocs = [];
 
-    for (const snap of snapshots) {
-      for (const doc of snap.docs) {
-        const lat = doc.get('lat');
-        const lng = doc.get('lng');
+      for (const snap of snapshots) {
+        for (const doc of snap.docs) {
+          const lat = doc.get("lat");
+          const lng = doc.get("lng");
 
-        // We have to filter out a few false positives due to GeoHash
-        // accuracy, but most will match
-        const distanceInKm = geofire.distanceBetween([lat, lng], center);
-        const distanceInM = distanceInKm * 1000;
-        if (distanceInM <= radiusInM) {
-          matchingDocs.push(doc);
+          // We have to filter out a few false positives due to GeoHash
+          // accuracy, but most will match
+          const distanceInKm = geofire.distanceBetween([lat, lng], center);
+          const distanceInM = distanceInKm * 1000;
+          if (distanceInM <= radiusInM) {
+            matchingDocs.push(doc);
+          }
         }
       }
-    }
 
-    return matchingDocs;
-  }).then((matchingDocs) => {
-    // Process the matching documents
-    // [START_EXCLUDE]
-    done(matchingDocs);
-    // [END_EXCLUDE]
-  });
+      return matchingDocs;
+    })
+    .then((matchingDocs) => {
+      // Process the matching documents
+      // [START_EXCLUDE]
+      done(matchingDocs);
+      // [END_EXCLUDE]
+    });
 
   // [END fs_geo_query_hashes]
 }
 
 describe("firestore-solution-geoqueries", () => {
-    before(() => {
-        var config = {
-            apiKey: "AIzaSyArvVh6VSdXicubcvIyuB-GZs8ua0m0DTI",
-            authDomain: "firestorequickstarts.firebaseapp.com",
-            projectId: "firestorequickstarts",
-        };
-        var app = firebase.initializeApp(config, "solution-geoqueries");
-        db = firebase.firestore(app);
+  before(() => {
+    var config = {
+      apiKey: "AIzaSyArvVh6VSdXicubcvIyuB-GZs8ua0m0DTI",
+      authDomain: "firestorequickstarts.firebaseapp.com",
+      projectId: "firestorequickstarts",
+    };
+    var app = firebase.initializeApp(config, "solution-geoqueries");
+    db = firebase.firestore(app);
+  });
+
+  describe("solution-geoqueries", () => {
+    it("should add a hash to a doc", (done) => {
+      addHash(done);
     });
 
-    describe("solution-geoqueries", () => {
-      it("should add a hash to a doc", (done) => {
-        addHash(done);
-      });
-
-      it("should query hashes", (done) => {
-        queryHashes(done);
-      });
+    it("should query hashes", (done) => {
+      queryHashes(done);
     });
+  });
 });

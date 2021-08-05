@@ -25,7 +25,6 @@ goog.provide('fireauth.storage.PendingRedirectManager');
 
 goog.require('fireauth.authStorage');
 
-
 /**
  * Defines the pending redirect storage manager. It provides methods
  * to store, retrieve and delete the state of whether there is a pending
@@ -35,7 +34,7 @@ goog.require('fireauth.authStorage');
  *     manager to use. If none is provided, the default global instance is used.
  * @constructor @struct @final
  */
-fireauth.storage.PendingRedirectManager = function(appId, opt_manager) {
+fireauth.storage.PendingRedirectManager = function (appId, opt_manager) {
   /** @const @private{string} appId The Auth state's application ID. */
   this.appId_ = appId;
   /**
@@ -45,12 +44,10 @@ fireauth.storage.PendingRedirectManager = function(appId, opt_manager) {
   this.manager_ = opt_manager || fireauth.authStorage.Manager.getInstance();
 };
 
-
 /**
  * @const @private{!string} The pending redirect flag.
  */
 fireauth.storage.PendingRedirectManager.PENDING_FLAG_ = 'pending';
-
 
 /**
  * @const @private{!fireauth.authStorage.Key} The pending redirect status
@@ -61,42 +58,45 @@ fireauth.storage.PendingRedirectManager.PENDING_REDIRECT_KEY_ = {
   persistent: fireauth.authStorage.Persistence.SESSION
 };
 
-
 /**
  * Stores the pending redirect operation for the provided application ID.
  * @return {!goog.Promise<void>} A promise that resolves on success.
  */
 fireauth.storage.PendingRedirectManager.prototype.setPendingStatus =
-    function() {
-  return this.manager_.set(
+  function () {
+    return this.manager_.set(
       fireauth.storage.PendingRedirectManager.PENDING_REDIRECT_KEY_,
       fireauth.storage.PendingRedirectManager.PENDING_FLAG_,
-      this.appId_);
-};
-
+      this.appId_
+    );
+  };
 
 /**
  * Removes the stored pending redirect operation for provided app ID.
  * @return {!goog.Promise<void>} A promise that resolves on success.
  */
 fireauth.storage.PendingRedirectManager.prototype.removePendingStatus =
-    function() {
-  return this.manager_.remove(
+  function () {
+    return this.manager_.remove(
       fireauth.storage.PendingRedirectManager.PENDING_REDIRECT_KEY_,
-      this.appId_);
-};
-
+      this.appId_
+    );
+  };
 
 /**
  * @return {!goog.Promise<boolean>} A promise that resolves with a boolean
  *     whether there is a pending redirect operaiton for the provided app ID.
  */
 fireauth.storage.PendingRedirectManager.prototype.getPendingStatus =
-    function() {
-  return this.manager_.get(
-      fireauth.storage.PendingRedirectManager.PENDING_REDIRECT_KEY_,
-      this.appId_).then(function(response) {
-        return response ==
-            fireauth.storage.PendingRedirectManager.PENDING_FLAG_;
+  function () {
+    return this.manager_
+      .get(
+        fireauth.storage.PendingRedirectManager.PENDING_REDIRECT_KEY_,
+        this.appId_
+      )
+      .then(function (response) {
+        return (
+          response == fireauth.storage.PendingRedirectManager.PENDING_FLAG_
+        );
       });
-};
+  };

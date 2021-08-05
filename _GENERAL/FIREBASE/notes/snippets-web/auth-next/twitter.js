@@ -10,14 +10,18 @@ function twitterProvider() {
 
   // [START auth_twitter_provider_params]
   provider.setCustomParameters({
-    'lang': 'es'
+    lang: "es",
   });
   // [END auth_twitter_provider_params]
 }
 
 function twitterSignInPopup(provider) {
   // [START auth_twitter_signin_popup]
-  const { getAuth, signInWithPopup, TwitterAuthProvider } = require("firebase/auth");
+  const {
+    getAuth,
+    signInWithPopup,
+    TwitterAuthProvider,
+  } = require("firebase/auth");
 
   const auth = getAuth();
   signInWithPopup(auth, provider)
@@ -31,7 +35,8 @@ function twitterSignInPopup(provider) {
       // The signed-in user info.
       const user = result.user;
       // ...
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -46,7 +51,11 @@ function twitterSignInPopup(provider) {
 
 function twitterSignInRedirectResult() {
   // [START auth_twitter_signin_redirect_result]
-  const { getAuth, getRedirectResult, TwitterAuthProvider } = require("firebase/auth");
+  const {
+    getAuth,
+    getRedirectResult,
+    TwitterAuthProvider,
+  } = require("firebase/auth");
 
   const auth = getAuth();
   getRedirectResult(auth)
@@ -60,7 +69,8 @@ function twitterSignInRedirectResult() {
 
       // The signed-in user info.
       const user = result.user;
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -72,4 +82,3 @@ function twitterSignInRedirectResult() {
     });
   // [END auth_twitter_signin_redirect_result]
 }
-

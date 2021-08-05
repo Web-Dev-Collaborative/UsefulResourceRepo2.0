@@ -4,7 +4,7 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START get_custom_object_modular]
-import { doc, getDoc} from "firebase/firestore"; 
+import { doc, getDoc } from "firebase/firestore";
 
 const ref = doc(db, "cities", "LA").withConverter(cityConverter);
 const docSnap = await getDoc(ref);

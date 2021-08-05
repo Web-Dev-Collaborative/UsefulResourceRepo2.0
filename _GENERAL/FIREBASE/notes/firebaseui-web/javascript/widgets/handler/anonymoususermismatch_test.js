@@ -16,17 +16,15 @@
  * @fileoverview Test for anonymous user mismatch handler.
  */
 
-goog.provide('firebaseui.auth.widget.handler.AnonymousUserMismatchTest');
-goog.setTestOnly('firebaseui.auth.widget.handler.AnonymousUserMismatchTest');
+goog.provide("firebaseui.auth.widget.handler.AnonymousUserMismatchTest");
+goog.setTestOnly("firebaseui.auth.widget.handler.AnonymousUserMismatchTest");
 
-goog.require('firebaseui.auth.widget.handler.handleAnonymousUserMismatch');
+goog.require("firebaseui.auth.widget.handler.handleAnonymousUserMismatch");
 /** @suppress {extraRequire} Required for accessing test helper utilities. */
-goog.require('firebaseui.auth.widget.handler.testHelper');
-
+goog.require("firebaseui.auth.widget.handler.testHelper");
 
 function testHandleAnonymousUserMismatch() {
-  firebaseui.auth.widget.handler.handleAnonymousUserMismatch(
-      app, container);
+  firebaseui.auth.widget.handler.handleAnonymousUserMismatch(app, container);
   assertAnonymousUserMismatchPage();
   // Clicking dismiss button should redirect to the first page.
   clickSecondaryLink();

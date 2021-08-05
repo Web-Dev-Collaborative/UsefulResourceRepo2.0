@@ -11,7 +11,7 @@ dashedName: use-an-array-to-store-a-collection-of-data
 Lo siguiente es un ejemplo de la implementación más simple de una estructura de datos de un arreglo. Esto se conoce como un <dfn>arreglo unidimensional</dfn>, lo que significa que sólo tiene un nivel, o que no tiene otros arreglos anidados dentro de él. Observa que contiene <dfn>booleanos</dfn>, <dfn>cadenas</dfn> y <dfn>números</dfn>, entre otros tipos de datos válidos de JavaScript:
 
 ```js
-let simpleArray = ['one', 2, 'three', true, false, undefined, null];
+let simpleArray = ["one", 2, "three", true, false, undefined, null];
 console.log(simpleArray.length);
 ```
 
@@ -24,23 +24,23 @@ let complexArray = [
   [
     {
       one: 1,
-      two: 2
+      two: 2,
     },
     {
       three: 3,
-      four: 4
-    }
+      four: 4,
+    },
   ],
   [
     {
       a: "a",
-      b: "b"
+      b: "b",
     },
     {
       c: "c",
-      d: "d"
-    }
-  ]
+      d: "d",
+    },
+  ],
 ];
 ```
 
@@ -65,19 +65,19 @@ assert.isAtLeast(yourArray.length, 5);
 `yourArray` debe contener al menos un `boolean`.
 
 ```js
-assert(yourArray.filter((el) => typeof el === 'boolean').length >= 1);
+assert(yourArray.filter((el) => typeof el === "boolean").length >= 1);
 ```
 
 `yourArray` debe contener al menos un `number`.
 
 ```js
-assert(yourArray.filter((el) => typeof el === 'number').length >= 1);
+assert(yourArray.filter((el) => typeof el === "number").length >= 1);
 ```
 
 `yourArray` debe contener al menos un `string`.
 
 ```js
-assert(yourArray.filter((el) => typeof el === 'string').length >= 1);
+assert(yourArray.filter((el) => typeof el === "string").length >= 1);
 ```
 
 # --seed--
@@ -91,5 +91,5 @@ let yourArray; // Change this line
 # --solutions--
 
 ```js
-let yourArray = ['a string', 100, true, ['one', 2], 'another string'];
+let yourArray = ["a string", 100, true, ["one", 2], "another string"];
 ```

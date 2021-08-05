@@ -1,6 +1,6 @@
 ---
 id: 5900f3b21000cf542c50fec5
-title: 'Problem 70: Totient permutation'
+title: "Problem 70: Totient permutation"
 challengeType: 5
 forumTopicId: 302183
 dashedName: problem-70-totient-permutation
@@ -19,7 +19,7 @@ Find the value of `n`, 1 &lt; `n` &lt; `limit`, for which ${\phi}(n)$ is a permu
 `totientPermutation(10000)` should return a number.
 
 ```js
-assert(typeof totientPermutation(10000) === 'number');
+assert(typeof totientPermutation(10000) === "number");
 ```
 
 `totientPermutation(10000)` should return `4435`.
@@ -52,7 +52,6 @@ assert.strictEqual(totientPermutation(10000000), 8319823);
 
 ```js
 function totientPermutation(limit) {
-
   return true;
 }
 
@@ -84,7 +83,7 @@ function totientPermutation(limit) {
   }
 
   function sortDigits(number) {
-    return number.toString().split('').sort().join('');
+    return number.toString().split("").sort().join("");
   }
 
   function isPermutation(numberA, numberB) {

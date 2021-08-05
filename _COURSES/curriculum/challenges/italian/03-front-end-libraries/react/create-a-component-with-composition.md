@@ -10,16 +10,16 @@ dashedName: create-a-component-with-composition
 
 Ora esamineremo come possiamo mettere insieme più componenti React. Immagina di costruire un'app e di aver creato tre componenti: una `Navbar`, una `Dashboard` e un `Footer`.
 
-Per mettere insieme questi componenti, è possibile creare un componente `App` *genitore* che fa il render di ciascuno di questi tre componenti come *figli*. Per fare il render di un componente come figlio in un componente React, devi includere il nome del componente scritto come tag HTML personalizzato nel file JSX. Ad esempio, nel metodo `render` puoi scrivere:
+Per mettere insieme questi componenti, è possibile creare un componente `App` _genitore_ che fa il render di ciascuno di questi tre componenti come _figli_. Per fare il render di un componente come figlio in un componente React, devi includere il nome del componente scritto come tag HTML personalizzato nel file JSX. Ad esempio, nel metodo `render` puoi scrivere:
 
 ```jsx
 return (
- <App>
-  <Navbar />
-  <Dashboard />
-  <Footer />
- </App>
-)
+  <App>
+    <Navbar />
+    <Dashboard />
+    <Footer />
+  </App>
+);
 ```
 
 Quando React incontra un tag HTML personalizzato che fa riferimento ad un altro componente (un nome componente inserito in `< />` come in questo esempio), visualizza il markup per quel componente nella posizione del tag. Questo dovrebbe illustrare la relazione genitore/figlio tra il componente `App` e la `Navbar`, la `Dashboard`, e il `Footer`.
@@ -38,7 +38,7 @@ Il componente React dovrebbe restituire un singolo elemento `div`.
 assert(
   (function () {
     var shallowRender = Enzyme.shallow(React.createElement(ParentComponent));
-    return shallowRender.type() === 'div';
+    return shallowRender.type() === "div";
   })()
 );
 ```
@@ -61,7 +61,7 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(ParentComponent));
     return (
-      mockedComponent.find('ParentComponent').find('ChildComponent').length ===
+      mockedComponent.find("ParentComponent").find("ChildComponent").length ===
       1
     );
   })()
@@ -73,7 +73,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<ParentComponent />, document.getElementById('root'))
+ReactDOM.render(<ParentComponent />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -95,14 +95,13 @@ class ParentComponent extends React.Component {
     return (
       <div>
         <h1>I am the parent</h1>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
 
-
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -124,11 +123,11 @@ class ParentComponent extends React.Component {
     return (
       <div>
         <h1>I am the parent</h1>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
         <ChildComponent />
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 ```

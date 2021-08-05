@@ -1,7 +1,6 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-
 ---
 
 <!-- Step 1 [READ THIS] -->
@@ -23,26 +22,29 @@ Are you in the right place?
 
 ### [REQUIRED] Describe your environment
 
-  * Operating System version: _____
-  * Browser version: _____
-  * Firebase UI version: _____
-  * Firebase SDK version: _____
+- Operating System version: **\_**
+- Browser version: **\_**
+- Firebase UI version: **\_**
+- Firebase SDK version: **\_**
 
 <!-- Step 3 -->
 
 ### [REQUIRED] Describe the problem
 
 #### Steps to reproduce:
+
 <!--
   What happened? How can we make the problem occur?
   This could be a description, log/console output, etc.
 -->
+
 #### Relevant Code:
 
 <!--
   Reproduce the issue on StackBlitz and provide your forked URL
   or give us some sample code below
 -->
+
 https://stackblitz.com/fork/firebase-issue-sandbox
 
 ```javascript

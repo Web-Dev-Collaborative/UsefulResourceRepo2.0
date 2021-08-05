@@ -14,13 +14,13 @@ dashedName: prevent-object-mutation
 
 ```js
 let obj = {
-  name:"FreeCodeCamp",
-  review:"Awesome"
+  name: "FreeCodeCamp",
+  review: "Awesome",
 };
 Object.freeze(obj);
 obj.review = "bad";
 obj.newProp = "Test";
-console.log(obj); 
+console.log(obj);
 ```
 
 `obj.review` 和 `obj.newProp` 賦值將導致錯誤，控制檯將顯示值 `{ name: "FreeCodeCamp", review: "Awesome" }`。
@@ -34,14 +34,14 @@ console.log(obj);
 不要替換 `const` 關鍵字。
 
 ```js
-(getUserInput) => assert(getUserInput('index').match(/const/g));
+(getUserInput) => assert(getUserInput("index").match(/const/g));
 ```
 
 `MATH_CONSTANTS` 應該爲一個常量（使用 `const`）。
 
 ```js
 (getUserInput) =>
-  assert(getUserInput('index').match(/const\s+MATH_CONSTANTS/g));
+  assert(getUserInput("index").match(/const\s+MATH_CONSTANTS/g));
 ```
 
 不要改變 `MATH_CONSTANTS` 的原始聲明。
@@ -49,7 +49,7 @@ console.log(obj);
 ```js
 (getUserInput) =>
   assert(
-    getUserInput('index').match(
+    getUserInput("index").match(
       /const\s+MATH_CONSTANTS\s+=\s+{\s+PI:\s+3.14\s+};/g
     )
   );
@@ -68,15 +68,14 @@ assert(PI === 3.14);
 ```js
 function freezeObj() {
   const MATH_CONSTANTS = {
-    PI: 3.14
+    PI: 3.14,
   };
   // Only change code below this line
-
 
   // Only change code above this line
   try {
     MATH_CONSTANTS.PI = 99;
-  } catch(ex) {
+  } catch (ex) {
     console.log(ex);
   }
   return MATH_CONSTANTS.PI;
@@ -89,13 +88,13 @@ const PI = freezeObj();
 ```js
 function freezeObj() {
   const MATH_CONSTANTS = {
-    PI: 3.14
+    PI: 3.14,
   };
   Object.freeze(MATH_CONSTANTS);
 
   try {
     MATH_CONSTANTS.PI = 99;
-  } catch(ex) {
+  } catch (ex) {
     console.log(ex);
   }
   return MATH_CONSTANTS.PI;

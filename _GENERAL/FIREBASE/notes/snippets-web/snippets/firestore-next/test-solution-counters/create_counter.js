@@ -5,20 +5,20 @@
 
 // [START create_counter_modular]
 function createCounter(ref, num_shards) {
-    import { doc, writeBatch } from "firebase/firestore";
+  import { doc, writeBatch } from "firebase/firestore";
 
-    const batch = writeBatch(db);
+  const batch = writeBatch(db);
 
-    // Initialize the counter document
-    batch.set(ref, { num_shards: num_shards });
+  // Initialize the counter document
+  batch.set(ref, { num_shards: num_shards });
 
-    // Initialize each shard with count=0
-    for (let i = 0; i < num_shards; i++) {
-        const shardRef = doc(ref, 'shards', i.toString());
-        batch.set(shardRef, { count: 0 });
-    }
+  // Initialize each shard with count=0
+  for (let i = 0; i < num_shards; i++) {
+    const shardRef = doc(ref, "shards", i.toString());
+    batch.set(shardRef, { count: 0 });
+  }
 
-    // Commit the write batch
-    return batch.commit();
+  // Commit the write batch
+  return batch.commit();
 }
 // [END create_counter_modular]

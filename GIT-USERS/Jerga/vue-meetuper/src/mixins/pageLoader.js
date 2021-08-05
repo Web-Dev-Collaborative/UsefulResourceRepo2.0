@@ -1,13 +1,12 @@
-
 export default {
-  data () {
+  data() {
     return {
-      pageLoader_isDataLoaded: false
-    }
+      pageLoader_isDataLoaded: false,
+    };
   },
   methods: {
-    pageLoader_resolveData () {
-      this.pageLoader_isDataLoaded = true
-    }
-  }
-}
+    pageLoader_resolveData() {
+      this.pageLoader_isDataLoaded = true;
+    },
+  },
+};

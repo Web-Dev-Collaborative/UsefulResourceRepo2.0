@@ -1,6 +1,6 @@
 ---
 id: 5e7b9f070b6c005b0e76f05d
-title: '迭代：定义循环'
+title: "迭代：定义循环"
 challengeType: 11
 videoId: hiRTRAqNlpE
 dashedName: iterations-definite-loops
@@ -36,4 +36,3 @@ for i in [2,1,5]:
 ## --video-solution--
 
 3
-

@@ -11,11 +11,11 @@ dashedName: verify-an-objects-constructor-with-instanceof
 凡是通过构造函数创建出的新对象，这个对象都叫做这个构造函数的 <dfn>instance</dfn>。 JavaScript 提供了一种很简便的方法来验证这个事实，那就是通过 `instanceof` 操作符。 `instanceof` 允许你将对象与构造函数之间进行比较，根据对象是否由这个构造函数创建的返回 `true` 或者 `false`。 以下是一个示例：
 
 ```js
-let Bird = function(name, color) {
+let Bird = function (name, color) {
   this.name = name;
   this.color = color;
   this.numLegs = 2;
-}
+};
 
 let crow = new Bird("Alexis", "black");
 
@@ -30,7 +30,7 @@ crow instanceof Bird;
 let canary = {
   name: "Mildred",
   color: "Yellow",
-  numLegs: 2
+  numLegs: 2,
 };
 
 canary instanceof Bird;
@@ -47,7 +47,7 @@ canary instanceof Bird;
 `myHouse` 应该有一个 `numBedrooms` 属性值被赋为一个数字。
 
 ```js
-assert(typeof myHouse.numBedrooms === 'number');
+assert(typeof myHouse.numBedrooms === "number");
 ```
 
 应该使用 `instanceof` 操作符验证 `myHouse` 这个对象是 `House` 构造函数的一个实例。

@@ -2511,8 +2511,9 @@ describe('Query Tests', () => {
   });
 
   function dumpListens(node: Query) {
-    const listens: Map<string, Map<string, unknown>> = (node._delegate._repo
-      .persistentConnection_ as any).listens;
+    const listens: Map<string, Map<string, unknown>> = (
+      node._delegate._repo.persistentConnection_ as any
+    ).listens;
     const nodePath = getPath(node);
     const listenPaths = [];
     for (const path of listens.keys()) {

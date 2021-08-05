@@ -1,6 +1,6 @@
 ---
 id: 5900f4141000cf542c50ff26
-title: 'Problem 167: Investigating Ulam sequences'
+title: "Problem 167: Investigating Ulam sequences"
 challengeType: 5
 forumTopicId: 301801
 dashedName: problem-167-investigating-ulam-sequences
@@ -34,7 +34,6 @@ assert.strictEqual(euler167(), 3916160068885);
 
 ```js
 function euler167() {
-
   return true;
 }
 

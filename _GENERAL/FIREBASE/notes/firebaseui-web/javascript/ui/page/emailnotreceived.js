@@ -16,20 +16,20 @@
  * @fileoverview UI component for the email not received page.
  */
 
-goog.provide('firebaseui.auth.ui.page.EmailNotReceived');
+goog.provide("firebaseui.auth.ui.page.EmailNotReceived");
 
-goog.require('firebaseui.auth.soy2.page');
-goog.require('firebaseui.auth.ui.element');
-goog.require('firebaseui.auth.ui.element.form');
-goog.require('firebaseui.auth.ui.page.Base');
-goog.requireType('goog.dom.DomHelper');
-
+goog.require("firebaseui.auth.soy2.page");
+goog.require("firebaseui.auth.ui.element");
+goog.require("firebaseui.auth.ui.element.form");
+goog.require("firebaseui.auth.ui.page.Base");
+goog.requireType("goog.dom.DomHelper");
 
 /**
  * Email not received UI component.
  */
-firebaseui.auth.ui.page.EmailNotReceived =
-    class extends firebaseui.auth.ui.page.Base {
+firebaseui.auth.ui.page.EmailNotReceived = class extends (
+  firebaseui.auth.ui.page.Base
+) {
   /**
    * @param {function()} onResendClick Callback to invoke when the resend link
    *     is clicked.
@@ -42,15 +42,23 @@ firebaseui.auth.ui.page.EmailNotReceived =
    * @param {?goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
    */
   constructor(
-      onResendClick, onCancelClick, opt_tosCallback, opt_privacyPolicyCallback,
-      opt_domHelper) {
+    onResendClick,
+    onCancelClick,
+    opt_tosCallback,
+    opt_privacyPolicyCallback,
+    opt_domHelper
+  ) {
     // Extend base page class and render email not received soy template.
     super(
-        firebaseui.auth.soy2.page.emailNotReceived, undefined, opt_domHelper,
-        'emailNotReceived', {
-          tosCallback: opt_tosCallback,
-          privacyPolicyCallback: opt_privacyPolicyCallback
-        });
+      firebaseui.auth.soy2.page.emailNotReceived,
+      undefined,
+      opt_domHelper,
+      "emailNotReceived",
+      {
+        tosCallback: opt_tosCallback,
+        privacyPolicyCallback: opt_privacyPolicyCallback,
+      }
+    );
     this.onResendClick_ = onResendClick;
     this.onCancelClick_ = onCancelClick;
   }
@@ -60,14 +68,20 @@ firebaseui.auth.ui.page.EmailNotReceived =
     var self = this;
     // Handle action event for cancel button.
     firebaseui.auth.ui.element.listenForActionEvent(
-        this, this.getSecondaryLinkElement(), function(e) {
-          self.onCancelClick_();
-        });
+      this,
+      this.getSecondaryLinkElement(),
+      function (e) {
+        self.onCancelClick_();
+      }
+    );
     // Handle action event for resend link.
     firebaseui.auth.ui.element.listenForActionEvent(
-        this, this.getResendLink(), function(e) {
-          self.onResendClick_();
-        });
+      this,
+      this.getResendLink(),
+      function (e) {
+        self.onResendClick_();
+      }
+    );
     // Set initial focus on the cancel button.
     this.getSecondaryLinkElement().focus();
     super.enterDocument();
@@ -77,7 +91,7 @@ firebaseui.auth.ui.page.EmailNotReceived =
    * @return {?Element} The resend email link.
    */
   getResendLink() {
-    return this.getElementByClass('firebaseui-id-resend-email-link');
+    return this.getElementByClass("firebaseui-id-resend-email-link");
   }
 
   /** @override */
@@ -88,12 +102,12 @@ firebaseui.auth.ui.page.EmailNotReceived =
   }
 };
 
-
 goog.mixin(
-    firebaseui.auth.ui.page.EmailNotReceived.prototype,
-    /** @lends {firebaseui.auth.ui.page.EmailNotReceived.prototype} */
-    {
-      // For form.
-      getSecondaryLinkElement:
-          firebaseui.auth.ui.element.form.getSecondaryLinkElement
-    });
+  firebaseui.auth.ui.page.EmailNotReceived.prototype,
+  /** @lends {firebaseui.auth.ui.page.EmailNotReceived.prototype} */
+  {
+    // For form.
+    getSecondaryLinkElement:
+      firebaseui.auth.ui.element.form.getSecondaryLinkElement,
+  }
+);

@@ -15,17 +15,20 @@
 /**
  * @fileoverview Test for unauthorized user handler.
  */
-goog.provide('firebaseui.auth.widget.handler.UnauthorizedUserTest');
-goog.setTestOnly('firebaseui.auth.widget.handler.UnauthorizedUserTest');
+goog.provide("firebaseui.auth.widget.handler.UnauthorizedUserTest");
+goog.setTestOnly("firebaseui.auth.widget.handler.UnauthorizedUserTest");
 
-goog.require('firebaseui.auth.widget.handler.handleUnauthorizedUser');
+goog.require("firebaseui.auth.widget.handler.handleUnauthorizedUser");
 /** @suppress {extraRequire} */
-goog.require('firebaseui.auth.widget.handler.testHelper');
-
+goog.require("firebaseui.auth.widget.handler.testHelper");
 
 function testHandleUnauthorizedUser_clickBackButton_noPrefilledEmail() {
   firebaseui.auth.widget.handler.handleUnauthorizedUser(
-      app, container, '', firebase.auth.EmailAuthProvider.PROVIDER_ID);
+    app,
+    container,
+    "",
+    firebase.auth.EmailAuthProvider.PROVIDER_ID
+  );
   // Verify unauthorized user page is rendered.
   assertUnauthorizedUserPage();
   // Verify no help link is rendered.
@@ -38,11 +41,14 @@ function testHandleUnauthorizedUser_clickBackButton_noPrefilledEmail() {
   assertSignInPage();
 }
 
-
 function testHandleUnauthorizedUser_clickBackButton_prefilledEmail() {
-  const userEmail = 'user@example.com';
+  const userEmail = "user@example.com";
   firebaseui.auth.widget.handler.handleUnauthorizedUser(
-      app, container, userEmail, firebase.auth.EmailAuthProvider.PROVIDER_ID);
+    app,
+    container,
+    userEmail,
+    firebase.auth.EmailAuthProvider.PROVIDER_ID
+  );
   // Verify unauthorized user page is rendered.
   assertUnauthorizedUserPage();
   // Verify userEmail is displayed.
@@ -57,12 +63,14 @@ function testHandleUnauthorizedUser_clickBackButton_prefilledEmail() {
   assertSignInPage();
 }
 
-
 function testHandleUnauthorizedUser_clickBackButton_otherProvider() {
   // Call unauthorized user handler with non email password/link auth provider.
   firebaseui.auth.widget.handler.handleUnauthorizedUser(
-      app, container, null,
-      firebase.auth.PhoneAuthProvider.PROVIDER_ID);
+    app,
+    container,
+    null,
+    firebase.auth.PhoneAuthProvider.PROVIDER_ID
+  );
   // Verify unauthorized user page is rendered.
   assertUnauthorizedUserPage();
   // Verify no help link is rendered.
@@ -75,28 +83,30 @@ function testHandleUnauthorizedUser_clickBackButton_otherProvider() {
   assertProviderSignInPage();
 }
 
-
 function testHandleUnauthorizedUser_updateInfo() {
   assertNull(app.getConfig().getEmailProviderHelperLink());
   assertNull(app.getConfig().getEmailProviderAdminEmail());
-  const helpLink = 'https://www.example.com/trouble_signing_in';
-  const adminEmail = 'admin@example.com';
-  app.updateConfig('signInOptions', [
+  const helpLink = "https://www.example.com/trouble_signing_in";
+  const adminEmail = "admin@example.com";
+  app.updateConfig("signInOptions", [
     {
-      'provider': 'password',
-      'requireDisplayName': true,
-      'disableSignUp': {
-        'status': false,
-        'helpLink': helpLink,
-        'adminEmail': adminEmail,
-      }
-    }
+      provider: "password",
+      requireDisplayName: true,
+      disableSignUp: {
+        status: false,
+        helpLink: helpLink,
+        adminEmail: adminEmail,
+      },
+    },
   ]);
   assertNotNull(app.getConfig().getEmailProviderHelperLink());
   assertNotNull(app.getConfig().getEmailProviderAdminEmail());
   firebaseui.auth.widget.handler.handleUnauthorizedUser(
-      app, container, 'user@example.com',
-      firebase.auth.EmailAuthProvider.PROVIDER_ID);
+    app,
+    container,
+    "user@example.com",
+    firebase.auth.EmailAuthProvider.PROVIDER_ID
+  );
   // Verify unauthorized user page is rendered.
   assertUnauthorizedUserPage();
   // Assert cancel button is rendered.
@@ -107,6 +117,5 @@ function testHandleUnauthorizedUser_updateInfo() {
   assertHelpLink();
   // Click help link.
   clickHelpLink();
-  testUtil.assertOpen(helpLink, '_blank');
+  testUtil.assertOpen(helpLink, "_blank");
 }
-

@@ -16,7 +16,7 @@ dashedName: set-up-a-template-engine
 
 完成本项目后，请将一个正常运行的 demo（项目演示）托管在可以公开访问的平台。 然后在 `Solution Link` 框中提交你的项目 URL。
 
-你可以在应用的模版引擎中使用静态模板文件（如那些写在 *Pug* 里的）。 在运行时，模版引擎会用服务端的真实数据替换掉模版文件中的变量， 然后将模版转译成发送给客户端的 HTML 静态文件。 这样可以轻松地构造 HTML 页面，允许在页面直接显示变量内容而不需要从客户端发送 API 请求。
+你可以在应用的模版引擎中使用静态模板文件（如那些写在 _Pug_ 里的）。 在运行时，模版引擎会用服务端的真实数据替换掉模版文件中的变量， 然后将模版转译成发送给客户端的 HTML 静态文件。 这样可以轻松地构造 HTML 页面，允许在页面直接显示变量内容而不需要从客户端发送 API 请求。
 
 在 `package.json` 文件中添加依赖 `pug@~3.0.0`。
 
@@ -36,12 +36,12 @@ Express 需要知道你正在使用哪个模板引擎。 我们将使用 `set` �
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.property(
         packJson.dependencies,
-        'pug',
+        "pug",
         'Your project should list "pug" as a dependency'
       );
     },
@@ -55,12 +55,12 @@ View 引擎应该是 Pug。
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
         /('|")view engine('|"),( |)('|")pug('|")/gi,
-        'Your project should set Pug as a view engine'
+        "Your project should set Pug as a view engine"
       );
     },
     (xhr) => {
@@ -73,12 +73,12 @@ View 引擎应该是 Pug。
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/').then(
+  $.get(getUserInput("url") + "/").then(
     (data) => {
       assert.match(
         data,
         /FCC Advanced Node and Express/gi,
-        'You successfully rendered the Pug template!'
+        "You successfully rendered the Pug template!"
       );
     },
     (xhr) => {
@@ -91,12 +91,12 @@ Pug 应该正常运行。
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/').then(
+  $.get(getUserInput("url") + "/").then(
     (data) => {
       assert.match(
         data,
         /pug-success-message/gi,
-        'Your projects home page should now be rendered by pug with the projects .pug file unaltered'
+        "Your projects home page should now be rendered by pug with the projects .pug file unaltered"
       );
     },
     (xhr) => {

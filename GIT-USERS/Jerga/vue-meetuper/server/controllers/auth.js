@@ -1,5 +1,4 @@
-
-const passport = require('passport')
+const passport = require("passport");
 
 // Only for session AUTH!
 // Auth Middleware
@@ -11,4 +10,4 @@ const passport = require('passport')
 //   return res.status(401).send({errors: {auth: 'Not Authenticated!'}})
 // }
 
-exports.onlyAuthUser = passport.authenticate('jwt', {session: false})
+exports.onlyAuthUser = passport.authenticate("jwt", { session: false });

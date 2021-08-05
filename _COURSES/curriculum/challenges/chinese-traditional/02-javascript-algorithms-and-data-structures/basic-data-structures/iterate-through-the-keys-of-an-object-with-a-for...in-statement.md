@@ -77,40 +77,39 @@ assert(countOnline(usersObj3) === 0);
 ```js
 const usersObj1 = {
   Alan: {
-    online: false
+    online: false,
   },
   Jeff: {
-    online: true
+    online: true,
   },
   Sarah: {
-    online: false
-  }
-}
+    online: false,
+  },
+};
 
 const usersObj2 = {
   Alan: {
-    online: true
+    online: true,
   },
   Jeff: {
-    online: false
+    online: false,
   },
   Sarah: {
-    online: true
-  }
-}
-
+    online: true,
+  },
+};
 
 const usersObj3 = {
   Alan: {
-    online: false
+    online: false,
   },
   Jeff: {
-    online: false
+    online: false,
   },
   Sarah: {
-    online: false
-  }
-}
+    online: false,
+  },
+};
 ```
 
 ## --seed-contents--
@@ -118,7 +117,6 @@ const usersObj3 = {
 ```js
 function countOnline(usersObj) {
   // Only change code below this line
-
   // Only change code above this line
 }
 ```
@@ -128,8 +126,8 @@ function countOnline(usersObj) {
 ```js
 function countOnline(usersObj) {
   let online = 0;
-  for(let user in usersObj){
-    if(usersObj[user].online) {
+  for (let user in usersObj) {
+    if (usersObj[user].online) {
       online++;
     }
   }

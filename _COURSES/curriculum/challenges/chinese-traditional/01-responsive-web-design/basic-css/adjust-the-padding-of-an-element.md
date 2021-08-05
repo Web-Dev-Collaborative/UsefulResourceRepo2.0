@@ -2,7 +2,7 @@
 id: bad88fee1348bd9aedf08825
 title: 調整元素的內邊距
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cED8ZC2'
+videoUrl: "https://scrimba.com/c/cED8ZC2"
 forumTopicId: 301083
 dashedName: adjust-the-padding-of-an-element
 ---
@@ -30,7 +30,7 @@ dashedName: adjust-the-padding-of-an-element
 `blue-box` 這一 class 應將元素的 `padding` 值設置爲 `20px`。
 
 ```js
-assert($('.blue-box').css('padding-top') === '20px');
+assert($(".blue-box").css("padding-top") === "20px");
 ```
 
 # --seed--

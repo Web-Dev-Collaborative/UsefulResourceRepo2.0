@@ -16,51 +16,51 @@
  * @fileoverview Tests for the email change revocation page.
  */
 
-goog.provide('firebaseui.auth.ui.page.EmailChangeRevokeTest');
-goog.setTestOnly('firebaseui.auth.ui.page.EmailChangeRevokeTest');
+goog.provide("firebaseui.auth.ui.page.EmailChangeRevokeTest");
+goog.setTestOnly("firebaseui.auth.ui.page.EmailChangeRevokeTest");
 
-goog.require('firebaseui.auth.ui.element.FormTestHelper');
-goog.require('firebaseui.auth.ui.element.InfoBarTestHelper');
-goog.require('firebaseui.auth.ui.page.EmailChangeRevoke');
-goog.require('firebaseui.auth.ui.page.PageTestHelper');
-goog.require('goog.dom');
-goog.require('goog.dom.TagName');
-goog.require('goog.testing.MockClock');
-goog.require('goog.testing.events');
-goog.require('goog.testing.jsunit');
-
+goog.require("firebaseui.auth.ui.element.FormTestHelper");
+goog.require("firebaseui.auth.ui.element.InfoBarTestHelper");
+goog.require("firebaseui.auth.ui.page.EmailChangeRevoke");
+goog.require("firebaseui.auth.ui.page.PageTestHelper");
+goog.require("goog.dom");
+goog.require("goog.dom.TagName");
+goog.require("goog.testing.MockClock");
+goog.require("goog.testing.events");
+goog.require("goog.testing.jsunit");
 
 var mockClock;
 var root;
 var component;
-var formTestHelper = new firebaseui.auth.ui.element.FormTestHelper().
-    excludeTests('testOnLinkClick_', 'testOnLinkEnter_').
-    registerTests();
+var formTestHelper = new firebaseui.auth.ui.element.FormTestHelper()
+  .excludeTests("testOnLinkClick_", "testOnLinkEnter_")
+  .registerTests();
 var infoBarTestHelper =
-    new firebaseui.auth.ui.element.InfoBarTestHelper().registerTests();
+  new firebaseui.auth.ui.element.InfoBarTestHelper().registerTests();
 var pageTestHelper =
-    new firebaseui.auth.ui.page.PageTestHelper().registerTests();
+  new firebaseui.auth.ui.page.PageTestHelper().registerTests();
 
 var updateClicked;
 var onClick;
-
 
 function setUp() {
   // Set up clock.
   mockClock = new goog.testing.MockClock();
   mockClock.install();
   updateClicked = false;
-  onClick = function() {
+  onClick = function () {
     updateClicked = true;
   };
   root = goog.dom.createDom(goog.dom.TagName.DIV);
   document.body.appendChild(root);
   component = new firebaseui.auth.ui.page.EmailChangeRevoke(
-      'user@example.com',
-      onClick,
-      goog.bind(
-          firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
-          formTestHelper));
+    "user@example.com",
+    onClick,
+    goog.bind(
+      firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
+      formTestHelper
+    )
+  );
   component.render(root);
   formTestHelper.setComponent(component);
   // Reset previous state of form helper.
@@ -68,7 +68,6 @@ function setUp() {
   infoBarTestHelper.setComponent(component);
   pageTestHelper.setClock(mockClock).setComponent(component);
 }
-
 
 function tearDown() {
   // Tear down clock.
@@ -78,7 +77,6 @@ function tearDown() {
   goog.dom.removeNode(root);
 }
 
-
 function testEmailChangeRevoke_resetPassword() {
   var link = component.getResetPasswordElement();
   assertNotNull(link);
@@ -87,7 +85,6 @@ function testEmailChangeRevoke_resetPassword() {
   assertTrue(updateClicked);
 }
 
-
 function testEmailChangeRevoke_pageEvents() {
   // Run page event tests.
   // Dispose previously created container since test must run before rendering
@@ -95,16 +92,17 @@ function testEmailChangeRevoke_pageEvents() {
   component.dispose();
   // Initialize component.
   component = new firebaseui.auth.ui.page.EmailChangeRevoke(
-      'user@example.com',
-      onClick,
-      goog.bind(
-          firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
-          formTestHelper));
+    "user@example.com",
+    onClick,
+    goog.bind(
+      firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
+      formTestHelper
+    )
+  );
   // Run all page helper tests.
   pageTestHelper.runTests(component, root);
 }
 
-
 function testEmailChangeRevoke_getPageId() {
-  assertEquals('emailChangeRevoke', component.getPageId());
+  assertEquals("emailChangeRevoke", component.getPageId());
 }

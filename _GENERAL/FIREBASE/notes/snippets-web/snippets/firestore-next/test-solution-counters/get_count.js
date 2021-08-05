@@ -5,16 +5,16 @@
 
 // [START get_count_modular]
 async function getCount(ref) {
-    import { collection, getDocs } from "firebase/firestore";
+  import { collection, getDocs } from "firebase/firestore";
 
-    // Sum the count of each shard in the subcollection
-    const snapshot = await getDocs(collection(ref, 'shards'));
+  // Sum the count of each shard in the subcollection
+  const snapshot = await getDocs(collection(ref, "shards"));
 
-    let totalCount = 0;
-    snapshot.forEach((doc) => {
-        totalCount += doc.data().count;
-    });
+  let totalCount = 0;
+  snapshot.forEach((doc) => {
+    totalCount += doc.data().count;
+  });
 
-    return totalCount;
+  return totalCount;
 }
 // [END get_count_modular]

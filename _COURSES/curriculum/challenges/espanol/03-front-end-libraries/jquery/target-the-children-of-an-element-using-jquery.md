@@ -15,7 +15,7 @@ jQuery tiene una función llamada `children()` que te permite acceder a los hijo
 Aquí hay un ejemplo de cómo usarías la función `children()` para dar a los hijos de tu elemento `left-well` el color `blue`:
 
 ```js
-$("#left-well").children().css("color", "blue")
+$("#left-well").children().css("color", "blue");
 ```
 
 # --instructions--
@@ -27,7 +27,7 @@ Dale a todos los hijos de tu elemento `right-well` el color naranja.
 Todos los hijos de `#right-well` deben tener texto naranja.
 
 ```js
-assert($('#right-well').children().css('color') === 'rgb(255, 165, 0)');
+assert($("#right-well").children().css("color") === "rgb(255, 165, 0)");
 ```
 
 Debes usar la función `children()` para modificar estos elementos.
@@ -48,14 +48,13 @@ assert(code.match(/<div class="well" id="right-well">/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();
     $("#target2").appendTo("#right-well");
     $("#target5").clone().appendTo("#left-well");
     $("#target1").parent().css("background-color", "red");
-
   });
 </script>
 
@@ -88,7 +87,7 @@ assert(code.match(/<div class="well" id="right-well">/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();

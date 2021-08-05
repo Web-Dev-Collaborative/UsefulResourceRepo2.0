@@ -31,4 +31,3 @@ Numpy 使用連續內存。
 ## --video-solution--
 
 4
-

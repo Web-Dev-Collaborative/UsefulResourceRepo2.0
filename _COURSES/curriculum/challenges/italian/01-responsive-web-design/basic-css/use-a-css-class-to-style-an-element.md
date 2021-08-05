@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aecf08806
 title: Usare una classe CSS per stilizzare un elemento
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c2MvDtV'
+videoUrl: "https://scrimba.com/c/c2MvDtV"
 forumTopicId: 18337
 dashedName: use-a-css-class-to-style-an-element
 ---
@@ -34,13 +34,13 @@ Dai al tuo elemento `h2` l'attributo `class` con un valore `red-text`.
 Il tuo elemento `h2` dovrebbe essere rosso.
 
 ```js
-assert($('h2').css('color') === 'rgb(255, 0, 0)');
+assert($("h2").css("color") === "rgb(255, 0, 0)");
 ```
 
 Il tuo elemento `h2` dovrebbe avere la classe `red-text`.
 
 ```js
-assert($('h2').hasClass('red-text'));
+assert($("h2").hasClass("red-text"));
 ```
 
 Il tuo foglio di stile dovrebbe dichiarare una classe `red-text` e avere il suo colore impostato su `red`.
@@ -52,7 +52,7 @@ assert(code.match(/\.red-text\s*\{\s*color\s*:\s*red;?\s*\}/g));
 Non dovresti usare dichiarazioni di stile in linea come `style="color: red"` nel tuo elemento `h2`.
 
 ```js
-assert($('h2').attr('style') === undefined);
+assert($("h2").attr("style") === undefined);
 ```
 
 # --seed--
@@ -70,7 +70,11 @@ assert($('h2').attr('style') === undefined);
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -88,12 +92,12 @@ assert($('h2').attr('style') === undefined);
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>
@@ -112,7 +116,11 @@ assert($('h2').attr('style') === undefined);
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -130,12 +138,12 @@ assert($('h2').attr('style') === undefined);
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>

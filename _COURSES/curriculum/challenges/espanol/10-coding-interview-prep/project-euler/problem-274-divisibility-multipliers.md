@@ -1,6 +1,6 @@
 ---
 id: 5900f47f1000cf542c50ff91
-title: 'Problem 274: Divisibility Multipliers'
+title: "Problem 274: Divisibility Multipliers"
 challengeType: 5
 forumTopicId: 301924
 dashedName: problem-274-divisibility-multipliers
@@ -18,7 +18,7 @@ That is, if m is the divisibility multiplier for p, then f(n) is divisible by p 
 
 For example, the divisibility multiplier for 113 is 34.
 
-f(76275) = 7627 + 5 *34 = 7797 : 76275 and 7797 are both divisible by 113f(12345) = 1234 + 5* 34 = 1404 : 12345 and 1404 are both not divisible by 113
+f(76275) = 7627 + 5 _34 = 7797 : 76275 and 7797 are both divisible by 113f(12345) = 1234 + 5_ 34 = 1404 : 12345 and 1404 are both not divisible by 113
 
 The sum of the divisibility multipliers for the primes that are coprime to 10 and less than 1000 is 39517. What is the sum of the divisibility multipliers for the primes that are coprime to 10 and less than 107?
 
@@ -36,7 +36,6 @@ assert.strictEqual(euler274(), 1601912348822);
 
 ```js
 function euler274() {
-
   return true;
 }
 

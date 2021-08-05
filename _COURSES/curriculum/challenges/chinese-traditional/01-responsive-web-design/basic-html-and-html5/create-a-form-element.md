@@ -14,7 +14,7 @@ dashedName: create-a-form-element
 
 ```html
 <form action="/url-where-you-want-to-submit-form-data">
-  <input>
+  <input />
 </form>
 ```
 
@@ -27,18 +27,20 @@ dashedName: create-a-form-element
 現有的 `input` 輸入框應位於新創建的 `form` 表單裏面。
 
 ```js
-const inputElem = document.querySelector('form input');
+const inputElem = document.querySelector("form input");
 assert(
-  inputElem.getAttribute('type') === 'text' &&
-    inputElem.getAttribute('placeholder') === 'cat photo URL'
+  inputElem.getAttribute("type") === "text" &&
+    inputElem.getAttribute("placeholder") === "cat photo URL"
 );
 ```
 
 `form` 的 `action` 屬性值應爲 `https://www.freecatphotoapp.com/submit-cat-photo`。
 
 ```js
-const action = $('form').attr('action');
-assert(action.match(/^https:\/\/(www\.)?freecatphotoapp\.com\/submit-cat-photo$/i))
+const action = $("form").attr("action");
+assert(
+  action.match(/^https:\/\/(www\.)?freecatphotoapp\.com\/submit-cat-photo$/i)
+);
 ```
 
 `form` 元素應有開始標籤和結束標籤。
@@ -60,7 +62,11 @@ assert(
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -74,7 +80,7 @@ assert(
     <li>thunder</li>
     <li>other cats</li>
   </ol>
-  <input type="text" placeholder="cat photo URL">
+  <input type="text" placeholder="cat photo URL" />
 </main>
 ```
 
@@ -85,7 +91,11 @@ assert(
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -100,7 +110,7 @@ assert(
     <li>other cats</li>
   </ol>
   <form action="https://www.freecatphotoapp.com/submit-cat-photo">
-    <input type="text" placeholder="cat photo URL">
+    <input type="text" placeholder="cat photo URL" />
   </form>
 </main>
 ```

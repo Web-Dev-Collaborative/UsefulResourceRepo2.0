@@ -4,8 +4,7 @@ title: 使用 jQuery class 选择器选择元素
 challengeType: 6
 forumTopicId: 18316
 required:
-  - 
-    link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: target-elements-by-class-using-jquery
 ---
 
@@ -32,7 +31,7 @@ $(".text-primary").addClass("animated shake");
 应该用 jQuery 的 `addClass()` 方法给所有 class 为 `well` 的元素添加 `animated` 和 `shake` class。
 
 ```js
-assert($('.well').hasClass('animated') && $('.well').hasClass('shake'));
+assert($(".well").hasClass("animated") && $(".well").hasClass("shake"));
 ```
 
 应该仅用 jQuery 给元素添加这些 class。
@@ -47,7 +46,7 @@ assert(!code.match(/class\.\*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
   });
 </script>
@@ -81,7 +80,7 @@ assert(!code.match(/class\.\*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
     $(".well").addClass("animated shake");
   });

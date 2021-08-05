@@ -15,7 +15,7 @@ Write a function to sort an array (or list) of strings in order of descending le
 `lengthSorter` should be a function.
 
 ```js
-assert(typeof lengthSorter == 'function');
+assert(typeof lengthSorter == "function");
 ```
 
 `lengthSorter(["Here", "are", "some", "sample", "strings", "to", "be", "sorted"])` should return an array.
@@ -24,14 +24,14 @@ assert(typeof lengthSorter == 'function');
 assert(
   Array.isArray(
     lengthSorter([
-      'Here',
-      'are',
-      'some',
-      'sample',
-      'strings',
-      'to',
-      'be',
-      'sorted'
+      "Here",
+      "are",
+      "some",
+      "sample",
+      "strings",
+      "to",
+      "be",
+      "sorted",
     ])
   )
 );
@@ -42,16 +42,16 @@ assert(
 ```js
 assert.deepEqual(
   lengthSorter([
-    'Here',
-    'are',
-    'some',
-    'sample',
-    'strings',
-    'to',
-    'be',
-    'sorted'
+    "Here",
+    "are",
+    "some",
+    "sample",
+    "strings",
+    "to",
+    "be",
+    "sorted",
   ]),
-  ['strings', 'sample', 'sorted', 'Here', 'some', 'are', 'be', 'to']
+  ["strings", "sample", "sorted", "Here", "some", "are", "be", "to"]
 );
 ```
 
@@ -59,41 +59,41 @@ assert.deepEqual(
 
 ```js
 assert.deepEqual(
-  lengthSorter(['I', 'hope', 'your', 'day', 'is', 'going', 'good', '?']),
-  ['going', 'good', 'hope', 'your', 'day', 'is', '?', 'I']
+  lengthSorter(["I", "hope", "your", "day", "is", "going", "good", "?"]),
+  ["going", "good", "hope", "your", "day", "is", "?", "I"]
 );
 ```
 
 `lengthSorter(["Mine", "is", "going", "great"])` should return `["going", "great", "Mine", "is"]`.
 
 ```js
-assert.deepEqual(lengthSorter(['Mine', 'is', 'going', 'great']), [
-  'going',
-  'great',
-  'Mine',
-  'is'
+assert.deepEqual(lengthSorter(["Mine", "is", "going", "great"]), [
+  "going",
+  "great",
+  "Mine",
+  "is",
 ]);
 ```
 
 `lengthSorter(["Have", "fun", "sorting", "!!"])` should return `["sorting", "Have", "fun", "!!"]`.
 
 ```js
-assert.deepEqual(lengthSorter(['Have', 'fun', 'sorting', '!!']), [
-  'sorting',
-  'Have',
-  'fun',
-  '!!'
+assert.deepEqual(lengthSorter(["Have", "fun", "sorting", "!!"]), [
+  "sorting",
+  "Have",
+  "fun",
+  "!!",
 ]);
 ```
 
 `lengthSorter(["Everything", "is", "good", "!!"])` should return `["Everything", "good", "!!", "is"]`.
 
 ```js
-assert.deepEqual(lengthSorter(['Everything', 'is', 'good', '!!']), [
-  'Everything',
-  'good',
-  '!!',
-  'is'
+assert.deepEqual(lengthSorter(["Everything", "is", "good", "!!"]), [
+  "Everything",
+  "good",
+  "!!",
+  "is",
 ]);
 ```
 
@@ -102,16 +102,14 @@ assert.deepEqual(lengthSorter(['Everything', 'is', 'good', '!!']), [
 ## --seed-contents--
 
 ```js
-function lengthSorter(arr) {
-
-}
+function lengthSorter(arr) {}
 ```
 
 # --solutions--
 
 ```js
 function lengthSorter(arr) {
-  arr.sort(function(a, b) {
+  arr.sort(function (a, b) {
     var result = b.length - a.length;
     if (result == 0) result = a.localeCompare(b);
     return result;

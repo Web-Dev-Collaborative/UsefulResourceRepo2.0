@@ -9,7 +9,7 @@ import { getAuth, signInWithCredential, OAuthProvider } from "firebase/auth";
 const auth = getAuth();
 
 // Build Firebase credential with the Apple ID token.
-const provider = new OAuthProvider('apple.com');
+const provider = new OAuthProvider("apple.com");
 const authCredential = provider.credential({
   idToken: appleIdToken,
   rawNonce: unhashedNonce,

@@ -1,6 +1,6 @@
 ---
 id: 5900f3d61000cf542c50fee8
-title: 'Problem 105: Special subset sums: testing'
+title: "Problem 105: Special subset sums: testing"
 challengeType: 5
 forumTopicId: 301729
 dashedName: problem-105-special-subset-sums-testing
@@ -34,7 +34,6 @@ assert.strictEqual(euler105(), 73702);
 
 ```js
 function euler105() {
-
   return true;
 }
 

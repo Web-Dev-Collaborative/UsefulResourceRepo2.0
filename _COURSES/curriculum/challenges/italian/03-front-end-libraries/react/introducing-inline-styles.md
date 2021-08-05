@@ -21,7 +21,7 @@ Puoi applicare degli stili in linea a elementi JSX in modo simile a come faresti
 Gli elementi JSX usano l'attributo `style`, ma a causa del modo in cui JSX è transcodificato, non puoi impostare il valore su una `string`. Invece, gli assegnerai un `object` JavaScript. Ecco un esempio:
 
 ```jsx
-<div style={{color: "yellow", fontSize: 16}}>Mellow Yellow</div>
+<div style={{ color: "yellow", fontSize: 16 }}>Mellow Yellow</div>
 ```
 
 Vedi come abbiamo usato camelCase nella proprietà `fontSize`? Questo perché React non accetterà le chiavi kebab-case nell'oggetto style. React applicherà per noi il nome di proprietà corretto in HTML.
@@ -40,7 +40,7 @@ Il componente dovrebbe mostrare un elemento `div`.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(Colorful));
-    return mockedComponent.children().type() === 'div';
+    return mockedComponent.children().type() === "div";
   })()
 );
 ```
@@ -51,7 +51,7 @@ L'elemento `div` dovrebbe avere un colore `red`.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(Colorful));
-    return mockedComponent.children().props().style.color === 'red';
+    return mockedComponent.children().props().style.color === "red";
   })()
 );
 ```
@@ -64,8 +64,8 @@ assert(
     const mockedComponent = Enzyme.mount(React.createElement(Colorful));
     return (
       mockedComponent.children().props().style.fontSize === 72 ||
-      mockedComponent.children().props().style.fontSize === '72' ||
-      mockedComponent.children().props().style.fontSize === '72px'
+      mockedComponent.children().props().style.fontSize === "72" ||
+      mockedComponent.children().props().style.fontSize === "72px"
     );
   })()
 );
@@ -76,7 +76,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<Colorful />, document.getElementById('root'))
+ReactDOM.render(<Colorful />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -84,11 +84,9 @@ ReactDOM.render(<Colorful />, document.getElementById('root'))
 ```jsx
 class Colorful extends React.Component {
   render() {
-    return (
-      <div>Big Red</div>
-    );
+    return <div>Big Red</div>;
   }
-};
+}
 ```
 
 # --solutions--
@@ -96,9 +94,7 @@ class Colorful extends React.Component {
 ```jsx
 class Colorful extends React.Component {
   render() {
-    return (
-      <div style={{color: "red", fontSize: 72}}>Big Red</div>
-    );
+    return <div style={{ color: "red", fontSize: 72 }}>Big Red</div>;
   }
-};
+}
 ```

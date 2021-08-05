@@ -29,10 +29,10 @@ helmet.xssFilter() middleware should be mounted correctly
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/app-info').then(
+  $.get(getUserInput("url") + "/_api/app-info").then(
     (data) => {
-      assert.include(data.appStack, 'xXssProtection');
-      assert.property(data.headers, 'x-xss-protection');
+      assert.include(data.appStack, "xXssProtection");
+      assert.property(data.headers, "x-xss-protection");
     },
     (xhr) => {
       throw new Error(xhr.responseText);

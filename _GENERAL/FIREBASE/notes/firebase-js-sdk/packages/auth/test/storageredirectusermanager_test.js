@@ -34,7 +34,6 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.storage.RedirectUserManagerTest');
 
-
 var config = {
   apiKey: 'apiKey1'
 };
@@ -47,7 +46,6 @@ var mockLocalStorage;
 var mockSessionStorage;
 var now = new Date();
 
-
 function setUp() {
   // Create new mock storages for persistent and temporary storage before each
   // test.
@@ -57,9 +55,11 @@ function setUp() {
   window.localStorage.clear();
   window.sessionStorage.clear();
   fireauth.common.testHelper.installMockStorages(
-      stubs, mockLocalStorage, mockSessionStorage);
+    stubs,
+    mockLocalStorage,
+    mockSessionStorage
+  );
 }
-
 
 function tearDown() {
   if (expectedUser) {
@@ -71,7 +71,6 @@ function tearDown() {
   goog.dispose(clock);
 }
 
-
 /**
  * @return {!fireauth.authStorage.Manager} The default local storage
  *     synchronized manager instance used for testing.
@@ -80,13 +79,14 @@ function getDefaultStorageManagerInstance() {
   return new fireauth.authStorage.Manager('firebase', ':', false, true);
 }
 
-
 function testGetSetRemoveRedirectUser() {
   // Avoid triggering getProjectConfig RPC.
   fireauth.AuthEventManager.ENABLED = false;
   var storageManager = getDefaultStorageManagerInstance();
-  var redirectUserManager =
-      new fireauth.storage.RedirectUserManager(appId, storageManager);
+  var redirectUserManager = new fireauth.storage.RedirectUserManager(
+    appId,
+    storageManager
+  );
   var config = {
     'apiKey': 'API_KEY',
     'appName': 'appId1'
@@ -127,38 +127,43 @@ function testGetSetRemoveRedirectUser() {
   };
   expectedUser = new fireauth.AuthUser(config, tokenResponse, accountInfo);
   // Expected user with authDomain.
-  expectedUserWithAuthDomain =
-      new fireauth.AuthUser(configWithAuthDomain, tokenResponse, accountInfo);
+  expectedUserWithAuthDomain = new fireauth.AuthUser(
+    configWithAuthDomain,
+    tokenResponse,
+    accountInfo
+  );
   var storageKey = 'firebase:redirectUser:appId1';
   return goog.Promise.resolve()
-      .then(function() {
-        return redirectUserManager.setRedirectUser(expectedUser);
-      })
-      .then(function() {
-        return redirectUserManager.getRedirectUser();
-      })
-      .then(function(user) {
-        fireauth.common.testHelper.assertUserEquals(expectedUser, user);
-        return mockSessionStorage.get(storageKey);
-      })
-      .then(function(value) {
-        assertObjectEquals(expectedUser.toPlainObject(), value);
-        // Get user with authDomain.
-        return redirectUserManager.getRedirectUser('project.firebaseapp.com');
-      })
-      .then(function(user) {
-        fireauth.common.testHelper.assertUserEquals(
-            expectedUserWithAuthDomain, user);
-        return redirectUserManager.removeRedirectUser();
-      })
-      .then(function() {
-        return mockSessionStorage.get(storageKey);
-      })
-      .then(function(value) {
-        assertUndefined(value);
-        return redirectUserManager.getRedirectUser();
-      })
-      .then(function(user) {
-        assertNull(user);
-      });
+    .then(function () {
+      return redirectUserManager.setRedirectUser(expectedUser);
+    })
+    .then(function () {
+      return redirectUserManager.getRedirectUser();
+    })
+    .then(function (user) {
+      fireauth.common.testHelper.assertUserEquals(expectedUser, user);
+      return mockSessionStorage.get(storageKey);
+    })
+    .then(function (value) {
+      assertObjectEquals(expectedUser.toPlainObject(), value);
+      // Get user with authDomain.
+      return redirectUserManager.getRedirectUser('project.firebaseapp.com');
+    })
+    .then(function (user) {
+      fireauth.common.testHelper.assertUserEquals(
+        expectedUserWithAuthDomain,
+        user
+      );
+      return redirectUserManager.removeRedirectUser();
+    })
+    .then(function () {
+      return mockSessionStorage.get(storageKey);
+    })
+    .then(function (value) {
+      assertUndefined(value);
+      return redirectUserManager.getRedirectUser();
+    })
+    .then(function (user) {
+      assertNull(user);
+    });
 }

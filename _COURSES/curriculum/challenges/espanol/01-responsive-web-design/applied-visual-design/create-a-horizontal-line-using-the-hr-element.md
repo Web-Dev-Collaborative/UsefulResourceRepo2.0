@@ -2,7 +2,7 @@
 id: 587d781b367417b2b2512abb
 title: Crea una línea horizontal usando el elemento hr
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c3bR8t7'
+videoUrl: "https://scrimba.com/c/c3bR8t7"
 forumTopicId: 301049
 dashedName: create-a-horizontal-line-using-the-hr-element
 ---
@@ -22,7 +22,7 @@ Agrega una etiqueta `hr` debajo de `h4` que contiene el título de la tarjeta.
 Tu código debe agregar una etiqueta `hr` al lenguaje de marcado.
 
 ```js
-assert($('hr').length == 1);
+assert($("hr").length == 1);
 ```
 
 La etiqueta `hr` debe estar entre el título y el párrafo.
@@ -67,11 +67,26 @@ assert(code.match(/<\/h4>\s*?<hr(>|\s*?\/>)\s*?<p>/gi));
     <div class="cardText">
       <h4><s>Google</s>Alphabet</h4>
 
-      <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>
+      <p>
+        <em
+          >Google was founded by Larry Page and Sergey Brin while they were
+          <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em
+        >
+      </p>
     </div>
     <div class="cardLinks">
-      <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
-      <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+      <a
+        href="https://en.wikipedia.org/wiki/Larry_Page"
+        target="_blank"
+        class="links"
+        >Larry Page</a
+      ><br /><br />
+      <a
+        href="https://en.wikipedia.org/wiki/Sergey_Brin"
+        target="_blank"
+        class="links"
+        >Sergey Brin</a
+      >
     </div>
   </div>
 </div>
@@ -110,12 +125,27 @@ assert(code.match(/<\/h4>\s*?<hr(>|\s*?\/>)\s*?<p>/gi));
   <div class="cardContent">
     <div class="cardText">
       <h4><s>Google</s>Alphabet</h4>
-      <hr>
-      <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>
+      <hr />
+      <p>
+        <em
+          >Google was founded by Larry Page and Sergey Brin while they were
+          <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em
+        >
+      </p>
     </div>
     <div class="cardLinks">
-      <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
-      <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+      <a
+        href="https://en.wikipedia.org/wiki/Larry_Page"
+        target="_blank"
+        class="links"
+        >Larry Page</a
+      ><br /><br />
+      <a
+        href="https://en.wikipedia.org/wiki/Sergey_Brin"
+        target="_blank"
+        class="links"
+        >Sergey Brin</a
+      >
     </div>
   </div>
 </div>

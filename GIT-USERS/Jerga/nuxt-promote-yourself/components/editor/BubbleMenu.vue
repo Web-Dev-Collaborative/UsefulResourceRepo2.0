@@ -2,7 +2,8 @@
   <editor-menu-bubble
     :editor="editor"
     :keep-in-bounds="keepInBounds"
-    v-slot="{ commands, isActive, menu }">
+    v-slot="{ commands, isActive, menu }"
+  >
     <div
       class="menububble"
       :class="{ 'is-active': menu.isActive }"
@@ -45,24 +46,24 @@
       </button>
       <button
         class="menububble__button"
-        :class="{ 'is-active': isActive.heading({ level: 1}) }"
-        @click="commands.heading({ level: 1})"
+        :class="{ 'is-active': isActive.heading({ level: 1 }) }"
+        @click="commands.heading({ level: 1 })"
       >
         H1
       </button>
 
       <button
         class="menububble__button"
-        :class="{ 'is-active': isActive.heading({ level: 2}) }"
-        @click="commands.heading({ level: 2})"
+        :class="{ 'is-active': isActive.heading({ level: 2 }) }"
+        @click="commands.heading({ level: 2 })"
       >
         H2
       </button>
 
       <button
         class="menububble__button"
-        :class="{ 'is-active': isActive.heading({ level: 3}) }"
-        @click="commands.heading({ level: 3})"
+        :class="{ 'is-active': isActive.heading({ level: 3 }) }"
+        @click="commands.heading({ level: 3 })"
       >
         H3
       </button>
@@ -78,30 +79,22 @@
 </template>
 
 <script>
-import { EditorMenuBubble } from 'tiptap'
-import Icon from '~/components/shared/Icon'
+import { EditorMenuBubble } from "tiptap";
+import Icon from "~/components/shared/Icon";
 export default {
   components: {
     EditorMenuBubble,
-    Icon
+    Icon,
   },
   props: {
     editor: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   data() {
     return {
-      keepInBounds: true
-    }
-  }
-}
+      keepInBounds: true,
+    };
+  },
+};
 </script>
-
-
-
-
-
-
-
-

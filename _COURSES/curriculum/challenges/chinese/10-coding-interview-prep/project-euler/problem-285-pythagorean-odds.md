@@ -1,6 +1,6 @@
 ---
 id: 5900f48a1000cf542c50ff9c
-title: 'Problem 285: Pythagorean odds'
+title: "Problem 285: Pythagorean odds"
 challengeType: 5
 forumTopicId: 301936
 dashedName: problem-285-pythagorean-odds
@@ -32,7 +32,6 @@ assert.strictEqual(euler285(), 157055.80999);
 
 ```js
 function euler285() {
-
   return true;
 }
 

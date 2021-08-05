@@ -2,7 +2,7 @@
 id: 587d774e367417b2b2512a9f
 title: Salta directamente al contenido usando el elemento principal (main)
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cPp7zuE'
+videoUrl: "https://scrimba.com/c/cPp7zuE"
 forumTopicId: 301018
 dashedName: jump-straight-to-the-content-using-the-main-element
 ---
@@ -26,7 +26,7 @@ Camper Cat tiene algunas grandes ideas para su página de armas ninja. Ayúdelo 
 Tu código debe tener una etiqueta `main`.
 
 ```js
-assert($('main').length == 1);
+assert($("main").length == 1);
 ```
 
 Las etiquetas `main` deben estar entre la etiqueta `header` de cierre y la etiqueta `footer` de apertura.
@@ -44,8 +44,6 @@ assert(code.match(/<\/header>\s*?<main>\s*?<\/main>/gi));
   <h1>Weapons of the Ninja</h1>
 </header>
 
-
-
 <footer></footer>
 ```
 
@@ -55,8 +53,6 @@ assert(code.match(/<\/header>\s*?<main>\s*?<\/main>/gi));
 <header>
   <h1>Weapons of the Ninja</h1>
 </header>
-<main>
-
-</main>
+<main></main>
 <footer></footer>
 ```

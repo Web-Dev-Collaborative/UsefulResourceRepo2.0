@@ -1,6 +1,6 @@
 ---
 id: 5900f43e1000cf542c50ff50
-title: 'Problem 210: Obtuse Angled Triangles'
+title: "Problem 210: Obtuse Angled Triangles"
 challengeType: 5
 forumTopicId: 301852
 dashedName: problem-210-obtuse-angled-triangles
@@ -32,7 +32,6 @@ assert.strictEqual(euler210(), 1598174770174689500);
 
 ```js
 function euler210() {
-
   return true;
 }
 

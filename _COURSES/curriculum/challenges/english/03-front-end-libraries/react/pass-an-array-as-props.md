@@ -30,7 +30,7 @@ The `ToDo` component should return a single outer `div`.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(ToDo));
-    return mockedComponent.children().first().type() === 'div';
+    return mockedComponent.children().first().type() === "div";
   })()
 );
 ```
@@ -41,7 +41,7 @@ The third child of the `ToDo` component should be an instance of the `List` comp
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(ToDo));
-    return mockedComponent.children().first().childAt(2).name() === 'List';
+    return mockedComponent.children().first().childAt(2).name() === "List";
   })()
 );
 ```
@@ -52,7 +52,7 @@ The fifth child of the `ToDo` component should be an instance of the `List` comp
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(ToDo));
-    return mockedComponent.children().first().childAt(4).name() === 'List';
+    return mockedComponent.children().first().childAt(4).name() === "List";
   })()
 );
 ```
@@ -64,8 +64,8 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(ToDo));
     return (
-      Array.isArray(mockedComponent.find('List').get(0).props.tasks) &&
-      Array.isArray(mockedComponent.find('List').get(1).props.tasks)
+      Array.isArray(mockedComponent.find("List").get(0).props.tasks) &&
+      Array.isArray(mockedComponent.find("List").get(1).props.tasks)
     );
   })()
 );
@@ -77,7 +77,7 @@ The first `List` component representing the tasks for today should have 2 or mor
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(ToDo));
-    return mockedComponent.find('List').get(0).props.tasks.length >= 2;
+    return mockedComponent.find("List").get(0).props.tasks.length >= 2;
   })()
 );
 ```
@@ -88,7 +88,7 @@ The second `List` component representing the tasks for tomorrow should have 3 or
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(ToDo));
-    return mockedComponent.find('List').get(1).props.tasks.length >= 3;
+    return mockedComponent.find("List").get(1).props.tasks.length >= 3;
   })()
 );
 ```
@@ -101,23 +101,23 @@ assert(
     const mockedComponent = Enzyme.mount(React.createElement(ToDo));
     return (
       mockedComponent
-        .find('p')
+        .find("p")
         .get(0)
-        .props.children.replace(/\s*,\s*/g, ',') ===
+        .props.children.replace(/\s*,\s*/g, ",") ===
         mockedComponent
-          .find('List')
+          .find("List")
           .get(0)
-          .props.tasks.join(',')
-          .replace(/\s*,\s*/g, ',') &&
+          .props.tasks.join(",")
+          .replace(/\s*,\s*/g, ",") &&
       mockedComponent
-        .find('p')
+        .find("p")
         .get(1)
-        .props.children.replace(/\s*,\s*/g, ',') ===
+        .props.children.replace(/\s*,\s*/g, ",") ===
         mockedComponent
-          .find('List')
+          .find("List")
           .get(1)
-          .props.tasks.join(',')
-          .replace(/\s*,\s*/g, ',')
+          .props.tasks.join(",")
+          .replace(/\s*,\s*/g, ",")
     );
   })()
 );
@@ -128,16 +128,20 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<ToDo />, document.getElementById('root'))
+ReactDOM.render(<ToDo />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
 
 ```jsx
 const List = (props) => {
-  { /* Change code below this line */ }
-  return <p>{}</p>
-  { /* Change code above this line */ }
+  {
+    /* Change code below this line */
+  }
+  return <p>{}</p>;
+  {
+    /* Change code above this line */
+  }
 };
 
 class ToDo extends React.Component {
@@ -149,22 +153,22 @@ class ToDo extends React.Component {
       <div>
         <h1>To Do Lists</h1>
         <h2>Today</h2>
-        { /* Change code below this line */ }
-        <List/>
+        {/* Change code below this line */}
+        <List />
         <h2>Tomorrow</h2>
-        <List/>
-        { /* Change code above this line */ }
+        <List />
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
 
 ```jsx
-const List= (props) => {
-  return <p>{props.tasks.join(', ')}</p>
+const List = (props) => {
+  return <p>{props.tasks.join(", ")}</p>;
 };
 
 class ToDo extends React.Component {
@@ -176,11 +180,11 @@ class ToDo extends React.Component {
       <div>
         <h1>To Do Lists</h1>
         <h2>Today</h2>
-        <List tasks={['study', 'exercise']} />
+        <List tasks={["study", "exercise"]} />
         <h2>Tomorrow</h2>
-        <List tasks={['call Sam', 'grocery shopping', 'order tickets']} />
+        <List tasks={["call Sam", "grocery shopping", "order tickets"]} />
       </div>
     );
   }
-};
+}
 ```

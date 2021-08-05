@@ -6,7 +6,12 @@ function setPersistenceSession() {
   const password = "...";
 
   // [START auth_set_persistence_session]
-  const { getAuth, setPersistence, signInWithEmailAndPassword, browserSessionPersistence } = require("firebase/auth");
+  const {
+    getAuth,
+    setPersistence,
+    signInWithEmailAndPassword,
+    browserSessionPersistence,
+  } = require("firebase/auth");
 
   const auth = getAuth();
   setPersistence(auth, browserSessionPersistence)
@@ -28,7 +33,13 @@ function setPersistenceSession() {
 
 function setPersistenceNone() {
   // [START auth_set_persistence_none]
-  const { getAuth, setPersistence, signInWithRedirect, inMemoryPersistence, GoogleAuthProvider } = require("firebase/auth");
+  const {
+    getAuth,
+    setPersistence,
+    signInWithRedirect,
+    inMemoryPersistence,
+    GoogleAuthProvider,
+  } = require("firebase/auth");
 
   const auth = getAuth();
   setPersistence(auth, inMemoryPersistence)

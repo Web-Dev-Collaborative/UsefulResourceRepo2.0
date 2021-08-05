@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 /**
  * @fileoverview Defines the `firebase.auth.MultiFactorAssertion` abstract class
  * and all its subclasses, such as PhoneMultiFactorAssertion.
@@ -31,7 +31,6 @@ goog.require('fireauth.PhoneAuthProvider');
 goog.require('fireauth.authenum.Error');
 goog.require('fireauth.object');
 
-
 /**
  * Abstract class representing a `firebase.auth.MultiFactorAssertion` interface.
  * This is used to facilitate enrollment of a second factor on an existing user
@@ -39,8 +38,7 @@ goog.require('fireauth.object');
  * @abstract
  * @constructor
  */
-fireauth.MultiFactorAssertion = function() {};
-
+fireauth.MultiFactorAssertion = function () {};
 
 /**
  * Finalizes the 2nd factor enrollment flow with the current
@@ -53,8 +51,7 @@ fireauth.MultiFactorAssertion = function() {};
  * @protected
  */
 fireauth.MultiFactorAssertion.prototype.finalizeEnrollmentWithVerificationInfo =
-    goog.abstractMethod;
-
+  goog.abstractMethod;
 
 /**
  * Finalizes the 2nd factor sign-in flow with the current MultiFactorAssertion.
@@ -66,8 +63,7 @@ fireauth.MultiFactorAssertion.prototype.finalizeEnrollmentWithVerificationInfo =
  * @protected
  */
 fireauth.MultiFactorAssertion.prototype.finalizeSignInWithVerificationInfo =
-    goog.abstractMethod;
-
+  goog.abstractMethod;
 
 /**
  * Processes the `MultiFactorAssertion` instance using the `MultiFactorSession`
@@ -81,8 +77,11 @@ fireauth.MultiFactorAssertion.prototype.finalizeSignInWithVerificationInfo =
  *     that resolves with the signed in or enrolled user's ID and refresh
  *     tokens.
  */
-fireauth.MultiFactorAssertion.prototype.process =
-    function(rpcHandler, session, displayName) {
+fireauth.MultiFactorAssertion.prototype.process = function (
+  rpcHandler,
+  session,
+  displayName
+) {
   // Session obtained from user in enroll.
   // It is obtained from error in resolver.
   if (session.type == fireauth.MultiFactorSession.Type.ENROLL) {
@@ -91,7 +90,6 @@ fireauth.MultiFactorAssertion.prototype.process =
     return this.finalizeMfaSignIn_(rpcHandler, session);
   }
 };
-
 
 /**
  * Finalizes the multi-factor enrollment.
@@ -104,10 +102,13 @@ fireauth.MultiFactorAssertion.prototype.process =
  *     that resolves with the enrolled user's ID and refresh tokens.
  * @private
  */
-fireauth.MultiFactorAssertion.prototype.finalizeMfaEnrollment_ =
-    function(rpcHandler, session, displayName) {
+fireauth.MultiFactorAssertion.prototype.finalizeMfaEnrollment_ = function (
+  rpcHandler,
+  session,
+  displayName
+) {
   var self = this;
-  return session.getRawSession().then(function(rawSession) {
+  return session.getRawSession().then(function (rawSession) {
     var request = {
       'idToken': rawSession
     };
@@ -118,7 +119,6 @@ fireauth.MultiFactorAssertion.prototype.finalizeMfaEnrollment_ =
   });
 };
 
-
 /**
  * Finalizes the multi-factor sign-in.
  * @param {!fireauth.RpcHandler} rpcHandler The RPC handler instance.
@@ -128,17 +128,18 @@ fireauth.MultiFactorAssertion.prototype.finalizeMfaEnrollment_ =
  *     that resolves with the signed in user's ID and refresh tokens.
  * @private
  */
-fireauth.MultiFactorAssertion.prototype.finalizeMfaSignIn_ =
-    function(rpcHandler, session) {
+fireauth.MultiFactorAssertion.prototype.finalizeMfaSignIn_ = function (
+  rpcHandler,
+  session
+) {
   var self = this;
-  return session.getRawSession().then(function(rawSession) {
+  return session.getRawSession().then(function (rawSession) {
     var request = {
-      'mfaPendingCredential': rawSession,
+      'mfaPendingCredential': rawSession
     };
     return self.finalizeSignInWithVerificationInfo(rpcHandler, request);
   });
 };
-
 
 /**
  * Defines a class for handling MultiFactorAssertions based on
@@ -148,12 +149,16 @@ fireauth.MultiFactorAssertion.prototype.finalizeMfaSignIn_ =
  * @constructor
  * @extends {fireauth.MultiFactorAssertion}
  */
-fireauth.AuthCredentialMultiFactorAssertion =
-    function(multiFactorAuthCredential) {
+fireauth.AuthCredentialMultiFactorAssertion = function (
+  multiFactorAuthCredential
+) {
   // This assumes the factor ID matches the credential providerId.
   // If this is ever not true, the subclass can overwrite that.
   fireauth.object.setReadonlyProperty(
-      this, 'factorId', multiFactorAuthCredential.providerId);
+    this,
+    'factorId',
+    multiFactorAuthCredential.providerId
+  );
   /**
    * @protected {!fireauth.MultiFactorAuthCredential} The underlying
    *     multi-factor AuthCredential.
@@ -161,8 +166,9 @@ fireauth.AuthCredentialMultiFactorAssertion =
   this.multiFactorAuthCredential = multiFactorAuthCredential;
 };
 goog.inherits(
-    fireauth.AuthCredentialMultiFactorAssertion, fireauth.MultiFactorAssertion);
-
+  fireauth.AuthCredentialMultiFactorAssertion,
+  fireauth.MultiFactorAssertion
+);
 
 /**
  * Finalizes the 2nd factor enrollment flow with the current
@@ -175,13 +181,13 @@ goog.inherits(
  * @protected
  * @override
  */
-fireauth.AuthCredentialMultiFactorAssertion.prototype
-    .finalizeEnrollmentWithVerificationInfo = function(rpcHandler,
-                                                       enrollmentRequest) {
-  return this.multiFactorAuthCredential.finalizeMfaEnrollment(
-      rpcHandler, enrollmentRequest);
-};
-
+fireauth.AuthCredentialMultiFactorAssertion.prototype.finalizeEnrollmentWithVerificationInfo =
+  function (rpcHandler, enrollmentRequest) {
+    return this.multiFactorAuthCredential.finalizeMfaEnrollment(
+      rpcHandler,
+      enrollmentRequest
+    );
+  };
 
 /**
  * Finalizes the 2nd factor sign-in flow with the current MultiFactorAssertion.
@@ -193,13 +199,13 @@ fireauth.AuthCredentialMultiFactorAssertion.prototype
  * @protected
  * @override
  */
-fireauth.AuthCredentialMultiFactorAssertion.prototype
-    .finalizeSignInWithVerificationInfo = function(rpcHandler,
-                                                   signInRequest) {
-  return this.multiFactorAuthCredential.finalizeMfaSignIn(
-      rpcHandler, signInRequest);
-};
-
+fireauth.AuthCredentialMultiFactorAssertion.prototype.finalizeSignInWithVerificationInfo =
+  function (rpcHandler, signInRequest) {
+    return this.multiFactorAuthCredential.finalizeMfaSignIn(
+      rpcHandler,
+      signInRequest
+    );
+  };
 
 /**
  * Defines a class for handling MultiFactorAssertions based on
@@ -209,18 +215,25 @@ fireauth.AuthCredentialMultiFactorAssertion.prototype
  * @constructor
  * @extends {fireauth.AuthCredentialMultiFactorAssertion}
  */
-fireauth.PhoneMultiFactorAssertion = function(phoneAuthCredential) {
+fireauth.PhoneMultiFactorAssertion = function (phoneAuthCredential) {
   fireauth.PhoneMultiFactorAssertion.base(
-      this, 'constructor', phoneAuthCredential);
+    this,
+    'constructor',
+    phoneAuthCredential
+  );
   // This class supports phone credentials only.
-  if (this.multiFactorAuthCredential.providerId !=
-      fireauth.PhoneAuthProvider['PROVIDER_ID']) {
+  if (
+    this.multiFactorAuthCredential.providerId !=
+    fireauth.PhoneAuthProvider['PROVIDER_ID']
+  ) {
     throw new fireauth.AuthError(
-        fireauth.authenum.Error.ARGUMENT_ERROR,
-        'firebase.auth.PhoneMultiFactorAssertion requires a valid ' +
-        'firebase.auth.PhoneAuthCredential');
+      fireauth.authenum.Error.ARGUMENT_ERROR,
+      'firebase.auth.PhoneMultiFactorAssertion requires a valid ' +
+        'firebase.auth.PhoneAuthCredential'
+    );
   }
 };
 goog.inherits(
-    fireauth.PhoneMultiFactorAssertion,
-    fireauth.AuthCredentialMultiFactorAssertion);
+  fireauth.PhoneMultiFactorAssertion,
+  fireauth.AuthCredentialMultiFactorAssertion
+);

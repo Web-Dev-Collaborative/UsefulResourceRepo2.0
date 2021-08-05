@@ -24,10 +24,10 @@ helmet.hsts() middleware should be mounted correctly
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/app-info').then(
+  $.get(getUserInput("url") + "/_api/app-info").then(
     (data) => {
-      assert.include(data.appStack, 'hsts');
-      assert.property(data.headers, 'strict-transport-security');
+      assert.include(data.appStack, "hsts");
+      assert.property(data.headers, "strict-transport-security");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -39,10 +39,10 @@ maxAge should be equal to 7776000 s (90 days)
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/app-info').then(
+  $.get(getUserInput("url") + "/_api/app-info").then(
     (data) => {
       assert.match(
-        data.headers['strict-transport-security'],
+        data.headers["strict-transport-security"],
         /^max-age=7776000;?/
       );
     },

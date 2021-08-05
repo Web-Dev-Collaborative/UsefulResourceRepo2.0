@@ -2,7 +2,7 @@
 id: 587d7790367417b2b2512aaf
 title: Haz que los enlaces sean navegables con claves de acceso HTML
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cQvmaTp'
+videoUrl: "https://scrimba.com/c/cQvmaTp"
 forumTopicId: 301021
 dashedName: make-links-navigable-with-html-access-keys
 ---
@@ -28,25 +28,25 @@ Camper Cat quiere que los enlaces alrededor de los dos títulos de artículos de
 Tu código debe agregar un atributo `accesskey` a la etiqueta `a` con el `id` de `first`.
 
 ```js
-assert($('#first').attr('accesskey'));
+assert($("#first").attr("accesskey"));
 ```
 
 Tu código debe agregar un atributo `accesskey` a la etiqueta `a` con el `id` de `second`.
 
 ```js
-assert($('#second').attr('accesskey'));
+assert($("#second").attr("accesskey"));
 ```
 
 Tu código debe establecer el atributo `accesskey` en la etiqueta `a` con el `id` de `first` en `g`. Ten en cuenta que las mayúsculas y minúsculas importan.
 
 ```js
-assert($('#first').attr('accesskey') == 'g');
+assert($("#first").attr("accesskey") == "g");
 ```
 
 Tu código debe establecer `accesskey` en la etiqueta `a` con el `id` de `second` en `c`. Ten en cuenta que las mayúsculas y minúsculas importan.
 
 ```js
-assert($('#second').attr('accesskey') == 'c');
+assert($("#second").attr("accesskey") == "c");
 ```
 
 # --seed--
@@ -59,20 +59,26 @@ assert($('#second').attr('accesskey') == 'c');
     <h1>Deep Thoughts with Master Camper Cat</h1>
   </header>
   <article>
+    <h2>
+      <a id="first" href="#">The Garfield Files: Lasagna as Training Fuel?</a>
+    </h2>
 
-
-    <h2><a id="first" href="#">The Garfield Files: Lasagna as Training Fuel?</a></h2>
-
-
-    <p>The internet is littered with varying opinions on nutritional paradigms, from catnip paleo to hairball cleanses. But let's turn our attention to an often overlooked fitness fuel, and examine the protein-carb-NOM trifecta that is lasagna...</p>
+    <p>
+      The internet is littered with varying opinions on nutritional paradigms,
+      from catnip paleo to hairball cleanses. But let's turn our attention to an
+      often overlooked fitness fuel, and examine the protein-carb-NOM trifecta
+      that is lasagna...
+    </p>
   </article>
   <article>
-
-
     <h2><a id="second" href="#">Is Chuck Norris a Cat Person?</a></h2>
 
-
-    <p>Chuck Norris is widely regarded as the premier martial artist on the planet, and it's a complete coincidence anyone who disagrees with this fact mysteriously disappears soon after. But the real question is, is he a cat person?...</p>
+    <p>
+      Chuck Norris is widely regarded as the premier martial artist on the
+      planet, and it's a complete coincidence anyone who disagrees with this
+      fact mysteriously disappears soon after. But the real question is, is he a
+      cat person?...
+    </p>
   </article>
   <footer>&copy; 2018 Camper Cat</footer>
 </body>
@@ -86,20 +92,30 @@ assert($('#second').attr('accesskey') == 'c');
     <h1>Deep Thoughts with Master Camper Cat</h1>
   </header>
   <article>
+    <h2>
+      <a id="first" accesskey="g" href="#"
+        >The Garfield Files: Lasagna as Training Fuel?</a
+      >
+    </h2>
 
-
-    <h2><a id="first" accesskey="g" href="#">The Garfield Files: Lasagna as Training Fuel?</a></h2>
-
-
-    <p>The internet is littered with varying opinions on nutritional paradigms, from catnip paleo to hairball cleanses. But let's turn our attention to an often overlooked fitness fuel, and examine the protein-carb-NOM trifecta that is lasagna...</p>
+    <p>
+      The internet is littered with varying opinions on nutritional paradigms,
+      from catnip paleo to hairball cleanses. But let's turn our attention to an
+      often overlooked fitness fuel, and examine the protein-carb-NOM trifecta
+      that is lasagna...
+    </p>
   </article>
   <article>
+    <h2>
+      <a id="second" accesskey="c" href="#">Is Chuck Norris a Cat Person?</a>
+    </h2>
 
-
-    <h2><a id="second" accesskey="c" href="#">Is Chuck Norris a Cat Person?</a></h2>
-
-
-    <p>Chuck Norris is widely regarded as the premier martial artist on the planet, and it's a complete coincidence anyone who disagrees with this fact mysteriously disappears soon after. But the real question is, is he a cat person?...</p>
+    <p>
+      Chuck Norris is widely regarded as the premier martial artist on the
+      planet, and it's a complete coincidence anyone who disagrees with this
+      fact mysteriously disappears soon after. But the real question is, is he a
+      cat person?...
+    </p>
   </article>
   <footer>&copy; 2018 Camper Cat</footer>
 </body>

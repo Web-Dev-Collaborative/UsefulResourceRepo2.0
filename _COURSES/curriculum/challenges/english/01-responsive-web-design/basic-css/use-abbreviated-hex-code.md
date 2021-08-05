@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08719
 title: Use Abbreviated Hex Code
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cRkpKAm'
+videoUrl: "https://scrimba.com/c/cRkpKAm"
 forumTopicId: 18338
 dashedName: use-abbreviated-hex-code
 ---
@@ -26,7 +26,7 @@ Go ahead, try using the abbreviated hex codes to color the correct elements.
 Your `h1` element with the text `I am red!` should be given the `color` red.
 
 ```js
-assert($('.red-text').css('color') === 'rgb(255, 0, 0)');
+assert($(".red-text").css("color") === "rgb(255, 0, 0)");
 ```
 
 The abbreviated `hex code` for the color red should be used instead of the hex code `#FF0000`.
@@ -38,7 +38,7 @@ assert(code.match(/\.red-text\s*?{\s*?color\s*:\s*?#F00\s*?;?\s*?}/gi));
 Your `h1` element with the text `I am green!` should be given the `color` green.
 
 ```js
-assert($('.green-text').css('color') === 'rgb(0, 255, 0)');
+assert($(".green-text").css("color") === "rgb(0, 255, 0)");
 ```
 
 The abbreviated `hex code` for the color green should be used instead of the hex code `#00FF00`.
@@ -50,7 +50,7 @@ assert(code.match(/\.green-text\s*?{\s*?color\s*:\s*?#0F0\s*?;?\s*?}/gi));
 Your `h1` element with the text `I am cyan!` should be given the `color` cyan.
 
 ```js
-assert($('.cyan-text').css('color') === 'rgb(0, 255, 255)');
+assert($(".cyan-text").css("color") === "rgb(0, 255, 255)");
 ```
 
 The abbreviated `hex code` for the color cyan should be used instead of the hex code `#00FFFF`.
@@ -62,7 +62,7 @@ assert(code.match(/\.cyan-text\s*?{\s*?color\s*:\s*?#0FF\s*?;?\s*?}/gi));
 Your `h1` element with the text `I am fuchsia!` should be given the `color` fuchsia.
 
 ```js
-assert($('.fuchsia-text').css('color') === 'rgb(255, 0, 255)');
+assert($(".fuchsia-text").css("color") === "rgb(255, 0, 255)");
 ```
 
 The abbreviated `hex code` for the color fuchsia should be used instead of the hex code `#FF00FF`.
@@ -105,16 +105,16 @@ assert(code.match(/\.fuchsia-text\s*?{\s*?color\s*:\s*?#F0F\s*?;?\s*?}/gi));
 ```html
 <style>
   .red-text {
-    color: #F00;
+    color: #f00;
   }
   .fuchsia-text {
-    color: #F0F;
+    color: #f0f;
   }
   .cyan-text {
-    color: #0FF;
+    color: #0ff;
   }
   .green-text {
-    color: #0F0;
+    color: #0f0;
   }
 </style>
 

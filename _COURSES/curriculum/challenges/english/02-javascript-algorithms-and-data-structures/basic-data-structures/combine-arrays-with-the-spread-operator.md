@@ -11,9 +11,9 @@ dashedName: combine-arrays-with-the-spread-operator
 Another huge advantage of the <dfn>spread</dfn> operator is the ability to combine arrays, or to insert all the elements of one array into another, at any index. With more traditional syntaxes, we can concatenate arrays, but this only allows us to combine arrays at the end of one, and at the start of another. Spread syntax makes the following operation extremely simple:
 
 ```js
-let thisArray = ['sage', 'rosemary', 'parsley', 'thyme'];
+let thisArray = ["sage", "rosemary", "parsley", "thyme"];
 
-let thatArray = ['basil', 'cilantro', ...thisArray, 'coriander'];
+let thatArray = ["basil", "cilantro", ...thisArray, "coriander"];
 ```
 
 `thatArray` would have the value `['basil', 'cilantro', 'sage', 'rosemary', 'parsley', 'thyme', 'coriander']`.
@@ -29,7 +29,7 @@ We have defined a function `spreadOut` that returns the variable `sentence`. Mod
 `spreadOut` should return `["learning", "to", "code", "is", "fun"]`
 
 ```js
-assert.deepEqual(spreadOut(), ['learning', 'to', 'code', 'is', 'fun']);
+assert.deepEqual(spreadOut(), ["learning", "to", "code", "is", "fun"]);
 ```
 
 The `spreadOut` function should utilize spread syntax
@@ -44,7 +44,7 @@ assert.notStrictEqual(spreadOut.toString().search(/[...]/), -1);
 
 ```js
 function spreadOut() {
-  let fragment = ['to', 'code'];
+  let fragment = ["to", "code"];
   let sentence; // Change this line
   return sentence;
 }
@@ -56,8 +56,8 @@ console.log(spreadOut());
 
 ```js
 function spreadOut() {
-  let fragment = ['to', 'code'];
-  let sentence = ['learning', ...fragment, 'is', 'fun'];
+  let fragment = ["to", "code"];
+  let sentence = ["learning", ...fragment, "is", "fun"];
   return sentence;
 }
 ```

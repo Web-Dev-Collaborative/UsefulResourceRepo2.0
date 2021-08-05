@@ -30,27 +30,24 @@ var firebaseui = {};
  */
 firebaseui.auth = {};
 
-
 /**
  * The FirebaseUI Anonymous Auth Provider namespace.
  * @constructor
  */
 firebaseui.auth.AnonymousAuthProvider = {};
 
-
 /**
  * The FirebaseUI Anonymous Auth Provider ID.
  * @const {string}
  */
-firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID = 'anonymous';
-
+firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID = "anonymous";
 
 /**
  * @param {!firebase.auth.Auth} auth The Firebase Auth instance.
  * @param {string=} appId The optional app id.
  * @constructor
  */
-firebaseui.auth.AuthUI = function(auth, appId) {};
+firebaseui.auth.AuthUI = function (auth, appId) {};
 
 /**
  * Returns the AuthUI instance corresponding to the appId provided.
@@ -60,12 +57,12 @@ firebaseui.auth.AuthUI = function(auth, appId) {};
  * @return {?firebaseui.auth.AuthUI} The AuthUI instance corresponding to the
  *     app ID provided.
  */
-firebaseui.auth.AuthUI.getInstance = function(appId) {};
+firebaseui.auth.AuthUI.getInstance = function (appId) {};
 
 /**
  * Disables One-Tap auto sign-in.
  */
-firebaseui.auth.AuthUI.prototype.disableAutoSignIn = function() {};
+firebaseui.auth.AuthUI.prototype.disableAutoSignIn = function () {};
 
 /**
  * Handles the FirebaseUI operation.
@@ -76,22 +73,22 @@ firebaseui.auth.AuthUI.prototype.disableAutoSignIn = function() {};
  * @param {!firebaseui.auth.Config} config The configuration for the rendered
  *     UI.
  */
-firebaseui.auth.AuthUI.prototype.start = function(element, config) {};
+firebaseui.auth.AuthUI.prototype.start = function (element, config) {};
 
 /**
  * Sets the app configuration.
  *
  * @param {!firebaseui.auth.Config} config The application configuration.
  */
-firebaseui.auth.AuthUI.prototype.setConfig = function(config) {};
+firebaseui.auth.AuthUI.prototype.setConfig = function (config) {};
 
 /**
  * Triggers the sign-in flow.
  */
-firebaseui.auth.AuthUI.prototype.signIn = function() {};
+firebaseui.auth.AuthUI.prototype.signIn = function () {};
 
 /** Reset rendered widget and removes it from display. */
-firebaseui.auth.AuthUI.prototype.reset = function() {};
+firebaseui.auth.AuthUI.prototype.reset = function () {};
 
 /**
  * Destroys the AuthUI instance.
@@ -99,7 +96,7 @@ firebaseui.auth.AuthUI.prototype.reset = function() {};
  * @return {!Promise<void>} The promise that resolves when the instance is
  *     successfully deleted.
  */
-firebaseui.auth.AuthUI.prototype.delete = function() {};
+firebaseui.auth.AuthUI.prototype.delete = function () {};
 
 /**
  * Returns true if there is any pending redirect operation to be resolved by
@@ -109,15 +106,14 @@ firebaseui.auth.AuthUI.prototype.delete = function() {};
  *     performed or there is a pending incoming sign in with email link
  *     operation waiting to be completed.
  */
-firebaseui.auth.AuthUI.prototype.isPendingRedirect = function() {};
-
+firebaseui.auth.AuthUI.prototype.isPendingRedirect = function () {};
 
 /**
  * The CIAP Error interface.
  *
  * @interface
  */
-firebaseui.auth.CIAPError = function() {};
+firebaseui.auth.CIAPError = function () {};
 
 /**
  * The short error code.
@@ -151,31 +147,27 @@ firebaseui.auth.CIAPError.prototype.reason;
  * Returns a JSON-serializable representation of the error.
  * @return {!Object} The plain object representation of the error.
  */
-firebaseui.auth.CIAPError.prototype.toJSON = function() {};
-
+firebaseui.auth.CIAPError.prototype.toJSON = function () {};
 
 /**
  * The CIAP recoverable error interface.
  * @interface
  * @extends {firebaseui.auth.CIAPError}
  */
-firebaseui.auth.CIAPRetryError = function() {};
-
+firebaseui.auth.CIAPRetryError = function () {};
 
 /**
  * The retry callback to recover from error.
  * @return {!Promise<void>} A promise that resolves on retry completion.
  */
-firebaseui.auth.CIAPRetryError.prototype.retry = function() {};
-
+firebaseui.auth.CIAPRetryError.prototype.retry = function () {};
 
 /**
  * Defines the structure for the object used to identify the project.
  *
  * @interface
  */
-firebaseui.auth.ProjectConfig = function() {};
-
+firebaseui.auth.ProjectConfig = function () {};
 
 /**
  * The project ID.
@@ -183,13 +175,11 @@ firebaseui.auth.ProjectConfig = function() {};
  */
 firebaseui.auth.ProjectConfig.prototype.projectId;
 
-
 /**
  * The API key.
  * @type {string}
  */
 firebaseui.auth.ProjectConfig.prototype.apiKey;
-
 
 /**
  * Defines the structure of matching tenant and providers enabled for the
@@ -197,8 +187,7 @@ firebaseui.auth.ProjectConfig.prototype.apiKey;
  *
  * @interface
  */
-firebaseui.auth.SelectedTenantInfo = function() {};
-
+firebaseui.auth.SelectedTenantInfo = function () {};
 
 /**
  * The email being used to select the tenant.
@@ -207,14 +196,12 @@ firebaseui.auth.SelectedTenantInfo = function() {};
  */
 firebaseui.auth.SelectedTenantInfo.prototype.email;
 
-
 /**
  * The ID of the selected tenant. Null for top-level project.
  *
  * @type {?string}
  */
 firebaseui.auth.SelectedTenantInfo.prototype.tenantId;
-
 
 /**
  * The matching providers for the selected tenant.
@@ -223,37 +210,32 @@ firebaseui.auth.SelectedTenantInfo.prototype.tenantId;
  */
 firebaseui.auth.SelectedTenantInfo.prototype.providerIds;
 
-
 /**
  * Defines all the CIAP callbacks that can be passed to a
  * `firebaseui.auth.CIAPHandlerConfig` object.
  *
  * @interface
  */
-firebaseui.auth.CIAPCallbacks = function() {};
-
+firebaseui.auth.CIAPCallbacks = function () {};
 
 /**
  * Defines the callback which will get triggered when the sign-in UI is shown.
  * The tenant ID is passed to the callback.
  * @param {?string} tenantId The tenant ID. Null for top-level project.
  */
-firebaseui.auth.CIAPCallbacks.prototype.signInUiShown = function(tenantId) {};
-
+firebaseui.auth.CIAPCallbacks.prototype.signInUiShown = function (tenantId) {};
 
 /**
  * Defines the callback which will get triggered when the tenant selection UI
  * is shown.
  */
-firebaseui.auth.CIAPCallbacks.prototype.selectTenantUiShown = function() {};
-
+firebaseui.auth.CIAPCallbacks.prototype.selectTenantUiShown = function () {};
 
 /**
  * Defines the callback which will get triggered when the tenant selection UI
  * is hidden.
  */
-firebaseui.auth.CIAPCallbacks.prototype.selectTenantUiHidden = function() {};
-
+firebaseui.auth.CIAPCallbacks.prototype.selectTenantUiHidden = function () {};
 
 /**
  * The `beforeSignInSuccess` callback is provided to handle additional
@@ -263,17 +245,16 @@ firebaseui.auth.CIAPCallbacks.prototype.selectTenantUiHidden = function() {};
  * @return {!Promise<!firebase.User>} A promise that resolves when the
  *     processing is finished.
  */
-firebaseui.auth.CIAPCallbacks.prototype.beforeSignInSuccess =
-    function(currentUser) {};
-
+firebaseui.auth.CIAPCallbacks.prototype.beforeSignInSuccess = function (
+  currentUser
+) {};
 
 /**
  * CIAP authentication handler related configuration settings.
  *
  * @interface
  */
-firebaseui.auth.CIAPHandlerConfig = function() {};
-
+firebaseui.auth.CIAPHandlerConfig = function () {};
 
 /**
  * The Auth domain of the project.
@@ -281,7 +262,6 @@ firebaseui.auth.CIAPHandlerConfig = function() {};
  * @type {string}
  */
 firebaseui.auth.CIAPHandlerConfig.prototype.authDomain;
-
 
 /**
  * The display mode for tenant selection flow. This could be 'optionFirst' or
@@ -291,14 +271,12 @@ firebaseui.auth.CIAPHandlerConfig.prototype.authDomain;
  */
 firebaseui.auth.CIAPHandlerConfig.prototype.displayMode;
 
-
 /**
  * The terms of service URL/callback for tenant selection UI.
  *
  * @type {string|!function()|undefined}
  */
 firebaseui.auth.CIAPHandlerConfig.prototype.tosUrl;
-
 
 /**
  * The privacy policy URL/callback for tenant selection UI.
@@ -307,14 +285,12 @@ firebaseui.auth.CIAPHandlerConfig.prototype.tosUrl;
  */
 firebaseui.auth.CIAPHandlerConfig.prototype.privacyPolicyUrl;
 
-
 /**
  * The CIAP flow related callbacks.
  *
  * @type {!firebaseui.auth.CIAPCallbacks|undefined}
  */
 firebaseui.auth.CIAPHandlerConfig.prototype.callbacks;
-
 
 /**
  * The tenant level configurations keyed by tenant ID or '_' for top-level
@@ -324,7 +300,6 @@ firebaseui.auth.CIAPHandlerConfig.prototype.callbacks;
  */
 firebaseui.auth.CIAPHandlerConfig.prototype.tenants;
 
-
 /**
  * Initializes a CIAP AuthenticationHandler with the configuration provided.
  *
@@ -333,8 +308,7 @@ firebaseui.auth.CIAPHandlerConfig.prototype.tenants;
  *     The configuration of the handler keyed by API key.
  * @constructor
  */
-firebaseui.auth.FirebaseUiHandler = function(element, configs) {};
-
+firebaseui.auth.FirebaseUiHandler = function (element, configs) {};
 
 /**
  * Selects a tenant from the given tenant IDs. Returns the tenant ID of the
@@ -345,9 +319,10 @@ firebaseui.auth.FirebaseUiHandler = function(element, configs) {};
  * @return {!Promise<!firebaseui.auth.SelectedTenantInfo>} The matching tenant
  *     and providers enabled for the tenant.
  */
-firebaseui.auth.FirebaseUiHandler.prototype.selectTenant =
-    function(projectConfig, tenantIds) {};
-
+firebaseui.auth.FirebaseUiHandler.prototype.selectTenant = function (
+  projectConfig,
+  tenantIds
+) {};
 
 /**
  * Returns the Auth instance for the corresponding project/tenant pair.
@@ -357,9 +332,10 @@ firebaseui.auth.FirebaseUiHandler.prototype.selectTenant =
  * @return {!firebase.auth.Auth} The Auth instance for the given API key and
  *     tenant ID.
  */
-firebaseui.auth.FirebaseUiHandler.prototype.getAuth =
-    function(apiKey, tenantId) {};
-
+firebaseui.auth.FirebaseUiHandler.prototype.getAuth = function (
+  apiKey,
+  tenantId
+) {};
 
 /**
  * Starts sign in with the corresponding Auth instance. The sign in options
@@ -370,9 +346,10 @@ firebaseui.auth.FirebaseUiHandler.prototype.getAuth =
  *     selected tenant and the matching providers.
  * @return {!Promise<!firebase.auth.UserCredential>}
  */
-firebaseui.auth.FirebaseUiHandler.prototype.startSignIn =
-    function(auth, tenantInfo) {};
-
+firebaseui.auth.FirebaseUiHandler.prototype.startSignIn = function (
+  auth,
+  tenantInfo
+) {};
 
 /**
  * Resets the FirebaseUI handler and deletes the underlying FirebaseUI instance.
@@ -381,27 +358,23 @@ firebaseui.auth.FirebaseUiHandler.prototype.startSignIn =
  * @return {!Promise<void>} The promise that resolves when the instance
  *     is successfully deleted.
  */
-firebaseui.auth.FirebaseUiHandler.prototype.reset = function() {};
-
+firebaseui.auth.FirebaseUiHandler.prototype.reset = function () {};
 
 /**
  * Renders progress bar in the container if hidden.
  */
-firebaseui.auth.FirebaseUiHandler.prototype.showProgressBar = function() {};
-
+firebaseui.auth.FirebaseUiHandler.prototype.showProgressBar = function () {};
 
 /**
  * Hides progress bar if visible.
  */
-firebaseui.auth.FirebaseUiHandler.prototype.hideProgressBar = function() {};
-
+firebaseui.auth.FirebaseUiHandler.prototype.hideProgressBar = function () {};
 
 /**
  * Renders the UI after user is signed out.
  * @return {!Promise<void>}
  */
-firebaseui.auth.FirebaseUiHandler.prototype.completeSignOut = function() {};
-
+firebaseui.auth.FirebaseUiHandler.prototype.completeSignOut = function () {};
 
 /**
  * Displays the error message to the end users and provides the ability to retry
@@ -409,9 +382,7 @@ firebaseui.auth.FirebaseUiHandler.prototype.completeSignOut = function() {};
  * @param {!Error|!firebaseui.auth.CIAPError|!firebaseui.auth.CIAPRetryError}
  *     error The error from CIAP.
  */
-firebaseui.auth.FirebaseUiHandler.prototype.handleError =
-    function(error) {};
-
+firebaseui.auth.FirebaseUiHandler.prototype.handleError = function (error) {};
 
 /**
  * Handles additional processing on the user if callback is provided by the
@@ -420,8 +391,7 @@ firebaseui.auth.FirebaseUiHandler.prototype.handleError =
  * @return {!Promise<!firebase.User>} A promise that resolves when the
  *     processing is finished.
  */
-firebaseui.auth.FirebaseUiHandler.prototype.processUser = function(user) {};
-
+firebaseui.auth.FirebaseUiHandler.prototype.processUser = function (user) {};
 
 /**
  * The language code of the handler.
@@ -429,14 +399,13 @@ firebaseui.auth.FirebaseUiHandler.prototype.processUser = function(user) {};
  */
 firebaseui.auth.FirebaseUiHandler.prototype.languageCode;
 
-
 /**
  * FirebaseUI related error typically returned via `signInFailure` callback.
  *
  * @interface
  * @extends {Error}
  */
-firebaseui.auth.AuthUIError = function() {};
+firebaseui.auth.AuthUIError = function () {};
 
 /**
  * The short error code.
@@ -463,8 +432,7 @@ firebaseui.auth.AuthUIError.prototype.credential;
 /**
  * @return {!Object} The plain object representation of the error.
  */
-firebaseui.auth.AuthUIError.prototype.toJSON = function() {};
-
+firebaseui.auth.AuthUIError.prototype.toJSON = function () {};
 
 /**
  * The FirebaseUI credential helpers available. `ACCOUNT_CHOOSER_COM` is
@@ -472,18 +440,17 @@ firebaseui.auth.AuthUIError.prototype.toJSON = function() {};
  * @enum {string}
  */
 firebaseui.auth.CredentialHelper = {
-  ACCOUNT_CHOOSER_COM: 'accountchooser.com',
-  GOOGLE_YOLO: 'googleyolo',
-  NONE: 'none'
+  ACCOUNT_CHOOSER_COM: "accountchooser.com",
+  GOOGLE_YOLO: "googleyolo",
+  NONE: "none",
 };
-
 
 /**
  * FirebaseUI application related configuration settings.
  *
  * @interface
  */
-firebaseui.auth.Config = function() {};
+firebaseui.auth.Config = function () {};
 
 /**
  * The accountchooser.com configuration when it is selected as credential
@@ -603,14 +570,13 @@ firebaseui.auth.Config.prototype.privacyPolicyUrl;
  */
 firebaseui.auth.Config.prototype.widgetUrl;
 
-
 /**
  * The tenant level CIAP configuration settings.
  *
  * @interface
  * @extends {firebaseui.auth.Config}
  */
-firebaseui.auth.TenantConfig = function() {};
+firebaseui.auth.TenantConfig = function () {};
 
 /**
  * The tenant full label of the tenant selection button for the option first
@@ -628,14 +594,12 @@ firebaseui.auth.TenantConfig.prototype.fullLabel;
  */
 firebaseui.auth.TenantConfig.prototype.displayName;
 
-
 /**
  * The color of the tenant selection button for the option first flow.
  *
  * @type {string|undefined}
  */
 firebaseui.auth.TenantConfig.prototype.buttonColor;
-
 
 /**
  * The URL of the icon in tenant selection button for the option first flow.
@@ -644,14 +608,13 @@ firebaseui.auth.TenantConfig.prototype.buttonColor;
  */
 firebaseui.auth.TenantConfig.prototype.iconUrl;
 
-
 /**
  * Defines all the FirebaseUI callbacks that can be passed to a
  * `firebaseui.auth.Config` object.
  *
  * @interface
  */
-firebaseui.auth.Callbacks = function() {};
+firebaseui.auth.Callbacks = function () {};
 
 /**
  * Defines the sign-in success callback which will get triggered on successful
@@ -664,8 +627,10 @@ firebaseui.auth.Callbacks = function() {};
  * @return {boolean} Whether to automatically redirect to the
  *     `signInSuccessUrl`.
  */
-firebaseui.auth.Callbacks.prototype.signInSuccessWithAuthResult =
-    function(authResult, redirectUrl) {};
+firebaseui.auth.Callbacks.prototype.signInSuccessWithAuthResult = function (
+  authResult,
+  redirectUrl
+) {};
 
 /**
  * The `signInFailure` callback is provided to handle any unrecoverable error
@@ -677,20 +642,19 @@ firebaseui.auth.Callbacks.prototype.signInSuccessWithAuthResult =
  * @return {!Promise<void>|void} Either void or a promise that resolves when the
  *     merge conflict is completed.
  */
-firebaseui.auth.Callbacks.prototype.signInFailure = function(error) {};
+firebaseui.auth.Callbacks.prototype.signInFailure = function (error) {};
 
 /**
  * Defines the callback which gets triggered when the initial UI is rendered.
  */
-firebaseui.auth.Callbacks.prototype.uiShown = function() {};
-
+firebaseui.auth.Callbacks.prototype.uiShown = function () {};
 
 /**
  * Defines the sign-in option needed to configure the FirebaseUI sign-in widget.
  *
  * @interface
  */
-firebaseui.auth.SignInOption = function() {};
+firebaseui.auth.SignInOption = function () {};
 
 /**
  * The provider name displayed to end users
@@ -732,7 +696,6 @@ firebaseui.auth.SignInOption.prototype.iconUrl;
  */
 firebaseui.auth.SignInOption.prototype.provider;
 
-
 /**
  * The hosted domain used to match the user’s email domain with the tenant
  * providers for the identifier first flow.
@@ -741,7 +704,6 @@ firebaseui.auth.SignInOption.prototype.provider;
  */
 firebaseui.auth.SignInOption.prototype.hd;
 
-
 /**
  * Defines the sign-in option needed to configure the FirebaseUI federated
  * sign-in widget.
@@ -749,7 +711,7 @@ firebaseui.auth.SignInOption.prototype.hd;
  * @interface
  * @extends {firebaseui.auth.SignInOption}
  */
-firebaseui.auth.FederatedSignInOption = function() {};
+firebaseui.auth.FederatedSignInOption = function () {};
 
 /**
  * The Auth method (typically the authorization endpoint) needed for one-tap
@@ -793,7 +755,6 @@ firebaseui.auth.FederatedSignInOption.prototype.scopes;
  */
 firebaseui.auth.FederatedSignInOption.prototype.customParameters;
 
-
 /**
  * Defines the sign-in option needed to configure the FirebaseUI SAML
  * sign-in widget.
@@ -801,7 +762,7 @@ firebaseui.auth.FederatedSignInOption.prototype.customParameters;
  * @interface
  * @extends {firebaseui.auth.SignInOption}
  */
-firebaseui.auth.SamlSignInOption = function() {};
+firebaseui.auth.SamlSignInOption = function () {};
 
 /**
  * The provider name displayed to end users
@@ -827,7 +788,6 @@ firebaseui.auth.SamlSignInOption.prototype.buttonColor;
  */
 firebaseui.auth.SamlSignInOption.prototype.iconUrl;
 
-
 /**
  * Defines the sign-in option needed to configure the FirebaseUI generic OAuth
  * sign-in widget.
@@ -835,7 +795,7 @@ firebaseui.auth.SamlSignInOption.prototype.iconUrl;
  * @interface
  * @extends {firebaseui.auth.SignInOption}
  */
-firebaseui.auth.OAuthSignInOption = function() {};
+firebaseui.auth.OAuthSignInOption = function () {};
 
 /**
  * The provider name displayed to end users
@@ -888,7 +848,6 @@ firebaseui.auth.OAuthSignInOption.prototype.customParameters;
  */
 firebaseui.auth.OAuthSignInOption.prototype.loginHintKey;
 
-
 /**
  * Defines the sign-in option needed to configure the FirebaseUI OIDC
  * sign-in widget.
@@ -896,7 +855,7 @@ firebaseui.auth.OAuthSignInOption.prototype.loginHintKey;
  * @interface
  * @extends {firebaseui.auth.SignInOption}
  */
-firebaseui.auth.OidcSignInOption = function() {};
+firebaseui.auth.OidcSignInOption = function () {};
 
 /**
  * The provider name displayed to end users
@@ -929,13 +888,12 @@ firebaseui.auth.OidcSignInOption.prototype.iconUrl;
  */
 firebaseui.auth.OidcSignInOption.prototype.customParameters;
 
-
 /**
  * Defines configurations for disabling email sign up.
  *
  * @interface
  */
-firebaseui.auth.DisableSignUpConfig = function() {};
+firebaseui.auth.DisableSignUpConfig = function () {};
 
 /**
  * Whether new user sign up with email/password or email link is disabled.
@@ -961,7 +919,6 @@ firebaseui.auth.DisableSignUp.prototype.adminEmail;
  */
 firebaseui.auth.DisableSignUp.prototype.helpLink;
 
-
 /**
  * Defines the sign-in option needed to configure the FirebaseUI email sign-in
  * widget.
@@ -969,7 +926,7 @@ firebaseui.auth.DisableSignUp.prototype.helpLink;
  * @interface
  * @extends {firebaseui.auth.SignInOption}
  */
-firebaseui.auth.EmailSignInOption = function() {};
+firebaseui.auth.EmailSignInOption = function () {};
 
 /**
  * Whether to require the display name to be provided for email/password user
@@ -1020,7 +977,7 @@ firebaseui.auth.EmailSignInOption.prototype.emailLinkSignIn;
  * @interface
  * @extends {firebaseui.auth.SignInOption}
  */
-firebaseui.auth.PhoneSignInOption = function() {};
+firebaseui.auth.PhoneSignInOption = function () {};
 
 /**
  * The reCAPTCHA parameters needed to customize the reCAPTCHA for phone

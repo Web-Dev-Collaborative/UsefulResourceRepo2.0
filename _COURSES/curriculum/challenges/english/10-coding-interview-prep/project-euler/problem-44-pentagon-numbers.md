@@ -1,6 +1,6 @@
 ---
 id: 5900f3981000cf542c50feab
-title: 'Problem 44: Pentagon numbers'
+title: "Problem 44: Pentagon numbers"
 challengeType: 5
 forumTopicId: 302111
 dashedName: problem-44-pentagon-numbers
@@ -21,7 +21,7 @@ Find the pair of pentagonal numbers, P<sub>j</sub> and P<sub>k</sub>, for which 
 `pentagonNumbers()` should return a number.
 
 ```js
-assert(typeof pentagonNumbers() === 'number');
+assert(typeof pentagonNumbers() === "number");
 ```
 
 `pentagonNumbers()` should return 5482660.
@@ -36,7 +36,6 @@ assert.strictEqual(pentagonNumbers(), 5482660);
 
 ```js
 function pentagonNumbers() {
-
   return true;
 }
 
@@ -48,30 +47,30 @@ pentagonNumbers();
 ```js
 function pentagonNumbers() {
   function isPentagonal(num) {
-  // Formula found by solving pentagonal number
-  // equation for n.
-  const n = (Math.sqrt((24 * num) + 1) + 1) / 6;
-  return n % 1 === 0;
+    // Formula found by solving pentagonal number
+    // equation for n.
+    const n = (Math.sqrt(24 * num + 1) + 1) / 6;
+    return n % 1 === 0;
   }
 
   function pentagonal(num) {
-    return (num * ((3 * num) - 1)) / 2;
+    return (num * (3 * num - 1)) / 2;
   }
   let result;
   let i = 1;
   while (!result) {
-  i++;
-  const num1 = (i * ((3 * i) - 1)) / 2; // Pentagonal num formula
-  const minDiff = num1 - (((i - 1) * ((3 * (i - 1)) - 1)) / 2);
-  let j = i - 1;
-  while (j > 0 && !result) {
-  const num2 = (j * ((3 * j) - 1)) / 2;
-  if (isPentagonal(num1 - num2) && isPentagonal(num1 + num2)) {
+    i++;
+    const num1 = (i * (3 * i - 1)) / 2; // Pentagonal num formula
+    const minDiff = num1 - ((i - 1) * (3 * (i - 1) - 1)) / 2;
+    let j = i - 1;
+    while (j > 0 && !result) {
+      const num2 = (j * (3 * j - 1)) / 2;
+      if (isPentagonal(num1 - num2) && isPentagonal(num1 + num2)) {
         result = num1 - num2;
       }
       j--;
     }
   }
   return result;
-  }
+}
 ```

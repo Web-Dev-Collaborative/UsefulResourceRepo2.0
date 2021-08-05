@@ -1,6 +1,6 @@
 ---
 id: 5900f3d91000cf542c50feeb
-title: 'Problem 108: Diophantine Reciprocals I'
+title: "Problem 108: Diophantine Reciprocals I"
 challengeType: 5
 forumTopicId: 301732
 dashedName: problem-108-diophantine-reciprocals-i
@@ -34,7 +34,6 @@ assert.strictEqual(diophantineOne(), 180180);
 
 ```js
 function diophantineOne() {
-
   return true;
 }
 

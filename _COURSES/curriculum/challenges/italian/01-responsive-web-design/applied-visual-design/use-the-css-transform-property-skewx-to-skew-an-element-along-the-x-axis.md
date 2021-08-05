@@ -2,7 +2,7 @@
 id: 587d78a6367417b2b2512adb
 title: Usare la proprietà di trasformazione skewX per inclinare un elemento rispetto all'asse X
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cyLP8Sr'
+videoUrl: "https://scrimba.com/c/cyLP8Sr"
 forumTopicId: 301074
 dashedName: use-the-css-transform-property-skewx-to-skew-an-element-along-the-x-axis
 ---
@@ -40,14 +40,13 @@ assert(code.match(/#bottom\s*?{\s*?.*?\s*?transform:\s*?skewX\(24deg\);/g));
   div {
     width: 70%;
     height: 100px;
-    margin:  50px auto;
+    margin: 50px auto;
   }
   #top {
     background-color: red;
   }
   #bottom {
     background-color: blue;
-
   }
 </style>
 
@@ -62,7 +61,7 @@ assert(code.match(/#bottom\s*?{\s*?.*?\s*?transform:\s*?skewX\(24deg\);/g));
   div {
     width: 70%;
     height: 100px;
-    margin:  50px auto;
+    margin: 50px auto;
   }
   #top {
     background-color: red;

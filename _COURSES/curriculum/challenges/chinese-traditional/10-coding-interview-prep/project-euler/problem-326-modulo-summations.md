@@ -1,6 +1,6 @@
 ---
 id: 5900f4b21000cf542c50ffc5
-title: 'Problem 326: Modulo Summations'
+title: "Problem 326: Modulo Summations"
 challengeType: 5
 forumTopicId: 301983
 dashedName: problem-326-modulo-summations
@@ -34,7 +34,6 @@ assert.strictEqual(euler326(), 1966666166408794400);
 
 ```js
 function euler326() {
-
   return true;
 }
 

@@ -16,14 +16,13 @@
  * @fileoverview Handler for start sign in.
  */
 
-goog.provide('firebaseui.auth.widget.handler.startSignIn');
+goog.provide("firebaseui.auth.widget.handler.startSignIn");
 
-goog.require('firebaseui.auth.util');
-goog.require('firebaseui.auth.widget.Config');
-goog.require('firebaseui.auth.widget.handler');
+goog.require("firebaseui.auth.util");
+goog.require("firebaseui.auth.widget.Config");
+goog.require("firebaseui.auth.widget.handler");
 
-goog.forwardDeclare('firebaseui.auth.AuthUI');
-
+goog.forwardDeclare("firebaseui.auth.AuthUI");
 
 /**
  * Triggers the sign in flow.
@@ -31,9 +30,10 @@ goog.forwardDeclare('firebaseui.auth.AuthUI');
  * @param {firebaseui.auth.AuthUI} app The current Firebase UI instance whose
  *     configuration is used.
  */
-firebaseui.auth.widget.handler.startSignIn = function(app) {
-  var selectUrl = app.getConfig().getRequiredWidgetUrl(
-      firebaseui.auth.widget.Config.WidgetMode.SELECT);
+firebaseui.auth.widget.handler.startSignIn = function (app) {
+  var selectUrl = app
+    .getConfig()
+    .getRequiredWidgetUrl(firebaseui.auth.widget.Config.WidgetMode.SELECT);
   if (app.getConfig().getPopupMode()) {
     firebaseui.auth.util.popup(selectUrl);
   } else {

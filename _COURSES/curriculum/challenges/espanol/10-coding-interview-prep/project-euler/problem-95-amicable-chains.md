@@ -1,6 +1,6 @@
 ---
 id: 5900f3cc1000cf542c50fede
-title: 'Problem 95: Amicable chains'
+title: "Problem 95: Amicable chains"
 challengeType: 5
 forumTopicId: 302212
 dashedName: problem-95-amicable-chains
@@ -27,7 +27,7 @@ Find the smallest member of the longest amicable chain with no element exceeding
 `amicableChains()` should return a number.
 
 ```js
-assert(typeof amicableChains() === 'number');
+assert(typeof amicableChains() === "number");
 ```
 
 `amicableChains()` should return 14316.
@@ -42,7 +42,6 @@ assert.strictEqual(amicableChains(), 14316);
 
 ```js
 function amicableChains() {
-
   return true;
 }
 

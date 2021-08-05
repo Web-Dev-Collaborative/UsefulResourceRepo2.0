@@ -2,7 +2,7 @@
 id: 587d781b367417b2b2512aba
 title: Usare il tag s per barrare il testo
 challengeType: 0
-videoUrl: ''
+videoUrl: ""
 forumTopicId: 301079
 dashedName: use-the-s-tag-to-strikethrough-text
 ---
@@ -20,17 +20,17 @@ Avvolgi il tag `s` intorno a `Google` all'interno del tag `h4`, quindi aggiungi 
 Il tuo codice dovrebbe aggiungere un tag `s` al markup.
 
 ```js
-assert($('s').length == 1);
+assert($("s").length == 1);
 ```
 
 Un tag `s` dovrebbe avvolgere il testo `Google` nel tag `h4`. Esso non dovrebbe contenere la parola `Alphabet`.
 
 ```js
 assert(
-  $('h4 > s')
+  $("h4 > s")
     .text()
     .match(/Google/gi) &&
-    !$('h4 > s')
+    !$("h4 > s")
       .text()
       .match(/Alphabet/gi)
 );
@@ -40,7 +40,7 @@ Dovresti includere la parola `Alphabet` nel tag `h4`, senza formattazione barrat
 
 ```js
 assert(
-  $('h4')
+  $("h4")
     .html()
     .match(/Alphabet/gi)
 );
@@ -81,11 +81,26 @@ assert(
   <div class="cardContent">
     <div class="cardText">
       <h4>Google</h4>
-      <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>
+      <p>
+        <em
+          >Google was founded by Larry Page and Sergey Brin while they were
+          <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em
+        >
+      </p>
     </div>
     <div class="cardLinks">
-      <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
-      <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+      <a
+        href="https://en.wikipedia.org/wiki/Larry_Page"
+        target="_blank"
+        class="links"
+        >Larry Page</a
+      ><br /><br />
+      <a
+        href="https://en.wikipedia.org/wiki/Sergey_Brin"
+        target="_blank"
+        class="links"
+        >Sergey Brin</a
+      >
     </div>
   </div>
 </div>
@@ -124,11 +139,26 @@ assert(
   <div class="cardContent">
     <div class="cardText">
       <h4><s>Google</s> Alphabet</h4>
-      <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>
+      <p>
+        <em
+          >Google was founded by Larry Page and Sergey Brin while they were
+          <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em
+        >
+      </p>
     </div>
     <div class="cardLinks">
-      <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
-      <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+      <a
+        href="https://en.wikipedia.org/wiki/Larry_Page"
+        target="_blank"
+        class="links"
+        >Larry Page</a
+      ><br /><br />
+      <a
+        href="https://en.wikipedia.org/wiki/Sergey_Brin"
+        target="_blank"
+        class="links"
+        >Sergey Brin</a
+      >
     </div>
   </div>
 </div>

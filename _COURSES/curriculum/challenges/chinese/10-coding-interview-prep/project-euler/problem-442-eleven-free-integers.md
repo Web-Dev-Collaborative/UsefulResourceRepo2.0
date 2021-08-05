@@ -1,6 +1,6 @@
 ---
 id: 5900f5271000cf542c510039
-title: 'Problem 442: Eleven-free integers'
+title: "Problem 442: Eleven-free integers"
 challengeType: 5
 forumTopicId: 302114
 dashedName: problem-442-eleven-free-integers
@@ -30,7 +30,6 @@ assert.strictEqual(euler442(), 1295552661530920200);
 
 ```js
 function euler442() {
-
   return true;
 }
 

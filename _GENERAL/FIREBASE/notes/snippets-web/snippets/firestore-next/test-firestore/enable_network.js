@@ -4,7 +4,7 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START enable_network_modular]
-import { enableNetwork } from "firebase/firestore"; 
+import { enableNetwork } from "firebase/firestore";
 
 await enableNetwork(db);
 // Do online actions

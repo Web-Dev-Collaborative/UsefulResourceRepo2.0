@@ -15,7 +15,7 @@ Appiattisci un array nidificato. Dovrai tenere conto dei diversi livelli di nidi
 `steamrollArray([[["a"]], [["b"]]])` dovrebbe restituire `["a", "b"]`.
 
 ```js
-assert.deepEqual(steamrollArray([[['a']], [['b']]]), ['a', 'b']);
+assert.deepEqual(steamrollArray([[["a"]], [["b"]]]), ["a", "b"]);
 ```
 
 `steamrollArray([1, [2], [3, [[4]]]])` dovrebbe restituire `[1, 2, 3, 4]`.
@@ -62,8 +62,8 @@ function steamrollArray(arr) {
     return [arr];
   }
   var out = [];
-  arr.forEach(function(e) {
-    steamrollArray(e).forEach(function(v) {
+  arr.forEach(function (e) {
+    steamrollArray(e).forEach(function (v) {
       out.push(v);
     });
   });

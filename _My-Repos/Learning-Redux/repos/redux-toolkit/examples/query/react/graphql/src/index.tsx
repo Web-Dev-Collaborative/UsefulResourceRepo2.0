@@ -22,5 +22,4 @@ worker.start({ quiet: true }).then(() => {
     </React.StrictMode>,
     document.getElementById('root')
   )
-}
-)
+})

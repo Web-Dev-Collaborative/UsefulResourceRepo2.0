@@ -1,6 +1,6 @@
 ---
 id: 5900f4361000cf542c50ff48
-title: 'Problem 201: Subsets with a unique sum'
+title: "Problem 201: Subsets with a unique sum"
 challengeType: 5
 forumTopicId: 301841
 dashedName: problem-201-subsets-with-a-unique-sum
@@ -34,7 +34,6 @@ assert.strictEqual(euler201(), 115039000);
 
 ```js
 function euler201() {
-
   return true;
 }
 

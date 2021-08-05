@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244b7
 title: Concatenare le stringhe con l'operatore +
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cNpM8AN'
+videoUrl: "https://scrimba.com/c/cNpM8AN"
 forumTopicId: 16802
 dashedName: concatenating-strings-with-plus-operator
 ---
@@ -14,7 +14,7 @@ In JavaScript, quando l'operatore `+` viene usato con un valore di tipo `String`
 **Esempio**
 
 ```js
-'My name is Alan,' + ' I concatenate.'
+"My name is Alan," + " I concatenate.";
 ```
 
 **Nota:** Attenzione agli spazi. La concatenazione non aggiunge spazi tra le stringhe concatenate, quindi dovrai aggiungerli tu stesso.
@@ -26,6 +26,7 @@ var ourStr = "I come first. " + "I come second.";
 ```
 
 La stringa `I come first. I come second.` sarebbe visualizzata nella console.
+
 # --instructions--
 
 Costruisci `myStr` dalle stringhe `This is the start.` e `This is the end.` usando l'operatore `+`.
@@ -35,7 +36,7 @@ Costruisci `myStr` dalle stringhe `This is the start.` e `This is the end.` usan
 `myStr` dovrebbe avere un valore stringa `This is the start. This is the end.`
 
 ```js
-assert(myStr === 'This is the start. This is the end.');
+assert(myStr === "This is the start. This is the end.");
 ```
 
 Dovresti usare l'operatore `+` per costruire `myStr`.
@@ -61,11 +62,11 @@ assert(/myStr\s*=/.test(code));
 ## --after-user-code--
 
 ```js
-(function(){
-  if(typeof myStr === 'string') {
+(function () {
+  if (typeof myStr === "string") {
     return 'myStr = "' + myStr + '"';
   } else {
-    return 'myStr is not a string';
+    return "myStr is not a string";
   }
 })();
 ```

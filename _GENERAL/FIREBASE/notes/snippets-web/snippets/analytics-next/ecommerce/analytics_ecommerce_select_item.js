@@ -8,12 +8,12 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 
 // Prepare ecommerce event params
 const params2 = {
-  item_list_id: 'L001',
-  item_list_name: 'Related products',
-  items: [item_jeggings]
+  item_list_id: "L001",
+  item_list_name: "Related products",
+  items: [item_jeggings],
 };
 
 // Log event
 const analytics = getAnalytics();
-logEvent(analytics, 'select_item', params2);
+logEvent(analytics, "select_item", params2);
 // [END analytics_ecommerce_select_item_modular]

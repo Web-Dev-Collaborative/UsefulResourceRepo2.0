@@ -1,12 +1,12 @@
-#rentalsListing  {
-  font-family: 'Mukta Malar', sans-serif;
+#rentalsListing {
+  font-family: "Mukta Malar", sans-serif;
   color: $listing-font;
   margin-bottom: 60px;
 
   .btn {
-      height: 38px;
-      font-family: 'Mukta Malar', sans-serif;
-    }
+    height: 38px;
+    font-family: "Mukta Malar", sans-serif;
+  }
 
   .rental-link {
     text-decoration: none;
@@ -15,7 +15,7 @@
   .listing {
     &-image-container {
       height: 240px;
-      background-repeat:no-repeat;
+      background-repeat: no-repeat;
       background-position: center center;
       border-radius: 3px;
 
@@ -28,9 +28,9 @@
       }
     }
 
-  &-desc-container {
-    font-size: 14px;
-    margin-top: 5px;
+    &-desc-container {
+      font-size: 14px;
+      margin-top: 5px;
     }
 
     .type {
@@ -44,14 +44,14 @@
 
       a {
         font-weight: bold;
-        color: $listing-font;;
+        color: $listing-font;
       }
     }
 
     .price {
       color: #5d5c5c;
       font-size: 14px;
-      font-family: 'Raleway' !important;
+      font-family: "Raleway" !important;
     }
 
     h3 {
@@ -85,18 +85,20 @@
       width: 200px;
 
       padding-left: 20px;
-      input[type=text], textarea {
-      -webkit-transition: all 0.30s ease-in-out;
-      -moz-transition: all 0.30s ease-in-out;
-      -ms-transition: all 0.30s ease-in-out;
-      -o-transition: all 0.30s ease-in-out;
-      outline: none;
-      padding: 3px 0px 3px 3px;
-      margin: 5px 1px 3px 0px;
-      border: 1px solid #DDDDDD;
-    }
+      input[type="text"],
+      textarea {
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        outline: none;
+        padding: 3px 0px 3px 3px;
+        margin: 5px 1px 3px 0px;
+        border: 1px solid #dddddd;
+      }
 
-      input[type=text]:focus, textarea:focus {
+      input[type="text"]:focus,
+      textarea:focus {
         box-shadow: 0 0 5px rgba(81, 203, 238, 1);
         padding: 3px 0px 3px 3px;
         margin: 5px 1px 3px 0px;

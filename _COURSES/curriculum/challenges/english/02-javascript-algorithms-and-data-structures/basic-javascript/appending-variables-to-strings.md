@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244ed
 title: Appending Variables to Strings
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cbQmZfa'
+videoUrl: "https://scrimba.com/c/cbQmZfa"
 forumTopicId: 16656
 dashedName: appending-variables-to-strings
 ---
@@ -30,7 +30,7 @@ Set `someAdjective` to a string of at least 3 characters and append it to `myStr
 `someAdjective` should be set to a string at least 3 characters long.
 
 ```js
-assert(typeof someAdjective !== 'undefined' && someAdjective.length > 2);
+assert(typeof someAdjective !== "undefined" && someAdjective.length > 2);
 ```
 
 You should append `someAdjective` to `myStr` using the `+=` operator.
@@ -44,19 +44,19 @@ assert(code.match(/myStr\s*\+=\s*someAdjective\s*/).length > 0);
 ## --after-user-code--
 
 ```js
-(function(){
+(function () {
   var output = [];
-  if(typeof someAdjective === 'string') {
+  if (typeof someAdjective === "string") {
     output.push('someAdjective = "' + someAdjective + '"');
   } else {
-    output.push('someAdjective is not a string');
+    output.push("someAdjective is not a string");
   }
-  if(typeof myStr === 'string') {
+  if (typeof myStr === "string") {
     output.push('myStr = "' + myStr + '"');
   } else {
-    output.push('myStr is not a string');
+    output.push("myStr is not a string");
   }
-  return output.join('\n');
+  return output.join("\n");
 })();
 ```
 

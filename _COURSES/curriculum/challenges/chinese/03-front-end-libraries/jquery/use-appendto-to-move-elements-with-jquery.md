@@ -25,13 +25,13 @@ $("#target4").appendTo("#left-well");
 `target2` 元素不应该在 `left-well` 内。
 
 ```js
-assert($('#left-well').children('#target2').length === 0);
+assert($("#left-well").children("#target2").length === 0);
 ```
 
 `target2` 元素应该在 `right-well` 内。
 
 ```js
-assert($('#right-well').children('#target2').length > 0);
+assert($("#right-well").children("#target2").length > 0);
 ```
 
 应该仅用 jQuery 移动这些标签。
@@ -46,11 +46,10 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();
-
   });
 </script>
 
@@ -83,7 +82,7 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();

@@ -18,7 +18,8 @@ getRedirectResult(auth)
 
     // The signed-in user info.
     const user = result.user;
-  }).catch((error) => {
+  })
+  .catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;

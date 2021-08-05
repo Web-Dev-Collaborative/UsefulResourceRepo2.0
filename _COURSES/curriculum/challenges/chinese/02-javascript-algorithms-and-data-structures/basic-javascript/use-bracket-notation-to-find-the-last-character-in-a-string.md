@@ -2,7 +2,7 @@
 id: bd7123c9c451eddfaeb5bdef
 title: 使用方括号查找字符串中的最后一个字符
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cBZQGcv'
+videoUrl: "https://scrimba.com/c/cBZQGcv"
 forumTopicId: 18342
 dashedName: use-bracket-notation-to-find-the-last-character-in-a-string
 ---
@@ -33,7 +33,7 @@ var lastLetter = firstName[firstName.length - 1];
 `lastLetterOfLastName` 应该是字母 `e`。
 
 ```js
-assert(lastLetterOfLastName === 'e');
+assert(lastLetterOfLastName === "e");
 ```
 
 您应该使用 `.length` 获取最后一个字母。
@@ -47,7 +47,9 @@ assert(code.match(/\.length/g).length > 0);
 ## --after-user-code--
 
 ```js
-(function(v){return v;})(lastLetterOfLastName);
+(function (v) {
+  return v;
+})(lastLetterOfLastName);
 ```
 
 ## --seed-contents--

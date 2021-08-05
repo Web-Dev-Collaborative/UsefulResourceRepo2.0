@@ -27,7 +27,6 @@ goog.require('fireauth.AuthError');
 goog.require('fireauth.authenum.Error');
 goog.require('goog.Promise');
 
-
 /**
  * Initializes an instance of a multi-factor session object used for enrolling
  * a second factor on a user or helping sign in an enrolled user with a second
@@ -40,28 +39,29 @@ goog.require('goog.Promise');
  *     enrolled second factor user signs in successfully with the first factor.
  * @constructor
  */
-fireauth.MultiFactorSession = function(idToken, mfaPendingCredential) {
+fireauth.MultiFactorSession = function (idToken, mfaPendingCredential) {
   if (!idToken && !mfaPendingCredential) {
     throw new fireauth.AuthError(
-        fireauth.authenum.Error.INTERNAL_ERROR,
-        'Internal assert: no raw session string available');
+      fireauth.authenum.Error.INTERNAL_ERROR,
+      'Internal assert: no raw session string available'
+    );
   }
   // Both fields should never be passed at the same time.
   if (idToken && mfaPendingCredential) {
     throw new fireauth.AuthError(
-        fireauth.authenum.Error.INTERNAL_ERROR,
-        'Internal assert: unable to determine the session type');
+      fireauth.authenum.Error.INTERNAL_ERROR,
+      'Internal assert: unable to determine the session type'
+    );
   }
   /** @const @private {?string} The ID token for an enroll flow. */
   this.idToken_ = idToken || null;
   /** @const @private {?string} The pending credential for a sign-in flow. */
   this.mfaPendingCredential_ = mfaPendingCredential || null;
   /** @const @public {!fireauth.MultiFactorSession.Type} The session type.*/
-  this.type = this.idToken_ ?
-      fireauth.MultiFactorSession.Type.ENROLL :
-      fireauth.MultiFactorSession.Type.SIGN_IN;
+  this.type = this.idToken_
+    ? fireauth.MultiFactorSession.Type.ENROLL
+    : fireauth.MultiFactorSession.Type.SIGN_IN;
 };
-
 
 /**
  * Enum representing the type of multi-factor session.
@@ -72,24 +72,22 @@ fireauth.MultiFactorSession.Type = {
   SIGN_IN: 'signin'
 };
 
-
 /**
  * Returns a promise that resolves with the raw session string.
  * @return {!goog.Promise<string>} A promise that resolves with the raw session
  *     string.
  */
-fireauth.MultiFactorSession.prototype.getRawSession = function() {
-  return this.idToken_ ?
-      goog.Promise.resolve(this.idToken_) :
-      goog.Promise.resolve(this.mfaPendingCredential_);
+fireauth.MultiFactorSession.prototype.getRawSession = function () {
+  return this.idToken_
+    ? goog.Promise.resolve(this.idToken_)
+    : goog.Promise.resolve(this.mfaPendingCredential_);
 };
-
 
 /**
  * Returns the plain object representation of the session object.
  * @return {!Object} The plain object representation of the session object.
  */
-fireauth.MultiFactorSession.prototype.toPlainObject = function() {
+fireauth.MultiFactorSession.prototype.toPlainObject = function () {
   if (this.type == fireauth.MultiFactorSession.Type.ENROLL) {
     return {
       'multiFactorSession': {
@@ -105,7 +103,6 @@ fireauth.MultiFactorSession.prototype.toPlainObject = function() {
   }
 };
 
-
 /**
  * Converts a plain object to a `fireauth.MultiFactorSession` if applicable.
  * @param {?Object} obj The plain object to convert to a
@@ -113,14 +110,18 @@ fireauth.MultiFactorSession.prototype.toPlainObject = function() {
  * @return {?fireauth.MultiFactorSession} The corresponding
  *     `fireauth.MultiFactorSession` representation, null otherwise.
  */
-fireauth.MultiFactorSession.fromPlainObject = function(obj) {
+fireauth.MultiFactorSession.fromPlainObject = function (obj) {
   if (obj && obj['multiFactorSession']) {
     if (obj['multiFactorSession']['pendingCredential']) {
       return new fireauth.MultiFactorSession(
-          null, obj['multiFactorSession']['pendingCredential']);
+        null,
+        obj['multiFactorSession']['pendingCredential']
+      );
     } else if (obj['multiFactorSession']['idToken']) {
       return new fireauth.MultiFactorSession(
-          obj['multiFactorSession']['idToken'], null);
+        obj['multiFactorSession']['idToken'],
+        null
+      );
     }
   }
   return null;

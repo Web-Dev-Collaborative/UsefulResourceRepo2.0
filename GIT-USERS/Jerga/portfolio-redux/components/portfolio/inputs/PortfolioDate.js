@@ -1,17 +1,16 @@
-import React from 'react';
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
+import React from "react";
+import DatePicker from "react-datepicker";
+import moment from "moment";
 
-import 'react-datepicker/dist/react-datepicker.css';
+import "react-datepicker/dist/react-datepicker.css";
 
 export default class PortfolioDate extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
       startDate: moment(),
-      isDateHidden: false
+      isDateHidden: false,
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -20,7 +19,7 @@ export default class PortfolioDate extends React.Component {
     const { onChange } = this.props.input;
 
     this.setState({
-      startDate: date
+      startDate: date,
     });
 
     onChange(date);
@@ -30,7 +29,7 @@ export default class PortfolioDate extends React.Component {
     const { onChange } = this.props.input;
 
     this.setState({
-      isDateHidden: !this.state.isDateHidden
+      isDateHidden: !this.state.isDateHidden,
     });
 
     onChange(null);
@@ -42,10 +41,10 @@ export default class PortfolioDate extends React.Component {
     const { onChange } = this.props.input;
 
     return (
-      <div className='form-group'>
+      <div className="form-group">
         <label>{label}</label>
-        <div className='input-group'>
-          { !isDateHidden &&
+        <div className="input-group">
+          {!isDateHidden && (
             <DatePicker
               peekNextMonth
               showMonthDropdown
@@ -55,19 +54,23 @@ export default class PortfolioDate extends React.Component {
               selected={this.state.startDate}
               onChange={this.handleChange}
             />
-          }
-          { componentName === 'endDate' && !isDateHidden &&
-          <button onClick={() => this.toggleDate()} > Still Working Here </button>
-          }
-          { componentName === 'endDate' && isDateHidden &&
+          )}
+          {componentName === "endDate" && !isDateHidden && (
+            <button onClick={() => this.toggleDate()}>
+              {" "}
+              Still Working Here{" "}
+            </button>
+          )}
+          {componentName === "endDate" && isDateHidden && (
             <React.Fragment>
-              <span style={{marginRight: '10px'}}><b> Still Working here</b></span>
-              <button onClick={() => this.toggleDate()} > Set End Date </button>
-           </React.Fragment>
-          }
+              <span style={{ marginRight: "10px" }}>
+                <b> Still Working here</b>
+              </span>
+              <button onClick={() => this.toggleDate()}> Set End Date </button>
+            </React.Fragment>
+          )}
         </div>
       </div>
-    )
+    );
   }
 }
-

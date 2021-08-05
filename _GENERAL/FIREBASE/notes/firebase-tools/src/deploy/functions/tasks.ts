@@ -336,25 +336,25 @@ export function deleteTopicTask(params: TaskParams, topic: backend.PubSubSpec): 
   };
 }
 
-export const schedulerDeploymentHandler = (errorHandler: ErrorHandler) => async (
-  task: DeploymentTask
-): Promise<void> => {
-  try {
-    const result = await task.run();
-    helper.printSuccess(task.fn, task.operationType);
-    return result;
-  } catch (err) {
-    if (err.status === 429) {
-      // Throw quota errors so that throttler retries them.
-      throw err;
-    } else if (err.status !== 404) {
-      // Ignore 404 errors from scheduler calls since they may be deleted out of band.
-      errorHandler.record(
-        "error",
-        backend.functionName(task.fn),
-        task.operationType,
-        err.message || ""
-      );
+export const schedulerDeploymentHandler =
+  (errorHandler: ErrorHandler) =>
+  async (task: DeploymentTask): Promise<void> => {
+    try {
+      const result = await task.run();
+      helper.printSuccess(task.fn, task.operationType);
+      return result;
+    } catch (err) {
+      if (err.status === 429) {
+        // Throw quota errors so that throttler retries them.
+        throw err;
+      } else if (err.status !== 404) {
+        // Ignore 404 errors from scheduler calls since they may be deleted out of band.
+        errorHandler.record(
+          "error",
+          backend.functionName(task.fn),
+          task.operationType,
+          err.message || ""
+        );
+      }
     }
-  }
-};
+  };

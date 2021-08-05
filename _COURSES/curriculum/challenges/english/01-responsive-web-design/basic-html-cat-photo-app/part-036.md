@@ -16,44 +16,44 @@ Nest an `input` element in the `form` element.
 Your `form` element should have an opening tag and closing tag in the correct order. You may be missing one or both of the required tags, or have them in the wrong order.
 
 ```js
-const noSpaces = code.replace(/\s/g, '');
+const noSpaces = code.replace(/\s/g, "");
 assert(
-  document.querySelector('form') &&
+  document.querySelector("form") &&
     code.match(/<\/form>/g) &&
-    noSpaces.indexOf('<form') < noSpaces.indexOf('</form>')
+    noSpaces.indexOf("<form") < noSpaces.indexOf("</form>")
 );
 ```
 
 Your `form` element's opening tag should only have an `action` attribute. Remove anything else you may have typed in it.
 
 ```js
-assert([...document.querySelector('form').attributes].length < 2);
+assert([...document.querySelector("form").attributes].length < 2);
 ```
 
 You should create an input element. Check the syntax.
 
 ```js
-assert(document.querySelector('input'));
+assert(document.querySelector("input"));
 ```
 
 Your `input` element should have an opening tag, but not a closing tag.
 
 ```js
-assert(document.querySelector('input') && !code.match(/<\/input\>/g));
+assert(document.querySelector("input") && !code.match(/<\/input\>/g));
 ```
 
 Your `input` element should be nested within the `form` element.
 
 ```js
-assert(document.querySelector('form > input'));
+assert(document.querySelector("form > input"));
 ```
 
 Your `form` should only contain the `input` element. Remove any HTML elements or text between the `form` element's tags.
 
 ```js
 assert(
-  $('form')[0].children.length === 1 &&
-    $('form')[0].innerText.trim().length === 0
+  $("form")[0].children.length === 1 &&
+    $("form")[0].innerText.trim().length === 0
 );
 ```
 
@@ -69,8 +69,15 @@ assert(
       <section>
         <h2>Cat Photos</h2>
         <!-- TODO: Add link to cat photos -->
-        <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        <p>
+          Click here to view more
+          <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+        </p>
+        <a href="https://freecatphotoapp.com"
+          ><img
+            src="https://bit.ly/fcc-relaxing-cat"
+            alt="A cute orange cat lying on its back."
+        /></a>
       </section>
       <section>
         <h2>Cat Lists</h2>
@@ -81,8 +88,11 @@ assert(
           <li>lasagna</li>
         </ul>
         <figure>
-          <img src="https://bit.ly/fcc-lasagna" alt="A slice of lasagna on a plate.">
-          <figcaption>Cats <em>love</em> lasagna.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-lasagna"
+            alt="A slice of lasagna on a plate."
+          />
+          <figcaption>Cats <em>love</em> lasagna.</figcaption>
         </figure>
         <h3>Top 3 things cats hate:</h3>
         <ol>
@@ -91,19 +101,20 @@ assert(
           <li>other cats</li>
         </ol>
         <figure>
-          <img src="https://bit.ly/fcc-cats" alt="Five cats looking around a field.">
-          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-cats"
+            alt="Five cats looking around a field."
+          />
+          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>
         </figure>
       </section>
       <section>
         <h2>Cat Form</h2>
---fcc-editable-region--
-        <form action="https://freecatphotoapp.com/submit-cat-photo">
-        </form>
---fcc-editable-region--
+        --fcc-editable-region--
+        <form action="https://freecatphotoapp.com/submit-cat-photo"></form>
+        --fcc-editable-region--
       </section>
     </main>
   </body>
 </html>
 ```
-

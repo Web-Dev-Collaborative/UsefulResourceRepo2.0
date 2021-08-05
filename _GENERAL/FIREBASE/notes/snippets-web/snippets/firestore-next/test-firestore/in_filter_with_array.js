@@ -4,7 +4,10 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START in_filter_with_array_modular]
-import { query, where } from "firebase/firestore";  
+import { query, where } from "firebase/firestore";
 
-const q = query(citiesRef, where('regions', 'in', [['west_coast', 'east_coast']]));
+const q = query(
+  citiesRef,
+  where("regions", "in", [["west_coast", "east_coast"]])
+);
 // [END in_filter_with_array_modular]

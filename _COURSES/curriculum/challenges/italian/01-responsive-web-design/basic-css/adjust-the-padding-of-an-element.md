@@ -2,7 +2,7 @@
 id: bad88fee1348bd9aedf08825
 title: Regolare il padding di un elemento
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cED8ZC2'
+videoUrl: "https://scrimba.com/c/cED8ZC2"
 forumTopicId: 301083
 dashedName: adjust-the-padding-of-an-element
 ---
@@ -30,7 +30,7 @@ Cambia il `padding` del riquadro blu per farlo corrispondere a quello del riquad
 La tua classe `blue-box` dovrebbe dare agli elementi `20px` di `padding`.
 
 ```js
-assert($('.blue-box').css('padding-top') === '20px');
+assert($(".blue-box").css("padding-top") === "20px");
 ```
 
 # --seed--

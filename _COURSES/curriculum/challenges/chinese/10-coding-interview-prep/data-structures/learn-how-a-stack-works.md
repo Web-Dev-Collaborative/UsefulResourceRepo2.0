@@ -35,13 +35,13 @@ assert(homeworkStack.length === 4);
 The last element in `homeworkStack` should be `"CS50"`.
 
 ```js
-assert(homeworkStack[3] === 'CS50');
+assert(homeworkStack[3] === "CS50");
 ```
 
 `homeworkStack` should not contain `"PSY44"`.
 
 ```js
-assert(homeworkStack.indexOf('PSY44') === -1);
+assert(homeworkStack.indexOf("PSY44") === -1);
 ```
 
 The initial declaration of the `homeworkStack` should not be changed.
@@ -60,7 +60,7 @@ assert(
 ## --seed-contents--
 
 ```js
-var homeworkStack = ["BIO12","HIS80","MAT122","PSY44"];
+var homeworkStack = ["BIO12", "HIS80", "MAT122", "PSY44"];
 // Only change code below this line
 ```
 

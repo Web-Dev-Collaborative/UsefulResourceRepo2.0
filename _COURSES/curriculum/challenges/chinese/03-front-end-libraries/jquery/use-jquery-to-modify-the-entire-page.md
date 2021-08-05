@@ -4,8 +4,7 @@ title: 使用 jQuery 修改整个页面
 challengeType: 6
 forumTopicId: 18361
 required:
-  - 
-    link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: use-jquery-to-modify-the-entire-page
 ---
 
@@ -24,7 +23,7 @@ jQuery 也能选取 `body` 标签。
 应该给 `body` 标签添加 `animated` 和 `hinge` class。
 
 ```js
-assert($('body').hasClass('animated') && $('body').hasClass('hinge'));
+assert($("body").hasClass("animated") && $("body").hasClass("hinge"));
 ```
 
 # --seed--
@@ -33,7 +32,7 @@ assert($('body').hasClass('animated') && $('body').hasClass('hinge'));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();
@@ -44,7 +43,6 @@ assert($('body').hasClass('animated') && $('body').hasClass('hinge'));
     $("#left-well").children().css("color", "green");
     $(".target:nth-child(2)").addClass("animated bounce");
     $(".target:even").addClass("animated shake");
-
   });
 </script>
 
@@ -77,7 +75,7 @@ assert($('body').hasClass('animated') && $('body').hasClass('hinge'));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();

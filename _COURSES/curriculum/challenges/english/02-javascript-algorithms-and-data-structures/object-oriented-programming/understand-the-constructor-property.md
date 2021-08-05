@@ -14,7 +14,7 @@ There is a special `constructor` property located on the object instances `duck`
 let duck = new Bird();
 let beagle = new Dog();
 
-console.log(duck.constructor === Bird); 
+console.log(duck.constructor === Bird);
 console.log(beagle.constructor === Dog);
 ```
 
@@ -43,13 +43,13 @@ Write a `joinDogFraternity` function that takes a `candidate` parameter and, usi
 `joinDogFraternity` should be defined as a function.
 
 ```js
-assert(typeof joinDogFraternity === 'function');
+assert(typeof joinDogFraternity === "function");
 ```
 
 `joinDogFraternity` should return `true` if `candidate` is an instance of `Dog`.
 
 ```js
-assert(joinDogFraternity(new Dog('')) === true);
+assert(joinDogFraternity(new Dog("")) === true);
 ```
 
 `joinDogFraternity` should use the `constructor` property.
@@ -68,9 +68,7 @@ function Dog(name) {
 }
 
 // Only change code below this line
-function joinDogFraternity(candidate) {
-
-}
+function joinDogFraternity(candidate) {}
 ```
 
 # --solutions--

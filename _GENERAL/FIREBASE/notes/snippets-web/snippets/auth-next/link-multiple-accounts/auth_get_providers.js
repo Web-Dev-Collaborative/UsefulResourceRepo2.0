@@ -4,7 +4,12 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START auth_get_providers_modular]
-import { GoogleAuthProvider, FacebookAuthProvider, TwitterAuthProvider, GithubAuthProvider } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  TwitterAuthProvider,
+  GithubAuthProvider,
+} from "firebase/auth";
 
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();

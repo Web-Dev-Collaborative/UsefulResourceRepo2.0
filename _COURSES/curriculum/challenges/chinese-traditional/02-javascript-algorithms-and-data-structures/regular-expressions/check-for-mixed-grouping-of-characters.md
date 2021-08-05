@@ -34,28 +34,28 @@ testRegex.test(testStr);
 
 ```js
 myRegex.lastIndex = 0;
-assert(myRegex.test('Franklin D. Roosevelt'));
+assert(myRegex.test("Franklin D. Roosevelt"));
 ```
 
 正則 `myRegex` 測試 `Eleanor Roosevelt` 應該返回 `true`。
 
 ```js
 myRegex.lastIndex = 0;
-assert(myRegex.test('Eleanor Roosevelt'));
+assert(myRegex.test("Eleanor Roosevelt"));
 ```
 
 正則 `myRegex` 測試 `Franklin Rosevelt` 應該返回 `false`。
 
 ```js
 myRegex.lastIndex = 0;
-assert(!myRegex.test('Franklin Rosevelt'));
+assert(!myRegex.test("Franklin Rosevelt"));
 ```
 
 正則 `myRegex` 測試 `Frank Roosevelt` 應該返回 `false`。
 
 ```js
 myRegex.lastIndex = 0;
-assert(!myRegex.test('Frank Roosevelt'));
+assert(!myRegex.test("Frank Roosevelt"));
 ```
 
 你應該使用 `.test()` 方法來檢測正則表達式。

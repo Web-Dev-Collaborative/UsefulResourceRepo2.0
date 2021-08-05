@@ -4,7 +4,7 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START order_and_limit_modular]
-import { query, orderBy, limit } from "firebase/firestore";  
+import { query, orderBy, limit } from "firebase/firestore";
 
 const q = query(citiesRef, orderBy("name"), limit(3));
 // [END order_and_limit_modular]

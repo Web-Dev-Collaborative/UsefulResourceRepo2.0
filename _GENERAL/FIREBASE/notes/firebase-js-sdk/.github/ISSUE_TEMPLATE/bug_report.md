@@ -4,9 +4,7 @@ about: Found a bug in the JS SDK? File it here.
 title: ''
 labels: ''
 assignees: ''
-
 ---
-
 
 <!-- Step 1 [READ THIS] -->
 <!--
@@ -22,27 +20,29 @@ Are you in the right place?
   * For help troubleshooting your application that does not fall under one
     of the above categories, reach out to the personalized
     [Firebase support channel](https://firebase.google.com/support/).
-    
+
 -->
 
 <!-- Step 2 -->
 
 ### [REQUIRED] Describe your environment
 
-  * Operating System version: _____
-  * Browser version: _____
-  * Firebase SDK version: _____
-  * Firebase Product: _____ (auth, database, storage, etc)
+- Operating System version: **\_**
+- Browser version: **\_**
+- Firebase SDK version: **\_**
+- Firebase Product: **\_** (auth, database, storage, etc)
 
 <!-- Step 3 -->
 
 ### [REQUIRED] Describe the problem
 
 #### Steps to reproduce:
+
 <!--
   What happened? How can we make the problem occur?
   This could be a description, log/console output, etc.
 -->
+
 #### Relevant Code:
 
 ```javascript

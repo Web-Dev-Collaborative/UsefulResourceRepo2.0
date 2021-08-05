@@ -22,9 +22,9 @@ dashedName: use-the-triple-equals-to-assert-strict-equality
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=5').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=5").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -36,12 +36,12 @@ dashedName: use-the-triple-equals-to-assert-strict-equality
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=5').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=5").then(
     (data) => {
       assert.equal(
         data.assertions[0].method,
-        'notStrictEqual',
-        'with strictEqual the type must match'
+        "notStrictEqual",
+        "with strictEqual the type must match"
       );
     },
     (xhr) => {
@@ -54,9 +54,9 @@ dashedName: use-the-triple-equals-to-assert-strict-equality
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=5').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=5").then(
     (data) => {
-      assert.equal(data.assertions[1].method, 'strictEqual', '3*2 = 6...');
+      assert.equal(data.assertions[1].method, "strictEqual", "3*2 = 6...");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -68,11 +68,11 @@ dashedName: use-the-triple-equals-to-assert-strict-equality
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=5').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=5").then(
     (data) => {
       assert.equal(
         data.assertions[2].method,
-        'strictEqual',
+        "strictEqual",
         "6 * '2' is 12. Types match !"
       );
     },
@@ -86,12 +86,12 @@ dashedName: use-the-triple-equals-to-assert-strict-equality
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=5').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=5").then(
     (data) => {
       assert.equal(
         data.assertions[3].method,
-        'notStrictEqual',
-        'Even if they have the same elements, the Arrays are notStrictEqual'
+        "notStrictEqual",
+        "Even if they have the same elements, the Arrays are notStrictEqual"
       );
     },
     (xhr) => {

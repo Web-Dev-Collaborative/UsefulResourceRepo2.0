@@ -5,5 +5,5 @@ emulators.
 
 See:
 
-  * [Test your Cloud Firestore Security Rules](https://firebase.google.com/docs/firestore/security/test-rules-emulator)
-  * [Testing Security Rules with the Realtime Database Emulator](https://firebase.google.com/docs/database/security/test-rules-emulator)
+- [Test your Cloud Firestore Security Rules](https://firebase.google.com/docs/firestore/security/test-rules-emulator)
+- [Testing Security Rules with the Realtime Database Emulator](https://firebase.google.com/docs/database/security/test-rules-emulator)

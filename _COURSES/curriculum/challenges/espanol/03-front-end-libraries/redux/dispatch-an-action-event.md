@@ -14,7 +14,7 @@ Recall that action creators return an object with a type property that specifies
 
 ```js
 store.dispatch(actionCreator());
-store.dispatch({ type: 'LOGIN' });
+store.dispatch({ type: "LOGIN" });
 ```
 
 # --instructions--
@@ -26,7 +26,7 @@ The Redux store in the code editor has an initialized state that's an object con
 Calling the function `loginAction` should return an object with `type` property set to the string `LOGIN`.
 
 ```js
-assert(loginAction().type === 'LOGIN');
+assert(loginAction().type === "LOGIN");
 ```
 
 The store should be initialized with an object with property `login` set to `false`.
@@ -41,9 +41,9 @@ The `store.dispatch()` method should be used to dispatch an action of type `LOGI
 (getUserInput) =>
   assert(
     (function () {
-      let noWhiteSpace = getUserInput('index').replace(/\s/g, '');
+      let noWhiteSpace = getUserInput("index").replace(/\s/g, "");
       return (
-        noWhiteSpace.includes('store.dispatch(loginAction())') ||
+        noWhiteSpace.includes("store.dispatch(loginAction())") ||
         noWhiteSpace.includes("store.dispatch({type: 'LOGIN'})") === true
       );
     })()
@@ -55,14 +55,12 @@ The `store.dispatch()` method should be used to dispatch an action of type `LOGI
 ## --seed-contents--
 
 ```js
-const store = Redux.createStore(
-  (state = {login: false}) => state
-);
+const store = Redux.createStore((state = { login: false }) => state);
 
 const loginAction = () => {
   return {
-    type: 'LOGIN'
-  }
+    type: "LOGIN",
+  };
 };
 
 // Dispatch the action here:
@@ -71,14 +69,12 @@ const loginAction = () => {
 # --solutions--
 
 ```js
-const store = Redux.createStore(
-  (state = {login: false}) => state
-);
+const store = Redux.createStore((state = { login: false }) => state);
 
 const loginAction = () => {
   return {
-    type: 'LOGIN'
-  }
+    type: "LOGIN",
+  };
 };
 
 store.dispatch(loginAction());

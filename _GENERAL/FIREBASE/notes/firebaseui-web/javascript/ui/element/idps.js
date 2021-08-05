@@ -16,13 +16,12 @@
  * @fileoverview Binds handlers for IdP selection menu buttons UI element.
  */
 
-goog.provide('firebaseui.auth.ui.element.idps');
+goog.provide("firebaseui.auth.ui.element.idps");
 
-goog.require('firebaseui.auth.ui.element');
-goog.require('goog.asserts');
-goog.require('goog.dom.dataset');
-goog.requireType('goog.ui.Component');
-
+goog.require("firebaseui.auth.ui.element");
+goog.require("goog.asserts");
+goog.require("goog.dom.dataset");
+goog.requireType("goog.ui.Component");
 
 /**
  * Initializes IdP selection menu buttons.
@@ -30,16 +29,20 @@ goog.requireType('goog.ui.Component');
  *     clicked.
  * @this {goog.ui.Component}
  */
-firebaseui.auth.ui.element.idps.initIdpList = function(onClick) {
-  var buttons = this.getElementsByClass('firebaseui-id-idp-button');
-  var cb = function(providerId, e) {
+firebaseui.auth.ui.element.idps.initIdpList = function (onClick) {
+  var buttons = this.getElementsByClass("firebaseui-id-idp-button");
+  var cb = function (providerId, e) {
     onClick(providerId);
   };
   for (var i = 0; i < buttons.length; i++) {
     var button = buttons[i];
     var providerId = goog.asserts.assert(
-        goog.dom.dataset.get(button, 'providerId'));
+      goog.dom.dataset.get(button, "providerId")
+    );
     firebaseui.auth.ui.element.listenForActionEvent(
-        this, button, goog.partial(cb, providerId));
+      this,
+      button,
+      goog.partial(cb, providerId)
+    );
   }
 };

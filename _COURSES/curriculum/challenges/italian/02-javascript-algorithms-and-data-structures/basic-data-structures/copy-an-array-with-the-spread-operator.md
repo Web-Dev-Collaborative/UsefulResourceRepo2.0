@@ -8,7 +8,7 @@ dashedName: copy-an-array-with-the-spread-operator
 
 # --description--
 
-Mentre `slice()` ci permette di essere selettivi su quali elementi di un array copiare, tra diverse altre attività utili, il nuovo <dfn>operatore di propagazione</dfn> di ES6 ci permette di copiare facilmente *tutti* gli elementi di un array, in ordine, con una sintassi semplice e molto leggibile. La sintassi di propagazione è semplicemente questa: `...`
+Mentre `slice()` ci permette di essere selettivi su quali elementi di un array copiare, tra diverse altre attività utili, il nuovo <dfn>operatore di propagazione</dfn> di ES6 ci permette di copiare facilmente _tutti_ gli elementi di un array, in ordine, con una sintassi semplice e molto leggibile. La sintassi di propagazione è semplicemente questa: `...`
 
 In pratica, possiamo usare l'operatore di propagazione per copiare un array in questo modo:
 
@@ -30,7 +30,7 @@ Abbiamo definito una funzione, `copyMachine` che prende `arr` (un array) e `num`
 ```js
 assert.deepEqual(copyMachine([true, false, true], 2), [
   [true, false, true],
-  [true, false, true]
+  [true, false, true],
 ]);
 ```
 
@@ -42,7 +42,7 @@ assert.deepEqual(copyMachine([1, 2, 3], 5), [
   [1, 2, 3],
   [1, 2, 3],
   [1, 2, 3],
-  [1, 2, 3]
+  [1, 2, 3],
 ]);
 ```
 
@@ -55,10 +55,10 @@ assert.deepEqual(copyMachine([true, true, null], 1), [[true, true, null]]);
 `copyMachine(["it works"], 3)` dovrebbe restituire `[["it works"], ["it works"], ["it works"]]`
 
 ```js
-assert.deepEqual(copyMachine(['it works'], 3), [
-  ['it works'],
-  ['it works'],
-  ['it works']
+assert.deepEqual(copyMachine(["it works"], 3), [
+  ["it works"],
+  ["it works"],
+  ["it works"],
 ]);
 ```
 
@@ -90,13 +90,13 @@ console.log(copyMachine([true, false, true], 2));
 # --solutions--
 
 ```js
-function copyMachine(arr,num){
-    let newArr=[];
-    while(num >=1){
+function copyMachine(arr, num) {
+  let newArr = [];
+  while (num >= 1) {
     newArr.push([...arr]);
     num--;
-    }
-    return newArr;
+  }
+  return newArr;
 }
 console.log(copyMachine([true, false, true], 2));
 ```

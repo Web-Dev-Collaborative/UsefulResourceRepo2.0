@@ -2,7 +2,7 @@
 id: 587d78ad367417b2b2512afb
 title: Usare la proprietà flex-shrink per ridurre gli oggetti
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cd3PBfr'
+videoUrl: "https://scrimba.com/p/pVaDAv/cd3PBfr"
 forumTopicId: 301113
 dashedName: use-the-flex-shrink-property-to-shrink-items
 ---
@@ -24,13 +24,13 @@ Aggiungi la proprietà CSS `flex-shrink` sia a `#box-1` che a `#box-2`. Dai a `#
 L'elemento `#box-1` dovrebbe avere la proprietà `flex-shrink` impostata su un valore di `1`.
 
 ```js
-assert($('#box-1').css('flex-shrink') == '1');
+assert($("#box-1").css("flex-shrink") == "1");
 ```
 
 L'elemento `#box-2` dovrebbe avere la proprietà `flex-shrink` impostata su un valore di `2`.
 
 ```js
-assert($('#box-2').css('flex-shrink') == '2');
+assert($("#box-2").css("flex-shrink") == "2");
 ```
 
 # --seed--
@@ -47,14 +47,12 @@ assert($('#box-2').css('flex-shrink') == '2');
     background-color: dodgerblue;
     width: 100%;
     height: 200px;
-
   }
 
   #box-2 {
     background-color: orangered;
     width: 100%;
     height: 200px;
-
   }
 </style>
 

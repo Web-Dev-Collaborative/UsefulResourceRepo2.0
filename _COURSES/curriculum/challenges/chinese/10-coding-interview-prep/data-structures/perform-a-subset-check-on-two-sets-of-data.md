@@ -20,7 +20,7 @@ Your `Set` class should have a `isSubsetOf` method.
 assert(
   (function () {
     var test = new Set();
-    return typeof test.isSubsetOf === 'function';
+    return typeof test.isSubsetOf === "function";
   })()
 );
 ```
@@ -32,11 +32,11 @@ assert(
   (function () {
     var setA = new Set();
     var setB = new Set();
-    setA.add('a');
-    setB.add('b');
-    setB.add('c');
-    setB.add('a');
-    setB.add('d');
+    setA.add("a");
+    setB.add("b");
+    setB.add("c");
+    setB.add("a");
+    setB.add("d");
     var aIsSubsetOfB = setA.isSubsetOf(setB);
     return aIsSubsetOfB === true;
   })()
@@ -50,12 +50,12 @@ assert(
   (function () {
     var setA = new Set();
     var setB = new Set();
-    setA.add('a');
-    setA.add('b');
-    setB.add('a');
-    setB.add('b');
-    setB.add('c');
-    setB.add('d');
+    setA.add("a");
+    setA.add("b");
+    setB.add("a");
+    setB.add("b");
+    setB.add("c");
+    setB.add("d");
     var aIsSubsetOfB = setA.isSubsetOf(setB);
     return aIsSubsetOfB === true;
   })()
@@ -69,11 +69,11 @@ assert(
   (function () {
     var setA = new Set();
     var setB = new Set();
-    setA.add('a');
-    setA.add('b');
-    setA.add('c');
-    setB.add('a');
-    setB.add('b');
+    setA.add("a");
+    setA.add("b");
+    setA.add("c");
+    setB.add("a");
+    setB.add("b");
     var aIsSubsetOfB = setA.isSubsetOf(setB);
     return aIsSubsetOfB === false;
   })()
@@ -100,10 +100,10 @@ assert(
   (function () {
     var setA = new Set();
     var setB = new Set();
-    setA.add('a');
-    setA.add('b');
-    setB.add('c');
-    setB.add('d');
+    setA.add("a");
+    setA.add("b");
+    setB.add("c");
+    setB.add("d");
     var aIsSubsetOfB = setA.isSubsetOf(setB);
     return aIsSubsetOfB === false;
   })()
@@ -153,15 +153,15 @@ class Set {
   size() {
     return this.length;
   }
-  // This is our union method 
+  // This is our union method
   union(set) {
     const newSet = new Set();
-    this.values().forEach(value => {
+    this.values().forEach((value) => {
       newSet.add(value);
-    })
-    set.values().forEach(value => {
+    });
+    set.values().forEach((value) => {
       newSet.add(value);
-    })
+    });
 
     return newSet;
   }
@@ -179,11 +179,11 @@ class Set {
       smallSet = this;
     }
 
-    smallSet.values().forEach(value => {
+    smallSet.values().forEach((value) => {
       if (largeSet.dictionary[value]) {
         newSet.add(value);
       }
-    })
+    });
 
     return newSet;
   }
@@ -191,11 +191,11 @@ class Set {
   difference(set) {
     const newSet = new Set();
 
-    this.values().forEach(value => {
+    this.values().forEach((value) => {
       if (!set.dictionary[value]) {
         newSet.add(value);
       }
-    })
+    });
 
     return newSet;
   }
@@ -248,12 +248,12 @@ class Set {
 
   union(set) {
     const newSet = new Set();
-    this.values().forEach(value => {
+    this.values().forEach((value) => {
       newSet.add(value);
-    })
-    set.values().forEach(value => {
+    });
+    set.values().forEach((value) => {
       newSet.add(value);
-    })
+    });
 
     return newSet;
   }
@@ -271,32 +271,32 @@ class Set {
       smallSet = this;
     }
 
-    smallSet.values().forEach(value => {
+    smallSet.values().forEach((value) => {
       if (largeSet.dictionary[value]) {
         newSet.add(value);
       }
-    })
+    });
 
     return newSet;
-  }  
+  }
 
   difference(set) {
     const newSet = new Set();
 
-    this.values().forEach(value => {
+    this.values().forEach((value) => {
       if (!set.dictionary[value]) {
         newSet.add(value);
       }
-    })
+    });
 
     return newSet;
   }
 
   isSubsetOf(set) {
-    for(const value of this.values()){
-      if(!set.dictionary[value]) return false;
+    for (const value of this.values()) {
+      if (!set.dictionary[value]) return false;
     }
-    return true
+    return true;
   }
 }
 ```

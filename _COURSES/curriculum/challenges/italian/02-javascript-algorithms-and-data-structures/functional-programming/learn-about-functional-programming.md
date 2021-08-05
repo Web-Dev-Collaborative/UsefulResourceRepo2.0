@@ -12,11 +12,11 @@ La programmazione funzionale è uno stile di programmazione in cui le soluzioni 
 
 La programmazione funzionale riguarda:
 
-1) Funzioni isolate - non c'è dipendenza dallo stato del programma, che include variabili globali che sono soggette a cambiamenti
+1. Funzioni isolate - non c'è dipendenza dallo stato del programma, che include variabili globali che sono soggette a cambiamenti
 
-2) Funzioni pure - lo stesso input dà sempre lo stesso output
+2. Funzioni pure - lo stesso input dà sempre lo stesso output
 
-3) Funzioni con effetti collaterali limitati - eventuali cambiamenti, o mutazioni, allo stato del programma al di fuori della funzione sono attentamente controllati
+3. Funzioni con effetti collaterali limitati - eventuali cambiamenti, o mutazioni, allo stato del programma al di fuori della funzione sono attentamente controllati
 
 # --instructions--
 
@@ -35,7 +35,7 @@ assert(tea4TeamFCC.length === 40);
 La variabile `tea4TeamFCC` dovrebbe contenere tazze di tè verde.
 
 ```js
-assert(tea4TeamFCC[0] === 'greenTea');
+assert(tea4TeamFCC[0] === "greenTea");
 ```
 
 # --seed--
@@ -44,7 +44,7 @@ assert(tea4TeamFCC[0] === 'greenTea');
 
 ```js
 // Function that returns a string representing a cup of green tea
-const prepareTea = () => 'greenTea';
+const prepareTea = () => "greenTea";
 
 /*
 Given a function (representing the tea type) and number of cups needed, the
@@ -54,7 +54,7 @@ a specific type of tea).
 const getTea = (numOfCups) => {
   const teaCups = [];
 
-  for(let cups = 1; cups <= numOfCups; cups += 1) {
+  for (let cups = 1; cups <= numOfCups; cups += 1) {
     const teaCup = prepareTea();
     teaCups.push(teaCup);
   }
@@ -69,12 +69,12 @@ const tea4TeamFCC = null;
 # --solutions--
 
 ```js
-const prepareTea = () => 'greenTea';
+const prepareTea = () => "greenTea";
 
 const getTea = (numOfCups) => {
   const teaCups = [];
 
-  for(let cups = 1; cups <= numOfCups; cups += 1) {
+  for (let cups = 1; cups <= numOfCups; cups += 1) {
     const teaCup = prepareTea();
     teaCups.push(teaCup);
   }
@@ -82,5 +82,5 @@ const getTea = (numOfCups) => {
   return teaCups;
 };
 
-const tea4TeamFCC = getTea(40); 
+const tea4TeamFCC = getTea(40);
 ```

@@ -1,6 +1,6 @@
 ---
 id: 5e7b9f180b6c005b0e76f08e
-title: 'Relational Databases: Relationship Building'
+title: "Relational Databases: Relationship Building"
 challengeType: 11
 videoId: CSbqczsHVnc
 dashedName: relational-databases-relationship-building
@@ -27,4 +27,3 @@ It defines a new table by listing the rows and fields we want to include followe
 ## --video-solution--
 
 1
-

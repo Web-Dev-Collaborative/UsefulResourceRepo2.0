@@ -28,7 +28,7 @@ package.json 應該有一個有效的“keywords”鍵
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert(packJson.keywords, '"keywords" is missing');
@@ -43,7 +43,7 @@ package.json 應該有一個有效的“keywords”鍵
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.isArray(packJson.keywords, '"keywords" is not an array');
@@ -58,12 +58,12 @@ package.json 應該有一個有效的“keywords”鍵
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.include(
         packJson.keywords,
-        'freecodecamp',
+        "freecodecamp",
         '"keywords" does not include "freecodecamp"'
       );
     },

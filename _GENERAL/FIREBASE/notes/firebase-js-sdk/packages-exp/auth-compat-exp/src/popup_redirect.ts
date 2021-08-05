@@ -28,7 +28,8 @@ const CORDOVA_RESOLVER: exp.PopupRedirectResolverInternal = exp._getInstance(
 
 /** Platform-agnostic popup-redirect resolver */
 export class CompatPopupRedirectResolver
-  implements exp.PopupRedirectResolverInternal {
+  implements exp.PopupRedirectResolverInternal
+{
   private underlyingResolver: exp.PopupRedirectResolverInternal | null = null;
   _redirectPersistence = exp.browserSessionPersistence;
 

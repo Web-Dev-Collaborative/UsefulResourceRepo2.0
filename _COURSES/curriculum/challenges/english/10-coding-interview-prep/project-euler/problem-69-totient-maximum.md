@@ -1,6 +1,6 @@
 ---
 id: 5900f3b11000cf542c50fec4
-title: 'Problem 69: Totient maximum'
+title: "Problem 69: Totient maximum"
 challengeType: 5
 forumTopicId: 302181
 dashedName: problem-69-totient-maximum
@@ -35,7 +35,7 @@ Find the value of `n` ≤ `limit` for which $\displaystyle\frac{n}{{\phi(n)}}$ i
 `totientMaximum(10)` should return a number.
 
 ```js
-assert(typeof totientMaximum(10) === 'number');
+assert(typeof totientMaximum(10) === "number");
 ```
 
 `totientMaximum(10)` should return `6`.
@@ -68,7 +68,6 @@ assert.strictEqual(totientMaximum(1000000), 510510);
 
 ```js
 function totientMaximum(limit) {
-
   return true;
 }
 

@@ -19,7 +19,7 @@ Take a look at the object we've provided in the code editor. The `user` object c
 The `user` object should have `name`, `age`, and `data` keys.
 
 ```js
-assert('name' in user && 'age' in user && 'data' in user);
+assert("name" in user && "age" in user && "data" in user);
 ```
 
 The `addFriend` function should accept a `user` object and a `friend` string as arguments and add the friend to the array of `friends` in the `user` object.
@@ -28,7 +28,7 @@ The `addFriend` function should accept a `user` object and a `friend` string as 
 assert(
   (function () {
     let L1 = user.data.friends.length;
-    addFriend(user, 'Sean');
+    addFriend(user, "Sean");
     let L2 = user.data.friends.length;
     return L2 === L1 + 1;
   })()
@@ -41,10 +41,10 @@ assert(
 assert.deepEqual(
   (function () {
     delete user.data.friends;
-    user.data.friends = ['Sam', 'Kira', 'Tomo'];
-    return addFriend(user, 'Pete');
+    user.data.friends = ["Sam", "Kira", "Tomo"];
+    return addFriend(user, "Pete");
   })(),
-  ['Sam', 'Kira', 'Tomo', 'Pete']
+  ["Sam", "Kira", "Tomo", "Pete"]
 );
 ```
 
@@ -54,55 +54,46 @@ assert.deepEqual(
 
 ```js
 let user = {
-  name: 'Kenneth',
+  name: "Kenneth",
   age: 28,
   data: {
-    username: 'kennethCodesAllDay',
-    joinDate: 'March 26, 2016',
-    organization: 'freeCodeCamp',
-    friends: [
-      'Sam',
-      'Kira',
-      'Tomo'
-    ],
+    username: "kennethCodesAllDay",
+    joinDate: "March 26, 2016",
+    organization: "freeCodeCamp",
+    friends: ["Sam", "Kira", "Tomo"],
     location: {
-      city: 'San Francisco',
-      state: 'CA',
-      country: 'USA'
-    }
-  }
+      city: "San Francisco",
+      state: "CA",
+      country: "USA",
+    },
+  },
 };
 
 function addFriend(userObj, friend) {
   // Only change code below this line
-
   // Only change code above this line
 }
 
-console.log(addFriend(user, 'Pete'));
+console.log(addFriend(user, "Pete"));
 ```
 
 # --solutions--
 
 ```js
 let user = {
-  name: 'Kenneth',
+  name: "Kenneth",
   age: 28,
   data: {
-    username: 'kennethCodesAllDay',
-    joinDate: 'March 26, 2016',
-    organization: 'freeCodeCamp',
-    friends: [
-      'Sam',
-      'Kira',
-      'Tomo'
-    ],
+    username: "kennethCodesAllDay",
+    joinDate: "March 26, 2016",
+    organization: "freeCodeCamp",
+    friends: ["Sam", "Kira", "Tomo"],
     location: {
-      city: 'San Francisco',
-      state: 'CA',
-      country: 'USA'
-    }
-  }
+      city: "San Francisco",
+      state: "CA",
+      country: "USA",
+    },
+  },
 };
 
 function addFriend(userObj, friend) {

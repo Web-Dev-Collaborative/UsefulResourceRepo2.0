@@ -39,13 +39,13 @@ assert(/\*/.test(chewieRegex.source));
 Tu expresión regular debe coincidir con la cadena `A` en `chewieQuote`.
 
 ```js
-assert(result[0][0] === 'A');
+assert(result[0][0] === "A");
 ```
 
 Tu expresión regular debe coincidir con la cadena `Aaaaaaaaaaaaaaaa` en `chewieQuote`.
 
 ```js
-assert(result[0] === 'Aaaaaaaaaaaaaaaa');
+assert(result[0] === "Aaaaaaaaaaaaaaaa");
 ```
 
 Tu expresión regular `chewieRegex` debe coincidir con 16 caracteres en `chewieQuote`.
@@ -91,6 +91,6 @@ let result = chewieQuote.match(chewieRegex);
 # --solutions--
 
 ```js
-  let chewieRegex = /Aa*/;
-  let result = chewieQuote.match(chewieRegex);
+let chewieRegex = /Aa*/;
+let result = chewieQuote.match(chewieRegex);
 ```

@@ -1,8 +1,4 @@
-
-
-
 class BaseModel {
-
   constructor(model, user = null) {
     this.Model = model;
     this.user = user;
@@ -13,7 +9,7 @@ class BaseModel {
     let randomIndex;
 
     if (limit > count) {
-      randomIndex = 0
+      randomIndex = 0;
     } else {
       randomIndex = count - limit;
     }

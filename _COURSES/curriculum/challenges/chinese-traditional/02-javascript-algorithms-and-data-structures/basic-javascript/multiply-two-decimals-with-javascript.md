@@ -2,7 +2,7 @@
 id: bd7993c9c69feddfaeb7bdef
 title: 兩個小數相乘
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/ce2GeHq'
+videoUrl: "https://scrimba.com/c/ce2GeHq"
 forumTopicId: 301173
 dashedName: multiply-two-decimals-with-javascript
 ---
@@ -36,7 +36,9 @@ assert(/\*/.test(code));
 ## --after-user-code--
 
 ```js
-(function(y){return 'product = '+y;})(product);
+(function (y) {
+  return "product = " + y;
+})(product);
 ```
 
 ## --seed-contents--

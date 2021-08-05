@@ -16,89 +16,83 @@
  * @fileoverview Helper class for testing the name UI element.
  */
 
-goog.provide('firebaseui.auth.ui.element.NameTestHelper');
-goog.setTestOnly('firebaseui.auth.ui.element.NameTestHelper');
+goog.provide("firebaseui.auth.ui.element.NameTestHelper");
+goog.setTestOnly("firebaseui.auth.ui.element.NameTestHelper");
 
-goog.require('firebaseui.auth.soy2.strings');
-goog.require('firebaseui.auth.ui.element');
-goog.require('firebaseui.auth.ui.element.ElementTestHelper');
-goog.require('goog.dom.forms');
-goog.require('goog.events.KeyCodes');
+goog.require("firebaseui.auth.soy2.strings");
+goog.require("firebaseui.auth.ui.element");
+goog.require("firebaseui.auth.ui.element.ElementTestHelper");
+goog.require("goog.dom.forms");
+goog.require("goog.events.KeyCodes");
 
+goog.scope(function () {
+  var element = firebaseui.auth.ui.element;
 
-goog.scope(function() {
-var element = firebaseui.auth.ui.element;
+  /** @constructor */
+  element.NameTestHelper = function () {
+    element.NameTestHelper.base(this, "constructor", "Name");
+  };
+  goog.inherits(element.NameTestHelper, element.ElementTestHelper);
 
+  /** @override */
+  element.NameTestHelper.prototype.resetState = function () {
+    element.setValid(this.component.getNameElement(), true);
+    goog.dom.forms.setValue(this.component.getNameElement(), "");
+    element.hide(this.component.getNameErrorElement());
+  };
 
+  /** @private */
+  element.NameTestHelper.prototype.testGetNameElement_ = function () {
+    assertNotNull(this.component.getNameElement());
+  };
 
-/** @constructor */
-element.NameTestHelper = function() {
-  element.NameTestHelper.base(this, 'constructor', 'Name');
-};
-goog.inherits(element.NameTestHelper, element.ElementTestHelper);
+  /** @private */
+  element.NameTestHelper.prototype.testGetNameErrorElement_ = function () {
+    assertNotNull(this.component.getNameErrorElement());
+  };
 
-
-/** @override */
-element.NameTestHelper.prototype.resetState = function() {
-  element.setValid(this.component.getNameElement(), true);
-  goog.dom.forms.setValue(this.component.getNameElement(), '');
-  element.hide(this.component.getNameErrorElement());
-};
-
-
-/** @private */
-element.NameTestHelper.prototype.testGetNameElement_ = function() {
-  assertNotNull(this.component.getNameElement());
-};
-
-
-/** @private */
-element.NameTestHelper.prototype.testGetNameErrorElement_ = function() {
-  assertNotNull(this.component.getNameErrorElement());
-};
-
-
-/** @private */
-element.NameTestHelper.prototype.testCheckAndGetNameEmpty_ = function() {
-  assertNull(this.component.checkAndGetName());
-  this.checkInputInvalid(this.component.getNameElement());
-  this.checkErrorShown(
+  /** @private */
+  element.NameTestHelper.prototype.testCheckAndGetNameEmpty_ = function () {
+    assertNull(this.component.checkAndGetName());
+    this.checkInputInvalid(this.component.getNameElement());
+    this.checkErrorShown(
       this.component.getNameErrorElement(),
-      firebaseui.auth.soy2.strings.errorMissingName().toString());
-};
+      firebaseui.auth.soy2.strings.errorMissingName().toString()
+    );
+  };
 
+  /** @private */
+  element.NameTestHelper.prototype.testCheckAndGetName_ = function () {
+    goog.dom.forms.setValue(this.component.getNameElement(), "John Doe");
+    assertEquals("John Doe", this.component.checkAndGetName());
+    this.checkInputValid(this.component.getNameElement());
+    this.checkErrorHidden(this.component.getNameErrorElement());
+  };
 
-/** @private */
-element.NameTestHelper.prototype.testCheckAndGetName_ = function() {
-  goog.dom.forms.setValue(this.component.getNameElement(), 'John Doe');
-  assertEquals('John Doe', this.component.checkAndGetName());
-  this.checkInputValid(this.component.getNameElement());
-  this.checkErrorHidden(this.component.getNameErrorElement());
-};
+  /** @private */
+  element.NameTestHelper.prototype.testOnNameChange_ = function () {
+    var name = this.component.getNameElement();
+    var error = this.component.getNameErrorElement();
 
+    // Empty names, show error.
+    goog.dom.forms.setValue(name, "");
+    assertNull(this.component.checkAndGetName());
+    this.checkInputInvalid(name);
+    this.checkErrorShown(
+      error,
+      firebaseui.auth.soy2.strings.errorMissingName().toString()
+    );
 
-/** @private */
-element.NameTestHelper.prototype.testOnNameChange_ = function() {
-  var name = this.component.getNameElement();
-  var error = this.component.getNameErrorElement();
+    // Emulate that a 'J' is typed in to name input.
+    goog.dom.forms.setValue(name, "J");
+    this.fireInputEvent(name, goog.events.KeyCodes.J);
+    this.checkInputValid(name);
+    this.checkErrorHidden(error);
 
-  // Empty names, show error.
-  goog.dom.forms.setValue(name, '');
-  assertNull(this.component.checkAndGetName());
-  this.checkInputInvalid(name);
-  this.checkErrorShown(error,
-      firebaseui.auth.soy2.strings.errorMissingName().toString());
-
-  // Emulate that a 'J' is typed in to name input.
-  goog.dom.forms.setValue(name, 'J');
-  this.fireInputEvent(name, goog.events.KeyCodes.J);
-  this.checkInputValid(name);
-  this.checkErrorHidden(error);
-
-  // Emulate that the 'J' is deleted so the name input is empty again.
-  goog.dom.forms.setValue(name, '');
-  this.fireInputEvent(name, goog.events.KeyCodes.J);
-  this.checkInputValid(name);
-  this.checkErrorHidden(error);
-};
+    // Emulate that the 'J' is deleted so the name input is empty again.
+    goog.dom.forms.setValue(name, "");
+    this.fireInputEvent(name, goog.events.KeyCodes.J);
+    this.checkInputValid(name);
+    this.checkErrorHidden(error);
+  };
 });

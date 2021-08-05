@@ -29,7 +29,8 @@ import { IdTokenMfaResponse } from '../api/authentication/mfa';
 
 export class MultiFactorError
   extends FirebaseError
-  implements MultiFactorErrorPublic {
+  implements MultiFactorErrorPublic
+{
   readonly name = 'FirebaseError';
   readonly code: string;
   readonly appName: string;

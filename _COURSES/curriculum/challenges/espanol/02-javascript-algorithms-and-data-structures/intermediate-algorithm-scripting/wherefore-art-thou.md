@@ -20,13 +20,13 @@ Por ejemplo, si el primer argumento es `[{ first: "Romeo", last: "Montague" }, {
 assert.deepEqual(
   whatIsInAName(
     [
-      { first: 'Romeo', last: 'Montague' },
-      { first: 'Mercutio', last: null },
-      { first: 'Tybalt', last: 'Capulet' }
+      { first: "Romeo", last: "Montague" },
+      { first: "Mercutio", last: null },
+      { first: "Tybalt", last: "Capulet" },
     ],
-    { last: 'Capulet' }
+    { last: "Capulet" }
   ),
-  [{ first: 'Tybalt', last: 'Capulet' }]
+  [{ first: "Tybalt", last: "Capulet" }]
 );
 ```
 
@@ -35,7 +35,7 @@ assert.deepEqual(
 ```js
 assert.deepEqual(
   whatIsInAName([{ apple: 1 }, { apple: 1 }, { apple: 1, bat: 2 }], {
-    apple: 1
+    apple: 1,
   }),
   [{ apple: 1 }, { apple: 1 }, { apple: 1, bat: 2 }]
 );
@@ -51,7 +51,7 @@ assert.deepEqual(
   ),
   [
     { apple: 1, bat: 2 },
-    { apple: 1, bat: 2, cookie: 2 }
+    { apple: 1, bat: 2, cookie: 2 },
   ]
 );
 ```
@@ -77,13 +77,13 @@ assert.deepEqual(
       { apple: 1, bat: 2 },
       { apple: 1 },
       { apple: 1, bat: 2, cookie: 2 },
-      { bat: 2 }
+      { bat: 2 },
     ],
     { apple: 1, bat: 2 }
   ),
   [
     { apple: 1, bat: 2 },
-    { apple: 1, bat: 2, cookie: 2 }
+    { apple: 1, bat: 2, cookie: 2 },
   ]
 );
 ```
@@ -106,12 +106,18 @@ function whatIsInAName(collection, source) {
   var arr = [];
   // Only change code below this line
 
-
   // Only change code above this line
   return arr;
 }
 
-whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
+whatIsInAName(
+  [
+    { first: "Romeo", last: "Montague" },
+    { first: "Mercutio", last: null },
+    { first: "Tybalt", last: "Capulet" },
+  ],
+  { last: "Capulet" }
+);
 ```
 
 # --solutions--
@@ -120,8 +126,12 @@ whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: 
 function whatIsInAName(collection, source) {
   var arr = [];
   var keys = Object.keys(source);
-  collection.forEach(function(e) {
-    if(keys.every(function(key) {return e[key] === source[key];})) {
+  collection.forEach(function (e) {
+    if (
+      keys.every(function (key) {
+        return e[key] === source[key];
+      })
+    ) {
       arr.push(e);
     }
   });

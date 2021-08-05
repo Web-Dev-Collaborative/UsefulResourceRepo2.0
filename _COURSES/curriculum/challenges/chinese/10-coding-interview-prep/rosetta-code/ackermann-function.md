@@ -25,7 +25,7 @@ Write a function which returns the value of $A(m, n)$. Arbitrary precision is pr
 `ack` should be a function.
 
 ```js
-assert(typeof ack === 'function');
+assert(typeof ack === "function");
 ```
 
 `ack(0, 0)` should return 1.
@@ -57,9 +57,7 @@ assert(ack(3, 3) === 61);
 ## --seed-contents--
 
 ```js
-function ack(m, n) {
-
-}
+function ack(m, n) {}
 ```
 
 # --solutions--

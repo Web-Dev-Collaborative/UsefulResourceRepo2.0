@@ -296,59 +296,61 @@ export type UseQueryStateResult<
   R
 > = NoInfer<R>
 
-type UseQueryStateBaseResult<
-  D extends QueryDefinition<any, any, any, any>
-> = QuerySubState<D> & {
-  /**
-   * Query has not started yet.
-   */
-  isUninitialized: false
-  /**
-   * Query is currently loading for the first time. No data yet.
-   */
-  isLoading: false
-  /**
-   * Query is currently fetching, but might have data from an earlier request.
-   */
-  isFetching: false
-  /**
-   * Query has data from a successful load.
-   */
-  isSuccess: false
-  /**
-   * Query is currently in "error" state.
-   */
-  isError: false
-}
+type UseQueryStateBaseResult<D extends QueryDefinition<any, any, any, any>> =
+  QuerySubState<D> & {
+    /**
+     * Query has not started yet.
+     */
+    isUninitialized: false
+    /**
+     * Query is currently loading for the first time. No data yet.
+     */
+    isLoading: false
+    /**
+     * Query is currently fetching, but might have data from an earlier request.
+     */
+    isFetching: false
+    /**
+     * Query has data from a successful load.
+     */
+    isSuccess: false
+    /**
+     * Query is currently in "error" state.
+     */
+    isError: false
+  }
 
-type UseQueryStateDefaultResult<
-  D extends QueryDefinition<any, any, any, any>
-> = Id<
-  | Override<
-      Extract<
+type UseQueryStateDefaultResult<D extends QueryDefinition<any, any, any, any>> =
+  Id<
+    | Override<
+        Extract<
+          UseQueryStateBaseResult<D>,
+          { status: QueryStatus.uninitialized }
+        >,
+        { isUninitialized: true }
+      >
+    | Override<
         UseQueryStateBaseResult<D>,
-        { status: QueryStatus.uninitialized }
-      >,
-      { isUninitialized: true }
-    >
-  | Override<
-      UseQueryStateBaseResult<D>,
-      | { isLoading: true; isFetching: boolean; data: undefined }
-      | ({ isSuccess: true; isFetching: boolean; error: undefined } & Required<
-          Pick<UseQueryStateBaseResult<D>, 'data' | 'fulfilledTimeStamp'>
-        >)
-      | ({ isError: true } & Required<
-          Pick<UseQueryStateBaseResult<D>, 'error'>
-        >)
-    >
-> & {
-  /**
-   * @deprecated will be removed in the next version
-   * please use the `isLoading`, `isFetching`, `isSuccess`, `isError`
-   * and `isUninitialized` flags instead
-   */
-  status: QueryStatus
-}
+        | { isLoading: true; isFetching: boolean; data: undefined }
+        | ({
+            isSuccess: true
+            isFetching: boolean
+            error: undefined
+          } & Required<
+            Pick<UseQueryStateBaseResult<D>, 'data' | 'fulfilledTimeStamp'>
+          >)
+        | ({ isError: true } & Required<
+            Pick<UseQueryStateBaseResult<D>, 'error'>
+          >)
+      >
+  > & {
+    /**
+     * @deprecated will be removed in the next version
+     * please use the `isLoading`, `isFetching`, `isSuccess`, `isError`
+     * and `isUninitialized` flags instead
+     */
+    status: QueryStatus
+  }
 
 export type MutationStateSelector<
   R extends Record<string, any>,
@@ -676,11 +678,10 @@ export function buildHooks<Definitions extends EndpointDefinitions>({
         })
 
         const info = useMemo(() => ({ lastArg: arg }), [arg])
-        return useMemo(() => [trigger, queryStateResults, info], [
-          trigger,
-          queryStateResults,
-          info,
-        ])
+        return useMemo(
+          () => [trigger, queryStateResults, info],
+          [trigger, queryStateResults, info]
+        )
       },
       useQuery(arg, options) {
         const querySubscriptionResults = useQuerySubscription(arg, options)
@@ -741,10 +742,10 @@ export function buildHooks<Definitions extends EndpointDefinitions>({
 
       const currentState = useSelector(mutationSelector, shallowEqual)
 
-      return useMemo(() => [triggerMutation, currentState], [
-        triggerMutation,
-        currentState,
-      ])
+      return useMemo(
+        () => [triggerMutation, currentState],
+        [triggerMutation, currentState]
+      )
     }
   }
 }

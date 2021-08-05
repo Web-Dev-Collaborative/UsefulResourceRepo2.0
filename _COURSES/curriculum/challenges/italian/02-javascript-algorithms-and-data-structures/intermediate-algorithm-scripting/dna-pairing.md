@@ -23,36 +23,36 @@ Il carattere e la sua coppia sono accoppiati in un array, e tutti gli array sono
 `pairElement("ATCGA")` dovrebbe restituire `[["A","T"],["T","A"],["C","G"],["G","C"],["A","T"]]`.
 
 ```js
-assert.deepEqual(pairElement('ATCGA'), [
-  ['A', 'T'],
-  ['T', 'A'],
-  ['C', 'G'],
-  ['G', 'C'],
-  ['A', 'T']
+assert.deepEqual(pairElement("ATCGA"), [
+  ["A", "T"],
+  ["T", "A"],
+  ["C", "G"],
+  ["G", "C"],
+  ["A", "T"],
 ]);
 ```
 
 `pairElement("TTGAG")` dovrebbe restituire `[["T","A"],["T","A"],["G","C"],["A","T"],["G","C"]]`.
 
 ```js
-assert.deepEqual(pairElement('TTGAG'), [
-  ['T', 'A'],
-  ['T', 'A'],
-  ['G', 'C'],
-  ['A', 'T'],
-  ['G', 'C']
+assert.deepEqual(pairElement("TTGAG"), [
+  ["T", "A"],
+  ["T", "A"],
+  ["G", "C"],
+  ["A", "T"],
+  ["G", "C"],
 ]);
 ```
 
 `pairElement("CTCTA")` dovrebbe restituire `[["C","G"],["T","A"],["C","G"],["T","A"],["A","T"]]`.
 
 ```js
-assert.deepEqual(pairElement('CTCTA'), [
-  ['C', 'G'],
-  ['T', 'A'],
-  ['C', 'G'],
-  ['T', 'A'],
-  ['A', 'T']
+assert.deepEqual(pairElement("CTCTA"), [
+  ["C", "G"],
+  ["T", "A"],
+  ["C", "G"],
+  ["T", "A"],
+  ["A", "T"],
 ]);
 ```
 
@@ -72,12 +72,14 @@ pairElement("GCG");
 
 ```js
 var lookup = Object.create(null);
-lookup.A = 'T';
-lookup.T = 'A';
-lookup.C = 'G';
-lookup.G = 'C';
+lookup.A = "T";
+lookup.T = "A";
+lookup.C = "G";
+lookup.G = "C";
 
 function pairElement(str) {
- return str.split('').map(function(p) {return [p, lookup[p]];});
+  return str.split("").map(function (p) {
+    return [p, lookup[p]];
+  });
 }
 ```

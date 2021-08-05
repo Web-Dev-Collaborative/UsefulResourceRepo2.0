@@ -16,37 +16,37 @@ Under the `legend` element you just added, add an `input` with its `type` attrib
 The `input` element for your checkbox should have an opening tag, but not a closing tag.
 
 ```js
-assert($('fieldset > input') && !code.match(/<\/input\>/g));
+assert($("fieldset > input") && !code.match(/<\/input\>/g));
 ```
 
 You should only have added one input element for your checkbox. Remove any extras.
 
 ```js
-assert($('fieldset > input').length === 1);
+assert($("fieldset > input").length === 1);
 ```
 
 Your new `input` element should be below the `legend` element with the text `What's your cat's personality?`. You have them in the wrong order.
 
 ```js
-const existingLegendElem = $('fieldset > legend')[1];
+const existingLegendElem = $("fieldset > legend")[1];
 assert(
   existingLegendElem &&
-    existingLegendElem.nextElementSibling.nodeName === 'INPUT'
+    existingLegendElem.nextElementSibling.nodeName === "INPUT"
 );
 ```
 
 Your new `input` element does not have a `type` attribute. Check that there is a space after the opening tag's name.
 
 ```js
-assert($('fieldset > input')[0].hasAttribute('type'));
+assert($("fieldset > input")[0].hasAttribute("type"));
 ```
 
 Your new `input` element should have a `type` attribute with the value `checkbox`. You have either omitted the value or have a typo. Remember that attribute values should be surrounded with quotation marks.
 
 ```js
 assert(
-  $('fieldset > input')[0]
-    .getAttribute('type')
+  $("fieldset > input")[0]
+    .getAttribute("type")
     .match(/^checkbox$/i)
 );
 ```
@@ -62,7 +62,7 @@ The text ` Loving` should be located directly to the right of your checkbox. Mak
 ```js
 const checkboxInputElem = $('input[type="checkbox"]')[0];
 assert(
-  checkboxInputElem.nextSibling.nodeValue.replace(/\s+/g, ' ').match(/ Loving/i)
+  checkboxInputElem.nextSibling.nodeValue.replace(/\s+/g, " ").match(/ Loving/i)
 );
 ```
 
@@ -78,8 +78,15 @@ assert(
       <section>
         <h2>Cat Photos</h2>
         <!-- TODO: Add link to cat photos -->
-        <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        <p>
+          Click here to view more
+          <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+        </p>
+        <a href="https://freecatphotoapp.com"
+          ><img
+            src="https://bit.ly/fcc-relaxing-cat"
+            alt="A cute orange cat lying on its back."
+        /></a>
       </section>
       <section>
         <h2>Cat Lists</h2>
@@ -90,8 +97,11 @@ assert(
           <li>lasagna</li>
         </ul>
         <figure>
-          <img src="https://bit.ly/fcc-lasagna" alt="A slice of lasagna on a plate.">
-          <figcaption>Cats <em>love</em> lasagna.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-lasagna"
+            alt="A slice of lasagna on a plate."
+          />
+          <figcaption>Cats <em>love</em> lasagna.</figcaption>
         </figure>
         <h3>Top 3 things cats hate:</h3>
         <ol>
@@ -100,8 +110,11 @@ assert(
           <li>other cats</li>
         </ol>
         <figure>
-          <img src="https://bit.ly/fcc-cats" alt="Five cats looking around a field.">
-          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-cats"
+            alt="Five cats looking around a field."
+          />
+          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>
         </figure>
       </section>
       <section>
@@ -109,15 +122,36 @@ assert(
         <form action="https://freecatphotoapp.com/submit-cat-photo">
           <fieldset>
             <legend>Is your cat an indoor or outdoor cat?</legend>
-            <label><input id="indoor" type="radio" name="indoor-outdoor" value="indoor"> Indoor</label>
-            <label><input id="outdoor" type="radio" name="indoor-outdoor" value="outdoor"> Outdoor</label>
+            <label
+              ><input
+                id="indoor"
+                type="radio"
+                name="indoor-outdoor"
+                value="indoor"
+              />
+              Indoor</label
+            >
+            <label
+              ><input
+                id="outdoor"
+                type="radio"
+                name="indoor-outdoor"
+                value="outdoor"
+              />
+              Outdoor</label
+            >
           </fieldset>
           <fieldset>
---fcc-editable-region--
+            --fcc-editable-region--
             <legend>What's your cat's personality?</legend>
---fcc-editable-region--
+            --fcc-editable-region--
           </fieldset>
-          <input type="text" name="catphotourl" placeholder="cat photo URL" required>
+          <input
+            type="text"
+            name="catphotourl"
+            placeholder="cat photo URL"
+            required
+          />
           <button type="submit">Submit</button>
         </form>
       </section>
@@ -125,4 +159,3 @@ assert(
   </body>
 </html>
 ```
-

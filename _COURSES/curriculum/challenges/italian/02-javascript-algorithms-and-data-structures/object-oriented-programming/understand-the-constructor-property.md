@@ -14,7 +14,7 @@ C'è una proprietà speciale `constructor` situata nelle istanze oggetto `duck` 
 let duck = new Bird();
 let beagle = new Dog();
 
-console.log(duck.constructor === Bird); 
+console.log(duck.constructor === Bird);
 console.log(beagle.constructor === Dog);
 ```
 
@@ -43,13 +43,13 @@ Scrivi una funzione `joinDogFraternity` che richieda un parametro `candidate` e,
 `joinDogFraternity` dovrebbe essere definita come una funzione.
 
 ```js
-assert(typeof joinDogFraternity === 'function');
+assert(typeof joinDogFraternity === "function");
 ```
 
 `joinDogFraternity` dovrebbe restituire `true` se `candidate` è un'istanza di `Dog`.
 
 ```js
-assert(joinDogFraternity(new Dog('')) === true);
+assert(joinDogFraternity(new Dog("")) === true);
 ```
 
 `joinDogFraternity` dovrebbe utilizzare la proprietà `constructor`.
@@ -68,9 +68,7 @@ function Dog(name) {
 }
 
 // Only change code below this line
-function joinDogFraternity(candidate) {
-
-}
+function joinDogFraternity(candidate) {}
 ```
 
 # --solutions--

@@ -4,7 +4,11 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START auth_facebook_signin_redirect_result_modular]
-import { getAuth, getRedirectResult, FacebookAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  getRedirectResult,
+  FacebookAuthProvider,
+} from "firebase/auth";
 
 const auth = getAuth();
 getRedirectResult(auth)
@@ -14,7 +18,8 @@ getRedirectResult(auth)
     const token = credential.accessToken;
 
     const user = result.user;
-  }).catch((error) => {
+  })
+  .catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;

@@ -13,7 +13,7 @@ dashedName: connect-redux-to-react
 为了使用此方法，需要传入函数参数并在调用时传入组件。 这种语法有些不寻常，如下所示：
 
 ```js
-connect(mapStateToProps, mapDispatchToProps)(MyComponent)
+connect(mapStateToProps, mapDispatchToProps)(MyComponent);
 ```
 
 **注意：**如果要省略 `connect` 方法中的某个参数，则应当用 `null` 替换这个参数。
@@ -30,7 +30,7 @@ connect(mapStateToProps, mapDispatchToProps)(MyComponent)
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(AppWrapper));
-    return mockedComponent.find('Presentational').length === 1;
+    return mockedComponent.find("Presentational").length === 1;
   })()
 );
 ```
@@ -41,8 +41,8 @@ assert(
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(AppWrapper));
-    const props = mockedComponent.find('Presentational').props();
-    return props.messages === '__INITIAL__STATE__';
+    const props = mockedComponent.find("Presentational").props();
+    return props.messages === "__INITIAL__STATE__";
   })()
 );
 ```
@@ -53,8 +53,8 @@ assert(
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(AppWrapper));
-    const props = mockedComponent.find('Presentational').props();
-    return typeof props.submitNewMessage === 'function';
+    const props = mockedComponent.find("Presentational").props();
+    return typeof props.submitNewMessage === "function";
   })()
 );
 ```
@@ -65,18 +65,18 @@ assert(
 
 ```jsx
 const store = Redux.createStore(
-  (state = '__INITIAL__STATE__', action) => state
+  (state = "__INITIAL__STATE__", action) => state
 );
 class AppWrapper extends React.Component {
   render() {
     return (
-      <ReactRedux.Provider store = {store}>
-        <ConnectedComponent/>
+      <ReactRedux.Provider store={store}>
+        <ConnectedComponent />
       </ReactRedux.Provider>
     );
   }
-};
-ReactDOM.render(<AppWrapper />, document.getElementById('root'))
+}
+ReactDOM.render(<AppWrapper />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -84,23 +84,23 @@ ReactDOM.render(<AppWrapper />, document.getElementById('root'))
 ```jsx
 const addMessage = (message) => {
   return {
-    type: 'ADD',
-    message: message
-  }
+    type: "ADD",
+    message: message,
+  };
 };
 
 const mapStateToProps = (state) => {
   return {
-    messages: state
-  }
+    messages: state,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     submitNewMessage: (message) => {
       dispatch(addMessage(message));
-    }
-  }
+    },
+  };
 };
 
 class Presentational extends React.Component {
@@ -108,9 +108,9 @@ class Presentational extends React.Component {
     super(props);
   }
   render() {
-    return <h3>This is a Presentational Component</h3>
+    return <h3>This is a Presentational Component</h3>;
   }
-};
+}
 
 const connect = ReactRedux.connect;
 // Change code below this line
@@ -121,23 +121,23 @@ const connect = ReactRedux.connect;
 ```jsx
 const addMessage = (message) => {
   return {
-    type: 'ADD',
-    message: message
-  }
+    type: "ADD",
+    message: message,
+  };
 };
 
 const mapStateToProps = (state) => {
   return {
-    messages: state
-  }
+    messages: state,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     submitNewMessage: (message) => {
       dispatch(addMessage(message));
-    }
-  }
+    },
+  };
 };
 
 class Presentational extends React.Component {
@@ -145,12 +145,15 @@ class Presentational extends React.Component {
     super(props);
   }
   render() {
-    return <h3>This is a Presentational Component</h3>
+    return <h3>This is a Presentational Component</h3>;
   }
-};
+}
 
 const connect = ReactRedux.connect;
 // Change code below this line
 
-const ConnectedComponent = connect(mapStateToProps, mapDispatchToProps)(Presentational);
+const ConnectedComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Presentational);
 ```

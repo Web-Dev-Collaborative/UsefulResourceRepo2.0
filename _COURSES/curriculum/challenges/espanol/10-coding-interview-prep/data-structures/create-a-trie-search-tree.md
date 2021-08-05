@@ -22,12 +22,12 @@ The Trie should have an add method.
 assert(
   (function testTrie() {
     var test = false;
-    if (typeof Trie !== 'undefined') {
+    if (typeof Trie !== "undefined") {
       test = new Trie();
     } else {
       return false;
     }
-    return typeof test.add == 'function';
+    return typeof test.add == "function";
   })()
 );
 ```
@@ -38,12 +38,12 @@ The Trie should have a print method.
 assert(
   (function testTrie() {
     var test = false;
-    if (typeof Trie !== 'undefined') {
+    if (typeof Trie !== "undefined") {
       test = new Trie();
     } else {
       return false;
     }
-    return typeof test.print == 'function';
+    return typeof test.print == "function";
   })()
 );
 ```
@@ -54,12 +54,12 @@ The Trie should have an isWord method.
 assert(
   (function testTrie() {
     var test = false;
-    if (typeof Trie !== 'undefined') {
+    if (typeof Trie !== "undefined") {
       test = new Trie();
     } else {
       return false;
     }
-    return typeof test.isWord == 'function';
+    return typeof test.isWord == "function";
   })()
 );
 ```
@@ -70,23 +70,23 @@ The print method should return all items added to the trie as strings in an arra
 assert(
   (function testTrie() {
     var test = false;
-    if (typeof Trie !== 'undefined') {
+    if (typeof Trie !== "undefined") {
       test = new Trie();
     } else {
       return false;
     }
-    test.add('jump');
-    test.add('jumps');
-    test.add('jumped');
-    test.add('house');
-    test.add('mouse');
+    test.add("jump");
+    test.add("jumps");
+    test.add("jumped");
+    test.add("house");
+    test.add("mouse");
     var added = test.print();
     return (
-      added.indexOf('jump') != -1 &&
-      added.indexOf('jumps') != -1 &&
-      added.indexOf('jumped') != -1 &&
-      added.indexOf('house') != -1 &&
-      added.indexOf('mouse') != -1 &&
+      added.indexOf("jump") != -1 &&
+      added.indexOf("jumps") != -1 &&
+      added.indexOf("jumped") != -1 &&
+      added.indexOf("house") != -1 &&
+      added.indexOf("mouse") != -1 &&
       added.length == 5
     );
   })()
@@ -99,23 +99,23 @@ The isWord method should return true only for words added to the trie and false 
 assert(
   (function testTrie() {
     var test = false;
-    if (typeof Trie !== 'undefined') {
+    if (typeof Trie !== "undefined") {
       test = new Trie();
     } else {
       return false;
     }
-    test.add('hop');
-    test.add('hops');
-    test.add('hopped');
-    test.add('hoppy');
-    test.add('hope');
+    test.add("hop");
+    test.add("hops");
+    test.add("hopped");
+    test.add("hoppy");
+    test.add("hope");
     return (
-      test.isWord('hop') &&
-      !test.isWord('ho') &&
-      test.isWord('hopped') &&
-      !test.isWord('hopp') &&
-      test.isWord('hoppy') &&
-      !test.isWord('hoping')
+      test.isWord("hop") &&
+      !test.isWord("ho") &&
+      test.isWord("hopped") &&
+      !test.isWord("hopp") &&
+      test.isWord("hoppy") &&
+      !test.isWord("hoping")
     );
   })()
 );
@@ -126,20 +126,19 @@ assert(
 ## --seed-contents--
 
 ```js
-var displayTree = tree => console.log(JSON.stringify(tree, null, 2));
-var Node = function() {
+var displayTree = (tree) => console.log(JSON.stringify(tree, null, 2));
+var Node = function () {
   this.keys = new Map();
   this.end = false;
-  this.setEnd = function() {
+  this.setEnd = function () {
     this.end = true;
   };
-  this.isEnd = function() {
+  this.isEnd = function () {
     return this.end;
   };
 };
-var Trie = function() {
+var Trie = function () {
   // Only change code below this line
-
   // Only change code above this line
 };
 ```

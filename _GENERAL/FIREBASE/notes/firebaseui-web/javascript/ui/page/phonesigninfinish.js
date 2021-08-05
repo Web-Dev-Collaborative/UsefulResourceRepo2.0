@@ -18,24 +18,24 @@
  * @fileoverview UI component for the phone confirmation code entry page.
  */
 
-goog.provide('firebaseui.auth.ui.page.PhoneSignInFinish');
+goog.provide("firebaseui.auth.ui.page.PhoneSignInFinish");
 
-goog.require('firebaseui.auth.soy2.page');
-goog.require('firebaseui.auth.ui.element');
-goog.require('firebaseui.auth.ui.element.form');
-goog.require('firebaseui.auth.ui.element.phoneConfirmationCode');
-goog.require('firebaseui.auth.ui.element.resend');
-goog.require('firebaseui.auth.ui.page.Base');
-goog.require('goog.Timer');
-goog.require('goog.events');
-goog.requireType('goog.dom.DomHelper');
-
+goog.require("firebaseui.auth.soy2.page");
+goog.require("firebaseui.auth.ui.element");
+goog.require("firebaseui.auth.ui.element.form");
+goog.require("firebaseui.auth.ui.element.phoneConfirmationCode");
+goog.require("firebaseui.auth.ui.element.resend");
+goog.require("firebaseui.auth.ui.page.Base");
+goog.require("goog.Timer");
+goog.require("goog.events");
+goog.requireType("goog.dom.DomHelper");
 
 /**
  * UI component for the user to enter a phone confirmation code.
  */
-firebaseui.auth.ui.page.PhoneSignInFinish =
-    class extends firebaseui.auth.ui.page.Base {
+firebaseui.auth.ui.page.PhoneSignInFinish = class extends (
+  firebaseui.auth.ui.page.Base
+) {
   /**
    * @param {function()} onChangePhoneNumberClick Callback to invoke when change
    *     phone number link is clicked.
@@ -54,15 +54,26 @@ firebaseui.auth.ui.page.PhoneSignInFinish =
    * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
    */
   constructor(
-      onChangePhoneNumberClick, onSubmitClick, onCancelClick, onResendClick,
-      phoneNumber, resendDelay, opt_tosCallback, opt_privacyPolicyCallback,
-      opt_domHelper) {
+    onChangePhoneNumberClick,
+    onSubmitClick,
+    onCancelClick,
+    onResendClick,
+    phoneNumber,
+    resendDelay,
+    opt_tosCallback,
+    opt_privacyPolicyCallback,
+    opt_domHelper
+  ) {
     super(
-        firebaseui.auth.soy2.page.phoneSignInFinish, {phoneNumber: phoneNumber},
-        opt_domHelper, 'phoneSignInFinish', {
-          tosCallback: opt_tosCallback,
-          privacyPolicyCallback: opt_privacyPolicyCallback
-        });
+      firebaseui.auth.soy2.page.phoneSignInFinish,
+      { phoneNumber: phoneNumber },
+      opt_domHelper,
+      "phoneSignInFinish",
+      {
+        tosCallback: opt_tosCallback,
+        privacyPolicyCallback: opt_privacyPolicyCallback,
+      }
+    );
     /** @private {string} the phone number to confirm. */
     this.phoneNumber_ = phoneNumber;
     /** @private {number} The resend delay. */
@@ -87,25 +98,38 @@ firebaseui.auth.ui.page.PhoneSignInFinish =
     // Init countdown.
     this.updateResendCountdown(this.resendDelay_);
     goog.events.listen(
-        this.resendTimer_, goog.Timer.TICK, this.handleTickEvent_, false, this);
+      this.resendTimer_,
+      goog.Timer.TICK,
+      this.handleTickEvent_,
+      false,
+      this
+    );
     this.resendTimer_.start();
     // Handle change phone number click.
     firebaseui.auth.ui.element.listenForActionEvent(
-        this, this.getChangePhoneNumberElement(), function(e) {
-          self.onChangePhoneNumberClick_();
-        });
+      this,
+      this.getChangePhoneNumberElement(),
+      function (e) {
+        self.onChangePhoneNumberClick_();
+      }
+    );
     // Handle resend click.
     firebaseui.auth.ui.element.listenForActionEvent(
-        this, this.getResendLink(), function(e) {
-          self.onResendClick_();
-        });
+      this,
+      this.getResendLink(),
+      function (e) {
+        self.onResendClick_();
+      }
+    );
     // Submit if user taps enter while confirmation code element has focus.
     this.initPhoneConfirmationCodeElement(
-        /** @type {function()} */ (this.onSubmitClick_));
+      /** @type {function()} */ (this.onSubmitClick_)
+    );
     // Handle a click on the submit button or cancel button.
     this.initFormElement(
-        /** @type {function()} */ (this.onSubmitClick_),
-        /** @type {function()} */ (this.onCancelClick_));
+      /** @type {function()} */ (this.onSubmitClick_),
+      /** @type {function()} */ (this.onCancelClick_)
+    );
     this.setupFocus_();
     super.enterDocument();
   }
@@ -119,7 +143,10 @@ firebaseui.auth.ui.page.PhoneSignInFinish =
     // Dispose of countdown.
     this.resendTimer_.stop();
     goog.events.unlisten(
-        this.resendTimer_, goog.Timer.TICK, this.handleTickEvent_);
+      this.resendTimer_,
+      goog.Timer.TICK,
+      this.handleTickEvent_
+    );
     this.resendTimer_ = null;
     super.disposeInternal();
   }
@@ -135,7 +162,10 @@ firebaseui.auth.ui.page.PhoneSignInFinish =
     } else {
       this.resendTimer_.stop();
       goog.events.unlisten(
-          this.resendTimer_, goog.Timer.TICK, this.handleTickEvent_);
+        this.resendTimer_,
+        goog.Timer.TICK,
+        this.handleTickEvent_
+      );
       this.hideResendCountdown();
       this.showResendLink();
     }
@@ -153,39 +183,38 @@ firebaseui.auth.ui.page.PhoneSignInFinish =
    * @return {?Element} The change phone number link.
    */
   getChangePhoneNumberElement() {
-    return this.getElementByClass('firebaseui-id-change-phone-number-link');
+    return this.getElementByClass("firebaseui-id-change-phone-number-link");
   }
 };
 
-
 goog.mixin(
-    firebaseui.auth.ui.page.PhoneSignInFinish.prototype,
-    /** @lends {firebaseui.auth.ui.page.PhoneSignInFinish.prototype} */
-    {
-      // For confirmation code input.
-      getPhoneConfirmationCodeElement:
-          firebaseui.auth.ui.element.phoneConfirmationCode
-              .getPhoneConfirmationCodeElement,
-      getPhoneConfirmationCodeErrorElement:
-          firebaseui.auth.ui.element.phoneConfirmationCode
-              .getPhoneConfirmationCodeErrorElement,
-      initPhoneConfirmationCodeElement:
-          firebaseui.auth.ui.element.phoneConfirmationCode
-              .initPhoneConfirmationCodeElement,
-      checkAndGetPhoneConfirmationCode:
-          firebaseui.auth.ui.element.phoneConfirmationCode
-              .checkAndGetPhoneConfirmationCode,
-      getResendCountdown: firebaseui.auth.ui.element.resend.getResendCountdown,
-      updateResendCountdown:
-          firebaseui.auth.ui.element.resend.updateResendCountdown,
-      hideResendCountdown:
-          firebaseui.auth.ui.element.resend.hideResendCountdown,
-      getResendLink: firebaseui.auth.ui.element.resend.getResendLink,
-      showResendLink: firebaseui.auth.ui.element.resend.showResendLink,
+  firebaseui.auth.ui.page.PhoneSignInFinish.prototype,
+  /** @lends {firebaseui.auth.ui.page.PhoneSignInFinish.prototype} */
+  {
+    // For confirmation code input.
+    getPhoneConfirmationCodeElement:
+      firebaseui.auth.ui.element.phoneConfirmationCode
+        .getPhoneConfirmationCodeElement,
+    getPhoneConfirmationCodeErrorElement:
+      firebaseui.auth.ui.element.phoneConfirmationCode
+        .getPhoneConfirmationCodeErrorElement,
+    initPhoneConfirmationCodeElement:
+      firebaseui.auth.ui.element.phoneConfirmationCode
+        .initPhoneConfirmationCodeElement,
+    checkAndGetPhoneConfirmationCode:
+      firebaseui.auth.ui.element.phoneConfirmationCode
+        .checkAndGetPhoneConfirmationCode,
+    getResendCountdown: firebaseui.auth.ui.element.resend.getResendCountdown,
+    updateResendCountdown:
+      firebaseui.auth.ui.element.resend.updateResendCountdown,
+    hideResendCountdown: firebaseui.auth.ui.element.resend.hideResendCountdown,
+    getResendLink: firebaseui.auth.ui.element.resend.getResendLink,
+    showResendLink: firebaseui.auth.ui.element.resend.showResendLink,
 
-      // For form.
-      getSubmitElement: firebaseui.auth.ui.element.form.getSubmitElement,
-      getSecondaryLinkElement:
-          firebaseui.auth.ui.element.form.getSecondaryLinkElement,
-      initFormElement: firebaseui.auth.ui.element.form.initFormElement
-    });
+    // For form.
+    getSubmitElement: firebaseui.auth.ui.element.form.getSubmitElement,
+    getSecondaryLinkElement:
+      firebaseui.auth.ui.element.form.getSecondaryLinkElement,
+    initFormElement: firebaseui.auth.ui.element.form.initFormElement,
+  }
+);

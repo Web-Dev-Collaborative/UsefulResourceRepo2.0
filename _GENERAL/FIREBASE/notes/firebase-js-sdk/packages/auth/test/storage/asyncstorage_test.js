@@ -27,36 +27,33 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.storage.AsyncStorageTest');
 
-
 var stubs = new goog.testing.PropertyReplacer();
 var storage;
 
-
 function setUp() {
   storage = new fireauth.storage.AsyncStorage(
-      new fireauth.storage.testHelper.FakeAsyncStorage());
+    new fireauth.storage.testHelper.FakeAsyncStorage()
+  );
 }
-
 
 function tearDown() {
   storage = null;
   stubs.reset();
 }
 
-
 function testBasicStorageOperations() {
   assertEquals(fireauth.storage.Storage.Type.ASYNC_STORAGE, storage.type);
   return assertBasicStorageOperations(storage);
 }
 
-
 function testDifferentTypes() {
   return assertDifferentTypes(storage);
 }
 
-
 function testNotAvailable() {
   stubs.replace(firebase.INTERNAL, 'reactNative', {});
-  var error = assertThrows(function() { new fireauth.storage.AsyncStorage(); });
+  var error = assertThrows(function () {
+    new fireauth.storage.AsyncStorage();
+  });
   assertEquals('auth/internal-error', error.code);
 }

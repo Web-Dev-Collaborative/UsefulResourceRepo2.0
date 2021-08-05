@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244b2
 title: Asignación compuesta con división aumentada
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c2QvKT2'
+videoUrl: "https://scrimba.com/c/c2QvKT2"
 forumTopicId: 16659
 dashedName: compound-assignment-with-augmented-division
 ---
@@ -66,7 +66,9 @@ assert(
 ## --after-user-code--
 
 ```js
-(function(a,b,c){ return "a = " + a + ", b = " + b + ", c = " + c; })(a,b,c);
+(function (a, b, c) {
+  return "a = " + a + ", b = " + b + ", c = " + c;
+})(a, b, c);
 ```
 
 ## --seed-contents--

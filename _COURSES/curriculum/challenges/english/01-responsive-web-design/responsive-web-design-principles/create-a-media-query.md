@@ -2,7 +2,7 @@
 id: 587d78b0367417b2b2512b08
 title: Create a Media Query
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pzrPu4/cqwKrtm'
+videoUrl: "https://scrimba.com/p/pzrPu4/cqwKrtm"
 forumTopicId: 301139
 dashedName: create-a-media-query
 ---
@@ -16,13 +16,17 @@ Media Queries consist of a media type, and if that media type matches the type o
 Here's an example of a media query that returns the content when the device's width is less than or equal to `100px`:
 
 ```css
-@media (max-width: 100px) { /* CSS Rules */ }
+@media (max-width: 100px) {
+  /* CSS Rules */
+}
 ```
 
 and the following media query returns the content when the device's height is more than or equal to `350px`:
 
 ```css
-@media (min-height: 350px) { /* CSS Rules */ }
+@media (min-height: 350px) {
+  /* CSS Rules */
+}
 ```
 
 Remember, the CSS inside the media query is applied only if the media type matches that of the device being used.
@@ -36,22 +40,26 @@ Add a media query, so that the `p` tag has a `font-size` of `10px` when the devi
 You should declare a `@media` query for devices with a `height` less than or equal to `800px`.
 
 ```js
-const media = new __helpers.CSSHelp(document).getCSSRules('media');
-assert(media.some(x => x.media?.mediaText?.includes('(max-height: 800px)')));
+const media = new __helpers.CSSHelp(document).getCSSRules("media");
+assert(media.some((x) => x.media?.mediaText?.includes("(max-height: 800px)")));
 ```
 
 Your `p` element should have a `font-size` of `10px` when the device `height` is less than or equal to `800px`.
 
 ```js
-const rules = new __helpers.CSSHelp(document).getRuleListsWithinMedia('(max-height: 800px)');
-assert(rules?.find(x => x.selectorText === 'p')?.style?.fontSize === "10px");
+const rules = new __helpers.CSSHelp(document).getRuleListsWithinMedia(
+  "(max-height: 800px)"
+);
+assert(rules?.find((x) => x.selectorText === "p")?.style?.fontSize === "10px");
 ```
 
 Your `p` element should have an initial `font-size` of `20px` when the device `height` is more than `800px`.
 
 ```js
-const ifPFirst = new __helpers.CSSHelp(document).getCSSRules()?.find(x => x?.selectorText === 'p' || x?.media);
-assert(ifPFirst?.style?.fontSize === '20px');
+const ifPFirst = new __helpers.CSSHelp(document)
+  .getCSSRules()
+  ?.find((x) => x?.selectorText === "p" || x?.media);
+assert(ifPFirst?.style?.fontSize === "20px");
 ```
 
 # --seed--
@@ -69,7 +77,14 @@ assert(ifPFirst?.style?.fontSize === '20px');
   /* Only change code above this line */
 </style>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis tempus massa. Aenean erat nisl, gravida vel vestibulum cursus, interdum sit amet lectus. Sed sit amet quam nibh. Suspendisse quis tincidunt nulla. In hac habitasse platea dictumst. Ut sit amet pretium nisl. Vivamus vel mi sem. Aenean sit amet consectetur sem. Suspendisse pretium, purus et gravida consequat, nunc ligula ultricies diam, at aliquet velit libero a dui.</p>
+<p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis tempus
+  massa. Aenean erat nisl, gravida vel vestibulum cursus, interdum sit amet
+  lectus. Sed sit amet quam nibh. Suspendisse quis tincidunt nulla. In hac
+  habitasse platea dictumst. Ut sit amet pretium nisl. Vivamus vel mi sem.
+  Aenean sit amet consectetur sem. Suspendisse pretium, purus et gravida
+  consequat, nunc ligula ultricies diam, at aliquet velit libero a dui.
+</p>
 ```
 
 # --solutions--
@@ -87,5 +102,12 @@ assert(ifPFirst?.style?.fontSize === '20px');
   }
 </style>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis tempus massa. Aenean erat nisl, gravida vel vestibulum cursus, interdum sit amet lectus. Sed sit amet quam nibh. Suspendisse quis tincidunt nulla. In hac habitasse platea dictumst. Ut sit amet pretium nisl. Vivamus vel mi sem. Aenean sit amet consectetur sem. Suspendisse pretium, purus et gravida consequat, nunc ligula ultricies diam, at aliquet velit libero a dui.</p>
+<p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis tempus
+  massa. Aenean erat nisl, gravida vel vestibulum cursus, interdum sit amet
+  lectus. Sed sit amet quam nibh. Suspendisse quis tincidunt nulla. In hac
+  habitasse platea dictumst. Ut sit amet pretium nisl. Vivamus vel mi sem.
+  Aenean sit amet consectetur sem. Suspendisse pretium, purus et gravida
+  consequat, nunc ligula ultricies diam, at aliquet velit libero a dui.
+</p>
 ```

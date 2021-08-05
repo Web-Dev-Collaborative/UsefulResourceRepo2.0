@@ -8,10 +8,7 @@
     >
       New Activity
     </a>
-    <div
-      v-if="isFormDisplayed"
-      class="create-form"
-    >
+    <div v-if="isFormDisplayed" class="create-form">
       <h2>Create Activity</h2>
       <form>
         <div class="field">
@@ -22,7 +19,7 @@
               class="input"
               type="text"
               placeholder="Read a Book"
-            >
+            />
           </div>
         </div>
         <div class="field">
@@ -40,9 +37,13 @@
           <div class="control">
             <select v-model="newActivity.category" class="select">
               <option disabled value="">Please Select One</option>
-              <option v-for="category in categories"
-                      :key="category.id"
-                      :value="category.id">{{ category.text }}</option>
+              <option
+                v-for="category in categories"
+                :key="category.id"
+                :value="category.id"
+              >
+                {{ category.text }}
+              </option>
             </select>
           </div>
         </div>
@@ -57,10 +58,7 @@
             </button>
           </div>
           <div class="control">
-            <button
-              class="button is-text"
-              @click.prevent="toggleFormDisplay"
-            >
+            <button class="button is-text" @click.prevent="toggleFormDisplay">
               Cancel
             </button>
           </div>
@@ -71,51 +69,50 @@
 </template>
 
 <script>
-  import store from '@/store'
-  export default {
-    props: {
-      categories: {
-        type: Object,
-        required: true
-      }
+import store from "@/store";
+export default {
+  props: {
+    categories: {
+      type: Object,
+      required: true,
     },
-    data () {
-      return {
-        isFormDisplayed: false,
-        newActivity: {
-          title: '',
-          notes: '',
-          category: ''
-        }
-      }
-    },
-    computed: {
-      isFormValid () {
-        return  this.newActivity.title
-             && this.newActivity.notes
-             && this.newActivity.category
-      }
-    },
-    methods: {
-      toggleFormDisplay () {
-        this.isFormDisplayed = !this.isFormDisplayed
+  },
+  data() {
+    return {
+      isFormDisplayed: false,
+      newActivity: {
+        title: "",
+        notes: "",
+        category: "",
       },
-      resetActivity () {
-        this.newActivity.title = ''
-        this.newActivity.notes = ''
-        this.newActivity.category = ''
-      },
-      createActivity () {
-        store.createActivity({...this.newActivity})
-          .then(activity => {
-            this.resetActivity()
-            this.isFormDisplayed = false
-          })
-      }
-    }
-  }
+    };
+  },
+  computed: {
+    isFormValid() {
+      return (
+        this.newActivity.title &&
+        this.newActivity.notes &&
+        this.newActivity.category
+      );
+    },
+  },
+  methods: {
+    toggleFormDisplay() {
+      this.isFormDisplayed = !this.isFormDisplayed;
+    },
+    resetActivity() {
+      this.newActivity.title = "";
+      this.newActivity.notes = "";
+      this.newActivity.category = "";
+    },
+    createActivity() {
+      store.createActivity({ ...this.newActivity }).then((activity) => {
+        this.resetActivity();
+        this.isFormDisplayed = false;
+      });
+    },
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

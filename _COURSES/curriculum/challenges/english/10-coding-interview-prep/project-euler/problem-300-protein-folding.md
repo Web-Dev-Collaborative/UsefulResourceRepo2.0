@@ -1,6 +1,6 @@
 ---
 id: 5900f49a1000cf542c50ffac
-title: 'Problem 300: Protein folding'
+title: "Problem 300: Protein folding"
 challengeType: 5
 forumTopicId: 301954
 dashedName: problem-300-protein-folding
@@ -36,7 +36,6 @@ assert.strictEqual(euler300(), 8.0540771484375);
 
 ```js
 function euler300() {
-
   return true;
 }
 

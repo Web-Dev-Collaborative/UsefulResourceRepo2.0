@@ -1,6 +1,6 @@
 ---
 id: 5900f4da1000cf542c50ffec
-title: 'Problem 365: A huge binomial coefficient'
+title: "Problem 365: A huge binomial coefficient"
 challengeType: 5
 forumTopicId: 302026
 dashedName: problem-365-a-huge-binomial-coefficient
@@ -28,7 +28,6 @@ assert.strictEqual(euler365(), 162619462356610300);
 
 ```js
 function euler365() {
-
   return true;
 }
 

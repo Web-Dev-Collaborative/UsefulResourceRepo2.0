@@ -17,13 +17,13 @@ Bootstrap 有一個叫作 `well` 的 class，作用是使界面更具層次感�
 應在每一個 class 屬性爲 `col-xs-6` 的 `div` 元素中添加一個帶有 `well` class 的 `div` 元素。
 
 ```js
-assert($('div.col-xs-6').not(':has(>div.well)').length < 1);
+assert($("div.col-xs-6").not(":has(>div.well)").length < 1);
 ```
 
 兩個 class 爲 `col-xs-6` 的 `div` 元素都應該嵌入一個 class 爲 `row` 的 `div` 元素。
 
 ```js
-assert($('div.row > div.col-xs-6').length > 1);
+assert($("div.row > div.col-xs-6").length > 1);
 ```
 
 確保所有的 `div` 元素都有一個閉合標籤。
@@ -44,12 +44,8 @@ assert(
 <div class="container-fluid">
   <h3 class="text-primary text-center">jQuery Playground</h3>
   <div class="row">
-    <div class="col-xs-6">
-
-    </div>
-    <div class="col-xs-6">
-
-    </div>
+    <div class="col-xs-6"></div>
+    <div class="col-xs-6"></div>
   </div>
 </div>
 ```

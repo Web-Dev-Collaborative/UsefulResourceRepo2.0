@@ -18,6 +18,7 @@ Docs][reference-docs].
 [reference-docs]: https://firebase.google.com/docs/reference/js/
 
 ## Contributing
+
 See [Contributing to the Firebase SDK](../../CONTRIBUTING.md) for general
 information about contributing to the firebase-js-sdk repo and
 [Contributing to the Cloud Firestore Component](./CONTRIBUTING.md) for

@@ -19,10 +19,8 @@ El código siguiente asigna a `x` el valor de 2, que se evalúa como `true`. Cas
 ```js
 let x = 1;
 let y = 2;
-if (x = y) {
-
+if ((x = y)) {
 } else {
-
 }
 ```
 
@@ -37,7 +35,7 @@ Corrige la condición para que el programa ejecute la rama correcta y se asigne 
 Tu código debe corregir la condición para que compruebe igualdad, en lugar de utilizar asignación.
 
 ```js
-assert(result == 'Not equal!');
+assert(result == "Not equal!");
 ```
 
 La condición debe utilizar `==` o `===` para comprobar igualdad.
@@ -55,7 +53,7 @@ let x = 7;
 let y = 9;
 let result = "to come";
 
-if(x = y) {
+if ((x = y)) {
   result = "Equal!";
 } else {
   result = "Not equal!";
@@ -71,10 +69,10 @@ let x = 7;
 let y = 9;
 let result = "to come";
 
-if(x === y) {
- result = "Equal!";
+if (x === y) {
+  result = "Equal!";
 } else {
- result = "Not equal!";
+  result = "Not equal!";
 }
 
 console.log(result);

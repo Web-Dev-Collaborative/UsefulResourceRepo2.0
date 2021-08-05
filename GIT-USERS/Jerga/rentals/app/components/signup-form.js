@@ -1,12 +1,12 @@
-import Component from '@ember/component';
+import Component from "@ember/component";
 const { service } = Ember.inject;
 
 export default Component.extend({
-  session: service('session'),
+  session: service("session"),
   actions: {
-    submit(){
-      let user = this.get('user')
+    submit() {
+      let user = this.get("user");
       this.attrs.triggerSave(user);
-    }
- }
+    },
+  },
 });

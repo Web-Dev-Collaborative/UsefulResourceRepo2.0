@@ -1,11 +1,9 @@
-
-const BaseModel = require('./BaseModel');
+const BaseModel = require("./BaseModel");
 
 class Portfolio extends BaseModel {
-
   constructor(model, user) {
     super(model, user);
-    this.writeRights = ['instructor', 'admin'];
+    this.writeRights = ["instructor", "admin"];
   }
 
   getAll() {
@@ -13,7 +11,7 @@ class Portfolio extends BaseModel {
   }
 
   getAllByUser() {
-    return this.Model.find({user: this.user._id}).sort({startDate: 'desc'});
+    return this.Model.find({ user: this.user._id }).sort({ startDate: "desc" });
   }
 
   getById(id) {
@@ -22,7 +20,7 @@ class Portfolio extends BaseModel {
 
   create(data) {
     if (!this.user || !this.writeRights.includes(this.user.role)) {
-      throw new Error('Not Authorised!!!');
+      throw new Error("Not Authorised!!!");
     }
 
     data.user = this.user;
@@ -30,11 +28,14 @@ class Portfolio extends BaseModel {
   }
 
   findAndUpdate(id, data) {
-    return this.Model.findOneAndUpdate({_id: id}, data, {new: true, runValidators: true});
+    return this.Model.findOneAndUpdate({ _id: id }, data, {
+      new: true,
+      runValidators: true,
+    });
   }
 
   findAndDelete(id) {
-    return this.Model.findOneAndRemove({_id: id})
+    return this.Model.findOneAndRemove({ _id: id });
   }
 }
 

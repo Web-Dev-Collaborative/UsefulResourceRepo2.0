@@ -2,7 +2,7 @@
 id: bd7123c9c443eddfaeb5bdef
 title: 声明变量
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cNanrHq'
+videoUrl: "https://scrimba.com/c/cNanrHq"
 forumTopicId: 17556
 dashedName: declare-javascript-variables
 ---
@@ -45,7 +45,11 @@ assert(/var\s+myName\s*;/.test(code));
 ## --after-user-code--
 
 ```js
-if(typeof myName !== "undefined"){(function(v){return v;})(myName);}
+if (typeof myName !== "undefined") {
+  (function (v) {
+    return v;
+  })(myName);
+}
 ```
 
 ## --seed-contents--

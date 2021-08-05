@@ -16,7 +16,7 @@
  * @fileoverview Utilities for FirebaseUI widget configuration.
  */
 
-goog.provide('firebaseui.auth.Config');
+goog.provide("firebaseui.auth.Config");
 
 /**
  * Structure for defining and manipulating configuration fields.
@@ -31,7 +31,6 @@ firebaseui.auth.Config = class {
     this.instance_ = {};
   }
 
-
   /**
    * @param {string} name The name of the configuration.
    * @return {boolean} Whether the configuration is defined.
@@ -41,7 +40,6 @@ firebaseui.auth.Config = class {
     return name.toLowerCase() in this.instance_;
   }
 
-
   /**
    * @param {string} name The name of the configuration.
    * @return {*|undefined} The configuration value.
@@ -50,7 +48,6 @@ firebaseui.auth.Config = class {
   get_(name) {
     return this.instance_[name.toLowerCase()];
   }
-
 
   /**
    * Sets the information for a configuration.
@@ -63,7 +60,6 @@ firebaseui.auth.Config = class {
     this.instance_[name.toLowerCase()] = value;
   }
 
-
   /**
    * Defines a configuration with the given name and value.
    *
@@ -72,11 +68,10 @@ firebaseui.auth.Config = class {
    */
   define(name, value) {
     if (this.has_(name)) {
-      throw new Error('Configuration ' + name + ' has already been defined.');
+      throw new Error("Configuration " + name + " has already been defined.");
     }
     this.set_(name, value);
   }
-
 
   /**
    * Updates the configuration and its descendants with the given value.
@@ -86,11 +81,10 @@ firebaseui.auth.Config = class {
    */
   update(name, value) {
     if (!this.has_(name)) {
-      throw new Error('Configuration ' + name + ' is not defined.');
+      throw new Error("Configuration " + name + " is not defined.");
     }
     this.set_(name, value);
   }
-
 
   /**
    * Gets the configuration value for the given name. If an unrecognized name is
@@ -101,11 +95,10 @@ firebaseui.auth.Config = class {
    */
   get(name) {
     if (!this.has_(name)) {
-      throw new Error('Configuration ' + name + ' is not defined.');
+      throw new Error("Configuration " + name + " is not defined.");
     }
     return this.get_(name);
   }
-
 
   /**
    * Gets the configuration value for the given name. If an unrecognized name is
@@ -117,7 +110,7 @@ firebaseui.auth.Config = class {
   getRequired(name) {
     var value = this.get(name);
     if (!value) {
-      throw new Error('Configuration ' + name + ' is required.');
+      throw new Error("Configuration " + name + " is required.");
     }
     return value;
   }

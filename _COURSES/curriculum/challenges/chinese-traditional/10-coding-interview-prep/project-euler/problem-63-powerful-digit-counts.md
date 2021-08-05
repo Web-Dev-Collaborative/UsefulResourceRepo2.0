@@ -1,6 +1,6 @@
 ---
 id: 5900f3ab1000cf542c50febe
-title: 'Problem 63: Powerful digit counts'
+title: "Problem 63: Powerful digit counts"
 challengeType: 5
 forumTopicId: 302175
 dashedName: problem-63-powerful-digit-counts
@@ -17,7 +17,7 @@ How many `n`-digit positive integers exist which are also an `n`th power?
 `powerfulDigitCounts()` should return a number.
 
 ```js
-assert(typeof powerfulDigitCounts() === 'number');
+assert(typeof powerfulDigitCounts() === "number");
 ```
 
 `powerfulDigitCounts()` should return 49.
@@ -32,7 +32,6 @@ assert.strictEqual(powerfulDigitCounts(), 49);
 
 ```js
 function powerfulDigitCounts() {
-
   return true;
 }
 

@@ -13,10 +13,10 @@ Como ya has visto, el comportamiento se comparte mediante una herencia. Sin emba
 Para objetos no relacionados es mejor utilizar <dfn>mixins</dfn>. Un "mixin" permite a otros objetos utilizar una colección de funciones.
 
 ```js
-let flyMixin = function(obj) {
-  obj.fly = function() {
+let flyMixin = function (obj) {
+  obj.fly = function () {
     console.log("Flying, wooosh!");
-  }
+  };
 };
 ```
 
@@ -25,12 +25,12 @@ El `flyMixin` toma a cualquier objeto y le da el método `fly`.
 ```js
 let bird = {
   name: "Donald",
-  numLegs: 2
+  numLegs: 2,
 };
 
 let plane = {
   model: "777",
-  numPassengers: 524
+  numPassengers: 524,
 };
 
 flyMixin(bird);
@@ -57,19 +57,19 @@ Crea un mixin llamado `glideMixin` que defina un método llamado `glide`. Luego 
 El código debe declarar una variable `glideMixin` que sea una función.
 
 ```js
-assert(typeof glideMixin === 'function');
+assert(typeof glideMixin === "function");
 ```
 
 El código debe usar el `glideMixin` en el objeto `bird` para darle el método `glide` (planear).
 
 ```js
-assert(typeof bird.glide === 'function');
+assert(typeof bird.glide === "function");
 ```
 
 El código debe usar el `glideMixin` en el objeto `boat` para darle el método `glide` (planear).
 
 ```js
-assert(typeof boat.glide === 'function');
+assert(typeof boat.glide === "function");
 ```
 
 # --seed--
@@ -79,12 +79,12 @@ assert(typeof boat.glide === 'function');
 ```js
 let bird = {
   name: "Donald",
-  numLegs: 2
+  numLegs: 2,
 };
 
 let boat = {
   name: "Warrior",
-  type: "race-boat"
+  type: "race-boat",
 };
 
 // Only change code below this line
@@ -95,15 +95,15 @@ let boat = {
 ```js
 let bird = {
   name: "Donald",
-  numLegs: 2
+  numLegs: 2,
 };
 
 let boat = {
   name: "Warrior",
-  type: "race-boat"
+  type: "race-boat",
 };
-function glideMixin (obj) {
-  obj.glide = () => 'Gliding!';
+function glideMixin(obj) {
+  obj.glide = () => "Gliding!";
 }
 
 glideMixin(bird);

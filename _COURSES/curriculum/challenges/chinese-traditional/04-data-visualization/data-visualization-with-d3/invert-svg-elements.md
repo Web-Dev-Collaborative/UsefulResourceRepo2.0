@@ -29,55 +29,55 @@ SVG 區域的高度爲 100。 如果在集合中一個數據點的值爲 0，那
 第一個 `rect` 的 `y` 值應該爲 `64`。
 
 ```js
-assert($('rect').eq(0).attr('y') == h - dataset[0] * 3);
+assert($("rect").eq(0).attr("y") == h - dataset[0] * 3);
 ```
 
 第二個 `rect` 的 `y` 值應該爲 `7`。
 
 ```js
-assert($('rect').eq(1).attr('y') == h - dataset[1] * 3);
+assert($("rect").eq(1).attr("y") == h - dataset[1] * 3);
 ```
 
 第三個 `rect` 的 `y` 值應該爲 `34`。
 
 ```js
-assert($('rect').eq(2).attr('y') == h - dataset[2] * 3);
+assert($("rect").eq(2).attr("y") == h - dataset[2] * 3);
 ```
 
 第四個 `rect` 的 `y` 值應該爲 `49`。
 
 ```js
-assert($('rect').eq(3).attr('y') == h - dataset[3] * 3);
+assert($("rect").eq(3).attr("y") == h - dataset[3] * 3);
 ```
 
 第五個 `rect` 的 `y` 值應該爲 `25`。
 
 ```js
-assert($('rect').eq(4).attr('y') == h - dataset[4] * 3);
+assert($("rect").eq(4).attr("y") == h - dataset[4] * 3);
 ```
 
 第六個 `rect` 的 `y` 值應該爲 `46`。
 
 ```js
-assert($('rect').eq(5).attr('y') == h - dataset[5] * 3);
+assert($("rect").eq(5).attr("y") == h - dataset[5] * 3);
 ```
 
 第七個 `rect` 的 `y` 值應該爲 `13`。
 
 ```js
-assert($('rect').eq(6).attr('y') == h - dataset[6] * 3);
+assert($("rect").eq(6).attr("y") == h - dataset[6] * 3);
 ```
 
 第八個 `rect` 的 `y` 值應該爲 `58`。
 
 ```js
-assert($('rect').eq(7).attr('y') == h - dataset[7] * 3);
+assert($("rect").eq(7).attr("y") == h - dataset[7] * 3);
 ```
 
 第九個 `rect` 的 `y` 值應該爲 `73`。
 
 ```js
-assert($('rect').eq(8).attr('y') == h - dataset[8] * 3);
+assert($("rect").eq(8).attr("y") == h - dataset[8] * 3);
 ```
 
 # --seed--
@@ -92,25 +92,24 @@ assert($('rect').eq(8).attr('y') == h - dataset[8] * 3);
     const w = 500;
     const h = 100;
 
-    const svg = d3.select("body")
-                  .append("svg")
-                  .attr("width", w)
-                  .attr("height", h);
+    const svg = d3
+      .select("body")
+      .append("svg")
+      .attr("width", w)
+      .attr("height", h);
 
-    svg.selectAll("rect")
-       .data(dataset)
-       .enter()
-       .append("rect")
-       .attr("x", (d, i) => i * 30)
-       .attr("y", (d, i) => {
-         // Add your code below this line
-
-
-
-         // Add your code above this line
-       })
-       .attr("width", 25)
-       .attr("height", (d, i) => 3 * d);
+    svg
+      .selectAll("rect")
+      .data(dataset)
+      .enter()
+      .append("rect")
+      .attr("x", (d, i) => i * 30)
+      .attr("y", (d, i) => {
+        // Add your code below this line
+        // Add your code above this line
+      })
+      .attr("width", 25)
+      .attr("height", (d, i) => 3 * d);
   </script>
 </body>
 ```
@@ -125,19 +124,21 @@ assert($('rect').eq(8).attr('y') == h - dataset[8] * 3);
     const w = 500;
     const h = 100;
 
-    const svg = d3.select("body")
-                  .append("svg")
-                  .attr("width", w)
-                  .attr("height", h);
+    const svg = d3
+      .select("body")
+      .append("svg")
+      .attr("width", w)
+      .attr("height", h);
 
-    svg.selectAll("rect")
-       .data(dataset)
-       .enter()
-       .append("rect")
-       .attr("x", (d, i) => i * 30)
-       .attr("y", (d, i) => h - 3 * d)
-       .attr("width", 25)
-       .attr("height", (d, i) => 3 * d);
+    svg
+      .selectAll("rect")
+      .data(dataset)
+      .enter()
+      .append("rect")
+      .attr("x", (d, i) => i * 30)
+      .attr("y", (d, i) => h - 3 * d)
+      .attr("width", 25)
+      .attr("height", (d, i) => 3 * d);
   </script>
 </body>
 ```

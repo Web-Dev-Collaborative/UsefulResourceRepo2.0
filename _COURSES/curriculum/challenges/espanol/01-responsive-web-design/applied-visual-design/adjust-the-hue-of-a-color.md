@@ -2,7 +2,7 @@
 id: 587d78a4367417b2b2512ad4
 title: Ajusta el matiz de un color
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cPp38TZ'
+videoUrl: "https://scrimba.com/c/cPp38TZ"
 forumTopicId: 301036
 dashedName: adjust-the-hue-of-a-color
 ---
@@ -48,19 +48,19 @@ assert(code.match(/\.blue\s*?{\s*?background-color\s*:\s*?hsl/gi));
 El elemento `div` con clase `green` debe tener un `background-color` verde.
 
 ```js
-assert($('.green').css('background-color') == 'rgb(0, 255, 0)');
+assert($(".green").css("background-color") == "rgb(0, 255, 0)");
 ```
 
 El elemento `div` con clase `cyan` debe tener un `background-color` cian.
 
 ```js
-assert($('.cyan').css('background-color') == 'rgb(0, 255, 255)');
+assert($(".cyan").css("background-color") == "rgb(0, 255, 255)");
 ```
 
 El elemento `div` con clase `blue` debe tener un `background-color` azul.
 
 ```js
-assert($('.blue').css('background-color') == 'rgb(0, 0, 255)');
+assert($(".blue").css("background-color") == "rgb(0, 0, 255)");
 ```
 
 # --seed--
@@ -70,7 +70,7 @@ assert($('.blue').css('background-color') == 'rgb(0, 0, 255)');
 ```html
 <style>
   body {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
   }
 
   .green {
@@ -102,7 +102,7 @@ assert($('.blue').css('background-color') == 'rgb(0, 0, 255)');
 ```html
 <style>
   body {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
   }
 
   .green {
@@ -110,7 +110,7 @@ assert($('.blue').css('background-color') == 'rgb(0, 0, 255)');
   }
 
   .cyan {
-    background-color:   hsl(180, 100%, 50%);
+    background-color: hsl(180, 100%, 50%);
   }
 
   .blue {

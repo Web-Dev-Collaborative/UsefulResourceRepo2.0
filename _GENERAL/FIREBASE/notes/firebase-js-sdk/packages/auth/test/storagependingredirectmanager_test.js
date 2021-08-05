@@ -31,12 +31,10 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.storage.PendingRedirectManagerTest');
 
-
 var appId = 'appId1';
 var stubs = new goog.testing.PropertyReplacer();
 var mockLocalStorage;
 var mockSessionStorage;
-
 
 function setUp() {
   // Create new mock storages for persistent and temporary storage before each
@@ -46,9 +44,11 @@ function setUp() {
   window.localStorage.clear();
   window.sessionStorage.clear();
   fireauth.common.testHelper.installMockStorages(
-      stubs, mockLocalStorage, mockSessionStorage);
+    stubs,
+    mockLocalStorage,
+    mockSessionStorage
+  );
 }
-
 
 /**
  * @return {!fireauth.authStorage.Manager} The default local storage
@@ -58,33 +58,36 @@ function getDefaultStorageManagerInstance() {
   return new fireauth.authStorage.Manager('firebase', ':', false, true);
 }
 
-
 function testGetSetPendingStatus() {
   var storageManager = getDefaultStorageManagerInstance();
-  var pendingRedirectManager =
-      new fireauth.storage.PendingRedirectManager(appId, storageManager);
+  var pendingRedirectManager = new fireauth.storage.PendingRedirectManager(
+    appId,
+    storageManager
+  );
   var storageKey = 'firebase:pendingRedirect:appId1';
   return goog.Promise.resolve()
-      .then(function() {
-        return pendingRedirectManager.setPendingStatus();
-      })
-      .then(function() {
-        return pendingRedirectManager.getPendingStatus();
-      })
-      .then(function(status) {
-        assertTrue(status);
-        return mockSessionStorage.get(storageKey);
-      }).then(function(value) {
-        assertEquals('pending', value);
-        return pendingRedirectManager.removePendingStatus();
-      })
-      .then(function() {
-        return mockSessionStorage.get(storageKey);
-      }).then(function(value) {
-        assertUndefined(value);
-        return pendingRedirectManager.getPendingStatus();
-      })
-      .then(function(status) {
-        assertFalse(status);
-      });
+    .then(function () {
+      return pendingRedirectManager.setPendingStatus();
+    })
+    .then(function () {
+      return pendingRedirectManager.getPendingStatus();
+    })
+    .then(function (status) {
+      assertTrue(status);
+      return mockSessionStorage.get(storageKey);
+    })
+    .then(function (value) {
+      assertEquals('pending', value);
+      return pendingRedirectManager.removePendingStatus();
+    })
+    .then(function () {
+      return mockSessionStorage.get(storageKey);
+    })
+    .then(function (value) {
+      assertUndefined(value);
+      return pendingRedirectManager.getPendingStatus();
+    })
+    .then(function (status) {
+      assertFalse(status);
+    });
 }

@@ -16,15 +16,14 @@
  * @fileoverview Manages progress dialog boxes.
  */
 
-goog.provide('firebaseui.auth.ui.element.progressDialog');
-goog.provide('firebaseui.auth.ui.element.progressDialog.Progress');
+goog.provide("firebaseui.auth.ui.element.progressDialog");
+goog.provide("firebaseui.auth.ui.element.progressDialog.Progress");
 
-goog.require('firebaseui.auth.soy2.element');
-goog.require('firebaseui.auth.ui.element');
-goog.require('firebaseui.auth.ui.element.dialog');
-goog.require('goog.soy');
-goog.require('goog.ui.Component');
-
+goog.require("firebaseui.auth.soy2.element");
+goog.require("firebaseui.auth.ui.element");
+goog.require("firebaseui.auth.ui.element.dialog");
+goog.require("goog.soy");
+goog.require("goog.ui.Component");
 
 /**
  * Renders a dialog for showing progress.
@@ -33,19 +32,21 @@ goog.require('goog.ui.Component');
  * @param {string} message The message to show on the progress dialog.
  * @this {goog.ui.Component}
  */
-firebaseui.auth.ui.element.progressDialog.showProgressDialog = function(
-    state, message) {
+firebaseui.auth.ui.element.progressDialog.showProgressDialog = function (
+  state,
+  message
+) {
   var progressDialog = goog.soy.renderAsElement(
-      firebaseui.auth.soy2.element.progressDialog,
-      {
-        iconClass: state,
-        message: message,
-      },
-      null,
-      this.getDomHelper());
+    firebaseui.auth.soy2.element.progressDialog,
+    {
+      iconClass: state,
+      message: message,
+    },
+    null,
+    this.getDomHelper()
+  );
   firebaseui.auth.ui.element.dialog.showDialog.call(this, progressDialog);
 };
-
 
 /**
  * The state of the dialog, which is reflected on the icon in the dialog.
@@ -54,7 +55,8 @@ firebaseui.auth.ui.element.progressDialog.showProgressDialog = function(
  * @enum {string}
  */
 firebaseui.auth.ui.element.progressDialog.State = {
-  LOADING: 'mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active ' +
-      'firebaseui-progress-dialog-loading-icon',
-  DONE: 'firebaseui-icon-done'
+  LOADING:
+    "mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active " +
+    "firebaseui-progress-dialog-loading-icon",
+  DONE: "firebaseui-icon-done",
 };

@@ -16,20 +16,20 @@
  * @fileoverview UI component for the unsupported provider page.
  */
 
-goog.provide('firebaseui.auth.ui.page.UnsupportedProvider');
+goog.provide("firebaseui.auth.ui.page.UnsupportedProvider");
 
-goog.require('firebaseui.auth.soy2.page');
-goog.require('firebaseui.auth.ui.element');
-goog.require('firebaseui.auth.ui.element.form');
-goog.require('firebaseui.auth.ui.page.Base');
-goog.requireType('goog.dom.DomHelper');
-
+goog.require("firebaseui.auth.soy2.page");
+goog.require("firebaseui.auth.ui.element");
+goog.require("firebaseui.auth.ui.element.form");
+goog.require("firebaseui.auth.ui.page.Base");
+goog.requireType("goog.dom.DomHelper");
 
 /**
  * Unsupported provider UI component.
  */
-firebaseui.auth.ui.page.UnsupportedProvider =
-    class extends firebaseui.auth.ui.page.Base {
+firebaseui.auth.ui.page.UnsupportedProvider = class extends (
+  firebaseui.auth.ui.page.Base
+) {
   /**
    * @param {string} email The user's email.
    * @param {function()} onSubmitClick Callback to invoke when the submit button
@@ -43,14 +43,23 @@ firebaseui.auth.ui.page.UnsupportedProvider =
    * @param {?goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
    */
   constructor(
-      email, onSubmitClick, onCancelClick, opt_tosCallback,
-      opt_privacyPolicyCallback, opt_domHelper) {
+    email,
+    onSubmitClick,
+    onCancelClick,
+    opt_tosCallback,
+    opt_privacyPolicyCallback,
+    opt_domHelper
+  ) {
     super(
-        firebaseui.auth.soy2.page.unsupportedProvider, {email: email},
-        opt_domHelper, 'unsupportedProvider', {
-          tosCallback: opt_tosCallback,
-          privacyPolicyCallback: opt_privacyPolicyCallback
-        });
+      firebaseui.auth.soy2.page.unsupportedProvider,
+      { email: email },
+      opt_domHelper,
+      "unsupportedProvider",
+      {
+        tosCallback: opt_tosCallback,
+        privacyPolicyCallback: opt_privacyPolicyCallback,
+      }
+    );
     this.onSubmitClick_ = onSubmitClick;
     this.onCancelClick_ = onCancelClick;
   }
@@ -70,16 +79,14 @@ firebaseui.auth.ui.page.UnsupportedProvider =
   }
 };
 
-
 goog.mixin(
-    firebaseui.auth.ui.page.UnsupportedProvider.prototype,
-    /** @lends {firebaseui.auth.ui.page.UnsupportedProvider.prototype} */
-    {
-      // For form.
-      getSubmitElement:
-          firebaseui.auth.ui.element.form.getSubmitElement,
-      getSecondaryLinkElement:
-          firebaseui.auth.ui.element.form.getSecondaryLinkElement,
-      initFormElement:
-          firebaseui.auth.ui.element.form.initFormElement
-    });
+  firebaseui.auth.ui.page.UnsupportedProvider.prototype,
+  /** @lends {firebaseui.auth.ui.page.UnsupportedProvider.prototype} */
+  {
+    // For form.
+    getSubmitElement: firebaseui.auth.ui.element.form.getSubmitElement,
+    getSecondaryLinkElement:
+      firebaseui.auth.ui.element.form.getSecondaryLinkElement,
+    initFormElement: firebaseui.auth.ui.element.form.initFormElement,
+  }
+);

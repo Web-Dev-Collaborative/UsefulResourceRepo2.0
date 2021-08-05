@@ -13,7 +13,7 @@ You learned about searching for whitespace using `\s`, with a lowercase `s`. You
 Search for non-whitespace using `\S`, which is an uppercase `s`. This pattern will not match whitespace, carriage return, tab, form feed, and new line characters. You can think of it being similar to the character class `[^ \r\t\f\n\v]`.
 
 ```js
-let whiteSpace = "Whitespace. Whitespace everywhere!"
+let whiteSpace = "Whitespace. Whitespace everywhere!";
 let nonSpaceRegex = /\S/g;
 whiteSpace.match(nonSpaceRegex).length;
 ```
@@ -42,7 +42,7 @@ Your regex should find 35 non-spaces in the string `Men are from Mars and women 
 
 ```js
 assert(
-  'Men are from Mars and women are from Venus.'.match(countNonWhiteSpace)
+  "Men are from Mars and women are from Venus.".match(countNonWhiteSpace)
     .length == 35
 );
 ```
@@ -50,13 +50,13 @@ assert(
 Your regex should find 23 non-spaces in the string `Space: the final frontier.`
 
 ```js
-assert('Space: the final frontier.'.match(countNonWhiteSpace).length == 23);
+assert("Space: the final frontier.".match(countNonWhiteSpace).length == 23);
 ```
 
 Your regex should find 21 non-spaces in the string `MindYourPersonalSpace`
 
 ```js
-assert('MindYourPersonalSpace'.match(countNonWhiteSpace).length == 21);
+assert("MindYourPersonalSpace".match(countNonWhiteSpace).length == 21);
 ```
 
 # --seed--

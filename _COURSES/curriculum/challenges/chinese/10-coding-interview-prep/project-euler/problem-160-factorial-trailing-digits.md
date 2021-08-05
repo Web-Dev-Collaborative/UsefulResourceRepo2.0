@@ -1,6 +1,6 @@
 ---
 id: 5900f40d1000cf542c50ff1f
-title: 'Problem 160: Factorial trailing digits'
+title: "Problem 160: Factorial trailing digits"
 challengeType: 5
 forumTopicId: 301794
 dashedName: problem-160-factorial-trailing-digits
@@ -34,7 +34,6 @@ assert.strictEqual(euler160(), 16576);
 
 ```js
 function euler160() {
-
   return true;
 }
 

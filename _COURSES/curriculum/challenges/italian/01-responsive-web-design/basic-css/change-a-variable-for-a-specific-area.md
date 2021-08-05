@@ -2,7 +2,7 @@
 id: 5a9d72a1424fe3d0e10cad15
 title: Modificare una variabile per un'area specifica
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cdRwbuW'
+videoUrl: "https://scrimba.com/c/cdRwbuW"
 forumTopicId: 301085
 dashedName: change-a-variable-for-a-specific-area
 ---
@@ -23,18 +23,17 @@ La classe `penguin` dovrebbe riassegnare alla variabile `--penguin-belly` il val
 
 ```js
 assert(
-  code.match(/\.penguin\s*?{[\s\S]*--penguin-belly\s*?:\s*?white\s*?;[\s\S]*}/gi)
+  code.match(
+    /\.penguin\s*?{[\s\S]*--penguin-belly\s*?:\s*?white\s*?;[\s\S]*}/gi
+  )
 );
 ```
 
 La classe `penguin` non dovrebbe contenere la proprietà `background-color`
 
 ```js
-assert(
-  code.match(/^((?!background-color\s*?:\s*?)[\s\S])*$/g)
-);
+assert(code.match(/^((?!background-color\s*?:\s*?)[\s\S])*$/g));
 ```
-
 
 # --seed--
 
@@ -249,6 +248,8 @@ assert(
 
 ```html
 <style>
-.penguin {--penguin-belly: white;}
+  .penguin {
+    --penguin-belly: white;
+  }
 </style>
 ```

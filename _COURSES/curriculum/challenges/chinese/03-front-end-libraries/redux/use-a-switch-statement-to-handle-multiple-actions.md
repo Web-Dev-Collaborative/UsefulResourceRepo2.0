@@ -21,13 +21,13 @@ dashedName: use-a-switch-statement-to-handle-multiple-actions
 调用函数 `loginUser` 应该返回一个 type 属性设置为字符串 `LOGIN` 的对象。
 
 ```js
-assert(loginUser().type === 'LOGIN');
+assert(loginUser().type === "LOGIN");
 ```
 
 调用函数 `logoutUser` 应该返回一个 type 属性设置为字符串 `LOGOUT` 的对象。
 
 ```js
-assert(logoutUser().type === 'LOGOUT');
+assert(logoutUser().type === "LOGOUT");
 ```
 
 store 应该设置一个 `authenticated` 属性设置为 `false` 的初始化对象。
@@ -72,9 +72,9 @@ assert(
 ```js
 (getUserInput) =>
   assert(
-    getUserInput('index').toString().includes('switch') &&
-      getUserInput('index').toString().includes('case') &&
-      getUserInput('index').toString().includes('default')
+    getUserInput("index").toString().includes("switch") &&
+      getUserInput("index").toString().includes("case") &&
+      getUserInput("index").toString().includes("default")
   );
 ```
 
@@ -84,12 +84,11 @@ assert(
 
 ```js
 const defaultState = {
-  authenticated: false
+  authenticated: false,
 };
 
 const authReducer = (state = defaultState, action) => {
   // Change code below this line
-
   // Change code above this line
 };
 
@@ -97,14 +96,14 @@ const store = Redux.createStore(authReducer);
 
 const loginUser = () => {
   return {
-    type: 'LOGIN'
-  }
+    type: "LOGIN",
+  };
 };
 
 const logoutUser = () => {
   return {
-    type: 'LOGOUT'
-  }
+    type: "LOGOUT",
+  };
 };
 ```
 
@@ -112,41 +111,37 @@ const logoutUser = () => {
 
 ```js
 const defaultState = {
-  authenticated: false
+  authenticated: false,
 };
 
 const authReducer = (state = defaultState, action) => {
-
   switch (action.type) {
-
-    case 'LOGIN':
+    case "LOGIN":
       return {
-        authenticated: true
-      }
+        authenticated: true,
+      };
 
-    case 'LOGOUT':
+    case "LOGOUT":
       return {
-        authenticated: false
-      }
+        authenticated: false,
+      };
 
     default:
       return state;
-
   }
-
 };
 
 const store = Redux.createStore(authReducer);
 
 const loginUser = () => {
   return {
-    type: 'LOGIN'
-  }
+    type: "LOGIN",
+  };
 };
 
 const logoutUser = () => {
   return {
-    type: 'LOGOUT'
-  }
+    type: "LOGOUT",
+  };
 };
 ```

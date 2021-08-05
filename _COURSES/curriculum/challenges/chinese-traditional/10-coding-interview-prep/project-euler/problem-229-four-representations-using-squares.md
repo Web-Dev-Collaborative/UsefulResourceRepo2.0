@@ -1,6 +1,6 @@
 ---
 id: 5900f4521000cf542c50ff64
-title: 'Problem 229: Four Representations using Squares'
+title: "Problem 229: Four Representations using Squares"
 challengeType: 5
 forumTopicId: 301872
 dashedName: problem-229-four-representations-using-squares
@@ -38,7 +38,6 @@ assert.strictEqual(euler229(), 11325263);
 
 ```js
 function euler229() {
-
   return true;
 }
 

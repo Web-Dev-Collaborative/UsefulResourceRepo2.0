@@ -1,6 +1,6 @@
 ---
 id: 5900f53a1000cf542c51004c
-title: 'Problem 461: Almost Pi'
+title: "Problem 461: Almost Pi"
 challengeType: 5
 forumTopicId: 302136
 dashedName: problem-461-almost-pi
@@ -36,7 +36,6 @@ assert.strictEqual(euler461(), 159820276);
 
 ```js
 function euler461() {
-
   return true;
 }
 

@@ -16,7 +16,9 @@ Los métodos son propiedades que son funciones. Estos agregan diferentes comport
 let duck = {
   name: "Aflac",
   numLegs: 2,
-  sayName: function() {return "The name of this duck is " + duck.name + ".";}
+  sayName: function () {
+    return "The name of this duck is " + duck.name + ".";
+  },
 };
 duck.sayName();
 ```
@@ -32,13 +34,13 @@ Usando el objeto `dog`, asígnale un método llamado `sayLegs`. El método debe 
 `dog.sayLegs()` debe ser una función.
 
 ```js
-assert(typeof dog.sayLegs === 'function');
+assert(typeof dog.sayLegs === "function");
 ```
 
 `dog.sayLegs()` debe devolver la cadena asignada; ten cuenta que la puntuación y los espacios importan.
 
 ```js
-assert(dog.sayLegs() === 'This dog has 4 legs.');
+assert(dog.sayLegs() === "This dog has 4 legs.");
 ```
 
 # --seed--
@@ -49,7 +51,6 @@ assert(dog.sayLegs() === 'This dog has 4 legs.');
 let dog = {
   name: "Spot",
   numLegs: 4,
-
 };
 
 dog.sayLegs();
@@ -61,9 +62,9 @@ dog.sayLegs();
 let dog = {
   name: "Spot",
   numLegs: 4,
-  sayLegs () {
-    return 'This dog has ' + this.numLegs + ' legs.';
-  }
+  sayLegs() {
+    return "This dog has " + this.numLegs + " legs.";
+  },
 };
 
 dog.sayLegs();

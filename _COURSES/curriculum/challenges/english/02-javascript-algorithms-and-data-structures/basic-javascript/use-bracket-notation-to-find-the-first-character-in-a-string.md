@@ -2,7 +2,7 @@
 id: bd7123c9c549eddfaeb5bdef
 title: Use Bracket Notation to Find the First Character in a String
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/ca8JwhW'
+videoUrl: "https://scrimba.com/c/ca8JwhW"
 forumTopicId: 18341
 dashedName: use-bracket-notation-to-find-the-first-character-in-a-string
 ---
@@ -35,7 +35,7 @@ Use bracket notation to find the first character in the `lastName` variable and 
 The `firstLetterOfLastName` variable should have the value of `L`.
 
 ```js
-assert(firstLetterOfLastName === 'L');
+assert(firstLetterOfLastName === "L");
 ```
 
 You should use bracket notation.
@@ -49,7 +49,9 @@ assert(code.match(/firstLetterOfLastName\s*?=\s*?lastName\[.*?\]/));
 ## --after-user-code--
 
 ```js
-(function(v){return v;})(firstLetterOfLastName);
+(function (v) {
+  return v;
+})(firstLetterOfLastName);
 ```
 
 ## --seed-contents--

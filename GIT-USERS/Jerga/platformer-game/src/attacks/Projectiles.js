@@ -1,12 +1,8 @@
-
-
-
-import Phaser from 'phaser';
-import Projectile from './Projectile';
-import { getTimestamp } from '../utils/functions';
+import Phaser from "phaser";
+import Projectile from "./Projectile";
+import { getTimestamp } from "../utils/functions";
 
 class Projectiles extends Phaser.Physics.Arcade.Group {
-
   constructor(scene, key) {
     super(scene.physics.world, scene);
 
@@ -15,8 +11,8 @@ class Projectiles extends Phaser.Physics.Arcade.Group {
       active: false,
       visible: false,
       key,
-      classType: Projectile
-    })
+      classType: Projectile,
+    });
 
     this.timeFromLastProjectile = null;
   }
@@ -24,9 +20,15 @@ class Projectiles extends Phaser.Physics.Arcade.Group {
   fireProjectile(initiator, anim) {
     const projectile = this.getFirstDead(false);
 
-    if (!projectile) { return; }
-    if (this.timeFromLastProjectile &&
-        this.timeFromLastProjectile + projectile.cooldown > getTimestamp()) { return; }
+    if (!projectile) {
+      return;
+    }
+    if (
+      this.timeFromLastProjectile &&
+      this.timeFromLastProjectile + projectile.cooldown > getTimestamp()
+    ) {
+      return;
+    }
 
     const center = initiator.getCenter();
     let centerX;
@@ -44,7 +46,6 @@ class Projectiles extends Phaser.Physics.Arcade.Group {
     projectile.fire(centerX, center.y, anim);
     this.timeFromLastProjectile = getTimestamp();
   }
-
 }
 
 export default Projectiles;

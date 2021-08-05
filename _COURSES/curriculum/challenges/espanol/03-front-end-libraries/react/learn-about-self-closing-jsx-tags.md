@@ -27,19 +27,19 @@ Fix the errors in the code editor so that it is valid JSX and successfully trans
 The constant `JSX` should return a `div` element.
 
 ```js
-assert.strictEqual(JSX.type, 'div');
+assert.strictEqual(JSX.type, "div");
 ```
 
 The `div` should contain a `br` tag.
 
 ```js
-assert(Enzyme.shallow(JSX).find('br').length === 1);
+assert(Enzyme.shallow(JSX).find("br").length === 1);
 ```
 
 The `div` should contain an `hr` tag.
 
 ```js
-assert(Enzyme.shallow(JSX).find('hr').length === 1);
+assert(Enzyme.shallow(JSX).find("hr").length === 1);
 ```
 
 # --seed--
@@ -47,7 +47,7 @@ assert(Enzyme.shallow(JSX).find('hr').length === 1);
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(JSX, document.getElementById('root'))
+ReactDOM.render(JSX, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -66,10 +66,10 @@ const JSX = (
 
 ```jsx
 const JSX = (
-<div>
-  <h2>Welcome to React!</h2> <br />
-  <p>Be sure to close all tags!</p>
-  <hr />
-</div>
+  <div>
+    <h2>Welcome to React!</h2> <br />
+    <p>Be sure to close all tags!</p>
+    <hr />
+  </div>
 );
 ```

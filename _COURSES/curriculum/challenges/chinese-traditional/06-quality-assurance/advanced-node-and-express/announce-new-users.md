@@ -13,10 +13,10 @@ dashedName: announce-new-users
 請將事件名稱更改爲 `'user'`，其中應包含如下字段：'name'、'currentUsers'、'connected'（布爾值，連接上即爲 `true`，斷開則是 `false`）。 請務必更改兩個 user count 事件，設置 disconnect 事件向 connected 字段發送 `false` ，而不是像 connect 事件一樣發送 `true`。
 
 ```js
-io.emit('user', {
+io.emit("user", {
   name: socket.request.user.name,
   currentUsers,
-  connected: true
+  connected: true,
 });
 ```
 
@@ -25,12 +25,12 @@ io.emit('user', {
 實現如下：
 
 ```js
-socket.on('user', data => {
-  $('#num-users').text(data.currentUsers + ' users online');
+socket.on("user", (data) => {
+  $("#num-users").text(data.currentUsers + " users online");
   let message =
     data.name +
-    (data.connected ? ' has joined the chat.' : ' has left the chat.');
-  $('#messages').append($('<li>').html('<b>' + message + '</b>'));
+    (data.connected ? " has joined the chat." : " has left the chat.");
+  $("#messages").append($("<li>").html("<b>" + message + "</b>"));
 });
 ```
 
@@ -42,12 +42,12 @@ socket.on('user', data => {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
         /io.emit.*('|")user\1.*name.*currentUsers.*connected/gis,
-        'You should have an event emitted named user sending name, currentUsers, and connected'
+        "You should have an event emitted named user sending name, currentUsers, and connected"
       );
     },
     (xhr) => {
@@ -60,7 +60,7 @@ socket.on('user', data => {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/public/client.js').then(
+  $.get(getUserInput("url") + "/public/client.js").then(
     (data) => {
       assert.match(
         data,

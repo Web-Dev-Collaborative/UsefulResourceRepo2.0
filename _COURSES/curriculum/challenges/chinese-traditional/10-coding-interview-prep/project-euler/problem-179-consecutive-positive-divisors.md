@@ -1,6 +1,6 @@
 ---
 id: 5900f41f1000cf542c50ff32
-title: 'Problem 179: Consecutive positive divisors'
+title: "Problem 179: Consecutive positive divisors"
 challengeType: 5
 forumTopicId: 301814
 dashedName: problem-179-consecutive-positive-divisors
@@ -24,7 +24,6 @@ assert.strictEqual(euler179(), 986262);
 
 ```js
 function euler179() {
-
   return true;
 }
 

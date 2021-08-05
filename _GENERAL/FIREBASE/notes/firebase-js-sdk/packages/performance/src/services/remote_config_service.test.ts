@@ -90,9 +90,9 @@ describe('Performance Monitoring > remote_config_service', () => {
     );
 
     clock = useFakeTimers(GLOBAL_CLOCK_NOW);
-    SettingsService.prototype.firebaseAppInstance = ({
+    SettingsService.prototype.firebaseAppInstance = {
       options: { projectId: PROJECT_ID, appId: APP_ID, apiKey: API_KEY }
-    } as unknown) as FirebaseApp;
+    } as unknown as FirebaseApp;
 
     // we need to stub the entire localStorage, because storage can't be stubbed in Firefox and IE.
     // stubbing on self(window) seems to only work the first time (at least in Firefox), the subsequent

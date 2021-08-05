@@ -14,9 +14,9 @@ The background buildings are starting to look pretty good. Create a new `div` be
 test-text
 
 ```js
-const bodyDivs = $('#display-body').children('div');
+const bodyDivs = $("#display-body").children("div");
 assert(
-  bodyDivs.length === 2 && bodyDivs[1] === $('div.foreground-buildings')[0]
+  bodyDivs.length === 2 && bodyDivs[1] === $("div.foreground-buildings")[0]
 );
 ```
 
@@ -26,7 +26,7 @@ assert(
 
 ```html
 <!DOCTYPE html>
-<html>    
+<html>
   <head>
     <title>freeCodeCamp Skyline Project</title>
     <style>
@@ -69,13 +69,13 @@ assert(
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1b {
         width: 80%;
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1c {
         width: 90%;
         height: 10%;
@@ -133,7 +133,7 @@ assert(
 
 ```html
 <!DOCTYPE html>
-<html>    
+<html>
   <head>
     <title>freeCodeCamp Skyline Project</title>
     <style>
@@ -176,13 +176,13 @@ assert(
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1b {
         width: 80%;
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1c {
         width: 90%;
         height: 10%;

@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244cd
 title: Accedere ad Array annidati
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cLeGDtZ'
+videoUrl: "https://scrimba.com/c/cLeGDtZ"
 forumTopicId: 16160
 dashedName: accessing-nested-arrays
 ---
@@ -17,20 +17,12 @@ Ecco un esempio di come accedere a un array nidificato:
 var ourPets = [
   {
     animalType: "cat",
-    names: [
-      "Meowzer",
-      "Fluffy",
-      "Kit-Cat"
-    ]
+    names: ["Meowzer", "Fluffy", "Kit-Cat"],
   },
   {
     animalType: "dog",
-    names: [
-      "Spot",
-      "Bowser",
-      "Frankie"
-    ]
-  }
+    names: ["Spot", "Bowser", "Frankie"],
+  },
 ];
 ourPets[0].names[1];
 ourPets[1].names[0];
@@ -47,7 +39,7 @@ Usando la notazione a punto e a parentesi, imposta la variabile `secondTree` al 
 `secondTree` dovrebbe essere uguale alla stringa `pine`.
 
 ```js
-assert(secondTree === 'pine');
+assert(secondTree === "pine");
 ```
 
 Il tuo codice dovrebbe utilizzare la notazione a punti e parentesi per accedere a `myPlants`.
@@ -61,8 +53,8 @@ assert(/=\s*myPlants\[1\].list\[1\]/.test(code));
 ## --after-user-code--
 
 ```js
-(function(x) {
-  if(typeof x != 'undefined') {
+(function (x) {
+  if (typeof x != "undefined") {
     return "secondTree = " + x;
   }
   return "secondTree is undefined";
@@ -75,20 +67,12 @@ assert(/=\s*myPlants\[1\].list\[1\]/.test(code));
 var myPlants = [
   {
     type: "flowers",
-    list: [
-      "rose",
-      "tulip",
-      "dandelion"
-    ]
+    list: ["rose", "tulip", "dandelion"],
   },
   {
     type: "trees",
-    list: [
-      "fir",
-      "pine",
-      "birch"
-    ]
-  }
+    list: ["fir", "pine", "birch"],
+  },
 ];
 
 var secondTree = "";
@@ -100,20 +84,12 @@ var secondTree = "";
 var myPlants = [
   {
     type: "flowers",
-    list: [
-      "rose",
-      "tulip",
-      "dandelion"
-    ]
+    list: ["rose", "tulip", "dandelion"],
   },
   {
     type: "trees",
-    list: [
-      "fir",
-      "pine",
-      "birch"
-    ]
-  }
+    list: ["fir", "pine", "birch"],
+  },
 ];
 
 var secondTree = myPlants[1].list[1];

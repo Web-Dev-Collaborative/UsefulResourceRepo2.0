@@ -22,7 +22,9 @@ sayName: function() {return "The name of this duck is " + duck.name + ".";}
 let duck = {
   name: "Aflac",
   numLegs: 2,
-  sayName: function() {return "The name of this duck is " + this.name + ".";}
+  sayName: function () {
+    return "The name of this duck is " + this.name + ".";
+  },
 };
 ```
 
@@ -37,7 +39,7 @@ let duck = {
 `dog.sayLegs()` 应该返回一个指定的字符串。
 
 ```js
-assert(dog.sayLegs() === 'This dog has 4 legs.');
+assert(dog.sayLegs() === "This dog has 4 legs.");
 ```
 
 应该使用 `this` 关键字来访问 `dog` 对象的 `numLegs` 属性值。
@@ -54,7 +56,9 @@ assert(code.match(/this\.numLegs/g));
 let dog = {
   name: "Spot",
   numLegs: 4,
-  sayLegs: function() {return "This dog has " + dog.numLegs + " legs.";}
+  sayLegs: function () {
+    return "This dog has " + dog.numLegs + " legs.";
+  },
 };
 
 dog.sayLegs();
@@ -66,9 +70,9 @@ dog.sayLegs();
 let dog = {
   name: "Spot",
   numLegs: 4,
-  sayLegs () {
-    return 'This dog has ' + this.numLegs + ' legs.';
-  }
+  sayLegs() {
+    return "This dog has " + this.numLegs + " legs.";
+  },
 };
 
 dog.sayLegs();

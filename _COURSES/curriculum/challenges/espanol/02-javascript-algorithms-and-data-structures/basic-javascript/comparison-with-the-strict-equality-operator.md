@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244d1
 title: Comparación con el operador de estricta igualdad
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cy87atr'
+videoUrl: "https://scrimba.com/c/cy87atr"
 forumTopicId: 16790
 dashedName: comparison-with-the-strict-equality-operator
 ---
@@ -16,8 +16,8 @@ Si los valores que se comparan tienen diferentes tipos, se consideran desiguales
 **Ejemplos**
 
 ```js
-3 ===  3
-3 === '3'
+3 === 3;
+3 === "3";
 ```
 
 Estas condiciones devuelven `true` y `false` respectivamente.
@@ -33,19 +33,19 @@ Usa el operador de estricta igualdad en la sentencia `if` para que la función d
 `testStrict(10)` debe devolver la cadena `Not Equal`
 
 ```js
-assert(testStrict(10) === 'Not Equal');
+assert(testStrict(10) === "Not Equal");
 ```
 
 `testStrict(7)` debe devolver la cadena `Equal`
 
 ```js
-assert(testStrict(7) === 'Equal');
+assert(testStrict(7) === "Equal");
 ```
 
 `testStrict("7")` debe devolver la cadena `Not Equal`
 
 ```js
-assert(testStrict('7') === 'Not Equal');
+assert(testStrict("7") === "Not Equal");
 ```
 
 Debes usar el operador `===`
@@ -61,7 +61,8 @@ assert(code.match(/(val\s*===\s*\d+)|(\d+\s*===\s*val)/g).length > 0);
 ```js
 // Setup
 function testStrict(val) {
-  if (val) { // Change this line
+  if (val) {
+    // Change this line
     return "Equal";
   }
   return "Not Equal";

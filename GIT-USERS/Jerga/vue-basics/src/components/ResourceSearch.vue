@@ -1,5 +1,3 @@
-
-
 <template>
   <form class="card p-2">
     <div class="input-group">
@@ -7,13 +5,14 @@
         @keyup="$emit('on-search', $event.target.value)"
         type="text"
         class="form-control"
-        placeholder="Some title" />
+        placeholder="Some title"
+      />
     </div>
   </form>
 </template>
 
 <script>
 export default {
-  emits: ['on-search']
-}
+  emits: ["on-search"],
+};
 </script>

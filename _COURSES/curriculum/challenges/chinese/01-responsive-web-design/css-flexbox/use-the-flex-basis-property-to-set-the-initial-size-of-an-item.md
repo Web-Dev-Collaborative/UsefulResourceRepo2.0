@@ -2,7 +2,7 @@
 id: 587d78ae367417b2b2512afd
 title: 使用 flex-basis 属性设置元素的初始大小
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/c3d9nCa'
+videoUrl: "https://scrimba.com/p/pVaDAv/c3d9nCa"
 forumTopicId: 301108
 dashedName: use-the-flex-basis-property-to-set-the-initial-size-of-an-item
 ---
@@ -22,7 +22,7 @@ dashedName: use-the-flex-basis-property-to-set-the-initial-size-of-an-item
 `#box-1` 元素应具有 `flex-basis` 属性。
 
 ```js
-assert($('#box-1').css('flex-basis') != 'auto');
+assert($("#box-1").css("flex-basis") != "auto");
 ```
 
 `#box-1` 的 `flex-basis` 属性值应为 `10em`。
@@ -34,7 +34,7 @@ assert(code.match(/#box-1\s*?{\s*?.*?\s*?.*?\s*?flex-basis:\s*?10em;/g));
 `#box-2` 元素应具有 `flex-basis` 属性。
 
 ```js
-assert($('#box-2').css('flex-basis') != 'auto');
+assert($("#box-2").css("flex-basis") != "auto");
 ```
 
 `#box-2` 的 `flex-basis` 属性值应为 `20em`。
@@ -57,13 +57,11 @@ assert(code.match(/#box-2\s*?{\s*?.*?\s*?.*?\s*?flex-basis:\s*?20em;/g));
   #box-1 {
     background-color: dodgerblue;
     height: 200px;
-
   }
 
   #box-2 {
     background-color: orangered;
     height: 200px;
-
   }
 </style>
 

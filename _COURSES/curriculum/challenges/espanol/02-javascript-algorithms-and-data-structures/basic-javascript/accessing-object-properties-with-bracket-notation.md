@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244c8
 title: Accede a propiedades de objetos con notación de corchete
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cBvmEHP'
+videoUrl: "https://scrimba.com/c/cBvmEHP"
 forumTopicId: 16163
 dashedName: accessing-object-properties-with-bracket-notation
 ---
@@ -19,10 +19,10 @@ Aquí hay un ejemplo de cómo usar la notación de corchetes para leer la propie
 var myObj = {
   "Space Name": "Kirk",
   "More Space": "Spock",
-  "NoSpace": "USS Enterprise"
+  NoSpace: "USS Enterprise",
 };
 myObj["Space Name"];
-myObj['More Space'];
+myObj["More Space"];
 myObj["NoSpace"];
 ```
 
@@ -39,25 +39,25 @@ Lee los valores de las propiedades `an entree` y `the drink` de `testObj` usando
 `entreeValue` debe ser una cadena de texto
 
 ```js
-assert(typeof entreeValue === 'string');
+assert(typeof entreeValue === "string");
 ```
 
 El valor de `entreeValue` debe ser la cadena `hamburger`
 
 ```js
-assert(entreeValue === 'hamburger');
+assert(entreeValue === "hamburger");
 ```
 
 `drinkValue` debe ser una cadena
 
 ```js
-assert(typeof drinkValue === 'string');
+assert(typeof drinkValue === "string");
 ```
 
 El valor de `drinkValue` debe ser la cadena `water`
 
 ```js
-assert(drinkValue === 'water');
+assert(drinkValue === "water");
 ```
 
 Debes usar la notación de corchetes dos veces
@@ -71,7 +71,9 @@ assert(code.match(/testObj\s*?\[('|")[^'"]+\1\]/g).length > 1);
 ## --after-user-code--
 
 ```js
-(function(a,b) { return "entreeValue = '" + a + "', drinkValue = '" + b + "'"; })(entreeValue,drinkValue);
+(function (a, b) {
+  return "entreeValue = '" + a + "', drinkValue = '" + b + "'";
+})(entreeValue, drinkValue);
 ```
 
 ## --seed-contents--
@@ -81,13 +83,13 @@ assert(code.match(/testObj\s*?\[('|")[^'"]+\1\]/g).length > 1);
 var testObj = {
   "an entree": "hamburger",
   "my side": "veggies",
-  "the drink": "water"
+  "the drink": "water",
 };
 
 // Only change code below this line
 
-var entreeValue = testObj;   // Change this line
-var drinkValue = testObj;    // Change this line
+var entreeValue = testObj; // Change this line
+var drinkValue = testObj; // Change this line
 ```
 
 # --solutions--
@@ -96,8 +98,8 @@ var drinkValue = testObj;    // Change this line
 var testObj = {
   "an entree": "hamburger",
   "my side": "veggies",
-  "the drink": "water"
+  "the drink": "water",
 };
 var entreeValue = testObj["an entree"];
-var drinkValue = testObj['the drink'];
+var drinkValue = testObj["the drink"];
 ```

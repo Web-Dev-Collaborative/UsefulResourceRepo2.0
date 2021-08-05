@@ -1,11 +1,9 @@
-
-import axios from 'axios';
-import BaseApi from './BaseApi';
+import axios from "axios";
+import BaseApi from "./BaseApi";
 
 class PortfolioApi extends BaseApi {
-
   constructor(accessToken) {
-    super(accessToken, '/portfolios');
+    super(accessToken, "/portfolios");
   }
 
   delete(id) {

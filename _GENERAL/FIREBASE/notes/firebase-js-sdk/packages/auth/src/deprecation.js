@@ -22,7 +22,6 @@ goog.provide('fireauth.deprecation');
 goog.provide('fireauth.deprecation.Deprecations');
 goog.require('fireauth.util');
 
-
 /**
  * An enum of valid notices to display. All deprecation notices must be in this
  * enum. Deprecation messages should be unique and provide the full context
@@ -30,17 +29,19 @@ goog.require('fireauth.util');
  * @enum {string}
  */
 fireauth.deprecation.Deprecations = {
-  LINK_WITH_CREDENTIAL: 'firebase.User.prototype.linkAndRetrieveDataWithCrede' +
-      'ntial is deprecated. Please use firebase.User.prototype.linkWithCreden' +
-      'tial instead.',
-  REAUTH_WITH_CREDENTIAL: 'firebase.User.prototype.reauthenticateAndRetrieveD' +
-      'ataWithCredential is deprecated. Please use firebase.User.prototype.re' +
-      'authenticateWithCredential instead.',
-  SIGN_IN_WITH_CREDENTIAL: 'firebase.auth.Auth.prototype.signInAndRetrieveDat' +
-      'aWithCredential is deprecated. Please use firebase.auth.Auth.prototype' +
-      '.signInWithCredential instead.'
+  LINK_WITH_CREDENTIAL:
+    'firebase.User.prototype.linkAndRetrieveDataWithCrede' +
+    'ntial is deprecated. Please use firebase.User.prototype.linkWithCreden' +
+    'tial instead.',
+  REAUTH_WITH_CREDENTIAL:
+    'firebase.User.prototype.reauthenticateAndRetrieveD' +
+    'ataWithCredential is deprecated. Please use firebase.User.prototype.re' +
+    'authenticateWithCredential instead.',
+  SIGN_IN_WITH_CREDENTIAL:
+    'firebase.auth.Auth.prototype.signInAndRetrieveDat' +
+    'aWithCredential is deprecated. Please use firebase.auth.Auth.prototype' +
+    '.signInWithCredential instead.'
 };
-
 
 /**
  * Keeps track of notices that were already displayed.
@@ -49,12 +50,11 @@ fireauth.deprecation.Deprecations = {
  */
 fireauth.deprecation.shownMessages_ = {};
 
-
 /**
  * Logs a deprecation notice to the developer.
  * @param {!fireauth.deprecation.Deprecations} message
  */
-fireauth.deprecation.log = function(message) {
+fireauth.deprecation.log = function (message) {
   if (fireauth.deprecation.shownMessages_[message]) {
     return;
   }
@@ -62,11 +62,10 @@ fireauth.deprecation.log = function(message) {
   fireauth.util.consoleWarn(message);
 };
 
-
 /**
  * Resets the displayed deprecation notices.
  */
-fireauth.deprecation.resetForTesting = function() {
+fireauth.deprecation.resetForTesting = function () {
   fireauth.deprecation.shownMessages_ =
-      /** @type {!Object<fireauth.deprecation.Deprecations, boolean>} */ ({});
+    /** @type {!Object<fireauth.deprecation.Deprecations, boolean>} */ ({});
 };

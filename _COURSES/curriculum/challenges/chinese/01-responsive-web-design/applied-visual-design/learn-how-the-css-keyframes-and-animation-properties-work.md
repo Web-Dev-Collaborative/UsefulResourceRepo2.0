@@ -2,7 +2,7 @@
 id: 587d78a7367417b2b2512adf
 title: 了解 CSS 的关键帧和动画是如何工作的
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cakprhv'
+videoUrl: "https://scrimba.com/c/cakprhv"
 forumTopicId: 301059
 dashedName: learn-how-the-css-keyframes-and-animation-properties-work
 ---
@@ -15,7 +15,7 @@ dashedName: learn-how-the-css-keyframes-and-animation-properties-work
 
 `animation-duration` 设置动画所花费的时间。
 
-`@keyframes` 可以通过设置特定时间点的行为来创建动画。 为此，我们只需要给持续时间内的特定帧（从 0% 到 100%）加上 CSS 规则。 如果用一部电影来做类比，那么 CSS 里面的 0% 关键帧就像是电影里面的开场镜头；100% 关键帧就像是电影里的片尾，就是那个之后会出现演职人员列表的片尾。 在动画设定的时间内，CSS 会根据关键帧的规则来给元素添加动画效果。 100% 位置的 CSS 属性就是元素最后的样子，相当于电影里的演职员表或者鸣谢镜头。 然后CSS 应用魔法来在给定的时间内转换元素以使其脱离场景。 下面举例说明 `@keyframes` 和动画属性的用法：
+`@keyframes` 可以通过设置特定时间点的行为来创建动画。 为此，我们只需要给持续时间内的特定帧（从 0% 到 100%）加上 CSS 规则。 如果用一部电影来做类比，那么 CSS 里面的 0% 关键帧就像是电影里面的开场镜头；100% 关键帧就像是电影里的片尾，就是那个之后会出现演职人员列表的片尾。 在动画设定的时间内，CSS 会根据关键帧的规则来给元素添加动画效果。 100% 位置的 CSS 属性就是元素最后的样子，相当于电影里的演职员表或者鸣谢镜头。 然后 CSS 应用魔法来在给定的时间内转换元素以使其脱离场景。 下面举例说明 `@keyframes` 和动画属性的用法：
 
 ```css
 #anim {
@@ -44,13 +44,13 @@ id 为 `anim` 的元素，我们在代码中将它的 `animation-name` 设置为
 id 为 `rect` 的元素应该有一个值为 `rainbow` 的 `animation-name` 属性。
 
 ```js
-assert($('#rect').css('animation-name') == 'rainbow');
+assert($("#rect").css("animation-name") == "rainbow");
 ```
 
 id 为 `rect` 的元素应该有一个值为 4s 的 `animation-duration` 属性。
 
 ```js
-assert($('#rect').css('animation-duration') == '4s');
+assert($("#rect").css("animation-duration") == "4s");
 ```
 
 `@keyframes` 规则的 `animation-name` 应为 `rainbow`。
@@ -92,13 +92,7 @@ assert(code.match(/100%\s*?{\s*?background-color:\s*?yellow;\s*?}/gi));
   }
 
   #rect {
-
-
   }
-
-
-
-
 </style>
 <div id="rect"></div>
 ```

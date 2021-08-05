@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08833
 title: 用佔位符文本填充空白
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cgR7Dc7'
+videoUrl: "https://scrimba.com/p/pVMPUv/cgR7Dc7"
 forumTopicId: 18178
 dashedName: fill-in-the-blank-with-placeholder-text
 ---
@@ -24,7 +24,7 @@ Lorem ipsum text 自 16 世紀以來就在排版中被用作佔位符，這一�
 你的 `p` 元素應包含 “kitty ipsum” 文本的前面幾個詞。
 
 ```js
-assert.isTrue(/Kitty(\s)+ipsum/gi.test($('p').text()));
+assert.isTrue(/Kitty(\s)+ipsum/gi.test($("p").text()));
 ```
 
 # --seed--
@@ -46,5 +46,8 @@ assert.isTrue(/Kitty(\s)+ipsum/gi.test($('p').text()));
 
 <h2>CatPhotoApp</h2>
 
-<p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff</p>
+<p>
+  Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack
+  your ankles chase the red dot, hairball run catnip eat the grass sniff
+</p>
 ```

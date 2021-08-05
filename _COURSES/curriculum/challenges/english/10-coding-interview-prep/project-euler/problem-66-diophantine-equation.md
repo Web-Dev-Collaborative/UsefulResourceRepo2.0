@@ -1,6 +1,6 @@
 ---
 id: 5900f3ae1000cf542c50fec1
-title: 'Problem 66: Diophantine equation'
+title: "Problem 66: Diophantine equation"
 challengeType: 5
 forumTopicId: 302178
 dashedName: problem-66-diophantine-equation
@@ -35,7 +35,7 @@ Find the value of D ≤ `n` in minimal solutions of `x` for which the largest va
 `diophantineEquation(7)` should return a number.
 
 ```js
-assert(typeof diophantineEquation(7) === 'number');
+assert(typeof diophantineEquation(7) === "number");
 ```
 
 `diophantineEquation(7)` should return `5`.
@@ -74,7 +74,6 @@ assert.strictEqual(diophantineEquation(1000), 661);
 
 ```js
 function diophantineEquation(n) {
-
   return true;
 }
 
@@ -115,7 +114,7 @@ function diophantineEquation(n) {
       [numerator, prevNumerator] = [a * numerator + prevNumerator, numerator];
       [denominator, prevDenominator] = [
         a * denominator + prevDenominator,
-        denominator
+        denominator,
       ];
     }
 

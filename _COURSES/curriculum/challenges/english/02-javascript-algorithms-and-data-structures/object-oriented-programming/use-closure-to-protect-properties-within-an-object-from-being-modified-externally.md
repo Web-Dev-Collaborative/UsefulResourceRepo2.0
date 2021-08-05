@@ -25,7 +25,7 @@ The simplest way to make this public property private is by creating a variable 
 function Bird() {
   let hatchedEgg = 10;
 
-  this.getHatchedEggCount = function() { 
+  this.getHatchedEggCount = function () {
     return hatchedEgg;
   };
 }
@@ -66,8 +66,6 @@ assert(code.match(/((return\s+)|(\(\s*\)\s*\=\>\s*))weight\;?/g));
 ```js
 function Bird() {
   this.weight = 15;
-
-
 }
 ```
 

@@ -40,17 +40,16 @@ function tearDown() {
   stubs.reset();
 }
 
-
 /** @type {boolean} True if the browser supports Object.defineProperty. */
-var isReadonlyPropertyBrowser = !goog.userAgent.IE ||
-    goog.userAgent.isDocumentModeOrHigher(9);
-
+var isReadonlyPropertyBrowser =
+  !goog.userAgent.IE || goog.userAgent.isDocumentModeOrHigher(9);
 
 function testIsReadonlyConfigurable() {
   assertEquals(
-    fireauth.object.isReadonlyConfigurable_(), isReadonlyPropertyBrowser);
+    fireauth.object.isReadonlyConfigurable_(),
+    isReadonlyPropertyBrowser
+  );
 }
-
 
 function testSetReadonlyProperty() {
   var myObj = {
@@ -62,7 +61,6 @@ function testSetReadonlyProperty() {
   assertEquals('Sucre', myObj['Bolivia']);
 }
 
-
 function testSetReadonlyProperty_overwrite() {
   var myObj = {};
 
@@ -73,15 +71,13 @@ function testSetReadonlyProperty_overwrite() {
   assertEquals('Buenos Aires', myObj['Argentina']);
 }
 
-
 function testSetReadonlyProperty_instance() {
-  var MyObj = function() {
+  var MyObj = function () {
     fireauth.object.setReadonlyProperty(this, 'Bolivia', 'Sucre');
   };
   var myInstance = new MyObj();
   assertEquals('Sucre', myInstance['Bolivia']);
 }
-
 
 function testSetReadonlyProperty_isActuallyReadonly() {
   if (!isReadonlyPropertyBrowser) {
@@ -95,7 +91,6 @@ function testSetReadonlyProperty_isActuallyReadonly() {
   assertEquals('Buenos Aires', myObj['Argentina']);
 }
 
-
 function testSetReadonlyProperties() {
   var myObj = {};
   fireauth.object.setReadonlyProperties(myObj, {
@@ -105,7 +100,6 @@ function testSetReadonlyProperties() {
   assertEquals('Brasilia', myObj['Brazil']);
   assertEquals('Santiago', myObj['Chile']);
 }
-
 
 function testSetReadonlyProperties_isActuallyReadonly() {
   if (!isReadonlyPropertyBrowser) {
@@ -125,7 +119,6 @@ function testSetReadonlyProperties_isActuallyReadonly() {
   assertEquals('Santiago', myObj['Chile']);
 }
 
-
 function testMakeReadonlyCopy() {
   var myObj = {
     'Brazil': 'Brasilia',
@@ -133,7 +126,6 @@ function testMakeReadonlyCopy() {
   };
   assertObjectEquals(myObj, fireauth.object.makeReadonlyCopy(myObj));
 }
-
 
 function testMakeReadonlyCopy_isActuallyReadonly() {
   if (!isReadonlyPropertyBrowser) {
@@ -150,7 +142,6 @@ function testMakeReadonlyCopy_isActuallyReadonly() {
   assertObjectEquals(myObj, copy);
 }
 
-
 function testMakeWritableCopy() {
   var myObj = fireauth.object.makeReadonlyCopy({
     'Brazil': 'Brasilia',
@@ -158,7 +149,6 @@ function testMakeWritableCopy() {
   });
   assertObjectEquals(myObj, fireauth.object.makeWritableCopy(myObj));
 }
-
 
 function testMakeWritableCopy_isActuallyWritable() {
   var myObj = fireauth.object.makeReadonlyCopy({
@@ -170,64 +160,53 @@ function testMakeWritableCopy_isActuallyWritable() {
   assertObjectEquals('Santiago', copy['Chile']);
 }
 
-
 function testhasNonEmptyFields_true() {
-  var obj = {'a': 1, 'b': 2, 'c': 3};
+  var obj = { 'a': 1, 'b': 2, 'c': 3 };
   assertTrue(fireauth.object.hasNonEmptyFields(obj, ['a', 'c']));
 }
 
-
 function testhasNonEmptyFields_false() {
-  var obj = {'a': 1, 'b': 2};
+  var obj = { 'a': 1, 'b': 2 };
   assertFalse(fireauth.object.hasNonEmptyFields(obj, ['a', 'c']));
 }
 
-
 function testhasNonEmptyFields_empty() {
-  var obj = {'a': 1, 'b': 2, 'c': 3};
+  var obj = { 'a': 1, 'b': 2, 'c': 3 };
   assertTrue(fireauth.object.hasNonEmptyFields(obj, []));
 }
-
 
 function testhasNonEmptyFields_objectUndefined() {
   assertFalse(fireauth.object.hasNonEmptyFields(undefined, ['a']));
 }
 
-
 function testhasNonEmptyFields_fieldsUndefined() {
   assertTrue(fireauth.object.hasNonEmptyFields({}, undefined));
 }
 
-
 function testhasNonEmptyFields_objectHasUndefinedField() {
-  var obj = {'a': 1, 'b': 2, 'c': undefined};
+  var obj = { 'a': 1, 'b': 2, 'c': undefined };
   assertFalse(fireauth.object.hasNonEmptyFields(obj, ['a', 'c']));
 }
-
 
 function testhasNonEmptyFields_objectHasNullField() {
-  var obj = {'a': null, 'b': 2, 'c': 3};
+  var obj = { 'a': null, 'b': 2, 'c': 3 };
   assertFalse(fireauth.object.hasNonEmptyFields(obj, ['a', 'c']));
 }
-
 
 function testhasNonEmptyFields_objectHasEmptyStringField() {
-  var obj = {'a': '', 'b': 'foo', 'c': 'bar'};
+  var obj = { 'a': '', 'b': 'foo', 'c': 'bar' };
   assertFalse(fireauth.object.hasNonEmptyFields(obj, ['a', 'c']));
 }
 
-
 function testhasNonEmptyFields_objectHasZeroField() {
-  var obj = {'a': 1, 'b': 2, 'c': 0};
+  var obj = { 'a': 1, 'b': 2, 'c': 0 };
   assertTrue(fireauth.object.hasNonEmptyFields(obj, ['a', 'c']));
 }
 
-
 function testhasNonEmptyFields_objectHasFalseField() {
-  var obj = {'one': false, 'two': true, 'three': true};
+  var obj = { 'one': false, 'two': true, 'three': true };
   assertTrue(fireauth.object.hasNonEmptyFields(obj, ['one', 'three']));
 }
-
 
 function testUnsafeCreateReadOnlyCopy() {
   if (!isReadonlyPropertyBrowser) {
@@ -235,11 +214,7 @@ function testUnsafeCreateReadOnlyCopy() {
   }
 
   var myObj = {
-    'a': [
-      {'b': 1},
-      'str',
-      {}
-    ]
+    'a': [{ 'b': 1 }, 'str', {}]
   };
   // Create read-only copy.
   var copy = fireauth.object.unsafeCreateReadOnlyCopy(myObj);
@@ -254,7 +229,6 @@ function testUnsafeCreateReadOnlyCopy() {
   assertEquals(1, copy['a'][0]['b']);
 }
 
-
 function testUnsafeCreateReadOnlyCopy_nonCyclicalReferences() {
   if (!isReadonlyPropertyBrowser) {
     return;
@@ -262,8 +236,8 @@ function testUnsafeCreateReadOnlyCopy_nonCyclicalReferences() {
 
   var c = {};
   // a depends on c.
-  var a = {'d': [c, 1]};
-  var d = {'b': {'a': [0, a]}, 'c': c};
+  var a = { 'd': [c, 1] };
+  var d = { 'b': { 'a': [0, a] }, 'c': c };
   var copy = fireauth.object.unsafeCreateReadOnlyCopy(d);
   assertObjectEquals(d, copy);
   // Should have no effect.
@@ -285,19 +259,22 @@ function testUnsafeCreateReadOnlyCopy_nonCyclicalReferences() {
   assertObjectEquals(copy2['f'], copy2['h']);
 }
 
-
 function testSetDeprecatedReadonlyProperty() {
   var spyLog = goog.testing.recordFunction();
   stubs.replace(fireauth.deprecation, 'log', spyLog);
-
 
   var myObj = {
     'Argentina': 'Buenos Aires'
   };
   var warning = /** @type {fireauth.deprecation.Deprecations} */ (
-      'Bolivia is deprecated.');
-  fireauth.object.setDeprecatedReadonlyProperty(myObj, 'Bolivia', 'Sucre',
-      warning);
+    'Bolivia is deprecated.'
+  );
+  fireauth.object.setDeprecatedReadonlyProperty(
+    myObj,
+    'Bolivia',
+    'Sucre',
+    warning
+  );
 
   // The warning should not be shown until Bolivia is referenced.
   spyLog.assertCallCount(0);

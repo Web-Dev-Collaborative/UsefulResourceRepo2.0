@@ -8,7 +8,9 @@ import "firebase/auth";
 
 function svcGetIdToken() {
   // [START auth_svc_get_idtoken]
-  firebase.auth().currentUser.getIdToken()
+  firebase
+    .auth()
+    .currentUser.getIdToken()
     .then((idToken) => {
       // idToken can be passed back to server.
     })
@@ -33,11 +35,14 @@ function svcSubscribe(config) {
       const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
         unsubscribe();
         if (user) {
-          user.getIdToken().then((idToken) => {
-            resolve(idToken);
-          }, (error) => {
-            resolve(null);
-          });
+          user.getIdToken().then(
+            (idToken) => {
+              resolve(idToken);
+            },
+            (error) => {
+              resolve(null);
+            }
+          );
         } else {
           resolve(null);
         }
@@ -56,31 +61,32 @@ function svcIntercept() {
   // [START auth_svc_intercept]
   const getOriginFromUrl = (url) => {
     // https://stackoverflow.com/questions/1420881/how-to-extract-base-url-from-a-string-in-javascript
-    const pathArray = url.split('/');
+    const pathArray = url.split("/");
     const protocol = pathArray[0];
     const host = pathArray[2];
-    return protocol + '//' + host;
+    return protocol + "//" + host;
   };
-  
+
   // Get underlying body if available. Works for text and json bodies.
   const getBodyContent = (req) => {
-    return Promise.resolve().then(() => {
-      if (req.method !== 'GET') {
-        if (req.headers.get('Content-Type').indexOf('json') !== -1) {
-          return req.json()
-            .then((json) => {
+    return Promise.resolve()
+      .then(() => {
+        if (req.method !== "GET") {
+          if (req.headers.get("Content-Type").indexOf("json") !== -1) {
+            return req.json().then((json) => {
               return JSON.stringify(json);
             });
-        } else {
-          return req.text();
+          } else {
+            return req.text();
+          }
         }
-      }
-    }).catch((error) => {
-      // Ignore error.
-    });
+      })
+      .catch((error) => {
+        // Ignore error.
+      });
   };
-  
-  self.addEventListener('fetch', (event) => {
+
+  self.addEventListener("fetch", (event) => {
     /** @type {FetchEvent} */
     const evt = event;
 
@@ -88,23 +94,25 @@ function svcIntercept() {
       let req = evt.request;
       let processRequestPromise = Promise.resolve();
       // For same origin https requests, append idToken to header.
-      if (self.location.origin == getOriginFromUrl(evt.request.url) &&
-          (self.location.protocol == 'https:' ||
-           self.location.hostname == 'localhost') &&
-          idToken) {
+      if (
+        self.location.origin == getOriginFromUrl(evt.request.url) &&
+        (self.location.protocol == "https:" ||
+          self.location.hostname == "localhost") &&
+        idToken
+      ) {
         // Clone headers as request headers are immutable.
         const headers = new Headers();
         req.headers.forEach((val, key) => {
           headers.append(key, val);
         });
         // Add ID token to header.
-        headers.append('Authorization', 'Bearer ' + idToken);
+        headers.append("Authorization", "Bearer " + idToken);
         processRequestPromise = getBodyContent(req).then((body) => {
           try {
             req = new Request(req.url, {
               method: req.method,
               headers: headers,
-              mode: 'same-origin',
+              mode: "same-origin",
               credentials: req.credentials,
               cache: req.cache,
               redirect: req.redirect,
@@ -133,7 +141,7 @@ function svcIntercept() {
 
 function svcListenActivate(clients) {
   // [START auth_svc_listen_activate]
-  self.addEventListener('activate', (event) => {
+  self.addEventListener("activate", (event) => {
     event.waitUntil(clients.claim());
   });
   // [END auth_svc_listen_activate]
@@ -142,8 +150,8 @@ function svcListenActivate(clients) {
 function svcRegister() {
   // [START auth_svc_register]
   // Install servicerWorker if supported on sign-in/sign-up page.
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js', {scope: '/'});
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/service-worker.js", { scope: "/" });
   }
   // [END auth_svc_register]
 }
@@ -151,11 +159,13 @@ function svcRegister() {
 function svcSignInEmail(email, password) {
   // [START auth_svc_sign_in_email]
   // Sign in screen.
-  firebase.auth().signInWithEmailAndPassword(email, password)
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
     .then((result) => {
       // Redirect to profile page after sign-in. The service worker will detect
       // this and append the ID token to the header.
-      window.location.assign('/profile');
+      window.location.assign("/profile");
     })
     .catch((error) => {
       // Error occurred.

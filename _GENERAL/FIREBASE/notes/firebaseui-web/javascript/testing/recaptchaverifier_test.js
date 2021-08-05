@@ -16,69 +16,84 @@
  * @fileoverview Tests for recaptchaverifier.js
  */
 
-goog.provide('firebaseui.auth.RecaptchaVerifierTest');
+goog.provide("firebaseui.auth.RecaptchaVerifierTest");
 
-goog.require('firebaseui.auth.testing.RecaptchaVerifier');
-goog.require('goog.testing.jsunit');
+goog.require("firebaseui.auth.testing.RecaptchaVerifier");
+goog.require("goog.testing.jsunit");
 
-goog.setTestOnly('firebaseui.auth.RecaptchaVerifierTest');
-
+goog.setTestOnly("firebaseui.auth.RecaptchaVerifierTest");
 
 function testRecaptchaVerifier_success() {
   var app = {};
   var unfilteredParams = {
-    'size': 'compact',
-    'callback': function(token) {},
-    'expired-callback': function() {}
+    size: "compact",
+    callback: function (token) {},
+    "expired-callback": function () {},
   };
-  var filteredParams = {'size': 'compact'};
+  var filteredParams = { size: "compact" };
   var myMock = new firebaseui.auth.testing.RecaptchaVerifier(
-      'id', unfilteredParams, app);
+    "id",
+    unfilteredParams,
+    app
+  );
   myMock.install();
-  myMock.render().then(function(widgetId) {
-    assertEquals(widgetId, 10);
-    return myMock.verify();
-  }).then(function(response) {
-    assertEquals('RECAPTCHA_TOKEN', response);
-    myMock.clear();
-  });
-  return myMock.process().then(function() {
-    // Callbacks should be filtered out.
-    myMock.assertInitializedWithParameters(
-        'id', filteredParams, app);
-    // Same parameters should be returned, including the 2 callbacks.
-    assertObjectEquals(unfilteredParams, myMock.getParameters());
-    myMock.assertRender([], 10);
-    myMock.assertVerify([], 'RECAPTCHA_TOKEN');
-    return myMock.process();
-  }).then(function() {
-    myMock.assertClear();
-    return myMock.uninstall();
-  });
+  myMock
+    .render()
+    .then(function (widgetId) {
+      assertEquals(widgetId, 10);
+      return myMock.verify();
+    })
+    .then(function (response) {
+      assertEquals("RECAPTCHA_TOKEN", response);
+      myMock.clear();
+    });
+  return myMock
+    .process()
+    .then(function () {
+      // Callbacks should be filtered out.
+      myMock.assertInitializedWithParameters("id", filteredParams, app);
+      // Same parameters should be returned, including the 2 callbacks.
+      assertObjectEquals(unfilteredParams, myMock.getParameters());
+      myMock.assertRender([], 10);
+      myMock.assertVerify([], "RECAPTCHA_TOKEN");
+      return myMock.process();
+    })
+    .then(function () {
+      myMock.assertClear();
+      return myMock.uninstall();
+    });
 }
-
 
 function testRecaptchaVerifier_clearError() {
   var app = {};
   var myMock = new firebaseui.auth.testing.RecaptchaVerifier(
-      'id', {'size': 'compact'}, app);
+    "id",
+    { size: "compact" },
+    app
+  );
   myMock.install();
-  myMock.render().then(function(widgetId) {
-    assertEquals(widgetId, 10);
-    return myMock.verify();
-  }).then(function(response) {
-    assertEquals('RECAPTCHA_TOKEN', response);
-  });
-  return myMock.process().then(function() {
-    myMock.assertInitializedWithParameters(
-        'id', {'size': 'compact'}, app);
-    myMock.assertRender([], 10);
-    myMock.assertVerify([], 'RECAPTCHA_TOKEN');
-    myMock.assertNotClear();
-    return myMock.process();
-  }).then(function() {
-    myMock.assertClear();
-  }).thenCatch(function(error) {
-    assertEquals('reCAPTCHA verifier not cleared!', error.message);
-  });
+  myMock
+    .render()
+    .then(function (widgetId) {
+      assertEquals(widgetId, 10);
+      return myMock.verify();
+    })
+    .then(function (response) {
+      assertEquals("RECAPTCHA_TOKEN", response);
+    });
+  return myMock
+    .process()
+    .then(function () {
+      myMock.assertInitializedWithParameters("id", { size: "compact" }, app);
+      myMock.assertRender([], 10);
+      myMock.assertVerify([], "RECAPTCHA_TOKEN");
+      myMock.assertNotClear();
+      return myMock.process();
+    })
+    .then(function () {
+      myMock.assertClear();
+    })
+    .thenCatch(function (error) {
+      assertEquals("reCAPTCHA verifier not cleared!", error.message);
+    });
 }

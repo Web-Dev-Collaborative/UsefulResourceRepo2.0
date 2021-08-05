@@ -1,6 +1,6 @@
 ---
 id: 5900f3841000cf542c50fe97
-title: 'Problem 24: Lexicographic permutations'
+title: "Problem 24: Lexicographic permutations"
 challengeType: 5
 forumTopicId: 301885
 dashedName: problem-24-lexicographic-permutations
@@ -19,7 +19,7 @@ What is the `n`th lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7
 `lexicographicPermutations(699999)` should return a number.
 
 ```js
-assert(typeof lexicographicPermutations(699999) === 'number');
+assert(typeof lexicographicPermutations(699999) === "number");
 ```
 
 `lexicographicPermutations(699999)` should return 1938246570.
@@ -52,7 +52,6 @@ assert(lexicographicPermutations(999999) == 2783915460);
 
 ```js
 function lexicographicPermutations(n) {
-
   return n;
 }
 

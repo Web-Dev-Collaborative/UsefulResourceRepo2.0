@@ -21,7 +21,7 @@ La seguente funzione dovrebbe creare un array bidimensionale con `m` righe e `n`
 Il tuo codice dovrebbe impostare la variabile `matrix` su un array contenente 3 righe di 2 colonne di zeri ciascuna.
 
 ```js
-assert(JSON.stringify(matrix) == '[[0,0],[0,0],[0,0]]');
+assert(JSON.stringify(matrix) == "[[0,0],[0,0],[0,0]]");
 ```
 
 La variabile `matrix` dovrebbe avere 3 righe.
@@ -68,20 +68,20 @@ console.log(matrix);
 
 ```js
 function zeroArray(m, n) {
- // Creates a 2-D array with m rows and n columns of zeroes
- let newArray = [];
- for (let i = 0; i < m; i++) {
-   let row = [];
-   // Adds the m-th row into newArray
+  // Creates a 2-D array with m rows and n columns of zeroes
+  let newArray = [];
+  for (let i = 0; i < m; i++) {
+    let row = [];
+    // Adds the m-th row into newArray
 
-   for (let j = 0; j < n; j++) {
-     // Pushes n zeroes into the current row to create the columns
-     row.push(0);
-   }
-   // Pushes the current row, which now has n zeroes in it, to the array
-   newArray.push(row);
- }
- return newArray;
+    for (let j = 0; j < n; j++) {
+      // Pushes n zeroes into the current row to create the columns
+      row.push(0);
+    }
+    // Pushes the current row, which now has n zeroes in it, to the array
+    newArray.push(row);
+  }
+  return newArray;
 }
 
 let matrix = zeroArray(3, 2);

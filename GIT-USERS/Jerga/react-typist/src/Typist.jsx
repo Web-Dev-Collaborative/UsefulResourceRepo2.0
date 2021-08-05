@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Cursor from './Cursor';
-import Backspace from './Backspace';
-import Delay from './Delay';
-import * as utils from './utils';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Cursor from "./Cursor";
+import Backspace from "./Backspace";
+import Delay from "./Delay";
+import * as utils from "./utils";
 
-
-const ACTION_CHARS = ['🔙', '⏰'];
+const ACTION_CHARS = ["🔙", "⏰"];
 
 export default class Typist extends Component {
-
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -21,10 +19,10 @@ export default class Typist extends Component {
     onLineTyped: PropTypes.func,
     onTypingDone: PropTypes.func,
     delayGenerator: PropTypes.func,
-  }
+  };
 
   static defaultProps = {
-    className: '',
+    className: "",
     avgTypingDelay: 70,
     stdTypingDelay: 25,
     startDelay: 0,
@@ -33,7 +31,7 @@ export default class Typist extends Component {
     onLineTyped: () => {},
     onTypingDone: () => {},
     delayGenerator: utils.gaussianRnd,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -49,13 +47,13 @@ export default class Typist extends Component {
   state = {
     textLines: [],
     isDone: false,
-  }
+  };
 
   componentDidMount() {
     this.mounted = true;
     const { children, startDelay } = this.props;
     if (children) {
-      if (startDelay > 0 && typeof window !== 'undefined') {
+      if (startDelay > 0 && typeof window !== "undefined") {
         setTimeout(this.typeAllLines.bind(this), startDelay);
       } else {
         this.typeAllLines();
@@ -82,40 +80,41 @@ export default class Typist extends Component {
   componentWillUnmount() {
     this.mounted = false;
     if (this.timeouts) {
-      this.timeouts.map(timeout => clearTimeout(timeout))
+      this.timeouts.map((timeout) => clearTimeout(timeout));
     }
   }
 
   onTypingDone = () => {
-    if (!this.mounted) { return; }
+    if (!this.mounted) {
+      return;
+    }
     this.setState({ isDone: true });
     this.props.onTypingDone();
-  }
+  };
 
   delayGenerator = (line, lineIdx, character, charIdx) => {
     const mean = this.props.avgTypingDelay;
     const std = this.props.stdTypingDelay;
 
-    return this.props.delayGenerator(
-      mean,
-      std,
-      {
-        line,
-        lineIdx,
-        character,
-        charIdx,
-        defDelayGenerator: (mn = mean, st = std) => utils.gaussianRnd(mn, st),
-      }
-    );
-  }
+    return this.props.delayGenerator(mean, std, {
+      line,
+      lineIdx,
+      character,
+      charIdx,
+      defDelayGenerator: (mn = mean, st = std) => utils.gaussianRnd(mn, st),
+    });
+  };
 
   typeAllLines(lines = this.linesToType) {
-    return utils.eachPromise(lines, this.typeLine)
-    .then(() => this.onTypingDone());
+    return utils
+      .eachPromise(lines, this.typeLine)
+      .then(() => this.onTypingDone());
   }
 
   typeLine = (line, lineIdx) => {
-    if (!this.mounted) { return Promise.resolve(); }
+    if (!this.mounted) {
+      return Promise.resolve();
+    }
 
     let decoratedLine = line;
     const { onLineTyped } = this.props;
@@ -124,36 +123,43 @@ export default class Typist extends Component {
       if (line.props.delay > 0) {
         this.introducedDelay = line.props.delay;
       }
-      decoratedLine = String('🔙').repeat(line.props.count);
+      decoratedLine = String("🔙").repeat(line.props.count);
     } else if (utils.isDelayElement(line)) {
       this.introducedDelay = line.props.ms;
-      decoratedLine = '⏰';
+      decoratedLine = "⏰";
     }
 
     return new Promise((resolve, reject) => {
-      this.setState({ textLines: this.state.textLines.concat(['']) }, () => {
-        utils.eachPromise(decoratedLine, this.typeCharacter, decoratedLine, lineIdx)
-        .then(() => onLineTyped(decoratedLine, lineIdx))
-        .then(resolve)
-        .catch(reject);
+      this.setState({ textLines: this.state.textLines.concat([""]) }, () => {
+        utils
+          .eachPromise(
+            decoratedLine,
+            this.typeCharacter,
+            decoratedLine,
+            lineIdx
+          )
+          .then(() => onLineTyped(decoratedLine, lineIdx))
+          .then(resolve)
+          .catch(reject);
       });
     });
-  }
+  };
 
   typeCharacter = (character, charIdx, line, lineIdx) => {
-    if (!this.mounted) { return Promise.resolve(); }
+    if (!this.mounted) {
+      return Promise.resolve();
+    }
     const { onCharacterTyped } = this.props;
 
     return new Promise((resolve) => {
       const textLines = this.state.textLines.slice();
 
-      utils.sleep(this.introducedDelay)
-      .then((timeout) => {
+      utils.sleep(this.introducedDelay).then((timeout) => {
         this.timeouts.push(timeout);
         this.introducedDelay = null;
 
-        const isBackspace = character === '🔙';
-        const isDelay = character === '⏰';
+        const isBackspace = character === "🔙";
+        const isDelay = character === "⏰";
         if (isDelay) {
           resolve();
           return;
@@ -163,7 +169,7 @@ export default class Typist extends Component {
           let prevLineIdx = lineIdx - 1;
           let prevLine = textLines[prevLineIdx];
 
-          for (let idx = prevLineIdx; idx >= 0; idx --) {
+          for (let idx = prevLineIdx; idx >= 0; idx--) {
             if (prevLine.length > 0 && !ACTION_CHARS.includes(prevLine[0])) {
               break;
             }
@@ -183,7 +189,7 @@ export default class Typist extends Component {
         });
       });
     });
-  }
+  };
 
   render() {
     const { className, cursor } = this.props;
@@ -200,7 +206,6 @@ export default class Typist extends Component {
       </div>
     );
   }
-
 }
 
 Typist.Backspace = Backspace;

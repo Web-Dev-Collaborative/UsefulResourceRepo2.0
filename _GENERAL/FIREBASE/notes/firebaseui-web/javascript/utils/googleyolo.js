@@ -18,22 +18,23 @@
  * @fileoverview Defines the One-Tap sign-up API wrapper.
  */
 
-goog.provide('firebaseui.auth.GoogleYolo');
-goog.provide('firebaseui.auth.GoogleYolo.Loader');
+goog.provide("firebaseui.auth.GoogleYolo");
+goog.provide("firebaseui.auth.GoogleYolo.Loader");
 
-goog.require('firebaseui.auth.util');
-goog.require('goog.Promise');
-goog.require('goog.html.TrustedResourceUrl');
-goog.require('goog.net.jsloader');
-goog.require('goog.string.Const');
-
+goog.require("firebaseui.auth.util");
+goog.require("goog.Promise");
+goog.require("goog.html.TrustedResourceUrl");
+goog.require("goog.net.jsloader");
+goog.require("goog.string.Const");
 
 /** @return {?SmartLockApi} The SmartLockApi handle if available. */
 function getGoogleAccountsId() {
-  return (goog.global[firebaseui.auth.GoogleYolo.NAMESPACE_] &&
-      goog.global[firebaseui.auth.GoogleYolo.NAMESPACE_]['accounts'] &&
-      goog.global[firebaseui.auth.GoogleYolo.NAMESPACE_]['accounts']['id']) ||
-      null;
+  return (
+    (goog.global[firebaseui.auth.GoogleYolo.NAMESPACE_] &&
+      goog.global[firebaseui.auth.GoogleYolo.NAMESPACE_]["accounts"] &&
+      goog.global[firebaseui.auth.GoogleYolo.NAMESPACE_]["accounts"]["id"]) ||
+    null
+  );
 }
 
 /**
@@ -62,7 +63,6 @@ firebaseui.auth.GoogleYolo = class {
     this.callback_ = null;
   }
 
-
   /** Cancels any pending One-Tap operation if available. */
   cancel() {
     // Call underlying googleyolo API if supported and previously initialized.
@@ -75,7 +75,6 @@ firebaseui.auth.GoogleYolo = class {
       this.googleyolo_.cancel();
     }
   }
-
 
   /**
    * Shows the One-Tap UI if available and returns a promise that resolves with
@@ -93,15 +92,15 @@ firebaseui.auth.GoogleYolo = class {
     // Client ID available and googleyolo is available.
     if (this.googleyolo_ && clientId) {
       // One-Tap UI renderer.
-      var render = function() {
+      var render = function () {
         // UI initialized.
         self.initialized_ = true;
         return new goog.Promise((resolve, reject) => {
           self.callback_ = resolve;
           self.googleyolo_.initialize({
-            'client_id': /** @type {string} */ (clientId),
-            'callback': resolve,
-            'auto_select': !autoSignInDisabled,
+            client_id: /** @type {string} */ (clientId),
+            callback: resolve,
+            auto_select: !autoSignInDisabled,
           });
           self.googleyolo_.prompt();
         });
@@ -114,18 +113,18 @@ firebaseui.auth.GoogleYolo = class {
       // other successively due to concurrent requests. Only the last call will
       // succeed.
       var p = firebaseui.auth.GoogleYolo.Loader.getInstance()
-          .load()
-          .then(function() {
-            // Set googleyolo to prevent reloading again for future show
-            // calls.
-            self.googleyolo_ = getGoogleAccountsId();
-            // On success, retry to show.
-            return self.show(clientId, autoSignInDisabled);
-          })
-          .thenCatch(function(error) {
-            // On failure, resolve with null.
-            return null;
-          });
+        .load()
+        .then(function () {
+          // Set googleyolo to prevent reloading again for future show
+          // calls.
+          self.googleyolo_ = getGoogleAccountsId();
+          // On success, retry to show.
+          return self.show(clientId, autoSignInDisabled);
+        })
+        .thenCatch(function (error) {
+          // On failure, resolve with null.
+          return null;
+        });
       // Cast from goog.Promise to native Promise.
       return goog.Promise.resolve(p);
     }
@@ -136,23 +135,19 @@ firebaseui.auth.GoogleYolo = class {
 
 goog.addSingletonGetter(firebaseui.auth.GoogleYolo);
 
-
-
 /**
  * The One-Tap sign-up namespace.
  * @const {string}
  * @private
  */
-firebaseui.auth.GoogleYolo.NAMESPACE_ = 'google';
-
+firebaseui.auth.GoogleYolo.NAMESPACE_ = "google";
 
 /**
  * The One-Tap sign-up on load callback name.
  * @const {string}
  * @private
  */
-firebaseui.auth.GoogleYolo.CALLBACK_ = 'onGoogleLibraryLoad';
-
+firebaseui.auth.GoogleYolo.CALLBACK_ = "onGoogleLibraryLoad";
 
 /**
  * The default dependency loader timeout in ms.
@@ -161,15 +156,14 @@ firebaseui.auth.GoogleYolo.CALLBACK_ = 'onGoogleLibraryLoad';
  */
 firebaseui.auth.GoogleYolo.LOAD_TIMEOUT_MS_ = 10000;
 
-
 /**
  * The One-Tap sign-up dependency source URL.
  * @const {!goog.string.Const}
  * @private
  */
 firebaseui.auth.GoogleYolo.GOOGLE_YOLO_SRC_ = goog.string.Const.from(
-    'https://accounts.google.com/gsi/client');
-
+  "https://accounts.google.com/gsi/client"
+);
 
 /**
  * Googleyolo loader utility which will dynamically load one-tap sign-up
@@ -184,7 +178,6 @@ firebaseui.auth.GoogleYolo.Loader = class {
     this.loader_ = null;
   }
 
-
   /**
    * @return {!goog.Promise<void>} A promise that resolves when googleyolo is
    *     loaded.
@@ -196,42 +189,43 @@ firebaseui.auth.GoogleYolo.Loader = class {
       return this.loader_;
     }
     var url = goog.html.TrustedResourceUrl.fromConstant(
-        firebaseui.auth.GoogleYolo.GOOGLE_YOLO_SRC_);
+      firebaseui.auth.GoogleYolo.GOOGLE_YOLO_SRC_
+    );
     if (!getGoogleAccountsId()) {
       // Wait for DOM to be ready.
-      this.loader_ = firebaseui.auth.util.onDomReady().then(function() {
+      this.loader_ = firebaseui.auth.util.onDomReady().then(function () {
         // In case it was still being loaded while DOM was not ready.
         // Resolve immediately.
         if (getGoogleAccountsId()) {
           return;
         }
-        return new goog.Promise(function(resolve, reject) {
+        return new goog.Promise(function (resolve, reject) {
           // Timeout after a certain delay.
-          var timer = setTimeout(function() {
+          var timer = setTimeout(function () {
             // On error, nullify loader to allow retrial.
             self.loader_ = null;
-            reject(new Error('Network error!'));
+            reject(new Error("Network error!"));
           }, firebaseui.auth.GoogleYolo.LOAD_TIMEOUT_MS_);
           // On googleyolo load callback, clear timeout and resolve loader.
-          goog.global[firebaseui.auth.GoogleYolo.CALLBACK_] = function() {
+          goog.global[firebaseui.auth.GoogleYolo.CALLBACK_] = function () {
             clearTimeout(timer);
             resolve();
           };
           // Load googleyolo dependency.
           goog.Promise.resolve(goog.net.jsloader.safeLoad(url))
-              .then(() => {
-                // Callback does not always trigger. Trigger on load and
-                // google.accounts.id reference is available.
-                if (getGoogleAccountsId()) {
-                  resolve();
-                }
-              })
-              .thenCatch(function(error) {
-                // On error, clear timer and nullify loader to allow retrial.
-                clearTimeout(timer);
-                self.loader_ = null;
-                reject(error);
-              });
+            .then(() => {
+              // Callback does not always trigger. Trigger on load and
+              // google.accounts.id reference is available.
+              if (getGoogleAccountsId()) {
+                resolve();
+              }
+            })
+            .thenCatch(function (error) {
+              // On error, clear timer and nullify loader to allow retrial.
+              clearTimeout(timer);
+              self.loader_ = null;
+              reject(error);
+            });
         });
       });
       return this.loader_;

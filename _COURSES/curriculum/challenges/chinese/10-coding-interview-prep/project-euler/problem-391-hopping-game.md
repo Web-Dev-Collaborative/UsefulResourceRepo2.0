@@ -1,6 +1,6 @@
 ---
 id: 5900f4f31000cf542c510006
-title: 'Problem 391: Hopping Game'
+title: "Problem 391: Hopping Game"
 challengeType: 5
 forumTopicId: 302056
 dashedName: problem-391-hopping-game
@@ -38,7 +38,6 @@ assert.strictEqual(euler391(), 61029882288);
 
 ```js
 function euler391() {
-
   return true;
 }
 

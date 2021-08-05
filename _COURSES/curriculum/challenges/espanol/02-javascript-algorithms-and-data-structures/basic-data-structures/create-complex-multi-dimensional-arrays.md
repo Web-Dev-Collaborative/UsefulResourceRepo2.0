@@ -14,20 +14,9 @@ Una de las características más poderosas cuando se piensa en los arreglos como
 
 ```js
 let nestedArray = [
-  ['deep'],
-  [
-    ['deeper'], ['deeper'] 
-  ],
-  [
-    [
-      ['deepest'], ['deepest']
-    ],
-    [
-      [
-        ['deepest-est?']
-      ]
-    ]
-  ]
+  ["deep"],
+  [["deeper"], ["deeper"]],
+  [[["deepest"], ["deepest"]], [[["deepest-est?"]]]],
 ];
 ```
 
@@ -42,7 +31,7 @@ console.log(nestedArray[2][1][0][0][0]);
 Esto registra la cadena `deepest-est?`. Y ahora que sabemos dónde está ese dato, podemos restablecerlo si es necesario:
 
 ```js
-nestedArray[2][1][0][0][0] = 'deeper still';
+nestedArray[2][1][0][0][0] = "deeper still";
 
 console.log(nestedArray[2][1][0][0][0]);
 ```
@@ -66,9 +55,9 @@ assert.strictEqual(
     })(arr);
     for (let i = 0; i < flattened.length; i++) {
       if (
-        typeof flattened[i] !== 'number' &&
-        typeof flattened[i] !== 'string' &&
-        typeof flattened[i] !== 'boolean'
+        typeof flattened[i] !== "number" &&
+        typeof flattened[i] !== "string" &&
+        typeof flattened[i] !== "boolean"
       ) {
         return false;
       }
@@ -116,7 +105,7 @@ assert(
         return combined;
       }
     }, []);
-  })(myNestedArray, 'deep').length === 1 &&
+  })(myNestedArray, "deep").length === 1 &&
     (function howDeep(array, target, depth = 0) {
       return array.reduce((combined, current) => {
         if (Array.isArray(current)) {
@@ -127,7 +116,7 @@ assert(
           return combined;
         }
       }, []);
-    })(myNestedArray, 'deep')[0] === 2
+    })(myNestedArray, "deep")[0] === 2
 );
 ```
 
@@ -145,7 +134,7 @@ assert(
         return combined;
       }
     }, []);
-  })(myNestedArray, 'deeper').length === 1 &&
+  })(myNestedArray, "deeper").length === 1 &&
     (function howDeep(array, target, depth = 0) {
       return array.reduce((combined, current) => {
         if (Array.isArray(current)) {
@@ -156,7 +145,7 @@ assert(
           return combined;
         }
       }, []);
-    })(myNestedArray, 'deeper')[0] === 3
+    })(myNestedArray, "deeper")[0] === 3
 );
 ```
 
@@ -174,7 +163,7 @@ assert(
         return combined;
       }
     }, []);
-  })(myNestedArray, 'deepest').length === 1 &&
+  })(myNestedArray, "deepest").length === 1 &&
     (function howDeep(array, target, depth = 0) {
       return array.reduce((combined, current) => {
         if (Array.isArray(current)) {
@@ -185,7 +174,7 @@ assert(
           return combined;
         }
       }, []);
-    })(myNestedArray, 'deepest')[0] === 4
+    })(myNestedArray, "deepest")[0] === 4
 );
 ```
 
@@ -196,11 +185,11 @@ assert(
 ```js
 let myNestedArray = [
   // Only change code below this line
-  ['unshift', false, 1, 2, 3, 'complex', 'nested'],
-  ['loop', 'shift', 6, 7, 1000, 'method'],
-  ['concat', false, true, 'spread', 'array'],
-  ['mutate', 1327.98, 'splice', 'slice', 'push'],
-  ['iterate', 1.3849, 7, '8.4876', 'arbitrary', 'depth']
+  ["unshift", false, 1, 2, 3, "complex", "nested"],
+  ["loop", "shift", 6, 7, 1000, "method"],
+  ["concat", false, true, "spread", "array"],
+  ["mutate", 1327.98, "splice", "slice", "push"],
+  ["iterate", 1.3849, 7, "8.4876", "arbitrary", "depth"],
   // Only change code above this line
 ];
 ```
@@ -209,10 +198,19 @@ let myNestedArray = [
 
 ```js
 let myNestedArray = [
-  ['unshift', ['deep', ['deeper', ['deepest']]],false, 1, 2, 3, 'complex', 'nested'],
-  ['loop', 'shift', 6, 7, 1000, 'method'],
-  ['concat', false, true, 'spread', 'array'],
-  ['mutate', 1327.98, 'splice', 'slice', 'push'],
-  ['iterate', 1.3849, 7, '8.4876', 'arbitrary', 'depth']
+  [
+    "unshift",
+    ["deep", ["deeper", ["deepest"]]],
+    false,
+    1,
+    2,
+    3,
+    "complex",
+    "nested",
+  ],
+  ["loop", "shift", 6, 7, 1000, "method"],
+  ["concat", false, true, "spread", "array"],
+  ["mutate", 1327.98, "splice", "slice", "push"],
+  ["iterate", 1.3849, 7, "8.4876", "arbitrary", "depth"],
 ];
 ```

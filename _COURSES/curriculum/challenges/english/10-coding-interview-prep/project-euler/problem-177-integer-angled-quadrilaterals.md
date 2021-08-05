@@ -1,6 +1,6 @@
 ---
 id: 5900f41e1000cf542c50ff30
-title: 'Problem 177: Integer angled Quadrilaterals'
+title: "Problem 177: Integer angled Quadrilaterals"
 challengeType: 5
 forumTopicId: 301812
 dashedName: problem-177-integer-angled-quadrilaterals
@@ -26,7 +26,6 @@ assert.strictEqual(euler177(), 129325);
 
 ```js
 function euler177() {
-
   return true;
 }
 

@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244ab
 title: Comprendiendo la sensibilidad de mayúsculas en las variables
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cd6GDcD'
+videoUrl: "https://scrimba.com/c/cd6GDcD"
 forumTopicId: 18334
 dashedName: understanding-case-sensitivity-in-variables
 ---
@@ -11,7 +11,7 @@ dashedName: understanding-case-sensitivity-in-variables
 
 En JavaScript todas las variables y nombres de función son sensibles a mayúsculas y minúsculas. Esto significa que la capitalización importa.
 
-`MYVAR` no es lo mismo que `MyVar` ni `myvar`. Es posible tener múltiples variables distintas con el mismo nombre pero diferente capitalización. Se recomienda encarecidamente que por el bien de la claridad, *no* utilices esta funcionalidad del lenguaje.
+`MYVAR` no es lo mismo que `MyVar` ni `myvar`. Es posible tener múltiples variables distintas con el mismo nombre pero diferente capitalización. Se recomienda encarecidamente que por el bien de la claridad, _no_ utilices esta funcionalidad del lenguaje.
 
 **Buena Práctica**
 
@@ -36,21 +36,21 @@ No crees ninguna variable nueva.
 `studlyCapVar` debe definirse y tener un valor de `10`.
 
 ```js
-assert(typeof studlyCapVar !== 'undefined' && studlyCapVar === 10);
+assert(typeof studlyCapVar !== "undefined" && studlyCapVar === 10);
 ```
 
 `properCamelCase` debe definirse y tener una cadena con valor `A String`.
 
 ```js
 assert(
-  typeof properCamelCase !== 'undefined' && properCamelCase === 'A String'
+  typeof properCamelCase !== "undefined" && properCamelCase === "A String"
 );
 ```
 
 `titleCaseOver` debe definirse y tener una cadena con valor `9000`.
 
 ```js
-assert(typeof titleCaseOver !== 'undefined' && titleCaseOver === 9000);
+assert(typeof titleCaseOver !== "undefined" && titleCaseOver === 9000);
 ```
 
 `studlyCapVar` debe usar camelCase tanto en las sección de declaración como de asignación.

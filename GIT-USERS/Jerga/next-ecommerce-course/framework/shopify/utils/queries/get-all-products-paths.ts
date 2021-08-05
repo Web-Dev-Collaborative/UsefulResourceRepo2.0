@@ -1,5 +1,3 @@
-
-
 const getAllProductsPathsQuery = `
   query getAllProductsPaths($first: Int = 250) {
     products(first: $first) {
@@ -10,6 +8,6 @@ const getAllProductsPathsQuery = `
       }
     }
   }
-`
+`;
 
-export default getAllProductsPathsQuery
+export default getAllProductsPathsQuery;

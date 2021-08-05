@@ -28,15 +28,15 @@ Once you complete the above steps you should be able to click the button and see
 
 ```js
 assert(
-  Enzyme.mount(React.createElement(MyComponent)).find('div').length === 1 &&
+  Enzyme.mount(React.createElement(MyComponent)).find("div").length === 1 &&
     Enzyme.mount(React.createElement(MyComponent))
-      .find('div')
+      .find("div")
       .childAt(0)
-      .type() === 'button' &&
+      .type() === "button" &&
     Enzyme.mount(React.createElement(MyComponent))
-      .find('div')
+      .find("div")
       .childAt(1)
-      .type() === 'h1'
+      .type() === "h1"
 );
 ```
 
@@ -44,7 +44,7 @@ The state of `MyComponent` should initialize with the key value pair `{ text: "H
 
 ```js
 assert(
-  Enzyme.mount(React.createElement(MyComponent)).state('text') === 'Hello'
+  Enzyme.mount(React.createElement(MyComponent)).state("text") === "Hello"
 );
 ```
 
@@ -56,16 +56,16 @@ async () => {
     new Promise((resolve, reject) => setTimeout(() => resolve(fn()), 250));
   const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
   const first = () => {
-    mockedComponent.setState({ text: 'Hello' });
-    return waitForIt(() => mockedComponent.state('text'));
+    mockedComponent.setState({ text: "Hello" });
+    return waitForIt(() => mockedComponent.state("text"));
   };
   const second = () => {
-    mockedComponent.find('button').simulate('click');
-    return waitForIt(() => mockedComponent.state('text'));
+    mockedComponent.find("button").simulate("click");
+    return waitForIt(() => mockedComponent.state("text"));
   };
   const firstValue = await first();
   const secondValue = await second();
-  assert(firstValue === 'Hello' && secondValue === 'You clicked!');
+  assert(firstValue === "Hello" && secondValue === "You clicked!");
 };
 ```
 
@@ -74,7 +74,7 @@ async () => {
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyComponent />, document.getElementById('root'))
+ReactDOM.render(<MyComponent />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -84,7 +84,7 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "Hello"
+      text: "Hello",
     };
     // Change code below this line
 
@@ -92,20 +92,20 @@ class MyComponent extends React.Component {
   }
   handleClick() {
     this.setState({
-      text: "You clicked!"
+      text: "You clicked!",
     });
   }
   render() {
     return (
       <div>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
         <button>Click Me</button>
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
         <h1>{this.state.text}</h1>
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -115,22 +115,22 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "Hello"
+      text: "Hello",
     };
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
     this.setState({
-      text: "You clicked!"
+      text: "You clicked!",
     });
   }
   render() {
     return (
       <div>
-        <button onClick = {this.handleClick}>Click Me</button>
+        <button onClick={this.handleClick}>Click Me</button>
         <h1>{this.state.text}</h1>
       </div>
     );
   }
-};
+}
 ```

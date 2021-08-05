@@ -7,8 +7,8 @@ const Blogs = () => {
       <BasePage>
         <h1>I am blogs page</h1>
       </BasePage>
-    </BaseLayout >
-  )
-}
+    </BaseLayout>
+  );
+};
 
 export default Blogs;

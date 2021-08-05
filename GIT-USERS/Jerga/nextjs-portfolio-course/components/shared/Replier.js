@@ -1,44 +1,51 @@
+import { useState } from "react";
 
-import { useState } from 'react';
+const Replier = ({
+  isOpen,
+  onClose,
+  closeBtn: CloseBtn,
+  onSubmit,
+  replyTo,
+  hasTitle = true,
+}) => {
+  const [reply, setReply] = useState({ title: "", content: "" });
 
-const Replier = ({isOpen, onClose, closeBtn: CloseBtn, onSubmit, replyTo, hasTitle = true}) => {
-  const [reply, setReply] = useState({title: '', content: ''});
-
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setReply({...reply, [name]: value})
-  }
+    setReply({ ...reply, [name]: value });
+  };
 
   const resetReplier = () => {
-    setReply({title: '', content: ''});
-  }
+    setReply({ title: "", content: "" });
+  };
 
   return (
-    <div className={`reply-controls ${isOpen ? 'is-open' : ''}`}>
+    <div className={`reply-controls ${isOpen ? "is-open" : ""}`}>
       <div className="reply-area">
-        { replyTo &&
+        {replyTo && (
           <div className="reply-to">
             Reply To: <span className="text ml-2">{replyTo}</span>
           </div>
-        }
-        { hasTitle &&
+        )}
+        {hasTitle && (
           <div className="fj-editor-input">
             <input
               value={reply.title}
               onChange={handleChange}
               name="title"
               placeholder="Topic title"
-              type="text"></input>
+              type="text"
+            ></input>
           </div>
-        }
+        )}
         <div className="fj-editor">
           <div className="fj-editor-textarea-wrapper">
             <textarea
               value={reply.content}
               onChange={handleChange}
               name="content"
-              placeholder="Type here">
-            </textarea>
+              placeholder="Type here"
+            ></textarea>
           </div>
           <div className="fj-editor-preview-wrapper">
             <div className="preview">
@@ -52,7 +59,10 @@ const Replier = ({isOpen, onClose, closeBtn: CloseBtn, onSubmit, replyTo, hasTit
               onClick={() => {
                 onSubmit(reply, resetReplier);
               }}
-              className="btn btn-main bg-blue py-2 ttu">Reply</button>
+              className="btn btn-main bg-blue py-2 ttu"
+            >
+              Reply
+            </button>
             {/* <a
               onClick={onClose}
               className="btn py-2 ttu gray-10">Cancel</a> */}
@@ -64,7 +74,7 @@ const Replier = ({isOpen, onClose, closeBtn: CloseBtn, onSubmit, replyTo, hasTit
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Replier;

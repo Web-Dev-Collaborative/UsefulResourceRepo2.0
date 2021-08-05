@@ -8,17 +8,17 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 
 // Prepare ecommerce bundle
 const params10 = {
-  transaction_id: 'T12345',
-  affiliation: 'Google Store',
-  currency: 'USD',
+  transaction_id: "T12345",
+  affiliation: "Google Store",
+  currency: "USD",
   value: 14.98, // Total Revenue
   tax: 2.85,
   shipping: 5.34,
-  coupon: 'SUMMER_FUN',
-  items: [item_jeggings]
+  coupon: "SUMMER_FUN",
+  items: [item_jeggings],
 };
 
 // Log event
 const analytics = getAnalytics();
-logEvent(analytics, 'purchase', params10);
+logEvent(analytics, "purchase", params10);
 // [END analytics_ecommerce_purchase_modular]

@@ -1,12 +1,18 @@
+import { useState, useRef, useEffect } from "react";
+import BaseLayout from "@/components/layouts/BaseLayout";
+import BasePage from "@/components/BasePage";
+import { Container, Row, Col } from "reactstrap";
+import Typed from "react-typed";
+import { useGetUser } from "@/actions/user";
 
-import { useState, useRef, useEffect } from 'react';
-import BaseLayout from '@/components/layouts/BaseLayout';
-import BasePage from '@/components/BasePage';
-import { Container, Row, Col } from 'reactstrap';
-import Typed from 'react-typed';
-import { useGetUser } from '@/actions/user';
-
-const ROLES = ['Developer', 'Tech Lover', 'Team Player', 'Course Creator', 'React.js', 'Angular'];
+const ROLES = [
+  "Developer",
+  "Tech Lover",
+  "Team Player",
+  "Course Creator",
+  "React.js",
+  "Angular",
+];
 const Index = () => {
   const [isFlipping, setIsFlipping] = useState(false);
   const { data, loading } = useGetUser();
@@ -14,21 +20,22 @@ const Index = () => {
 
   useEffect(() => {
     startAnimation();
-    return () => flipInterval.current && clearInterval(flipInterval.current)
+    return () => flipInterval.current && clearInterval(flipInterval.current);
   }, []);
 
   const startAnimation = () => {
     flipInterval.current = setInterval(() => {
-      setIsFlipping(prevFlipping => !prevFlipping);
+      setIsFlipping((prevFlipping) => !prevFlipping);
     }, 20000);
-  }
+  };
 
   return (
     <BaseLayout
       user={data}
       loading={loading}
       navClass="transparent"
-      className={`cover ${isFlipping ? 'cover-orange' : 'cover-blue'}`}>
+      className={`cover ${isFlipping ? "cover-orange" : "cover-blue"}`}
+    >
       <BasePage indexPage title="Portfolio - Filip Jerga">
         <div className="main-section">
           <div className="background-image">
@@ -38,7 +45,7 @@ const Index = () => {
             <Row>
               <Col md="6">
                 <div className="hero-section">
-                  <div className={`flipper ${isFlipping ? 'isFlipping' : ''}`}>
+                  <div className={`flipper ${isFlipping ? "isFlipping" : ""}`}>
                     <div className="front">
                       <div className="image image-1">
                         <div className="hero-section-content">
@@ -71,8 +78,9 @@ const Index = () => {
               <Col md="6" className="hero-welcome-wrapper">
                 <div className="hero-welcome-text">
                   <h1>
-                    Welcome to the portfolio website of Filip Jerga.
-                    Get informed, collaborate and discover projects I was working on through the years!
+                    Welcome to the portfolio website of Filip Jerga. Get
+                    informed, collaborate and discover projects I was working on
+                    through the years!
                   </h1>
                 </div>
                 <Typed
@@ -87,9 +95,7 @@ const Index = () => {
                   cursorChar="|"
                 />
                 <div className="hero-welcome-bio">
-                  <h1>
-                    Let's take a look on my work.
-                  </h1>
+                  <h1>Let's take a look on my work.</h1>
                 </div>
               </Col>
             </Row>
@@ -97,7 +103,7 @@ const Index = () => {
         </div>
       </BasePage>
     </BaseLayout>
-  )
-}
+  );
+};
 
 export default Index;

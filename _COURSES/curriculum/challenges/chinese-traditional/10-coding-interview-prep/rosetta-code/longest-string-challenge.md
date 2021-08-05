@@ -19,21 +19,21 @@ Write a function that takes an array of strings and returns the strings that hav
 `longestString` should be a function.
 
 ```js
-assert(typeof longestString == 'function');
+assert(typeof longestString == "function");
 ```
 
 `longestString(["a", "bb", "ccc", "ee", "f", "ggg"])` should return a array.
 
 ```js
-assert(Array.isArray(longestString(['a', 'bb', 'ccc', 'ee', 'f', 'ggg'])));
+assert(Array.isArray(longestString(["a", "bb", "ccc", "ee", "f", "ggg"])));
 ```
 
 `longestString(["a", "bb", "ccc", "ee", "f", "ggg"])` should return `["ccc", "ggg"]'`.
 
 ```js
-assert.deepEqual(longestString(['a', 'bb', 'ccc', 'ee', 'f', 'ggg']), [
-  'ccc',
-  'ggg'
+assert.deepEqual(longestString(["a", "bb", "ccc", "ee", "f", "ggg"]), [
+  "ccc",
+  "ggg",
 ]);
 ```
 
@@ -41,8 +41,8 @@ assert.deepEqual(longestString(['a', 'bb', 'ccc', 'ee', 'f', 'ggg']), [
 
 ```js
 assert.deepEqual(
-  longestString(['afedg', 'bb', 'sdccc', 'efdee', 'f', 'geegg']),
-  ['afedg', 'sdccc', 'efdee', 'geegg']
+  longestString(["afedg", "bb", "sdccc", "efdee", "f", "geegg"]),
+  ["afedg", "sdccc", "efdee", "geegg"]
 );
 ```
 
@@ -50,8 +50,8 @@ assert.deepEqual(
 
 ```js
 assert.deepEqual(
-  longestString(['a', 'bhghgb', 'ccc', 'efde', 'fssdrr', 'ggg']),
-  ['bhghgb', 'fssdrr']
+  longestString(["a", "bhghgb", "ccc", "efde", "fssdrr", "ggg"]),
+  ["bhghgb", "fssdrr"]
 );
 ```
 
@@ -59,16 +59,16 @@ assert.deepEqual(
 
 ```js
 assert.deepEqual(
-  longestString(['ahgfhg', 'bdsfsb', 'ccc', 'ee', 'f', 'ggdsfg']),
-  ['ahgfhg', 'bdsfsb', 'ggdsfg']
+  longestString(["ahgfhg", "bdsfsb", "ccc", "ee", "f", "ggdsfg"]),
+  ["ahgfhg", "bdsfsb", "ggdsfg"]
 );
 ```
 
 `longestString(["a", "bbdsf", "ccc", "edfe", "gzzzgg"])` should return `["gzzzgg"]`.
 
 ```js
-assert.deepEqual(longestString(['a', 'bbdsf', 'ccc', 'edfe', 'gzzzgg']), [
-  'gzzzgg'
+assert.deepEqual(longestString(["a", "bbdsf", "ccc", "edfe", "gzzzgg"]), [
+  "gzzzgg",
 ]);
 ```
 
@@ -77,25 +77,22 @@ assert.deepEqual(longestString(['a', 'bbdsf', 'ccc', 'edfe', 'gzzzgg']), [
 ## --seed-contents--
 
 ```js
-function longestString(strings) {
-
-}
+function longestString(strings) {}
 ```
 
 # --solutions--
 
 ```js
 function longestString(strings) {
-    var mx = 0;
-    var result = []
-    strings.forEach(function (e) {
-        if (e.length > mx) {
-            mx = e.length
-            result = [e]
-        } else if (e.length == mx)
-            result.push(e)
-    })
+  var mx = 0;
+  var result = [];
+  strings.forEach(function (e) {
+    if (e.length > mx) {
+      mx = e.length;
+      result = [e];
+    } else if (e.length == mx) result.push(e);
+  });
 
-    return result
+  return result;
 }
 ```

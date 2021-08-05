@@ -2,7 +2,7 @@
 id: 587d78a5367417b2b2512ad7
 title: 使用 CSS 线性渐变创建条纹元素
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c6bmQh2'
+videoUrl: "https://scrimba.com/c/c6bmQh2"
 forumTopicId: 301072
 dashedName: use-a-css-linear-gradient-to-create-a-striped-element
 ---
@@ -71,12 +71,11 @@ assert(code.match(/black\s+?80px/gi));
 
 ```html
 <style>
-
-  div{
+  div {
     border-radius: 20px;
     width: 70%;
     height: 400px;
-    margin:  50 auto;
+    margin: 50 auto;
     background: repeating-linear-gradient(
       90deg,
       yellow 0px,
@@ -85,7 +84,6 @@ assert(code.match(/black\s+?80px/gi));
       red 80px
     );
   }
-
 </style>
 
 <div></div>
@@ -95,11 +93,11 @@ assert(code.match(/black\s+?80px/gi));
 
 ```html
 <style>
-  div{
+  div {
     border-radius: 20px;
     width: 70%;
     height: 400px;
-    margin:  50 auto;
+    margin: 50 auto;
     background: repeating-linear-gradient(
       45deg,
       yellow 0px,

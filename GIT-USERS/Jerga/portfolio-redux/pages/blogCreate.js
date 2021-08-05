@@ -1,21 +1,19 @@
-import React from 'react';
-import BaseLayout from '../components/BaseLayout.js';
-import Cookie from 'js-cookie';
-import {Router} from '../routes'
+import React from "react";
+import BaseLayout from "../components/BaseLayout.js";
+import Cookie from "js-cookie";
+import { Router } from "../routes";
 
-import BlogEditor from '../components/slate-blog/BlogEditor';
+import BlogEditor from "../components/slate-blog/BlogEditor";
 
-import { Editor } from 'slate-react';
-import { Value } from 'slate';
+import { Editor } from "slate-react";
+import { Value } from "slate";
 
-import * as actions from '../actions';
-import withAuth from '../components/hoc/withAuth';
-
+import * as actions from "../actions";
+import withAuth from "../components/hoc/withAuth";
 
 class BlogCreate extends React.Component {
-
-  static async getInitialProps({reduxStore, query}) {
-    return {userId: query.id};
+  static async getInitialProps({ reduxStore, query }) {
+    return { userId: query.id };
   }
 
   constructor(props) {
@@ -23,14 +21,14 @@ class BlogCreate extends React.Component {
 
     this.state = {
       isSaving: false,
-      blog: null
-    }
+      blog: null,
+    };
 
     this.saveBlog = this.saveBlog.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown);
+    window.addEventListener("keydown", this.handleKeyDown);
 
     const { userId } = this.props;
 
@@ -38,19 +36,18 @@ class BlogCreate extends React.Component {
   }
 
   getBlogById = (userId) => {
-    actions.getBlogById(userId).then(
-      blog => this.setState({blog}));
-  }
+    actions.getBlogById(userId).then((blog) => this.setState({ blog }));
+  };
 
   saveBlog = (text, heading) => {
     const { blog } = this.state;
 
     if (blog) {
-      this.updateBlog(text, heading)
+      this.updateBlog(text, heading);
       return;
-    };
+    }
 
-    const user = JSON.parse(Cookie.get('user'));
+    const user = JSON.parse(Cookie.get("user"));
     const newBlog = {};
     newBlog.story = text;
     newBlog.title = heading.title;
@@ -59,19 +56,20 @@ class BlogCreate extends React.Component {
     if (user) {
       newBlog.userId = user.sub;
       newBlog.author = user.name;
-    };
+    }
 
-    this.setState({isSaving: true})
+    this.setState({ isSaving: true });
 
-    actions.saveBlog(newBlog).then(
-      (newBlog) => {
+    actions
+      .saveBlog(newBlog)
+      .then((newBlog) => {
         Router.pushRoute(`/blogs/${newBlog._id}/edit`);
-        this.setState({blog: newBlog, isSaving: false});
+        this.setState({ blog: newBlog, isSaving: false });
       })
-    .catch(err => {
-        this.setState({isSaving: false});
-    });
-  }
+      .catch((err) => {
+        this.setState({ isSaving: false });
+      });
+  };
 
   updateBlog = (text, heading, publish) => {
     const { blog } = this.state;
@@ -79,17 +77,18 @@ class BlogCreate extends React.Component {
     blog.title = heading.title;
     blog.subTitle = heading.subTitle;
 
-    if (publish) blog.status = 'published';
+    if (publish) blog.status = "published";
 
-    this.setState({isSaving: true})
-    actions.updateBlog(blog).then(
-      (updatedBlog) => {
-        this.setState({isSaving: false})
+    this.setState({ isSaving: true });
+    actions
+      .updateBlog(blog)
+      .then((updatedBlog) => {
+        this.setState({ isSaving: false });
       })
-    .catch(err => {
-      this.setState({isSaving: false})
-    });
-  }
+      .catch((err) => {
+        this.setState({ isSaving: false });
+      });
+  };
 
   render() {
     const { userId } = this.props;
@@ -113,7 +112,7 @@ class BlogCreate extends React.Component {
           </div>
         </section>
       </BaseLayout>
-    )
+    );
   }
 }
 

@@ -1,6 +1,6 @@
 ---
 id: 5900f4f11000cf542c510002
-title: 'Problem 388: Distinct Lines'
+title: "Problem 388: Distinct Lines"
 challengeType: 5
 forumTopicId: 302052
 dashedName: problem-388-distinct-lines
@@ -30,7 +30,6 @@ assert.strictEqual(euler388(), 831907372805130000);
 
 ```js
 function euler388() {
-
   return true;
 }
 

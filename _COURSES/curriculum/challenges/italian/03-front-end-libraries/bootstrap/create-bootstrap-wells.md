@@ -17,13 +17,13 @@ Nidifica un elemento `div` con la classe `well` dentro a ognuno dei tuoi element
 Dovresti aggiungere un elemento `div` di classe `well` all'interno di ciascuno dei tuoi elementi `div` di classe `col-xs-6`
 
 ```js
-assert($('div.col-xs-6').not(':has(>div.well)').length < 1);
+assert($("div.col-xs-6").not(":has(>div.well)").length < 1);
 ```
 
 Entrambi i tuoi elementi `div` di classe `col-xs-6` dovrebbero essere annidati nel tuo elemento `div` di classe `row`.
 
 ```js
-assert($('div.row > div.col-xs-6').length > 1);
+assert($("div.row > div.col-xs-6").length > 1);
 ```
 
 Tutti i tuoi elementi `div` dovrebbero avere un tag di chiusura.
@@ -44,12 +44,8 @@ assert(
 <div class="container-fluid">
   <h3 class="text-primary text-center">jQuery Playground</h3>
   <div class="row">
-    <div class="col-xs-6">
-
-    </div>
-    <div class="col-xs-6">
-
-    </div>
+    <div class="col-xs-6"></div>
+    <div class="col-xs-6"></div>
   </div>
 </div>
 ```

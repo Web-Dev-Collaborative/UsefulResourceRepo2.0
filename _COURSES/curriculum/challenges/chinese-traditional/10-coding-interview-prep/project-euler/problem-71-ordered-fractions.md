@@ -1,6 +1,6 @@
 ---
 id: 5900f3b31000cf542c50fec6
-title: 'Problem 71: Ordered fractions'
+title: "Problem 71: Ordered fractions"
 challengeType: 5
 forumTopicId: 302184
 dashedName: problem-71-ordered-fractions
@@ -23,7 +23,7 @@ By listing the set of reduced proper fractions for `d` ≤ 1,000,000 in ascendin
 `orderedFractions()` should return a number.
 
 ```js
-assert(typeof orderedFractions() === 'number');
+assert(typeof orderedFractions() === "number");
 ```
 
 `orderedFractions()` should return 428570.
@@ -38,7 +38,6 @@ assert.strictEqual(orderedFractions(), 428570);
 
 ```js
 function orderedFractions() {
-
   return true;
 }
 

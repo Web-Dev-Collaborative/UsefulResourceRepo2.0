@@ -4,10 +4,10 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START rtdb_social_listen_star_count_modular]
-import { getDatabase, ref, onValue} from "firebase/database";
+import { getDatabase, ref, onValue } from "firebase/database";
 
 const db = getDatabase();
-const starCountRef = ref(db, 'posts/' + postId + '/starCount');
+const starCountRef = ref(db, "posts/" + postId + "/starCount");
 onValue(starCountRef, (snapshot) => {
   const data = snapshot.val();
   updateStarCount(postElement, data);

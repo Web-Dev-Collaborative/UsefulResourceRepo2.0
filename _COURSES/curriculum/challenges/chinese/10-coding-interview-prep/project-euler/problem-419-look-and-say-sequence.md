@@ -1,6 +1,6 @@
 ---
 id: 5900f5101000cf542c510022
-title: 'Problem 419: Look and say sequence'
+title: "Problem 419: Look and say sequence"
 challengeType: 5
 forumTopicId: 302088
 dashedName: problem-419-look-and-say-sequence
@@ -44,7 +44,6 @@ assert.strictEqual(euler419(), 998567458, 1046245404, 43363922);
 
 ```js
 function euler419() {
-
   return true;
 }
 

@@ -22,12 +22,12 @@ helmet.noCache() middleware should be mounted correctly
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/app-info').then(
+  $.get(getUserInput("url") + "/_api/app-info").then(
     (data) => {
-      assert.include(data.appStack, 'nocache');
+      assert.include(data.appStack, "nocache");
       assert.equal(
-        data.headers['cache-control'],
-        'no-store, no-cache, must-revalidate, proxy-revalidate'
+        data.headers["cache-control"],
+        "no-store, no-cache, must-revalidate, proxy-revalidate"
       );
     },
     (xhr) => {

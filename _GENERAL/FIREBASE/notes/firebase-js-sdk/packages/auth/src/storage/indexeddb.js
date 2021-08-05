@@ -34,8 +34,6 @@ goog.require('goog.Promise');
 goog.require('goog.Timer');
 goog.require('goog.array');
 
-
-
 /**
  * Initialize an indexedDB local storage manager used to mimic local storage
  * using an indexedDB underlying implementation including the ability to listen
@@ -53,17 +51,19 @@ goog.require('goog.array');
  * @implements {fireauth.storage.Storage}
  * @constructor
  */
-fireauth.storage.IndexedDB = function(
-    dbName,
-    objectStoreName,
-    dataKeyPath,
-    valueKeyPath,
-    version,
-    opt_indexedDB) {
+fireauth.storage.IndexedDB = function (
+  dbName,
+  objectStoreName,
+  dataKeyPath,
+  valueKeyPath,
+  version,
+  opt_indexedDB
+) {
   // indexedDB not available, fail hard.
   if (!fireauth.storage.IndexedDB.isAvailable()) {
     throw new fireauth.AuthError(
-        fireauth.authenum.Error.WEB_STORAGE_UNSUPPORTED);
+      fireauth.authenum.Error.WEB_STORAGE_UNSUPPORTED
+    );
   }
   /**
    * @const @private {string} The indexedDB database name where all local
@@ -97,7 +97,8 @@ fireauth.storage.IndexedDB = function(
   this.pendingOpsTracker_ = 0;
   /** @private {!IDBFactory} The indexedDB factory object. */
   this.indexedDB_ = /** @type {!IDBFactory} */ (
-      opt_indexedDB || goog.global.indexedDB);
+    opt_indexedDB || goog.global.indexedDB
+  );
   /** @public {string} The storage type identifier. */
   this.type = fireauth.storage.Storage.Type.INDEXEDDB;
   /**
@@ -130,19 +131,17 @@ fireauth.storage.IndexedDB = function(
   var scope = this;
   if (fireauth.util.getWorkerGlobalScope()) {
     this.receiver_ = fireauth.messagechannel.Receiver.getInstance(
-        /** @type {!WorkerGlobalScope} */ (
-            fireauth.util.getWorkerGlobalScope()));
+      /** @type {!WorkerGlobalScope} */ (fireauth.util.getWorkerGlobalScope())
+    );
     // Listen to indexedDB changes.
-    this.receiver_.subscribe('keyChanged', function(origin, request) {
+    this.receiver_.subscribe('keyChanged', function (origin, request) {
       // Sync data.
-      return scope.sync_().then(function(keys) {
+      return scope.sync_().then(function (keys) {
         // Trigger listeners if unhandled changes are detected.
         if (keys.length > 0) {
-          goog.array.forEach(
-              scope.storageListeners_,
-              function(listener) {
-                listener(keys);
-              });
+          goog.array.forEach(scope.storageListeners_, function (listener) {
+            listener(keys);
+          });
         }
         // When this is false, it means the change was already
         // detected and processed before the notification.
@@ -152,37 +151,38 @@ fireauth.storage.IndexedDB = function(
       });
     });
     // Used to inform sender that service worker what events it supports.
-    this.receiver_.subscribe('ping', function(origin, request) {
+    this.receiver_.subscribe('ping', function (origin, request) {
       return goog.Promise.resolve(['keyChanged']);
     });
   } else {
     // Get active service worker when its available.
-    fireauth.util.getActiveServiceWorker()
-        .then(function(sw) {
-          scope.activeServiceWorker_ = sw;
-          if (sw) {
-            // Initialize the sender.
-            scope.sender_ = new fireauth.messagechannel.Sender(
-                new fireauth.messagechannel.WorkerClientPostMessager(sw));
-            // Ping the service worker to check what events they can handle.
-            // Use long timeout.
-            scope.sender_.send('ping', null, true)
-                .then(function(results) {
-                  // Check if keyChanged is supported.
-                  if (results[0]['fulfilled'] &&
-                      goog.array.contains(results[0]['value'], 'keyChanged')) {
-                    scope.serviceWorkerReceiverAvailable_ = true;
-                  }
-                })
-                .thenCatch(function(error) {
-                  // Ignore error.
-                });
-          }
-        });
+    fireauth.util.getActiveServiceWorker().then(function (sw) {
+      scope.activeServiceWorker_ = sw;
+      if (sw) {
+        // Initialize the sender.
+        scope.sender_ = new fireauth.messagechannel.Sender(
+          new fireauth.messagechannel.WorkerClientPostMessager(sw)
+        );
+        // Ping the service worker to check what events they can handle.
+        // Use long timeout.
+        scope.sender_
+          .send('ping', null, true)
+          .then(function (results) {
+            // Check if keyChanged is supported.
+            if (
+              results[0]['fulfilled'] &&
+              goog.array.contains(results[0]['value'], 'keyChanged')
+            ) {
+              scope.serviceWorkerReceiverAvailable_ = true;
+            }
+          })
+          .thenCatch(function (error) {
+            // Ignore error.
+          });
+      }
+    });
   }
 };
-
-
 
 /**
  * The indexedDB database name where all local storage data is to be stored.
@@ -190,13 +190,11 @@ fireauth.storage.IndexedDB = function(
  */
 fireauth.storage.IndexedDB.DB_NAME_ = 'firebaseLocalStorageDb';
 
-
 /**
  * The indexedDB object store name where all local storage data is to be stored.
  * @private @const {string}
  */
 fireauth.storage.IndexedDB.DATA_OBJECT_STORE_NAME_ = 'firebaseLocalStorage';
-
 
 /**
  * The indexedDB object store index name used to key all local storage data.
@@ -204,13 +202,11 @@ fireauth.storage.IndexedDB.DATA_OBJECT_STORE_NAME_ = 'firebaseLocalStorage';
  */
 fireauth.storage.IndexedDB.DATA_KEY_PATH_ = 'fbase_key';
 
-
 /**
  * The indexedDB object store value field for each entry.
  * @private @const {string}
  */
 fireauth.storage.IndexedDB.VALUE_KEY_PATH_ = 'value';
-
 
 /**
  * The indexedDB database version number.
@@ -218,13 +214,11 @@ fireauth.storage.IndexedDB.VALUE_KEY_PATH_ = 'value';
  */
 fireauth.storage.IndexedDB.VERSION_ = 1;
 
-
 /**
  * The indexedDB polling delay time in milliseconds.
  * @private @const {number}
  */
 fireauth.storage.IndexedDB.POLLING_DELAY_ = 800;
-
 
 /**
  * Maximum number of times to retry a transaction in the event the connection is
@@ -233,32 +227,29 @@ fireauth.storage.IndexedDB.POLLING_DELAY_ = 800;
  */
 fireauth.storage.IndexedDB.TRANSACTION_RETRY_COUNT_ = 3;
 
-
 /**
  * The indexedDB polling stop error.
  * @private @const {string}
  */
 fireauth.storage.IndexedDB.STOP_ERROR_ = 'STOP_EVENT';
 
-
-
 /**
  * @return {!fireauth.storage.IndexedDB} The Firebase Auth indexedDB
  *     local storage manager.
  */
-fireauth.storage.IndexedDB.getFireauthManager = function() {
+fireauth.storage.IndexedDB.getFireauthManager = function () {
   if (!fireauth.storage.IndexedDB.managerInstance_) {
     fireauth.storage.IndexedDB.managerInstance_ =
-        new fireauth.storage.IndexedDB(
-            fireauth.storage.IndexedDB.DB_NAME_,
-            fireauth.storage.IndexedDB.DATA_OBJECT_STORE_NAME_,
-            fireauth.storage.IndexedDB.DATA_KEY_PATH_,
-            fireauth.storage.IndexedDB.VALUE_KEY_PATH_,
-            fireauth.storage.IndexedDB.VERSION_);
+      new fireauth.storage.IndexedDB(
+        fireauth.storage.IndexedDB.DB_NAME_,
+        fireauth.storage.IndexedDB.DATA_OBJECT_STORE_NAME_,
+        fireauth.storage.IndexedDB.DATA_KEY_PATH_,
+        fireauth.storage.IndexedDB.VALUE_KEY_PATH_,
+        fireauth.storage.IndexedDB.VERSION_
+      );
   }
   return fireauth.storage.IndexedDB.managerInstance_;
 };
-
 
 /**
  * Delete the indexedDB database.
@@ -266,19 +257,18 @@ fireauth.storage.IndexedDB.getFireauthManager = function() {
  *     database deletion.
  * @private
  */
-fireauth.storage.IndexedDB.prototype.deleteDb_ = function() {
+fireauth.storage.IndexedDB.prototype.deleteDb_ = function () {
   var self = this;
-  return new goog.Promise(function(resolve, reject) {
+  return new goog.Promise(function (resolve, reject) {
     var request = self.indexedDB_.deleteDatabase(self.dbName_);
-    request.onsuccess = function(event) {
+    request.onsuccess = function (event) {
       resolve();
     };
-    request.onerror = function(event) {
+    request.onerror = function (event) {
       reject(new Error(event.target.error));
     };
   });
 };
-
 
 /**
  * Initializes The indexedDB database, creates it if not already created and
@@ -286,53 +276,51 @@ fireauth.storage.IndexedDB.prototype.deleteDb_ = function() {
  * @return {!goog.Promise<!IDBDatabase>} A promise for the database object.
  * @private
  */
-fireauth.storage.IndexedDB.prototype.initializeDb_ = function() {
+fireauth.storage.IndexedDB.prototype.initializeDb_ = function () {
   var self = this;
-  return new goog.Promise(function(resolve, reject) {
+  return new goog.Promise(function (resolve, reject) {
     var request = self.indexedDB_.open(self.dbName_, self.version_);
-    request.onerror = function(event) {
+    request.onerror = function (event) {
       // Suppress this from surfacing to browser console.
       try {
         event.preventDefault();
       } catch (e) {}
       reject(new Error(event.target.error));
     };
-    request.onupgradeneeded = function(event) {
+    request.onupgradeneeded = function (event) {
       var db = event.target.result;
       try {
-        db.createObjectStore(
-            self.objectStoreName_,
-            {
-              'keyPath': self.dataKeyPath_
-            });
+        db.createObjectStore(self.objectStoreName_, {
+          'keyPath': self.dataKeyPath_
+        });
       } catch (e) {
         reject(e);
       }
     };
-    request.onsuccess = function(event) {
+    request.onsuccess = function (event) {
       var db = event.target.result;
       // Strange bug that occurs in Firefox when multiple tabs are opened at the
       // same time. The only way to recover seems to be deleting the database
       // and re-initializing it.
       // https://github.com/firebase/firebase-js-sdk/issues/634
       if (!db.objectStoreNames.contains(self.objectStoreName_)) {
-        self.deleteDb_()
-            .then(function() {
-              return self.initializeDb_();
-            })
-            .then(function(newDb) {
-              resolve(newDb);
-            })
-            .thenCatch(function(e) {
-              reject(e);
-            });
+        self
+          .deleteDb_()
+          .then(function () {
+            return self.initializeDb_();
+          })
+          .then(function (newDb) {
+            resolve(newDb);
+          })
+          .thenCatch(function (e) {
+            reject(e);
+          });
       } else {
         resolve(db);
       }
     };
   });
 };
-
 
 /**
  * Checks if indexedDB is initialized, if so, the callback is run, otherwise,
@@ -341,8 +329,7 @@ fireauth.storage.IndexedDB.prototype.initializeDb_ = function() {
  *     database.
  * @private
  */
-fireauth.storage.IndexedDB.prototype.initializeDbAndRun_ =
-    function() {
+fireauth.storage.IndexedDB.prototype.initializeDbAndRun_ = function () {
   if (!this.initPromise_) {
     this.initPromise_ = this.initializeDb_();
   }
@@ -350,54 +337,55 @@ fireauth.storage.IndexedDB.prototype.initializeDbAndRun_ =
 };
 
 /**
-* Attempts to run a transaction, in the event of an error will re-initialize
-* the DB connection and retry a fixed number of times.
-* @param {function(!IDBDatabase): !goog.Promise<{T}>} transaction A method
-*     which performs a transactional operation on an IDBDatabase.
-* @template T 
-* @return {!goog.Promise<T>}
-* @private
-*/
-fireauth.storage.IndexedDB.prototype.withRetry_ = function(transaction) {
+ * Attempts to run a transaction, in the event of an error will re-initialize
+ * the DB connection and retry a fixed number of times.
+ * @param {function(!IDBDatabase): !goog.Promise<{T}>} transaction A method
+ *     which performs a transactional operation on an IDBDatabase.
+ * @template T
+ * @return {!goog.Promise<T>}
+ * @private
+ */
+fireauth.storage.IndexedDB.prototype.withRetry_ = function (transaction) {
   let numAttempts = 0;
   const attempt = (resolve, reject) => {
     this.initializeDbAndRun_()
       .then(transaction)
       .then(resolve)
-      .thenCatch((error) => {
-        if (++numAttempts >
-          fireauth.storage.IndexedDB.TRANSACTION_RETRY_COUNT_) {
+      .thenCatch(error => {
+        if (
+          ++numAttempts > fireauth.storage.IndexedDB.TRANSACTION_RETRY_COUNT_
+        ) {
           reject(error);
           return;
         }
-        return this.initializeDbAndRun_().then((db) => {
-          db.close();
-          this.initPromise_ = undefined;
-          return attempt(resolve, reject);
-        }).thenCatch((error) => {
-          // Make sure any errors caused by initializeDbAndRun_() or
-          // db.close() are caught as well and trigger a rejection. If at
-          // this point, we are probably in a private browsing context or
-          // environment that does not support indexedDB.
-          reject(error);
-        });
+        return this.initializeDbAndRun_()
+          .then(db => {
+            db.close();
+            this.initPromise_ = undefined;
+            return attempt(resolve, reject);
+          })
+          .thenCatch(error => {
+            // Make sure any errors caused by initializeDbAndRun_() or
+            // db.close() are caught as well and trigger a rejection. If at
+            // this point, we are probably in a private browsing context or
+            // environment that does not support indexedDB.
+            reject(error);
+          });
       });
   };
   return new goog.Promise(attempt);
-}
-
+};
 
 /**
  * @return {boolean} Whether indexedDB is available or not.
  */
-fireauth.storage.IndexedDB.isAvailable = function() {
+fireauth.storage.IndexedDB.isAvailable = function () {
   try {
     return !!goog.global['indexedDB'];
   } catch (e) {
     return false;
   }
 };
-
 
 /**
  * Creates a reference for the local storage indexedDB object store and returns
@@ -406,11 +394,9 @@ fireauth.storage.IndexedDB.isAvailable = function() {
  * @return {!IDBObjectStore} The indexedDB object store.
  * @private
  */
-fireauth.storage.IndexedDB.prototype.getDataObjectStore_ =
-    function(tx) {
+fireauth.storage.IndexedDB.prototype.getDataObjectStore_ = function (tx) {
   return tx.objectStore(this.objectStoreName_);
 };
-
 
 /**
  * Creates an IDB transaction and returns it.
@@ -420,36 +406,36 @@ fireauth.storage.IndexedDB.prototype.getDataObjectStore_ =
  * @return {!IDBTransaction} The requested IDB transaction instance.
  * @private
  */
-fireauth.storage.IndexedDB.prototype.getTransaction_ =
-    function(db, isReadWrite) {
+fireauth.storage.IndexedDB.prototype.getTransaction_ = function (
+  db,
+  isReadWrite
+) {
   var tx = db.transaction(
-      [this.objectStoreName_],
-      isReadWrite ? 'readwrite' : 'readonly');
+    [this.objectStoreName_],
+    isReadWrite ? 'readwrite' : 'readonly'
+  );
   return tx;
 };
-
 
 /**
  * @param {!IDBRequest} request The IDB request instance.
  * @return {!goog.Promise} The promise to resolve on transaction completion.
  * @private
  */
-fireauth.storage.IndexedDB.prototype.onIDBRequest_ =
-    function(request) {
-  return new goog.Promise(function(resolve, reject) {
-    request.onsuccess = function(event) {
+fireauth.storage.IndexedDB.prototype.onIDBRequest_ = function (request) {
+  return new goog.Promise(function (resolve, reject) {
+    request.onsuccess = function (event) {
       if (event && event.target) {
         resolve(event.target.result);
       } else {
         resolve();
       }
     };
-    request.onerror = function(event) {
+    request.onerror = function (event) {
       reject(event.target.error);
     };
   });
 };
-
 
 /**
  * Sets the item's identified by the key provided to the value passed. If the
@@ -460,18 +446,19 @@ fireauth.storage.IndexedDB.prototype.onIDBRequest_ =
  * @return {!goog.Promise<void>} A promise that resolves on operation success.
  * @override
  */
-fireauth.storage.IndexedDB.prototype.set = function(key, value) {
+fireauth.storage.IndexedDB.prototype.set = function (key, value) {
   let isLocked = false;
-  return this
-    .withRetry_((db) => {
-      const objectStore =
-        this.getDataObjectStore_(this.getTransaction_(db, true));
-      return this.onIDBRequest_(objectStore.get(key));
-    })
-    .then((data) => {
-      return this.withRetry_((db) => {
-        const objectStore =
-          this.getDataObjectStore_(this.getTransaction_(db, true));
+  return this.withRetry_(db => {
+    const objectStore = this.getDataObjectStore_(
+      this.getTransaction_(db, true)
+    );
+    return this.onIDBRequest_(objectStore.get(key));
+  })
+    .then(data => {
+      return this.withRetry_(db => {
+        const objectStore = this.getDataObjectStore_(
+          this.getTransaction_(db, true)
+        );
         if (data) {
           // Update the value(s) in the object that you want to change
           data.value = value;
@@ -499,7 +486,6 @@ fireauth.storage.IndexedDB.prototype.set = function(key, value) {
     });
 };
 
-
 /**
  * Notify the service worker of the indexeDB write operation.
  * Waits until the operation is processed.
@@ -507,29 +493,31 @@ fireauth.storage.IndexedDB.prototype.set = function(key, value) {
  * @return {!goog.Promise<void>} A promise that resolves on delivery.
  * @private
  */
-fireauth.storage.IndexedDB.prototype.notifySW_ = function(key) {
+fireauth.storage.IndexedDB.prototype.notifySW_ = function (key) {
   // If sender is available.
   // Run some sanity check to confirm no sw change occurred.
   // For now, we support one service worker per page.
-  if (this.sender_ &&
-      this.activeServiceWorker_ &&
-      fireauth.util.getServiceWorkerController() ===
-      this.activeServiceWorker_) {
-    return this.sender_.send(
+  if (
+    this.sender_ &&
+    this.activeServiceWorker_ &&
+    fireauth.util.getServiceWorkerController() === this.activeServiceWorker_
+  ) {
+    return this.sender_
+      .send(
         'keyChanged',
-        {'key': key},
+        { 'key': key },
         // Use long timeout if receiver is known to be available.
-        this.serviceWorkerReceiverAvailable_)
-        .then(function(responses) {
-          // Return nothing.
-        })
-        .thenCatch(function(error) {
-          // This is a best effort approach. Ignore errors.
-        });
+        this.serviceWorkerReceiverAvailable_
+      )
+      .then(function (responses) {
+        // Return nothing.
+      })
+      .thenCatch(function (error) {
+        // This is a best effort approach. Ignore errors.
+      });
   }
   return goog.Promise.resolve();
 };
-
 
 /**
  * Retrieves a stored item identified by the key provided asynchronously.
@@ -539,17 +527,15 @@ fireauth.storage.IndexedDB.prototype.notifySW_ = function(key) {
  *     null if the item is not found.
  * @override
  */
-fireauth.storage.IndexedDB.prototype.get = function(key) {
-  return this
-    .withRetry_((db) => {
-      return this.onIDBRequest_(
-          this.getDataObjectStore_(this.getTransaction_(db, false)).get(key));
-    })
-    .then((response) => {
-      return response && response.value;
-    }); 
+fireauth.storage.IndexedDB.prototype.get = function (key) {
+  return this.withRetry_(db => {
+    return this.onIDBRequest_(
+      this.getDataObjectStore_(this.getTransaction_(db, false)).get(key)
+    );
+  }).then(response => {
+    return response && response.value;
+  });
 };
-
 
 /**
  * Deletes the item identified by the key provided and on success, runs the
@@ -558,89 +544,88 @@ fireauth.storage.IndexedDB.prototype.get = function(key) {
  * @return {!goog.Promise<void>} A promise that resolves on operation success.
  * @override
  */
-fireauth.storage.IndexedDB.prototype.remove = function(key) {
+fireauth.storage.IndexedDB.prototype.remove = function (key) {
   let isLocked = false;
-  return this
-    .withRetry_((db) => {
-        isLocked = true;
-        this.pendingOpsTracker_++;
-        return this.onIDBRequest_(
-            this.getDataObjectStore_(
-                this.getTransaction_(db, true))['delete'](key));
-      }).then(() => {
-        // Delete from local copy to avoid triggering false external event.
-        delete this.localMap_[key];
-        // Announce change in key to service worker.
-        return this.notifySW_(key);
-      }).thenAlways(() => {
-        if (isLocked) {
-          this.pendingOpsTracker_--;
-        }
-      });
+  return this.withRetry_(db => {
+    isLocked = true;
+    this.pendingOpsTracker_++;
+    return this.onIDBRequest_(
+      this.getDataObjectStore_(this.getTransaction_(db, true))['delete'](key)
+    );
+  })
+    .then(() => {
+      // Delete from local copy to avoid triggering false external event.
+      delete this.localMap_[key];
+      // Announce change in key to service worker.
+      return this.notifySW_(key);
+    })
+    .thenAlways(() => {
+      if (isLocked) {
+        this.pendingOpsTracker_--;
+      }
+    });
 };
-
 
 /**
  * @return {!goog.Promise<!Array<string>>} A promise that resolved with all the
  *     storage keys that have changed.
  * @private
  */
-fireauth.storage.IndexedDB.prototype.sync_ = function() {
+fireauth.storage.IndexedDB.prototype.sync_ = function () {
   var self = this;
   return this.initializeDbAndRun_()
-      .then(function(db) {
-        var objectStore =
-            self.getDataObjectStore_(self.getTransaction_(db, false));
-        if (objectStore['getAll']) {
-          // Get all keys and value pairs using getAll if supported.
-          return self.onIDBRequest_(objectStore['getAll']());
-        } else {
-          // If getAll isn't supported, fallback to cursor.
-          return new goog.Promise(function(resolve, reject) {
-            var res = [];
-            var request = objectStore.openCursor();
-            request.onsuccess = function(event) {
-              var cursor = event.target.result;
-              if (cursor) {
-                res.push(cursor.value);
-                cursor['continue']();
-              } else {
-                resolve(res);
-              }
-            };
-            request.onerror = function(event) {
-              reject(event.target.error);
-            };
-          });
+    .then(function (db) {
+      var objectStore = self.getDataObjectStore_(
+        self.getTransaction_(db, false)
+      );
+      if (objectStore['getAll']) {
+        // Get all keys and value pairs using getAll if supported.
+        return self.onIDBRequest_(objectStore['getAll']());
+      } else {
+        // If getAll isn't supported, fallback to cursor.
+        return new goog.Promise(function (resolve, reject) {
+          var res = [];
+          var request = objectStore.openCursor();
+          request.onsuccess = function (event) {
+            var cursor = event.target.result;
+            if (cursor) {
+              res.push(cursor.value);
+              cursor['continue']();
+            } else {
+              resolve(res);
+            }
+          };
+          request.onerror = function (event) {
+            reject(event.target.error);
+          };
+        });
+      }
+    })
+    .then(function (res) {
+      var centralCopy = {};
+      // List of keys differing from central copy.
+      var diffKeys = [];
+      // Build central copy (external copy).
+      if (self.pendingOpsTracker_ == 0) {
+        for (var i = 0; i < res.length; i++) {
+          centralCopy[res[i][self.dataKeyPath_]] = res[i][self.valueKeyPath_];
         }
-      }).then(function(res) {
-        var centralCopy = {};
-        // List of keys differing from central copy.
-        var diffKeys = [];
-        // Build central copy (external copy).
-        if (self.pendingOpsTracker_ == 0) {
-          for (var i = 0; i < res.length; i++) {
-            centralCopy[res[i][self.dataKeyPath_]] =
-                res[i][self.valueKeyPath_];
-          }
-          // Get diff of central copy and local copy.
-          diffKeys = fireauth.util.getKeyDiff(self.localMap_, centralCopy);
-          // Update local copy.
-          self.localMap_ = centralCopy;
-        }
-        // Return modified keys.
-        return diffKeys;
-      });
+        // Get diff of central copy and local copy.
+        diffKeys = fireauth.util.getKeyDiff(self.localMap_, centralCopy);
+        // Update local copy.
+        self.localMap_ = centralCopy;
+      }
+      // Return modified keys.
+      return diffKeys;
+    });
 };
-
 
 /**
  * Adds a listener to storage event change.
  * @param {function(!Array<string>)} listener The storage event listener.
  * @override
  */
-fireauth.storage.IndexedDB.prototype.addStorageListener =
-    function(listener) {
+fireauth.storage.IndexedDB.prototype.addStorageListener = function (listener) {
   // First listener, start listeners.
   if (this.storageListeners_.length == 0) {
     this.startListeners_();
@@ -648,79 +633,70 @@ fireauth.storage.IndexedDB.prototype.addStorageListener =
   this.storageListeners_.push(listener);
 };
 
-
 /**
  * Removes a listener to storage event change.
  * @param {function(!Array<string>)} listener The storage event listener.
  * @override
  */
-fireauth.storage.IndexedDB.prototype.removeStorageListener =
-    function(listener) {
-  goog.array.removeAllIf(
-      this.storageListeners_,
-      function(ele) {
-        return ele == listener;
-      });
+fireauth.storage.IndexedDB.prototype.removeStorageListener = function (
+  listener
+) {
+  goog.array.removeAllIf(this.storageListeners_, function (ele) {
+    return ele == listener;
+  });
   // No more listeners, stop.
   if (this.storageListeners_.length == 0) {
     this.stopListeners_();
   }
 };
 
-
 /**
  * Removes all listeners to storage event change.
  */
-fireauth.storage.IndexedDB.prototype.removeAllStorageListeners =
-    function() {
+fireauth.storage.IndexedDB.prototype.removeAllStorageListeners = function () {
   this.storageListeners_ = [];
   // No more listeners, stop.
   this.stopListeners_();
 };
 
-
 /**
  * Starts the listener to storage events.
  * @private
  */
-fireauth.storage.IndexedDB.prototype.startListeners_ = function() {
+fireauth.storage.IndexedDB.prototype.startListeners_ = function () {
   var self = this;
   // Stop any previous listeners.
   this.stopListeners_();
-  var repeat = function() {
-    self.pollTimerId_ = setTimeout(
-        function() {
-          self.poll_ = self.sync_()
-              .then(function(keys) {
-                // If keys modified, call listeners.
-                if (keys.length > 0) {
-                  goog.array.forEach(
-                      self.storageListeners_,
-                      function(listener) {
-                        listener(keys);
-                      });
-                }
-              })
-              .then(function() {
-                repeat();
-              })
-              .thenCatch(function(error) {
-                if (error.message != fireauth.storage.IndexedDB.STOP_ERROR_) {
-                  repeat();
-                }
-              });
-        },
-        fireauth.storage.IndexedDB.POLLING_DELAY_);
+  var repeat = function () {
+    self.pollTimerId_ = setTimeout(function () {
+      self.poll_ = self
+        .sync_()
+        .then(function (keys) {
+          // If keys modified, call listeners.
+          if (keys.length > 0) {
+            goog.array.forEach(self.storageListeners_, function (listener) {
+              listener(keys);
+            });
+          }
+        })
+        .then(function () {
+          repeat();
+        })
+        .thenCatch(function (error) {
+          if (error.message != fireauth.storage.IndexedDB.STOP_ERROR_) {
+            repeat();
+          }
+        });
+    }, fireauth.storage.IndexedDB.POLLING_DELAY_);
   };
   repeat();
 };
-
 
 /**
  * Stops the listener to storage events.
  * @private
  */
-fireauth.storage.IndexedDB.prototype.stopListeners_ = function() {
+fireauth.storage.IndexedDB.prototype.stopListeners_ = function () {
   if (this.poll_) {
     // Cancel polling function.
     this.poll_.cancel(fireauth.storage.IndexedDB.STOP_ERROR_);

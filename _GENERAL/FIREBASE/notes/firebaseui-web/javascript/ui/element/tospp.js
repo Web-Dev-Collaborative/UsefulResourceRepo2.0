@@ -17,48 +17,43 @@
  *     element.
  */
 
-goog.provide('firebaseui.auth.ui.element.tospp');
+goog.provide("firebaseui.auth.ui.element.tospp");
 
-goog.require('firebaseui.auth.ui.element');
-goog.require('goog.ui.Component');
+goog.require("firebaseui.auth.ui.element");
+goog.require("goog.ui.Component");
 
+goog.scope(function () {
+  var element = firebaseui.auth.ui.element;
 
-goog.scope(function() {
-var element = firebaseui.auth.ui.element;
+  /**
+   * @return {?Element} The Terms of Service and Privacy Policy element.
+   * @this {goog.ui.Component}
+   */
+  element.tospp.getTosPpElement = function () {
+    return this.getElementByClass("firebaseui-tos");
+  };
 
-/**
- * @return {?Element} The Terms of Service and Privacy Policy element.
- * @this {goog.ui.Component}
- */
-element.tospp.getTosPpElement = function() {
-  return this.getElementByClass('firebaseui-tos');
-};
+  /**
+   * @return {?Element} The Terms of Service hyperlink element.
+   * @this {goog.ui.Component}
+   */
+  element.tospp.getTosLinkElement = function () {
+    return this.getElementByClass("firebaseui-tos-link");
+  };
 
+  /**
+   * @return {?Element} The Privacy Policy hyperlink element.
+   * @this {goog.ui.Component}
+   */
+  element.tospp.getPpLinkElement = function () {
+    return this.getElementByClass("firebaseui-pp-link");
+  };
 
-/**
- * @return {?Element} The Terms of Service hyperlink element.
- * @this {goog.ui.Component}
- */
-element.tospp.getTosLinkElement = function() {
-  return this.getElementByClass('firebaseui-tos-link');
-};
-
-
-/**
- * @return {?Element} The Privacy Policy hyperlink element.
- * @this {goog.ui.Component}
- */
-element.tospp.getPpLinkElement = function() {
-  return this.getElementByClass('firebaseui-pp-link');
-};
-
-
-/**
- * @return {?Element} The ToS Privacy Policy list element.
- * @this {goog.ui.Component}
- */
-element.tospp.getTosPpListElement = function() {
-  return this.getElementByClass('firebaseui-tos-list');
-};
-
+  /**
+   * @return {?Element} The ToS Privacy Policy list element.
+   * @this {goog.ui.Component}
+   */
+  element.tospp.getTosPpListElement = function () {
+    return this.getElementByClass("firebaseui-tos-list");
+  };
 });

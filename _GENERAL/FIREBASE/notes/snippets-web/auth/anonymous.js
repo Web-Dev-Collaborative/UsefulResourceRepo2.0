@@ -6,7 +6,9 @@ import "firebase/auth";
 
 function anonSignIn() {
   // [START auth_anon_sign_in]
-  firebase.auth().signInAnonymously()
+  firebase
+    .auth()
+    .signInAnonymously()
     .then(() => {
       // Signed in..
     })

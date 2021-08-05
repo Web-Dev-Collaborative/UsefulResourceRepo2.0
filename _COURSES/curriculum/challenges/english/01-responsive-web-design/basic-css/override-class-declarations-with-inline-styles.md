@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf06756
 title: Override Class Declarations with Inline Styles
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cGJDRha'
+videoUrl: "https://scrimba.com/c/cGJDRha"
 forumTopicId: 18252
 dashedName: override-class-declarations-with-inline-styles
 ---
@@ -18,7 +18,7 @@ There are other ways that you can override CSS. Do you remember inline styles?
 Use an inline style to try to make our `h1` element white. Remember, inline styles look like this:
 
 ```html
-<h1 style="color: green;">
+<h1 style="color: green;"></h1>
 ```
 
 Leave the `blue-text` and `pink-text` classes on your `h1` element.
@@ -28,31 +28,31 @@ Leave the `blue-text` and `pink-text` classes on your `h1` element.
 Your `h1` element should have the class `pink-text`.
 
 ```js
-assert($('h1').hasClass('pink-text'));
+assert($("h1").hasClass("pink-text"));
 ```
 
 Your `h1` element should have the class `blue-text`.
 
 ```js
-assert($('h1').hasClass('blue-text'));
+assert($("h1").hasClass("blue-text"));
 ```
 
 Your `h1` element should have the id of `orange-text`.
 
 ```js
-assert($('h1').attr('id') === 'orange-text');
+assert($("h1").attr("id") === "orange-text");
 ```
 
 Your `h1` element should have an inline style.
 
 ```js
-assert(document.querySelector('h1[style]'));
+assert(document.querySelector("h1[style]"));
 ```
 
 Your `h1` element should be white.
 
 ```js
-assert($('h1').css('color') === 'rgb(255, 255, 255)');
+assert($("h1").css("color") === "rgb(255, 255, 255)");
 ```
 
 # --seed--
@@ -98,5 +98,7 @@ assert($('h1').css('color') === 'rgb(255, 255, 255)');
     color: blue;
   }
 </style>
-<h1 id="orange-text" class="pink-text blue-text" style="color: white">Hello World!</h1>
+<h1 id="orange-text" class="pink-text blue-text" style="color: white">
+  Hello World!
+</h1>
 ```

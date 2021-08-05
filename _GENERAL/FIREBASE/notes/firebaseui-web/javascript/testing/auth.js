@@ -16,14 +16,13 @@
  * @fileoverview Fake Firebase Auth API client for testing.
  */
 
-
-goog.module('firebaseui.auth.testing.FakeAuthClient');
+goog.module("firebaseui.auth.testing.FakeAuthClient");
 goog.module.declareLegacyNamespace();
 goog.setTestOnly();
 
-const MockHelper = goog.require('firebaseui.auth.testing.MockHelper');
-const Uri = goog.require('goog.Uri');
-const array = goog.require('goog.array');
+const MockHelper = goog.require("firebaseui.auth.testing.MockHelper");
+const Uri = goog.require("goog.Uri");
+const array = goog.require("goog.array");
 
 /**
  * Fake Auth API client class.
@@ -36,22 +35,22 @@ class FakeAuthClient extends MockHelper {
   constructor(app) {
     super();
     this.user_ = {};
-    this['app'] = app;
-    this['currentUser'] = null;
-    this['emulatorConfig'] = null;
+    this["app"] = app;
+    this["currentUser"] = null;
+    this["emulatorConfig"] = null;
     var asyncMethods = {};
     // Populate auth async methods.
     for (var key in FakeAuthClient.AuthAsyncMethod) {
       asyncMethods[key] = {
-        'context': this,
-        'name': FakeAuthClient.AuthAsyncMethod[key]
+        context: this,
+        name: FakeAuthClient.AuthAsyncMethod[key],
       };
     }
     // Populate user async methods.
     for (var key in FakeAuthClient.UserAsyncMethod) {
       asyncMethods[key] = {
-        'context': this.user_,
-        'name': FakeAuthClient.UserAsyncMethod[key]
+        context: this.user_,
+        name: FakeAuthClient.UserAsyncMethod[key],
       };
     }
     // Pass async methods enum to base class.
@@ -61,10 +60,10 @@ class FakeAuthClient extends MockHelper {
     /** @private {!Array<string>} The list of frameworks logged. */
     this.frameworks_ = [];
     var self = this;
-    this['INTERNAL'] = {
-      logFramework: function(framework) {
+    this["INTERNAL"] = {
+      logFramework: function (framework) {
         self.frameworks_.push(framework);
-      }
+      },
     };
   }
 
@@ -75,12 +74,12 @@ class FakeAuthClient extends MockHelper {
    */
   useEmulator(url, options) {
     const uri = Uri.parse(url);
-    this['emulatorConfig'] = {
-      'protocol': uri.getScheme(),
-      'host': uri.getDomain(),
-      'port': uri.getPort(),
-      'options': {
-        'disableWarnings': options ? options.disableWarnings : false,
+    this["emulatorConfig"] = {
+      protocol: uri.getScheme(),
+      host: uri.getDomain(),
+      port: uri.getPort(),
+      options: {
+        disableWarnings: options ? options.disableWarnings : false,
       },
     };
   }
@@ -106,10 +105,10 @@ class FakeAuthClient extends MockHelper {
         var prop = FakeAuthClient.UserProperty[key];
         this.user_[prop] = props[prop];
       }
-      this['currentUser'] = this.user_;
+      this["currentUser"] = this.user_;
     } else {
       // User is logged out.
-      this['currentUser'] = null;
+      this["currentUser"] = null;
     }
   }
 
@@ -118,7 +117,7 @@ class FakeAuthClient extends MockHelper {
    */
   runAuthChangeHandler() {
     for (var i = 0; i < this.authObservers_.length; i++) {
-      this.authObservers_[i](this['currentUser']);
+      this.authObservers_[i](this["currentUser"]);
     }
   }
 
@@ -134,18 +133,21 @@ class FakeAuthClient extends MockHelper {
    */
   onAuthStateChanged(nextOrObserver, opt_error, opt_completed) {
     // Simplified version of the observer for testing purpose only.
-    var observer = (typeof nextOrObserver === 'function' && nextOrObserver) ||
-        nextOrObserver['next'];
+    var observer =
+      (typeof nextOrObserver === "function" && nextOrObserver) ||
+      nextOrObserver["next"];
     if (!observer) {
-      throw 'onAuthStateChanged must be called with an Observer or up to three ' +
-          'functions: next, error and completed.';
+      throw (
+        "onAuthStateChanged must be called with an Observer or up to three " +
+        "functions: next, error and completed."
+      );
     }
     this.authObservers_.push(observer);
     var self = this;
     // This will allow the subscriber to remove the observer.
-    var unsubscribe = function() {
+    var unsubscribe = function () {
       // Removes the observer.
-      array.removeAllIf(self.authObservers_, function(obs) {
+      array.removeAllIf(self.authObservers_, function (obs) {
         return obs == observer;
       });
     };
@@ -157,7 +159,7 @@ class FakeAuthClient extends MockHelper {
    */
   runIdTokenChangeHandler() {
     for (var i = 0; i < this.idTokenObservers_.length; i++) {
-      this.idTokenObservers_[i](this['currentUser']);
+      this.idTokenObservers_[i](this["currentUser"]);
     }
   }
 
@@ -173,18 +175,21 @@ class FakeAuthClient extends MockHelper {
    */
   onIdTokenChanged(nextOrObserver, opt_error, opt_completed) {
     // Simplified version of the observer for testing purpose only.
-    var observer = (typeof nextOrObserver === 'function' && nextOrObserver) ||
-        nextOrObserver['next'];
+    var observer =
+      (typeof nextOrObserver === "function" && nextOrObserver) ||
+      nextOrObserver["next"];
     if (!observer) {
-      throw 'onIdTokenChanged must be called with an Observer or up to three ' +
-          'functions: next, error and completed.';
+      throw (
+        "onIdTokenChanged must be called with an Observer or up to three " +
+        "functions: next, error and completed."
+      );
     }
     this.idTokenObservers_.push(observer);
     var self = this;
     // This will allow the subscriber to remove the observer.
-    var unsubscribe = function() {
+    var unsubscribe = function () {
       // Removes the observer.
-      array.removeAllIf(self.idTokenObservers_, function(obs) {
+      array.removeAllIf(self.idTokenObservers_, function (obs) {
         return obs == observer;
       });
     };
@@ -192,76 +197,72 @@ class FakeAuthClient extends MockHelper {
   }
 }
 
-
 /**
  * Firebase Auth async promise based method names.
  * @enum {string}
  */
 FakeAuthClient.AuthAsyncMethod = {
-  APPLY_ACTION_CODE: 'applyActionCode',
-  CHECK_ACTION_CODE: 'checkActionCode',
-  CONFIRM_PASSWORD_RESET: 'confirmPasswordReset',
-  CREATE_USER_WITH_EMAIL_AND_PASSWORD: 'createUserWithEmailAndPassword',
-  FETCH_SIGN_IN_METHODS_FOR_EMAIL: 'fetchSignInMethodsForEmail',
-  GET_REDIRECT_RESULT: 'getRedirectResult',
-  IS_SIGN_IN_WITH_EMAIL_LINK: 'isSignInWithEmailLink',
-  SEND_PASSWORD_RESET_EMAIL: 'sendPasswordResetEmail',
-  SEND_SIGN_IN_LINK_TO_EMAIL: 'sendSignInLinkToEmail',
-  SET_PERSISTENCE: 'setPersistence',
-  SIGN_IN_ANONYMOUSLY: 'signInAnonymously',
-  SIGN_IN_WITH_CREDENTIAL: 'signInWithCredential',
-  SIGN_IN_WITH_CUSTOM_TOKEN: 'signInWithCustomToken',
-  SIGN_IN_WITH_EMAIL_AND_PASSWORD: 'signInWithEmailAndPassword',
-  SIGN_IN_WITH_EMAIL_LINK: 'signInWithEmailLink',
-  SIGN_IN_WITH_POPUP: 'signInWithPopup',
-  SIGN_IN_WITH_PHONE_NUMBER: 'signInWithPhoneNumber',
-  SIGN_IN_WITH_REDIRECT: 'signInWithRedirect',
-  SIGN_OUT: 'signOut',
-  UPDATE_CURRENT_USER: 'updateCurrentUser',
-  VERIFY_PASSWORD_RESET_CODE: 'verifyPasswordResetCode'
+  APPLY_ACTION_CODE: "applyActionCode",
+  CHECK_ACTION_CODE: "checkActionCode",
+  CONFIRM_PASSWORD_RESET: "confirmPasswordReset",
+  CREATE_USER_WITH_EMAIL_AND_PASSWORD: "createUserWithEmailAndPassword",
+  FETCH_SIGN_IN_METHODS_FOR_EMAIL: "fetchSignInMethodsForEmail",
+  GET_REDIRECT_RESULT: "getRedirectResult",
+  IS_SIGN_IN_WITH_EMAIL_LINK: "isSignInWithEmailLink",
+  SEND_PASSWORD_RESET_EMAIL: "sendPasswordResetEmail",
+  SEND_SIGN_IN_LINK_TO_EMAIL: "sendSignInLinkToEmail",
+  SET_PERSISTENCE: "setPersistence",
+  SIGN_IN_ANONYMOUSLY: "signInAnonymously",
+  SIGN_IN_WITH_CREDENTIAL: "signInWithCredential",
+  SIGN_IN_WITH_CUSTOM_TOKEN: "signInWithCustomToken",
+  SIGN_IN_WITH_EMAIL_AND_PASSWORD: "signInWithEmailAndPassword",
+  SIGN_IN_WITH_EMAIL_LINK: "signInWithEmailLink",
+  SIGN_IN_WITH_POPUP: "signInWithPopup",
+  SIGN_IN_WITH_PHONE_NUMBER: "signInWithPhoneNumber",
+  SIGN_IN_WITH_REDIRECT: "signInWithRedirect",
+  SIGN_OUT: "signOut",
+  UPDATE_CURRENT_USER: "updateCurrentUser",
+  VERIFY_PASSWORD_RESET_CODE: "verifyPasswordResetCode",
 };
-
 
 /**
  * Firebase user async promise based method names.
  * @enum {string}
  */
 FakeAuthClient.UserAsyncMethod = {
-  GET_ID_TOKEN: 'getIdToken',
-  LINK_WITH_CREDENTIAL: 'linkWithCredential',
-  LINK_WITH_PHONE_NUMBER: 'linkWithPhoneNumber',
-  LINK_WITH_POPUP: 'linkWithPopup',
-  LINK_WITH_REDIRECT: 'linkWithRedirect',
-  REAUTHENTICATE_WITH_CREDENTIAL: 'reauthenticateWithCredential',
-  REAUTHENTICATE_WITH_PHONE_NUMBER: 'reauthenticateWithPhoneNumber',
-  REAUTHENTICATE_WITH_POPUP: 'reauthenticateWithPopup',
-  REAUTHENTICATE_WITH_REDIRECT: 'reauthenticateWithRedirect',
-  RELOAD: 'reload',
-  SEND_EMAIL_VERIFICATION: 'sendEmailVerification',
-  UNLINK: 'unlink',
-  UPDATE_EMAIL: 'updateEmail',
-  UPDATE_PASSWORD: 'updatePassword',
-  UPDATE_PHONE_NUMBER: 'updatePhoneNumber',
-  UPDATE_PROFILE: 'updateProfile'
+  GET_ID_TOKEN: "getIdToken",
+  LINK_WITH_CREDENTIAL: "linkWithCredential",
+  LINK_WITH_PHONE_NUMBER: "linkWithPhoneNumber",
+  LINK_WITH_POPUP: "linkWithPopup",
+  LINK_WITH_REDIRECT: "linkWithRedirect",
+  REAUTHENTICATE_WITH_CREDENTIAL: "reauthenticateWithCredential",
+  REAUTHENTICATE_WITH_PHONE_NUMBER: "reauthenticateWithPhoneNumber",
+  REAUTHENTICATE_WITH_POPUP: "reauthenticateWithPopup",
+  REAUTHENTICATE_WITH_REDIRECT: "reauthenticateWithRedirect",
+  RELOAD: "reload",
+  SEND_EMAIL_VERIFICATION: "sendEmailVerification",
+  UNLINK: "unlink",
+  UPDATE_EMAIL: "updateEmail",
+  UPDATE_PASSWORD: "updatePassword",
+  UPDATE_PHONE_NUMBER: "updatePhoneNumber",
+  UPDATE_PROFILE: "updateProfile",
 };
-
 
 /**
  * Firebase user property names.
  * @enum {string}
  */
 FakeAuthClient.UserProperty = {
-  DISPLAY_NAME: 'displayName',
-  EMAIL: 'email',
-  EMAIL_VERIFIED: 'emailVerified',
-  IS_ANONYMOUS: 'isAnonymous',
-  PHONE_NUMBER: 'phoneNumber',
-  PHOTO_URL: 'photoURL',
-  PROVIDER_DATA: 'providerData',
-  PROVIDER_ID: 'providerId',
-  REFRESH_TOKEN: 'refreshToken',
-  UID: 'uid'
+  DISPLAY_NAME: "displayName",
+  EMAIL: "email",
+  EMAIL_VERIFIED: "emailVerified",
+  IS_ANONYMOUS: "isAnonymous",
+  PHONE_NUMBER: "phoneNumber",
+  PHOTO_URL: "photoURL",
+  PROVIDER_DATA: "providerData",
+  PROVIDER_ID: "providerId",
+  REFRESH_TOKEN: "refreshToken",
+  UID: "uid",
 };
-
 
 exports = FakeAuthClient;

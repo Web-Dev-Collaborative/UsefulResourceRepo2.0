@@ -1,6 +1,6 @@
 ---
 id: 5900f4081000cf542c50ff1a
-title: 'Problem 155: Counting Capacitor Circuits'
+title: "Problem 155: Counting Capacitor Circuits"
 challengeType: 5
 forumTopicId: 301786
 dashedName: problem-155-counting-capacitor-circuits
@@ -30,7 +30,6 @@ assert.strictEqual(euler155(), 3857447);
 
 ```js
 function euler155() {
-
   return true;
 }
 

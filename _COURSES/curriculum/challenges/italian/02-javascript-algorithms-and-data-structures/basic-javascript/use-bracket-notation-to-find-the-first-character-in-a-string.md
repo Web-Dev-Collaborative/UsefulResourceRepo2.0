@@ -2,7 +2,7 @@
 id: bd7123c9c549eddfaeb5bdef
 title: Usare la notazione a parentesi per trovare il primo carattere in una stringa
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/ca8JwhW'
+videoUrl: "https://scrimba.com/c/ca8JwhW"
 forumTopicId: 18341
 dashedName: use-bracket-notation-to-find-the-first-character-in-a-string
 ---
@@ -35,7 +35,7 @@ Usa la notazione parentesi per trovare il primo carattere nella variabile `lastN
 La variabile `firstLetterOfLastName` dovrebbe avere il valore di `L`.
 
 ```js
-assert(firstLetterOfLastName === 'L');
+assert(firstLetterOfLastName === "L");
 ```
 
 Dovresti usare la notazione a parentesi.
@@ -49,7 +49,9 @@ assert(code.match(/firstLetterOfLastName\s*?=\s*?lastName\[.*?\]/));
 ## --after-user-code--
 
 ```js
-(function(v){return v;})(firstLetterOfLastName);
+(function (v) {
+  return v;
+})(firstLetterOfLastName);
 ```
 
 ## --seed-contents--

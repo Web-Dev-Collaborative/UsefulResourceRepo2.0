@@ -343,12 +343,8 @@ const booksSlice = createSlice({
   },
 })
 
-const {
-  bookAdded,
-  booksLoading,
-  booksReceived,
-  bookUpdated,
-} = booksSlice.actions
+const { bookAdded, booksLoading, booksReceived, bookUpdated } =
+  booksSlice.actions
 
 const store = configureStore({
   reducer: {

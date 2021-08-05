@@ -33,19 +33,19 @@ function Bird() {
 `Dog` 應該有一個 `name` 屬性且它的值是一個字符串。
 
 ```js
-assert(typeof new Dog().name === 'string');
+assert(typeof new Dog().name === "string");
 ```
 
 `Dog` 應該有一個 `color` 屬性且它的值是一個字符串。
 
 ```js
-assert(typeof new Dog().color === 'string');
+assert(typeof new Dog().color === "string");
 ```
 
 `Dog` 應該有一個 `numLegs` 屬性且它的值是一個數字。
 
 ```js
-assert(typeof new Dog().numLegs === 'number');
+assert(typeof new Dog().numLegs === "number");
 ```
 
 # --seed--
@@ -59,9 +59,9 @@ assert(typeof new Dog().numLegs === 'number');
 # --solutions--
 
 ```js
-function Dog (name, color, numLegs) {
-  this.name = 'name';
-  this.color = 'color';
+function Dog(name, color, numLegs) {
+  this.name = "name";
+  this.color = "color";
   this.numLegs = 4;
 }
 ```

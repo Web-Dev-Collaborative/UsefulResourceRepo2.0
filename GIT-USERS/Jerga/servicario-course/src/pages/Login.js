@@ -1,27 +1,33 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React, { useState } from 'react'
-import useForm from 'react-hook-form'
-import { useToasts } from 'react-toast-notifications'
-import { Redirect } from 'react-router-dom'
-import onlyGuest from 'components/hoc/onlyGuest'
+import React, { useState } from "react";
+import useForm from "react-hook-form";
+import { useToasts } from "react-toast-notifications";
+import { Redirect } from "react-router-dom";
+import onlyGuest from "components/hoc/onlyGuest";
 
-import { login } from 'actions'
+import { login } from "actions";
 
 const Login = () => {
-  const [ redirect, setRedirect ] = useState(false)
-  const { register, handleSubmit } = useForm()
-  const { addToast } = useToasts()
+  const [redirect, setRedirect] = useState(false);
+  const { register, handleSubmit } = useForm();
+  const { addToast } = useToasts();
 
-  const onLogin = loginData => {
-    login(loginData)
-      .then(
-        _ => setRedirect(true),
-        errorMessage => addToast(errorMessage, { appearance: 'error', autoDismiss: true, autoDismissTimeout: 3000 })
-      )
+  const onLogin = (loginData) => {
+    login(loginData).then(
+      (_) => setRedirect(true),
+      (errorMessage) =>
+        addToast(errorMessage, {
+          appearance: "error",
+          autoDismiss: true,
+          autoDismissTimeout: 3000,
+        })
+    );
+  };
+
+  if (redirect) {
+    return <Redirect to="/" />;
   }
-
-  if (redirect) { return <Redirect to="/" />}
 
   return (
     <div className="auth-page">
@@ -36,29 +42,34 @@ const Login = () => {
             <form onSubmit={handleSubmit(onLogin)}>
               <div className="field">
                 <div className="control">
-                  <input 
+                  <input
                     ref={register}
                     name="email"
                     className="input is-large"
                     type="email"
                     placeholder="Your Email"
-                    autoComplete="email" />
+                    autoComplete="email"
+                  />
                 </div>
               </div>
               <div className="field">
                 <div className="control">
-                  <input 
+                  <input
                     ref={register}
                     name="password"
                     className="input is-large"
                     type="password"
                     placeholder="Your Password"
-                    autoComplete="current-password" />
+                    autoComplete="current-password"
+                  />
                 </div>
               </div>
               <button
                 type="submit"
-                className="button is-block is-info is-large is-fullwidth">Sign In</button>
+                className="button is-block is-info is-large is-fullwidth"
+              >
+                Sign In
+              </button>
             </form>
           </div>
           <p className="has-text-grey">
@@ -69,16 +80,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default onlyGuest(Login)
-
-
-
-
-
-
-
-
-
+export default onlyGuest(Login);

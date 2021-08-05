@@ -16,40 +16,40 @@
  * @fileoverview Helpers for Soy viewer.
  */
 
-goog.provide('firebaseui.auth.soy2.viewHelper');
-goog.setTestOnly('firebaseui.auth.soy2.viewHelper');
+goog.provide("firebaseui.auth.soy2.viewHelper");
+goog.setTestOnly("firebaseui.auth.soy2.viewHelper");
 
-goog.require('goog.array');
-goog.require('goog.dom');
-goog.require('goog.dom.classlist');
-goog.require('goog.dom.safe');
-goog.require('goog.html.TrustedResourceUrl');
-goog.require('goog.string.Const');
-
+goog.require("goog.array");
+goog.require("goog.dom");
+goog.require("goog.dom.classlist");
+goog.require("goog.dom.safe");
+goog.require("goog.html.TrustedResourceUrl");
+goog.require("goog.string.Const");
 
 function isViewerMode() {
-  return typeof thisIsRunningInSoyViewerMode != 'undefined' &&
-      !!thisIsRunningInSoyViewerMode;
+  return (
+    typeof thisIsRunningInSoyViewerMode != "undefined" &&
+    !!thisIsRunningInSoyViewerMode
+  );
 }
-
 
 function isRtlMode() {
-  return typeof thisIsRunningInRtlMode != 'undefined' &&
-      !!thisIsRunningInRtlMode;
+  return (
+    typeof thisIsRunningInRtlMode != "undefined" && !!thisIsRunningInRtlMode
+  );
 }
-
 
 function loadCss(path) {
-  var link = goog.dom.createElement('link');
-  link.type = 'text/css';
+  var link = goog.dom.createElement("link");
+  link.type = "text/css";
   goog.dom.safe.setLinkHrefAndRel(
-      link,
-      goog.html.TrustedResourceUrl.fromConstant(goog.string.Const.from(path)),
-      'stylesheet');
-  var head = goog.dom.getElementsByTagNameAndClass('head')[0];
+    link,
+    goog.html.TrustedResourceUrl.fromConstant(goog.string.Const.from(path)),
+    "stylesheet"
+  );
+  var head = goog.dom.getElementsByTagNameAndClass("head")[0];
   goog.dom.insertChildAt(head, link, 0);
 }
-
 
 /**
  * Simulates a reCAPTCHA being rendered for UI testing. This will just load a
@@ -58,34 +58,37 @@ function loadCss(path) {
  */
 function loadRecaptcha(container) {
   var root = goog.dom.getElement(container);
-  var recaptchaContainer =
-      goog.dom.getElementByClass('firebaseui-recaptcha-container', root);
-  recaptchaContainer.style.display = 'block';
-  var img = goog.dom.createElement('img');
-  img.src = '../image/test/recaptcha-widget.png';
+  var recaptchaContainer = goog.dom.getElementByClass(
+    "firebaseui-recaptcha-container",
+    root
+  );
+  recaptchaContainer.style.display = "block";
+  var img = goog.dom.createElement("img");
+  img.src = "../image/test/recaptcha-widget.png";
   recaptchaContainer.appendChild(img);
 }
-
 
 function setInvalid(root, id) {
   var e = goog.dom.getElementByClass(goog.getCssName(id), root);
   goog.dom.classlist.addRemove(
-      e, 'firebaseui-input', 'firebaseui-input-invalid');
+    e,
+    "firebaseui-input",
+    "firebaseui-input-invalid"
+  );
 }
-
 
 function setError(root, id, message) {
   var e = goog.dom.getElementByClass(goog.getCssName(id), root);
   goog.dom.setTextContent(e, message);
-  goog.dom.classlist.remove(e, 'firebaseui-hidden');
+  goog.dom.classlist.remove(e, "firebaseui-hidden");
 }
 
 function initViewer(file) {
   if (isViewerMode()) {
     if (isRtlMode()) {
-      loadCss('../stylesheet/firebase-ui_rtl.css');
+      loadCss("../stylesheet/firebase-ui_rtl.css");
     } else {
-      loadCss('../stylesheet/firebase-ui_ltr.css');
+      loadCss("../stylesheet/firebase-ui_ltr.css");
     }
   }
 }

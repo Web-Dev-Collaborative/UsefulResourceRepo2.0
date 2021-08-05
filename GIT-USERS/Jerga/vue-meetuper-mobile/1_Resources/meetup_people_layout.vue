@@ -6,7 +6,7 @@
         <nb-list-item avatar>
           <nb-left>
             <!-- Display person avatar -->
-            <nb-thumbnail large/>
+            <nb-thumbnail large />
           </nb-left>
           <nb-body>
             <!-- Display person username -->

@@ -24,7 +24,7 @@ Il modo più semplice per rendere privata questa proprietà pubblica è quello d
 function Bird() {
   let hatchedEgg = 10;
 
-  this.getHatchedEggCount = function() { 
+  this.getHatchedEggCount = function () {
     return hatchedEgg;
   };
 }
@@ -65,8 +65,6 @@ assert(code.match(/((return\s+)|(\(\s*\)\s*\=\>\s*))weight\;?/g));
 ```js
 function Bird() {
   this.weight = 15;
-
-
 }
 ```
 

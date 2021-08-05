@@ -31,25 +31,25 @@ Usa il carattere cursore in un'espressione regolare per trovare `Cal` solo all'i
 La tua espressione regolare dovrebbe cercare la stringa `Cal` con una lettera maiuscola.
 
 ```js
-assert(calRegex.source == '^Cal');
+assert(calRegex.source == "^Cal");
 ```
 
 La tua espressione regolare non dovrebbe usare alcun flag.
 
 ```js
-assert(calRegex.flags == '');
+assert(calRegex.flags == "");
 ```
 
 La tua espressione regolare dovrebbe riconoscere `Cal` all'inizio della stringa.
 
 ```js
-assert(calRegex.test('Cal and Ricky both like racing.'));
+assert(calRegex.test("Cal and Ricky both like racing."));
 ```
 
 La tua espressione regolare non dovrebbe riconoscere `Cal` nel mezzo di una stringa.
 
 ```js
-assert(!calRegex.test('Ricky and Cal both like racing.'));
+assert(!calRegex.test("Ricky and Cal both like racing."));
 ```
 
 # --seed--

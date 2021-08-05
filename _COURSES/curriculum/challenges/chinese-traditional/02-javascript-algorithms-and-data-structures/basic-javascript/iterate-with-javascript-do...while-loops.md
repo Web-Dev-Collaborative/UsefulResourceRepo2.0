@@ -2,7 +2,7 @@
 id: 5a2efd662fb457916e1fe604
 title: do...while 循環
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cDqWGcp'
+videoUrl: "https://scrimba.com/c/cDqWGcp"
 forumTopicId: 301172
 dashedName: iterate-with-javascript-do---while-loops
 ---
@@ -23,7 +23,7 @@ do {
 上面的示例行爲類似於其他類型的循環，由此產生的數組將看起來像 `[0, 1, 2, 3, 4]`。 然而，`do...while` 不同於其他循環的地方，是第一次循環檢查失敗時的行爲。 讓我們看看代碼中的區別：這裏是一個常規的 `while` 循環，只要 `i < 5`，就會在循環中運行代碼：
 
 ```js
-var ourArray = []; 
+var ourArray = [];
 var i = 5;
 while (i < 5) {
   ourArray.push(i);
@@ -34,7 +34,7 @@ while (i < 5) {
 這個例子中，定義了一個空數組 `ourArray` 以及一個值爲 5 的 `i` 。 當執行 `while` 循環時，因爲 `i` 不小於 5，所以循環條件爲 `false`，循環內的代碼將不會執行。 `ourArray` 最終沒有添加任何內容，因此示例中的所有代碼執行完時，ourArray 仍然是`[]`。 現在，看一下 `do...while` 循環。
 
 ```js
-var ourArray = []; 
+var ourArray = [];
 var i = 5;
 do {
   ourArray.push(i);
@@ -73,7 +73,11 @@ assert.equal(i, 11);
 ## --after-user-code--
 
 ```js
-if(typeof myArray !== "undefined"){(function(){return myArray;})();}
+if (typeof myArray !== "undefined") {
+  (function () {
+    return myArray;
+  })();
+}
 ```
 
 ## --seed-contents--
@@ -98,5 +102,5 @@ var i = 10;
 do {
   myArray.push(i);
   i++;
-} while (i < 5)
+} while (i < 5);
 ```

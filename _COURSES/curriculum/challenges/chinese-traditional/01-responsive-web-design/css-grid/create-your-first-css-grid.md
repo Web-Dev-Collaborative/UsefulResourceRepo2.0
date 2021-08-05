@@ -2,7 +2,7 @@
 id: 5a858944d96184f06fd60d61
 title: 創建你的第一個 CSS 網格
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pByETK/cqwREC4'
+videoUrl: "https://scrimba.com/p/pByETK/cqwREC4"
 forumTopicId: 301129
 dashedName: create-your-first-css-grid
 ---
@@ -31,18 +31,27 @@ assert(code.match(/.container\s*?{[\s\S]*display\s*?:\s*?grid\s*?;[\s\S]*}/gi));
 
 ```html
 <style>
-  .d1{background:LightSkyBlue;}
-  .d2{background:LightSalmon;}
-  .d3{background:PaleTurquoise;}
-  .d4{background:LightPink;}
-  .d5{background:PaleGreen;}
+  .d1 {
+    background: LightSkyBlue;
+  }
+  .d2 {
+    background: LightSalmon;
+  }
+  .d3 {
+    background: PaleTurquoise;
+  }
+  .d4 {
+    background: LightPink;
+  }
+  .d5 {
+    background: PaleGreen;
+  }
 
   .container {
     font-size: 40px;
     width: 100%;
     background: LightGray;
     /* Only change code below this line */
-
 
     /* Only change code above this line */
   }
@@ -60,5 +69,9 @@ assert(code.match(/.container\s*?{[\s\S]*display\s*?:\s*?grid\s*?;[\s\S]*}/gi));
 # --solutions--
 
 ```html
-<style>.container {display: grid;}</style>
+<style>
+  .container {
+    display: grid;
+  }
+</style>
 ```

@@ -1,12 +1,11 @@
-import React from 'react';
-import BaseLayout from '../components/BaseLayout.js';
+import React from "react";
+import BaseLayout from "../components/BaseLayout.js";
 
 class Contact extends React.Component {
-
   render() {
     return (
       <BaseLayout>
-        <section className='contactPage'>
+        <section className="contactPage">
           <div className="container">
             <div className="row">
               <div className="col-md-8 offset-md-2">
@@ -23,7 +22,7 @@ class Contact extends React.Component {
           </div>
         </section>
       </BaseLayout>
-    )
+    );
   }
 }
 

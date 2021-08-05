@@ -25,7 +25,6 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.deprecationTest');
 
-
 var mockControl;
 var mockLogger;
 
@@ -33,19 +32,16 @@ var mockLogger;
 fireauth.deprecation.Deprecations.TEST_MESSAGE = 'This is a test.';
 fireauth.deprecation.Deprecations.TEST_MESSAGE_2 = 'This is another test.';
 
-
 function setUp() {
   mockControl = new goog.testing.MockControl();
   mockWarning = mockControl.createMethodMock(fireauth.util, 'consoleWarn');
 }
-
 
 function tearDown() {
   mockControl.$verifyAll();
   mockControl.$tearDown();
   fireauth.deprecation.resetForTesting();
 }
-
 
 function testLog() {
   mockWarning(fireauth.deprecation.Deprecations.TEST_MESSAGE).$once();
@@ -54,7 +50,6 @@ function testLog() {
 
   fireauth.deprecation.log(fireauth.deprecation.Deprecations.TEST_MESSAGE);
 }
-
 
 function testLogMultiple() {
   mockWarning(fireauth.deprecation.Deprecations.TEST_MESSAGE).$once();
@@ -65,7 +60,6 @@ function testLogMultiple() {
   fireauth.deprecation.log(fireauth.deprecation.Deprecations.TEST_MESSAGE);
   fireauth.deprecation.log(fireauth.deprecation.Deprecations.TEST_MESSAGE_2);
 }
-
 
 function testLogMultipleDontRepeat() {
   mockWarning(fireauth.deprecation.Deprecations.TEST_MESSAGE).$once();

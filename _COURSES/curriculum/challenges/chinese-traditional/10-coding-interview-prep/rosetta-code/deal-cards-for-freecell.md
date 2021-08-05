@@ -8,7 +8,7 @@ dashedName: deal-cards-for-freecell
 
 # --description--
 
-*FreeCell* is the solitaire card game that Paul Alfille introduced to the PLATO system in 1978. Jim Horne, at Microsoft, changed the name to FreeCell and reimplemented the game for [DOS](https://rosettacode.org/wiki/DOS "DOS"), then [Windows](https://rosettacode.org/wiki/Windows "Windows"). This version introduced 32000 numbered deals.
+_FreeCell_ is the solitaire card game that Paul Alfille introduced to the PLATO system in 1978. Jim Horne, at Microsoft, changed the name to FreeCell and reimplemented the game for [DOS](https://rosettacode.org/wiki/DOS "DOS"), then [Windows](https://rosettacode.org/wiki/Windows "Windows"). This version introduced 32000 numbered deals.
 
 As the game became popular, Jim Horne disclosed the algorithm, and other implementations of FreeCell began to reproduce the Microsoft deals. These deals are numbered from 1 to 32000. Newer versions from Microsoft have 1 million deals, numbered from 1 to 1000000; some implementations allow numbers outside that range.
 
@@ -51,28 +51,28 @@ The algorithm follows:
 
 ```js
 [
-  ['JD', '2D', '9H', 'JC', '5D', '7H', '7C', '5H'],
-  ['KD', 'KC', '9S', '5S', 'AD', 'QC', 'KH', '3H'],
-  ['2S', 'KS', '9D', 'QD', 'JS', 'AS', 'AH', '3C'],
-  ['4C', '5C', 'TS', 'QH', '4H', 'AC', '4D', '7S'],
-  ['3S', 'TD', '4S', 'TH', '8H', '2C', 'JH', '7D'],
-  ['6D', '8S', '8D', 'QS', '6C', '3D', '8C', 'TC'],
-  ['6S', '9C', '2H', '6H']
-]
+  ["JD", "2D", "9H", "JC", "5D", "7H", "7C", "5H"],
+  ["KD", "KC", "9S", "5S", "AD", "QC", "KH", "3H"],
+  ["2S", "KS", "9D", "QD", "JS", "AS", "AH", "3C"],
+  ["4C", "5C", "TS", "QH", "4H", "AC", "4D", "7S"],
+  ["3S", "TD", "4S", "TH", "8H", "2C", "JH", "7D"],
+  ["6D", "8S", "8D", "QS", "6C", "3D", "8C", "TC"],
+  ["6S", "9C", "2H", "6H"],
+];
 ```
 
 **Game #617**
 
 ```js
 [
-  ['7D', 'AD', '5C', '3S', '5S', '8C', '2D', 'AH'],
-  ['TD', '7S', 'QD', 'AC', '6D', '8H', 'AS', 'KH'],
-  ['TH', 'QC', '3H', '9D', '6S', '8D', '3D', 'TC'],
-  ['KD', '5H', '9S', '3C', '8S', '7H', '4D', 'JS'],
-  ['4C', 'QS', '9C', '9H', '7C', '6H', '2C', '2S'],
-  ['4S', 'TS', '2H', '5D', 'JC', '6C', 'JH', 'QH'],
-  ['JD', 'KS', 'KC', '4H']
-]
+  ["7D", "AD", "5C", "3S", "5S", "8C", "2D", "AH"],
+  ["TD", "7S", "QD", "AC", "6D", "8H", "AS", "KH"],
+  ["TH", "QC", "3H", "9D", "6S", "8D", "3D", "TC"],
+  ["KD", "5H", "9S", "3C", "8S", "7H", "4D", "JS"],
+  ["4C", "QS", "9C", "9H", "7C", "6H", "2C", "2S"],
+  ["4S", "TS", "2H", "5D", "JC", "6C", "JH", "QH"],
+  ["JD", "KS", "KC", "4H"],
+];
 ```
 
 # --instructions--
@@ -86,13 +86,13 @@ Deals can also be checked against [FreeCell solutions to 1000000 games](https://
 `dealFreeCell` should be a function.
 
 ```js
-assert(typeof dealFreeCell === 'function');
+assert(typeof dealFreeCell === "function");
 ```
 
 `dealFreeCell(seed)` should return an object.
 
 ```js
-assert(typeof dealFreeCell(1) === 'object');
+assert(typeof dealFreeCell(1) === "object");
 ```
 
 `dealFreeCell(seed)` should return an array of length 7.
@@ -120,22 +120,22 @@ assert.deepEqual(dealFreeCell(617), game617);
 ```js
 const replaceThis = 3;
 const game1 = [
-  ['JD', '2D', '9H', 'JC', '5D', '7H', '7C', '5H'],
-  ['KD', 'KC', '9S', '5S', 'AD', 'QC', 'KH', '3H'],
-  ['2S', 'KS', '9D', 'QD', 'JS', 'AS', 'AH', '3C'],
-  ['4C', '5C', 'TS', 'QH', '4H', 'AC', '4D', '7S'],
-  ['3S', 'TD', '4S', 'TH', '8H', '2C', 'JH', '7D'],
-  ['6D', '8S', '8D', 'QS', '6C', '3D', '8C', 'TC'],
-  ['6S', '9C', '2H', '6H']
+  ["JD", "2D", "9H", "JC", "5D", "7H", "7C", "5H"],
+  ["KD", "KC", "9S", "5S", "AD", "QC", "KH", "3H"],
+  ["2S", "KS", "9D", "QD", "JS", "AS", "AH", "3C"],
+  ["4C", "5C", "TS", "QH", "4H", "AC", "4D", "7S"],
+  ["3S", "TD", "4S", "TH", "8H", "2C", "JH", "7D"],
+  ["6D", "8S", "8D", "QS", "6C", "3D", "8C", "TC"],
+  ["6S", "9C", "2H", "6H"],
 ];
 const game617 = [
-  ['7D', 'AD', '5C', '3S', '5S', '8C', '2D', 'AH'],
-  ['TD', '7S', 'QD', 'AC', '6D', '8H', 'AS', 'KH'],
-  ['TH', 'QC', '3H', '9D', '6S', '8D', '3D', 'TC'],
-  ['KD', '5H', '9S', '3C', '8S', '7H', '4D', 'JS'],
-  ['4C', 'QS', '9C', '9H', '7C', '6H', '2C', '2S'],
-  ['4S', 'TS', '2H', '5D', 'JC', '6C', 'JH', 'QH'],
-  ['JD', 'KS', 'KC', '4H']
+  ["7D", "AD", "5C", "3S", "5S", "8C", "2D", "AH"],
+  ["TD", "7S", "QD", "AC", "6D", "8H", "AS", "KH"],
+  ["TH", "QC", "3H", "9D", "6S", "8D", "3D", "TC"],
+  ["KD", "5H", "9S", "3C", "8S", "7H", "4D", "JS"],
+  ["4C", "QS", "9C", "9H", "7C", "6H", "2C", "2S"],
+  ["4S", "TS", "2H", "5D", "JC", "6C", "JH", "QH"],
+  ["JD", "KS", "KC", "4H"],
 ];
 ```
 
@@ -143,7 +143,6 @@ const game617 = [
 
 ```js
 function dealFreeCell(seed) {
-
   return true;
 }
 ```
@@ -156,15 +155,29 @@ function FreeCellRNG(seed) {
   return {
     lastNum: seed,
     next() {
-      this.lastNum = ((214013 * this.lastNum) + 2531011) % (Math.pow(2, 31));
+      this.lastNum = (214013 * this.lastNum + 2531011) % Math.pow(2, 31);
       return this.lastNum >> 16;
-    }
+    },
   };
 }
 // Get cards
 function getDeck() {
-  const ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'];
-  const suits = ['C', 'D', 'H', 'S'];
+  const ranks = [
+    "A",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "T",
+    "J",
+    "Q",
+    "K",
+  ];
+  const suits = ["C", "D", "H", "S"];
   const cards = [];
   for (let i = 0; i < ranks.length; i += 1) {
     for (let j = 0; j < suits.length; j += 1) {

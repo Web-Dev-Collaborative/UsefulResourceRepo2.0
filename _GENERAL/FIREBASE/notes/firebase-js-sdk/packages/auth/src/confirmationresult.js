@@ -27,7 +27,6 @@ goog.require('fireauth.PhoneAuthProvider');
 goog.require('fireauth.object');
 goog.require('goog.Promise');
 
-
 /**
  * The confirmation result class. This takes in the verification ID returned
  * from the phone Auth provider and the credential resolver to run when
@@ -40,7 +39,7 @@ goog.require('goog.Promise');
  *     resolves with a UserCredential object.
  * @constructor
  */
-fireauth.ConfirmationResult = function(verificationId, credentialResolver) {
+fireauth.ConfirmationResult = function (verificationId, credentialResolver) {
   /**
    * @const @private {!function(!fireauth.AuthCredential):
    *     !goog.Promise<!fireauth.AuthEventManager.Result>} A function that takes
@@ -52,7 +51,6 @@ fireauth.ConfirmationResult = function(verificationId, credentialResolver) {
   fireauth.object.setReadonlyProperty(this, 'verificationId', verificationId);
 };
 
-
 /**
  * Confirms the verification code and returns a promise that resolves with the
  * User Credential object.
@@ -60,15 +58,16 @@ fireauth.ConfirmationResult = function(verificationId, credentialResolver) {
  *     complete the Auth flow.
  * @return {!goog.Promise<!fireauth.AuthEventManager.Result>}
  */
-fireauth.ConfirmationResult.prototype.confirm = function(verificationCode) {
+fireauth.ConfirmationResult.prototype.confirm = function (verificationCode) {
   // Initialize a phone Auth credential with the verification ID and code.
   var credential = fireauth.PhoneAuthProvider.credential(
-      this['verificationId'], verificationCode);
+    this['verificationId'],
+    verificationCode
+  );
   // Run the credential resolver with the phone Auth credential and return its
   // result.
   return this.credentialResolver_(credential);
 };
-
 
 /**
  * Initializes a ConfirmationResult using the provided phone number, app
@@ -84,18 +83,25 @@ fireauth.ConfirmationResult.prototype.confirm = function(verificationCode) {
  *     resolves with a UserCredential object.
  * @return {!goog.Promise<!fireauth.ConfirmationResult>}
  */
-fireauth.ConfirmationResult.initialize =
-    function(auth, phoneNumber, appVerifier, credentialResolver) {
+fireauth.ConfirmationResult.initialize = function (
+  auth,
+  phoneNumber,
+  appVerifier,
+  credentialResolver
+) {
   // Initialize a phone Auth provider instance using the provided Auth
   // instance.
   var phoneAuthProvider = new fireauth.PhoneAuthProvider(auth);
   // Verify the phone number.
-  return phoneAuthProvider.verifyPhoneNumber(phoneNumber, appVerifier)
-      .then(function(verificationId) {
-        // When code is sent and verification ID is returned, initialize a
-        // ConfirmationResult with the returned verification ID and credential
-        // resolver, and return that instance.
-        return new fireauth.ConfirmationResult(
-            verificationId, credentialResolver);
-      });
+  return phoneAuthProvider
+    .verifyPhoneNumber(phoneNumber, appVerifier)
+    .then(function (verificationId) {
+      // When code is sent and verification ID is returned, initialize a
+      // ConfirmationResult with the returned verification ID and credential
+      // resolver, and return that instance.
+      return new fireauth.ConfirmationResult(
+        verificationId,
+        credentialResolver
+      );
+    });
 };

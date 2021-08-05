@@ -3,7 +3,7 @@ id: bd7123c9c441eddfaeb4bdef
 title: Comenta tu código de JavaScript
 challengeType: 1
 removeComments: false
-videoUrl: 'https://scrimba.com/c/c7ynnTp'
+videoUrl: "https://scrimba.com/c/c7ynnTp"
 forumTopicId: 16783
 dashedName: comment-your-javascript-code
 ---
@@ -27,7 +27,7 @@ Puedes hacer un comentario multilínea comenzando con `/*` y terminando con `*/`
 multi-line comment */
 ```
 
-**Nota: ** A medida que programas, deberías añadir comentarios regularmente para aclarar el funcionamiento de las partes de tu código. Un buen comentario puede ayudar a comunicar la intención de tu código, tanto para otros *como* para tu yo futuro.
+**Nota: ** A medida que programas, deberías añadir comentarios regularmente para aclarar el funcionamiento de las partes de tu código. Un buen comentario puede ayudar a comunicar la intención de tu código, tanto para otros _como_ para tu yo futuro.
 
 # --instructions--
 

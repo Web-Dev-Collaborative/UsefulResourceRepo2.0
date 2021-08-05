@@ -32,26 +32,26 @@ FAV_PET = "Dogs";
 代码中不应有 `var`。
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/var/g));
+(getUserInput) => assert(!getUserInput("index").match(/var/g));
 ```
 
 `SENTENCE` 应该是使用 `const` 声明的常量。
 
 ```js
-(getUserInput) => assert(getUserInput('index').match(/(const SENTENCE)/g));
+(getUserInput) => assert(getUserInput("index").match(/(const SENTENCE)/g));
 ```
 
 `i` 应该是使用 `let`声明的。
 
 ```js
-(getUserInput) => assert(getUserInput('index').match(/(let i)/g));
+(getUserInput) => assert(getUserInput("index").match(/(let i)/g));
 ```
 
 `console.log` 应该修改为用于打印 `SENTENCE` 变量。
 
 ```js
 (getUserInput) =>
-  assert(getUserInput('index').match(/console\.log\(\s*SENTENCE\s*\)\s*;?/g));
+  assert(getUserInput("index").match(/console\.log\(\s*SENTENCE\s*\)\s*;?/g));
 ```
 
 # --seed--
@@ -60,16 +60,14 @@ FAV_PET = "Dogs";
 
 ```js
 function printManyTimes(str) {
-
   // Only change code below this line
 
   var sentence = str + " is cool!";
-  for (var i = 0; i < str.length; i+=2) {
+  for (var i = 0; i < str.length; i += 2) {
     console.log(sentence);
   }
 
   // Only change code above this line
-
 }
 printManyTimes("freeCodeCamp");
 ```
@@ -78,12 +76,10 @@ printManyTimes("freeCodeCamp");
 
 ```js
 function printManyTimes(str) {
-
   const SENTENCE = str + " is cool!";
-  for (let i = 0; i < str.length; i+=2) {
+  for (let i = 0; i < str.length; i += 2) {
     console.log(SENTENCE);
   }
-
 }
 printManyTimes("freeCodeCamp");
 ```

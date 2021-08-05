@@ -2,7 +2,7 @@
 id: 587d778f367417b2b2512aae
 title: Give Links Meaning by Using Descriptive Link Text
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c437DcV'
+videoUrl: "https://scrimba.com/c/c437DcV"
 forumTopicId: 301013
 dashedName: give-links-meaning-by-using-descriptive-link-text
 ---
@@ -23,7 +23,7 @@ Your code should move the anchor `a` tags from around the words `Click here` to 
 
 ```js
 assert(
-  $('a')
+  $("a")
     .text()
     .match(/^(information about batteries)$/g)
 );
@@ -32,7 +32,7 @@ assert(
 The `a` element should have an `href` attribute with a value of an empty string `""`.
 
 ```js
-assert($('a').attr('href') === '');
+assert($("a").attr("href") === "");
 ```
 
 The `a` element should have a closing tag.
@@ -55,7 +55,12 @@ assert(
   </header>
   <article>
     <h2>Defeating your Foe: the Red Dot is Ours!</h2>
-    <p>Felines the world over have been waging war on the most persistent of foes. This red nemesis combines both cunning stealth and lightning speed. But chin up, fellow fighters, our time for victory may soon be near. <a href="">Click here</a> for information about batteries</p>
+    <p>
+      Felines the world over have been waging war on the most persistent of
+      foes. This red nemesis combines both cunning stealth and lightning speed.
+      But chin up, fellow fighters, our time for victory may soon be near.
+      <a href="">Click here</a> for information about batteries
+    </p>
   </article>
 </body>
 ```
@@ -69,7 +74,12 @@ assert(
   </header>
   <article>
     <h2>Defeating your Foe: the Red Dot is Ours!</h2>
-    <p>Felines the world over have been waging war on the most persistent of foes. This red nemesis combines both cunning stealth and lightning speed. But chin up, fellow fighters, our time for victory may soon be near. Click here for <a href="">information about batteries</a></p>
+    <p>
+      Felines the world over have been waging war on the most persistent of
+      foes. This red nemesis combines both cunning stealth and lightning speed.
+      But chin up, fellow fighters, our time for victory may soon be near. Click
+      here for <a href="">information about batteries</a>
+    </p>
   </article>
 </body>
 ```

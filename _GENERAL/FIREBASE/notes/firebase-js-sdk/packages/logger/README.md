@@ -37,4 +37,3 @@ Each log will be formatted in the following manner:
 ```typescript
 `[${new Date()}]  ${COMPONENT_NAME}: ${...args}`
 ```
-

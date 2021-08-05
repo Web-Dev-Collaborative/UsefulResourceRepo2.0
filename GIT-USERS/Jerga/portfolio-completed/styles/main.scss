@@ -1,21 +1,22 @@
-@import './shared/colors';
-@import './shared/mixins';
+@import "./shared/colors";
+@import "./shared/mixins";
 
 // PAGES
-@import './index';
-@import './portfolios';
-@import './blogs';
-@import './about';
-@import './cv';
+@import "./index";
+@import "./portfolios";
+@import "./blogs";
+@import "./about";
+@import "./cv";
 
 // COMPONENTS
-@import './header';
-@import './slate-editor';
+@import "./header";
+@import "./slate-editor";
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
-  font-family: 'Montserrat', 'Helvetica';
+  font-family: "Montserrat", "Helvetica";
 }
 
 .clickable {

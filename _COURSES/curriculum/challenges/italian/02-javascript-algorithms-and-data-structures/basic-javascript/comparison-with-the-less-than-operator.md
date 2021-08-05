@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244d6
 title: Confronto con l'operatore di minoranza
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cNVRWtB'
+videoUrl: "https://scrimba.com/c/cNVRWtB"
 forumTopicId: 16789
 dashedName: comparison-with-the-less-than-operator
 ---
@@ -14,11 +14,11 @@ L'operatore di minoranza (`<`) confronta i valori di due numeri. Se il numero a 
 **Esempi**
 
 ```js
-2   < 5
-'3' < 7
-5   < 5
-3   < 2
-'8' < 4
+2 < 5;
+"3" < 7;
+5 < 5;
+3 < 2;
+"8" < 4;
 ```
 
 Nell'ordine, queste espressioni saranno valutate `true`, `true`, `false`, `false`, e `false`.
@@ -32,37 +32,37 @@ Aggiungi l'operatore di minoranza alle linee indicate in modo che le istruzioni 
 `testLessThan(0)` dovrebbe restituire la stringa `Under 25`
 
 ```js
-assert(testLessThan(0) === 'Under 25');
+assert(testLessThan(0) === "Under 25");
 ```
 
 `testLessThan(24)` dovrebbe restituire la stringa `Under 25`
 
 ```js
-assert(testLessThan(24) === 'Under 25');
+assert(testLessThan(24) === "Under 25");
 ```
 
 `testLessThan(25)` dovrebbe restituire la stringa `Under 55`
 
 ```js
-assert(testLessThan(25) === 'Under 55');
+assert(testLessThan(25) === "Under 55");
 ```
 
 `testLessThan(54)` dovrebbe restituire la stringa `Under 55`
 
 ```js
-assert(testLessThan(54) === 'Under 55');
+assert(testLessThan(54) === "Under 55");
 ```
 
 `testLessThan(55)` dovrebbe restituire la stringa `55 or Over`
 
 ```js
-assert(testLessThan(55) === '55 or Over');
+assert(testLessThan(55) === "55 or Over");
 ```
 
 `testLessThan(99)` dovrebbe restituire la stringa `55 or Over`
 
 ```js
-assert(testLessThan(99) === '55 or Over');
+assert(testLessThan(99) === "55 or Over");
 ```
 
 Dovresti utilizzare l'operatore `<` almeno due volte
@@ -77,11 +77,13 @@ assert(code.match(/val\s*<\s*('|")*\d+('|")*/g).length > 1);
 
 ```js
 function testLessThan(val) {
-  if (val) {  // Change this line
+  if (val) {
+    // Change this line
     return "Under 25";
   }
 
-  if (val) {  // Change this line
+  if (val) {
+    // Change this line
     return "Under 55";
   }
 
@@ -95,11 +97,13 @@ testLessThan(10);
 
 ```js
 function testLessThan(val) {
-  if (val < 25) {  // Change this line
+  if (val < 25) {
+    // Change this line
     return "Under 25";
   }
 
-  if (val < 55) {  // Change this line
+  if (val < 55) {
+    // Change this line
     return "Under 55";
   }
 

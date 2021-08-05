@@ -8,14 +8,14 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 
 // Prepare ecommerce params
 const params9 = {
-  currency: 'USD',
+  currency: "USD",
   value: 14.98, // Total Revenue
-  coupon: 'SUMMER_FUN',
-  payment_type: 'Visa',
-  items: [item_jeggings]
+  coupon: "SUMMER_FUN",
+  payment_type: "Visa",
+  items: [item_jeggings],
 };
 
 // Log event
 const analytics = getAnalytics();
-logEvent(analytics, 'add_payment_info', params9);  
+logEvent(analytics, "add_payment_info", params9);
 // [END analytics_ecommerce_payment_info_modular]

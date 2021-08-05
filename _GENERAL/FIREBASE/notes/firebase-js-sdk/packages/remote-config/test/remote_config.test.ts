@@ -337,7 +337,8 @@ describe('RemoteConfig', () => {
       setActiveConfigEtagStub = sinon.stub();
       setActiveConfigStub = sinon.stub();
 
-      storage.getLastSuccessfulFetchResponse = getLastSuccessfulFetchResponseStub;
+      storage.getLastSuccessfulFetchResponse =
+        getLastSuccessfulFetchResponseStub;
       storage.getActiveConfigEtag = getActiveConfigEtagStub;
       storage.setActiveConfigEtag = setActiveConfigEtagStub;
       storageCache.setActiveConfig = setActiveConfigStub;
@@ -423,11 +424,9 @@ describe('RemoteConfig', () => {
   });
 
   describe('fetch', () => {
-    let timeoutStub: sinon.SinonStub<[
-      (...args: any[]) => void,
-      number,
-      ...any[]
-    ]>;
+    let timeoutStub: sinon.SinonStub<
+      [(...args: any[]) => void, number, ...any[]]
+    >;
     beforeEach(() => {
       client.fetch = sinon
         .stub()

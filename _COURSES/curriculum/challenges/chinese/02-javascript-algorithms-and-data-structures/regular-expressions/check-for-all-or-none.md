@@ -17,7 +17,7 @@ dashedName: check-for-all-or-none
 ```js
 let american = "color";
 let british = "colour";
-let rainbowRegex= /colou?r/;
+let rainbowRegex = /colou?r/;
 rainbowRegex.test(american);
 rainbowRegex.test(british);
 ```
@@ -41,21 +41,21 @@ assert(favRegex.source.match(/\?/).length > 0);
 
 ```js
 favRegex.lastIndex = 0;
-assert(favRegex.test('favorite'));
+assert(favRegex.test("favorite"));
 ```
 
 你的正则表达式应该匹配 `favourite`。
 
 ```js
 favRegex.lastIndex = 0;
-assert(favRegex.test('favourite'));
+assert(favRegex.test("favourite"));
 ```
 
 你的正则表达式不应该匹配 `fav`。
 
 ```js
 favRegex.lastIndex = 0;
-assert(!favRegex.test('fav'));
+assert(!favRegex.test("fav"));
 ```
 
 # --seed--

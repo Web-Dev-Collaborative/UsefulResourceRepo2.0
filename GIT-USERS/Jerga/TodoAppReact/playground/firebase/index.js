@@ -1,10 +1,10 @@
-import firebase from 'firebase';
+import firebase from "firebase";
 
 var config = {
-    apiKey: "AIzaSyAp5RheaOcKZGOEaWP1U-Z9DYo5hrGAcLs",
-    authDomain: "jerga-todo-app-5e937.firebaseapp.com",
-    databaseURL: "https://jerga-todo-app-5e937.firebaseio.com",
-    storageBucket: "jerga-todo-app-5e937.appspot.com",
+  apiKey: "AIzaSyAp5RheaOcKZGOEaWP1U-Z9DYo5hrGAcLs",
+  authDomain: "jerga-todo-app-5e937.firebaseapp.com",
+  databaseURL: "https://jerga-todo-app-5e937.firebaseio.com",
+  storageBucket: "jerga-todo-app-5e937.appspot.com",
 };
 
 firebase.initializeApp(config);
@@ -12,15 +12,15 @@ firebase.initializeApp(config);
 var firebaseRef = firebase.database().ref();
 
 firebaseRef.set({
-    app: {
-        name: "Test app",
-        version: "1.0.0"
-    },
-    isRunning: true,
-    user: {
-        name: "Andrew",
-        age: 25
-    },
+  app: {
+    name: "Test app",
+    version: "1.0.0",
+  },
+  isRunning: true,
+  user: {
+    name: "Andrew",
+    age: 25,
+  },
 });
 
 // var notesRef = firebaseRef.child('notes');
@@ -43,23 +43,21 @@ firebaseRef.set({
 //
 // console.log(newNoteRef.key);
 
-var todosRef = firebaseRef.child('todos');
+var todosRef = firebaseRef.child("todos");
 
-todosRef.on('child_added', (snapshot) => {
-   console.log("Child_added: ", snapshot.val());
+todosRef.on("child_added", (snapshot) => {
+  console.log("Child_added: ", snapshot.val());
 });
 
 var newTodosRef = todosRef.push();
 
 newTodosRef.set({
-    text: "walk a moon"
+  text: "walk a moon",
 });
 
 todosRef.push({
-    text: "i am lesss"
+  text: "i am lesss",
 });
-
-
 
 // firebaseRef.update({
 //     isRunning: false,

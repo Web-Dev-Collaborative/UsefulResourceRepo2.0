@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244b7
 title: 用加号运算符连接字符串
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cNpM8AN'
+videoUrl: "https://scrimba.com/c/cNpM8AN"
 forumTopicId: 16802
 dashedName: concatenating-strings-with-plus-operator
 ---
@@ -14,7 +14,7 @@ dashedName: concatenating-strings-with-plus-operator
 **例如：**
 
 ```js
-'My name is Alan,' + ' I concatenate.'
+"My name is Alan," + " I concatenate.";
 ```
 
 **提示：** 注意空格。 拼接操作不会在两个字符串之间添加空格。所以，如果想加上空格的话，你需要自己在字符串里面添加。
@@ -26,6 +26,7 @@ var ourStr = "I come first. " + "I come second.";
 ```
 
 字符串 `I come first. I come second.` 将显示在控制台中。
+
 # --instructions--
 
 使用 `+` 操作符连接字符串`This is the start.` 和 `This is the end.` 赋值给 `myStr` 。
@@ -35,7 +36,7 @@ var ourStr = "I come first. " + "I come second.";
 `myStr` 的值应该是 `This is the start. This is the end.`
 
 ```js
-assert(myStr === 'This is the start. This is the end.');
+assert(myStr === "This is the start. This is the end.");
 ```
 
 应使用 `+` 操作符创建 `myStr`。
@@ -61,11 +62,11 @@ assert(/myStr\s*=/.test(code));
 ## --after-user-code--
 
 ```js
-(function(){
-  if(typeof myStr === 'string') {
+(function () {
+  if (typeof myStr === "string") {
     return 'myStr = "' + myStr + '"';
   } else {
-    return 'myStr is not a string';
+    return "myStr is not a string";
   }
 })();
 ```

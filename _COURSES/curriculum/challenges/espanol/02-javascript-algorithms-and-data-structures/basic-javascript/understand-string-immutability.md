@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244ba
 title: Comprende la inmutabilidad de las cadenas
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cWPVaUR'
+videoUrl: "https://scrimba.com/c/cWPVaUR"
 forumTopicId: 18331
 dashedName: understand-string-immutability
 ---
@@ -18,7 +18,7 @@ var myStr = "Bob";
 myStr[0] = "J";
 ```
 
-no puede cambiar el valor de `myStr` a `Job`, porque el contenido de `myStr` no puede ser alterado. Ten en cuenta que esto *no* significa que `myStr` no puede cambiarse, solo que los caracteres individuales de una <dfn>cadena literal</dfn> no pueden ser cambiados. La única forma de cambiar `myStr` sería asignarla con una nueva cadena, como esta:
+no puede cambiar el valor de `myStr` a `Job`, porque el contenido de `myStr` no puede ser alterado. Ten en cuenta que esto _no_ significa que `myStr` no puede cambiarse, solo que los caracteres individuales de una <dfn>cadena literal</dfn> no pueden ser cambiados. La única forma de cambiar `myStr` sería asignarla con una nueva cadena, como esta:
 
 ```js
 var myStr = "Bob";
@@ -34,7 +34,7 @@ Corrige la asignación de `myStr` para que contenga el valor de cadena `Hello Wo
 `myStr` debe tener una cadena con valor `Hello World`.
 
 ```js
-assert(myStr === 'Hello World');
+assert(myStr === "Hello World");
 ```
 
 No debes cambiar el código por encima del comentario especificado.
@@ -48,7 +48,9 @@ assert(/myStr = "Jello World"/.test(code));
 ## --after-user-code--
 
 ```js
-(function(v){return "myStr = " + v;})(myStr);
+(function (v) {
+  return "myStr = " + v;
+})(myStr);
 ```
 
 ## --seed-contents--

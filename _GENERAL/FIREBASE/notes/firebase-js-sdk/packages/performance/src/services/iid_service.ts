@@ -34,7 +34,8 @@ export function getIid(): string | undefined {
 }
 
 export function getAuthTokenPromise(): Promise<string> {
-  const authTokenPromise = SettingsService.getInstance().installationsService.getToken();
+  const authTokenPromise =
+    SettingsService.getInstance().installationsService.getToken();
   // eslint-disable-next-line @typescript-eslint/no-floating-promises
   authTokenPromise.then((authTokenVal: string) => {
     authToken = authTokenVal;

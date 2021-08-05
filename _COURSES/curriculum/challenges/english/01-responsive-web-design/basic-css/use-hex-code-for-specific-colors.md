@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08726
 title: Use Hex Code for Specific Colors
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c8W9mHM'
+videoUrl: "https://scrimba.com/c/c8W9mHM"
 forumTopicId: 18350
 dashedName: use-hex-code-for-specific-colors
 ---
@@ -30,7 +30,7 @@ Replace the word `black` in our `body` element's background-color with its hex c
 Your `body` element should have the background-color of black.
 
 ```js
-assert($('body').css('background-color') === 'rgb(0, 0, 0)');
+assert($("body").css("background-color") === "rgb(0, 0, 0)");
 ```
 
 The `hex code` for the color black should be used instead of the word `black`.

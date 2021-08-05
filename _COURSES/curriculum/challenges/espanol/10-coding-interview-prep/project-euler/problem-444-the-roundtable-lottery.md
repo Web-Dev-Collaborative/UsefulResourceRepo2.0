@@ -1,6 +1,6 @@
 ---
 id: 5900f52a1000cf542c51003b
-title: 'Problem 444: The Roundtable Lottery'
+title: "Problem 444: The Roundtable Lottery"
 challengeType: 5
 forumTopicId: 302116
 dashedName: problem-444-the-roundtable-lottery
@@ -39,7 +39,6 @@ assert.strictEqual(euler444(), 1.200856722e263);
 
 ```js
 function euler444() {
-
   return true;
 }
 

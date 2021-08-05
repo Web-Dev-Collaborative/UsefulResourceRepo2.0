@@ -75,7 +75,7 @@ should interpret the sequence and return the output string. For this task, assum
 `Subleq` should be a function.
 
 ```js
-assert(typeof Subleq == 'function');
+assert(typeof Subleq == "function");
 ```
 
 `Subleq([15, 17, -1, 17, -1, -1, 16, 1, -1, 16, 3, -1, 15, 15, 0, 0, -1, 72, 101, 108, 108, 111, 44, 32, 119, 111, 114, 108, 100, 33, 0])` should return a string.
@@ -83,38 +83,9 @@ assert(typeof Subleq == 'function');
 ```js
 assert(
   typeof Subleq([
-    15,
-    17,
-    -1,
-    17,
-    -1,
-    -1,
-    16,
-    1,
-    -1,
-    16,
-    3,
-    -1,
-    15,
-    15,
-    0,
-    0,
-    -1,
-    72,
-    101,
-    108,
-    108,
-    111,
-    44,
-    32,
-    119,
-    111,
-    114,
-    108,
-    100,
-    33,
-    0
-  ]) == 'string'
+    15, 17, -1, 17, -1, -1, 16, 1, -1, 16, 3, -1, 15, 15, 0, 0, -1, 72, 101,
+    108, 108, 111, 44, 32, 119, 111, 114, 108, 100, 33, 0,
+  ]) == "string"
 );
 ```
 
@@ -123,39 +94,10 @@ assert(
 ```js
 assert.equal(
   Subleq([
-    15,
-    17,
-    -1,
-    17,
-    -1,
-    -1,
-    16,
-    1,
-    -1,
-    16,
-    3,
-    -1,
-    15,
-    15,
-    0,
-    0,
-    -1,
-    72,
-    101,
-    108,
-    108,
-    111,
-    44,
-    32,
-    119,
-    111,
-    114,
-    108,
-    100,
-    33,
-    0
+    15, 17, -1, 17, -1, -1, 16, 1, -1, 16, 3, -1, 15, 15, 0, 0, -1, 72, 101,
+    108, 108, 111, 44, 32, 119, 111, 114, 108, 100, 33, 0,
   ]),
-  'Hello, world!'
+  "Hello, world!"
 );
 ```
 
@@ -164,16 +106,14 @@ assert.equal(
 ## --seed-contents--
 
 ```js
-function Subleq(mem) {
-
-}
+function Subleq(mem) {}
 ```
 
 # --solutions--
 
 ```js
 function Subleq(mem) {
-  var out = '';
+  var out = "";
   var instructionPointer = 0;
   do {
     var a = mem[instructionPointer];

@@ -22,6 +22,9 @@ const generateNonce = (length) => {
 const unhashedNonce = generateNonce(10);
 
 // SHA256-hashed nonce in hex
-const hashedNonceHex = crypto.createHash('sha256')
-  .update(unhashedNonce).digest().toString('hex');
+const hashedNonceHex = crypto
+  .createHash("sha256")
+  .update(unhashedNonce)
+  .digest()
+  .toString("hex");
 // [END auth_apple_nonce_node_modular]

@@ -2,7 +2,7 @@
 id: 587d7b7e367417b2b2512b22
 title: Utiliza la función "parseInt" con Radix (Base)
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c6K4Kh3'
+videoUrl: "https://scrimba.com/c/c6K4Kh3"
 forumTopicId: 301182
 dashedName: use-the-parseint-function-with-a-radix
 ---
@@ -40,25 +40,25 @@ assert(/parseInt/g.test(code));
 `convertToInteger("10011")` debe devolver un número
 
 ```js
-assert(typeof convertToInteger('10011') === 'number');
+assert(typeof convertToInteger("10011") === "number");
 ```
 
 `convertToInteger("10011")` debe devolver 19
 
 ```js
-assert(convertToInteger('10011') === 19);
+assert(convertToInteger("10011") === 19);
 ```
 
 `convertToInteger("111001")` debe devolver 57
 
 ```js
-assert(convertToInteger('111001') === 57);
+assert(convertToInteger("111001") === 57);
 ```
 
 `convertToInteger("JamesBond")` debe devolver `NaN`
 
 ```js
-assert.isNaN(convertToInteger('JamesBond'));
+assert.isNaN(convertToInteger("JamesBond"));
 ```
 
 # --seed--
@@ -66,9 +66,7 @@ assert.isNaN(convertToInteger('JamesBond'));
 ## --seed-contents--
 
 ```js
-function convertToInteger(str) {
-
-}
+function convertToInteger(str) {}
 
 convertToInteger("10011");
 ```

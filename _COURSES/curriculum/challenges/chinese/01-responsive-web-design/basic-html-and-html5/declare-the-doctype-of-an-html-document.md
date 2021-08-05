@@ -2,7 +2,7 @@
 id: 587d78aa367417b2b2512aed
 title: 声明 HTML 的文档类型
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cra98AJ'
+videoUrl: "https://scrimba.com/p/pVMPUv/cra98AJ"
 forumTopicId: 301095
 dashedName: declare-the-doctype-of-an-html-document
 ---
@@ -23,9 +23,7 @@ dashedName: declare-the-doctype-of-an-html-document
 
 ```html
 <!DOCTYPE html>
-<html>
-
-</html>
+<html></html>
 ```
 
 # --instructions--
@@ -43,7 +41,7 @@ assert(code.match(/<!DOCTYPE\s+?html\s*?>/gi));
 网页中应只存在一个 `html` 元素。
 
 ```js
-assert($('html').length == 1);
+assert($("html").length == 1);
 ```
 
 `h1` 元素应该位于 `html` 元素内部。
@@ -65,6 +63,6 @@ assert(code.match(/<html>\s*?<h1>\s*?.*?\s*?<\/h1>\s*?<\/html>/gi));
 ```html
 <!DOCTYPE html>
 <html>
-  <h1> Hello world </h1>
+  <h1>Hello world</h1>
 </html>
 ```

@@ -16,7 +16,7 @@ dashedName: access-an-arrays-contents-using-bracket-notation
 let ourArray = ["a", "b", "c"];
 ```
 
-在数组中，内部的每个元素都有一个与之对应的索引（<dfn>index</dfn>）。 索引既是该元素在数组中的位置，也是我们访问该元素的引用。 需要注意的是，JavaScript 数组的索引是从 0 开始的（这种从 0 开始的规则叫做 <dfn>zero-indexed</dfn>），即数组的第一个元素是在数组中的***第 0 个***位置，而不是第 1 个位置。 要从数组中获取一个元素，我们可以在数组字面量后面加一个用方括号括起来的索引。不过习惯上，我们会通过表示数组的变量名来访问，而不是直接通过字面量。 这种从数组中读取元素的方式叫做方括号表示法（<dfn>bracket notation</dfn>）。 如果我们要从数组 `ourArray` 中取出数据 `a` 并将其赋值给另一个变量，可以这样写：
+在数组中，内部的每个元素都有一个与之对应的索引（<dfn>index</dfn>）。 索引既是该元素在数组中的位置，也是我们访问该元素的引用。 需要注意的是，JavaScript 数组的索引是从 0 开始的（这种从 0 开始的规则叫做 <dfn>zero-indexed</dfn>），即数组的第一个元素是在数组中的**_第 0 个_**位置，而不是第 1 个位置。 要从数组中获取一个元素，我们可以在数组字面量后面加一个用方括号括起来的索引。不过习惯上，我们会通过表示数组的变量名来访问，而不是直接通过字面量。 这种从数组中读取元素的方式叫做方括号表示法（<dfn>bracket notation</dfn>）。 如果我们要从数组 `ourArray` 中取出数据 `a` 并将其赋值给另一个变量，可以这样写：
 
 ```js
 let ourVariable = ourArray[0];
@@ -41,25 +41,25 @@ ourArray[1] = "not b anymore";
 `myArray[0]` 应为 `a`。
 
 ```js
-assert.strictEqual(myArray[0], 'a');
+assert.strictEqual(myArray[0], "a");
 ```
 
 `myArray[1]` 不应为 `b`。
 
 ```js
-assert.notStrictEqual(myArray[1], 'b');
+assert.notStrictEqual(myArray[1], "b");
 ```
 
 `myArray[2]` 应为 `c`。
 
 ```js
-assert.strictEqual(myArray[2], 'c');
+assert.strictEqual(myArray[2], "c");
 ```
 
 `myArray[3]` 应为 `d`。
 
 ```js
-assert.strictEqual(myArray[3], 'd');
+assert.strictEqual(myArray[3], "d");
 ```
 
 # --seed--

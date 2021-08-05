@@ -1,6 +1,6 @@
 ---
 id: 5900f3c11000cf542c50fed4
-title: 'Problem 85: Counting rectangles'
+title: "Problem 85: Counting rectangles"
 challengeType: 5
 forumTopicId: 302199
 dashedName: problem-85-counting-rectangles
@@ -19,7 +19,7 @@ Although there may not exists a rectangular grid that contains exactly `n` recta
 `countingRectangles(18)` should return a number.
 
 ```js
-assert(typeof countingRectangles(18) === 'number');
+assert(typeof countingRectangles(18) === "number");
 ```
 
 `countingRectangles(18)` should return `6`.
@@ -58,7 +58,6 @@ assert.strictEqual(countingRectangles(2000000), 2772);
 
 ```js
 function countingRectangles(n) {
-
   return true;
 }
 

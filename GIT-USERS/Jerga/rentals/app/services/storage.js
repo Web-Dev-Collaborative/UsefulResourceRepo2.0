@@ -1,4 +1,4 @@
-import Service from '@ember/service';
+import Service from "@ember/service";
 
 export default Service.extend({
   saveItem(key, value) {
@@ -11,5 +11,5 @@ export default Service.extend({
 
   deleteItem(key) {
     localStorage.removeItem(key);
-  }
+  },
 });

@@ -1,5 +1,3 @@
-
-
 const PortfolioDetail = () => {
   return (
     <>
@@ -12,14 +10,16 @@ const PortfolioDetail = () => {
               <p className="lead info mb-0">Developer | Eincode | New York</p>
               <p className="lead">Some description about the job</p>
               <p className="lead">
-                <a href="#" target="_" className="btn btn-lg btn-secondary">Visit Company</a>
+                <a href="#" target="_" className="btn btn-lg btn-secondary">
+                  Visit Company
+                </a>
               </p>
             </>
           </main>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default PortfolioDetail;

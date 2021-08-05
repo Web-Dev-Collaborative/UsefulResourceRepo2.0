@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aede08718
 title: Utiliza valores RGB para asignar color a los elementos
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cRkp2fr'
+videoUrl: "https://scrimba.com/c/cRkp2fr"
 forumTopicId: 18369
 dashedName: use-rgb-values-to-color-elements
 ---
@@ -44,7 +44,7 @@ Reemplacemos el código hexadecimal en el color de fondo de nuestro elemento `bo
 Tu elemento `body` debe tener un color de fondo "black" (negro).
 
 ```js
-assert($('body').css('background-color') === 'rgb(0, 0, 0)');
+assert($("body").css("background-color") === "rgb(0, 0, 0)");
 ```
 
 Debes usar `rgb` para asignar a tu elemento `body` un color de fondo de negro.
@@ -60,7 +60,7 @@ assert(code.match(/rgb\s*\(\s*0\s*,\s*0\s*,\s*0\s*\)/gi));
 ```html
 <style>
   body {
-    background-color: #F00;
+    background-color: #f00;
   }
 </style>
 ```

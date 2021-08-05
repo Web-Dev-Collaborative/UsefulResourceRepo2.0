@@ -1,6 +1,6 @@
 ---
 id: 5900f37a1000cf542c50fe8d
-title: 'Problem 14: Longest Collatz sequence'
+title: "Problem 14: Longest Collatz sequence"
 challengeType: 5
 forumTopicId: 301768
 dashedName: problem-14-longest-collatz-sequence
@@ -29,7 +29,7 @@ Which starting number, under the given `limit`, produces the longest chain?
 `longestCollatzSequence(14)` should return a number.
 
 ```js
-assert(typeof longestCollatzSequence(14) === 'number');
+assert(typeof longestCollatzSequence(14) === "number");
 ```
 
 `longestCollatzSequence(14)` should return 9.
@@ -74,7 +74,6 @@ assert.strictEqual(longestCollatzSequence(1000000), 837799);
 
 ```js
 function longestCollatzSequence(limit) {
-
   return true;
 }
 
@@ -97,7 +96,7 @@ function longestCollatzSequence(limit) {
   return longest;
 }
 
-const knownSequence = { '1': 1 };
+const knownSequence = { 1: 1 };
 
 function colLen(n) {
   if (knownSequence[n]) {

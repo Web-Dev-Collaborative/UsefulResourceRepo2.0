@@ -19,43 +19,43 @@ Write a function that takes a string as a parameter. The function should return 
 `searchCity` should be a function.
 
 ```js
-assert(typeof searchCity === 'function');
+assert(typeof searchCity === "function");
 ```
 
 `searchCity("Dar Es Salaam")` should return a number.
 
 ```js
-assert(typeof searchCity('Dar Es Salaam') === 'number');
+assert(typeof searchCity("Dar Es Salaam") === "number");
 ```
 
 `searchCity("Dar Es Salaam")` should return `6`.
 
 ```js
-assert.equal(searchCity('Dar Es Salaam'), 6);
+assert.equal(searchCity("Dar Es Salaam"), 6);
 ```
 
 `searchCity("Casablanca")` should return `9`.
 
 ```js
-assert.equal(searchCity('Casablanca'), 9);
+assert.equal(searchCity("Casablanca"), 9);
 ```
 
 `searchCity("Cairo")` should return `1`.
 
 ```js
-assert.equal(searchCity('Cairo'), 1);
+assert.equal(searchCity("Cairo"), 1);
 ```
 
 `searchCity("Mogadishu")` should return `4`.
 
 ```js
-assert.equal(searchCity('Mogadishu'), 4);
+assert.equal(searchCity("Mogadishu"), 4);
 ```
 
 `searchCity("Lagos")` should return `0`.
 
 ```js
-assert.equal(searchCity('Lagos'), 0);
+assert.equal(searchCity("Lagos"), 0);
 ```
 
 # --seed--
@@ -63,21 +63,19 @@ assert.equal(searchCity('Lagos'), 0);
 ## --seed-contents--
 
 ```js
-function searchCity(name) {
-
-}
+function searchCity(name) {}
 
 const list = [
-  { name: 'Lagos', population: 21.0 },
-  { name: 'Cairo', population: 15.2 },
-  { name: 'Kinshasa-Brazzaville', population: 11.3 },
-  { name: 'Greater Johannesburg', population: 7.55 },
-  { name: 'Mogadishu', population: 5.85 },
-  { name: 'Khartoum-Omdurman', population: 4.98 },
-  { name: 'Dar Es Salaam', population: 4.7 },
-  { name: 'Alexandria', population: 4.58 },
-  { name: 'Abidjan', population: 4.4 },
-  { name: 'Casablanca', population: 3.98 }
+  { name: "Lagos", population: 21.0 },
+  { name: "Cairo", population: 15.2 },
+  { name: "Kinshasa-Brazzaville", population: 11.3 },
+  { name: "Greater Johannesburg", population: 7.55 },
+  { name: "Mogadishu", population: 5.85 },
+  { name: "Khartoum-Omdurman", population: 4.98 },
+  { name: "Dar Es Salaam", population: 4.7 },
+  { name: "Alexandria", population: 4.58 },
+  { name: "Abidjan", population: 4.4 },
+  { name: "Casablanca", population: 3.98 },
 ];
 ```
 
@@ -85,19 +83,19 @@ const list = [
 
 ```js
 function searchCity(name) {
-  return list.findIndex(item => item.name === name);
+  return list.findIndex((item) => item.name === name);
 }
 
 const list = [
-  { name: 'Lagos', population: 21.0 },
-  { name: 'Cairo', population: 15.2 },
-  { name: 'Kinshasa-Brazzaville', population: 11.3 },
-  { name: 'Greater Johannesburg', population: 7.55 },
-  { name: 'Mogadishu', population: 5.85 },
-  { name: 'Khartoum-Omdurman', population: 4.98 },
-  { name: 'Dar Es Salaam', population: 4.7 },
-  { name: 'Alexandria', population: 4.58 },
-  { name: 'Abidjan', population: 4.4 },
-  { name: 'Casablanca', population: 3.98 }
+  { name: "Lagos", population: 21.0 },
+  { name: "Cairo", population: 15.2 },
+  { name: "Kinshasa-Brazzaville", population: 11.3 },
+  { name: "Greater Johannesburg", population: 7.55 },
+  { name: "Mogadishu", population: 5.85 },
+  { name: "Khartoum-Omdurman", population: 4.98 },
+  { name: "Dar Es Salaam", population: 4.7 },
+  { name: "Alexandria", population: 4.58 },
+  { name: "Abidjan", population: 4.4 },
+  { name: "Casablanca", population: 3.98 },
 ];
 ```

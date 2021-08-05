@@ -1,13 +1,9 @@
 import * as React from 'react'
-import type {
-  BaseQueryFn} from '@reduxjs/toolkit/query/react';
-import {
-  createApi,
-  fetchBaseQuery,
-} from '@reduxjs/toolkit/query/react'
+import type { BaseQueryFn } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { renderHook, act } from '@testing-library/react-hooks'
 import { rest } from 'msw'
-import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import axios from 'axios'
 
 import { expectExactType, hookWaitFor, setupApiStore } from './helpers'
@@ -353,34 +349,39 @@ describe('mutation error handling', () => {
 })
 
 describe('custom axios baseQuery', () => {
-  const axiosBaseQuery = (
-    { baseUrl }: { baseUrl: string } = { baseUrl: '' }
-  ): BaseQueryFn<
-    {
-      url: string
-      method: AxiosRequestConfig['method']
-      data?: AxiosRequestConfig['data']
-    },
-    unknown,
-    unknown,
-    unknown,
-    { response: AxiosResponse; request: AxiosRequestConfig }
-  > => async ({ url, method, data }) => {
-    const config = { url: baseUrl + url, method, data }
-    try {
-      const result = await axios(config)
-      return { data: result.data, meta: { request: config, response: result } }
-    } catch (axiosError) {
-      let err = axiosError as AxiosError
-      return {
-        error: {
-          status: err.response?.status,
-          data: err.response?.data,
-        },
-        meta: { request: config, response: err.response as AxiosResponse },
+  const axiosBaseQuery =
+    (
+      { baseUrl }: { baseUrl: string } = { baseUrl: '' }
+    ): BaseQueryFn<
+      {
+        url: string
+        method: AxiosRequestConfig['method']
+        data?: AxiosRequestConfig['data']
+      },
+      unknown,
+      unknown,
+      unknown,
+      { response: AxiosResponse; request: AxiosRequestConfig }
+    > =>
+    async ({ url, method, data }) => {
+      const config = { url: baseUrl + url, method, data }
+      try {
+        const result = await axios(config)
+        return {
+          data: result.data,
+          meta: { request: config, response: result },
+        }
+      } catch (axiosError) {
+        let err = axiosError as AxiosError
+        return {
+          error: {
+            status: err.response?.status,
+            data: err.response?.data,
+          },
+          meta: { request: config, response: err.response as AxiosResponse },
+        }
       }
     }
-  }
 
   type SuccessResponse = { value: 'success' }
   const api = createApi({
@@ -461,10 +462,8 @@ describe('error handling in a component', () => {
 
     function User() {
       const [manualError, setManualError] = React.useState<any>()
-      const [
-        update,
-        { isLoading, data, error },
-      ] = api.endpoints.update.useMutation()
+      const [update, { isLoading, data, error }] =
+        api.endpoints.update.useMutation()
 
       return (
         <div>

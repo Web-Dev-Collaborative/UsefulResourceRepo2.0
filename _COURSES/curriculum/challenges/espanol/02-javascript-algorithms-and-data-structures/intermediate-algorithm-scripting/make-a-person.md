@@ -11,12 +11,12 @@ dashedName: make-a-person
 Completa el constructor de objetos con los siguientes métodos:
 
 ```js
-getFirstName()
-getLastName()
-getFullName()
-setFirstName(first)
-setLastName(last)
-setFullName(firstAndLast)
+getFirstName();
+getLastName();
+getFullName();
+setFirstName(first);
+setLastName(last);
+setFullName(firstAndLast);
 ```
 
 Ejecuta las pruebas para ver el resultado esperado para cada método. Los métodos que toman un argumento deben aceptar sólo un argumento y tiene que ser una cadena. Estos métodos deben ser el único medio disponible para interactuar con el objeto.
@@ -50,19 +50,19 @@ assert.deepEqual(bob.lastName, undefined);
 `bob.getFirstName()` debe devolver la cadena `Bob`.
 
 ```js
-assert.deepEqual(bob.getFirstName(), 'Bob');
+assert.deepEqual(bob.getFirstName(), "Bob");
 ```
 
 `bob.getLastName()` debe devolver la cadena `Ross`.
 
 ```js
-assert.deepEqual(bob.getLastName(), 'Ross');
+assert.deepEqual(bob.getLastName(), "Ross");
 ```
 
 `bob.getFullName()` debe devolver la cadena `Bob Ross`.
 
 ```js
-assert.deepEqual(bob.getFullName(), 'Bob Ross');
+assert.deepEqual(bob.getFullName(), "Bob Ross");
 ```
 
 `bob.getFullName()` debe devolver la cadena `Haskell Ross` after `bob.setFirstName("Haskell")`.
@@ -70,10 +70,10 @@ assert.deepEqual(bob.getFullName(), 'Bob Ross');
 ```js
 assert.strictEqual(
   (function () {
-    bob.setFirstName('Haskell');
+    bob.setFirstName("Haskell");
     return bob.getFullName();
   })(),
-  'Haskell Ross'
+  "Haskell Ross"
 );
 ```
 
@@ -82,11 +82,11 @@ assert.strictEqual(
 ```js
 assert.strictEqual(
   (function () {
-    var _bob = new Person('Haskell Ross');
-    _bob.setLastName('Curry');
+    var _bob = new Person("Haskell Ross");
+    _bob.setLastName("Curry");
     return _bob.getFullName();
   })(),
-  'Haskell Curry'
+  "Haskell Curry"
 );
 ```
 
@@ -95,10 +95,10 @@ assert.strictEqual(
 ```js
 assert.strictEqual(
   (function () {
-    bob.setFullName('Haskell Curry');
+    bob.setFullName("Haskell Curry");
     return bob.getFullName();
   })(),
-  'Haskell Curry'
+  "Haskell Curry"
 );
 ```
 
@@ -107,10 +107,10 @@ assert.strictEqual(
 ```js
 assert.strictEqual(
   (function () {
-    bob.setFullName('Haskell Curry');
+    bob.setFullName("Haskell Curry");
     return bob.getFirstName();
   })(),
-  'Haskell'
+  "Haskell"
 );
 ```
 
@@ -119,10 +119,10 @@ assert.strictEqual(
 ```js
 assert.strictEqual(
   (function () {
-    bob.setFullName('Haskell Curry');
+    bob.setFullName("Haskell Curry");
     return bob.getLastName();
   })(),
-  'Curry'
+  "Curry"
 );
 ```
 
@@ -131,7 +131,7 @@ assert.strictEqual(
 ## --after-user-code--
 
 ```js
-if(bob){
+if (bob) {
   bob = new Person("Bob Ross");
 }
 ```
@@ -139,24 +139,23 @@ if(bob){
 ## --seed-contents--
 
 ```js
-var Person = function(firstAndLast) {
+var Person = function (firstAndLast) {
   // Only change code below this line
   // Complete the method below and implement the others similarly
-  this.getFullName = function() {
+  this.getFullName = function () {
     return "";
   };
   return firstAndLast;
 };
 
-var bob = new Person('Bob Ross');
+var bob = new Person("Bob Ross");
 bob.getFullName();
 ```
 
 # --solutions--
 
 ```js
-var Person = function(firstAndLast) {
-
+var Person = function (firstAndLast) {
   var firstName, lastName;
 
   function updateName(str) {
@@ -166,32 +165,31 @@ var Person = function(firstAndLast) {
 
   updateName(firstAndLast);
 
-  this.getFirstName = function(){
+  this.getFirstName = function () {
     return firstName;
   };
 
-  this.getLastName = function(){
+  this.getLastName = function () {
     return lastName;
   };
 
-  this.getFullName = function(){
+  this.getFullName = function () {
     return firstName + " " + lastName;
   };
 
-  this.setFirstName = function(str){
+  this.setFirstName = function (str) {
     firstName = str;
   };
 
-
-  this.setLastName = function(str){
+  this.setLastName = function (str) {
     lastName = str;
   };
 
-  this.setFullName = function(str){
+  this.setFullName = function (str) {
     updateName(str);
   };
 };
 
-var bob = new Person('Bob Ross');
+var bob = new Person("Bob Ross");
 bob.getFullName();
 ```

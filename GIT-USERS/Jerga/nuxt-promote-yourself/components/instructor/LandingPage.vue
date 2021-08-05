@@ -13,7 +13,8 @@
               @input="($event) => emitCourseValue($event, 'title')"
               class="input is-medium"
               type="text"
-              placeholder="Dart and Flutter From Zero to Hero ">
+              placeholder="Dart and Flutter From Zero to Hero "
+            />
           </div>
         </div>
         <div class="field">
@@ -24,7 +25,8 @@
               @input="($event) => emitCourseValue($event, 'subtitle')"
               class="input is-medium"
               type="text"
-              placeholder="Build real mobile Application for Android and iOS.">
+              placeholder="Build real mobile Application for Android and iOS."
+            />
           </div>
         </div>
         <div class="field">
@@ -39,7 +41,9 @@
             </textarea> -->
             <course-editor
               :initialContent="course.description"
-              @editorUpdated="(content) => emitCourseValue(content, 'description')"
+              @editorUpdated="
+                (content) => emitCourseValue(content, 'description')
+              "
             />
           </div>
         </div>
@@ -53,9 +57,10 @@
               <option
                 v-for="category in categories"
                 :key="category._id"
-                :value="category._id">
-                {{category.name}}
-             </option>
+                :value="category._id"
+              >
+                {{ category.name }}
+              </option>
             </select>
           </div>
         </div>
@@ -64,8 +69,7 @@
           <div class="columns">
             <div class="column">
               <figure class="image is-4by2">
-                <img
-                  :src="course.image">
+                <img :src="course.image" />
               </figure>
             </div>
             <div class="column centered">
@@ -75,7 +79,8 @@
                   @input="($event) => emitCourseValue($event, 'image')"
                   class="input is-medium"
                   type="text"
-                  placeholder="https://images.unsplash.com/photo-1498837167922-ddd27525d352">
+                  placeholder="https://images.unsplash.com/photo-1498837167922-ddd27525d352"
+                />
               </div>
             </div>
           </div>
@@ -88,7 +93,8 @@
               @input="($event) => emitCourseValue($event, 'productLink')"
               class="input is-medium"
               type="text"
-              placeholder="https://www.udemy.com/vue-js-2-the-full-guide-by-real-apps-vuex-router-node">
+              placeholder="https://www.udemy.com/vue-js-2-the-full-guide-by-real-apps-vuex-router-node"
+            />
           </div>
         </div>
         <div class="field">
@@ -99,7 +105,8 @@
               @input="($event) => emitCourseValue($event, 'promoVideoLink')"
               class="input is-medium"
               type="text"
-              placeholder="https://www.youtube.com/watch?v=WQ9sCAhRh1M">
+              placeholder="https://www.youtube.com/watch?v=WQ9sCAhRh1M"
+            />
           </div>
         </div>
       </form>
@@ -107,46 +114,36 @@
   </div>
 </template>
 <script>
-import CourseEditor from '~/components/editor/CourseEditor'
+import CourseEditor from "~/components/editor/CourseEditor";
 export default {
   components: {
-    CourseEditor
+    CourseEditor,
   },
   props: {
     course: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     categories() {
-      return this.$store.state.category.items
-    }
+      return this.$store.state.category.items;
+    },
   },
   methods: {
     emitCourseValue(e, field) {
-      const value = e.target ? e.target.value : e
+      const value = e.target ? e.target.value : e;
 
-      if (field === 'category') {
-        return this.emitCategory(value, field)
+      if (field === "category") {
+        return this.emitCategory(value, field);
       }
 
-      return this.$emit('courseValueUpdated', {value, field})
+      return this.$emit("courseValueUpdated", { value, field });
     },
     emitCategory(categoryId, field) {
-      const foundCategory = this.categories.find(c => c._id === categoryId)
-      this.$emit('courseValueUpdated', {value: foundCategory, field})
-    }
-  }
-}
+      const foundCategory = this.categories.find((c) => c._id === categoryId);
+      this.$emit("courseValueUpdated", { value: foundCategory, field });
+    },
+  },
+};
 </script>
-
-
-
-
-
-
-
-
-
-

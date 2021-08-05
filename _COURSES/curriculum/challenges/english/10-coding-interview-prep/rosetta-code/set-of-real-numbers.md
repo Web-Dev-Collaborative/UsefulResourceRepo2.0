@@ -8,7 +8,7 @@ dashedName: set-of-real-numbers
 
 # --description--
 
-All real numbers form the uncountable set ℝ. Among its subsets, relatively simple are the convex sets, each expressed as a range between two real numbers *a* and *b* where *a* ≤ *b*. There are actually four cases for the meaning of "between", depending on open or closed boundary:
+All real numbers form the uncountable set ℝ. Among its subsets, relatively simple are the convex sets, each expressed as a range between two real numbers _a_ and _b_ where _a_ ≤ _b_. There are actually four cases for the meaning of "between", depending on open or closed boundary:
 
 <ul>
   <li>[<i>a</i>, <i>b</i>]: {<i>x</i> | <i>a</i> ≤ <i>x</i> and <i>x</i> ≤ <i>b</i> }</li>
@@ -17,7 +17,7 @@ All real numbers form the uncountable set ℝ. Among its subsets, relatively sim
   <li>(<i>a</i>, <i>b</i>]: {<i>x</i> | <i>a</i> < <i>x</i> and <i>x</i> ≤ <i>b</i> }</li>
 </ul>
 
-Note that if *a* = *b*, of the four only \[*a*, *a*] would be non-empty.
+Note that if _a_ = _b_, of the four only \[_a_, _a_] would be non-empty.
 
 **Task**
 
@@ -59,7 +59,7 @@ After performing the operation, the function should check if the values in the a
 `realSet` should be a function.
 
 ```js
-assert(typeof realSet == 'function');
+assert(typeof realSet == "function");
 ```
 
 `realSet({"low":0, "high":1, "rangeType":2}, {"low":0, "high":2, "rangeType":3}, "union", [1, 2, 3])` should return a array.
@@ -70,7 +70,7 @@ assert(
     realSet(
       { low: 0, high: 1, rangeType: 2 },
       { low: 0, high: 2, rangeType: 3 },
-      'union',
+      "union",
       [1, 2, 3]
     )
   )
@@ -84,7 +84,7 @@ assert.deepEqual(
   realSet(
     { low: 0, high: 1, rangeType: 2 },
     { low: 0, high: 2, rangeType: 3 },
-    'union',
+    "union",
     [1, 2, 3]
   ),
   [true, false, false]
@@ -98,7 +98,7 @@ assert.deepEqual(
   realSet(
     { low: 0, high: 2, rangeType: 3 },
     { low: 1, high: 2, rangeType: 2 },
-    'intersect',
+    "intersect",
     [0, 1, 2]
   ),
   [false, false, false]
@@ -112,7 +112,7 @@ assert.deepEqual(
   realSet(
     { low: 0, high: 3, rangeType: 3 },
     { low: 0, high: 1, rangeType: 1 },
-    'subtract',
+    "subtract",
     [0, 1, 2]
   ),
   [true, true, true]
@@ -126,7 +126,7 @@ assert.deepEqual(
   realSet(
     { low: 0, high: 3, rangeType: 3 },
     { low: 0, high: 1, rangeType: 0 },
-    'subtract',
+    "subtract",
     [0, 1, 2]
   ),
   [false, false, true]
@@ -140,7 +140,7 @@ assert.deepEqual(
   realSet(
     { low: 0, high: 33, rangeType: 1 },
     { low: 30, high: 31, rangeType: 0 },
-    'intersect',
+    "intersect",
     [30, 31, 32]
   ),
   [true, true, false]
@@ -152,9 +152,7 @@ assert.deepEqual(
 ## --seed-contents--
 
 ```js
-function realSet(set1, set2, operation, values) {
-
-}
+function realSet(set1, set2, operation, values) {}
 ```
 
 # --solutions--
@@ -165,19 +163,19 @@ function realSet(set1, set2, operation, values) {
     CLOSED: 0,
     BOTH_OPEN: 1,
     LEFT_OPEN: 2,
-    RIGHT_OPEN: 3
+    RIGHT_OPEN: 3,
   };
 
   function Predicate(test) {
     this.test = test;
-    this.or = function(other) {
-      return new Predicate(t => this.test(t) || other.test(t));
+    this.or = function (other) {
+      return new Predicate((t) => this.test(t) || other.test(t));
     };
-    this.and = function(other) {
-      return new Predicate(t => this.test(t) && other.test(t));
+    this.and = function (other) {
+      return new Predicate((t) => this.test(t) && other.test(t));
     };
-    this.negate = function() {
-      return new Predicate(t => !this.test(t));
+    this.negate = function () {
+      return new Predicate((t) => !this.test(t));
     };
   }
 
@@ -188,7 +186,7 @@ function realSet(set1, set2, operation, values) {
     if (predF) {
       this.predicate = new Predicate(predF);
     } else {
-      this.predicate = new Predicate(d => {
+      this.predicate = new Predicate((d) => {
         switch (rangeType) {
           case RangeType.CLOSED:
             return start <= d && d <= end;
@@ -202,28 +200,28 @@ function realSet(set1, set2, operation, values) {
       });
     }
 
-    this.contains = function(d) {
+    this.contains = function (d) {
       return this.predicate.test(d);
     };
 
-    this.union = function(other) {
+    this.union = function (other) {
       var low2 = Math.min(this.low, other.low);
       var high2 = Math.max(this.high, other.high);
-      return new RealSet(low2, high2, null, d =>
+      return new RealSet(low2, high2, null, (d) =>
         this.predicate.or(other.predicate).test(d)
       );
     };
 
-    this.intersect = function(other) {
+    this.intersect = function (other) {
       var low2 = Math.min(this.low, other.low);
       var high2 = Math.max(this.high, other.high);
-      return new RealSet(low2, high2, null, d =>
+      return new RealSet(low2, high2, null, (d) =>
         this.predicate.and(other.predicate).test(d)
       );
     };
 
-    this.subtract = function(other) {
-      return new RealSet(this.low, this.high, null, d =>
+    this.subtract = function (other) {
+      return new RealSet(this.low, this.high, null, (d) =>
         this.predicate.and(other.predicate.negate()).test(d)
       );
     };
@@ -231,7 +229,7 @@ function realSet(set1, set2, operation, values) {
   set1 = new RealSet(set1.low, set1.high, set1.rangeType);
   set2 = new RealSet(set2.low, set2.high, set2.rangeType);
   var result = [];
-  values.forEach(function(value) {
+  values.forEach(function (value) {
     result.push(set1[operation](set2).contains(value));
   });
   return result;

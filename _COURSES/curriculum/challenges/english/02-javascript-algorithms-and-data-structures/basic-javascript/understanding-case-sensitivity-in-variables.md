@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244ab
 title: Understanding Case Sensitivity in Variables
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cd6GDcD'
+videoUrl: "https://scrimba.com/c/cd6GDcD"
 forumTopicId: 18334
 dashedName: understanding-case-sensitivity-in-variables
 ---
@@ -11,7 +11,7 @@ dashedName: understanding-case-sensitivity-in-variables
 
 In JavaScript all variables and function names are case sensitive. This means that capitalization matters.
 
-`MYVAR` is not the same as `MyVar` nor `myvar`. It is possible to have multiple distinct variables with the same name but different casing. It is strongly recommended that for the sake of clarity, you *do not* use this language feature.
+`MYVAR` is not the same as `MyVar` nor `myvar`. It is possible to have multiple distinct variables with the same name but different casing. It is strongly recommended that for the sake of clarity, you _do not_ use this language feature.
 
 **Best Practice**
 
@@ -36,21 +36,21 @@ Do not create any new variables.
 `studlyCapVar` should be defined and have a value of `10`.
 
 ```js
-assert(typeof studlyCapVar !== 'undefined' && studlyCapVar === 10);
+assert(typeof studlyCapVar !== "undefined" && studlyCapVar === 10);
 ```
 
 `properCamelCase` should be defined and have a value of the string `A String`.
 
 ```js
 assert(
-  typeof properCamelCase !== 'undefined' && properCamelCase === 'A String'
+  typeof properCamelCase !== "undefined" && properCamelCase === "A String"
 );
 ```
 
 `titleCaseOver` should be defined and have a value of `9000`.
 
 ```js
-assert(typeof titleCaseOver !== 'undefined' && titleCaseOver === 9000);
+assert(typeof titleCaseOver !== "undefined" && titleCaseOver === 9000);
 ```
 
 `studlyCapVar` should use camelCase in both declaration and assignment sections.

@@ -2,7 +2,7 @@
 id: bd7123c9c448eddfaeb5bdef
 title: Encuentra la longitud de una cadena
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cvmqEAd'
+videoUrl: "https://scrimba.com/c/cvmqEAd"
 forumTopicId: 18182
 dashedName: find-the-length-of-a-string
 ---
@@ -37,7 +37,7 @@ assert(
 `lastNameLength` debe ser igual a ocho.
 
 ```js
-assert(typeof lastNameLength !== 'undefined' && lastNameLength === 8);
+assert(typeof lastNameLength !== "undefined" && lastNameLength === 8);
 ```
 
 Debes obtener la longitud de `lastName` usando `.length` de esta forma: `lastName.length`.

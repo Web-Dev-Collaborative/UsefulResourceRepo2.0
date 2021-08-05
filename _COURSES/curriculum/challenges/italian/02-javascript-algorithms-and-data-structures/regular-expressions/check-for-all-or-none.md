@@ -17,7 +17,7 @@ Ad esempio, ci sono lievi differenze in inglese americano e britannico e si può
 ```js
 let american = "color";
 let british = "colour";
-let rainbowRegex= /colou?r/;
+let rainbowRegex = /colou?r/;
 rainbowRegex.test(american);
 rainbowRegex.test(british);
 ```
@@ -41,21 +41,21 @@ La tua espressione regolare dovrebbe riconoscere la stringa `favorite`
 
 ```js
 favRegex.lastIndex = 0;
-assert(favRegex.test('favorite'));
+assert(favRegex.test("favorite"));
 ```
 
 La tua espressione regolare dovrebbe riconoscere la stringa `favourite`
 
 ```js
 favRegex.lastIndex = 0;
-assert(favRegex.test('favourite'));
+assert(favRegex.test("favourite"));
 ```
 
 La tua espressione regolare non dovrebbe riconoscere la stringa `fav`
 
 ```js
 favRegex.lastIndex = 0;
-assert(!favRegex.test('fav'));
+assert(!favRegex.test("fav"));
 ```
 
 # --seed--

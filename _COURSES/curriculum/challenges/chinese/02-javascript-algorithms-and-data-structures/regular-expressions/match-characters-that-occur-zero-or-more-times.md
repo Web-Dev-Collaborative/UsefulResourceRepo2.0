@@ -39,13 +39,13 @@ assert(/\*/.test(chewieRegex.source));
 正则表达式应当匹配 `chewieQuote` 里的 `A`。
 
 ```js
-assert(result[0][0] === 'A');
+assert(result[0][0] === "A");
 ```
 
 你的正则表达式应该与 `chewieQuote` 中的字符串 `Aaaaaaaaaaaaaaaa` 匹配。
 
 ```js
-assert(result[0] === 'Aaaaaaaaaaaaaaaa');
+assert(result[0] === "Aaaaaaaaaaaaaaaa");
 ```
 
 你的正则表达式 `chewieRegex` 应该匹配 `chewieQuote` 中的 16 个字符。
@@ -91,6 +91,6 @@ let result = chewieQuote.match(chewieRegex);
 # --solutions--
 
 ```js
-  let chewieRegex = /Aa*/;
-  let result = chewieQuote.match(chewieRegex);
+let chewieRegex = /Aa*/;
+let result = chewieQuote.match(chewieRegex);
 ```

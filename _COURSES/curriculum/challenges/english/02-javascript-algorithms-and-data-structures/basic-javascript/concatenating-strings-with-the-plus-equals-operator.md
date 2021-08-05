@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244b8
 title: Concatenating Strings with the Plus Equals Operator
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cbQmmC4'
+videoUrl: "https://scrimba.com/c/cbQmmC4"
 forumTopicId: 16803
 dashedName: concatenating-strings-with-the-plus-equals-operator
 ---
@@ -31,7 +31,7 @@ Build `myStr` over several lines by concatenating these two strings: `This is th
 `myStr` should have a value of the string `This is the first sentence. This is the second sentence.`
 
 ```js
-assert(myStr === 'This is the first sentence. This is the second sentence.');
+assert(myStr === "This is the first sentence. This is the second sentence.");
 ```
 
 You should use the `+=` operator to build `myStr`.
@@ -45,11 +45,11 @@ assert(code.match(/myStr\s*\+=\s*(["']).*\1/g));
 ## --after-user-code--
 
 ```js
-(function(){
-  if(typeof myStr === 'string') {
+(function () {
+  if (typeof myStr === "string") {
     return 'myStr = "' + myStr + '"';
   } else {
-    return 'myStr is not a string';
+    return "myStr is not a string";
   }
 })();
 ```

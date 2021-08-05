@@ -1,6 +1,6 @@
 ---
 id: 5900f4551000cf542c50ff68
-title: 'Problem 233: Lattice points on a circle'
+title: "Problem 233: Lattice points on a circle"
 challengeType: 5
 forumTopicId: 301877
 dashedName: problem-233-lattice-points-on-a-circle
@@ -28,7 +28,6 @@ assert.strictEqual(euler233(), 271204031455541300);
 
 ```js
 function euler233() {
-
   return true;
 }
 

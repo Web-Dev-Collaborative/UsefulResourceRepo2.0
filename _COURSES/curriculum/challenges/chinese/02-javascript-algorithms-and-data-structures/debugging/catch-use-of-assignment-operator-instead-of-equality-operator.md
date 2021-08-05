@@ -19,10 +19,8 @@ dashedName: catch-use-of-assignment-operator-instead-of-equality-operator
 ```js
 let x = 1;
 let y = 2;
-if (x = y) {
-
+if ((x = y)) {
 } else {
-
 }
 ```
 
@@ -37,7 +35,7 @@ if (x = y) {
 应该修复条件语句，使其判断是否相等，而不是赋值。
 
 ```js
-assert(result == 'Not equal!');
+assert(result == "Not equal!");
 ```
 
 条件语句可以使用 `==` 或 `===` 来测试是否相等。
@@ -55,7 +53,7 @@ let x = 7;
 let y = 9;
 let result = "to come";
 
-if(x = y) {
+if ((x = y)) {
   result = "Equal!";
 } else {
   result = "Not equal!";
@@ -71,10 +69,10 @@ let x = 7;
 let y = 9;
 let result = "to come";
 
-if(x === y) {
- result = "Equal!";
+if (x === y) {
+  result = "Equal!";
 } else {
- result = "Not equal!";
+  result = "Not equal!";
 }
 
 console.log(result);

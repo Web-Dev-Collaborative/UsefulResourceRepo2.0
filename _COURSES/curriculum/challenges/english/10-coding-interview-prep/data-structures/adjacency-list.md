@@ -18,7 +18,7 @@ Above is an undirected graph because `Node1` is connected to `Node2` and `Node3`
 var undirectedG = {
   Node1: ["Node2", "Node3"],
   Node2: ["Node1"],
-  Node3: ["Node1"]
+  Node3: ["Node1"],
 };
 ```
 
@@ -27,8 +27,8 @@ This can also be more simply represented as an array where the nodes just have n
 ```js
 var undirectedGArr = [
   [1, 2], // Node1
-  [0],    // Node2
-  [0]     // Node3
+  [0], // Node2
+  [0], // Node3
 ];
 ```
 
@@ -48,8 +48,8 @@ There should be an edge between `Jeff` and `James`.
 
 ```js
 assert(
-  undirectedAdjList.James.indexOf('Jeff') !== -1 &&
-    undirectedAdjList.Jeff.indexOf('James') !== -1
+  undirectedAdjList.James.indexOf("Jeff") !== -1 &&
+    undirectedAdjList.Jeff.indexOf("James") !== -1
 );
 ```
 
@@ -57,8 +57,8 @@ There should be an edge between `Jill` and `Jenny`.
 
 ```js
 assert(
-  undirectedAdjList.Jill.indexOf('Jenny') !== -1 &&
-    undirectedAdjList.Jill.indexOf('Jenny') !== -1
+  undirectedAdjList.Jill.indexOf("Jenny") !== -1 &&
+    undirectedAdjList.Jill.indexOf("Jenny") !== -1
 );
 ```
 
@@ -66,8 +66,8 @@ There should be an edge between `Jeff` and `Jenny`.
 
 ```js
 assert(
-  undirectedAdjList.Jeff.indexOf('Jenny') !== -1 &&
-    undirectedAdjList.Jenny.indexOf('Jeff') !== -1
+  undirectedAdjList.Jeff.indexOf("Jenny") !== -1 &&
+    undirectedAdjList.Jenny.indexOf("Jeff") !== -1
 );
 ```
 
@@ -83,9 +83,9 @@ var undirectedAdjList = {};
 
 ```js
 var undirectedAdjList = {
-  James: ['Jeff'],
-  Jill: ['Jenny'],
-  Jenny: ['Jill', 'Jeff'],
-  Jeff: ['James', 'Jenny']
+  James: ["Jeff"],
+  Jill: ["Jenny"],
+  Jenny: ["Jill", "Jeff"],
+  Jeff: ["James", "Jenny"],
 };
 ```

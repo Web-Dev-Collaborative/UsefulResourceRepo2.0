@@ -13,9 +13,7 @@ Right now, everything you have is in your `server.js` file. This can lead to har
 Both should start with the following code:
 
 ```js
-module.exports = function (app, myDataBase) {
-
-}
+module.exports = function (app, myDataBase) {};
 ```
 
 Now, in the top of your server file, require these files like so: `const routes = require('./routes.js');` Right after you establish a successful connection with the database, instantiate each of them like so: `routes(app, myDataBase)`
@@ -34,17 +32,17 @@ Modules should be present.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
         /require\s*\(('|")\.\/routes(\.js)?\1\)/gi,
-        'You should have required your new files'
+        "You should have required your new files"
       );
       assert.match(
         data,
         /client.db[^]*routes/gi,
-        'Your new modules should be called after your connection to the database'
+        "Your new modules should be called after your connection to the database"
       );
     },
     (xhr) => {

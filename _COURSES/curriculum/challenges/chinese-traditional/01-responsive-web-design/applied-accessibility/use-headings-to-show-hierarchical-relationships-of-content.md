@@ -2,7 +2,7 @@
 id: 587d774d367417b2b2512a9e
 title: 使用標題顯示內容的層次關係
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cqVEktm'
+videoUrl: "https://scrimba.com/c/cqVEktm"
 forumTopicId: 301026
 dashedName: use-headings-to-show-hierarchical-relationships-of-content
 ---
@@ -30,7 +30,7 @@ Camper Cat 希望他的網站有一個介紹如何成爲忍者的頁面。 幫�
 應存在 6 個 `h3` 標籤。
 
 ```js
-assert($('h3').length === 6);
+assert($("h3").length === 6);
 ```
 
 確保 `h3` 有結束標籤
@@ -42,7 +42,7 @@ assert((code.match(/\/h3/g) || []).length === 6);
 不應該存在 `h5` 標籤.
 
 ```js
-assert($('h5').length === 0);
+assert($("h5").length === 0);
 ```
 
 不應該存在 `h5` 的結束標籤。

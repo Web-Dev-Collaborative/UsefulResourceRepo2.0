@@ -27,7 +27,7 @@ Correggi l'espressione regolare `/<.*>/` in modo che restituisca il tag HTML `<h
 La variabile `result` dovrebbe essere un array con `<h1>` al suo interno
 
 ```js
-assert(result[0] == '<h1>');
+assert(result[0] == "<h1>");
 ```
 
 `myRegex` dovrebbe usare la corrispondenza lazy
@@ -39,7 +39,7 @@ assert(/\?/g.test(myRegex));
 `myRegex` non dovrebbe includere la stringa `h1`
 
 ```js
-assert(!myRegex.source.match('h1'));
+assert(!myRegex.source.match("h1"));
 ```
 
 # --seed--

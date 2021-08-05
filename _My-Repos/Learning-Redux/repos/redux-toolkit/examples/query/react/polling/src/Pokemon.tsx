@@ -18,15 +18,10 @@ export const Pokemon = ({ name }: { name: PokemonName }) => {
     getRandomIntervalValue()
   )
 
-  const {
-    data,
-    error,
-    isLoading,
-    isFetching,
-    refetch,
-  } = useGetPokemonByNameQuery(name, {
-    pollingInterval,
-  })
+  const { data, error, isLoading, isFetching, refetch } =
+    useGetPokemonByNameQuery(name, {
+      pollingInterval,
+    })
 
   return (
     <div

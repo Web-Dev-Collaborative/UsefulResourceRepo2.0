@@ -18,11 +18,11 @@ The `attr()` method in D3 accepts a callback function to dynamically set that at
 
 ```js
 selection.attr("property", (d, i) => {
-  /* 
-  * d is the data point value
-  * i is the index of the data point in the array
-  */
-})
+  /*
+   * d is the data point value
+   * i is the index of the data point in the array
+   */
+});
 ```
 
 It's important to note that you do NOT need to write a `for` loop or use `forEach()` to iterate over the items in the data set. Recall that the `data()` method parses the data set, and any method that's chained after `data()` is run once for each item in the data set.
@@ -39,55 +39,55 @@ Each bar has a width of 25, so increasing each `x` value by 30 adds some space b
 The first `rect` should have an `x` value of 0.
 
 ```js
-assert($('rect').eq(0).attr('x') == '0');
+assert($("rect").eq(0).attr("x") == "0");
 ```
 
 The second `rect` should have an `x` value of 30.
 
 ```js
-assert($('rect').eq(1).attr('x') == '30');
+assert($("rect").eq(1).attr("x") == "30");
 ```
 
 The third `rect` should have an `x` value of 60.
 
 ```js
-assert($('rect').eq(2).attr('x') == '60');
+assert($("rect").eq(2).attr("x") == "60");
 ```
 
 The fourth `rect` should have an `x` value of 90.
 
 ```js
-assert($('rect').eq(3).attr('x') == '90');
+assert($("rect").eq(3).attr("x") == "90");
 ```
 
 The fifth `rect` should have an `x` value of 120.
 
 ```js
-assert($('rect').eq(4).attr('x') == '120');
+assert($("rect").eq(4).attr("x") == "120");
 ```
 
 The sixth `rect` should have an `x` value of 150.
 
 ```js
-assert($('rect').eq(5).attr('x') == '150');
+assert($("rect").eq(5).attr("x") == "150");
 ```
 
 The seventh `rect` should have an `x` value of 180.
 
 ```js
-assert($('rect').eq(6).attr('x') == '180');
+assert($("rect").eq(6).attr("x") == "180");
 ```
 
 The eighth `rect` should have an `x` value of 210.
 
 ```js
-assert($('rect').eq(7).attr('x') == '210');
+assert($("rect").eq(7).attr("x") == "210");
 ```
 
 The ninth `rect` should have an `x` value of 240.
 
 ```js
-assert($('rect').eq(8).attr('x') == '240');
+assert($("rect").eq(8).attr("x") == "240");
 ```
 
 # --seed--
@@ -102,25 +102,24 @@ assert($('rect').eq(8).attr('x') == '240');
     const w = 500;
     const h = 100;
 
-    const svg = d3.select("body")
-                  .append("svg")
-                  .attr("width", w)
-                  .attr("height", h);
+    const svg = d3
+      .select("body")
+      .append("svg")
+      .attr("width", w)
+      .attr("height", h);
 
-    svg.selectAll("rect")
-       .data(dataset)
-       .enter()
-       .append("rect")
-       .attr("x", (d, i) => {
-         // Add your code below this line
-
-
-
-         // Add your code above this line
-       })
-       .attr("y", 0)
-       .attr("width", 25)
-       .attr("height", 100);
+    svg
+      .selectAll("rect")
+      .data(dataset)
+      .enter()
+      .append("rect")
+      .attr("x", (d, i) => {
+        // Add your code below this line
+        // Add your code above this line
+      })
+      .attr("y", 0)
+      .attr("width", 25)
+      .attr("height", 100);
   </script>
 </body>
 ```
@@ -135,21 +134,23 @@ assert($('rect').eq(8).attr('x') == '240');
     const w = 500;
     const h = 100;
 
-    const svg = d3.select("body")
-                  .append("svg")
-                  .attr("width", w)
-                  .attr("height", h);
+    const svg = d3
+      .select("body")
+      .append("svg")
+      .attr("width", w)
+      .attr("height", h);
 
-    svg.selectAll("rect")
-       .data(dataset)
-       .enter()
-       .append("rect")
-       .attr("x", (d, i) => {
-         return i * 30
-       })
-       .attr("y", 0)
-       .attr("width", 25)
-       .attr("height", 100);
+    svg
+      .selectAll("rect")
+      .data(dataset)
+      .enter()
+      .append("rect")
+      .attr("x", (d, i) => {
+        return i * 30;
+      })
+      .attr("y", 0)
+      .attr("width", 25)
+      .attr("height", 100);
   </script>
 </body>
 ```

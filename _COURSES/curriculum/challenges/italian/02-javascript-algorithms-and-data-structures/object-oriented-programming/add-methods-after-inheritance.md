@@ -13,11 +13,11 @@ Una funzione costruttore che eredita il suo oggetto `prototype` da una funzione 
 Per esempio, `Bird` è un costruttore che eredita il suo `prototype` da `Animal`:
 
 ```js
-function Animal() { }
-Animal.prototype.eat = function() {
+function Animal() {}
+Animal.prototype.eat = function () {
   console.log("nom nom nom");
 };
-function Bird() { }
+function Bird() {}
 Bird.prototype = Object.create(Animal.prototype);
 Bird.prototype.constructor = Bird;
 ```
@@ -25,7 +25,7 @@ Bird.prototype.constructor = Bird;
 In aggiunta a quello che è ereditato da `Animal`, vuoi aggiungere un comportamento che sia unico per gli oggetti `Bird`. Qui, `Bird` riceverà una funzione `fly()`. Le funzioni vengono aggiunte al `prototype` di `Bird` allo stesso modo di qualsiasi funzione del costruttore:
 
 ```js
-Bird.prototype.fly = function() {
+Bird.prototype.fly = function () {
   console.log("I'm flying!");
 };
 ```
@@ -49,19 +49,19 @@ Aggiungi tutto il codice necessario in modo che l'oggetto `Dog` erediti da `Anim
 `Animal` non dovrebbe rispondere al metodo `bark()`.
 
 ```js
-assert(typeof Animal.prototype.bark == 'undefined');
+assert(typeof Animal.prototype.bark == "undefined");
 ```
 
 `Dog` dovrebbe ereditare il metodo `eat()` da `Animal`.
 
 ```js
-assert(typeof Dog.prototype.eat == 'function');
+assert(typeof Dog.prototype.eat == "function");
 ```
 
 Il prototipo di `Dog` dovrebbe avere un metodo `bark()`.
 
 ```js
-assert('bark' in Dog.prototype);
+assert("bark" in Dog.prototype);
 ```
 
 `beagle` dovrebbe essere una `instanceof` di `Animal`.
@@ -82,7 +82,7 @@ assert(beagle.constructor === Dog);
 console.log = function (msg) {
   throw msg;
 };
-assert.throws(() => beagle.eat(), 'nom nom nom');
+assert.throws(() => beagle.eat(), "nom nom nom");
 ```
 
 `beagle.bark()` dovrebbe visualizzare nella console la stringa `Woof!`
@@ -91,7 +91,7 @@ assert.throws(() => beagle.eat(), 'nom nom nom');
 console.log = function (msg) {
   throw msg;
 };
-assert.throws(() => beagle.bark(), 'Woof!');
+assert.throws(() => beagle.bark(), "Woof!");
 ```
 
 # --seed--
@@ -99,15 +99,14 @@ assert.throws(() => beagle.bark(), 'Woof!');
 ## --seed-contents--
 
 ```js
-function Animal() { }
-Animal.prototype.eat = function() { console.log("nom nom nom"); };
+function Animal() {}
+Animal.prototype.eat = function () {
+  console.log("nom nom nom");
+};
 
-function Dog() { }
+function Dog() {}
 
 // Only change code below this line
-
-
-
 
 // Only change code above this line
 
@@ -117,14 +116,16 @@ let beagle = new Dog();
 # --solutions--
 
 ```js
-function Animal() { }
-Animal.prototype.eat = function() { console.log("nom nom nom"); };
+function Animal() {}
+Animal.prototype.eat = function () {
+  console.log("nom nom nom");
+};
 
-function Dog() { }
+function Dog() {}
 Dog.prototype = Object.create(Animal.prototype);
 Dog.prototype.constructor = Dog;
 Dog.prototype.bark = function () {
-  console.log('Woof!');
+  console.log("Woof!");
 };
 let beagle = new Dog();
 

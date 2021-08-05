@@ -12,30 +12,30 @@ En su aspecto más básico, los objetos no son más que colecciones de pares <df
 
 ```js
 const tekkenCharacter = {
-  player: 'Hwoarang',
-  fightingStyle: 'Tae Kwon Doe',
-  human: true
+  player: "Hwoarang",
+  fightingStyle: "Tae Kwon Doe",
+  human: true,
 };
 ```
 
 El código anterior define un objeto de un personaje del videojuego Tekken como `tekkenCharacter`. Tiene tres propiedades, cada una de las cuales se asigna un valor específico. Si se quiere agregar una propiedad adicional, como "origin" (origen), se puede hacer asignando `origin` al objeto:
 
 ```js
-tekkenCharacter.origin = 'South Korea';
+tekkenCharacter.origin = "South Korea";
 ```
 
 Esto usa la notación de puntos. Si observas el objeto `tekkenCharacter`, ahora incluirá la propiedad `origin`. Hwoarang también tenía el cabello naranja. Puedes agregar esta propiedad con la notación de corchetes:
 
 ```js
-tekkenCharacter['hair color'] = 'dyed orange';
+tekkenCharacter["hair color"] = "dyed orange";
 ```
 
 La notación de corchetes es necesaria si tu propiedad tiene un espacio en ella o si se quiere utilizar una variable para nombrar la propiedad. En el caso anterior, la propiedad está entre comillas para denotar que es una cadena y se agregará exactamente como se muestra. Sin las comillas, se evaluará como una variable y el nombre de la propiedad será el valor que tenga la variable. He aquí un ejemplo con una variable:
 
 ```js
-const eyes = 'eye color';
+const eyes = "eye color";
 
-tekkenCharacter[eyes] = 'brown';
+tekkenCharacter[eyes] = "brown";
 ```
 
 Tras agregar todos los ejemplos, el objeto se verá así:
@@ -60,7 +60,7 @@ Se ha creado un objeto `foods` con tres entradas. Usando la sintaxis de tu elecc
 `foods` debe ser un objeto.
 
 ```js
-assert(typeof foods === 'object');
+assert(typeof foods === "object");
 ```
 
 El objeto `foods` debe tener una clave `bananas` con el valor de `13`.
@@ -99,7 +99,7 @@ assert(
 let foods = {
   apples: 25,
   oranges: 32,
-  plums: 28
+  plums: 28,
 };
 
 // Only change code below this line
@@ -115,10 +115,10 @@ console.log(foods);
 let foods = {
   apples: 25,
   oranges: 32,
-  plums: 28
+  plums: 28,
 };
 
-foods['bananas'] = 13;
-foods['grapes']  = 35;
-foods['strawberries'] = 27;
+foods["bananas"] = 13;
+foods["grapes"] = 35;
+foods["strawberries"] = 27;
 ```

@@ -34,7 +34,6 @@ goog.require('goog.string');
 goog.require('goog.userAgent');
 goog.require('goog.window');
 
-
 /** @suppress {duplicate} Suppress variable 'angular' first declared. */
 var angular;
 
@@ -42,52 +41,54 @@ var angular;
  * Checks whether the user agent is IE11.
  * @return {boolean} True if it is IE11.
  */
-fireauth.util.isIe11 = function() {
-  return goog.userAgent.IE &&
-      !!goog.userAgent.DOCUMENT_MODE &&
-      goog.userAgent.DOCUMENT_MODE == 11;
+fireauth.util.isIe11 = function () {
+  return (
+    goog.userAgent.IE &&
+    !!goog.userAgent.DOCUMENT_MODE &&
+    goog.userAgent.DOCUMENT_MODE == 11
+  );
 };
-
 
 /**
  * Checks whether the user agent is IE10.
  * @return {boolean} True if it is IE10.
  */
-fireauth.util.isIe10 = function() {
-  return goog.userAgent.IE &&
-      !!goog.userAgent.DOCUMENT_MODE &&
-      goog.userAgent.DOCUMENT_MODE == 10;
+fireauth.util.isIe10 = function () {
+  return (
+    goog.userAgent.IE &&
+    !!goog.userAgent.DOCUMENT_MODE &&
+    goog.userAgent.DOCUMENT_MODE == 10
+  );
 };
-
 
 /**
  * Checks whether the user agent is Edge.
  * @param {string} userAgent The browser user agent string.
  * @return {boolean} True if it is Edge.
  */
-fireauth.util.isEdge = function(userAgent) {
+fireauth.util.isEdge = function (userAgent) {
   return /Edge\/\d+/.test(userAgent);
 };
-
 
 /**
  * @param {?string=} opt_userAgent The navigator user agent.
  * @return {boolean} Whether local storage is not synchronized between an iframe
  *     and a popup of the same domain.
  */
-fireauth.util.isLocalStorageNotSynchronized = function(opt_userAgent) {
+fireauth.util.isLocalStorageNotSynchronized = function (opt_userAgent) {
   var ua = opt_userAgent || fireauth.util.getUserAgentString();
   return fireauth.util.isIe11() || fireauth.util.isEdge(ua);
 };
 
-
 /** @return {string} The current URL. */
-fireauth.util.getCurrentUrl = function() {
-  return (goog.global['window'] && goog.global['window']['location']['href']) ||
-      // Check for worker environments.
-      (self && self['location'] && self['location']['href']) || '';
+fireauth.util.getCurrentUrl = function () {
+  return (
+    (goog.global['window'] && goog.global['window']['location']['href']) ||
+    // Check for worker environments.
+    (self && self['location'] && self['location']['href']) ||
+    ''
+  );
 };
-
 
 /**
  * @param {string} requestUri The request URI to send in verifyAssertion
@@ -95,7 +96,7 @@ fireauth.util.getCurrentUrl = function() {
  * @return {string} The sanitized URI, in this case it undoes the hashbang
  *     angularJs routing changes to request URI.
  */
-fireauth.util.sanitizeRequestUri = function(requestUri) {
+fireauth.util.sanitizeRequestUri = function (requestUri) {
   // If AngularJS is included.
   if (typeof angular != 'undefined') {
     // Remove hashbang modifications from URL.
@@ -104,14 +105,13 @@ fireauth.util.sanitizeRequestUri = function(requestUri) {
   return requestUri;
 };
 
-
 /**
  * @param {?string} url The target URL. When !url, redirects to a blank page.
  * @param {!Window=} opt_window The optional window to redirect to target URL.
  * @param {boolean=} opt_bypassCheck Whether to bypass check. Used for custom
  *     scheme redirects.
  */
-fireauth.util.goTo = function(url, opt_window, opt_bypassCheck) {
+fireauth.util.goTo = function (url, opt_window, opt_bypassCheck) {
   var win = opt_window || goog.global['window'];
   // No URL, redirect to blank page.
   var finalUrl = 'about:blank';
@@ -127,23 +127,22 @@ fireauth.util.goTo = function(url, opt_window, opt_bypassCheck) {
   win.location.href = finalUrl;
 };
 
-
 /**
  * @param {string} url The target URL.
  * @param {!Window=} opt_window The optional window to replace with target URL.
  * @param {boolean=} opt_bypassCheck Whether to bypass check. Used for custom
  *     scheme redirects.
  */
-fireauth.util.replaceCurrentUrl = function(url, opt_window, opt_bypassCheck) {
+fireauth.util.replaceCurrentUrl = function (url, opt_window, opt_bypassCheck) {
   var win = opt_window || goog.global['window'];
   if (!opt_bypassCheck) {
     win.location.replace(
-        goog.html.SafeUrl.unwrap(goog.html.SafeUrl.sanitize(url)));
+      goog.html.SafeUrl.unwrap(goog.html.SafeUrl.sanitize(url))
+    );
   } else {
     win.location.replace(url);
   }
 };
-
 
 /**
  * Deep comparison of two objects.
@@ -152,7 +151,7 @@ fireauth.util.replaceCurrentUrl = function(url, opt_window, opt_bypassCheck) {
  * @return {!Array<string>} The list of keys that are different between both
  *     objects provided.
  */
-fireauth.util.getKeyDiff = function(a, b) {
+fireauth.util.getKeyDiff = function (a, b) {
   var diff = [];
   for (var k in a) {
     if (!(k in b)) {
@@ -160,8 +159,7 @@ fireauth.util.getKeyDiff = function(a, b) {
     } else if (typeof a[k] != typeof b[k]) {
       diff.push(k);
     } else if (typeof a[k] == 'object' && a[k] != null && b[k] != null) {
-      if (fireauth.util.getKeyDiff(
-          a[k], b[k]).length > 0) {
+      if (fireauth.util.getKeyDiff(a[k], b[k]).length > 0) {
         diff.push(k);
       }
     } else if (a[k] !== b[k]) {
@@ -176,12 +174,11 @@ fireauth.util.getKeyDiff = function(a, b) {
   return diff;
 };
 
-
 /**
  * @param {?string=} opt_userAgent The navigator user agent.
  * @return {?number} The Chrome version, null if the user agent is not Chrome.
  */
-fireauth.util.getChromeVersion = function(opt_userAgent) {
+fireauth.util.getChromeVersion = function (opt_userAgent) {
   var ua = opt_userAgent || fireauth.util.getUserAgentString();
   var browserName = fireauth.util.getBrowserName(ua);
   // Confirm current browser is Chrome.
@@ -195,61 +192,61 @@ fireauth.util.getChromeVersion = function(opt_userAgent) {
   return null;
 };
 
-
 /**
  * Detects CORS support.
  * @param {?string=} opt_userAgent The navigator user agent.
  * @return {boolean} True if the browser supports CORS.
  */
-fireauth.util.supportsCors = function(opt_userAgent) {
+fireauth.util.supportsCors = function (opt_userAgent) {
   // Chrome 7 has CORS issues, pick 30 as upper limit.
   var chromeVersion = fireauth.util.getChromeVersion(opt_userAgent);
   if (chromeVersion && chromeVersion < 30) {
     return false;
   }
   // Among all other supported browsers, only IE8 and IE9 don't support CORS.
-  return !goog.userAgent.IE || // Not IE.
-      !goog.userAgent.DOCUMENT_MODE || // No document mode == IE Edge.
-      goog.userAgent.DOCUMENT_MODE > 9;
+  return (
+    !goog.userAgent.IE || // Not IE.
+    !goog.userAgent.DOCUMENT_MODE || // No document mode == IE Edge.
+    goog.userAgent.DOCUMENT_MODE > 9
+  );
 };
-
 
 /**
  * Detects whether browser is running on a mobile device.
  * @param {?string=} opt_userAgent The navigator user agent.
  * @return {boolean} True if the browser is running on a mobile device.
  */
-fireauth.util.isMobileBrowser = function(opt_userAgent) {
+fireauth.util.isMobileBrowser = function (opt_userAgent) {
   var ua = opt_userAgent || fireauth.util.getUserAgentString();
   var uaLower = ua.toLowerCase();
   // TODO: implement getBrowserName equivalent for OS.
-  if (uaLower.match(/android/) ||
-      uaLower.match(/webos/) ||
-      uaLower.match(/iphone|ipad|ipod/) ||
-      uaLower.match(/blackberry/) ||
-      uaLower.match(/windows phone/) ||
-      uaLower.match(/iemobile/)) {
+  if (
+    uaLower.match(/android/) ||
+    uaLower.match(/webos/) ||
+    uaLower.match(/iphone|ipad|ipod/) ||
+    uaLower.match(/blackberry/) ||
+    uaLower.match(/windows phone/) ||
+    uaLower.match(/iemobile/)
+  ) {
     return true;
   }
   return false;
 };
-
 
 /**
  * Closes the provided window.
  * @param {?Window=} opt_window The optional window to close. The current window
  *     is used if none is provided.
  */
-fireauth.util.closeWindow = function(opt_window) {
+fireauth.util.closeWindow = function (opt_window) {
   var win = opt_window || goog.global['window'];
   // In some browsers, in certain cases after the window closes, as seen in
   // Samsung Galaxy S3 Android 4.4.2 stock browser, the win object here is an
   // empty object {}. Try to catch the failure and ignore it.
   try {
     win.close();
-  } catch(e) {}
+  } catch (e) {}
 };
-
 
 /**
  * Opens a popup window.
@@ -261,7 +258,7 @@ fireauth.util.closeWindow = function(opt_window) {
  *                   null if a popup blocker prevented the window from being
  *                   opened.
  */
-fireauth.util.popup = function(opt_url, opt_name, opt_width, opt_height) {
+fireauth.util.popup = function (opt_url, opt_name, opt_width, opt_height) {
   var width = opt_width || 500;
   var height = opt_height || 600;
   var top = (window.screen.availHeight - height) / 2;
@@ -288,7 +285,8 @@ fireauth.util.popup = function(opt_url, opt_name, opt_width, opt_height) {
     }
   }
   var browserName = fireauth.util.getBrowserName(
-      fireauth.util.getUserAgentString());
+    fireauth.util.getUserAgentString()
+  );
   if (browserName == fireauth.util.BrowserName.FIREFOX) {
     // Firefox complains when invalid URLs are popped out. Hacky way to bypass.
     opt_url = opt_url || 'http://localhost';
@@ -308,7 +306,6 @@ fireauth.util.popup = function(opt_url, opt_name, opt_width, opt_height) {
   return newWin;
 };
 
-
 /**
  * The default value for the popup wait cycle in ms.
  * @const {number}
@@ -316,12 +313,11 @@ fireauth.util.popup = function(opt_url, opt_name, opt_width, opt_height) {
  */
 fireauth.util.POPUP_WAIT_CYCLE_MS_ = 2000;
 
-
 /**
  * @param {?string=} opt_userAgent The optional user agent.
  * @return {boolean} Whether the popup requires a delay before closing itself.
  */
-fireauth.util.requiresPopupDelay = function(opt_userAgent) {
+fireauth.util.requiresPopupDelay = function (opt_userAgent) {
   // TODO: remove this hack when CriOS behavior is fixed in iOS.
   var ua = opt_userAgent || fireauth.util.getUserAgentString();
   // Was observed in iOS 10.2 Chrome version 55.0.2883.79.
@@ -336,7 +332,6 @@ fireauth.util.requiresPopupDelay = function(opt_userAgent) {
   return false;
 };
 
-
 /**
  * @param {?Window} win The popup window to check.
  * @param {number=} opt_stepDuration The duration of each wait cycle before
@@ -344,12 +339,12 @@ fireauth.util.requiresPopupDelay = function(opt_userAgent) {
  * @return {!goog.Promise<undefined>} The promise to resolve when window is
  *     closed.
  */
-fireauth.util.onPopupClose = function(win, opt_stepDuration) {
+fireauth.util.onPopupClose = function (win, opt_stepDuration) {
   var stepDuration = opt_stepDuration || fireauth.util.POPUP_WAIT_CYCLE_MS_;
-  return new goog.Promise(function(resolve, reject) {
+  return new goog.Promise(function (resolve, reject) {
     // Function to repeat each stepDuration.
-    var repeat = function() {
-      goog.Timer.promise(stepDuration).then(function() {
+    var repeat = function () {
+      goog.Timer.promise(stepDuration).then(function () {
         // After wait, check if window is closed.
         if (!win || win.closed) {
           // If so, resolve.
@@ -364,13 +359,12 @@ fireauth.util.onPopupClose = function(win, opt_stepDuration) {
   });
 };
 
-
 /**
  * @param {!Array<string>} authorizedDomains List of authorized domains.
  * @param {string} url The URL to check.
  * @return {boolean} Whether the passed domain is an authorized one.
  */
-fireauth.util.isAuthorizedDomain = function(authorizedDomains, url) {
+fireauth.util.isAuthorizedDomain = function (authorizedDomains, url) {
   var uri = goog.Uri.parse(url);
   var scheme = uri.getScheme();
   var domain = uri.getDomain();
@@ -388,7 +382,6 @@ fireauth.util.isAuthorizedDomain = function(authorizedDomains, url) {
   return false;
 };
 
-
 /**
  * Represents the dimensions of an entity (width and height).
  * @typedef {{
@@ -398,14 +391,13 @@ fireauth.util.isAuthorizedDomain = function(authorizedDomains, url) {
  */
 fireauth.util.Dimensions;
 
-
 /**
  * @param {?Window=} opt_window The optional window whose dimensions are to be
  *     returned. The current window is used if not found.
  * @return {?fireauth.util.Dimensions} The requested window dimensions if
  *     available.
  */
-fireauth.util.getWindowDimensions = function(opt_window) {
+fireauth.util.getWindowDimensions = function (opt_window) {
   var win = opt_window || goog.global['window'];
   if (win && win['innerWidth'] && win['innerHeight']) {
     return {
@@ -415,7 +407,6 @@ fireauth.util.getWindowDimensions = function(opt_window) {
   }
   return null;
 };
-
 
 /**
  * RegExp to detect if the domain given is an IP address. This is only used
@@ -430,7 +421,6 @@ fireauth.util.getWindowDimensions = function(opt_window) {
  */
 fireauth.util.IP_ADDRESS_REGEXP_ = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/;
 
-
 /**
  * @param {string} domainPattern The domain pattern to match.
  * @param {string} domain The domain to check. It is assumed that it is a valid
@@ -438,7 +428,7 @@ fireauth.util.IP_ADDRESS_REGEXP_ = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/;
  * @param {string} scheme The scheme of the domain to check.
  * @return {boolean} Whether the provided domain matches the domain pattern.
  */
-fireauth.util.matchDomain = function(domainPattern, domain, scheme) {
+fireauth.util.matchDomain = function (domainPattern, domain, scheme) {
   // Chrome extension matching.
   if (domainPattern.indexOf('chrome-extension://') == 0) {
     var chromeExtUri = goog.Uri.parse(domainPattern);
@@ -461,12 +451,12 @@ fireauth.util.matchDomain = function(domainPattern, domain, scheme) {
     // Non ip address domains.
     // domain.com = *.domain.com OR domain.com
     var re = new RegExp(
-        '^(.+\\.' + escapedDomainPattern + '|' +
-        escapedDomainPattern + ')$', 'i');
+      '^(.+\\.' + escapedDomainPattern + '|' + escapedDomainPattern + ')$',
+      'i'
+    );
     return re.test(domain);
   }
 };
-
 
 /**
  * RegExp to detect if the email address given is valid.
@@ -475,24 +465,23 @@ fireauth.util.matchDomain = function(domainPattern, domain, scheme) {
  */
 fireauth.util.EMAIL_ADDRESS_REGEXP_ = /^[^@]+@[^@]+$/;
 
-
 /**
  * Determines if it is a valid email address.
  * @param {*} email The email address.
  * @return {boolean} Whether the email address is valid.
  */
-fireauth.util.isValidEmailAddress = function(email) {
-  return typeof email === 'string' &&
-      fireauth.util.EMAIL_ADDRESS_REGEXP_.test(email);
+fireauth.util.isValidEmailAddress = function (email) {
+  return (
+    typeof email === 'string' && fireauth.util.EMAIL_ADDRESS_REGEXP_.test(email)
+  );
 };
-
 
 /**
  * @return {!goog.Promise<void>} A promise that resolves when DOM is ready.
  */
-fireauth.util.onDomReady = function() {
+fireauth.util.onDomReady = function () {
   var resolver = null;
-  return new goog.Promise(function(resolve, reject) {
+  return new goog.Promise(function (resolve, reject) {
     var doc = goog.global.document;
     // If document already loaded, resolve immediately.
     if (doc.readyState == 'complete') {
@@ -501,24 +490,22 @@ fireauth.util.onDomReady = function() {
       // Document not ready, wait for load before resolving.
       // Save resolver, so we can remove listener in case it was externally
       // cancelled.
-      resolver = function() {
+      resolver = function () {
         resolve();
       };
       goog.events.listenOnce(window, goog.events.EventType.LOAD, resolver);
     }
-  }).thenCatch(function(error) {
+  }).thenCatch(function (error) {
     // In case this promise was cancelled, make sure it unlistens to load.
     goog.events.unlisten(window, goog.events.EventType.LOAD, resolver);
     throw error;
   });
 };
 
-
 /** @return {boolean} Whether environment supports DOM. */
-fireauth.util.isDOMSupported = function() {
+fireauth.util.isDOMSupported = function () {
   return !!goog.global.document;
 };
-
 
 /**
  * The default ondeviceready Cordova timeout in ms.
@@ -527,7 +514,6 @@ fireauth.util.isDOMSupported = function() {
  */
 fireauth.util.CORDOVA_ONDEVICEREADY_TIMEOUT_MS_ = 1000;
 
-
 /**
  * @param {?string=} opt_userAgent The optional user agent.
  * @param {number=} opt_timeout The optional timeout in ms for deviceready
@@ -535,53 +521,59 @@ fireauth.util.CORDOVA_ONDEVICEREADY_TIMEOUT_MS_ = 1000;
  * @return {!goog.Promise} A promise that resolves if the current environment is
  *     a Cordova environment.
  */
-fireauth.util.checkIfCordova = function(opt_userAgent, opt_timeout) {
+fireauth.util.checkIfCordova = function (opt_userAgent, opt_timeout) {
   // Errors generated are internal and should be converted if needed to
   // developer facing Firebase errors.
   // Only supported in Android/iOS environment.
   if (fireauth.util.isAndroidOrIosCordovaScheme(opt_userAgent)) {
-    return fireauth.util.onDomReady().then(function() {
-      return new goog.Promise(function(resolve, reject) {
+    return fireauth.util.onDomReady().then(function () {
+      return new goog.Promise(function (resolve, reject) {
         var doc = goog.global.document;
-        var timeoutId = setTimeout(function() {
+        var timeoutId = setTimeout(function () {
           reject(new Error('Cordova framework is not ready.'));
         }, opt_timeout || fireauth.util.CORDOVA_ONDEVICEREADY_TIMEOUT_MS_);
         // This should resolve immediately after DOM ready.
-        doc.addEventListener('deviceready', function() {
-          clearTimeout(timeoutId);
-          resolve();
-        }, false);
+        doc.addEventListener(
+          'deviceready',
+          function () {
+            clearTimeout(timeoutId);
+            resolve();
+          },
+          false
+        );
       });
     });
   }
   return goog.Promise.reject(
-      new Error('Cordova must run in an Android or iOS file scheme.'));
+    new Error('Cordova must run in an Android or iOS file scheme.')
+  );
 };
-
 
 /**
  * @param {?string=} opt_userAgent The optional user agent.
  * @return {boolean} Whether the app is rendered in a mobile iOS or Android
  *     Cordova environment.
  */
-fireauth.util.isAndroidOrIosCordovaScheme = function(opt_userAgent) {
+fireauth.util.isAndroidOrIosCordovaScheme = function (opt_userAgent) {
   var ua = opt_userAgent || fireauth.util.getUserAgentString();
-  return !!((fireauth.util.getCurrentScheme() === 'file:' ||
-             fireauth.util.getCurrentScheme() === 'ionic:') &&
-            ua.toLowerCase().match(/iphone|ipad|ipod|android/));
+  return !!(
+    (fireauth.util.getCurrentScheme() === 'file:' ||
+      fireauth.util.getCurrentScheme() === 'ionic:') &&
+    ua.toLowerCase().match(/iphone|ipad|ipod|android/)
+  );
 };
-
 
 /**
  * @param {?string=} opt_userAgent The optional user agent.
  * @return {boolean} Whether the app is rendered in a mobile iOS 7 or 8 browser.
  */
-fireauth.util.isIOS7Or8 = function(opt_userAgent) {
+fireauth.util.isIOS7Or8 = function (opt_userAgent) {
   var ua = opt_userAgent || fireauth.util.getUserAgentString();
-  return !!(ua.match(/(iPad|iPhone|iPod).*OS 7_\d/i) ||
-            ua.match(/(iPad|iPhone|iPod).*OS 8_\d/i));
+  return !!(
+    ua.match(/(iPad|iPhone|iPod).*OS 7_\d/i) ||
+    ua.match(/(iPad|iPhone|iPod).*OS 8_\d/i)
+  );
 };
-
 
 /**
  * @return {boolean} Whether browser is Safari or an iOS browser and page is
@@ -589,7 +581,7 @@ fireauth.util.isIOS7Or8 = function(opt_userAgent) {
  *     embedded on a page in a different domain but will still trigger storage
  *     event with storage changes.
  */
-fireauth.util.isSafariLocalStorageNotSynced = function() {
+fireauth.util.isSafariLocalStorageNotSynced = function () {
   var ua = fireauth.util.getUserAgentString();
   // Safari or iOS browser and embedded in an iframe.
   if (!fireauth.util.iframeCanSyncWebStorage(ua) && fireauth.util.isIframe()) {
@@ -598,13 +590,12 @@ fireauth.util.isSafariLocalStorageNotSynced = function() {
   return false;
 };
 
-
 /**
  * @param {?Window=} opt_win Optional window to check whether it is an iframe.
  *     If not provided, the current window is checked.
  * @return {boolean} Whether web page is running in an iframe.
  */
-fireauth.util.isIframe = function(opt_win) {
+fireauth.util.isIframe = function (opt_win) {
   var win = opt_win || goog.global['window'];
   try {
     // Check that the current window is not the top window.
@@ -615,13 +606,12 @@ fireauth.util.isIframe = function(opt_win) {
   }
 };
 
-
 /**
  * @param {?Window=} opt_win Optional window to check whether it has an opener
  *     that is an iframe.
  * @return {boolean} Whether the web page was opened from an iframe.
  */
-fireauth.util.isOpenerAnIframe = function(opt_win) {
+fireauth.util.isOpenerAnIframe = function (opt_win) {
   var win = opt_win || goog.global['window'];
   try {
     // Get the opener if available.
@@ -635,32 +625,33 @@ fireauth.util.isOpenerAnIframe = function(opt_win) {
   }
 };
 
-
 /**
  * @param {?Object=} global The optional global scope.
  * @return {boolean} Whether current environment is a worker.
  */
-fireauth.util.isWorker = function(global) {
+fireauth.util.isWorker = function (global) {
   var scope = global || goog.global;
   // WorkerGlobalScope only defined in worker environment.
-  return typeof scope['WorkerGlobalScope'] !== 'undefined' &&
-         typeof scope['importScripts'] === 'function';
+  return (
+    typeof scope['WorkerGlobalScope'] !== 'undefined' &&
+    typeof scope['importScripts'] === 'function'
+  );
 };
-
 
 /**
  * @param {?Object=} opt_global The optional global scope.
  * @return {boolean} Whether current environment supports fetch API and other
  *     APIs it depends on.
  */
-fireauth.util.isFetchSupported = function(opt_global) {
+fireauth.util.isFetchSupported = function (opt_global) {
   // Required by fetch API calls.
   var scope = opt_global || goog.global;
-  return typeof scope['fetch'] !== 'undefined' &&
-         typeof scope['Headers'] !== 'undefined' &&
-         typeof scope['Request'] !== 'undefined';
+  return (
+    typeof scope['fetch'] !== 'undefined' &&
+    typeof scope['Headers'] !== 'undefined' &&
+    typeof scope['Request'] !== 'undefined'
+  );
 };
-
 
 /**
  * Enum for the runtime environment.
@@ -673,11 +664,10 @@ fireauth.util.Env = {
   WORKER: 'Worker'
 };
 
-
 /**
  * @return {!fireauth.util.Env} The current runtime environment.
  */
-fireauth.util.getEnvironment = function() {
+fireauth.util.getEnvironment = function () {
   if (firebase.INTERNAL.hasOwnProperty('reactNative')) {
     return fireauth.util.Env.REACT_NATIVE;
   } else if (firebase.INTERNAL.hasOwnProperty('node')) {
@@ -693,17 +683,17 @@ fireauth.util.getEnvironment = function() {
   return fireauth.util.Env.BROWSER;
 };
 
-
 /**
  * @return {boolean} Whether the environment is a native environment, where
  *     CORS checks do not apply.
  */
-fireauth.util.isNativeEnvironment = function() {
+fireauth.util.isNativeEnvironment = function () {
   var environment = fireauth.util.getEnvironment();
-  return environment === fireauth.util.Env.REACT_NATIVE ||
-      environment === fireauth.util.Env.NODE;
+  return (
+    environment === fireauth.util.Env.REACT_NATIVE ||
+    environment === fireauth.util.Env.NODE
+  );
 };
-
 
 /**
  * The separator for storage keys to concatenate App name and API key.
@@ -712,41 +702,37 @@ fireauth.util.isNativeEnvironment = function() {
  */
 fireauth.util.STORAGE_KEY_SEPARATOR_ = ':';
 
-
 /**
  * @param {string} apiKey The API Key of the app.
  * @param {string} appName The App name.
  * @return {string} The key used for identifying the app owner of the user.
  */
-fireauth.util.createStorageKey = function(apiKey, appName) {
+fireauth.util.createStorageKey = function (apiKey, appName) {
   return apiKey + fireauth.util.STORAGE_KEY_SEPARATOR_ + appName;
 };
 
-
 /** @return {string} a long random character string. */
-fireauth.util.generateRandomString = function() {
+fireauth.util.generateRandomString = function () {
   return Math.floor(Math.random() * 1000000000).toString();
 };
-
 
 /**
  * Generates a random alpha numeric string.
  * @param {number} numOfChars The number of random characters within the string.
  * @return {string} A string with a specific number of random characters.
  */
-fireauth.util.generateRandomAlphaNumericString = function(numOfChars) {
+fireauth.util.generateRandomAlphaNumericString = function (numOfChars) {
   var chars = [];
   var allowedChars =
-      '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   while (numOfChars > 0) {
     chars.push(
-        allowedChars.charAt(
-            Math.floor(Math.random() * allowedChars.length)));
+      allowedChars.charAt(Math.floor(Math.random() * allowedChars.length))
+    );
     numOfChars--;
   }
   return chars.join('');
 };
-
 
 /**
  * Enums for Browser name.
@@ -767,22 +753,25 @@ fireauth.util.BrowserName = {
   WEBOS: 'Webos'
 };
 
-
 /**
  * @param {string} userAgent The navigator user agent string.
  * @return {string} The browser name, eg Safari, Firefox, etc.
  */
-fireauth.util.getBrowserName = function(userAgent) {
+fireauth.util.getBrowserName = function (userAgent) {
   var ua = userAgent.toLowerCase();
-  if (goog.string.contains(ua, 'opera/') ||
-      goog.string.contains(ua, 'opr/') ||
-      goog.string.contains(ua, 'opios/')) {
+  if (
+    goog.string.contains(ua, 'opera/') ||
+    goog.string.contains(ua, 'opr/') ||
+    goog.string.contains(ua, 'opios/')
+  ) {
     return fireauth.util.BrowserName.OPERA;
   } else if (goog.string.contains(ua, 'iemobile')) {
     // Windows phone IEMobile browser.
     return fireauth.util.BrowserName.IEMOBILE;
-  } else if (goog.string.contains(ua, 'msie') ||
-             goog.string.contains(ua, 'trident/')) {
+  } else if (
+    goog.string.contains(ua, 'msie') ||
+    goog.string.contains(ua, 'trident/')
+  ) {
     return fireauth.util.BrowserName.IE;
   } else if (goog.string.contains(ua, 'edge/')) {
     return fireauth.util.BrowserName.EDGE;
@@ -796,21 +785,25 @@ fireauth.util.getBrowserName = function(userAgent) {
   } else if (goog.string.contains(ua, 'webos')) {
     // WebOS default browser.
     return fireauth.util.BrowserName.WEBOS;
-  } else if (goog.string.contains(ua, 'safari/') &&
-             !goog.string.contains(ua, 'chrome/') &&
-             !goog.string.contains(ua, 'crios/') &&
-             !goog.string.contains(ua, 'android')) {
+  } else if (
+    goog.string.contains(ua, 'safari/') &&
+    !goog.string.contains(ua, 'chrome/') &&
+    !goog.string.contains(ua, 'crios/') &&
+    !goog.string.contains(ua, 'android')
+  ) {
     return fireauth.util.BrowserName.SAFARI;
-  } else if ((goog.string.contains(ua, 'chrome/') ||
-              goog.string.contains(ua, 'crios/')) &&
-             !goog.string.contains(ua, 'edge/')) {
+  } else if (
+    (goog.string.contains(ua, 'chrome/') ||
+      goog.string.contains(ua, 'crios/')) &&
+    !goog.string.contains(ua, 'edge/')
+  ) {
     return fireauth.util.BrowserName.CHROME;
   } else if (goog.string.contains(ua, 'android')) {
     // Android stock browser.
     return fireauth.util.BrowserName.ANDROID;
   } else {
     // Most modern browsers have name/version at end of user agent string.
-    var re = new RegExp('([a-zA-Z\\d\\.]+)\/[a-zA-Z\\d\\.]*$');
+    var re = new RegExp('([a-zA-Z\\d\\.]+)/[a-zA-Z\\d\\.]*$');
     var matches = userAgent.match(re);
     if (matches && matches.length == 2) {
       return matches[1];
@@ -818,7 +811,6 @@ fireauth.util.getBrowserName = function(userAgent) {
   }
   return fireauth.util.BrowserName.OTHER;
 };
-
 
 /**
  * Enums for client implementation name.
@@ -829,7 +821,6 @@ fireauth.util.ClientImplementation = {
   OAUTH_HANDLER: 'Handler',
   OAUTH_IFRAME: 'Iframe'
 };
-
 
 /**
  * Enums for the framework ID to be logged in RPC header.
@@ -843,13 +834,12 @@ fireauth.util.Framework = {
   FIREBASEUI: 'FirebaseUI-web'
 };
 
-
 /**
  * @param {!Array<string>} providedFrameworks List of framework ID strings.
  * @return {!Array<!fireauth.util.Framework>} List of supported framework IDs
  *     with no duplicates.
  */
-fireauth.util.getFrameworkIds = function(providedFrameworks) {
+fireauth.util.getFrameworkIds = function (providedFrameworks) {
   var frameworkVersion = [];
   var frameworkSet = {};
   for (var key in fireauth.util.Framework) {
@@ -868,7 +858,6 @@ fireauth.util.getFrameworkIds = function(providedFrameworks) {
   return frameworkVersion;
 };
 
-
 /**
  * @param {!fireauth.util.ClientImplementation} clientImplementation The client
  *     implementation.
@@ -877,10 +866,15 @@ fireauth.util.getFrameworkIds = function(providedFrameworks) {
  * @param {?string=} opt_userAgent The optional user agent.
  * @return {string} The full client SDK version.
  */
-fireauth.util.getClientVersion = function(clientImplementation, clientVersion,
-    opt_frameworkVersion, opt_userAgent) {
+fireauth.util.getClientVersion = function (
+  clientImplementation,
+  clientVersion,
+  opt_frameworkVersion,
+  opt_userAgent
+) {
   var frameworkVersion = fireauth.util.getFrameworkIds(
-      opt_frameworkVersion || []);
+    opt_frameworkVersion || []
+  );
   if (!frameworkVersion.length) {
     frameworkVersion = [fireauth.util.Framework.DEFAULT];
   }
@@ -895,8 +889,8 @@ fireauth.util.getClientVersion = function(clientImplementation, clientVersion,
     // worker from a browser.
     // For example: Chrome-Worker/JsCore/4.9.1/FirebaseCore-web.
     var userAgent = opt_userAgent || fireauth.util.getUserAgentString();
-    reportedEnvironment = fireauth.util.getBrowserName(userAgent) + '-' +
-        environment;
+    reportedEnvironment =
+      fireauth.util.getBrowserName(userAgent) + '-' + environment;
   } else {
     // Otherwise, just report the environment name.
     reportedEnvironment = environment;
@@ -905,20 +899,26 @@ fireauth.util.getClientVersion = function(clientImplementation, clientVersion,
   // ${browserName}/${clientImplementation}/${clientVersion}/${frameworkVersion}
   // As multiple Firebase frameworks/libraries can be used, join their IDs with
   // a comma.
-  return reportedEnvironment + '/' + clientImplementation +
-      '/' + clientVersion + '/' + frameworkVersion.join(',');
+  return (
+    reportedEnvironment +
+    '/' +
+    clientImplementation +
+    '/' +
+    clientVersion +
+    '/' +
+    frameworkVersion.join(',')
+  );
 };
-
 
 /**
  * @return {string} The user agent string reported by the environment, or the
  *     empty string if not available.
  */
-fireauth.util.getUserAgentString = function() {
-  return (goog.global['navigator'] && goog.global['navigator']['userAgent']) ||
-      '';
+fireauth.util.getUserAgentString = function () {
+  return (
+    (goog.global['navigator'] && goog.global['navigator']['userAgent']) || ''
+  );
 };
-
 
 /**
  * @param {string} varStrName The variable string name.
@@ -926,12 +926,14 @@ fireauth.util.getUserAgentString = function() {
  *     is window.
  * @return {*} The reference if found.
  */
-fireauth.util.getObjectRef = function(varStrName, opt_scope) {
+fireauth.util.getObjectRef = function (varStrName, opt_scope) {
   var pieces = varStrName.split('.');
   var last = opt_scope || goog.global;
-  for (var i = 0;
-       i < pieces.length && typeof last == 'object' && last != null;
-       i++) {
+  for (
+    var i = 0;
+    i < pieces.length && typeof last == 'object' && last != null;
+    i++
+  ) {
     last = last[pieces[i]];
   }
   // Last hasn't reached the end yet, return undefined.
@@ -941,9 +943,8 @@ fireauth.util.getObjectRef = function(varStrName, opt_scope) {
   return last;
 };
 
-
 /** @return {boolean} Whether web storage is supported. */
-fireauth.util.isWebStorageSupported = function() {
+fireauth.util.isWebStorageSupported = function () {
   try {
     var storage = goog.global['localStorage'];
     var key = fireauth.util.generateEventId();
@@ -972,92 +973,89 @@ fireauth.util.isWebStorageSupported = function() {
   return false;
 };
 
-
 /**
  * This guards against leaking Cordova support before official launch.
  * This field will be removed or updated to return true when the new feature is
  * ready for launch.
  * @return {boolean} Whether Cordova OAuth support is enabled.
  */
-fireauth.util.isCordovaOAuthEnabled = function() {
+fireauth.util.isCordovaOAuthEnabled = function () {
   return false;
 };
-
 
 /**
  * @return {boolean} Whether popup and redirect operations are supported in the
  *     current environment.
  */
-fireauth.util.isPopupRedirectSupported = function() {
+fireauth.util.isPopupRedirectSupported = function () {
   // Popup and redirect are supported in an environment where the container
   // origin can be securely whitelisted.
-  return (fireauth.util.isHttpOrHttps() ||
-          fireauth.util.isChromeExtension() ||
-          fireauth.util.isAndroidOrIosCordovaScheme()) &&
-         // React Native with remote debugging reports its location.protocol as
-         // http.
-         !fireauth.util.isNativeEnvironment() &&
-         // Local storage has to be supported for browser popup and redirect
-         // operations to work.
-         fireauth.util.isWebStorageSupported() &&
-         // DOM, popups and redirects are not supported within a worker.
-         !fireauth.util.isWorker();
+  return (
+    (fireauth.util.isHttpOrHttps() ||
+      fireauth.util.isChromeExtension() ||
+      fireauth.util.isAndroidOrIosCordovaScheme()) &&
+    // React Native with remote debugging reports its location.protocol as
+    // http.
+    !fireauth.util.isNativeEnvironment() &&
+    // Local storage has to be supported for browser popup and redirect
+    // operations to work.
+    fireauth.util.isWebStorageSupported() &&
+    // DOM, popups and redirects are not supported within a worker.
+    !fireauth.util.isWorker()
+  );
 };
-
 
 /**
  * @return {boolean} Whether the current environment is http or https.
  */
-fireauth.util.isHttpOrHttps = function() {
-  return fireauth.util.getCurrentScheme() === 'http:' ||
-       fireauth.util.getCurrentScheme() === 'https:';
+fireauth.util.isHttpOrHttps = function () {
+  return (
+    fireauth.util.getCurrentScheme() === 'http:' ||
+    fireauth.util.getCurrentScheme() === 'https:'
+  );
 };
-
 
 /** @return {?string} The current URL scheme. */
-fireauth.util.getCurrentScheme = function() {
-  return (goog.global['location'] && goog.global['location']['protocol']) ||
-      null;
+fireauth.util.getCurrentScheme = function () {
+  return (
+    (goog.global['location'] && goog.global['location']['protocol']) || null
+  );
 };
-
 
 /**
  * Checks whether the current page is a Chrome extension.
  * @return {boolean} Whether the current page is a Chrome extension.
  */
-fireauth.util.isChromeExtension = function() {
+fireauth.util.isChromeExtension = function () {
   return fireauth.util.getCurrentScheme() === 'chrome-extension:';
 };
-
 
 /**
  * @param {?string=} opt_userAgent The optional user agent.
  * @return {boolean} Whether the current browser is running in an iOS
  *     environment.
  */
-fireauth.util.isIOS = function(opt_userAgent) {
+fireauth.util.isIOS = function (opt_userAgent) {
   var ua = opt_userAgent || fireauth.util.getUserAgentString();
   return !!ua.toLowerCase().match(/iphone|ipad|ipod/);
 };
-
 
 /**
  * @param {?string=} opt_userAgent The optional user agent.
  * @return {boolean} Whether the current browser is running in an Android
  *     environment.
  */
-fireauth.util.isAndroid = function(opt_userAgent) {
+fireauth.util.isAndroid = function (opt_userAgent) {
   var ua = opt_userAgent || fireauth.util.getUserAgentString();
   return !!ua.toLowerCase().match(/android/);
 };
-
 
 /**
  * @param {?string=} opt_userAgent The optional user agent.
  * @return {boolean} Whether the opener of a popup cannot communicate with the
  *     popup while it is in the foreground.
  */
-fireauth.util.runsInBackground = function(opt_userAgent) {
+fireauth.util.runsInBackground = function (opt_userAgent) {
   // TODO: split this check into 2, one check that opener can access
   // popup, another check that storage synchronizes between popup and opener.
   // Popup events fail in iOS version 7 (lowest version we currently support)
@@ -1069,8 +1067,9 @@ fireauth.util.runsInBackground = function(opt_userAgent) {
   var ua = opt_userAgent || fireauth.util.getUserAgentString();
   if (fireauth.util.isMobileBrowser(ua)) {
     return false;
-  } else if (fireauth.util.getBrowserName(ua) ==
-             fireauth.util.BrowserName.FIREFOX) {
+  } else if (
+    fireauth.util.getBrowserName(ua) == fireauth.util.BrowserName.FIREFOX
+  ) {
     // Latest version of Firefox 47.0 does not allow you to access properties on
     // the popup window from the opener.
     return false;
@@ -1078,39 +1077,38 @@ fireauth.util.runsInBackground = function(opt_userAgent) {
   return true;
 };
 
-
 /**
  * Stringifies an object, retuning null if the object is not defined.
  * @param {*} obj The raw object.
  * @return {?string} The JSON-serialized object.
  */
-fireauth.util.stringifyJSON = function(obj) {
+fireauth.util.stringifyJSON = function (obj) {
   if (typeof obj === 'undefined') {
     return null;
   }
   return goog.json.serialize(obj);
 };
 
-
 /**
  * @param {!Object} obj The original object.
  * @return {!Object} A copy of the original object with all entries that are
  *     null or undefined removed.
  */
-fireauth.util.copyWithoutNullsOrUndefined = function(obj) {
+fireauth.util.copyWithoutNullsOrUndefined = function (obj) {
   // The processed copy to return.
   var trimmedObj = {};
   // Remove all empty fields from data, allow zero and false booleans.
   for (var key in obj) {
-    if (obj.hasOwnProperty(key) &&
-        obj[key] !== null &&
-        obj[key] !== undefined) {
+    if (
+      obj.hasOwnProperty(key) &&
+      obj[key] !== null &&
+      obj[key] !== undefined
+    ) {
       trimmedObj[key] = obj[key];
     }
   }
   return trimmedObj;
 };
-
 
 /**
  * Removes all key/pairs with the specified keys from the given object.
@@ -1118,7 +1116,7 @@ fireauth.util.copyWithoutNullsOrUndefined = function(obj) {
  * @param {!Array<string>} keys The list of keys to remove.
  * @return {!Object} The object with the keys removed.
  */
-fireauth.util.removeEntriesWithKeys = function(obj, keys) {
+fireauth.util.removeEntriesWithKeys = function (obj, keys) {
   // Clone object.
   var copy = goog.object.clone(obj);
   // Traverse keys.
@@ -1133,13 +1131,12 @@ fireauth.util.removeEntriesWithKeys = function(obj, keys) {
   return copy;
 };
 
-
 /**
  * Parses a JSON string, returning undefined if null is passed.
  * @param {?string} json The JSON-serialized object.
  * @return {*} The raw object.
  */
-fireauth.util.parseJSON = function(json) {
+fireauth.util.parseJSON = function (json) {
   if (json === null) {
     return undefined;
   }
@@ -1153,16 +1150,15 @@ fireauth.util.parseJSON = function(json) {
   return JSON.parse(json);
 };
 
-
 /**
  * @param {?string=} opt_prefix An optional prefix string to prepend to ID.
  * @return {string} The generated event ID used to identify a generic event.
  */
-fireauth.util.generateEventId = function(opt_prefix) {
-  return opt_prefix ? opt_prefix : '' +
-      Math.floor(Math.random() * 1000000000).toString();
+fireauth.util.generateEventId = function (opt_prefix) {
+  return opt_prefix
+    ? opt_prefix
+    : '' + Math.floor(Math.random() * 1000000000).toString();
 };
-
 
 /**
  * @param {?string=} opt_userAgent The optional user agent.
@@ -1170,21 +1166,22 @@ fireauth.util.generateEventId = function(opt_prefix) {
  *     Web storage sync fails in Safari desktop browsers and iOS mobile
  *     browsers.
  */
-fireauth.util.iframeCanSyncWebStorage = function(opt_userAgent) {
+fireauth.util.iframeCanSyncWebStorage = function (opt_userAgent) {
   var ua = opt_userAgent || fireauth.util.getUserAgentString();
-  if (fireauth.util.getBrowserName(ua) == fireauth.util.BrowserName.SAFARI ||
-      ua.toLowerCase().match(/iphone|ipad|ipod/)) {
+  if (
+    fireauth.util.getBrowserName(ua) == fireauth.util.BrowserName.SAFARI ||
+    ua.toLowerCase().match(/iphone|ipad|ipod/)
+  ) {
     return false;
   }
   return true;
 };
 
-
 /**
  * Reset unlaoded GApi modules. If gapi.load fails due to a network error,
  * it will stop working after a retrial. This is a hack to fix this issue.
  */
-fireauth.util.resetUnloadedGapiModules = function() {
+fireauth.util.resetUnloadedGapiModules = function () {
   // Clear last failed gapi.load state to force next gapi.load to first
   // load the failed gapi.iframes module.
   // Get gapix.beacon context.
@@ -1210,7 +1207,6 @@ fireauth.util.resetUnloadedGapiModules = function() {
   }
 };
 
-
 /**
  * Returns whether the current device is a mobile device. Mobile browsers and
  * React-Native environments are considered mobile devices.
@@ -1218,15 +1214,16 @@ fireauth.util.resetUnloadedGapiModules = function() {
  * @param {?fireauth.util.Env=} opt_env The optional environment.
  * @return {boolean} Whether the current device is a mobile device or not.
  */
-fireauth.util.isMobileDevice = function(opt_userAgent, opt_env) {
+fireauth.util.isMobileDevice = function (opt_userAgent, opt_env) {
   // Get user agent.
   var ua = opt_userAgent || fireauth.util.getUserAgentString();
   // Get environment.
   var environment = opt_env || fireauth.util.getEnvironment();
-  return fireauth.util.isMobileBrowser(ua) ||
-      environment === fireauth.util.Env.REACT_NATIVE;
+  return (
+    fireauth.util.isMobileBrowser(ua) ||
+    environment === fireauth.util.Env.REACT_NATIVE
+  );
 };
-
 
 /**
  * @param {?Object=} opt_navigator The optional navigator object typically used
@@ -1234,48 +1231,48 @@ fireauth.util.isMobileDevice = function(opt_userAgent, opt_env) {
  * @return {boolean} Whether the app is currently online. If offline, false is
  *     returned. If this cannot be determined, true is returned.
  */
-fireauth.util.isOnline = function(opt_navigator) {
+fireauth.util.isOnline = function (opt_navigator) {
   var navigator = opt_navigator || goog.global['navigator'];
-  if (navigator &&
-      typeof navigator['onLine'] === 'boolean' &&
-      // Apply only for traditional web apps and Chrome extensions.
-      // This is especially true for Cordova apps which have unreliable
-      // navigator.onLine behavior unless cordova-plugin-network-information is
-      // installed which overwrites the native navigator.onLine value and
-      // defines navigator.connection.
-      (fireauth.util.isHttpOrHttps() ||
-       fireauth.util.isChromeExtension() ||
-       typeof navigator['connection'] !== 'undefined')) {
+  if (
+    navigator &&
+    typeof navigator['onLine'] === 'boolean' &&
+    // Apply only for traditional web apps and Chrome extensions.
+    // This is especially true for Cordova apps which have unreliable
+    // navigator.onLine behavior unless cordova-plugin-network-information is
+    // installed which overwrites the native navigator.onLine value and
+    // defines navigator.connection.
+    (fireauth.util.isHttpOrHttps() ||
+      fireauth.util.isChromeExtension() ||
+      typeof navigator['connection'] !== 'undefined')
+  ) {
     return navigator['onLine'];
   }
   // If we can't determine the state, assume it is online.
   return true;
 };
 
-
 /**
  * @param {?Object=} opt_navigator The object with navigator data, defaulting
  *     to window.navigator if unspecified.
  * @return {?string} The user's preferred language. Returns null if
  */
-fireauth.util.getUserLanguage = function(opt_navigator) {
+fireauth.util.getUserLanguage = function (opt_navigator) {
   var navigator = opt_navigator || goog.global['navigator'];
   if (!navigator) {
     return null;
   }
   return (
-      // Most reliable, but only supported in Chrome/Firefox.
-      navigator['languages'] && navigator['languages'][0] ||
-      // Supported in most browsers, but returns the language of the browser
-      // UI, not the language set in browser settings.
-      navigator['language'] ||
-      // IE <= 10.
-      navigator['userLanguage'] ||
-      // Couldn't determine language.
-      null
+    // Most reliable, but only supported in Chrome/Firefox.
+    (navigator['languages'] && navigator['languages'][0]) ||
+    // Supported in most browsers, but returns the language of the browser
+    // UI, not the language set in browser settings.
+    navigator['language'] ||
+    // IE <= 10.
+    navigator['userLanguage'] ||
+    // Couldn't determine language.
+    null
   );
 };
-
 
 /**
  * A structure to help pick between a range of long and short delay durations
@@ -1287,7 +1284,7 @@ fireauth.util.getUserLanguage = function(opt_navigator) {
  * @param {?fireauth.util.Env=} opt_env The optional environment.
  * @constructor
  */
-fireauth.util.Delay = function(shortDelay, longDelay, opt_userAgent, opt_env) {
+fireauth.util.Delay = function (shortDelay, longDelay, opt_userAgent, opt_env) {
   // Internal error when improperly initialized.
   if (shortDelay > longDelay) {
     throw new Error('Short delay should be less than long delay!');
@@ -1306,7 +1303,6 @@ fireauth.util.Delay = function(shortDelay, longDelay, opt_userAgent, opt_env) {
   this.isMobile_ = fireauth.util.isMobileDevice(opt_userAgent, opt_env);
 };
 
-
 /**
  * The default value for the offline delay timeout in ms.
  * @const {number}
@@ -1314,11 +1310,10 @@ fireauth.util.Delay = function(shortDelay, longDelay, opt_userAgent, opt_env) {
  */
 fireauth.util.Delay.OFFLINE_DELAY_MS_ = 5000;
 
-
 /**
  * @return {number} The delay that matches with the current environment.
  */
-fireauth.util.Delay.prototype.get = function() {
+fireauth.util.Delay.prototype.get = function () {
   // navigator.onLine is unreliable in some cases.
   // Failing hard in those cases may make it impossible to recover for end user.
   // Waiting for the regular full duration when there is no network can result
@@ -1338,13 +1333,12 @@ fireauth.util.Delay.prototype.get = function() {
   return this.isMobile_ ? this.longDelay_ : this.shortDelay_;
 };
 
-
 /**
  * @return {boolean} Whether the app is visible in the foreground. This uses
  *     document.visibilityState. For browsers that do not support it, this is
  *     always true.
  */
-fireauth.util.isAppVisible = function() {
+fireauth.util.isAppVisible = function () {
   // https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState
   var doc = goog.global.document;
   // Check if supported.
@@ -1356,12 +1350,11 @@ fireauth.util.isAppVisible = function() {
   return true;
 };
 
-
 /**
  * @return {!goog.Promise} A promise that resolves when the app is visible in
  *     the foreground.
  */
-fireauth.util.onAppVisible = function() {
+fireauth.util.onAppVisible = function () {
   var doc = goog.global.document;
   // Visibility change listener reference.
   var onVisibilityChange = null;
@@ -1370,21 +1363,24 @@ fireauth.util.onAppVisible = function() {
     return goog.Promise.resolve();
   } else {
     // Invisible and in browser environment.
-    return new goog.Promise(function(resolve, reject) {
+    return new goog.Promise(function (resolve, reject) {
       // On visibility change listener.
-      onVisibilityChange = function(event) {
+      onVisibilityChange = function (event) {
         // App is visible.
         if (fireauth.util.isAppVisible()) {
           // Unregister event listener.
           doc.removeEventListener(
-              'visibilitychange', onVisibilityChange, false);
+            'visibilitychange',
+            onVisibilityChange,
+            false
+          );
           // Resolve promise.
           resolve();
         }
       };
       // Listen to visibility change.
       doc.addEventListener('visibilitychange', onVisibilityChange, false);
-    }).thenCatch(function(error) {
+    }).thenCatch(function (error) {
       // In case this promise was cancelled, make sure it unlistens to
       // visibilitychange event.
       doc.removeEventListener('visibilitychange', onVisibilityChange, false);
@@ -1394,28 +1390,25 @@ fireauth.util.onAppVisible = function() {
   }
 };
 
-
 /**
  * Logs a warning message to the console, if the console is available.
  * @param {string} message
  */
-fireauth.util.consoleWarn = function(message) {
+fireauth.util.consoleWarn = function (message) {
   if (typeof console !== 'undefined' && typeof console.warn === 'function') {
     console.warn(message);
   }
 };
 
-
 /**
  * Logs an info message to the console, if the console is available.
  * @param {string} message
  */
-fireauth.util.consoleInfo = function(message) {
+fireauth.util.consoleInfo = function (message) {
   if (typeof console !== 'undefined' && typeof console.info === 'function') {
     console.info(message);
   }
 };
-
 
 /**
  * Parses a UTC time stamp string or number and returns the corresponding UTC
@@ -1423,14 +1416,16 @@ fireauth.util.consoleInfo = function(message) {
  * @param {?string|number} utcTimestamp The UTC timestamp number or string.
  * @return {?string} The corresponding UTC date string. Null if invalid.
  */
-fireauth.util.utcTimestampToDateString = function(utcTimestamp) {
+fireauth.util.utcTimestampToDateString = function (utcTimestamp) {
   try {
     // Convert to date object.
     var date = new Date(parseInt(utcTimestamp, 10));
     // Test date is valid.
-    if (!isNaN(date.getTime()) &&
-        // Confirm that utcTimestamp is numeric.
-        goog.string.isNumeric(utcTimestamp)) {
+    if (
+      !isNaN(date.getTime()) &&
+      // Confirm that utcTimestamp is numeric.
+      goog.string.isNumeric(utcTimestamp)
+    ) {
       // Convert to UTC date string.
       return date.toUTCString();
     }
@@ -1440,22 +1435,21 @@ fireauth.util.utcTimestampToDateString = function(utcTimestamp) {
   return null;
 };
 
-
 /** @return {boolean} Whether indexedDB is available. */
-fireauth.util.isIndexedDBAvailable = function() {
+fireauth.util.isIndexedDBAvailable = function () {
   return !!goog.global['indexedDB'];
 };
 
-
 /** @return {boolean} Whether current mode is Auth handler or iframe. */
-fireauth.util.isAuthHandlerOrIframe = function() {
-  return !!(fireauth.util.getObjectRef('fireauth.oauthhelper', goog.global) ||
-            fireauth.util.getObjectRef('fireauth.iframe', goog.global));
+fireauth.util.isAuthHandlerOrIframe = function () {
+  return !!(
+    fireauth.util.getObjectRef('fireauth.oauthhelper', goog.global) ||
+    fireauth.util.getObjectRef('fireauth.iframe', goog.global)
+  );
 };
 
-
 /** @return {boolean} Whether indexedDB is used to persist storage. */
-fireauth.util.persistsStorageWithIndexedDB = function() {
+fireauth.util.persistsStorageWithIndexedDB = function () {
   // This will cover:
   // IE11, Edge when indexedDB is available (this is unavailable in InPrivate
   // mode). (SDK, OAuth handler and iframe)
@@ -1463,14 +1457,15 @@ fireauth.util.persistsStorageWithIndexedDB = function() {
 
   // In a browser environment, when an iframe and a popup web storage are not
   // synchronized, use the indexedDB fireauth.storage.Storage implementation.
-  return (fireauth.util.isLocalStorageNotSynchronized() ||
-          !fireauth.util.isAuthHandlerOrIframe()) &&
-         fireauth.util.isIndexedDBAvailable();
+  return (
+    (fireauth.util.isLocalStorageNotSynchronized() ||
+      !fireauth.util.isAuthHandlerOrIframe()) &&
+    fireauth.util.isIndexedDBAvailable()
+  );
 };
 
-
 /** Sets the no-referrer meta tag in the document head if applicable. */
-fireauth.util.setNoReferrer = function() {
+fireauth.util.setNoReferrer = function () {
   var doc = goog.global.document;
   if (doc) {
     try {
@@ -1489,20 +1484,22 @@ fireauth.util.setNoReferrer = function() {
   }
 };
 
-
 /** @return {?ServiceWorker} The servicerWorker controller if available. */
-fireauth.util.getServiceWorkerController = function() {
+fireauth.util.getServiceWorkerController = function () {
   var navigator = goog.global['navigator'];
-  return (navigator &&
-          navigator.serviceWorker &&
-          navigator.serviceWorker.controller) || null;
+  return (
+    (navigator &&
+      navigator.serviceWorker &&
+      navigator.serviceWorker.controller) ||
+    null
+  );
 };
 
-
 /** @return {?WorkerGlobalScope} The worker global scope if available. */
-fireauth.util.getWorkerGlobalScope = function() {
-  return fireauth.util.isWorker() ? /** @type {!WorkerGlobalScope} */ (self) :
-      null;
+fireauth.util.getWorkerGlobalScope = function () {
+  return fireauth.util.isWorker()
+    ? /** @type {!WorkerGlobalScope} */ (self)
+    : null;
 };
 
 /**
@@ -1510,19 +1507,19 @@ fireauth.util.getWorkerGlobalScope = function() {
  *     service worker. This will resolve only when a service worker becomes
  *     available. If no service worker is supported, it will resolve with null.
  */
-fireauth.util.getActiveServiceWorker = function() {
+fireauth.util.getActiveServiceWorker = function () {
   var navigator = goog.global['navigator'];
   if (navigator && navigator.serviceWorker) {
     return goog.Promise.resolve()
-        .then(function() {
-          return navigator.serviceWorker.ready;
-        })
-        .then(function(registration) {
-          return /** @type {?ServiceWorker} */ (registration.active || null);
-        })
-        .thenCatch(function(error) {
-          return null;
-        });
+      .then(function () {
+        return navigator.serviceWorker.ready;
+      })
+      .then(function (registration) {
+        return /** @type {?ServiceWorker} */ (registration.active || null);
+      })
+      .thenCatch(function (error) {
+        return null;
+      });
   }
   return goog.Promise.resolve(/** @type {?ServiceWorker} */ (null));
 };

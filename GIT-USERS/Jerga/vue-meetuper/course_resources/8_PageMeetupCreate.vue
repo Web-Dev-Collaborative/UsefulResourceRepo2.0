@@ -10,16 +10,16 @@
 </template>
 
 <script>
-  import MeetupCreateWizard from '@/components/MeetupCreate/MeetupCreateWizard'
-  export default {
-    components: {
-      MeetupCreateWizard
-    }
-  }
+import MeetupCreateWizard from "@/components/MeetupCreate/MeetupCreateWizard";
+export default {
+  components: {
+    MeetupCreateWizard,
+  },
+};
 </script>
 
 <style scoped lang="scss">
-  .meetup-create-page {
-    min-height: 100vh;
-  }
+.meetup-create-page {
+  min-height: 100vh;
+}
 </style>

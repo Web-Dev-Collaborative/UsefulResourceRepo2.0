@@ -10,7 +10,7 @@ dashedName: set-up-a-template-engine
 
 As a reminder, this project is built upon the following starter project on [Repl.it](https://repl.it/github/freeCodeCamp/boilerplate-advancednode), or clone from [GitHub](https://github.com/freeCodeCamp/boilerplate-advancednode/).
 
-A template engine enables you to use static template files (such as those written in *Pug*) in your app. At runtime, the template engine replaces variables in a template file with actual values which can be supplied by your server. Then it transforms the template into a static HTML file that is sent to the client. This approach makes it easier to design an HTML page and allows for displaying variables on the page without needing to make an API call from the client.
+A template engine enables you to use static template files (such as those written in _Pug_) in your app. At runtime, the template engine replaces variables in a template file with actual values which can be supplied by your server. Then it transforms the template into a static HTML file that is sent to the client. This approach makes it easier to design an HTML page and allows for displaying variables on the page without needing to make an API call from the client.
 
 Add `pug@~3.0.0` as a dependency in your `package.json` file.
 
@@ -30,12 +30,12 @@ Pug should be a dependency.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.property(
         packJson.dependencies,
-        'pug',
+        "pug",
         'Your project should list "pug" as a dependency'
       );
     },
@@ -49,12 +49,12 @@ View engine should be Pug.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
         /('|")view engine('|"),( |)('|")pug('|")/gi,
-        'Your project should set Pug as a view engine'
+        "Your project should set Pug as a view engine"
       );
     },
     (xhr) => {
@@ -67,12 +67,12 @@ Use the correct ExpressJS method to render the index page from the response.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/').then(
+  $.get(getUserInput("url") + "/").then(
     (data) => {
       assert.match(
         data,
         /FCC Advanced Node and Express/gi,
-        'You successfully rendered the Pug template!'
+        "You successfully rendered the Pug template!"
       );
     },
     (xhr) => {
@@ -85,12 +85,12 @@ Pug should be working.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/').then(
+  $.get(getUserInput("url") + "/").then(
     (data) => {
       assert.match(
         data,
         /pug-success-message/gi,
-        'Your projects home page should now be rendered by pug with the projects .pug file unaltered'
+        "Your projects home page should now be rendered by pug with the projects .pug file unaltered"
       );
     },
     (xhr) => {

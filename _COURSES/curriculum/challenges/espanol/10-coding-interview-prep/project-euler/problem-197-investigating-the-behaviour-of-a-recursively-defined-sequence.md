@@ -1,6 +1,6 @@
 ---
 id: 5900f4311000cf542c50ff44
-title: 'Problem 197: Investigating the behaviour of a recursively defined sequence'
+title: "Problem 197: Investigating the behaviour of a recursively defined sequence"
 challengeType: 5
 forumTopicId: 301835
 dashedName: problem-197-investigating-the-behaviour-of-a-recursively-defined-sequence
@@ -28,7 +28,6 @@ assert.strictEqual(euler197(), 1.710637717);
 
 ```js
 function euler197() {
-
   return true;
 }
 

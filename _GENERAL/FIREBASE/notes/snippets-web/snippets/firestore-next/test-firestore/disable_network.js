@@ -4,7 +4,7 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START disable_network_modular]
-import { disableNetwork } from "firebase/firestore"; 
+import { disableNetwork } from "firebase/firestore";
 
 await disableNetwork(db);
 console.log("Network disabled!");

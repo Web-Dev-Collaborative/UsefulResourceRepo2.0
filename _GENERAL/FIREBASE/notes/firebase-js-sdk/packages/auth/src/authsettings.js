@@ -15,58 +15,56 @@
  * limitations under the License.
  */
 
- /**
+/**
  * @fileoverview Defines the firebase.auth.AuthSettings structure.
  */
 
 goog.provide('fireauth.AuthSettings');
-
 
 /**
  * The class used to initialize an Auth settings object currently used to
  * enable or disable app verification for testing.
  * @constructor
  */
-fireauth.AuthSettings = function() {
+fireauth.AuthSettings = function () {
   this.appVerificationDisabledForTesting_ = false;
   Object.defineProperty(
-      /** @type {!Object} */ (this),
-      'appVerificationDisabled',
-      {
-        /**
-         * @this {!Object}
-         * @return {boolean} The current status.
-         */
-        get: function() {
-          return this.getAppVerificationDisabledForTesting();
-        },
-        /**
-         * @this {!Object}
-         * @param {boolean} value The new status.
-         */
-        set: function(value) {
-          this.setAppVerificationDisabledForTesting(value);
-        },
-        enumerable: false
-      });
+    /** @type {!Object} */ (this),
+    'appVerificationDisabled',
+    {
+      /**
+       * @this {!Object}
+       * @return {boolean} The current status.
+       */
+      get: function () {
+        return this.getAppVerificationDisabledForTesting();
+      },
+      /**
+       * @this {!Object}
+       * @param {boolean} value The new status.
+       */
+      set: function (value) {
+        this.setAppVerificationDisabledForTesting(value);
+      },
+      enumerable: false
+    }
+  );
 };
-
 
 /**
  * Sets whether app verification is disable for testing.
  * @param {boolean} status App verification status for testing.
  */
 fireauth.AuthSettings.prototype.setAppVerificationDisabledForTesting =
-    function(status) {
-  this.appVerificationDisabledForTesting_ = status;
-};
-
+  function (status) {
+    this.appVerificationDisabledForTesting_ = status;
+  };
 
 /**
  * @return {boolean} Whether app verification is enabled or disabled for
  *     testing.
  */
 fireauth.AuthSettings.prototype.getAppVerificationDisabledForTesting =
-    function() {
-  return this.appVerificationDisabledForTesting_;
-};
+  function () {
+    return this.appVerificationDisabledForTesting_;
+  };

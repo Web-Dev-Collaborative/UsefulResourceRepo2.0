@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08736
 title: Aplica un estilo al elemento HTML body
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cB77PHW'
+videoUrl: "https://scrimba.com/c/cB77PHW"
 forumTopicId: 18313
 dashedName: style-the-html-body-element
 ---
@@ -30,7 +30,7 @@ body {
 Tu elemento `body` debe tener un `background-color` black (negro).
 
 ```js
-assert($('body').css('background-color') === 'rgb(0, 0, 0)');
+assert($("body").css("background-color") === "rgb(0, 0, 0)");
 ```
 
 Tu regla CSS debe tener el formato correcto, usando llaves de apertura y de cierre.
@@ -54,17 +54,15 @@ assert(
 ## --seed-contents--
 
 ```html
-<style>
-
-</style>
+<style></style>
 ```
 
 # --solutions--
 
 ```html
 <style>
-body {
-  background-color: black;
-}
+  body {
+    background-color: black;
+  }
 </style>
 ```

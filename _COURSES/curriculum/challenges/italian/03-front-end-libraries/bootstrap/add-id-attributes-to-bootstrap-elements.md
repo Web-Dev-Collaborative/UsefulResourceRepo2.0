@@ -17,7 +17,7 @@ Diamo un id unico a ciascuno dei nostri elementi `div` di classe `well`.
 Ricorda che puoi dare ad un elemento un id come questo:
 
 ```html
-<div class="well" id="center-well">
+<div class="well" id="center-well"></div>
 ```
 
 Dai all'elemento well sulla sinistra l'id di `left-well`. Dai all'elemento well sulla destra l'id di `right-well`.
@@ -28,8 +28,8 @@ Il tuo `well` di sinistra dovrebbe avere l'id di `left-well`.
 
 ```js
 assert(
-  $('.col-xs-6').children('#left-well') &&
-    $('.col-xs-6').children('#left-well').length > 0
+  $(".col-xs-6").children("#left-well") &&
+    $(".col-xs-6").children("#left-well").length > 0
 );
 ```
 
@@ -37,8 +37,8 @@ Il tuo `well` di destra dovrebbe avere l'id di `right-well`.
 
 ```js
 assert(
-  $('.col-xs-6').children('#right-well') &&
-    $('.col-xs-6').children('#right-well').length > 0
+  $(".col-xs-6").children("#right-well") &&
+    $(".col-xs-6").children("#right-well").length > 0
 );
 ```
 

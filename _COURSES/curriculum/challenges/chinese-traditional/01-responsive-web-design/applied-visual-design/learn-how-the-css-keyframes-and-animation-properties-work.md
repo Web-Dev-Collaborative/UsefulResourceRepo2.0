@@ -2,7 +2,7 @@
 id: 587d78a7367417b2b2512adf
 title: 瞭解 CSS 的關鍵幀和動畫是如何工作的
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cakprhv'
+videoUrl: "https://scrimba.com/c/cakprhv"
 forumTopicId: 301059
 dashedName: learn-how-the-css-keyframes-and-animation-properties-work
 ---
@@ -15,7 +15,7 @@ dashedName: learn-how-the-css-keyframes-and-animation-properties-work
 
 `animation-duration` 設置動畫所花費的時間。
 
-`@keyframes` 可以通過設置特定時間點的行爲來創建動畫。 爲此，我們只需要給持續時間內的特定幀（從 0% 到 100%）加上 CSS 規則。 如果用一部電影來做類比，那麼 CSS 裏面的 0% 關鍵幀就像是電影裏面的開場鏡頭；100% 關鍵幀就像是電影裏的片尾，就是那個之後會出現演職人員列表的片尾。 在動畫設定的時間內，CSS 會根據關鍵幀的規則來給元素添加動畫效果。 100% 位置的 CSS 屬性就是元素最後的樣子，相當於電影裏的演職員表或者鳴謝鏡頭。 然後CSS 應用魔法來在給定的時間內轉換元素以使其脫離場景。 下面舉例說明 `@keyframes` 和動畫屬性的用法：
+`@keyframes` 可以通過設置特定時間點的行爲來創建動畫。 爲此，我們只需要給持續時間內的特定幀（從 0% 到 100%）加上 CSS 規則。 如果用一部電影來做類比，那麼 CSS 裏面的 0% 關鍵幀就像是電影裏面的開場鏡頭；100% 關鍵幀就像是電影裏的片尾，就是那個之後會出現演職人員列表的片尾。 在動畫設定的時間內，CSS 會根據關鍵幀的規則來給元素添加動畫效果。 100% 位置的 CSS 屬性就是元素最後的樣子，相當於電影裏的演職員表或者鳴謝鏡頭。 然後 CSS 應用魔法來在給定的時間內轉換元素以使其脫離場景。 下面舉例說明 `@keyframes` 和動畫屬性的用法：
 
 ```css
 #anim {
@@ -44,13 +44,13 @@ id 爲 `anim` 的元素，我們在代碼中將它的 `animation-name` 設置爲
 id 爲 `rect` 的元素應該有一個值爲 `rainbow` 的 `animation-name` 屬性。
 
 ```js
-assert($('#rect').css('animation-name') == 'rainbow');
+assert($("#rect").css("animation-name") == "rainbow");
 ```
 
 id 爲 `rect` 的元素應該有一個值爲 4s 的 `animation-duration` 屬性。
 
 ```js
-assert($('#rect').css('animation-duration') == '4s');
+assert($("#rect").css("animation-duration") == "4s");
 ```
 
 `@keyframes` 規則的 `animation-name` 應爲 `rainbow`。
@@ -92,13 +92,7 @@ assert(code.match(/100%\s*?{\s*?background-color:\s*?yellow;\s*?}/gi));
   }
 
   #rect {
-
-
   }
-
-
-
-
 </style>
 <div id="rect"></div>
 ```

@@ -15,7 +15,7 @@ Considera il seguente codice:
 ```js
 const getMousePosition = (x, y) => ({
   x: x,
-  y: y
+  y: y,
 });
 ```
 
@@ -35,15 +35,15 @@ Usa la scorciatoia sulle proprietà degli oggetti letterali per creare e restitu
 
 ```js
 assert.deepEqual(
-  { name: 'Zodiac Hasbro', age: 56, gender: 'male' },
-  createPerson('Zodiac Hasbro', 56, 'male')
+  { name: "Zodiac Hasbro", age: 56, gender: "male" },
+  createPerson("Zodiac Hasbro", 56, "male")
 );
 ```
 
 Il tuo codice non dovrebbe usare la coppia `key:value`.
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/:/g));
+(getUserInput) => assert(!getUserInput("index").match(/:/g));
 ```
 
 # --seed--
@@ -56,7 +56,7 @@ const createPerson = (name, age, gender) => {
   return {
     name: name,
     age: age,
-    gender: gender
+    gender: gender,
   };
   // Only change code above this line
 };
@@ -69,7 +69,7 @@ const createPerson = (name, age, gender) => {
   return {
     name,
     age,
-    gender
+    gender,
   };
 };
 ```

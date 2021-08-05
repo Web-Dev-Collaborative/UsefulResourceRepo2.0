@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08835
 title: Creare un gruppo di caselle di spunta
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cqrkJsp'
+videoUrl: "https://scrimba.com/p/pVMPUv/cqrkJsp"
 forumTopicId: 16821
 dashedName: create-a-set-of-checkboxes
 ---
@@ -22,7 +22,9 @@ Tutti i gli input relativi alla casella di spunta dovrebbero avere lo stesso att
 Ecco un esempio di casella di spunta:
 
 ```html
-<label for="loving"><input id="loving" type="checkbox" name="personality"> Loving</label>
+<label for="loving"
+  ><input id="loving" type="checkbox" name="personality" /> Loving</label
+>
 ```
 
 # --instructions--
@@ -64,7 +66,7 @@ assert(
 Ognuna delle tue caselle di spunta dovrebbe essere inserita all'interno del tag `form`.
 
 ```js
-assert($('label').parent().get(0).tagName.match('FORM'));
+assert($("label").parent().get(0).tagName.match("FORM"));
 ```
 
 # --seed--
@@ -76,7 +78,11 @@ assert($('label').parent().get(0).tagName.match('FORM'));
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -91,9 +97,13 @@ assert($('label').parent().get(0).tagName.match('FORM'));
     <li>other cats</li>
   </ol>
   <form action="https://www.freecatphotoapp.com/submit-cat-photo">
-    <label for="indoor"><input id="indoor" type="radio" name="indoor-outdoor"> Indoor</label>
-    <label for="outdoor"><input id="outdoor" type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label for="indoor"
+      ><input id="indoor" type="radio" name="indoor-outdoor" /> Indoor</label
+    >
+    <label for="outdoor"
+      ><input id="outdoor" type="radio" name="indoor-outdoor" /> Outdoor</label
+    ><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>
@@ -106,7 +116,11 @@ assert($('label').parent().get(0).tagName.match('FORM'));
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -121,14 +135,22 @@ assert($('label').parent().get(0).tagName.match('FORM'));
     <li>other cats</li>
   </ol>
   <form action="https://www.freecatphotoapp.com/submit-cat-photo">
-    <label for="indoor"><input id="indoor" type="radio" name="indoor-outdoor"> Indoor</label>
-    <label for="outdoor"><input id="outdoor" type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label for="playful"><input id="playful" type="checkbox" name="personality">Playful</label>
-    <label for="lazy"><input id="lazy" type="checkbox" 
-name="personality">Lazy</label>
-    <label for="evil"><input id="evil" type="checkbox" 
-name="personality">Evil</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label for="indoor"
+      ><input id="indoor" type="radio" name="indoor-outdoor" /> Indoor</label
+    >
+    <label for="outdoor"
+      ><input id="outdoor" type="radio" name="indoor-outdoor" /> Outdoor</label
+    ><br />
+    <label for="playful"
+      ><input id="playful" type="checkbox" name="personality" />Playful</label
+    >
+    <label for="lazy"
+      ><input id="lazy" type="checkbox" name="personality" />Lazy</label
+    >
+    <label for="evil"
+      ><input id="evil" type="checkbox" name="personality" />Evil</label
+    ><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>

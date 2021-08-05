@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244d0
 title: Comparación con el operador de igualdad
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cKyVMAL'
+videoUrl: "https://scrimba.com/c/cKyVMAL"
 forumTopicId: 16784
 dashedName: comparison-with-the-equality-operator
 ---
@@ -16,7 +16,7 @@ El operador más básico es el de igualdad `==`. El operador de igualdad compara
 ```js
 function equalityTest(myVal) {
   if (myVal == 10) {
-     return "Equal";
+    return "Equal";
   }
   return "Not Equal";
 }
@@ -25,10 +25,10 @@ function equalityTest(myVal) {
 Si `myVal` es igual a `10`, el operador de igualdad devuelve `true`, así que el código dentro de los corchetes se ejecutará y la función devolverá `Equal`. De lo contrario, la función devolverá `Not Equal`. Para que JavaScript compare dos <dfn>tipos de datos</dfn> diferentes (por ejemplo, `numbers` y `strings`), tiene que convertir un tipo a otro. Esto se conoce como Coerción de Tipo. Sin embargo, una vez lo hace, puede comparar términos como se ve a continuación:
 
 ```js
-1   ==  1
-1   ==  2
-1   == '1'
-"3" ==  3
+1 == 1;
+1 == 2;
+1 == "1";
+"3" == 3;
 ```
 
 En orden, estas expresiones se evaluarían como `true`, `false`, `true` y `true`.
@@ -42,19 +42,19 @@ Agrega el operador de igualdad a la línea indicada para que la función devuelv
 `testEqual(10)` debe devolver la cadena `Not Equal`
 
 ```js
-assert(testEqual(10) === 'Not Equal');
+assert(testEqual(10) === "Not Equal");
 ```
 
 `testEqual(12)` debe devolver la cadena `Equal`
 
 ```js
-assert(testEqual(12) === 'Equal');
+assert(testEqual(12) === "Equal");
 ```
 
 `testEqual("12")` debe devolver la cadena `Equal`
 
 ```js
-assert(testEqual('12') === 'Equal');
+assert(testEqual("12") === "Equal");
 ```
 
 Debes usar el operador `==`
@@ -70,7 +70,8 @@ assert(code.match(/==/g) && !code.match(/===/g));
 ```js
 // Setup
 function testEqual(val) {
-  if (val) { // Change this line
+  if (val) {
+    // Change this line
     return "Equal";
   }
   return "Not Equal";

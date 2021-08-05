@@ -4,7 +4,14 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START fs_geo_query_hashes_modular]
-import { collection, query, orderBy, startAt, endAt, getDocs } from 'firebase/firestore';
+import {
+  collection,
+  query,
+  orderBy,
+  startAt,
+  endAt,
+  getDocs,
+} from "firebase/firestore";
 
 // Find cities within 50km of London
 const center = [51.5074, 0.1278];
@@ -17,10 +24,11 @@ const bounds = geofire.geohashQueryBounds(center, radiusInM);
 const promises = [];
 for (const b of bounds) {
   const q = query(
-    collection(db, 'cities'), 
-    orderBy('geohash'), 
-    startAt(b[0]), 
-    endAt(b[1]));
+    collection(db, "cities"),
+    orderBy("geohash"),
+    startAt(b[0]),
+    endAt(b[1])
+  );
 
   promises.push(getDocs(q));
 }
@@ -31,8 +39,8 @@ const snapshots = await Promise.all(promises);
 const matchingDocs = [];
 for (const snap of snapshots) {
   for (const doc of snap.docs) {
-    const lat = doc.get('lat');
-    const lng = doc.get('lng');
+    const lat = doc.get("lat");
+    const lng = doc.get("lng");
 
     // We have to filter out a few false positives due to GeoHash
     // accuracy, but most will match

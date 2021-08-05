@@ -180,7 +180,7 @@ describe('core/user/reload', () => {
       providerData: Array<{ providerId: string }>
     ): void {
       // Get around readonly property
-      const mutUser = (user as unknown) as Record<string, unknown>;
+      const mutUser = user as unknown as Record<string, unknown>;
       mutUser.isAnonymous = isAnonStart;
       mutUser.email = emailStart;
 

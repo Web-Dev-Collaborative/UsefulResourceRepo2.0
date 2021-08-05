@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf07756
 title: Important 的優先級最高
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cm24rcp'
+videoUrl: "https://scrimba.com/c/cm24rcp"
 forumTopicId: 18249
 dashedName: override-all-other-styles-by-using-important
 ---
@@ -32,19 +32,19 @@ color: red !important;
 `h1` 元素應包含 `pink-text` class。
 
 ```js
-assert($('h1').hasClass('pink-text'));
+assert($("h1").hasClass("pink-text"));
 ```
 
 `h1` 元素應包含 `blue-text` class。
 
 ```js
-assert($('h1').hasClass('blue-text'));
+assert($("h1").hasClass("blue-text"));
 ```
 
 `h1` 元素應有 `id`， 值爲 `orange-text`。
 
 ```js
-assert($('h1').attr('id') === 'orange-text');
+assert($("h1").attr("id") === "orange-text");
 ```
 
 `h1` 元素應有一個內聯樣式 `color: white`。
@@ -64,7 +64,7 @@ assert(
 `h1` 元素應爲粉紅色。
 
 ```js
-assert($('h1').css('color') === 'rgb(255, 192, 203)');
+assert($("h1").css("color") === "rgb(255, 192, 203)");
 ```
 
 # --seed--
@@ -88,7 +88,9 @@ assert($('h1').css('color') === 'rgb(255, 192, 203)');
     color: blue;
   }
 </style>
-<h1 id="orange-text" class="pink-text blue-text" style="color: white">Hello World!</h1>
+<h1 id="orange-text" class="pink-text blue-text" style="color: white">
+  Hello World!
+</h1>
 ```
 
 # --solutions--
@@ -110,5 +112,7 @@ assert($('h1').css('color') === 'rgb(255, 192, 203)');
     color: blue;
   }
 </style>
-<h1 id="orange-text" class="pink-text blue-text" style="color: white">Hello World!</h1>
+<h1 id="orange-text" class="pink-text blue-text" style="color: white">
+  Hello World!
+</h1>
 ```

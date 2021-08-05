@@ -8,18 +8,18 @@ function emailLinkActionCodeSettings() {
   const actionCodeSettings = {
     // URL you want to redirect back to. The domain (www.example.com) for this
     // URL must be in the authorized domains list in the Firebase Console.
-    url: 'https://www.example.com/finishSignUp?cartId=1234',
+    url: "https://www.example.com/finishSignUp?cartId=1234",
     // This must be true.
     handleCodeInApp: true,
     iOS: {
-      bundleId: 'com.example.ios'
+      bundleId: "com.example.ios",
     },
     android: {
-      packageName: 'com.example.android',
+      packageName: "com.example.android",
       installApp: true,
-      minimumVersion: '12'
+      minimumVersion: "12",
     },
-    dynamicLinkDomain: 'example.page.link'
+    dynamicLinkDomain: "example.page.link",
   };
   // [END auth_email_link_actioncode_settings]
 }
@@ -34,7 +34,7 @@ function emailLinkSend(email, actionCodeSettings) {
       // The link was successfully sent. Inform the user.
       // Save the email locally so you don't need to ask the user for it again
       // if they open the link on the same device.
-      window.localStorage.setItem('emailForSignIn', email);
+      window.localStorage.setItem("emailForSignIn", email);
       // ...
     })
     .catch((error) => {
@@ -47,7 +47,11 @@ function emailLinkSend(email, actionCodeSettings) {
 
 function emailLinkComplete() {
   // [START email_link_complete]
-  const { getAuth, isSignInWithEmailLink, signInWithEmailLink } = require("firebase/auth");
+  const {
+    getAuth,
+    isSignInWithEmailLink,
+    signInWithEmailLink,
+  } = require("firebase/auth");
 
   // Confirm the link is a sign-in with email link.
   const auth = getAuth();
@@ -57,17 +61,17 @@ function emailLinkComplete() {
     // the sign-in operation.
     // Get the email if available. This should be available if the user completes
     // the flow on the same device where they started it.
-    let email = window.localStorage.getItem('emailForSignIn');
+    let email = window.localStorage.getItem("emailForSignIn");
     if (!email) {
       // User opened the link on a different device. To prevent session fixation
       // attacks, ask the user to provide the associated email again. For example:
-      email = window.prompt('Please provide your email for confirmation');
+      email = window.prompt("Please provide your email for confirmation");
     }
     // The client SDK will parse the code from the link for you.
     signInWithEmailLink(auth, email, window.location.href)
       .then((result) => {
         // Clear email from storage.
-        window.localStorage.removeItem('emailForSignIn');
+        window.localStorage.removeItem("emailForSignIn");
         // You can access the new user via result.user
         // Additional user info profile not available via:
         // result.additionalUserInfo.profile == null
@@ -84,11 +88,17 @@ function emailLinkComplete() {
 
 function emailLinkLink(email) {
   // [START auth_email_link_link]
-  const { getAuth, linkWithCredential, EmailAuthProvider } = require("firebase/auth");
+  const {
+    getAuth,
+    linkWithCredential,
+    EmailAuthProvider,
+  } = require("firebase/auth");
 
   // Construct the email link credential from the current URL.
   const credential = EmailAuthProvider.credentialWithLink(
-    email, window.location.href);
+    email,
+    window.location.href
+  );
 
   // Link the credential to the current user.
   const auth = getAuth();
@@ -105,11 +115,17 @@ function emailLinkLink(email) {
 
 function emailLinkReauth(email) {
   // [START auth_email_link_reauth]
-  const { getAuth, reauthenticateWithCredential, EmailAuthProvider } = require("firebase/auth");
+  const {
+    getAuth,
+    reauthenticateWithCredential,
+    EmailAuthProvider,
+  } = require("firebase/auth");
 
   // Construct the email link credential from the current URL.
   const credential = EmailAuthProvider.credentialWithLink(
-    email, window.location.href);
+    email,
+    window.location.href
+  );
 
   // Re-authenticate the user with this credential.
   const auth = getAuth();
@@ -126,10 +142,14 @@ function emailLinkReauth(email) {
 
 function emailLinkDifferentiate() {
   // [START email_link_diferentiate]
-  const { getAuth, fetchSignInMethodsForEmail, EmailAuthProvider} = require("firebase/auth");
+  const {
+    getAuth,
+    fetchSignInMethodsForEmail,
+    EmailAuthProvider,
+  } = require("firebase/auth");
 
   // After asking the user for their email.
-  const email = window.prompt('Please provide your email');
+  const email = window.prompt("Please provide your email");
 
   const auth = getAuth();
   fetchSignInMethodsForEmail(auth, email)
@@ -140,10 +160,16 @@ function emailLinkDifferentiate() {
       // 'emailLink' if the user previously signed in with an email/link
       // 'password' if the user has a password.
       // A user could have both.
-      if (signInMethods.indexOf(EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD) != -1) {
+      if (
+        signInMethods.indexOf(
+          EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD
+        ) != -1
+      ) {
         // User can sign in with email/password.
       }
-      if (signInMethods.indexOf(EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD) != -1) {
+      if (
+        signInMethods.indexOf(EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD) != -1
+      ) {
         // User can sign in with email/link.
       }
     })

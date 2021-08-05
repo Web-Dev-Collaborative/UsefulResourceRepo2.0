@@ -1,7 +1,6 @@
-
-import { PageTitle, CardList, Section } from 'components/shared';
-import Link from 'next/link';
-import NotUsed from 'components/NotUsedPart';
+import { PageTitle, CardList, Section } from "components/shared";
+import Link from "next/link";
+import NotUsed from "components/NotUsedPart";
 
 const Home = () => (
   <>
@@ -9,14 +8,13 @@ const Home = () => (
     <Section>
       <CardList />
     </Section>
-    <Link
-      href="/portfolios">
-        <a className="btn btn-main bg-blue ttu">See More Portfolios</a>
+    <Link href="/portfolios">
+      <a className="btn btn-main bg-blue ttu">See More Portfolios</a>
     </Link>
     <Section>
       <NotUsed />
     </Section>
   </>
-)
+);
 
-export default Home
+export default Home;

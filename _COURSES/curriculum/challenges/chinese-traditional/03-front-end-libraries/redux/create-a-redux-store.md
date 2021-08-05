@@ -27,7 +27,7 @@ Redux `store` 是一個保存和管理應用程序狀態的`state`， 可以使�
 Redux store 應當存在。
 
 ```js
-assert(typeof store.getState === 'function');
+assert(typeof store.getState === "function");
 ```
 
 Redux store 的 state 的值應該爲 5。
@@ -43,7 +43,7 @@ assert(store.getState() === 5);
 ```js
 const reducer = (state = 5) => {
   return state;
-}
+};
 
 // Redux methods are available from a Redux object
 // For example: Redux.createStore()
@@ -55,7 +55,7 @@ const reducer = (state = 5) => {
 ```js
 const reducer = (state = 5) => {
   return state;
-}
+};
 
 const store = Redux.createStore(reducer);
 ```

@@ -1,5 +1,4 @@
-
-import { checkoutDetailFragment } from "../common"
+import { checkoutDetailFragment } from "../common";
 
 const getCheckout = `
   query($checkoutId: ID!){
@@ -9,7 +8,6 @@ const getCheckout = `
       }
     }
   }
-`
+`;
 
-
-export default getCheckout
+export default getCheckout;

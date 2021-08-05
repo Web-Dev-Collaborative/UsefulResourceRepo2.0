@@ -16,41 +16,43 @@
  * @fileoverview Test for unsupported provider handler.
  */
 
-goog.provide('firebaseui.auth.widget.handler.UnsupportedProviderTest');
-goog.setTestOnly('firebaseui.auth.widget.handler.UnsupportedProviderTest');
+goog.provide("firebaseui.auth.widget.handler.UnsupportedProviderTest");
+goog.setTestOnly("firebaseui.auth.widget.handler.UnsupportedProviderTest");
 
-goog.require('firebaseui.auth.widget.handler.handleUnsupportedProvider');
+goog.require("firebaseui.auth.widget.handler.handleUnsupportedProvider");
 /** @suppress {extraRequire} */
-goog.require('firebaseui.auth.widget.handler.testHelper');
-
+goog.require("firebaseui.auth.widget.handler.testHelper");
 
 function testHandleUnsupportedProvider() {
   firebaseui.auth.widget.handler.handleUnsupportedProvider(
-      app, container, 'user@example.com');
-  assertUnsupportedProviderPage('user@example.com');
+    app,
+    container,
+    "user@example.com"
+  );
+  assertUnsupportedProviderPage("user@example.com");
   // Click recover password button.
   submitForm();
   // Verify that password revover screen is dispalyed.
   assertPasswordRecoveryPage();
   submitForm();
 
-  testAuth.assertSendPasswordResetEmail(
-      [passwordAccount.getEmail()]);
-  return testAuth.process().then(function() {
+  testAuth.assertSendPasswordResetEmail([passwordAccount.getEmail()]);
+  return testAuth.process().then(function () {
     assertPasswordRecoveryEmailSentPage();
     submitForm();
     assertProviderSignInPage();
   });
 }
 
-
 function testHandleUnsupportedProvider_back() {
   firebaseui.auth.widget.handler.handleUnsupportedProvider(
-      app, container, 'user@example.com');
-  assertUnsupportedProviderPage('user@example.com');
+    app,
+    container,
+    "user@example.com"
+  );
+  assertUnsupportedProviderPage("user@example.com");
   // Click back button.
   clickSecondaryLink();
   // Verify that clicking back button goes back to the starting page.
   assertProviderSignInPage();
 }
-

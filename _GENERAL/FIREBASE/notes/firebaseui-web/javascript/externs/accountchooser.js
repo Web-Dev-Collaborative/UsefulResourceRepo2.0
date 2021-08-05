@@ -25,50 +25,56 @@ var accountchooser = {};
 /**
  * @interface
  */
-accountchooser.Api = function() {};
+accountchooser.Api = function () {};
 
 /**
  * @param {!Object} config
  * @return {!accountchooser.Api}
  */
-accountchooser.Api.init = function(config) {};
+accountchooser.Api.init = function (config) {};
 
 /**
  * @param {!Array<!Object>} accounts
  * @param {?Object=} opt_config
  */
-accountchooser.Api.prototype.store = function(accounts, opt_config) {};
+accountchooser.Api.prototype.store = function (accounts, opt_config) {};
 
 /**
  * @param {!Array<!Object>} accounts
  * @param {?Object=} opt_config
  */
-accountchooser.Api.prototype.select = function(accounts, opt_config) {};
+accountchooser.Api.prototype.select = function (accounts, opt_config) {};
 
 /**
  * @param {!Object} account
  * @param {?Object=} opt_config
  */
-accountchooser.Api.prototype.update = function(account, opt_config) {};
+accountchooser.Api.prototype.update = function (account, opt_config) {};
 
 /**
  * @param {!function(boolean=, ?Object=)} callback
  */
-accountchooser.Api.prototype.checkDisabled = function(callback) {};
+accountchooser.Api.prototype.checkDisabled = function (callback) {};
 
 /**
  * @param {!function(boolean=, ?Object=)} callback
  */
-accountchooser.Api.prototype.checkEmpty = function(callback) {};
-
-/**
- * @param {!Object} account
- * @param {!function(boolean=, ?Object=)} callback
- */
-accountchooser.Api.prototype.checkAccountExist = function(account, callback) {};
+accountchooser.Api.prototype.checkEmpty = function (callback) {};
 
 /**
  * @param {!Object} account
  * @param {!function(boolean=, ?Object=)} callback
  */
-accountchooser.Api.prototype.checkShouldUpdate = function(account, callback) {};
+accountchooser.Api.prototype.checkAccountExist = function (
+  account,
+  callback
+) {};
+
+/**
+ * @param {!Object} account
+ * @param {!function(boolean=, ?Object=)} callback
+ */
+accountchooser.Api.prototype.checkShouldUpdate = function (
+  account,
+  callback
+) {};

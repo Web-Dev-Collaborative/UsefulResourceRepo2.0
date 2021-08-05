@@ -11,22 +11,21 @@
  * express or implied. See the License for the specific language governing permissions and
  * limitations under the License.
  */
-goog.provide('firebaseui.auth.ui.dialogTest');
-goog.setTestOnly('firebaseui.auth.ui.dialogTest');
+goog.provide("firebaseui.auth.ui.dialogTest");
+goog.setTestOnly("firebaseui.auth.ui.dialogTest");
 
-goog.require('firebaseui.auth.soy2.element');
-goog.require('firebaseui.auth.ui.element');
-goog.require('firebaseui.auth.ui.element.dialog');
-goog.require('firebaseui.auth.ui.mdl');
-goog.require('goog.dom');
-goog.require('goog.dom.TagName');
-goog.require('goog.math.Coordinate');
-goog.require('goog.soy');
-goog.require('goog.testing.MockControl');
-goog.require('goog.testing.events');
-goog.require('goog.testing.jsunit');
-goog.require('goog.ui.Component');
-
+goog.require("firebaseui.auth.soy2.element");
+goog.require("firebaseui.auth.ui.element");
+goog.require("firebaseui.auth.ui.element.dialog");
+goog.require("firebaseui.auth.ui.mdl");
+goog.require("goog.dom");
+goog.require("goog.dom.TagName");
+goog.require("goog.math.Coordinate");
+goog.require("goog.soy");
+goog.require("goog.testing.MockControl");
+goog.require("goog.testing.events");
+goog.require("goog.testing.jsunit");
+goog.require("goog.ui.Component");
 
 var dialog;
 var dialog2;
@@ -37,23 +36,24 @@ var mockDowngrade;
 var component;
 var container;
 
-
 function setUp() {
   mockControl = new goog.testing.MockControl();
-  window['dialogPolyfill'] = {
-    'registerDialog': function(dialog) {
+  window["dialogPolyfill"] = {
+    registerDialog: function (dialog) {
       dialog.open = false;
-      dialog.showModal = function() {
+      dialog.showModal = function () {
         dialog.open = true;
       };
-      dialog.close = function() {
+      dialog.close = function () {
         dialog.open = false;
       };
-    }
+    },
   };
-  mockUpgrade = mockControl.createMethodMock(firebaseui.auth.ui.mdl, 'upgrade');
-  mockDowngrade = mockControl.createMethodMock(firebaseui.auth.ui.mdl,
-      'downgrade');
+  mockUpgrade = mockControl.createMethodMock(firebaseui.auth.ui.mdl, "upgrade");
+  mockDowngrade = mockControl.createMethodMock(
+    firebaseui.auth.ui.mdl,
+    "downgrade"
+  );
 
   component = new goog.ui.Component();
   container = goog.dom.createDom(goog.dom.TagName.DIV);
@@ -66,7 +66,6 @@ function setUp() {
   container.style.width = "150px";
   component.render(container);
 }
-
 
 function tearDown() {
   mockControl.$verifyAll();
@@ -84,9 +83,10 @@ function tearDown() {
   goog.dom.removeNode(container);
 }
 
-
-if (goog.global['window'] &&
-    typeof goog.global['window'].CustomEvent !== 'function') {
+if (
+  goog.global["window"] &&
+  typeof goog.global["window"].CustomEvent !== "function"
+) {
   var doc = goog.global.document;
   /**
    * CustomEvent polyfill for IE 9, 10 and 11.
@@ -95,24 +95,29 @@ if (goog.global['window'] &&
    * @param {Object=} opt_params The optional event parameters.
    * @return {!Event} The generated custom event.
    */
-  var CustomEvent = function(event, opt_params) {
+  var CustomEvent = function (event, opt_params) {
     var params = opt_params || {
-      bubbles: false, cancelable: false, detail: undefined
+      bubbles: false,
+      cancelable: false,
+      detail: undefined,
     };
-    var evt = doc.createEvent('CustomEvent');
+    var evt = doc.createEvent("CustomEvent");
     evt.initCustomEvent(
-        event, params.bubbles, params.cancelable, params.detail);
+      event,
+      params.bubbles,
+      params.cancelable,
+      params.detail
+    );
     return evt;
   };
-  CustomEvent.prototype = goog.global['window'].Event.prototype;
-  goog.global['window'].CustomEvent = CustomEvent;
+  CustomEvent.prototype = goog.global["window"].Event.prototype;
+  goog.global["window"].CustomEvent = CustomEvent;
 }
 
-
 function testShowDialog() {
-  dialog = goog.soy.renderAsElement(
-      firebaseui.auth.soy2.element.dialog,
-      {content: 'Hello, world!'});
+  dialog = goog.soy.renderAsElement(firebaseui.auth.soy2.element.dialog, {
+    content: "Hello, world!",
+  });
   mockUpgrade(dialog);
   mockDowngrade(dialog);
 
@@ -128,21 +133,31 @@ function testShowDialog() {
 
   // Confirm dialog centered relative to container.
   assertEquals(
-      parseInt(
-          50 - document.body.getBoundingClientRect().top +
-          (200 - dialog.getBoundingClientRect().height) / 2, 10),
-      parseInt(dialog.style.top, 10));
-  var expectedDialogLeft = 100 - document.body.getBoundingClientRect().left +
-      (150 - dialog.getBoundingClientRect().width) / 2;
+    parseInt(
+      50 -
+        document.body.getBoundingClientRect().top +
+        (200 - dialog.getBoundingClientRect().height) / 2,
+      10
+    ),
+    parseInt(dialog.style.top, 10)
+  );
+  var expectedDialogLeft =
+    100 -
+    document.body.getBoundingClientRect().left +
+    (150 - dialog.getBoundingClientRect().width) / 2;
   assertEquals(
-      parseInt(expectedDialogLeft, 10),
-      parseInt(dialog.style.left, 10));
+    parseInt(expectedDialogLeft, 10),
+    parseInt(dialog.style.left, 10)
+  );
   assertEquals(
-      parseInt(
-          document.body.getBoundingClientRect().width -
-          expectedDialogLeft -
-          dialog.getBoundingClientRect().width, 10),
-      parseInt(dialog.style.right, 10));
+    parseInt(
+      document.body.getBoundingClientRect().width -
+        expectedDialogLeft -
+        dialog.getBoundingClientRect().width,
+      10
+    ),
+    parseInt(dialog.style.right, 10)
+  );
 
   // Check alignment updated on resize.
   // Simulate container location and size updated.
@@ -151,24 +166,34 @@ function testShowDialog() {
   container.style.height = "20px";
   container.style.width = "15px";
   // Trigger resize event.
-  goog.global['window'].dispatchEvent(new CustomEvent('resize'));
+  goog.global["window"].dispatchEvent(new CustomEvent("resize"));
   // Dialog location should update.
   assertEquals(
-      parseInt(
-          5 - document.body.getBoundingClientRect().top +
-          (20 - dialog.getBoundingClientRect().height) / 2, 10),
-      parseInt(dialog.style.top, 10));
-  expectedDialogLeft = 10 - document.body.getBoundingClientRect().left +
-      (15 - dialog.getBoundingClientRect().width) / 2;
+    parseInt(
+      5 -
+        document.body.getBoundingClientRect().top +
+        (20 - dialog.getBoundingClientRect().height) / 2,
+      10
+    ),
+    parseInt(dialog.style.top, 10)
+  );
+  expectedDialogLeft =
+    10 -
+    document.body.getBoundingClientRect().left +
+    (15 - dialog.getBoundingClientRect().width) / 2;
   assertEquals(
-      parseInt(expectedDialogLeft, 10),
-      parseInt(dialog.style.left, 10));
+    parseInt(expectedDialogLeft, 10),
+    parseInt(dialog.style.left, 10)
+  );
   assertEquals(
-      parseInt(
-          document.body.getBoundingClientRect().width -
-          expectedDialogLeft -
-          dialog.getBoundingClientRect().width, 10),
-      parseInt(dialog.style.right, 10));
+    parseInt(
+      document.body.getBoundingClientRect().width -
+        expectedDialogLeft -
+        dialog.getBoundingClientRect().width,
+      10
+    ),
+    parseInt(dialog.style.right, 10)
+  );
 
   // Dismiss dialog.
   firebaseui.auth.ui.element.dialog.dismissDialog.call(component);
@@ -176,24 +201,25 @@ function testShowDialog() {
   // Simulate container location and size updated.
   container.style.top = "500px";
   // Trigger resize event.
-  goog.global['window'].dispatchEvent(new CustomEvent('resize'));
+  goog.global["window"].dispatchEvent(new CustomEvent("resize"));
   // Dialog location should not update as it already has been dismissed.
-  assertEquals(
-      expectedDismissedTop,
-      parseInt(dialog.style.top, 10));
+  assertEquals(expectedDismissedTop, parseInt(dialog.style.top, 10));
 }
 
-
 function testShowDialog_centerRelativeToDocumentBody() {
-  dialog = goog.soy.renderAsElement(
-      firebaseui.auth.soy2.element.dialog,
-      {content: 'Hello, world!'});
+  dialog = goog.soy.renderAsElement(firebaseui.auth.soy2.element.dialog, {
+    content: "Hello, world!",
+  });
   mockUpgrade(dialog);
 
   mockControl.$replayAll();
 
   firebaseui.auth.ui.element.dialog.showDialog.call(
-      component, dialog, false, true);
+    component,
+    dialog,
+    false,
+    true
+  );
 
   // The dialog should be attached to the DOM and be retrievable via
   // getDialogElement.
@@ -208,11 +234,10 @@ function testShowDialog_centerRelativeToDocumentBody() {
   assertNaN(parseInt(dialog.style.right, 10));
 }
 
-
 function testShowDialog_dismissDialog() {
-  dialog = goog.soy.renderAsElement(
-      firebaseui.auth.soy2.element.dialog,
-      {content: 'Hello, world!'});
+  dialog = goog.soy.renderAsElement(firebaseui.auth.soy2.element.dialog, {
+    content: "Hello, world!",
+  });
   mockUpgrade(dialog);
   mockDowngrade(dialog);
 
@@ -231,15 +256,14 @@ function testShowDialog_dismissDialog() {
   assertNull(firebaseui.auth.ui.element.dialog.getDialogElement());
 }
 
-
 function testShowDialog_showOtherDialog() {
-  dialog = goog.soy.renderAsElement(
-      firebaseui.auth.soy2.element.dialog,
-      {content: 'Hello, world!'});
+  dialog = goog.soy.renderAsElement(firebaseui.auth.soy2.element.dialog, {
+    content: "Hello, world!",
+  });
 
-  dialog2 = goog.soy.renderAsElement(
-      firebaseui.auth.soy2.element.dialog,
-      {content: 'Hello, other world!'});
+  dialog2 = goog.soy.renderAsElement(firebaseui.auth.soy2.element.dialog, {
+    content: "Hello, other world!",
+  });
 
   mockUpgrade(dialog);
   mockDowngrade(dialog);
@@ -268,17 +292,16 @@ function testShowDialog_showOtherDialog() {
   assertEquals(dialog2, firebaseui.auth.ui.element.dialog.getDialogElement());
 }
 
-
 /**
  * Test that dismissDialog still works if the dialog has been closed by some
  * other means. For example, the ESC key closes the HTML5 dialog.
  */
 function testShowDialog_dialogClosedByOtherMeans() {
-  dialog = goog.soy.renderAsElement(
-      firebaseui.auth.soy2.element.dialog,
-      {content: 'Hello, world!'});
-  dialog.close = function() {};
-  var mockClose = mockControl.createMethodMock(dialog, 'close');
+  dialog = goog.soy.renderAsElement(firebaseui.auth.soy2.element.dialog, {
+    content: "Hello, world!",
+  });
+  dialog.close = function () {};
+  var mockClose = mockControl.createMethodMock(dialog, "close");
   mockUpgrade(dialog);
   mockDowngrade(dialog);
   mockClose().$never();
@@ -301,11 +324,10 @@ function testShowDialog_dialogClosedByOtherMeans() {
   assertNull(firebaseui.auth.ui.element.dialog.getDialogElement());
 }
 
-
 function testCloseDialogOnBackdropClick() {
-  dialog = goog.soy.renderAsElement(
-      firebaseui.auth.soy2.element.dialog,
-      {content: 'Hello, world!'});
+  dialog = goog.soy.renderAsElement(firebaseui.auth.soy2.element.dialog, {
+    content: "Hello, world!",
+  });
   mockUpgrade(dialog).$anyTimes();
   mockDowngrade(dialog).$anyTimes();
   mockControl.$replayAll();
@@ -317,32 +339,41 @@ function testCloseDialogOnBackdropClick() {
   // Click inside the dialog. The dialog should remain displayed.
   // TODO: Make this work with browsers without HTML5 <dialog> support.
   if (bounds.width > 0 && bounds.height > 0) {
-    goog.testing.events.fireClickSequence(dialog, null,
-        new goog.math.Coordinate(bounds.left + 1, bounds.top + 1));
+    goog.testing.events.fireClickSequence(
+      dialog,
+      null,
+      new goog.math.Coordinate(bounds.left + 1, bounds.top + 1)
+    );
     assertTrue(document.body.contains(dialog));
     assertNotNull(firebaseui.auth.ui.element.dialog.getDialogElement());
   }
 
   // Click above and to the left of the dialog. The dialog should be dismissed.
-  goog.testing.events.fireClickSequence(dialog, null,
-      new goog.math.Coordinate(bounds.left - 1, bounds.top - 1));
+  goog.testing.events.fireClickSequence(
+    dialog,
+    null,
+    new goog.math.Coordinate(bounds.left - 1, bounds.top - 1)
+  );
   assertFalse(document.body.contains(dialog));
   assertNull(firebaseui.auth.ui.element.dialog.getDialogElement());
-
 
   firebaseui.auth.ui.element.dialog.showDialog.call(component, dialog, true);
   // Click to the right of the dialog. The dialog should be dismissed.
-  goog.testing.events.fireClickSequence(dialog, null,
-      new goog.math.Coordinate(bounds.left + bounds.width + 1, bounds.top + 1));
+  goog.testing.events.fireClickSequence(
+    dialog,
+    null,
+    new goog.math.Coordinate(bounds.left + bounds.width + 1, bounds.top + 1)
+  );
   assertFalse(document.body.contains(dialog));
   assertNull(firebaseui.auth.ui.element.dialog.getDialogElement());
 
-
   firebaseui.auth.ui.element.dialog.showDialog.call(component, dialog, true);
   // Click under the dialog. The dialog should be dismissed.
-  goog.testing.events.fireClickSequence(dialog, null,
-      new goog.math.Coordinate(
-          bounds.left + 1, bounds.top + bounds.height + 1));
+  goog.testing.events.fireClickSequence(
+    dialog,
+    null,
+    new goog.math.Coordinate(bounds.left + 1, bounds.top + bounds.height + 1)
+  );
   assertFalse(document.body.contains(dialog));
   assertNull(firebaseui.auth.ui.element.dialog.getDialogElement());
 }

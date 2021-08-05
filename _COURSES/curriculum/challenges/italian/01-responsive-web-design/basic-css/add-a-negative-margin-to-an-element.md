@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08823
 title: Aggiungere un margine negativo a un elemento
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cnpyGs3'
+videoUrl: "https://scrimba.com/c/cnpyGs3"
 forumTopicId: 16166
 dashedName: add-a-negative-margin-to-an-element
 ---
@@ -24,7 +24,7 @@ Imposta il `margin` del riquadro blu a `-15px`, in modo che riempia l'intera lar
 La tua classe `blue-box` dovrebbe dare `-15px` di `margin` agli elementi.
 
 ```js
-assert($('.blue-box').css('margin-top') === '-15px');
+assert($(".blue-box").css("margin-top") === "-15px");
 ```
 
 # --seed--

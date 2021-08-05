@@ -38,8 +38,8 @@ dashedName: visualize-data-with-a-choropleth-map
 
 以下是完成此項目所需的數據集：
 
--   **US Education Data:** `https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/for_user_education.json`
--   **US County Data:** `https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/counties.json`
+- **US Education Data:** `https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/for_user_education.json`
+- **US County Data:** `https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/counties.json`
 
 你可以<a href='https://codepen.io/pen?template=MJjpwO' target='_blank' rel='nofollow'>使用 CodePen 模板</a>來創建你的項目，點擊 `Save` 即可創建你的項目。 或者你可以在任何你喜歡的環境中使用以下 CDN 鏈接來運行測試：`https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js`.
 

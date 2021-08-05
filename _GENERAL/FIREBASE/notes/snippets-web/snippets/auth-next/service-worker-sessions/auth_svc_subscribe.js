@@ -21,11 +21,14 @@ const getIdTokenPromise = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       unsubscribe();
       if (user) {
-        getIdToken(user).then((idToken) => {
-          resolve(idToken);
-        }, (error) => {
-          resolve(null);
-        });
+        getIdToken(user).then(
+          (idToken) => {
+            resolve(idToken);
+          },
+          (error) => {
+            resolve(null);
+          }
+        );
       } else {
         resolve(null);
       }

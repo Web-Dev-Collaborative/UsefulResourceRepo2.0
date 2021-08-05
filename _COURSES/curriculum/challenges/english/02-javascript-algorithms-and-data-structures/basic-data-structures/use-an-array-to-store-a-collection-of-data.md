@@ -11,7 +11,7 @@ dashedName: use-an-array-to-store-a-collection-of-data
 The below is an example of the simplest implementation of an array data structure. This is known as a <dfn>one-dimensional array</dfn>, meaning it only has one level, or that it does not have any other arrays nested within it. Notice it contains <dfn>booleans</dfn>, <dfn>strings</dfn>, and <dfn>numbers</dfn>, among other valid JavaScript data types:
 
 ```js
-let simpleArray = ['one', 2, 'three', true, false, undefined, null];
+let simpleArray = ["one", 2, "three", true, false, undefined, null];
 console.log(simpleArray.length);
 ```
 
@@ -24,23 +24,23 @@ let complexArray = [
   [
     {
       one: 1,
-      two: 2
+      two: 2,
     },
     {
       three: 3,
-      four: 4
-    }
+      four: 4,
+    },
   ],
   [
     {
       a: "a",
-      b: "b"
+      b: "b",
     },
     {
       c: "c",
-      d: "d"
-    }
-  ]
+      d: "d",
+    },
+  ],
 ];
 ```
 
@@ -65,19 +65,19 @@ assert.isAtLeast(yourArray.length, 5);
 `yourArray` should contain at least one `boolean`.
 
 ```js
-assert(yourArray.filter((el) => typeof el === 'boolean').length >= 1);
+assert(yourArray.filter((el) => typeof el === "boolean").length >= 1);
 ```
 
 `yourArray` should contain at least one `number`.
 
 ```js
-assert(yourArray.filter((el) => typeof el === 'number').length >= 1);
+assert(yourArray.filter((el) => typeof el === "number").length >= 1);
 ```
 
 `yourArray` should contain at least one `string`.
 
 ```js
-assert(yourArray.filter((el) => typeof el === 'string').length >= 1);
+assert(yourArray.filter((el) => typeof el === "string").length >= 1);
 ```
 
 # --seed--
@@ -91,5 +91,5 @@ let yourArray; // Change this line
 # --solutions--
 
 ```js
-let yourArray = ['a string', 100, true, ['one', 2], 'another string'];
+let yourArray = ["a string", 100, true, ["one", 2], "another string"];
 ```

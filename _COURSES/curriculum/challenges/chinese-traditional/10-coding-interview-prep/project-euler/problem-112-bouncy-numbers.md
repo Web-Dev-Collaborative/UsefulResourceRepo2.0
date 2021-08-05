@@ -1,6 +1,6 @@
 ---
 id: 5900f3dd1000cf542c50feef
-title: 'Problem 112: Bouncy numbers'
+title: "Problem 112: Bouncy numbers"
 challengeType: 5
 forumTopicId: 301738
 dashedName: problem-112-bouncy-numbers
@@ -34,7 +34,6 @@ assert.strictEqual(euler112(), 1587000);
 
 ```js
 function euler112() {
-
   return true;
 }
 

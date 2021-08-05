@@ -17,18 +17,18 @@
  * for cookie storage.
  */
 
-goog.provide('firebaseui.auth.CookieMechanism');
+goog.provide("firebaseui.auth.CookieMechanism");
 
-goog.require('goog.net.cookies');
-goog.require('goog.storage.mechanism.Mechanism');
-
+goog.require("goog.net.cookies");
+goog.require("goog.storage.mechanism.Mechanism");
 
 /**
  * Defines a goog.storage.mechanism.Mechanism implementation for storing
  * cookies.
  */
-firebaseui.auth.CookieMechanism =
-    class extends goog.storage.mechanism.Mechanism {
+firebaseui.auth.CookieMechanism = class extends (
+  goog.storage.mechanism.Mechanism
+) {
   /**
    * @param {?number=} opt_maxAge  The max age in seconds (from now). Use -1 to
    *     set a session cookie. If not provided, the default is -1
@@ -45,9 +45,10 @@ firebaseui.auth.CookieMechanism =
   constructor(opt_maxAge, opt_path, opt_domain, opt_secure) {
     super();
     /** @const @private {number} The cookie max age in seconds. */
-    this.maxAge_ = typeof opt_maxAge !== 'undefined' && opt_maxAge !== null ?
-        opt_maxAge :
-        -1;
+    this.maxAge_ =
+      typeof opt_maxAge !== "undefined" && opt_maxAge !== null
+        ? opt_maxAge
+        : -1;
     /** @const @private {?string} The cookie path. */
     this.path_ = opt_path || null;
     /** @const @private {?string} The cookie domain policy. */
@@ -65,7 +66,13 @@ firebaseui.auth.CookieMechanism =
    */
   set(key, value) {
     goog.net.cookies.set(
-        key, value, this.maxAge_, this.path_, this.domain_, this.secure_);
+      key,
+      value,
+      this.maxAge_,
+      this.path_,
+      this.domain_,
+      this.secure_
+    );
   }
 
   /**

@@ -14,7 +14,7 @@ Inside the `figure` element you just added, nest an `img` element with a `src` a
 Your second `figure` element should have an opening tag. Opening tags have this syntax: `<elementName>`.
 
 ```js
-assert(document.querySelectorAll('figure').length === 2);
+assert(document.querySelectorAll("figure").length === 2);
 ```
 
 Your second `figure` element should have a closing tag. Closing tags have a `/` just after the `<` character.
@@ -26,26 +26,26 @@ assert(code.match(/<\/figure>/g).length === 2);
 There should be a second `figure` element right above the second `section` element's closing tag. You have them in the wrong order.
 
 ```js
-assert($('main > section')[1].lastElementChild.nodeName === 'FIGURE');
+assert($("main > section")[1].lastElementChild.nodeName === "FIGURE");
 ```
 
 You should have a third `img` element nested in the `figure` element.
 
 ```js
-const catsImg = document.querySelectorAll('figure > img')[1];
+const catsImg = document.querySelectorAll("figure > img")[1];
 assert(
   catsImg &&
-    catsImg.getAttribute('src').toLowerCase() === 'https://bit.ly/fcc-cats'
+    catsImg.getAttribute("src").toLowerCase() === "https://bit.ly/fcc-cats"
 );
 ```
 
 The third image should have an `src` attribute set to `https://bit.ly/fcc-cats`.
 
 ```js
-const catsImg = document.querySelectorAll('figure > img')[1];
+const catsImg = document.querySelectorAll("figure > img")[1];
 assert(
   catsImg &&
-    catsImg.getAttribute('src').toLowerCase() === 'https://bit.ly/fcc-cats'
+    catsImg.getAttribute("src").toLowerCase() === "https://bit.ly/fcc-cats"
 );
 ```
 
@@ -67,8 +67,15 @@ assert(!/\<img\s+.+\s+src\s*=\s*https:\/\/bit\.ly\/fcc-cats/.test(code));
       <section>
         <h2>Cat Photos</h2>
         <!-- TODO: Add link to cat photos -->
-        <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        <p>
+          Click here to view more
+          <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+        </p>
+        <a href="https://freecatphotoapp.com"
+          ><img
+            src="https://bit.ly/fcc-relaxing-cat"
+            alt="A cute orange cat lying on its back."
+        /></a>
       </section>
       <section>
         <h2>Cat Lists</h2>
@@ -79,8 +86,11 @@ assert(!/\<img\s+.+\s+src\s*=\s*https:\/\/bit\.ly\/fcc-cats/.test(code));
           <li>lasagna</li>
         </ul>
         <figure>
-          <img src="https://bit.ly/fcc-lasagna" alt="A slice of lasagna on a plate.">
-          <figcaption>Cats <em>love</em> lasagna.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-lasagna"
+            alt="A slice of lasagna on a plate."
+          />
+          <figcaption>Cats <em>love</em> lasagna.</figcaption>
         </figure>
         <h3>Top 3 things cats hate:</h3>
         <ol>
@@ -88,13 +98,11 @@ assert(!/\<img\s+.+\s+src\s*=\s*https:\/\/bit\.ly\/fcc-cats/.test(code));
           <li>thunder</li>
           <li>other cats</li>
         </ol>
---fcc-editable-region--
-        <figure>
-        </figure>
---fcc-editable-region--
+        --fcc-editable-region--
+        <figure></figure>
+        --fcc-editable-region--
       </section>
     </main>
   </body>
 </html>
 ```
-

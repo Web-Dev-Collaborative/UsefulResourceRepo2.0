@@ -2,7 +2,7 @@
 id: 587d78a8367417b2b2512ae6
 title: Animate Multiple Elements at Variable Rates
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cnpWZc9'
+videoUrl: "https://scrimba.com/c/cnpWZc9"
 forumTopicId: 301042
 dashedName: animate-multiple-elements-at-variable-rates
 ---
@@ -22,19 +22,19 @@ Set the `animation-duration` of the elements with the classes `star-1`, `star-2`
 The `animation-duration` property for the star with class `star-1` should remain at 1s.
 
 ```js
-assert($('.star-1').css('animation-duration') == '1s');
+assert($(".star-1").css("animation-duration") == "1s");
 ```
 
 The `animation-duration` property for the star with class `star-2` should be 0.9s.
 
 ```js
-assert($('.star-2').css('animation-duration') == '0.9s');
+assert($(".star-2").css("animation-duration") == "0.9s");
 ```
 
 The `animation-duration` property for the star with class `star-3` should be 1.1s.
 
 ```js
-assert($('.star-3').css('animation-duration') == '1.1s');
+assert($(".star-3").css("animation-duration") == "1.1s");
 ```
 
 # --seed--

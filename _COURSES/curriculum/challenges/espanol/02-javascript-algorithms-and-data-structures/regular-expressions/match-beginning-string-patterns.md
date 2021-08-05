@@ -31,25 +31,25 @@ Usa el carácter caret en una expresión para buscar `Cal` solo al principio de 
 Tu expresión regular debe buscar la cadena `Cal` con una letra mayúscula.
 
 ```js
-assert(calRegex.source == '^Cal');
+assert(calRegex.source == "^Cal");
 ```
 
 Tu expresión regular no debería usar ninguna etiqueta.
 
 ```js
-assert(calRegex.flags == '');
+assert(calRegex.flags == "");
 ```
 
 Tu expresión regular debe coincidir con la cadena `Cal` en el inicio de la cadena.
 
 ```js
-assert(calRegex.test('Cal and Ricky both like racing.'));
+assert(calRegex.test("Cal and Ricky both like racing."));
 ```
 
 Tu expresión regular debe coincidir con la cadena `Cal` en medio de la cadena.
 
 ```js
-assert(!calRegex.test('Ricky and Cal both like racing.'));
+assert(!calRegex.test("Ricky and Cal both like racing."));
 ```
 
 # --seed--

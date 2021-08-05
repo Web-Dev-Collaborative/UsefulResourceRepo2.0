@@ -16,23 +16,23 @@
  * @fileoverview UI component for the password sign-up page.
  */
 
-goog.provide('firebaseui.auth.ui.page.PasswordSignUp');
+goog.provide("firebaseui.auth.ui.page.PasswordSignUp");
 
-goog.require('firebaseui.auth.soy2.page');
-goog.require('firebaseui.auth.ui.element');
-goog.require('firebaseui.auth.ui.element.email');
-goog.require('firebaseui.auth.ui.element.form');
-goog.require('firebaseui.auth.ui.element.name');
-goog.require('firebaseui.auth.ui.element.newPassword');
-goog.require('firebaseui.auth.ui.page.Base');
-goog.requireType('goog.dom.DomHelper');
-
+goog.require("firebaseui.auth.soy2.page");
+goog.require("firebaseui.auth.ui.element");
+goog.require("firebaseui.auth.ui.element.email");
+goog.require("firebaseui.auth.ui.element.form");
+goog.require("firebaseui.auth.ui.element.name");
+goog.require("firebaseui.auth.ui.element.newPassword");
+goog.require("firebaseui.auth.ui.page.Base");
+goog.requireType("goog.dom.DomHelper");
 
 /**
  * Password sign-up UI component.
  */
-firebaseui.auth.ui.page.PasswordSignUp =
-    class extends firebaseui.auth.ui.page.Base {
+firebaseui.auth.ui.page.PasswordSignUp = class extends (
+  firebaseui.auth.ui.page.Base
+) {
   /**
    * @param {boolean} requireDisplayName Whether to show the display name.
    * @param {function()} onSubmitClick Callback to invoke when the submit button
@@ -50,21 +50,32 @@ firebaseui.auth.ui.page.PasswordSignUp =
    * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
    */
   constructor(
-      requireDisplayName, onSubmitClick, opt_onCancelClick, opt_email, opt_name,
-      opt_tosCallback, opt_privacyPolicyCallback, opt_displayFullTosPpMessage,
-      opt_domHelper) {
+    requireDisplayName,
+    onSubmitClick,
+    opt_onCancelClick,
+    opt_email,
+    opt_name,
+    opt_tosCallback,
+    opt_privacyPolicyCallback,
+    opt_displayFullTosPpMessage,
+    opt_domHelper
+  ) {
     super(
-        firebaseui.auth.soy2.page.passwordSignUp, {
-          email: opt_email,
-          requireDisplayName: requireDisplayName,
-          name: opt_name,
-          allowCancel: !!opt_onCancelClick,
-          displayFullTosPpMessage: !!opt_displayFullTosPpMessage
-        },
-        opt_domHelper, 'passwordSignUp', {
-          tosCallback: opt_tosCallback,
-          privacyPolicyCallback: opt_privacyPolicyCallback
-        });
+      firebaseui.auth.soy2.page.passwordSignUp,
+      {
+        email: opt_email,
+        requireDisplayName: requireDisplayName,
+        name: opt_name,
+        allowCancel: !!opt_onCancelClick,
+        displayFullTosPpMessage: !!opt_displayFullTosPpMessage,
+      },
+      opt_domHelper,
+      "passwordSignUp",
+      {
+        tosCallback: opt_tosCallback,
+        privacyPolicyCallback: opt_privacyPolicyCallback,
+      }
+    );
     this.onSubmitClick_ = onSubmitClick;
     this.onCancelClick_ = opt_onCancelClick;
     this.requireDisplayName_ = requireDisplayName;
@@ -98,10 +109,14 @@ firebaseui.auth.ui.page.PasswordSignUp =
     if (this.requireDisplayName_) {
       this.focusToNextOnEnter(this.getEmailElement(), this.getNameElement());
       this.focusToNextOnEnter(
-          this.getNameElement(), this.getNewPasswordElement());
+        this.getNameElement(),
+        this.getNewPasswordElement()
+      );
     } else {
       this.focusToNextOnEnter(
-          this.getEmailElement(), this.getNewPasswordElement());
+        this.getEmailElement(),
+        this.getNewPasswordElement()
+      );
     }
 
     // On enter in password element.
@@ -115,8 +130,9 @@ firebaseui.auth.ui.page.PasswordSignUp =
     if (!firebaseui.auth.ui.element.getInputValue(this.getEmailElement())) {
       this.getEmailElement().focus();
     } else if (
-        this.requireDisplayName_ &&
-        !firebaseui.auth.ui.element.getInputValue(this.getNameElement())) {
+      this.requireDisplayName_ &&
+      !firebaseui.auth.ui.element.getInputValue(this.getNameElement())
+    ) {
       this.getNameElement().focus();
     } else {
       this.getNewPasswordElement().focus();
@@ -124,51 +140,39 @@ firebaseui.auth.ui.page.PasswordSignUp =
   }
 };
 
-
 goog.mixin(
-    firebaseui.auth.ui.page.PasswordSignUp.prototype,
-    /** @lends {firebaseui.auth.ui.page.PasswordSignUp.prototype} */
-    {
-      // For email.
-      getEmailElement:
-          firebaseui.auth.ui.element.email.getEmailElement,
-      getEmailErrorElement:
-          firebaseui.auth.ui.element.email.getEmailErrorElement,
-      initEmailElement:
-          firebaseui.auth.ui.element.email.initEmailElement,
-      getEmail:
-          firebaseui.auth.ui.element.email.getEmail,
-      checkAndGetEmail:
-          firebaseui.auth.ui.element.email.checkAndGetEmail,
+  firebaseui.auth.ui.page.PasswordSignUp.prototype,
+  /** @lends {firebaseui.auth.ui.page.PasswordSignUp.prototype} */
+  {
+    // For email.
+    getEmailElement: firebaseui.auth.ui.element.email.getEmailElement,
+    getEmailErrorElement: firebaseui.auth.ui.element.email.getEmailErrorElement,
+    initEmailElement: firebaseui.auth.ui.element.email.initEmailElement,
+    getEmail: firebaseui.auth.ui.element.email.getEmail,
+    checkAndGetEmail: firebaseui.auth.ui.element.email.checkAndGetEmail,
 
-      // For name.
-      getNameElement:
-          firebaseui.auth.ui.element.name.getNameElement,
-      getNameErrorElement:
-          firebaseui.auth.ui.element.name.getNameErrorElement,
-      initNameElement:
-          firebaseui.auth.ui.element.name.initNameElement,
-      checkAndGetName:
-          firebaseui.auth.ui.element.name.checkAndGetName,
+    // For name.
+    getNameElement: firebaseui.auth.ui.element.name.getNameElement,
+    getNameErrorElement: firebaseui.auth.ui.element.name.getNameErrorElement,
+    initNameElement: firebaseui.auth.ui.element.name.initNameElement,
+    checkAndGetName: firebaseui.auth.ui.element.name.checkAndGetName,
 
-      // For new password.
-      getNewPasswordElement:
-          firebaseui.auth.ui.element.newPassword.getNewPasswordElement,
-      getNewPasswordErrorElement:
-          firebaseui.auth.ui.element.newPassword.getNewPasswordErrorElement,
-      getPasswordToggleElement:
-          firebaseui.auth.ui.element.newPassword.getPasswordToggleElement,
-      initNewPasswordElement:
-          firebaseui.auth.ui.element.newPassword.initNewPasswordElement,
-      checkAndGetNewPassword:
-          firebaseui.auth.ui.element.newPassword.checkAndGetNewPassword,
+    // For new password.
+    getNewPasswordElement:
+      firebaseui.auth.ui.element.newPassword.getNewPasswordElement,
+    getNewPasswordErrorElement:
+      firebaseui.auth.ui.element.newPassword.getNewPasswordErrorElement,
+    getPasswordToggleElement:
+      firebaseui.auth.ui.element.newPassword.getPasswordToggleElement,
+    initNewPasswordElement:
+      firebaseui.auth.ui.element.newPassword.initNewPasswordElement,
+    checkAndGetNewPassword:
+      firebaseui.auth.ui.element.newPassword.checkAndGetNewPassword,
 
-
-      // For form.
-      getSubmitElement:
-          firebaseui.auth.ui.element.form.getSubmitElement,
-      getSecondaryLinkElement:
-          firebaseui.auth.ui.element.form.getSecondaryLinkElement,
-      initFormElement:
-          firebaseui.auth.ui.element.form.initFormElement
-    });
+    // For form.
+    getSubmitElement: firebaseui.auth.ui.element.form.getSubmitElement,
+    getSecondaryLinkElement:
+      firebaseui.auth.ui.element.form.getSecondaryLinkElement,
+    initFormElement: firebaseui.auth.ui.element.form.initFormElement,
+  }
+);

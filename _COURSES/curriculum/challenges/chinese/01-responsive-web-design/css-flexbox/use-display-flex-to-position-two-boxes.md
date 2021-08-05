@@ -1,8 +1,8 @@
 ---
 id: 587d78ab367417b2b2512af0
-title: '使用 display: flex 定位两个盒子'
+title: "使用 display: flex 定位两个盒子"
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cgz3QS7'
+videoUrl: "https://scrimba.com/p/pVaDAv/cgz3QS7"
 forumTopicId: 301105
 dashedName: use-display-flex-to-position-two-boxes
 ---
@@ -22,7 +22,7 @@ dashedName: use-display-flex-to-position-two-boxes
 `#box-container` 应具有 `display`属性，其属性值应为 `flex`。
 
 ```js
-assert($('#box-container').css('display') == 'flex');
+assert($("#box-container").css("display") == "flex");
 ```
 
 # --seed--
@@ -33,7 +33,6 @@ assert($('#box-container').css('display') == 'flex');
 <style>
   #box-container {
     height: 500px;
-
   }
 
   #box-1 {

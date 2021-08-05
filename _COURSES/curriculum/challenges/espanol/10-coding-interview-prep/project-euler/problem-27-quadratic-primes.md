@@ -1,6 +1,6 @@
 ---
 id: 5900f3871000cf542c50fe9a
-title: 'Problem 27: Quadratic primes'
+title: "Problem 27: Quadratic primes"
 challengeType: 5
 forumTopicId: 301919
 dashedName: problem-27-quadratic-primes
@@ -31,7 +31,7 @@ Find the product of the coefficients, $a$ and $b$, for the quadratic expression 
 `quadraticPrimes(200)` should return a number.
 
 ```js
-assert(typeof quadraticPrimes(200) === 'number');
+assert(typeof quadraticPrimes(200) === "number");
 ```
 
 `quadraticPrimes(200)` should return -4925.
@@ -64,7 +64,6 @@ assert(quadraticPrimes(1000) == -59231);
 
 ```js
 function quadraticPrimes(range) {
-
   return range;
 }
 

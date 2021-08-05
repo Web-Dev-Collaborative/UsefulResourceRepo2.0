@@ -1,36 +1,34 @@
-
-
-import withApollo from 'next-with-apollo';
-import ApolloClient, { InMemoryCache } from 'apollo-boost';
-import { ApolloProvider } from '@apollo/react-hooks';
-import moment from 'moment';
+import withApollo from "next-with-apollo";
+import ApolloClient, { InMemoryCache } from "apollo-boost";
+import { ApolloProvider } from "@apollo/react-hooks";
+import moment from "moment";
 
 export default withApollo(
   ({ initialState, headers }) => {
     return new ApolloClient({
-      request: operation => {
+      request: (operation) => {
         operation.setContext({
           fetchOptions: {
-            credentials: 'include'
+            credentials: "include",
           },
-          headers
-        })
+          headers,
+        });
       },
       uri: process.env.BASE_URL,
       cache: new InMemoryCache().restore(initialState || {}),
       resolvers: {
         Portfolio: {
-          daysOfExperience({startDate, endDate}, args, {cache}) {
+          daysOfExperience({ startDate, endDate }, args, { cache }) {
             let now = moment().unix();
 
             if (endDate) {
               now = endDate / 1000;
             }
 
-            return moment.unix(now).diff(moment.unix(startDate / 1000), 'days');
-          }
-        }
-      }
+            return moment.unix(now).diff(moment.unix(startDate / 1000), "days");
+          },
+        },
+      },
     });
   },
   {
@@ -40,6 +38,6 @@ export default withApollo(
           <Page {...props} />
         </ApolloProvider>
       );
-    }
+    },
   }
 );

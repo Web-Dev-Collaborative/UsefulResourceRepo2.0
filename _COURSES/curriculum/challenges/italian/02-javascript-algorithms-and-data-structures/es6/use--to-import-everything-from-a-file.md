@@ -17,8 +17,8 @@ import * as myMathModule from "./math_functions.js";
 L'istruzione `import` di cui sopra creerà un oggetto chiamato `myMathModule`. Questo è solo un nome di variabile, puoi chiamarlo in qualsiasi modo. L'oggetto conterrà tutte le esportazioni di `math_functions.js`, così potrai accedere alle funzioni come faresti con qualsiasi altra proprietà di un oggetto. Ecco come utilizzare le funzioni `add` e `subtract` che sono state importate:
 
 ```js
-myMathModule.add(2,3);
-myMathModule.subtract(5,3);
+myMathModule.add(2, 3);
+myMathModule.subtract(5, 3);
 ```
 
 # --instructions--
@@ -42,7 +42,6 @@ assert(
 ## --seed-contents--
 
 ```js
-
 // Only change code above this line
 
 stringFunctions.uppercaseString("hello");

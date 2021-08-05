@@ -17,61 +17,61 @@ For example, `aab` should return 2 because it has 6 total permutations (`aab`, `
 `permAlone("aab")` should return a number.
 
 ```js
-assert.isNumber(permAlone('aab'));
+assert.isNumber(permAlone("aab"));
 ```
 
 `permAlone("aab")` should return 2.
 
 ```js
-assert.strictEqual(permAlone('aab'), 2);
+assert.strictEqual(permAlone("aab"), 2);
 ```
 
 `permAlone("aaa")` should return 0.
 
 ```js
-assert.strictEqual(permAlone('aaa'), 0);
+assert.strictEqual(permAlone("aaa"), 0);
 ```
 
 `permAlone("aabb")` should return 8.
 
 ```js
-assert.strictEqual(permAlone('aabb'), 8);
+assert.strictEqual(permAlone("aabb"), 8);
 ```
 
 `permAlone("abcdefa")` should return 3600.
 
 ```js
-assert.strictEqual(permAlone('abcdefa'), 3600);
+assert.strictEqual(permAlone("abcdefa"), 3600);
 ```
 
 `permAlone("abfdefa")` should return 2640.
 
 ```js
-assert.strictEqual(permAlone('abfdefa'), 2640);
+assert.strictEqual(permAlone("abfdefa"), 2640);
 ```
 
 `permAlone("zzzzzzzz")` should return 0.
 
 ```js
-assert.strictEqual(permAlone('zzzzzzzz'), 0);
+assert.strictEqual(permAlone("zzzzzzzz"), 0);
 ```
 
 `permAlone("a")` should return 1.
 
 ```js
-assert.strictEqual(permAlone('a'), 1);
+assert.strictEqual(permAlone("a"), 1);
 ```
 
 `permAlone("aaab")` should return 0.
 
 ```js
-assert.strictEqual(permAlone('aaab'), 0);
+assert.strictEqual(permAlone("aaab"), 0);
 ```
 
 `permAlone("aaabb")` should return 12.
 
 ```js
-assert.strictEqual(permAlone('aaabb'), 12);
+assert.strictEqual(permAlone("aaabb"), 12);
 ```
 
 # --seed--
@@ -83,14 +83,14 @@ function permAlone(str) {
   return str;
 }
 
-permAlone('aab');
+permAlone("aab");
 ```
 
 # --solutions--
 
 ```js
 function permAlone(str) {
-  return permuter(str).filter(function(perm) {
+  return permuter(str).filter(function (perm) {
     return !perm.match(/(.)\1/g);
   }).length;
 }
@@ -99,10 +99,13 @@ function permuter(str) {
   // http://staff.roguecc.edu/JMiller/JavaScript/permute.html
   //permArr: Global array which holds the list of permutations
   //usedChars: Global utility array which holds a list of "currently-in-use" characters
-  var permArr = [], usedChars = [];
+  var permArr = [],
+    usedChars = [];
   function permute(input) {
     //convert input into a char array (one element for each character)
-    var i, ch, chars = input.split("");
+    var i,
+      ch,
+      chars = input.split("");
     for (i = 0; i < chars.length; i++) {
       //get and remove character at index "i" from char array
       ch = chars.splice(i, 1);
@@ -122,5 +125,5 @@ function permuter(str) {
   return permArr;
 }
 
-permAlone('aab');
+permAlone("aab");
 ```

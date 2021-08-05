@@ -14,7 +14,7 @@ Ricorda che i creatori di azione restituiscono un oggetto con una proprietà typ
 
 ```js
 store.dispatch(actionCreator());
-store.dispatch({ type: 'LOGIN' });
+store.dispatch({ type: "LOGIN" });
 ```
 
 # --instructions--
@@ -26,7 +26,7 @@ Lo store Redux nell'editor di codice ha uno stato inizializzato con un oggetto c
 Chiamare la funzione `loginAction` dovrebbe restituire un oggetto con la proprietà `type` impostata alla stringa `LOGIN`.
 
 ```js
-assert(loginAction().type === 'LOGIN');
+assert(loginAction().type === "LOGIN");
 ```
 
 Lo store dovrebbe essere inizializzato con un oggetto con proprietà `login` impostata su `false`.
@@ -41,9 +41,9 @@ Il metodo `store.dispatch()` dovrebbe essere utilizzato per inviare un'azione di
 (getUserInput) =>
   assert(
     (function () {
-      let noWhiteSpace = getUserInput('index').replace(/\s/g, '');
+      let noWhiteSpace = getUserInput("index").replace(/\s/g, "");
       return (
-        noWhiteSpace.includes('store.dispatch(loginAction())') ||
+        noWhiteSpace.includes("store.dispatch(loginAction())") ||
         noWhiteSpace.includes("store.dispatch({type: 'LOGIN'})") === true
       );
     })()
@@ -55,14 +55,12 @@ Il metodo `store.dispatch()` dovrebbe essere utilizzato per inviare un'azione di
 ## --seed-contents--
 
 ```js
-const store = Redux.createStore(
-  (state = {login: false}) => state
-);
+const store = Redux.createStore((state = { login: false }) => state);
 
 const loginAction = () => {
   return {
-    type: 'LOGIN'
-  }
+    type: "LOGIN",
+  };
 };
 
 // Dispatch the action here:
@@ -71,14 +69,12 @@ const loginAction = () => {
 # --solutions--
 
 ```js
-const store = Redux.createStore(
-  (state = {login: false}) => state
-);
+const store = Redux.createStore((state = { login: false }) => state);
 
 const loginAction = () => {
   return {
-    type: 'LOGIN'
-  }
+    type: "LOGIN",
+  };
 };
 
 store.dispatch(loginAction());

@@ -13,9 +13,9 @@ dashedName: test-for-truthiness
 `isTrue()` 仅当给出的值为 Boolean 的 `true` 时可以通过测试；`isNotTrue()` 则会在给出除 `true` 以外的值时通过测试。
 
 ```js
-assert.isTrue(true, 'this will pass with the boolean value true');
-assert.isTrue('true', 'this will NOT pass with the string value "true"');
-assert.isTrue(1, 'this will NOT pass with the number value 1');
+assert.isTrue(true, "this will pass with the boolean value true");
+assert.isTrue("true", 'this will NOT pass with the string value "true"');
+assert.isTrue(1, "this will NOT pass with the number value 1");
 ```
 
 `isFalse()` 和 `isNotFalse()` 同样存在，与上面提到的两个方法类似，只不过它们针对值为 `false` 的布尔值。
@@ -30,9 +30,9 @@ assert.isTrue(1, 'this will NOT pass with the number value 1');
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=3').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=3").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -44,9 +44,9 @@ assert.isTrue(1, 'this will NOT pass with the number value 1');
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=3').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=3").then(
     (data) => {
-      assert.equal(data.assertions[0].method, 'isTrue', 'True is true');
+      assert.equal(data.assertions[0].method, "isTrue", "True is true");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -58,12 +58,12 @@ assert.isTrue(1, 'this will NOT pass with the number value 1');
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=3').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=3").then(
     (data) => {
       assert.equal(
         data.assertions[1].method,
-        'isTrue',
-        'Double negation of a truthy value is true'
+        "isTrue",
+        "Double negation of a truthy value is true"
       );
     },
     (xhr) => {
@@ -76,12 +76,12 @@ assert.isTrue(1, 'this will NOT pass with the number value 1');
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=3').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=3").then(
     (data) => {
       assert.equal(
         data.assertions[2].method,
-        'isNotTrue',
-        'A truthy object is not true - neither is a false one'
+        "isNotTrue",
+        "A truthy object is not true - neither is a false one"
       );
     },
     (xhr) => {

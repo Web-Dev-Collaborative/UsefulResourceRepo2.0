@@ -1,6 +1,6 @@
 ---
 id: 5900f39c1000cf542c50feae
-title: 'Problem 47: Distinct primes factors'
+title: "Problem 47: Distinct primes factors"
 challengeType: 5
 forumTopicId: 302145
 dashedName: problem-47-distinct-primes-factors
@@ -30,7 +30,7 @@ Find the first four consecutive integers to have four distinct prime factors eac
 `distinctPrimeFactors(2, 2)` should return a number.
 
 ```js
-assert(typeof distinctPrimeFactors(2, 2) === 'number');
+assert(typeof distinctPrimeFactors(2, 2) === "number");
 ```
 
 `distinctPrimeFactors(2, 2)` should return 14.
@@ -57,7 +57,6 @@ assert.strictEqual(distinctPrimeFactors(4, 4), 134043);
 
 ```js
 function distinctPrimeFactors(targetNumPrimes, targetConsecutive) {
-
   return true;
 }
 
@@ -92,7 +91,9 @@ function distinctPrimeFactors(targetNumPrimes, targetConsecutive) {
       }
     }
 
-    if (n > 1) { factors++; }
+    if (n > 1) {
+      factors++;
+    }
 
     return factors;
   }

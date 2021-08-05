@@ -28,9 +28,9 @@ All tests should pass.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=9').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=9").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -42,9 +42,9 @@ You should choose the correct range for the first assertion - `approximately(act
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=9').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=9").then(
     (data) => {
-      assert.equal(data.assertions[0].method, 'approximately');
+      assert.equal(data.assertions[0].method, "approximately");
       assert.equal(
         data.assertions[0].args[2],
         0.5,
@@ -61,9 +61,9 @@ You should choose the correct range for the second assertion - `approximately(ac
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=9').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=9").then(
     (data) => {
-      assert.equal(data.assertions[1].method, 'approximately');
+      assert.equal(data.assertions[1].method, "approximately");
       assert.equal(
         data.assertions[1].args[2],
         0.8,

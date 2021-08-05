@@ -1,6 +1,6 @@
 ---
 id: 5900f4b31000cf542c50ffc6
-title: 'Problem 327: Rooms of Doom'
+title: "Problem 327: Rooms of Doom"
 challengeType: 5
 forumTopicId: 301984
 dashedName: problem-327-rooms-of-doom
@@ -40,7 +40,6 @@ assert.strictEqual(euler327(), 34315549139516);
 
 ```js
 function euler327() {
-
   return true;
 }
 

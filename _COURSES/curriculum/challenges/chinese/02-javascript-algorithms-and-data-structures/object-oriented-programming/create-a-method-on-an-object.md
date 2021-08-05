@@ -16,7 +16,9 @@ dashedName: create-a-method-on-an-object
 let duck = {
   name: "Aflac",
   numLegs: 2,
-  sayName: function() {return "The name of this duck is " + duck.name + ".";}
+  sayName: function () {
+    return "The name of this duck is " + duck.name + ".";
+  },
 };
 duck.sayName();
 ```
@@ -32,13 +34,13 @@ duck.sayName();
 `dog.sayLegs()` 应该是一个函数。
 
 ```js
-assert(typeof dog.sayLegs === 'function');
+assert(typeof dog.sayLegs === "function");
 ```
 
 `dog.sayLegs()` 应该返回给定的字符串，需要注意标点和间距的问题。
 
 ```js
-assert(dog.sayLegs() === 'This dog has 4 legs.');
+assert(dog.sayLegs() === "This dog has 4 legs.");
 ```
 
 # --seed--
@@ -49,7 +51,6 @@ assert(dog.sayLegs() === 'This dog has 4 legs.');
 let dog = {
   name: "Spot",
   numLegs: 4,
-
 };
 
 dog.sayLegs();
@@ -61,9 +62,9 @@ dog.sayLegs();
 let dog = {
   name: "Spot",
   numLegs: 4,
-  sayLegs () {
-    return 'This dog has ' + this.numLegs + ' legs.';
-  }
+  sayLegs() {
+    return "This dog has " + this.numLegs + " legs.";
+  },
 };
 
 dog.sayLegs();

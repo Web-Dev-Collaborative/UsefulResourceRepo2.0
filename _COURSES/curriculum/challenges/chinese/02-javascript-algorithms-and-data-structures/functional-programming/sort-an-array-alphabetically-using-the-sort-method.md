@@ -14,7 +14,7 @@ dashedName: sort-an-array-alphabetically-using-the-sort-method
 
 ```js
 function ascendingOrder(arr) {
-  return arr.sort(function(a, b) {
+  return arr.sort(function (a, b) {
     return a - b;
   });
 }
@@ -25,11 +25,11 @@ ascendingOrder([1, 5, 2, 3, 4]);
 
 ```js
 function reverseAlpha(arr) {
-  return arr.sort(function(a, b) {
+  return arr.sort(function (a, b) {
     return a === b ? 0 : a < b ? 1 : -1;
   });
 }
-reverseAlpha(['l', 'h', 'z', 'b', 's']);
+reverseAlpha(["l", "h", "z", "b", "s"]);
 ```
 
 这将返回值 `['z', 's', 'l', 'h', 'b']`。
@@ -52,8 +52,8 @@ assert(code.match(/\.sort/g));
 
 ```js
 assert(
-  JSON.stringify(alphabeticalOrder(['a', 'd', 'c', 'a', 'z', 'g'])) ===
-    JSON.stringify(['a', 'a', 'c', 'd', 'g', 'z'])
+  JSON.stringify(alphabeticalOrder(["a", "d", "c", "a", "z", "g"])) ===
+    JSON.stringify(["a", "a", "c", "d", "g", "z"])
 );
 ```
 
@@ -61,8 +61,8 @@ assert(
 
 ```js
 assert(
-  JSON.stringify(alphabeticalOrder(['x', 'h', 'a', 'm', 'n', 'm'])) ===
-    JSON.stringify(['a', 'h', 'm', 'm', 'n', 'x'])
+  JSON.stringify(alphabeticalOrder(["x", "h", "a", "m", "n", "m"])) ===
+    JSON.stringify(["a", "h", "m", "m", "n", "x"])
 );
 ```
 
@@ -70,8 +70,8 @@ assert(
 
 ```js
 assert(
-  JSON.stringify(alphabeticalOrder(['a', 'a', 'a', 'a', 'x', 't'])) ===
-    JSON.stringify(['a', 'a', 'a', 'a', 't', 'x'])
+  JSON.stringify(alphabeticalOrder(["a", "a", "a", "a", "x", "t"])) ===
+    JSON.stringify(["a", "a", "a", "a", "t", "x"])
 );
 ```
 
@@ -82,8 +82,6 @@ assert(
 ```js
 function alphabeticalOrder(arr) {
   // Only change code below this line
-
-
   // Only change code above this line
 }
 alphabeticalOrder(["a", "d", "c", "a", "z", "g"]);

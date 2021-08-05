@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 /**
  * @fileoverview Tests for multifactorsession.js
  */
@@ -29,78 +29,68 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.MultiFactorSessionTest');
 
-
 var jwt = fireauth.common.testHelper.createMockJwt();
 var pendingCredential = 'MFA_PENDING_CREDENTIAL';
-
 
 function testMultiFactorSession_idToken() {
   var session = new fireauth.MultiFactorSession(jwt);
 
-  assertEquals(
-      session.type, fireauth.MultiFactorSession.Type.ENROLL);
+  assertEquals(session.type, fireauth.MultiFactorSession.Type.ENROLL);
   assertObjectEquals(
-      {
-        'multiFactorSession': {
-          'idToken': jwt
-        }
-      },
-      session.toPlainObject());
-  return session.getRawSession()
-      .then(function(rawSession) {
-        assertEquals(jwt, rawSession);
-      });
+    {
+      'multiFactorSession': {
+        'idToken': jwt
+      }
+    },
+    session.toPlainObject()
+  );
+  return session.getRawSession().then(function (rawSession) {
+    assertEquals(jwt, rawSession);
+  });
 }
-
 
 function testMultiFactorSession_pendingCredential() {
   var session = new fireauth.MultiFactorSession(null, pendingCredential);
 
-  assertEquals(
-      session.type, fireauth.MultiFactorSession.Type.SIGN_IN);
+  assertEquals(session.type, fireauth.MultiFactorSession.Type.SIGN_IN);
   assertObjectEquals(
-      {
-        'multiFactorSession': {
-          'pendingCredential': pendingCredential
-        }
-      },
-      session.toPlainObject());
-  return session.getRawSession()
-      .then(function(rawSession) {
-        assertEquals(pendingCredential, rawSession);
-      });
+    {
+      'multiFactorSession': {
+        'pendingCredential': pendingCredential
+      }
+    },
+    session.toPlainObject()
+  );
+  return session.getRawSession().then(function (rawSession) {
+    assertEquals(pendingCredential, rawSession);
+  });
 }
-
 
 function testMultiFactorSession_missingRawSession() {
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.INTERNAL_ERROR,
-      'Internal assert: no raw session string available');
+    fireauth.authenum.Error.INTERNAL_ERROR,
+    'Internal assert: no raw session string available'
+  );
 
-  var error = assertThrows(function() {
+  var error = assertThrows(function () {
     return new fireauth.MultiFactorSession(null, null);
   });
 
-  fireauth.common.testHelper.assertErrorEquals(
-      expectedError,
-      error);
+  fireauth.common.testHelper.assertErrorEquals(expectedError, error);
 }
-
 
 function testMultiFactorSession_undeterminedSessionType() {
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.INTERNAL_ERROR,
-      'Internal assert: unable to determine the session type');
+    fireauth.authenum.Error.INTERNAL_ERROR,
+    'Internal assert: unable to determine the session type'
+  );
 
-  var error = assertThrows(function() {
+  var error = assertThrows(function () {
     return new fireauth.MultiFactorSession(jwt, pendingCredential);
   });
 
-  fireauth.common.testHelper.assertErrorEquals(
-      expectedError,
-      error);
+  fireauth.common.testHelper.assertErrorEquals(expectedError, error);
 }
-
 
 function testMultiFactorSession_fromPlainObject_valid() {
   var enrollSession = new fireauth.MultiFactorSession(jwt, null);
@@ -117,41 +107,45 @@ function testMultiFactorSession_fromPlainObject_valid() {
   };
 
   assertObjectEquals(
-      enrollSession,
-      fireauth.MultiFactorSession.fromPlainObject(enrollSessionObject));
+    enrollSession,
+    fireauth.MultiFactorSession.fromPlainObject(enrollSessionObject)
+  );
   assertObjectEquals(
-      signInSession,
-      fireauth.MultiFactorSession.fromPlainObject(signInSessionObject));
+    signInSession,
+    fireauth.MultiFactorSession.fromPlainObject(signInSessionObject)
+  );
 }
 
-
 function testMultiFactorSession_fromPlainObject_invalid() {
+  assertNull(fireauth.MultiFactorSession.fromPlainObject(null));
+  assertNull(fireauth.MultiFactorSession.fromPlainObject({}));
   assertNull(
-      fireauth.MultiFactorSession.fromPlainObject(null));
+    fireauth.MultiFactorSession.fromPlainObject({
+      'idToken': jwt
+    })
+  );
   assertNull(
-      fireauth.MultiFactorSession.fromPlainObject({}));
+    fireauth.MultiFactorSession.fromPlainObject({
+      'pendingCredential': pendingCredential
+    })
+  );
   assertNull(
-      fireauth.MultiFactorSession.fromPlainObject({
-        'idToken': jwt
-      }));
+    fireauth.MultiFactorSession.fromPlainObject({
+      'multiFactorSession': {}
+    })
+  );
   assertNull(
-      fireauth.MultiFactorSession.fromPlainObject({
-        'pendingCredential': pendingCredential
-      }));
+    fireauth.MultiFactorSession.fromPlainObject({
+      'multiFactorSession': {
+        'idToken': ''
+      }
+    })
+  );
   assertNull(
-      fireauth.MultiFactorSession.fromPlainObject({
-        'multiFactorSession': {}
-      }));
-  assertNull(
-      fireauth.MultiFactorSession.fromPlainObject({
-        'multiFactorSession': {
-          'idToken': ''
-        }
-      }));
-  assertNull(
-      fireauth.MultiFactorSession.fromPlainObject({
-        'multiFactorSession': {
-          'pendingCredential': ''
-        }
-      }));
+    fireauth.MultiFactorSession.fromPlainObject({
+      'multiFactorSession': {
+        'pendingCredential': ''
+      }
+    })
+  );
 }

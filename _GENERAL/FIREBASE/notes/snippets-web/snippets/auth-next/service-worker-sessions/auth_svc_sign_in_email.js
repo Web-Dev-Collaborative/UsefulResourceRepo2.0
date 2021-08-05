@@ -12,7 +12,7 @@ signInWithEmailAndPassword(auth, email, password)
   .then((result) => {
     // Redirect to profile page after sign-in. The service worker will detect
     // this and append the ID token to the header.
-    window.location.assign('/profile');
+    window.location.assign("/profile");
   })
   .catch((error) => {
     // Error occurred.

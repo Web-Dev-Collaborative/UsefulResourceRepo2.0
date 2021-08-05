@@ -15,7 +15,7 @@ Aplana un arreglo anidado. Debes tener en cuenta los diferentes niveles de anida
 `steamrollArray([[["a"]], [["b"]]])` debe devolver `["a", "b"]`.
 
 ```js
-assert.deepEqual(steamrollArray([[['a']], [['b']]]), ['a', 'b']);
+assert.deepEqual(steamrollArray([[["a"]], [["b"]]]), ["a", "b"]);
 ```
 
 `steamrollArray([1, [2], [3, [[4]]]])` debe devolver `[1, 2, 3, 4]`.
@@ -62,8 +62,8 @@ function steamrollArray(arr) {
     return [arr];
   }
   var out = [];
-  arr.forEach(function(e) {
-    steamrollArray(e).forEach(function(v) {
+  arr.forEach(function (e) {
+    steamrollArray(e).forEach(function (v) {
       out.push(v);
     });
   });

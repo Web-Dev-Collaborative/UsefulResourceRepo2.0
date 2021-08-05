@@ -53,8 +53,6 @@ goog.require('goog.events.Event');
 goog.require('goog.events.EventTarget');
 goog.require('goog.object');
 
-
-
 /**
  * Creates the Firebase Auth corresponding for the App provided.
  *
@@ -64,26 +62,32 @@ goog.require('goog.object');
  * @implements {firebase.Service}
  * @extends {goog.events.EventTarget}
  */
-fireauth.Auth = function(app) {
+fireauth.Auth = function (app) {
   /** @private {boolean} Whether this instance is deleted. */
   this.deleted_ = false;
   /** The Auth instance's settings object. */
   fireauth.object.setReadonlyProperty(
-      this, 'settings', new fireauth.AuthSettings());
+    this,
+    'settings',
+    new fireauth.AuthSettings()
+  );
   /** Auth's corresponding App. */
   fireauth.object.setReadonlyProperty(this, 'app', app);
   // Initialize RPC handler.
   // API key is required for web client RPC calls.
   if (this.app_().options && this.app_().options['apiKey']) {
-    var clientFullVersion = firebase.SDK_VERSION ?
-        fireauth.util.getClientVersion(
-            fireauth.util.ClientImplementation.JSCORE, firebase.SDK_VERSION) :
-        null;
+    var clientFullVersion = firebase.SDK_VERSION
+      ? fireauth.util.getClientVersion(
+          fireauth.util.ClientImplementation.JSCORE,
+          firebase.SDK_VERSION
+        )
+      : null;
     this.rpcHandler_ = new fireauth.RpcHandler(
-        this.app_().options && this.app_().options['apiKey'],
-        // Get the client Auth endpoint used.
-        fireauth.constants.getEndpointConfig(fireauth.constants.clientEndpoint),
-        clientFullVersion);
+      this.app_().options && this.app_().options['apiKey'],
+      // Get the client Auth endpoint used.
+      fireauth.constants.getEndpointConfig(fireauth.constants.clientEndpoint),
+      clientFullVersion
+    );
   } else {
     throw new fireauth.AuthError(fireauth.authenum.Error.INVALID_API_KEY);
   }
@@ -100,7 +104,8 @@ fireauth.Auth = function(app) {
    *     token refresh on the same user.
    */
   this.onIdTokenChanged_ = firebase.INTERNAL.createSubscribe(
-      goog.bind(this.initIdTokenChangeObserver_, this));
+    goog.bind(this.initIdTokenChangeObserver_, this)
+  );
   /**
    * @private {?string|undefined} The UID of the user that last triggered the
    *     user state change listener.
@@ -111,21 +116,24 @@ fireauth.Auth = function(app) {
    *     change observer.
    */
   this.onUserStateChanged_ = firebase.INTERNAL.createSubscribe(
-      goog.bind(this.initUserStateObserver_, this));
+    goog.bind(this.initUserStateObserver_, this)
+  );
   // Set currentUser to null.
   this.setCurrentUser_(null);
   /**
    * @private {!fireauth.storage.UserManager} The Auth user storage
    *     manager instance.
    */
-  this.userStorageManager_ =
-      new fireauth.storage.UserManager(this.getStorageKey());
+  this.userStorageManager_ = new fireauth.storage.UserManager(
+    this.getStorageKey()
+  );
   /**
    * @private {!fireauth.storage.RedirectUserManager} The redirect user
    *     storagemanager instance.
    */
-  this.redirectUserStorageManager_ =
-      new fireauth.storage.RedirectUserManager(this.getStorageKey());
+  this.redirectUserStorageManager_ = new fireauth.storage.RedirectUserManager(
+    this.getStorageKey()
+  );
   /**
    * @private {!goog.Promise<undefined>} Promise that resolves when initial
    *     state is loaded from storage.
@@ -137,7 +145,8 @@ fireauth.Auth = function(app) {
    *     are safe to execute.
    */
   this.redirectStateIsReady_ = this.registerPendingPromise_(
-      this.initAuthRedirectState_());
+    this.initAuthRedirectState_()
+  );
   /** @private {boolean} Whether initial state has already been resolved. */
   this.isStateResolved_ = false;
   /**
@@ -147,11 +156,9 @@ fireauth.Auth = function(app) {
   this.getSyncAuthUserChanges_ = goog.bind(this.syncAuthUserChanges_, this);
   /** @private {!function(!fireauth.AuthUser):!goog.Promise} The handler for
    *      user state changes. */
-  this.userStateChangeListener_ =
-      goog.bind(this.handleUserStateChange_, this);
+  this.userStateChangeListener_ = goog.bind(this.handleUserStateChange_, this);
   /** @private {!function(!Object)} The handler for user token changes. */
-  this.userTokenChangeListener_ =
-      goog.bind(this.handleUserTokenChange_, this);
+  this.userTokenChangeListener_ = goog.bind(this.handleUserTokenChange_, this);
   /** @private {!function(!Object)} The handler for user deletion. */
   this.userDeleteListener_ = goog.bind(this.handleUserDelete_, this);
   /** @private {!function(!Object)} The handler for user invalidation. */
@@ -193,20 +200,20 @@ fireauth.Auth = function(app) {
 };
 goog.inherits(fireauth.Auth, goog.events.EventTarget);
 
-
 /**
  * Language code change custom event.
  * @param {?string} languageCode The new language code.
  * @constructor
  * @extends {goog.events.Event}
  */
-fireauth.Auth.LanguageCodeChangeEvent = function(languageCode) {
+fireauth.Auth.LanguageCodeChangeEvent = function (languageCode) {
   goog.events.Event.call(
-      this, fireauth.constants.AuthEventType.LANGUAGE_CODE_CHANGED);
+    this,
+    fireauth.constants.AuthEventType.LANGUAGE_CODE_CHANGED
+  );
   this.languageCode = languageCode;
 };
 goog.inherits(fireauth.Auth.LanguageCodeChangeEvent, goog.events.Event);
-
 
 /**
  * Emulator config change custom event.
@@ -215,12 +222,14 @@ goog.inherits(fireauth.Auth.LanguageCodeChangeEvent, goog.events.Event);
  * @constructor
  * @extends {goog.events.Event}
  */
-fireauth.Auth.EmulatorConfigChangeEvent = function(emulatorConfig) {
-  goog.events.Event.call(this, fireauth.constants.AuthEventType.EMULATOR_CONFIG_CHANGED);
+fireauth.Auth.EmulatorConfigChangeEvent = function (emulatorConfig) {
+  goog.events.Event.call(
+    this,
+    fireauth.constants.AuthEventType.EMULATOR_CONFIG_CHANGED
+  );
   this.emulatorConfig = emulatorConfig;
 };
 goog.inherits(fireauth.Auth.EmulatorConfigChangeEvent, goog.events.Event);
-
 
 /**
  * Framework change custom event.
@@ -228,13 +237,14 @@ goog.inherits(fireauth.Auth.EmulatorConfigChangeEvent, goog.events.Event);
  * @constructor
  * @extends {goog.events.Event}
  */
-fireauth.Auth.FrameworkChangeEvent = function(frameworks) {
+fireauth.Auth.FrameworkChangeEvent = function (frameworks) {
   goog.events.Event.call(
-      this, fireauth.constants.AuthEventType.FRAMEWORK_CHANGED);
+    this,
+    fireauth.constants.AuthEventType.FRAMEWORK_CHANGED
+  );
   this.frameworks = frameworks;
 };
 goog.inherits(fireauth.Auth.FrameworkChangeEvent, goog.events.Event);
-
 
 /**
  * Changes the Auth state persistence to the specified one.
@@ -242,7 +252,7 @@ goog.inherits(fireauth.Auth.FrameworkChangeEvent, goog.events.Event);
  *     persistence mechanism.
  * @return {!goog.Promise<void>}
  */
-fireauth.Auth.prototype.setPersistence = function(persistence) {
+fireauth.Auth.prototype.setPersistence = function (persistence) {
   // TODO: fix auth.delete() behavior and how this affects persistence
   // change after deletion.
   // Throw an error if already destroyed.
@@ -251,19 +261,17 @@ fireauth.Auth.prototype.setPersistence = function(persistence) {
   return /** @type {!goog.Promise<void>} */ (this.registerPendingPromise_(p));
 };
 
-
 /**
  * Get rid of Closure warning - the property is adding in the constructor.
  * @type {!firebase.app.App}
  */
 fireauth.Auth.prototype.app;
 
-
 /**
  * Sets the language code.
  * @param {?string} languageCode
  */
-fireauth.Auth.prototype.setLanguageCode = function(languageCode) {
+fireauth.Auth.prototype.setLanguageCode = function (languageCode) {
   // Don't do anything if no change detected.
   if (this.languageCode_ !== languageCode && !this.deleted_) {
     this.languageCode_ = languageCode;
@@ -274,42 +282,40 @@ fireauth.Auth.prototype.setLanguageCode = function(languageCode) {
   }
 };
 
-
 /**
  * Returns the current auth instance's language code if available.
  * @return {?string}
  */
-fireauth.Auth.prototype.getLanguageCode = function() {
+fireauth.Auth.prototype.getLanguageCode = function () {
   return this.languageCode_;
 };
-
 
 /**
  * Sets the current language to the default device/browser preference.
  */
-fireauth.Auth.prototype.useDeviceLanguage = function() {
+fireauth.Auth.prototype.useDeviceLanguage = function () {
   this.setLanguageCode(fireauth.util.getUserLanguage());
 };
-
 
 /**
  * Sets the emulator configuration (go/firebase-emulator-connection-api).
  * @param {string} url The url for the Auth emulator.
  * @param {?Object=} options Optional options to specify emulator settings.
  */
-fireauth.Auth.prototype.useEmulator = function(url, options) {
+fireauth.Auth.prototype.useEmulator = function (url, options) {
   // Emulator config can only be set once.
   if (!this.emulatorConfig_) {
     if (!/^https?:\/\//.test(url)) {
       throw new fireauth.AuthError(
-          fireauth.authenum.Error.ARGUMENT_ERROR,
-          'Emulator URL must start with a valid scheme (http:// or https://).');
+        fireauth.authenum.Error.ARGUMENT_ERROR,
+        'Emulator URL must start with a valid scheme (http:// or https://).'
+      );
     }
     // Emit a warning so dev knows we are now in test mode.
     const disableBanner = options ? !!options['disableWarnings'] : false;
     this.emitEmulatorWarning_(disableBanner);
     // Persist the config.
-    this.emulatorConfig_ = {url, disableWarnings: disableBanner};
+    this.emulatorConfig_ = { url, disableWarnings: disableBanner };
     // Disable app verification.
     this.settings_().setAppVerificationDisabledForTesting(true);
     // Update RPC handler endpoints.
@@ -317,8 +323,7 @@ fireauth.Auth.prototype.useEmulator = function(url, options) {
     // Notify external event listeners.
     this.notifyEmulatorConfigListeners_();
   }
-}
-
+};
 
 /**
  * Emits a console info and a visual banner if emulator integration is
@@ -326,14 +331,17 @@ fireauth.Auth.prototype.useEmulator = function(url, options) {
  * @param {boolean} disableBanner Whether visual banner should be disabled.
  * @private
  */
-fireauth.Auth.prototype.emitEmulatorWarning_ = function(disableBanner) {
-  fireauth.util.consoleInfo('WARNING: You are using the Auth Emulator,' +
-    ' which is intended for local testing only.  Do not use with' +
-    ' production credentials.');
+fireauth.Auth.prototype.emitEmulatorWarning_ = function (disableBanner) {
+  fireauth.util.consoleInfo(
+    'WARNING: You are using the Auth Emulator,' +
+      ' which is intended for local testing only.  Do not use with' +
+      ' production credentials.'
+  );
   if (goog.global.document && !disableBanner) {
     fireauth.util.onDomReady().then(() => {
       const ele = goog.global.document.createElement('div');
-      ele.innerText = 'Running in emulator mode. Do not use with production' +
+      ele.innerText =
+        'Running in emulator mode. Do not use with production' +
         ' credentials.';
       ele.style.position = 'fixed';
       ele.style.width = '100%';
@@ -349,53 +357,53 @@ fireauth.Auth.prototype.emitEmulatorWarning_ = function(disableBanner) {
       goog.global.document.body.appendChild(ele);
     });
   }
-}
-
+};
 
 /**
  * @return {?fireauth.constants.EmulatorConfig}
  */
-fireauth.Auth.prototype.getEmulatorConfig = function() {
+fireauth.Auth.prototype.getEmulatorConfig = function () {
   if (!this.emulatorConfig_) {
     return null;
   }
   const uri = goog.Uri.parse(this.emulatorConfig_.url);
   return /** @type {!fireauth.constants.EmulatorConfig} */ (
-      fireauth.object.makeReadonlyCopy({
-        'protocol': uri.getScheme(),
-        'host': uri.getDomain(),
-        'port': uri.getPort(),
-        'options': fireauth.object.makeReadonlyCopy({
-          'disableWarnings': this.emulatorConfig_.disableWarnings,
-        }),
-      }));
-}
-
+    fireauth.object.makeReadonlyCopy({
+      'protocol': uri.getScheme(),
+      'host': uri.getDomain(),
+      'port': uri.getPort(),
+      'options': fireauth.object.makeReadonlyCopy({
+        'disableWarnings': this.emulatorConfig_.disableWarnings
+      })
+    })
+  );
+};
 
 /**
  * @param {string} frameworkId The framework identifier.
  */
-fireauth.Auth.prototype.logFramework = function(frameworkId) {
+fireauth.Auth.prototype.logFramework = function (frameworkId) {
   // Theoretically multiple frameworks could be used
   // (angularfire and FirebaseUI). Once a framework is used, it is not going
   // to be unused, so no point adding a method to remove the framework ID.
   this.frameworks_.push(frameworkId);
   // Update the client version in RPC handler with the new frameworks.
-  this.rpcHandler_.updateClientVersion(firebase.SDK_VERSION ?
-        fireauth.util.getClientVersion(
-            fireauth.util.ClientImplementation.JSCORE, firebase.SDK_VERSION,
-            this.frameworks_) :
-        null);
-  this.dispatchEvent(new fireauth.Auth.FrameworkChangeEvent(
-      this.frameworks_));
+  this.rpcHandler_.updateClientVersion(
+    firebase.SDK_VERSION
+      ? fireauth.util.getClientVersion(
+          fireauth.util.ClientImplementation.JSCORE,
+          firebase.SDK_VERSION,
+          this.frameworks_
+        )
+      : null
+  );
+  this.dispatchEvent(new fireauth.Auth.FrameworkChangeEvent(this.frameworks_));
 };
-
 
 /** @return {!Array<string>} The current Firebase frameworks. */
-fireauth.Auth.prototype.getFramework = function() {
+fireauth.Auth.prototype.getFramework = function () {
   return goog.array.clone(this.frameworks_);
 };
-
 
 /**
  * Updates the framework list on the provided user and configures the user to
@@ -404,19 +412,18 @@ fireauth.Auth.prototype.getFramework = function() {
  *     updated.
  * @private
  */
-fireauth.Auth.prototype.setUserFramework_ = function(user) {
+fireauth.Auth.prototype.setUserFramework_ = function (user) {
   // Sets the framework ID on the user.
   user.setFramework(this.frameworks_);
   // Sets current Auth instance as framework list change dispatcher on the user.
   user.setFrameworkChangeDispatcher(this);
 };
 
-
 /**
  * Sets the tenant ID.
  * @param {?string} tenantId The tenant ID of the tenant project if available.
  */
-fireauth.Auth.prototype.setTenantId = function(tenantId) {
+fireauth.Auth.prototype.setTenantId = function (tenantId) {
   // Don't do anything if no change detected.
   if (this.tenantId_ !== tenantId && !this.deleted_) {
     this.tenantId_ = tenantId;
@@ -424,35 +431,33 @@ fireauth.Auth.prototype.setTenantId = function(tenantId) {
   }
 };
 
-
 /**
  * Returns the current Auth instance's tenant ID.
  * @return {?string}
  */
-fireauth.Auth.prototype.getTenantId = function() {
+fireauth.Auth.prototype.getTenantId = function () {
   return this.tenantId_;
 };
-
 
 /**
  * Initializes readable/writable properties on Auth.
  * @suppress {invalidCasts}
  * @private
  */
-fireauth.Auth.prototype.initializeReadableWritableProps_ = function() {
+fireauth.Auth.prototype.initializeReadableWritableProps_ = function () {
   Object.defineProperty(/** @type {!Object} */ (this), 'lc', {
     /**
      * @this {!Object}
      * @return {?string} The current language code.
      */
-    get: function() {
+    get: function () {
       return this.getLanguageCode();
     },
     /**
      * @this {!Object}
      * @param {string} value The new language code.
      */
-    set: function(value) {
+    set: function (value) {
       this.setLanguageCode(value);
     },
     enumerable: false
@@ -467,14 +472,14 @@ fireauth.Auth.prototype.initializeReadableWritableProps_ = function() {
      * @this {!Object}
      * @return {?string} The current tenant ID.
      */
-    get: function() {
+    get: function () {
       return this.getTenantId();
     },
     /**
      * @this {!Object}
      * @param {?string} value The new tenant ID.
      */
-    set: function(value) {
+    set: function (value) {
       this.setTenantId(value);
     },
     enumerable: false
@@ -490,41 +495,40 @@ fireauth.Auth.prototype.initializeReadableWritableProps_ = function() {
      * @return {?fireauth.constants.EmulatorConfig} The emulator config if
      * enabled.
      */
-    get: function() {
+    get: function () {
       return this.getEmulatorConfig();
     },
     enumerable: false
   });
 };
 
-
 /**
  * Notifies all external listeners of the language code change.
  * @private
  */
-fireauth.Auth.prototype.notifyLanguageCodeListeners_ = function() {
+fireauth.Auth.prototype.notifyLanguageCodeListeners_ = function () {
   // Notify external listeners on the language code change.
-  this.dispatchEvent(new fireauth.Auth.LanguageCodeChangeEvent(
-      this.getLanguageCode()));
+  this.dispatchEvent(
+    new fireauth.Auth.LanguageCodeChangeEvent(this.getLanguageCode())
+  );
 };
-
 
 /**
  * Notifies all external listeners of the emulator config change.
  * @private
  */
-fireauth.Auth.prototype.notifyEmulatorConfigListeners_ = function() {
+fireauth.Auth.prototype.notifyEmulatorConfigListeners_ = function () {
   // Notify external listeners on the emulator config change.
   this.dispatchEvent(
-    new fireauth.Auth.EmulatorConfigChangeEvent(this.emulatorConfig_));
-}
-
+    new fireauth.Auth.EmulatorConfigChangeEvent(this.emulatorConfig_)
+  );
+};
 
 /**
  * @return {!Object} The object representation of the Auth instance.
  * @override
  */
-fireauth.Auth.prototype.toJSON = function() {
+fireauth.Auth.prototype.toJSON = function () {
   // Return the plain object representation in case JSON.stringify is called on
   // an Auth instance.
   return {
@@ -535,26 +539,27 @@ fireauth.Auth.prototype.toJSON = function() {
   };
 };
 
-
 /**
  * Returns the Auth event manager promise.
  * @return {!goog.Promise<!fireauth.AuthEventManager>}
  * @private
  */
-fireauth.Auth.prototype.getAuthEventManager_ = function() {
+fireauth.Auth.prototype.getAuthEventManager_ = function () {
   // Either return cached Auth event manager promise provider if available or a
   // promise that rejects with missing Auth domain error.
-  return this.eventManagerProviderPromise_ ||
-      goog.Promise.reject(
-          new fireauth.AuthError(fireauth.authenum.Error.MISSING_AUTH_DOMAIN));
+  return (
+    this.eventManagerProviderPromise_ ||
+    goog.Promise.reject(
+      new fireauth.AuthError(fireauth.authenum.Error.MISSING_AUTH_DOMAIN)
+    )
+  );
 };
-
 
 /**
  * Initializes the Auth event manager when state is ready.
  * @private
  */
-fireauth.Auth.prototype.initAuthEventManager_ = function() {
+fireauth.Auth.prototype.initAuthEventManager_ = function () {
   // Initialize Auth event manager on initState.
   var self = this;
   var authDomain = this.app_().options['authDomain'];
@@ -563,7 +568,7 @@ fireauth.Auth.prototype.initAuthEventManager_ = function() {
   if (authDomain && fireauth.util.isPopupRedirectSupported()) {
     // Auth domain is required for Auth event manager to resolve.
     // Auth state has to be loaded first. One reason is to process link events.
-    this.eventManagerProviderPromise_ = this.authStateLoaded_.then(function() {
+    this.eventManagerProviderPromise_ = this.authStateLoaded_.then(function () {
       if (self.deleted_) {
         return;
       }
@@ -573,7 +578,8 @@ fireauth.Auth.prototype.initAuthEventManager_ = function() {
         authDomain,
         apiKey,
         self.app_().name,
-        self.emulatorConfig_);
+        self.emulatorConfig_
+      );
       // Subscribe Auth instance.
       self.authEventManager_.subscribe(self);
       // Subscribe current user by enabling popup and redirect on that user.
@@ -592,13 +598,16 @@ fireauth.Auth.prototype.initAuthEventManager_ = function() {
         self.redirectUser_.enablePopupRedirect();
         // Set the user language for the redirect user.
         self.setUserLanguage_(
-            /** @type {!fireauth.AuthUser} */ (self.redirectUser_));
+          /** @type {!fireauth.AuthUser} */ (self.redirectUser_)
+        );
         // Set the user Firebase frameworks for the redirect user.
         self.setUserFramework_(
-            /** @type {!fireauth.AuthUser} */(self.redirectUser_));
+          /** @type {!fireauth.AuthUser} */ (self.redirectUser_)
+        );
         // Set the user Emulator configuration for the redirect user.
         self.setUserEmulatorConfig_(
-            /** @type {!fireauth.AuthUser} */(self.redirectUser_));
+          /** @type {!fireauth.AuthUser} */ (self.redirectUser_)
+        );
         // Reference to redirect user no longer needed.
         self.redirectUser_ = null;
       }
@@ -607,7 +616,6 @@ fireauth.Auth.prototype.initAuthEventManager_ = function() {
   }
 };
 
-
 /**
  * @param {!fireauth.AuthEvent.Type} mode The Auth type mode.
  * @param {?string=} opt_eventId The event ID.
@@ -615,7 +623,7 @@ fireauth.Auth.prototype.initAuthEventManager_ = function() {
  *     event.
  * @override
  */
-fireauth.Auth.prototype.canHandleAuthEvent = function(mode, opt_eventId) {
+fireauth.Auth.prototype.canHandleAuthEvent = function (mode, opt_eventId) {
   // Only sign in events are handled.
   switch (mode) {
     // Accept all general sign in with redirect and unknowns.
@@ -624,15 +632,15 @@ fireauth.Auth.prototype.canHandleAuthEvent = function(mode, opt_eventId) {
     case fireauth.AuthEvent.Type.UNKNOWN:
     case fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT:
       return true;
-    case fireauth.AuthEvent.Type. SIGN_IN_VIA_POPUP:
+    case fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP:
       // Pending sign in with popup event must match the stored popup event ID.
-      return this.popupEventId_ == opt_eventId &&
-          !!this.pendingPopupResolvePromise_;
+      return (
+        this.popupEventId_ == opt_eventId && !!this.pendingPopupResolvePromise_
+      );
     default:
       return false;
   }
 };
-
 
 /**
  * Completes the pending popup operation. If error is not null, rejects with the
@@ -644,19 +652,27 @@ fireauth.Auth.prototype.canHandleAuthEvent = function(mode, opt_eventId) {
  * @param {?string=} opt_eventId The event ID.
  * @override
  */
-fireauth.Auth.prototype.resolvePendingPopupEvent =
-    function(mode, popupRedirectResult, error, opt_eventId) {
+fireauth.Auth.prototype.resolvePendingPopupEvent = function (
+  mode,
+  popupRedirectResult,
+  error,
+  opt_eventId
+) {
   // Only handles popup events of type sign in and which match popup event ID.
-  if (mode != fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP ||
-      this.popupEventId_ != opt_eventId) {
+  if (
+    mode != fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP ||
+    this.popupEventId_ != opt_eventId
+  ) {
     return;
   }
   if (error && this.pendingPopupRejectPromise_) {
     // Reject with error for supplied mode.
     this.pendingPopupRejectPromise_(error);
-  } else if (popupRedirectResult &&
-             !error &&
-             this.pendingPopupResolvePromise_) {
+  } else if (
+    popupRedirectResult &&
+    !error &&
+    this.pendingPopupResolvePromise_
+  ) {
     // Resolve with result for supplied mode.
     this.pendingPopupResolvePromise_(popupRedirectResult);
   }
@@ -670,7 +686,6 @@ fireauth.Auth.prototype.resolvePendingPopupEvent =
   delete this.pendingPopupRejectPromise_;
 };
 
-
 /**
  * Returns the handler's appropriate popup and redirect sign in operation
  * finisher.
@@ -680,19 +695,22 @@ fireauth.Auth.prototype.resolvePendingPopupEvent =
  *     ?string=):!goog.Promise<!fireauth.AuthEventManager.Result>}
  * @override
  */
-fireauth.Auth.prototype.getAuthEventHandlerFinisher =
-    function(mode, opt_eventId) {
+fireauth.Auth.prototype.getAuthEventHandlerFinisher = function (
+  mode,
+  opt_eventId
+) {
   // Sign in events will be completed by finishPopupAndRedirectSignIn.
   if (mode == fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT) {
     return goog.bind(this.finishPopupAndRedirectSignIn, this);
-  } else if (mode == fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP &&
-             this.popupEventId_ == opt_eventId &&
-             this.pendingPopupResolvePromise_) {
+  } else if (
+    mode == fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP &&
+    this.popupEventId_ == opt_eventId &&
+    this.pendingPopupResolvePromise_
+  ) {
     return goog.bind(this.finishPopupAndRedirectSignIn, this);
   }
   return null;
 };
-
 
 /**
  * Finishes the popup and redirect sign in operations.
@@ -702,8 +720,12 @@ fireauth.Auth.prototype.getAuthEventHandlerFinisher =
  * @param {?string=} opt_postBody The optional POST body content.
  * @return {!goog.Promise<!fireauth.AuthEventManager.Result>}
  */
-fireauth.Auth.prototype.finishPopupAndRedirectSignIn =
-    function(requestUri, sessionId, tenantId, opt_postBody) {
+fireauth.Auth.prototype.finishPopupAndRedirectSignIn = function (
+  requestUri,
+  sessionId,
+  tenantId,
+  opt_postBody
+) {
   var self = this;
   // Verify assertion request.
   var request = {
@@ -722,32 +744,32 @@ fireauth.Auth.prototype.finishPopupAndRedirectSignIn =
   // When state is ready, run verify assertion request.
   // This will only run either after initial and redirect state is ready for
   // popups or after initial state is ready for redirect resolution.
-  return self.authStateLoaded_.then(function() {
+  return self.authStateLoaded_.then(function () {
     return self.signInWithIdTokenProvider_(
-        self.rpcHandler_.verifyAssertion(request));
+      self.rpcHandler_.verifyAssertion(request)
+    );
   });
 };
-
 
 /**
  * @return {string} The generated event ID used to identify a popup event.
  * @private
  */
-fireauth.Auth.prototype.generateEventId_ = function() {
+fireauth.Auth.prototype.generateEventId_ = function () {
   return fireauth.util.generateEventId();
 };
-
 
 /**
  * Signs in to Auth provider via popup.
  * @param {!fireauth.AuthProvider} provider The Auth provider to sign in with.
  * @return {!goog.Promise<!fireauth.AuthEventManager.Result>}
  */
-fireauth.Auth.prototype.signInWithPopup = function(provider) {
+fireauth.Auth.prototype.signInWithPopup = function (provider) {
   // Check if popup and redirect are supported in this environment.
   if (!fireauth.util.isPopupRedirectSupported()) {
-    return goog.Promise.reject(new fireauth.AuthError(
-        fireauth.authenum.Error.OPERATION_NOT_SUPPORTED));
+    return goog.Promise.reject(
+      new fireauth.AuthError(fireauth.authenum.Error.OPERATION_NOT_SUPPORTED)
+    );
   }
   var mode = fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP;
   var self = this;
@@ -762,109 +784,131 @@ fireauth.Auth.prototype.signInWithPopup = function(provider) {
   // If incapable of redirecting popup from opener, popup destination URL
   // directly. This could also happen in a sandboxed iframe.
   var oauthHelperWidgetUrl = null;
-  if ((!fireauth.util.runsInBackground() || fireauth.util.isIframe()) &&
-      this.app_().options['authDomain'] &&
-      provider['isOAuthProvider']) {
+  if (
+    (!fireauth.util.runsInBackground() || fireauth.util.isIframe()) &&
+    this.app_().options['authDomain'] &&
+    provider['isOAuthProvider']
+  ) {
     oauthHelperWidgetUrl =
-        fireauth.iframeclient.IfcHandler.getOAuthHelperWidgetUrl(
-            this.app_().options['authDomain'],
-            this.app_().options['apiKey'],
-            this.app_().name,
-            mode,
-            provider,
-            null,
-            eventId,
-            firebase.SDK_VERSION || null,
-            null,
-            null,
-            this.getTenantId(),
-            this.emulatorConfig_);
+      fireauth.iframeclient.IfcHandler.getOAuthHelperWidgetUrl(
+        this.app_().options['authDomain'],
+        this.app_().options['apiKey'],
+        this.app_().name,
+        mode,
+        provider,
+        null,
+        eventId,
+        firebase.SDK_VERSION || null,
+        null,
+        null,
+        this.getTenantId(),
+        this.emulatorConfig_
+      );
   }
   // The popup must have a name, otherwise when successive popups are triggered
   // they will all render in the same instance and none will succeed since the
   // popup cancel of first window will close the shared popup window instance.
-  var popupWin =
-      fireauth.util.popup(
-          oauthHelperWidgetUrl,
-          fireauth.util.generateRandomString(),
-          settings && settings.popupWidth,
-          settings && settings.popupHeight);
+  var popupWin = fireauth.util.popup(
+    oauthHelperWidgetUrl,
+    fireauth.util.generateRandomString(),
+    settings && settings.popupWidth,
+    settings && settings.popupHeight
+  );
   // Auth event manager must be available for popup sign in to be possible.
-  var p = this.getAuthEventManager_().then(function(manager) {
-    // Process popup request tagging it with newly created event ID.
-    return manager.processPopup(
-        popupWin, mode, provider, eventId, !!oauthHelperWidgetUrl,
-        self.getTenantId());
-  }).then(function() {
-    return new goog.Promise(function(resolve, reject) {
-      // Expire other pending promises if still available..
-      self.resolvePendingPopupEvent(
+  var p = this.getAuthEventManager_()
+    .then(function (manager) {
+      // Process popup request tagging it with newly created event ID.
+      return manager.processPopup(
+        popupWin,
+        mode,
+        provider,
+        eventId,
+        !!oauthHelperWidgetUrl,
+        self.getTenantId()
+      );
+    })
+    .then(function () {
+      return new goog.Promise(function (resolve, reject) {
+        // Expire other pending promises if still available..
+        self.resolvePendingPopupEvent(
           mode,
           null,
           new fireauth.AuthError(fireauth.authenum.Error.EXPIRED_POPUP_REQUEST),
           // Existing pending popup event ID.
-          self.popupEventId_);
-      // Save current pending promises.
-      self.pendingPopupResolvePromise_ = resolve;
-      self.pendingPopupRejectPromise_ = reject;
-      // Overwrite popup event ID with new one corresponding to popup.
-      self.popupEventId_ = eventId;
-      // Keep track of timeout promise to cancel it on promise resolution before
-      // it times out.
-      self.popupTimeoutPromise_ =
-          self.authEventManager_.startPopupTimeout(
-              self, mode, /** @type {!Window} */ (popupWin), eventId);
+          self.popupEventId_
+        );
+        // Save current pending promises.
+        self.pendingPopupResolvePromise_ = resolve;
+        self.pendingPopupRejectPromise_ = reject;
+        // Overwrite popup event ID with new one corresponding to popup.
+        self.popupEventId_ = eventId;
+        // Keep track of timeout promise to cancel it on promise resolution before
+        // it times out.
+        self.popupTimeoutPromise_ = self.authEventManager_.startPopupTimeout(
+          self,
+          mode,
+          /** @type {!Window} */ (popupWin),
+          eventId
+        );
+      });
+    })
+    .then(function (result) {
+      // On resolution, close popup if still opened and pass result through.
+      if (popupWin) {
+        fireauth.util.closeWindow(popupWin);
+      }
+      if (result) {
+        return fireauth.object.makeReadonlyCopy(result);
+      }
+      return null;
+    })
+    .thenCatch(function (error) {
+      if (popupWin) {
+        fireauth.util.closeWindow(popupWin);
+      }
+      throw error;
     });
-  }).then(function(result) {
-    // On resolution, close popup if still opened and pass result through.
-    if (popupWin) {
-      fireauth.util.closeWindow(popupWin);
-    }
-    if (result) {
-      return fireauth.object.makeReadonlyCopy(result);
-    }
-    return null;
-  }).thenCatch(function(error) {
-    if (popupWin) {
-      fireauth.util.closeWindow(popupWin);
-    }
-    throw error;
-  });
   return /** @type {!goog.Promise<!fireauth.AuthEventManager.Result>} */ (
-      this.registerPendingPromise_(p));
+    this.registerPendingPromise_(p)
+  );
 };
-
 
 /**
  * Signs in to Auth provider via redirect.
  * @param {!fireauth.AuthProvider} provider The Auth provider to sign in with.
  * @return {!goog.Promise<void>}
  */
-fireauth.Auth.prototype.signInWithRedirect = function(provider) {
+fireauth.Auth.prototype.signInWithRedirect = function (provider) {
   // Check if popup and redirect are supported in this environment.
   if (!fireauth.util.isPopupRedirectSupported()) {
-    return goog.Promise.reject(new fireauth.AuthError(
-        fireauth.authenum.Error.OPERATION_NOT_SUPPORTED));
+    return goog.Promise.reject(
+      new fireauth.AuthError(fireauth.authenum.Error.OPERATION_NOT_SUPPORTED)
+    );
   }
   var self = this;
   var mode = fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT;
   // Auth event manager must be available for sign in via redirect to be
   // possible.
-  var p = this.getAuthEventManager_().then(function(manager) {
-    // Remember current persistence to apply it on the next page.
-    // This is the only time the state is passed to the next page (when user is
-    // not already logged in).
-    // This is not needed for link and reauthenticate as the user is already
-    // stored with specified persistence.
-    return self.userStorageManager_.savePersistenceForRedirect();
-  }).then(function() {
-    // Process redirect operation.
-    return self.authEventManager_.processRedirect(
-        mode, provider, undefined, self.getTenantId());
-  });
+  var p = this.getAuthEventManager_()
+    .then(function (manager) {
+      // Remember current persistence to apply it on the next page.
+      // This is the only time the state is passed to the next page (when user is
+      // not already logged in).
+      // This is not needed for link and reauthenticate as the user is already
+      // stored with specified persistence.
+      return self.userStorageManager_.savePersistenceForRedirect();
+    })
+    .then(function () {
+      // Process redirect operation.
+      return self.authEventManager_.processRedirect(
+        mode,
+        provider,
+        undefined,
+        self.getTenantId()
+      );
+    });
   return /** @type {!goog.Promise<void>} */ (this.registerPendingPromise_(p));
 };
-
 
 /**
  * Returns the redirect result. If coming back from a successful redirect sign
@@ -874,28 +918,31 @@ fireauth.Auth.prototype.signInWithRedirect = function(provider) {
  * @return {!goog.Promise<!fireauth.AuthEventManager.Result>}
  * @private
  */
-fireauth.Auth.prototype.getRedirectResultWithoutClearing_ = function() {
+fireauth.Auth.prototype.getRedirectResultWithoutClearing_ = function () {
   // Check if popup and redirect are supported in this environment.
   if (!fireauth.util.isPopupRedirectSupported()) {
-    return goog.Promise.reject(new fireauth.AuthError(
-        fireauth.authenum.Error.OPERATION_NOT_SUPPORTED));
+    return goog.Promise.reject(
+      new fireauth.AuthError(fireauth.authenum.Error.OPERATION_NOT_SUPPORTED)
+    );
   }
   var self = this;
   // Auth event manager must be available for get redirect result to be
   // possible.
-  var p = this.getAuthEventManager_().then(function(manager) {
-    // Return redirect result when resolved.
-    return self.authEventManager_.getRedirectResult();
-  }).then(function(result) {
-    if (result) {
-      return fireauth.object.makeReadonlyCopy(result);
-    }
-    return null;
-  });
+  var p = this.getAuthEventManager_()
+    .then(function (manager) {
+      // Return redirect result when resolved.
+      return self.authEventManager_.getRedirectResult();
+    })
+    .then(function (result) {
+      if (result) {
+        return fireauth.object.makeReadonlyCopy(result);
+      }
+      return null;
+    });
   return /** @type {!goog.Promise<!fireauth.AuthEventManager.Result>} */ (
-      this.registerPendingPromise_(p));
+    this.registerPendingPromise_(p)
+  );
 };
-
 
 /**
  * In addition to returning the redirect result as in
@@ -903,22 +950,21 @@ fireauth.Auth.prototype.getRedirectResultWithoutClearing_ = function() {
  * redirect result for security reasons.
  * @return {!goog.Promise<!fireauth.AuthEventManager.Result>}
  */
-fireauth.Auth.prototype.getRedirectResult = function() {
+fireauth.Auth.prototype.getRedirectResult = function () {
   return this.getRedirectResultWithoutClearing_()
-        .then((result) => {
-          if (this.authEventManager_) {
-            this.authEventManager_.clearRedirectResult();
-          }
-          return result;
-        })
-        .thenCatch((error) => {
-          if (this.authEventManager_) {
-            this.authEventManager_.clearRedirectResult();
-          }
-          throw error;
-        });
+    .then(result => {
+      if (this.authEventManager_) {
+        this.authEventManager_.clearRedirectResult();
+      }
+      return result;
+    })
+    .thenCatch(error => {
+      if (this.authEventManager_) {
+        this.authEventManager_.clearRedirectResult();
+      }
+      throw error;
+    });
 };
-
 
 /**
  * Asynchronously sets the provided user as currentUser on the current Auth
@@ -926,30 +972,38 @@ fireauth.Auth.prototype.getRedirectResult = function() {
  * @param {?fireauth.AuthUser} user The user to be copied to Auth instance.
  * @return {!goog.Promise<void>}
  */
-fireauth.Auth.prototype.updateCurrentUser = function(user) {
+fireauth.Auth.prototype.updateCurrentUser = function (user) {
   if (!user) {
-    return goog.Promise.reject(new fireauth.AuthError(
-        fireauth.authenum.Error.NULL_USER));
+    return goog.Promise.reject(
+      new fireauth.AuthError(fireauth.authenum.Error.NULL_USER)
+    );
   }
   if (this.tenantId_ != user['tenantId']) {
-    return goog.Promise.reject(new fireauth.AuthError(
-        fireauth.authenum.Error.TENANT_ID_MISMATCH));
+    return goog.Promise.reject(
+      new fireauth.AuthError(fireauth.authenum.Error.TENANT_ID_MISMATCH)
+    );
   }
   var self = this;
   var options = {};
   options['apiKey'] = this.app_().options['apiKey'];
   options['authDomain'] = this.app_().options['authDomain'];
   options['appName'] = this.app_().name;
-  var newUser = fireauth.AuthUser.copyUser(user, options,
-      self.redirectUserStorageManager_, self.getFramework());
+  var newUser = fireauth.AuthUser.copyUser(
+    user,
+    options,
+    self.redirectUserStorageManager_,
+    self.getFramework()
+  );
   return this.registerPendingPromise_(
-      this.redirectStateIsReady_.then(function() {
+    this.redirectStateIsReady_
+      .then(function () {
         if (self.app_().options['apiKey'] != user.getApiKey()) {
           // Throws auth/invalid-user-token if user doesn't belong to app.
           // Throws auth/user-token-expired if token expires.
           return newUser.reload();
         }
-      }).then(function() {
+      })
+      .then(function () {
         if (self.currentUser_() && user['uid'] == self.currentUser_()['uid']) {
           // Same user signed in. Update user data and notify Auth listeners.
           // No need to resubscribe to user events.
@@ -963,11 +1017,12 @@ fireauth.Auth.prototype.updateCurrentUser = function(user) {
         newUser.enablePopupRedirect();
         // Save user changes.
         return self.handleUserStateChange_(newUser);
-      }).then(function(user) {
+      })
+      .then(function (user) {
         self.notifyAuthListeners_();
-      }));
+      })
+  );
 };
-
 
 /**
  * Completes the headless sign in with the server response containing the STS
@@ -977,52 +1032,54 @@ fireauth.Auth.prototype.updateCurrentUser = function(user) {
  *     the server.
  * @return {!goog.Promise<void>}
  */
-fireauth.Auth.prototype.signInWithIdTokenResponse =
-    function(idTokenResponse) {
+fireauth.Auth.prototype.signInWithIdTokenResponse = function (idTokenResponse) {
   var self = this;
   var options = {};
   options['apiKey'] = self.app_().options['apiKey'];
   options['authDomain'] = self.app_().options['authDomain'];
   options['appName'] = self.app_().name;
   if (self.emulatorConfig_) {
-      options['emulatorConfig'] = self.emulatorConfig_;
+    options['emulatorConfig'] = self.emulatorConfig_;
   }
   // Wait for state to be ready.
   // This is used internally and is also used for redirect sign in so there is
   // no need for waiting for redirect result to resolve since redirect result
   // depends on it.
-  return this.authStateLoaded_.then(function() {
-    // Initialize an Auth user using the provided ID token response.
-    return fireauth.AuthUser.initializeFromIdTokenResponse(
+  return this.authStateLoaded_
+    .then(function () {
+      // Initialize an Auth user using the provided ID token response.
+      return fireauth.AuthUser.initializeFromIdTokenResponse(
         options,
         idTokenResponse,
         /** @type {!fireauth.storage.RedirectUserManager} */ (
-            self.redirectUserStorageManager_),
+          self.redirectUserStorageManager_
+        ),
         // Pass frameworks so they are logged in getAccountInfo while populating
         // the user info.
-        self.getFramework());
-  }).then(function(user) {
-    // Check if the same user is already signed in.
-    if (self.currentUser_() &&
-        user['uid'] == self.currentUser_()['uid']) {
-      // Same user signed in. Update user data and notify Auth listeners.
-      // No need to resubscribe to user events.
-      self.currentUser_().copy(user);
+        self.getFramework()
+      );
+    })
+    .then(function (user) {
+      // Check if the same user is already signed in.
+      if (self.currentUser_() && user['uid'] == self.currentUser_()['uid']) {
+        // Same user signed in. Update user data and notify Auth listeners.
+        // No need to resubscribe to user events.
+        self.currentUser_().copy(user);
+        return self.handleUserStateChange_(user);
+      }
+      // New user.
+      // Set current user and attach all listeners to it.
+      self.setCurrentUser_(user);
+      // Enable popup and redirect events.
+      user.enablePopupRedirect();
+      // Save user changes.
       return self.handleUserStateChange_(user);
-    }
-    // New user.
-    // Set current user and attach all listeners to it.
-    self.setCurrentUser_(user);
-    // Enable popup and redirect events.
-    user.enablePopupRedirect();
-    // Save user changes.
-    return self.handleUserStateChange_(user);
-  }).then(function() {
-    // Notify external Auth listeners only when state is ready.
-    self.notifyAuthListeners_();
-  });
+    })
+    .then(function () {
+      // Notify external Auth listeners only when state is ready.
+      self.notifyAuthListeners_();
+    });
 };
-
 
 /**
  * Updates the current auth user and attaches event listeners to changes on it.
@@ -1030,7 +1087,7 @@ fireauth.Auth.prototype.signInWithIdTokenResponse =
  * @param {?fireauth.AuthUser} user The current user instance.
  * @private
  */
-fireauth.Auth.prototype.setCurrentUser_ = function(user) {
+fireauth.Auth.prototype.setCurrentUser_ = function (user) {
   // Must be called first before updating currentUser reference.
   this.attachEventListeners_(user);
   // Update currentUser property.
@@ -1048,17 +1105,16 @@ fireauth.Auth.prototype.setCurrentUser_ = function(user) {
   }
 };
 
-
 /**
  * Signs out the current user while deleting the Auth user from storage and
  * removing all listeners from it.
  * @return {!goog.Promise<void>}
  */
-fireauth.Auth.prototype.signOut = function() {
+fireauth.Auth.prototype.signOut = function () {
   var self = this;
   // Wait for final state to be ready first, otherwise a signed out user could
   // come back to life.
-  var p = this.redirectStateIsReady_.then(function() {
+  var p = this.redirectStateIsReady_.then(function () {
     // Clear any cached redirect result on sign out, even if user is already
     // signed out. For example, sign in could fail due to account conflict
     // error, the error in redirect result should still be cleared. There is
@@ -1079,45 +1135,51 @@ fireauth.Auth.prototype.signOut = function() {
     self.setCurrentUser_(null);
     // Remove current user from storage
     return /** @type {!fireauth.storage.UserManager} */ (
-        self.userStorageManager_).removeCurrentUser()
-        .then(function() {
-          // Notify external Auth listeners of this Auth change event.
-          self.notifyAuthListeners_();
-        });
+      self.userStorageManager_
+    )
+      .removeCurrentUser()
+      .then(function () {
+        // Notify external Auth listeners of this Auth change event.
+        self.notifyAuthListeners_();
+      });
   });
   return /** @type {!goog.Promise<void>} */ (this.registerPendingPromise_(p));
 };
-
 
 /**
  * @return {!goog.Promise} A promise that resolved when any stored redirect user
  *     is loaded and removed from session storage and then stored locally.
  * @private
  */
-fireauth.Auth.prototype.initRedirectUser_ = function() {
+fireauth.Auth.prototype.initRedirectUser_ = function () {
   var self = this;
   var authDomain = this.app_().options['authDomain'];
   // Get any saved redirect user and delete from session storage.
   // Override user's authDomain with app's authDomain if there is a mismatch.
   var p = /** @type {!fireauth.storage.RedirectUserManager} */ (
-      this.redirectUserStorageManager_).getRedirectUser(authDomain)
-          .then(function(user) {
-            // Save redirect user.
-            self.redirectUser_ = user;
-            if (user) {
-              // Set redirect storage manager on user.
-              user.setRedirectStorageManager(
-                  /** @type {!fireauth.storage.RedirectUserManager} */ (
-                      self.redirectUserStorageManager_));
-            }
-            // Delete redirect user.
-            return /** @type {!fireauth.storage.RedirectUserManager} */ (
-                self.redirectUserStorageManager_).removeRedirectUser();
-          });
+    this.redirectUserStorageManager_
+  )
+    .getRedirectUser(authDomain)
+    .then(function (user) {
+      // Save redirect user.
+      self.redirectUser_ = user;
+      if (user) {
+        // Set redirect storage manager on user.
+        user.setRedirectStorageManager(
+          /** @type {!fireauth.storage.RedirectUserManager} */ (
+            self.redirectUserStorageManager_
+          )
+        );
+      }
+      // Delete redirect user.
+      return /** @type {!fireauth.storage.RedirectUserManager} */ (
+        self.redirectUserStorageManager_
+      ).removeRedirectUser();
+    });
   return /** @type {!goog.Promise<undefined>} */ (
-      this.registerPendingPromise_(p));
+    this.registerPendingPromise_(p)
+  );
 };
-
 
 /**
  * Loads the initial Auth state for current application from web storage and
@@ -1127,68 +1189,81 @@ fireauth.Auth.prototype.initRedirectUser_ = function() {
  *     loaded from storage.
  * @private
  */
-fireauth.Auth.prototype.initAuthState_ = function() {
+fireauth.Auth.prototype.initAuthState_ = function () {
   // Load current user from storage.
   var self = this;
   var authDomain = this.app_().options['authDomain'];
   // Get any saved redirected user first.
-  var p = this.initRedirectUser_().then(function() {
-    // Override user's authDomain with app's authDomain if there is a mismatch.
-    return /** @type {!fireauth.storage.UserManager} */ (
-      self.userStorageManager_).getCurrentUser(authDomain, self.emulatorConfig_);
-  }).then(function(user) {
-    // Logged in user.
-    if (user) {
-      // Set redirect storage manager on user.
-      user.setRedirectStorageManager(
+  var p = this.initRedirectUser_()
+    .then(function () {
+      // Override user's authDomain with app's authDomain if there is a mismatch.
+      return /** @type {!fireauth.storage.UserManager} */ (
+        self.userStorageManager_
+      ).getCurrentUser(authDomain, self.emulatorConfig_);
+    })
+    .then(function (user) {
+      // Logged in user.
+      if (user) {
+        // Set redirect storage manager on user.
+        user.setRedirectStorageManager(
           /** @type {!fireauth.storage.RedirectUserManager} */ (
-              self.redirectUserStorageManager_));
-      // If the current user is undergoing a redirect operation, do not reload
-      // as that could could potentially delete the user if the token is
-      // expired. Instead any token problems will be detected via the
-      // verifyAssertion flow or the remaining flow. This is critical for
-      // reauthenticateWithRedirect as this flow is potentially used to recover
-      // from a token expiration error.
-      if (self.redirectUser_ &&
-          self.redirectUser_.getRedirectEventId() ==
-          user.getRedirectEventId()) {
-        return user;
-      }
-      // Confirm user valid first before setting listeners.
-      return user.reload().then(function() {
-        // Force user saving after reload as state change listeners not
-        // subscribed yet below via setCurrentUser_. Changes may have happened
-        // externally such as email actions or changes on another device.
-        return self.userStorageManager_.setCurrentUser(user).then(function() {
-          return user;
-        });
-      }).thenCatch(function(error) {
-        if (error['code'] == 'auth/network-request-failed') {
-          // Do not delete the user from storage if connection is lost or app is
-          // offline.
+            self.redirectUserStorageManager_
+          )
+        );
+        // If the current user is undergoing a redirect operation, do not reload
+        // as that could could potentially delete the user if the token is
+        // expired. Instead any token problems will be detected via the
+        // verifyAssertion flow or the remaining flow. This is critical for
+        // reauthenticateWithRedirect as this flow is potentially used to recover
+        // from a token expiration error.
+        if (
+          self.redirectUser_ &&
+          self.redirectUser_.getRedirectEventId() == user.getRedirectEventId()
+        ) {
           return user;
         }
-        // Invalid user, could be deleted, remove from storage and resolve with
-        // null.
-        return /** @type {!fireauth.storage.UserManager} */(
-            self.userStorageManager_).removeCurrentUser();
-      });
-    }
-    // No logged in user, resolve with null;
-    return null;
-  }).then(function(user) {
-    // Even though state not ready yet pending any redirect result.
-    // Current user needs to be available for link with redirect to complete.
-    // This will also set listener on the user changes in case state changes
-    // occur they would get updated in storage too.
-    self.setCurrentUser_(user || null);
-  });
+        // Confirm user valid first before setting listeners.
+        return user
+          .reload()
+          .then(function () {
+            // Force user saving after reload as state change listeners not
+            // subscribed yet below via setCurrentUser_. Changes may have happened
+            // externally such as email actions or changes on another device.
+            return self.userStorageManager_
+              .setCurrentUser(user)
+              .then(function () {
+                return user;
+              });
+          })
+          .thenCatch(function (error) {
+            if (error['code'] == 'auth/network-request-failed') {
+              // Do not delete the user from storage if connection is lost or app is
+              // offline.
+              return user;
+            }
+            // Invalid user, could be deleted, remove from storage and resolve with
+            // null.
+            return /** @type {!fireauth.storage.UserManager} */ (
+              self.userStorageManager_
+            ).removeCurrentUser();
+          });
+      }
+      // No logged in user, resolve with null;
+      return null;
+    })
+    .then(function (user) {
+      // Even though state not ready yet pending any redirect result.
+      // Current user needs to be available for link with redirect to complete.
+      // This will also set listener on the user changes in case state changes
+      // occur they would get updated in storage too.
+      self.setCurrentUser_(user || null);
+    });
   // In case the app is deleted before it is initialized with state from
   // storage.
   return /** @type {!goog.Promise<undefined>} */ (
-      this.registerPendingPromise_(p));
+    this.registerPendingPromise_(p)
+  );
 };
-
 
 /**
  * After initial Auth state is loaded, waits for any pending redirect result,
@@ -1198,42 +1273,47 @@ fireauth.Auth.prototype.initAuthState_ = function() {
  *     taking into account any pending redirect result.
  * @private
  */
-fireauth.Auth.prototype.initAuthRedirectState_ = function() {
+fireauth.Auth.prototype.initAuthRedirectState_ = function () {
   var self = this;
   // Wait first for state to be loaded from storage.
-  return this.authStateLoaded_.then(function() {
-    // Resolve any pending redirect result.
-    return self.getRedirectResultWithoutClearing_();
-  }).thenCatch(function(error) {
-    // Ignore any error in the process. Redirect could be not supported.
-    return;
-  }).then(function() {
-    // Make sure instance was not deleted before proceeding.
-    if (self.deleted_) {
+  return this.authStateLoaded_
+    .then(function () {
+      // Resolve any pending redirect result.
+      return self.getRedirectResultWithoutClearing_();
+    })
+    .thenCatch(function (error) {
+      // Ignore any error in the process. Redirect could be not supported.
       return;
-    }
-    // Between init Auth state and get redirect result resolution there
-    // could have been a sign in attempt in another window.
-    // Force sync and then add listener to run sync on change below.
-    return self.getSyncAuthUserChanges_();
-  }).thenCatch(function(error) {
-    // Ignore any error in the process.
-    return;
-  }).then(function() {
-    // Now that final state is ready, make sure instance was not deleted before
-    // proceeding.
-    if (self.deleted_) {
+    })
+    .then(function () {
+      // Make sure instance was not deleted before proceeding.
+      if (self.deleted_) {
+        return;
+      }
+      // Between init Auth state and get redirect result resolution there
+      // could have been a sign in attempt in another window.
+      // Force sync and then add listener to run sync on change below.
+      return self.getSyncAuthUserChanges_();
+    })
+    .thenCatch(function (error) {
+      // Ignore any error in the process.
       return;
-    }
-    // Initial state has been resolved.
-    self.isStateResolved_ = true;
-    // Add user state change listener so changes are synchronized with
-    // other windows and tabs.
-    /** @type {!fireauth.storage.UserManager} */ (self.userStorageManager_
-        ).addCurrentUserChangeListener(self.getSyncAuthUserChanges_);
-  });
+    })
+    .then(function () {
+      // Now that final state is ready, make sure instance was not deleted before
+      // proceeding.
+      if (self.deleted_) {
+        return;
+      }
+      // Initial state has been resolved.
+      self.isStateResolved_ = true;
+      // Add user state change listener so changes are synchronized with
+      // other windows and tabs.
+      /** @type {!fireauth.storage.UserManager} */ (
+        self.userStorageManager_
+      ).addCurrentUserChangeListener(self.getSyncAuthUserChanges_);
+    });
 };
-
 
 /**
  * Synchronizes current Auth to stored auth state, used when external state
@@ -1241,63 +1321,66 @@ fireauth.Auth.prototype.initAuthRedirectState_ = function() {
  * @return {!goog.Promise<void>}
  * @private
  */
-fireauth.Auth.prototype.syncAuthUserChanges_ = function() {
+fireauth.Auth.prototype.syncAuthUserChanges_ = function () {
   // Get Auth user state from storage and compare to current state.
   // Safe to run when no external change is detected.
   var self = this;
   var authDomain = this.app_().options['authDomain'];
   // Override user's authDomain with app's authDomain if there is a mismatch.
-  return /** @type {!fireauth.storage.UserManager} */ (
-      this.userStorageManager_).getCurrentUser(authDomain)
-      .then(function(user) {
-        // In case this was deleted.
-        if (self.deleted_) {
-          return;
-        }
-        // Since the authDomain could be modified here, saving to storage here
-        // could trigger an infinite loop of changes between this tab and
-        // another tab using different Auth domain but since sync Auth user
-        // changes does not save changes to storage, except for getToken below
-        // if the token needs refreshing but will stop triggering the first time
-        // the token is refreshed on one of the first tab that refreshes it.
-        // The latter should not happen anyway since getToken should be valid
-        // at all times since anything that triggers the storage change should
-        // have communicated with the backend and that requires a valid token.
-        // In addition, authDomain difference is an edge case to begin with.
+  return /** @type {!fireauth.storage.UserManager} */ (this.userStorageManager_)
+    .getCurrentUser(authDomain)
+    .then(function (user) {
+      // In case this was deleted.
+      if (self.deleted_) {
+        return;
+      }
+      // Since the authDomain could be modified here, saving to storage here
+      // could trigger an infinite loop of changes between this tab and
+      // another tab using different Auth domain but since sync Auth user
+      // changes does not save changes to storage, except for getToken below
+      // if the token needs refreshing but will stop triggering the first time
+      // the token is refreshed on one of the first tab that refreshes it.
+      // The latter should not happen anyway since getToken should be valid
+      // at all times since anything that triggers the storage change should
+      // have communicated with the backend and that requires a valid token.
+      // In addition, authDomain difference is an edge case to begin with.
 
-        // If the same user is to be synchronized.
-        if (self.currentUser_() &&
-            user &&
-            self.currentUser_().hasSameUserIdAs(user)) {
-          // Data update, simply copy data changes.
-          self.currentUser_().copy(user);
-          // If tokens changed from previous user tokens, this will trigger
-          // notifyAuthListeners_.
-          return self.currentUser_().getIdToken();
-        } else if (!self.currentUser_() && !user) {
-          // No change, do nothing (was signed out and remained signed out).
-          return;
-        } else {
-          // Update current Auth state. Either a new login or logout.
-          self.setCurrentUser_(user);
-          // If a new user is signed in, enabled popup and redirect on that
-          // user.
-          if (user) {
-            user.enablePopupRedirect();
-            // Set redirect storage manager on user.
-            user.setRedirectStorageManager(
-                /** @type {!fireauth.storage.RedirectUserManager} */ (
-                    self.redirectUserStorageManager_));
-          }
-          if (self.authEventManager_) {
-            self.authEventManager_.subscribe(self);
-          }
-          // Notify external Auth changes of Auth change event.
-          self.notifyAuthListeners_();
+      // If the same user is to be synchronized.
+      if (
+        self.currentUser_() &&
+        user &&
+        self.currentUser_().hasSameUserIdAs(user)
+      ) {
+        // Data update, simply copy data changes.
+        self.currentUser_().copy(user);
+        // If tokens changed from previous user tokens, this will trigger
+        // notifyAuthListeners_.
+        return self.currentUser_().getIdToken();
+      } else if (!self.currentUser_() && !user) {
+        // No change, do nothing (was signed out and remained signed out).
+        return;
+      } else {
+        // Update current Auth state. Either a new login or logout.
+        self.setCurrentUser_(user);
+        // If a new user is signed in, enabled popup and redirect on that
+        // user.
+        if (user) {
+          user.enablePopupRedirect();
+          // Set redirect storage manager on user.
+          user.setRedirectStorageManager(
+            /** @type {!fireauth.storage.RedirectUserManager} */ (
+              self.redirectUserStorageManager_
+            )
+          );
         }
-      });
+        if (self.authEventManager_) {
+          self.authEventManager_.subscribe(self);
+        }
+        // Notify external Auth changes of Auth change event.
+        self.notifyAuthListeners_();
+      }
+    });
 };
-
 
 /**
  * Updates the language code on the provided user and configures the user to
@@ -1305,13 +1388,12 @@ fireauth.Auth.prototype.syncAuthUserChanges_ = function() {
  * @param {!fireauth.AuthUser} user The user to whose language needs to be set.
  * @private
  */
-fireauth.Auth.prototype.setUserLanguage_ = function(user) {
+fireauth.Auth.prototype.setUserLanguage_ = function (user) {
   // Sets the current language code on the user.
   user.setLanguageCode(this.getLanguageCode());
   // Sets current Auth instance as language code change dispatcher on the user.
   user.setLanguageCodeChangeDispatcher(this);
 };
-
 
 /**
  * Updates the emulator config on the provided user and configures the user
@@ -1320,14 +1402,13 @@ fireauth.Auth.prototype.setUserLanguage_ = function(user) {
  *   to be set.
  * @private
  */
-fireauth.Auth.prototype.setUserEmulatorConfig_ = function(user) {
+fireauth.Auth.prototype.setUserEmulatorConfig_ = function (user) {
   // Sets the current emulator config on the user.
   user.setEmulatorConfig(this.emulatorConfig_);
   // Sets current Auth instance as emulator config change dispatcher on the
   // user.
   user.setEmulatorConfigChangeDispatcher(this);
-}
-
+};
 
 /**
  * Handles user state changes.
@@ -1336,49 +1417,47 @@ fireauth.Auth.prototype.setUserEmulatorConfig_ = function(user) {
  *     handled.
  * @private
  */
-fireauth.Auth.prototype.handleUserStateChange_ = function(user) {
+fireauth.Auth.prototype.handleUserStateChange_ = function (user) {
   // Save Auth user state changes.
   return /** @type {!fireauth.storage.UserManager} */ (
-      this.userStorageManager_).setCurrentUser(user);
+    this.userStorageManager_
+  ).setCurrentUser(user);
 };
-
 
 /**
  * Handles user token changes.
  * @param {!Object} event The token change event.
  * @private
  */
-fireauth.Auth.prototype.handleUserTokenChange_ = function(event) {
+fireauth.Auth.prototype.handleUserTokenChange_ = function (event) {
   // This is only called when user is ready and Auth state has been resolved.
   // Notify external Auth change listeners.
   this.notifyAuthListeners_();
   // Save user token changes.
-  this.handleUserStateChange_(/** @type {!fireauth.AuthUser} */ (
-      this.currentUser_()));
+  this.handleUserStateChange_(
+    /** @type {!fireauth.AuthUser} */ (this.currentUser_())
+  );
 };
-
 
 /**
  * Handles user deletion events.
  * @param {!Object} event The user delete event.
  * @private
  */
-fireauth.Auth.prototype.handleUserDelete_ = function(event) {
+fireauth.Auth.prototype.handleUserDelete_ = function (event) {
   // A deleted user will be treated like a sign out event.
   this.signOut();
 };
-
 
 /**
  * Handles user invalidation events.
  * @param {!Object} event The user invalidation event.
  * @private
  */
-fireauth.Auth.prototype.handleUserInvalidated_ = function(event) {
+fireauth.Auth.prototype.handleUserInvalidated_ = function (event) {
   // An invalidated user will be treated like a sign out event.
   this.signOut();
 };
-
 
 /**
  * Detaches all previous listeners on current user and reattach new listeners to
@@ -1386,23 +1465,27 @@ fireauth.Auth.prototype.handleUserInvalidated_ = function(event) {
  * @param {?fireauth.AuthUser} user The user to attach event listeners to.
  * @private
  */
-fireauth.Auth.prototype.attachEventListeners_ = function(user) {
+fireauth.Auth.prototype.attachEventListeners_ = function (user) {
   // Remove existing event listeners from previous current user if available.
   if (this.currentUser_()) {
     this.currentUser_().removeStateChangeListener(
-        this.userStateChangeListener_);
+      this.userStateChangeListener_
+    );
     goog.events.unlisten(
-        this.currentUser_(),
-        fireauth.UserEventType.TOKEN_CHANGED,
-        this.userTokenChangeListener_);
+      this.currentUser_(),
+      fireauth.UserEventType.TOKEN_CHANGED,
+      this.userTokenChangeListener_
+    );
     goog.events.unlisten(
-        this.currentUser_(),
-        fireauth.UserEventType.USER_DELETED,
-        this.userDeleteListener_);
+      this.currentUser_(),
+      fireauth.UserEventType.USER_DELETED,
+      this.userDeleteListener_
+    );
     goog.events.unlisten(
-        this.currentUser_(),
-        fireauth.UserEventType.USER_INVALIDATED,
-        this.userInvalidatedListener_);
+      this.currentUser_(),
+      fireauth.UserEventType.USER_INVALIDATED,
+      this.userInvalidatedListener_
+    );
     // Stop proactive token refresh on the current user.
     this.currentUser_().stopProactiveRefresh();
   }
@@ -1411,17 +1494,20 @@ fireauth.Auth.prototype.attachEventListeners_ = function(user) {
   if (user) {
     user.addStateChangeListener(this.userStateChangeListener_);
     goog.events.listen(
-        user,
-        fireauth.UserEventType.TOKEN_CHANGED,
-        this.userTokenChangeListener_);
+      user,
+      fireauth.UserEventType.TOKEN_CHANGED,
+      this.userTokenChangeListener_
+    );
     goog.events.listen(
-        user,
-        fireauth.UserEventType.USER_DELETED,
-        this.userDeleteListener_);
-     goog.events.listen(
-        user,
-        fireauth.UserEventType.USER_INVALIDATED,
-        this.userInvalidatedListener_);
+      user,
+      fireauth.UserEventType.USER_DELETED,
+      this.userDeleteListener_
+    );
+    goog.events.listen(
+      user,
+      fireauth.UserEventType.USER_INVALIDATED,
+      this.userInvalidatedListener_
+    );
     // Start proactive token refresh on new user if there is at least one
     // Firebase service subscribed to Auth changes.
     if (this.firebaseServices_ > 0) {
@@ -1429,7 +1515,6 @@ fireauth.Auth.prototype.attachEventListeners_ = function(user) {
     }
   }
 };
-
 
 /**
  * Signs in with ID token promise provider.
@@ -1439,51 +1524,56 @@ fireauth.Auth.prototype.attachEventListeners_ = function(user) {
  * @return {!goog.Promise<!fireauth.AuthEventManager.Result>}
  * @private
  */
-fireauth.Auth.prototype.signInWithIdTokenProvider_ = function(idTokenPromise) {
+fireauth.Auth.prototype.signInWithIdTokenProvider_ = function (idTokenPromise) {
   var self = this;
   var credential = null;
   var additionalUserInfo = null;
   return /** @type {!goog.Promise<!fireauth.AuthEventManager.Result>} */ (
-      this.registerPendingPromise_(
-          idTokenPromise
-          .then(function(idTokenResponse) {
+    this.registerPendingPromise_(
+      idTokenPromise
+        .then(
+          function (idTokenResponse) {
             // Get credential if available in the response.
-            credential = fireauth.AuthProvider.getCredentialFromResponse(
-                idTokenResponse);
+            credential =
+              fireauth.AuthProvider.getCredentialFromResponse(idTokenResponse);
             // Get additional IdP data if available in the response.
-            additionalUserInfo = fireauth.AdditionalUserInfo.fromPlainObject(
-                idTokenResponse);
+            additionalUserInfo =
+              fireauth.AdditionalUserInfo.fromPlainObject(idTokenResponse);
             // When custom token is exchanged for idToken, continue sign in with
             // ID token and return firebase Auth user.
             return self.signInWithIdTokenResponse(idTokenResponse);
-          }, function(error) {
+          },
+          function (error) {
             // Catch the MFA_REQUIRED error rejected in ID token promise and
             // repackage it into a multi-factor error with additional IdP data
             // if available.
             var multiFactorError = null;
             if (error && error['code'] === 'auth/multi-factor-auth-required') {
               multiFactorError = fireauth.MultiFactorError.fromPlainObject(
-                  error.toPlainObject(),
-                  self,
-                  goog.bind(self.handleMultiFactorIdTokenResolver_, self));
+                error.toPlainObject(),
+                self,
+                goog.bind(self.handleMultiFactorIdTokenResolver_, self)
+              );
             }
             throw multiFactorError || error;
-          })
-          .then(function() {
-            // Resolve promise with a readonly user credential object.
-            return fireauth.object.makeReadonlyCopy({
-              // Return the current user reference.
-              'user': self.currentUser_(),
-              // Return any credential passed from the backend.
-              'credential': credential,
-              // Return any additional IdP data passed from the backend.
-              'additionalUserInfo': additionalUserInfo,
-              // Sign in operation type.
-              'operationType': fireauth.constants.OperationType.SIGN_IN
-            });
-          })));
+          }
+        )
+        .then(function () {
+          // Resolve promise with a readonly user credential object.
+          return fireauth.object.makeReadonlyCopy({
+            // Return the current user reference.
+            'user': self.currentUser_(),
+            // Return any credential passed from the backend.
+            'credential': credential,
+            // Return any additional IdP data passed from the backend.
+            'additionalUserInfo': additionalUserInfo,
+            // Sign in operation type.
+            'operationType': fireauth.constants.OperationType.SIGN_IN
+          });
+        })
+    )
+  );
 };
-
 
 /**
  * Completes multi-factor sign-in with ID token response and additional IdP data
@@ -1494,15 +1584,15 @@ fireauth.Auth.prototype.signInWithIdTokenProvider_ = function(idTokenPromise) {
  *     resolves with the updated `UserCredential`.
  * @private
  */
-fireauth.Auth.prototype.handleMultiFactorIdTokenResolver_ =
-    function(response) {
+fireauth.Auth.prototype.handleMultiFactorIdTokenResolver_ = function (
+  response
+) {
   var self = this;
   // Wait for state to be ready and then finish sign-in.
-  return this.redirectStateIsReady_.then(function() {
+  return this.redirectStateIsReady_.then(function () {
     return self.signInWithIdTokenProvider_(goog.Promise.resolve(response));
   });
 };
-
 
 /**
  * Initializes the Auth state change observer returned by the
@@ -1510,14 +1600,13 @@ fireauth.Auth.prototype.handleMultiFactorIdTokenResolver_ =
  * @param {!firebase.Observer} observer The Auth state change observer.
  * @private
  */
-fireauth.Auth.prototype.initIdTokenChangeObserver_ = function(observer) {
+fireauth.Auth.prototype.initIdTokenChangeObserver_ = function (observer) {
   var self = this;
   // Adds a listener that will transmit the event everytime it's called.
-  this.addAuthTokenListener(function(accessToken) {
+  this.addAuthTokenListener(function (accessToken) {
     observer.next(self.currentUser_());
   });
 };
-
 
 /**
  * Initializes the user state change observer returned by the
@@ -1525,14 +1614,13 @@ fireauth.Auth.prototype.initIdTokenChangeObserver_ = function(observer) {
  * @param {!firebase.Observer} observer The user state change observer.
  * @private
  */
-fireauth.Auth.prototype.initUserStateObserver_ = function(observer) {
+fireauth.Auth.prototype.initUserStateObserver_ = function (observer) {
   var self = this;
   // Adds a listener that will transmit the event everytime it's called.
-  this.addUserChangeListener_(function(accessToken) {
+  this.addUserChangeListener_(function (accessToken) {
     observer.next(self.currentUser_());
   });
 };
-
 
 /**
  * Adds an observer for Auth state changes, we need to wrap the call as
@@ -1547,8 +1635,11 @@ fireauth.Auth.prototype.initUserStateObserver_ = function(observer) {
  *     observer is removed.
  * @return {!function()} The unsubscribe function for the observer.
  */
-fireauth.Auth.prototype.onIdTokenChanged = function(
-    nextOrObserver, opt_error, opt_completed) {
+fireauth.Auth.prototype.onIdTokenChanged = function (
+  nextOrObserver,
+  opt_error,
+  opt_completed
+) {
   var self = this;
   // State already determined. Trigger immediately, otherwise initState will
   // take care of notifying all pending listeners on initialization.
@@ -1561,7 +1652,7 @@ fireauth.Auth.prototype.onIdTokenChanged = function(
     // It is due to the fact fireauth and firebase.app use their own
     // and different promises library and this leads to calls resolutions order
     // being different from the promises registration order.
-    Promise.resolve().then(function() {
+    Promise.resolve().then(function () {
       if (typeof nextOrObserver === 'function') {
         nextOrObserver(self.currentUser_());
       } else if (typeof nextOrObserver['next'] === 'function') {
@@ -1570,11 +1661,11 @@ fireauth.Auth.prototype.onIdTokenChanged = function(
     });
   }
   return this.onIdTokenChanged_(
-      /** @type {!firebase.Observer|function(*)|undefined} */ (nextOrObserver),
-      /** @type {function(!Error)|undefined} */ (opt_error),
-      opt_completed);
+    /** @type {!firebase.Observer|function(*)|undefined} */ (nextOrObserver),
+    /** @type {function(!Error)|undefined} */ (opt_error),
+    opt_completed
+  );
 };
-
 
 /**
  * Adds an observer for user state changes, we need to wrap the call as
@@ -1589,8 +1680,11 @@ fireauth.Auth.prototype.onIdTokenChanged = function(
  *     observer is removed.
  * @return {!function()} The unsubscribe function for the observer.
  */
-fireauth.Auth.prototype.onAuthStateChanged = function(
-    nextOrObserver, opt_error, opt_completed) {
+fireauth.Auth.prototype.onAuthStateChanged = function (
+  nextOrObserver,
+  opt_error,
+  opt_completed
+) {
   var self = this;
   // State already determined. Trigger immediately, otherwise initState will
   // take care of notifying all pending listeners on initialization.
@@ -1603,7 +1697,7 @@ fireauth.Auth.prototype.onAuthStateChanged = function(
     // It is due to the fact fireauth and firebase.app use their own
     // and different promises library and this leads to calls resolutions order
     // being different from the promises registration order.
-    Promise.resolve().then(function() {
+    Promise.resolve().then(function () {
       // This ensures that the first time notifyAuthListeners_ is triggered,
       // it has the correct UID before triggering the user state change
       // listeners.
@@ -1616,11 +1710,11 @@ fireauth.Auth.prototype.onAuthStateChanged = function(
     });
   }
   return this.onUserStateChanged_(
-      /** @type {!firebase.Observer|function(*)|undefined} */ (nextOrObserver),
-      /** @type {function(!Error)|undefined} */ (opt_error),
-      opt_completed);
+    /** @type {!firebase.Observer|function(*)|undefined} */ (nextOrObserver),
+    /** @type {function(!Error)|undefined} */ (opt_error),
+    opt_completed
+  );
 };
-
 
 /**
  * Returns an STS token. If the cached one is unexpired it is directly returned.
@@ -1634,28 +1728,30 @@ fireauth.Auth.prototype.onAuthStateChanged = function(
  * @param {boolean=} opt_forceRefresh Whether to force refresh token exchange.
  * @return {!goog.Promise<?Object>}
  */
-fireauth.Auth.prototype.getIdTokenInternal = function(opt_forceRefresh) {
+fireauth.Auth.prototype.getIdTokenInternal = function (opt_forceRefresh) {
   var self = this;
   // Wait for state to be ready.
-  var p = this.redirectStateIsReady_.then(function() {
+  var p = this.redirectStateIsReady_.then(function () {
     // Call user's underlying getIdToken method.
     if (self.currentUser_()) {
-      return self.currentUser_().getIdToken(opt_forceRefresh)
-          .then(function(stsAccessToken) {
-            // This is used internally by other services which expect the access
-            // token to be returned in an object.
-            return {
-              'accessToken': stsAccessToken
-            };
-          });
+      return self
+        .currentUser_()
+        .getIdToken(opt_forceRefresh)
+        .then(function (stsAccessToken) {
+          // This is used internally by other services which expect the access
+          // token to be returned in an object.
+          return {
+            'accessToken': stsAccessToken
+          };
+        });
     }
     // No logged in user, return null token.
     return null;
   });
   return /** @type {!goog.Promise<?Object>} */ (
-      this.registerPendingPromise_(p));
+    this.registerPendingPromise_(p)
+  );
 };
-
 
 /**
  * Signs in a user asynchronously using a custom token and returns any
@@ -1663,25 +1759,27 @@ fireauth.Auth.prototype.getIdTokenInternal = function(opt_forceRefresh) {
  * @param {string} token The custom token to sign in with.
  * @return {!goog.Promise<!fireauth.AuthEventManager.Result>}
  */
-fireauth.Auth.prototype.signInWithCustomToken = function(token) {
+fireauth.Auth.prototype.signInWithCustomToken = function (token) {
   var self = this;
   // Wait for the redirect state to be determined before proceeding. If critical
   // errors like web storage unsupported are detected, fail before RPC, instead
   // of after.
-  return this.redirectStateIsReady_.then(function() {
-    return self.signInWithIdTokenProvider_(
-        self.getRpcHandler().verifyCustomToken(token));
-  }).then(function(result) {
-    var user = result['user'];
-    // Manually sets the isAnonymous flag to false as the GetAccountInfo
-    // response will look like an anonymous user (no credentials visible).
-    user.updateProperty('isAnonymous', false);
-    // Save isAnonymous flag changes to current user in storage.
-    self.handleUserStateChange_(user);
-    return result;
-  });
+  return this.redirectStateIsReady_
+    .then(function () {
+      return self.signInWithIdTokenProvider_(
+        self.getRpcHandler().verifyCustomToken(token)
+      );
+    })
+    .then(function (result) {
+      var user = result['user'];
+      // Manually sets the isAnonymous flag to false as the GetAccountInfo
+      // response will look like an anonymous user (no credentials visible).
+      user.updateProperty('isAnonymous', false);
+      // Save isAnonymous flag changes to current user in storage.
+      self.handleUserStateChange_(user);
+      return result;
+    });
 };
-
 
 /**
  * Sign in using an email and password and returns any additional user info
@@ -1690,18 +1788,20 @@ fireauth.Auth.prototype.signInWithCustomToken = function(token) {
  * @param {string} password The password to sign in with.
  * @return {!goog.Promise<!fireauth.AuthEventManager.Result>}
  */
-fireauth.Auth.prototype.signInWithEmailAndPassword =
-    function(email, password) {
+fireauth.Auth.prototype.signInWithEmailAndPassword = function (
+  email,
+  password
+) {
   var self = this;
   // Wait for the redirect state to be determined before proceeding. If critical
   // errors like web storage unsupported are detected, fail before RPC, instead
   // of after.
-  return this.redirectStateIsReady_.then(function() {
+  return this.redirectStateIsReady_.then(function () {
     return self.signInWithIdTokenProvider_(
-        self.getRpcHandler().verifyPassword(email, password));
+      self.getRpcHandler().verifyPassword(email, password)
+    );
   });
 };
-
 
 /**
  * Creates a new email and password account and returns any additional user
@@ -1710,18 +1810,20 @@ fireauth.Auth.prototype.signInWithEmailAndPassword =
  * @param {string} password The password to sign up with.
  * @return {!goog.Promise<!fireauth.AuthEventManager.Result>}
  */
-fireauth.Auth.prototype.createUserWithEmailAndPassword =
-    function(email, password) {
+fireauth.Auth.prototype.createUserWithEmailAndPassword = function (
+  email,
+  password
+) {
   var self = this;
   // Wait for the redirect state to be determined before proceeding. If critical
   // errors like web storage unsupported are detected, fail before RPC, instead
   // of after.
-  return this.redirectStateIsReady_.then(function() {
+  return this.redirectStateIsReady_.then(function () {
     return self.signInWithIdTokenProvider_(
-        self.getRpcHandler().createAccount(email, password));
+      self.getRpcHandler().createAccount(email, password)
+    );
   });
 };
-
 
 /**
  * Logs into Firebase with the given 3rd party credentials and returns any
@@ -1729,20 +1831,20 @@ fireauth.Auth.prototype.createUserWithEmailAndPassword =
  * @param {!fireauth.AuthCredential} credential The Auth credential.
  * @return {!goog.Promise<!fireauth.AuthEventManager.Result>}
  */
-fireauth.Auth.prototype.signInWithCredential = function(credential) {
+fireauth.Auth.prototype.signInWithCredential = function (credential) {
   // Credential could be extended in the future, so leave it to credential to
   // decide how to retrieve ID token.
   var self = this;
   // Wait for the redirect state to be determined before proceeding. If critical
   // errors like web storage unsupported are detected, fail before RPC, instead
   // of after.
-  return this.redirectStateIsReady_.then(function() {
+  return this.redirectStateIsReady_.then(function () {
     // Return the full response object and not just the user.
     return self.signInWithIdTokenProvider_(
-        credential.getIdTokenProvider(self.getRpcHandler()));
+      credential.getIdTokenProvider(self.getRpcHandler())
+    );
   });
 };
-
 
 /**
  * Logs into Firebase with the given 3rd party credentials and returns any
@@ -1751,25 +1853,26 @@ fireauth.Auth.prototype.signInWithCredential = function(credential) {
  * @param {!fireauth.AuthCredential} credential The Auth credential.
  * @return {!goog.Promise<!fireauth.AuthEventManager.Result>}
  */
-fireauth.Auth.prototype.signInAndRetrieveDataWithCredential =
-    function(credential) {
+fireauth.Auth.prototype.signInAndRetrieveDataWithCredential = function (
+  credential
+) {
   fireauth.deprecation.log(
-      fireauth.deprecation.Deprecations.SIGN_IN_WITH_CREDENTIAL);
+    fireauth.deprecation.Deprecations.SIGN_IN_WITH_CREDENTIAL
+  );
   return this.signInWithCredential(credential);
 };
-
 
 /**
  * Signs in a user anonymously and returns any additional user info data or
  * credentials returned form the backend.
  * @return {!goog.Promise<!fireauth.AuthEventManager.Result>}
  */
-fireauth.Auth.prototype.signInAnonymously = function() {
+fireauth.Auth.prototype.signInAnonymously = function () {
   var self = this;
   // Wait for the redirect state to be determined before proceeding. If critical
   // errors like web storage unsupported are detected, fail before RPC, instead
   // of after.
-  return this.redirectStateIsReady_.then(function() {
+  return this.redirectStateIsReady_.then(function () {
     var user = self.currentUser_();
     // If an anonymous user is already signed in, no need to sign him again.
     if (user && user['isAnonymous']) {
@@ -1789,45 +1892,43 @@ fireauth.Auth.prototype.signInAnonymously = function() {
       });
     } else {
       // No anonymous user currently signed in.
-      return self.signInWithIdTokenProvider_(
-          self.getRpcHandler().signInAnonymously())
-          .then(function(result) {
-            var user = result['user'];
-            // Manually sets the isAnonymous flag to true as
-            // initializeFromIdTokenResponse uses the default value of false and
-            // even though getAccountInfo sets that to true, it will be reverted
-            // to false in reloadWithoutSaving.
-            // TODO: consider optimizing this and cleaning these manual
-            // overwrites.
-            user.updateProperty('isAnonymous', true);
-            // Save isAnonymous flag changes to current user in storage.
-            self.handleUserStateChange_(user);
-            return result;
-          });
+      return self
+        .signInWithIdTokenProvider_(self.getRpcHandler().signInAnonymously())
+        .then(function (result) {
+          var user = result['user'];
+          // Manually sets the isAnonymous flag to true as
+          // initializeFromIdTokenResponse uses the default value of false and
+          // even though getAccountInfo sets that to true, it will be reverted
+          // to false in reloadWithoutSaving.
+          // TODO: consider optimizing this and cleaning these manual
+          // overwrites.
+          user.updateProperty('isAnonymous', true);
+          // Save isAnonymous flag changes to current user in storage.
+          self.handleUserStateChange_(user);
+          return result;
+        });
     }
   });
 };
 
-
 /**
  * @return {string} The key used for storing Auth state.
  */
-fireauth.Auth.prototype.getStorageKey = function() {
+fireauth.Auth.prototype.getStorageKey = function () {
   return fireauth.util.createStorageKey(
-      this.app_().options['apiKey'],
-      this.app_().name);
+    this.app_().options['apiKey'],
+    this.app_().name
+  );
 };
-
 
 /**
  * @return {!firebase.app.App} The Firebase App this auth object is connected
  *     to.
  * @private
  */
-fireauth.Auth.prototype.app_ = function() {
+fireauth.Auth.prototype.app_ = function () {
   return this['app'];
 };
-
 
 /**
  * @return {!fireauth.AuthSettings} The settings for this Auth object.
@@ -1837,45 +1938,39 @@ fireauth.Auth.prototype.settings_ = function () {
   return this['settings'];
 };
 
-
 /**
  * @return {!fireauth.RpcHandler} The RPC handler.
  */
-fireauth.Auth.prototype.getRpcHandler = function() {
+fireauth.Auth.prototype.getRpcHandler = function () {
   return this.rpcHandler_;
 };
-
 
 /**
  * @return {?fireauth.AuthUser} The currently logged in user.
  * @private
  */
-fireauth.Auth.prototype.currentUser_ = function() {
+fireauth.Auth.prototype.currentUser_ = function () {
   return this['currentUser'];
 };
 
-
 /** @return {?string} The current user UID if available, null if not. */
-fireauth.Auth.prototype.getUid = function() {
+fireauth.Auth.prototype.getUid = function () {
   return (this.currentUser_() && this.currentUser_()['uid']) || null;
 };
-
 
 /**
  * @return {?string} The last cached access token.
  * @private
  */
-fireauth.Auth.prototype.getLastAccessToken_ = function() {
+fireauth.Auth.prototype.getLastAccessToken_ = function () {
   return (this.currentUser_() && this.currentUser_()['_lat']) || null;
 };
-
-
 
 /**
  * Called internally on Auth state change to notify listeners.
  * @private
  */
-fireauth.Auth.prototype.notifyAuthListeners_ = function() {
+fireauth.Auth.prototype.notifyAuthListeners_ = function () {
   // Only run when state is resolved. After state is resolved, the Auth listener
   // will always trigger.
   if (this.isStateResolved_) {
@@ -1885,8 +1980,10 @@ fireauth.Auth.prototype.notifyAuthListeners_ = function() {
       }
     }
     // Trigger user change only if UID changed.
-    if (this.userStateChangeUid_ !== this.getUid() &&
-        this.userChangeListeners_.length) {
+    if (
+      this.userStateChangeUid_ !== this.getUid() &&
+      this.userChangeListeners_.length
+    ) {
       // Update user state change UID.
       this.userStateChangeUid_ = this.getUid();
       // Trigger all subscribed user state change listeners.
@@ -1899,13 +1996,12 @@ fireauth.Auth.prototype.notifyAuthListeners_ = function() {
   }
 };
 
-
 /**
  * Attaches a listener function to Auth state change.
  * This is used only by internal Firebase services.
  * @param {!function(?string)} listener The auth state change listener.
  */
-fireauth.Auth.prototype.addAuthTokenListenerInternal = function(listener) {
+fireauth.Auth.prototype.addAuthTokenListenerInternal = function (listener) {
   this.addAuthTokenListener(listener);
   // This is not exact science but should be good enough to detect Firebase
   // services subscribing to Auth token changes.
@@ -1917,18 +2013,17 @@ fireauth.Auth.prototype.addAuthTokenListenerInternal = function(listener) {
   }
 };
 
-
 /**
  * Detaches the provided listener from Auth state change event.
  * This is used only by internal Firebase services.
  * @param {!function(?string)} listener The Auth state change listener.
  */
-fireauth.Auth.prototype.removeAuthTokenListenerInternal = function(listener) {
+fireauth.Auth.prototype.removeAuthTokenListenerInternal = function (listener) {
   // This is unlikely to be called by Firebase services. Services are unlikely
   // to remove Auth token listeners.
   // Make sure listener is still subscribed before decrementing.
   var self = this;
-  goog.array.forEach(this.authListeners_, function(ele) {
+  goog.array.forEach(this.authListeners_, function (ele) {
     // This covers the case where the same listener is subscribed more than
     // once.
     if (ele == listener) {
@@ -1945,76 +2040,76 @@ fireauth.Auth.prototype.removeAuthTokenListenerInternal = function(listener) {
   this.removeAuthTokenListener(listener);
 };
 
-
 /**
  * Attaches a listener function to Auth state change.
  * @param {!function(?string)} listener The Auth state change listener.
  */
-fireauth.Auth.prototype.addAuthTokenListener = function(listener) {
+fireauth.Auth.prototype.addAuthTokenListener = function (listener) {
   var self = this;
   // Save listener.
   this.authListeners_.push(listener);
   // Make sure redirect state is ready and then trigger listener.
-  this.registerPendingPromise_(this.redirectStateIsReady_.then(function() {
-    // Do nothing if deleted.
-    if (self.deleted_) {
-      return;
-    }
-    // Make sure listener is still subscribed.
-    if (goog.array.contains(self.authListeners_, listener)) {
-      // Trigger the first call for this now that redirect state is resolved.
-      listener(self.getLastAccessToken_());
-    }
-  }));
+  this.registerPendingPromise_(
+    this.redirectStateIsReady_.then(function () {
+      // Do nothing if deleted.
+      if (self.deleted_) {
+        return;
+      }
+      // Make sure listener is still subscribed.
+      if (goog.array.contains(self.authListeners_, listener)) {
+        // Trigger the first call for this now that redirect state is resolved.
+        listener(self.getLastAccessToken_());
+      }
+    })
+  );
 };
-
 
 /**
  * Detaches the provided listener from Auth state change event.
  * @param {!function(?string)} listener The Auth state change listener.
  */
-fireauth.Auth.prototype.removeAuthTokenListener = function(listener) {
+fireauth.Auth.prototype.removeAuthTokenListener = function (listener) {
   // Remove from Auth listeners.
-  goog.array.removeAllIf(this.authListeners_, function(ele) {
+  goog.array.removeAllIf(this.authListeners_, function (ele) {
     return ele == listener;
   });
 };
-
 
 /**
  * Attaches a listener function to user state change.
  * @param {!function(?string)} listener The user state change listener.
  * @private
  */
-fireauth.Auth.prototype.addUserChangeListener_ = function(listener) {
+fireauth.Auth.prototype.addUserChangeListener_ = function (listener) {
   var self = this;
   // Save listener.
   this.userChangeListeners_.push(listener);
   // Make sure redirect state is ready and then trigger listener.
-  this.registerPendingPromise_(this.redirectStateIsReady_.then(function() {
-    // Do nothing if deleted.
-    if (self.deleted_) {
-      return;
-    }
-    // Make sure listener is still subscribed.
-    if (goog.array.contains(self.userChangeListeners_, listener)) {
-      // Confirm UID change before triggering.
-      if (self.userStateChangeUid_ !== self.getUid()) {
-        self.userStateChangeUid_ = self.getUid();
-        // Trigger the first call for this now that redirect state is resolved.
-        listener(self.getLastAccessToken_());
+  this.registerPendingPromise_(
+    this.redirectStateIsReady_.then(function () {
+      // Do nothing if deleted.
+      if (self.deleted_) {
+        return;
       }
-    }
-  }));
+      // Make sure listener is still subscribed.
+      if (goog.array.contains(self.userChangeListeners_, listener)) {
+        // Confirm UID change before triggering.
+        if (self.userStateChangeUid_ !== self.getUid()) {
+          self.userStateChangeUid_ = self.getUid();
+          // Trigger the first call for this now that redirect state is resolved.
+          listener(self.getLastAccessToken_());
+        }
+      }
+    })
+  );
 };
-
 
 /**
  * Deletes the Auth instance, handling cancellation of all pending async Auth
  * operations.
  * @return {!Promise<void>}
  */
-fireauth.Auth.prototype.delete = function() {
+fireauth.Auth.prototype.delete = function () {
   this.deleted_ = true;
   // Cancel all pending promises.
   for (var i = 0; i < this.pendingPromises_.length; i++) {
@@ -2026,7 +2121,8 @@ fireauth.Auth.prototype.delete = function() {
   // Remove current user change listener.
   if (this.userStorageManager_) {
     this.userStorageManager_.removeCurrentUserChangeListener(
-        this.getSyncAuthUserChanges_);
+      this.getSyncAuthUserChanges_
+    );
   }
   // Unsubscribe from Auth event handling.
   if (this.authEventManager_) {
@@ -2036,12 +2132,10 @@ fireauth.Auth.prototype.delete = function() {
   return Promise.resolve();
 };
 
-
 /** @return {boolean} Whether Auth instance has pending promises. */
-fireauth.Auth.prototype.hasPendingPromises = function() {
+fireauth.Auth.prototype.hasPendingPromises = function () {
   return this.pendingPromises_.length != 0;
 };
-
 
 /**
  * Takes in a pending promise, saves it and adds a clean up callback which
@@ -2051,11 +2145,11 @@ fireauth.Auth.prototype.hasPendingPromises = function() {
  * @return {!goog.Promise<*, *>|!goog.Promise<void>}
  * @private
  */
-fireauth.Auth.prototype.registerPendingPromise_ = function(p) {
+fireauth.Auth.prototype.registerPendingPromise_ = function (p) {
   var self = this;
   // Save created promise in pending list.
   this.pendingPromises_.push(p);
-  p.thenAlways(function() {
+  p.thenAlways(function () {
     // When fulfilled, remove from pending list.
     goog.array.remove(self.pendingPromises_, p);
   });
@@ -2063,28 +2157,28 @@ fireauth.Auth.prototype.registerPendingPromise_ = function(p) {
   return p;
 };
 
-
 /**
  * Gets the list of possible sign in methods for the given email address.
  * @param {string} email The email address.
  * @return {!goog.Promise<!Array<string>>}
  */
-fireauth.Auth.prototype.fetchSignInMethodsForEmail = function(email) {
+fireauth.Auth.prototype.fetchSignInMethodsForEmail = function (email) {
   return /** @type {!goog.Promise<!Array<string>>} */ (
-      this.registerPendingPromise_(
-          this.getRpcHandler().fetchSignInMethodsForIdentifier(email)));
+    this.registerPendingPromise_(
+      this.getRpcHandler().fetchSignInMethodsForIdentifier(email)
+    )
+  );
 };
-
 
 /**
  * @param {string} emailLink The email link.
  * @return {boolean} Whether the link is a sign in with email link.
  */
-fireauth.Auth.prototype.isSignInWithEmailLink = function(emailLink) {
-  return  !!fireauth.EmailAuthProvider
-      .getActionCodeUrlFromSignInEmailLink(emailLink);
+fireauth.Auth.prototype.isSignInWithEmailLink = function (emailLink) {
+  return !!fireauth.EmailAuthProvider.getActionCodeUrlFromSignInEmailLink(
+    emailLink
+  );
 };
-
 
 /**
  * Sends the sign-in with email link for the email account provided.
@@ -2092,31 +2186,38 @@ fireauth.Auth.prototype.isSignInWithEmailLink = function(emailLink) {
  * @param {!Object} actionCodeSettings The action code settings object.
  * @return {!goog.Promise<void>}
  */
-fireauth.Auth.prototype.sendSignInLinkToEmail = function(
-    email, actionCodeSettings) {
+fireauth.Auth.prototype.sendSignInLinkToEmail = function (
+  email,
+  actionCodeSettings
+) {
   var self = this;
   return this.registerPendingPromise_(
-      // Wrap in promise as ActionCodeSettings constructor could throw a
-      // synchronous error if invalid arguments are specified.
-      goog.Promise.resolve()
-          .then(function() {
-            var actionCodeSettingsBuilder =
-                new fireauth.ActionCodeSettings(actionCodeSettings);
-            if (!actionCodeSettingsBuilder.canHandleCodeInApp()) {
-              throw new fireauth.AuthError(
-                  fireauth.authenum.Error.ARGUMENT_ERROR,
-                  fireauth.ActionCodeSettings.RawField.HANDLE_CODE_IN_APP +
-                  ' must be true when sending sign in link to email');
-            }
-            return actionCodeSettingsBuilder.buildRequest();
-          }).then(function(additionalRequestData) {
-            return self.getRpcHandler().sendSignInLinkToEmail(
-                email, additionalRequestData);
-          }).then(function(email) {
-            // Do not return the email.
-          }));
+    // Wrap in promise as ActionCodeSettings constructor could throw a
+    // synchronous error if invalid arguments are specified.
+    goog.Promise.resolve()
+      .then(function () {
+        var actionCodeSettingsBuilder = new fireauth.ActionCodeSettings(
+          actionCodeSettings
+        );
+        if (!actionCodeSettingsBuilder.canHandleCodeInApp()) {
+          throw new fireauth.AuthError(
+            fireauth.authenum.Error.ARGUMENT_ERROR,
+            fireauth.ActionCodeSettings.RawField.HANDLE_CODE_IN_APP +
+              ' must be true when sending sign in link to email'
+          );
+        }
+        return actionCodeSettingsBuilder.buildRequest();
+      })
+      .then(function (additionalRequestData) {
+        return self
+          .getRpcHandler()
+          .sendSignInLinkToEmail(email, additionalRequestData);
+      })
+      .then(function (email) {
+        // Do not return the email.
+      })
+  );
 };
-
 
 /**
  * Verifies an email action code for password reset and returns a promise
@@ -2124,12 +2225,11 @@ fireauth.Auth.prototype.sendSignInLinkToEmail = function(
  * @param {string} code The email action code to verify for password reset.
  * @return {!goog.Promise<string>}
  */
-fireauth.Auth.prototype.verifyPasswordResetCode = function(code) {
-  return this.checkActionCode(code).then(function(info) {
+fireauth.Auth.prototype.verifyPasswordResetCode = function (code) {
+  return this.checkActionCode(code).then(function (info) {
     return info['data']['email'];
   });
 };
-
 
 /**
  * Requests resetPassword endpoint for password reset, verifies the action code
@@ -2138,42 +2238,45 @@ fireauth.Auth.prototype.verifyPasswordResetCode = function(code) {
  * @param {string} newPassword The new password.
  * @return {!goog.Promise<undefined, !fireauth.AuthError>}
  */
-fireauth.Auth.prototype.confirmPasswordReset = function(code, newPassword) {
+fireauth.Auth.prototype.confirmPasswordReset = function (code, newPassword) {
   return this.registerPendingPromise_(
-      this.getRpcHandler().confirmPasswordReset(code, newPassword)
-      .then(function(email) {
+    this.getRpcHandler()
+      .confirmPasswordReset(code, newPassword)
+      .then(function (email) {
         // Do not return the email.
-      }));
+      })
+  );
 };
-
 
 /**
  * Verifies an email action code and returns an empty promise if verified.
  * @param {string} code The email action code to verify for password reset.
  * @return {!goog.Promise<!Object>}
  */
-fireauth.Auth.prototype.checkActionCode = function(code) {
+fireauth.Auth.prototype.checkActionCode = function (code) {
   return this.registerPendingPromise_(
-      this.getRpcHandler().checkActionCode(code)
-      .then(function(response) {
+    this.getRpcHandler()
+      .checkActionCode(code)
+      .then(function (response) {
         return new fireauth.ActionCodeInfo(response);
-      }));
+      })
+  );
 };
-
 
 /**
  * Applies an out-of-band email action code, such as an email verification code.
  * @param {string} code The email action code.
  * @return {!goog.Promise<void>}
  */
-fireauth.Auth.prototype.applyActionCode = function(code) {
+fireauth.Auth.prototype.applyActionCode = function (code) {
   return this.registerPendingPromise_(
-      this.getRpcHandler().applyActionCode(code)
-      .then(function(email) {
+    this.getRpcHandler()
+      .applyActionCode(code)
+      .then(function (email) {
         // Returns nothing.
-      }));
+      })
+  );
 };
-
 
 /**
  * Sends the password reset email for the email account provided.
@@ -2182,29 +2285,37 @@ fireauth.Auth.prototype.applyActionCode = function(code) {
  *     object.
  * @return {!goog.Promise<void>}
  */
-fireauth.Auth.prototype.sendPasswordResetEmail =
-    function(email, opt_actionCodeSettings) {
+fireauth.Auth.prototype.sendPasswordResetEmail = function (
+  email,
+  opt_actionCodeSettings
+) {
   var self = this;
   return this.registerPendingPromise_(
-      // Wrap in promise as ActionCodeSettings constructor could throw a
-      // synchronous error if invalid arguments are specified.
-      goog.Promise.resolve().then(function() {
-        if (typeof opt_actionCodeSettings !== 'undefined' &&
-            // Ignore empty objects.
-            !goog.object.isEmpty(opt_actionCodeSettings)) {
+    // Wrap in promise as ActionCodeSettings constructor could throw a
+    // synchronous error if invalid arguments are specified.
+    goog.Promise.resolve()
+      .then(function () {
+        if (
+          typeof opt_actionCodeSettings !== 'undefined' &&
+          // Ignore empty objects.
+          !goog.object.isEmpty(opt_actionCodeSettings)
+        ) {
           return new fireauth.ActionCodeSettings(
-              /** @type {!Object} */ (opt_actionCodeSettings)).buildRequest();
+            /** @type {!Object} */ (opt_actionCodeSettings)
+          ).buildRequest();
         }
         return {};
       })
-      .then(function(additionalRequestData) {
-        return self.getRpcHandler().sendPasswordResetEmail(
-            email, additionalRequestData);
-      }).then(function(email) {
+      .then(function (additionalRequestData) {
+        return self
+          .getRpcHandler()
+          .sendPasswordResetEmail(email, additionalRequestData);
+      })
+      .then(function (email) {
         // Do not return the email.
-      }));
+      })
+  );
 };
-
 
 /**
  * Signs in with a phone number using the app verifier instance and returns a
@@ -2215,17 +2326,22 @@ fireauth.Auth.prototype.sendPasswordResetEmail =
  *     verifier.
  * @return {!goog.Promise<!fireauth.ConfirmationResult>}
  */
-fireauth.Auth.prototype.signInWithPhoneNumber =
-    function(phoneNumber, appVerifier) {
+fireauth.Auth.prototype.signInWithPhoneNumber = function (
+  phoneNumber,
+  appVerifier
+) {
   return /** @type {!goog.Promise<!fireauth.ConfirmationResult>} */ (
-      this.registerPendingPromise_(fireauth.ConfirmationResult.initialize(
-          this,
-          phoneNumber,
-          appVerifier,
-          // This will wait for redirectStateIsReady to resolve first.
-          goog.bind(this.signInWithCredential, this))));
+    this.registerPendingPromise_(
+      fireauth.ConfirmationResult.initialize(
+        this,
+        phoneNumber,
+        appVerifier,
+        // This will wait for redirectStateIsReady to resolve first.
+        goog.bind(this.signInWithCredential, this)
+      )
+    )
+  );
 };
-
 
 /**
  * Signs in a Firebase User with the provided email and the passwordless
@@ -2236,23 +2352,30 @@ fireauth.Auth.prototype.signInWithPhoneNumber =
  *     URL is used instead.
  * @return {!goog.Promise<!fireauth.AuthEventManager.Result>}
  */
-fireauth.Auth.prototype.signInWithEmailLink = function(email, opt_link) {
-  return this.registerPendingPromise_(goog.Promise.resolve().then(() => {
+fireauth.Auth.prototype.signInWithEmailLink = function (email, opt_link) {
+  return this.registerPendingPromise_(
+    goog.Promise.resolve().then(() => {
       const link = opt_link || fireauth.util.getCurrentUrl();
       const credential = fireauth.EmailAuthProvider.credentialWithLink(
-          email, link);
+        email,
+        link
+      );
       // Check if the tenant ID in the email link matches the tenant ID on Auth
       // instance.
       const actionCodeUrl =
-          fireauth.EmailAuthProvider.getActionCodeUrlFromSignInEmailLink(link);
+        fireauth.EmailAuthProvider.getActionCodeUrlFromSignInEmailLink(link);
       if (!actionCodeUrl) {
         throw new fireauth.AuthError(
-            fireauth.authenum.Error.ARGUMENT_ERROR, 'Invalid email link!');
+          fireauth.authenum.Error.ARGUMENT_ERROR,
+          'Invalid email link!'
+        );
       }
       if (actionCodeUrl['tenantId'] !== this.getTenantId()) {
         throw new fireauth.AuthError(
-            fireauth.authenum.Error.TENANT_ID_MISMATCH);
+          fireauth.authenum.Error.TENANT_ID_MISMATCH
+        );
       }
       return this.signInWithCredential(credential);
-  }));
+    })
+  );
 };

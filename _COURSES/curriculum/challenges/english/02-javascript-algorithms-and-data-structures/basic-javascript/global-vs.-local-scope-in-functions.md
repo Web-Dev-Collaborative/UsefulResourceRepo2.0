@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244c0
 title: Global vs. Local Scope in Functions
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c2QwKH2'
+videoUrl: "https://scrimba.com/c/c2QwKH2"
 forumTopicId: 18194
 dashedName: global-vs--local-scope-in-functions
 ---
@@ -32,13 +32,13 @@ Add a local variable to `myOutfit` function to override the value of `outerWear`
 You should not change the value of the global `outerWear`.
 
 ```js
-assert(outerWear === 'T-Shirt');
+assert(outerWear === "T-Shirt");
 ```
 
 `myOutfit` should return the string `sweater`.
 
 ```js
-assert(myOutfit() === 'sweater');
+assert(myOutfit() === "sweater");
 ```
 
 You should not change the return statement.
@@ -57,8 +57,6 @@ var outerWear = "T-Shirt";
 
 function myOutfit() {
   // Only change code below this line
-
-
 
   // Only change code above this line
   return outerWear;

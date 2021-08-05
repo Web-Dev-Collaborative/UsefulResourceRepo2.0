@@ -22,10 +22,10 @@ The `BinarySearchTree` data structure should exist.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     }
-    return typeof test == 'object';
+    return typeof test == "object";
   })()
 );
 ```
@@ -36,12 +36,12 @@ The binary search tree should have a method called `isPresent`.
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    return typeof test.isPresent == 'function';
+    return typeof test.isPresent == "function";
   })()
 );
 ```
@@ -52,12 +52,12 @@ The `isPresent` method should correctly check for the presence or absence of ele
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.isPresent !== 'function') {
+    if (typeof test.isPresent !== "function") {
       return false;
     }
     test.add(4);
@@ -80,12 +80,12 @@ assert(
 assert(
   (function () {
     var test = false;
-    if (typeof BinarySearchTree !== 'undefined') {
+    if (typeof BinarySearchTree !== "undefined") {
       test = new BinarySearchTree();
     } else {
       return false;
     }
-    if (typeof test.isPresent !== 'function') {
+    if (typeof test.isPresent !== "function") {
       return false;
     }
     return test.isPresent(5) == false;
@@ -98,45 +98,42 @@ assert(
 ## --after-user-code--
 
 ```js
-BinarySearchTree.prototype = Object.assign(
-  BinarySearchTree.prototype,
-  {
-    add: function(value) {
-      var node = this.root;
-      if (node == null) {
-        this.root = new Node(value);
-        return;
-      } else {
-        function searchTree(node) {
-          if (value < node.value) {
-            if (node.left == null) {
-              node.left = new Node(value);
-              return;
-            } else if (node.left != null) {
-              return searchTree(node.left);
-            }
-          } else if (value > node.value) {
-            if (node.right == null) {
-              node.right = new Node(value);
-              return;
-            } else if (node.right != null) {
-              return searchTree(node.right);
-            }
-          } else {
-            return null;
+BinarySearchTree.prototype = Object.assign(BinarySearchTree.prototype, {
+  add: function (value) {
+    var node = this.root;
+    if (node == null) {
+      this.root = new Node(value);
+      return;
+    } else {
+      function searchTree(node) {
+        if (value < node.value) {
+          if (node.left == null) {
+            node.left = new Node(value);
+            return;
+          } else if (node.left != null) {
+            return searchTree(node.left);
           }
+        } else if (value > node.value) {
+          if (node.right == null) {
+            node.right = new Node(value);
+            return;
+          } else if (node.right != null) {
+            return searchTree(node.right);
+          }
+        } else {
+          return null;
         }
-        return searchTree(node);
       }
+      return searchTree(node);
     }
-  }
-);
+  },
+});
 ```
 
 ## --seed-contents--
 
 ```js
-var displayTree = tree => console.log(JSON.stringify(tree, null, 2));
+var displayTree = (tree) => console.log(JSON.stringify(tree, null, 2));
 function Node(value) {
   this.value = value;
   this.left = null;
@@ -162,7 +159,7 @@ function Node(value) {
 function BinarySearchTree() {
   this.root = null;
   this.isPresent = function (value) {
-    var current = this.root
+    var current = this.root;
     while (current) {
       if (value === current.value) {
         return true;
@@ -170,6 +167,6 @@ function BinarySearchTree() {
       current = value < current.value ? current.left : current.right;
     }
     return false;
-  }
+  };
 }
 ```

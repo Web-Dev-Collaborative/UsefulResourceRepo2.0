@@ -26,8 +26,8 @@ Aquí el primer `match` devolverá `["Hello"]` y el segundo devolverá `["expres
 Ten en cuenta que la sintaxis `.match` es lo "opuesto" al método `.test` que has estado utilizando hasta ahora:
 
 ```js
-'string'.match(/regex/);
-/regex/.test('string');
+"string".match(/regex/);
+/regex/.test("string");
 ```
 
 # --instructions--
@@ -39,13 +39,13 @@ Aplica el método `.match()` para extraer la cadena `coding`.
 `result` debe contener la cadena `coding`
 
 ```js
-assert(result.join() === 'coding');
+assert(result.join() === "coding");
 ```
 
 Tu expresión regular `codingRegex` debe buscar la cadena `coding`
 
 ```js
-assert(codingRegex.source === 'coding');
+assert(codingRegex.source === "coding");
 ```
 
 Debes utilizar el método `.match()`.

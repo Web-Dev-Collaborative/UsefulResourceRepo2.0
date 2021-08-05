@@ -1,6 +1,6 @@
 ---
 id: 5900f4f21000cf542c510005
-title: 'Problem 390: Triangles with non rational sides and integral area'
+title: "Problem 390: Triangles with non rational sides and integral area"
 challengeType: 5
 forumTopicId: 302055
 dashedName: problem-390-triangles-with-non-rational-sides-and-integral-area
@@ -34,7 +34,6 @@ assert.strictEqual(euler390(), 2919133642971);
 
 ```js
 function euler390() {
-
   return true;
 }
 

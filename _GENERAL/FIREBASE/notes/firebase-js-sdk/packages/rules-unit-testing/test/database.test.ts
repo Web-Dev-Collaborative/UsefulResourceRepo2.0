@@ -182,7 +182,7 @@ describe('Testing Module Tests', function () {
       auth: undefined
     });
 
-    const authInternal = ((app as unknown) as _FirebaseApp).container
+    const authInternal = (app as unknown as _FirebaseApp).container
       .getProvider('auth-internal')
       .getImmediate({ optional: true });
     // Auth instance will not be available because no API Key is provided
@@ -195,7 +195,7 @@ describe('Testing Module Tests', function () {
       projectId: 'foo',
       auth: auth
     });
-    const authInternal = ((app as unknown) as _FirebaseApp).container
+    const authInternal = (app as unknown as _FirebaseApp).container
       .getProvider('auth-internal')
       .getImmediate();
 

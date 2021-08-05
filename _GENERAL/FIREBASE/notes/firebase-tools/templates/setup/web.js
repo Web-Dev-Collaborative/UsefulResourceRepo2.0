@@ -2,4 +2,6 @@
 // You will also need to load the Firebase SDK.
 // See https://firebase.google.com/docs/web/setup for more details.
 
-firebase.initializeApp({/*--CONFIG--*/});
+firebase.initializeApp({
+  /*--CONFIG--*/
+});

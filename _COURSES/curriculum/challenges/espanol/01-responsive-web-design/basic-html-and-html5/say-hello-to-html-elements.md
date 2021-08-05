@@ -2,7 +2,7 @@
 id: bd7123c8c441eddfaeb5bdef
 title: Di hola a los elementos HTML
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cE8Gpt2'
+videoUrl: "https://scrimba.com/p/pVMPUv/cE8Gpt2"
 forumTopicId: 18276
 dashedName: say-hello-to-html-elements
 ---
@@ -20,7 +20,7 @@ La mayoría de elementos HTML tienen una etiqueta de apertura y una etiqueta de 
 Las etiquetas de apertura se ven así:
 
 ```html
-<h1>
+<h1></h1>
 ```
 
 Las etiquetas de cierre se ven así:
@@ -42,7 +42,7 @@ Para pasar la prueba en este desafío, cambia el texto de tu elemento `h1` para 
 Tu elemento `h1` debe contener el texto `Hello World`.
 
 ```js
-assert.isTrue(/hello(\s)+world/gi.test($('h1').text()));
+assert.isTrue(/hello(\s)+world/gi.test($("h1").text()));
 ```
 
 # --seed--

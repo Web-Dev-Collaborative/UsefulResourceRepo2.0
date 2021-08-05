@@ -27,7 +27,7 @@ assert(Object.keys(styles).length === 3);
 `styles` 变量的 `color` 属性应该设置为 `purple`。
 
 ```js
-assert(styles.color === 'purple');
+assert(styles.color === "purple");
 ```
 
 `styles` 变量应该将 `fontSize` 属性设置为 `40`。
@@ -39,7 +39,7 @@ assert(styles.fontSize === 40);
 `styles` 变量的 `border` 属性应该设置为 `2px solid purple`。
 
 ```js
-assert(styles.border === '2px solid purple');
+assert(styles.border === "2px solid purple");
 ```
 
 组件应该渲染一个 `div` 元素。
@@ -48,7 +48,7 @@ assert(styles.border === '2px solid purple');
 assert(
   (function () {
     const mockedComponent = Enzyme.shallow(React.createElement(Colorful));
-    return mockedComponent.type() === 'div';
+    return mockedComponent.type() === "div";
   })()
 );
 ```
@@ -60,9 +60,9 @@ assert(
   (function () {
     const mockedComponent = Enzyme.shallow(React.createElement(Colorful));
     return (
-      mockedComponent.props().style.color === 'purple' &&
+      mockedComponent.props().style.color === "purple" &&
       mockedComponent.props().style.fontSize === 40 &&
-      mockedComponent.props().style.border === '2px solid purple'
+      mockedComponent.props().style.border === "2px solid purple"
     );
   })()
 );
@@ -73,7 +73,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<Colorful />, document.getElementById('root'))
+ReactDOM.render(<Colorful />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -83,12 +83,10 @@ ReactDOM.render(<Colorful />, document.getElementById('root'))
 class Colorful extends React.Component {
   render() {
     // Change code below this line
-    return (
-      <div style={{color: "yellow", fontSize: 24}}>Style Me!</div>
-    );
+    return <div style={{ color: "yellow", fontSize: 24 }}>Style Me!</div>;
     // Change code above this line
   }
-};
+}
 ```
 
 # --solutions--
@@ -97,16 +95,14 @@ class Colorful extends React.Component {
 const styles = {
   color: "purple",
   fontSize: 40,
-  border: "2px solid purple"
+  border: "2px solid purple",
 };
 // Change code above this line
 class Colorful extends React.Component {
   render() {
     // Change code below this line
-    return (
-      <div style={styles}>Style Me!</div>
-    );
+    return <div style={styles}>Style Me!</div>;
     // Change code above this line
   }
-};
+}
 ```

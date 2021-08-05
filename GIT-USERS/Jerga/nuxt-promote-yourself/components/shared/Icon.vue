@@ -1,5 +1,3 @@
-
-
 <template>
   <i class="icon fas" :class="[`fa-${name}`, `icon-size-${size}`]"> </i>
 </template>
@@ -8,27 +6,27 @@
 export default {
   props: {
     name: {
-      default: ''
+      default: "",
     },
     size: {
-      size: 'normal'
-    }
-  }
-}
+      size: "normal",
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
-  .icon {
-    &-size {
-      &-small {
-        font-size: 15px;
-      }
-      &-normal {
-        font-size: 18px;
-      }
-      &-large {
-        font-size: 21px;
-      }
+.icon {
+  &-size {
+    &-small {
+      font-size: 15px;
+    }
+    &-normal {
+      font-size: 18px;
+    }
+    &-large {
+      font-size: 21px;
     }
   }
+}
 </style>

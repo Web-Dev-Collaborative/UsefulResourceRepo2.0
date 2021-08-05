@@ -1,6 +1,6 @@
 ---
 id: 5900f4b01000cf542c50ffc2
-title: 'Problem 323: Bitwise-OR operations on random integers'
+title: "Problem 323: Bitwise-OR operations on random integers"
 challengeType: 5
 forumTopicId: 301980
 dashedName: problem-323-bitwise-or-operations-on-random-integers
@@ -34,7 +34,6 @@ assert.strictEqual(euler323(), 6.3551758451);
 
 ```js
 function euler323() {
-
   return true;
 }
 

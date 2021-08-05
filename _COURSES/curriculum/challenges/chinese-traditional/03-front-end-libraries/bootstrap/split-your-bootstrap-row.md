@@ -17,7 +17,7 @@ dashedName: split-your-bootstrap-row
 兩個 `div class="col-xs-6"` 元素應該內嵌入 `div class="row"` 元素中。
 
 ```js
-assert($('div.row > div.col-xs-6').length > 1);
+assert($("div.row > div.col-xs-6").length > 1);
 ```
 
 確保所有的 `div` 元素都有閉合標籤。
@@ -37,10 +37,7 @@ assert(
 ```html
 <div class="container-fluid">
   <h3 class="text-primary text-center">jQuery Playground</h3>
-  <div class="row">
-
-
-  </div>
+  <div class="row"></div>
 </div>
 ```
 

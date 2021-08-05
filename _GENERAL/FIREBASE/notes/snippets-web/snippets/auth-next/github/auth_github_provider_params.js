@@ -5,6 +5,6 @@
 
 // [START auth_github_provider_params_modular]
 provider.setCustomParameters({
-  'allow_signup': 'false'
+  allow_signup: "false",
 });
 // [END auth_github_provider_params_modular]

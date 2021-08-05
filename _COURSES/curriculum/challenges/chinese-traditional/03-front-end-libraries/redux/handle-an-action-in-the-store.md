@@ -14,14 +14,14 @@ Redux 的另一個關鍵原則是 `state` 是隻讀的。 換句話說，`reduce
 
 # --instructions--
 
-代碼編輯器中具有前面的示例以及一個 `reducer` 函數。 需要完善 `reducer` 函數的內容，使得它如果收到類型爲`'LOGIN'`的action，它將返回一個將 `login` 設置爲 `true` 的 state 對象。 否則，它就返回當前的 `state`。 請注意，當前 `state` 和 dispatch 的 `action` 將被傳遞給 reducer，因此可以使用 `action.type` 直接獲取 action 的類型。
+代碼編輯器中具有前面的示例以及一個 `reducer` 函數。 需要完善 `reducer` 函數的內容，使得它如果收到類型爲`'LOGIN'`的 action，它將返回一個將 `login` 設置爲 `true` 的 state 對象。 否則，它就返回當前的 `state`。 請注意，當前 `state` 和 dispatch 的 `action` 將被傳遞給 reducer，因此可以使用 `action.type` 直接獲取 action 的類型。
 
 # --hints--
 
 調用函數 `loginAction` 應該返回一個 type 屬性設置爲字符串 `LOGIN` 的對象。
 
 ```js
-assert(loginAction().type === 'LOGIN');
+assert(loginAction().type === "LOGIN");
 ```
 
 store 應該用屬性 `login` 設置爲 `false` 的對象初始化。
@@ -48,9 +48,9 @@ assert(
 ```js
 assert(
   (function () {
-    store.dispatch({ type: '__TEST__ACTION__' });
+    store.dispatch({ type: "__TEST__ACTION__" });
     let afterTest = store.getState();
-    return typeof afterTest === 'object' && afterTest.hasOwnProperty('login');
+    return typeof afterTest === "object" && afterTest.hasOwnProperty("login");
   })()
 );
 ```
@@ -61,12 +61,11 @@ assert(
 
 ```js
 const defaultState = {
-  login: false
+  login: false,
 };
 
 const reducer = (state = defaultState, action) => {
   // Change code below this line
-
   // Change code above this line
 };
 
@@ -74,8 +73,8 @@ const store = Redux.createStore(reducer);
 
 const loginAction = () => {
   return {
-    type: 'LOGIN'
-  }
+    type: "LOGIN",
+  };
 };
 ```
 
@@ -83,26 +82,22 @@ const loginAction = () => {
 
 ```js
 const defaultState = {
-  login: false
+  login: false,
 };
 
 const reducer = (state = defaultState, action) => {
-
-  if (action.type === 'LOGIN') {
-    return {login: true}
+  if (action.type === "LOGIN") {
+    return { login: true };
+  } else {
+    return state;
   }
-
-  else {
-    return state
-  }
-
 };
 
 const store = Redux.createStore(reducer);
 
 const loginAction = () => {
   return {
-    type: 'LOGIN'
-  }
+    type: "LOGIN",
+  };
 };
 ```

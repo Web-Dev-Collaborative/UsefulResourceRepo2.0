@@ -24,10 +24,10 @@ mongoose.connect(<Your URI>, { useNewUrlParser: true, useUnifiedTopology: true }
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/file/package.json').then(
+  $.get(getUserInput("url") + "/_api/file/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
-      assert.property(packJson.dependencies, 'mongodb');
+      assert.property(packJson.dependencies, "mongodb");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -39,10 +39,10 @@ mongoose.connect(<Your URI>, { useNewUrlParser: true, useUnifiedTopology: true }
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/file/package.json').then(
+  $.get(getUserInput("url") + "/_api/file/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
-      assert.property(packJson.dependencies, 'mongoose');
+      assert.property(packJson.dependencies, "mongoose");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -54,9 +54,9 @@ mongoose.connect(<Your URI>, { useNewUrlParser: true, useUnifiedTopology: true }
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/is-mongoose-ok').then(
+  $.get(getUserInput("url") + "/_api/is-mongoose-ok").then(
     (data) => {
-      assert.isTrue(data.isMongooseOk, 'mongoose is not connected');
+      assert.isTrue(data.isMongooseOk, "mongoose is not connected");
     },
     (xhr) => {
       throw new Error(xhr.responseText);

@@ -49,7 +49,7 @@ La tua espressione regolare dovrebbe trovare 31 caratteri alfanumerici nella str
 
 ```js
 assert(
-  'The five boxing wizards jump quickly.'.match(alphabetRegexV2).length === 31
+  "The five boxing wizards jump quickly.".match(alphabetRegexV2).length === 31
 );
 ```
 
@@ -57,7 +57,7 @@ La tua espressione regolare dovrebbe trovare 32 caratteri alfanumerici nella str
 
 ```js
 assert(
-  'Pack my box with five dozen liquor jugs.'.match(alphabetRegexV2).length ===
+  "Pack my box with five dozen liquor jugs.".match(alphabetRegexV2).length ===
     32
 );
 ```
@@ -66,7 +66,7 @@ La tua espressione regolare dovrebbe trovare 30 caratteri alfanumerici nella str
 
 ```js
 assert(
-  'How vexingly quick daft zebras jump!'.match(alphabetRegexV2).length === 30
+  "How vexingly quick daft zebras jump!".match(alphabetRegexV2).length === 30
 );
 ```
 
@@ -74,7 +74,7 @@ La tua espressione regolare dovrebbe trovare 36 caratteri alfanumerici nella str
 
 ```js
 assert(
-  '123 456 7890 ABC def GHI jkl MNO pqr STU vwx YZ.'.match(alphabetRegexV2)
+  "123 456 7890 ABC def GHI jkl MNO pqr STU vwx YZ.".match(alphabetRegexV2)
     .length === 36
 );
 ```

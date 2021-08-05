@@ -29,13 +29,13 @@ Rewrite the function `makeNest` and remove its call so instead it's an anonymous
 The function should be anonymous.
 
 ```js
-assert(/\((function|\(\))(=>|\(\)){?/.test(code.replace(/\s/g, '')));
+assert(/\((function|\(\))(=>|\(\)){?/.test(code.replace(/\s/g, "")));
 ```
 
 Your function should have parentheses at the end of the expression to call it immediately.
 
 ```js
-assert(/\(.*(\)\(|\}\(\))\)/.test(code.replace(/[\s;]/g, '')));
+assert(/\(.*(\)\(|\}\(\))\)/.test(code.replace(/[\s;]/g, "")));
 ```
 
 # --seed--
@@ -63,7 +63,7 @@ makeNest();
 ```js
 (function () {
   console.log("A cozy nest is ready");
-}());
+})();
 ```
 
 ---
@@ -77,7 +77,5 @@ makeNest();
 ---
 
 ```js
-(() =>
-  console.log("A cozy nest is ready")
-)();
+(() => console.log("A cozy nest is ready"))();
 ```

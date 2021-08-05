@@ -15,7 +15,9 @@
             :maxLength="50"
           />
           <div v-if="$v.form.title.$error" class="form-error">
-            <span v-if="!$v.form.title.required" class="help is-danger">Title is required!</span>
+            <span v-if="!$v.form.title.required" class="help is-danger"
+              >Title is required!</span
+            >
           </div>
         </div>
       </div>
@@ -24,49 +26,35 @@
 </template>
 
 <script>
-import { required } from 'vuelidate/lib/validators'
-import TextInputWithCount from '~/components/form/TextInputWithCount';
+import { required } from "vuelidate/lib/validators";
+import TextInputWithCount from "~/components/form/TextInputWithCount";
 export default {
   components: {
-    TextInputWithCount
+    TextInputWithCount,
   },
   data() {
     return {
       form: {
-        title: ''
-      }
-    }
+        title: "",
+      },
+    };
   },
   validations: {
     form: {
       title: {
-        required
-      }
-    }
+        required,
+      },
+    },
   },
   computed: {
     isValid() {
-      return !this.$v.$invalid
-    }
+      return !this.$v.$invalid;
+    },
   },
   methods: {
     emitFormData() {
-      this.$emit('stepUpdated', {data: this.form, isValid: this.isValid})
-    }
-  }
-}
+      this.$emit("stepUpdated", { data: this.form, isValid: this.isValid });
+    },
+  },
+};
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

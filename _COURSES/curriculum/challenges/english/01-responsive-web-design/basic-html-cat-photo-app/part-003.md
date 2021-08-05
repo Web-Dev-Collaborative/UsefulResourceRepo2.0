@@ -16,7 +16,7 @@ Create a paragraph (`p`) element below your `h2` element, and give it the text `
 Your `p` element should have an opening tag. Opening tags have the following syntax: `<elementName>`.
 
 ```js
-assert(document.querySelector('p'));
+assert(document.querySelector("p"));
 ```
 
 Your `p` element should have a closing tag. Closing tags have a `/` just after the `<` character.
@@ -29,18 +29,18 @@ Your `p` element's text should be `Click here to view more cat photos.` You have
 
 ```js
 const extraSpacesRemoved = document
-  .querySelector('p')
-  .innerText.replace(/\s+/g, ' ');
+  .querySelector("p")
+  .innerText.replace(/\s+/g, " ");
 assert(extraSpacesRemoved.match(/click here to view more cat photos\.?$/i));
 ```
 
 Your `p` element should be below the `h2` element. You have them in the wrong order.
 
 ```js
-const collection = [...document.querySelectorAll('h2,p')].map(
+const collection = [...document.querySelectorAll("h2,p")].map(
   (node) => node.nodeName
 );
-assert(collection.indexOf('H2') < collection.indexOf('P'));
+assert(collection.indexOf("H2") < collection.indexOf("P"));
 ```
 
 # --seed--
@@ -51,10 +51,9 @@ assert(collection.indexOf('H2') < collection.indexOf('P'));
 <html>
   <body>
     <h1>CatPhotoApp</h1>
---fcc-editable-region--
+    --fcc-editable-region--
     <h2>Cat Photos</h2>
---fcc-editable-region--
+    --fcc-editable-region--
   </body>
 </html>
 ```
-

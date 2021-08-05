@@ -1,6 +1,6 @@
 ---
 id: 5900f43a1000cf542c50ff4d
-title: 'Problem 206: Concealed Square'
+title: "Problem 206: Concealed Square"
 challengeType: 5
 forumTopicId: 301847
 dashedName: problem-206-concealed-square
@@ -24,7 +24,6 @@ assert.strictEqual(euler206(), 1389019170);
 
 ```js
 function euler206() {
-
   return true;
 }
 

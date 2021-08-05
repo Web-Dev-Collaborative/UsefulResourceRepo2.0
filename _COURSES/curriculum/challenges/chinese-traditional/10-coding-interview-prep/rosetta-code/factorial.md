@@ -29,13 +29,13 @@ For example:
 `factorial` should be a function.
 
 ```js
-assert(typeof factorial === 'function');
+assert(typeof factorial === "function");
 ```
 
 `factorial(2)` should return a number.
 
 ```js
-assert(typeof factorial(2) === 'number');
+assert(typeof factorial(2) === "number");
 ```
 
 `factorial(3)` should return 6.
@@ -61,9 +61,7 @@ assert.equal(factorial(10), 3628800);
 ## --seed-contents--
 
 ```js
-function factorial(n) {
-
-}
+function factorial(n) {}
 ```
 
 # --solutions--

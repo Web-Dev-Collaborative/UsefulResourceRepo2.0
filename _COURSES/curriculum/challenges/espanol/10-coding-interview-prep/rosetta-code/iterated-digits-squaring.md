@@ -23,13 +23,13 @@ Write a function that takes a number as a parameter and returns 1 or 89 after pe
 `iteratedSquare` should be a function.
 
 ```js
-assert(typeof iteratedSquare == 'function');
+assert(typeof iteratedSquare == "function");
 ```
 
 `iteratedSquare(4)` should return a number.
 
 ```js
-assert(typeof iteratedSquare(4) == 'number');
+assert(typeof iteratedSquare(4) == "number");
 ```
 
 `iteratedSquare(4)` should return `89`.
@@ -73,24 +73,22 @@ assert.equal(iteratedSquare(100), 1);
 ## --seed-contents--
 
 ```js
-function iteratedSquare(n) {
-
-}
+function iteratedSquare(n) {}
 ```
 
 # --solutions--
 
 ```js
 function iteratedSquare(n) {
-    var total;
-    while (n != 89 && n != 1) {
-        total = 0;
-        while (n > 0) {
-            total += Math.pow(n % 10, 2);
-            n = Math.floor(n/10);
-        }
-        n = total;
+  var total;
+  while (n != 89 && n != 1) {
+    total = 0;
+    while (n > 0) {
+      total += Math.pow(n % 10, 2);
+      n = Math.floor(n / 10);
     }
-    return n;
+    n = total;
+  }
+  return n;
 }
 ```

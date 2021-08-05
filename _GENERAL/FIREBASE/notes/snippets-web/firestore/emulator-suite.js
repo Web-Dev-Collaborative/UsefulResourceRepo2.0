@@ -1,5 +1,5 @@
 import firebase from "firebase/app";
-import 'firebase/firestore';
+import "firebase/firestore";
 
 function onDocumentReady() {
   // [START fs_emulator_connect]

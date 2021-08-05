@@ -6,8 +6,8 @@
 // [START storage_custom_metadata_modular]
 const metadata = {
   customMetadata: {
-    'location': 'Yosemite, CA, USA',
-    'activity': 'Hiking'
-  }
+    location: "Yosemite, CA, USA",
+    activity: "Hiking",
+  },
 };
 // [END storage_custom_metadata_modular]

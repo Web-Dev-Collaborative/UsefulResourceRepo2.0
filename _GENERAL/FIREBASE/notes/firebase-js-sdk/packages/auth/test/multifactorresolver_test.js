@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 /**
  * @fileoverview Tests for multifactorresolver.js
  */
@@ -35,7 +35,6 @@ goog.require('goog.testing.MockControl');
 goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.MultiFactorResolverTest');
-
 
 var mockControl;
 var app = firebase.initializeApp({
@@ -78,14 +77,15 @@ function setUp() {
     'oauthIdToken': 'googleIdToken',
     'oauthExpireIn': 3600,
     // Additional user info data.
-    'rawUserInfo': '{"kind":"plus#person","displayName":"John Doe",' +
-        '"name":{"givenName":"John","familyName":"Doe"}}'
+    'rawUserInfo':
+      '{"kind":"plus#person","displayName":"John Doe",' +
+      '"name":{"givenName":"John","familyName":"Doe"}}'
   });
   mockUserCredential = {
     'user': 'User',
     'credential': 'Credential'
   };
-  onIdTokenResolver = function(signInResponse) {
+  onIdTokenResolver = function (signInResponse) {
     return goog.Promise.resolve(mockUserCredential);
   };
   successTokenResponse = {
@@ -100,7 +100,6 @@ function setUp() {
   mockControl = new goog.testing.MockControl();
 }
 
-
 function tearDown() {
   onIdTokenResolver = null;
   mockUserCredential = null;
@@ -111,18 +110,22 @@ function tearDown() {
   mockControl.$tearDown();
 }
 
-
 function testMultiFactorResolver_valid() {
   var expectedHints = [
     fireauth.MultiFactorInfo.fromServerResponse(enrollmentList[0]),
     fireauth.MultiFactorInfo.fromServerResponse(enrollmentList[1])
   ];
   var expectedSession = new fireauth.MultiFactorSession(
-      null, pendingCredential);
+    null,
+    pendingCredential
+  );
 
-  var resolver = assertNotThrows(function() {
+  var resolver = assertNotThrows(function () {
     return new fireauth.MultiFactorResolver(
-        auth, serverResponse, onIdTokenResolver);
+      auth,
+      serverResponse,
+      onIdTokenResolver
+    );
   });
 
   assertEquals(auth, resolver.auth);
@@ -130,23 +133,23 @@ function testMultiFactorResolver_valid() {
   assertObjectEquals(expectedSession, resolver.session);
 }
 
-
 function testMultiFactorResolver_invalid() {
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.ARGUMENT_ERROR,
-      'Internal assert: Invalid MultiFactorResolver');
+    fireauth.authenum.Error.ARGUMENT_ERROR,
+    'Internal assert: Invalid MultiFactorResolver'
+  );
 
-  var error = assertThrows(function() {
+  var error = assertThrows(function () {
     // Pending credential must be provided.
     return new fireauth.MultiFactorResolver(
-        auth, {'mfaInfo': enrollmentList}, onIdTokenResolver);
+      auth,
+      { 'mfaInfo': enrollmentList },
+      onIdTokenResolver
+    );
   });
 
-  fireauth.common.testHelper.assertErrorEquals(
-      expectedError,
-      error);
+  fireauth.common.testHelper.assertErrorEquals(expectedError, error);
 }
-
 
 function testMultiFactorResolver_resolveSignIn_success() {
   var newSignInResponse = goog.object.clone(serverResponseWithOtherInfo);
@@ -156,59 +159,69 @@ function testMultiFactorResolver_resolveSignIn_success() {
 
   var onIdTokenResolver = mockControl.createFunctionMock('onIdTokenResolver');
   var resolver = new fireauth.MultiFactorResolver(
-      auth, serverResponseWithOtherInfo, onIdTokenResolver);
+    auth,
+    serverResponseWithOtherInfo,
+    onIdTokenResolver
+  );
   var mockAssertion = mockControl.createStrictMock(
-      fireauth.MultiFactorAssertion);
+    fireauth.MultiFactorAssertion
+  );
 
   // Simulate assertion processing resolves with the successful token response.
-  mockAssertion.process(auth.getRpcHandler(), resolver.session)
-      .$once()
-      .$returns(goog.Promise.resolve(successTokenResponse));
+  mockAssertion
+    .process(auth.getRpcHandler(), resolver.session)
+    .$once()
+    .$returns(goog.Promise.resolve(successTokenResponse));
   // Simulate ID token resolver resolves with the mock UserCredential.
   onIdTokenResolver(newSignInResponse)
-      .$once()
-      .$returns(goog.Promise.resolve(mockUserCredential));
+    .$once()
+    .$returns(goog.Promise.resolve(mockUserCredential));
 
   mockControl.$replayAll();
 
-  return resolver.resolveSignIn(mockAssertion)
-      .then(function(actualUserCredential) {
-        assertEquals(mockUserCredential, actualUserCredential);
-      });
+  return resolver
+    .resolveSignIn(mockAssertion)
+    .then(function (actualUserCredential) {
+      assertEquals(mockUserCredential, actualUserCredential);
+    });
 }
-
 
 function testMultiFactorResolver_resolveSignIn_assertionError() {
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.CODE_EXPIRED);
+    fireauth.authenum.Error.CODE_EXPIRED
+  );
   var onIdTokenResolver = mockControl.createFunctionMock('onIdTokenResolver');
   var resolver = new fireauth.MultiFactorResolver(
-      auth, serverResponseWithOtherInfo, onIdTokenResolver);
+    auth,
+    serverResponseWithOtherInfo,
+    onIdTokenResolver
+  );
   var mockAssertion = mockControl.createStrictMock(
-      fireauth.MultiFactorAssertion);
+    fireauth.MultiFactorAssertion
+  );
 
   // Simulate assertion processing rejects with an error.
-  mockAssertion.process(auth.getRpcHandler(), resolver.session)
-      .$once()
-      .$returns(goog.Promise.reject(expectedError));
+  mockAssertion
+    .process(auth.getRpcHandler(), resolver.session)
+    .$once()
+    .$returns(goog.Promise.reject(expectedError));
   // onIdTokenResolver should not be called.
   onIdTokenResolver(goog.testing.mockmatchers.ignoreArgument).$times(0);
 
   mockControl.$replayAll();
 
-  return resolver.resolveSignIn(mockAssertion)
-      .then(fail)
-      .thenCatch(function(error) {
-        fireauth.common.testHelper.assertErrorEquals(
-            expectedError,
-            error);
-      });
+  return resolver
+    .resolveSignIn(mockAssertion)
+    .then(fail)
+    .thenCatch(function (error) {
+      fireauth.common.testHelper.assertErrorEquals(expectedError, error);
+    });
 }
-
 
 function testMultiFactorResolver_resolveSignIn_onIdTokenResolverError() {
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.USER_MISMATCH);
+    fireauth.authenum.Error.USER_MISMATCH
+  );
   var newSignInResponse = goog.object.clone(serverResponseWithOtherInfo);
   goog.object.extend(newSignInResponse, successTokenResponse);
   delete newSignInResponse['mfaInfo'];
@@ -216,26 +229,30 @@ function testMultiFactorResolver_resolveSignIn_onIdTokenResolverError() {
 
   var onIdTokenResolver = mockControl.createFunctionMock('onIdTokenResolver');
   var resolver = new fireauth.MultiFactorResolver(
-      auth, serverResponseWithOtherInfo, onIdTokenResolver);
+    auth,
+    serverResponseWithOtherInfo,
+    onIdTokenResolver
+  );
   var mockAssertion = mockControl.createStrictMock(
-      fireauth.MultiFactorAssertion);
+    fireauth.MultiFactorAssertion
+  );
 
   // Simulate assertion processing resolves with the successful token response.
-  mockAssertion.process(auth.getRpcHandler(), resolver.session)
-      .$once()
-      .$returns(goog.Promise.resolve(successTokenResponse));
+  mockAssertion
+    .process(auth.getRpcHandler(), resolver.session)
+    .$once()
+    .$returns(goog.Promise.resolve(successTokenResponse));
   // Simulate onIdTokenResolver fails with a network error.
   onIdTokenResolver(newSignInResponse)
-      .$once()
-      .$returns(goog.Promise.reject(expectedError));
+    .$once()
+    .$returns(goog.Promise.reject(expectedError));
 
   mockControl.$replayAll();
 
-  return resolver.resolveSignIn(mockAssertion)
-      .then(fail)
-      .thenCatch(function(error) {
-        fireauth.common.testHelper.assertErrorEquals(
-            expectedError,
-            error);
-      });
+  return resolver
+    .resolveSignIn(mockAssertion)
+    .then(fail)
+    .thenCatch(function (error) {
+      fireauth.common.testHelper.assertErrorEquals(expectedError, error);
+    });
 }

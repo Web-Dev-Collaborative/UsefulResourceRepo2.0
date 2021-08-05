@@ -40,7 +40,6 @@ goog.require('goog.Uri');
 goog.require('goog.array');
 goog.require('goog.object');
 
-
 /**
  * The OAuth handler and iframe prototcol.
  * @const {string}
@@ -48,16 +47,12 @@ goog.require('goog.object');
  */
 fireauth.iframeclient.SCHEME = 'https';
 
-
-
 /**
  * The OAuth handler and iframe port number.
  * @const {?number}
  * @suppress {const|duplicate}
  */
 fireauth.iframeclient.PORT_NUMBER = null;
-
-
 
 /**
  * The iframe URL builder used to build the iframe widget URL.
@@ -68,7 +63,12 @@ fireauth.iframeclient.PORT_NUMBER = null;
  *     configuration.
  * @constructor
  */
-fireauth.iframeclient.IframeUrlBuilder = function(authDomain, apiKey, appName, emulatorConfig) {
+fireauth.iframeclient.IframeUrlBuilder = function (
+  authDomain,
+  apiKey,
+  appName,
+  emulatorConfig
+) {
   /** @private {string} The application authDomain. */
   this.authDomain_ = authDomain;
   /** @private {string} The API key. */
@@ -92,7 +92,8 @@ fireauth.iframeclient.IframeUrlBuilder = function(authDomain, apiKey, appName, e
       emulatorUri.getPort(),
       '/emulator/auth/iframe',
       null,
-      null);
+      null
+    );
   } else {
     uri = goog.Uri.create(
       fireauth.iframeclient.SCHEME,
@@ -101,7 +102,8 @@ fireauth.iframeclient.IframeUrlBuilder = function(authDomain, apiKey, appName, e
       fireauth.iframeclient.PORT_NUMBER,
       '/__/auth/iframe',
       null,
-      null);
+      null
+    );
   }
   /**
    * @private @const {!goog.Uri} The URI object used to build the iframe URL.
@@ -115,18 +117,16 @@ fireauth.iframeclient.IframeUrlBuilder = function(authDomain, apiKey, appName, e
   this.frameworks_ = [];
 };
 
-
 /**
  * Sets the client version.
  * @param {?string|undefined} v The client version.
  * @return {!fireauth.iframeclient.IframeUrlBuilder} The current iframe URL
  *     builder instance.
  */
-fireauth.iframeclient.IframeUrlBuilder.prototype.setVersion = function(v) {
+fireauth.iframeclient.IframeUrlBuilder.prototype.setVersion = function (v) {
   this.v_ = v;
   return this;
 };
-
 
 /**
  * Sets the endpoint ID.
@@ -134,11 +134,12 @@ fireauth.iframeclient.IframeUrlBuilder.prototype.setVersion = function(v) {
  * @return {!fireauth.iframeclient.IframeUrlBuilder} The current iframe URL
  *     builder instance.
  */
-fireauth.iframeclient.IframeUrlBuilder.prototype.setEndpointId = function(eid) {
+fireauth.iframeclient.IframeUrlBuilder.prototype.setEndpointId = function (
+  eid
+) {
   this.endpointId_ = eid;
   return this;
 };
-
 
 /**
  * Sets the list of frameworks to pass to the iframe.
@@ -146,19 +147,19 @@ fireauth.iframeclient.IframeUrlBuilder.prototype.setEndpointId = function(eid) {
  * @return {!fireauth.iframeclient.IframeUrlBuilder} The current iframe URL
  *     builder instance.
  */
-fireauth.iframeclient.IframeUrlBuilder.prototype.setFrameworks =
-    function(frameworks) {
+fireauth.iframeclient.IframeUrlBuilder.prototype.setFrameworks = function (
+  frameworks
+) {
   this.frameworks_ = goog.array.clone(frameworks || []);
   return this;
 };
-
 
 /**
  * Modifes the URI with the relevant Auth provider parameters.
  * @return {string} The constructed OAuth URL string.
  * @override
  */
-fireauth.iframeclient.IframeUrlBuilder.prototype.toString = function() {
+fireauth.iframeclient.IframeUrlBuilder.prototype.toString = function () {
   // Pass the client version if available.
   if (this.v_) {
     this.uri_.setParameterValue('v', this.v_);
@@ -180,8 +181,6 @@ fireauth.iframeclient.IframeUrlBuilder.prototype.toString = function() {
   return this.uri_.toString();
 };
 
-
-
 /**
  * The OAuth URL builder used to build the OAuth handler widget URL.
  * @param {string} authDomain The application authDomain.
@@ -194,8 +193,14 @@ fireauth.iframeclient.IframeUrlBuilder.prototype.toString = function() {
  *     configuration.
  * @constructor
  */
-fireauth.iframeclient.OAuthUrlBuilder =
-    function(authDomain, apiKey, appName, authType, provider, emulatorConfig) {
+fireauth.iframeclient.OAuthUrlBuilder = function (
+  authDomain,
+  apiKey,
+  appName,
+  authType,
+  provider,
+  emulatorConfig
+) {
   /** @private {string} The application authDomain. */
   this.authDomain_ = authDomain;
   /** @private {string} The API key. */
@@ -228,7 +233,6 @@ fireauth.iframeclient.OAuthUrlBuilder =
   this.tenantId_ = null;
 };
 
-
 /**
  * Sets the redirect URL.
  * @param {?string|undefined} redirectUrl The redirect URL used in redirect
@@ -236,12 +240,12 @@ fireauth.iframeclient.OAuthUrlBuilder =
  * @return {!fireauth.iframeclient.OAuthUrlBuilder} The current OAuth URL
  *     builder instance.
  */
-fireauth.iframeclient.OAuthUrlBuilder.prototype.setRedirectUrl =
-    function(redirectUrl) {
+fireauth.iframeclient.OAuthUrlBuilder.prototype.setRedirectUrl = function (
+  redirectUrl
+) {
   this.redirectUrl_ = redirectUrl;
   return this;
 };
-
 
 /**
  * Sets the event ID.
@@ -249,11 +253,12 @@ fireauth.iframeclient.OAuthUrlBuilder.prototype.setRedirectUrl =
  * @return {!fireauth.iframeclient.OAuthUrlBuilder} The current OAuth URL
  *     builder instance.
  */
-fireauth.iframeclient.OAuthUrlBuilder.prototype.setEventId = function(eventId) {
+fireauth.iframeclient.OAuthUrlBuilder.prototype.setEventId = function (
+  eventId
+) {
   this.eventId_ = eventId;
   return this;
 };
-
 
 /**
  * Sets the tenant ID.
@@ -261,12 +266,12 @@ fireauth.iframeclient.OAuthUrlBuilder.prototype.setEventId = function(eventId) {
  * @return {!fireauth.iframeclient.OAuthUrlBuilder} The current OAuth URL
  *     builder instance.
  */
-fireauth.iframeclient.OAuthUrlBuilder.prototype.setTenantId =
-    function(tenantId) {
+fireauth.iframeclient.OAuthUrlBuilder.prototype.setTenantId = function (
+  tenantId
+) {
   this.tenantId_ = tenantId;
   return this;
 };
-
 
 /**
  * Sets the client version.
@@ -274,11 +279,10 @@ fireauth.iframeclient.OAuthUrlBuilder.prototype.setTenantId =
  * @return {!fireauth.iframeclient.OAuthUrlBuilder} The current OAuth URL
  *     builder instance.
  */
-fireauth.iframeclient.OAuthUrlBuilder.prototype.setVersion = function(v) {
+fireauth.iframeclient.OAuthUrlBuilder.prototype.setVersion = function (v) {
   this.v_ = v;
   return this;
 };
-
 
 /**
  * Sets the endpoint ID.
@@ -286,11 +290,10 @@ fireauth.iframeclient.OAuthUrlBuilder.prototype.setVersion = function(v) {
  * @return {!fireauth.iframeclient.OAuthUrlBuilder} The current OAuth URL
  *     builder instance.
  */
-fireauth.iframeclient.OAuthUrlBuilder.prototype.setEndpointId = function(eid) {
+fireauth.iframeclient.OAuthUrlBuilder.prototype.setEndpointId = function (eid) {
   this.endpointId_ = eid;
   return this;
 };
-
 
 /**
  * Sets any additional optional parameters. This will overwrite any previously
@@ -301,11 +304,10 @@ fireauth.iframeclient.OAuthUrlBuilder.prototype.setEndpointId = function(eid) {
  *     builder instance.
  */
 fireauth.iframeclient.OAuthUrlBuilder.prototype.setAdditionalParameters =
-    function(additionalParams) {
-  this.additionalParams_ = goog.object.clone(additionalParams || null);
-  return this;
-};
-
+  function (additionalParams) {
+    this.additionalParams_ = goog.object.clone(additionalParams || null);
+    return this;
+  };
 
 /**
  * Modifies the URI with the relevant Auth provider parameters.
@@ -323,7 +325,8 @@ fireauth.iframeclient.OAuthUrlBuilder.prototype.toString = function () {
       emulatorUri.getPort(),
       '/emulator/auth/handler',
       null,
-      null);
+      null
+    );
   } else {
     uri = goog.Uri.create(
       fireauth.iframeclient.SCHEME,
@@ -332,7 +335,8 @@ fireauth.iframeclient.OAuthUrlBuilder.prototype.toString = function () {
       fireauth.iframeclient.PORT_NUMBER,
       '/__/auth/handler',
       null,
-      null);
+      null
+    );
   }
   uri.setParameterValue('apiKey', this.apiKey_);
   uri.setParameterValue('appName', this.appName_);
@@ -341,16 +345,18 @@ fireauth.iframeclient.OAuthUrlBuilder.prototype.toString = function () {
   // Add custom parameters for OAuth1/OAuth2 providers.
   if (this.provider_['isOAuthProvider']) {
     // Set default language if available and no language already set.
-    /** @type {!fireauth.FederatedProvider} */ (this.provider_)
-        .setDefaultLanguage(this.getAuthLanguage_());
+    /** @type {!fireauth.FederatedProvider} */ (
+      this.provider_
+    ).setDefaultLanguage(this.getAuthLanguage_());
     uri.setParameterValue('providerId', this.provider_['providerId']);
     var customParameters = /** @type {!fireauth.FederatedProvider} */ (
-        this.provider_).getCustomParameters();
+      this.provider_
+    ).getCustomParameters();
     if (!goog.object.isEmpty(customParameters)) {
       uri.setParameterValue(
-          'customParameters',
-          /** @type {string} */ (fireauth.util.stringifyJSON(customParameters))
-          );
+        'customParameters',
+        /** @type {string} */ (fireauth.util.stringifyJSON(customParameters))
+      );
     }
   }
 
@@ -380,9 +386,11 @@ fireauth.iframeclient.OAuthUrlBuilder.prototype.toString = function () {
   }
   if (this.additionalParams_) {
     for (var key in this.additionalParams_) {
-      if (this.additionalParams_.hasOwnProperty(key) &&
-          // Don't overwrite other existing parameters.
-          !uri.getParameterValue(key)) {
+      if (
+        this.additionalParams_.hasOwnProperty(key) &&
+        // Don't overwrite other existing parameters.
+        !uri.getParameterValue(key)
+      ) {
         uri.setParameterValue(key, this.additionalParams_[key]);
       }
     }
@@ -407,13 +415,12 @@ fireauth.iframeclient.OAuthUrlBuilder.prototype.toString = function () {
   return uri.toString();
 };
 
-
 /**
  * Returns the current Auth instance's language code.
  * @return {?string} The corresponding language code.
  * @private
  */
-fireauth.iframeclient.OAuthUrlBuilder.prototype.getAuthLanguage_ = function() {
+fireauth.iframeclient.OAuthUrlBuilder.prototype.getAuthLanguage_ = function () {
   try {
     // Get the Auth instance for the current App identified by the App name.
     // This could fail if, for example, the App instance was deleted.
@@ -423,18 +430,17 @@ fireauth.iframeclient.OAuthUrlBuilder.prototype.getAuthLanguage_ = function() {
   }
 };
 
-
 /**
  * Returns the list of Firebase frameworks used for logging purposes.
  * @return {!Array<string>} The list of corresponding Firebase frameworks.
  * @private
  */
 fireauth.iframeclient.OAuthUrlBuilder.prototype.getAuthFrameworks_ =
-    function() {
-  return fireauth.iframeclient.OAuthUrlBuilder.getAuthFrameworksForApp_(
-      this.appName_);
-};
-
+  function () {
+    return fireauth.iframeclient.OAuthUrlBuilder.getAuthFrameworksForApp_(
+      this.appName_
+    );
+  };
 
 /**
  * Returns the list of Firebase frameworks used for logging purposes
@@ -443,8 +449,9 @@ fireauth.iframeclient.OAuthUrlBuilder.prototype.getAuthFrameworks_ =
  * @return {!Array<string>} The list of corresponding Firebase frameworks.
  * @private
  */
-fireauth.iframeclient.OAuthUrlBuilder.getAuthFrameworksForApp_ =
-    function(appName) {
+fireauth.iframeclient.OAuthUrlBuilder.getAuthFrameworksForApp_ = function (
+  appName
+) {
   try {
     // Get the Auth instance's list of Firebase framework IDs for the current
     // App identified by the App name.
@@ -454,8 +461,6 @@ fireauth.iframeclient.OAuthUrlBuilder.getAuthFrameworksForApp_ =
     return [];
   }
 };
-
-
 
 /**
  * Initializes the ifcHandler which provides the mechanism to listen to Auth
@@ -472,8 +477,14 @@ fireauth.iframeclient.OAuthUrlBuilder.getAuthFrameworksForApp_ =
  * @constructor
  * @implements {fireauth.OAuthSignInHandler}
  */
-fireauth.iframeclient.IfcHandler = function(authDomain, apiKey, appName,
-    opt_clientVersion, opt_endpointId, emulatorConfig) {
+fireauth.iframeclient.IfcHandler = function (
+  authDomain,
+  apiKey,
+  appName,
+  opt_clientVersion,
+  opt_endpointId,
+  emulatorConfig
+) {
   /** @private {string} The Auth domain. */
   this.authDomain_ = authDomain;
   /** @private {string} The API key. */
@@ -511,7 +522,6 @@ fireauth.iframeclient.IfcHandler = function(authDomain, apiKey, appName,
   this.isInitialized_ = null;
 };
 
-
 /**
  * Validates the provided URL.
  * @param {!fireauth.RpcHandler} rpcHandler The RPC handler used to validate the
@@ -522,41 +532,42 @@ fireauth.iframeclient.IfcHandler = function(authDomain, apiKey, appName,
  *     valid.
  * @private
  */
-fireauth.iframeclient.IfcHandler.getOriginValidator_ =
-    function(rpcHandler, opt_origin) {
+fireauth.iframeclient.IfcHandler.getOriginValidator_ = function (
+  rpcHandler,
+  opt_origin
+) {
   var origin = opt_origin || fireauth.util.getCurrentUrl();
-  return rpcHandler.getAuthorizedDomains().then(function(authorizedDomains) {
+  return rpcHandler.getAuthorizedDomains().then(function (authorizedDomains) {
     if (!fireauth.util.isAuthorizedDomain(authorizedDomains, origin)) {
       throw new fireauth.InvalidOriginError(fireauth.util.getCurrentUrl());
     }
   });
 };
 
-
 /**
  * Initializes the iframe client wrapper.
  * @return {!goog.Promise} The promise that resolves on initialization.
  */
-fireauth.iframeclient.IfcHandler.prototype.initialize = function() {
+fireauth.iframeclient.IfcHandler.prototype.initialize = function () {
   // Already initialized.
   if (this.isInitialized_) {
     return this.isInitialized_;
   }
   var self = this;
-  this.isInitialized_ = fireauth.util.onDomReady().then(function() {
+  this.isInitialized_ = fireauth.util.onDomReady().then(function () {
     /**
      * @private {!fireauth.iframeclient.IframeWrapper} The iframe wrapper
      *     instance.
      */
     self.iframeWrapper_ = new fireauth.iframeclient.IframeWrapper(
-        self.getIframeUrl());
+      self.getIframeUrl()
+    );
     // Register all event listeners to Auth event messages sent from Auth
     // iframe.
     self.registerEvents_();
   });
   return this.isInitialized_;
 };
-
 
 /**
  * Waits for popup window to close. When closed start timeout listener for popup
@@ -570,91 +581,99 @@ fireauth.iframeclient.IfcHandler.prototype.initialize = function() {
  * @return {!goog.Promise}
  * @override
  */
-fireauth.iframeclient.IfcHandler.prototype.startPopupTimeout =
-    function(popupWin, onError, timeoutDuration) {
+fireauth.iframeclient.IfcHandler.prototype.startPopupTimeout = function (
+  popupWin,
+  onError,
+  timeoutDuration
+) {
   // Expire pending timeout promise for popup operation.
   var popupClosedByUserError = new fireauth.AuthError(
-      fireauth.authenum.Error.POPUP_CLOSED_BY_USER);
+    fireauth.authenum.Error.POPUP_CLOSED_BY_USER
+  );
   // If web storage is disabled in the iframe, expire popup timeout quickly with
   // this error.
   var webStorageNotSupportedError = new fireauth.AuthError(
-      fireauth.authenum.Error.WEB_STORAGE_UNSUPPORTED);
+    fireauth.authenum.Error.WEB_STORAGE_UNSUPPORTED
+  );
   var self = this;
   var isResolved = false;
   // Wait for the iframe to be ready first.
-  return this.initializeAndWait().then(function() {
-    // We do not return isWebStorageSupported() to ensure that this is backward
-    // compatible.
-    // Pushing the following client changes before updating the iframe to
-    // respond to these events would continue to work.
-    // The downside is that the popup could be closed before this resolves.
-    // In that case, they would get an error that the popup was closed and not
-    // the error that web storage is not supported, though that is unlikely
-    // as isWebStorageSupported should execute faster than the popup timeout.
-    // If web storage is not supported in the iframe, fail quickly.
-    self.isWebStorageSupported().then(function(isSupported) {
-      if (!isSupported) {
-        // If not supported, close window.
-        if (popupWin) {
-          fireauth.util.closeWindow(popupWin);
+  return this.initializeAndWait()
+    .then(function () {
+      // We do not return isWebStorageSupported() to ensure that this is backward
+      // compatible.
+      // Pushing the following client changes before updating the iframe to
+      // respond to these events would continue to work.
+      // The downside is that the popup could be closed before this resolves.
+      // In that case, they would get an error that the popup was closed and not
+      // the error that web storage is not supported, though that is unlikely
+      // as isWebStorageSupported should execute faster than the popup timeout.
+      // If web storage is not supported in the iframe, fail quickly.
+      self.isWebStorageSupported().then(function (isSupported) {
+        if (!isSupported) {
+          // If not supported, close window.
+          if (popupWin) {
+            fireauth.util.closeWindow(popupWin);
+          }
+          onError(webStorageNotSupportedError);
+          isResolved = true;
         }
-        onError(webStorageNotSupportedError);
-        isResolved = true;
+      });
+    })
+    .thenCatch(function (error) {
+      // Ignore any possible error in iframe embedding.
+      // These types of errors will be handled in processPopup which will close
+      // the popup too if that happens.
+      return;
+    })
+    .then(function () {
+      // Skip if already resolved.
+      if (isResolved) {
+        return;
       }
+      // After the iframe is ready, wait for popup to close and then start timeout
+      // check.
+      return fireauth.util.onPopupClose(popupWin);
+    })
+    .then(function () {
+      // Skip if already resolved.
+      if (isResolved) {
+        return;
+      }
+      return goog.Timer.promise(timeoutDuration).then(function () {
+        // If this is already resolved or rejected, this will do nothing.
+        onError(popupClosedByUserError);
+      });
     });
-  }).thenCatch(function(error) {
-    // Ignore any possible error in iframe embedding.
-    // These types of errors will be handled in processPopup which will close
-    // the popup too if that happens.
-    return;
-  }).then(function() {
-    // Skip if already resolved.
-    if (isResolved) {
-      return;
-    }
-    // After the iframe is ready, wait for popup to close and then start timeout
-    // check.
-    return fireauth.util.onPopupClose(popupWin);
-  }).then(function() {
-    // Skip if already resolved.
-    if (isResolved) {
-      return;
-    }
-    return goog.Timer.promise(timeoutDuration).then(function() {
-      // If this is already resolved or rejected, this will do nothing.
-      onError(popupClosedByUserError);
-    });
-  });
 };
-
 
 /**
  * @return {boolean} Whether the handler should be initialized early.
  * @override
  */
 fireauth.iframeclient.IfcHandler.prototype.shouldBeInitializedEarly =
-    function() {
-  var ua = fireauth.util.getUserAgentString();
-  // Cannot run in the background (can't wait for iframe to be embedded
-  // before triggering popup redirect) and is Safari (can only detect
-  // localStorage in iframe via change event) => embed iframe ASAP.
-  // Do the same for mobile browsers on iOS devices as they use the same
-  // Safari implementation underneath.
-  return !fireauth.util.runsInBackground(ua) &&
-         !fireauth.util.iframeCanSyncWebStorage(ua);
-};
-
+  function () {
+    var ua = fireauth.util.getUserAgentString();
+    // Cannot run in the background (can't wait for iframe to be embedded
+    // before triggering popup redirect) and is Safari (can only detect
+    // localStorage in iframe via change event) => embed iframe ASAP.
+    // Do the same for mobile browsers on iOS devices as they use the same
+    // Safari implementation underneath.
+    return (
+      !fireauth.util.runsInBackground(ua) &&
+      !fireauth.util.iframeCanSyncWebStorage(ua)
+    );
+  };
 
 /**
  * @return {boolean} Whether the sign-in handler in the current environment
  *     has volatile session storage.
  * @override
  */
-fireauth.iframeclient.IfcHandler.prototype.hasVolatileStorage = function() {
+fireauth.iframeclient.IfcHandler.prototype.hasVolatileStorage = function () {
   // Web environment with web storage enabled has stable sessionStorage.
   return false;
 };
-
 
 /**
  * Processes the popup request. The popup instance must be provided externally
@@ -671,15 +690,16 @@ fireauth.iframeclient.IfcHandler.prototype.hasVolatileStorage = function() {
  * @return {!goog.Promise} The popup window promise.
  * @override
  */
-fireauth.iframeclient.IfcHandler.prototype.processPopup = function(
-    popupWin,
-    mode,
-    provider,
-    onInitialize,
-    onError,
-    opt_eventId,
-    opt_alreadyRedirected,
-    opt_tenantId) {
+fireauth.iframeclient.IfcHandler.prototype.processPopup = function (
+  popupWin,
+  mode,
+  provider,
+  onInitialize,
+  onError,
+  opt_eventId,
+  opt_alreadyRedirected,
+  opt_tenantId
+) {
   // processPopup is failing since it tries to access popup win when tab can
   // not run in background. For now bypass processPopup which runs
   // additional origin check not accounted above. Besides, iframe will never
@@ -692,13 +712,14 @@ fireauth.iframeclient.IfcHandler.prototype.processPopup = function(
   // Reject immediately if the popup is blocked.
   if (!popupWin) {
     return goog.Promise.reject(
-        new fireauth.AuthError(fireauth.authenum.Error.POPUP_BLOCKED));
+      new fireauth.AuthError(fireauth.authenum.Error.POPUP_BLOCKED)
+    );
   }
   // Already redirected and cannot run in the background, resolve quickly while
   // initializing.
   if (opt_alreadyRedirected && !fireauth.util.runsInBackground()) {
     // Initialize first before resolving.
-    this.initializeAndWait().thenCatch(function(error) {
+    this.initializeAndWait().thenCatch(function (error) {
       fireauth.util.closeWindow(popupWin);
       onError(error);
     });
@@ -709,78 +730,87 @@ fireauth.iframeclient.IfcHandler.prototype.processPopup = function(
   // If origin validator not determined yet.
   if (!this.originValidator_) {
     this.originValidator_ =
-        fireauth.iframeclient.IfcHandler.getOriginValidator_(
-            this.getRpcHandler_());
+      fireauth.iframeclient.IfcHandler.getOriginValidator_(
+        this.getRpcHandler_()
+      );
   }
   var self = this;
-  return this.originValidator_.then(function() {
-    // After origin validation, wait for iframe to be ready before redirecting.
-    var onReady = self.initializeAndWait().thenCatch(function(error) {
-      fireauth.util.closeWindow(popupWin);
-      onError(error);
-      throw error;
-    });
-    onInitialize();
-    return onReady;
-  }).then(function() {
-    // Popup and redirect operations work for OAuth providers only.
-    fireauth.AuthProvider.checkIfOAuthSupported(provider);
-    // Already redirected to intended destination, no need to redirect again.
-    if (opt_alreadyRedirected) {
-      return;
-    }
-    var oauthHelperWidgetUrl =
+  return this.originValidator_
+    .then(function () {
+      // After origin validation, wait for iframe to be ready before redirecting.
+      var onReady = self.initializeAndWait().thenCatch(function (error) {
+        fireauth.util.closeWindow(popupWin);
+        onError(error);
+        throw error;
+      });
+      onInitialize();
+      return onReady;
+    })
+    .then(function () {
+      // Popup and redirect operations work for OAuth providers only.
+      fireauth.AuthProvider.checkIfOAuthSupported(provider);
+      // Already redirected to intended destination, no need to redirect again.
+      if (opt_alreadyRedirected) {
+        return;
+      }
+      var oauthHelperWidgetUrl =
         fireauth.iframeclient.IfcHandler.getOAuthHelperWidgetUrl(
-            self.authDomain_,
-            self.apiKey_,
-            self.appName_,
-            mode,
-            provider,
-            null,
-            opt_eventId,
-            self.clientVersion_,
-            undefined,
-            self.endpointId_,
-            opt_tenantId,
-            self.emulatorConfig_);
-    // Redirect popup to OAuth helper widget URL.
-    fireauth.util.goTo(oauthHelperWidgetUrl, /** @type {!Window} */ (popupWin));
-  }).thenCatch(function(e) {
-    // Force another origin validation.
-    if (e.code == 'auth/network-request-failed') {
-      self.originValidator_ = null;
-    }
-    throw e;
-  });
+          self.authDomain_,
+          self.apiKey_,
+          self.appName_,
+          mode,
+          provider,
+          null,
+          opt_eventId,
+          self.clientVersion_,
+          undefined,
+          self.endpointId_,
+          opt_tenantId,
+          self.emulatorConfig_
+        );
+      // Redirect popup to OAuth helper widget URL.
+      fireauth.util.goTo(
+        oauthHelperWidgetUrl,
+        /** @type {!Window} */ (popupWin)
+      );
+    })
+    .thenCatch(function (e) {
+      // Force another origin validation.
+      if (e.code == 'auth/network-request-failed') {
+        self.originValidator_ = null;
+      }
+      throw e;
+    });
 };
-
 
 /**
  * @return {!fireauth.RpcHandler} The RPC handler instance with the relevant
  *     endpoints, version and frameworks.
  * @private
  */
-fireauth.iframeclient.IfcHandler.prototype.getRpcHandler_ = function() {
+fireauth.iframeclient.IfcHandler.prototype.getRpcHandler_ = function () {
   if (!this.rpcHandler_) {
-    this.fullClientVersion_ = this.clientVersion_ ?
-        fireauth.util.getClientVersion(
-            fireauth.util.ClientImplementation.JSCORE,
-            this.clientVersion_,
-            fireauth.iframeclient.OAuthUrlBuilder.getAuthFrameworksForApp_(
-                this.appName_)) :
-        null;
+    this.fullClientVersion_ = this.clientVersion_
+      ? fireauth.util.getClientVersion(
+          fireauth.util.ClientImplementation.JSCORE,
+          this.clientVersion_,
+          fireauth.iframeclient.OAuthUrlBuilder.getAuthFrameworksForApp_(
+            this.appName_
+          )
+        )
+      : null;
     this.rpcHandler_ = new fireauth.RpcHandler(
-        this.apiKey_,
-        // Get the client Auth endpoint used.
-        fireauth.constants.getEndpointConfig(this.endpointId_),
-        this.fullClientVersion_);
+      this.apiKey_,
+      // Get the client Auth endpoint used.
+      fireauth.constants.getEndpointConfig(this.endpointId_),
+      this.fullClientVersion_
+    );
     if (this.emulatorConfig_) {
-        this.rpcHandler_.updateEmulatorConfig(this.emulatorConfig_);
+      this.rpcHandler_.updateEmulatorConfig(this.emulatorConfig_);
     }
   }
   return this.rpcHandler_;
 };
-
 
 /**
  * Processes the redirect request.
@@ -791,46 +821,53 @@ fireauth.iframeclient.IfcHandler.prototype.getRpcHandler_ = function() {
  * @return {!goog.Promise}
  * @override
  */
-fireauth.iframeclient.IfcHandler.prototype.processRedirect =
-    function(mode, provider, opt_eventId, opt_tenantId) {
+fireauth.iframeclient.IfcHandler.prototype.processRedirect = function (
+  mode,
+  provider,
+  opt_eventId,
+  opt_tenantId
+) {
   // If origin validator not determined yet.
   if (!this.originValidator_) {
     this.originValidator_ =
-        fireauth.iframeclient.IfcHandler.getOriginValidator_(
-            this.getRpcHandler_());
+      fireauth.iframeclient.IfcHandler.getOriginValidator_(
+        this.getRpcHandler_()
+      );
   }
   var self = this;
   // Make sure origin is validated.
-  return this.originValidator_.then(function() {
-    fireauth.AuthProvider.checkIfOAuthSupported(provider);
-    var oauthHelperWidgetUrl =
+  return this.originValidator_
+    .then(function () {
+      fireauth.AuthProvider.checkIfOAuthSupported(provider);
+      var oauthHelperWidgetUrl =
         fireauth.iframeclient.IfcHandler.getOAuthHelperWidgetUrl(
-            self.authDomain_,
-            self.apiKey_,
-            self.appName_,
-            mode,
-            provider,
-            fireauth.util.getCurrentUrl(),
-            opt_eventId,
-            self.clientVersion_,
-            undefined,
-            self.endpointId_,
-            opt_tenantId,
-            self.emulatorConfig_);
-    // Redirect to OAuth helper widget URL.
-    fireauth.util.goTo(oauthHelperWidgetUrl);
-  }).thenCatch(function(e) {
-    // Force another origin validation on network errors.
-    if (e.code == 'auth/network-request-failed') {
-      self.originValidator_ = null;
-    }
-    throw e;
-  });
+          self.authDomain_,
+          self.apiKey_,
+          self.appName_,
+          mode,
+          provider,
+          fireauth.util.getCurrentUrl(),
+          opt_eventId,
+          self.clientVersion_,
+          undefined,
+          self.endpointId_,
+          opt_tenantId,
+          self.emulatorConfig_
+        );
+      // Redirect to OAuth helper widget URL.
+      fireauth.util.goTo(oauthHelperWidgetUrl);
+    })
+    .thenCatch(function (e) {
+      // Force another origin validation on network errors.
+      if (e.code == 'auth/network-request-failed') {
+        self.originValidator_ = null;
+      }
+      throw e;
+    });
 };
 
-
 /** @return {string} The iframe URL. */
-fireauth.iframeclient.IfcHandler.prototype.getIframeUrl = function() {
+fireauth.iframeclient.IfcHandler.prototype.getIframeUrl = function () {
   if (!this.iframeUrl_) {
     this.iframeUrl_ = fireauth.iframeclient.IfcHandler.getAuthIframeUrl(
       this.authDomain_,
@@ -839,41 +876,43 @@ fireauth.iframeclient.IfcHandler.prototype.getIframeUrl = function() {
       this.clientVersion_,
       this.endpointId_,
       fireauth.iframeclient.OAuthUrlBuilder.getAuthFrameworksForApp_(
-        this.appName_),
-      this.emulatorConfig_);
+        this.appName_
+      ),
+      this.emulatorConfig_
+    );
   }
   return this.iframeUrl_;
 };
-
 
 /**
  * @return {!goog.Promise} The promise that resolves when the iframe is ready.
  * @override
  */
-fireauth.iframeclient.IfcHandler.prototype.initializeAndWait = function() {
+fireauth.iframeclient.IfcHandler.prototype.initializeAndWait = function () {
   // Initialize if not initialized yet.
   var self = this;
-  return this.initialize().then(function() {
-    return self.iframeWrapper_.onReady();
-  }).thenCatch(function(error) {
-    // Reset origin validator.
-    self.originValidator_ = null;
-    // Reject iframe ready promise with network error.
-    throw new fireauth.AuthError(
-        fireauth.authenum.Error.NETWORK_REQUEST_FAILED);
-  });
+  return this.initialize()
+    .then(function () {
+      return self.iframeWrapper_.onReady();
+    })
+    .thenCatch(function (error) {
+      // Reset origin validator.
+      self.originValidator_ = null;
+      // Reject iframe ready promise with network error.
+      throw new fireauth.AuthError(
+        fireauth.authenum.Error.NETWORK_REQUEST_FAILED
+      );
+    });
 };
-
 
 /**
  * @return {boolean} Whether the handler will unload the current page on
  *     redirect operations.
  * @override
  */
-fireauth.iframeclient.IfcHandler.prototype.unloadsOnRedirect = function() {
+fireauth.iframeclient.IfcHandler.prototype.unloadsOnRedirect = function () {
   return true;
 };
-
 
 /**
  * @param {string} authDomain The Firebase authDomain used to determine the
@@ -888,18 +927,28 @@ fireauth.iframeclient.IfcHandler.prototype.unloadsOnRedirect = function() {
  *     configuration.
  * @return {string} The data iframe src URL.
  */
-fireauth.iframeclient.IfcHandler.getAuthIframeUrl = function(authDomain, apiKey,
-    appName, opt_clientVersion, opt_endpointId, opt_frameworks, emulatorConfig) {
+fireauth.iframeclient.IfcHandler.getAuthIframeUrl = function (
+  authDomain,
+  apiKey,
+  appName,
+  opt_clientVersion,
+  opt_endpointId,
+  opt_frameworks,
+  emulatorConfig
+) {
   // OAuth helper iframe URL.
   var builder = new fireauth.iframeclient.IframeUrlBuilder(
-      authDomain, apiKey, appName, emulatorConfig);
+    authDomain,
+    apiKey,
+    appName,
+    emulatorConfig
+  );
   return builder
-      .setVersion(opt_clientVersion)
-      .setEndpointId(opt_endpointId)
-      .setFrameworks(opt_frameworks)
-      .toString();
+    .setVersion(opt_clientVersion)
+    .setEndpointId(opt_endpointId)
+    .setFrameworks(opt_frameworks)
+    .toString();
 };
-
 
 /**
  * @param {string} authDomain The Firebase authDomain used to determine the
@@ -921,32 +970,38 @@ fireauth.iframeclient.IfcHandler.getAuthIframeUrl = function(authDomain, apiKey,
  *     configuration.
  * @return {string} The OAuth helper widget URL.
  */
-fireauth.iframeclient.IfcHandler.getOAuthHelperWidgetUrl = function(
+fireauth.iframeclient.IfcHandler.getOAuthHelperWidgetUrl = function (
+  authDomain,
+  apiKey,
+  appName,
+  authType,
+  provider,
+  opt_redirectUrl,
+  opt_eventId,
+  opt_clientVersion,
+  opt_additionalParams,
+  opt_endpointId,
+  opt_tenantId,
+  emulatorConfig
+) {
+  // OAuth helper widget URL.
+  var builder = new fireauth.iframeclient.OAuthUrlBuilder(
     authDomain,
     apiKey,
     appName,
     authType,
     provider,
-    opt_redirectUrl,
-    opt_eventId,
-    opt_clientVersion,
-    opt_additionalParams,
-    opt_endpointId,
-    opt_tenantId,
-    emulatorConfig) {
-  // OAuth helper widget URL.
-  var builder = new fireauth.iframeclient.OAuthUrlBuilder(
-      authDomain, apiKey, appName, authType, provider, emulatorConfig);
+    emulatorConfig
+  );
   return builder
-      .setRedirectUrl(opt_redirectUrl)
-      .setEventId(opt_eventId)
-      .setVersion(opt_clientVersion)
-      .setAdditionalParameters(opt_additionalParams)
-      .setEndpointId(opt_endpointId)
-      .setTenantId(opt_tenantId)
-      .toString();
+    .setRedirectUrl(opt_redirectUrl)
+    .setEventId(opt_eventId)
+    .setVersion(opt_clientVersion)
+    .setAdditionalParameters(opt_additionalParams)
+    .setEndpointId(opt_endpointId)
+    .setTenantId(opt_tenantId)
+    .toString();
 };
-
 
 /**
  * Post message receiver event names.
@@ -956,7 +1011,6 @@ fireauth.iframeclient.IfcHandler.ReceiverEvent = {
   AUTH_EVENT: 'authEvent'
 };
 
-
 /**
  * Post message sender event names.
  * @enum {string}
@@ -964,7 +1018,6 @@ fireauth.iframeclient.IfcHandler.ReceiverEvent = {
 fireauth.iframeclient.IfcHandler.SenderEvent = {
   WEB_STORAGE_SUPPORT_EVENT: 'webStorageSupport'
 };
-
 
 /**
  * Post message response field names.
@@ -976,7 +1029,6 @@ fireauth.iframeclient.IfcHandler.Response = {
   WEB_STORAGE_SUPPORT: 'webStorageSupport'
 };
 
-
 /**
  * Post message status values.
  * @enum {string}
@@ -986,12 +1038,11 @@ fireauth.iframeclient.IfcHandler.Status = {
   ERROR: 'ERROR'
 };
 
-
 /**
  * Registers all event listeners.
  * @private
  */
-fireauth.iframeclient.IfcHandler.prototype.registerEvents_ = function() {
+fireauth.iframeclient.IfcHandler.prototype.registerEvents_ = function () {
   // Should be run in initialization.
   if (!this.iframeWrapper_) {
     throw new Error('IfcHandler must be initialized!');
@@ -999,81 +1050,89 @@ fireauth.iframeclient.IfcHandler.prototype.registerEvents_ = function() {
   var self = this;
   // Listen to Auth change events emitted from iframe.
   this.iframeWrapper_.registerEvent(
-      fireauth.iframeclient.IfcHandler.ReceiverEvent.AUTH_EVENT,
-      function(response) {
-        var resolveResponse = {};
-        if (response &&
-            response[fireauth.iframeclient.IfcHandler.Response.AUTH_EVENT]) {
-          var isHandled = false;
-          // Get Auth event (plain object).
-          var authEvent = fireauth.AuthEvent.fromPlainObject(
-              response[fireauth.iframeclient.IfcHandler.Response.AUTH_EVENT]);
-          // Trigger Auth change on all listeners.
-          for (var i = 0; i < self.authEventListeners_.length; i++) {
-            isHandled = self.authEventListeners_[i](authEvent) || isHandled;
-          }
-          // Return ack response to notify sender of success.
-          resolveResponse = {};
-          resolveResponse[fireauth.iframeclient.IfcHandler.Response.STATUS] =
-              isHandled ? fireauth.iframeclient.IfcHandler.Status.ACK :
-                  fireauth.iframeclient.IfcHandler.Status.ERROR;
-          return goog.Promise.resolve(resolveResponse);
+    fireauth.iframeclient.IfcHandler.ReceiverEvent.AUTH_EVENT,
+    function (response) {
+      var resolveResponse = {};
+      if (
+        response &&
+        response[fireauth.iframeclient.IfcHandler.Response.AUTH_EVENT]
+      ) {
+        var isHandled = false;
+        // Get Auth event (plain object).
+        var authEvent = fireauth.AuthEvent.fromPlainObject(
+          response[fireauth.iframeclient.IfcHandler.Response.AUTH_EVENT]
+        );
+        // Trigger Auth change on all listeners.
+        for (var i = 0; i < self.authEventListeners_.length; i++) {
+          isHandled = self.authEventListeners_[i](authEvent) || isHandled;
         }
-        // Return error status if the response is invalid.
+        // Return ack response to notify sender of success.
+        resolveResponse = {};
         resolveResponse[fireauth.iframeclient.IfcHandler.Response.STATUS] =
-            fireauth.iframeclient.IfcHandler.Status.ERROR;
+          isHandled
+            ? fireauth.iframeclient.IfcHandler.Status.ACK
+            : fireauth.iframeclient.IfcHandler.Status.ERROR;
         return goog.Promise.resolve(resolveResponse);
-      });
+      }
+      // Return error status if the response is invalid.
+      resolveResponse[fireauth.iframeclient.IfcHandler.Response.STATUS] =
+        fireauth.iframeclient.IfcHandler.Status.ERROR;
+      return goog.Promise.resolve(resolveResponse);
+    }
+  );
 };
-
 
 /**
  * @return {!goog.Promise<boolean>} Whether web storage is supported in the
  *     iframe.
  */
-fireauth.iframeclient.IfcHandler.prototype.isWebStorageSupported = function() {
+fireauth.iframeclient.IfcHandler.prototype.isWebStorageSupported = function () {
   var webStorageSupportEvent =
-      fireauth.iframeclient.IfcHandler.SenderEvent.WEB_STORAGE_SUPPORT_EVENT;
+    fireauth.iframeclient.IfcHandler.SenderEvent.WEB_STORAGE_SUPPORT_EVENT;
   var message = {
     'type': webStorageSupportEvent
   };
   var self = this;
   // Initialize if not initialized yet.
-  return this.initialize().then(function() {
-    return self.iframeWrapper_.sendMessage(message);
-  }).then(function(response) {
-    // Parse the response and return the passed web storage support status.
-    var key = fireauth.iframeclient.IfcHandler.Response.WEB_STORAGE_SUPPORT;
-    if (response &&
+  return this.initialize()
+    .then(function () {
+      return self.iframeWrapper_.sendMessage(message);
+    })
+    .then(function (response) {
+      // Parse the response and return the passed web storage support status.
+      var key = fireauth.iframeclient.IfcHandler.Response.WEB_STORAGE_SUPPORT;
+      if (
+        response &&
         response.length &&
-        typeof response[0][key] !== 'undefined') {
-      return response[0][key];
-    }
-    // Internal error.
-    throw new Error;
-  });
+        typeof response[0][key] !== 'undefined'
+      ) {
+        return response[0][key];
+      }
+      // Internal error.
+      throw new Error();
+    });
 };
-
 
 /**
  * @param {!function(?fireauth.AuthEvent):boolean} listener The Auth event
  *     listener to add.
  * @override
  */
-fireauth.iframeclient.IfcHandler.prototype.addAuthEventListener =
-    function(listener) {
+fireauth.iframeclient.IfcHandler.prototype.addAuthEventListener = function (
+  listener
+) {
   this.authEventListeners_.push(listener);
 };
-
 
 /**
  * @param {!function(?fireauth.AuthEvent):boolean} listener The Auth event
  *     listener to remove.
  * @override
  */
-fireauth.iframeclient.IfcHandler.prototype.removeAuthEventListener =
-    function(listener) {
-  goog.array.removeAllIf(this.authEventListeners_, function(ele) {
+fireauth.iframeclient.IfcHandler.prototype.removeAuthEventListener = function (
+  listener
+) {
+  goog.array.removeAllIf(this.authEventListeners_, function (ele) {
     return ele == listener;
   });
 };

@@ -7,6 +7,6 @@ function onDocumentReady() {
 
   // firebaseApps previously initialized using initializeApp()
   const db = getFirestore();
-  useFirestoreEmulator(db, 'localhost', 8080);
+  useFirestoreEmulator(db, "localhost", 8080);
   // [END fs_emulator_connect]
 }

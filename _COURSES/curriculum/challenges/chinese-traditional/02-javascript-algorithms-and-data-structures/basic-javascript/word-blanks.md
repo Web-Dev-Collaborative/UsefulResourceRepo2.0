@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244bb
 title: 填詞造句
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/caqn8zuP'
+videoUrl: "https://scrimba.com/c/caqn8zuP"
 forumTopicId: 18377
 dashedName: word-blanks
 ---
@@ -16,7 +16,14 @@ dashedName: word-blanks
 思考一下這句話 - It was really **\_\_\_\_**, and we **\_\_\_\_** ourselves **\_\_\_\_**。 這句話有三個缺失的部分 - 形容詞、動詞和副詞，選擇合適單詞填入完成它。 然後將完成的句子賦值給變量，如下所示：
 
 ```js
-var sentence = "It was really " + "hot" + ", and we " + "laughed" + " ourselves " + "silly" + ".";
+var sentence =
+  "It was really " +
+  "hot" +
+  ", and we " +
+  "laughed" +
+  " ourselves " +
+  "silly" +
+  ".";
 ```
 
 # --instructions--
@@ -32,17 +39,17 @@ var sentence = "It was really " + "hot" + ", and we " + "laughed" + " ourselves 
 `wordBlanks` 應該返回一個字符串。
 
 ```js
-assert(typeof wordBlanks === 'string');
+assert(typeof wordBlanks === "string");
 ```
 
 不能改變 `myNoun`、`myVerb`、`myAdjective` 或者 `myAdverb` 的值。
 
 ```js
 assert(
-  myNoun === 'dog' &&
-    myVerb === 'ran' &&
-    myAdjective === 'big' &&
-    myAdverb === 'quickly'
+  myNoun === "dog" &&
+    myVerb === "ran" &&
+    myAdjective === "big" &&
+    myAdverb === "quickly"
 );
 ```
 
@@ -74,11 +81,12 @@ assert(
 ## --after-user-code--
 
 ```js
-const removeAssignments = str => str
-  .replace(/myNoun\s*=\s*["']dog["']/g, '')
-  .replace(/myAdjective\s*=\s*["']big["']/g, '')
-  .replace(/myVerb\s*=\s*["']ran["']/g, '')
-  .replace(/myAdverb\s*=\s*["']quickly["']/g, '');
+const removeAssignments = (str) =>
+  str
+    .replace(/myNoun\s*=\s*["']dog["']/g, "")
+    .replace(/myAdjective\s*=\s*["']big["']/g, "")
+    .replace(/myVerb\s*=\s*["']ran["']/g, "")
+    .replace(/myAdverb\s*=\s*["']quickly["']/g, "");
 ```
 
 ## --seed-contents--
@@ -102,6 +110,7 @@ var myAdjective = "big";
 var myVerb = "ran";
 var myAdverb = "quickly";
 
-var wordBlanks = "Once there was a " + myNoun + " which was very " + myAdjective + ". ";
+var wordBlanks =
+  "Once there was a " + myNoun + " which was very " + myAdjective + ". ";
 wordBlanks += "It " + myVerb + " " + myAdverb + " around the yard.";
 ```

@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08736
 title: Style the HTML Body Element
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cB77PHW'
+videoUrl: "https://scrimba.com/c/cB77PHW"
 forumTopicId: 18313
 dashedName: style-the-html-body-element
 ---
@@ -30,7 +30,7 @@ body {
 Your `body` element should have the `background-color` of black.
 
 ```js
-assert($('body').css('background-color') === 'rgb(0, 0, 0)');
+assert($("body").css("background-color") === "rgb(0, 0, 0)");
 ```
 
 Your CSS rule should be properly formatted with both opening and closing curly brackets.
@@ -54,17 +54,15 @@ assert(
 ## --seed-contents--
 
 ```html
-<style>
-
-</style>
+<style></style>
 ```
 
 # --solutions--
 
 ```html
 <style>
-body {
-  background-color: black;
-}
+  body {
+    background-color: black;
+  }
 </style>
 ```

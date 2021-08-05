@@ -7,4 +7,3 @@ Firebase JS SDK. It will give you a couple things OOTB:
   with the rest of the SDK.
 - **Isomorphic Testing/Coverage:** Your tests will be run in both Node.js and
   Browser environments and coverage from both, collected.
-  

@@ -1,51 +1,53 @@
-import React from 'react'
-import { Link } from "react-router-dom"
-import withAuthorization from 'components/hoc/withAuthorization'
-import { fetchCollaborations } from 'actions'
-import moment from 'moment'
-import { Timestamp } from 'db'
+import React from "react";
+import { Link } from "react-router-dom";
+import withAuthorization from "components/hoc/withAuthorization";
+import { fetchCollaborations } from "actions";
+import moment from "moment";
+import { Timestamp } from "db";
 
 class ReceivedCollaborations extends React.Component {
-
   state = {
-    collaborations: []
-  }
+    collaborations: [],
+  };
 
-  getCollaborationStatus = expiresAt => {
-    if (!expiresAt) { return {className: 'is-danger', status: 'Not Started'}}
-    if (Timestamp.now().seconds < expiresAt.seconds) {
-     return {className: 'is-warning', status: 'In Progress'} 
-    } else {
-      return {className: 'is-success', status: 'Finished'}
+  getCollaborationStatus = (expiresAt) => {
+    if (!expiresAt) {
+      return { className: "is-danger", status: "Not Started" };
     }
-  }
+    if (Timestamp.now().seconds < expiresAt.seconds) {
+      return { className: "is-warning", status: "In Progress" };
+    } else {
+      return { className: "is-success", status: "Finished" };
+    }
+  };
 
   componentDidMount() {
-    const { auth: { user }} = this.props
-    fetchCollaborations(user.uid)
-      .then(collaborations => this.setState({collaborations}))
+    const {
+      auth: { user },
+    } = this.props;
+    fetchCollaborations(user.uid).then((collaborations) =>
+      this.setState({ collaborations })
+    );
   }
 
   renderCollaborations = (collaborations) => {
-    return collaborations.map(c => {
-      const {className, status} = this.getCollaborationStatus(c.expiresAt)
+    return collaborations.map((c) => {
+      const { className, status } = this.getCollaborationStatus(c.expiresAt);
       return (
-        <article 
-          key={c.id} 
-          className="post">
+        <article key={c.id} className="post">
           <h4>{c.title}</h4>
           <div className="media">
             <div className="media-left">
               <p className="image is-32x32">
-                <img src={c.image} alt={c.title}/>
+                <img src={c.image} alt={c.title} />
               </p>
             </div>
             <div className="media-content">
               <div className="content">
                 <p>
-                  <span>{c.fromUser.name}</span> replied {moment(c.createdAt.toDate()).fromNow()} &nbsp;
-                  <span 
-                    className={`tag ${className}`}>{status}</span>
+                  <span>{c.fromUser.name}</span> replied{" "}
+                  {moment(c.createdAt.toDate()).fromNow()} &nbsp;
+                  <span className={`tag ${className}`}>{status}</span>
                 </p>
               </div>
             </div>
@@ -58,27 +60,23 @@ class ReceivedCollaborations extends React.Component {
             </div>
           </div>
         </article>
-      )
-    })
-  }
+      );
+    });
+  };
 
   render() {
-    const { collaborations } = this.state
+    const { collaborations } = this.state;
     return (
       <div className="content-wrapper">
         <div className="container">
           <h1 className="title">Collaborations</h1>
           <div className="box content">
-            { this.renderCollaborations(collaborations) }
+            {this.renderCollaborations(collaborations)}
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default withAuthorization(ReceivedCollaborations)
-
-
-
-
+export default withAuthorization(ReceivedCollaborations);

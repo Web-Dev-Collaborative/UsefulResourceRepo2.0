@@ -2,7 +2,7 @@
 id: 587d774c367417b2b2512a9c
 title: Add a Text Alternative to Images for Visually Impaired Accessibility
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cPp7VfD'
+videoUrl: "https://scrimba.com/c/cPp7VfD"
 forumTopicId: 16628
 dashedName: add-a-text-alternative-to-images-for-visually-impaired-accessibility
 ---
@@ -12,7 +12,7 @@ dashedName: add-a-text-alternative-to-images-for-visually-impaired-accessibility
 You've likely seen an `alt` attribute on an `img` tag in other challenges. `alt` text describes the image's content and provides a text-alternative for it. An `alt` attribute helps in cases where the image fails to load or can't be seen by a user. Search engines also use it to understand what an image contains to include it in search results. Here's an example:
 
 ```html
-<img src="importantLogo.jpeg" alt="Company logo">
+<img src="importantLogo.jpeg" alt="Company logo" />
 ```
 
 People with visual impairments rely on screen readers to convert web content to an audio interface. They won't get information if it's only presented visually. For images, screen readers can access the `alt` attribute and read its contents to deliver key information.
@@ -28,7 +28,7 @@ Camper Cat happens to be both a coding ninja and an actual ninja, who is buildin
 Your `img` tag should have an `alt` attribute and it should not be empty.
 
 ```js
-assert($('img').attr('alt'));
+assert($("img").attr("alt"));
 ```
 
 # --seed--
@@ -36,11 +36,11 @@ assert($('img').attr('alt'));
 ## --seed-contents--
 
 ```html
-<img src="doingKarateWow.jpeg">
+<img src="doingKarateWow.jpeg" />
 ```
 
 # --solutions--
 
 ```html
-<img src="doingKarateWow.jpeg" alt="Someone doing karate">
+<img src="doingKarateWow.jpeg" alt="Someone doing karate" />
 ```

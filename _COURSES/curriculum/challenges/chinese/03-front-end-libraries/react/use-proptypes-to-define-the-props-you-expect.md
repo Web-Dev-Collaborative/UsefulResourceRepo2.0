@@ -13,7 +13,7 @@ React 提供了有用的类型检查特性，以验证组件是否接收了正�
 当提前知道 prop 的类型时，最佳实践是设置其 `propTypes`。 可以为组件定义 `propTypes` 属性，方法与定义 `defaultProps` 相同。 这样做将检查给定键的 prop 是否是给定类型。 这里有一个示例，表示名为 `handleClick` 的 prop 应为 `function` 类型：
 
 ```js
-MyComponent.propTypes = { handleClick: PropTypes.func.isRequired }
+MyComponent.propTypes = { handleClick: PropTypes.func.isRequired };
 ```
 
 在上面的示例中，`PropTypes.func` 部分检查 `handleClick` 是否为函数。 添加 `isRequired`，告诉 React `handleClick` 是该组件的必需属性。 如果没有那个属性，将出现警告。 还要注意 `func` 代表 `function` 。 在 7 种 JavaScript 原语类型中， `function` 和 `boolean` （写为 `bool` ）是唯一使用异常拼写的两种类型。 除了原始类型，还有其他类型可用。 例如，你可以检查 prop 是否为 React 元素。 请参阅[文档](https://reactjs.org/docs/jsx-in-depth.html#specifying-the-react-element-type)以获取所有选项。
@@ -32,7 +32,7 @@ MyComponent.propTypes = { handleClick: PropTypes.func.isRequired }
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(ShoppingCart));
-    return mockedComponent.find('ShoppingCart').length === 1;
+    return mockedComponent.find("ShoppingCart").length === 1;
   })()
 );
 ```
@@ -43,7 +43,7 @@ assert(
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(ShoppingCart));
-    return mockedComponent.find('Items').length === 1;
+    return mockedComponent.find("Items").length === 1;
   })()
 );
 ```
@@ -54,10 +54,10 @@ assert(
 (getUserInput) =>
   assert(
     (function () {
-      const noWhiteSpace = __helpers.removeWhiteSpace(getUserInput('index'));
+      const noWhiteSpace = __helpers.removeWhiteSpace(getUserInput("index"));
       return (
-        noWhiteSpace.includes('quantity:PropTypes.number.isRequired') &&
-        noWhiteSpace.includes('Items.propTypes=')
+        noWhiteSpace.includes("quantity:PropTypes.number.isRequired") &&
+        noWhiteSpace.includes("Items.propTypes=")
       );
     })()
   );
@@ -69,21 +69,21 @@ assert(
 
 ```jsx
 var PropTypes = {
-  number: { isRequired: true }
+  number: { isRequired: true },
 };
 ```
 
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<ShoppingCart />, document.getElementById('root'))
+ReactDOM.render(<ShoppingCart />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
 
 ```jsx
 const Items = (props) => {
-  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>;
 };
 
 // Change code below this line
@@ -91,7 +91,7 @@ const Items = (props) => {
 // Change code above this line
 
 Items.defaultProps = {
-  quantity: 0
+  quantity: 0,
 };
 
 class ShoppingCart extends React.Component {
@@ -99,26 +99,26 @@ class ShoppingCart extends React.Component {
     super(props);
   }
   render() {
-    return <Items />
+    return <Items />;
   }
-};
+}
 ```
 
 # --solutions--
 
 ```jsx
 const Items = (props) => {
-  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>;
 };
 
 // Change code below this line
 Items.propTypes = {
-  quantity: PropTypes.number.isRequired
+  quantity: PropTypes.number.isRequired,
 };
 // Change code above this line
 
 Items.defaultProps = {
-  quantity: 0
+  quantity: 0,
 };
 
 class ShoppingCart extends React.Component {
@@ -126,7 +126,7 @@ class ShoppingCart extends React.Component {
     super(props);
   }
   render() {
-    return <Items />
+    return <Items />;
   }
-};
+}
 ```

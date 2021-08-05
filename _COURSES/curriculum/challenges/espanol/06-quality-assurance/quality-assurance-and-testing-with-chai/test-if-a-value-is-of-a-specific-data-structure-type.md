@@ -22,9 +22,9 @@ All tests should pass.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=16').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=16").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -36,12 +36,12 @@ You should choose the correct method for the first assertion - `typeOf` vs. `not
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=16').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=16").then(
     (data) => {
       assert.equal(
         data.assertions[0].method,
-        'typeOf',
-        'myCar is typeOf Object'
+        "typeOf",
+        "myCar is typeOf Object"
       );
     },
     (xhr) => {
@@ -54,12 +54,12 @@ You should choose the correct method for the second assertion - `typeOf` vs. `no
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=16').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=16").then(
     (data) => {
       assert.equal(
         data.assertions[1].method,
-        'typeOf',
-        'Car.model is a String'
+        "typeOf",
+        "Car.model is a String"
       );
     },
     (xhr) => {
@@ -72,12 +72,12 @@ You should choose the correct method for the third assertion - `typeOf` vs. `not
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=16').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=16").then(
     (data) => {
       assert.equal(
         data.assertions[2].method,
-        'notTypeOf',
-        'Plane.wings is a Number (not a String)'
+        "notTypeOf",
+        "Plane.wings is a Number (not a String)"
       );
     },
     (xhr) => {
@@ -90,12 +90,12 @@ You should choose the correct method for the fourth assertion - `typeOf` vs. `no
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=16').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=16").then(
     (data) => {
       assert.equal(
         data.assertions[3].method,
-        'typeOf',
-        'Plane.engines is an Array'
+        "typeOf",
+        "Plane.engines is an Array"
       );
     },
     (xhr) => {
@@ -108,12 +108,12 @@ You should choose the correct method for the fifth assertion - `typeOf` vs. `not
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=16').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=16").then(
     (data) => {
       assert.equal(
         data.assertions[4].method,
-        'typeOf',
-        'Car.wheels is a Number'
+        "typeOf",
+        "Car.wheels is a Number"
       );
     },
     (xhr) => {

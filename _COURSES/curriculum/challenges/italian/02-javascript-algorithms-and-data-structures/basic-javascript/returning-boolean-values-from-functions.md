@@ -2,7 +2,7 @@
 id: 5679ceb97cbaa8c51670a16b
 title: Restituire valori booleani dalle funzioni
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cp62qAQ'
+videoUrl: "https://scrimba.com/c/cp62qAQ"
 forumTopicId: 18273
 dashedName: returning-boolean-values-from-functions
 ---
@@ -14,7 +14,7 @@ dashedName: returning-boolean-values-from-functions
 A volte le persone usano un'istruzione `if/else` per fare un confronto, in questo modo:
 
 ```js
-function isEqual(a,b) {
+function isEqual(a, b) {
   if (a === b) {
     return true;
   } else {
@@ -26,7 +26,7 @@ function isEqual(a,b) {
 Ma c'è un modo migliore per farlo. Dal momento che `===` restituisce `true` o `false`, possiamo restituire il risultato del confronto:
 
 ```js
-function isEqual(a,b) {
+function isEqual(a, b) {
   return a === b;
 }
 ```

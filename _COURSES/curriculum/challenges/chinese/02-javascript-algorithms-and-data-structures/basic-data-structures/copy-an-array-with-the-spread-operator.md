@@ -30,7 +30,7 @@ let thatArray = [...thisArray];
 ```js
 assert.deepEqual(copyMachine([true, false, true], 2), [
   [true, false, true],
-  [true, false, true]
+  [true, false, true],
 ]);
 ```
 
@@ -42,7 +42,7 @@ assert.deepEqual(copyMachine([1, 2, 3], 5), [
   [1, 2, 3],
   [1, 2, 3],
   [1, 2, 3],
-  [1, 2, 3]
+  [1, 2, 3],
 ]);
 ```
 
@@ -55,10 +55,10 @@ assert.deepEqual(copyMachine([true, true, null], 1), [[true, true, null]]);
 `copyMachine(["it works"], 3)` 应返回 `[["it works"], ["it works"], ["it works"]]`。
 
 ```js
-assert.deepEqual(copyMachine(['it works'], 3), [
-  ['it works'],
-  ['it works'],
-  ['it works']
+assert.deepEqual(copyMachine(["it works"], 3), [
+  ["it works"],
+  ["it works"],
+  ["it works"],
 ]);
 ```
 
@@ -90,13 +90,13 @@ console.log(copyMachine([true, false, true], 2));
 # --solutions--
 
 ```js
-function copyMachine(arr,num){
-    let newArr=[];
-    while(num >=1){
+function copyMachine(arr, num) {
+  let newArr = [];
+  while (num >= 1) {
     newArr.push([...arr]);
     num--;
-    }
-    return newArr;
+  }
+  return newArr;
 }
 console.log(copyMachine([true, false, true], 2));
 ```

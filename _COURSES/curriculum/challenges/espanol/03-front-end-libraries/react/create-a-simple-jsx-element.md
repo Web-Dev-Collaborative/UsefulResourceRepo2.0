@@ -27,13 +27,13 @@ El código actual utiliza JSX para asignar un elemento `div` a la constante `JSX
 La constante `JSX` debe devolver un elemento `h1`.
 
 ```js
-assert(JSX.type === 'h1');
+assert(JSX.type === "h1");
 ```
 
 La etiqueta `h1` debe incluir el texto `Hello JSX!`
 
 ```js
-assert(Enzyme.shallow(JSX).contains('Hello JSX!'));
+assert(Enzyme.shallow(JSX).contains("Hello JSX!"));
 ```
 
 # --seed--
@@ -41,7 +41,7 @@ assert(Enzyme.shallow(JSX).contains('Hello JSX!'));
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(JSX, document.getElementById('root'))
+ReactDOM.render(JSX, document.getElementById("root"));
 ```
 
 ## --seed-contents--

@@ -2,7 +2,7 @@
 id: 587d774c367417b2b2512a9c
 title: 爲視覺障礙用戶添加替代圖像的文本
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cPp7VfD'
+videoUrl: "https://scrimba.com/c/cPp7VfD"
 forumTopicId: 16628
 dashedName: add-a-text-alternative-to-images-for-visually-impaired-accessibility
 ---
@@ -12,7 +12,7 @@ dashedName: add-a-text-alternative-to-images-for-visually-impaired-accessibility
 在其他挑戰裏你應該已經見到過 `img` 標籤的 `alt` 屬性了。 `alt` 屬性中的文本來描述圖片內容，作爲備用文字。 `alt` 屬性可以幫助用戶在圖片加載失敗或者不可見的情況下理解圖片內容， 搜索引擎也通過它來理解圖片內容，並將其加入到搜索結果中。 例如：
 
 ```html
-<img src="importantLogo.jpeg" alt="Company logo">
+<img src="importantLogo.jpeg" alt="Company logo" />
 ```
 
 視覺障礙用戶無法通過視覺獲取信息，而是通過屏幕閱讀器將網頁內容轉換爲音頻以獲取信息。 他們無法通過直觀的呈現理解信息。 屏幕閱讀器可以識別 `alt` 屬性，朗讀其中的內容，來告知用戶圖片包含的關鍵信息。
@@ -28,7 +28,7 @@ dashedName: add-a-text-alternative-to-images-for-visually-impaired-accessibility
 `img` 標籤應該包含一個非空的 `alt` 屬性。
 
 ```js
-assert($('img').attr('alt'));
+assert($("img").attr("alt"));
 ```
 
 # --seed--
@@ -36,11 +36,11 @@ assert($('img').attr('alt'));
 ## --seed-contents--
 
 ```html
-<img src="doingKarateWow.jpeg">
+<img src="doingKarateWow.jpeg" />
 ```
 
 # --solutions--
 
 ```html
-<img src="doingKarateWow.jpeg" alt="Someone doing karate">
+<img src="doingKarateWow.jpeg" alt="Someone doing karate" />
 ```

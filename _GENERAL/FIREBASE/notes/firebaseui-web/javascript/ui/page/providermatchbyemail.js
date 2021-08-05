@@ -14,15 +14,15 @@
 
 /** @fileoverview UI component for matching providers by the given email. */
 
-goog.module('firebaseui.auth.ui.page.ProviderMatchByEmail');
+goog.module("firebaseui.auth.ui.page.ProviderMatchByEmail");
 goog.module.declareLegacyNamespace();
 
-const Base = goog.require('firebaseui.auth.ui.page.Base');
-const DomHelper = goog.requireType('goog.dom.DomHelper');
-const email = goog.require('firebaseui.auth.ui.element.email');
-const form = goog.require('firebaseui.auth.ui.element.form');
-const page = goog.require('firebaseui.auth.soy2.page');
-const selection = goog.require('goog.dom.selection');
+const Base = goog.require("firebaseui.auth.ui.page.Base");
+const DomHelper = goog.requireType("goog.dom.DomHelper");
+const email = goog.require("firebaseui.auth.ui.element.email");
+const form = goog.require("firebaseui.auth.ui.element.form");
+const page = goog.require("firebaseui.auth.soy2.page");
+const selection = goog.require("goog.dom.selection");
 
 /**
  * UI component to match a user's inputted email with the associated sign-in
@@ -39,14 +39,21 @@ class ProviderMatchByEmail extends Base {
    * @param {?DomHelper=} domHelper Optional DOM helper.
    */
   constructor(
-      onEmailEnter, tosCallback = undefined, privacyPolicyCallback = undefined,
-      domHelper = undefined) {
+    onEmailEnter,
+    tosCallback = undefined,
+    privacyPolicyCallback = undefined,
+    domHelper = undefined
+  ) {
     super(
-        page.providerMatchByEmail,
-        undefined, domHelper, 'providerMatchByEmail', {
-          tosCallback: tosCallback,
-          privacyPolicyCallback: privacyPolicyCallback,
-        });
+      page.providerMatchByEmail,
+      undefined,
+      domHelper,
+      "providerMatchByEmail",
+      {
+        tosCallback: tosCallback,
+        privacyPolicyCallback: privacyPolicyCallback,
+      }
+    );
     this.onEmailEnter_ = onEmailEnter;
   }
 
@@ -73,25 +80,27 @@ class ProviderMatchByEmail extends Base {
     // Auto focus the email input and put the cursor at the end.
     this.getEmailElement().focus();
     selection.setCursorPosition(
-        this.getEmailElement(), (this.getEmailElement().value || '').length);
+      this.getEmailElement(),
+      (this.getEmailElement().value || "").length
+    );
   }
 }
 
 goog.mixin(
-    ProviderMatchByEmail.prototype,
-    /** @lends {ProviderMatchByEmail.prototype} */
-    {
-      // For email.
-      getEmailElement: email.getEmailElement,
-      getEmailErrorElement: email.getEmailErrorElement,
-      initEmailElement: email.initEmailElement,
-      getEmail: email.getEmail,
-      checkAndGetEmail: email.checkAndGetEmail,
+  ProviderMatchByEmail.prototype,
+  /** @lends {ProviderMatchByEmail.prototype} */
+  {
+    // For email.
+    getEmailElement: email.getEmailElement,
+    getEmailErrorElement: email.getEmailErrorElement,
+    initEmailElement: email.initEmailElement,
+    getEmail: email.getEmail,
+    checkAndGetEmail: email.checkAndGetEmail,
 
-      // For form.
-      getSubmitElement: form.getSubmitElement,
-      initFormElement: form.initFormElement,
-    });
+    // For form.
+    getSubmitElement: form.getSubmitElement,
+    initFormElement: form.initFormElement,
+  }
+);
 
 exports = ProviderMatchByEmail;
-

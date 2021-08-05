@@ -13,7 +13,7 @@ dashedName: use-a-constructor-to-create-objects
 ```js
 function Bird() {
   this.name = "Albert";
-  this.color  = "blue";
+  this.color = "blue";
   this.numLegs = 2;
 }
 
@@ -33,7 +33,7 @@ blueBird.numLegs;
 由构造函数创建的实例也和其他对象一样，它的属性可以被访问和修改：
 
 ```js
-blueBird.name = 'Elvira';
+blueBird.name = "Elvira";
 blueBird.name;
 ```
 

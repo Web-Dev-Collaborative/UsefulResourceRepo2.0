@@ -2,7 +2,7 @@
 id: 5664820f61c48e80c9fa476c
 title: Golf Code
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c9ykNUR'
+videoUrl: "https://scrimba.com/c/c9ykNUR"
 forumTopicId: 18195
 dashedName: golf-code
 ---
@@ -22,67 +22,67 @@ Your function will be passed `par` and `strokes` arguments. Return the correct s
 `golfScore(4, 1)` should return the string `Hole-in-one!`
 
 ```js
-assert(golfScore(4, 1) === 'Hole-in-one!');
+assert(golfScore(4, 1) === "Hole-in-one!");
 ```
 
 `golfScore(4, 2)` should return the string `Eagle`
 
 ```js
-assert(golfScore(4, 2) === 'Eagle');
+assert(golfScore(4, 2) === "Eagle");
 ```
 
 `golfScore(5, 2)` should return the string `Eagle`
 
 ```js
-assert(golfScore(5, 2) === 'Eagle');
+assert(golfScore(5, 2) === "Eagle");
 ```
 
 `golfScore(4, 3)` should return the string `Birdie`
 
 ```js
-assert(golfScore(4, 3) === 'Birdie');
+assert(golfScore(4, 3) === "Birdie");
 ```
 
 `golfScore(4, 4)` should return the string `Par`
 
 ```js
-assert(golfScore(4, 4) === 'Par');
+assert(golfScore(4, 4) === "Par");
 ```
 
 `golfScore(1, 1)` should return the string `Hole-in-one!`
 
 ```js
-assert(golfScore(1, 1) === 'Hole-in-one!');
+assert(golfScore(1, 1) === "Hole-in-one!");
 ```
 
 `golfScore(5, 5)` should return the string `Par`
 
 ```js
-assert(golfScore(5, 5) === 'Par');
+assert(golfScore(5, 5) === "Par");
 ```
 
 `golfScore(4, 5)` should return the string `Bogey`
 
 ```js
-assert(golfScore(4, 5) === 'Bogey');
+assert(golfScore(4, 5) === "Bogey");
 ```
 
 `golfScore(4, 6)` should return the string `Double Bogey`
 
 ```js
-assert(golfScore(4, 6) === 'Double Bogey');
+assert(golfScore(4, 6) === "Double Bogey");
 ```
 
 `golfScore(4, 7)` should return the string `Go Home!`
 
 ```js
-assert(golfScore(4, 7) === 'Go Home!');
+assert(golfScore(4, 7) === "Go Home!");
 ```
 
 `golfScore(5, 9)` should return the string `Go Home!`
 
 ```js
-assert(golfScore(5, 9) === 'Go Home!');
+assert(golfScore(5, 9) === "Go Home!");
 ```
 
 # --seed--
@@ -90,10 +90,17 @@ assert(golfScore(5, 9) === 'Go Home!');
 ## --seed-contents--
 
 ```js
-var names = ["Hole-in-one!", "Eagle", "Birdie", "Par", "Bogey", "Double Bogey", "Go Home!"];
+var names = [
+  "Hole-in-one!",
+  "Eagle",
+  "Birdie",
+  "Par",
+  "Bogey",
+  "Double Bogey",
+  "Go Home!",
+];
 function golfScore(par, strokes) {
   // Only change code below this line
-
 
   return "Change Me";
   // Only change code above this line
@@ -126,7 +133,7 @@ function golfScore(par, strokes) {
     return "Bogey";
   }
 
-  if(strokes === par + 2) {
+  if (strokes === par + 2) {
     return "Double Bogey";
   }
 

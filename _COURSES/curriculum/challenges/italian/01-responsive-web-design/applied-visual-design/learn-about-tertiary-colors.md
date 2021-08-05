@@ -27,19 +27,19 @@ Sostituisci la proprietà `background-color` delle classi `orange`, `cyan`e `ras
 L'elemento `div` con classe `orange` dovrebbe avere un `background-color` arancione.
 
 ```js
-assert($('.orange').css('background-color') == 'rgb(255, 127, 0)');
+assert($(".orange").css("background-color") == "rgb(255, 127, 0)");
 ```
 
 L'elemento `div` con classe `cyan` dovrebbe avere un `background-color` ciano.
 
 ```js
-assert($('.cyan').css('background-color') == 'rgb(0, 255, 255)');
+assert($(".cyan").css("background-color") == "rgb(0, 255, 255)");
 ```
 
 L'elemento `div` con classe `raspberry` dovrebbe avere un `background-color` di color lampone.
 
 ```js
-assert($('.raspberry').css('background-color') == 'rgb(255, 0, 127)');
+assert($(".raspberry").css("background-color") == "rgb(255, 0, 127)");
 ```
 
 Tutti i valori `background-color` per le classi di colore, dovrebbero essere codici esadecimali e non nomi di colori.
@@ -55,7 +55,7 @@ assert(!/background-color:\s(orange|cyan|raspberry)/.test(code));
 ```html
 <style>
   body {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
   }
 
   .orange {
@@ -87,19 +87,19 @@ assert(!/background-color:\s(orange|cyan|raspberry)/.test(code));
 ```html
 <style>
   body {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
   }
 
   .orange {
-    background-color: #FF7F00;
+    background-color: #ff7f00;
   }
 
   .cyan {
-    background-color: #00FFFF;
+    background-color: #00ffff;
   }
 
   .raspberry {
-    background-color: #FF007F;
+    background-color: #ff007f;
   }
 
   div {

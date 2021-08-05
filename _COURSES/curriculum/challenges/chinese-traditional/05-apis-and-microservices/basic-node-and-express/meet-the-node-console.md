@@ -32,7 +32,7 @@ Node 只是一個 JavaScript 環境。 與客戶端 JavaScript 一樣，你可�
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/hello-console').then(
+  $.get(getUserInput("url") + "/_api/hello-console").then(
     (data) => {
       assert.isTrue(data.passed, '"Hello World" is not in the server console');
     },

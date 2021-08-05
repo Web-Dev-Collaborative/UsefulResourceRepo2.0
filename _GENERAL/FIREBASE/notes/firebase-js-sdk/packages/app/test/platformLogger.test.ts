@@ -79,10 +79,10 @@ describe('Platform Logger Service', () => {
         new Component(
           'test-shell',
           (container: ComponentContainer) => {
-            const platformLoggerProvider = container.getProvider(
-              'platform-logger'
-            );
-            const platformLogger = platformLoggerProvider.getImmediate() as PlatformLoggerService;
+            const platformLoggerProvider =
+              container.getProvider('platform-logger');
+            const platformLogger =
+              platformLoggerProvider.getImmediate() as PlatformLoggerService;
             const platformInfoString = platformLogger.getPlatformInfoString();
             expect(platformInfoString).to.include(`fire-core/${appVersion}`);
             expect(platformInfoString).to.include('fire-js/');
@@ -101,10 +101,10 @@ describe('Platform Logger Service', () => {
         new Component(
           'test-shell',
           (container: ComponentContainer) => {
-            const platformLoggerProvider = container.getProvider(
-              'platform-logger'
-            );
-            const platformLogger = platformLoggerProvider.getImmediate() as PlatformLoggerService;
+            const platformLoggerProvider =
+              container.getProvider('platform-logger');
+            const platformLogger =
+              platformLoggerProvider.getImmediate() as PlatformLoggerService;
             const platformInfoString = platformLogger.getPlatformInfoString();
             expect(platformInfoString).to.include(
               `fire-core-node/${appVersion}`
@@ -129,10 +129,10 @@ describe('Platform Logger Service', () => {
         new Component(
           'test-shell',
           (container: ComponentContainer) => {
-            const platformLoggerProvider = container.getProvider(
-              'platform-logger'
-            );
-            const platformLogger = platformLoggerProvider.getImmediate() as PlatformLoggerService;
+            const platformLoggerProvider =
+              container.getProvider('platform-logger');
+            const platformLogger =
+              platformLoggerProvider.getImmediate() as PlatformLoggerService;
             const platformInfoString = platformLogger.getPlatformInfoString();
             expect(platformInfoString).to.include('fire-analytics/1.2.3');
             expect(platformInfoString).to.include('fire-js/');

@@ -28,7 +28,6 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.AuthEventTest');
 
-
 var authEvent;
 var authEvent2;
 var authEventObject;
@@ -44,37 +43,40 @@ var redirectType = [
   fireauth.AuthEvent.Type.REAUTH_VIA_REDIRECT
 ];
 
-
 function setUp() {
   authEvent = new fireauth.AuthEvent(
-      fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP,
-      null,
-      'http://www.example.com/#oauthResponse',
-      'SESSION_ID',
-      null,
-      'POST_BODY');
+    fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP,
+    null,
+    'http://www.example.com/#oauthResponse',
+    'SESSION_ID',
+    null,
+    'POST_BODY'
+  );
   authEvent2 = new fireauth.AuthEvent(
-      fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT,
-      '12345678',
-      null,
-      null,
-      new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR));
+    fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT,
+    '12345678',
+    null,
+    null,
+    new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR)
+  );
   authEvent3 = new fireauth.AuthEvent(
-      fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT,
-      null,
-      'http://www.example.com/#oauthResponse',
-      'SESSION_ID',
-      null,
-      null,
-      'TENANT_ID');
+    fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT,
+    null,
+    'http://www.example.com/#oauthResponse',
+    'SESSION_ID',
+    null,
+    null,
+    'TENANT_ID'
+  );
   authEvent4 = new fireauth.AuthEvent(
-      fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP,
-      '12345678',
-      'http://www.example.com/#oauthResponse',
-      'SESSION_ID',
-      null,
-      null,
-      'TENANT_ID');
+    fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP,
+    '12345678',
+    'http://www.example.com/#oauthResponse',
+    'SESSION_ID',
+    null,
+    null,
+    'TENANT_ID'
+  );
   authEventObject = {
     'type': 'signInViaPopup',
     'eventId': null,
@@ -90,8 +92,9 @@ function setUp() {
     'urlResponse': null,
     'sessionId': null,
     'error': {
-      'code': fireauth.AuthError.ERROR_CODE_PREFIX +
-          fireauth.authenum.Error.INTERNAL_ERROR,
+      'code':
+        fireauth.AuthError.ERROR_CODE_PREFIX +
+        fireauth.authenum.Error.INTERNAL_ERROR,
       'message': 'An internal error has occurred.'
     },
     'postBody': null,
@@ -117,14 +120,12 @@ function setUp() {
   };
 }
 
-
 function tearDown() {
   authEvent = null;
   authEvent2 = null;
   authEventObject = null;
   authEventObject2 = null;
 }
-
 
 /**
  * Asserts that two errors are equivalent. Plain assertObjectEquals cannot be
@@ -137,134 +138,166 @@ function assertErrorEquals(expected, actual) {
   assertEquals(expected.message, actual.message);
 }
 
-
 function testAuthEvent_isRedirect() {
   // Popup types should return false.
   for (var i = 0; i < popupType.length; i++) {
-    assertFalse(fireauth.AuthEvent.isRedirect(
+    assertFalse(
+      fireauth.AuthEvent.isRedirect(
         new fireauth.AuthEvent(
-            popupType[i],
-            null,
-            'http://www.example.com/#oauthResponse',
-            'SESSION_ID')));
-  }
-  // Unknown event type should return false.
-  assertFalse(fireauth.AuthEvent.isRedirect(
-      new fireauth.AuthEvent(
-          fireauth.AuthEvent.Type.UNKNOWN,
-          null,
-          null,
-          null,
-          new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR))));
-  // verifyApp event type should return false.
-  assertFalse(fireauth.AuthEvent.isRedirect(
-      new fireauth.AuthEvent(
-          fireauth.AuthEvent.Type.VERIFY_APP,
+          popupType[i],
           null,
           'http://www.example.com/#oauthResponse',
-          'blank')));
+          'SESSION_ID'
+        )
+      )
+    );
+  }
+  // Unknown event type should return false.
+  assertFalse(
+    fireauth.AuthEvent.isRedirect(
+      new fireauth.AuthEvent(
+        fireauth.AuthEvent.Type.UNKNOWN,
+        null,
+        null,
+        null,
+        new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR)
+      )
+    )
+  );
+  // verifyApp event type should return false.
+  assertFalse(
+    fireauth.AuthEvent.isRedirect(
+      new fireauth.AuthEvent(
+        fireauth.AuthEvent.Type.VERIFY_APP,
+        null,
+        'http://www.example.com/#oauthResponse',
+        'blank'
+      )
+    )
+  );
   // Redirect types should return true.
   for (var i = 0; i < redirectType.length; i++) {
-    assertTrue(fireauth.AuthEvent.isRedirect(
+    assertTrue(
+      fireauth.AuthEvent.isRedirect(
         new fireauth.AuthEvent(
-            redirectType[i],
-            null,
-            'http://www.example.com/#oauthResponse',
-            'SESSION_ID')));
+          redirectType[i],
+          null,
+          'http://www.example.com/#oauthResponse',
+          'SESSION_ID'
+        )
+      )
+    );
   }
 }
-
 
 function testAuthEvent_isPopup() {
   // Popup types should return true.
   for (var i = 0; i < popupType.length; i++) {
-    assertTrue(fireauth.AuthEvent.isPopup(
+    assertTrue(
+      fireauth.AuthEvent.isPopup(
         new fireauth.AuthEvent(
-            popupType[i],
-            null,
-            'http://www.example.com/#oauthResponse',
-            'SESSION_ID')));
-  }
-  // Unknown event type should return false.
-  assertFalse(fireauth.AuthEvent.isPopup(
-      new fireauth.AuthEvent(
-          fireauth.AuthEvent.Type.UNKNOWN,
-          null,
-          null,
-          null,
-          new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR))));
-  // verifyApp event type should return false.
-  assertFalse(fireauth.AuthEvent.isPopup(
-      new fireauth.AuthEvent(
-          fireauth.AuthEvent.Type.VERIFY_APP,
+          popupType[i],
           null,
           'http://www.example.com/#oauthResponse',
-          'blank')));
+          'SESSION_ID'
+        )
+      )
+    );
+  }
+  // Unknown event type should return false.
+  assertFalse(
+    fireauth.AuthEvent.isPopup(
+      new fireauth.AuthEvent(
+        fireauth.AuthEvent.Type.UNKNOWN,
+        null,
+        null,
+        null,
+        new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR)
+      )
+    )
+  );
+  // verifyApp event type should return false.
+  assertFalse(
+    fireauth.AuthEvent.isPopup(
+      new fireauth.AuthEvent(
+        fireauth.AuthEvent.Type.VERIFY_APP,
+        null,
+        'http://www.example.com/#oauthResponse',
+        'blank'
+      )
+    )
+  );
   // Redirect types should return false.
   for (var i = 0; i < redirectType.length; i++) {
-    assertFalse(fireauth.AuthEvent.isPopup(
+    assertFalse(
+      fireauth.AuthEvent.isPopup(
         new fireauth.AuthEvent(
-            redirectType[i],
-            null,
-            'http://www.example.com/#oauthResponse',
-            'SESSION_ID')));
+          redirectType[i],
+          null,
+          'http://www.example.com/#oauthResponse',
+          'SESSION_ID'
+        )
+      )
+    );
   }
 }
-
 
 function testAuthEvent_error() {
   try {
-    new fireauth.AuthEvent(
-        fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP);
+    new fireauth.AuthEvent(fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP);
     fail('Auth event requires either an error or a URL response.');
-  } catch(error) {
+  } catch (error) {
     assertErrorEquals(
-        new fireauth.AuthError(fireauth.authenum.Error.INVALID_AUTH_EVENT),
-        error);
+      new fireauth.AuthError(fireauth.authenum.Error.INVALID_AUTH_EVENT),
+      error
+    );
   }
   try {
     new fireauth.AuthEvent(
-        fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP,
-        '12345678',
-        'http://www.example.com/#oauthResponse',
-        'SESSION_ID',
-        new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR));
+      fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP,
+      '12345678',
+      'http://www.example.com/#oauthResponse',
+      'SESSION_ID',
+      new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR)
+    );
     fail('Auth event cannot have a URL response and an error.');
-  } catch(error) {
+  } catch (error) {
     assertErrorEquals(
-        new fireauth.AuthError(fireauth.authenum.Error.INVALID_AUTH_EVENT),
-        error);
+      new fireauth.AuthError(fireauth.authenum.Error.INVALID_AUTH_EVENT),
+      error
+    );
   }
   try {
     new fireauth.AuthEvent(
-        fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP,
-        null,
-        'http://www.example.com/#oauthResponse');
+      fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP,
+      null,
+      'http://www.example.com/#oauthResponse'
+    );
     fail('Auth event cannot have a URL response without a session ID.');
-  } catch(error) {
+  } catch (error) {
     assertErrorEquals(
-        new fireauth.AuthError(fireauth.authenum.Error.INVALID_AUTH_EVENT),
-        error);
+      new fireauth.AuthError(fireauth.authenum.Error.INVALID_AUTH_EVENT),
+      error
+    );
   }
 }
 
-
 function testAuthEvent() {
   var unknownEvent = new fireauth.AuthEvent(
-      fireauth.AuthEvent.Type.UNKNOWN,
-      null,
-      null,
-      null,
-      new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR));
+    fireauth.AuthEvent.Type.UNKNOWN,
+    null,
+    null,
+    null,
+    new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR)
+  );
   assertEquals('unknown', unknownEvent.getUid());
 
+  assertEquals(fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP, authEvent.getType());
   assertEquals(
-      fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP,
-      authEvent.getType());
-  assertEquals(
-      'http://www.example.com/#oauthResponse', authEvent.getUrlResponse());
-  assertEquals(
-      'SESSION_ID', authEvent.getSessionId());
+    'http://www.example.com/#oauthResponse',
+    authEvent.getUrlResponse()
+  );
+  assertEquals('SESSION_ID', authEvent.getSessionId());
   assertEquals('POST_BODY', authEvent.getPostBody());
   assertNull(authEvent.getEventId());
   assertNull(authEvent.getError());
@@ -272,28 +305,29 @@ function testAuthEvent() {
   assertEquals('signInViaPopup-SESSION_ID', authEvent.getUid());
 
   assertEquals(
-      fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT,
-      authEvent2.getType());
+    fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT,
+    authEvent2.getType()
+  );
   assertEquals('12345678', authEvent2.getEventId());
   assertErrorEquals(
-      new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR),
-      authEvent2.getError());
+    new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR),
+    authEvent2.getError()
+  );
   assertTrue(authEvent2.hasError());
   assertNull(authEvent2.getPostBody());
   assertEquals('signInViaRedirect-12345678', authEvent2.getUid());
 
   assertEquals(
-      fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT,
-      authEvent3.getType());
+    fireauth.AuthEvent.Type.SIGN_IN_VIA_REDIRECT,
+    authEvent3.getType()
+  );
   assertNull(authEvent3.getEventId());
   assertNull(authEvent3.getError());
   assertFalse(authEvent3.hasError());
   assertNull(authEvent3.getPostBody());
   assertEquals('TENANT_ID', authEvent3.getTenantId());
 
-  assertEquals(
-      fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP,
-      authEvent4.getType());
+  assertEquals(fireauth.AuthEvent.Type.SIGN_IN_VIA_POPUP, authEvent4.getType());
   assertEquals('12345678', authEvent4.getEventId());
   assertNull(authEvent4.getError());
   assertFalse(authEvent4.hasError());
@@ -301,35 +335,29 @@ function testAuthEvent() {
   assertEquals('TENANT_ID', authEvent4.getTenantId());
 }
 
-
 function testAuthEvent_toPlainObject() {
-  assertObjectEquals(
-      authEventObject,
-      authEvent.toPlainObject());
-  assertObjectEquals(
-      authEventObject2,
-      authEvent2.toPlainObject());
-  assertObjectEquals(
-      authEventObject3,
-      authEvent3.toPlainObject());
-  assertObjectEquals(
-      authEventObject4,
-      authEvent4.toPlainObject());
+  assertObjectEquals(authEventObject, authEvent.toPlainObject());
+  assertObjectEquals(authEventObject2, authEvent2.toPlainObject());
+  assertObjectEquals(authEventObject3, authEvent3.toPlainObject());
+  assertObjectEquals(authEventObject4, authEvent4.toPlainObject());
 }
-
 
 function testAuthEvent_fromPlainObject() {
   assertObjectEquals(
-      authEvent,
-      fireauth.AuthEvent.fromPlainObject(authEventObject));
+    authEvent,
+    fireauth.AuthEvent.fromPlainObject(authEventObject)
+  );
   assertObjectEquals(
-      authEvent2,
-      fireauth.AuthEvent.fromPlainObject(authEventObject2));
+    authEvent2,
+    fireauth.AuthEvent.fromPlainObject(authEventObject2)
+  );
   assertObjectEquals(
-      authEvent3,
-      fireauth.AuthEvent.fromPlainObject(authEventObject3));
+    authEvent3,
+    fireauth.AuthEvent.fromPlainObject(authEventObject3)
+  );
   assertObjectEquals(
-      authEvent4,
-      fireauth.AuthEvent.fromPlainObject(authEventObject4));
+    authEvent4,
+    fireauth.AuthEvent.fromPlainObject(authEventObject4)
+  );
   assertNull(fireauth.AuthEvent.fromPlainObject({}));
 }

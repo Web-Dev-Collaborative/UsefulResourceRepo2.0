@@ -6,19 +6,20 @@
   </div>
 </template>
 <script>
-import AppFooter from '~/components/shared/Footer'
-import Navbar from '~/components/shared/Navbar'
+import AppFooter from "~/components/shared/Footer";
+import Navbar from "~/components/shared/Navbar";
 export default {
   components: {
-    Navbar, AppFooter
-  }
-}
+    Navbar,
+    AppFooter,
+  },
+};
 </script>
 
 <style>
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;

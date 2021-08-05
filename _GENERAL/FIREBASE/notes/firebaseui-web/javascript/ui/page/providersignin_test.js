@@ -17,33 +17,32 @@
  * providers.
  */
 
-goog.module('firebaseui.auth.ui.page.ProviderSignInTest');
+goog.module("firebaseui.auth.ui.page.ProviderSignInTest");
 goog.setTestOnly();
 
-const IdpsTestHelper =
-    goog.require('firebaseui.auth.ui.element.IdpsTestHelper');
-const InfoBarTestHelper =
-    goog.require('firebaseui.auth.ui.element.InfoBarTestHelper');
-const MockClock = goog.require('goog.testing.MockClock');
-const PageTestHelper = goog.require('firebaseui.auth.ui.page.PageTestHelper');
-const ProviderSignIn = goog.require('firebaseui.auth.ui.page.ProviderSignIn');
-const TagName = goog.require('goog.dom.TagName');
-const TosPpTestHelper =
-    goog.require('firebaseui.auth.ui.element.TosPpTestHelper');
-const dom = goog.require('goog.dom');
-const testSuite = goog.require('goog.testing.testSuite');
+const IdpsTestHelper = goog.require(
+  "firebaseui.auth.ui.element.IdpsTestHelper"
+);
+const InfoBarTestHelper = goog.require(
+  "firebaseui.auth.ui.element.InfoBarTestHelper"
+);
+const MockClock = goog.require("goog.testing.MockClock");
+const PageTestHelper = goog.require("firebaseui.auth.ui.page.PageTestHelper");
+const ProviderSignIn = goog.require("firebaseui.auth.ui.page.ProviderSignIn");
+const TagName = goog.require("goog.dom.TagName");
+const TosPpTestHelper = goog.require(
+  "firebaseui.auth.ui.element.TosPpTestHelper"
+);
+const dom = goog.require("goog.dom");
+const testSuite = goog.require("goog.testing.testSuite");
 
 let mockClock;
 let root;
 let component;
-const idpsTestHelper =
-    new IdpsTestHelper().registerTests();
-const infoBarTestHelper =
-    new InfoBarTestHelper().registerTests();
-const tosPpTestHelper =
-    new TosPpTestHelper().registerTests();
-const pageTestHelper =
-    new PageTestHelper().registerTests();
+const idpsTestHelper = new IdpsTestHelper().registerTests();
+const infoBarTestHelper = new InfoBarTestHelper().registerTests();
+const tosPpTestHelper = new TosPpTestHelper().registerTests();
+const pageTestHelper = new PageTestHelper().registerTests();
 
 testSuite({
   setUp() {
@@ -53,21 +52,18 @@ testSuite({
     root = dom.createDom(TagName.DIV);
     document.body.appendChild(root);
     component = new ProviderSignIn(
-        goog.bind(
-            IdpsTestHelper.prototype.onClick,
-            idpsTestHelper),
-        [{
-          providerId: 'google.com',
+      goog.bind(IdpsTestHelper.prototype.onClick, idpsTestHelper),
+      [
+        {
+          providerId: "google.com",
         },
         {
-          providerId: 'password',
-        }],
-        goog.bind(
-            TosPpTestHelper.prototype.onTosLinkClick,
-            tosPpTestHelper),
-        goog.bind(
-            TosPpTestHelper.prototype.onPpLinkClick,
-            tosPpTestHelper));
+          providerId: "password",
+        },
+      ],
+      goog.bind(TosPpTestHelper.prototype.onTosLinkClick, tosPpTestHelper),
+      goog.bind(TosPpTestHelper.prototype.onPpLinkClick, tosPpTestHelper)
+    );
     component.render(root);
     idpsTestHelper.setComponent(component);
     infoBarTestHelper.setComponent(component);
@@ -92,20 +88,21 @@ testSuite({
     component.dispose();
     // Initialize component.
     component = new ProviderSignIn(
-        goog.bind(
-            IdpsTestHelper.prototype.onClick,
-            idpsTestHelper),
-        [{
-          providerId: 'facebook.com',
+      goog.bind(IdpsTestHelper.prototype.onClick, idpsTestHelper),
+      [
+        {
+          providerId: "facebook.com",
         },
         {
-          providerId: 'password',
-        }]);
+          providerId: "password",
+        },
+      ]
+    );
     // Run all page helper tests.
     pageTestHelper.runTests(component, root);
   },
 
   testProviderSignIn_getPageId() {
-    assertEquals('providerSignIn', component.getPageId());
+    assertEquals("providerSignIn", component.getPageId());
   },
 });

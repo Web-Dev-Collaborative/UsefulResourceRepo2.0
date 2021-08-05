@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-html, body {
-  font-family: 'Roboto', 'Helvetica', sans-serif;
+html,
+body {
+  font-family: "Roboto", "Helvetica", sans-serif;
   background-color: #f5f5f5;
 }
 a {
@@ -38,11 +39,14 @@ li a {
 .mdl-layout__header-row {
   padding: 0;
 }
-.quickstart-user-details-container, .user-details-container {
+.quickstart-user-details-container,
+.user-details-container {
   margin-top: 20px;
   line-height: 25px;
 }
-#quickstart-sign-in-status, #sign-in-status, #quickstart-tenant-id {
+#quickstart-sign-in-status,
+#sign-in-status,
+#quickstart-tenant-id {
   font-weight: bold;
 }
 pre {
@@ -54,7 +58,7 @@ code {
   word-break: break-all;
 }
 h3 {
-  background: url('firebase-logo.png') no-repeat;
+  background: url("firebase-logo.png") no-repeat;
   background-size: 40px;
   padding-left: 50px;
   color: white;
@@ -69,13 +73,14 @@ h3 {
   padding-left: 10px;
 }
 #verification-code-form {
-  display:none;
+  display: none;
 }
 #recaptcha-container {
   margin-top: 10px;
   margin-bottom: 20px;
 }
-#verify-code-button, #cancel-verify-code-button {
+#verify-code-button,
+#cancel-verify-code-button {
   margin-left: 20px;
 }
 #sign-out-button {
@@ -86,9 +91,9 @@ h3 {
 }
 .recaptcha-container {
   transform: scale(0.9);
-  transform-origin:0 0;
-  -webkit-transform:scale(0.9);
-  -webkit-transform-origin:0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scale(0.9);
+  -webkit-transform-origin: 0 0;
 }
 .mfa-info-list-item {
   margin-bottom: 0px;
@@ -102,18 +107,15 @@ h3 {
   width: 200px;
 }
 .mdl-selectfield__select {
-  background:
-    linear-gradient(45deg, transparent 50%, rgba(0,0,0, 0.26) 50%),
-    linear-gradient(135deg, rgba(0,0,0, 0.26) 50%, transparent 50%),
+  background: linear-gradient(45deg, transparent 50%, rgba(0, 0, 0, 0.26) 50%),
+    linear-gradient(135deg, rgba(0, 0, 0, 0.26) 50%, transparent 50%),
     linear-gradient(to right, transparent, transparent);
   background-color: transparent;
-  background-position:
-    calc(100% - 10px) calc(1em - 4px),
-    calc(100% - 5px) calc(1em - 4px),
-    100% 0;
+  background-position: calc(100% - 10px) calc(1em - 4px),
+    calc(100% - 5px) calc(1em - 4px), 100% 0;
   background-repeat: no-repeat;
   background-size: 5px 5px, 5px 5px;
-  border-color: rgba(0,0,0, 0.12);
+  border-color: rgba(0, 0, 0, 0.12);
   border-radius: 0;
   border-style: solid;
   border-width: 0 0 1px 0;
@@ -126,13 +128,13 @@ h3 {
   padding-bottom: 4px;
   padding-top: 4px;
   width: 100%;
-  -moz-appearance:none;
+  -moz-appearance: none;
   -moz-box-sizing: border-box;
-  -webkit-appearance:none;
+  -webkit-appearance: none;
   -webkit-box-sizing: border-box;
 }
 .mdl-selectfield__label {
-  color: rgba(0,0,0, 0.26);
+  color: rgba(0, 0, 0, 0.26);
   display: block;
   font-size: 16px;
   left: 0;
@@ -147,19 +149,29 @@ h3 {
   width: 100%;
 }
 .mdl-selectfield__label.is-active {
-  color: rgb(255,152,0);
+  color: rgb(255, 152, 0);
   font-size: 12px;
   top: -40px;
 }
-.blinking{
+.blinking {
   animation: blinkingText 1.2s infinite;
 }
 @keyframes blinkingText {
-  0% { color: #ff0000; }
-  49% { color: transparent; }
-  50% { color: transparent; }
-  99% { color: #ff0000; }
-  100% { color: #ff0000; }
+  0% {
+    color: #ff0000;
+  }
+  49% {
+    color: transparent;
+  }
+  50% {
+    color: transparent;
+  }
+  99% {
+    color: #ff0000;
+  }
+  100% {
+    color: #ff0000;
+  }
 }
 #quickstart-tenant-card {
   min-height: 500px;

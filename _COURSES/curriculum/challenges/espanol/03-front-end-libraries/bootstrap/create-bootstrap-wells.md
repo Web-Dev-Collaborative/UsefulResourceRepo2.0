@@ -17,13 +17,13 @@ Incrusta un elemento `div` con la clase `well` en cada uno de los elementos `col
 Debes añadir un elemento `div` con la clase `well` dentro de cada uno de los elementos `div` con la clase `col-xs-6`
 
 ```js
-assert($('div.col-xs-6').not(':has(>div.well)').length < 1);
+assert($("div.col-xs-6").not(":has(>div.well)").length < 1);
 ```
 
 Ambos elementos `div` con la clase `col-xs-6` deben estar incrustados en el elemento `div` con la clase `row`.
 
 ```js
-assert($('div.row > div.col-xs-6').length > 1);
+assert($("div.row > div.col-xs-6").length > 1);
 ```
 
 Todos los elementos `div` deben tener etiquetas de cierre.
@@ -44,12 +44,8 @@ assert(
 <div class="container-fluid">
   <h3 class="text-primary text-center">jQuery Playground</h3>
   <div class="row">
-    <div class="col-xs-6">
-
-    </div>
-    <div class="col-xs-6">
-
-    </div>
+    <div class="col-xs-6"></div>
+    <div class="col-xs-6"></div>
   </div>
 </div>
 ```

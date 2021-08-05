@@ -24,15 +24,15 @@ Write a function that takes an array of objects representing the items available
 assert.equal(
   knapContinuous(
     [
-      { weight: 3.8, value: 36, name: 'beef' },
-      { weight: 5.4, value: 43, name: 'pork' },
-      { weight: 3.6, value: 90, name: 'ham' },
-      { weight: 2.4, value: 45, name: 'greaves' },
-      { weight: 4.0, value: 30, name: 'flitch' },
-      { weight: 2.5, value: 56, name: 'brawn' },
-      { weight: 3.7, value: 67, name: 'welt' },
-      { weight: 3.0, value: 95, name: 'salami' },
-      { weight: 5.9, value: 98, name: 'sausage' }
+      { weight: 3.8, value: 36, name: "beef" },
+      { weight: 5.4, value: 43, name: "pork" },
+      { weight: 3.6, value: 90, name: "ham" },
+      { weight: 2.4, value: 45, name: "greaves" },
+      { weight: 4.0, value: 30, name: "flitch" },
+      { weight: 2.5, value: 56, name: "brawn" },
+      { weight: 3.7, value: 67, name: "welt" },
+      { weight: 3.0, value: 95, name: "salami" },
+      { weight: 5.9, value: 98, name: "sausage" },
     ],
     10
   ),
@@ -46,15 +46,15 @@ assert.equal(
 assert.equal(
   knapContinuous(
     [
-      { weight: 3.8, value: 36, name: 'beef' },
-      { weight: 5.4, value: 43, name: 'pork' },
-      { weight: 3.6, value: 90, name: 'ham' },
-      { weight: 2.4, value: 45, name: 'greaves' },
-      { weight: 4.0, value: 30, name: 'flitch' },
-      { weight: 2.5, value: 56, name: 'brawn' },
-      { weight: 3.7, value: 67, name: 'welt' },
-      { weight: 3.0, value: 95, name: 'salami' },
-      { weight: 5.9, value: 98, name: 'sausage' }
+      { weight: 3.8, value: 36, name: "beef" },
+      { weight: 5.4, value: 43, name: "pork" },
+      { weight: 3.6, value: 90, name: "ham" },
+      { weight: 2.4, value: 45, name: "greaves" },
+      { weight: 4.0, value: 30, name: "flitch" },
+      { weight: 2.5, value: 56, name: "brawn" },
+      { weight: 3.7, value: 67, name: "welt" },
+      { weight: 3.0, value: 95, name: "salami" },
+      { weight: 5.9, value: 98, name: "sausage" },
     ],
     12
   ),
@@ -68,15 +68,15 @@ assert.equal(
 assert.equal(
   knapContinuous(
     [
-      { weight: 3.8, value: 36, name: 'beef' },
-      { weight: 5.4, value: 43, name: 'pork' },
-      { weight: 3.6, value: 90, name: 'ham' },
-      { weight: 2.4, value: 45, name: 'greaves' },
-      { weight: 4.0, value: 30, name: 'flitch' },
-      { weight: 2.5, value: 56, name: 'brawn' },
-      { weight: 3.7, value: 67, name: 'welt' },
-      { weight: 3.0, value: 95, name: 'salami' },
-      { weight: 5.9, value: 98, name: 'sausage' }
+      { weight: 3.8, value: 36, name: "beef" },
+      { weight: 5.4, value: 43, name: "pork" },
+      { weight: 3.6, value: 90, name: "ham" },
+      { weight: 2.4, value: 45, name: "greaves" },
+      { weight: 4.0, value: 30, name: "flitch" },
+      { weight: 2.5, value: 56, name: "brawn" },
+      { weight: 3.7, value: 67, name: "welt" },
+      { weight: 3.0, value: 95, name: "salami" },
+      { weight: 5.9, value: 98, name: "sausage" },
     ],
     15
   ),
@@ -90,15 +90,15 @@ assert.equal(
 assert.equal(
   knapContinuous(
     [
-      { weight: 3.8, value: 36, name: 'beef' },
-      { weight: 5.4, value: 43, name: 'pork' },
-      { weight: 3.6, value: 90, name: 'ham' },
-      { weight: 2.4, value: 45, name: 'greaves' },
-      { weight: 4.0, value: 30, name: 'flitch' },
-      { weight: 2.5, value: 56, name: 'brawn' },
-      { weight: 3.7, value: 67, name: 'welt' },
-      { weight: 3.0, value: 95, name: 'salami' },
-      { weight: 5.9, value: 98, name: 'sausage' }
+      { weight: 3.8, value: 36, name: "beef" },
+      { weight: 5.4, value: 43, name: "pork" },
+      { weight: 3.6, value: 90, name: "ham" },
+      { weight: 2.4, value: 45, name: "greaves" },
+      { weight: 4.0, value: 30, name: "flitch" },
+      { weight: 2.5, value: 56, name: "brawn" },
+      { weight: 3.7, value: 67, name: "welt" },
+      { weight: 3.0, value: 95, name: "salami" },
+      { weight: 5.9, value: 98, name: "sausage" },
     ],
     22
   ),
@@ -112,15 +112,15 @@ assert.equal(
 assert.equal(
   knapContinuous(
     [
-      { weight: 3.8, value: 36, name: 'beef' },
-      { weight: 5.4, value: 43, name: 'pork' },
-      { weight: 3.6, value: 90, name: 'ham' },
-      { weight: 2.4, value: 45, name: 'greaves' },
-      { weight: 4.0, value: 30, name: 'flitch' },
-      { weight: 2.5, value: 56, name: 'brawn' },
-      { weight: 3.7, value: 67, name: 'welt' },
-      { weight: 3.0, value: 95, name: 'salami' },
-      { weight: 5.9, value: 98, name: 'sausage' }
+      { weight: 3.8, value: 36, name: "beef" },
+      { weight: 5.4, value: 43, name: "pork" },
+      { weight: 3.6, value: 90, name: "ham" },
+      { weight: 2.4, value: 45, name: "greaves" },
+      { weight: 4.0, value: 30, name: "flitch" },
+      { weight: 2.5, value: 56, name: "brawn" },
+      { weight: 3.7, value: 67, name: "welt" },
+      { weight: 3.0, value: 95, name: "salami" },
+      { weight: 5.9, value: 98, name: "sausage" },
     ],
     24
   ),
@@ -133,9 +133,7 @@ assert.equal(
 ## --seed-contents--
 
 ```js
-function knapContinuous(items, maxweight) {
-
-}
+function knapContinuous(items, maxweight) {}
 ```
 
 # --solutions--
@@ -149,7 +147,7 @@ function knapContinuous(items, maxweight) {
   }
   items = items.map(({ value, weight }) => ({
     unitVal: value / weight,
-    weight
+    weight,
   }));
   items.sort(item_cmp);
 

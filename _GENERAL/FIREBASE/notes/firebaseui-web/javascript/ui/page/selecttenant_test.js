@@ -16,27 +16,28 @@
  * @fileoverview Tests for the page displaying a list of tenants to select from.
  */
 
-goog.module('firebaseui.auth.ui.page.SelectTenantTest');
+goog.module("firebaseui.auth.ui.page.SelectTenantTest");
 goog.setTestOnly();
 
-const InfoBarTestHelper =
-    goog.require('firebaseui.auth.ui.element.InfoBarTestHelper');
-const KeyCodes = goog.require('goog.events.KeyCodes');
-const MockClock = goog.require('goog.testing.MockClock');
-const PageTestHelper = goog.require('firebaseui.auth.ui.page.PageTestHelper');
-const SelectTenant = goog.require('firebaseui.auth.ui.page.SelectTenant');
-const TagName = goog.require('goog.dom.TagName');
-const TosPpTestHelper =
-    goog.require('firebaseui.auth.ui.element.TosPpTestHelper');
-const dom = goog.require('goog.dom');
-const events = goog.require('goog.testing.events');
-const testSuite = goog.require('goog.testing.testSuite');
+const InfoBarTestHelper = goog.require(
+  "firebaseui.auth.ui.element.InfoBarTestHelper"
+);
+const KeyCodes = goog.require("goog.events.KeyCodes");
+const MockClock = goog.require("goog.testing.MockClock");
+const PageTestHelper = goog.require("firebaseui.auth.ui.page.PageTestHelper");
+const SelectTenant = goog.require("firebaseui.auth.ui.page.SelectTenant");
+const TagName = goog.require("goog.dom.TagName");
+const TosPpTestHelper = goog.require(
+  "firebaseui.auth.ui.element.TosPpTestHelper"
+);
+const dom = goog.require("goog.dom");
+const events = goog.require("goog.testing.events");
+const testSuite = goog.require("goog.testing.testSuite");
 
 let mockClock;
 let root;
 let component;
-const infoBarTestHelper =
-    new InfoBarTestHelper().registerTests();
+const infoBarTestHelper = new InfoBarTestHelper().registerTests();
 const tosPpTestHelper = new TosPpTestHelper().registerTests();
 const pageTestHelper = new PageTestHelper().registerTests();
 
@@ -58,25 +59,24 @@ testSuite({
     };
 
     component = new SelectTenant(
-        onTenantSelect,
-        [{
-            tenantId: 'TENANT_ID',
-            displayName: 'Contractor A',
-            buttonColor: '#FFB6C1',
-            iconUrl: 'icon-url',
-          },
-          {
-            tenantId: null,
-            displayName: 'ACME',
-            buttonColor: '#53B2BF',
-            iconUrl: 'icon-url',
-          }],
-        goog.bind(
-            TosPpTestHelper.prototype.onTosLinkClick,
-            tosPpTestHelper),
-        goog.bind(
-            TosPpTestHelper.prototype.onPpLinkClick,
-            tosPpTestHelper));
+      onTenantSelect,
+      [
+        {
+          tenantId: "TENANT_ID",
+          displayName: "Contractor A",
+          buttonColor: "#FFB6C1",
+          iconUrl: "icon-url",
+        },
+        {
+          tenantId: null,
+          displayName: "ACME",
+          buttonColor: "#53B2BF",
+          iconUrl: "icon-url",
+        },
+      ],
+      goog.bind(TosPpTestHelper.prototype.onTosLinkClick, tosPpTestHelper),
+      goog.bind(TosPpTestHelper.prototype.onPpLinkClick, tosPpTestHelper)
+    );
     component.render(root);
     infoBarTestHelper.setComponent(component);
     tosPpTestHelper.setComponent(component);
@@ -96,26 +96,29 @@ testSuite({
   testSelectTenant_onClick_tenant() {
     // Test that the correct tenant ID is passed to the callback on button
     // clicked.
-    const tenantButtons =
-        component.getElementsByClass('firebaseui-id-tenant-selection-button');
+    const tenantButtons = component.getElementsByClass(
+      "firebaseui-id-tenant-selection-button"
+    );
     events.fireClickSequence(tenantButtons[0]);
-    assertEquals('TENANT_ID', selectedTenant);
+    assertEquals("TENANT_ID", selectedTenant);
   },
 
   testSelectTenant_onEnter_tenant() {
     // Test that the correct tenant ID is passed to the callback on enter
     // pressed.
-    const tenantButtons =
-        component.getElementsByClass('firebaseui-id-tenant-selection-button');
+    const tenantButtons = component.getElementsByClass(
+      "firebaseui-id-tenant-selection-button"
+    );
     events.fireKeySequence(tenantButtons[0], KeyCodes.ENTER);
-    assertEquals('TENANT_ID', selectedTenant);
+    assertEquals("TENANT_ID", selectedTenant);
   },
 
   testSelectTenant_onClick_topLevelProject() {
     // Test that null tenant ID is passed to the callback on button clicked
     // for top-level project.
-    const tenantButtons =
-        component.getElementsByClass('firebaseui-id-tenant-selection-button');
+    const tenantButtons = component.getElementsByClass(
+      "firebaseui-id-tenant-selection-button"
+    );
     events.fireClickSequence(tenantButtons[1]);
     assertNull(selectedTenant);
   },
@@ -123,8 +126,9 @@ testSuite({
   testSelectTenant_onEnter_topLevelProject() {
     // Test that null tenant ID is passed to the callback on enter pressed
     // for top-level project.
-    const tenantButtons =
-        component.getElementsByClass('firebaseui-id-tenant-selection-button');
+    const tenantButtons = component.getElementsByClass(
+      "firebaseui-id-tenant-selection-button"
+    );
     events.fireKeySequence(tenantButtons[1], KeyCodes.ENTER);
     assertNull(selectedTenant);
   },
@@ -133,30 +137,29 @@ testSuite({
     component.dispose();
     // Initialize component.
     component = new SelectTenant(
-        onTenantSelect,
-        [{
-            tenantId: 'TENANT_ID',
-            displayName: 'Contractor A',
-            buttonColor: '#FFB6C1',
-            iconUrl: 'icon-url',
-          },
-          {
-            tenantId: null,
-            displayName: 'ACME',
-            buttonColor: '#53B2BF',
-            iconUrl: 'icon-url',
-          }],
-        goog.bind(
-            TosPpTestHelper.prototype.onTosLinkClick,
-            tosPpTestHelper),
-        goog.bind(
-            TosPpTestHelper.prototype.onPpLinkClick,
-            tosPpTestHelper));
+      onTenantSelect,
+      [
+        {
+          tenantId: "TENANT_ID",
+          displayName: "Contractor A",
+          buttonColor: "#FFB6C1",
+          iconUrl: "icon-url",
+        },
+        {
+          tenantId: null,
+          displayName: "ACME",
+          buttonColor: "#53B2BF",
+          iconUrl: "icon-url",
+        },
+      ],
+      goog.bind(TosPpTestHelper.prototype.onTosLinkClick, tosPpTestHelper),
+      goog.bind(TosPpTestHelper.prototype.onPpLinkClick, tosPpTestHelper)
+    );
     // Run all page helper tests.
     pageTestHelper.runTests(component, root);
   },
 
   testSelectTenant_getPageId() {
-    assertEquals('selectTenant', component.getPageId());
+    assertEquals("selectTenant", component.getPageId());
   },
 });

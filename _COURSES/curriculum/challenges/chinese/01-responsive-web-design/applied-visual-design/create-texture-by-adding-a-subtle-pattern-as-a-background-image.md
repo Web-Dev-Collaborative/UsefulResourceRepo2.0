@@ -2,7 +2,7 @@
 id: 587d78a5367417b2b2512ad8
 title: 通过添加细微图案作为背景图像来创建纹理
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cQdwJC8'
+videoUrl: "https://scrimba.com/c/cQdwJC8"
 forumTopicId: 301052
 dashedName: create-texture-by-adding-a-subtle-pattern-as-a-background-image
 ---
@@ -34,7 +34,6 @@ assert(
 ```html
 <style>
   body {
-
   }
 </style>
 ```

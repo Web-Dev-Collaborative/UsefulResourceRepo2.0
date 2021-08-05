@@ -1,4 +1,4 @@
 {
-  "firebase":"random",
-  "rules":"rules.json"
+  "firebase": "random",
+  "rules": "rules.json"
 }

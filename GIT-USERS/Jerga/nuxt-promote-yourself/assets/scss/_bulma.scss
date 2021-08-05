@@ -1,5 +1,5 @@
-@import '~bulma/sass/utilities/initial-variables';
-@import '~bulma/sass/utilities/functions';
+@import "~bulma/sass/utilities/initial-variables";
+@import "~bulma/sass/utilities/functions";
 
 $primary: #4bacff;
 $danger: #dc5222;
@@ -7,4 +7,4 @@ $navbar-height: 5rem;
 $navbar-item-img-max-height: 3rem;
 
 // Import only what you need from Bulma
-@import "~bulma"
+@import "~bulma";

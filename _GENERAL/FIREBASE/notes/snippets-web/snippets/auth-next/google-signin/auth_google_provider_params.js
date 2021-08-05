@@ -5,6 +5,6 @@
 
 // [START auth_google_provider_params_modular]
 provider.setCustomParameters({
-  'login_hint': 'user@example.com'
+  login_hint: "user@example.com",
 });
 // [END auth_google_provider_params_modular]

@@ -1,6 +1,6 @@
 ---
 id: 587d7b84367417b2b2512b36
-title: 'Captura paréntesis, corchetes, llaves y comillas sin cerrar'
+title: "Captura paréntesis, corchetes, llaves y comillas sin cerrar"
 challengeType: 1
 forumTopicId: 301190
 dashedName: catch-unclosed-parentheses-brackets-braces-and-quotes
@@ -44,6 +44,6 @@ console.log(`Sum of array values is: ${arraySum}`);
 
 ```js
 let myArray = [1, 2, 3];
-let arraySum = myArray.reduce((previous, current) =>  previous + current);
+let arraySum = myArray.reduce((previous, current) => previous + current);
 console.log(`Sum of array values is: ${arraySum}`);
 ```

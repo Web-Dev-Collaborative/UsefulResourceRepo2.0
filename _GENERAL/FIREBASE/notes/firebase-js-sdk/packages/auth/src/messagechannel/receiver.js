@@ -27,7 +27,6 @@ goog.require('goog.Promise');
 goog.require('goog.array');
 goog.require('goog.object');
 
-
 /**
  * Initializes a channel to receive specific messages from a specified event
  * target.
@@ -37,7 +36,7 @@ goog.require('goog.object');
  * @param {!EventTarget} eventTarget The event target to listen to.
  * @constructor
  */
-fireauth.messagechannel.Receiver = function(eventTarget) {
+fireauth.messagechannel.Receiver = function (eventTarget) {
   /**
    * @const @private {!EventTarget} The messageChannel event target.
    */
@@ -56,24 +55,22 @@ fireauth.messagechannel.Receiver = function(eventTarget) {
   this.messageEventHandler_ = goog.bind(this.handleEvent_, this);
 };
 
-
 /**
  * @param {!EventTarget} eventTarget The event target to check for.
  * @return {boolean} Whether the receiver is listening to the specified event
  *     target.
  */
-fireauth.messagechannel.Receiver.prototype.isListeningTo =
-    function(eventTarget) {
+fireauth.messagechannel.Receiver.prototype.isListeningTo = function (
+  eventTarget
+) {
   return this.eventTarget_ == eventTarget;
 };
-
 
 /**
  * @const @private {!Array<!fireauth.messagechannel.Receiver>} The list of all
  *     created `fireauth.messagechannel.Receiver` instances.
  */
 fireauth.messagechannel.Receiver.receivers_ = [];
-
 
 /**
  * Return a receiver instance for the specified event target. This is needed
@@ -83,25 +80,25 @@ fireauth.messagechannel.Receiver.receivers_ = [];
  * @return {!fireauth.messagechannel.Receiver} The receiver instance for the
  *     specified event target.
  */
-fireauth.messagechannel.Receiver.getInstance = function(eventTarget) {
+fireauth.messagechannel.Receiver.getInstance = function (eventTarget) {
   // The results are stored in an array since objects can't be keys for other
   // objects. In addition, setting a unique property on an event target as a
   // hash map key may not be allowed due to CORS restrictions.
   var instance;
   goog.array.forEach(
-      fireauth.messagechannel.Receiver.receivers_,
-      function(receiver) {
-        if (receiver.isListeningTo(eventTarget)) {
-          instance = receiver;
-        }
-      });
+    fireauth.messagechannel.Receiver.receivers_,
+    function (receiver) {
+      if (receiver.isListeningTo(eventTarget)) {
+        instance = receiver;
+      }
+    }
+  );
   if (!instance) {
     instance = new fireauth.messagechannel.Receiver(eventTarget);
     fireauth.messagechannel.Receiver.receivers_.push(instance);
   }
   return instance;
 };
-
 
 /**
  * Handles a PostMessage event based on the following protocol:
@@ -118,7 +115,7 @@ fireauth.messagechannel.Receiver.getInstance = function(eventTarget) {
  * @param {!Event} event The PostMessage event to handle.
  * @private
  */
-fireauth.messagechannel.Receiver.prototype.handleEvent_ = function(event) {
+fireauth.messagechannel.Receiver.prototype.handleEvent_ = function (event) {
   // Respond to sender first with ack reply. This will let the client
   // know that the service worker can handle this event.
   var eventType = event.data['eventType'];
@@ -133,50 +130,50 @@ fireauth.messagechannel.Receiver.prototype.handleEvent_ = function(event) {
       'response': null
     });
     var promises = [];
-    goog.array.forEach(handlers, function(handler) {
+    goog.array.forEach(handlers, function (handler) {
       // Wrap in promise in case the handler doesn't return a promise.
-      promises.push(goog.Promise.resolve().then(function() {
-        return handler(event.origin, event.data['data']);
-      }));
+      promises.push(
+        goog.Promise.resolve().then(function () {
+          return handler(event.origin, event.data['data']);
+        })
+      );
     });
     // allSettled is more flexible as it executes all the promises passed and
     // returns whether they succeeded or failed.
-    goog.Promise.allSettled(promises)
-        .then(function(result) {
-          // allResponse has the format:
-          // !Array<!{fulfilled: boolean, value: (*|undefined),
-          //          reason: (*|undefined)}>
-          // Respond to sender with ack reply.
-          // De-obfuscate the allSettled result.
-          var allResponses = [];
-          goog.array.forEach(result, function(item) {
-            allResponses.push({
-              'fulfilled': item.fulfilled,
-              'value': item.value,
-              // Error cannot be clone in postMessage.
-              'reason': item.reason ? item.reason.message : undefined
-            });
-          });
-          // Remove undefined fields.
-          goog.array.forEach(allResponses, function(item) {
-            for (var key in item) {
-              if (typeof item[key] === 'undefined') {
-                delete item[key];
-              }
-            }
-          });
-          event.ports[0].postMessage({
-            'status': fireauth.messagechannel.Status.DONE,
-            'eventId': eventId,
-            'eventType': eventType,
-            'response': allResponses
-          });
+    goog.Promise.allSettled(promises).then(function (result) {
+      // allResponse has the format:
+      // !Array<!{fulfilled: boolean, value: (*|undefined),
+      //          reason: (*|undefined)}>
+      // Respond to sender with ack reply.
+      // De-obfuscate the allSettled result.
+      var allResponses = [];
+      goog.array.forEach(result, function (item) {
+        allResponses.push({
+          'fulfilled': item.fulfilled,
+          'value': item.value,
+          // Error cannot be clone in postMessage.
+          'reason': item.reason ? item.reason.message : undefined
         });
+      });
+      // Remove undefined fields.
+      goog.array.forEach(allResponses, function (item) {
+        for (var key in item) {
+          if (typeof item[key] === 'undefined') {
+            delete item[key];
+          }
+        }
+      });
+      event.ports[0].postMessage({
+        'status': fireauth.messagechannel.Status.DONE,
+        'eventId': eventId,
+        'eventType': eventType,
+        'response': allResponses
+      });
+    });
   }
   // Let unsupported events time out, as there could be external receivers
   // that can handle them.
 };
-
 
 /**
  * Subscribes to events of the specified type.
@@ -184,8 +181,10 @@ fireauth.messagechannel.Receiver.prototype.handleEvent_ = function(event) {
  * @param {function(string, *):!goog.Promise<?>|void} handler The async callback
  *     function to run when the event is triggered.
  */
-fireauth.messagechannel.Receiver.prototype.subscribe =
-    function(eventType, handler) {
+fireauth.messagechannel.Receiver.prototype.subscribe = function (
+  eventType,
+  handler
+) {
   if (goog.object.isEmpty(this.eventHandlers_)) {
     this.eventTarget_.addEventListener('message', this.messageEventHandler_);
   }
@@ -195,7 +194,6 @@ fireauth.messagechannel.Receiver.prototype.subscribe =
   this.eventHandlers_[eventType].push(handler);
 };
 
-
 /**
  * Unsubscribes the specified handler from the specified event. If no handler
  * is specified, all handlers are unsubscribed.
@@ -204,10 +202,12 @@ fireauth.messagechannel.Receiver.prototype.subscribe =
  *     callback function to unsubscribe from the specified event type. If none
  *     is specified, all handlers are unsubscribed.
  */
-fireauth.messagechannel.Receiver.prototype.unsubscribe =
-    function(eventType, opt_handler) {
+fireauth.messagechannel.Receiver.prototype.unsubscribe = function (
+  eventType,
+  opt_handler
+) {
   if (typeof this.eventHandlers_[eventType] !== 'undefined' && opt_handler) {
-    goog.array.removeAllIf(this.eventHandlers_[eventType], function(ele) {
+    goog.array.removeAllIf(this.eventHandlers_[eventType], function (ele) {
       return ele == opt_handler;
     });
     if (this.eventHandlers_[eventType].length == 0) {

@@ -2,7 +2,7 @@
 id: bad87fee1348bd9bedf08813
 title: Add Borders Around Your Elements
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c2MvnHZ'
+videoUrl: "https://scrimba.com/c/c2MvnHZ"
 forumTopicId: 16630
 dashedName: add-borders-around-your-elements
 ---
@@ -30,7 +30,7 @@ Create a class called `thick-green-border`. This class should add a 10px, solid,
 Remember that you can apply multiple classes to an element using its `class` attribute, by separating each class name with a space. For example:
 
 ```html
-<img class="class1 class2">
+<img class="class1 class2" />
 ```
 
 # --hints--
@@ -38,35 +38,35 @@ Remember that you can apply multiple classes to an element using its `class` att
 Your `img` element should have the class `smaller-image`.
 
 ```js
-assert($('img').hasClass('smaller-image'));
+assert($("img").hasClass("smaller-image"));
 ```
 
 Your `img` element should have the class `thick-green-border`.
 
 ```js
-assert($('img').hasClass('thick-green-border'));
+assert($("img").hasClass("thick-green-border"));
 ```
 
 Your image should have a border width of `10px`.
 
 ```js
 assert(
-  $('img').hasClass('thick-green-border') &&
-    parseInt($('img').css('border-top-width'), 10) >= 8 &&
-    parseInt($('img').css('border-top-width'), 10) <= 12
+  $("img").hasClass("thick-green-border") &&
+    parseInt($("img").css("border-top-width"), 10) >= 8 &&
+    parseInt($("img").css("border-top-width"), 10) <= 12
 );
 ```
 
 Your image should have a border style of `solid`.
 
 ```js
-assert($('img').css('border-right-style') === 'solid');
+assert($("img").css("border-right-style") === "solid");
 ```
 
 The border around your `img` element should be green.
 
 ```js
-assert($('img').css('border-left-color') === 'rgb(0, 128, 0)');
+assert($("img").css("border-left-color") === "rgb(0, 128, 0)");
 ```
 
 # --seed--
@@ -74,7 +74,11 @@ assert($('img').css('border-left-color') === 'rgb(0, 128, 0)');
 ## --seed-contents--
 
 ```html
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link
+  href="https://fonts.googleapis.com/css?family=Lobster"
+  rel="stylesheet"
+  type="text/css"
+/>
 <style>
   .red-text {
     color: red;
@@ -98,7 +102,12 @@ assert($('img').css('border-left-color') === 'rgb(0, 128, 0)');
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img class="smaller-image" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      class="smaller-image"
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -116,12 +125,12 @@ assert($('img').css('border-left-color') === 'rgb(0, 128, 0)');
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>
@@ -130,7 +139,11 @@ assert($('img').css('border-left-color') === 'rgb(0, 128, 0)');
 # --solutions--
 
 ```html
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link
+  href="https://fonts.googleapis.com/css?family=Lobster"
+  rel="stylesheet"
+  type="text/css"
+/>
 <style>
   .red-text {
     color: red;
@@ -160,7 +173,12 @@ assert($('img').css('border-left-color') === 'rgb(0, 128, 0)');
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img class="smaller-image thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      class="smaller-image thick-green-border"
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -178,12 +196,12 @@ assert($('img').css('border-left-color') === 'rgb(0, 128, 0)');
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>

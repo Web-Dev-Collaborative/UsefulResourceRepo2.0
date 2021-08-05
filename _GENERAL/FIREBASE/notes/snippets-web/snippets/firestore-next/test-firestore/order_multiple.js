@@ -4,7 +4,7 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START order_multiple_modular]
-import { query, orderBy } from "firebase/firestore";  
+import { query, orderBy } from "firebase/firestore";
 
 const q = query(citiesRef, orderBy("state"), orderBy("population", "desc"));
 // [END order_multiple_modular]

@@ -13,10 +13,10 @@ Come hai visto, il comportamento è condiviso attraverso l'ereditarietà. Tuttav
 Per gli oggetti non correlati, è meglio utilizzare i <dfn>mixin</dfn>. Un mixin permette ad altri oggetti di utilizzare una raccolta di funzioni.
 
 ```js
-let flyMixin = function(obj) {
-  obj.fly = function() {
+let flyMixin = function (obj) {
+  obj.fly = function () {
     console.log("Flying, wooosh!");
-  }
+  };
 };
 ```
 
@@ -25,12 +25,12 @@ let flyMixin = function(obj) {
 ```js
 let bird = {
   name: "Donald",
-  numLegs: 2
+  numLegs: 2,
 };
 
 let plane = {
   model: "777",
-  numPassengers: 524
+  numPassengers: 524,
 };
 
 flyMixin(bird);
@@ -57,19 +57,19 @@ Crea un mixin chiamato `glideMixin` che definisce un metodo chiamato `glide`. Qu
 Il tuo codice dovrebbe dichiarare una variabile `glideMixin` che sia una funzione.
 
 ```js
-assert(typeof glideMixin === 'function');
+assert(typeof glideMixin === "function");
 ```
 
 Il tuo codice dovrebbe utilizzare il `glideMixin` sull'oggetto `bird` per dargli il metodo `glide`.
 
 ```js
-assert(typeof bird.glide === 'function');
+assert(typeof bird.glide === "function");
 ```
 
 Il tuo codice dovrebbe utilizzare il `glideMixin` sull'oggetto `boat` per dargli il metodo `glide`.
 
 ```js
-assert(typeof boat.glide === 'function');
+assert(typeof boat.glide === "function");
 ```
 
 # --seed--
@@ -79,12 +79,12 @@ assert(typeof boat.glide === 'function');
 ```js
 let bird = {
   name: "Donald",
-  numLegs: 2
+  numLegs: 2,
 };
 
 let boat = {
   name: "Warrior",
-  type: "race-boat"
+  type: "race-boat",
 };
 
 // Only change code below this line
@@ -95,15 +95,15 @@ let boat = {
 ```js
 let bird = {
   name: "Donald",
-  numLegs: 2
+  numLegs: 2,
 };
 
 let boat = {
   name: "Warrior",
-  type: "race-boat"
+  type: "race-boat",
 };
-function glideMixin (obj) {
-  obj.glide = () => 'Gliding!';
+function glideMixin(obj) {
+  obj.glide = () => "Gliding!";
 }
 
 glideMixin(bird);

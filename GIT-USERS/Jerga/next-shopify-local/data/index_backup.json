@@ -39,19 +39,12 @@
         {
           "id": "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0T3B0aW9uLzg3ODkwMjY3OTk4MDM=",
           "name": "Size",
-          "values": [
-            "s",
-            "l",
-            "m"
-          ]
+          "values": ["s", "l", "m"]
         },
         {
           "id": "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0T3B0aW9uLzg3ODkwODQxNzY1NzE=",
           "name": "Color",
-          "values": [
-            "#000000",
-            "#ffffff"
-          ]
+          "values": ["#000000", "#ffffff"]
         }
       ],
       "variants": [
@@ -261,19 +254,12 @@
         {
           "id": "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0T3B0aW9uLzg3ODk0NTgxNTc3NTU=",
           "name": "Size",
-          "values": [
-            "l",
-            "m",
-            "s"
-          ]
+          "values": ["l", "m", "s"]
         },
         {
           "id": "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0T3B0aW9uLzg3ODk0NTgxOTA1MjM=",
           "name": "Color",
-          "values": [
-            "#000000",
-            "#ffffff"
-          ]
+          "values": ["#000000", "#ffffff"]
         }
       ],
       "variants": [
@@ -483,17 +469,12 @@
         {
           "id": "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0T3B0aW9uLzg3ODk0NjAxNTY2MDM=",
           "name": "Size",
-          "values": [
-            "m",
-            "s"
-          ]
+          "values": ["m", "s"]
         },
         {
           "id": "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0T3B0aW9uLzg3ODk0NjAxODkzNzE=",
           "name": "Color",
-          "values": [
-            "#000000"
-          ]
+          "values": ["#000000"]
         }
       ],
       "variants": [

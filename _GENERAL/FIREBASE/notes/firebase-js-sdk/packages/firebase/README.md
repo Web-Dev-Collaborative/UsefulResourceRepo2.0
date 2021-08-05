@@ -37,10 +37,11 @@ you should use the
 ## Get the code (browser)
 
 ### Script include
->This brings in all Firebase features. See
->["Include only the features you need"](#include-only-the-features-you-need)
->below for
->how to minimize download size by only including the scripts you need.
+
+> This brings in all Firebase features. See
+> ["Include only the features you need"](#include-only-the-features-you-need)
+> below for
+> how to minimize download size by only including the scripts you need.
 
 Include Firebase in your web application via a `<script>` tag:
 
@@ -66,10 +67,10 @@ Firebase to your web app"._
 
 ### npm bundler (Browserify, Webpack, etc.)
 
->This brings in all Firebase features. See
->["Include only the features you need"](#include-only-the-features-you-need)
->below for
->how to minimize bundle size by only importing the features you need.
+> This brings in all Firebase features. See
+> ["Include only the features you need"](#include-only-the-features-you-need)
+> below for
+> how to minimize bundle size by only importing the features you need.
 
 The Firebase JavaScript npm package contains code that can be run in the browser
 after combining the modules you use with a package bundler (e.g.,

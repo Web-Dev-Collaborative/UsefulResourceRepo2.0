@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-
 /**
  * @fileoverview Tests for grecaptchamock.js.
  */
@@ -34,7 +33,6 @@ goog.require('goog.testing.recordFunction');
 
 goog.setTestOnly('fireauth.GRecaptchaMockFactoryTest');
 
-
 var stubs = new goog.testing.PropertyReplacer();
 var clock;
 var randomCounter;
@@ -43,26 +41,25 @@ var startInstanceId = fireauth.GRecaptchaMockFactory.START_INSTANCE_ID;
 var expirationTimeMs = fireauth.GRecaptchaMockFactory.EXPIRATION_TIME_MS;
 var solveTimeMs = fireauth.GRecaptchaMockFactory.SOLVE_TIME_MS;
 
-
 function setUp() {
   // Create DIV test element and add to document.
-  myElement = goog.dom.createDom(goog.dom.TagName.DIV, {'id': 'recaptcha'});
+  myElement = goog.dom.createDom(goog.dom.TagName.DIV, { 'id': 'recaptcha' });
   document.body.appendChild(myElement);
   // Create another DIV test element and add to document.
-  myElement2 = goog.dom.createDom(goog.dom.TagName.DIV, {'id': 'recaptcha2'});
+  myElement2 = goog.dom.createDom(goog.dom.TagName.DIV, { 'id': 'recaptcha2' });
   document.body.appendChild(myElement2);
   randomCounter = 0;
   // Install mock clock.
   clock = new goog.testing.MockClock(true);
   stubs.replace(
-      fireauth.util,
-      'generateRandomAlphaNumericString',
-      function(charCount) {
-        assertEquals(50, charCount);
-        return 'random' + (randomCounter++);
-      });
+    fireauth.util,
+    'generateRandomAlphaNumericString',
+    function (charCount) {
+      assertEquals(50, charCount);
+      return 'random' + randomCounter++;
+    }
+  );
 }
-
 
 function tearDown() {
   // Destroy both elements.
@@ -77,7 +74,6 @@ function tearDown() {
   goog.dispose(clock);
   stubs.reset();
 }
-
 
 function testRecaptchaMock_visible() {
   var responseCallback = goog.testing.recordFunction();
@@ -116,14 +112,13 @@ function testRecaptchaMock_visible() {
   assertEquals(1, expiredCallback.getCallCount());
   // Delete should result in APIs throwing expected error.
   mockInstance.delete();
-  assertThrows(function() {
+  assertThrows(function () {
     mockInstance.getResponse();
   });
-  assertThrows(function() {
+  assertThrows(function () {
     mockInstance.delete();
   });
 }
-
 
 function testRecaptchaMock_invisible() {
   var responseCallback = goog.testing.recordFunction();
@@ -180,22 +175,21 @@ function testRecaptchaMock_invisible() {
 
   // Delete should result in APIs throwing expected error.
   mockInstance.delete();
-  assertThrows(function() {
+  assertThrows(function () {
     mockInstance.getResponse();
   });
-  assertThrows(function() {
+  assertThrows(function () {
     mockInstance.execute();
   });
-  assertThrows(function() {
+  assertThrows(function () {
     mockInstance.delete();
   });
   // Click handler should no longer trigger execute and therefore should not
   // throw an error.
-  assertNotThrows(function() {
+  assertNotThrows(function () {
     goog.testing.events.fireClickSequence(myElement);
   });
 }
-
 
 function testGRecaptchaMockFactory_visible() {
   var responseCallback = goog.testing.recordFunction();
@@ -243,11 +237,10 @@ function testGRecaptchaMockFactory_visible() {
 
   // Non-existing ID.
   assertNull(mockFactory.getResponse(id1 + 1));
-  assertNotThrows(function() {
+  assertNotThrows(function () {
     mockFactory.reset(id1 + 1);
   });
 }
-
 
 function testGRecaptchaMockFactory_invisible_executeViaManualCall() {
   var responseCallback = goog.testing.recordFunction();
@@ -301,7 +294,6 @@ function testGRecaptchaMockFactory_invisible_executeViaManualCall() {
   assertEquals(2, responseCallback.getCallCount());
   assertEquals(1, expiredCallback.getCallCount());
 }
-
 
 function testGRecaptchaMockFactory_invisible_executeViaClick() {
   var responseCallback = goog.testing.recordFunction();
@@ -359,7 +351,6 @@ function testGRecaptchaMockFactory_invisible_executeViaClick() {
   assertEquals(1, expiredCallback.getCallCount());
 }
 
-
 function testGRecaptchaMockFactory_visible_multipleInstances() {
   var responseCallback1 = goog.testing.recordFunction();
   var expiredCallback1 = goog.testing.recordFunction();
@@ -407,7 +398,7 @@ function testGRecaptchaMockFactory_visible_multipleInstances() {
   // When no ID provided, the first instance should be used.
   assertEquals('random0', mockFactory.getResponse(id1));
 
-   // On expiration, response should be nullified and expired-callback triggered.
+  // On expiration, response should be nullified and expired-callback triggered.
   clock.tick(expirationTimeMs);
   assertEquals(1, responseCallback1.getCallCount());
   assertEquals(1, expiredCallback1.getCallCount());
@@ -433,7 +424,6 @@ function testGRecaptchaMockFactory_visible_multipleInstances() {
   assertEquals(2, responseCallback1.getCallCount());
   assertEquals(1, expiredCallback1.getCallCount());
 }
-
 
 function testGRecaptchaMockFactory_invisible_multipleInstances() {
   var responseCallback1 = goog.testing.recordFunction();

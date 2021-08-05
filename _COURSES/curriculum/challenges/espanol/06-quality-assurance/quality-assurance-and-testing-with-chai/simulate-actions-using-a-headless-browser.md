@@ -24,13 +24,13 @@ With a headless browser, before the actual testing, we need to **visit** the pag
 Within `tests/2_functional-tests.js`, immediately after the `Browser` declaration, add your project URL to the `site` property of the variable:
 
 ```js
-Browser.site = 'https://sincere-cone.gomix.me'; // Your URL here
+Browser.site = "https://sincere-cone.gomix.me"; // Your URL here
 ```
 
 If you are testing on a local environment replace the line above with
 
 ```js
-Browser.localhost('example.com', process.env.PORT || 3000);
+Browser.localhost("example.com", process.env.PORT || 3000);
 ```
 
 Within `tests/2_functional-tests.js`, at the root level of the `'Functional Tests with Zombie.js'` suite, instantiate a new instance of the `Browser` object with the following code:
@@ -42,8 +42,8 @@ const browser = new Browser();
 Then, use the `suiteSetup` hook to direct the `browser` to the `/` route with the following code:
 
 ```js
-suiteSetup(function(done) {
-  return browser.visit('/', done);
+suiteSetup(function (done) {
+  return browser.visit("/", done);
 });
 ```
 
@@ -53,11 +53,11 @@ All tests should pass.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional").then(
     (data) => {
       data.slice(0, 4).forEach((test) => {
-        assert.equal(test.state, 'passed');
-      })
+        assert.equal(test.state, "passed");
+      });
     },
     (xhr) => {
       throw new Error(xhr.responseText);

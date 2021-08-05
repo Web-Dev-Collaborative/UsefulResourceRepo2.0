@@ -26,7 +26,7 @@ Above is a very simple, undirected graph where you have three nodes, where the f
 var adjMat = [
   [0, 1, 1],
   [1, 0, 0],
-  [1, 0, 0]
+  [1, 0, 0],
 ];
 ```
 
@@ -36,7 +36,7 @@ Unlike an adjacency list, each "row" of the matrix has to have the same number o
 var adjMatDirected = [
   [0, 1, 0],
   [0, 0, 1],
-  [0, 0, 0]
+  [0, 0, 0],
 ];
 ```
 
@@ -103,6 +103,6 @@ var adjMatUndirected = [
   [0, 0, 0, 0, 0],
   [1, 0, 0, 0, 1],
   [1, 0, 0, 0, 1],
-  [0, 0, 1, 1, 0]
+  [0, 0, 1, 1, 0],
 ];
 ```

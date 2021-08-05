@@ -24,7 +24,6 @@ goog.provide('fireauth.CacheRequest');
 
 goog.require('goog.Promise');
 
-
 /**
  * This utility caches a function call that returns a promise along with its
  * arguments. It gives the user the option to specify the cache duration and
@@ -32,7 +31,7 @@ goog.require('goog.Promise');
  * contents if needed.
  * @constructor @struct
  */
-fireauth.CacheRequest = function() {
+fireauth.CacheRequest = function () {
   /** @private {?function(*):!goog.Promise} The function to cache. */
   this.func_ = null;
   /** @private {*} The context (this) of the function to cache. */
@@ -49,7 +48,6 @@ fireauth.CacheRequest = function() {
   this.cacheErrors_ = false;
 };
 
-
 /**
  * @param {function(*):!goog.Promise} func The function to cache.
  * @param {*} self The context (this) of the function to cache.
@@ -57,23 +55,26 @@ fireauth.CacheRequest = function() {
  * @param {number} ttl The time to live for any cached results in milliseconds.
  * @param {boolean=} opt_cacheErrors Whether to cache errors too.
  */
-fireauth.CacheRequest.prototype.cache =
-    function(func, self, args, ttl, opt_cacheErrors) {
+fireauth.CacheRequest.prototype.cache = function (
+  func,
+  self,
+  args,
+  ttl,
+  opt_cacheErrors
+) {
   this.func_ = func;
   this.self_ = self;
   this.arguments_ = args;
   this.expirationTime_ = Date.now();
   this.ttl_ = ttl;
   this.cacheErrors_ = !!opt_cacheErrors;
-
 };
-
 
 /**
  * @return {!goog.Promise} The promise that resolves when the function is run
  *     or the previously cached promise.
  */
-fireauth.CacheRequest.prototype.run = function() {
+fireauth.CacheRequest.prototype.run = function () {
   var self = this;
   if (!this.func_) {
     throw new Error('No available configuration cached!');
@@ -83,29 +84,30 @@ fireauth.CacheRequest.prototype.run = function() {
     // Set expiration of current request.
     this.expirationTime_ = Date.now() + this.ttl_;
     // Get new result and cache it.
-    this.cachedResult_ =
-        this.func_.apply(this.self_, this.arguments_).then(function(result) {
-          // When successful resolution, just return the result which is to be
-          // cached.
-          return result;
-        }).thenCatch(function(error) {
-          // When an error is thrown.
-          if (!self.cacheErrors_) {
-            // Do not cache errors if errors are not to be cached.
-            // This will bust the cached result. Otherwise the error is cached.
-            self.expirationTime_ = Date.now();
-          }
-          // Throw the returned error.
-          throw error;
-        });
+    this.cachedResult_ = this.func_
+      .apply(this.self_, this.arguments_)
+      .then(function (result) {
+        // When successful resolution, just return the result which is to be
+        // cached.
+        return result;
+      })
+      .thenCatch(function (error) {
+        // When an error is thrown.
+        if (!self.cacheErrors_) {
+          // Do not cache errors if errors are not to be cached.
+          // This will bust the cached result. Otherwise the error is cached.
+          self.expirationTime_ = Date.now();
+        }
+        // Throw the returned error.
+        throw error;
+      });
   }
   // Return the cached result.
   return this.cachedResult_;
 };
 
-
 /** Purges any cached results. */
-fireauth.CacheRequest.prototype.purge = function() {
+fireauth.CacheRequest.prototype.purge = function () {
   // Purge the cached results.
   this.cachedResult_ = null;
   this.expirationTime_ = Date.now();

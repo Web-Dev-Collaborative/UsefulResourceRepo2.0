@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244d7
 title: Confronto con l'operatore di minoranza o uguaglianza
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cNVR7Am'
+videoUrl: "https://scrimba.com/c/cNVR7Am"
 forumTopicId: 16788
 dashedName: comparison-with-the-less-than-or-equal-to-operator
 ---
@@ -14,11 +14,11 @@ L'operatore di minoranza o uguaglianza (`<=`) confronta i valori di due numeri. 
 **Esempi**
 
 ```js
-4   <= 5
-'7' <= 7
-5   <= 5
-3   <= 2
-'8' <= 4
+4 <= 5;
+"7" <= 7;
+5 <= 5;
+3 <= 2;
+"8" <= 4;
 ```
 
 Nell'ordine, queste espressioni saranno valutate `true`, `true`, `true`, `false` e `false`.
@@ -32,43 +32,43 @@ Aggiungi l'operatore di minoranza o uguaglianza alle linee indicate in modo che 
 `testLessOrEqual(0)` dovrebbe restituire la stringa `Smaller Than or Equal to 12`
 
 ```js
-assert(testLessOrEqual(0) === 'Smaller Than or Equal to 12');
+assert(testLessOrEqual(0) === "Smaller Than or Equal to 12");
 ```
 
 `testLessOrEqual(11)` dovrebbe restituire la stringa `Smaller Than or Equal to 12`
 
 ```js
-assert(testLessOrEqual(11) === 'Smaller Than or Equal to 12');
+assert(testLessOrEqual(11) === "Smaller Than or Equal to 12");
 ```
 
 `testLessOrEqual(12)` dovrebbe restituire la stringa `Smaller Than or Equal to 12`
 
 ```js
-assert(testLessOrEqual(12) === 'Smaller Than or Equal to 12');
+assert(testLessOrEqual(12) === "Smaller Than or Equal to 12");
 ```
 
 `testLessOrEqual(23)` dovrebbe restituire la stringa `Smaller Than or Equal to 24`
 
 ```js
-assert(testLessOrEqual(23) === 'Smaller Than or Equal to 24');
+assert(testLessOrEqual(23) === "Smaller Than or Equal to 24");
 ```
 
 `testLessOrEqual(24)` dovrebbe restituire la stringa `Smaller Than or Equal to 24`
 
 ```js
-assert(testLessOrEqual(24) === 'Smaller Than or Equal to 24');
+assert(testLessOrEqual(24) === "Smaller Than or Equal to 24");
 ```
 
 `testLessOrEqual(25)` dovrebbe restituire la stringa `more than 24`
 
 ```js
-assert(testLessOrEqual(25) === 'More Than 24');
+assert(testLessOrEqual(25) === "More Than 24");
 ```
 
 `testLessOrEqual(55)` dovrebbe restituire la stringa `More Than 24`
 
 ```js
-assert(testLessOrEqual(55) === 'More Than 24');
+assert(testLessOrEqual(55) === "More Than 24");
 ```
 
 Dovresti utilizzare l'operatore `<=` almeno due volte
@@ -83,11 +83,13 @@ assert(code.match(/val\s*<=\s*('|")*\d+('|")*/g).length > 1);
 
 ```js
 function testLessOrEqual(val) {
-  if (val) {  // Change this line
+  if (val) {
+    // Change this line
     return "Smaller Than or Equal to 12";
   }
 
-  if (val) {  // Change this line
+  if (val) {
+    // Change this line
     return "Smaller Than or Equal to 24";
   }
 
@@ -101,11 +103,13 @@ testLessOrEqual(10);
 
 ```js
 function testLessOrEqual(val) {
-  if (val <= 12) {  // Change this line
+  if (val <= 12) {
+    // Change this line
     return "Smaller Than or Equal to 12";
   }
 
-  if (val <= 24) {  // Change this line
+  if (val <= 24) {
+    // Change this line
     return "Smaller Than or Equal to 24";
   }
 

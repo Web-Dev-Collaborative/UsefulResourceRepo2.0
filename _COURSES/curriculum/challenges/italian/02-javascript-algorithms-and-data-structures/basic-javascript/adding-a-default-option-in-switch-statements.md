@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244de
 title: Aggiungere un'opzione predefinita nelle dichiarazioni Switch
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c3JvVfg'
+videoUrl: "https://scrimba.com/c/c3JvVfg"
 forumTopicId: 16653
 dashedName: adding-a-default-option-in-switch-statements
 ---
@@ -41,31 +41,31 @@ Scrivi un'istruzione switch per impostare `answer` per le seguenti condizioni:
 `switchOfStuff("a")` dovrebbe restituire la stringa `apple`
 
 ```js
-assert(switchOfStuff('a') === 'apple');
+assert(switchOfStuff("a") === "apple");
 ```
 
 `switchOfStuff("b")` dovrebbe restituire la stringa `bird`
 
 ```js
-assert(switchOfStuff('b') === 'bird');
+assert(switchOfStuff("b") === "bird");
 ```
 
 `switchOfStuff("c")` dovrebbe restituire la stringa `cat`
 
 ```js
-assert(switchOfStuff('c') === 'cat');
+assert(switchOfStuff("c") === "cat");
 ```
 
 `switchOfStuff("d")` dovrebbe restituire la stringa `stuff`
 
 ```js
-assert(switchOfStuff('d') === 'stuff');
+assert(switchOfStuff("d") === "stuff");
 ```
 
 `switchOfStuff(4)` dovrebbe restituire la stringa `stuff`
 
 ```js
-assert(switchOfStuff(4) === 'stuff');
+assert(switchOfStuff(4) === "stuff");
 ```
 
 Non dovresti usare alcuna dichiarazione `if` o `else`
@@ -77,7 +77,7 @@ assert(!/else/g.test(code) || !/if/g.test(code));
 Dovresti usare un'istruzione `default`
 
 ```js
-assert(switchOfStuff('string-to-trigger-default-case') === 'stuff');
+assert(switchOfStuff("string-to-trigger-default-case") === "stuff");
 ```
 
 Dovresti avere almeno altre 3 `break` istruzioni
@@ -95,8 +95,6 @@ function switchOfStuff(val) {
   var answer = "";
   // Only change code below this line
 
-
-
   // Only change code above this line
   return answer;
 }
@@ -110,7 +108,7 @@ switchOfStuff(1);
 function switchOfStuff(val) {
   var answer = "";
 
-  switch(val) {
+  switch (val) {
     case "a":
       answer = "apple";
       break;

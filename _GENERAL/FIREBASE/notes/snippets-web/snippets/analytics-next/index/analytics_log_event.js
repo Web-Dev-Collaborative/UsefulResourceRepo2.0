@@ -7,5 +7,5 @@
 import { getAnalytics, logEvent } from "firebase/analytics";
 
 const analytics = getAnalytics();
-logEvent(analytics, 'notification_received');
+logEvent(analytics, "notification_received");
 // [END analytics_log_event_modular]

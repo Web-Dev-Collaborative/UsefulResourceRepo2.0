@@ -18,28 +18,26 @@
  * @fileoverview Test for phone sign in finish handler.
  */
 
-goog.provide('firebaseui.auth.widget.handler.PhoneSignInFinishTest');
-goog.setTestOnly('firebaseui.auth.widget.handler.PhoneSignInFinishTest');
+goog.provide("firebaseui.auth.widget.handler.PhoneSignInFinishTest");
+goog.setTestOnly("firebaseui.auth.widget.handler.PhoneSignInFinishTest");
 
-goog.require('firebaseui.auth.PhoneAuthResult');
-goog.require('firebaseui.auth.PhoneNumber');
-goog.require('firebaseui.auth.soy2.strings');
-goog.require('firebaseui.auth.widget.handler');
-goog.require('firebaseui.auth.widget.handler.common');
-goog.require('firebaseui.auth.widget.handler.handlePhoneSignInFinish');
+goog.require("firebaseui.auth.PhoneAuthResult");
+goog.require("firebaseui.auth.PhoneNumber");
+goog.require("firebaseui.auth.soy2.strings");
+goog.require("firebaseui.auth.widget.handler");
+goog.require("firebaseui.auth.widget.handler.common");
+goog.require("firebaseui.auth.widget.handler.handlePhoneSignInFinish");
 /** @suppress {extraRequire} Required for page navigation. */
-goog.require('firebaseui.auth.widget.handler.handlePhoneSignInStart');
+goog.require("firebaseui.auth.widget.handler.handlePhoneSignInStart");
 /** @suppress {extraRequire} Required for page navigation. */
-goog.require('firebaseui.auth.widget.handler.handleProviderSignIn');
+goog.require("firebaseui.auth.widget.handler.handleProviderSignIn");
 /** @suppress {extraRequire} Required for test helpers. */
-goog.require('firebaseui.auth.widget.handler.testHelper');
-goog.require('goog.Promise');
-goog.require('goog.dom.forms');
-goog.require('goog.testing.recordFunction');
+goog.require("firebaseui.auth.widget.handler.testHelper");
+goog.require("goog.Promise");
+goog.require("goog.dom.forms");
+goog.require("goog.testing.recordFunction");
 
-
-
-var phoneNumberValue = new firebaseui.auth.PhoneNumber('45-DK-0', '6505550101');
+var phoneNumberValue = new firebaseui.auth.PhoneNumber("45-DK-0", "6505550101");
 var resendDelaySeconds = 10;
 
 /**
@@ -49,21 +47,21 @@ var resendDelaySeconds = 10;
  */
 function createMockPhoneAuthResultResult(operationType, isNewUser) {
   return {
-    'confirm': function(code) {
-      assertEquals('123456', code);
+    confirm: function (code) {
+      assertEquals("123456", code);
       // Simulate user signed in.
-      app.getExternalAuth().setUser(
-          {'phone': '+11234567890', 'displayName': 'John Smith'});
+      app
+        .getExternalAuth()
+        .setUser({ phone: "+11234567890", displayName: "John Smith" });
       return goog.Promise.resolve({
-        'user': app.getExternalAuth().currentUser,
-        'credential': null,
-        'operationType': operationType,
-        'additionalUserInfo':  {'providerId': 'phone', 'isNewUser': isNewUser}
+        user: app.getExternalAuth().currentUser,
+        credential: null,
+        operationType: operationType,
+        additionalUserInfo: { providerId: "phone", isNewUser: isNewUser },
       });
-    }
+    },
   };
 }
-
 
 /**
  * @param {!Object} error The expected error to throw on confirmation.
@@ -72,37 +70,42 @@ function createMockPhoneAuthResultResult(operationType, isNewUser) {
  */
 function createMockPhoneAuthResultWithError(error) {
   return {
-    'confirm': function(code) {
-      assertEquals('123456', code);
+    confirm: function (code) {
+      assertEquals("123456", code);
       return goog.Promise.reject(error);
-    }
+    },
   };
 }
-
 
 function testHandlePhoneSignInFinish_success_signInSuccessUrl() {
   // Test successful code entry with signInSuccessUrl provided.
   // Render phone sign in finish UI.
-  var mockPhoneAuthResult = createMockPhoneAuthResultResult('signIn', false);
+  var mockPhoneAuthResult = createMockPhoneAuthResultResult("signIn", false);
   firebaseui.auth.widget.handler.handlePhoneSignInFinish(
-      app, container, phoneNumberValue, resendDelaySeconds,
-      mockPhoneAuthResult);
+    app,
+    container,
+    phoneNumberValue,
+    resendDelaySeconds,
+    mockPhoneAuthResult
+  );
   // Confirm expected page rendered.
   assertPhoneSignInFinishPage();
   // Try to submit form without code being provided.
   submitForm();
   // Inline error message shown.
   assertEquals(
-      firebaseui.auth.soy2.strings.errorInvalidConfirmationCode().toString(),
-      getPhoneConfirmationCodeErrorMessage());
+    firebaseui.auth.soy2.strings.errorInvalidConfirmationCode().toString(),
+    getPhoneConfirmationCodeErrorMessage()
+  );
   // Simulate code provided.
-  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), '123456');
+  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), "123456");
   // Submit form.
   submitForm();
   // Loading dialog shown.
   assertDialog(
-      firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString());
-  return goog.Promise.resolve().then(function() {
+    firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString()
+  );
+  return goog.Promise.resolve().then(function () {
     // Code verified dialog shown on success.
     assertDialog(firebaseui.auth.soy2.strings.dialogCodeVerified().toString());
     // Wait for one second. Sign in success URL redirect should occur after.
@@ -110,34 +113,39 @@ function testHandlePhoneSignInFinish_success_signInSuccessUrl() {
     // No dialog shown.
     assertNoDialog();
     // Successful sign in.
-    testUtil.assertGoTo('http://localhost/home');
+    testUtil.assertGoTo("http://localhost/home");
   });
 }
-
 
 function testHandlePhoneSignInFinish_anonymousUpgrade_success() {
   externalAuth.setUser(anonymousUser);
-  app.updateConfig('autoUpgradeAnonymousUsers', true);
-  var mockPhoneAuthResult = createMockPhoneAuthResultResult('link', false);
+  app.updateConfig("autoUpgradeAnonymousUsers", true);
+  var mockPhoneAuthResult = createMockPhoneAuthResultResult("link", false);
   firebaseui.auth.widget.handler.handlePhoneSignInFinish(
-      app, container, phoneNumberValue, resendDelaySeconds,
-      mockPhoneAuthResult);
+    app,
+    container,
+    phoneNumberValue,
+    resendDelaySeconds,
+    mockPhoneAuthResult
+  );
   // Confirm expected page rendered.
   assertPhoneSignInFinishPage();
   // Try to submit form without code being provided.
   submitForm();
   // Inline error message shown.
   assertEquals(
-      firebaseui.auth.soy2.strings.errorInvalidConfirmationCode().toString(),
-      getPhoneConfirmationCodeErrorMessage());
+    firebaseui.auth.soy2.strings.errorInvalidConfirmationCode().toString(),
+    getPhoneConfirmationCodeErrorMessage()
+  );
   // Simulate code provided.
-  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), '123456');
+  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), "123456");
   // Submit form.
   submitForm();
   // Loading dialog shown.
   assertDialog(
-      firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString());
-  return goog.Promise.resolve().then(function() {
+    firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString()
+  );
+  return goog.Promise.resolve().then(function () {
     // Code verified dialog shown on success.
     assertDialog(firebaseui.auth.soy2.strings.dialogCodeVerified().toString());
     // Wait for one second. Sign in success URL redirect should occur after.
@@ -145,39 +153,44 @@ function testHandlePhoneSignInFinish_anonymousUpgrade_success() {
     // No dialog shown.
     assertNoDialog();
     // Successful sign in.
-    testUtil.assertGoTo('http://localhost/home');
+    testUtil.assertGoTo("http://localhost/home");
   });
 }
-
 
 function testHandlePhoneSignInFinish_anonUpgrade_signInSuccessWithAuthResult() {
   externalAuth.setUser(anonymousUser);
   app.setConfig({
-    'callbacks': {
-      'signInSuccessWithAuthResult': signInSuccessWithAuthResultCallback(true)
+    callbacks: {
+      signInSuccessWithAuthResult: signInSuccessWithAuthResultCallback(true),
     },
-    'autoUpgradeAnonymousUsers': true
+    autoUpgradeAnonymousUsers: true,
   });
-  var mockPhoneAuthResult = createMockPhoneAuthResultResult('link', false);
+  var mockPhoneAuthResult = createMockPhoneAuthResultResult("link", false);
   firebaseui.auth.widget.handler.handlePhoneSignInFinish(
-      app, container, phoneNumberValue, resendDelaySeconds,
-      mockPhoneAuthResult);
+    app,
+    container,
+    phoneNumberValue,
+    resendDelaySeconds,
+    mockPhoneAuthResult
+  );
   // Confirm expected page rendered.
   assertPhoneSignInFinishPage();
   // Try to submit form without code being provided.
   submitForm();
   // Inline error message shown.
   assertEquals(
-      firebaseui.auth.soy2.strings.errorInvalidConfirmationCode().toString(),
-      getPhoneConfirmationCodeErrorMessage());
+    firebaseui.auth.soy2.strings.errorInvalidConfirmationCode().toString(),
+    getPhoneConfirmationCodeErrorMessage()
+  );
   // Simulate code provided.
-  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), '123456');
+  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), "123456");
   // Submit form.
   submitForm();
   // Loading dialog shown.
   assertDialog(
-      firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString());
-  return goog.Promise.resolve().then(function() {
+    firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString()
+  );
+  return goog.Promise.resolve().then(function () {
     // Code verified dialog shown on success.
     assertDialog(firebaseui.auth.soy2.strings.dialogCodeVerified().toString());
     // Wait for one second. Sign in success URL redirect should occur after.
@@ -185,141 +198,161 @@ function testHandlePhoneSignInFinish_anonUpgrade_signInSuccessWithAuthResult() {
     // No dialog shown.
     assertNoDialog();
     var expectedAuthResult = {
-      'user': app.getExternalAuth().currentUser,
+      user: app.getExternalAuth().currentUser,
       // No phone credential is passed.
-      'credential': null,
+      credential: null,
       // Operation type should be link for anonymous upgrade.
-      'operationType': 'link',
-      'additionalUserInfo':  {'providerId': 'phone', 'isNewUser': false}
+      operationType: "link",
+      additionalUserInfo: { providerId: "phone", isNewUser: false },
     };
-    testUtil.assertGoTo('http://localhost/home');
+    testUtil.assertGoTo("http://localhost/home");
     // Successfully upgraded to Phone user.
     // SignInWithAuthResultCallback is called. No phone credential is passed
     // and expected user is logged in.
     assertSignInSuccessWithAuthResultCallbackInvoked(
-        expectedAuthResult, undefined);
+      expectedAuthResult,
+      undefined
+    );
   });
 }
-
 
 function testHandlePhoneSignInFinish_anonymousUpgrade_credentialInUseError() {
   externalAuth.setUser(anonymousUser);
-  app.updateConfig('autoUpgradeAnonymousUsers', true);
+  app.updateConfig("autoUpgradeAnonymousUsers", true);
   var cred = {
-    'providerId': 'phone',
-    'verificationId': '123456abc',
-    'verificationCode': '123456'
+    providerId: "phone",
+    verificationId: "123456abc",
+    verificationCode: "123456",
   };
   var expectedError = {
-    'code': 'auth/credential-already-in-use',
-    'message': 'MESSAGE',
-    'phoneNumber': '+11234567890',
-    'credential': cred
+    code: "auth/credential-already-in-use",
+    message: "MESSAGE",
+    phoneNumber: "+11234567890",
+    credential: cred,
   };
   var mockConfirmationResult = {
-    'confirm': function(code) {
-      assertEquals('123456', code);
+    confirm: function (code) {
+      assertEquals("123456", code);
       return goog.Promise.reject(expectedError);
-    }
+    },
   };
-  var errorHandler = goog.testing.recordFunction(function(error) {
+  var errorHandler = goog.testing.recordFunction(function (error) {
     assertEquals(expectedError, error);
     throw error;
   });
   var phoneAuthResult = new firebaseui.auth.PhoneAuthResult(
-      mockConfirmationResult, errorHandler);
+    mockConfirmationResult,
+    errorHandler
+  );
   firebaseui.auth.widget.handler.handlePhoneSignInFinish(
-      app, container, phoneNumberValue, resendDelaySeconds,
-      phoneAuthResult);
+    app,
+    container,
+    phoneNumberValue,
+    resendDelaySeconds,
+    phoneAuthResult
+  );
   // Confirm expected page rendered.
   assertPhoneSignInFinishPage();
   // Try to submit form without code being provided.
   submitForm();
   // Inline error message shown.
   assertEquals(
-      firebaseui.auth.soy2.strings.errorInvalidConfirmationCode().toString(),
-      getPhoneConfirmationCodeErrorMessage());
+    firebaseui.auth.soy2.strings.errorInvalidConfirmationCode().toString(),
+    getPhoneConfirmationCodeErrorMessage()
+  );
   // Simulate code provided.
-  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), '123456');
+  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), "123456");
   // Submit form.
   submitForm();
   // Loading dialog shown.
   assertDialog(
-      firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString());
-  return goog.Promise.resolve().then(function() {
+    firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString()
+  );
+  return goog.Promise.resolve().then(function () {
     // No info bar message.
     assertNoInfoBarMessage();
     // Verifies that error handler got called.
     assertEquals(1, errorHandler.getCallCount());
   });
 }
-
 
 function testHandlePhoneSignInFinish_anonymousUpgrade_invalidCodeError() {
   externalAuth.setUser(anonymousUser);
-  app.updateConfig('autoUpgradeAnonymousUsers', true);
+  app.updateConfig("autoUpgradeAnonymousUsers", true);
   var expectedError = {
-    'code': 'auth/invalid-verification-code',
-    'message': 'MESSAGE'
+    code: "auth/invalid-verification-code",
+    message: "MESSAGE",
   };
   var mockConfirmationResult = {
-    'confirm': function(code) {
-      assertEquals('123456', code);
+    confirm: function (code) {
+      assertEquals("123456", code);
       return goog.Promise.reject(expectedError);
-    }
+    },
   };
-  var errorHandler = goog.testing.recordFunction(function(error) {
+  var errorHandler = goog.testing.recordFunction(function (error) {
     assertEquals(expectedError, error);
     throw error;
   });
   var phoneAuthResult = new firebaseui.auth.PhoneAuthResult(
-      mockConfirmationResult, errorHandler);
+    mockConfirmationResult,
+    errorHandler
+  );
   firebaseui.auth.widget.handler.handlePhoneSignInFinish(
-      app, container, phoneNumberValue, resendDelaySeconds,
-      phoneAuthResult);
+    app,
+    container,
+    phoneNumberValue,
+    resendDelaySeconds,
+    phoneAuthResult
+  );
   // Confirm expected page rendered.
   assertPhoneSignInFinishPage();
   // Try to submit form without code being provided.
   submitForm();
   // Inline error message shown.
   assertEquals(
-      firebaseui.auth.soy2.strings.errorInvalidConfirmationCode().toString(),
-      getPhoneConfirmationCodeErrorMessage());
+    firebaseui.auth.soy2.strings.errorInvalidConfirmationCode().toString(),
+    getPhoneConfirmationCodeErrorMessage()
+  );
   // Simulate code provided.
-  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), '123456');
+  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), "123456");
   // Submit form.
   submitForm();
   // Loading dialog shown.
   assertDialog(
-      firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString());
-  return goog.Promise.resolve().then(function() {
+    firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString()
+  );
+  return goog.Promise.resolve().then(function () {
     // No info bar message.
     assertNoInfoBarMessage();
     // Verifies that error handler got called.
     assertEquals(1, errorHandler.getCallCount());
   });
 }
-
 
 function testHandlePhoneSignInFinish_success_signInSuccessCallback() {
   // Test successful code entry with signInSuccess callback provided.
   // Provide a sign in success callback.
-  app.setConfig({'callbacks': {'signInSuccess': signInSuccessCallback(false)}});
-  var mockPhoneAuthResult = createMockPhoneAuthResultResult('signIn', false);
+  app.setConfig({ callbacks: { signInSuccess: signInSuccessCallback(false) } });
+  var mockPhoneAuthResult = createMockPhoneAuthResultResult("signIn", false);
   // Render phone sign in finish UI.
   firebaseui.auth.widget.handler.handlePhoneSignInFinish(
-      app, container, phoneNumberValue, resendDelaySeconds,
-      mockPhoneAuthResult);
+    app,
+    container,
+    phoneNumberValue,
+    resendDelaySeconds,
+    mockPhoneAuthResult
+  );
   // Confirm expected page rendered.
   assertPhoneSignInFinishPage();
   // Simulate code provided.
-  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), '123456');
+  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), "123456");
   // Submit form.
   submitForm();
   // Loading dialog shown.
   assertDialog(
-      firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString());
-  return goog.Promise.resolve().then(function() {
+    firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString()
+  );
+  return goog.Promise.resolve().then(function () {
     // Code verified dialog shown on success.
     assertDialog(firebaseui.auth.soy2.strings.dialogCodeVerified().toString());
     // Wait for one second. Sign in success callback should be called after.
@@ -330,38 +363,45 @@ function testHandlePhoneSignInFinish_success_signInSuccessCallback() {
     // SignInCallback is called. No phone credential is passed and expected user
     // is logged in.
     assertSignInSuccessCallbackInvoked(
-        externalAuth.currentUser, null, undefined);
+      externalAuth.currentUser,
+      null,
+      undefined
+    );
     app.getAuth().assertSignOut([]);
     // Container should be cleared.
     assertComponentDisposed();
   });
 }
 
-
 function testHandlePhoneSignInFinish_signInSuccessWithAuthResultCallback() {
   // Test successful code entry with signInSuccessWithAuthResult callback
   // provided.
   // Provide a sign in success with Auth result callback.
   app.setConfig({
-    'callbacks': {
-      'signInSuccessWithAuthResult': signInSuccessWithAuthResultCallback(true)
-    }
+    callbacks: {
+      signInSuccessWithAuthResult: signInSuccessWithAuthResultCallback(true),
+    },
   });
-  var mockPhoneAuthResult = createMockPhoneAuthResultResult('signIn', true);
+  var mockPhoneAuthResult = createMockPhoneAuthResultResult("signIn", true);
   // Render phone sign in finish UI.
   firebaseui.auth.widget.handler.handlePhoneSignInFinish(
-      app, container, phoneNumberValue, resendDelaySeconds,
-      mockPhoneAuthResult);
+    app,
+    container,
+    phoneNumberValue,
+    resendDelaySeconds,
+    mockPhoneAuthResult
+  );
   // Confirm expected page rendered.
   assertPhoneSignInFinishPage();
   // Simulate code provided.
-  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), '123456');
+  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), "123456");
   // Submit form.
   submitForm();
   // Loading dialog shown.
   assertDialog(
-      firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString());
-  return goog.Promise.resolve().then(function() {
+    firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString()
+  );
+  return goog.Promise.resolve().then(function () {
     // Code verified dialog shown on success.
     assertDialog(firebaseui.auth.soy2.strings.dialogCodeVerified().toString());
     // Wait for one second. Sign in success callback should be called after.
@@ -369,42 +409,48 @@ function testHandlePhoneSignInFinish_signInSuccessWithAuthResultCallback() {
     // No dialog shown.
     assertNoDialog();
     var expectedAuthResult = {
-      'user': app.getExternalAuth().currentUser,
+      user: app.getExternalAuth().currentUser,
       // No phone credential is passed.
-      'credential': null,
-      'operationType': 'signIn',
-      'additionalUserInfo':  {'providerId': 'phone', 'isNewUser': true}
+      credential: null,
+      operationType: "signIn",
+      additionalUserInfo: { providerId: "phone", isNewUser: true },
     };
-    testUtil.assertGoTo('http://localhost/home');
+    testUtil.assertGoTo("http://localhost/home");
     // Successful sign in.
     // SignInWithAuthResultCallback is called. No phone credential is passed
     // and expected user is logged in.
     assertSignInSuccessWithAuthResultCallbackInvoked(
-        expectedAuthResult, undefined);
+      expectedAuthResult,
+      undefined
+    );
     // Container should be cleared.
     assertComponentDisposed();
   });
 }
 
-
 function testHandlePhoneSignInFinish_success_resetBeforeCompletion() {
   // Tests reset being called right before the verified dialog is dismissed.
-  app.setConfig({'callbacks': {'signInSuccess': signInSuccessCallback(false)}});
+  app.setConfig({ callbacks: { signInSuccess: signInSuccessCallback(false) } });
   // Render phone sign in finish UI.
-  var mockPhoneAuthResult = createMockPhoneAuthResultResult('signIn', false);
+  var mockPhoneAuthResult = createMockPhoneAuthResultResult("signIn", false);
   firebaseui.auth.widget.handler.handlePhoneSignInFinish(
-      app, container, phoneNumberValue, resendDelaySeconds,
-      mockPhoneAuthResult);
+    app,
+    container,
+    phoneNumberValue,
+    resendDelaySeconds,
+    mockPhoneAuthResult
+  );
   // Confirm expected page rendered.
   assertPhoneSignInFinishPage();
   // Simulate code provided.
-  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), '123456');
+  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), "123456");
   // Submit form.
   submitForm();
   // Loading dialog shown.
   assertDialog(
-      firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString());
-  return goog.Promise.resolve().then(function() {
+    firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString()
+  );
+  return goog.Promise.resolve().then(function () {
     // Code verified dialog shown on success.
     assertDialog(firebaseui.auth.soy2.strings.dialogCodeVerified().toString());
     // Simulate app reset.
@@ -416,30 +462,34 @@ function testHandlePhoneSignInFinish_success_resetBeforeCompletion() {
     assertComponentDisposed();
   });
 }
-
 
 function testHandlePhoneSignInFinish_signInSuccessWithAuthResult_reset() {
   // Tests reset being called right before the verified dialog is dismissed.
   app.setConfig({
-    'callbacks': {
-      'signInSuccessWithAuthResult': signInSuccessWithAuthResultCallback(false)
-    }
+    callbacks: {
+      signInSuccessWithAuthResult: signInSuccessWithAuthResultCallback(false),
+    },
   });
-  var mockPhoneAuthResult = createMockPhoneAuthResultResult('signIn', false);
+  var mockPhoneAuthResult = createMockPhoneAuthResultResult("signIn", false);
   // Render phone sign in finish UI.
   firebaseui.auth.widget.handler.handlePhoneSignInFinish(
-      app, container, phoneNumberValue, resendDelaySeconds,
-      mockPhoneAuthResult);
+    app,
+    container,
+    phoneNumberValue,
+    resendDelaySeconds,
+    mockPhoneAuthResult
+  );
   // Confirm expected page rendered.
   assertPhoneSignInFinishPage();
   // Simulate code provided.
-  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), '123456');
+  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), "123456");
   // Submit form.
   submitForm();
   // Loading dialog shown.
   assertDialog(
-      firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString());
-  return goog.Promise.resolve().then(function() {
+    firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString()
+  );
+  return goog.Promise.resolve().then(function () {
     // Code verified dialog shown on success.
     assertDialog(firebaseui.auth.soy2.strings.dialogCodeVerified().toString());
     // Simulate app reset.
@@ -451,210 +501,242 @@ function testHandlePhoneSignInFinish_signInSuccessWithAuthResult_reset() {
     assertComponentDisposed();
   });
 }
-
 
 function testHandlePhoneSignInFinish_error_codeExpired() {
   // Test when expired code error is thrown during code verification, previous
   // phone sign in start page is rendered with the error message.
   var expectedError = {
-    'code': 'auth/code-expired',
-    'message': 'Expired verification code provided!'
+    code: "auth/code-expired",
+    message: "Expired verification code provided!",
   };
   // Test any passed default data ignored.
   app.setConfig({
-    'signInOptions': [{
-      'provider': 'phone',
-      // Pass default country.
-      'defaultCountry': 'gb',
-      // Pass default national number.
-      'defaultNationalNumber': '1234567890'
-    }]
+    signInOptions: [
+      {
+        provider: "phone",
+        // Pass default country.
+        defaultCountry: "gb",
+        // Pass default national number.
+        defaultNationalNumber: "1234567890",
+      },
+    ],
   });
   // Render phone sign in finish UI.
   // Phone number provided here has higher priority over the config defaults.
   firebaseui.auth.widget.handler.handlePhoneSignInFinish(
-      app, container, phoneNumberValue, resendDelaySeconds,
-      createMockPhoneAuthResultWithError(expectedError));
+    app,
+    container,
+    phoneNumberValue,
+    resendDelaySeconds,
+    createMockPhoneAuthResultWithError(expectedError)
+  );
   // Confirm expected page rendered.
   assertPhoneSignInFinishPage();
   // Simulate code provided.
-  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), '123456');
+  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), "123456");
   // Submit form.
   submitForm();
   // Loading dialog should show.
   assertDialog(
-      firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString());
-  return goog.Promise.resolve().then(function() {
+    firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString()
+  );
+  return goog.Promise.resolve().then(function () {
     // Dialog should be dismissed.
     assertNoDialog();
     // Phone sign in start page should be rendered.
     assertPhoneSignInStartPage();
     // Phone number should be prefilled. Defaults should be ignored.
-    assertEquals('\u200e+45', getPhoneCountrySelectorElement().textContent);
+    assertEquals("\u200e+45", getPhoneCountrySelectorElement().textContent);
     assertEquals(phoneNumberValue.nationalNumber, getPhoneInputElement().value);
     // Recaptcha should be rendered.
     recaptchaVerifierInstance.assertRender([], 0);
     // Expected info bar message.
     assertInfoBarMessage(
-        firebaseui.auth.widget.handler.common.getErrorMessage(expectedError));
+      firebaseui.auth.widget.handler.common.getErrorMessage(expectedError)
+    );
     return recaptchaVerifierInstance.process();
   });
 }
-
 
 function testHandlePhoneSignInFinish_error_invalidVerificationCode() {
   // Test when invalid code error is thrown during code verification, no
   // page navigation occurs and only an inline error message is shown.
   var expectedError = {
-    'code': 'auth/invalid-verification-code',
-    'message': 'Invalid verification code provided!'
+    code: "auth/invalid-verification-code",
+    message: "Invalid verification code provided!",
   };
   // Render phone sign in finish UI.
   firebaseui.auth.widget.handler.handlePhoneSignInFinish(
-      app, container, phoneNumberValue, resendDelaySeconds,
-      createMockPhoneAuthResultWithError(expectedError));
+    app,
+    container,
+    phoneNumberValue,
+    resendDelaySeconds,
+    createMockPhoneAuthResultWithError(expectedError)
+  );
   // Confirm expected page rendered.
   assertPhoneSignInFinishPage();
   // Simulate code provided.
-  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), '123456');
+  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), "123456");
   // Submit form.
   submitForm();
   // Loading dialog should show.
   assertDialog(
-      firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString());
-  return goog.Promise.resolve().then(function() {
+    firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString()
+  );
+  return goog.Promise.resolve().then(function () {
     // Dialog should be dismissed.
     assertNoDialog();
     // No info bar message.
     assertNoInfoBarMessage();
     // Inline error message shown.
     assertEquals(
-        firebaseui.auth.widget.handler.common.getErrorMessage(expectedError),
-        getPhoneConfirmationCodeErrorMessage());
+      firebaseui.auth.widget.handler.common.getErrorMessage(expectedError),
+      getPhoneConfirmationCodeErrorMessage()
+    );
     // Should remain on the same page.
     assertPhoneSignInFinishPage();
   });
 }
-
 
 function testHandlePhoneSignInFinish_error_miscError() {
   // Test when an unexpected error is thrown during code verification, no
   // page navigation occurs and only an info bar message is shown.
   // Render phone sign in finish UI.
   firebaseui.auth.widget.handler.handlePhoneSignInFinish(
-      app, container, phoneNumberValue, resendDelaySeconds,
-      createMockPhoneAuthResultWithError(internalError));
+    app,
+    container,
+    phoneNumberValue,
+    resendDelaySeconds,
+    createMockPhoneAuthResultWithError(internalError)
+  );
   // Confirm expected page rendered.
   assertPhoneSignInFinishPage();
   // Simulate code provided.
-  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), '123456');
+  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), "123456");
   // Submit form.
   submitForm();
   // Loading dialog should show.
   assertDialog(
-      firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString());
-  return goog.Promise.resolve().then(function() {
+    firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString()
+  );
+  return goog.Promise.resolve().then(function () {
     // Dialog should be dismissed.
     assertNoDialog();
     // Expected info bar message.
     assertInfoBarMessage(
-        firebaseui.auth.widget.handler.common.getErrorMessage(internalError));
+      firebaseui.auth.widget.handler.common.getErrorMessage(internalError)
+    );
     // Should remain on the same page.
     assertPhoneSignInFinishPage();
   });
 }
-
 
 function testHandlePhoneSignInFinish_error_blockingfunctionError() {
   // Test when an nested error thrown by blocking function
   // has been parsed correctly.
   // Render phone sign in finish UI.
   const blockingfunctionError = {
-    'code': '400',
-    'message':
-        'BLOCKING_FUNCTION_ERROR_RESPONSE : HTTP Cloud Fun' +
-        'ction returned an error: {\"error\":{\"code\":400,' +
-        '\"message\":\"Unauthorized phone number\"' +
-        ',\"status\":\"INVALID_ARGUMENT\"}}',
+    code: "400",
+    message:
+      "BLOCKING_FUNCTION_ERROR_RESPONSE : HTTP Cloud Fun" +
+      'ction returned an error: {"error":{"code":400,' +
+      '"message":"Unauthorized phone number"' +
+      ',"status":"INVALID_ARGUMENT"}}',
   };
   const expectedError = {
-    'code': '400',
-    'message': 'Unauthorized phone number',
+    code: "400",
+    message: "Unauthorized phone number",
   };
   firebaseui.auth.widget.handler.handlePhoneSignInFinish(
-      app, container, phoneNumberValue, resendDelaySeconds,
-      createMockPhoneAuthResultWithError(blockingfunctionError));
+    app,
+    container,
+    phoneNumberValue,
+    resendDelaySeconds,
+    createMockPhoneAuthResultWithError(blockingfunctionError)
+  );
   // Confirm expected page rendered.
   assertPhoneSignInFinishPage();
   // Simulate code provided.
-  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), '123456');
+  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), "123456");
   // Submit form.
   submitForm();
   // Loading dialog should show.
   assertDialog(
-      firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString());
-  return goog.Promise.resolve().then(function() {
+    firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString()
+  );
+  return goog.Promise.resolve().then(function () {
     // Dialog should be dismissed.
     assertNoDialog();
     // Expected info bar message.
     assertInfoBarMessage(
-        firebaseui.auth.widget.handler.common.getErrorMessage(expectedError));
+      firebaseui.auth.widget.handler.common.getErrorMessage(expectedError)
+    );
     // Should remain on the same page.
     assertPhoneSignInFinishPage();
   });
 }
-
 
 function testHandlePhoneSignInFinish_error_adminRestrictedOperation() {
   // Test when an admin restricted error is thrown during verification, no
   // page navigation occurs and only an info bar message is shown.
   // Render phone sign in finish UI.
   const expectedError = {
-    'code': 'auth/admin-restricted-operation',
-    'message': 'ADMIN_ONLY_OPERATION',
+    code: "auth/admin-restricted-operation",
+    message: "ADMIN_ONLY_OPERATION",
   };
   firebaseui.auth.widget.handler.handlePhoneSignInFinish(
-      app, container, phoneNumberValue, resendDelaySeconds,
-      createMockPhoneAuthResultWithError(expectedError));
+    app,
+    container,
+    phoneNumberValue,
+    resendDelaySeconds,
+    createMockPhoneAuthResultWithError(expectedError)
+  );
   // Confirm expected page rendered.
   assertPhoneSignInFinishPage();
   // Simulate code provided.
-  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), '123456');
+  goog.dom.forms.setValue(getPhoneConfirmationCodeElement(), "123456");
   // Submit form.
   submitForm();
   // Loading dialog should show.
   assertDialog(
-      firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString());
-  return goog.Promise.resolve().then(function() {
+    firebaseui.auth.soy2.strings.dialogVerifyingPhoneNumber().toString()
+  );
+  return goog.Promise.resolve().then(function () {
     // Dialog should be dismissed.
     assertNoDialog();
     // Expected info bar message.
     assertInfoBarMessage(
-        firebaseui.auth.widget.handler.common.getErrorMessage(expectedError));
+      firebaseui.auth.widget.handler.common.getErrorMessage(expectedError)
+    );
     // Should remain on the same page.
     assertPhoneSignInFinishPage();
   });
 }
-
 
 function testHandlePhoneSignInFinish_onChangePhoneNumberClick() {
   // Test when change phone number button is clicked in code entry page that the
   // phone sign in start page is rendered.
   // Test any passed default data ignored.
   app.setConfig({
-    'signInOptions': [{
-      'provider': 'phone',
-      // Pass default country.
-      'defaultCountry': 'gb',
-      // Pass default national number.
-      'defaultNationalNumber': '1234567890'
-    }]
+    signInOptions: [
+      {
+        provider: "phone",
+        // Pass default country.
+        defaultCountry: "gb",
+        // Pass default national number.
+        defaultNationalNumber: "1234567890",
+      },
+    ],
   });
-  var mockPhoneAuthResult = createMockPhoneAuthResultResult('signIn', false);
+  var mockPhoneAuthResult = createMockPhoneAuthResultResult("signIn", false);
   // Render phone sign in finish UI.
   firebaseui.auth.widget.handler.handlePhoneSignInFinish(
-      app, container, phoneNumberValue, resendDelaySeconds,
-      mockPhoneAuthResult);
+    app,
+    container,
+    phoneNumberValue,
+    resendDelaySeconds,
+    mockPhoneAuthResult
+  );
   // Confirm expected page rendered.
   assertPhoneSignInFinishPage();
   // Click change phone number link.
@@ -662,22 +744,25 @@ function testHandlePhoneSignInFinish_onChangePhoneNumberClick() {
   // Phone sign in start page should be rendered with the correct phone number
   // prefilled and not the config provided defaults.
   assertPhoneSignInStartPage();
-  assertEquals('\u200e+45', getPhoneCountrySelectorElement().textContent);
+  assertEquals("\u200e+45", getPhoneCountrySelectorElement().textContent);
   assertEquals(phoneNumberValue.nationalNumber, getPhoneInputElement().value);
   // Recaptcha should be rendered.
   recaptchaVerifierInstance.assertRender([], 0);
   return recaptchaVerifierInstance.process();
 }
 
-
 function testHandlePhoneSignInFinish_onCancel() {
   // Test when cancel button is clicked in code entry page that the provider
   // sign in page is rendered.
   // Render phone sign in finish UI.
-  var mockPhoneAuthResult = createMockPhoneAuthResultResult('signIn', false);
+  var mockPhoneAuthResult = createMockPhoneAuthResultResult("signIn", false);
   firebaseui.auth.widget.handler.handlePhoneSignInFinish(
-      app, container, phoneNumberValue, resendDelaySeconds,
-      mockPhoneAuthResult);
+    app,
+    container,
+    phoneNumberValue,
+    resendDelaySeconds,
+    mockPhoneAuthResult
+  );
   // Confirm expected page rendered.
   assertPhoneSignInFinishPage();
   // Click cancel.
@@ -686,14 +771,17 @@ function testHandlePhoneSignInFinish_onCancel() {
   assertProviderSignInPage();
 }
 
-
 function testHandlePhoneSignInFinishStart_reset() {
   // Test when reset is called after phone sign-in finish handler called.
   // Render phone sign in finish UI.
-  var mockPhoneAuthResult = createMockPhoneAuthResultResult('signIn', false);
+  var mockPhoneAuthResult = createMockPhoneAuthResultResult("signIn", false);
   firebaseui.auth.widget.handler.handlePhoneSignInFinish(
-      app, container, phoneNumberValue, resendDelaySeconds,
-      mockPhoneAuthResult);
+    app,
+    container,
+    phoneNumberValue,
+    resendDelaySeconds,
+    mockPhoneAuthResult
+  );
   // Confirm expected page rendered.
   assertPhoneSignInFinishPage();
   // Reset current rendered widget page.
@@ -703,22 +791,27 @@ function testHandlePhoneSignInFinishStart_reset() {
   assertComponentDisposed();
 }
 
-
 function testHandlePhoneSignInFinish_onResendClick() {
   // Test any passed default data ignored.
   app.setConfig({
-    'signInOptions': [{
-      'provider': 'phone',
-      // Pass default country.
-      'defaultCountry': 'gb',
-      // Pass default national number.
-      'defaultNationalNumber': '1234567890'
-    }]
+    signInOptions: [
+      {
+        provider: "phone",
+        // Pass default country.
+        defaultCountry: "gb",
+        // Pass default national number.
+        defaultNationalNumber: "1234567890",
+      },
+    ],
   });
-  var mockPhoneAuthResult = createMockPhoneAuthResultResult('signIn', false);
+  var mockPhoneAuthResult = createMockPhoneAuthResultResult("signIn", false);
   firebaseui.auth.widget.handler.handlePhoneSignInFinish(
-      app, container, phoneNumberValue, resendDelaySeconds,
-      mockPhoneAuthResult);
+    app,
+    container,
+    phoneNumberValue,
+    resendDelaySeconds,
+    mockPhoneAuthResult
+  );
   assertPhoneSignInFinishPage();
 
   // Advance clock to reveal resend link.
@@ -728,7 +821,7 @@ function testHandlePhoneSignInFinish_onResendClick() {
   clickResendLink();
   assertPhoneSignInStartPage();
   // Defaults ignored.
-  assertEquals('\u200e+45', getPhoneCountrySelectorElement().textContent);
+  assertEquals("\u200e+45", getPhoneCountrySelectorElement().textContent);
   assertEquals(phoneNumberValue.nationalNumber, getPhoneInputElement().value);
 
   // Recaptcha should be rendered.

@@ -149,11 +149,10 @@
   }
 }
 
-
 // BLOG EDITOR PAGE
 
-.blog-editor-page, .blog-detail-page {
-
+.blog-editor-page,
+.blog-detail-page {
   @media only screen and (min-width: 991px) {
     .editor-wrapper {
       padding: 0 180px;
@@ -175,14 +174,10 @@
   }
 }
 
-
-
 // USER_BLOGS --------------------------------------
 .base-page {
-
   &.blog-user-page {
     padding-top: 50px;
-
 
     .user-blogs-list {
       list-style: none;
@@ -207,8 +202,3 @@
     }
   }
 }
-
-
-
-
-

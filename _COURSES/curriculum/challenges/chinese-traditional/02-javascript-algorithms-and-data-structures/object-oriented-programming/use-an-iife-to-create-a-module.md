@@ -12,12 +12,12 @@ dashedName: use-an-iife-to-create-a-module
 
 ```js
 function glideMixin(obj) {
-  obj.glide = function() {
+  obj.glide = function () {
     console.log("Gliding on the water");
   };
 }
 function flyMixin(obj) {
-  obj.fly = function() {
+  obj.fly = function () {
     console.log("Flying, wooosh!");
   };
 }
@@ -28,17 +28,17 @@ function flyMixin(obj) {
 ```js
 let motionModule = (function () {
   return {
-    glideMixin: function(obj) {
-      obj.glide = function() {
+    glideMixin: function (obj) {
+      obj.glide = function () {
         console.log("Gliding on the water");
       };
     },
-    flyMixin: function(obj) {
-      obj.fly = function() {
+    flyMixin: function (obj) {
+      obj.fly = function () {
         console.log("Flying, wooosh!");
       };
-    }
-  }
+    },
+  };
 })();
 ```
 
@@ -58,19 +58,19 @@ duck.glide();
 `funModule` 應該被定義並返回一個對象。
 
 ```js
-assert(typeof funModule === 'object');
+assert(typeof funModule === "object");
 ```
 
 `funModule.isCuteMixin` 應該訪問一個函數。
 
 ```js
-assert(typeof funModule.isCuteMixin === 'function');
+assert(typeof funModule.isCuteMixin === "function");
 ```
 
 `funModule.singMixin` 應該訪問一個函數。
 
 ```js
-assert(typeof funModule.singMixin === 'function');
+assert(typeof funModule.singMixin === "function");
 ```
 
 # --seed--
@@ -78,13 +78,13 @@ assert(typeof funModule.singMixin === 'function');
 ## --seed-contents--
 
 ```js
-let isCuteMixin = function(obj) {
-  obj.isCute = function() {
+let isCuteMixin = function (obj) {
+  obj.isCute = function () {
     return true;
   };
 };
-let singMixin = function(obj) {
-  obj.sing = function() {
+let singMixin = function (obj) {
+  obj.sing = function () {
     console.log("Singing to an awesome tune");
   };
 };
@@ -95,12 +95,12 @@ let singMixin = function(obj) {
 ```js
 const funModule = (function () {
   return {
-    isCuteMixin: obj => {
+    isCuteMixin: (obj) => {
       obj.isCute = () => true;
     },
-    singMixin: obj => {
+    singMixin: (obj) => {
       obj.sing = () => console.log("Singing to an awesome tune");
-    }
+    },
   };
 })();
 ```

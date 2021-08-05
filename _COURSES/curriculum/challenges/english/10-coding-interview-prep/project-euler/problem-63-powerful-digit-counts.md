@@ -1,6 +1,6 @@
 ---
 id: 5900f3ab1000cf542c50febe
-title: 'Problem 63: Powerful digit counts'
+title: "Problem 63: Powerful digit counts"
 challengeType: 5
 forumTopicId: 302175
 dashedName: problem-63-powerful-digit-counts
@@ -17,7 +17,7 @@ Complete the function so that it returns how many positive integers are of lengt
 `powerfulDigitCounts(1)` should return a number.
 
 ```js
-assert(typeof powerfulDigitCounts(1) === 'number');
+assert(typeof powerfulDigitCounts(1) === "number");
 ```
 
 `powerfulDigitCounts(1)` should return `9`.
@@ -86,7 +86,6 @@ assert.strictEqual(powerfulDigitCounts(21), 1);
 
 ```js
 function powerfulDigitCounts(n) {
-
   return true;
 }
 

@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244bc
 title: Lista della spesa
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c9MEKHZ'
+videoUrl: "https://scrimba.com/c/c9MEKHZ"
 forumTopicId: 18280
 dashedName: shopping-list
 ---
@@ -14,7 +14,7 @@ Crea una lista della spesa nella variabile `myList`. L'elenco dovrebbe essere un
 Il primo elemento in ogni sotto-array dovrebbe contenere una stringa con il nome dell'elemento. Il secondo elemento dovrebbe essere un numero che rappresenta la quantità, per esempio
 
 ```js
-["Chocolate Bar", 15]
+["Chocolate Bar", 15];
 ```
 
 Ci dovrebbero essere almeno 5 sotto-array nella lista.
@@ -54,17 +54,17 @@ var count = 0;
 var isArray = false;
 var hasString = false;
 var hasNumber = false;
-(function(list){
-  if(Array.isArray(myList)) {
+(function (list) {
+  if (Array.isArray(myList)) {
     isArray = true;
-    if(myList.length > 0) {
+    if (myList.length > 0) {
       hasString = true;
       hasNumber = true;
       for (var elem of myList) {
-        if(!elem || !elem[0] || typeof elem[0] !== 'string') {
+        if (!elem || !elem[0] || typeof elem[0] !== "string") {
           hasString = false;
         }
-        if(!elem || typeof elem[1] !== 'number') {
+        if (!elem || typeof elem[1] !== "number") {
           hasNumber = false;
         }
       }
@@ -74,7 +74,6 @@ var hasNumber = false;
   } else {
     return "myList is not an array";
   }
-
 })(myList);
 ```
 
@@ -92,6 +91,6 @@ var myList = [
   ["Potatoes", 12],
   ["Eggs", 12],
   ["Catfood", 1],
-  ["Toads", 9]
+  ["Toads", 9],
 ];
 ```

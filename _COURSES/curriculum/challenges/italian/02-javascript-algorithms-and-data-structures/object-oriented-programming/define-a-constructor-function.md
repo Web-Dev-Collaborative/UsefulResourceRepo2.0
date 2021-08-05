@@ -33,19 +33,19 @@ Crea un costruttore, `Dog`, con le proprietà `name`, `color`, e `numLegs` impos
 `Dog` dovrebbe avere una proprietà `name` impostata su una stringa.
 
 ```js
-assert(typeof new Dog().name === 'string');
+assert(typeof new Dog().name === "string");
 ```
 
 `Dog` dovrebbe avere una proprietà `color` impostata su una stringa.
 
 ```js
-assert(typeof new Dog().color === 'string');
+assert(typeof new Dog().color === "string");
 ```
 
 `Dog` dovrebbe avere una proprietà `numLegs` impostata su un numero.
 
 ```js
-assert(typeof new Dog().numLegs === 'number');
+assert(typeof new Dog().numLegs === "number");
 ```
 
 # --seed--
@@ -59,9 +59,9 @@ assert(typeof new Dog().numLegs === 'number');
 # --solutions--
 
 ```js
-function Dog (name, color, numLegs) {
-  this.name = 'name';
-  this.color = 'color';
+function Dog(name, color, numLegs) {
+  this.name = "name";
+  this.color = "color";
   this.numLegs = 4;
 }
 ```

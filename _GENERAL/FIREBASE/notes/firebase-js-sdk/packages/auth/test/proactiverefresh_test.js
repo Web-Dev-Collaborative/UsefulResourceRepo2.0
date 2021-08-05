@@ -33,7 +33,6 @@ goog.require('goog.testing.recordFunction');
 
 goog.setTestOnly('fireauth.ProactiveRefreshTest');
 
-
 var clock;
 var stubs = new goog.testing.PropertyReplacer();
 var forceRetryError = false;
@@ -49,7 +48,6 @@ var lastTimestamp = 0;
 var makeAppVisible = null;
 var cycle = 1000;
 
-
 function setUp() {
   // Whether to force a retry error to be thrown in the operation to be run.
   forceRetryError = false;
@@ -59,17 +57,14 @@ function setUp() {
   clock = new goog.testing.MockClock(true);
   // Stub on app visible utility.
   makeAppVisible = null;
-  stubs.replace(
-      fireauth.util,
-      'onAppVisible',
-      function() {
-        return new goog.Promise(function(resolve, reject) {
-          // On every call, save onAppVisible resolution function.
-          makeAppVisible = resolve;
-        });
-      });
+  stubs.replace(fireauth.util, 'onAppVisible', function () {
+    return new goog.Promise(function (resolve, reject) {
+      // On every call, save onAppVisible resolution function.
+      makeAppVisible = resolve;
+    });
+  });
   // Operation to practively refresh.
-  operation = goog.testing.recordFunction(function() {
+  operation = goog.testing.recordFunction(function () {
     // Record last run time.
     lastTimestamp = Date.now();
     if (!forceRetryError) {
@@ -78,26 +73,28 @@ function setUp() {
     } else {
       // If retrial error should be forced, throw a network error.
       return goog.Promise.reject(
-        new fireauth.AuthError(fireauth.authenum.Error.NETWORK_REQUEST_FAILED));
+        new fireauth.AuthError(fireauth.authenum.Error.NETWORK_REQUEST_FAILED)
+      );
     }
   });
   // Operation which throws an unrecoverable error.
-  unrecoverableOperation = goog.testing.recordFunction(function() {
+  unrecoverableOperation = goog.testing.recordFunction(function () {
     // Record last run time.
     lastTimestamp = Date.now();
     // Throw unrecoverable error.
     return goog.Promise.reject(
-        new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR));
+      new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR)
+    );
   });
   // Retry policy. Retry only on network errors.
-  retryPolicy = function(error) {
+  retryPolicy = function (error) {
     if (error && error.code == 'auth/network-request-failed') {
       return true;
     }
     return false;
   };
   // Return a cycle for next time to rerun after a successful run.
-  getWaitDuration = function() {
+  getWaitDuration = function () {
     return cycle;
   };
   // Upper bound is 90% of a cycle.
@@ -108,7 +105,6 @@ function setUp() {
   runsInBackground = true;
 }
 
-
 /** Simulates an app becoming visible. */
 function simulateAppIsVisible() {
   // Simulate the app becoming visible.
@@ -116,7 +112,6 @@ function simulateAppIsVisible() {
   // This is needed for the internal promises to resolve.
   clock.tick(0.1);
 }
-
 
 /**
  * Rounds the actual value and then asserts it is equal to the expected rounded
@@ -128,7 +123,6 @@ function assertRoundedEqual(expected, actual) {
   // Round to the nearest and then compare.
   assertEquals(Math.floor(expected), Math.floor(actual));
 }
-
 
 function tearDown() {
   // Reset stubs, mocks and all global test variables.
@@ -150,17 +144,22 @@ function tearDown() {
   goog.dispose(clock);
 }
 
-
 function testProactiveRefresh_invalidBounds() {
-  var error = assertThrows(function() {
+  var error = assertThrows(function () {
     new fireauth.ProactiveRefresh(
-        operation, retryPolicy, getWaitDuration, upperBound, lowerBound,
-        runsInBackground);
+      operation,
+      retryPolicy,
+      getWaitDuration,
+      upperBound,
+      lowerBound,
+      runsInBackground
+    );
   });
   assertEquals(
-      'Proactive refresh lower bound greater than upper bound!', error.message);
+    'Proactive refresh lower bound greater than upper bound!',
+    error.message
+  );
 }
-
 
 function testProactiveRefresh_runsInBackground_success() {
   // Test proactive refresh with multiple successful runs when the refresh can
@@ -168,8 +167,13 @@ function testProactiveRefresh_runsInBackground_success() {
   // Can run in background.
   runsInBackground = true;
   proactiveRefresh = new fireauth.ProactiveRefresh(
-      operation, retryPolicy, getWaitDuration, lowerBound, upperBound,
-      runsInBackground);
+    operation,
+    retryPolicy,
+    getWaitDuration,
+    lowerBound,
+    upperBound,
+    runsInBackground
+  );
   // Assert proactive refresh is not running.
   assertFalse(proactiveRefresh.isRunning());
   // Start proactive refresh.
@@ -213,15 +217,19 @@ function testProactiveRefresh_runsInBackground_success() {
   assertEquals(4, operation.getCallCount());
 }
 
-
 function testProactiveRefresh_cannotRunInBackground_success() {
   // Test proactive refresh with multiple successful runs when the refresh
   // cannot run in the background.
   // Run while forcing refresh only when app is visible.
   runsInBackground = false;
   proactiveRefresh = new fireauth.ProactiveRefresh(
-      operation, retryPolicy, getWaitDuration, lowerBound, upperBound,
-      runsInBackground);
+    operation,
+    retryPolicy,
+    getWaitDuration,
+    lowerBound,
+    upperBound,
+    runsInBackground
+  );
   // Start proactive refresh.
   proactiveRefresh.start();
   // Simulate 3.5 cycles passed.
@@ -256,7 +264,6 @@ function testProactiveRefresh_cannotRunInBackground_success() {
   assertEquals(3, operation.getCallCount());
 }
 
-
 function testProactiveRefresh_unrecoverableError() {
   // Test proactive refresh when an error that does not meet retry policy is
   // thrown.
@@ -264,8 +271,13 @@ function testProactiveRefresh_unrecoverableError() {
   runsInBackground = true;
   // Test with an operation that throws an unrecoverable error.
   proactiveRefresh = new fireauth.ProactiveRefresh(
-      unrecoverableOperation, retryPolicy, getWaitDuration, lowerBound,
-      upperBound, runsInBackground);
+    unrecoverableOperation,
+    retryPolicy,
+    getWaitDuration,
+    lowerBound,
+    upperBound,
+    runsInBackground
+  );
   // Assert proactive refresh is not running.
   assertFalse(proactiveRefresh.isRunning());
   // Start proactive refresh.
@@ -284,15 +296,19 @@ function testProactiveRefresh_unrecoverableError() {
   assertFalse(proactiveRefresh.isRunning());
 }
 
-
 function testProactiveRefresh_runsInBackground_retryPolicy() {
   // Test exponential backoff after a network error when the refresh can run in
   // the background.
   // Can run in background.
   runsInBackground = true;
   proactiveRefresh = new fireauth.ProactiveRefresh(
-      operation, retryPolicy, getWaitDuration, lowerBound, upperBound,
-      runsInBackground);
+    operation,
+    retryPolicy,
+    getWaitDuration,
+    lowerBound,
+    upperBound,
+    runsInBackground
+  );
   // Assert proactive refresh is not running.
   assertFalse(proactiveRefresh.isRunning());
   // Start proactive refresh.
@@ -356,15 +372,19 @@ function testProactiveRefresh_runsInBackground_retryPolicy() {
   assertFalse(proactiveRefresh.isRunning());
 }
 
-
 function testProactiveRefresh_equalBounds() {
   // Check when upper and lower bounds are equal that the same wait is applied
   // each time an error occurs.
   runsInBackground = true;
   // Use same upper/lower bound.
   proactiveRefresh = new fireauth.ProactiveRefresh(
-      operation, retryPolicy, getWaitDuration, lowerBound, lowerBound,
-      runsInBackground);
+    operation,
+    retryPolicy,
+    getWaitDuration,
+    lowerBound,
+    lowerBound,
+    runsInBackground
+  );
   // Simulate error that meets retry policy.
   forceRetryError = true;
   // Start proactive refresh.
@@ -393,15 +413,19 @@ function testProactiveRefresh_equalBounds() {
   proactiveRefresh.stop();
 }
 
-
 function testProactiveRefresh_cannotRunInBackground_retryPolicy() {
   // Test exponential backoff after a network error when the refresh cannot run
   // in the background.
   // Can run in background.
   runsInBackground = false;
   proactiveRefresh = new fireauth.ProactiveRefresh(
-      operation, retryPolicy, getWaitDuration, lowerBound, upperBound,
-      runsInBackground);
+    operation,
+    retryPolicy,
+    getWaitDuration,
+    lowerBound,
+    upperBound,
+    runsInBackground
+  );
   // Simulate error that meets retry policy.
   forceRetryError = true;
   // Start proactive refresh.
@@ -461,15 +485,19 @@ function testProactiveRefresh_cannotRunInBackground_retryPolicy() {
   proactiveRefresh.stop();
 }
 
-
 function testProactiveRefresh_runsInBackground_retryPolicy_stopAndRestart() {
   // Test exponential backoff after a network error when the refresh can run in
   // the background. Test that restart resets the previous error.
   // Can run in background.
   runsInBackground = true;
   proactiveRefresh = new fireauth.ProactiveRefresh(
-      operation, retryPolicy, getWaitDuration, lowerBound, upperBound,
-      runsInBackground);
+    operation,
+    retryPolicy,
+    getWaitDuration,
+    lowerBound,
+    upperBound,
+    runsInBackground
+  );
   // Simulate error that meets retry policy.
   forceRetryError = true;
   // Start proactive refresh.

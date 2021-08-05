@@ -36,7 +36,6 @@ goog.require('goog.testing.mockmatchers');
 
 goog.setTestOnly('fireauth.iframeclient.IframeWrapperTest');
 
-
 var ignoreArgument;
 var mockControl;
 var asyncTestCase = goog.testing.AsyncTestCase.createAndInstall();
@@ -50,7 +49,6 @@ function setUp() {
   mockControl = new goog.testing.MockControl();
   mockControl.$resetAll();
 }
-
 
 function tearDown() {
   try {
@@ -66,9 +64,8 @@ function tearDown() {
   fireauth.iframeclient.IframeWrapper.resetCachedGApiLoader();
 }
 
-
 function testIframeWrapper() {
-  var expectedHandler = function(resp) {};
+  var expectedHandler = function (resp) {};
   var path = 'https://data_iframe_url';
   var iframesGetContext = mockControl.createFunctionMock('getContext');
   // Simulate gapi.iframes loaded.
@@ -86,57 +83,64 @@ function testIframeWrapper() {
   iframesGetContext().$returns({
     'open': openIframe
   });
-  openIframe(ignoreArgument, ignoreArgument).$does(function(params, onOpen) {
-    assertEquals(params['url'], 'https://data_iframe_url');
-    assertObjectEquals(params['where'], document.body);
-    assertObjectEquals(params['attributes']['style'], {
-      'position': 'absolute',
-      'top': '-100px',
-      'width': '1px',
-      'height': '1px'
-    });
-    assertTrue(params['dontclear']);
-    onOpen({
-      'send': send,
-      'register': register,
-      'unregister': unregister,
-      'restyle': restyle,
-      'ping': function(callback, opt_data) {
-        // Successfully embedded.
-        callback();
-        return new goog.Promise(function(resolve, reject) {});
-      }
-    });
-  }).$once();
-  restyle({'setHideOnLeave': false}).$once();
+  openIframe(ignoreArgument, ignoreArgument)
+    .$does(function (params, onOpen) {
+      assertEquals(params['url'], 'https://data_iframe_url');
+      assertObjectEquals(params['where'], document.body);
+      assertObjectEquals(params['attributes']['style'], {
+        'position': 'absolute',
+        'top': '-100px',
+        'width': '1px',
+        'height': '1px'
+      });
+      assertTrue(params['dontclear']);
+      onOpen({
+        'send': send,
+        'register': register,
+        'unregister': unregister,
+        'restyle': restyle,
+        'ping': function (callback, opt_data) {
+          // Successfully embedded.
+          callback();
+          return new goog.Promise(function (resolve, reject) {});
+        }
+      });
+    })
+    .$once();
+  restyle({ 'setHideOnLeave': false }).$once();
 
   send(
-      'messageType',
-      {'type': 'messageType', 'field1': 'value1', 'field2': 'value2'},
-      ignoreArgument, gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER)
-      .$does(function(type, message, resolve) {
-        // Iframe should be ready.
-        assertTrue(iframeReady);
-        resolve({'status': 'OK'});
-      })
-      .$once();
+    'messageType',
+    { 'type': 'messageType', 'field1': 'value1', 'field2': 'value2' },
+    ignoreArgument,
+    gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER
+  )
+    .$does(function (type, message, resolve) {
+      // Iframe should be ready.
+      assertTrue(iframeReady);
+      resolve({ 'status': 'OK' });
+    })
+    .$once();
 
   register(
-      'eventName', ignoreArgument, gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER)
-      .$does(function(eventName, handler) {
-        // Iframe should be ready.
-        assertTrue(iframeReady);
-        assertEquals(expectedHandler, handler);
-      })
-      .$once();
+    'eventName',
+    ignoreArgument,
+    gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER
+  )
+    .$does(function (eventName, handler) {
+      // Iframe should be ready.
+      assertTrue(iframeReady);
+      assertEquals(expectedHandler, handler);
+    })
+    .$once();
 
   unregister('eventName', ignoreArgument)
-      .$does(function(eventName, handler) {
-        // Iframe should be ready.
-        assertTrue(iframeReady);
-        assertEquals(expectedHandler, handler);
-      })
-      .$once();
+    .$does(function (eventName, handler) {
+      // Iframe should be ready.
+      assertTrue(iframeReady);
+      assertEquals(expectedHandler, handler);
+    })
+    .$once();
 
   mockControl.$replayAll();
   asyncTestCase.waitForSignals(1);
@@ -144,19 +148,21 @@ function testIframeWrapper() {
   // Test initialization of data iframe.
   var iframeWrapper = new fireauth.iframeclient.IframeWrapper(path);
   // Iframe wrapper should become ready.
-  iframeWrapper.onReady().then(function() { iframeReady = true; });
+  iframeWrapper.onReady().then(function () {
+    iframeReady = true;
+  });
   assertEquals(path, iframeWrapper.getPath_());
   // sendMessage.
-  iframeWrapper.sendMessage({
-    'type': 'messageType',
-    'field1': 'value1',
-    'field2': 'value2'
-  }).then(function(response) {
-    assertObjectEquals(
-        {'status': 'OK'},
-        response);
-    asyncTestCase.signal();
-  });
+  iframeWrapper
+    .sendMessage({
+      'type': 'messageType',
+      'field1': 'value1',
+      'field2': 'value2'
+    })
+    .then(function (response) {
+      assertObjectEquals({ 'status': 'OK' }, response);
+      asyncTestCase.signal();
+    });
   // Flag to track iframe readiness.
   var iframeReady = false;
   // registerEvent.
@@ -164,7 +170,6 @@ function testIframeWrapper() {
   // unregisterEvent.
   iframeWrapper.unregisterEvent('eventName', expectedHandler);
 }
-
 
 function testIframeWrapper_failedToOpen() {
   // Test when iframe fails to open.
@@ -182,31 +187,31 @@ function testIframeWrapper_failedToOpen() {
   var register = mockControl.createFunctionMock('register');
   var unregister = mockControl.createFunctionMock('unregister');
   var restyle = mockControl.createFunctionMock('restyle');
-  iframesGetContext().$returns({'open': openIframe});
+  iframesGetContext().$returns({ 'open': openIframe });
   openIframe(ignoreArgument, ignoreArgument)
-      .$does(function(params, onOpen) {
-        assertEquals(params['url'], 'https://data_iframe_url');
-        assertObjectEquals(params['where'], document.body);
-        assertObjectEquals(params['attributes']['style'], {
-          'position': 'absolute',
-          'top': '-100px',
-          'width': '1px',
-          'height': '1px'
-        });
-        assertTrue(params['dontclear']);
-        onOpen({
-          'send': send,
-          'register': register,
-          'unregister': unregister,
-          'restyle': restyle,
-          // Unresponsive ping.
-          'ping': function() {
-            return new goog.Promise(function(resolve, reject) {});
-          }
-        });
-      })
-      .$once();
-  restyle({'setHideOnLeave': false}).$once();
+    .$does(function (params, onOpen) {
+      assertEquals(params['url'], 'https://data_iframe_url');
+      assertObjectEquals(params['where'], document.body);
+      assertObjectEquals(params['attributes']['style'], {
+        'position': 'absolute',
+        'top': '-100px',
+        'width': '1px',
+        'height': '1px'
+      });
+      assertTrue(params['dontclear']);
+      onOpen({
+        'send': send,
+        'register': register,
+        'unregister': unregister,
+        'restyle': restyle,
+        // Unresponsive ping.
+        'ping': function () {
+          return new goog.Promise(function (resolve, reject) {});
+        }
+      });
+    })
+    .$once();
+  restyle({ 'setHideOnLeave': false }).$once();
 
   mockControl.$replayAll();
 
@@ -214,30 +219,31 @@ function testIframeWrapper_failedToOpen() {
   asyncTestCase.waitForSignals(2);
   var iframeWrapper = new fireauth.iframeclient.IframeWrapper(path);
   // Iframe wrapper should not become ready and timeout.
-  iframeWrapper.onReady().thenCatch(function(error) {
+  iframeWrapper.onReady().thenCatch(function (error) {
     assertEquals('Network Error', error.message);
     asyncTestCase.signal();
   });
   iframeWrapper
-      .sendMessage(
-          {'type': 'messageType', 'field1': 'value1', 'field2': 'value2'})
-      .thenCatch(function(error) {
-        assertEquals('Network Error', error.message);
-        asyncTestCase.signal();
-      });
+    .sendMessage({
+      'type': 'messageType',
+      'field1': 'value1',
+      'field2': 'value2'
+    })
+    .thenCatch(function (error) {
+      assertEquals('Network Error', error.message);
+      asyncTestCase.signal();
+    });
   // Simulate iframe ping is not responsive.
   clock.tick(10000);
 }
-
 
 function testIframeWrapper_offline() {
   // Test when iframe fails to open due to app being offline.
   // Simulate app offline.
   stubs.reset();
-  stubs.replace(
-      fireauth.util,
-      'isOnline',
-      function() {return false;});
+  stubs.replace(fireauth.util, 'isOnline', function () {
+    return false;
+  });
   var path = 'https://data_iframe_url';
 
   // Test initialization of data iframe.
@@ -246,21 +252,23 @@ function testIframeWrapper_offline() {
   // Iframe wrapper should not become ready and timeout as the app is offline.
   // Mockclock is already set in setUp and does not tick. This means the call
   // is getting rejected immediately and not listening to any timer.
-  iframeWrapper.onReady().thenCatch(function(error) {
+  iframeWrapper.onReady().thenCatch(function (error) {
     assertEquals('Network Error', error.message);
     asyncTestCase.signal();
   });
   // Simulate short timeout when navigator.onLine is false.
   clock.tick(5000);
   iframeWrapper
-      .sendMessage(
-          {'type': 'messageType', 'field1': 'value1', 'field2': 'value2'})
-      .thenCatch(function(error) {
-        assertEquals('Network Error', error.message);
-        asyncTestCase.signal();
-      });
+    .sendMessage({
+      'type': 'messageType',
+      'field1': 'value1',
+      'field2': 'value2'
+    })
+    .thenCatch(function (error) {
+      assertEquals('Network Error', error.message);
+      asyncTestCase.signal();
+    });
 }
-
 
 /**
  * Simulate successful gapi.iframes being loaded.
@@ -269,11 +277,11 @@ function testIframeWrapper_offline() {
 function simulateSuccessfulGapiIframesLoading(iframesGetContext) {
   var gapiLoadCounter = 0;
   var jsloaderCounter = 0;
-  var setGapiLoader = function() {
-    gapi.load = function(features, options) {
+  var setGapiLoader = function () {
+    gapi.load = function (features, options) {
       // Run asynchronously to give a chance for multiple parallel calls to be
       // caught.
-      goog.Promise.resolve().then(function() {
+      goog.Promise.resolve().then(function () {
         // gapi.load should never try to load successfully more than once and
         // the successful result should be cached and returned on successive
         // calls.
@@ -292,10 +300,10 @@ function simulateSuccessfulGapiIframesLoading(iframesGetContext) {
   };
   if (!gapi) {
     // GApi not available, it will try to load api.js and then gapi.iframes.
-    stubs.replace(goog.net.jsloader, 'safeLoad', function(url) {
+    stubs.replace(goog.net.jsloader, 'safeLoad', function (url) {
       // Run asynchronously to give a chance for multiple parallel calls to
       // be caught.
-      return goog.Promise.resolve().then(function() {
+      return goog.Promise.resolve().then(function () {
         // jsloader should never try to load successfully more than once and
         // the successful result should be cached and returned on successive
         // calls.
@@ -318,11 +326,10 @@ function simulateSuccessfulGapiIframesLoading(iframesGetContext) {
   }
 }
 
-
 function testIframeWrapper_gapiNotLoadedError() {
   // Test when GApi fails to load.
   gapi = null;
-  stubs.replace(goog.net.jsloader, 'safeLoad', function(url) {
+  stubs.replace(goog.net.jsloader, 'safeLoad', function (url) {
     return goog.Promise.reject();
   });
   var path = 'https://data_iframe_url';
@@ -332,31 +339,31 @@ function testIframeWrapper_gapiNotLoadedError() {
   var register = mockControl.createFunctionMock('register');
   var unregister = mockControl.createFunctionMock('unregister');
   var restyle = mockControl.createFunctionMock('restyle');
-  iframesGetContext().$returns({'open': openIframe});
+  iframesGetContext().$returns({ 'open': openIframe });
   openIframe(ignoreArgument, ignoreArgument)
-      .$does(function(params, onOpen) {
-        assertEquals(params['url'], 'https://data_iframe_url');
-        assertObjectEquals(params['where'], document.body);
-        assertObjectEquals(params['attributes']['style'], {
-          'position': 'absolute',
-          'top': '-100px',
-          'width': '1px',
-          'height': '1px'
-        });
-        assertTrue(params['dontclear']);
-        onOpen({
-          'send': send,
-          'register': register,
-          'unregister': unregister,
-          'restyle': restyle,
-          'ping': function(callback) {
-            callback();
-            return new goog.Promise(function(resolve, reject) {});
-          }
-        });
-      })
-      .$once();
-  restyle({'setHideOnLeave': false}).$once();
+    .$does(function (params, onOpen) {
+      assertEquals(params['url'], 'https://data_iframe_url');
+      assertObjectEquals(params['where'], document.body);
+      assertObjectEquals(params['attributes']['style'], {
+        'position': 'absolute',
+        'top': '-100px',
+        'width': '1px',
+        'height': '1px'
+      });
+      assertTrue(params['dontclear']);
+      onOpen({
+        'send': send,
+        'register': register,
+        'unregister': unregister,
+        'restyle': restyle,
+        'ping': function (callback) {
+          callback();
+          return new goog.Promise(function (resolve, reject) {});
+        }
+      });
+    })
+    .$once();
+  restyle({ 'setHideOnLeave': false }).$once();
 
   mockControl.$replayAll();
 
@@ -364,38 +371,46 @@ function testIframeWrapper_gapiNotLoadedError() {
   asyncTestCase.waitForSignals(2);
   var iframeWrapper = new fireauth.iframeclient.IframeWrapper(path);
   // Iframe wrapper should not become ready as api.js fails to load.
-  iframeWrapper.onReady().thenCatch(function(error) {
+  iframeWrapper.onReady().thenCatch(function (error) {
     assertEquals('Network Error', error.message);
     asyncTestCase.signal();
   });
   iframeWrapper
-      .sendMessage(
-          {'type': 'messageType', 'field1': 'value1', 'field2': 'value2'})
-      .thenCatch(function(error) {
-        assertEquals('Network Error', error.message);
-        // Try again and make sure failing result was not cached.
-        // This time gapi.iframes will load correctly.
-        simulateSuccessfulGapiIframesLoading(iframesGetContext);
-        var iframeWrapper2 = new fireauth.iframeclient.IframeWrapper(path);
-        // This time it should succeed.
-        iframeWrapper2.onReady().then(function() { asyncTestCase.signal(); });
+    .sendMessage({
+      'type': 'messageType',
+      'field1': 'value1',
+      'field2': 'value2'
+    })
+    .thenCatch(function (error) {
+      assertEquals('Network Error', error.message);
+      // Try again and make sure failing result was not cached.
+      // This time gapi.iframes will load correctly.
+      simulateSuccessfulGapiIframesLoading(iframesGetContext);
+      var iframeWrapper2 = new fireauth.iframeclient.IframeWrapper(path);
+      // This time it should succeed.
+      iframeWrapper2.onReady().then(function () {
+        asyncTestCase.signal();
       });
+    });
 }
-
 
 function testIframeWrapper_gapiDotLoadError() {
   var path = 'https://data_iframe_url';
-  var resetUnloadedGapiModules =
-      mockControl.createFunctionMock('resetUnloadedGapiModules');
+  var resetUnloadedGapiModules = mockControl.createFunctionMock(
+    'resetUnloadedGapiModules'
+  );
   gapi = {};
   // Simulate error while loading gapi.iframes.
-  gapi.load = function(features, options) {
+  gapi.load = function (features, options) {
     assertEquals('gapi.iframes', features);
     options['ontimeout']();
   };
   // Record fireauth.util.resetUnloadedGapiModules.
   stubs.replace(
-      fireauth.util, 'resetUnloadedGapiModules', resetUnloadedGapiModules);
+    fireauth.util,
+    'resetUnloadedGapiModules',
+    resetUnloadedGapiModules
+  );
   // Called once to reset any unloaded module the developer may have requested.
   resetUnloadedGapiModules();
   // Called on first gapi.iframe load timeout.
@@ -408,55 +423,59 @@ function testIframeWrapper_gapiDotLoadError() {
   var register = mockControl.createFunctionMock('register');
   var unregister = mockControl.createFunctionMock('unregister');
   var restyle = mockControl.createFunctionMock('restyle');
-  iframesGetContext().$returns({'open': openIframe});
+  iframesGetContext().$returns({ 'open': openIframe });
   openIframe(ignoreArgument, ignoreArgument)
-      .$does(function(params, onOpen) {
-        assertEquals(params['url'], 'https://data_iframe_url');
-        assertObjectEquals(params['where'], document.body);
-        assertObjectEquals(params['attributes']['style'], {
-          'position': 'absolute',
-          'top': '-100px',
-          'width': '1px',
-          'height': '1px'
-        });
-        assertTrue(params['dontclear']);
-        onOpen({
-          'send': send,
-          'register': register,
-          'unregister': unregister,
-          'restyle': restyle,
-          'ping': function(callback) {
-            callback();
-            return new goog.Promise(function(resolve, reject) {});
-          }
-        });
-      })
-      .$once();
-  restyle({'setHideOnLeave': false}).$once();
+    .$does(function (params, onOpen) {
+      assertEquals(params['url'], 'https://data_iframe_url');
+      assertObjectEquals(params['where'], document.body);
+      assertObjectEquals(params['attributes']['style'], {
+        'position': 'absolute',
+        'top': '-100px',
+        'width': '1px',
+        'height': '1px'
+      });
+      assertTrue(params['dontclear']);
+      onOpen({
+        'send': send,
+        'register': register,
+        'unregister': unregister,
+        'restyle': restyle,
+        'ping': function (callback) {
+          callback();
+          return new goog.Promise(function (resolve, reject) {});
+        }
+      });
+    })
+    .$once();
+  restyle({ 'setHideOnLeave': false }).$once();
   mockControl.$replayAll();
 
   // Test initialization of data iframe.
   asyncTestCase.waitForSignals(2);
   var iframeWrapper = new fireauth.iframeclient.IframeWrapper(path);
   // Iframe wrapper should should fail due to error in loading gapi.iframes.
-  iframeWrapper.onReady().thenCatch(function(error) {
+  iframeWrapper.onReady().thenCatch(function (error) {
     assertEquals('Network Error', error.message);
     asyncTestCase.signal();
   });
   iframeWrapper
-      .sendMessage(
-          {'type': 'messageType', 'field1': 'value1', 'field2': 'value2'})
-      .thenCatch(function(error) {
-        assertEquals('Network Error', error.message);
-        // Try again and make sure failing result was not cached.
-        // Simulate successful loading of gapi.iframes this time.
-        simulateSuccessfulGapiIframesLoading(iframesGetContext);
-        var iframeWrapper2 = new fireauth.iframeclient.IframeWrapper(path);
-        // This should succeed.
-        iframeWrapper2.onReady().then(function() { asyncTestCase.signal(); });
+    .sendMessage({
+      'type': 'messageType',
+      'field1': 'value1',
+      'field2': 'value2'
+    })
+    .thenCatch(function (error) {
+      assertEquals('Network Error', error.message);
+      // Try again and make sure failing result was not cached.
+      // Simulate successful loading of gapi.iframes this time.
+      simulateSuccessfulGapiIframesLoading(iframesGetContext);
+      var iframeWrapper2 = new fireauth.iframeclient.IframeWrapper(path);
+      // This should succeed.
+      iframeWrapper2.onReady().then(function () {
+        asyncTestCase.signal();
       });
+    });
 }
-
 
 function testIframeWrapper_multipleInstances() {
   // Tests when multiple iframe wrapper instance initialized that only one
@@ -471,31 +490,31 @@ function testIframeWrapper_multipleInstances() {
   var restyle = mockControl.createFunctionMock('restyle');
   // Requests should be called twice.
   for (var i = 0; i < 2; i++) {
-    iframesGetContext().$returns({'open': openIframe});
+    iframesGetContext().$returns({ 'open': openIframe });
     openIframe(ignoreArgument, ignoreArgument)
-        .$does(function(params, onOpen) {
-          assertEquals(params['url'], 'https://data_iframe_url');
-          assertObjectEquals(params['where'], document.body);
-          assertObjectEquals(params['attributes']['style'], {
-            'position': 'absolute',
-            'top': '-100px',
-            'width': '1px',
-            'height': '1px'
-          });
-          assertTrue(params['dontclear']);
-          onOpen({
-            'send': send,
-            'register': register,
-            'unregister': unregister,
-            'restyle': restyle,
-            'ping': function(callback) {
-              callback();
-              return new goog.Promise(function(resolve, reject) {});
-            }
-          });
-        })
-        .$once();
-    restyle({'setHideOnLeave': false}).$once();
+      .$does(function (params, onOpen) {
+        assertEquals(params['url'], 'https://data_iframe_url');
+        assertObjectEquals(params['where'], document.body);
+        assertObjectEquals(params['attributes']['style'], {
+          'position': 'absolute',
+          'top': '-100px',
+          'width': '1px',
+          'height': '1px'
+        });
+        assertTrue(params['dontclear']);
+        onOpen({
+          'send': send,
+          'register': register,
+          'unregister': unregister,
+          'restyle': restyle,
+          'ping': function (callback) {
+            callback();
+            return new goog.Promise(function (resolve, reject) {});
+          }
+        });
+      })
+      .$once();
+    restyle({ 'setHideOnLeave': false }).$once();
   }
   mockControl.$replayAll();
 
@@ -505,11 +524,11 @@ function testIframeWrapper_multipleInstances() {
   // once.
   simulateSuccessfulGapiIframesLoading(iframesGetContext);
   var iframeWrapper = new fireauth.iframeclient.IframeWrapper(path);
-  iframeWrapper.onReady().then(function() {
+  iframeWrapper.onReady().then(function () {
     asyncTestCase.signal();
   });
   var iframeWrapper2 = new fireauth.iframeclient.IframeWrapper(path);
-  iframeWrapper2.onReady().then(function() {
+  iframeWrapper2.onReady().then(function () {
     asyncTestCase.signal();
   });
 }

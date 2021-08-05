@@ -24,13 +24,13 @@ Mocha 允许你在实际测试之前准备一些代码运行的基础。 这可�
 在 `tests/2_functional-tests.js`中，紧接着 `Browser` 声明之后，将你的项目 URL 添加到变量的 `site` 属性：
 
 ```js
-Browser.site = 'https://sincere-cone.gomix.me'; // Your URL here
+Browser.site = "https://sincere-cone.gomix.me"; // Your URL here
 ```
 
 如果你在本地环境中测试，则替换上面的代码为：
 
 ```js
-Browser.localhost('example.com', process.env.PORT || 3000);
+Browser.localhost("example.com", process.env.PORT || 3000);
 ```
 
 在 `tests/2_functional-tests.js` 中，在 `'Functional Tests with Zombie.js'` 套件的底部，使用以下代码实例化一个新的 `Browser` 对象：
@@ -42,8 +42,8 @@ const browser = new Browser();
 然后，通过以下代码，使用 `suiteSetup` 钩子把 `browser` 指向 `/` 路由：
 
 ```js
-suiteSetup(function(done) {
-  return browser.visit('/', done);
+suiteSetup(function (done) {
+  return browser.visit("/", done);
 });
 ```
 
@@ -53,11 +53,11 @@ suiteSetup(function(done) {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional").then(
     (data) => {
       data.slice(0, 4).forEach((test) => {
-        assert.equal(test.state, 'passed');
-      })
+        assert.equal(test.state, "passed");
+      });
     },
     (xhr) => {
       throw new Error(xhr.responseText);

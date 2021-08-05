@@ -15,19 +15,19 @@ Este es un ejemplo para revisar cómo hacer esto:
 La expresión regular `/z+/` coincide con la letra `z` cuando aparece una o más veces seguidas. Encontrará coincidencias en las siguientes cadenas:
 
 ```js
-"z"
-"zzzzzz"
-"ABCzzzz"
-"zzzzABC"
-"abczzzzzzzzzzzzzzzzzzzzzabc"
+"z";
+"zzzzzz";
+"ABCzzzz";
+"zzzzABC";
+"abczzzzzzzzzzzzzzzzzzzzzabc";
 ```
 
 Pero no encuentra coincidencias en las siguientes cadenas, ya que no hay letras `z`:
 
 ```js
-""
-"ABC"
-"abcabc"
+"";
+"ABC";
+"abcabc";
 ```
 
 # --instructions--
@@ -39,21 +39,21 @@ Escribe una expresión regular codiciosa que encuentre uno o más criminales den
 Tu expresión regular debe coincidir con un criminal (`C`) en la cadena `C`
 
 ```js
-assert('C'.match(reCriminals) && 'C'.match(reCriminals)[0] == 'C');
+assert("C".match(reCriminals) && "C".match(reCriminals)[0] == "C");
 ```
 
 Tu expresión regular debe coincidir con dos criminales (`CC`) en la cadena `CC`
 
 ```js
-assert('CC'.match(reCriminals) && 'CC'.match(reCriminals)[0] == 'CC');
+assert("CC".match(reCriminals) && "CC".match(reCriminals)[0] == "CC");
 ```
 
 Tu expresión regular debe coincidir con tres criminales (`CCC`) en la cadena `P1P5P4CCCcP2P6P3`.
 
 ```js
 assert(
-  'P1P5P4CCCcP2P6P3'.match(reCriminals) &&
-    'P1P5P4CCCcP2P6P3'.match(reCriminals)[0] == 'CCC'
+  "P1P5P4CCCcP2P6P3".match(reCriminals) &&
+    "P1P5P4CCCcP2P6P3".match(reCriminals)[0] == "CCC"
 );
 ```
 
@@ -61,33 +61,33 @@ Tu expresión regular debe coincidir con cinco criminales (`CCCCC`) en la cadena
 
 ```js
 assert(
-  'P6P2P7P4P5CCCCCP3P1'.match(reCriminals) &&
-    'P6P2P7P4P5CCCCCP3P1'.match(reCriminals)[0] == 'CCCCC'
+  "P6P2P7P4P5CCCCCP3P1".match(reCriminals) &&
+    "P6P2P7P4P5CCCCCP3P1".match(reCriminals)[0] == "CCCCC"
 );
 ```
 
 Tu expresión regular no debe coincidir con ningún criminal en la cadena vacía `""`
 
 ```js
-assert(!reCriminals.test(''));
+assert(!reCriminals.test(""));
 ```
 
 Tu regex no debe coincidir con ningún criminal en la cadena `P1P2P3`
 
 ```js
-assert(!reCriminals.test('P1P2P3'));
+assert(!reCriminals.test("P1P2P3"));
 ```
 
 Tu expresión regular debe coincidir con cincuenta criminales (`CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC`) en la cadena `P2P1P5P4CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCP3`.
 
 ```js
 assert(
-  'P2P1P5P4CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCP3'.match(
+  "P2P1P5P4CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCP3".match(
     reCriminals
   ) &&
-    'P2P1P5P4CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCP3'.match(
+    "P2P1P5P4CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCP3".match(
       reCriminals
-    )[0] == 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
+    )[0] == "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
 );
 ```
 

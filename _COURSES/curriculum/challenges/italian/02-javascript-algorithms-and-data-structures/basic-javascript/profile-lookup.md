@@ -2,7 +2,7 @@
 id: 5688e62ea601b2482ff8422b
 title: Ricerca di un profilo
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cDqW2Cg'
+videoUrl: "https://scrimba.com/c/cDqW2Cg"
 forumTopicId: 18259
 dashedName: profile-lookup
 ---
@@ -26,40 +26,40 @@ Se `prop` non corrisponde ad alcuna proprietà valida di un contatto trovato cer
 `lookUpProfile("Kristian", "lastName")` dovrebbe restituire la stringa `Vos`
 
 ```js
-assert(lookUpProfile('Kristian', 'lastName') === 'Vos');
+assert(lookUpProfile("Kristian", "lastName") === "Vos");
 ```
 
 `lookUpProfile("Sherlock", "likes")` dovrebbe restituire `["Intriguing Cases", "Violin"]`
 
 ```js
-assert.deepEqual(lookUpProfile('Sherlock', 'likes'), [
-  'Intriguing Cases',
-  'Violin'
+assert.deepEqual(lookUpProfile("Sherlock", "likes"), [
+  "Intriguing Cases",
+  "Violin",
 ]);
 ```
 
 `lookUpProfile("Harry", "likes")` dovrebbe restituire un array
 
 ```js
-assert(typeof lookUpProfile('Harry', 'likes') === 'object');
+assert(typeof lookUpProfile("Harry", "likes") === "object");
 ```
 
 `lookUpProfile("Bob", "number")` dovrebbe restituire la stringa `No such contact`
 
 ```js
-assert(lookUpProfile('Bob', 'number') === 'No such contact');
+assert(lookUpProfile("Bob", "number") === "No such contact");
 ```
 
 `lookUpProfile("Bob", "potato")` dovrebbe restituire la stringa `No such contact`
 
 ```js
-assert(lookUpProfile('Bob', 'potato') === 'No such contact');
+assert(lookUpProfile("Bob", "potato") === "No such contact");
 ```
 
 `lookUpProfile("Akira", "address")` dovrebbe restituire la stringa `No such property`
 
 ```js
-assert(lookUpProfile('Akira', 'address') === 'No such property');
+assert(lookUpProfile("Akira", "address") === "No such property");
 ```
 
 # --seed--
@@ -69,36 +69,34 @@ assert(lookUpProfile('Akira', 'address') === 'No such property');
 ```js
 // Setup
 var contacts = [
-    {
-        "firstName": "Akira",
-        "lastName": "Laine",
-        "number": "0543236543",
-        "likes": ["Pizza", "Coding", "Brownie Points"]
-    },
-    {
-        "firstName": "Harry",
-        "lastName": "Potter",
-        "number": "0994372684",
-        "likes": ["Hogwarts", "Magic", "Hagrid"]
-    },
-    {
-        "firstName": "Sherlock",
-        "lastName": "Holmes",
-        "number": "0487345643",
-        "likes": ["Intriguing Cases", "Violin"]
-    },
-    {
-        "firstName": "Kristian",
-        "lastName": "Vos",
-        "number": "unknown",
-        "likes": ["JavaScript", "Gaming", "Foxes"]
-    }
+  {
+    firstName: "Akira",
+    lastName: "Laine",
+    number: "0543236543",
+    likes: ["Pizza", "Coding", "Brownie Points"],
+  },
+  {
+    firstName: "Harry",
+    lastName: "Potter",
+    number: "0994372684",
+    likes: ["Hogwarts", "Magic", "Hagrid"],
+  },
+  {
+    firstName: "Sherlock",
+    lastName: "Holmes",
+    number: "0487345643",
+    likes: ["Intriguing Cases", "Violin"],
+  },
+  {
+    firstName: "Kristian",
+    lastName: "Vos",
+    number: "unknown",
+    likes: ["JavaScript", "Gaming", "Foxes"],
+  },
 ];
-
 
 function lookUpProfile(name, prop) {
   // Only change code below this line
-
   // Only change code above this line
 }
 
@@ -109,41 +107,40 @@ lookUpProfile("Akira", "likes");
 
 ```js
 var contacts = [
-    {
-        "firstName": "Akira",
-        "lastName": "Laine",
-        "number": "0543236543",
-        "likes": ["Pizza", "Coding", "Brownie Points"]
-    },
-    {
-        "firstName": "Harry",
-        "lastName": "Potter",
-        "number": "0994372684",
-        "likes": ["Hogwarts", "Magic", "Hagrid"]
-    },
-    {
-        "firstName": "Sherlock",
-        "lastName": "Holmes",
-        "number": "0487345643",
-        "likes": ["Intriguing Cases", "Violin"]
-    },
-    {
-        "firstName": "Kristian",
-        "lastName": "Vos",
-        "number": "unknown",
-        "likes": ["JavaScript", "Gaming", "Foxes"]
-    },
+  {
+    firstName: "Akira",
+    lastName: "Laine",
+    number: "0543236543",
+    likes: ["Pizza", "Coding", "Brownie Points"],
+  },
+  {
+    firstName: "Harry",
+    lastName: "Potter",
+    number: "0994372684",
+    likes: ["Hogwarts", "Magic", "Hagrid"],
+  },
+  {
+    firstName: "Sherlock",
+    lastName: "Holmes",
+    number: "0487345643",
+    likes: ["Intriguing Cases", "Violin"],
+  },
+  {
+    firstName: "Kristian",
+    lastName: "Vos",
+    number: "unknown",
+    likes: ["JavaScript", "Gaming", "Foxes"],
+  },
 ];
 
-
 //Write your function in between these comments
-function lookUpProfile(name, prop){
-    for(var i in contacts){
-      if(contacts[i].firstName === name) {
-        return contacts[i][prop] || "No such property";
-      }
+function lookUpProfile(name, prop) {
+  for (var i in contacts) {
+    if (contacts[i].firstName === name) {
+      return contacts[i][prop] || "No such property";
     }
-   return "No such contact";
+  }
+  return "No such contact";
 }
 //Write your function in between these comments
 

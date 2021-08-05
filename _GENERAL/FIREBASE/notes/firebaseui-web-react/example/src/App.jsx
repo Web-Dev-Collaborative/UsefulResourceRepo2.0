@@ -15,20 +15,20 @@
  */
 
 // React core.
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
 // Firebase.
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import firebase from "firebase/app";
+import "firebase/auth";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 // Styles
-import styles from './app.css'; // This uses CSS modules.
-import './firebaseui-styling.global.css'; // Import globally.
+import styles from "./app.css"; // This uses CSS modules.
+import "./firebaseui-styling.global.css"; // Import globally.
 
 // Get the Firebase config from the auto generated file.
-const firebaseConfig = require('./firebase-config.json').result.sdkConfig;
+const firebaseConfig = require("./firebase-config.json").result.sdkConfig;
 
 // Instantiate a Firebase app.
 const firebaseApp = firebase.initializeApp(firebaseConfig);
@@ -38,7 +38,7 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
  */
 class App extends React.Component {
   uiConfig = {
-    signInFlow: 'popup',
+    signInFlow: "popup",
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.EmailAuthProvider.PROVIDER_ID,
@@ -56,9 +56,11 @@ class App extends React.Component {
    * @inheritDoc
    */
   componentDidMount() {
-    this.unregisterAuthObserver = firebaseApp.auth().onAuthStateChanged((user) => {
-      this.setState({isSignedIn: !!user});
-    });
+    this.unregisterAuthObserver = firebaseApp
+      .auth()
+      .onAuthStateChanged((user) => {
+        this.setState({ isSignedIn: !!user });
+      });
   }
 
   /**
@@ -75,25 +77,34 @@ class App extends React.Component {
     return (
       <div className={styles.container}>
         <div className={styles.logo}>
-          <i className={styles.logoIcon + ' material-icons'}>photo</i> My App
+          <i className={styles.logoIcon + " material-icons"}>photo</i> My App
         </div>
         <div className={styles.caption}>This is a cool demo app</div>
-        {this.state.isSignedIn !== undefined && !this.state.isSignedIn &&
+        {this.state.isSignedIn !== undefined && !this.state.isSignedIn && (
           <div>
-            <StyledFirebaseAuth className={styles.firebaseUi} uiConfig={this.uiConfig}
-                                firebaseAuth={firebaseApp.auth()}/>
+            <StyledFirebaseAuth
+              className={styles.firebaseUi}
+              uiConfig={this.uiConfig}
+              firebaseAuth={firebaseApp.auth()}
+            />
           </div>
-        }
-        {this.state.isSignedIn &&
+        )}
+        {this.state.isSignedIn && (
           <div className={styles.signedIn}>
-            Hello {firebaseApp.auth().currentUser.displayName}. You are now signed In!
-            <a className={styles.button} onClick={() => firebaseApp.auth().signOut()}>Sign-out</a>
+            Hello {firebaseApp.auth().currentUser.displayName}. You are now
+            signed In!
+            <a
+              className={styles.button}
+              onClick={() => firebaseApp.auth().signOut()}
+            >
+              Sign-out
+            </a>
           </div>
-        }
+        )}
       </div>
     );
   }
 }
 
 // Load the app in the browser.
-ReactDOM.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById("app"));

@@ -49,25 +49,25 @@ dashedName: create-a-complex-jsx-element
 常量 `JSX` 应该返回一个 `div` 元素。
 
 ```js
-assert(JSX.type === 'div');
+assert(JSX.type === "div");
 ```
 
 `div` 应该包含一个 `h1` 标签作为第一个元素。
 
 ```js
-assert(JSX.props.children[0].type === 'h1');
+assert(JSX.props.children[0].type === "h1");
 ```
 
 `div`应该包含一个`p`标签作为第二个元素。
 
 ```js
-assert(JSX.props.children[1].type === 'p');
+assert(JSX.props.children[1].type === "p");
 ```
 
 `div` 应该包含一个 `ul` 标签作为第三个元素。
 
 ```js
-assert(JSX.props.children[2].type === 'ul');
+assert(JSX.props.children[2].type === "ul");
 ```
 
 `ul` 应该包含三个 `li` 元素。
@@ -75,8 +75,8 @@ assert(JSX.props.children[2].type === 'ul');
 ```js
 assert(
   JSX.props.children
-    .filter((ele) => ele.type === 'ul')[0]
-    .props.children.filter((ele) => ele.type === 'li').length === 3
+    .filter((ele) => ele.type === "ul")[0]
+    .props.children.filter((ele) => ele.type === "li").length === 3
 );
 ```
 
@@ -85,7 +85,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(JSX, document.getElementById('root'))
+ReactDOM.render(JSX, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -98,13 +98,14 @@ ReactDOM.render(JSX, document.getElementById('root'))
 
 ```jsx
 const JSX = (
-<div>
-  <h1>Hello JSX!</h1>
-  <p>Some info</p>
-  <ul>
-    <li>An item</li>
-    <li>Another item</li>
-    <li>A third item</li>
-  </ul>
-</div>);
+  <div>
+    <h1>Hello JSX!</h1>
+    <p>Some info</p>
+    <ul>
+      <li>An item</li>
+      <li>Another item</li>
+      <li>A third item</li>
+    </ul>
+  </div>
+);
 ```

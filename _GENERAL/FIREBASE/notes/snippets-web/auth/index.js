@@ -11,14 +11,16 @@ import "firebase/auth";
 function makeGoogleCredential(googleUser) {
   // [START auth_make_google_credential]
   var credential = firebase.auth.GoogleAuthProvider.credential(
-    googleUser.getAuthResponse().id_token);
+    googleUser.getAuthResponse().id_token
+  );
   // [END auth_make_google_credential]
 }
 
 function makeFacebookCredential(response) {
   // [START auth_make_facebook_credential]
   var credential = firebase.auth.FacebookAuthProvider.credential(
-    response.authResponse.accessToken);
+    response.authResponse.accessToken
+  );
   // [END auth_make_facebook_credential]
 }
 
@@ -30,11 +32,15 @@ function makeEmailCredential(email, password) {
 
 function signOut() {
   // [START auth_sign_out]
-  firebase.auth().signOut().then(() => {
-    // Sign-out successful.
-  }).catch((error) => {
-    // An error happened.
-  });
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      // Sign-out successful.
+    })
+    .catch((error) => {
+      // An error happened.
+    });
   // [END auth_sign_out]
 }
 
@@ -70,7 +76,7 @@ function currentUser() {
 
 function setLanguageCode() {
   // [START auth_set_language_code]
-  firebase.auth().languageCode = 'it';
+  firebase.auth().languageCode = "it";
   // To apply the default browser preference instead of explicitly setting it.
   // firebase.auth().useDeviceLanguage();
   // [END auth_set_language_code]
@@ -79,10 +85,11 @@ function setLanguageCode() {
 function authWithCredential(credential) {
   // [START auth_signin_credential]
   // Sign in with the credential from the user.
-  firebase.auth()
+  firebase
+    .auth()
     .signInWithCredential(credential)
     .then((result) => {
-      // Signed in 
+      // Signed in
       // ...
     })
     .catch((error) => {

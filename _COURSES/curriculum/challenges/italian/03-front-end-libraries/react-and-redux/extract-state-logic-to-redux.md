@@ -21,7 +21,7 @@ Quindi crea un reducer chiamato `messageReducer()` che gestisca lo stato dei mes
 La costante `ADD` dovrebbe esistere e contenere un valore uguale alla stringa `ADD`
 
 ```js
-assert(ADD === 'ADD');
+assert(ADD === "ADD");
 ```
 
 Il creatore di azioni `addMessage` dovrebbe restituire un oggetto con `type` uguale a `ADD` e `message` uguale al messaggio che gli viene passato.
@@ -29,8 +29,8 @@ Il creatore di azioni `addMessage` dovrebbe restituire un oggetto con `type` ugu
 ```js
 assert(
   (function () {
-    const addAction = addMessage('__TEST__MESSAGE__');
-    return addAction.type === ADD && addAction.message === '__TEST__MESSAGE__';
+    const addAction = addMessage("__TEST__MESSAGE__");
+    return addAction.type === ADD && addAction.message === "__TEST__MESSAGE__";
   })()
 );
 ```
@@ -38,7 +38,7 @@ assert(
 `messageReducer` dovrebbe essere una funzione.
 
 ```js
-assert(typeof messageReducer === 'function');
+assert(typeof messageReducer === "function");
 ```
 
 Lo store dovrebbe esistere e avere uno stato iniziale impostato su un array vuoto.
@@ -47,7 +47,7 @@ Lo store dovrebbe esistere e avere uno stato iniziale impostato su un array vuot
 assert(
   (function () {
     const initialState = store.getState();
-    return typeof store === 'object' && initialState.length === 0;
+    return typeof store === "object" && initialState.length === 0;
   })()
 );
 ```
@@ -59,9 +59,9 @@ assert(
   (function () {
     const initialState = store.getState();
     const isFrozen = DeepFreeze(initialState);
-    store.dispatch(addMessage('__A__TEST__MESSAGE'));
+    store.dispatch(addMessage("__A__TEST__MESSAGE"));
     const addState = store.getState();
-    return isFrozen && addState[0] === '__A__TEST__MESSAGE';
+    return isFrozen && addState[0] === "__A__TEST__MESSAGE";
   })()
 );
 ```
@@ -72,7 +72,7 @@ Il `messageReducer` dovrebbe restituire lo stato corrente se chiamato con altre 
 assert(
   (function () {
     const addState = store.getState();
-    store.dispatch({ type: 'FAKE_ACTION' });
+    store.dispatch({ type: "FAKE_ACTION" });
     const testState = store.getState();
     return addState === testState;
   })()
@@ -90,22 +90,19 @@ assert(
 # --solutions--
 
 ```jsx
-const ADD = 'ADD';
+const ADD = "ADD";
 
 const addMessage = (message) => {
   return {
     type: ADD,
-    message
-  }
+    message,
+  };
 };
 
 const messageReducer = (state = [], action) => {
   switch (action.type) {
     case ADD:
-      return [
-        ...state,
-        action.message
-      ];
+      return [...state, action.message];
     default:
       return state;
   }

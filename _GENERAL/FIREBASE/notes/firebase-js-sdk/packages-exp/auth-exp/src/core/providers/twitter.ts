@@ -140,10 +140,8 @@ export class TwitterAuthProvider extends BaseOAuthProvider {
     if (!tokenResponse) {
       return null;
     }
-    const {
-      oauthAccessToken,
-      oauthTokenSecret
-    } = tokenResponse as SignInWithIdpResponse;
+    const { oauthAccessToken, oauthTokenSecret } =
+      tokenResponse as SignInWithIdpResponse;
     if (!oauthAccessToken || !oauthTokenSecret) {
       return null;
     }

@@ -39,37 +39,37 @@ assert(ohRegex.source.match(/{.*?}/).length > 0);
 La expresión regular no debe coincidir con la cadena `Ohh no`
 
 ```js
-assert(!ohRegex.test('Ohh no'));
+assert(!ohRegex.test("Ohh no"));
 ```
 
 La expresión regular debe coincidir con la cadena `Ohhh no`
 
 ```js
-assert('Ohhh no'.match(ohRegex)[0].length === 7);
+assert("Ohhh no".match(ohRegex)[0].length === 7);
 ```
 
 La expresión regular no debe coincidir con la cadena `Ohhhh no`
 
 ```js
-assert('Ohhhh no'.match(ohRegex)[0].length === 8);
+assert("Ohhhh no".match(ohRegex)[0].length === 8);
 ```
 
 La expresión regular debe coincidir con la cadena `Ohhhhh no`
 
 ```js
-assert('Ohhhhh no'.match(ohRegex)[0].length === 9);
+assert("Ohhhhh no".match(ohRegex)[0].length === 9);
 ```
 
 La expresión regular debe coincidir con la cadena `Ohhhhhh no`
 
 ```js
-assert('Ohhhhhh no'.match(ohRegex)[0].length === 10);
+assert("Ohhhhhh no".match(ohRegex)[0].length === 10);
 ```
 
 La expresión regular no debe coincidir con la cadena `Ohhhhhhh no`
 
 ```js
-assert(!ohRegex.test('Ohhhhhhh no'));
+assert(!ohRegex.test("Ohhhhhhh no"));
 ```
 
 # --seed--

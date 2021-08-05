@@ -16,13 +16,13 @@
  * @fileoverview Tests for MDL utilities.
  */
 
-goog.provide('firebaseui.auth.ui.mdlTest');
+goog.provide("firebaseui.auth.ui.mdlTest");
 
-goog.require('firebaseui.auth.ui.mdl');
-goog.require('goog.testing.MockControl');
-goog.require('goog.testing.jsunit');
+goog.require("firebaseui.auth.ui.mdl");
+goog.require("goog.testing.MockControl");
+goog.require("goog.testing.jsunit");
 
-goog.setTestOnly('firebaseui.auth.ui.mdlTest');
+goog.setTestOnly("firebaseui.auth.ui.mdlTest");
 
 // Mocks
 var mockControl;
@@ -32,57 +32,53 @@ var mockDowngradeElements;
 // Page elements
 var testContainer;
 
-
 function setUp() {
   mockControl = new goog.testing.MockControl();
 
-  window['componentHandler'] = {};
-  mockUpgradeElement = window['componentHandler']['upgradeElement'] =
-      mockControl.createFunctionMock('upgradeElement');
-  mockDowngradeElements = window['componentHandler']['downgradeElements'] =
-      mockControl.createFunctionMock('downgradeElements');
+  window["componentHandler"] = {};
+  mockUpgradeElement = window["componentHandler"]["upgradeElement"] =
+    mockControl.createFunctionMock("upgradeElement");
+  mockDowngradeElements = window["componentHandler"]["downgradeElements"] =
+    mockControl.createFunctionMock("downgradeElements");
 
-  testContainer = document.getElementById('mdl_test_container');
+  testContainer = document.getElementById("mdl_test_container");
 }
-
 
 function tearDown() {
   mockControl.$verifyAll();
   mockControl.$resetAll();
 }
 
-
 function testMdlUpgrade() {
   // Order matters here, since MockControl doesn't have an easy way of ignoring
   // the order of calls. A possible workaround is to make many SaveArgument()s
   // and use assertSameElements.
-  mockUpgradeElement(document.getElementById('mdl_test_textfield'));
-  mockUpgradeElement(document.getElementById('mdl_test_progress'));
-  mockUpgradeElement(document.getElementById('mdl_test_spinner'));
-  mockUpgradeElement(document.getElementById('mdl_test_button'));
+  mockUpgradeElement(document.getElementById("mdl_test_textfield"));
+  mockUpgradeElement(document.getElementById("mdl_test_progress"));
+  mockUpgradeElement(document.getElementById("mdl_test_spinner"));
+  mockUpgradeElement(document.getElementById("mdl_test_button"));
 
   mockControl.$replayAll();
 
   firebaseui.auth.ui.mdl.upgrade(testContainer);
 }
 
-
 function testMdlDowngrade() {
-  mockDowngradeElements(document.getElementById('mdl_test_textfield'));
-  mockDowngradeElements(document.getElementById('mdl_test_progress'));
-  mockDowngradeElements(document.getElementById('mdl_test_spinner'));
-  mockDowngradeElements(document.getElementById('mdl_test_button'));
+  mockDowngradeElements(document.getElementById("mdl_test_textfield"));
+  mockDowngradeElements(document.getElementById("mdl_test_progress"));
+  mockDowngradeElements(document.getElementById("mdl_test_spinner"));
+  mockDowngradeElements(document.getElementById("mdl_test_button"));
 
   mockControl.$replayAll();
 
   firebaseui.auth.ui.mdl.downgrade(testContainer);
 }
 
-
 function testMdlUpgradeMdlInContainerItself() {
-  var testContainer = document.getElementById('mdl_test_mdl_in_container');
-  mockUpgradeElement(document.getElementById(
-      'mdl_test_mdl_in_container_textfield'));
+  var testContainer = document.getElementById("mdl_test_mdl_in_container");
+  mockUpgradeElement(
+    document.getElementById("mdl_test_mdl_in_container_textfield")
+  );
   mockUpgradeElement(testContainer);
 
   mockControl.$replayAll();

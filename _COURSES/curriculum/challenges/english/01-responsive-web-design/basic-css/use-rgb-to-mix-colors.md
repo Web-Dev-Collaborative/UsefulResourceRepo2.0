@@ -2,7 +2,7 @@
 id: bad82fee1348bd9aedf08721
 title: Use RGB to Mix Colors
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cm24JU6'
+videoUrl: "https://scrimba.com/c/cm24JU6"
 forumTopicId: 18368
 dashedName: use-rgb-to-mix-colors
 ---
@@ -22,7 +22,7 @@ Replace the hex codes in our `style` element with their correct RGB values.
 Your `h1` element with the text `I am red!` should have the `color` red.
 
 ```js
-assert($('.red-text').css('color') === 'rgb(255, 0, 0)');
+assert($(".red-text").css("color") === "rgb(255, 0, 0)");
 ```
 
 You should use `rgb` for the color red.
@@ -38,7 +38,7 @@ assert(
 Your `h1` element with the text `I am orchid!` should have the `color` orchid.
 
 ```js
-assert($('.orchid-text').css('color') === 'rgb(218, 112, 214)');
+assert($(".orchid-text").css("color") === "rgb(218, 112, 214)");
 ```
 
 You should use `rgb` for the color orchid.
@@ -54,7 +54,7 @@ assert(
 Your `h1` element with the text `I am blue!` should have the `color` blue.
 
 ```js
-assert($('.blue-text').css('color') === 'rgb(0, 0, 255)');
+assert($(".blue-text").css("color") === "rgb(0, 0, 255)");
 ```
 
 You should use `rgb` for the color blue.
@@ -70,7 +70,7 @@ assert(
 Your `h1` element with the text `I am sienna!` should have the `color` sienna.
 
 ```js
-assert($('.sienna-text').css('color') === 'rgb(160, 82, 45)');
+assert($(".sienna-text").css("color") === "rgb(160, 82, 45)");
 ```
 
 You should use `rgb` for the color sienna.
@@ -126,7 +126,7 @@ assert(
     color: rgb(160, 82, 45);
   }
   .blue-text {
-    color:rgb(0, 0, 255);
+    color: rgb(0, 0, 255);
   }
 </style>
 

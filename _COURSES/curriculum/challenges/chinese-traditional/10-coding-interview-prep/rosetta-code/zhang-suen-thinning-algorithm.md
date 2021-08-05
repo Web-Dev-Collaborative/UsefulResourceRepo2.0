@@ -73,11 +73,12 @@ Obviously the boundary pixels of the image cannot have the full eight neighbours
 **Step 1:**
 
 All pixels are tested and pixels satisfying all the following conditions (simultaneously) are just noted at this stage. <ol>
-    <li>The pixel is black and has eight neighbours</li>
-    <li>$2 <= B(P1) <= 6$</li>
-    <li>$A(P1) = 1$</li>
-    <li>At least one of <strong>P2, P4 and P6</strong> is white</li>
-    <li>At least one of <strong>P4, P6 and P8</strong> is white</li>
+<li>The pixel is black and has eight neighbours</li>
+<li>$2 <= B(P1) <= 6$</li>
+<li>$A(P1) = 1$</li>
+<li>At least one of <strong>P2, P4 and P6</strong> is white</li>
+<li>At least one of <strong>P4, P6 and P8</strong> is white</li>
+
   </ol>
 
 After iterating over the image and collecting all the pixels satisfying all step 1 conditions, all these condition satisfying pixels are set to white.
@@ -85,11 +86,12 @@ After iterating over the image and collecting all the pixels satisfying all step
 **Step 2:**
 
 All pixels are again tested and pixels satisfying all the following conditions are just noted at this stage. <ol>
-    <li>The pixel is black and has eight neighbours</li>
-    <li>$2 <= B(P1) <= 6$</li>
-    <li>$A(P1) = 1$</li>
-    <li>At least one of <strong>P2, P4 and P8</strong> is white</li>
-    <li>At least one of <strong>P2, P6 and P8</strong> is white</li>
+<li>The pixel is black and has eight neighbours</li>
+<li>$2 <= B(P1) <= 6$</li>
+<li>$A(P1) = 1$</li>
+<li>At least one of <strong>P2, P4 and P8</strong> is white</li>
+<li>At least one of <strong>P2, P6 and P8</strong> is white</li>
+
   </ol>
 
 After iterating over the image and collecting all the pixels satisfying all step 2 conditions, all these condition satisfying pixels are again set to white.
@@ -107,7 +109,7 @@ Write a routine to perform Zhang-Suen thinning on the provided image matrix.
 `thinImage` should be a function.
 
 ```js
-assert.equal(typeof thinImage, 'function');
+assert.equal(typeof thinImage, "function");
 ```
 
 `thinImage` should return an array.
@@ -119,7 +121,7 @@ assert(Array.isArray(result));
 `thinImage` should return an array of strings.
 
 ```js
-assert.equal(typeof result[0], 'string');
+assert.equal(typeof result[0], "string");
 ```
 
 `thinImage` should return an array of strings.
@@ -134,43 +136,44 @@ assert.deepEqual(result, expected);
 
 ```js
 const imageForTests = [
-  '                                                          ',
-  ' #################                   #############        ',
-  ' ##################               ################        ',
-  ' ###################            ##################        ',
-  ' ########     #######          ###################        ',
-  '   ######     #######         #######       ######        ',
-  '   ######     #######        #######                      ',
-  '   #################         #######                      ',
-  '   ################          #######                      ',
-  '   #################         #######                      ',
-  '   ######     #######        #######                      ',
-  '   ######     #######        #######                      ',
-  '   ######     #######         #######       ######        ',
-  ' ########     #######          ###################        ',
-  ' ########     ####### ######    ################## ###### ',
-  ' ########     ####### ######      ################ ###### ',
-  ' ########     ####### ######         ############# ###### ',
-  '                                                          '];
+  "                                                          ",
+  " #################                   #############        ",
+  " ##################               ################        ",
+  " ###################            ##################        ",
+  " ########     #######          ###################        ",
+  "   ######     #######         #######       ######        ",
+  "   ######     #######        #######                      ",
+  "   #################         #######                      ",
+  "   ################          #######                      ",
+  "   #################         #######                      ",
+  "   ######     #######        #######                      ",
+  "   ######     #######        #######                      ",
+  "   ######     #######         #######       ######        ",
+  " ########     #######          ###################        ",
+  " ########     ####### ######    ################## ###### ",
+  " ########     ####### ######      ################ ###### ",
+  " ########     ####### ######         ############# ###### ",
+  "                                                          ",
+];
 const expected = [
-  '                                                          ',
-  '                                                          ',
-  '    # ##########                       #######            ',
-  '     ##        #                   ####       #           ',
-  '     #          #                 ##                      ',
-  '     #          #                #                        ',
-  '     #          #                #                        ',
-  '     #          #                #                        ',
-  '     ############               #                         ',
-  '     #          #               #                         ',
-  '     #          #                #                        ',
-  '     #          #                #                        ',
-  '     #          #                #                        ',
-  '     #                            ##                      ',
-  '     #                             ############           ',
-  '                       ###                          ###   ',
-  '                                                          ',
-  '                                                          '
+  "                                                          ",
+  "                                                          ",
+  "    # ##########                       #######            ",
+  "     ##        #                   ####       #           ",
+  "     #          #                 ##                      ",
+  "     #          #                #                        ",
+  "     #          #                #                        ",
+  "     #          #                #                        ",
+  "     ############               #                         ",
+  "     #          #               #                         ",
+  "     #          #                #                        ",
+  "     #          #                #                        ",
+  "     #          #                #                        ",
+  "     #                            ##                      ",
+  "     #                             ############           ",
+  "                       ###                          ###   ",
+  "                                                          ",
+  "                                                          ",
 ];
 const result = thinImage(imageForTests);
 ```
@@ -179,28 +182,27 @@ const result = thinImage(imageForTests);
 
 ```js
 const testImage = [
-  '                                                          ',
-  ' #################                   #############        ',
-  ' ##################               ################        ',
-  ' ###################            ##################        ',
-  ' ########     #######          ###################        ',
-  '   ######     #######         #######       ######        ',
-  '   ######     #######        #######                      ',
-  '   #################         #######                      ',
-  '   ################          #######                      ',
-  '   #################         #######                      ',
-  '   ######     #######        #######                      ',
-  '   ######     #######        #######                      ',
-  '   ######     #######         #######       ######        ',
-  ' ########     #######          ###################        ',
-  ' ########     ####### ######    ################## ###### ',
-  ' ########     ####### ######      ################ ###### ',
-  ' ########     ####### ######         ############# ###### ',
-  '                                                          '];
+  "                                                          ",
+  " #################                   #############        ",
+  " ##################               ################        ",
+  " ###################            ##################        ",
+  " ########     #######          ###################        ",
+  "   ######     #######         #######       ######        ",
+  "   ######     #######        #######                      ",
+  "   #################         #######                      ",
+  "   ################          #######                      ",
+  "   #################         #######                      ",
+  "   ######     #######        #######                      ",
+  "   ######     #######        #######                      ",
+  "   ######     #######         #######       ######        ",
+  " ########     #######          ###################        ",
+  " ########     ####### ######    ################## ###### ",
+  " ########     ####### ######      ################ ###### ",
+  " ########     ####### ######         ############# ###### ",
+  "                                                          ",
+];
 
-function thinImage(image) {
-
-}
+function thinImage(image) {}
 ```
 
 # --solutions--
@@ -212,19 +214,37 @@ function Point(x, y) {
 }
 
 const ZhangSuen = (function () {
-  function ZhangSuen() {
-  }
+  function ZhangSuen() {}
 
-  ZhangSuen.nbrs = [[0, -1], [1, -1], [1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1]];
+  ZhangSuen.nbrs = [
+    [0, -1],
+    [1, -1],
+    [1, 0],
+    [1, 1],
+    [0, 1],
+    [-1, 1],
+    [-1, 0],
+    [-1, -1],
+    [0, -1],
+  ];
 
-  ZhangSuen.nbrGroups = [[[0, 2, 4], [2, 4, 6]], [[0, 2, 6], [0, 4, 6]]];
+  ZhangSuen.nbrGroups = [
+    [
+      [0, 2, 4],
+      [2, 4, 6],
+    ],
+    [
+      [0, 2, 6],
+      [0, 4, 6],
+    ],
+  ];
 
   ZhangSuen.toWhite = [];
 
   ZhangSuen.main = function (image) {
     ZhangSuen.grid = new Array(image);
     for (let r = 0; r < image.length; r++) {
-      ZhangSuen.grid[r] = image[r].split('');
+      ZhangSuen.grid[r] = image[r].split("");
     }
     ZhangSuen.thinImage();
     return ZhangSuen.getResult();
@@ -238,7 +258,7 @@ const ZhangSuen = (function () {
       firstStep = !firstStep;
       for (let r = 1; r < ZhangSuen.grid.length - 1; r++) {
         for (let c = 1; c < ZhangSuen.grid[0].length - 1; c++) {
-          if (ZhangSuen.grid[r][c] !== '#') {
+          if (ZhangSuen.grid[r][c] !== "#") {
             continue;
           }
           const nn = ZhangSuen.numNeighbors(r, c);
@@ -257,16 +277,19 @@ const ZhangSuen = (function () {
       }
       for (let i = 0; i < ZhangSuen.toWhite.length; i++) {
         const p = ZhangSuen.toWhite[i];
-        ZhangSuen.grid[p.y][p.x] = ' ';
+        ZhangSuen.grid[p.y][p.x] = " ";
       }
       ZhangSuen.toWhite = [];
-    } while ((firstStep || hasChanged));
+    } while (firstStep || hasChanged);
   };
 
   ZhangSuen.numNeighbors = function (r, c) {
     let count = 0;
     for (let i = 0; i < ZhangSuen.nbrs.length - 1; i++) {
-      if (ZhangSuen.grid[r + ZhangSuen.nbrs[i][1]][c + ZhangSuen.nbrs[i][0]] === '#') {
+      if (
+        ZhangSuen.grid[r + ZhangSuen.nbrs[i][1]][c + ZhangSuen.nbrs[i][0]] ===
+        "#"
+      ) {
         count++;
       }
     }
@@ -276,8 +299,15 @@ const ZhangSuen = (function () {
   ZhangSuen.numTransitions = function (r, c) {
     let count = 0;
     for (let i = 0; i < ZhangSuen.nbrs.length - 1; i++) {
-      if (ZhangSuen.grid[r + ZhangSuen.nbrs[i][1]][c + ZhangSuen.nbrs[i][0]] === ' ') {
-        if (ZhangSuen.grid[r + ZhangSuen.nbrs[i + 1][1]][c + ZhangSuen.nbrs[i + 1][0]] === '#') {
+      if (
+        ZhangSuen.grid[r + ZhangSuen.nbrs[i][1]][c + ZhangSuen.nbrs[i][0]] ===
+        " "
+      ) {
+        if (
+          ZhangSuen.grid[r + ZhangSuen.nbrs[i + 1][1]][
+            c + ZhangSuen.nbrs[i + 1][0]
+          ] === "#"
+        ) {
           count++;
         }
       }
@@ -291,7 +321,7 @@ const ZhangSuen = (function () {
     for (let i = 0; i < 2; i++) {
       for (let j = 0; j < group[i].length; j++) {
         const nbr = ZhangSuen.nbrs[group[i][j]];
-        if (ZhangSuen.grid[r + nbr[1]][c + nbr[0]] === ' ') {
+        if (ZhangSuen.grid[r + nbr[1]][c + nbr[0]] === " ") {
           count++;
           break;
         }
@@ -303,13 +333,13 @@ const ZhangSuen = (function () {
   ZhangSuen.getResult = function () {
     const result = [];
     for (let i = 0; i < ZhangSuen.grid.length; i++) {
-      const row = ZhangSuen.grid[i].join('');
+      const row = ZhangSuen.grid[i].join("");
       result.push(row);
     }
     return result;
   };
   return ZhangSuen;
-}());
+})();
 
 function thinImage(image) {
   return ZhangSuen.main(image);

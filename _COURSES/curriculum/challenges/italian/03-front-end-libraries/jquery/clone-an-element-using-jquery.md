@@ -27,13 +27,13 @@ Clona il tuo elemento `target5` e aggiungilo al tuo `left-well`.
 Il tuo elemento `target5` dovrebbe essere all'interno del `right-well`.
 
 ```js
-assert($('#right-well').children('#target5').length > 0);
+assert($("#right-well").children("#target5").length > 0);
 ```
 
 Una copia del tuo elemento `target5` dovrebbe essere all'interno del `left-well`.
 
 ```js
-assert($('#left-well').children('#target5').length > 0);
+assert($("#left-well").children("#target5").length > 0);
 ```
 
 Dovresti usare solo jQuery per spostare questi elementi.
@@ -48,12 +48,11 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();
     $("#target2").appendTo("#right-well");
-
   });
 </script>
 
@@ -86,7 +85,7 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();

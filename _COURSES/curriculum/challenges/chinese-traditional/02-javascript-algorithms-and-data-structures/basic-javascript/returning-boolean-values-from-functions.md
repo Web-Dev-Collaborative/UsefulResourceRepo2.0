@@ -2,7 +2,7 @@
 id: 5679ceb97cbaa8c51670a16b
 title: 從函數返回布爾值
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cp62qAQ'
+videoUrl: "https://scrimba.com/c/cp62qAQ"
 forumTopicId: 18273
 dashedName: returning-boolean-values-from-functions
 ---
@@ -14,7 +14,7 @@ dashedName: returning-boolean-values-from-functions
 有時人們通過 `if/else` 語句來做比較，像這樣。
 
 ```js
-function isEqual(a,b) {
+function isEqual(a, b) {
   if (a === b) {
     return true;
   } else {
@@ -26,7 +26,7 @@ function isEqual(a,b) {
 但有更好的方式來達到相同的效果。 既然 `===` 返回 `true` 或 `false` 我們可以直接返回比較結果：
 
 ```js
-function isEqual(a,b) {
+function isEqual(a, b) {
   return a === b;
 }
 ```

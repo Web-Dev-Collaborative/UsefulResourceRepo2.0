@@ -16,8 +16,8 @@ Truncate a string (first argument) if it is longer than the given maximum string
 
 ```js
 assert(
-  truncateString('A-tisket a-tasket A green and yellow basket', 8) ===
-    'A-tisket...'
+  truncateString("A-tisket a-tasket A green and yellow basket", 8) ===
+    "A-tisket..."
 );
 ```
 
@@ -25,8 +25,8 @@ assert(
 
 ```js
 assert(
-  truncateString('Peter Piper picked a peck of pickled peppers', 11) ===
-    'Peter Piper...'
+  truncateString("Peter Piper picked a peck of pickled peppers", 11) ===
+    "Peter Piper..."
 );
 ```
 
@@ -35,9 +35,9 @@ assert(
 ```js
 assert(
   truncateString(
-    'A-tisket a-tasket A green and yellow basket',
-    'A-tisket a-tasket A green and yellow basket'.length
-  ) === 'A-tisket a-tasket A green and yellow basket'
+    "A-tisket a-tasket A green and yellow basket",
+    "A-tisket a-tasket A green and yellow basket".length
+  ) === "A-tisket a-tasket A green and yellow basket"
 );
 ```
 
@@ -46,22 +46,22 @@ assert(
 ```js
 assert(
   truncateString(
-    'A-tisket a-tasket A green and yellow basket',
-    'A-tisket a-tasket A green and yellow basket'.length + 2
-  ) === 'A-tisket a-tasket A green and yellow basket'
+    "A-tisket a-tasket A green and yellow basket",
+    "A-tisket a-tasket A green and yellow basket".length + 2
+  ) === "A-tisket a-tasket A green and yellow basket"
 );
 ```
 
 `truncateString("A-", 1)` should return the string `A...`.
 
 ```js
-assert(truncateString('A-', 1) === 'A...');
+assert(truncateString("A-", 1) === "A...");
 ```
 
 `truncateString("Absolutely Longer", 2)` should return the string `Ab...`.
 
 ```js
-assert(truncateString('Absolutely Longer', 2) === 'Ab...');
+assert(truncateString("Absolutely Longer", 2) === "Ab...");
 ```
 
 # --seed--
@@ -84,7 +84,7 @@ function truncateString(str, num) {
     return str;
   }
 
-  return str.slice(0, num) + '...';
+  return str.slice(0, num) + "...";
 }
 
 truncateString("A-tisket a-tasket A green and yellow basket", 8);

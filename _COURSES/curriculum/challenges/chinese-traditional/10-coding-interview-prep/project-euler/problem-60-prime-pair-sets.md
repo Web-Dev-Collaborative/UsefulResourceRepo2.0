@@ -1,6 +1,6 @@
 ---
 id: 5900f3a81000cf542c50febb
-title: 'Problem 60: Prime pair sets'
+title: "Problem 60: Prime pair sets"
 challengeType: 5
 forumTopicId: 302172
 dashedName: problem-60-prime-pair-sets
@@ -17,7 +17,7 @@ Find the lowest sum for a set of five primes for which any two primes concatenat
 `primePairSets()` should return a number.
 
 ```js
-assert(typeof primePairSets() === 'number');
+assert(typeof primePairSets() === "number");
 ```
 
 `primePairSets()` should return 26033.
@@ -32,7 +32,6 @@ assert.strictEqual(primePairSets(), 26033);
 
 ```js
 function primePairSets() {
-
   return true;
 }
 

@@ -1,6 +1,6 @@
 ---
 id: 5900f3ef1000cf542c50ff02
-title: 'Problem 131: Prime cube partnership'
+title: "Problem 131: Prime cube partnership"
 challengeType: 5
 forumTopicId: 301759
 dashedName: problem-131-prime-cube-partnership
@@ -30,7 +30,6 @@ assert.strictEqual(euler131(), 173);
 
 ```js
 function euler131() {
-
   return true;
 }
 

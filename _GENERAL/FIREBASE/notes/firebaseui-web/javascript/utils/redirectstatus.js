@@ -19,8 +19,7 @@
  * redirect operation to be resolved.
  */
 
-goog.provide('firebaseui.auth.RedirectStatus');
-
+goog.provide("firebaseui.auth.RedirectStatus");
 
 /**
  * The redirect status. It indicates there is a pending redirect operation to be
@@ -37,20 +36,17 @@ firebaseui.auth.RedirectStatus = class {
     this.tenantId_ = tenantId || null;
   }
 
-
   /** @return {?string} The tenant ID. */
   getTenantId() {
     return this.tenantId_;
   }
 
-
   /**
    * @return {!Object} The plain object representation of redirect status.
    */
   toPlainObject() {
-    return {'tenantId': this.tenantId_};
+    return { tenantId: this.tenantId_ };
   }
-
 
   /**
    * @param {?Object} response The plain object presentation of a potential
@@ -59,8 +55,8 @@ firebaseui.auth.RedirectStatus = class {
    *     representation of the provided object.
    */
   static fromPlainObject(response) {
-    if (response && typeof response['tenantId'] !== 'undefined') {
-      return new firebaseui.auth.RedirectStatus(response['tenantId']);
+    if (response && typeof response["tenantId"] !== "undefined") {
+      return new firebaseui.auth.RedirectStatus(response["tenantId"]);
     }
     return null;
   }

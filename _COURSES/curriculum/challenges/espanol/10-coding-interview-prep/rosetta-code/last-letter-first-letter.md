@@ -28,7 +28,7 @@ Write a function that takes an input array of words. The function should return 
 `findLongestChain` should be a function.
 
 ```js
-assert(typeof findLongestChain == 'function');
+assert(typeof findLongestChain == "function");
 ```
 
 `findLongestChain(["certain", "each", "game", "involves", "starting", "with", "word"])` should return an array.
@@ -37,13 +37,13 @@ assert(typeof findLongestChain == 'function');
 assert(
   Array.isArray(
     findLongestChain([
-      'certain',
-      'each',
-      'game',
-      'involves',
-      'starting',
-      'with',
-      'word'
+      "certain",
+      "each",
+      "game",
+      "involves",
+      "starting",
+      "with",
+      "word",
     ])
   )
 );
@@ -54,15 +54,15 @@ assert(
 ```js
 assert.deepEqual(
   findLongestChain([
-    'certain',
-    'each',
-    'game',
-    'involves',
-    'starting',
-    'with',
-    'word'
+    "certain",
+    "each",
+    "game",
+    "involves",
+    "starting",
+    "with",
+    "word",
   ]),
-  ['involves', 'starting', 'game', 'each']
+  ["involves", "starting", "game", "each"]
 );
 ```
 
@@ -71,16 +71,16 @@ assert.deepEqual(
 ```js
 assert.deepEqual(
   findLongestChain([
-    'audino',
-    'bagon',
-    'kangaskhan',
-    'banette',
-    'bidoof',
-    'braviary',
-    'exeggcute',
-    'yamask'
+    "audino",
+    "bagon",
+    "kangaskhan",
+    "banette",
+    "bidoof",
+    "braviary",
+    "exeggcute",
+    "yamask",
   ]),
-  ['braviary', 'yamask', 'kangaskhan']
+  ["braviary", "yamask", "kangaskhan"]
 );
 ```
 
@@ -89,14 +89,14 @@ assert.deepEqual(
 ```js
 assert.deepEqual(
   findLongestChain([
-    'harp',
-    'poliwrath',
-    'poochyena',
-    'porygon2',
-    'porygonz',
-    'archana'
+    "harp",
+    "poliwrath",
+    "poochyena",
+    "porygon2",
+    "porygonz",
+    "archana",
   ]),
-  ['poliwrath', 'harp', 'poochyena', 'archana']
+  ["poliwrath", "harp", "poochyena", "archana"]
 );
 ```
 
@@ -105,14 +105,14 @@ assert.deepEqual(
 ```js
 assert.deepEqual(
   findLongestChain([
-    'scolipede',
-    'elephant',
-    'zeaking',
-    'sealeo',
-    'silcoon',
-    'tigers'
+    "scolipede",
+    "elephant",
+    "zeaking",
+    "sealeo",
+    "silcoon",
+    "tigers",
   ]),
-  ['scolipede', 'elephant', 'tigers', 'sealeo']
+  ["scolipede", "elephant", "tigers", "sealeo"]
 );
 ```
 
@@ -121,17 +121,17 @@ assert.deepEqual(
 ```js
 assert.deepEqual(
   findLongestChain([
-    'loudred',
-    'lumineon',
-    'lunatone',
-    'machamp',
-    'magnezone',
-    'nosepass',
-    'petilil',
-    'pidgeotto',
-    'pikachu'
+    "loudred",
+    "lumineon",
+    "lunatone",
+    "machamp",
+    "magnezone",
+    "nosepass",
+    "petilil",
+    "pidgeotto",
+    "pikachu",
   ]),
-  ['machamp', 'petilil', 'lumineon', 'nosepass']
+  ["machamp", "petilil", "lumineon", "nosepass"]
 );
 ```
 
@@ -140,9 +140,7 @@ assert.deepEqual(
 ## --seed-contents--
 
 ```js
-function findLongestChain(items) {
-
-}
+function findLongestChain(items) {}
 ```
 
 # --solutions--
@@ -155,9 +153,9 @@ function findLongestChain(items) {
     this.last_char = last_char;
   }
 
-  var items_len = items.length
+  var items_len = items.length;
   var refs_len = items_len;
-  var refs = []
+  var refs = [];
 
   // enough space for all items
   var longest_path_refs_len = 0;

@@ -21,13 +21,13 @@ Write a function that returns true if a number is semiprime, or false if it is n
 `isSemiPrime` should be a function.
 
 ```js
-assert(typeof isSemiPrime === 'function');
+assert(typeof isSemiPrime === "function");
 ```
 
 `isSemiPrime(100)` should return a boolean.
 
 ```js
-assert(typeof isSemiPrime(100) === 'boolean');
+assert(typeof isSemiPrime(100) === "boolean");
 ```
 
 `isSemiPrime(100)` should return `false`.
@@ -95,9 +95,7 @@ assert.equal(isSemiPrime(124), false);
 ## --seed-contents--
 
 ```js
-function isSemiPrime(n) {
-
-}
+function isSemiPrime(n) {}
 ```
 
 # --solutions--

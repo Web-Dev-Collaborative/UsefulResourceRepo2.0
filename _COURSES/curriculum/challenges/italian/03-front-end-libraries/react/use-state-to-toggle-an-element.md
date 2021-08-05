@@ -12,7 +12,7 @@ A volte potrebbe essere necessario conoscere lo stato precedente quando si aggio
 
 ```jsx
 this.setState({
-  counter: this.state.counter + this.props.increment
+  counter: this.state.counter + this.props.increment,
 });
 ```
 
@@ -20,15 +20,15 @@ Invece, dovresti passare a `setState` una funzione che ti permetta di accedere a
 
 ```jsx
 this.setState((state, props) => ({
-  counter: state.counter + props.increment
+  counter: state.counter + props.increment,
 }));
 ```
 
 Puoi anche usare una forma senza `props` se hai bisogno solo dello `state`:
 
 ```jsx
-this.setState(state => ({
-  counter: state.counter + 1
+this.setState((state) => ({
+  counter: state.counter + 1,
 }));
 ```
 
@@ -50,7 +50,7 @@ Infine, fai click sul pulsante per vedere il rendering condizionale del componen
 
 ```js
 assert.strictEqual(
-  Enzyme.mount(React.createElement(MyComponent)).find('div').find('button')
+  Enzyme.mount(React.createElement(MyComponent)).find("div").find("button")
     .length,
   1
 );
@@ -60,7 +60,7 @@ Lo stato di `MyComponent` dovrebbe essere inizializzato con una proprietà `visi
 
 ```js
 assert.strictEqual(
-  Enzyme.mount(React.createElement(MyComponent)).state('visibility'),
+  Enzyme.mount(React.createElement(MyComponent)).state("visibility"),
   false
 );
 ```
@@ -72,15 +72,15 @@ Cliccando sul bottone si dovrebbe commutare la proprietà `visibility` nello sta
   const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
   const first = () => {
     mockedComponent.setState({ visibility: false });
-    return mockedComponent.state('visibility');
+    return mockedComponent.state("visibility");
   };
   const second = () => {
-    mockedComponent.find('button').simulate('click');
-    return mockedComponent.state('visibility');
+    mockedComponent.find("button").simulate("click");
+    return mockedComponent.state("visibility");
   };
   const third = () => {
-    mockedComponent.find('button').simulate('click');
-    return mockedComponent.state('visibility');
+    mockedComponent.find("button").simulate("click");
+    return mockedComponent.state("visibility");
   };
   const firstValue = first();
   const secondValue = second();
@@ -92,14 +92,14 @@ Cliccando sul bottone si dovrebbe commutare la proprietà `visibility` nello sta
 Una funzione anonima dovrebbe essere passata a `setState`.
 
 ```js
-const paramRegex = '[a-zA-Z$_]\\w*(,[a-zA-Z$_]\\w*)?';
+const paramRegex = "[a-zA-Z$_]\\w*(,[a-zA-Z$_]\\w*)?";
 assert(
   new RegExp(
-    'this\\.setState\\((function\\(' +
+    "this\\.setState\\((function\\(" +
       paramRegex +
-      '\\){|([a-zA-Z$_]\\w*|\\(' +
+      "\\){|([a-zA-Z$_]\\w*|\\(" +
       paramRegex +
-      '\\))=>)'
+      "\\))=>)"
   ).test(__helpers.removeWhiteSpace(code))
 );
 ```
@@ -115,7 +115,7 @@ assert(!/this\.setState\([^}]*this/.test(code));
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyComponent />, document.getElementById('root'));
+ReactDOM.render(<MyComponent />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -125,7 +125,7 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visibility: false
+      visibility: false,
     };
     // Change code below this line
 
@@ -160,13 +160,13 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visibility: false
+      visibility: false,
     };
     this.toggleVisibility = this.toggleVisibility.bind(this);
   }
   toggleVisibility() {
-    this.setState(state => ({
-      visibility: !state.visibility
+    this.setState((state) => ({
+      visibility: !state.visibility,
     }));
   }
   render() {

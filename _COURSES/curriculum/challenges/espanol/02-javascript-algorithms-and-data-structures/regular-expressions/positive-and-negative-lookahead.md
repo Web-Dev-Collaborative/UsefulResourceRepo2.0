@@ -21,7 +21,7 @@ Los lookaheads son un poco confusos, pero algunos ejemplos ayudarán.
 ```js
 let quit = "qu";
 let noquit = "qt";
-let quRegex= /q(?=u)/;
+let quRegex = /q(?=u)/;
 let qRegex = /q(?!u)/;
 quit.match(quRegex);
 noquit.match(qRegex);
@@ -52,49 +52,49 @@ assert(pwRegex.source.match(/\(\?=.*?\)\(\?=.*?\)/) !== null);
 Tu expresión regular no debe coincidir con la cadena `astronaut`
 
 ```js
-assert(!pwRegex.test('astronaut'));
+assert(!pwRegex.test("astronaut"));
 ```
 
 Tu expresión regular no debe coincidir con la cadena `banan1`
 
 ```js
-assert(!pwRegex.test('banan1'));
+assert(!pwRegex.test("banan1"));
 ```
 
 Tu expresión regular debe coincidir con la cadena `bana12`
 
 ```js
-assert(pwRegex.test('bana12'));
+assert(pwRegex.test("bana12"));
 ```
 
 Tu expresión regular debe coincidir con la cadena `abc123`
 
 ```js
-assert(pwRegex.test('abc123'));
+assert(pwRegex.test("abc123"));
 ```
 
 Tu expresión regular no debe coincidir con la cadena `12345`
 
 ```js
-assert(!pwRegex.test('12345'));
+assert(!pwRegex.test("12345"));
 ```
 
 Tu expresión regular debe coincidir con la cadena `8pass99`
 
 ```js
-assert(pwRegex.test('8pass99'));
+assert(pwRegex.test("8pass99"));
 ```
 
 Tu expresión regular no debe coincidir con la cadena `1a2bcde`
 
 ```js
-assert(!pwRegex.test('1a2bcde'));
+assert(!pwRegex.test("1a2bcde"));
 ```
 
 Tu expresión regular debe coincidir con la cadena `astr1on11aut`
 
 ```js
-assert(pwRegex.test('astr1on11aut'));
+assert(pwRegex.test("astr1on11aut"));
 ```
 
 # --seed--
@@ -110,5 +110,5 @@ let result = pwRegex.test(sampleWord);
 # --solutions--
 
 ```js
-let pwRegex =  /(?=\w{6})(?=\w*\d{2})/;
+let pwRegex = /(?=\w{6})(?=\w*\d{2})/;
 ```

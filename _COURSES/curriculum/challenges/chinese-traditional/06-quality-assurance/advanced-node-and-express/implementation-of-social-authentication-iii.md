@@ -8,7 +8,7 @@ dashedName: implementation-of-social-authentication-iii
 
 # --description--
 
-驗證策略的最後一部分是處理從 GitHub 返回的個人信息。 如果用戶存在，我們就需要從數據庫中讀取用戶數據並在 profile 頁面加載；否則，我們需要把用戶信息添加到數據庫。 GitHub 在用戶信息中爲我們提供了獨一無二的 *id*，我們可以通過序列化的 id 在數據庫中搜索用戶（已實現）。 以下是這個邏輯的實現示例，我們應該把它傳到新策略的第二個參數，就是目前 `console.log(profile);` 的下方：
+驗證策略的最後一部分是處理從 GitHub 返回的個人信息。 如果用戶存在，我們就需要從數據庫中讀取用戶數據並在 profile 頁面加載；否則，我們需要把用戶信息添加到數據庫。 GitHub 在用戶信息中爲我們提供了獨一無二的 _id_，我們可以通過序列化的 id 在數據庫中搜索用戶（已實現）。 以下是這個邏輯的實現示例，我們應該把它傳到新策略的第二個參數，就是目前 `console.log(profile);` 的下方：
 
 ```js
 myDataBase.findOneAndUpdate(
@@ -16,20 +16,20 @@ myDataBase.findOneAndUpdate(
   {
     $setOnInsert: {
       id: profile.id,
-      name: profile.displayName || 'John Doe',
-      photo: profile.photos[0].value || '',
+      name: profile.displayName || "John Doe",
+      photo: profile.photos[0].value || "",
       email: Array.isArray(profile.emails)
         ? profile.emails[0].value
-        : 'No public email',
+        : "No public email",
       created_on: new Date(),
-      provider: profile.provider || ''
+      provider: profile.provider || "",
     },
     $set: {
-      last_login: new Date()
+      last_login: new Date(),
     },
     $inc: {
-      login_count: 1
-    }
+      login_count: 1,
+    },
   },
   { upsert: true, new: true },
   (err, doc) => {
@@ -50,12 +50,12 @@ GitHub 策略應配置完成。
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/auth.js').then(
+  $.get(getUserInput("url") + "/_api/auth.js").then(
     (data) => {
       assert.match(
         data,
         /GitHubStrategy[^]*myDataBase/gi,
-        'Strategy should use now use the database to search for the user'
+        "Strategy should use now use the database to search for the user"
       );
       assert.match(
         data,

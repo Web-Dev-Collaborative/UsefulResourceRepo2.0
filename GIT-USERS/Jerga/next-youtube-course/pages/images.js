@@ -1,5 +1,4 @@
-
-import { PageTitle } from 'components/shared';
+import { PageTitle } from "components/shared";
 import { useGet } from "restful-react";
 
 const Images = () => {
@@ -8,29 +7,32 @@ const Images = () => {
   });
 
   const displayImages = () => {
-    return images.map(image =>
+    return images.map((image) => (
       <div class="col-lg-3 col-md-4 col-6">
-        <a key={image.cloudinaryId}  href={image.url} target="_blank" class="d-block mb-4 h-100">
+        <a
+          key={image.cloudinaryId}
+          href={image.url}
+          target="_blank"
+          class="d-block mb-4 h-100"
+        >
           <img class="img-fluid img-thumbnail" src={image.url} alt="" />
         </a>
       </div>
-      )
-  }
+    ));
+  };
 
   if (loading) {
-    return 'Loading..'
+    return "Loading..";
   }
 
   return (
     <>
-      <PageTitle text="Images"/>
+      <PageTitle text="Images" />
       <div className="row text-center text-lg-left">
-        {
-          images ? displayImages() : 'No Images :('
-        }
+        {images ? displayImages() : "No Images :("}
       </div>
     </>
-  )
-}
+  );
+};
 
 export default Images;

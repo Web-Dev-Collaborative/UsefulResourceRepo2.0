@@ -42,35 +42,35 @@ La tua espressione regolare non dovrebbe riconoscere la stringa `Timber`
 
 ```js
 timRegex.lastIndex = 0;
-assert(!timRegex.test('Timber'));
+assert(!timRegex.test("Timber"));
 ```
 
 La tua espressione regolare non dovrebbe riconoscere la stringa `Timmber`
 
 ```js
 timRegex.lastIndex = 0;
-assert(!timRegex.test('Timmber'));
+assert(!timRegex.test("Timmber"));
 ```
 
 La tua espressione regolare non dovrebbe riconoscere la stringa `Timmmber`
 
 ```js
 timRegex.lastIndex = 0;
-assert(!timRegex.test('Timmmber'));
+assert(!timRegex.test("Timmmber"));
 ```
 
 La tua espressione regolare dovrebbe riconoscere la stringa `Timmmmber`
 
 ```js
 timRegex.lastIndex = 0;
-assert(timRegex.test('Timmmmber'));
+assert(timRegex.test("Timmmmber"));
 ```
 
 La tua espressione regolare non dovrebbe riconoscere la stringa `Timber` con 30 `m` in essa.
 
 ```js
 timRegex.lastIndex = 0;
-assert(!timRegex.test('Ti' + 'm'.repeat(30) + 'ber'));
+assert(!timRegex.test("Ti" + "m".repeat(30) + "ber"));
 ```
 
 # --seed--

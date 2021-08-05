@@ -1,13 +1,13 @@
 <div className="portfolio-detail">
   <div className="container">
-
     <div className="jumbotron">
       <h1 className="display-3">Some title</h1>
       <p className="lead">Some Job title</p>
       <p>
         <a className="btn btn-lg btn-success" href="#" role="button">
-          See Company</a>
-        </p>
+          See Company
+        </a>
+      </p>
     </div>
 
     <div className="row marketing">
@@ -30,8 +30,11 @@
       <div className="col-md-12">
         <hr />
         <h4 className="title">Description</h4>
-          <p>Some Description lala la lalala lala lala la lalala lala lala la lalala lala...</p>
-        </div>
+        <p>
+          Some Description lala la lalala lala lala la lalala lala lala la
+          lalala lala...
+        </p>
+      </div>
     </div>
   </div>
-</div>
+</div>;

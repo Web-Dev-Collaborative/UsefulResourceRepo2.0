@@ -1,6 +1,6 @@
 ---
 id: 5900f3c31000cf542c50fed5
-title: 'Problem 86: Cuboid route'
+title: "Problem 86: Cuboid route"
 challengeType: 5
 forumTopicId: 302200
 dashedName: problem-86-cuboid-route
@@ -23,7 +23,7 @@ Find the least value of M such that the number of solutions first exceeds one mi
 `cuboidRoute()` should return a number.
 
 ```js
-assert(typeof cuboidRoute() === 'number');
+assert(typeof cuboidRoute() === "number");
 ```
 
 `cuboidRoute()` should return 1818.
@@ -38,7 +38,6 @@ assert.strictEqual(cuboidRoute(), 1818);
 
 ```js
 function cuboidRoute() {
-
   return true;
 }
 

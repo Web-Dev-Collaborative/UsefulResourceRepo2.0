@@ -13,10 +13,10 @@ La lunghezza di un array, così come i tipi di dati che può contenere, non è f
 Entrambi i metodi prendono uno o più elementi come parametri e aggiungono questi elementi all'array su cui il metodo è stato chiamato; il metodo `push()` aggiunge elementi alla fine di un array, e `unshift()` aggiunge elementi all'inizio. Considera quanto segue:
 
 ```js
-let twentyThree = 'XXIII';
-let romanNumerals = ['XXI', 'XXII'];
+let twentyThree = "XXIII";
+let romanNumerals = ["XXI", "XXII"];
 
-romanNumerals.unshift('XIX', 'XX');
+romanNumerals.unshift("XIX", "XX");
 ```
 
 `romanNumerals` avrà i valori `['XIX', 'XX', 'XXI', 'XXII']`.
@@ -36,16 +36,16 @@ Abbiamo definito una funzione, `mixedNumbers`, a cui stiamo passando un array co
 `mixedNumbers(["IV", 5, "six"])` adesso dovrebbe restituire `["I", 2, "three", "IV", 5, "six", 7, "VIII", 9]`
 
 ```js
-assert.deepEqual(mixedNumbers(['IV', 5, 'six']), [
-  'I',
+assert.deepEqual(mixedNumbers(["IV", 5, "six"]), [
+  "I",
   2,
-  'three',
-  'IV',
+  "three",
+  "IV",
   5,
-  'six',
+  "six",
   7,
-  'VIII',
-  9
+  "VIII",
+  9,
 ]);
 ```
 
@@ -73,15 +73,15 @@ function mixedNumbers(arr) {
   return arr;
 }
 
-console.log(mixedNumbers(['IV', 5, 'six']));
+console.log(mixedNumbers(["IV", 5, "six"]));
 ```
 
 # --solutions--
 
 ```js
 function mixedNumbers(arr) {
-  arr.push(7,'VIII',9);
-  arr.unshift('I',2,'three');
+  arr.push(7, "VIII", 9);
+  arr.unshift("I", 2, "three");
   return arr;
 }
 ```

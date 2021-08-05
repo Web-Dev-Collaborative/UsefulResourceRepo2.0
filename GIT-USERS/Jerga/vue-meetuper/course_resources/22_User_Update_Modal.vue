@@ -12,19 +12,19 @@
           <form>
             <div class="field">
               <label class="title">Name</label>
-              <input class="input">
+              <input class="input" />
             </div>
             <div class="field">
               <label class="title">Username</label>
-              <input class="input">
+              <input class="input" />
             </div>
             <div class="field">
               <label class="title">Avatar</label>
-              <input class="input">
+              <input class="input" />
             </div>
             <div class="field">
               <label class="title">Info</label>
-              <input class="input">
+              <input class="input" />
             </div>
           </form>
         </section>

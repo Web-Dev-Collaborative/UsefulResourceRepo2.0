@@ -32,20 +32,20 @@ jQuery 還有一個類似的函數 `.text()`，可以在不添加標籤的前提
 
 ```js
 assert.isTrue(
-  /<em>|<i>\s*#target4\s*<\/em>|<\/i>/gi.test($('#target4').html())
+  /<em>|<i>\s*#target4\s*<\/em>|<\/i>/gi.test($("#target4").html())
 );
 ```
 
 文本應該保持不變。
 
 ```js
-assert($('#target4') && $('#target4').text().trim() === '#target4');
+assert($("#target4") && $("#target4").text().trim() === "#target4");
 ```
 
 不應該改變其它任何文本內容。
 
 ```js
-assert.isFalse(/<em>|<i>/gi.test($('h3').html()));
+assert.isFalse(/<em>|<i>/gi.test($("h3").html()));
 ```
 
 應該使用 `.html()` 方法而不是 `.text()` 方法。
@@ -66,9 +66,8 @@ assert(code.match(/\$\(\s*?(\"|\')#target4(\"|\')\s*?\)\.html\(/));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
-
   });
 </script>
 
@@ -101,9 +100,9 @@ assert(code.match(/\$\(\s*?(\"|\')#target4(\"|\')\s*?\)\.html\(/));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
-    $("#target4").html('<em>#target4</em>');
+    $("#target4").html("<em>#target4</em>");
   });
 </script>
 

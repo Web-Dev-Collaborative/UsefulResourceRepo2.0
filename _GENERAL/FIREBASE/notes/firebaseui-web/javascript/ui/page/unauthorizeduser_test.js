@@ -16,20 +16,25 @@
  * @fileoverview Tests for the unauthorized user page.
  */
 
-goog.module('firebaseui.auth.ui.page.UnauthorizedUserTest');
-goog.setTestOnly('firebaseui.auth.ui.page.UnauthorizedUserTest');
+goog.module("firebaseui.auth.ui.page.UnauthorizedUserTest");
+goog.setTestOnly("firebaseui.auth.ui.page.UnauthorizedUserTest");
 
-const Component = goog.requireType('goog.ui.Component');
-const FormTestHelper = goog.require('firebaseui.auth.ui.element.FormTestHelper');
-const MockClock = goog.require('goog.testing.MockClock');
-const PageTestHelper = goog.require('firebaseui.auth.ui.page.PageTestHelper');
-const TagName = goog.require('goog.dom.TagName');
-const TosPpTestHelper = goog.require('firebaseui.auth.ui.element.TosPpTestHelper');
-const dom = goog.require('goog.dom');
-const events = goog.require('goog.testing.events');
-const testSuite = goog.require('goog.testing.testSuite');
-const UnauthorizedUser = goog.require('firebaseui.auth.ui.page.UnauthorizedUser');
-
+const Component = goog.requireType("goog.ui.Component");
+const FormTestHelper = goog.require(
+  "firebaseui.auth.ui.element.FormTestHelper"
+);
+const MockClock = goog.require("goog.testing.MockClock");
+const PageTestHelper = goog.require("firebaseui.auth.ui.page.PageTestHelper");
+const TagName = goog.require("goog.dom.TagName");
+const TosPpTestHelper = goog.require(
+  "firebaseui.auth.ui.element.TosPpTestHelper"
+);
+const dom = goog.require("goog.dom");
+const events = goog.require("goog.testing.events");
+const testSuite = goog.require("goog.testing.testSuite");
+const UnauthorizedUser = goog.require(
+  "firebaseui.auth.ui.page.UnauthorizedUser"
+);
 
 let mockClock;
 let root;
@@ -37,10 +42,13 @@ let component;
 let helpLinkClicked;
 let onHelpLinkClicked;
 // Test helper for cancel button.
-const formTestHelper =
-    new FormTestHelper().excludeTests(
-        'testOnSubmitClick_', 'testGetSubmitElement_', 'testOnSubmitEnter_')
-        .registerTests();
+const formTestHelper = new FormTestHelper()
+  .excludeTests(
+    "testOnSubmitClick_",
+    "testGetSubmitElement_",
+    "testOnSubmitEnter_"
+  )
+  .registerTests();
 const tosPpTestHelper = new TosPpTestHelper().registerTests();
 const pageTestHelper = new PageTestHelper().registerTests();
 
@@ -49,13 +57,11 @@ const pageTestHelper = new PageTestHelper().registerTests();
  */
 function createComponent() {
   component = new UnauthorizedUser(
-      'user@example.com',
-      goog.bind(
-          FormTestHelper.prototype.onLinkClick,
-          formTestHelper));
+    "user@example.com",
+    goog.bind(FormTestHelper.prototype.onLinkClick, formTestHelper)
+  );
   return component;
 }
-
 
 testSuite({
   setUp() {
@@ -64,24 +70,19 @@ testSuite({
     mockClock.install();
 
     helpLinkClicked = false;
-    onHelpLinkClicked = function() {
+    onHelpLinkClicked = function () {
       helpLinkClicked = true;
     };
     root = dom.createDom(TagName.DIV);
     document.body.appendChild(root);
     component = new UnauthorizedUser(
-        'user@example.com',
-        goog.bind(
-            FormTestHelper.prototype.onLinkClick,
-            formTestHelper),
-        'admin@example.com',
-        onHelpLinkClicked,
-        goog.bind(
-            TosPpTestHelper.prototype.onTosLinkClick,
-            tosPpTestHelper),
-        goog.bind(
-            TosPpTestHelper.prototype.onPpLinkClick,
-            tosPpTestHelper));
+      "user@example.com",
+      goog.bind(FormTestHelper.prototype.onLinkClick, formTestHelper),
+      "admin@example.com",
+      onHelpLinkClicked,
+      goog.bind(TosPpTestHelper.prototype.onTosLinkClick, tosPpTestHelper),
+      goog.bind(TosPpTestHelper.prototype.onPpLinkClick, tosPpTestHelper)
+    );
     component.render(root);
     formTestHelper.setComponent(component);
     // Reset previous state of helper.
@@ -92,7 +93,6 @@ testSuite({
     pageTestHelper.setClock(mockClock).setComponent(component);
   },
 
-
   tearDown() {
     // Tear down clock.
     mockClock.tick(Infinity);
@@ -100,7 +100,6 @@ testSuite({
     component.dispose();
     dom.removeNode(root);
   },
-
 
   testElementsAvailability() {
     // Assert the secondary link is available.
@@ -123,13 +122,12 @@ testSuite({
     assertNull(helpLink);
   },
 
-
   testInitialFocus() {
     assertEquals(
-        component.getSecondaryLinkElement(),
-        dom.getActiveElement(document));
+      component.getSecondaryLinkElement(),
+      dom.getActiveElement(document)
+    );
   },
-
 
   testHelpLinkButton_onClick() {
     const helpLink = component.getHelpLink();
@@ -137,7 +135,6 @@ testSuite({
     events.fireClickSequence(helpLink);
     assertTrue(helpLinkClicked);
   },
-
 
   testUnauthorizedUser_pageEvents() {
     // Run page event tests.
@@ -150,8 +147,7 @@ testSuite({
     pageTestHelper.runTests(component, root);
   },
 
-
   testGetPageId() {
-    assertEquals('unauthorizedUser', component.getPageId());
+    assertEquals("unauthorizedUser", component.getPageId());
   },
 });

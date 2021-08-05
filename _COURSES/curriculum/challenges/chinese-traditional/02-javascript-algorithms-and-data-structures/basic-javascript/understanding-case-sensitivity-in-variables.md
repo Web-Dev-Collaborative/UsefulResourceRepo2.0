@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244ab
 title: 瞭解變量名區分大小寫
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cd6GDcD'
+videoUrl: "https://scrimba.com/c/cd6GDcD"
 forumTopicId: 18334
 dashedName: understanding-case-sensitivity-in-variables
 ---
@@ -36,21 +36,21 @@ var thisVariableNameIsSoLong;
 `studlyCapVar` 應該被定義並且值爲 `10`。
 
 ```js
-assert(typeof studlyCapVar !== 'undefined' && studlyCapVar === 10);
+assert(typeof studlyCapVar !== "undefined" && studlyCapVar === 10);
 ```
 
 `properCamelCase` 應該被定義並且值爲字符串 `A String`。
 
 ```js
 assert(
-  typeof properCamelCase !== 'undefined' && properCamelCase === 'A String'
+  typeof properCamelCase !== "undefined" && properCamelCase === "A String"
 );
 ```
 
 `titleCaseOver` 應該被定義並且值爲 `9000`。
 
 ```js
-assert(typeof titleCaseOver !== 'undefined' && titleCaseOver === 9000);
+assert(typeof titleCaseOver !== "undefined" && titleCaseOver === 9000);
 ```
 
 `studlyCapVar` 在聲明和賦值時都應該使用駝峯命名法。

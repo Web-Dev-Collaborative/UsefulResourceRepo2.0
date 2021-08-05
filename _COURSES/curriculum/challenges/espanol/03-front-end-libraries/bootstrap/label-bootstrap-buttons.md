@@ -17,37 +17,37 @@ Da a cada uno de tus elementos `button` el texto que corresponde a su id.
 Tu elemento `button` con el id `target1` debe tener el texto `#target1`.
 
 ```js
-assert(new RegExp('#target1', 'gi').test($('#target1').text()));
+assert(new RegExp("#target1", "gi").test($("#target1").text()));
 ```
 
 Tu elemento `button` con el id `target2` debe tener el texto `#target2`.
 
 ```js
-assert(new RegExp('#target2', 'gi').test($('#target2').text()));
+assert(new RegExp("#target2", "gi").test($("#target2").text()));
 ```
 
 Tu elemento `button` con el id `target3` debe tener el texto `#target3`.
 
 ```js
-assert(new RegExp('#target3', 'gi').test($('#target3').text()));
+assert(new RegExp("#target3", "gi").test($("#target3").text()));
 ```
 
 Tu elemento `button` con el id `target4` debe tener el texto `#target4`.
 
 ```js
-assert(new RegExp('#target4', 'gi').test($('#target4').text()));
+assert(new RegExp("#target4", "gi").test($("#target4").text()));
 ```
 
 Tu elemento `button` con el id `target5` debe tener el texto `#target5`.
 
 ```js
-assert(new RegExp('#target5', 'gi').test($('#target5').text()));
+assert(new RegExp("#target5", "gi").test($("#target5").text()));
 ```
 
 Tu elemento `button` con el id `target6` debe tener el texto `#target6`.
 
 ```js
-assert(new RegExp('#target6', 'gi').test($('#target6').text()));
+assert(new RegExp("#target6", "gi").test($("#target6").text()));
 ```
 
 # --seed--

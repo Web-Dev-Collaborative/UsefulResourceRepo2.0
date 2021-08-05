@@ -1,6 +1,6 @@
 ---
 id: 5900f3a41000cf542c50feb7
-title: 'Problem 56: Powerful digit sum'
+title: "Problem 56: Powerful digit sum"
 challengeType: 5
 forumTopicId: 302167
 dashedName: problem-56-powerful-digit-sum
@@ -17,7 +17,7 @@ Considering natural numbers of the form, $a^b$, where `a`, `b` &lt; `n`, what is
 `powerfulDigitSum(3)` should return a number.
 
 ```js
-assert(typeof powerfulDigitSum(3) === 'number');
+assert(typeof powerfulDigitSum(3) === "number");
 ```
 
 `powerfulDigitSum(3)` should return `4`.
@@ -56,7 +56,6 @@ assert.strictEqual(powerfulDigitSum(100), 972);
 
 ```js
 function powerfulDigitSum(n) {
-
   return true;
 }
 

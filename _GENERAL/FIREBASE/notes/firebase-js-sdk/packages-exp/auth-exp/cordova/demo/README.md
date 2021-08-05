@@ -1,4 +1,5 @@
 # Cordova Auth Demo App
+
 This package contains a demo of the various Firebase Auth features bundled in
 an Apache Cordova app.
 
@@ -115,5 +116,13 @@ You may need to update the cordova-universal-links-plugin `manifestWriter.js`
 to point to the correct Android manifest. For example:
 
 ```js
-var pathToManifest = path.join(cordovaContext.opts.projectRoot, 'platforms', 'android', 'app', 'src', 'main', 'AndroidManifest.xml');
+var pathToManifest = path.join(
+  cordovaContext.opts.projectRoot,
+  'platforms',
+  'android',
+  'app',
+  'src',
+  'main',
+  'AndroidManifest.xml'
+);
 ```

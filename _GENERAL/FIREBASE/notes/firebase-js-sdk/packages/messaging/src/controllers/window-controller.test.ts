@@ -55,7 +55,9 @@ describe('WindowController', () => {
   let getTokenStub: Stub<typeof tokenManagementModule.getToken>;
   let deleteTokenStub: Stub<typeof tokenManagementModule.deleteToken>;
   let registerStub: Stub<typeof navigator.serviceWorker.register>;
-  let addEventListenerStub: Stub<typeof navigator.serviceWorker.addEventListener>;
+  let addEventListenerStub: Stub<
+    typeof navigator.serviceWorker.addEventListener
+  >;
 
   /** The event listener that WindowController adds to the message event. */
   let messageEventListener: MessageEventListener;
@@ -439,7 +441,7 @@ describe('WindowController', () => {
   describe('usePublicVapidKey', () => {
     it('throws on invalid input', () => {
       expect(() =>
-        windowController.usePublicVapidKey((null as unknown) as string)
+        windowController.usePublicVapidKey(null as unknown as string)
       ).to.throw('messaging/invalid-vapid-key');
 
       expect(() => windowController.usePublicVapidKey('')).to.throw(
@@ -467,7 +469,7 @@ describe('WindowController', () => {
     it('throws on invalid input', () => {
       expect(() =>
         windowController.useServiceWorker(
-          ({} as unknown) as ServiceWorkerRegistration
+          {} as unknown as ServiceWorkerRegistration
         )
       ).to.throw('messaging/invalid-sw-registration');
     });

@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244b7
 title: Concatena cadenas con el operador "más"
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cNpM8AN'
+videoUrl: "https://scrimba.com/c/cNpM8AN"
 forumTopicId: 16802
 dashedName: concatenating-strings-with-plus-operator
 ---
@@ -14,7 +14,7 @@ En JavaScript, cuando el operador `+` se utiliza con un valor de cadena (`String
 **Ejemplo**
 
 ```js
-'My name is Alan,' + ' I concatenate.'
+"My name is Alan," + " I concatenate.";
 ```
 
 **Nota:** Ten cuidado con los espacios. La concatenación no añade espacios entre las cadenas concatenadas, así que tendrás que añadirlos por tu cuenta.
@@ -26,6 +26,7 @@ var ourStr = "I come first. " + "I come second.";
 ```
 
 La cadena `I come first. I come second.` se mostrará en la consola.
+
 # --instructions--
 
 Construye `myStr` a partir de las cadenas `This is the start.` y `This is the end.` utilizando el operador `+`.
@@ -35,7 +36,7 @@ Construye `myStr` a partir de las cadenas `This is the start.` y `This is the en
 `myStr` debe tener una cadena con valor `This is the start. This is the end.`
 
 ```js
-assert(myStr === 'This is the start. This is the end.');
+assert(myStr === "This is the start. This is the end.");
 ```
 
 Debes usar el operador `+` para construir `myStr`.
@@ -61,11 +62,11 @@ assert(/myStr\s*=/.test(code));
 ## --after-user-code--
 
 ```js
-(function(){
-  if(typeof myStr === 'string') {
+(function () {
+  if (typeof myStr === "string") {
     return 'myStr = "' + myStr + '"';
   } else {
-    return 'myStr is not a string';
+    return "myStr is not a string";
   }
 })();
 ```

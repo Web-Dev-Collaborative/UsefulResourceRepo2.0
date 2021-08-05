@@ -1,6 +1,6 @@
 ---
 id: 5900f4911000cf542c50ffa3
-title: 'Problem 292: Pythagorean Polygons'
+title: "Problem 292: Pythagorean Polygons"
 challengeType: 5
 forumTopicId: 301944
 dashedName: problem-292-pythagorean-polygons
@@ -34,7 +34,6 @@ assert.strictEqual(euler292(), 3600060866);
 
 ```js
 function euler292() {
-
   return true;
 }
 

@@ -2,7 +2,7 @@
 id: bd7123c9c450eddfaeb5bdef
 title: Utiliza la notación de corchetes para encontrar el enésimo carácter en una cadena
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cWPVJua'
+videoUrl: "https://scrimba.com/c/cWPVJua"
 forumTopicId: 18343
 dashedName: use-bracket-notation-to-find-the-nth-character-in-a-string
 ---
@@ -33,7 +33,7 @@ Intentemos establecer `thirdLetterOfLastName` (tercera letra del apellido) para 
 La variable `thirdLetterOfLastName` debe tener el valor de `v`.
 
 ```js
-assert(thirdLetterOfLastName === 'v');
+assert(thirdLetterOfLastName === "v");
 ```
 
 Debes usar la notación de corchetes.
@@ -47,7 +47,9 @@ assert(code.match(/thirdLetterOfLastName\s*?=\s*?lastName\[.*?\]/));
 ## --after-user-code--
 
 ```js
-(function(v){return v;})(thirdLetterOfLastName);
+(function (v) {
+  return v;
+})(thirdLetterOfLastName);
 ```
 
 ## --seed-contents--

@@ -2,7 +2,7 @@
 id: bd7123c9c450eddfaeb5bdef
 title: Usare la notazione parentesi per trovare l'n-esimo carattere in una stringa
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cWPVJua'
+videoUrl: "https://scrimba.com/c/cWPVJua"
 forumTopicId: 18343
 dashedName: use-bracket-notation-to-find-the-nth-character-in-a-string
 ---
@@ -33,7 +33,7 @@ Cerchiamo di impostare `thirdLetterOfLastName` per eguagliare la terza lettera d
 La variabile `thirdLetterOfLastName` dovrebbe avere il valore di `v`.
 
 ```js
-assert(thirdLetterOfLastName === 'v');
+assert(thirdLetterOfLastName === "v");
 ```
 
 Dovresti usare la notazione a parentesi.
@@ -47,7 +47,9 @@ assert(code.match(/thirdLetterOfLastName\s*?=\s*?lastName\[.*?\]/));
 ## --after-user-code--
 
 ```js
-(function(v){return v;})(thirdLetterOfLastName);
+(function (v) {
+  return v;
+})(thirdLetterOfLastName);
 ```
 
 ## --seed-contents--

@@ -36,7 +36,7 @@ The component should render a `div` element.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(Colorful));
-    return mockedComponent.children().type() === 'div';
+    return mockedComponent.children().type() === "div";
   })()
 );
 ```
@@ -47,7 +47,7 @@ The `div` element should have a color of `red`.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(Colorful));
-    return mockedComponent.children().props().style.color === 'red';
+    return mockedComponent.children().props().style.color === "red";
   })()
 );
 ```
@@ -60,8 +60,8 @@ assert(
     const mockedComponent = Enzyme.mount(React.createElement(Colorful));
     return (
       mockedComponent.children().props().style.fontSize === 72 ||
-      mockedComponent.children().props().style.fontSize === '72' ||
-      mockedComponent.children().props().style.fontSize === '72px'
+      mockedComponent.children().props().style.fontSize === "72" ||
+      mockedComponent.children().props().style.fontSize === "72px"
     );
   })()
 );
@@ -72,7 +72,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<Colorful />, document.getElementById('root'))
+ReactDOM.render(<Colorful />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -80,11 +80,9 @@ ReactDOM.render(<Colorful />, document.getElementById('root'))
 ```jsx
 class Colorful extends React.Component {
   render() {
-    return (
-      <div>Big Red</div>
-    );
+    return <div>Big Red</div>;
   }
-};
+}
 ```
 
 # --solutions--
@@ -92,9 +90,7 @@ class Colorful extends React.Component {
 ```jsx
 class Colorful extends React.Component {
   render() {
-    return (
-      <div style={{color: "red", fontSize: 72}}>Big Red</div>
-    );
+    return <div style={{ color: "red", fontSize: 72 }}>Big Red</div>;
   }
-};
+}
 ```

@@ -1,6 +1,6 @@
 ---
 id: 5900f4931000cf542c50ffa5
-title: 'Problem 294: Sum of digits - experience #23'
+title: "Problem 294: Sum of digits - experience #23"
 challengeType: 5
 forumTopicId: 301946
 dashedName: problem-294-sum-of-digits---experience-23
@@ -32,7 +32,6 @@ assert.strictEqual(euler294(), 789184709);
 
 ```js
 function euler294() {
-
   return true;
 }
 

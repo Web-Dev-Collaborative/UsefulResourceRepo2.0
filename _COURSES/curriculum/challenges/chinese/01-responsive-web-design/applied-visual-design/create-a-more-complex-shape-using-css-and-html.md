@@ -2,7 +2,7 @@
 id: 587d78a6367417b2b2512ade
 title: 使用 CSS 和 HTML 创建更复杂的形状
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cPpz4fr'
+videoUrl: "https://scrimba.com/c/cPpz4fr"
 forumTopicId: 301050
 dashedName: create-a-more-complex-shape-using-css-and-html
 ---
@@ -40,9 +40,7 @@ dashedName: create-a-more-complex-shape-using-css-and-html
 
 ```js
 const heartAfter = code.match(/\.heart::after\s*{[\s\S]+?[^\}]}/g)[0];
-assert(
-  /({|;)\s*background-color\s*:\s*pink\s*(;|})/g.test(heartAfter)
-);
+assert(/({|;)\s*background-color\s*:\s*pink\s*(;|})/g.test(heartAfter));
 ```
 
 `heart::after` 伪元素的 `border-radius` 属性值应为 50%。

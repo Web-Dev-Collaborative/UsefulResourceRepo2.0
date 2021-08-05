@@ -1,6 +1,6 @@
 ---
 id: 5900f4291000cf542c50ff3c
-title: 'Problem 189: Tri-colouring a triangular grid'
+title: "Problem 189: Tri-colouring a triangular grid"
 challengeType: 5
 forumTopicId: 301825
 dashedName: problem-189-tri-colouring-a-triangular-grid
@@ -32,7 +32,6 @@ assert.strictEqual(euler189(), 10834893628237824);
 
 ```js
 function euler189() {
-
   return true;
 }
 

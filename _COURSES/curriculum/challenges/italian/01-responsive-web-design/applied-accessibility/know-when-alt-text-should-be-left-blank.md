@@ -2,7 +2,7 @@
 id: 587d774c367417b2b2512a9d
 title: Sapere quando il testo alternativo dovrebbe essere lasciato vuoto
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cM9P4t2'
+videoUrl: "https://scrimba.com/c/cM9P4t2"
 forumTopicId: 301019
 dashedName: know-when-alt-text-should-be-left-blank
 ---
@@ -14,7 +14,7 @@ Nell'ultima sfida, hai imparato che usando i tag `img`, è obbligatorio includer
 Quando un'immagine è già spiegata con del contenuto testuale o non aggiunge altro significato alla pagina, il tag `img` ha ancora bisogno di un attributo `alt`, ma esso può essere impostato su una stringa vuota. Un esempio:
 
 ```html
-<img src="visualDecoration.jpeg" alt="">
+<img src="visualDecoration.jpeg" alt="" />
 ```
 
 Le immagini di sfondo solitamente cadono nella categoria 'decorativo'. Tuttavia, sono tipicamente applicate con regole CSS e quindi sono escluse dal processo di lettura dello schermo.
@@ -30,13 +30,13 @@ Camper Cat ha scritto lo scheletro della pagina per la sezione blog del suo sito
 Il tuo tag `img` dovrebbe avere un attributo `alt`.
 
 ```js
-assert(!($('img').attr('alt') == undefined));
+assert(!($("img").attr("alt") == undefined));
 ```
 
 L'attributo `alt` dovrebbe essere impostato su una stringa vuota.
 
 ```js
-assert($('img').attr('alt') == '');
+assert($("img").attr("alt") == "");
 ```
 
 # --seed--
@@ -50,7 +50,7 @@ assert($('img').attr('alt') == '');
   <p>To Come...</p>
 </article>
 
-<img src="samuraiSwords.jpeg">
+<img src="samuraiSwords.jpeg" />
 
 <article>
   <h2>Is Chuck Norris a Cat Person?</h2>
@@ -67,7 +67,7 @@ assert($('img').attr('alt') == '');
   <p>To Come...</p>
 </article>
 
-<img src="samuraiSwords.jpeg" alt="">
+<img src="samuraiSwords.jpeg" alt="" />
 
 <article>
   <h2>Is Chuck Norris a Cat Person?</h2>

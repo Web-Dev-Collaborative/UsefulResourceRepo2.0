@@ -6,5 +6,5 @@
 // [START not_in_filter_modular]
 import { query, where } from "firebase/firestore";
 
-const q = query(citiesRef, where('country', 'not-in', ['USA', 'Japan']));
+const q = query(citiesRef, where("country", "not-in", ["USA", "Japan"]));
 // [END not_in_filter_modular]

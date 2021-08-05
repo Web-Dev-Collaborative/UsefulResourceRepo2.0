@@ -29,8 +29,7 @@ const pkg = require('./package.json');
 const OPTIMIZATION_LEVEL = 'ADVANCED_OPTIMIZATIONS';
 
 // For minified builds, wrap the output so we avoid leaking global variables.
-const CJS_WRAPPER_PREFIX =
-  `(function() {var firebase = require('@firebase/app').default;`;
+const CJS_WRAPPER_PREFIX = `(function() {var firebase = require('@firebase/app').default;`;
 const ESM_WRAPPER_PREFIX = `import firebase from '@firebase/app';(function() {`;
 const WRAPPER_SUFFIX =
   `}).apply(typeof global !== 'undefined' ? ` +
@@ -50,11 +49,14 @@ const closureLibRoot = path.dirname(
 function createBuildTask(filename, prefix, suffix) {
   return () =>
     gulp
-      .src([
-        `${closureLibRoot}/closure/goog/**/*.js`,
-        `${closureLibRoot}/third_party/closure/goog/**/*.js`,
-        'src/**/*.js'
-      ], { base: '.' })
+      .src(
+        [
+          `${closureLibRoot}/closure/goog/**/*.js`,
+          `${closureLibRoot}/third_party/closure/goog/**/*.js`,
+          'src/**/*.js'
+        ],
+        { base: '.' }
+      )
       .pipe(sourcemaps.init())
       .pipe(
         closureCompiler({
@@ -94,7 +96,11 @@ const cjsBuild = createBuildTask('auth.js', CJS_WRAPPER_PREFIX, WRAPPER_SUFFIX);
 gulp.task('cjs', cjsBuild);
 
 // esm build
-const esmBuild = createBuildTask('auth.esm.js', ESM_WRAPPER_PREFIX, WRAPPER_SUFFIX);
+const esmBuild = createBuildTask(
+  'auth.esm.js',
+  ESM_WRAPPER_PREFIX,
+  WRAPPER_SUFFIX
+);
 gulp.task('esm', esmBuild);
 
 // build without wrapper

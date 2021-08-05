@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 /**
  * @fileoverview Tests for multifactorassertion.js
  */
@@ -35,7 +35,6 @@ goog.require('goog.testing.MockControl');
 goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.MultiFactorAssertionTest');
-
 
 var mockControl;
 var jwt = fireauth.common.testHelper.createMockJwt({
@@ -62,12 +61,13 @@ var successTokenResponse = {
 
 function setUp() {
   phoneAuthCredential = fireauth.PhoneAuthProvider.credential(
-      verificationId, verificationCode);
+    verificationId,
+    verificationCode
+  );
   enrollSession = new fireauth.MultiFactorSession(jwt);
   signInSession = new fireauth.MultiFactorSession(null, pendingCredential);
   mockControl = new goog.testing.MockControl();
 }
-
 
 function tearDown() {
   enrollSession = null;
@@ -76,7 +76,6 @@ function tearDown() {
   mockControl.$tearDown();
 }
 
-
 function testAuthCredentialMultiFactorAssertion_process_enrollSuccess() {
   var expectedEnrollRequestIdentifier = {
     'idToken': jwt,
@@ -84,24 +83,27 @@ function testAuthCredentialMultiFactorAssertion_process_enrollSuccess() {
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
   var authCredential = mockControl.createStrictMock(
-      fireauth.MultiFactorAuthCredential);
+    fireauth.MultiFactorAuthCredential
+  );
   authCredential['providerId'] = 'PROVIDER_ID';
-  authCredential.finalizeMfaEnrollment(
-      rpcHandler, expectedEnrollRequestIdentifier).$once()
-      .$returns(goog.Promise.resolve(successTokenResponse));
+  authCredential
+    .finalizeMfaEnrollment(rpcHandler, expectedEnrollRequestIdentifier)
+    .$once()
+    .$returns(goog.Promise.resolve(successTokenResponse));
 
   mockControl.$replayAll();
 
-  var assertion =
-      new fireauth.AuthCredentialMultiFactorAssertion(authCredential);
+  var assertion = new fireauth.AuthCredentialMultiFactorAssertion(
+    authCredential
+  );
 
   assertEquals(authCredential['providerId'], assertion['factorId']);
-  return assertion.process(rpcHandler, enrollSession, factorDisplayName)
-      .then(function(result) {
-        assertObjectEquals(successTokenResponse, result);
-      });
+  return assertion
+    .process(rpcHandler, enrollSession, factorDisplayName)
+    .then(function (result) {
+      assertObjectEquals(successTokenResponse, result);
+    });
 }
-
 
 function testAuthCredentialMultiFactorAssertion_process_enrollSuccess_noName() {
   var expectedEnrollRequestIdentifier = {
@@ -109,53 +111,58 @@ function testAuthCredentialMultiFactorAssertion_process_enrollSuccess_noName() {
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
   var authCredential = mockControl.createStrictMock(
-      fireauth.MultiFactorAuthCredential);
+    fireauth.MultiFactorAuthCredential
+  );
   authCredential['providerId'] = 'PROVIDER_ID';
-  authCredential.finalizeMfaEnrollment(
-      rpcHandler, expectedEnrollRequestIdentifier).$once()
-      .$returns(goog.Promise.resolve(successTokenResponse));
+  authCredential
+    .finalizeMfaEnrollment(rpcHandler, expectedEnrollRequestIdentifier)
+    .$once()
+    .$returns(goog.Promise.resolve(successTokenResponse));
 
   mockControl.$replayAll();
 
-  var assertion =
-      new fireauth.AuthCredentialMultiFactorAssertion(authCredential);
+  var assertion = new fireauth.AuthCredentialMultiFactorAssertion(
+    authCredential
+  );
 
   assertEquals(authCredential['providerId'], assertion['factorId']);
-  return assertion.process(rpcHandler, enrollSession)
-      .then(function(result) {
-        assertObjectEquals(successTokenResponse, result);
-      });
+  return assertion.process(rpcHandler, enrollSession).then(function (result) {
+    assertObjectEquals(successTokenResponse, result);
+  });
 }
-
 
 function testAuthCredentialMultiFactorAssertion_process_enrollError() {
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.CREDENTIAL_TOO_OLD_LOGIN_AGAIN);
+    fireauth.authenum.Error.CREDENTIAL_TOO_OLD_LOGIN_AGAIN
+  );
   var expectedEnrollRequestIdentifier = {
     'idToken': jwt,
     'displayName': factorDisplayName
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
   var authCredential = mockControl.createStrictMock(
-      fireauth.MultiFactorAuthCredential);
+    fireauth.MultiFactorAuthCredential
+  );
   authCredential['providerId'] = 'PROVIDER_ID';
-  authCredential.finalizeMfaEnrollment(
-      rpcHandler, expectedEnrollRequestIdentifier).$once()
-      .$returns(goog.Promise.reject(expectedError));
+  authCredential
+    .finalizeMfaEnrollment(rpcHandler, expectedEnrollRequestIdentifier)
+    .$once()
+    .$returns(goog.Promise.reject(expectedError));
 
   mockControl.$replayAll();
 
-  var assertion =
-      new fireauth.AuthCredentialMultiFactorAssertion(authCredential);
+  var assertion = new fireauth.AuthCredentialMultiFactorAssertion(
+    authCredential
+  );
 
   assertEquals(authCredential['providerId'], assertion['factorId']);
-  return assertion.process(rpcHandler, enrollSession, factorDisplayName)
-      .then(fail)
-      .thenCatch(function(error) {
-        fireauth.common.testHelper.assertErrorEquals(expectedError, error);
-      });
+  return assertion
+    .process(rpcHandler, enrollSession, factorDisplayName)
+    .then(fail)
+    .thenCatch(function (error) {
+      fireauth.common.testHelper.assertErrorEquals(expectedError, error);
+    });
 }
-
 
 function testAuthCredentialMultiFactorAssertion_process_signInSuccess() {
   var expectedSignInRequestIdentifier = {
@@ -163,72 +170,76 @@ function testAuthCredentialMultiFactorAssertion_process_signInSuccess() {
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
   var authCredential = mockControl.createStrictMock(
-      fireauth.MultiFactorAuthCredential);
+    fireauth.MultiFactorAuthCredential
+  );
   authCredential['providerId'] = 'PROVIDER_ID';
-  authCredential.finalizeMfaSignIn(
-      rpcHandler, expectedSignInRequestIdentifier).$once()
-      .$returns(goog.Promise.resolve(successTokenResponse));
+  authCredential
+    .finalizeMfaSignIn(rpcHandler, expectedSignInRequestIdentifier)
+    .$once()
+    .$returns(goog.Promise.resolve(successTokenResponse));
 
   mockControl.$replayAll();
 
-  var assertion =
-      new fireauth.AuthCredentialMultiFactorAssertion(authCredential);
+  var assertion = new fireauth.AuthCredentialMultiFactorAssertion(
+    authCredential
+  );
 
   assertEquals(authCredential['providerId'], assertion['factorId']);
-  return assertion.process(rpcHandler, signInSession)
-      .then(function(result) {
-        assertObjectEquals(successTokenResponse, result);
-      });
+  return assertion.process(rpcHandler, signInSession).then(function (result) {
+    assertObjectEquals(successTokenResponse, result);
+  });
 }
-
 
 function testAuthCredentialMultiFactorAssertion_process_signInError() {
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.CODE_EXPIRED);
+    fireauth.authenum.Error.CODE_EXPIRED
+  );
   var expectedSignInRequestIdentifier = {
     'mfaPendingCredential': pendingCredential
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
   var authCredential = mockControl.createStrictMock(
-      fireauth.MultiFactorAuthCredential);
+    fireauth.MultiFactorAuthCredential
+  );
   authCredential['providerId'] = 'PROVIDER_ID';
-  authCredential.finalizeMfaSignIn(
-      rpcHandler, expectedSignInRequestIdentifier).$once()
-      .$returns(goog.Promise.reject(expectedError));
+  authCredential
+    .finalizeMfaSignIn(rpcHandler, expectedSignInRequestIdentifier)
+    .$once()
+    .$returns(goog.Promise.reject(expectedError));
 
   mockControl.$replayAll();
 
-  var assertion =
-      new fireauth.AuthCredentialMultiFactorAssertion(authCredential);
+  var assertion = new fireauth.AuthCredentialMultiFactorAssertion(
+    authCredential
+  );
 
   assertEquals(authCredential['providerId'], assertion['factorId']);
-  return assertion.process(rpcHandler, signInSession)
-      .then(fail)
-      .thenCatch(function(error) {
-        fireauth.common.testHelper.assertErrorEquals(expectedError, error);
-      });
+  return assertion
+    .process(rpcHandler, signInSession)
+    .then(fail)
+    .thenCatch(function (error) {
+      fireauth.common.testHelper.assertErrorEquals(expectedError, error);
+    });
 }
-
 
 function testPhoneMultiFactorAssertion_invalid() {
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.ARGUMENT_ERROR,
-      'firebase.auth.PhoneMultiFactorAssertion requires a valid ' +
-      'firebase.auth.PhoneAuthCredential');
+    fireauth.authenum.Error.ARGUMENT_ERROR,
+    'firebase.auth.PhoneMultiFactorAssertion requires a valid ' +
+      'firebase.auth.PhoneAuthCredential'
+  );
   var authCredential = mockControl.createStrictMock(
-      fireauth.MultiFactorAuthCredential);
+    fireauth.MultiFactorAuthCredential
+  );
   // Simulate non-phone AuthCredential.
   authCredential['providerId'] = 'PROVIDER_ID';
 
-  var error = assertThrows(function() {
+  var error = assertThrows(function () {
     return new fireauth.PhoneMultiFactorAssertion(authCredential);
   });
 
-  fireauth.common.testHelper.assertErrorEquals(
-      expectedError,
-      error);
+  fireauth.common.testHelper.assertErrorEquals(expectedError, error);
 }
-
 
 function testPhoneMultiFactorAssertion_process_enrollSuccess() {
   var expectedEnrollRequest = {
@@ -240,24 +251,27 @@ function testPhoneMultiFactorAssertion_process_enrollSuccess() {
     }
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  rpcHandler.finalizePhoneMfaEnrollment(expectedEnrollRequest).$once()
-      .$returns(goog.Promise.resolve(successTokenResponse));
+  rpcHandler
+    .finalizePhoneMfaEnrollment(expectedEnrollRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(successTokenResponse));
 
   mockControl.$replayAll();
 
   var assertion = new fireauth.PhoneMultiFactorAssertion(phoneAuthCredential);
 
   assertEquals('phone', assertion['factorId']);
-  return assertion.process(rpcHandler, enrollSession, factorDisplayName)
-      .then(function(result) {
-        assertObjectEquals(successTokenResponse, result);
-      });
+  return assertion
+    .process(rpcHandler, enrollSession, factorDisplayName)
+    .then(function (result) {
+      assertObjectEquals(successTokenResponse, result);
+    });
 }
-
 
 function testPhoneMultiFactorAssertion_process_enrollError() {
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.CREDENTIAL_TOO_OLD_LOGIN_AGAIN);
+    fireauth.authenum.Error.CREDENTIAL_TOO_OLD_LOGIN_AGAIN
+  );
   var expectedEnrollRequest = {
     'idToken': jwt,
     'displayName': factorDisplayName,
@@ -267,21 +281,23 @@ function testPhoneMultiFactorAssertion_process_enrollError() {
     }
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  rpcHandler.finalizePhoneMfaEnrollment(expectedEnrollRequest).$once()
-      .$returns(goog.Promise.reject(expectedError));
+  rpcHandler
+    .finalizePhoneMfaEnrollment(expectedEnrollRequest)
+    .$once()
+    .$returns(goog.Promise.reject(expectedError));
 
   mockControl.$replayAll();
 
   var assertion = new fireauth.PhoneMultiFactorAssertion(phoneAuthCredential);
 
   assertEquals('phone', assertion['factorId']);
-  return assertion.process(rpcHandler, enrollSession, factorDisplayName)
-      .then(fail)
-      .thenCatch(function(error) {
-        fireauth.common.testHelper.assertErrorEquals(expectedError, error);
-      });
+  return assertion
+    .process(rpcHandler, enrollSession, factorDisplayName)
+    .then(fail)
+    .thenCatch(function (error) {
+      fireauth.common.testHelper.assertErrorEquals(expectedError, error);
+    });
 }
-
 
 function testPhoneMultiFactorAssertion_process_signInSuccess() {
   var expectedSignInRequest = {
@@ -292,24 +308,25 @@ function testPhoneMultiFactorAssertion_process_signInSuccess() {
     }
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  rpcHandler.finalizePhoneMfaSignIn(expectedSignInRequest).$once()
-      .$returns(goog.Promise.resolve(successTokenResponse));
+  rpcHandler
+    .finalizePhoneMfaSignIn(expectedSignInRequest)
+    .$once()
+    .$returns(goog.Promise.resolve(successTokenResponse));
 
   mockControl.$replayAll();
 
   var assertion = new fireauth.PhoneMultiFactorAssertion(phoneAuthCredential);
 
   assertEquals('phone', assertion['factorId']);
-  return assertion.process(rpcHandler, signInSession)
-      .then(function(result) {
-        assertObjectEquals(successTokenResponse, result);
-      });
+  return assertion.process(rpcHandler, signInSession).then(function (result) {
+    assertObjectEquals(successTokenResponse, result);
+  });
 }
-
 
 function testPhoneMultiFactorAssertion_process_signInError() {
   var expectedError = new fireauth.AuthError(
-      fireauth.authenum.Error.CODE_EXPIRED);
+    fireauth.authenum.Error.CODE_EXPIRED
+  );
   var expectedSignInRequest = {
     'mfaPendingCredential': pendingCredential,
     'phoneVerificationInfo': {
@@ -318,17 +335,20 @@ function testPhoneMultiFactorAssertion_process_signInError() {
     }
   };
   var rpcHandler = mockControl.createStrictMock(fireauth.RpcHandler);
-  rpcHandler.finalizePhoneMfaSignIn(expectedSignInRequest).$once()
-      .$returns(goog.Promise.reject(expectedError));
+  rpcHandler
+    .finalizePhoneMfaSignIn(expectedSignInRequest)
+    .$once()
+    .$returns(goog.Promise.reject(expectedError));
 
   mockControl.$replayAll();
 
   var assertion = new fireauth.PhoneMultiFactorAssertion(phoneAuthCredential);
 
   assertEquals('phone', assertion['factorId']);
-  return assertion.process(rpcHandler, signInSession)
-      .then(fail)
-      .thenCatch(function(error) {
-        fireauth.common.testHelper.assertErrorEquals(expectedError, error);
-      });
+  return assertion
+    .process(rpcHandler, signInSession)
+    .then(fail)
+    .thenCatch(function (error) {
+      fireauth.common.testHelper.assertErrorEquals(expectedError, error);
+    });
 }

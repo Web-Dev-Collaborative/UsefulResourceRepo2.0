@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
- /**
+/**
  * @fileoverview Defines fireauth.UserEvent and fireauth.UserEventType.
  */
 
@@ -25,7 +25,6 @@ goog.provide('fireauth.UserEventType');
 goog.require('goog.events');
 goog.require('goog.events.Event');
 
-
 /**
  * User custom event.
  * @param {string} type The event type.
@@ -34,7 +33,7 @@ goog.require('goog.events.Event');
  * @constructor
  * @extends {goog.events.Event}
  */
-fireauth.UserEvent = function(type, properties) {
+fireauth.UserEvent = function (type, properties) {
   goog.events.Event.call(this, type);
   // If optional properties provided.
   // Add each property to custom event.
@@ -43,7 +42,6 @@ fireauth.UserEvent = function(type, properties) {
   }
 };
 goog.inherits(fireauth.UserEvent, goog.events.Event);
-
 
 /**
  * Events dispatched by the user.

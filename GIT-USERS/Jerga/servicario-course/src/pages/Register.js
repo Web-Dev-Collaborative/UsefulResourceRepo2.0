@@ -1,22 +1,27 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React from 'react'
-import RegisterForm from 'components/auth/RegisterForm'
-import { register } from 'actions'
-import { useToasts } from 'react-toast-notifications'
-import onlyGuest from 'components/hoc/onlyGuest'
+import React from "react";
+import RegisterForm from "components/auth/RegisterForm";
+import { register } from "actions";
+import { useToasts } from "react-toast-notifications";
+import onlyGuest from "components/hoc/onlyGuest";
 
 // import { withRouter } from 'react-router-dom'
 
 const Register = (props) => {
-  const { addToast } = useToasts()
+  const { addToast } = useToasts();
 
   const registerUser = (userData) => {
-    register(userData)
-      .then(
-        _ => () => {},
-        errorMessage => addToast(errorMessage, { appearance: 'error', autoDismiss: true, autoDismissTimeout: 3000 }))
-  }
+    register(userData).then(
+      (_) => () => {},
+      (errorMessage) =>
+        addToast(errorMessage, {
+          appearance: "error",
+          autoDismiss: true,
+          autoDismissTimeout: 3000,
+        })
+    );
+  };
 
   return (
     <div className="auth-page">
@@ -38,15 +43,8 @@ const Register = (props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 // export default withRouter(Register)
-export default onlyGuest(Register)
-
-
-
-
-
-
-
+export default onlyGuest(Register);

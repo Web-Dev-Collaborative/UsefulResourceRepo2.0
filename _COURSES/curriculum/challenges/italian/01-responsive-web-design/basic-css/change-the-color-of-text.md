@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08803
 title: Cambiare il colore del testo
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cRkVmSm'
+videoUrl: "https://scrimba.com/c/cRkVmSm"
 forumTopicId: 16775
 dashedName: change-the-color-of-text
 ---
@@ -32,19 +32,19 @@ Cambia lo stile dell'elemento `h2` in modo che il colore del testo sia rosso.
 Il tuo elemento `h2` dovrebbe avere una dichiarazione `style`.
 
 ```js
-assert($('h2').attr('style'));
+assert($("h2").attr("style"));
 ```
 
 Il tuo elemento `h2` dovrebbe avere il color impostato su `red`.
 
 ```js
-assert($('h2')[0].style.color === 'red');
+assert($("h2")[0].style.color === "red");
 ```
 
 La tua dichiarazione `style` dovrebbe terminare con un `;`.
 
 ```js
-assert($('h2').attr('style') && $('h2').attr('style').endsWith(';'));
+assert($("h2").attr("style") && $("h2").attr("style").endsWith(";"));
 ```
 
 # --seed--
@@ -56,7 +56,11 @@ assert($('h2').attr('style') && $('h2').attr('style').endsWith(';'));
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -74,12 +78,12 @@ assert($('h2').attr('style') && $('h2').attr('style').endsWith(';'));
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>
@@ -92,7 +96,11 @@ assert($('h2').attr('style') && $('h2').attr('style').endsWith(';'));
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -110,12 +118,12 @@ assert($('h2').attr('style') && $('h2').attr('style').endsWith(';'));
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>

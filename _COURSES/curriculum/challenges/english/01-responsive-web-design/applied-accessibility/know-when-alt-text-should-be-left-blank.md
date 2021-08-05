@@ -2,7 +2,7 @@
 id: 587d774c367417b2b2512a9d
 title: Know When Alt Text Should be Left Blank
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cM9P4t2'
+videoUrl: "https://scrimba.com/c/cM9P4t2"
 forumTopicId: 301019
 dashedName: know-when-alt-text-should-be-left-blank
 ---
@@ -14,7 +14,7 @@ In the last challenge, you learned that including an `alt` attribute when using 
 When an image is already explained with text content or does not add meaning to a page, the `img` still needs an `alt` attribute, but it can be set to an empty string. Here's an example:
 
 ```html
-<img src="visualDecoration.jpeg" alt="">
+<img src="visualDecoration.jpeg" alt="" />
 ```
 
 Background images usually fall under the 'decorative' label as well. However, they are typically applied with CSS rules, and therefore not part of the markup screen readers process.
@@ -30,13 +30,13 @@ Camper Cat has coded a skeleton page for the blog part of his website. He's plan
 Your `img` tag should have an `alt` attribute.
 
 ```js
-assert(!($('img').attr('alt') == undefined));
+assert(!($("img").attr("alt") == undefined));
 ```
 
 The `alt` attribute should be set to an empty string.
 
 ```js
-assert($('img').attr('alt') == '');
+assert($("img").attr("alt") == "");
 ```
 
 # --seed--
@@ -50,7 +50,7 @@ assert($('img').attr('alt') == '');
   <p>To Come...</p>
 </article>
 
-<img src="samuraiSwords.jpeg">
+<img src="samuraiSwords.jpeg" />
 
 <article>
   <h2>Is Chuck Norris a Cat Person?</h2>
@@ -67,7 +67,7 @@ assert($('img').attr('alt') == '');
   <p>To Come...</p>
 </article>
 
-<img src="samuraiSwords.jpeg" alt="">
+<img src="samuraiSwords.jpeg" alt="" />
 
 <article>
   <h2>Is Chuck Norris a Cat Person?</h2>

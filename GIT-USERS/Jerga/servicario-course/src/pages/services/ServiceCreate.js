@@ -1,36 +1,34 @@
+import React, { useState } from "react";
+import withAuthorization from "components/hoc/withAuthorization";
+import { Redirect } from "react-router-dom";
 
-import React, { useState } from 'react'
-import withAuthorization from 'components/hoc/withAuthorization'
-import { Redirect } from 'react-router-dom'
+import { createService } from "actions";
 
+const ServiceCreate = ({ auth }) => {
+  const [redirect, setRedirect] = useState(false);
+  const [serviceForm, setServiceForm] = useState({
+    category: "mathematics",
+    title: "",
+    description: "",
+    image: "",
+    price: null,
+  });
 
-import { createService } from 'actions'
-
-
-const ServiceCreate = ({auth}) => {
-
-  const [ redirect, setRedirect ] = useState(false)
-  const [ serviceForm, setServiceForm ] = useState({
-    category: 'mathematics',
-    title: '',
-    description: '',
-    image: '',
-    price: null
-  })
-
-  const handleChange = e => {
-    const { name, value } = e.target
-    setServiceForm({...serviceForm, [name]: value})
-  }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setServiceForm({ ...serviceForm, [name]: value });
+  };
 
   const handleSubmit = () => {
-    const { user } = auth
+    const { user } = auth;
     createService(serviceForm, user.uid)
       .then(() => setRedirect(true))
-      .catch(() => alert('SOME ERROR!'))
-  }
+      .catch(() => alert("SOME ERROR!"));
+  };
 
-  if (redirect) { return <Redirect to="/" />}
+  if (redirect) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className="create-page">
@@ -60,7 +58,8 @@ const ServiceCreate = ({auth}) => {
                   name="title"
                   className="input"
                   type="text"
-                  placeholder="Text input" />
+                  placeholder="Text input"
+                />
               </div>
             </div>
             <div className="field">
@@ -70,7 +69,8 @@ const ServiceCreate = ({auth}) => {
                   onChange={handleChange}
                   name="description"
                   className="textarea"
-                  placeholder="Textarea"></textarea>
+                  placeholder="Textarea"
+                ></textarea>
               </div>
             </div>
             <div className="field">
@@ -81,7 +81,8 @@ const ServiceCreate = ({auth}) => {
                   name="image"
                   className="input"
                   type="text"
-                  placeholder="Text input" />
+                  placeholder="Text input"
+                />
               </div>
             </div>
             <div className="field">
@@ -92,15 +93,19 @@ const ServiceCreate = ({auth}) => {
                   name="price"
                   className="input"
                   type="number"
-                  placeholder="Text input" />
+                  placeholder="Text input"
+                />
               </div>
             </div>
             <div className="field is-grouped">
               <div className="control">
                 <button
                   onClick={handleSubmit}
-                  type="button" 
-                  className="button is-link">Create</button>
+                  type="button"
+                  className="button is-link"
+                >
+                  Create
+                </button>
               </div>
               <div className="control">
                 <button className="button is-text">Cancel</button>
@@ -110,14 +115,7 @@ const ServiceCreate = ({auth}) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default withAuthorization(ServiceCreate)
-
-
-
-
-
-
-
+export default withAuthorization(ServiceCreate);

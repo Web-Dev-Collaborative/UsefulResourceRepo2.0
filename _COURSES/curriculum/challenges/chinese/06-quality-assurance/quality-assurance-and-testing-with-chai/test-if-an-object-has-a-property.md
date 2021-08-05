@@ -22,9 +22,9 @@ dashedName: test-if-an-object-has-a-property
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=15').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=15").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -36,12 +36,12 @@ dashedName: test-if-an-object-has-a-property
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=15').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=15").then(
     (data) => {
       assert.equal(
         data.assertions[0].method,
-        'notProperty',
-        'A car has not wings'
+        "notProperty",
+        "A car has not wings"
       );
     },
     (xhr) => {
@@ -54,12 +54,12 @@ dashedName: test-if-an-object-has-a-property
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=15').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=15").then(
     (data) => {
       assert.equal(
         data.assertions[1].method,
-        'property',
-        'planes have engines'
+        "property",
+        "planes have engines"
       );
     },
     (xhr) => {
@@ -72,9 +72,9 @@ dashedName: test-if-an-object-has-a-property
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=15').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=15").then(
     (data) => {
-      assert.equal(data.assertions[2].method, 'property', 'Cars have wheels');
+      assert.equal(data.assertions[2].method, "property", "Cars have wheels");
     },
     (xhr) => {
       throw new Error(xhr.responseText);

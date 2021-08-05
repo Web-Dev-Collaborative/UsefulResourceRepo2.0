@@ -8,14 +8,13 @@ export function callAddMessage() {
   const { getFunctions, httpsCallable } = require("firebase/functions");
 
   const functions = getFunctions();
-  const addMessage = httpsCallable(functions, 'addMessage');
-  addMessage({ text: messageText })
-    .then((result) => {
-      // Read result of the Cloud Function.
-      /** @type {any} */
-      const data = result.data;
-      const sanitizedMessage = data.text;
-    });
+  const addMessage = httpsCallable(functions, "addMessage");
+  addMessage({ text: messageText }).then((result) => {
+    // Read result of the Cloud Function.
+    /** @type {any} */
+    const data = result.data;
+    const sanitizedMessage = data.text;
+  });
   // [END fb_functions_call_add_message]
 }
 
@@ -26,7 +25,7 @@ export function callAddMessageError(firebaseApp) {
   const { getFunctions, httpsCallable } = require("firebase/functions");
 
   const functions = getFunctions();
-  const addMessage = httpsCallable(functions, 'addMessage');
+  const addMessage = httpsCallable(functions, "addMessage");
   addMessage({ text: messageText })
     .then((result) => {
       // Read result of the Cloud Function.

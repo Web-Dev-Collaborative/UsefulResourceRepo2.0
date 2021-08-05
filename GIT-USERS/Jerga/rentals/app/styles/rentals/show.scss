@@ -8,7 +8,8 @@
   border-color: #f35e5e;
   font-size: 20px;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: #f35e5e;
     border-color: #f35e5e;
     opacity: 0.8;
@@ -33,7 +34,7 @@
   }
   .rental-desc {
     .title {
-      font-family: 'Mukta Malar', sans-serif;
+      font-family: "Mukta Malar", sans-serif;
       color: $listing-font;
       font-weight: bold;
       letter-spacing: 0.5px;
@@ -68,10 +69,10 @@
 
   .user-info-container {
     .user-image {
-    margin-right: 20px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+      margin-right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
     }
   }
 

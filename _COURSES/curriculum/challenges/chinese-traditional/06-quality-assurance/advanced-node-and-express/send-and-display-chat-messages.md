@@ -11,7 +11,7 @@ dashedName: send-and-display-chat-messages
 是時候開始允許用戶向服務器發送聊天消息，以向所有客戶端發送消息了！ 在 `client.js` 文件裏，你應該已經注意到了這段提交消息表單的代碼：
 
 ```js
-$('form').submit(function() {
+$("form").submit(function () {
   /*logic*/
 });
 ```
@@ -19,7 +19,7 @@ $('form').submit(function() {
 在表單提交代碼中，需要處理髮送（emit）事件，它應該發生在定義 `messageToSend` 之後，以及清除 `#m` 中的文本之前。 我們稱這個事件爲 `'chat message'`，需發送的數據爲 `messageToSend`。
 
 ```js
-socket.emit('chat message', messageToSend);
+socket.emit("chat message", messageToSend);
 ```
 
 在服務端，我們需要監聽包含 `message` 數據的 `'chat message'` 事件。 當事件發生，我們就通過 `io.emit` 把包含 `name` 和 `message` 的 `'chat message'` 事件發送給所有已連接的 socket。
@@ -36,7 +36,7 @@ socket.emit('chat message', messageToSend);
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
@@ -54,7 +54,7 @@ socket.emit('chat message', messageToSend);
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/public/client.js').then(
+  $.get(getUserInput("url") + "/public/client.js").then(
     (data) => {
       assert.match(
         data,

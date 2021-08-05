@@ -16,20 +16,20 @@
  * @fileoverview UI component for the email link sign in sent page.
  */
 
-goog.provide('firebaseui.auth.ui.page.EmailLinkSignInSent');
+goog.provide("firebaseui.auth.ui.page.EmailLinkSignInSent");
 
-goog.require('firebaseui.auth.soy2.page');
-goog.require('firebaseui.auth.ui.element');
-goog.require('firebaseui.auth.ui.element.form');
-goog.require('firebaseui.auth.ui.page.Base');
-goog.requireType('goog.dom.DomHelper');
-
+goog.require("firebaseui.auth.soy2.page");
+goog.require("firebaseui.auth.ui.element");
+goog.require("firebaseui.auth.ui.element.form");
+goog.require("firebaseui.auth.ui.page.Base");
+goog.requireType("goog.dom.DomHelper");
 
 /**
  * Email link sign in sent UI component.
  */
-firebaseui.auth.ui.page.EmailLinkSignInSent =
-    class extends firebaseui.auth.ui.page.Base {
+firebaseui.auth.ui.page.EmailLinkSignInSent = class extends (
+  firebaseui.auth.ui.page.Base
+) {
   /**
    * @param {string} email The email formerly used to sign in.
    * @param {function()} onTroubleGetingEmailLinkClick Callback to invoke when
@@ -43,15 +43,24 @@ firebaseui.auth.ui.page.EmailLinkSignInSent =
    * @param {?goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
    */
   constructor(
-      email, onTroubleGetingEmailLinkClick, onCancelClick, opt_tosCallback,
-      opt_privacyPolicyCallback, opt_domHelper) {
+    email,
+    onTroubleGetingEmailLinkClick,
+    onCancelClick,
+    opt_tosCallback,
+    opt_privacyPolicyCallback,
+    opt_domHelper
+  ) {
     // Extend base page class and render email link sign in sent soy template.
     super(
-        firebaseui.auth.soy2.page.emailLinkSignInSent, {email: email},
-        opt_domHelper, 'emailLinkSignInSent', {
-          tosCallback: opt_tosCallback,
-          privacyPolicyCallback: opt_privacyPolicyCallback
-        });
+      firebaseui.auth.soy2.page.emailLinkSignInSent,
+      { email: email },
+      opt_domHelper,
+      "emailLinkSignInSent",
+      {
+        tosCallback: opt_tosCallback,
+        privacyPolicyCallback: opt_privacyPolicyCallback,
+      }
+    );
     this.onTroubleGetingEmailLinkClick_ = onTroubleGetingEmailLinkClick;
     this.onCancelClick_ = onCancelClick;
   }
@@ -61,14 +70,20 @@ firebaseui.auth.ui.page.EmailLinkSignInSent =
     var self = this;
     // Handle action event for cancel button.
     firebaseui.auth.ui.element.listenForActionEvent(
-        this, this.getSecondaryLinkElement(), function(e) {
-          self.onCancelClick_();
-        });
+      this,
+      this.getSecondaryLinkElement(),
+      function (e) {
+        self.onCancelClick_();
+      }
+    );
     // Handle action event for trouble getting email link.
     firebaseui.auth.ui.element.listenForActionEvent(
-        this, this.getTroubleGettingEmailLink(), function(e) {
-          self.onTroubleGetingEmailLinkClick_();
-        });
+      this,
+      this.getTroubleGettingEmailLink(),
+      function (e) {
+        self.onTroubleGetingEmailLinkClick_();
+      }
+    );
     // Set initial focus on the cancel button.
     this.getSecondaryLinkElement().focus();
     super.enterDocument();
@@ -78,7 +93,7 @@ firebaseui.auth.ui.page.EmailLinkSignInSent =
    * @return {?Element} The trouble getting email link.
    */
   getTroubleGettingEmailLink() {
-    return this.getElementByClass('firebaseui-id-trouble-getting-email-link');
+    return this.getElementByClass("firebaseui-id-trouble-getting-email-link");
   }
 
   /** @override */
@@ -89,12 +104,12 @@ firebaseui.auth.ui.page.EmailLinkSignInSent =
   }
 };
 
-
 goog.mixin(
-    firebaseui.auth.ui.page.EmailLinkSignInSent.prototype,
-    /** @lends {firebaseui.auth.ui.page.EmailLinkSignInSent.prototype} */
-    {
-      // For form.
-      getSecondaryLinkElement:
-          firebaseui.auth.ui.element.form.getSecondaryLinkElement
-    });
+  firebaseui.auth.ui.page.EmailLinkSignInSent.prototype,
+  /** @lends {firebaseui.auth.ui.page.EmailLinkSignInSent.prototype} */
+  {
+    // For form.
+    getSecondaryLinkElement:
+      firebaseui.auth.ui.element.form.getSecondaryLinkElement,
+  }
+);

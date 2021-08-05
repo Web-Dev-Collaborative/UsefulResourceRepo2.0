@@ -2,7 +2,7 @@
 id: cf1111c1c11feddfaeb8bdef
 title: Modify Array Data With Indexes
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/czQM4A8'
+videoUrl: "https://scrimba.com/c/czQM4A8"
 forumTopicId: 18241
 dashedName: modify-array-data-with-indexes
 ---
@@ -14,7 +14,7 @@ Unlike strings, the entries of arrays are <dfn>mutable</dfn> and can be changed 
 **Example**
 
 ```js
-var ourArray = [50,40,30];
+var ourArray = [50, 40, 30];
 ourArray[0] = 15;
 ```
 
@@ -34,7 +34,7 @@ Modify the data stored at index `0` of `myArray` to a value of `45`.
 assert(
   (function () {
     if (
-      typeof myArray != 'undefined' &&
+      typeof myArray != "undefined" &&
       myArray[0] == 45 &&
       myArray[1] == 64 &&
       myArray[2] == 99
@@ -66,14 +66,18 @@ assert(
 ## --after-user-code--
 
 ```js
-if(typeof myArray !== "undefined"){(function(){return myArray;})();}
+if (typeof myArray !== "undefined") {
+  (function () {
+    return myArray;
+  })();
+}
 ```
 
 ## --seed-contents--
 
 ```js
 // Setup
-var myArray = [18,64,99];
+var myArray = [18, 64, 99];
 
 // Only change code below this line
 ```
@@ -81,6 +85,6 @@ var myArray = [18,64,99];
 # --solutions--
 
 ```js
-var myArray = [18,64,99];
+var myArray = [18, 64, 99];
 myArray[0] = 45;
 ```

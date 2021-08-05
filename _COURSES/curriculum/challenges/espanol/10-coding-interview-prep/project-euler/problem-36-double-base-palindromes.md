@@ -1,6 +1,6 @@
 ---
 id: 5900f3901000cf542c50fea3
-title: 'Problem 36: Double-base palindromes'
+title: "Problem 36: Double-base palindromes"
 challengeType: 5
 forumTopicId: 302020
 dashedName: problem-36-double-base-palindromes
@@ -19,7 +19,7 @@ Find the sum of all numbers, less than `n`, whereas 1000 ≤ `n` ≤ 1000000, wh
 `doubleBasePalindromes(1000)` should return a number.
 
 ```js
-assert(typeof doubleBasePalindromes(1000) === 'number');
+assert(typeof doubleBasePalindromes(1000) === "number");
 ```
 
 `doubleBasePalindromes(1000)` should return 1772.
@@ -52,7 +52,6 @@ assert(doubleBasePalindromes(1000000) == 872187);
 
 ```js
 function doubleBasePalindromes(n) {
-
   return n;
 }
 

@@ -43,7 +43,7 @@ export function registerFirestore(instance: FirebaseNamespace): void {
   instance.registerVersion(name, version);
 }
 
-registerFirestore((firebase as unknown) as FirebaseNamespace);
+registerFirestore(firebase as unknown as FirebaseNamespace);
 registerBundle(Firestore);
 
 declare module '@firebase/app-compat' {

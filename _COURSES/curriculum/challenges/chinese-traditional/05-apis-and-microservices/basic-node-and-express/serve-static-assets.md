@@ -26,12 +26,12 @@ HTML 服務器通常有一個或多個用戶可以訪問的目錄。 你可以�
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/public/style.css').then(
+  $.get(getUserInput("url") + "/public/style.css").then(
     (data) => {
       assert.match(
         data,
         /body\s*\{[^\}]*\}/,
-        'Your app does not serve static assets'
+        "Your app does not serve static assets"
       );
     },
     (xhr) => {

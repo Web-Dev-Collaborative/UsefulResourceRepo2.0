@@ -2,7 +2,7 @@
 id: 587d78af367417b2b2512b00
 title: 使用 align-self 屬性
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cMbvzfv'
+videoUrl: "https://scrimba.com/p/pVaDAv/cMbvzfv"
 forumTopicId: 301107
 dashedName: use-the-align-self-property
 ---
@@ -22,13 +22,13 @@ flex 子項目的最後一個屬性是 `align-self`。 這個屬性允許你調�
 `#box-1` 元素應具有 `align-self` 屬性，其屬性值應爲 `center`。
 
 ```js
-assert($('#box-1').css('align-self') == 'center');
+assert($("#box-1").css("align-self") == "center");
 ```
 
 `#box-2` 元素應具有 `align-self` 屬性，其屬性值應爲 `flex-end`。
 
 ```js
-assert($('#box-2').css('align-self') == 'flex-end');
+assert($("#box-2").css("align-self") == "flex-end");
 ```
 
 # --seed--

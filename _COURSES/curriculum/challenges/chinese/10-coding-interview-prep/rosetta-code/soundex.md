@@ -24,73 +24,73 @@ Write a function that takes a string as a parameter and returns the encoded stri
 `soundex` should be a function.
 
 ```js
-assert(typeof soundex == 'function');
+assert(typeof soundex == "function");
 ```
 
 `soundex("Soundex")` should return a string.
 
 ```js
-assert(typeof soundex('Soundex') == 'string');
+assert(typeof soundex("Soundex") == "string");
 ```
 
 `soundex("Soundex")` should return `"S532"`.
 
 ```js
-assert.equal(soundex('Soundex'), 'S532');
+assert.equal(soundex("Soundex"), "S532");
 ```
 
 `soundex("Example")` should return `"E251"`.
 
 ```js
-assert.equal(soundex('Example'), 'E251');
+assert.equal(soundex("Example"), "E251");
 ```
 
 `soundex("Sownteks")` should return `"S532"`.
 
 ```js
-assert.equal(soundex('Sownteks'), 'S532');
+assert.equal(soundex("Sownteks"), "S532");
 ```
 
 `soundex("Ekzampul")` should return `"E251"`.
 
 ```js
-assert.equal(soundex('Ekzampul'), 'E251');
+assert.equal(soundex("Ekzampul"), "E251");
 ```
 
 `soundex("Euler")` should return `"E460"`.
 
 ```js
-assert.equal(soundex('Euler'), 'E460');
+assert.equal(soundex("Euler"), "E460");
 ```
 
 `soundex("Gauss")` should return `"G200"`.
 
 ```js
-assert.equal(soundex('Gauss'), 'G200');
+assert.equal(soundex("Gauss"), "G200");
 ```
 
 `soundex("Hilbert")` should return `"H416"`.
 
 ```js
-assert.equal(soundex('Hilbert'), 'H416');
+assert.equal(soundex("Hilbert"), "H416");
 ```
 
 `soundex("Knuth")` should return `"K530"`.
 
 ```js
-assert.equal(soundex('Knuth'), 'K530');
+assert.equal(soundex("Knuth"), "K530");
 ```
 
 `soundex("Lloyd")` should return `"L300"`.
 
 ```js
-assert.equal(soundex('Lloyd'), 'L300');
+assert.equal(soundex("Lloyd"), "L300");
 ```
 
 `soundex("Lukasiewicz")` should return `"L222"`.
 
 ```js
-assert.equal(soundex('Lukasiewicz'), 'L222');
+assert.equal(soundex("Lukasiewicz"), "L222");
 ```
 
 # --seed--
@@ -98,24 +98,22 @@ assert.equal(soundex('Lukasiewicz'), 'L222');
 ## --seed-contents--
 
 ```js
-function soundex(s) {
-
-}
+function soundex(s) {}
 ```
 
 # --solutions--
 
 ```js
 function soundex(s) {
-  var a = s.toLowerCase().split('');
+  var a = s.toLowerCase().split("");
   var f = a.shift(),
-    r = '',
+    r = "",
     codes = {
-      a: '',
-      e: '',
-      i: '',
-      o: '',
-      u: '',
+      a: "",
+      e: "",
+      i: "",
+      o: "",
+      u: "",
       b: 1,
       f: 1,
       p: 1,
@@ -133,19 +131,19 @@ function soundex(s) {
       l: 4,
       m: 5,
       n: 5,
-      r: 6
+      r: 6,
     };
   r =
     f +
     a
-      .map(function(v, i, a) {
+      .map(function (v, i, a) {
         return codes[v];
       })
-      .filter(function(v, i, a) {
+      .filter(function (v, i, a) {
         return i === 0 ? v !== codes[f] : v !== a[i - 1];
       })
-      .join('');
+      .join("");
 
-  return (r + '000').slice(0, 4).toUpperCase();
+  return (r + "000").slice(0, 4).toUpperCase();
 }
 ```

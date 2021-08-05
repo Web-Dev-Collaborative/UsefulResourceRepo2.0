@@ -33,7 +33,7 @@ Write a function that takes the seed value as parameter, generates a self refere
 `selfReferential` should be a function.
 
 ```js
-assert(typeof selfReferential === 'function');
+assert(typeof selfReferential === "function");
 ```
 
 `selfReferential(40)` should return a array.
@@ -46,17 +46,17 @@ assert(Array.isArray(selfReferential(40)));
 
 ```js
 assert.deepEqual(selfReferential(40), [
-  '40',
-  '1410',
-  '142110',
-  '14123110',
-  '1413124110',
-  '2413125110',
-  '151413224110',
-  '152413225110',
-  '251413324110',
-  '152423224110',
-  '152413423110'
+  "40",
+  "1410",
+  "142110",
+  "14123110",
+  "1413124110",
+  "2413125110",
+  "151413224110",
+  "152413225110",
+  "251413324110",
+  "152423224110",
+  "152413423110",
 ]);
 ```
 
@@ -64,13 +64,13 @@ assert.deepEqual(selfReferential(40), [
 
 ```js
 assert.deepEqual(selfReferential(132110), [
-  '132110',
-  '13123110',
-  '23124110',
-  '1413223110',
-  '1423224110',
-  '2413323110',
-  '1433223110'
+  "132110",
+  "13123110",
+  "23124110",
+  "1413223110",
+  "1423224110",
+  "2413323110",
+  "1433223110",
 ]);
 ```
 
@@ -78,14 +78,14 @@ assert.deepEqual(selfReferential(132110), [
 
 ```js
 assert.deepEqual(selfReferential(132211), [
-  '132211',
-  '132231',
-  '232221',
-  '134211',
-  '14131231',
-  '14231241',
-  '24132231',
-  '14233221'
+  "132211",
+  "132231",
+  "232221",
+  "134211",
+  "14131231",
+  "14231241",
+  "24132231",
+  "14233221",
 ]);
 ```
 
@@ -93,10 +93,10 @@ assert.deepEqual(selfReferential(132211), [
 
 ```js
 assert.deepEqual(selfReferential(1413223110), [
-  '1413223110',
-  '1423224110',
-  '2413323110',
-  '1433223110'
+  "1413223110",
+  "1423224110",
+  "2413323110",
+  "1433223110",
 ]);
 ```
 
@@ -104,13 +104,13 @@ assert.deepEqual(selfReferential(1413223110), [
 
 ```js
 assert.deepEqual(selfReferential(251413126110), [
-  '251413126110',
-  '16151413225110',
-  '16251413226110',
-  '26151413325110',
-  '16251423225110',
-  '16251413424110',
-  '16153413225110'
+  "251413126110",
+  "16151413225110",
+  "16251413226110",
+  "26151413325110",
+  "16251423225110",
+  "16251413424110",
+  "16153413225110",
 ]);
 ```
 
@@ -119,9 +119,7 @@ assert.deepEqual(selfReferential(251413126110), [
 ## --seed-contents--
 
 ```js
-function selfReferential(n) {
-
-}
+function selfReferential(n) {}
 ```
 
 # --solutions--
@@ -139,14 +137,14 @@ function selfReferential(n) {
     sequence,
     indexOf =
       [].indexOf ||
-      function(item) {
+      function (item) {
         for (var i = 0, l = this.length; i < l; i++) {
           if (i in this && this[i] === item) return i;
         }
         return -1;
       };
 
-  sequence = function(n) {
+  sequence = function (n) {
     var c, cnt, cnts, d, digit, i, j, l, len, new_cnts, ref, s, seq;
     cnts = {};
     ref = n.toString();
@@ -157,10 +155,10 @@ function selfReferential(n) {
     }
     seq = [ref];
     while (true) {
-      s = '';
+      s = "";
       for (i = l = 9; l >= 0; i = --l) {
         if (cnts[i]) {
-          s += '' + cnts[i] + i;
+          s += "" + cnts[i] + i;
         }
       }
       if (indexOf.call(seq, s) >= 0) {
@@ -178,14 +176,14 @@ function selfReferential(n) {
     return seq;
   };
 
-  incr = function(h, k) {
+  incr = function (h, k) {
     if (h[k] == null) {
       h[k] = 0;
     }
     return (h[k] += 1);
   };
 
-  descending = function(n) {
+  descending = function (n) {
     var tens;
     if (n < 10) {
       return true;

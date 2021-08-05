@@ -6,7 +6,7 @@
       </nb-button>
     </nb-left>
     <nb-body>
-      <nb-title>{{screen}}</nb-title>
+      <nb-title>{{ screen }}</nb-title>
     </nb-body>
     <nb-right>
       <nb-button :on-press="displayActionsheet" transparent>
@@ -17,83 +17,76 @@
 </template>
 
 <script>
-  import { ActionSheet } from "native-base";
-  export default {
-    props: {
-      screen: {
-        type: String,
-        default: 'Header'
-      },
-      root: {
-        type: Boolean
-      },
-      navigation: {
-        type: Object,
-        required: true
-      }
+import { ActionSheet } from "native-base";
+export default {
+  props: {
+    screen: {
+      type: String,
+      default: "Header",
     },
-    computed: {
-     optionCancelIndex () {
-      return this.btnOptions.length - 1
-     },
-     optionDestructiveIndex () {
-       return this.isAuth ? this.optionCancelIndex - 1 : -99
-     },
-     isAuth () {
-       return this.$store.getters['auth/isAuth']
-     },
-     btnOptions () {
+    root: {
+      type: Boolean,
+    },
+    navigation: {
+      type: Object,
+      required: true,
+    },
+  },
+  computed: {
+    optionCancelIndex() {
+      return this.btnOptions.length - 1;
+    },
+    optionDestructiveIndex() {
+      return this.isAuth ? this.optionCancelIndex - 1 : -99;
+    },
+    isAuth() {
+      return this.$store.getters["auth/isAuth"];
+    },
+    btnOptions() {
       if (this.isAuth) {
-        return ['Create Meetup', 'Logout', 'Cancel']
+        return ["Create Meetup", "Logout", "Cancel"];
       } else {
-        return ['Login', 'Register', 'Cancel']
+        return ["Login", "Register", "Cancel"];
       }
-     }
     },
-    methods: {
-      displayActionsheet () {
-        ActionSheet.show(
-          {
-            options: this.btnOptions,
-            cancelButtonIndex: this.optionCancelIndex,
-            destructiveButtonIndex: this.optionDestructiveIndex,
-            title: "Select An Option"
-          },
-          this.handleOptionSelect
-        );
-      },
-      handleOptionSelect (buttonIndex) {
-        const option = this.btnOptions[buttonIndex]
+  },
+  methods: {
+    displayActionsheet() {
+      ActionSheet.show(
+        {
+          options: this.btnOptions,
+          cancelButtonIndex: this.optionCancelIndex,
+          destructiveButtonIndex: this.optionDestructiveIndex,
+          title: "Select An Option",
+        },
+        this.handleOptionSelect
+      );
+    },
+    handleOptionSelect(buttonIndex) {
+      const option = this.btnOptions[buttonIndex];
 
-        switch (option) {
-          case 'Login':
-            this.navigation.navigate('Login')
-            break
-          case 'Register':
-            this.navigation.navigate('Register')
-            break
-          case 'Create Meetup':
-            this.navigation.navigate('MeetupCreate')
-            break
-          case 'Logout':
-            this.$store.dispatch('auth/logout')
-              .then(() => {
-                this.navigation.navigate('Home')
-              })
-            break
-          default:
-            return null
-        }
-      },
-      goBack () {
-        this.navigation.goBack()
+      switch (option) {
+        case "Login":
+          this.navigation.navigate("Login");
+          break;
+        case "Register":
+          this.navigation.navigate("Register");
+          break;
+        case "Create Meetup":
+          this.navigation.navigate("MeetupCreate");
+          break;
+        case "Logout":
+          this.$store.dispatch("auth/logout").then(() => {
+            this.navigation.navigate("Home");
+          });
+          break;
+        default:
+          return null;
       }
-    }
-  }
+    },
+    goBack() {
+      this.navigation.goBack();
+    },
+  },
+};
 </script>
-
-
-
-
-
-

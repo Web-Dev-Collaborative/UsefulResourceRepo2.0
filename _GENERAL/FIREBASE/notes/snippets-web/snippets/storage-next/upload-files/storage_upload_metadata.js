@@ -7,12 +7,12 @@
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 
 const storage = getStorage();
-const storageRef = ref(storage, 'images/mountains.jpg');
+const storageRef = ref(storage, "images/mountains.jpg");
 
 // Create file metadata including the content type
 /** @type {any} */
 const metadata = {
-  contentType: 'image/jpeg',
+  contentType: "image/jpeg",
 };
 
 // Upload the file and metadata

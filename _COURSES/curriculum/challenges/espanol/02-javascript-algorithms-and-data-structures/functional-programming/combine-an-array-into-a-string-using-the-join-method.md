@@ -18,6 +18,7 @@ var str = arr.join(" ");
 ```
 
 `str` tendrá una cadena con valor `Hello World`.
+
 # --instructions--
 
 Utiliza el método `join` (entre otros) dentro de la función `sentensify` para hacer una oración a partir de las palabras en la cadena `str`. La función debe devolver una cadena. Por ejemplo, `I-like-Star-Wars` se convertiría en `I like Star Wars`. Para este desafío, no utilices el método `replace`.
@@ -39,21 +40,21 @@ assert(!code.match(/\.?[\s\S]*?replace/g));
 `sentensify("May-the-force-be-with-you")` debe devolver una cadena.
 
 ```js
-assert(typeof sentensify('May-the-force-be-with-you') === 'string');
+assert(typeof sentensify("May-the-force-be-with-you") === "string");
 ```
 
 `sentensify("May-the-force-be-with-you")` debe devolver la cadena `May the force be with you`.
 
 ```js
-assert(sentensify('May-the-force-be-with-you') === 'May the force be with you');
+assert(sentensify("May-the-force-be-with-you") === "May the force be with you");
 ```
 
 `sentensify("The.force.is.strong.with.this.one")` debe devolver la cadena `The force is strong with this one`.
 
 ```js
 assert(
-  sentensify('The.force.is.strong.with.this.one') ===
-    'The force is strong with this one'
+  sentensify("The.force.is.strong.with.this.one") ===
+    "The force is strong with this one"
 );
 ```
 
@@ -61,7 +62,7 @@ assert(
 
 ```js
 assert(
-  sentensify('There,has,been,an,awakening') === 'There has been an awakening'
+  sentensify("There,has,been,an,awakening") === "There has been an awakening"
 );
 ```
 
@@ -72,8 +73,6 @@ assert(
 ```js
 function sentensify(str) {
   // Only change code below this line
-
-
   // Only change code above this line
 }
 sentensify("May-the-force-be-with-you");
@@ -84,7 +83,7 @@ sentensify("May-the-force-be-with-you");
 ```js
 function sentensify(str) {
   // Only change code below this line
-  return str.split(/\W/).join(' ');
+  return str.split(/\W/).join(" ");
   // Only change code above this line
 }
 ```

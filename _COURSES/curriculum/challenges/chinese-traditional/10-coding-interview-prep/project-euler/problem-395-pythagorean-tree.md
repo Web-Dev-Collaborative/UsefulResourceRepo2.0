@@ -1,6 +1,6 @@
 ---
 id: 5900f4f71000cf542c51000a
-title: 'Problem 395: Pythagorean tree'
+title: "Problem 395: Pythagorean tree"
 challengeType: 5
 forumTopicId: 302060
 dashedName: problem-395-pythagorean-tree
@@ -32,7 +32,6 @@ assert.strictEqual(euler395(), 28.2453753155);
 
 ```js
 function euler395() {
-
   return true;
 }
 

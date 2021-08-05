@@ -53,4 +53,3 @@ print(cel)
 ## --video-solution--
 
 3
-

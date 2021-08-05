@@ -24,7 +24,7 @@ interface Callbacks {
     authResult: any,
     redirectUrl?: string
   ): boolean;
-  signInFailure?(error: firebaseui.auth.AuthUIError): Promise<void>|void;
+  signInFailure?(error: firebaseui.auth.AuthUIError): Promise<void> | void;
   uiShown?(): void;
 }
 
@@ -34,7 +34,7 @@ interface SignInOption {
   fullLabel?: string;
   buttonColor?: string;
   iconUrl?: string;
-  hd?: string|RegExp;
+  hd?: string | RegExp;
 }
 
 interface SamlSignInOption extends SignInOption {
@@ -43,14 +43,12 @@ interface SamlSignInOption extends SignInOption {
   iconUrl: string;
 }
 
-
 interface FederatedSignInOption extends SignInOption {
   authMethod?: string;
   clientId?: string;
   scopes?: string[];
   customParameters?: object;
 }
-
 
 interface OAuthSignInOption extends SignInOption {
   providerName?: string;
@@ -61,14 +59,12 @@ interface OAuthSignInOption extends SignInOption {
   loginHintKey?: string;
 }
 
-
 interface OidcSignInOption extends SignInOption {
   providerName?: string;
   buttonColor: string;
   iconUrl: string;
   customParameters?: object;
 }
-
 
 interface ActionCodeSettings {
   url: string;
@@ -124,9 +120,15 @@ declare namespace firebaseui.auth {
     queryParameterForSignInSuccessUrl?: string;
     queryParameterForWidgetMode?: string;
     signInFlow?: string;
-    signInOptions?:
-        Array<string|FederatedSignInOption|EmailSignInOption|PhoneSignInOption|
-              SamlSignInOption|OAuthSignInOption|OidcSignInOption>;
+    signInOptions?: Array<
+      | string
+      | FederatedSignInOption
+      | EmailSignInOption
+      | PhoneSignInOption
+      | SamlSignInOption
+      | OAuthSignInOption
+      | OidcSignInOption
+    >;
     signInSuccessUrl?: string;
     siteName?: string;
     tosUrl?: (() => void) | string;
@@ -184,12 +186,12 @@ declare namespace firebaseui.auth {
 
   interface SelectedTenantInfo {
     email?: string;
-    tenantId: string|null;
+    tenantId: string | null;
     providerIds: string[];
   }
 
   interface CIAPCallbacks {
-    signInUiShown?(tenantId: string|null): void;
+    signInUiShown?(tenantId: string | null): void;
     selectTenantUiShown?(): void;
     selectTenantUiHidden?(): void;
     // tslint:disable-next-line:no-any firebase dependency not available.
@@ -208,29 +210,33 @@ declare namespace firebaseui.auth {
   interface CIAPHandlerConfig {
     authDomain: string;
     displayMode?: string;
-    tosUrl?: (() => void)|string;
-    privacyPolicyUrl?: (() => void)|string;
+    tosUrl?: (() => void) | string;
+    privacyPolicyUrl?: (() => void) | string;
     callbacks?: firebaseui.auth.CIAPCallbacks;
-    tenants: {[key: string]: firebaseui.auth.TenantConfig};
+    tenants: { [key: string]: firebaseui.auth.TenantConfig };
   }
 
   class FirebaseUiHandler {
     constructor(
-        element: Element|string,
-        configs: {[key: string]: firebaseui.auth.CIAPHandlerConfig});
+      element: Element | string,
+      configs: { [key: string]: firebaseui.auth.CIAPHandlerConfig }
+    );
     selectTenant(
-        projectConfig: firebaseui.auth.ProjectConfig,
-        tenantIds: string[]): Promise<firebaseui.auth.SelectedTenantInfo>;
+      projectConfig: firebaseui.auth.ProjectConfig,
+      tenantIds: string[]
+    ): Promise<firebaseui.auth.SelectedTenantInfo>;
     // tslint:disable-next-line:no-any firebase dependency not available.
-    getAuth(apiKey: string, tenantId: string|null): any;
+    getAuth(apiKey: string, tenantId: string | null): any;
     // tslint:disable-next-line:no-any firebase dependency not available.
-    startSignIn(auth: any, tenantInfo?: firebaseui.auth.SelectedTenantInfo):
-        Promise<any>;  // tslint:disable-line
+    startSignIn(
+      auth: any,
+      tenantInfo?: firebaseui.auth.SelectedTenantInfo
+    ): Promise<any>; // tslint:disable-line
     reset(): Promise<void>;
     completeSignOut(): Promise<void>;
     showProgressBar(): void;
     hideProgressBar(): void;
-    handleError(error: Error|firebaseui.auth.CIAPError): void;
+    handleError(error: Error | firebaseui.auth.CIAPError): void;
     languageCode: string | null;
     // tslint:disable-next-line:no-any firebase dependency not available.
     processUser(user: any): Promise<any>;

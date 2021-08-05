@@ -1,7 +1,3 @@
-
-
-
-
 <template>
   <div class="container">
     <div class="section">
@@ -12,25 +8,31 @@
 </template>
 
 <script>
-import { USER_ACTIVATED } from '@/helpers/redirectMessages'
+import { USER_ACTIVATED } from "@/helpers/redirectMessages";
 export default {
   created() {
-    this.activateUser()
+    this.activateUser();
   },
   methods: {
     activateUser() {
-      const { hash } = this.$route.params
-      this.$store.dispatch('auth/activateUser', hash)
-        .then(_ => this.$router.push({path: '/login', query: { messageType: USER_ACTIVATED.type}}))
-        .catch(err => console.log(err))
-    }
-  }
-}
+      const { hash } = this.$route.params;
+      this.$store
+        .dispatch("auth/activateUser", hash)
+        .then((_) =>
+          this.$router.push({
+            path: "/login",
+            query: { messageType: USER_ACTIVATED.type },
+          })
+        )
+        .catch((err) => console.log(err));
+    },
+  },
+};
 </script>
 
 <style scoped>
-  .title {
-    font-size: 50px;
-    text-align: center;
-  }
+.title {
+  font-size: 50px;
+  text-align: center;
+}
 </style>

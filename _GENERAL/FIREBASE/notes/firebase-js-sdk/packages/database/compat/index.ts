@@ -43,7 +43,9 @@ export function registerDatabase(instance: FirebaseNamespace) {
   setSDKVersion(instance.SDK_VERSION);
 
   // Register the Database Service with the 'firebase' namespace.
-  const namespace = ((instance as unknown) as _FirebaseNamespace).INTERNAL.registerComponent(
+  const namespace = (
+    instance as unknown as _FirebaseNamespace
+  ).INTERNAL.registerComponent(
     new Component(
       'database-compat',
       (container, { instanceIdentifier: url }) => {

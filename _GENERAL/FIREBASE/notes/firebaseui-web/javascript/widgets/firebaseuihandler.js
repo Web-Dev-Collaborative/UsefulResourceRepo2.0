@@ -17,23 +17,27 @@
  * for IAP integration.
  */
 
-goog.module('firebaseui.auth.FirebaseUiHandler');
+goog.module("firebaseui.auth.FirebaseUiHandler");
 goog.module.declareLegacyNamespace();
 
-const AuthUI = goog.require('firebaseui.auth.AuthUI');
-const Base = goog.require('firebaseui.auth.ui.page.Base');
-const Config = goog.requireType('firebaseui.auth.Config');
-const GoogPromise = goog.require('goog.Promise');
-const ProviderMatchByEmail = goog.require('firebaseui.auth.ui.page.ProviderMatchByEmail');
-const RecoverableError = goog.require('firebaseui.auth.ui.page.RecoverableError');
-const SelectTenant = goog.require('firebaseui.auth.ui.page.SelectTenant');
-const SignOut = goog.require('firebaseui.auth.ui.page.SignOut');
-const Spinner = goog.require('firebaseui.auth.ui.page.Spinner');
-const UiHandlerConfig = goog.require('firebaseui.auth.widget.UiHandlerConfig');
-const dom = goog.require('goog.dom');
-const element = goog.require('firebaseui.auth.ui.element');
-const strings = goog.require('firebaseui.auth.soy2.strings');
-const util = goog.require('firebaseui.auth.util');
+const AuthUI = goog.require("firebaseui.auth.AuthUI");
+const Base = goog.require("firebaseui.auth.ui.page.Base");
+const Config = goog.requireType("firebaseui.auth.Config");
+const GoogPromise = goog.require("goog.Promise");
+const ProviderMatchByEmail = goog.require(
+  "firebaseui.auth.ui.page.ProviderMatchByEmail"
+);
+const RecoverableError = goog.require(
+  "firebaseui.auth.ui.page.RecoverableError"
+);
+const SelectTenant = goog.require("firebaseui.auth.ui.page.SelectTenant");
+const SignOut = goog.require("firebaseui.auth.ui.page.SignOut");
+const Spinner = goog.require("firebaseui.auth.ui.page.Spinner");
+const UiHandlerConfig = goog.require("firebaseui.auth.widget.UiHandlerConfig");
+const dom = goog.require("goog.dom");
+const element = goog.require("firebaseui.auth.ui.element");
+const strings = goog.require("firebaseui.auth.soy2.strings");
+const util = goog.require("firebaseui.auth.util");
 
 /**
  * The interface that represents the Authentication Handler.
@@ -103,7 +107,6 @@ class AuthenticationHandler {
   processUser(user) {}
 }
 
-
 /**
  * The CIAP Error interface. If the error is recoverable, it will have a retry
  * callback on the object.
@@ -140,7 +143,6 @@ class CIAPError {
   toJSON() {}
 }
 
-
 /**
  * The CIAP recoverable error interface.
  * @extends {CIAPError}
@@ -153,7 +155,6 @@ class CIAPRetryError {
    */
   retry() {}
 }
-
 
 /**
  * Initializes an CIAP AuthenticationHandler with the Auth configuration and
@@ -194,26 +195,23 @@ class FirebaseUiHandler {
     this.currentComponent_ = null;
     /** @private {?string} The handler's language code. */
     this.languageCode_ = null;
-    Object.defineProperty(
-        /** @type {!Object} */ (this),
-        'languageCode',
-        {
-          /**
-           * @return {?string} The current language code.
-           * @this {!Object}
-           */
-          get() {
-            return this.languageCode_;
-          },
-          /**
-           * @param {?string} value The new language code.
-           * @this {!Object}
-           */
-          set(value) {
-            this.languageCode_ = value || null;
-          },
-          enumerable: false,
-        });
+    Object.defineProperty(/** @type {!Object} */ (this), "languageCode", {
+      /**
+       * @return {?string} The current language code.
+       * @this {!Object}
+       */
+      get() {
+        return this.languageCode_;
+      },
+      /**
+       * @param {?string} value The new language code.
+       * @this {!Object}
+       */
+      set(value) {
+        this.languageCode_ = value || null;
+      },
+      enumerable: false,
+    });
   }
 
   /**
@@ -227,28 +225,33 @@ class FirebaseUiHandler {
    */
   selectTenant(projectConfig, tenantIds) {
     this.disposeCurrentComponent_();
-    const apiKey = projectConfig['apiKey'];
+    const apiKey = projectConfig["apiKey"];
     return new GoogPromise((resolve, reject) => {
       if (!this.configs_.hasOwnProperty(apiKey)) {
-        const error =
-            new Error('Invalid project configuration: API key is invalid!');
+        const error = new Error(
+          "Invalid project configuration: API key is invalid!"
+        );
         // Add error code for localization.
-        error['code'] = 'invalid-configuration';
+        error["code"] = "invalid-configuration";
         this.handleError(error);
         reject(error);
         return;
       }
       const selectTenantUiHidden =
-          this.configs_[apiKey].getSelectTenantUiHiddenCallback();
+        this.configs_[apiKey].getSelectTenantUiHiddenCallback();
       // Option first flow.
-      if (this.configs_[apiKey].getDisplayMode() ===
-          UiHandlerConfig.DisplayMode.OPTION_FIRST) {
+      if (
+        this.configs_[apiKey].getDisplayMode() ===
+        UiHandlerConfig.DisplayMode.OPTION_FIRST
+      ) {
         // Get the button configurations based on the given tenant IDs.
         const tenantButtonConfigs = [];
         tenantIds.forEach((tenantId) => {
-          const buttonConfig =
-              this.configs_[apiKey].getSelectionButtonConfigForTenant(
-                  tenantId || UiHandlerConfig.ConfigKeys.TOP_LEVEL_CONFIG_KEY);
+          const buttonConfig = this.configs_[
+            apiKey
+          ].getSelectionButtonConfigForTenant(
+            tenantId || UiHandlerConfig.ConfigKeys.TOP_LEVEL_CONFIG_KEY
+          );
           if (buttonConfig) {
             tenantButtonConfigs.push(buttonConfig);
           }
@@ -256,11 +259,10 @@ class FirebaseUiHandler {
         // Resolver to return the SelectedTenantInfo based on the tenantId.
         const resolveWithTenantInfo = (tenantId) => {
           const selectedTenantInfo = {
-            'tenantId': tenantId,
-            'providerIds':
-                this.configs_[apiKey].getProvidersForTenant(
-                    tenantId ||
-                    UiHandlerConfig.ConfigKeys.TOP_LEVEL_CONFIG_KEY),
+            tenantId: tenantId,
+            providerIds: this.configs_[apiKey].getProvidersForTenant(
+              tenantId || UiHandlerConfig.ConfigKeys.TOP_LEVEL_CONFIG_KEY
+            ),
           };
           resolve(selectedTenantInfo);
         };
@@ -279,10 +281,12 @@ class FirebaseUiHandler {
             }
             resolveWithTenantInfo(tenantId);
           };
-          this.currentComponent_ =
-              new SelectTenant(onTenantClick, tenantButtonConfigs,
-                               this.configs_[apiKey].getTosUrl(),
-                               this.configs_[apiKey].getPrivacyPolicyUrl());
+          this.currentComponent_ = new SelectTenant(
+            onTenantClick,
+            tenantButtonConfigs,
+            this.configs_[apiKey].getTosUrl(),
+            this.configs_[apiKey].getPrivacyPolicyUrl()
+          );
         }
       } else {
         // Identifier first flow.
@@ -292,17 +296,16 @@ class FirebaseUiHandler {
             return;
           }
           for (let i = 0; i < tenantIds.length; i++) {
-            const providers =
-                this.configs_[apiKey].getProvidersForTenant(
-                    tenantIds[i] ||
-                    UiHandlerConfig.ConfigKeys.TOP_LEVEL_CONFIG_KEY,
-                    email);
+            const providers = this.configs_[apiKey].getProvidersForTenant(
+              tenantIds[i] || UiHandlerConfig.ConfigKeys.TOP_LEVEL_CONFIG_KEY,
+              email
+            );
             // Resolve with the first matching tenant with available providers.
             if (providers.length !== 0) {
               const selectedTenantInfo = {
-                'tenantId': tenantIds[i],
-                'providerIds': providers,
-                'email': email,
+                tenantId: tenantIds[i],
+                providerIds: providers,
+                email: email,
               };
               this.disposeCurrentComponent_();
               // Trigger the selectTenantUiHidden callback.
@@ -315,17 +318,19 @@ class FirebaseUiHandler {
           }
           // If no matching tenant found, show error message in info bar.
           this.currentComponent_.showInfoBar(
-              getLocalizedErrorMessage('no-matching-tenant-for-email'));
+            getLocalizedErrorMessage("no-matching-tenant-for-email")
+          );
         };
         this.currentComponent_ = new ProviderMatchByEmail(
-            onEmailEnter,
-            this.configs_[apiKey].getTosUrl(),
-            this.configs_[apiKey].getPrivacyPolicyUrl());
+          onEmailEnter,
+          this.configs_[apiKey].getTosUrl(),
+          this.configs_[apiKey].getPrivacyPolicyUrl()
+        );
       }
       this.currentComponent_.render(this.container_);
       // Trigger the selectTenantUiShown callback.
       const selectTenantUiShown =
-          this.configs_[apiKey].getSelectTenantUiShownCallback();
+        this.configs_[apiKey].getSelectTenantUiShownCallback();
       if (selectTenantUiShown) {
         selectTenantUiShown();
       }
@@ -342,7 +347,7 @@ class FirebaseUiHandler {
    */
   getAuth(apiKey, tenantId) {
     if (!this.configs_.hasOwnProperty(apiKey)) {
-      throw new Error('Invalid project configuration: API key is invalid!');
+      throw new Error("Invalid project configuration: API key is invalid!");
     }
     // The name of the firebase app. For tenant flow, use tenant ID, for
     // top-level project flow, use the default name "[DEFAULT]".
@@ -351,16 +356,17 @@ class FirebaseUiHandler {
     // the top-level project UI configuration key TOP_LEVEL_CONFIG_KEY should
     // be available.
     this.configs_[apiKey].validateTenantId(
-        tenantId || UiHandlerConfig.ConfigKeys.TOP_LEVEL_CONFIG_KEY);
+      tenantId || UiHandlerConfig.ConfigKeys.TOP_LEVEL_CONFIG_KEY
+    );
     try {
       this.signedInAuth_ = firebase.app(appName).auth();
     } catch (e) {
       const options = {
-        'apiKey': apiKey,
-        'authDomain': this.configs_[apiKey].getAuthDomain(),
+        apiKey: apiKey,
+        authDomain: this.configs_[apiKey].getAuthDomain(),
       };
       const app = firebase.initializeApp(options, appName);
-      app.auth()['tenantId'] = tenantId;
+      app.auth()["tenantId"] = tenantId;
       this.signedInAuth_ = app.auth();
     }
     return this.signedInAuth_;
@@ -377,43 +383,45 @@ class FirebaseUiHandler {
    */
   startSignIn(auth, tenantInfo = undefined) {
     return new GoogPromise((resolve, reject) => {
-      const apiKey = auth['app']['options']['apiKey'];
+      const apiKey = auth["app"]["options"]["apiKey"];
       if (!this.configs_.hasOwnProperty(apiKey)) {
-        reject(
-            new Error('Invalid project configuration: API key is invalid!'));
+        reject(new Error("Invalid project configuration: API key is invalid!"));
       }
-      const signInConfig =
-          this.configs_[apiKey].getSignInConfigForTenant(
-              auth['tenantId'] ||
-              UiHandlerConfig.ConfigKeys.TOP_LEVEL_CONFIG_KEY,
-              tenantInfo && tenantInfo['providerIds']);
+      const signInConfig = this.configs_[apiKey].getSignInConfigForTenant(
+        auth["tenantId"] || UiHandlerConfig.ConfigKeys.TOP_LEVEL_CONFIG_KEY,
+        tenantInfo && tenantInfo["providerIds"]
+      );
       this.disposeCurrentComponent_();
       // Passes the sign-in related callbacks to FirebaseUI.
       const signInCallbacks = {};
-      signInCallbacks['signInSuccessWithAuthResult'] = (userCredential) => {
+      signInCallbacks["signInSuccessWithAuthResult"] = (userCredential) => {
         resolve(userCredential);
         return false;
       };
       const signInUiShownCallback =
-          this.configs_[apiKey].getSignInUiShownCallback();
+        this.configs_[apiKey].getSignInUiShownCallback();
       let uiShown = false;
-      signInCallbacks['uiChanged'] = (fromPageId, toPageId) => {
+      signInCallbacks["uiChanged"] = (fromPageId, toPageId) => {
         // Processing redirect result.
-        if (fromPageId === null && toPageId === 'callback') {
+        if (fromPageId === null && toPageId === "callback") {
           // Hide callback page if available.
           const callbackElement = dom.getElementByClass(
-              'firebaseui-id-page-callback', this.container_);
+            "firebaseui-id-page-callback",
+            this.container_
+          );
           if (callbackElement) {
             element.hide(callbackElement);
           }
           // Show spinner. This will trigger null -> spinner uiChanged.
           this.progressBar_ = new Spinner();
           this.progressBar_.render(this.container_);
-        } else if (!uiShown &&
-                   !(fromPageId === null && toPageId === 'spinner') &&
-                   // Do not trigger callback for immediate federated redirect
-                   // to IdP page.
-                   (toPageId !== 'blank')) {
+        } else if (
+          !uiShown &&
+          !(fromPageId === null && toPageId === "spinner") &&
+          // Do not trigger callback for immediate federated redirect
+          // to IdP page.
+          toPageId !== "blank"
+        ) {
           // Remove spinner if still showing.
           if (this.progressBar_) {
             this.progressBar_.dispose();
@@ -422,17 +430,17 @@ class FirebaseUiHandler {
           // Trigger the signInUiShown callback. This should be triggered once.
           uiShown = true;
           if (signInUiShownCallback) {
-             signInUiShownCallback(auth['tenantId']);
+            signInUiShownCallback(auth["tenantId"]);
           }
         }
       };
-      signInConfig['callbacks'] = signInCallbacks;
+      signInConfig["callbacks"] = signInCallbacks;
       // Do not support `credentialHelper` for sign-in flow.
-      signInConfig['credentialHelper'] = 'none';
+      signInConfig["credentialHelper"] = "none";
       let signInHint;
-      if (tenantInfo && tenantInfo['email']) {
+      if (tenantInfo && tenantInfo["email"]) {
         signInHint = {
-          'emailHint': tenantInfo['email'],
+          emailHint: tenantInfo["email"],
         };
       }
       const startAuthUi = (signInConfig, signInHint) => {
@@ -458,14 +466,16 @@ class FirebaseUiHandler {
    *     successfully reset.
    */
   reset() {
-    return GoogPromise.resolve().then(() => {
-      if (this.ui_) {
-        this.ui_.delete();
-      }
-    }).then(() => {
-      this.ui_ = null;
-      this.disposeCurrentComponent_();
-    });
+    return GoogPromise.resolve()
+      .then(() => {
+        if (this.ui_) {
+          this.ui_.delete();
+        }
+      })
+      .then(() => {
+        this.ui_ = null;
+        this.disposeCurrentComponent_();
+      });
   }
 
   /**
@@ -540,17 +550,16 @@ class FirebaseUiHandler {
    *     need to define CIAPError extern so that dot access will not be renamed.
    */
   handleError(error) {
-    const message = getLocalizedErrorMessage(error['code']) || error['message'];
+    const message = getLocalizedErrorMessage(error["code"]) || error["message"];
     this.disposeCurrentComponent_();
     let onRetryClick;
-    if (error['retry'] && typeof error['retry'] === 'function') {
+    if (error["retry"] && typeof error["retry"] === "function") {
       onRetryClick = () => {
         this.reset();
-        error['retry']();
+        error["retry"]();
       };
     }
-    this.currentComponent_ =
-        new RecoverableError(message, onRetryClick);
+    this.currentComponent_ = new RecoverableError(message, onRetryClick);
     this.currentComponent_.render(this.container_);
   }
 
@@ -563,31 +572,38 @@ class FirebaseUiHandler {
    * @override
    */
   processUser(user) {
-    return GoogPromise.resolve().then(() => {
-      const apiKey = this.signedInAuth_ &&
-        this.signedInAuth_['app']['options']['apiKey'];
-      if (!this.configs_.hasOwnProperty(apiKey)) {
-        throw new Error('Invalid project configuration: API key is invalid!');
-      }
-      this.configs_[apiKey].validateTenantId(
-          user['tenantId'] || UiHandlerConfig.ConfigKeys.TOP_LEVEL_CONFIG_KEY);
-      if (!this.signedInAuth_['currentUser'] ||
-          (this.signedInAuth_['currentUser']['uid'] !== user['uid'])) {
-        throw new Error(
-            'The user being processed does not match the signed in user!');
-      }
-      const beforeSignInSuccessCallback =
+    return GoogPromise.resolve()
+      .then(() => {
+        const apiKey =
+          this.signedInAuth_ && this.signedInAuth_["app"]["options"]["apiKey"];
+        if (!this.configs_.hasOwnProperty(apiKey)) {
+          throw new Error("Invalid project configuration: API key is invalid!");
+        }
+        this.configs_[apiKey].validateTenantId(
+          user["tenantId"] || UiHandlerConfig.ConfigKeys.TOP_LEVEL_CONFIG_KEY
+        );
+        if (
+          !this.signedInAuth_["currentUser"] ||
+          this.signedInAuth_["currentUser"]["uid"] !== user["uid"]
+        ) {
+          throw new Error(
+            "The user being processed does not match the signed in user!"
+          );
+        }
+        const beforeSignInSuccessCallback =
           this.configs_[apiKey].getBeforeSignInSuccessCallback();
-      return beforeSignInSuccessCallback ?
-          beforeSignInSuccessCallback(user) : user;
-    }).then((processedUser) => {
-      // Checks that the user returned in callback has to be same as the
-      // original one.
-      if (processedUser['uid'] !== user['uid']) {
-        throw new Error('User with mismatching UID returned.');
-      }
-      return processedUser;
-    });
+        return beforeSignInSuccessCallback
+          ? beforeSignInSuccessCallback(user)
+          : user;
+      })
+      .then((processedUser) => {
+        // Checks that the user returned in callback has to be same as the
+        // original one.
+        if (processedUser["uid"] !== user["uid"]) {
+          throw new Error("User with mismatching UID returned.");
+        }
+        return processedUser;
+      });
   }
 }
 
@@ -598,7 +614,7 @@ class FirebaseUiHandler {
  * @return {string} The localized user-facing error message.
  */
 function getLocalizedErrorMessage(code) {
-  return strings.errorCIAP({code: code}).toString();
+  return strings.errorCIAP({ code: code }).toString();
 }
 
 /**

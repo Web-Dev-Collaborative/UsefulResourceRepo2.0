@@ -16,17 +16,14 @@
  * @fileoverview Federated account linking handler.
  */
 
-goog.provide('firebaseui.auth.widget.handler.handleFederatedLinking');
+goog.provide("firebaseui.auth.widget.handler.handleFederatedLinking");
 
-goog.require('firebaseui.auth.storage');
-goog.require('firebaseui.auth.ui.page.FederatedLinking');
-goog.require('firebaseui.auth.widget.Handler');
-goog.require('firebaseui.auth.widget.HandlerName');
-goog.require('firebaseui.auth.widget.handler');
-goog.require('firebaseui.auth.widget.handler.common');
-
-
-
+goog.require("firebaseui.auth.storage");
+goog.require("firebaseui.auth.ui.page.FederatedLinking");
+goog.require("firebaseui.auth.widget.Handler");
+goog.require("firebaseui.auth.widget.HandlerName");
+goog.require("firebaseui.auth.widget.handler");
+goog.require("firebaseui.auth.widget.handler.common");
 
 /**
  * Handles the case where the user had previously signed in with a federated
@@ -41,12 +38,17 @@ goog.require('firebaseui.auth.widget.handler.common');
  *     user should use to sign in.
  * @param {string=} opt_infoBarMessage The message to show on info bar.
  */
-firebaseui.auth.widget.handler.handleFederatedLinking = function(
-    app, container, email, providerId, opt_infoBarMessage) {
+firebaseui.auth.widget.handler.handleFederatedLinking = function (
+  app,
+  container,
+  email,
+  providerId,
+  opt_infoBarMessage
+) {
   var pendingEmailCredential =
-      firebaseui.auth.storage.getPendingEmailCredential(app.getAppId());
+    firebaseui.auth.storage.getPendingEmailCredential(app.getAppId());
   var pendingCredential =
-      pendingEmailCredential && pendingEmailCredential.getCredential();
+    pendingEmailCredential && pendingEmailCredential.getCredential();
   if (!pendingCredential) {
     // If no pending credential, it's an error and the user should be redirected
     // to the sign-in page.
@@ -54,20 +56,25 @@ firebaseui.auth.widget.handler.handleFederatedLinking = function(
     return;
   }
   var component = new firebaseui.auth.ui.page.FederatedLinking(
-      email,
-      app.getConfig().getConfigForProvider(providerId),
-      // On submit.
-      function() {
-        // We sign in the user through the normal federated sign-in flow,
-        // and the callback handler will take care of linking the
-        // pending credential to the successfully signed in user.
-        // Pass the email since some OAuth providers support OAuth flow
-        // with a specified email.
-        firebaseui.auth.widget.handler.common.federatedSignIn(app, component,
-            providerId, email);
-      },
-      app.getConfig().getTosUrl(),
-      app.getConfig().getPrivacyPolicyUrl());
+    email,
+    app.getConfig().getConfigForProvider(providerId),
+    // On submit.
+    function () {
+      // We sign in the user through the normal federated sign-in flow,
+      // and the callback handler will take care of linking the
+      // pending credential to the successfully signed in user.
+      // Pass the email since some OAuth providers support OAuth flow
+      // with a specified email.
+      firebaseui.auth.widget.handler.common.federatedSignIn(
+        app,
+        component,
+        providerId,
+        email
+      );
+    },
+    app.getConfig().getTosUrl(),
+    app.getConfig().getPrivacyPolicyUrl()
+  );
   component.render(container);
   // Set current UI component.
   app.setCurrentComponent(component);
@@ -77,9 +84,9 @@ firebaseui.auth.widget.handler.handleFederatedLinking = function(
   }
 };
 
-
 // Register handler.
 firebaseui.auth.widget.handler.register(
-    firebaseui.auth.widget.HandlerName.FEDERATED_LINKING,
-    /** @type {firebaseui.auth.widget.Handler} */
-    (firebaseui.auth.widget.handler.handleFederatedLinking));
+  firebaseui.auth.widget.HandlerName.FEDERATED_LINKING,
+  /** @type {firebaseui.auth.widget.Handler} */
+  (firebaseui.auth.widget.handler.handleFederatedLinking)
+);

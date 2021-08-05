@@ -14,13 +14,13 @@
 
 /** @fileoverview UI component for the list of supported identity providers. */
 
-goog.module('firebaseui.auth.ui.page.ProviderSignIn');
+goog.module("firebaseui.auth.ui.page.ProviderSignIn");
 goog.module.declareLegacyNamespace();
 
-const Base = goog.require('firebaseui.auth.ui.page.Base');
-const DomHelper = goog.requireType('goog.dom.DomHelper');
-const idps = goog.require('firebaseui.auth.ui.element.idps');
-const page = goog.require('firebaseui.auth.soy2.page');
+const Base = goog.require("firebaseui.auth.ui.page.Base");
+const DomHelper = goog.requireType("goog.dom.DomHelper");
+const idps = goog.require("firebaseui.auth.ui.element.idps");
+const page = goog.require("firebaseui.auth.soy2.page");
 
 /** UI component that displays a list of supported identity providers. */
 class ProviderSignIn extends Base {
@@ -36,14 +36,22 @@ class ProviderSignIn extends Base {
    * @param {?DomHelper=} domHelper Optional DOM helper.
    */
   constructor(
-      onIdpClick, providerConfigs, opt_tosCallback, opt_privacyPolicyCallback,
-      domHelper = undefined) {
+    onIdpClick,
+    providerConfigs,
+    opt_tosCallback,
+    opt_privacyPolicyCallback,
+    domHelper = undefined
+  ) {
     super(
-        page.providerSignIn,
-        {providerConfigs: providerConfigs}, domHelper, 'providerSignIn', {
-          tosCallback: opt_tosCallback,
-          privacyPolicyCallback: opt_privacyPolicyCallback,
-        });
+      page.providerSignIn,
+      { providerConfigs: providerConfigs },
+      domHelper,
+      "providerSignIn",
+      {
+        tosCallback: opt_tosCallback,
+        privacyPolicyCallback: opt_privacyPolicyCallback,
+      }
+    );
     this.onIdpClick_ = onIdpClick;
   }
 
@@ -61,11 +69,12 @@ class ProviderSignIn extends Base {
 }
 
 goog.mixin(
-    ProviderSignIn.prototype,
-    /** @lends {ProviderSignIn.prototype} */
-    {
-      // For idps.
-      initIdpList: idps.initIdpList,
-    });
+  ProviderSignIn.prototype,
+  /** @lends {ProviderSignIn.prototype} */
+  {
+    // For idps.
+    initIdpList: idps.initIdpList,
+  }
+);
 
 exports = ProviderSignIn;

@@ -19,19 +19,19 @@ Bootstrap 有着豐富的預定義按鈕顏色。 淺藍色的 `btn-info` class 
 應創建一個新的包含 `Info` 文本的 `button` 元素。
 
 ```js
-assert(new RegExp('info', 'gi').test($('button').text()));
+assert(new RegExp("info", "gi").test($("button").text()));
 ```
 
 兩個按鈕的 class 屬性應該包含 `btn` 和 `btn-block`。
 
 ```js
-assert($('button.btn-block.btn').length > 1);
+assert($("button.btn-block.btn").length > 1);
 ```
 
 新按鈕的 class 屬性應該含有 `btn-info`。
 
 ```js
-assert($('button').hasClass('btn-info'));
+assert($("button").hasClass("btn-info"));
 ```
 
 確保所有的 `button` 元素都有一個閉合標籤。
@@ -49,7 +49,11 @@ assert(
 ## --seed-contents--
 
 ```html
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link
+  href="https://fonts.googleapis.com/css?family=Lobster"
+  rel="stylesheet"
+  type="text/css"
+/>
 <style>
   .red-text {
     color: red;
@@ -81,9 +85,18 @@ assert(
 
   <p>Click here for <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img class="smaller-image thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      class="smaller-image thick-green-border"
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
-  <img src="https://bit.ly/fcc-running-cats" class="img-responsive" alt="Three kittens running towards the camera.">
+  <img
+    src="https://bit.ly/fcc-running-cats"
+    class="img-responsive"
+    alt="Three kittens running towards the camera."
+  />
   <button class="btn btn-block btn-primary">Like</button>
   <p>Things cats love:</p>
   <ul>
@@ -98,12 +111,12 @@ assert(
     <li>other cats</li>
   </ol>
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor"> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label>
-    <label><input type="checkbox" name="personality"> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Crazy</label>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label>
+    <label><input type="checkbox" name="personality" /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Crazy</label>
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </div>
@@ -112,7 +125,11 @@ assert(
 # --solutions--
 
 ```html
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link
+  href="https://fonts.googleapis.com/css?family=Lobster"
+  rel="stylesheet"
+  type="text/css"
+/>
 <style>
   .red-text {
     color: red;
@@ -144,9 +161,18 @@ assert(
 
   <p>Click here for <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img class="smaller-image thick-green-border" src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      class="smaller-image thick-green-border"
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
-  <img src="https://bit.ly/fcc-running-cats" class="img-responsive" alt="Three kittens running towards the camera.">
+  <img
+    src="https://bit.ly/fcc-running-cats"
+    class="img-responsive"
+    alt="Three kittens running towards the camera."
+  />
   <button class="btn btn-block btn-primary">Like</button>
   <button class="btn btn-block btn-info">Info</button>
 
@@ -163,12 +189,12 @@ assert(
     <li>other cats</li>
   </ol>
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor"> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label>
-    <label><input type="checkbox" name="personality"> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Crazy</label>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label>
+    <label><input type="checkbox" name="personality" /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Crazy</label>
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </div>

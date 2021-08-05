@@ -2,7 +2,7 @@
 id: bd7123c9c444eddfaeb5bdef
 title: 聲明字符串變量
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c2QvWU6'
+videoUrl: "https://scrimba.com/c/c2QvWU6"
 forumTopicId: 17557
 dashedName: declare-string-variables
 ---
@@ -29,8 +29,8 @@ var myName = "your name";
 assert(
   (function () {
     if (
-      typeof myFirstName !== 'undefined' &&
-      typeof myFirstName === 'string' &&
+      typeof myFirstName !== "undefined" &&
+      typeof myFirstName === "string" &&
       myFirstName.length > 0
     ) {
       return true;
@@ -47,8 +47,8 @@ assert(
 assert(
   (function () {
     if (
-      typeof myLastName !== 'undefined' &&
-      typeof myLastName === 'string' &&
+      typeof myLastName !== "undefined" &&
+      typeof myLastName === "string" &&
       myLastName.length > 0
     ) {
       return true;
@@ -64,7 +64,11 @@ assert(
 ## --after-user-code--
 
 ```js
-if(typeof myFirstName !== "undefined" && typeof myLastName !== "undefined"){(function(){return myFirstName + ', ' + myLastName;})();}
+if (typeof myFirstName !== "undefined" && typeof myLastName !== "undefined") {
+  (function () {
+    return myFirstName + ", " + myLastName;
+  })();
+}
 ```
 
 ## --seed-contents--

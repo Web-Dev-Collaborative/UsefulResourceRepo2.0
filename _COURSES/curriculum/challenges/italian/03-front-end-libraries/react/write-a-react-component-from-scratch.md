@@ -24,8 +24,8 @@ Ci dovrebbe essere un componente React chiamato `MyComponent`.
 (getUserInput) =>
   assert(
     __helpers
-      .removeWhiteSpace(getUserInput('index'))
-      .includes('classMyComponentextendsReact.Component{')
+      .removeWhiteSpace(getUserInput("index"))
+      .includes("classMyComponentextendsReact.Component{")
   );
 ```
 
@@ -35,7 +35,7 @@ Ci dovrebbe essere un componente React chiamato `MyComponent`.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(MyComponent));
-    return mockedComponent.find('h1').text() === 'My First React Component!';
+    return mockedComponent.find("h1").text() === "My First React Component!";
   })()
 );
 ```
@@ -43,15 +43,15 @@ assert(
 `MyComponent` dovrebbe essere presentato nel DOM.
 
 ```js
-assert(document.getElementById('challenge-node').childNodes.length === 1);
+assert(document.getElementById("challenge-node").childNodes.length === 1);
 ```
 
 `MyComponent` dovrebbe avere un costruttore che chiama `super` con `props`.
 
 ```js
 assert(
-  MyComponent.toString().includes('MyComponent(props)') &&
-    MyComponent.toString().includes('_super.call(this, props)')
+  MyComponent.toString().includes("MyComponent(props)") &&
+    MyComponent.toString().includes("_super.call(this, props)")
 );
 ```
 
@@ -78,7 +78,7 @@ class MyComponent extends React.Component {
       </div>
     );
   }
-};
+}
 
-ReactDOM.render(<MyComponent />, document.getElementById('challenge-node'));
+ReactDOM.render(<MyComponent />, document.getElementById("challenge-node"));
 ```

@@ -2,7 +2,7 @@
 id: 587d774d367417b2b2512a9e
 title: Utilizzare le intestazioni per mostrare le relazioni gerarchiche tra i contenuti
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cqVEktm'
+videoUrl: "https://scrimba.com/c/cqVEktm"
 forumTopicId: 301026
 dashedName: use-headings-to-show-hierarchical-relationships-of-content
 ---
@@ -11,7 +11,7 @@ dashedName: use-headings-to-show-hierarchical-relationships-of-content
 
 Le intestazioni (da `h1` a `h6`) sono il cavallo di battaglia per fornire una struttura e dei titoli ai tuoi contenuti. Gli screen reader possono essere impostati per leggere solo le intestazioni di una pagina in modo che l'utente abbia un riepilogo. Questo significa che è importante che i tag di intestazione nella tua struttura abbiano un significato semantico e si relazionino l'uno con l'altro, e non che siano scelti solo per i loro valori dimensionali.
 
-*Significato semantico* vuol dire che il tag usato intorno ad un contenuto indica il tipo di informazioni che contiene.
+_Significato semantico_ vuol dire che il tag usato intorno ad un contenuto indica il tipo di informazioni che contiene.
 
 Se stai scrivendo un articolo con un'introduzione, un corpo, e una conclusione, non ha molto senso mettere la conclusione come sottosezione del corpo. Dovrebbe piuttosto essere una sezione a parte. Allo stesso modo, i tag di intestazione in una pagina web devono andare in ordine e indicare le relazioni gerarchiche del tuo contenuto.
 
@@ -30,7 +30,7 @@ Camper Cat vuole una pagina sul suo sito dedicata a come diventare un ninja. Aiu
 Il tuo codice dovrebbe avere 6 tag `h3`.
 
 ```js
-assert($('h3').length === 6);
+assert($("h3").length === 6);
 ```
 
 Il tuo codice dovrebbe avere 6 tag di chiusura `h3`.
@@ -42,7 +42,7 @@ assert((code.match(/\/h3/g) || []).length === 6);
 Il tuo codice non dovrebbe avere alcun tag `h5`.
 
 ```js
-assert($('h5').length === 0);
+assert($("h5").length === 0);
 ```
 
 Il tuo codice non dovrebbe avere alcun tag di chiusura `h5`.

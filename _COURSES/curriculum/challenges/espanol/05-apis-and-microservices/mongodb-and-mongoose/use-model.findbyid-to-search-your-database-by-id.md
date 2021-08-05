@@ -20,16 +20,16 @@ Find an item by Id should succeed
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/find-by-id').then(
+  $.get(getUserInput("url") + "/_api/find-by-id").then(
     (data) => {
-      assert.equal(data.name, 'test', 'item.name is not what expected');
-      assert.equal(data.age, 0, 'item.age is not what expected');
+      assert.equal(data.name, "test", "item.name is not what expected");
+      assert.equal(data.age, 0, "item.age is not what expected");
       assert.deepEqual(
         data.favoriteFoods,
-        ['none'],
-        'item.favoriteFoods is not what expected'
+        ["none"],
+        "item.favoriteFoods is not what expected"
       );
-      assert.equal(data.__v, 0, 'The item should be not previously edited');
+      assert.equal(data.__v, 0, "The item should be not previously edited");
     },
     (xhr) => {
       throw new Error(xhr.responseText);

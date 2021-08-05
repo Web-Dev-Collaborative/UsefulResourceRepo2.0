@@ -19,8 +19,8 @@ Tu respuesta debe ser un número.
 ```js
 assert(
   typeof findLongestWordLength(
-    'The quick brown fox jumped over the lazy dog'
-  ) === 'number'
+    "The quick brown fox jumped over the lazy dog"
+  ) === "number"
 );
 ```
 
@@ -28,20 +28,20 @@ assert(
 
 ```js
 assert(
-  findLongestWordLength('The quick brown fox jumped over the lazy dog') === 6
+  findLongestWordLength("The quick brown fox jumped over the lazy dog") === 6
 );
 ```
 
 `findLongestWordLength("May the force be with you")` debe devolver `5`.
 
 ```js
-assert(findLongestWordLength('May the force be with you') === 5);
+assert(findLongestWordLength("May the force be with you") === 5);
 ```
 
 `findLongestWordLength("Google do a barrel roll")` debe devolver `6`.
 
 ```js
-assert(findLongestWordLength('Google do a barrel roll') === 6);
+assert(findLongestWordLength("Google do a barrel roll") === 6);
 ```
 
 `findLongestWordLength("What is the average airspeed velocity of an unladen swallow")` debe devolver `8`.
@@ -49,7 +49,7 @@ assert(findLongestWordLength('Google do a barrel roll') === 6);
 ```js
 assert(
   findLongestWordLength(
-    'What is the average airspeed velocity of an unladen swallow'
+    "What is the average airspeed velocity of an unladen swallow"
   ) === 8
 );
 ```
@@ -59,7 +59,7 @@ assert(
 ```js
 assert(
   findLongestWordLength(
-    'What if we try a super-long word such as otorhinolaryngology'
+    "What if we try a super-long word such as otorhinolaryngology"
   ) === 19
 );
 ```
@@ -80,7 +80,7 @@ findLongestWordLength("The quick brown fox jumped over the lazy dog");
 
 ```js
 function findLongestWordLength(str) {
-  return str.split(' ').sort((a, b) => b.length - a.length)[0].length;
+  return str.split(" ").sort((a, b) => b.length - a.length)[0].length;
 }
 
 findLongestWordLength("The quick brown fox jumped over the lazy dog");

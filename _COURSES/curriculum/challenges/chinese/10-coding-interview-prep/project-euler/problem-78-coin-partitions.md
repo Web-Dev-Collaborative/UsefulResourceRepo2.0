@@ -1,6 +1,6 @@
 ---
 id: 5900f3ba1000cf542c50fecd
-title: 'Problem 78: Coin partitions'
+title: "Problem 78: Coin partitions"
 challengeType: 5
 forumTopicId: 302191
 dashedName: problem-78-coin-partitions
@@ -31,7 +31,7 @@ Find the least value of `n` for which p(`n`) is divisible by one million.
 `coinPartitions()` should return a number.
 
 ```js
-assert(typeof coinPartitions() === 'number');
+assert(typeof coinPartitions() === "number");
 ```
 
 `coinPartitions()` should return 55374.
@@ -46,7 +46,6 @@ assert.strictEqual(coinPartitions(), 55374);
 
 ```js
 function coinPartitions() {
-
   return true;
 }
 

@@ -127,7 +127,8 @@ describe('core/auth/initialize', () => {
     }
   }
 
-  const fakePopupRedirectResolver: PopupRedirectResolver = FakePopupRedirectResolver;
+  const fakePopupRedirectResolver: PopupRedirectResolver =
+    FakePopupRedirectResolver;
 
   before(() => {
     registerAuth(ClientPlatform.BROWSER);
@@ -203,7 +204,7 @@ describe('core/auth/initialize', () => {
       const auth = initializeAuth(fakeApp, {
         popupRedirectResolver: fakePopupRedirectResolver
       }) as AuthInternal;
-      await ((auth as unknown) as _FirebaseService)._delete();
+      await (auth as unknown as _FirebaseService)._delete();
       await auth._initializationPromise;
 
       expect(auth._isInitialized).to.be.false;

@@ -18,15 +18,15 @@ dashedName: add-elements-within-your-bootstrap-wells
 
 ```js
 assert(
-  $('div.well:eq(0)').children('button').length === 3 &&
-    $('div.well:eq(1)').children('button').length === 3
+  $("div.well:eq(0)").children("button").length === 3 &&
+    $("div.well:eq(1)").children("button").length === 3
 );
 ```
 
 总共有 6 个 `button` 元素。
 
 ```js
-assert($('button') && $('button').length > 5);
+assert($("button") && $("button").length > 5);
 ```
 
 确保所有 `button` 元素都有闭合标签。
@@ -48,18 +48,10 @@ assert(
   <h3 class="text-primary text-center">jQuery Playground</h3>
   <div class="row">
     <div class="col-xs-6">
-      <div class="well">
-
-
-
-      </div>
+      <div class="well"></div>
     </div>
     <div class="col-xs-6">
-      <div class="well">
-
-
-
-      </div>
+      <div class="well"></div>
     </div>
   </div>
 </div>

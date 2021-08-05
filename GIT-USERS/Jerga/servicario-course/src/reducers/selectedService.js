@@ -1,44 +1,32 @@
-
-import { FETCH_SERVICE_SUCCESS, REQUEST_SERVICE } from 'types'
-import { combineReducers } from 'redux'
-
+import { FETCH_SERVICE_SUCCESS, REQUEST_SERVICE } from "types";
+import { combineReducers } from "redux";
 
 const initSelectedService = () => {
   const item = (state = {}, action) => {
-    switch(action.type) {
+    switch (action.type) {
       case FETCH_SERVICE_SUCCESS:
-        return action.service
+        return action.service;
       default:
-        return state
+        return state;
     }
-  }
-
+  };
 
   const isFetching = (state = false, action) => {
-    switch(action.type) {
-      case REQUEST_SERVICE: 
-        return true
+    switch (action.type) {
+      case REQUEST_SERVICE:
+        return true;
       case FETCH_SERVICE_SUCCESS:
-        return false
+        return false;
       default:
-        return state
+        return state;
     }
-  }
+  };
 
   return combineReducers({
     item,
-    isFetching
-  })
-}
+    isFetching,
+  });
+};
 
-const selectedService = initSelectedService()
-export default selectedService
-
-
-
-
-
-
-
-
-
+const selectedService = initSelectedService();
+export default selectedService;

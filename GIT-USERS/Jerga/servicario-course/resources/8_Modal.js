@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-const Modal = props => {
+const Modal = (props) => {
   return (
     <div>
       <button
         type="button"
         className="button is-medium is-info is-outlined"
         data-toggle="modal"
-        data-target="#exampleModal">
+        data-target="#exampleModal"
+      >
         Open
       </button>
       <div className="modal">
@@ -27,8 +28,7 @@ const Modal = props => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-
-export default Modal
+export default Modal;

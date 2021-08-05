@@ -2,7 +2,7 @@
 id: 56592a60ddddeae28f7aa8e1
 title: 使用索引访问多维数组
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/ckND4Cq'
+videoUrl: "https://scrimba.com/c/ckND4Cq"
 forumTopicId: 16159
 dashedName: access-multi-dimensional-arrays-with-indexes
 ---
@@ -15,10 +15,10 @@ dashedName: access-multi-dimensional-arrays-with-indexes
 
 ```js
 var arr = [
-  [1,2,3],
-  [4,5,6],
-  [7,8,9],
-  [[10,11,12], 13, 14]
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  [[10, 11, 12], 13, 14],
 ];
 arr[3];
 arr[3][0];
@@ -52,13 +52,22 @@ assert(/myData=myArray\[2\]\[1\]/.test(__helpers.removeWhiteSpace(code)));
 ## --after-user-code--
 
 ```js
-if(typeof myArray !== "undefined"){(function(){return "myData: " + myData + " myArray: " + JSON.stringify(myArray);})();}
+if (typeof myArray !== "undefined") {
+  (function () {
+    return "myData: " + myData + " myArray: " + JSON.stringify(myArray);
+  })();
+}
 ```
 
 ## --seed-contents--
 
 ```js
-var myArray = [[1,2,3], [4,5,6], [7,8,9], [[10,11,12], 13, 14]];
+var myArray = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  [[10, 11, 12], 13, 14],
+];
 
 var myData = myArray[0][0];
 ```
@@ -66,6 +75,11 @@ var myData = myArray[0][0];
 # --solutions--
 
 ```js
-var myArray = [[1,2,3],[4,5,6], [7,8,9], [[10,11,12], 13, 14]];
+var myArray = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  [[10, 11, 12], 13, 14],
+];
 var myData = myArray[2][1];
 ```

@@ -13,8 +13,8 @@
  */
 "use strict";
 
-const fs = require('fs');
-const Twitter = require('twitter');
+const fs = require("fs");
+const Twitter = require("twitter");
 
 /**
  * Print the usage of the script.
@@ -41,7 +41,7 @@ function getUrl(version) {
 }
 
 if (process.argv.length !== 3) {
-  console.error('Missing arguments.');
+  console.error("Missing arguments.");
   printUsage();
 }
 
@@ -53,19 +53,20 @@ if (!version.match(/^\d+\.\d+\.\d+$/)) {
 
 // Check Twitter account credential.
 if (!fs.existsSync(`${__dirname}/twitter.json`)) {
-  console.error('Missing credentials.');
+  console.error("Missing credentials.");
   printUsage();
 }
-const creds = require('./twitter.json');
+const creds = require("./twitter.json");
 
 const client = new Twitter(creds);
 
 // Send tweet with release note.
 client.post(
-  'statuses/update',
+  "statuses/update",
   {
-    status: `v${version} of @Firebase FirebaseUI for Web is available. ` +
-    `Release notes: ${getUrl(version)}`
+    status:
+      `v${version} of @Firebase FirebaseUI for Web is available. ` +
+      `Release notes: ${getUrl(version)}`,
   },
   (err) => {
     if (err) {

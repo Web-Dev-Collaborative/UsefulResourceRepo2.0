@@ -14,47 +14,61 @@
 
 /** @fileoverview Tests for authuierror.js */
 
-goog.module('firebaseui.auth.AuthUIErrorTest');
+goog.module("firebaseui.auth.AuthUIErrorTest");
 goog.setTestOnly();
 
-const AuthUIError = goog.require('firebaseui.auth.AuthUIError');
-const strings = goog.require('firebaseui.auth.soy2.strings');
-const testSuite = goog.require('goog.testing.testSuite');
+const AuthUIError = goog.require("firebaseui.auth.AuthUIError");
+const strings = goog.require("firebaseui.auth.soy2.strings");
+const testSuite = goog.require("goog.testing.testSuite");
 
 testSuite({
   testAuthUIError() {
-    const authCredential = {'accessToken': 'googleAccessToken',
-        'providerId': 'google.com'};
+    const authCredential = {
+      accessToken: "googleAccessToken",
+      providerId: "google.com",
+    };
     const error = new AuthUIError(
-        AuthUIError.Error.MERGE_CONFLICT, undefined,
-        authCredential);
-    assertEquals('firebaseui/anonymous-upgrade-merge-conflict', error.code);
+      AuthUIError.Error.MERGE_CONFLICT,
+      undefined,
+      authCredential
+    );
+    assertEquals("firebaseui/anonymous-upgrade-merge-conflict", error.code);
     assertEquals(
-        strings.errorAuthUI(
-            {code: error.code}).toString(),
-        error.message);
+      strings.errorAuthUI({ code: error.code }).toString(),
+      error.message
+    );
     // Test toJSON(). Do not expose credential in JSON object.
-    assertObjectEquals({
-      code: error.code,
-      message: error.message,
-    }, error.toJSON());
+    assertObjectEquals(
+      {
+        code: error.code,
+        message: error.message,
+      },
+      error.toJSON()
+    );
     // Make sure JSON.stringify works and uses underlying toJSON.
     assertEquals(JSON.stringify(error), JSON.stringify(error.toJSON()));
   },
 
   testAuthUIError_customMessage() {
-    const authCredential = {'accessToken': 'googleAccessToken',
-        'providerId': 'google.com'};
+    const authCredential = {
+      accessToken: "googleAccessToken",
+      providerId: "google.com",
+    };
     const error = new AuthUIError(
-        AuthUIError.Error.MERGE_CONFLICT, 'merge conflict error',
-        authCredential);
-    assertEquals('firebaseui/anonymous-upgrade-merge-conflict', error.code);
-    assertEquals('merge conflict error', error.message);
+      AuthUIError.Error.MERGE_CONFLICT,
+      "merge conflict error",
+      authCredential
+    );
+    assertEquals("firebaseui/anonymous-upgrade-merge-conflict", error.code);
+    assertEquals("merge conflict error", error.message);
     // Test toJSON(). Do not expose credential in JSON object.
-    assertObjectEquals({
-      code: error.code,
-      message: error.message,
-    }, error.toJSON());
+    assertObjectEquals(
+      {
+        code: error.code,
+        message: error.message,
+      },
+      error.toJSON()
+    );
     // Make sure JSON.stringify works and uses underlying toJSON.
     assertEquals(JSON.stringify(error), JSON.stringify(error.toJSON()));
   },

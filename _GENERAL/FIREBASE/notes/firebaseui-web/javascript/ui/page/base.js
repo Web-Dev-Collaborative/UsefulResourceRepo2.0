@@ -16,33 +16,32 @@
  * @fileoverview Base UI component for all pages.
  */
 
-goog.provide('firebaseui.auth.ui.page.Base');
-goog.provide('firebaseui.auth.ui.page.CustomEvent');
+goog.provide("firebaseui.auth.ui.page.Base");
+goog.provide("firebaseui.auth.ui.page.CustomEvent");
 
-goog.require('firebaseui.auth.EventRegister');
-goog.require('firebaseui.auth.soy2.element');
-goog.require('firebaseui.auth.ui.element');
-goog.require('firebaseui.auth.ui.element.dialog');
-goog.require('firebaseui.auth.ui.element.infoBar');
-goog.require('firebaseui.auth.ui.element.progressDialog');
-goog.require('firebaseui.auth.ui.element.tospp');
-goog.require('firebaseui.auth.ui.mdl');
-goog.require('goog.dom');
-goog.require('goog.dom.classlist');
-goog.require('goog.events.Event');
-goog.require('goog.object');
-goog.require('goog.soy');
-goog.require('goog.ui.Component');
-goog.requireType('goog.Promise');
-
+goog.require("firebaseui.auth.EventRegister");
+goog.require("firebaseui.auth.soy2.element");
+goog.require("firebaseui.auth.ui.element");
+goog.require("firebaseui.auth.ui.element.dialog");
+goog.require("firebaseui.auth.ui.element.infoBar");
+goog.require("firebaseui.auth.ui.element.progressDialog");
+goog.require("firebaseui.auth.ui.element.tospp");
+goog.require("firebaseui.auth.ui.mdl");
+goog.require("goog.dom");
+goog.require("goog.dom.classlist");
+goog.require("goog.events.Event");
+goog.require("goog.object");
+goog.require("goog.soy");
+goog.require("goog.ui.Component");
+goog.requireType("goog.Promise");
 
 /**
  * @define {string} The base URL of images.
  */
 firebaseui.auth.ui.page.IMAGE_BASE = goog.define(
-    'firebaseui.auth.ui.page.IMAGE_BASE',
-    'https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/');
-
+  "firebaseui.auth.ui.page.IMAGE_BASE",
+  "https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/"
+);
 
 /**
  * @private @const {number} The delay, in milliseconds, before the busy
@@ -50,27 +49,25 @@ firebaseui.auth.ui.page.IMAGE_BASE = goog.define(
  */
 firebaseui.auth.ui.page.SHOW_PROCESSING_DELAY_ = 500;
 
-
 /**
  * The default icon URLs for the IdPs.
  * @const {!Object}
  * @private
  */
 firebaseui.auth.ui.page.DEFAULT_ICON_URLS_ = {
-  'google.com': firebaseui.auth.ui.page.IMAGE_BASE + 'google.svg',
-  'github.com': firebaseui.auth.ui.page.IMAGE_BASE + 'github.svg',
-  'facebook.com': firebaseui.auth.ui.page.IMAGE_BASE + 'facebook.svg',
-  'twitter.com': firebaseui.auth.ui.page.IMAGE_BASE + 'twitter.svg',
-  'password': firebaseui.auth.ui.page.IMAGE_BASE + 'mail.svg',
-  'phone': firebaseui.auth.ui.page.IMAGE_BASE + 'phone.svg',
-  'anonymous': firebaseui.auth.ui.page.IMAGE_BASE + 'anonymous.png',
-  'microsoft.com': firebaseui.auth.ui.page.IMAGE_BASE + 'microsoft.svg',
-  'yahoo.com': firebaseui.auth.ui.page.IMAGE_BASE + 'yahoo.svg',
-  'apple.com': firebaseui.auth.ui.page.IMAGE_BASE + 'apple.png',
-  'saml': firebaseui.auth.ui.page.IMAGE_BASE + 'saml.svg',
-  'oidc': firebaseui.auth.ui.page.IMAGE_BASE + 'oidc.svg',
+  "google.com": firebaseui.auth.ui.page.IMAGE_BASE + "google.svg",
+  "github.com": firebaseui.auth.ui.page.IMAGE_BASE + "github.svg",
+  "facebook.com": firebaseui.auth.ui.page.IMAGE_BASE + "facebook.svg",
+  "twitter.com": firebaseui.auth.ui.page.IMAGE_BASE + "twitter.svg",
+  password: firebaseui.auth.ui.page.IMAGE_BASE + "mail.svg",
+  phone: firebaseui.auth.ui.page.IMAGE_BASE + "phone.svg",
+  anonymous: firebaseui.auth.ui.page.IMAGE_BASE + "anonymous.png",
+  "microsoft.com": firebaseui.auth.ui.page.IMAGE_BASE + "microsoft.svg",
+  "yahoo.com": firebaseui.auth.ui.page.IMAGE_BASE + "yahoo.svg",
+  "apple.com": firebaseui.auth.ui.page.IMAGE_BASE + "apple.png",
+  saml: firebaseui.auth.ui.page.IMAGE_BASE + "saml.svg",
+  oidc: firebaseui.auth.ui.page.IMAGE_BASE + "oidc.svg",
 };
-
 
 /**
  * The default button colors for the IdPs.
@@ -78,20 +75,19 @@ firebaseui.auth.ui.page.DEFAULT_ICON_URLS_ = {
  * @private
  */
 firebaseui.auth.ui.page.DEFAULT_BUTTON_COLORS_ = {
-  'google.com': '#ffffff',
-  'github.com': '#333333',
-  'facebook.com': '#3b5998',
-  'twitter.com': '#55acee',
-  'password': '#db4437',
-  'phone': '#02bd7e',
-  'anonymous': '#f4b400',
-  'microsoft.com': '#2F2F2F',
-  'yahoo.com': '#720E9E',
-  'apple.com': '#000000',
-  'saml': '#007bff',
-  'oidc': '#007bff',
+  "google.com": "#ffffff",
+  "github.com": "#333333",
+  "facebook.com": "#3b5998",
+  "twitter.com": "#55acee",
+  password: "#db4437",
+  phone: "#02bd7e",
+  anonymous: "#f4b400",
+  "microsoft.com": "#2F2F2F",
+  "yahoo.com": "#720E9E",
+  "apple.com": "#000000",
+  saml: "#007bff",
+  oidc: "#007bff",
 };
-
 
 /**
  * The default display names for the IdPs.
@@ -99,18 +95,17 @@ firebaseui.auth.ui.page.DEFAULT_BUTTON_COLORS_ = {
  * @private
  */
 firebaseui.auth.ui.page.DEFAULT_PROVIDER_NAMES_ = {
-  'google.com': 'Google',
-  'github.com': 'GitHub',
-  'facebook.com': 'Facebook',
-  'twitter.com': 'Twitter',
-  'password': 'Password',
-  'phone': 'Phone',
-  'anonymous': 'Guest',
-  'microsoft.com': 'Microsoft',
-  'yahoo.com': 'Yahoo',
-  'apple.com': 'Apple',
+  "google.com": "Google",
+  "github.com": "GitHub",
+  "facebook.com": "Facebook",
+  "twitter.com": "Twitter",
+  password: "Password",
+  phone: "Phone",
+  anonymous: "Guest",
+  "microsoft.com": "Microsoft",
+  "yahoo.com": "Yahoo",
+  "apple.com": "Apple",
 };
-
 
 /**
  * The injected data passed to the soy templates.
@@ -123,8 +118,6 @@ firebaseui.auth.ui.page.IJ_DATA_ = {
   defaultProviderNames: firebaseui.auth.ui.page.DEFAULT_PROVIDER_NAMES_,
 };
 
-
-
 /**
  * Base page custom event.
  * @param {string} type The event type.
@@ -134,7 +127,7 @@ firebaseui.auth.ui.page.IJ_DATA_ = {
  * @constructor
  * @extends {goog.events.Event}
  */
-firebaseui.auth.ui.page.CustomEvent = function(type, target, opt_properties) {
+firebaseui.auth.ui.page.CustomEvent = function (type, target, opt_properties) {
   goog.events.Event.call(this, type, target);
   // If optional properties provided.
   // Add each property to custom event.
@@ -143,8 +136,6 @@ firebaseui.auth.ui.page.CustomEvent = function(type, target, opt_properties) {
   }
 };
 goog.inherits(firebaseui.auth.ui.page.CustomEvent, goog.events.Event);
-
-
 
 /**
  * Base UI component.
@@ -158,9 +149,14 @@ goog.inherits(firebaseui.auth.ui.page.CustomEvent, goog.events.Event);
  * @extends {goog.ui.Component}
  * @template ARG_TYPES
  */
-firebaseui.auth.ui.page.Base = function(
-    template, opt_templateData, opt_domHelper, opt_pageId, opt_injectedData) {
-  firebaseui.auth.ui.page.Base.base(this, 'constructor', opt_domHelper);
+firebaseui.auth.ui.page.Base = function (
+  template,
+  opt_templateData,
+  opt_domHelper,
+  opt_pageId,
+  opt_injectedData
+) {
+  firebaseui.auth.ui.page.Base.base(this, "constructor", opt_domHelper);
   this.template_ = template;
   this.templateData_ = opt_templateData;
   this.inProcessing_ = false;
@@ -168,11 +164,9 @@ firebaseui.auth.ui.page.Base = function(
   this.showProcessingTimeout_ = null;
   this.busyIndicator_ = null;
   this.injectedData_ = goog.object.clone(firebaseui.auth.ui.page.IJ_DATA_);
-  goog.object.extend(
-      this.injectedData_, opt_injectedData || {});
+  goog.object.extend(this.injectedData_, opt_injectedData || {});
 };
 goog.inherits(firebaseui.auth.ui.page.Base, goog.ui.Component);
-
 
 /**
  * Events dispatched by pages on containers.
@@ -180,85 +174,93 @@ goog.inherits(firebaseui.auth.ui.page.Base, goog.ui.Component);
  */
 firebaseui.auth.ui.page.Base.EventType = {
   /** Dispatched after page enters document. */
-  PAGE_ENTER: 'pageEnter',
+  PAGE_ENTER: "pageEnter",
 
   /** Dispatched after page exits document. */
-  PAGE_EXIT: 'pageExit'
+  PAGE_EXIT: "pageExit",
 };
-
 
 /**
  * @return {?string} The identifier for the urrent page.
  */
-firebaseui.auth.ui.page.Base.prototype.getPageId = function() {
+firebaseui.auth.ui.page.Base.prototype.getPageId = function () {
   return this.pageId_;
 };
 
-
 /** @override */
-firebaseui.auth.ui.page.Base.prototype.createDom = function() {
+firebaseui.auth.ui.page.Base.prototype.createDom = function () {
   var element = goog.soy.renderAsElement(
-      this.template_,
-      this.templateData_,
-      this.injectedData_,
-      this.getDomHelper());
+    this.template_,
+    this.templateData_,
+    this.injectedData_,
+    this.getDomHelper()
+  );
   firebaseui.auth.ui.mdl.upgrade(element);
   this.setElementInternal(element);
 };
 
-
 /** @override */
-firebaseui.auth.ui.page.Base.prototype.enterDocument = function() {
-  firebaseui.auth.ui.page.Base.base(this, 'enterDocument');
+firebaseui.auth.ui.page.Base.prototype.enterDocument = function () {
+  firebaseui.auth.ui.page.Base.base(this, "enterDocument");
   // Dispatch page enter event on parent container.
   // Container should be defined at this point.
   firebaseui.auth.EventRegister.dispatchEvent(
+    /** @type {!Element} */ (this.getContainer()),
+    new firebaseui.auth.ui.page.CustomEvent(
+      firebaseui.auth.ui.page.Base.EventType.PAGE_ENTER,
       /** @type {!Element} */ (this.getContainer()),
-      new firebaseui.auth.ui.page.CustomEvent(
-          firebaseui.auth.ui.page.Base.EventType.PAGE_ENTER,
-          /** @type {!Element} */ (this.getContainer()),
-          {
-            'pageId': this.getPageId()
-          }));
+      {
+        pageId: this.getPageId(),
+      }
+    )
+  );
   // If tos/pp element is available, sets the onClick handler when onClick
   // callbacks are provided.
   if (this.getTosLinkElement() && this.injectedData_.tosCallback) {
-    var tosCallback =
-        /** @type {function()} */ (this.injectedData_.tosCallback);
+    var tosCallback = /** @type {function()} */ (
+      this.injectedData_.tosCallback
+    );
     firebaseui.auth.ui.element.listenForActionEvent(
-        this, this.getTosLinkElement(), function(e) {
-          tosCallback();
-        });
+      this,
+      this.getTosLinkElement(),
+      function (e) {
+        tosCallback();
+      }
+    );
   }
   if (this.getPpLinkElement() && this.injectedData_.privacyPolicyCallback) {
-    var privacyPolicyCallback =
-        /** @type {function()} */ (this.injectedData_.privacyPolicyCallback);
+    var privacyPolicyCallback = /** @type {function()} */ (
+      this.injectedData_.privacyPolicyCallback
+    );
     firebaseui.auth.ui.element.listenForActionEvent(
-        this, this.getPpLinkElement(), function(e) {
-          privacyPolicyCallback();
-        });
+      this,
+      this.getPpLinkElement(),
+      function (e) {
+        privacyPolicyCallback();
+      }
+    );
   }
 };
 
-
 /** @override */
-firebaseui.auth.ui.page.Base.prototype.exitDocument = function() {
+firebaseui.auth.ui.page.Base.prototype.exitDocument = function () {
   // Dispatch page exit event on parent container.
   // Container should be defined at this point.
   firebaseui.auth.EventRegister.dispatchEvent(
+    /** @type {!Element} */ (this.getContainer()),
+    new firebaseui.auth.ui.page.CustomEvent(
+      firebaseui.auth.ui.page.Base.EventType.PAGE_EXIT,
       /** @type {!Element} */ (this.getContainer()),
-      new firebaseui.auth.ui.page.CustomEvent(
-          firebaseui.auth.ui.page.Base.EventType.PAGE_EXIT,
-          /** @type {!Element} */ (this.getContainer()),
-          {
-            'pageId': this.getPageId()
-          }));
-  firebaseui.auth.ui.page.Base.base(this, 'exitDocument');
+      {
+        pageId: this.getPageId(),
+      }
+    )
+  );
+  firebaseui.auth.ui.page.Base.base(this, "exitDocument");
 };
 
-
 /** @override */
-firebaseui.auth.ui.page.Base.prototype.disposeInternal = function() {
+firebaseui.auth.ui.page.Base.prototype.disposeInternal = function () {
   this.clearProcessingTimeout_();
 
   this.template_ = null;
@@ -266,43 +268,45 @@ firebaseui.auth.ui.page.Base.prototype.disposeInternal = function() {
   this.inProcessing_ = false;
   this.busyIndicator_ = null;
   firebaseui.auth.ui.mdl.downgrade(this.getElement());
-  firebaseui.auth.ui.page.Base.base(this, 'disposeInternal');
+  firebaseui.auth.ui.page.Base.base(this, "disposeInternal");
 };
-
 
 /**
  * Indicates to the UI component that a request is started.
  * @private
  */
-firebaseui.auth.ui.page.Base.prototype.startProcessing_ = function() {
+firebaseui.auth.ui.page.Base.prototype.startProcessing_ = function () {
   // After a short delay, show the busy indicator. The delay is there so that
   // pages that load quickly do not display the indicator.
   var self = this;
   this.inProcessing_ = true;
   // Check whether component uses default progress bar or spinner for busy
   // indicator.
-  var useSpinner =
-      goog.dom.classlist.contains(self.getElement(), 'firebaseui-use-spinner');
-  this.showProcessingTimeout_ = window.setTimeout(function() {
+  var useSpinner = goog.dom.classlist.contains(
+    self.getElement(),
+    "firebaseui-use-spinner"
+  );
+  this.showProcessingTimeout_ = window.setTimeout(function () {
     if (!self.getElement() || self.busyIndicator_ !== null) {
       return;
     }
     self.busyIndicator_ = goog.soy.renderAsElement(
-        firebaseui.auth.soy2.element.busyIndicator,
-        // Pass whether a spinner is to be used instead of a progress bar.
-        {useSpinner: useSpinner}, null,
-        self.getDomHelper());
+      firebaseui.auth.soy2.element.busyIndicator,
+      // Pass whether a spinner is to be used instead of a progress bar.
+      { useSpinner: useSpinner },
+      null,
+      self.getDomHelper()
+    );
     self.getElement().appendChild(self.busyIndicator_);
     firebaseui.auth.ui.mdl.upgrade(self.busyIndicator_);
   }, firebaseui.auth.ui.page.SHOW_PROCESSING_DELAY_);
 };
 
-
 /**
  * Indicates to the UI component that a request is finished.
  * @private
  */
-firebaseui.auth.ui.page.Base.prototype.stopProcessing_ = function() {
+firebaseui.auth.ui.page.Base.prototype.stopProcessing_ = function () {
   this.inProcessing_ = false;
 
   this.clearProcessingTimeout_();
@@ -314,16 +318,14 @@ firebaseui.auth.ui.page.Base.prototype.stopProcessing_ = function() {
   }
 };
 
-
 /**
  * Clears the timeout that displays the busy indicator.
  * @private
  */
-firebaseui.auth.ui.page.Base.prototype.clearProcessingTimeout_ = function() {
+firebaseui.auth.ui.page.Base.prototype.clearProcessingTimeout_ = function () {
   window.clearTimeout(this.showProcessingTimeout_);
   this.showProcessingTimeout_ = null;
 };
-
 
 /**
  * Executes an API promise based request.
@@ -335,8 +337,12 @@ firebaseui.auth.ui.page.Base.prototype.clearProcessingTimeout_ = function() {
  *     error callback.
  * @return {?goog.Promise} The pending promise.
  */
-firebaseui.auth.ui.page.Base.prototype.executePromiseRequest =
-    function(executor, parameters, onSuccess, onError) {
+firebaseui.auth.ui.page.Base.prototype.executePromiseRequest = function (
+  executor,
+  parameters,
+  onSuccess,
+  onError
+) {
   var self = this;
   // One request at a time.
   if (self.inProcessing_) {
@@ -344,28 +350,29 @@ firebaseui.auth.ui.page.Base.prototype.executePromiseRequest =
   }
   self.startProcessing_();
 
-  var onCompletion = function() {
+  var onCompletion = function () {
     // Ignore it if the component is destroyed before getting a response.
     if (self.isDisposed()) {
       return null;
     }
     self.stopProcessing_();
   };
-  return executor.apply(null, parameters)
-      .then(onSuccess, onError)
-      .then(onCompletion, onCompletion);
+  return executor
+    .apply(null, parameters)
+    .then(onSuccess, onError)
+    .then(onCompletion, onCompletion);
 };
-
 
 /**
  * @return {Element} The container element.
  */
-firebaseui.auth.ui.page.Base.prototype.getContainer = function() {
+firebaseui.auth.ui.page.Base.prototype.getContainer = function () {
   // Use parentNode for Firefox 7. (parentElement was added in Firefox 9).
-  return this.getElement().parentElement || /** @type {Element} */ (
-      this.getElement().parentNode);
+  return (
+    this.getElement().parentElement ||
+    /** @type {Element} */ (this.getElement().parentNode)
+  );
 };
-
 
 /**
  * Moves the focus from the current to the next element when ENTER is pressed.
@@ -373,13 +380,14 @@ firebaseui.auth.ui.page.Base.prototype.getContainer = function() {
  * @param {Element} nextElement The next element to focus.
  * @protected
  */
-firebaseui.auth.ui.page.Base.prototype.focusToNextOnEnter = function(
-    element, nextElement) {
-  firebaseui.auth.ui.element.listenForEnterEvent(this, element, function(e) {
+firebaseui.auth.ui.page.Base.prototype.focusToNextOnEnter = function (
+  element,
+  nextElement
+) {
+  firebaseui.auth.ui.element.listenForEnterEvent(this, element, function (e) {
     nextElement.focus();
   });
 };
-
 
 /**
  * Submits the form when ENTER is pressed on the element.
@@ -387,13 +395,14 @@ firebaseui.auth.ui.page.Base.prototype.focusToNextOnEnter = function(
  * @param {function()} onSubmit Callback to invoke when the form is submitted.
  * @protected
  */
-firebaseui.auth.ui.page.Base.prototype.submitOnEnter =
-    function(element, onSubmit) {
-  firebaseui.auth.ui.element.listenForEnterEvent(this, element, function(e) {
+firebaseui.auth.ui.page.Base.prototype.submitOnEnter = function (
+  element,
+  onSubmit
+) {
+  firebaseui.auth.ui.element.listenForEnterEvent(this, element, function (e) {
     onSubmit();
   });
 };
-
 
 /**
  * Checks that the next element is hidden when ENTER is pressed in the current
@@ -403,16 +412,18 @@ firebaseui.auth.ui.page.Base.prototype.submitOnEnter =
  * @param {function()} onSubmit Callback to invoke when the form is submitted.
  * @protected
  */
-firebaseui.auth.ui.page.Base.prototype.submitIfNextHiddenOnEnter = function(
-    element, nextElement, onSubmit) {
-  firebaseui.auth.ui.element.listenForEnterEvent(this, element, function(e) {
+firebaseui.auth.ui.page.Base.prototype.submitIfNextHiddenOnEnter = function (
+  element,
+  nextElement,
+  onSubmit
+) {
+  firebaseui.auth.ui.element.listenForEnterEvent(this, element, function (e) {
     // If next element is hidden, run submit function.
     if (firebaseui.auth.ui.element.isDeeplyHidden(nextElement)) {
       onSubmit();
     }
   });
 };
-
 
 /**
  * Moves the focus from the current to the next element when ENTER is pressed
@@ -422,9 +433,12 @@ firebaseui.auth.ui.page.Base.prototype.submitIfNextHiddenOnEnter = function(
  * @param {function()} onSubmit Callback to invoke when the form is submitted.
  * @protected
  */
-firebaseui.auth.ui.page.Base.prototype.focusToNextOrSubmitOnEnter = function(
-    element, nextElement, onSubmit) {
-  firebaseui.auth.ui.element.listenForEnterEvent(this, element, function(e) {
+firebaseui.auth.ui.page.Base.prototype.focusToNextOrSubmitOnEnter = function (
+  element,
+  nextElement,
+  onSubmit
+) {
+  firebaseui.auth.ui.element.listenForEnterEvent(this, element, function (e) {
     if (!firebaseui.auth.ui.element.isDeeplyHidden(nextElement)) {
       nextElement.focus();
     } else {
@@ -433,36 +447,27 @@ firebaseui.auth.ui.page.Base.prototype.focusToNextOrSubmitOnEnter = function(
   });
 };
 
-
 goog.mixin(
-    firebaseui.auth.ui.page.Base.prototype,
-    /** @lends {firebaseui.auth.ui.page.Base.prototype} */
-    {
-      // For info bar.
-      showInfoBar:
-          firebaseui.auth.ui.element.infoBar.showInfoBar,
-      dismissInfoBar:
-          firebaseui.auth.ui.element.infoBar.dismissInfoBar,
-      getInfoBarElement:
-          firebaseui.auth.ui.element.infoBar.getInfoBarElement,
-      getInfoBarDismissLinkElement:
-          firebaseui.auth.ui.element.infoBar.getInfoBarDismissLinkElement,
+  firebaseui.auth.ui.page.Base.prototype,
+  /** @lends {firebaseui.auth.ui.page.Base.prototype} */
+  {
+    // For info bar.
+    showInfoBar: firebaseui.auth.ui.element.infoBar.showInfoBar,
+    dismissInfoBar: firebaseui.auth.ui.element.infoBar.dismissInfoBar,
+    getInfoBarElement: firebaseui.auth.ui.element.infoBar.getInfoBarElement,
+    getInfoBarDismissLinkElement:
+      firebaseui.auth.ui.element.infoBar.getInfoBarDismissLinkElement,
 
-      // For dialogs.
-      showProgressDialog:
-          firebaseui.auth.ui.element.progressDialog.showProgressDialog,
-      dismissDialog:
-          firebaseui.auth.ui.element.dialog.dismissDialog,
-      getDialogElement:
-          firebaseui.auth.ui.element.dialog.getDialogElement,
+    // For dialogs.
+    showProgressDialog:
+      firebaseui.auth.ui.element.progressDialog.showProgressDialog,
+    dismissDialog: firebaseui.auth.ui.element.dialog.dismissDialog,
+    getDialogElement: firebaseui.auth.ui.element.dialog.getDialogElement,
 
-      // For ToS and Privacy Policy.
-      getTosPpElement:
-          firebaseui.auth.ui.element.tospp.getTosPpElement,
-      getTosLinkElement:
-          firebaseui.auth.ui.element.tospp.getTosLinkElement,
-      getPpLinkElement:
-          firebaseui.auth.ui.element.tospp.getPpLinkElement,
-      getTosPpListElement:
-          firebaseui.auth.ui.element.tospp.getTosPpListElement
-    });
+    // For ToS and Privacy Policy.
+    getTosPpElement: firebaseui.auth.ui.element.tospp.getTosPpElement,
+    getTosLinkElement: firebaseui.auth.ui.element.tospp.getTosLinkElement,
+    getPpLinkElement: firebaseui.auth.ui.element.tospp.getPpLinkElement,
+    getTosPpListElement: firebaseui.auth.ui.element.tospp.getTosPpListElement,
+  }
+);

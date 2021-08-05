@@ -14,7 +14,7 @@ Hay una propiedad especial `constructor` ubicada en instancias de objeto `duck` 
 let duck = new Bird();
 let beagle = new Dog();
 
-console.log(duck.constructor === Bird); 
+console.log(duck.constructor === Bird);
 console.log(beagle.constructor === Dog);
 ```
 
@@ -43,13 +43,13 @@ Escribe una función `joinDogFraternity` que tome como parámetro `candidate` y 
 `joinDogFraternity` debe definirse como una función.
 
 ```js
-assert(typeof joinDogFraternity === 'function');
+assert(typeof joinDogFraternity === "function");
 ```
 
 `joinDogFraternity` debe devolver `true` si `candidate` es una instancia de `Dog`.
 
 ```js
-assert(joinDogFraternity(new Dog('')) === true);
+assert(joinDogFraternity(new Dog("")) === true);
 ```
 
 `joinDogFraternity` debe utilizar la propiedad `constructor`.
@@ -68,9 +68,7 @@ function Dog(name) {
 }
 
 // Only change code below this line
-function joinDogFraternity(candidate) {
-
-}
+function joinDogFraternity(candidate) {}
 ```
 
 # --solutions--

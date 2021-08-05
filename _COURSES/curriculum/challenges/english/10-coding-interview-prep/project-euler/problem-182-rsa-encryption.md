@@ -1,6 +1,6 @@
 ---
 id: 5900f4231000cf542c50ff35
-title: 'Problem 182: RSA encryption'
+title: "Problem 182: RSA encryption"
 challengeType: 5
 forumTopicId: 301818
 dashedName: problem-182-rsa-encryption
@@ -38,13 +38,13 @@ For any given `p` and `q`, find the sum of all values of `e`, `1 < e < φ(p,q)` 
 `RSAEncryption` should be a function.
 
 ```js
-assert(typeof RSAEncryption === 'function')
+assert(typeof RSAEncryption === "function");
 ```
 
 `RSAEncryption` should return a number.
 
 ```js
-assert.strictEqual(typeof RSAEncryption(19, 37), 'number');
+assert.strictEqual(typeof RSAEncryption(19, 37), "number");
 ```
 
 `RSAEncryption(19, 37)` should return `17766`.
@@ -71,7 +71,6 @@ assert.strictEqual(RSAEncryption(19, 37), 17766);
 
 ```js
 function RSAEncryption(p, q) {
-
   return true;
 }
 
@@ -82,32 +81,29 @@ RSAEncryption(19, 37);
 
 ```js
 function gcd(a, b) {
-    if (b)
-        return gcd(b, a % b);
-    else
-        return a;
+  if (b) return gcd(b, a % b);
+  else return a;
 }
 
 function RSAEncryption(p, q) {
-    let phi = (p - 1) * (q - 1);
+  let phi = (p - 1) * (q - 1);
 
-    let best = Number.MAX_SAFE_INTEGER;
-    let sum = 0;
+  let best = Number.MAX_SAFE_INTEGER;
+  let sum = 0;
 
-    for (let e = 0; e < phi; ++e) {
-        if (!(gcd(e, phi) == 1))
-            continue;
+  for (let e = 0; e < phi; ++e) {
+    if (!(gcd(e, phi) == 1)) continue;
 
-        let msg = (gcd(p - 1, e - 1) + 1) * (gcd(q - 1, e - 1) + 1);
+    let msg = (gcd(p - 1, e - 1) + 1) * (gcd(q - 1, e - 1) + 1);
 
-        if (best == msg) {
-            sum += e;
-        } else if (best > msg) {
-            best = msg;
-            sum = e;
-        }
+    if (best == msg) {
+      sum += e;
+    } else if (best > msg) {
+      best = msg;
+      sum = e;
     }
+  }
 
-    return sum;
+  return sum;
 }
 ```

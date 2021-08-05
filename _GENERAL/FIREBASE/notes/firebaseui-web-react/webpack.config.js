@@ -13,27 +13,27 @@
  * See the License for t`he specific language governing permissions and
  * limitations under the License.
  */
-'use strict';
+"use strict";
 
-const path = require('path');
+const path = require("path");
 
 const config = {
   context: __dirname,
 
-  entry: './src/FirebaseAuth.jsx',
+  entry: "./src/FirebaseAuth.jsx",
   output: {
-    filename: 'StyledFirebaseAuth.js',
-    path: path.resolve(__dirname, './dist'),
-    library: 'StyledFirebaseAuth',
-    libraryTarget: 'commonjs2',
+    filename: "StyledFirebaseAuth.js",
+    path: path.resolve(__dirname, "./dist"),
+    library: "StyledFirebaseAuth",
+    libraryTarget: "commonjs2",
   },
   externals: {
-    'react': 'react',
-    'firebaseui': 'firebaseui',
+    react: "react",
+    firebaseui: "firebaseui",
   },
-  devtool: 'source-map',
+  devtool: "source-map",
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: [".js", ".jsx", ".json"],
   },
   stats: {
     colors: true,
@@ -44,14 +44,17 @@ const config = {
     rules: [
       {
         test: /\.jsx?$/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         exclude: /node_modules/,
-        include: path.resolve(__dirname, './src'),
+        include: path.resolve(__dirname, "./src"),
       },
       {
         test: /\.css/,
         include: /node_modules/,
-        use: ['style-loader', 'css-loader'],
-      }]}};
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
+};
 
 module.exports = config;

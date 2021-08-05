@@ -27,19 +27,15 @@ goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('fireauth.RecaptchaMockLoaderTest');
 
-
 function testRecaptchaMockLoader_loadRecaptchaDeps() {
   var mockLoader = new fireauth.RecaptchaMockLoader();
-  return mockLoader.loadRecaptchaDeps().then(function(grecaptcha) {
-    assertEquals(
-        fireauth.GRecaptchaMockFactory.getInstance(),
-        grecaptcha);
+  return mockLoader.loadRecaptchaDeps().then(function (grecaptcha) {
+    assertEquals(fireauth.GRecaptchaMockFactory.getInstance(), grecaptcha);
   });
 }
 
-
 function testRecaptchaMockLoader_clearSingleRecaptcha() {
-  assertNotThrows(function() {
+  assertNotThrows(function () {
     var mockLoader = new fireauth.RecaptchaMockLoader();
     mockLoader.clearSingleRecaptcha();
   });

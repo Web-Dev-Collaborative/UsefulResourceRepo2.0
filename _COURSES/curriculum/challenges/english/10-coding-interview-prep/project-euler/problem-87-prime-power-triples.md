@@ -1,6 +1,6 @@
 ---
 id: 5900f3c51000cf542c50fed8
-title: 'Problem 87: Prime power triples'
+title: "Problem 87: Prime power triples"
 challengeType: 5
 forumTopicId: 302201
 dashedName: problem-87-prime-power-triples
@@ -24,7 +24,7 @@ How many numbers below `n` can be expressed as the sum of a prime square, prime 
 `primePowerTriples(50)` should return a number.
 
 ```js
-assert(typeof primePowerTriples(50) === 'number');
+assert(typeof primePowerTriples(50) === "number");
 ```
 
 `primePowerTriples(50)` should return `4`.
@@ -63,7 +63,6 @@ assert.strictEqual(primePowerTriples(50000000), 1097343);
 
 ```js
 function primePowerTriples(n) {
-
   return true;
 }
 

@@ -1,6 +1,6 @@
 ---
 id: 5900f40d1000cf542c50ff20
-title: 'Problem 161: Triominoes'
+title: "Problem 161: Triominoes"
 challengeType: 5
 forumTopicId: 301795
 dashedName: problem-161-triominoes
@@ -32,7 +32,6 @@ assert.strictEqual(euler161(), 20574308184277972);
 
 ```js
 function euler161() {
-
   return true;
 }
 

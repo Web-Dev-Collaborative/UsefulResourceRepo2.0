@@ -1,22 +1,20 @@
-
-import axios from 'axios';
+import axios from "axios";
 
 class BaseApi {
-
   constructor(accessToken, subPath) {
-    this.config = {}
+    this.config = {};
 
     if (accessToken) {
       this.config.headers = {
-        authorization: `Bearer ${accessToken}`
-      }
+        authorization: `Bearer ${accessToken}`,
+      };
     }
 
     this.apiUrl = process.env.PORTFOLIO_API_URL + subPath;
   }
 
   getAll() {
-    return axios.get(this.apiUrl)
+    return axios.get(this.apiUrl);
   }
 
   update(id, data) {
@@ -32,7 +30,7 @@ class BaseApi {
   }
 
   getBySlug(slug) {
-    return axios.get(`${this.apiUrl}/s/${slug}`)
+    return axios.get(`${this.apiUrl}/s/${slug}`);
   }
 
   create(data) {

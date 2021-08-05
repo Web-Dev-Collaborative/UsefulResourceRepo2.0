@@ -1,6 +1,6 @@
 ---
 id: 5900f5261000cf542c510038
-title: 'Problem 441: The inverse summation of coprime couples'
+title: "Problem 441: The inverse summation of coprime couples"
 challengeType: 5
 forumTopicId: 302113
 dashedName: problem-441-the-inverse-summation-of-coprime-couples
@@ -30,7 +30,6 @@ assert.strictEqual(euler441(), 5000088.8395);
 
 ```js
 function euler441() {
-
   return true;
 }
 

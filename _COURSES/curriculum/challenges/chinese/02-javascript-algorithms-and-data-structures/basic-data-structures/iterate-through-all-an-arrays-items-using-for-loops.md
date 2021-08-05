@@ -42,13 +42,13 @@ assert.deepEqual(
     [
       [10, 8, 3],
       [14, 6, 23],
-      [3, 18, 6]
+      [3, 18, 6],
     ],
     18
   ),
   [
     [10, 8, 3],
-    [14, 6, 23]
+    [14, 6, 23],
   ]
 );
 ```
@@ -59,13 +59,13 @@ assert.deepEqual(
 assert.deepEqual(
   filteredArray(
     [
-      ['trumpets', 2],
-      ['flutes', 4],
-      ['saxophones', 2]
+      ["trumpets", 2],
+      ["flutes", 4],
+      ["saxophones", 2],
     ],
     2
   ),
-  [['flutes', 4]]
+  [["flutes", 4]]
 );
 ```
 
@@ -75,12 +75,12 @@ assert.deepEqual(
 assert.deepEqual(
   filteredArray(
     [
-      ['amy', 'beth', 'sam'],
-      ['dave', 'sean', 'peter']
+      ["amy", "beth", "sam"],
+      ["dave", "sean", "peter"],
     ],
-    'peter'
+    "peter"
   ),
-  [['amy', 'beth', 'sam']]
+  [["amy", "beth", "sam"]]
 );
 ```
 
@@ -93,7 +93,7 @@ assert.deepEqual(
       [3, 2, 3],
       [1, 6, 3],
       [3, 13, 26],
-      [19, 3, 9]
+      [19, 3, 9],
     ],
     3
   ),
@@ -120,7 +120,17 @@ function filteredArray(arr, elem) {
   return newArr;
 }
 
-console.log(filteredArray([[3, 2, 3], [1, 6, 3], [3, 13, 26], [19, 3, 9]], 3));
+console.log(
+  filteredArray(
+    [
+      [3, 2, 3],
+      [1, 6, 3],
+      [3, 13, 26],
+      [19, 3, 9],
+    ],
+    3
+  )
+);
 ```
 
 # --solutions--
@@ -128,7 +138,7 @@ console.log(filteredArray([[3, 2, 3], [1, 6, 3], [3, 13, 26], [19, 3, 9]], 3));
 ```js
 function filteredArray(arr, elem) {
   let newArr = [];
-  for (let i = 0; i<arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     if (arr[i].indexOf(elem) < 0) {
       newArr.push(arr[i]);
     }

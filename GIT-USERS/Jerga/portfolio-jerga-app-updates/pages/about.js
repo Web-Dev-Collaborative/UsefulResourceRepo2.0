@@ -7,8 +7,8 @@ const About = () => {
       <BasePage>
         <h1>I am about page</h1>
       </BasePage>
-    </BaseLayout >
-  )
-}
+    </BaseLayout>
+  );
+};
 
 export default About;

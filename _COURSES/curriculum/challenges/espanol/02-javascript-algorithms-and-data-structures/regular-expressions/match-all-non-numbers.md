@@ -33,37 +33,37 @@ assert(noNumRegex.global);
 Tu expresión regular no debe encontrar caracteres que no sean dígitos en la cadena `9`.
 
 ```js
-assert('9'.match(noNumRegex) == null);
+assert("9".match(noNumRegex) == null);
 ```
 
 Tu expresión regular debe encontrar 6 caracteres que no sean dígitos en la cadena `Catch 22`.
 
 ```js
-assert('Catch 22'.match(noNumRegex).length == 6);
+assert("Catch 22".match(noNumRegex).length == 6);
 ```
 
 Tu expresión regular debe encontrar 11 caracteres que no sean dígitos en la cadena `101 Dalmatians`.
 
 ```js
-assert('101 Dalmatians'.match(noNumRegex).length == 11);
+assert("101 Dalmatians".match(noNumRegex).length == 11);
 ```
 
 Tu expresión regular debe encontrar 15 caracteres que no sean dígitos en la cadena `One, Two, Three`.
 
 ```js
-assert('One, Two, Three'.match(noNumRegex).length == 15);
+assert("One, Two, Three".match(noNumRegex).length == 15);
 ```
 
 Tu expresión regular debe encontrar 12 caracteres que no sean dígitos en la cadena `21 Jump Street`.
 
 ```js
-assert('21 Jump Street'.match(noNumRegex).length == 12);
+assert("21 Jump Street".match(noNumRegex).length == 12);
 ```
 
 Tu expresión regular debe encontrar 17 caracteres que no sean dígitos en la cadena `2001: A Space Odyssey`.
 
 ```js
-assert('2001: A Space Odyssey'.match(noNumRegex).length == 17);
+assert("2001: A Space Odyssey".match(noNumRegex).length == 17);
 ```
 
 # --seed--

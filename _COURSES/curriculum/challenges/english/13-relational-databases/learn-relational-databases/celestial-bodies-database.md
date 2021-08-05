@@ -5,7 +5,6 @@ challengeType: 12
 helpCategory: Relational Databases
 url: https://github.com/moT01/.celestial-bodies-database
 dashedName: celestial-bodies-database
-
 ---
 
 # --description--

@@ -27,7 +27,6 @@ goog.provide('fireauth.storage.AuthEventManager.Keys');
 goog.require('fireauth.AuthEvent');
 goog.require('fireauth.authStorage');
 
-
 /**
  * Defines the Auth event storage manager. It provides methods to
  * load and delete Auth events as well as listen to external OAuth changes on
@@ -37,7 +36,7 @@ goog.require('fireauth.authStorage');
  *     manager to use. If none is provided, the default global instance is used.
  * @constructor @struct @final
  */
-fireauth.storage.AuthEventManager = function(appId, opt_manager) {
+fireauth.storage.AuthEventManager = function (appId, opt_manager) {
   /** @const @private{string} appId The Auth event's application ID. */
   this.appId_ = appId;
   /**
@@ -46,7 +45,6 @@ fireauth.storage.AuthEventManager = function(appId, opt_manager) {
    */
   this.manager_ = opt_manager || fireauth.authStorage.Manager.getInstance();
 };
-
 
 /**
  * Valid keys for Auth event manager data.
@@ -63,71 +61,76 @@ fireauth.storage.AuthEventManager.Keys = {
   }
 };
 
-
 /**
  * @return {!goog.Promise<?fireauth.AuthEvent>} A promise that resolves on
  *     success with the stored Auth event.
  */
-fireauth.storage.AuthEventManager.prototype.getAuthEvent = function() {
-  return this.manager_.get(
-      fireauth.storage.AuthEventManager.Keys.AUTH_EVENT, this.appId_)
-      .then(function(response) {
-        return fireauth.AuthEvent.fromPlainObject(response);
-      });
+fireauth.storage.AuthEventManager.prototype.getAuthEvent = function () {
+  return this.manager_
+    .get(fireauth.storage.AuthEventManager.Keys.AUTH_EVENT, this.appId_)
+    .then(function (response) {
+      return fireauth.AuthEvent.fromPlainObject(response);
+    });
 };
-
 
 /**
  * Removes the identifier's Auth event if it exists.
  * @return {!goog.Promise<void>} A promise that resolves on success.
  */
-fireauth.storage.AuthEventManager.prototype.removeAuthEvent = function() {
+fireauth.storage.AuthEventManager.prototype.removeAuthEvent = function () {
   return this.manager_.remove(
-      fireauth.storage.AuthEventManager.Keys.AUTH_EVENT, this.appId_);
+    fireauth.storage.AuthEventManager.Keys.AUTH_EVENT,
+    this.appId_
+  );
 };
-
 
 /**
  * Adds a listener to Auth event for App ID provided.
  * @param {!function()} listener The listener to run on Auth event.
  */
-fireauth.storage.AuthEventManager.prototype.addAuthEventListener =
-    function(listener) {
+fireauth.storage.AuthEventManager.prototype.addAuthEventListener = function (
+  listener
+) {
   this.manager_.addListener(
-      fireauth.storage.AuthEventManager.Keys.AUTH_EVENT, this.appId_, listener);
+    fireauth.storage.AuthEventManager.Keys.AUTH_EVENT,
+    this.appId_,
+    listener
+  );
 };
-
 
 /**
  * Removes a listener to Auth event for App ID provided.
  * @param {!function()} listener The listener to run on Auth event.
  */
-fireauth.storage.AuthEventManager.prototype.removeAuthEventListener =
-    function(listener) {
+fireauth.storage.AuthEventManager.prototype.removeAuthEventListener = function (
+  listener
+) {
   this.manager_.removeListener(
-      fireauth.storage.AuthEventManager.Keys.AUTH_EVENT, this.appId_, listener);
+    fireauth.storage.AuthEventManager.Keys.AUTH_EVENT,
+    this.appId_,
+    listener
+  );
 };
-
 
 /**
  * @return {!goog.Promise<?fireauth.AuthEvent>} A promise that resolves on
  *     success with the stored redirect Auth event.
  */
-fireauth.storage.AuthEventManager.prototype.getRedirectEvent =
-    function() {
-  return this.manager_.get(
-      fireauth.storage.AuthEventManager.Keys.REDIRECT_EVENT,
-      this.appId_).then(function(response) {
-        return fireauth.AuthEvent.fromPlainObject(response);
-      });
+fireauth.storage.AuthEventManager.prototype.getRedirectEvent = function () {
+  return this.manager_
+    .get(fireauth.storage.AuthEventManager.Keys.REDIRECT_EVENT, this.appId_)
+    .then(function (response) {
+      return fireauth.AuthEvent.fromPlainObject(response);
+    });
 };
-
 
 /**
  * Removes the identifier's redirect Auth event if it exists.
  * @return {!goog.Promise<void>} A promise that resolves on success.
  */
-fireauth.storage.AuthEventManager.prototype.removeRedirectEvent = function() {
+fireauth.storage.AuthEventManager.prototype.removeRedirectEvent = function () {
   return this.manager_.remove(
-      fireauth.storage.AuthEventManager.Keys.REDIRECT_EVENT, this.appId_);
+    fireauth.storage.AuthEventManager.Keys.REDIRECT_EVENT,
+    this.appId_
+  );
 };

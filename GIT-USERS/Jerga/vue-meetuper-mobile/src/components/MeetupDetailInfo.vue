@@ -1,44 +1,32 @@
-
-
 <template>
   <view>
     <nb-card-item bordered>
       <nb-body>
         <!-- Label Styles -->
-        <nb-text :style="styles.label">
-          Date
-        </nb-text>
+        <nb-text :style="styles.label"> Date </nb-text>
         <nb-text>
-          {{meetup.startDate | formatDate}}
+          {{ meetup.startDate | formatDate }}
         </nb-text>
         <!-- Label Styles -->
-        <nb-text :style="styles.label">
-          From
-        </nb-text>
+        <nb-text :style="styles.label"> From </nb-text>
         <nb-text>
-          {{meetup.timeFrom}}
+          {{ meetup.timeFrom }}
         </nb-text>
         <!-- Label Styles -->
-        <nb-text :style="styles.label">
-          To
-        </nb-text>
+        <nb-text :style="styles.label"> To </nb-text>
         <nb-text>
-          {{meetup.timeTo}}
+          {{ meetup.timeTo }}
         </nb-text>
         <!-- Label Styles -->
-        <nb-text :style="styles.label">
-          Category
-        </nb-text>
+        <nb-text :style="styles.label"> Category </nb-text>
         <nb-text>
-          {{meetup.category.name}}
+          {{ meetup.category.name }}
         </nb-text>
         <!-- Label Styles -->
-        <nb-text :style="styles.label">
-          Info
-        </nb-text>
+        <nb-text :style="styles.label"> Info </nb-text>
         <!-- short info -->
         <nb-text>
-          {{meetup.shortInfo}}
+          {{ meetup.shortInfo }}
         </nb-text>
       </nb-body>
     </nb-card-item>
@@ -49,7 +37,7 @@
       <nb-body>
         <!-- description -->
         <nb-text>
-          {{meetup.description}}
+          {{ meetup.description }}
         </nb-text>
       </nb-body>
     </nb-card-item>
@@ -57,23 +45,18 @@
 </template>
 
 <script>
-  import styles from '@/styles'
-  export default {
-    props: {
-      meetup: {
-        type: Object,
-        required: true
-      }
+import styles from "@/styles";
+export default {
+  props: {
+    meetup: {
+      type: Object,
+      required: true,
     },
-    data () {
-      return {
-        styles
-      }
-    }
-  }
+  },
+  data() {
+    return {
+      styles,
+    };
+  },
+};
 </script>
-
-
-
-
-

@@ -30,7 +30,7 @@ The `ShoppingCart` component should render.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(ShoppingCart));
-    return mockedComponent.find('ShoppingCart').length === 1;
+    return mockedComponent.find("ShoppingCart").length === 1;
   })()
 );
 ```
@@ -41,7 +41,7 @@ The `Items` component should render.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(ShoppingCart));
-    return mockedComponent.find('Items').length === 1;
+    return mockedComponent.find("Items").length === 1;
   })()
 );
 ```
@@ -52,10 +52,10 @@ The `Items` component should include a `propTypes` check to require a value for 
 (getUserInput) =>
   assert(
     (function () {
-      const noWhiteSpace = __helpers.removeWhiteSpace(getUserInput('index'));
+      const noWhiteSpace = __helpers.removeWhiteSpace(getUserInput("index"));
       return (
-        noWhiteSpace.includes('quantity:PropTypes.number.isRequired') &&
-        noWhiteSpace.includes('Items.propTypes=')
+        noWhiteSpace.includes("quantity:PropTypes.number.isRequired") &&
+        noWhiteSpace.includes("Items.propTypes=")
       );
     })()
   );
@@ -67,21 +67,21 @@ The `Items` component should include a `propTypes` check to require a value for 
 
 ```jsx
 var PropTypes = {
-  number: { isRequired: true }
+  number: { isRequired: true },
 };
 ```
 
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<ShoppingCart />, document.getElementById('root'))
+ReactDOM.render(<ShoppingCart />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
 
 ```jsx
 const Items = (props) => {
-  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>;
 };
 
 // Change code below this line
@@ -89,7 +89,7 @@ const Items = (props) => {
 // Change code above this line
 
 Items.defaultProps = {
-  quantity: 0
+  quantity: 0,
 };
 
 class ShoppingCart extends React.Component {
@@ -97,26 +97,26 @@ class ShoppingCart extends React.Component {
     super(props);
   }
   render() {
-    return <Items />
+    return <Items />;
   }
-};
+}
 ```
 
 # --solutions--
 
 ```jsx
 const Items = (props) => {
-  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>;
 };
 
 // Change code below this line
 Items.propTypes = {
-  quantity: PropTypes.number.isRequired
+  quantity: PropTypes.number.isRequired,
 };
 // Change code above this line
 
 Items.defaultProps = {
-  quantity: 0
+  quantity: 0,
 };
 
 class ShoppingCart extends React.Component {
@@ -124,7 +124,7 @@ class ShoppingCart extends React.Component {
     super(props);
   }
   render() {
-    return <Items />
+    return <Items />;
   }
-};
+}
 ```

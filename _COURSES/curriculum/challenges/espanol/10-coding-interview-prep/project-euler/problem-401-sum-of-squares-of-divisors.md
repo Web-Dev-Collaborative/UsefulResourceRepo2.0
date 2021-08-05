@@ -1,6 +1,6 @@
 ---
 id: 5900f4fd1000cf542c51000f
-title: 'Problem 401: Sum of squares of divisors'
+title: "Problem 401: Sum of squares of divisors"
 challengeType: 5
 forumTopicId: 302069
 dashedName: problem-401-sum-of-squares-of-divisors
@@ -32,7 +32,6 @@ assert.strictEqual(euler401(), 281632621);
 
 ```js
 function euler401() {
-
   return true;
 }
 

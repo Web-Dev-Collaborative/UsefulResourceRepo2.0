@@ -10,13 +10,15 @@ dashedName: use-for-to-create-a-sass-loop
 
 La direttiva `@for` aggiunge stili in un ciclo, in modo molto simile a un ciclo `for` di JavaScript.
 
-`@for` è usato in due modi: "start through end" o "start to end". La differenza principale è che "start **to** end" *esclude* il numero finale dal conteggio, mentre "start **through** end" *include* il numero finale nel conteggio.
+`@for` è usato in due modi: "start through end" o "start to end". La differenza principale è che "start **to** end" _esclude_ il numero finale dal conteggio, mentre "start **through** end" _include_ il numero finale nel conteggio.
 
 Ecco un esempio di start **through** end:
 
 ```scss
 @for $i from 1 through 12 {
-  .col-#{$i} { width: 100%/12 * $i; }
+  .col-#{$i} {
+    width: 100%/12 * $i;
+  }
 }
 ```
 
@@ -31,9 +33,7 @@ La parte `#{$i}` è la sintassi che combina una variabile (`i`) con il testo per
   width: 16.66667%;
 }
 
-...
-
-.col-12 {
+... .col-12 {
   width: 100%;
 }
 ```
@@ -57,31 +57,31 @@ assert(code.match(/@for /g));
 La tua classe `.text-1` dovrebbe avere un `font-size` di 15px.
 
 ```js
-assert($('.text-1').css('font-size') == '15px');
+assert($(".text-1").css("font-size") == "15px");
 ```
 
 La tua classe `.text-2` dovrebbe avere un `font-size` di 30px.
 
 ```js
-assert($('.text-2').css('font-size') == '30px');
+assert($(".text-2").css("font-size") == "30px");
 ```
 
 La tua classe `.text-3` dovrebbe avere un `font-size` di 45px.
 
 ```js
-assert($('.text-3').css('font-size') == '45px');
+assert($(".text-3").css("font-size") == "45px");
 ```
 
 La tua classe `.text-4` dovrebbe avere un `font-size` di 60px.
 
 ```js
-assert($('.text-4').css('font-size') == '60px');
+assert($(".text-4").css("font-size") == "60px");
 ```
 
 La tua classe `.text-5` dovrebbe avere un `font-size` di 75px.
 
 ```js
-assert($('.text-5').css('font-size') == '75px');
+assert($(".text-5").css("font-size") == "75px");
 ```
 
 # --seed--
@@ -89,11 +89,7 @@ assert($('.text-5').css('font-size') == '75px');
 ## --seed-contents--
 
 ```html
-<style type='text/scss'>
-
-
-
-</style>
+<style type="text/scss"></style>
 
 <p class="text-1">Hello</p>
 <p class="text-2">Hello</p>
@@ -105,12 +101,12 @@ assert($('.text-5').css('font-size') == '75px');
 # --solutions--
 
 ```html
-<style type='text/scss'>
-
-@for $i from 1 through 5 {
-  .text-#{$i} { font-size: 15px * $i; }
-}
-
+<style type="text/scss">
+  @for $i from 1 through 5 {
+    .text-#{$i} {
+      font-size: 15px * $i;
+    }
+  }
 </style>
 
 <p class="text-1">Hello</p>
@@ -123,12 +119,12 @@ assert($('.text-5').css('font-size') == '75px');
 ---
 
 ```html
-<style type='text/scss'>
-
-@for $i from 1 to 6 {
-  .text-#{$i} { font-size: 15px * $i; }
-}
-
+<style type="text/scss">
+  @for $i from 1 to 6 {
+    .text-#{$i} {
+      font-size: 15px * $i;
+    }
+  }
 </style>
 
 <p class="text-1">Hello</p>

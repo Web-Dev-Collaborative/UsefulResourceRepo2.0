@@ -4,6 +4,6 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START auth_msft_provider_scopes_modular]
-provider.addScope('mail.read');
-provider.addScope('calendars.read');
+provider.addScope("mail.read");
+provider.addScope("calendars.read");
 // [END auth_msft_provider_scopes_modular]

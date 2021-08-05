@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244d1
 title: Comparison with the Strict Equality Operator
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cy87atr'
+videoUrl: "https://scrimba.com/c/cy87atr"
 forumTopicId: 16790
 dashedName: comparison-with-the-strict-equality-operator
 ---
@@ -16,8 +16,8 @@ If the values being compared have different types, they are considered unequal, 
 **Examples**
 
 ```js
-3 ===  3
-3 === '3'
+3 === 3;
+3 === "3";
 ```
 
 These conditions would return `true` and `false` respectively.
@@ -33,19 +33,19 @@ Use the strict equality operator in the `if` statement so the function will retu
 `testStrict(10)` should return the string `Not Equal`
 
 ```js
-assert(testStrict(10) === 'Not Equal');
+assert(testStrict(10) === "Not Equal");
 ```
 
 `testStrict(7)` should return the string `Equal`
 
 ```js
-assert(testStrict(7) === 'Equal');
+assert(testStrict(7) === "Equal");
 ```
 
 `testStrict("7")` should return the string `Not Equal`
 
 ```js
-assert(testStrict('7') === 'Not Equal');
+assert(testStrict("7") === "Not Equal");
 ```
 
 You should use the `===` operator
@@ -61,7 +61,8 @@ assert(code.match(/(val\s*===\s*\d+)|(\d+\s*===\s*val)/g).length > 0);
 ```js
 // Setup
 function testStrict(val) {
-  if (val) { // Change this line
+  if (val) {
+    // Change this line
     return "Equal";
   }
   return "Not Equal";

@@ -31,31 +31,31 @@ Check that each input is correctly formed, especially with respect to valid char
 `sedol` should be a function.
 
 ```js
-assert(typeof sedol === 'function');
+assert(typeof sedol === "function");
 ```
 
 `sedol('a')` should return null.
 
 ```js
-assert(sedol('a') === null);
+assert(sedol("a") === null);
 ```
 
 `sedol('710889')` should return '7108899'.
 
 ```js
-assert(sedol('710889') === '7108899');
+assert(sedol("710889") === "7108899");
 ```
 
 `sedol('BOATER')` should return null.
 
 ```js
-assert(sedol('BOATER') === null);
+assert(sedol("BOATER") === null);
 ```
 
 `sedol('228276')` should return '2282765'.
 
 ```js
-assert(sedol('228276') === '2282765');
+assert(sedol("228276") === "2282765");
 ```
 
 # --seed--
@@ -64,7 +64,6 @@ assert(sedol('228276') === '2282765');
 
 ```js
 function sedol(input) {
-
   return true;
 }
 ```

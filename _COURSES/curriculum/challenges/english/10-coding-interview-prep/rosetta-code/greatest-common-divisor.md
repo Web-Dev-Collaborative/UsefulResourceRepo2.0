@@ -15,13 +15,13 @@ Write a function that returns the greatest common divisor of two integers.
 `gcd` should be a function.
 
 ```js
-assert(typeof gcd == 'function');
+assert(typeof gcd == "function");
 ```
 
 `gcd(24,36)` should return a number.
 
 ```js
-assert(typeof gcd(24, 36) == 'number');
+assert(typeof gcd(24, 36) == "number");
 ```
 
 `gcd(24,36)` should return `12`.
@@ -65,15 +65,13 @@ assert.equal(gcd(1300, 250), 50);
 ## --seed-contents--
 
 ```js
-function gcd(a, b) {
-
-}
+function gcd(a, b) {}
 ```
 
 # --solutions--
 
 ```js
 function gcd(a, b) {
-  return b==0 ? Math.abs(a):gcd(b, a % b);
+  return b == 0 ? Math.abs(a) : gcd(b, a % b);
 }
 ```

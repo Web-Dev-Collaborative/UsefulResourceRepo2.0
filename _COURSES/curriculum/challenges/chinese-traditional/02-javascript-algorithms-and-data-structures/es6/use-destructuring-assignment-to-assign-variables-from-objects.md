@@ -13,7 +13,7 @@ dashedName: use-destructuring-assignment-to-assign-variables-from-objects
 還是以上個例子的對象來舉例：
 
 ```js
-const user = { name: 'John Doe', age: 34 };
+const user = { name: "John Doe", age: 34 };
 ```
 
 這是指定新的變量名的例子：
@@ -73,13 +73,13 @@ assert(highToday === 77 && highTomorrow === 80);
 const HIGH_TEMPERATURES = {
   yesterday: 75,
   today: 77,
-  tomorrow: 80
+  tomorrow: 80,
 };
 
 // Only change code below this line
 
 const highToday = HIGH_TEMPERATURES.today;
-const highTomorrow = HIGH_TEMPERATURES.tomorrow; 
+const highTomorrow = HIGH_TEMPERATURES.tomorrow;
 
 // Only change code above this line
 ```
@@ -90,7 +90,7 @@ const highTomorrow = HIGH_TEMPERATURES.tomorrow;
 const HIGH_TEMPERATURES = {
   yesterday: 75,
   today: 77,
-  tomorrow: 80
+  tomorrow: 80,
 };
 
 const { today: highToday, tomorrow: highTomorrow } = HIGH_TEMPERATURES;

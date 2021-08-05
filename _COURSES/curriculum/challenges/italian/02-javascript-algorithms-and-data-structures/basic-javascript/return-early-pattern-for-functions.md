@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244c4
 title: Pattern di ritorno precoce per le funzioni
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cQe39Sq'
+videoUrl: "https://scrimba.com/c/cQe39Sq"
 forumTopicId: 18272
 dashedName: return-early-pattern-for-functions
 ---
@@ -17,7 +17,7 @@ Quando viene raggiunta un'istruzione `return`, l'esecuzione della funzione corre
 function myFun() {
   console.log("Hello");
   return "World";
-  console.log("byebye")
+  console.log("byebye");
 }
 myFun();
 ```
@@ -36,7 +36,7 @@ Ricorda che [`undefined` è una parola chiave](https://www.freecodecamp.org/lear
 `abTest(2,2)` dovrebbe restituire un numero
 
 ```js
-assert(typeof abTest(2, 2) === 'number');
+assert(typeof abTest(2, 2) === "number");
 ```
 
 `abTest(2,2)` dovrebbe restituire `8`
@@ -84,21 +84,19 @@ assert(abTest(0, 0) === 0);
 function abTest(a, b) {
   // Only change code below this line
 
-
-
   // Only change code above this line
 
   return Math.round(Math.pow(Math.sqrt(a) + Math.sqrt(b), 2));
 }
 
-abTest(2,2);
+abTest(2, 2);
 ```
 
 # --solutions--
 
 ```js
 function abTest(a, b) {
-  if(a < 0 || b < 0) {
+  if (a < 0 || b < 0) {
     return undefined;
   }
   return Math.round(Math.pow(Math.sqrt(a) + Math.sqrt(b), 2));

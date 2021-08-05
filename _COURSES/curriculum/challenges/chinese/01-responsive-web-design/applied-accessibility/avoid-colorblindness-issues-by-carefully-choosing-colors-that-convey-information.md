@@ -3,7 +3,7 @@ id: 587d778f367417b2b2512aad
 title: >-
   考虑色盲用户的需求仔细选择传达信息的颜色
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c437as3'
+videoUrl: "https://scrimba.com/c/c437as3"
 forumTopicId: 301011
 dashedName: >-
   avoid-colorblindness-issues-by-carefully-choosing-colors-that-convey-information
@@ -26,7 +26,7 @@ Camper Cat 正在测试一个重要按钮的不同样式。 在色轮上，用�
 `button` 内容文本的 `color` 属性值应为深蓝色。
 
 ```js
-assert($('button').css('color') == 'rgb(0, 51, 102)');
+assert($("button").css("color") == "rgb(0, 51, 102)");
 ```
 
 # --seed--
@@ -36,12 +36,12 @@ assert($('button').css('color') == 'rgb(0, 51, 102)');
 ```html
 <head>
   <style>
-  button {
-    color: #33FF33;
-    background-color: #FFFF33;
-    font-size: 14px;
-    padding: 10px;
-  }
+    button {
+      color: #33ff33;
+      background-color: #ffff33;
+      font-size: 14px;
+      padding: 10px;
+    }
   </style>
 </head>
 <body>
@@ -59,7 +59,7 @@ assert($('button').css('color') == 'rgb(0, 51, 102)');
   <style>
     button {
       color: #003366;
-      background-color: #FFFF33;
+      background-color: #ffff33;
       font-size: 14px;
       padding: 10px;
     }

@@ -23,23 +23,22 @@
  * $ ./compress_pngs.js ./source_images_dir ./output_images_dir
  */
 
-var fs = require('fs');
-var getDirectoryArgs = require('./get_directory_args.js');
-var imagemin = require('imagemin');
-var imageminOptipng = require('imagemin-optipng');
-var path = require('path');
+var fs = require("fs");
+var getDirectoryArgs = require("./get_directory_args.js");
+var imagemin = require("imagemin");
+var imageminOptipng = require("imagemin-optipng");
+var path = require("path");
 
 var dirs = getDirectoryArgs();
 
-var files = fs.readdirSync(dirs.from)
-    .filter(function(file) {
-      return file.endsWith('.png');
-    })
-    .map(function(file) {
-      return path.join(dirs.from, file);
-    });
+var files = fs
+  .readdirSync(dirs.from)
+  .filter(function (file) {
+    return file.endsWith(".png");
+  })
+  .map(function (file) {
+    return path.join(dirs.from, file);
+  });
 imagemin(files, dirs.to, {
-  use: [
-    imageminOptipng()
-  ]
+  use: [imageminOptipng()],
 });

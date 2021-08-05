@@ -1,6 +1,6 @@
 ---
 id: 5900f3ac1000cf542c50febf
-title: 'Problem 64: Odd period square roots'
+title: "Problem 64: Odd period square roots"
 challengeType: 5
 forumTopicId: 302176
 dashedName: problem-64-odd-period-square-roots
@@ -71,7 +71,7 @@ How many continued fractions for $N \\le 10\\,000$ have an odd period?
 `oddPeriodSqrts()` should return a number.
 
 ```js
-assert(typeof oddPeriodSqrts() === 'number');
+assert(typeof oddPeriodSqrts() === "number");
 ```
 
 `oddPeriodSqrts()` should return 1322.
@@ -86,7 +86,6 @@ assert.strictEqual(oddPeriodSqrts(), 1322);
 
 ```js
 function oddPeriodSqrts() {
-
   return true;
 }
 

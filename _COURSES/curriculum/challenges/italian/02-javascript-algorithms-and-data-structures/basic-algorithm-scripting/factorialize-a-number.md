@@ -23,7 +23,7 @@ Verranno passati alla funzione solo interi maggiori o uguali a zero.
 `factorialize(5)` dovrebbe restituire un numero.
 
 ```js
-assert(typeof factorialize(5) === 'number');
+assert(typeof factorialize(5) === "number");
 ```
 
 `factorialize(5)` dovrebbe restituire `120`.

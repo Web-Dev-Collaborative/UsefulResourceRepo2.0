@@ -21,7 +21,7 @@ dashedName: create-a-bootstrap-headline
 为页面添加一个 `h3` 元素。
 
 ```js
-assert($('h3') && $('h3').length > 0);
+assert($("h3") && $("h3").length > 0);
 ```
 
 确保 `h3` 元素有一个闭合标签。
@@ -37,19 +37,19 @@ assert(
 为了确保成功上色，`h3` 元素应该具有 `text-primary` class。
 
 ```js
-assert($('h3').hasClass('text-primary'));
+assert($("h3").hasClass("text-primary"));
 ```
 
 为了确保文本居中显示，`h3` 元素应该具有 `text-center` class。
 
 ```js
-assert($('h3').hasClass('text-center'));
+assert($("h3").hasClass("text-center"));
 ```
 
 `h3` 元素文本内容为 `jQuery Playground`。
 
 ```js
-assert.isTrue(/jquery(\s)+playground/gi.test($('h3').text()));
+assert.isTrue(/jquery(\s)+playground/gi.test($("h3").text()));
 ```
 
 # --seed--

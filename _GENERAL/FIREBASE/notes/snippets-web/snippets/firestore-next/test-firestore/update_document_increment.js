@@ -10,6 +10,6 @@ const washingtonRef = doc(db, "cities", "DC");
 
 // Atomically increment the population of the city by 50.
 await updateDoc(washingtonRef, {
-    population: increment(50)
+  population: increment(50),
 });
 // [END update_document_increment_modular]

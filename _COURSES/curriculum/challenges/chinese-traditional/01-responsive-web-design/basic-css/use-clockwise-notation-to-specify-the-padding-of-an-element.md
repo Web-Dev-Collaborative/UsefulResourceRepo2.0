@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08826
 title: 使用順時針標記指定元素的內邊距
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cB7mBS9'
+videoUrl: "https://scrimba.com/c/cB7mBS9"
 forumTopicId: 18346
 dashedName: use-clockwise-notation-to-specify-the-padding-of-an-element
 ---
@@ -26,25 +26,25 @@ padding: 10px 20px 10px 20px;
 class 爲 `blue-box` 的元素的上內邊距 `padding` 應爲 `40px`。
 
 ```js
-assert($('.blue-box').css('padding-top') === '40px');
+assert($(".blue-box").css("padding-top") === "40px");
 ```
 
 class 爲 `blue-box` 的元素的右內邊距 `padding` 應爲 `20px`。
 
 ```js
-assert($('.blue-box').css('padding-right') === '20px');
+assert($(".blue-box").css("padding-right") === "20px");
 ```
 
 class 爲 `blue-box` 的元素的下內邊距 `padding` 應爲 `20px`。
 
 ```js
-assert($('.blue-box').css('padding-bottom') === '20px');
+assert($(".blue-box").css("padding-bottom") === "20px");
 ```
 
 class 爲 `blue-box` 的元素的左內邊距 `padding` 應爲 `40px`。
 
 ```js
-assert($('.blue-box').css('padding-left') === '40px');
+assert($(".blue-box").css("padding-left") === "40px");
 ```
 
 應該按照順時針排序，彙總聲明的方式來設置 `blue-box` 的內邊距。
@@ -52,7 +52,7 @@ assert($('.blue-box').css('padding-left') === '40px');
 ```js
 assert(
   /\.blue-box\s*{[\s\S]*padding[\s]*:\s*\d+px\s+\d+px\s+\d+px\s+\d+px(;\s*[^}]+\s*}|;?\s*})/.test(
-    __helpers.removeCssComments($('style').text())
+    __helpers.removeCssComments($("style").text())
   )
 );
 ```

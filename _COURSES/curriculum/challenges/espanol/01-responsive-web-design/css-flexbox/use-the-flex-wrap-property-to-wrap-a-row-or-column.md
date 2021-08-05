@@ -2,7 +2,7 @@
 id: 587d78ad367417b2b2512afa
 title: Usa la propiedad flex-wrap para envolver una fila o columna
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cQv9ZtG'
+videoUrl: "https://scrimba.com/p/pVaDAv/cQv9ZtG"
 forumTopicId: 301114
 dashedName: use-the-flex-wrap-property-to-wrap-a-row-or-column
 ---
@@ -26,7 +26,7 @@ La disposición actual tiene demasiadas cajas para una sola fila. Agrega la prop
 El elemento `#box-container` debe tener la propiedad `flex-wrap` establecida en un valor de `wrap`.
 
 ```js
-assert($('#box-container').css('flex-wrap') == 'wrap');
+assert($("#box-container").css("flex-wrap") == "wrap");
 ```
 
 # --seed--
@@ -39,7 +39,6 @@ assert($('#box-container').css('flex-wrap') == 'wrap');
     background: gray;
     display: flex;
     height: 100%;
-
   }
   #box-1 {
     background-color: dodgerblue;

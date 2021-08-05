@@ -15,16 +15,13 @@ dashedName: use-destructuring-assignment-to-pass-an-object-as-a-functions-parame
 ```js
 const profileUpdate = (profileData) => {
   const { name, age, nationality, location } = profileData;
-
-}
+};
 ```
 
 上面的操作解構了傳給函數的對象。 這樣的操作也可以直接在參數裏完成：
 
 ```js
-const profileUpdate = ({ name, age, nationality, location }) => {
-
-}
+const profileUpdate = ({ name, age, nationality, location }) => {};
 ```
 
 當 `profileData` 被傳遞到上面的函數時，從函數參數中解構出值以在函數內使用。
@@ -38,7 +35,7 @@ const profileUpdate = ({ name, age, nationality, location }) => {
 `stats` 的類型應該是一個 `object`。
 
 ```js
-assert(typeof stats === 'object');
+assert(typeof stats === "object");
 ```
 
 `half(stats)` 應該等於 `28.015`。
@@ -70,11 +67,11 @@ const stats = {
   median: 34.54,
   mode: 23.87,
   min: -0.75,
-  average: 35.85
+  average: 35.85,
 };
 
 // Only change code below this line
-const half = (stats) => (stats.max + stats.min) / 2.0; 
+const half = (stats) => (stats.max + stats.min) / 2.0;
 // Only change code above this line
 ```
 
@@ -87,8 +84,8 @@ const stats = {
   median: 34.54,
   mode: 23.87,
   min: -0.75,
-  average: 35.85
+  average: 35.85,
 };
 
-const half = ( {max, min} ) => (max + min) / 2.0;
+const half = ({ max, min }) => (max + min) / 2.0;
 ```

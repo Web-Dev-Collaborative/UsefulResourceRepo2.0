@@ -59,7 +59,7 @@ Write a function that returns all the ludic numbers less than or equal to the gi
 `ludic` should be a function.
 
 ```js
-assert(typeof ludic === 'function', '<code>ludic</code> should be a function.');
+assert(typeof ludic === "function", "<code>ludic</code> should be a function.");
 ```
 
 `ludic(2)` should return a array.
@@ -103,9 +103,7 @@ assert.deepEqual(ludic(26), [1, 2, 3, 5, 7, 11, 13, 17, 23, 25]);
 ## --seed-contents--
 
 ```js
-function ludic(n) {
-
-}
+function ludic(n) {}
 ```
 
 # --solutions--

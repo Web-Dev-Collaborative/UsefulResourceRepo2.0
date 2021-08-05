@@ -17,7 +17,7 @@ Crea due elementi `div` all'interno della tua riga, entrambi di classe `col-xs-6
 Due elementi `div class="col-xs-6"` dovrebbero essere annidati all'interno dell'elemento `div class="row"`.
 
 ```js
-assert($('div.row > div.col-xs-6').length > 1);
+assert($("div.row > div.col-xs-6").length > 1);
 ```
 
 Tutti i tuoi elementi `div` dovrebbero avere un tag di chiusura.
@@ -37,10 +37,7 @@ assert(
 ```html
 <div class="container-fluid">
   <h3 class="text-primary text-center">jQuery Playground</h3>
-  <div class="row">
-
-
-  </div>
+  <div class="row"></div>
 </div>
 ```
 

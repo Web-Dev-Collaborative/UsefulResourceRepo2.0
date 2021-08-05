@@ -16,7 +16,7 @@
         <div class="field">
           <label class="label">Title</label>
           <div class="control">
-            <input class="input" type="text" placeholder="Text input">
+            <input class="input" type="text" placeholder="Text input" />
           </div>
         </div>
         <div class="field">
@@ -28,25 +28,25 @@
         <div class="field">
           <label class="label">Image Link</label>
           <div class="control">
-            <input class="input" type="text" placeholder="Text input">
+            <input class="input" type="text" placeholder="Text input" />
           </div>
         </div>
         <div class="field">
           <label class="label">Value</label>
           <div class="control">
-            <input class="input" type="text" placeholder="Text input">
+            <input class="input" type="text" placeholder="Text input" />
           </div>
         </div>
         <div class="field">
           <label class="label">Country</label>
           <div class="control">
-            <input class="input" type="text" placeholder="Text input">
+            <input class="input" type="text" placeholder="Text input" />
           </div>
         </div>
         <div class="field">
           <label class="label">City</label>
           <div class="control">
-            <input class="input" type="text" placeholder="Text input">
+            <input class="input" type="text" placeholder="Text input" />
           </div>
         </div>
 
@@ -63,9 +63,7 @@
   </div>
 </template>
 
-<script>
-</script>
-
+<script></script>
 
 <style>
 .form-container {

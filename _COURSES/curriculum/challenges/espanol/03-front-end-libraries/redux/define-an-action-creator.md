@@ -19,19 +19,19 @@ Define a function named `actionCreator()` that returns the `action` object when 
 The function `actionCreator` should exist.
 
 ```js
-assert(typeof actionCreator === 'function');
+assert(typeof actionCreator === "function");
 ```
 
 Running the `actionCreator` function should return the action object.
 
 ```js
-assert(typeof action === 'object');
+assert(typeof action === "object");
 ```
 
 The returned action should have a key property type with value `LOGIN`.
 
 ```js
-assert(action.type === 'LOGIN');
+assert(action.type === "LOGIN");
 ```
 
 # --seed--
@@ -40,8 +40,8 @@ assert(action.type === 'LOGIN');
 
 ```js
 const action = {
-  type: 'LOGIN'
-}
+  type: "LOGIN",
+};
 // Define an action creator here:
 ```
 
@@ -49,8 +49,8 @@ const action = {
 
 ```js
 const action = {
-  type: 'LOGIN'
-}
+  type: "LOGIN",
+};
 const actionCreator = () => {
   return action;
 };

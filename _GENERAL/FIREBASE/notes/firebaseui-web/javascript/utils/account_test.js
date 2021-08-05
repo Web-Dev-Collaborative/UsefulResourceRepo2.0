@@ -16,41 +16,37 @@
  * @fileoverview Tests for account.js.
  */
 
-goog.provide('firebaseui.auth.AccountTest');
+goog.provide("firebaseui.auth.AccountTest");
 
-goog.require('firebaseui.auth.Account');
-goog.require('goog.testing.jsunit');
+goog.require("firebaseui.auth.Account");
+goog.require("goog.testing.jsunit");
 
-goog.setTestOnly('firebaseui.auth.AccountTest');
-
+goog.setTestOnly("firebaseui.auth.AccountTest");
 
 var account = new firebaseui.auth.Account(
-    'user@example.com',
-    'John Doe',
-    'http://localhost/picture.png',
-    'google.com');
-
+  "user@example.com",
+  "John Doe",
+  "http://localhost/picture.png",
+  "google.com"
+);
 
 var obj = {
-  'email': 'user@example.com',
-  'displayName': 'John Doe',
-  'photoUrl': 'http://localhost/picture.png',
-  'providerId': 'google.com'
+  email: "user@example.com",
+  displayName: "John Doe",
+  photoUrl: "http://localhost/picture.png",
+  providerId: "google.com",
 };
 
-
 function testAccountProperties() {
-  assertEquals('user@example.com', account.getEmail());
-  assertEquals('John Doe', account.getDisplayName());
-  assertEquals('http://localhost/picture.png', account.getPhotoUrl());
-  assertEquals('google.com', account.getProviderId());
+  assertEquals("user@example.com", account.getEmail());
+  assertEquals("John Doe", account.getDisplayName());
+  assertEquals("http://localhost/picture.png", account.getPhotoUrl());
+  assertEquals("google.com", account.getProviderId());
 }
-
 
 function testToPlainObject() {
   assertObjectEquals(obj, account.toPlainObject());
 }
-
 
 function testFromPlainObject() {
   assertObjectEquals(account, firebaseui.auth.Account.fromPlainObject(obj));

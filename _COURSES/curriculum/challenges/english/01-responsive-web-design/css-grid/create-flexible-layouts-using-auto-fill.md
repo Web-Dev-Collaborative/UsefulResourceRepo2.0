@@ -2,7 +2,7 @@
 id: 5a94fe5469fb03452672e461
 title: Create Flexible Layouts Using auto-fill
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pByETK/cmzdycW'
+videoUrl: "https://scrimba.com/p/pByETK/cmzdycW"
 forumTopicId: 301126
 dashedName: create-flexible-layouts-using-auto-fill
 ---
@@ -39,11 +39,21 @@ assert(
 
 ```html
 <style>
-  .item1{background:LightSkyBlue;}
-  .item2{background:LightSalmon;}
-  .item3{background:PaleTurquoise;}
-  .item4{background:LightPink;}
-  .item5{background:PaleGreen;}
+  .item1 {
+    background: LightSkyBlue;
+  }
+  .item2 {
+    background: LightSalmon;
+  }
+  .item3 {
+    background: PaleTurquoise;
+  }
+  .item4 {
+    background: LightPink;
+  }
+  .item5 {
+    background: PaleGreen;
+  }
 
   .container {
     font-size: 40px;
@@ -91,12 +101,22 @@ assert(
 
 ```html
 <style>
-  .item1{background:LightSkyBlue;}
-  .item2{background:LightSalmon;}
-  .item3{background:PaleTurquoise;}
-  .item4{background:LightPink;}
-  .item5{background:PaleGreen;}
-  
+  .item1 {
+    background: LightSkyBlue;
+  }
+  .item2 {
+    background: LightSalmon;
+  }
+  .item3 {
+    background: PaleTurquoise;
+  }
+  .item4 {
+    background: LightPink;
+  }
+  .item5 {
+    background: PaleGreen;
+  }
+
   .container {
     font-size: 40px;
     min-height: 100px;
@@ -104,14 +124,14 @@ assert(
     background: LightGray;
     display: grid;
     /* Only change code below this line */
-    
+
     grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-    
+
     /* Only change code above this line */
     grid-template-rows: 1fr 1fr 1fr;
     grid-gap: 10px;
   }
-  
+
   .container2 {
     font-size: 40px;
     min-height: 100px;

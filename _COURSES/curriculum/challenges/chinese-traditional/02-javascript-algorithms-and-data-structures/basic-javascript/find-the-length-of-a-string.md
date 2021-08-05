@@ -2,7 +2,7 @@
 id: bd7123c9c448eddfaeb5bdef
 title: 查找字符串的長度
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cvmqEAd'
+videoUrl: "https://scrimba.com/c/cvmqEAd"
 forumTopicId: 18182
 dashedName: find-the-length-of-a-string
 ---
@@ -37,7 +37,7 @@ assert(
 `lastNameLength` 應該等於 8。
 
 ```js
-assert(typeof lastNameLength !== 'undefined' && lastNameLength === 8);
+assert(typeof lastNameLength !== "undefined" && lastNameLength === 8);
 ```
 
 你應該使用 `.length` 獲取 `lastName` 的長度，像這樣 `lastName.length`。

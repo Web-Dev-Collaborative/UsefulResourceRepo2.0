@@ -16,8 +16,8 @@ test-text
 ```js
 const fb = code.match(/\.foreground-buildings\s*{[\s\S]+?[^}]}/g)[0];
 assert(
-  $('.foreground-buildings').css('position') === 'absolute' &&
-    $('.foreground-buildings').css('top') === '0px' &&
+  $(".foreground-buildings").css("position") === "absolute" &&
+    $(".foreground-buildings").css("top") === "0px" &&
     /width\s*:\s*100%\s*(;|})/g.test(fb) &&
     /height\s*:\s*100%\s*(;|})/g.test(fb)
 );
@@ -29,7 +29,7 @@ assert(
 
 ```html
 <!DOCTYPE html>
-<html>    
+<html>
   <head>
     <title>freeCodeCamp Skyline Project</title>
     <style>
@@ -72,13 +72,13 @@ assert(
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1b {
         width: 80%;
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1c {
         width: 90%;
         height: 10%;
@@ -138,7 +138,7 @@ assert(
 
 ```html
 <!DOCTYPE html>
-<html>    
+<html>
   <head>
     <title>freeCodeCamp Skyline Project</title>
     <style>
@@ -181,13 +181,13 @@ assert(
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1b {
         width: 80%;
         height: 10%;
         background-color: var(--building-color1);
       }
-  
+
       .bb1c {
         width: 90%;
         height: 10%;

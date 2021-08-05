@@ -8,13 +8,13 @@ dashedName: use-the-every-method-to-check-that-every-element-in-an-array-meets-a
 
 # --description--
 
-Il metodo `every` funziona con gli array per controllare se *ogni* elemento supera un test particolare. Restituisce un valore booleano: `true` se tutti i valori soddisfano i criteri, `false` in caso contrario.
+Il metodo `every` funziona con gli array per controllare se _ogni_ elemento supera un test particolare. Restituisce un valore booleano: `true` se tutti i valori soddisfano i criteri, `false` in caso contrario.
 
 Ad esempio, il seguente codice controllerà se ogni elemento nell'array `numbers` è inferiore a 10:
 
 ```js
 var numbers = [1, 5, 8, 0, 10, 11];
-numbers.every(function(currentValue) {
+numbers.every(function (currentValue) {
   return currentValue < 10;
 });
 ```
@@ -58,8 +58,6 @@ assert.isFalse(checkPositive([1, -2, 3, -4, 5]));
 ```js
 function checkPositive(arr) {
   // Only change code below this line
-
-
   // Only change code above this line
 }
 checkPositive([1, 2, 3, -4, 5]);
@@ -70,7 +68,7 @@ checkPositive([1, 2, 3, -4, 5]);
 ```js
 function checkPositive(arr) {
   // Only change code below this line
-  return arr.every(num => num > 0);
+  return arr.every((num) => num > 0);
   // Only change code above this line
 }
 checkPositive([1, 2, 3, -4, 5]);

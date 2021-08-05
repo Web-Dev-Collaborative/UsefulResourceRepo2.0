@@ -25,7 +25,7 @@ Use it to list the first twenty members of the sequence and list the first Harsh
 `isHarshadOrNiven` should be a function.
 
 ```js
-assert(typeof isHarshadOrNiven === 'function');
+assert(typeof isHarshadOrNiven === "function");
 ```
 
 `isHarshadOrNiven()` should return `{"firstTwenty": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 18, 20, 21, 24, 27, 30, 36, 40, 42],"firstOver1000": 1002}`
@@ -40,8 +40,10 @@ assert.deepEqual(isHarshadOrNiven(), res);
 
 ```js
 const res = {
-  firstTwenty: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 18, 20, 21, 24, 27, 30, 36, 40, 42],
-  firstOver1000: 1002
+  firstTwenty: [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 18, 20, 21, 24, 27, 30, 36, 40, 42,
+  ],
+  firstOver1000: 1002,
 };
 ```
 
@@ -51,7 +53,7 @@ const res = {
 function isHarshadOrNiven() {
   const res = {
     firstTwenty: [],
-    firstOver1000: undefined
+    firstOver1000: undefined,
   };
   // Only change code below this line
 
@@ -65,7 +67,7 @@ function isHarshadOrNiven() {
 function isHarshadOrNiven() {
   const res = {
     firstTwenty: [],
-    firstOver1000: undefined
+    firstOver1000: undefined,
   };
 
   function isHarshad(n) {

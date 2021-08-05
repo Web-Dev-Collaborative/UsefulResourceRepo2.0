@@ -39,37 +39,37 @@ assert(ohRegex.source.match(/{.*?}/).length > 0);
 La tua espressione regolare non dovrebbe riconoscere la stringa `Ohh no`
 
 ```js
-assert(!ohRegex.test('Ohh no'));
+assert(!ohRegex.test("Ohh no"));
 ```
 
 La tua espressione regolare dovrebbe riconoscere la stringa `Ohhh no`
 
 ```js
-assert('Ohhh no'.match(ohRegex)[0].length === 7);
+assert("Ohhh no".match(ohRegex)[0].length === 7);
 ```
 
 La tua espressione regolare dovrebbe riconoscere la stringa `Ohhhh no`
 
 ```js
-assert('Ohhhh no'.match(ohRegex)[0].length === 8);
+assert("Ohhhh no".match(ohRegex)[0].length === 8);
 ```
 
 La tua espressione regolare dovrebbe riconoscere la stringa `Ohhhhh no`
 
 ```js
-assert('Ohhhhh no'.match(ohRegex)[0].length === 9);
+assert("Ohhhhh no".match(ohRegex)[0].length === 9);
 ```
 
 La tua espressione regolare dovrebbe riconoscere la stringa `Ohhhhhh no`
 
 ```js
-assert('Ohhhhhh no'.match(ohRegex)[0].length === 10);
+assert("Ohhhhhh no".match(ohRegex)[0].length === 10);
 ```
 
 La tua espressione regolare non dovrebbe riconoscere la stringa `Ohhhhhhh no`
 
 ```js
-assert(!ohRegex.test('Ohhhhhhh no'));
+assert(!ohRegex.test("Ohhhhhhh no"));
 ```
 
 # --seed--

@@ -458,9 +458,7 @@ describe('api/_performApiRequest', () => {
 
     it('does not attach the tenant ID at all if not specified', () => {
       auth.tenantId = null;
-      expect(
-        _addTidIfNecessary<Record<string, string>>(auth, { foo: 'bar' })
-      )
+      expect(_addTidIfNecessary<Record<string, string>>(auth, { foo: 'bar' }))
         .to.eql({
           foo: 'bar'
         })

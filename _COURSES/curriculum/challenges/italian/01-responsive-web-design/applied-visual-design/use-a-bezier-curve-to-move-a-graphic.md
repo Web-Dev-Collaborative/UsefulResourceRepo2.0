@@ -2,7 +2,7 @@
 id: 587d78a9367417b2b2512ae9
 title: Usare una curva di Bezier per muovere una grafica
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c6bnRCK'
+videoUrl: "https://scrimba.com/c/c6bnRCK"
 forumTopicId: 301071
 dashedName: use-a-bezier-curve-to-move-a-graphic
 ---
@@ -29,25 +29,25 @@ Il valore della proprietà `animation-timing-function` dell'elemento con id `red
 
 ```js
 assert(
-  $('#red').css('animation-timing-function') == 'cubic-bezier(0, 0, 0.58, 1)'
+  $("#red").css("animation-timing-function") == "cubic-bezier(0, 0, 0.58, 1)"
 );
 ```
 
 L'elemento con id `red` non dovrebbe più avere la proprietà `animation-timing-function` di `linear`.
 
 ```js
-assert($('#red').css('animation-timing-function') !== 'linear');
+assert($("#red").css("animation-timing-function") !== "linear");
 ```
 
 Il valore della proprietà `animation-timing-function` per l'elemento con id `blue` non dovrebbe cambiare.
 
 ```js
 const blueBallAnimation = __helpers.removeWhiteSpace(
-  $('#blue').css('animation-timing-function')
+  $("#blue").css("animation-timing-function")
 );
 assert(
-  blueBallAnimation == 'ease-out' ||
-    blueBallAnimation == 'cubic-bezier(0,0,0.58,1)'
+  blueBallAnimation == "ease-out" ||
+    blueBallAnimation == "cubic-bezier(0,0,0.58,1)"
 );
 ```
 
@@ -57,7 +57,7 @@ assert(
 
 ```html
 <style>
-  .balls{
+  .balls {
     border-radius: 50%;
     position: fixed;
     width: 50px;
@@ -86,15 +86,15 @@ assert(
     }
   }
 </style>
-<div class="balls" id= "red"></div>
-<div class="balls" id= "blue"></div>
+<div class="balls" id="red"></div>
+<div class="balls" id="blue"></div>
 ```
 
 # --solutions--
 
 ```html
 <style>
-  .balls{
+  .balls {
     border-radius: 50%;
     position: fixed;
     width: 50px;
@@ -123,6 +123,6 @@ assert(
     }
   }
 </style>
-<div class="balls" id= "red"></div>
-<div class="balls" id= "blue"></div>
+<div class="balls" id="red"></div>
+<div class="balls" id="blue"></div>
 ```

@@ -1,6 +1,6 @@
 ---
 id: 5e7b9f180b6c005b0e76f08e
-title: '关系型数据库：关系的建立'
+title: "关系型数据库：关系的建立"
 challengeType: 11
 videoId: CSbqczsHVnc
 dashedName: relational-databases-relationship-building
@@ -27,4 +27,3 @@ INSERT 命令在 SQL 中的作用是什么？
 ## --video-solution--
 
 1
-

@@ -13,23 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-'use strict';
+"use strict";
 
-const capitalizeSentence = require('capitalize-sentence');
-const Filter = require('bad-words');
+const capitalizeSentence = require("capitalize-sentence");
+const Filter = require("bad-words");
 const badWordsFilter = new Filter();
 
 // Sanitizes the given text if needed by replacing bad words with '*'.
 exports.sanitizeText = (text) => {
   // Re-capitalize if the user is Shouting.
   if (isShouting(text)) {
-    console.log('User is shouting. Fixing sentence case...');
+    console.log("User is shouting. Fixing sentence case...");
     text = stopShouting(text);
   }
 
   // Moderate if the user uses SwearWords.
   if (containsSwearwords(text)) {
-    console.log('User is swearing. moderating...');
+    console.log("User is swearing. moderating...");
     text = replaceSwearwords(text);
   }
 
@@ -49,11 +49,14 @@ function replaceSwearwords(message) {
 // Detect if the current message is shouting. i.e. there are too many Uppercase
 // characters or exclamation points.
 function isShouting(message) {
-  return message.replace(/[^A-Z]/g, '').length > message.length / 2 || message.replace(/[^!]/g, '').length >= 3;
+  return (
+    message.replace(/[^A-Z]/g, "").length > message.length / 2 ||
+    message.replace(/[^!]/g, "").length >= 3
+  );
 }
 
 // Correctly capitalize the string as a sentence (e.g. uppercase after dots)
 // and remove exclamation points.
 function stopShouting(message) {
-  return capitalizeSentence(message.toLowerCase()).replace(/!+/g, '.');
+  return capitalizeSentence(message.toLowerCase()).replace(/!+/g, ".");
 }

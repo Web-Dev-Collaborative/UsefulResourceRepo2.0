@@ -1,6 +1,6 @@
 ---
 id: 5e7b9f190b6c005b0e76f090
-title: '關係型數據庫：多對多關係'
+title: "關係型數據庫：多對多關係"
 challengeType: 11
 videoId: z-SBYcvEQOc
 dashedName: relational-databases-many-to-many-relationships
@@ -45,4 +45,3 @@ dashedName: relational-databases-many-to-many-relationships
 ## --video-solution--
 
 1
-

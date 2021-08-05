@@ -1,7 +1,7 @@
 exports.getCurrentUser = function (req, res, next) {
   const user = req.user;
 
-  if(!user) {
+  if (!user) {
     return res.sendStatus(422);
   }
 

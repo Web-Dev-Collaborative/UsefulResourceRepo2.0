@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244dd
 title: Seleccionando entre muchas opciones con declaración switch
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c4mv4fm'
+videoUrl: "https://scrimba.com/c/c4mv4fm"
 forumTopicId: 18277
 dashedName: selecting-from-many-options-with-switch-statements
 ---
@@ -14,7 +14,7 @@ Si tienes muchas opciones para elegir, usa una declaración <dfn>switch</dfn>. U
 Aquí hay un ejemplo de una declaración `switch`:
 
 ```js
-switch(lowercaseLetter) {
+switch (lowercaseLetter) {
   case "a":
     console.log("A");
     break;
@@ -39,25 +39,25 @@ Escribe una declaración switch que pruebe `val` y establezca `answer` con las s
 `caseInSwitch(1)` debe tener una cadena con valor `alpha`
 
 ```js
-assert(caseInSwitch(1) === 'alpha');
+assert(caseInSwitch(1) === "alpha");
 ```
 
 `caseInSwitch(2)` debe tener una cadena con valor `beta`
 
 ```js
-assert(caseInSwitch(2) === 'beta');
+assert(caseInSwitch(2) === "beta");
 ```
 
 `caseInSwitch(3)` debe tener una cadena con valor `gamma`
 
 ```js
-assert(caseInSwitch(3) === 'gamma');
+assert(caseInSwitch(3) === "gamma");
 ```
 
 `caseInSwitch(4)` debe tener una cadena con valor `delta`
 
 ```js
-assert(caseInSwitch(4) === 'delta');
+assert(caseInSwitch(4) === "delta");
 ```
 
 No debes usar ninguna sentencia `if` o `else`
@@ -81,8 +81,6 @@ function caseInSwitch(val) {
   var answer = "";
   // Only change code below this line
 
-
-
   // Only change code above this line
   return answer;
 }
@@ -96,7 +94,7 @@ caseInSwitch(1);
 function caseInSwitch(val) {
   var answer = "";
 
-  switch(val) {
+  switch (val) {
     case 1:
       answer = "alpha";
       break;

@@ -30,7 +30,7 @@ Your `PriorityQueue` class should have a `enqueue` method.
 assert(
   (function () {
     var test = new PriorityQueue();
-    return typeof test.enqueue === 'function';
+    return typeof test.enqueue === "function";
   })()
 );
 ```
@@ -41,7 +41,7 @@ Your `PriorityQueue` class should have a `dequeue` method.
 assert(
   (function () {
     var test = new PriorityQueue();
-    return typeof test.dequeue === 'function';
+    return typeof test.dequeue === "function";
   })()
 );
 ```
@@ -52,7 +52,7 @@ Your `PriorityQueue` class should have a `size` method.
 assert(
   (function () {
     var test = new PriorityQueue();
-    return typeof test.size === 'function';
+    return typeof test.size === "function";
   })()
 );
 ```
@@ -63,7 +63,7 @@ Your `PriorityQueue` class should have a `front` method.
 assert(
   (function () {
     var test = new PriorityQueue();
-    return typeof test.front === 'function';
+    return typeof test.front === "function";
   })()
 );
 ```
@@ -74,7 +74,7 @@ Your `PriorityQueue` class should have an `isEmpty` method.
 assert(
   (function () {
     var test = new PriorityQueue();
-    return typeof test.isEmpty === 'function';
+    return typeof test.isEmpty === "function";
   })()
 );
 ```
@@ -85,14 +85,14 @@ Your `PriorityQueue` class should correctly keep track of the current number of 
 assert(
   (function () {
     var test = new PriorityQueue();
-    test.enqueue(['David Brown', 2]);
-    test.enqueue(['Jon Snow', 1]);
+    test.enqueue(["David Brown", 2]);
+    test.enqueue(["Jon Snow", 1]);
     var size1 = test.size();
     test.dequeue();
     var size2 = test.size();
-    test.enqueue(['A', 3]);
-    test.enqueue(['B', 3]);
-    test.enqueue(['C', 3]);
+    test.enqueue(["A", 3]);
+    test.enqueue(["B", 3]);
+    test.enqueue(["C", 3]);
     return size1 === 2 && size2 === 1 && test.size() === 4;
   })()
 );
@@ -104,22 +104,22 @@ The `front` method should return the correct item at the front of the queue as i
 assert(
   (function () {
     var test = new PriorityQueue();
-    test.enqueue(['David Brown', 2]);
+    test.enqueue(["David Brown", 2]);
     var front1 = test.front();
-    test.enqueue(['Jon Snow', 1]);
+    test.enqueue(["Jon Snow", 1]);
     var front2 = test.front();
     test.dequeue();
-    test.enqueue(['A', 3]);
+    test.enqueue(["A", 3]);
     var front3 = test.front();
-    test.enqueue(['B', 3]);
-    test.enqueue(['C', 3]);
+    test.enqueue(["B", 3]);
+    test.enqueue(["C", 3]);
     test.dequeue();
     var front4 = test.front();
     return (
-      front1 === 'David Brown' &&
-      front2 === 'Jon Snow' &&
-      front3 === 'David Brown' &&
-      front4 === 'A'
+      front1 === "David Brown" &&
+      front2 === "Jon Snow" &&
+      front3 === "David Brown" &&
+      front4 === "A"
     );
   })()
 );
@@ -131,8 +131,8 @@ The `isEmpty` method should return `true` when the queue is empty.
 assert(
   (function () {
     var test = new PriorityQueue();
-    test.enqueue(['A', 1]);
-    test.enqueue(['B', 1]);
+    test.enqueue(["A", 1]);
+    test.enqueue(["B", 1]);
     test.dequeue();
     var first = test.isEmpty();
     test.dequeue();
@@ -147,12 +147,12 @@ The priority queue should return items with a higher priority before items with 
 assert(
   (function () {
     var test = new PriorityQueue();
-    test.enqueue(['A', 5]);
-    test.enqueue(['B', 5]);
-    test.enqueue(['C', 5]);
-    test.enqueue(['D', 3]);
-    test.enqueue(['E', 1]);
-    test.enqueue(['F', 7]);
+    test.enqueue(["A", 5]);
+    test.enqueue(["B", 5]);
+    test.enqueue(["C", 5]);
+    test.enqueue(["D", 3]);
+    test.enqueue(["E", 1]);
+    test.enqueue(["F", 7]);
     var result = [];
     result.push(test.dequeue());
     result.push(test.dequeue());
@@ -160,7 +160,7 @@ assert(
     result.push(test.dequeue());
     result.push(test.dequeue());
     result.push(test.dequeue());
-    return result.join('') === 'EDABCF';
+    return result.join("") === "EDABCF";
   })()
 );
 ```
@@ -170,9 +170,9 @@ assert(
 ## --seed-contents--
 
 ```js
-function PriorityQueue () {
+function PriorityQueue() {
   this.collection = [];
-  this.printCollection = function() {
+  this.printCollection = function () {
     console.log(this.collection);
   };
   // Only change code below this line

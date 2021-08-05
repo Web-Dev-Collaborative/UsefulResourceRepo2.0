@@ -2,7 +2,7 @@
 id: 587d78ae367417b2b2512aff
 title: 使用 order 屬性重新排列子元素
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/cMbvNAG'
+videoUrl: "https://scrimba.com/p/pVaDAv/cMbvNAG"
 forumTopicId: 301116
 dashedName: use-the-order-property-to-rearrange-items
 ---
@@ -20,13 +20,13 @@ dashedName: use-the-order-property-to-rearrange-items
 `#box-1` 元素應具有 `order` 屬性，其屬性值應爲 `2`。
 
 ```js
-assert($('#box-1').css('order') == '2');
+assert($("#box-1").css("order") == "2");
 ```
 
 `#box-2` 元素應具有 `order` 屬性，其屬性值應爲 `1`。
 
 ```js
-assert($('#box-2').css('order') == '1');
+assert($("#box-2").css("order") == "1");
 ```
 
 # --seed--

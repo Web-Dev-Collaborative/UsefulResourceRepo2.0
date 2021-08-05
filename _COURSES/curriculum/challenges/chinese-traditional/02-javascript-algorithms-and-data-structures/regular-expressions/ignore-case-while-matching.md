@@ -23,61 +23,61 @@ dashedName: ignore-case-while-matching
 你的正則表達式應該匹配 `freeCodeCamp`
 
 ```js
-assert(fccRegex.test('freeCodeCamp'));
+assert(fccRegex.test("freeCodeCamp"));
 ```
 
 你的正則表達式應該匹配 `FreeCodeCamp`
 
 ```js
-assert(fccRegex.test('FreeCodeCamp'));
+assert(fccRegex.test("FreeCodeCamp"));
 ```
 
 你的正則表達式應該匹配 `FreecodeCamp`
 
 ```js
-assert(fccRegex.test('FreecodeCamp'));
+assert(fccRegex.test("FreecodeCamp"));
 ```
 
 你的正則表達式應該匹配 `FreeCodecamp`
 
 ```js
-assert(fccRegex.test('FreeCodecamp'));
+assert(fccRegex.test("FreeCodecamp"));
 ```
 
 你的正則表達式不應該匹配 `Free Code Camp`
 
 ```js
-assert(!fccRegex.test('Free Code Camp'));
+assert(!fccRegex.test("Free Code Camp"));
 ```
 
 您的正則表達式應該匹配字符串 `FreeCOdeCamp`
 
 ```js
-assert(fccRegex.test('FreeCOdeCamp'));
+assert(fccRegex.test("FreeCOdeCamp"));
 ```
 
 你的正則表達式不應該匹配 `FCC`
 
 ```js
-assert(!fccRegex.test('FCC'));
+assert(!fccRegex.test("FCC"));
 ```
 
 你的正則表達式應該匹配字符串 `FrEeCoDeCamp`
 
 ```js
-assert(fccRegex.test('FrEeCoDeCamp'));
+assert(fccRegex.test("FrEeCoDeCamp"));
 ```
 
 你的正則表達式應該匹配字符串 `FrEeCodECamp`
 
 ```js
-assert(fccRegex.test('FrEeCodECamp'));
+assert(fccRegex.test("FrEeCodECamp"));
 ```
 
 你的正則表達式應該匹配字符串 `FReeCodeCAmp`
 
 ```js
-assert(fccRegex.test('FReeCodeCAmp'));
+assert(fccRegex.test("FReeCodeCAmp"));
 ```
 
 # --seed--

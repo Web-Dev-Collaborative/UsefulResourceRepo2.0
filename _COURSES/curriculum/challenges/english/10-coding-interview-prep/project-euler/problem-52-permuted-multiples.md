@@ -1,6 +1,6 @@
 ---
 id: 5900f3a01000cf542c50feb3
-title: 'Problem 52: Permuted multiples'
+title: "Problem 52: Permuted multiples"
 challengeType: 5
 forumTopicId: 302163
 dashedName: problem-52-permuted-multiples
@@ -17,7 +17,7 @@ Find the smallest positive integer, such that multiplied by integers $\\{2, 3, \
 `permutedMultiples(2)` should return a number.
 
 ```js
-assert(typeof permutedMultiples(2) === 'number');
+assert(typeof permutedMultiples(2) === "number");
 ```
 
 `permutedMultiples(2)` should return `125874`.
@@ -38,7 +38,6 @@ assert.strictEqual(permutedMultiples(6), 142857);
 
 ```js
 function permutedMultiples(n) {
-
   return true;
 }
 
@@ -49,33 +48,32 @@ permutedMultiples(2);
 
 ```js
 function permutedMultiples(n) {
-    const isPermutation = (a, b) =>
-        a.length !== b.length
-            ? false
-            : a.split('').sort().join() === b.split('').sort().join();
+  const isPermutation = (a, b) =>
+    a.length !== b.length
+      ? false
+      : a.split("").sort().join() === b.split("").sort().join();
 
+  let start = 1;
+  let found = false;
+  let result = 0;
 
-    let start = 1;
-    let found = false;
-    let result = 0;
-
-    while (!found) {
-        start *= 10;
-        for (let i = start; i < start * 10 / n; i++) {
-            found = true;
-            for (let j = 2; j <= n; j++) {
-                if (!isPermutation(i + '', j * i + '')) {
-                    found = false;
-                    break;
-                }
-            }
-            if (found) {
-                result = i;
-                break;
-            }
+  while (!found) {
+    start *= 10;
+    for (let i = start; i < (start * 10) / n; i++) {
+      found = true;
+      for (let j = 2; j <= n; j++) {
+        if (!isPermutation(i + "", j * i + "")) {
+          found = false;
+          break;
         }
+      }
+      if (found) {
+        result = i;
+        break;
+      }
     }
+  }
 
-    return result;
+  return result;
 }
 ```

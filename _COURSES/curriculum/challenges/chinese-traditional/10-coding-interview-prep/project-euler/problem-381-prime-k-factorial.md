@@ -1,6 +1,6 @@
 ---
 id: 5900f4ea1000cf542c50fffc
-title: 'Problem 381: (prime-k) factorial'
+title: "Problem 381: (prime-k) factorial"
 challengeType: 5
 forumTopicId: 302045
 dashedName: problem-381-prime-k-factorial
@@ -30,7 +30,6 @@ assert.strictEqual(euler381(), 139602943319822);
 
 ```js
 function euler381() {
-
   return true;
 }
 

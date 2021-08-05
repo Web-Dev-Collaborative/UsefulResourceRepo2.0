@@ -16,10 +16,9 @@ La seguente funzione utilizza un'istruzione `if/else` per controllare una condiz
 
 ```js
 function findGreater(a, b) {
-  if(a > b) {
+  if (a > b) {
     return "a is greater";
-  }
-  else {
+  } else {
     return "b is greater";
   }
 }
@@ -48,19 +47,19 @@ assert(/.+?\s*?\?\s*?.+?\s*?:\s*?.+?/.test(code));
 `checkEqual(1, 2)` dovrebbe restituire la stringa `Not Equal`
 
 ```js
-assert(checkEqual(1, 2) === 'Not Equal');
+assert(checkEqual(1, 2) === "Not Equal");
 ```
 
 `checkEqual(1, 1)` dovrebbe restituire la stringa `Equal`
 
 ```js
-assert(checkEqual(1, 1) === 'Equal');
+assert(checkEqual(1, 1) === "Equal");
 ```
 
 `checkEqual(1, -1)` dovrebbe restituire la stringa `Not Equal`
 
 ```js
-assert(checkEqual(1, -1) === 'Not Equal');
+assert(checkEqual(1, -1) === "Not Equal");
 ```
 
 # --seed--
@@ -68,9 +67,7 @@ assert(checkEqual(1, -1) === 'Not Equal');
 ## --seed-contents--
 
 ```js
-function checkEqual(a, b) {
-
-}
+function checkEqual(a, b) {}
 
 checkEqual(1, 2);
 ```

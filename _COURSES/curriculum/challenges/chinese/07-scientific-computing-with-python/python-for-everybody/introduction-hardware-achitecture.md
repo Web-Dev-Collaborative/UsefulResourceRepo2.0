@@ -1,6 +1,6 @@
 ---
 id: 5e6a54af58d3af90110a60a1
-title: '导言：硬件架构'
+title: "导言：硬件架构"
 challengeType: 11
 videoId: H6qtjRTfSog
 dashedName: introduction-hardware-architecture
@@ -27,4 +27,3 @@ dashedName: introduction-hardware-architecture
 ## --video-solution--
 
 2
-

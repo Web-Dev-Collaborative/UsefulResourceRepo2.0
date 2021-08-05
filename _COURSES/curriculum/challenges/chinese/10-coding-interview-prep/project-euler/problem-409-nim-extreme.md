@@ -1,6 +1,6 @@
 ---
 id: 5900f5061000cf542c510017
-title: 'Problem 409: Nim Extreme'
+title: "Problem 409: Nim Extreme"
 challengeType: 5
 forumTopicId: 302077
 dashedName: problem-409-nim-extreme
@@ -34,7 +34,6 @@ assert.strictEqual(euler409(), 253223948);
 
 ```js
 function euler409() {
-
   return true;
 }
 

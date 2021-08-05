@@ -1,6 +1,6 @@
 ---
 id: 5900f48f1000cf542c50ffa2
-title: 'Problem 291: Panaitopol Primes'
+title: "Problem 291: Panaitopol Primes"
 challengeType: 5
 forumTopicId: 301943
 dashedName: problem-291-panaitopol-primes
@@ -26,7 +26,6 @@ assert.strictEqual(euler291(), 4037526);
 
 ```js
 function euler291() {
-
   return true;
 }
 

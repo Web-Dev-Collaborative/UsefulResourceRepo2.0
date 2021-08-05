@@ -1,6 +1,6 @@
 ---
 id: 5900f4e51000cf542c50fff6
-title: 'Problem 374: Maximum Integer Partition Product'
+title: "Problem 374: Maximum Integer Partition Product"
 challengeType: 5
 forumTopicId: 302036
 dashedName: problem-374-maximum-integer-partition-product
@@ -38,7 +38,6 @@ assert.strictEqual(euler374(), 334420941);
 
 ```js
 function euler374() {
-
   return true;
 }
 

@@ -1,18 +1,17 @@
-import React, {Component} from 'react';
-import Layout from '../components/BaseLayout.js';
-import auth0Client from './../services/Auth';
-import { withRouter } from 'next/router';
+import React, { Component } from "react";
+import Layout from "../components/BaseLayout.js";
+import auth0Client from "./../services/Auth";
+import { withRouter } from "next/router";
 
 class Callback extends Component {
-
   async componentDidMount() {
     await auth0Client.handleAuthentication();
-    this.props.router.push('/');
+    this.props.router.push("/");
   }
 
   render() {
     return (
-      <Layout headerType={'none'}>
+      <Layout headerType={"none"}>
         <p>Loading profile...</p>
       </Layout>
     );

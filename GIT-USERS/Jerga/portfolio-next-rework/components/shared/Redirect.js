@@ -1,8 +1,7 @@
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-
-const Redirect = ({to, ssr}) => {
+const Redirect = ({ to, ssr }) => {
   const router = useRouter();
 
   useEffect(() => {
@@ -11,9 +10,9 @@ const Redirect = ({to, ssr}) => {
     } else {
       router.push(to);
     }
-  }, [])
+  }, []);
 
   return null;
-}
+};
 
 export default Redirect;

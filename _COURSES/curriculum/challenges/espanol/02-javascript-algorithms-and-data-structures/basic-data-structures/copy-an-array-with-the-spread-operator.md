@@ -8,7 +8,7 @@ dashedName: copy-an-array-with-the-spread-operator
 
 # --description--
 
-Mientras que `slice()` nos permite ser selectivos sobre qué elementos de un arreglo copiar, entre otras tareas útiles, el nuevo <dfn>operador de propagación</dfn> de ES6 nos permite copiar fácilmente *todos* los elementos de una arreglo, en orden, con una sintaxis simple y altamente legible. La sintaxis de propagación simplemente se ve así: `...`
+Mientras que `slice()` nos permite ser selectivos sobre qué elementos de un arreglo copiar, entre otras tareas útiles, el nuevo <dfn>operador de propagación</dfn> de ES6 nos permite copiar fácilmente _todos_ los elementos de una arreglo, en orden, con una sintaxis simple y altamente legible. La sintaxis de propagación simplemente se ve así: `...`
 
 En la práctica, podemos utilizar el operador de propagación para copiar un arreglo de esta manera:
 
@@ -30,7 +30,7 @@ Hemos definido una función, `copyMachine` que toma `arr` (un arreglo) y `num` (
 ```js
 assert.deepEqual(copyMachine([true, false, true], 2), [
   [true, false, true],
-  [true, false, true]
+  [true, false, true],
 ]);
 ```
 
@@ -42,7 +42,7 @@ assert.deepEqual(copyMachine([1, 2, 3], 5), [
   [1, 2, 3],
   [1, 2, 3],
   [1, 2, 3],
-  [1, 2, 3]
+  [1, 2, 3],
 ]);
 ```
 
@@ -55,10 +55,10 @@ assert.deepEqual(copyMachine([true, true, null], 1), [[true, true, null]]);
 `copyMachine(["it works"], 3)` debe devolver `[["it works"], ["it works"], ["it works"]]`
 
 ```js
-assert.deepEqual(copyMachine(['it works'], 3), [
-  ['it works'],
-  ['it works'],
-  ['it works']
+assert.deepEqual(copyMachine(["it works"], 3), [
+  ["it works"],
+  ["it works"],
+  ["it works"],
 ]);
 ```
 
@@ -90,13 +90,13 @@ console.log(copyMachine([true, false, true], 2));
 # --solutions--
 
 ```js
-function copyMachine(arr,num){
-    let newArr=[];
-    while(num >=1){
+function copyMachine(arr, num) {
+  let newArr = [];
+  while (num >= 1) {
     newArr.push([...arr]);
     num--;
-    }
-    return newArr;
+  }
+  return newArr;
 }
 console.log(copyMachine([true, false, true], 2));
 ```

@@ -16,13 +16,12 @@
  * @fileoverview UI component for the callback page.
  */
 
-goog.provide('firebaseui.auth.ui.page.Callback');
+goog.provide("firebaseui.auth.ui.page.Callback");
 
-goog.require('firebaseui.auth.soy2.page');
-goog.require('firebaseui.auth.ui.page.Base');
-goog.requireType('goog.Promise');
-goog.requireType('goog.dom.DomHelper');
-
+goog.require("firebaseui.auth.soy2.page");
+goog.require("firebaseui.auth.ui.page.Base");
+goog.requireType("goog.Promise");
+goog.requireType("goog.dom.DomHelper");
 
 /**
  * Callback page UI componenet.
@@ -33,8 +32,11 @@ firebaseui.auth.ui.page.Callback = class extends firebaseui.auth.ui.page.Base {
    */
   constructor(opt_domHelper) {
     super(
-        firebaseui.auth.soy2.page.callback, undefined, opt_domHelper,
-        'callback');
+      firebaseui.auth.soy2.page.callback,
+      undefined,
+      opt_domHelper,
+      "callback"
+    );
   }
 
   /**

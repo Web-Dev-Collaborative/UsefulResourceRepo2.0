@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08805
 title: 使用元素选择器来设置元素的样式
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cJKMBT2'
+videoUrl: "https://scrimba.com/c/cJKMBT2"
 forumTopicId: 18349
 dashedName: use-css-selectors-to-style-elements
 ---
@@ -18,8 +18,7 @@ dashedName: use-css-selectors-to-style-elements
 在代码的顶部，创建一个 `style` 声明区域，如下方所示：
 
 ```html
-<style>
-</style>
+<style></style>
 ```
 
 在样式声明区域内，可以为所有 `h2` 元素创建一个 <dfn>CSS selector</dfn>。 如果想让所有 `h2` 元素在变成红色，可以添加下方的样式规则：
@@ -43,19 +42,19 @@ dashedName: use-css-selectors-to-style-elements
 应删除 `h2` 元素的 `style` 样式。
 
 ```js
-assert(!$('h2').attr('style'));
+assert(!$("h2").attr("style"));
 ```
 
 应创建一个 `style` 样式声明区域。
 
 ```js
-assert($('style') && $('style').length >= 1);
+assert($("style") && $("style").length >= 1);
 ```
 
 `h2` 元素颜色应为蓝色。
 
 ```js
-assert($('h2').css('color') === 'rgb(0, 0, 255)');
+assert($("h2").css("color") === "rgb(0, 0, 255)");
 ```
 
 确保 `h2` 选择器的内容被花括号所包围，样式规则应以分号结束。
@@ -87,7 +86,11 @@ assert(
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -105,12 +108,12 @@ assert(
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>
@@ -128,7 +131,11 @@ assert(
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <div>
     <p>Things cats love:</p>
@@ -146,12 +153,12 @@ assert(
   </div>
 
   <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input type="radio" name="indoor-outdoor" checked> Indoor</label>
-    <label><input type="radio" name="indoor-outdoor"> Outdoor</label><br>
-    <label><input type="checkbox" name="personality" checked> Loving</label>
-    <label><input type="checkbox" name="personality"> Lazy</label>
-    <label><input type="checkbox" name="personality"> Energetic</label><br>
-    <input type="text" placeholder="cat photo URL" required>
+    <label><input type="radio" name="indoor-outdoor" checked /> Indoor</label>
+    <label><input type="radio" name="indoor-outdoor" /> Outdoor</label><br />
+    <label><input type="checkbox" name="personality" checked /> Loving</label>
+    <label><input type="checkbox" name="personality" /> Lazy</label>
+    <label><input type="checkbox" name="personality" /> Energetic</label><br />
+    <input type="text" placeholder="cat photo URL" required />
     <button type="submit">Submit</button>
   </form>
 </main>

@@ -33,19 +33,19 @@ Crea un constructor, `Dog`, con las propiedades `name`, `color` y `numLegs` que 
 `Dog` debe tener una propiedad `name` establecida a una cadena.
 
 ```js
-assert(typeof new Dog().name === 'string');
+assert(typeof new Dog().name === "string");
 ```
 
 `Dog` debe tener una propiedad `color` establecida a una cadena.
 
 ```js
-assert(typeof new Dog().color === 'string');
+assert(typeof new Dog().color === "string");
 ```
 
 `Dog` debe tener una propiedad `numLegs` establecida a un número.
 
 ```js
-assert(typeof new Dog().numLegs === 'number');
+assert(typeof new Dog().numLegs === "number");
 ```
 
 # --seed--
@@ -59,9 +59,9 @@ assert(typeof new Dog().numLegs === 'number');
 # --solutions--
 
 ```js
-function Dog (name, color, numLegs) {
-  this.name = 'name';
-  this.color = 'color';
+function Dog(name, color, numLegs) {
+  this.name = "name";
+  this.color = "color";
   this.numLegs = 4;
 }
 ```

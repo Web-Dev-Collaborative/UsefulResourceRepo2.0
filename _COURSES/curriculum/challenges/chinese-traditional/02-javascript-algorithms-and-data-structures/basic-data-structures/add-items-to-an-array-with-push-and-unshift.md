@@ -13,10 +13,10 @@ dashedName: add-items-to-an-array-with-push-and-unshift
 這兩個方法都接收一個或多個元素作爲參數，並會將參數中的元素添加到該數組中。 `push()` 方法會將元素插入到數組的末尾，而 `unshift()` 方法會將元素插入到數組的開頭。 請看以下例子：
 
 ```js
-let twentyThree = 'XXIII';
-let romanNumerals = ['XXI', 'XXII'];
+let twentyThree = "XXIII";
+let romanNumerals = ["XXI", "XXII"];
 
-romanNumerals.unshift('XIX', 'XX');
+romanNumerals.unshift("XIX", "XX");
 ```
 
 `romanNumerals` 的值就變成了 `['XIX', 'XX', 'XXI', 'XXII']`。
@@ -36,16 +36,16 @@ romanNumerals.push(twentyThree);
 `mixedNumbers(["IV", 5, "six"])` 應返回 `["I", 2, "three", "IV", 5, "six", 7, "VIII", 9]`。
 
 ```js
-assert.deepEqual(mixedNumbers(['IV', 5, 'six']), [
-  'I',
+assert.deepEqual(mixedNumbers(["IV", 5, "six"]), [
+  "I",
   2,
-  'three',
-  'IV',
+  "three",
+  "IV",
   5,
-  'six',
+  "six",
   7,
-  'VIII',
-  9
+  "VIII",
+  9,
 ]);
 ```
 
@@ -73,15 +73,15 @@ function mixedNumbers(arr) {
   return arr;
 }
 
-console.log(mixedNumbers(['IV', 5, 'six']));
+console.log(mixedNumbers(["IV", 5, "six"]));
 ```
 
 # --solutions--
 
 ```js
 function mixedNumbers(arr) {
-  arr.push(7,'VIII',9);
-  arr.unshift('I',2,'three');
+  arr.push(7, "VIII", 9);
+  arr.unshift("I", 2, "three");
   return arr;
 }
 ```

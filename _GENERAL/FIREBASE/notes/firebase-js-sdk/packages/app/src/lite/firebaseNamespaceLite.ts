@@ -32,7 +32,8 @@ export function createFirebaseNamespaceLite(): FirebaseNamespace {
 
   const registerComponent = (namespace as _FirebaseNamespace).INTERNAL
     .registerComponent;
-  (namespace as _FirebaseNamespace).INTERNAL.registerComponent = registerComponentForLite;
+  (namespace as _FirebaseNamespace).INTERNAL.registerComponent =
+    registerComponentForLite;
 
   /**
    * This is a special implementation, so it only works with performance.

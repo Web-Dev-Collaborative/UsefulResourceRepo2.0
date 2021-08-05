@@ -2,14 +2,14 @@
 id: bad87fee1348bd9aedf08816
 title: Enlaza hacia páginas externas con los elementos anchor
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/c8EkncB'
+videoUrl: "https://scrimba.com/p/pVMPUv/c8EkncB"
 forumTopicId: 18226
 dashedName: link-to-external-pages-with-anchor-elements
 ---
 
 # --description--
 
-Puedes usar los elementos `a` (*anchor*) para enlazar a contenido fuera de tu página web.
+Puedes usar los elementos `a` (_anchor_) para enlazar a contenido fuera de tu página web.
 
 Los elementos `a` requieren un atributo `href` con la dirección web de destino. También necesitan un texto anchor. Por ejemplo:
 
@@ -28,13 +28,15 @@ Crea un elemento `a` que enlaza a `https://www.freecatphotoapp.com` y tiene "cat
 Tu elemento `a` debe contener el texto anchor: `cat photos`.
 
 ```js
-assert(/cat photos/gi.test($('a').text()));
+assert(/cat photos/gi.test($("a").text()));
 ```
 
 Necesitas un elemento `a` que enlace a `https://www.freecatphotoapp.com`
 
 ```js
-assert(/^https?:\/\/(www\.)?freecatphotoapp\.com\/?$/i.test($('a').attr('href')));
+assert(
+  /^https?:\/\/(www\.)?freecatphotoapp\.com\/?$/i.test($("a").attr("href"))
+);
 ```
 
 Tu elemento `a` debe tener una etiqueta de cierre.
@@ -53,13 +55,20 @@ assert(
 ```html
 <h2>CatPhotoApp</h2>
 <main>
+  <img
+    src="https://www.bit.ly/fcc-relaxing-cat"
+    alt="A cute orange cat lying on its back."
+  />
 
-
-
-  <img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back.">
-
-  <p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p>
-  <p>Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere rip the couch sleep in the sink fluffy fur catnip scratched.</p>
+  <p>
+    Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching
+    attack your ankles chase the red dot, hairball run catnip eat the grass
+    sniff.
+  </p>
+  <p>
+    Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere
+    rip the couch sleep in the sink fluffy fur catnip scratched.
+  </p>
 </main>
 ```
 
@@ -68,11 +77,20 @@ assert(
 ```html
 <h2>CatPhotoApp</h2>
 <main>
-
-  <img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back.">
+  <img
+    src="https://www.bit.ly/fcc-relaxing-cat"
+    alt="A cute orange cat lying on its back."
+  />
 
   <a href="https://www.freecatphotoapp.com">cat photos</a>
-  <p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p>
-  <p>Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere rip the couch sleep in the sink fluffy fur catnip scratched.</p>
+  <p>
+    Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching
+    attack your ankles chase the red dot, hairball run catnip eat the grass
+    sniff.
+  </p>
+  <p>
+    Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere
+    rip the couch sleep in the sink fluffy fur catnip scratched.
+  </p>
 </main>
 ```

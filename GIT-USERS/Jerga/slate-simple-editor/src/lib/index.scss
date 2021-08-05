@@ -1,9 +1,8 @@
-
 .slate-container {
   html,
   input,
   textarea {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     line-height: 1.4;
     background: #eee;
   }
@@ -64,7 +63,7 @@
     font-style: italic;
   }
 
-  blockquote[dir='rtl'] {
+  blockquote[dir="rtl"] {
     border-left: none;
     padding-left: 0;
     padding-right: 10px;

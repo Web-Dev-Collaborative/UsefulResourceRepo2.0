@@ -13,10 +13,10 @@ La longitud de un arreglo, así como los tipos de datos que puede contener, no e
 Ambos métodos toman uno o más elementos como parámetros y los agregan al arreglo que hizo la llamada; el método `push()` agrega los elementos al final del arreglo, mientras que `unshift()` los agrega al inicio. Considera lo siguiente:
 
 ```js
-let twentyThree = 'XXIII';
-let romanNumerals = ['XXI', 'XXII'];
+let twentyThree = "XXIII";
+let romanNumerals = ["XXI", "XXII"];
 
-romanNumerals.unshift('XIX', 'XX');
+romanNumerals.unshift("XIX", "XX");
 ```
 
 `romanNumerals` tendrá el valor `['XIX', 'XX', 'XXI', 'XXII']`.
@@ -36,16 +36,16 @@ Hemos definido una función, `mixedNumbers`, a la cual le estamos pasando un arr
 `mixedNumbers(["IV", 5, "six"])` ahora debe devolver `["I", 2, "three", "IV", 5, "six", 7, "VIII", 9]`
 
 ```js
-assert.deepEqual(mixedNumbers(['IV', 5, 'six']), [
-  'I',
+assert.deepEqual(mixedNumbers(["IV", 5, "six"]), [
+  "I",
   2,
-  'three',
-  'IV',
+  "three",
+  "IV",
   5,
-  'six',
+  "six",
   7,
-  'VIII',
-  9
+  "VIII",
+  9,
 ]);
 ```
 
@@ -73,15 +73,15 @@ function mixedNumbers(arr) {
   return arr;
 }
 
-console.log(mixedNumbers(['IV', 5, 'six']));
+console.log(mixedNumbers(["IV", 5, "six"]));
 ```
 
 # --solutions--
 
 ```js
 function mixedNumbers(arr) {
-  arr.push(7,'VIII',9);
-  arr.unshift('I',2,'three');
+  arr.push(7, "VIII", 9);
+  arr.unshift("I", 2, "three");
   return arr;
 }
 ```

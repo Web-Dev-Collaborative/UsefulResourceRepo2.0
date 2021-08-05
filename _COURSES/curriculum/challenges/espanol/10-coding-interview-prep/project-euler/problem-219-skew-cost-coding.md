@@ -1,6 +1,6 @@
 ---
 id: 5900f4481000cf542c50ff5a
-title: 'Problem 219: Skew-cost coding'
+title: "Problem 219: Skew-cost coding"
 challengeType: 5
 forumTopicId: 301861
 dashedName: problem-219-skew-cost-coding
@@ -36,7 +36,6 @@ assert.strictEqual(euler219(), 64564225042);
 
 ```js
 function euler219() {
-
   return true;
 }
 

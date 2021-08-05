@@ -33,37 +33,37 @@ assert(numRegex.global);
 Tu expresión regular debe encontrar 1 dígito en la cadena `9`.
 
 ```js
-assert('9'.match(numRegex).length == 1);
+assert("9".match(numRegex).length == 1);
 ```
 
 Tu expresión regular debe encontrar 2 dígitos en la cadena `Catch 22`.
 
 ```js
-assert('Catch 22'.match(numRegex).length == 2);
+assert("Catch 22".match(numRegex).length == 2);
 ```
 
 Tu expresión regular debe encontrar 3 dígitos en la cadena `101 Dalmatians`.
 
 ```js
-assert('101 Dalmatians'.match(numRegex).length == 3);
+assert("101 Dalmatians".match(numRegex).length == 3);
 ```
 
 Tu expresión regular no debe encontrar dígitos en la cadena `One, Two, Three`.
 
 ```js
-assert('One, Two, Three'.match(numRegex) == null);
+assert("One, Two, Three".match(numRegex) == null);
 ```
 
 Tu expresión regular debe encontrar 2 dígitos en la cadena `21 Jump Street`.
 
 ```js
-assert('21 Jump Street'.match(numRegex).length == 2);
+assert("21 Jump Street".match(numRegex).length == 2);
 ```
 
 Tu expresión regular debe encontrar 4 dígitos en la cadena `2001: A Space Odyssey`.
 
 ```js
-assert('2001: A Space Odyssey'.match(numRegex).length == 4);
+assert("2001: A Space Odyssey".match(numRegex).length == 4);
 ```
 
 # --seed--

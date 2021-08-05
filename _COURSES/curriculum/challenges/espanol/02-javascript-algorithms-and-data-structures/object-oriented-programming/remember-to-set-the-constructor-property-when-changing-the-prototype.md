@@ -24,12 +24,12 @@ Para solucionar esto, cada vez que un prototipo se establece de forma manual a u
 Bird.prototype = {
   constructor: Bird,
   numLegs: 2,
-  eat: function() {
+  eat: function () {
     console.log("nom nom nom");
   },
-  describe: function() {
-    console.log("My name is " + this.name); 
-  }
+  describe: function () {
+    console.log("My name is " + this.name);
+  },
 };
 ```
 
@@ -56,14 +56,13 @@ function Dog(name) {
 
 // Only change code below this line
 Dog.prototype = {
-
   numLegs: 4,
-  eat: function() {
+  eat: function () {
     console.log("nom nom nom");
   },
-  describe: function() {
+  describe: function () {
     console.log("My name is " + this.name);
-  }
+  },
 };
 ```
 
@@ -76,11 +75,11 @@ function Dog(name) {
 Dog.prototype = {
   constructor: Dog,
   numLegs: 4,
-  eat: function() {
+  eat: function () {
     console.log("nom nom nom");
   },
-  describe: function() {
+  describe: function () {
     console.log("My name is " + this.name);
-  }
+  },
 };
 ```

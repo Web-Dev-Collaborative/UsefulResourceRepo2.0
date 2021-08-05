@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244b5
 title: 轉義字符串中的引號
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c2QvgSr'
+videoUrl: "https://scrimba.com/c/c2QvgSr"
 forumTopicId: 17568
 dashedName: escaping-literal-quotes-in-strings
 ---
@@ -14,7 +14,7 @@ dashedName: escaping-literal-quotes-in-strings
 在 JavaScript 中，可以通過在引號前面使用<dfn>反斜槓</dfn>（`\`）來<dfn>轉義</dfn>引號。
 
 ```js
-var sampleStr = "Alan said, \"Peter is learning JavaScript\".";
+var sampleStr = 'Alan said, "Peter is learning JavaScript".';
 ```
 
 有了轉義符號，JavaScript 就知道這個單引號或雙引號並不是字符串的結尾，而是字符串內的字符。 所以，上面的字符串打印到控制檯的結果爲：
@@ -42,7 +42,9 @@ assert(code.match(/\\"/g).length === 4 && code.match(/[^\\]"/g).length === 2);
 變量 myStr 應該包含字符串 `I am a "double quoted" string inside "double quotes".`
 
 ```js
-assert(/I am a "double quoted" string inside "double quotes(\."|"\.)$/.test(myStr));
+assert(
+  /I am a "double quoted" string inside "double quotes(\."|"\.)$/.test(myStr)
+);
 ```
 
 # --seed--
@@ -50,9 +52,9 @@ assert(/I am a "double quoted" string inside "double quotes(\."|"\.)$/.test(mySt
 ## --after-user-code--
 
 ```js
-(function(){
-  if(typeof myStr === 'string') {
-    console.log("myStr = \"" + myStr + "\"");
+(function () {
+  if (typeof myStr === "string") {
+    console.log('myStr = "' + myStr + '"');
   } else {
     console.log("myStr is undefined");
   }
@@ -68,5 +70,5 @@ var myStr = ""; // Change this line
 # --solutions--
 
 ```js
-var myStr = "I am a \"double quoted\" string inside \"double quotes\".";
+var myStr = 'I am a "double quoted" string inside "double quotes".';
 ```

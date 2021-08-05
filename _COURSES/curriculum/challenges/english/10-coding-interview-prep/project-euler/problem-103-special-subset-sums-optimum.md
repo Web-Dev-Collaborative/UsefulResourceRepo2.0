@@ -1,6 +1,6 @@
 ---
 id: 5900f3d61000cf542c50fee7
-title: 'Problem 103: Special subset sums: optimum'
+title: "Problem 103: Special subset sums: optimum"
 challengeType: 5
 forumTopicId: 301727
 dashedName: problem-103-special-subset-sums-optimum
@@ -15,13 +15,15 @@ Let $S(A)$ represent the sum of elements in set A of size n. We shall call it a 
 
 If $S(A)$ is minimised for a given n, we shall call it an optimum special sum set. The first five optimum special sum sets are given below.
 
-$$\begin{align}
+$$
+\begin{align}
   & n = 1: \\{1\\} \\\\
   & n = 2: \\{1, 2\\} \\\\
   & n = 3: \\{2, 3, 4\\} \\\\
   & n = 4: \\{3, 5, 6, 7\\} \\\\
   & n = 5: \\{6, 9, 11, 12, 13\\} \\\\
-\end{align}$$
+\end{align}
+$$
 
 It seems that for a given optimum set, $A = \\{a_1, a_2, \ldots, a_n\\}$, the next optimum set is of the form $B = \\{b, a_1 + b, a_2 + b, \ldots, a_n + b\\}$, where b is the "middle" element on the previous row.
 
@@ -36,7 +38,7 @@ Given that A is an optimum special sum set for $n = 7$, find its set string.
 `optimumSpecialSumSet()` should return the string `20313839404245`.
 
 ```js
-assert.strictEqual(optimumSpecialSumSet(), '20313839404245');
+assert.strictEqual(optimumSpecialSumSet(), "20313839404245");
 ```
 
 # --seed--
@@ -45,7 +47,6 @@ assert.strictEqual(optimumSpecialSumSet(), '20313839404245');
 
 ```js
 function optimumSpecialSumSet() {
-
   return true;
 }
 

@@ -1,6 +1,6 @@
 ---
 id: 5900f41e1000cf542c50ff31
-title: 'Problem 178: Step Numbers'
+title: "Problem 178: Step Numbers"
 challengeType: 5
 forumTopicId: 301813
 dashedName: problem-178-step-numbers
@@ -32,7 +32,6 @@ assert.strictEqual(euler178(), 126461847755);
 
 ```js
 function euler178() {
-
   return true;
 }
 

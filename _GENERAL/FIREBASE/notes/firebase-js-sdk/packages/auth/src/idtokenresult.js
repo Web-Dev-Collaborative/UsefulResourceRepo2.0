@@ -30,8 +30,6 @@ goog.require('fireauth.authenum.Error');
 goog.require('fireauth.object');
 goog.require('fireauth.util');
 
-
-
 /**
  * This is the ID token result object obtained from getIdTokenResult. It
  * contains the ID token JWT string and other helper properties for getting
@@ -40,28 +38,34 @@ goog.require('fireauth.util');
  * @param {string} tokenString The JWT token.
  * @constructor
  */
-fireauth.IdTokenResult = function(tokenString) {
+fireauth.IdTokenResult = function (tokenString) {
   var idToken = fireauth.IdToken.parseIdTokenClaims(tokenString);
   if (!idToken || !idToken['exp'] || !idToken['auth_time'] || !idToken['iat']) {
     throw new fireauth.AuthError(
-        fireauth.authenum.Error.INTERNAL_ERROR,
-        'An internal error occurred. The token obtained by Firebase appears ' +
-        'to be malformed. Please retry the operation.');
+      fireauth.authenum.Error.INTERNAL_ERROR,
+      'An internal error occurred. The token obtained by Firebase appears ' +
+        'to be malformed. Please retry the operation.'
+    );
   }
   fireauth.object.setReadonlyProperties(this, {
     'token': tokenString,
     'expirationTime': fireauth.util.utcTimestampToDateString(
-        idToken['exp'] * 1000),
+      idToken['exp'] * 1000
+    ),
     'authTime': fireauth.util.utcTimestampToDateString(
-        idToken['auth_time'] * 1000),
+      idToken['auth_time'] * 1000
+    ),
     'issuedAtTime': fireauth.util.utcTimestampToDateString(
-        idToken['iat'] * 1000),
-    'signInProvider': (idToken['firebase'] &&
-                       idToken['firebase']['sign_in_provider']) ?
-                      idToken['firebase']['sign_in_provider'] : null,
-    'signInSecondFactor': (idToken['firebase'] &&
-                           idToken['firebase']['sign_in_second_factor']) ?
-                          idToken['firebase']['sign_in_second_factor'] : null,
+      idToken['iat'] * 1000
+    ),
+    'signInProvider':
+      idToken['firebase'] && idToken['firebase']['sign_in_provider']
+        ? idToken['firebase']['sign_in_provider']
+        : null,
+    'signInSecondFactor':
+      idToken['firebase'] && idToken['firebase']['sign_in_second_factor']
+        ? idToken['firebase']['sign_in_second_factor']
+        : null,
     'claims': idToken
   });
 };

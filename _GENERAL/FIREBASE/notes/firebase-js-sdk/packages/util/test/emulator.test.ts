@@ -50,7 +50,7 @@ describe('createMockUserToken()', () => {
     const options = { uid: 'alice' };
 
     expect(() =>
-      createMockUserToken((options as unknown) as EmulatorMockTokenOptions)
+      createMockUserToken(options as unknown as EmulatorMockTokenOptions)
     ).to.throw(
       'The "uid" field is no longer supported by mockUserToken. Please use "sub" instead for Firebase Auth User ID.'
     );

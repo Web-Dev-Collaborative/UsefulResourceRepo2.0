@@ -19,7 +19,7 @@ dashedName: sum-all-odd-fibonacci-numbers
 `sumFibs(1)` 應返回一個數字。
 
 ```js
-assert(typeof sumFibs(1) === 'number');
+assert(typeof sumFibs(1) === "number");
 ```
 
 `sumFibs(1000)` 應返回 1785。
@@ -75,7 +75,7 @@ function sumFibs(num) {
     if (a % 2 !== 0) {
       s += a;
     }
-    a = [b, b=b+a][0];
+    a = [b, (b = b + a)][0];
   }
   return s;
 }

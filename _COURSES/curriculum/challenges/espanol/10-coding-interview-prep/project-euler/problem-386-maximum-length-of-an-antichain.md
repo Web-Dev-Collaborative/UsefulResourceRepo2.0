@@ -1,6 +1,6 @@
 ---
 id: 5900f4ef1000cf542c510001
-title: 'Problem 386: Maximum length of an antichain'
+title: "Problem 386: Maximum length of an antichain"
 challengeType: 5
 forumTopicId: 302050
 dashedName: problem-386-maximum-length-of-an-antichain
@@ -32,7 +32,6 @@ assert.strictEqual(euler386(), 528755790);
 
 ```js
 function euler386() {
-
   return true;
 }
 

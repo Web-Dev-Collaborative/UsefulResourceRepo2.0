@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08736
 title: 给 HTML 的 body 元素添加样式
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cB77PHW'
+videoUrl: "https://scrimba.com/c/cB77PHW"
 forumTopicId: 18313
 dashedName: style-the-html-body-element
 ---
@@ -30,7 +30,7 @@ body {
 `body` 元素的 `background-color` 应为黑色。
 
 ```js
-assert($('body').css('background-color') === 'rgb(0, 0, 0)');
+assert($("body").css("background-color") === "rgb(0, 0, 0)");
 ```
 
 确保 CSS 规则格式书写正确，左右大括号也应匹配。
@@ -54,17 +54,15 @@ assert(
 ## --seed-contents--
 
 ```html
-<style>
-
-</style>
+<style></style>
 ```
 
 # --solutions--
 
 ```html
 <style>
-body {
-  background-color: black;
-}
+  body {
+    background-color: black;
+  }
 </style>
 ```

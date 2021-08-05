@@ -24,24 +24,25 @@ goog.require('fireauth.util');
 goog.require('goog.Promise');
 goog.require('goog.events');
 
-
-
 /**
  * LocalStorage provides an interface to localStorage, the persistent Web
  * Storage API.
  * @constructor
  * @implements {fireauth.storage.Storage}
  */
-fireauth.storage.LocalStorage = function() {
+fireauth.storage.LocalStorage = function () {
   // Check is localStorage available in the current environment.
   if (!fireauth.storage.LocalStorage.isAvailable()) {
     // In a Node.js environment, dom-storage module needs to be required.
     if (fireauth.util.getEnvironment() == fireauth.util.Env.NODE) {
-      throw new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR,
-          'The LocalStorage compatibility library was not found.');
+      throw new fireauth.AuthError(
+        fireauth.authenum.Error.INTERNAL_ERROR,
+        'The LocalStorage compatibility library was not found.'
+      );
     }
     throw new fireauth.AuthError(
-        fireauth.authenum.Error.WEB_STORAGE_UNSUPPORTED);
+      fireauth.authenum.Error.WEB_STORAGE_UNSUPPORTED
+    );
   }
 
   /**
@@ -49,15 +50,15 @@ fireauth.storage.LocalStorage = function() {
    * @private {!Storage}
    */
   this.storage_ = /** @type {!Storage} */ (
-      fireauth.storage.LocalStorage.getGlobalStorage() ||
-      firebase.INTERNAL['node']['localStorage']);
+    fireauth.storage.LocalStorage.getGlobalStorage() ||
+      firebase.INTERNAL['node']['localStorage']
+  );
   /** @public {string} The storage type identifier. */
   this.type = fireauth.storage.Storage.Type.LOCAL_STORAGE;
 };
 
-
 /** @return {?Storage|undefined} The global localStorage instance. */
-fireauth.storage.LocalStorage.getGlobalStorage = function() {
+fireauth.storage.LocalStorage.getGlobalStorage = function () {
   try {
     var storage = goog.global['localStorage'];
     // Try editing web storage. If an error is thrown, it may be disabled.
@@ -74,7 +75,6 @@ fireauth.storage.LocalStorage.getGlobalStorage = function() {
   }
 };
 
-
 /**
  * The key used to check if the storage instance is available.
  * @private {string}
@@ -82,17 +82,17 @@ fireauth.storage.LocalStorage.getGlobalStorage = function() {
  */
 fireauth.storage.LocalStorage.STORAGE_AVAILABLE_KEY_ = '__sak';
 
-
 /** @return {boolean} Whether localStorage is available. */
-fireauth.storage.LocalStorage.isAvailable = function() {
+fireauth.storage.LocalStorage.isAvailable = function () {
   // In Node.js localStorage is polyfilled.
   var isNode = fireauth.util.getEnvironment() == fireauth.util.Env.NODE;
   // Either window should provide this storage mechanism or in case of Node.js,
   // firebase.INTERNAL should provide it.
-  var storage = fireauth.storage.LocalStorage.getGlobalStorage() ||
-      (isNode &&
-       firebase.INTERNAL['node'] &&
-       firebase.INTERNAL['node']['localStorage']);
+  var storage =
+    fireauth.storage.LocalStorage.getGlobalStorage() ||
+    (isNode &&
+      firebase.INTERNAL['node'] &&
+      firebase.INTERNAL['node']['localStorage']);
   if (!storage) {
     return false;
   }
@@ -107,22 +107,19 @@ fireauth.storage.LocalStorage.isAvailable = function() {
   }
 };
 
-
 /**
  * Retrieves the value stored at the key.
  * @param {string} key
  * @return {!goog.Promise<*>}
  * @override
  */
-fireauth.storage.LocalStorage.prototype.get = function(key) {
+fireauth.storage.LocalStorage.prototype.get = function (key) {
   var self = this;
-  return goog.Promise.resolve()
-      .then(function() {
-        var json = self.storage_.getItem(key);
-        return fireauth.util.parseJSON(json);
-      });
+  return goog.Promise.resolve().then(function () {
+    var json = self.storage_.getItem(key);
+    return fireauth.util.parseJSON(json);
+  });
 };
-
 
 /**
  * Stores the value at the specified key.
@@ -131,19 +128,17 @@ fireauth.storage.LocalStorage.prototype.get = function(key) {
  * @return {!goog.Promise<void>}
  * @override
  */
-fireauth.storage.LocalStorage.prototype.set = function(key, value) {
+fireauth.storage.LocalStorage.prototype.set = function (key, value) {
   var self = this;
-  return goog.Promise.resolve()
-      .then(function() {
-        var obj = fireauth.util.stringifyJSON(value);
-        if (obj === null) {
-          self.remove(key);
-        } else {
-          self.storage_.setItem(key, obj);
-        }
-      });
+  return goog.Promise.resolve().then(function () {
+    var obj = fireauth.util.stringifyJSON(value);
+    if (obj === null) {
+      self.remove(key);
+    } else {
+      self.storage_.setItem(key, obj);
+    }
+  });
 };
-
 
 /**
  * Removes the value at the specified key.
@@ -151,14 +146,12 @@ fireauth.storage.LocalStorage.prototype.set = function(key, value) {
  * @return {!goog.Promise<void>}
  * @override
  */
-fireauth.storage.LocalStorage.prototype.remove = function(key) {
+fireauth.storage.LocalStorage.prototype.remove = function (key) {
   var self = this;
-  return goog.Promise.resolve()
-      .then(function() {
-        self.storage_.removeItem(key);
-      });
+  return goog.Promise.resolve().then(function () {
+    self.storage_.removeItem(key);
+  });
 };
-
 
 /**
  * Adds a listener to storage event change.
@@ -166,13 +159,13 @@ fireauth.storage.LocalStorage.prototype.remove = function(key) {
  *     listener.
  * @override
  */
-fireauth.storage.LocalStorage.prototype.addStorageListener = function(
-    listener) {
+fireauth.storage.LocalStorage.prototype.addStorageListener = function (
+  listener
+) {
   if (goog.global['window']) {
     goog.events.listen(goog.global['window'], 'storage', listener);
   }
 };
-
 
 /**
  * Removes a listener to storage event change.
@@ -180,8 +173,9 @@ fireauth.storage.LocalStorage.prototype.addStorageListener = function(
  *     listener.
  * @override
  */
-fireauth.storage.LocalStorage.prototype.removeStorageListener = function(
-    listener) {
+fireauth.storage.LocalStorage.prototype.removeStorageListener = function (
+  listener
+) {
   if (goog.global['window']) {
     goog.events.unlisten(goog.global['window'], 'storage', listener);
   }

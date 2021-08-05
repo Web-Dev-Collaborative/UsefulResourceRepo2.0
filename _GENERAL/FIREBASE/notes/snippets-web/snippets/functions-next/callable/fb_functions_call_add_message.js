@@ -7,12 +7,11 @@
 import { getFunctions, httpsCallable } from "firebase/functions";
 
 const functions = getFunctions();
-const addMessage = httpsCallable(functions, 'addMessage');
-addMessage({ text: messageText })
-  .then((result) => {
-    // Read result of the Cloud Function.
-    /** @type {any} */
-    const data = result.data;
-    const sanitizedMessage = data.text;
-  });
+const addMessage = httpsCallable(functions, "addMessage");
+addMessage({ text: messageText }).then((result) => {
+  // Read result of the Cloud Function.
+  /** @type {any} */
+  const data = result.data;
+  const sanitizedMessage = data.text;
+});
 // [END fb_functions_call_add_message_modular]

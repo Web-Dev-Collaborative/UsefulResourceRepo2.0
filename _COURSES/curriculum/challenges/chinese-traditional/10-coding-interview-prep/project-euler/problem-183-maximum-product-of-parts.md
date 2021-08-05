@@ -1,6 +1,6 @@
 ---
 id: 5900f4231000cf542c50ff36
-title: 'Problem 183: Maximum product of parts'
+title: "Problem 183: Maximum product of parts"
 challengeType: 5
 forumTopicId: 301819
 dashedName: problem-183-maximum-product-of-parts
@@ -40,7 +40,6 @@ assert.strictEqual(euler183(), 48861552);
 
 ```js
 function euler183() {
-
   return true;
 }
 

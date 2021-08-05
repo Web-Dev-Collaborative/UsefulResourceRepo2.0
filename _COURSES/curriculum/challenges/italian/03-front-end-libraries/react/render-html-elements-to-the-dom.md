@@ -23,27 +23,27 @@ L'editor di codice contiene un semplice componente JSX. Usa il metodo `ReactDOM.
 La costante `JSX` dovrebbe restituire un elemento `div`.
 
 ```js
-assert(JSX.type === 'div');
+assert(JSX.type === "div");
 ```
 
 Il `div` dovrebbe contenere un tag `h1` come primo elemento.
 
 ```js
-assert(JSX.props.children[0].type === 'h1');
+assert(JSX.props.children[0].type === "h1");
 ```
 
 Il `div` dovrebbe contenere un tag `p` come secondo elemento.
 
 ```js
-assert(JSX.props.children[1].type === 'p');
+assert(JSX.props.children[1].type === "p");
 ```
 
 L'elemento JSX fornito dovrebbe essere presentato nel nodo DOM con id `challenge-node`.
 
 ```js
 assert(
-  document.getElementById('challenge-node').childNodes[0].innerHTML ===
-    '<h1>Hello World</h1><p>Lets render this to the DOM</p>'
+  document.getElementById("challenge-node").childNodes[0].innerHTML ===
+    "<h1>Hello World</h1><p>Lets render this to the DOM</p>"
 );
 ```
 
@@ -65,11 +65,11 @@ const JSX = (
 
 ```jsx
 const JSX = (
-<div>
-  <h1>Hello World</h1>
-  <p>Lets render this to the DOM</p>
-</div>
+  <div>
+    <h1>Hello World</h1>
+    <p>Lets render this to the DOM</p>
+  </div>
 );
 // Change code below this line
-ReactDOM.render(JSX, document.getElementById('challenge-node'));
+ReactDOM.render(JSX, document.getElementById("challenge-node"));
 ```

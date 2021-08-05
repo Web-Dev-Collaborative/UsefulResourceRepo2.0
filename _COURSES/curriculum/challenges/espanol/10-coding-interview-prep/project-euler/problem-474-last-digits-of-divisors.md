@@ -1,6 +1,6 @@
 ---
 id: 5900f5471000cf542c510059
-title: 'Problem 474: Last digits of divisors'
+title: "Problem 474: Last digits of divisors"
 challengeType: 5
 forumTopicId: 302151
 dashedName: problem-474-last-digits-of-divisors
@@ -30,7 +30,6 @@ assert.strictEqual(euler474(), 9690646731515010);
 
 ```js
 function euler474() {
-
   return true;
 }
 

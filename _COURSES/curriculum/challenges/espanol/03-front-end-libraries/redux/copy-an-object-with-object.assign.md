@@ -26,10 +26,10 @@ The Redux store should exist and initialize with a state that is equivalent to t
 assert(
   (function () {
     const expectedState = {
-      user: 'CamperBot',
-      status: 'offline',
-      friends: '732,982',
-      community: 'freeCodeCamp'
+      user: "CamperBot",
+      status: "offline",
+      friends: "732,982",
+      community: "freeCodeCamp",
     };
     const initialState = store.getState();
     return DeepEqual(expectedState, initialState);
@@ -40,7 +40,7 @@ assert(
 `wakeUp` and `immutableReducer` both should be functions.
 
 ```js
-assert(typeof wakeUp === 'function' && typeof immutableReducer === 'function');
+assert(typeof wakeUp === "function" && typeof immutableReducer === "function");
 ```
 
 Dispatching an action of type `ONLINE` should update the property `status` in state to `online` and should NOT mutate state.
@@ -50,13 +50,13 @@ assert(
   (function () {
     const initialState = store.getState();
     const isFrozen = DeepFreeze(initialState);
-    store.dispatch({ type: 'ONLINE' });
+    store.dispatch({ type: "ONLINE" });
     const finalState = store.getState();
     const expectedState = {
-      user: 'CamperBot',
-      status: 'online',
-      friends: '732,982',
-      community: 'freeCodeCamp'
+      user: "CamperBot",
+      status: "online",
+      friends: "732,982",
+      community: "freeCodeCamp",
     };
     return isFrozen && DeepEqual(finalState, expectedState);
   })()
@@ -66,7 +66,7 @@ assert(
 `Object.assign` should be used to return new state.
 
 ```js
-(getUserInput) => assert(getUserInput('index').includes('Object.assign'));
+(getUserInput) => assert(getUserInput("index").includes("Object.assign"));
 ```
 
 # --seed--
@@ -75,17 +75,17 @@ assert(
 
 ```js
 const defaultState = {
-  user: 'CamperBot',
-  status: 'offline',
-  friends: '732,982',
-  community: 'freeCodeCamp'
+  user: "CamperBot",
+  status: "offline",
+  friends: "732,982",
+  community: "freeCodeCamp",
 };
 
 const immutableReducer = (state = defaultState, action) => {
-  switch(action.type) {
-    case 'ONLINE':
+  switch (action.type) {
+    case "ONLINE":
       // Don't mutate state here or the tests will fail
-      return
+      return;
     default:
       return state;
   }
@@ -93,8 +93,8 @@ const immutableReducer = (state = defaultState, action) => {
 
 const wakeUp = () => {
   return {
-    type: 'ONLINE'
-  }
+    type: "ONLINE",
+  };
 };
 
 const store = Redux.createStore(immutableReducer);
@@ -104,17 +104,17 @@ const store = Redux.createStore(immutableReducer);
 
 ```js
 const defaultState = {
-  user: 'CamperBot',
-  status: 'offline',
-  friends: '732,982',
-  community: 'freeCodeCamp'
+  user: "CamperBot",
+  status: "offline",
+  friends: "732,982",
+  community: "freeCodeCamp",
 };
 
 const immutableReducer = (state = defaultState, action) => {
-  switch(action.type) {
-    case 'ONLINE':
+  switch (action.type) {
+    case "ONLINE":
       return Object.assign({}, state, {
-        status: 'online'
+        status: "online",
       });
     default:
       return state;
@@ -123,8 +123,8 @@ const immutableReducer = (state = defaultState, action) => {
 
 const wakeUp = () => {
   return {
-    type: 'ONLINE'
-  }
+    type: "ONLINE",
+  };
 };
 
 const store = Redux.createStore(immutableReducer);

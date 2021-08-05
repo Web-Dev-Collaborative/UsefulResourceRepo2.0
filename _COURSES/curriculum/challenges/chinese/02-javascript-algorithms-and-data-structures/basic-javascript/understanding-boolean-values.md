@@ -2,7 +2,7 @@
 id: bd7123c9c441eddfaeb5bdef
 title: 理解布尔值
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c9Me8t4'
+videoUrl: "https://scrimba.com/c/c9Me8t4"
 forumTopicId: 301176
 dashedName: understanding-boolean-values
 ---
@@ -22,7 +22,7 @@ dashedName: understanding-boolean-values
 `welcomeToBooleans()` 函数应该返回一个布尔值 （`true` 或者 `false`)。
 
 ```js
-assert(typeof welcomeToBooleans() === 'boolean');
+assert(typeof welcomeToBooleans() === "boolean");
 ```
 
 `welcomeToBooleans()` 应该返回 `true`。
@@ -43,7 +43,6 @@ welcomeToBooleans();
 
 ```js
 function welcomeToBooleans() {
-
   // Only change code below this line
 
   return false; // Change this line

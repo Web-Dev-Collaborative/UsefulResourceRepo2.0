@@ -12,44 +12,45 @@ dashedName: registration-of-new-users
 
 用户注册的逻辑：注册新用户 > 认证新用户 > 重定向到 /profile。
 
-对于步骤一的注册新用户，详细逻辑是这样的：用 findOne 命令查询数据库 > 如果返回了用户对象，则表示用户存在，然后返回主页；*或者*如果用户未定义且没有报错，则会将包含用户名和密码的用户对象通过 “insertOne” 添加到数据库，只要没有报错则会继续*下一步*：认证新用户——我们已经在 */login* 路由的 POST 请求中写好了这部分逻辑。
+对于步骤一的注册新用户，详细逻辑是这样的：用 findOne 命令查询数据库 > 如果返回了用户对象，则表示用户存在，然后返回主页；*或者*如果用户未定义且没有报错，则会将包含用户名和密码的用户对象通过 “insertOne” 添加到数据库，只要没有报错则会继续*下一步*：认证新用户——我们已经在 _/login_ 路由的 POST 请求中写好了这部分逻辑。
 
 ```js
-app.route('/register')
-  .post((req, res, next) => {
-    myDataBase.findOne({ username: req.body.username }, function(err, user) {
+app.route("/register").post(
+  (req, res, next) => {
+    myDataBase.findOne({ username: req.body.username }, function (err, user) {
       if (err) {
         next(err);
       } else if (user) {
-        res.redirect('/');
+        res.redirect("/");
       } else {
-        myDataBase.insertOne({
-          username: req.body.username,
-          password: req.body.password
-        },
+        myDataBase.insertOne(
+          {
+            username: req.body.username,
+            password: req.body.password,
+          },
           (err, doc) => {
             if (err) {
-              res.redirect('/');
+              res.redirect("/");
             } else {
               // The inserted document is held within
               // the ops property of the doc
               next(null, doc.ops[0]);
             }
           }
-        )
+        );
       }
-    })
+    });
   },
-    passport.authenticate('local', { failureRedirect: '/' }),
-    (req, res, next) => {
-      res.redirect('/profile');
-    }
-  );
+  passport.authenticate("local", { failureRedirect: "/" }),
+  (req, res, next) => {
+    res.redirect("/profile");
+  }
+);
 ```
 
 完成上述要求后，请提交你的页面链接。 如果你遇到了问题，可以参考[这里](https://gist.github.com/camperbot/b230a5b3bbc89b1fa0ce32a2aa7b083e)的答案。
 
-**注意：**接下来的挑战可能会在运行 *picture-in-picture*（画中画）模式的浏览器中出现问题。 如果你使用的线上 IDE 提供在 IDE 内预览 app 的功能，请考虑打开新的标签页预览。
+**注意：**接下来的挑战可能会在运行 _picture-in-picture_（画中画）模式的浏览器中出现问题。 如果你使用的线上 IDE 提供在 IDE 内预览 app 的功能，请考虑打开新的标签页预览。
 
 # --hints--
 
@@ -57,17 +58,17 @@ app.route('/register')
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
         /showRegistration:( |)true/gi,
-        'You should be passing the variable showRegistration as true to your render function for the homepage'
+        "You should be passing the variable showRegistration as true to your render function for the homepage"
       );
       assert.match(
         data,
         /register[^]*post[^]*findOne[^]*username:( |)req.body.username/gi,
-        'You should have a route accepted a post request on register that querys the db with findone and the query being username: req.body.username'
+        "You should have a route accepted a post request on register that querys the db with findone and the query being username: req.body.username"
       );
     },
     (xhr) => {
@@ -80,7 +81,7 @@ app.route('/register')
 
 ```js
 async (getUserInput) => {
-  const url = getUserInput('url');
+  const url = getUserInput("url");
   const user = `freeCodeCampTester${Date.now()}`;
   const xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
@@ -90,15 +91,15 @@ async (getUserInput) => {
       throw new Error(`${this.status} ${this.statusText}`);
     }
   };
-  xhttp.open('POST', url + '/register', true);
-  xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  xhttp.open("POST", url + "/register", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(`username=${user}&password=${user}`);
   function test(xhttpRes) {
     const data = xhttpRes.responseText;
     assert.match(
       data,
       /Profile/gi,
-      'Register should work, and redirect successfully to the profile.'
+      "Register should work, and redirect successfully to the profile."
     );
   }
 };
@@ -108,7 +109,7 @@ async (getUserInput) => {
 
 ```js
 async (getUserInput) => {
-  const url = getUserInput('url');
+  const url = getUserInput("url");
   const user = `freeCodeCampTester${Date.now()}`;
   const xhttpReg = new XMLHttpRequest();
   xhttpReg.onreadystatechange = function () {
@@ -118,10 +119,10 @@ async (getUserInput) => {
       throw new Error(`${this.status} ${this.statusText}`);
     }
   };
-  xhttpReg.open('POST', url + '/register', true);
+  xhttpReg.open("POST", url + "/register", true);
   xhttpReg.setRequestHeader(
-    'Content-type',
-    'application/x-www-form-urlencoded'
+    "Content-type",
+    "application/x-www-form-urlencoded"
   );
   xhttpReg.send(`username=${user}&password=${user}`);
   function login() {
@@ -133,8 +134,8 @@ async (getUserInput) => {
         throw new Error(`${this.status} ${this.statusText}`);
       }
     };
-    xhttp.open('POST', url + '/login', true);
-    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.open("POST", url + "/login", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`username=${user}&password=${user}`);
   }
   function test(xhttpRes) {
@@ -142,12 +143,12 @@ async (getUserInput) => {
     assert.match(
       data,
       /Profile/gi,
-      'Login should work if previous test was done successfully and redirect successfully to the profile.'
+      "Login should work if previous test was done successfully and redirect successfully to the profile."
     );
     assert.match(
       data,
-      new RegExp(user, 'g'),
-      'The profile should properly display the welcome to the user logged in'
+      new RegExp(user, "g"),
+      "The profile should properly display the welcome to the user logged in"
     );
   }
 };
@@ -158,12 +159,12 @@ async (getUserInput) => {
 ```js
 (getUserInput) =>
   $.ajax({
-    url: getUserInput('url') + '/logout',
-    type: 'GET',
-    xhrFields: { withCredentials: true }
+    url: getUserInput("url") + "/logout",
+    type: "GET",
+    xhrFields: { withCredentials: true },
   }).then(
     (data) => {
-      assert.match(data, /Home/gi, 'Logout should redirect to home');
+      assert.match(data, /Home/gi, "Logout should redirect to home");
     },
     (xhr) => {
       throw new Error(xhr.statusText);
@@ -176,16 +177,16 @@ async (getUserInput) => {
 ```js
 (getUserInput) =>
   $.ajax({
-    url: getUserInput('url') + '/profile',
-    type: 'GET',
+    url: getUserInput("url") + "/profile",
+    type: "GET",
     crossDomain: true,
-    xhrFields: { withCredentials: true }
+    xhrFields: { withCredentials: true },
   }).then(
     (data) => {
       assert.match(
         data,
         /Home/gi,
-        'Profile should redirect to home when we are logged out now again'
+        "Profile should redirect to home when we are logged out now again"
       );
     },
     (xhr) => {

@@ -2,7 +2,7 @@
 id: 587d7789367417b2b2512aa4
 title: Improve Accessibility of Audio Content with the audio Element
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cVJVkcZ'
+videoUrl: "https://scrimba.com/c/cVJVkcZ"
 forumTopicId: 301014
 dashedName: improve-accessibility-of-audio-content-with-the-audio-element
 ---
@@ -17,8 +17,8 @@ Here's an example:
 
 ```html
 <audio id="meowClip" controls>
-  <source src="audio/meow.mp3" type="audio/mpeg">
-  <source src="audio/meow.ogg" type="audio/ogg">
+  <source src="audio/meow.mp3" type="audio/mpeg" />
+  <source src="audio/meow.ogg" type="audio/ogg" />
 </audio>
 ```
 
@@ -35,7 +35,7 @@ Time to take a break from Camper Cat and meet fellow camper Zersiax (@zersiax), 
 Your code should have one `audio` tag.
 
 ```js
-assert($('audio').length === 1);
+assert($("audio").length === 1);
 ```
 
 Your `audio` element should have a closing tag.
@@ -50,34 +50,34 @@ assert(
 The `audio` tag should have the `controls` attribute.
 
 ```js
-assert($('audio').attr('controls'));
+assert($("audio").attr("controls"));
 ```
 
 Your code should have one `source` tag.
 
 ```js
-assert($('source').length === 1);
+assert($("source").length === 1);
 ```
 
 Your `source` tag should be inside the `audio` tags.
 
 ```js
-assert($('audio').children('source').length === 1);
+assert($("audio").children("source").length === 1);
 ```
 
 The value for the `src` attribute on the `source` tag should match the link in the instructions exactly.
 
 ```js
 assert(
-  $('source').attr('src') ===
-    'https://s3.amazonaws.com/freecodecamp/screen-reader.mp3'
+  $("source").attr("src") ===
+    "https://s3.amazonaws.com/freecodecamp/screen-reader.mp3"
 );
 ```
 
 Your code should include a `type` attribute on the `source` tag with a value of audio/mpeg.
 
 ```js
-assert($('source').attr('type') === 'audio/mpeg');
+assert($("source").attr("type") === "audio/mpeg");
 ```
 
 # --seed--
@@ -91,9 +91,6 @@ assert($('source').attr('type') === 'audio/mpeg');
   </header>
   <main>
     <p>A sound clip of Zersiax's screen reader in action.</p>
-
-
-
   </main>
 </body>
 ```
@@ -108,7 +105,10 @@ assert($('source').attr('type') === 'audio/mpeg');
   <main>
     <p>A sound clip of Zersiax's screen reader in action.</p>
     <audio controls>
-      <source src="https://s3.amazonaws.com/freecodecamp/screen-reader.mp3" type="audio/mpeg"/>
+      <source
+        src="https://s3.amazonaws.com/freecodecamp/screen-reader.mp3"
+        type="audio/mpeg"
+      />
     </audio>
   </main>
 </body>

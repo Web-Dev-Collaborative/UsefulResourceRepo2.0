@@ -2,7 +2,7 @@
 id: 587d78a4367417b2b2512ad5
 title: Regolare la tonalità di un colore
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cEDJvT7'
+videoUrl: "https://scrimba.com/c/cEDJvT7"
 forumTopicId: 301038
 dashedName: adjust-the-tone-of-a-color
 ---
@@ -33,11 +33,10 @@ assert(
 <style>
   header {
     background-color: hsl(180, 90%, 35%);
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   nav {
-
   }
 
   h1 {
@@ -79,7 +78,7 @@ assert(
 <style>
   header {
     background-color: hsl(180, 90%, 35%);
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   nav {

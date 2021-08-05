@@ -4,7 +4,7 @@ title: Target Even Elements Using jQuery
 challengeType: 6
 forumTopicId: 18318
 required:
-  - link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: target-even-elements-using-jquery
 ---
 
@@ -28,7 +28,7 @@ All of the `target` elements that jQuery considers to be even should shake.
 
 ```js
 assert(
-  $('.target:even').hasClass('animated') && $('.target:even').hasClass('shake')
+  $(".target:even").hasClass("animated") && $(".target:even").hasClass("shake")
 );
 ```
 
@@ -55,7 +55,7 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();
@@ -65,7 +65,6 @@ assert(
     $("#right-well").children().css("color", "orange");
     $("#left-well").children().css("color", "green");
     $(".target:nth-child(2)").addClass("animated bounce");
-
   });
 </script>
 
@@ -98,7 +97,7 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();

@@ -10,7 +10,7 @@ dashedName: part-18
 When defining an arrow function with a single argument, the parentheses can be omitted:
 
 ```js
-const greeting = name => `Hello !`;
+const greeting = (name) => `Hello !`;
 ```
 
 Define a function `highPrecedence` which takes a single argument `str` and returns it.
@@ -20,7 +20,7 @@ Define a function `highPrecedence` which takes a single argument `str` and retur
 See description above for instructions.
 
 ```js
-assert(highPrecedence('a') === 'a');
+assert(highPrecedence("a") === "a");
 ```
 
 # --seed--
@@ -30,27 +30,29 @@ assert(highPrecedence('a') === 'a');
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Spreadsheet</title>
-  <style>
-    #container {
-      display: grid;
-      grid-template-columns: 50px repeat(10, 200px);
-      grid-template-rows: repeat(11, 30px);
-    }
-    .label {
-      background-color: lightgray;
-      text-align: center;
-      vertical-align: middle;
-      line-height: 30px;
-    }
-  </style>
-</head>
-<body>
-<div id="container">
-  <div></div>
-</div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Spreadsheet</title>
+    <style>
+      #container {
+        display: grid;
+        grid-template-columns: 50px repeat(10, 200px);
+        grid-template-rows: repeat(11, 30px);
+      }
+      .label {
+        background-color: lightgray;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div></div>
+    </div>
+  </body>
+</html>
 ```
 
 ## --after-user-code--
@@ -64,20 +66,17 @@ assert(highPrecedence('a') === 'a');
 
 ```html
 <script>
+  const infixToFunction = {
+    "+": (x, y) => x + y,
+    "-": (x, y) => x - y,
+    "*": (x, y) => x * y,
+    "/": (x, y) => x / y,
+  };
 
-const infixToFunction = {
-  "+": (x, y) => x + y,
-  "-": (x, y) => x - y,
-  "*": (x, y) => x * y,
-  "/": (x, y) => x / y
-};
-
-const infixEval = (str, regex) =>
-  str.replace(regex, (_, arg1, fn, arg2) =>
-    infixToFunction[fn](parseFloat(arg1), parseFloat(arg2))
-  );
-
-
+  const infixEval = (str, regex) =>
+    str.replace(regex, (_, arg1, fn, arg2) =>
+      infixToFunction[fn](parseFloat(arg1), parseFloat(arg2))
+    );
 </script>
 ```
 
@@ -85,17 +84,18 @@ const infixEval = (str, regex) =>
 
 ```html
 <script>
-const infixToFunction = {
-  "+": (x, y) => x + y,
-  "-": (x, y) => x - y,
-  "*": (x, y) => x * y,
-  "/": (x, y) => x / y
-};
+  const infixToFunction = {
+    "+": (x, y) => x + y,
+    "-": (x, y) => x - y,
+    "*": (x, y) => x * y,
+    "/": (x, y) => x / y,
+  };
 
-const infixEval = (str, regex) =>
-  str.replace(regex, (_, arg1, fn, arg2) =>
-    infixToFunction[fn](parseFloat(arg1), parseFloat(arg2)));
+  const infixEval = (str, regex) =>
+    str.replace(regex, (_, arg1, fn, arg2) =>
+      infixToFunction[fn](parseFloat(arg1), parseFloat(arg2))
+    );
 
-const highPrecedence = str => str;
+  const highPrecedence = (str) => str;
 </script>
 ```

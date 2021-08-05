@@ -13,7 +13,7 @@ Sass ha una caratteristica chiamata `extend` che rende facile prendere in presti
 Per esempio, il seguente blocco di regole CSS stilizza una classe `.panel`. Esso specifica un `background-color`, un'`height` e un `border`.
 
 ```scss
-.panel{
+.panel {
   background-color: red;
   height: 70px;
   border: 2px solid green;
@@ -23,7 +23,7 @@ Per esempio, il seguente blocco di regole CSS stilizza una classe `.panel`. Esso
 Supponi ora di volere un altro pannello chiamato `.big-panel`. Ha le stesse proprietà di base di `.panel`, ma ha anche bisogno di `width` e `font-size`. È possibile copiare e incollare le regole CSS iniziali da `.panel`, ma il codice diventa ripetitivo mano a mano che si aggiungono altri tipi di pannelli. La direttiva `extend` è un modo semplice per riutilizzare le regole scritte per un elemento, aggiungendone alcune per un altro:
 
 ```scss
-.big-panel{
+.big-panel {
   @extend .panel;
   width: 150px;
   font-size: 2em;
@@ -61,56 +61,61 @@ assert(
 ## --seed-contents--
 
 ```html
-<style type='text/scss'>
-  h3{
+<style type="text/scss">
+  h3 {
     text-align: center;
   }
-  .info{
+  .info {
     width: 200px;
     border: 1px solid black;
     margin: 0 auto;
   }
-
-
-
-
 </style>
 <h3>Posts</h3>
 <div class="info-important">
-  <p>This is an important post. It should extend the class ".info" and have its own CSS styles.</p>
+  <p>
+    This is an important post. It should extend the class ".info" and have its
+    own CSS styles.
+  </p>
 </div>
 
 <div class="info">
-  <p>This is a simple post. It has basic styling and can be extended for other uses.</p>
+  <p>
+    This is a simple post. It has basic styling and can be extended for other
+    uses.
+  </p>
 </div>
 ```
 
 # --solutions--
 
 ```html
-<style type='text/scss'>
-  h3{
+<style type="text/scss">
+  h3 {
     text-align: center;
   }
-  .info{
+  .info {
     width: 200px;
     border: 1px solid black;
     margin: 0 auto;
   }
-  .info-important{
+  .info-important {
     @extend .info;
     background-color: magenta;
   }
-
-
-
 </style>
 <h3>Posts</h3>
 <div class="info-important">
-  <p>This is an important post. It should extend the class ".info" and have its own CSS styles.</p>
+  <p>
+    This is an important post. It should extend the class ".info" and have its
+    own CSS styles.
+  </p>
 </div>
 
 <div class="info">
-  <p>This is a simple post. It has basic styling and can be extended for other uses.</p>
+  <p>
+    This is a simple post. It has basic styling and can be extended for other
+    uses.
+  </p>
 </div>
 ```

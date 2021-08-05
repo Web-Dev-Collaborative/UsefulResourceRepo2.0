@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244b5
 title: Escaping Literal Quotes in Strings
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c2QvgSr'
+videoUrl: "https://scrimba.com/c/c2QvgSr"
 forumTopicId: 17568
 dashedName: escaping-literal-quotes-in-strings
 ---
@@ -14,7 +14,7 @@ When you are defining a string you must start and end with a single or double qu
 In JavaScript, you can <dfn>escape</dfn> a quote from considering it as an end of string quote by placing a <dfn>backslash</dfn> (`\`) in front of the quote.
 
 ```js
-var sampleStr = "Alan said, \"Peter is learning JavaScript\".";
+var sampleStr = 'Alan said, "Peter is learning JavaScript".';
 ```
 
 This signals to JavaScript that the following quote is not the end of the string, but should instead appear inside the string. So if you were to print this to the console, you would get:
@@ -42,7 +42,9 @@ assert(code.match(/\\"/g).length === 4 && code.match(/[^\\]"/g).length === 2);
 Variable myStr should contain the string: `I am a "double quoted" string inside "double quotes".`
 
 ```js
-assert(/I am a "double quoted" string inside "double quotes(\."|"\.)$/.test(myStr));
+assert(
+  /I am a "double quoted" string inside "double quotes(\."|"\.)$/.test(myStr)
+);
 ```
 
 # --seed--
@@ -50,9 +52,9 @@ assert(/I am a "double quoted" string inside "double quotes(\."|"\.)$/.test(mySt
 ## --after-user-code--
 
 ```js
-(function(){
-  if(typeof myStr === 'string') {
-    console.log("myStr = \"" + myStr + "\"");
+(function () {
+  if (typeof myStr === "string") {
+    console.log('myStr = "' + myStr + '"');
   } else {
     console.log("myStr is undefined");
   }
@@ -68,5 +70,5 @@ var myStr = ""; // Change this line
 # --solutions--
 
 ```js
-var myStr = "I am a \"double quoted\" string inside \"double quotes\".";
+var myStr = 'I am a "double quoted" string inside "double quotes".';
 ```

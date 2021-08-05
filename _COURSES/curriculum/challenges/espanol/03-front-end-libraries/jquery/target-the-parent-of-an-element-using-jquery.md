@@ -17,7 +17,7 @@ jQuery tiene una función llamada `parent()` que te permite acceder al padre del
 Aquí hay un ejemplo de cómo usarías la función `parent()` si quieres dar al elemento padre del elemento `left-well` un color de fondo azul:
 
 ```js
-$("#left-well").parent().css("background-color", "blue")
+$("#left-well").parent().css("background-color", "blue");
 ```
 
 Dale al padre del elemento `#target1` un color de fondo rojo.
@@ -28,10 +28,10 @@ Tu elemento `left-well` debe tener un fondo rojo.
 
 ```js
 assert(
-  $('#left-well').css('background-color') === 'red' ||
-    $('#left-well').css('background-color') === 'rgb(255, 0, 0)' ||
-    $('#left-well').css('background-color').toLowerCase() === '#ff0000' ||
-    $('#left-well').css('background-color').toLowerCase() === '#f00'
+  $("#left-well").css("background-color") === "red" ||
+    $("#left-well").css("background-color") === "rgb(255, 0, 0)" ||
+    $("#left-well").css("background-color").toLowerCase() === "#ff0000" ||
+    $("#left-well").css("background-color").toLowerCase() === "#f00"
 );
 ```
 
@@ -61,13 +61,12 @@ assert(code.match(/<div class="well" id="left-well">/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();
     $("#target2").appendTo("#right-well");
     $("#target5").clone().appendTo("#left-well");
-
   });
 </script>
 
@@ -102,7 +101,7 @@ assert(code.match(/<div class="well" id="left-well">/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();

@@ -2,7 +2,7 @@
 id: 565bbe00e9cc8ac0725390f4
 title: Conteo de cartas
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c6KE7ty'
+videoUrl: "https://scrimba.com/c/c6KE7ty"
 forumTopicId: 16809
 dashedName: counting-cards
 ---
@@ -36,7 +36,7 @@ assert(
     cc(4);
     cc(5);
     var out = cc(6);
-    if (out === '5 Bet') {
+    if (out === "5 Bet") {
       return true;
     }
     return false;
@@ -53,7 +53,7 @@ assert(
     cc(7);
     cc(8);
     var out = cc(9);
-    if (out === '0 Hold') {
+    if (out === "0 Hold") {
       return true;
     }
     return false;
@@ -68,11 +68,11 @@ assert(
   (function () {
     count = 0;
     cc(10);
-    cc('J');
-    cc('Q');
-    cc('K');
-    var out = cc('A');
-    if (out === '-5 Hold') {
+    cc("J");
+    cc("Q");
+    cc("K");
+    var out = cc("A");
+    if (out === "-5 Hold") {
       return true;
     }
     return false;
@@ -88,10 +88,10 @@ assert(
     count = 0;
     cc(3);
     cc(7);
-    cc('Q');
+    cc("Q");
     cc(8);
-    var out = cc('A');
-    if (out === '-1 Hold') {
+    var out = cc("A");
+    if (out === "-1 Hold") {
       return true;
     }
     return false;
@@ -106,11 +106,11 @@ assert(
   (function () {
     count = 0;
     cc(2);
-    cc('J');
+    cc("J");
     cc(9);
     cc(2);
     var out = cc(7);
-    if (out === '1 Bet') {
+    if (out === "1 Bet") {
       return true;
     }
     return false;
@@ -127,7 +127,7 @@ assert(
     cc(2);
     cc(2);
     var out = cc(10);
-    if (out === '1 Bet') {
+    if (out === "1 Bet") {
       return true;
     }
     return false;
@@ -143,10 +143,10 @@ assert(
     count = 0;
     cc(3);
     cc(2);
-    cc('A');
+    cc("A");
     cc(10);
-    var out = cc('K');
-    if (out === '-1 Hold') {
+    var out = cc("K");
+    if (out === "-1 Hold") {
       return true;
     }
     return false;
@@ -164,12 +164,15 @@ var count = 0;
 function cc(card) {
   // Only change code below this line
 
-
   return "Change Me";
   // Only change code above this line
 }
 
-cc(2); cc(3); cc(7); cc('K'); cc('A');
+cc(2);
+cc(3);
+cc(7);
+cc("K");
+cc("A");
 ```
 
 # --solutions--
@@ -177,7 +180,7 @@ cc(2); cc(3); cc(7); cc('K'); cc('A');
 ```js
 var count = 0;
 function cc(card) {
-  switch(card) {
+  switch (card) {
     case 2:
     case 3:
     case 4:
@@ -186,13 +189,13 @@ function cc(card) {
       count++;
       break;
     case 10:
-    case 'J':
-    case 'Q':
-    case 'K':
-    case 'A':
+    case "J":
+    case "Q":
+    case "K":
+    case "A":
       count--;
   }
-  if(count > 0) {
+  if (count > 0) {
     return count + " Bet";
   } else {
     return count + " Hold";

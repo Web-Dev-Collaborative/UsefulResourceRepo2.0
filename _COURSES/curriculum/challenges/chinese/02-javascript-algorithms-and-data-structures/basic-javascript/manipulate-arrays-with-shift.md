@@ -2,7 +2,7 @@
 id: 56bbb991ad1ed5201cd392cd
 title: 使用 shift() 操作数组
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cRbVETW'
+videoUrl: "https://scrimba.com/c/cRbVETW"
 forumTopicId: 18238
 dashedName: manipulate-arrays-with-shift
 ---
@@ -33,7 +33,7 @@ var removedFromOurArray = ourArray.shift();
 ```js
 assert(
   (function (d) {
-    if (d[0][0] == 'dog' && d[0][1] === 3 && d[1] == undefined) {
+    if (d[0][0] == "dog" && d[0][1] === 3 && d[1] == undefined) {
       return true;
     } else {
       return false;
@@ -48,9 +48,9 @@ assert(
 assert(
   (function (d) {
     if (
-      d[0] == 'John' &&
+      d[0] == "John" &&
       d[1] === 23 &&
-      typeof removedFromMyArray === 'object'
+      typeof removedFromMyArray === "object"
     ) {
       return true;
     } else {
@@ -65,14 +65,24 @@ assert(
 ## --after-user-code--
 
 ```js
-(function(y, z){return 'myArray = ' + JSON.stringify(y) + ' & removedFromMyArray = ' + JSON.stringify(z);})(myArray, removedFromMyArray);
+(function (y, z) {
+  return (
+    "myArray = " +
+    JSON.stringify(y) +
+    " & removedFromMyArray = " +
+    JSON.stringify(z)
+  );
+})(myArray, removedFromMyArray);
 ```
 
 ## --seed-contents--
 
 ```js
 // Setup
-var myArray = [["John", 23], ["dog", 3]];
+var myArray = [
+  ["John", 23],
+  ["dog", 3],
+];
 
 // Only change code below this line
 var removedFromMyArray;
@@ -81,7 +91,10 @@ var removedFromMyArray;
 # --solutions--
 
 ```js
-var myArray = [["John", 23], ["dog", 3]];
+var myArray = [
+  ["John", 23],
+  ["dog", 3],
+];
 
 // Only change code below this line
 var removedFromMyArray = myArray.shift();

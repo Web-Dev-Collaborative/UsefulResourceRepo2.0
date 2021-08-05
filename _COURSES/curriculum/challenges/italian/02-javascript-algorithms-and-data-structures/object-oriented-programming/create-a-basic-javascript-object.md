@@ -19,7 +19,7 @@ Gli oggetti in JavaScript sono utilizzati per modellare oggetti del mondo reale,
 ```js
 let duck = {
   name: "Aflac",
-  numLegs: 2
+  numLegs: 2,
 };
 ```
 
@@ -34,19 +34,19 @@ Crea un oggetto `dog` con delle proprietà `name` e `numLegs`, e impostale rispe
 `dog` dovrebbe essere un oggetto.
 
 ```js
-assert(typeof dog === 'object');
+assert(typeof dog === "object");
 ```
 
 `dog` dovrebbe avere una proprietà di `name` impostata su una stringa.
 
 ```js
-assert(typeof dog.name === 'string');
+assert(typeof dog.name === "string");
 ```
 
 `dog` dovrebbe avere una proprietà `numLegs` impostata su un numero.
 
 ```js
-assert(typeof dog.numLegs === 'number');
+assert(typeof dog.numLegs === "number");
 ```
 
 # --seed--
@@ -54,16 +54,14 @@ assert(typeof dog.numLegs === 'number');
 ## --seed-contents--
 
 ```js
-let dog = {
-
-};
+let dog = {};
 ```
 
 # --solutions--
 
 ```js
 let dog = {
-  name: '',
-  numLegs: 4
+  name: "",
+  numLegs: 4,
 };
 ```

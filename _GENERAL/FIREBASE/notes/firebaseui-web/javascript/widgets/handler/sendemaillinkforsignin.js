@@ -16,14 +16,13 @@
  * @fileoverview Send email link for sign in handler.
  */
 
-goog.provide('firebaseui.auth.widget.handler.handleSendEmailLinkForSignIn');
+goog.provide("firebaseui.auth.widget.handler.handleSendEmailLinkForSignIn");
 
-goog.require('firebaseui.auth.ui.page.Callback');
-goog.require('firebaseui.auth.widget.Handler');
-goog.require('firebaseui.auth.widget.HandlerName');
-goog.require('firebaseui.auth.widget.handler');
-goog.require('firebaseui.auth.widget.handler.common');
-
+goog.require("firebaseui.auth.ui.page.Callback");
+goog.require("firebaseui.auth.widget.Handler");
+goog.require("firebaseui.auth.widget.HandlerName");
+goog.require("firebaseui.auth.widget.handler");
+goog.require("firebaseui.auth.widget.handler.common");
 
 /**
  * Handles send email link for sign in.
@@ -35,36 +34,42 @@ goog.require('firebaseui.auth.widget.handler.common');
  * @param {function()} onCancelClick Callback to invoke when the back button is
  *     clicked in email link sign in sent page.
  */
-firebaseui.auth.widget.handler.handleSendEmailLinkForSignIn = function(
-    app, container, email, onCancelClick) {
+firebaseui.auth.widget.handler.handleSendEmailLinkForSignIn = function (
+  app,
+  container,
+  email,
+  onCancelClick
+) {
   // Render the UI.
   var component = new firebaseui.auth.ui.page.Callback();
   component.render(container);
   // Set current UI component.
   app.setCurrentComponent(component);
   firebaseui.auth.widget.handler.common.sendEmailLinkForSignIn(
-      app,
-      component,
-      email,
-      onCancelClick,
-      function(error) {
-        component.dispose();
-        // Error occurs while sending the email. Go back to the sign in page
-        // with prefilled email and error message.
-        var errorMessage =
-            firebaseui.auth.widget.handler.common.getErrorMessage(error);
-        firebaseui.auth.widget.handler.handle(
-            firebaseui.auth.widget.HandlerName.SIGN_IN,
-            app,
-            container,
-            email,
-            errorMessage);
-      });
+    app,
+    component,
+    email,
+    onCancelClick,
+    function (error) {
+      component.dispose();
+      // Error occurs while sending the email. Go back to the sign in page
+      // with prefilled email and error message.
+      var errorMessage =
+        firebaseui.auth.widget.handler.common.getErrorMessage(error);
+      firebaseui.auth.widget.handler.handle(
+        firebaseui.auth.widget.HandlerName.SIGN_IN,
+        app,
+        container,
+        email,
+        errorMessage
+      );
+    }
+  );
 };
-
 
 // Register handler.
 firebaseui.auth.widget.handler.register(
-    firebaseui.auth.widget.HandlerName.SEND_EMAIL_LINK_FOR_SIGN_IN,
-    /** @type {!firebaseui.auth.widget.Handler} */
-    (firebaseui.auth.widget.handler.handleSendEmailLinkForSignIn));
+  firebaseui.auth.widget.HandlerName.SEND_EMAIL_LINK_FOR_SIGN_IN,
+  /** @type {!firebaseui.auth.widget.Handler} */
+  (firebaseui.auth.widget.handler.handleSendEmailLinkForSignIn)
+);

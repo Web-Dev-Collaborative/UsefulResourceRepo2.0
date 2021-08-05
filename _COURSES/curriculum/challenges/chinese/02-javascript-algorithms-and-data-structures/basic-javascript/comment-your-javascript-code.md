@@ -3,7 +3,7 @@ id: bd7123c9c441eddfaeb4bdef
 title: 给代码添加注释
 challengeType: 1
 removeComments: false
-videoUrl: 'https://scrimba.com/c/c7ynnTp'
+videoUrl: "https://scrimba.com/c/c7ynnTp"
 forumTopicId: 16783
 dashedName: comment-your-javascript-code
 ---
@@ -12,7 +12,7 @@ dashedName: comment-your-javascript-code
 
 被注释的代码块在 JavaScript 之中是不会执行的。 在代码中写注释，是一个可以让你自己和以后的其他人理解代码作用的好方法。
 
-JavaScript有两种写注释的方法。
+JavaScript 有两种写注释的方法。
 
 使用 `//` 注释掉当前行的代码。 这是一个行内注释：
 

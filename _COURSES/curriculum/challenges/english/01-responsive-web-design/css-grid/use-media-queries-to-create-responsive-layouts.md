@@ -2,7 +2,7 @@
 id: 5a94fe7769fb03452672e463
 title: Use Media Queries to Create Responsive Layouts
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pByETK/cMbqeHk'
+videoUrl: "https://scrimba.com/p/pByETK/cMbqeHk"
 forumTopicId: 301138
 dashedName: use-media-queries-to-create-responsive-layouts
 ---
@@ -73,8 +73,8 @@ assert(
       "footer";
   }
 
-  @media (min-width: 300px){
-    .container{
+  @media (min-width: 300px) {
+    .container {
       grid-template-columns: auto 1fr;
       grid-template-rows: auto 1fr auto;
       grid-template-areas:
@@ -84,8 +84,8 @@ assert(
     }
   }
 
-  @media (min-width: 400px){
-    .container{
+  @media (min-width: 400px) {
+    .container {
       grid-template-areas:
       /* Only change code below this line */
         "advert header"
@@ -144,8 +144,8 @@ assert(
       "footer";
   }
 
-  @media (min-width: 300px){
-    .container{
+  @media (min-width: 300px) {
+    .container {
       grid-template-columns: auto 1fr;
       grid-template-rows: auto 1fr auto;
       grid-template-areas:
@@ -155,8 +155,8 @@ assert(
     }
   }
 
-  @media (min-width: 400px){
-    .container{
+  @media (min-width: 400px) {
+    .container {
       grid-template-areas:
         "header header"
         "advert content"

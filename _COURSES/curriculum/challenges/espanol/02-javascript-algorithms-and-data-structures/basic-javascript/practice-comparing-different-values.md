@@ -2,7 +2,7 @@
 id: 599a789b454f2bbd91a3ff4d
 title: Practica comparando diferentes valores
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cm8PqCa'
+videoUrl: "https://scrimba.com/c/cm8PqCa"
 forumTopicId: 301174
 dashedName: practice-comparing-different-values
 ---
@@ -20,8 +20,8 @@ Si los valores que se comparan no son del mismo tipo, el operador de igualdad re
 **Nota:** En JavaScript, puedes determinar el tipo de una variable o un valor con el operador `typeof`, de la siguiente manera:
 
 ```js
-typeof 3
-typeof '3'
+typeof 3;
+typeof "3";
 ```
 
 `typeof 3` devuelve la cadena `number` y `typeof '3'` devuelve la cadena `string`.
@@ -35,13 +35,13 @@ La función `compareEquality` en el editor compara dos valores usando el operado
 `compareEquality(10, "10")` debe devolver la cadena `Not Equal`
 
 ```js
-assert(compareEquality(10, '10') === 'Not Equal');
+assert(compareEquality(10, "10") === "Not Equal");
 ```
 
 `compareEquality("20", 20)` debe devolver la cadena `Not Equal`
 
 ```js
-assert(compareEquality('20', 20) === 'Not Equal');
+assert(compareEquality("20", 20) === "Not Equal");
 ```
 
 Debes usar el operador `===`
@@ -57,7 +57,8 @@ assert(code.match(/===/g));
 ```js
 // Setup
 function compareEquality(a, b) {
-  if (a == b) { // Change this line
+  if (a == b) {
+    // Change this line
     return "Equal";
   }
   return "Not Equal";
@@ -69,7 +70,7 @@ compareEquality(10, "10");
 # --solutions--
 
 ```js
-function compareEquality(a,b) {
+function compareEquality(a, b) {
   if (a === b) {
     return "Equal";
   }

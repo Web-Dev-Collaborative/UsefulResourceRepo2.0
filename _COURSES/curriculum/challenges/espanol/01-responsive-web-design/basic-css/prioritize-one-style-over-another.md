@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08756
 title: Prioriza un estilo por sobre otro
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cZ8wnHv'
+videoUrl: "https://scrimba.com/c/cZ8wnHv"
 forumTopicId: 18258
 dashedName: prioritize-one-style-over-another
 ---
@@ -13,7 +13,7 @@ A veces los elementos HTML reciben múltiples estilos que entran en conflicto en
 
 Por ejemplo, tu elemento `h1` no puede ser verde y rosado al mismo tiempo.
 
-Veamos qué ocurre cuando creamos una clase que hace que el texto sea rosado ("pink"), y luego se la aplicamos a un elemento. ¿*Sobreescribirá* nuestra clase la prioridad CSS `color: green;` del elemento `body`?
+Veamos qué ocurre cuando creamos una clase que hace que el texto sea rosado ("pink"), y luego se la aplicamos a un elemento. ¿_Sobreescribirá_ nuestra clase la prioridad CSS `color: green;` del elemento `body`?
 
 # --instructions--
 
@@ -26,7 +26,7 @@ Asigna a tu elemento `h1` la clase `pink-text`.
 Tu elemento `h1` debe incluir la clase `pink-text`.
 
 ```js
-assert($('h1').hasClass('pink-text'));
+assert($("h1").hasClass("pink-text"));
 ```
 
 Tu `<style>` debería tener una clase CSS `pink-text` que cambie su `color`.
@@ -38,7 +38,7 @@ assert(code.match(/\.pink-text\s*\{\s*color\s*:\s*.+\s*;?\s*\}/g));
 Tu elemento `h1` debe ser de color rosado ("pink").
 
 ```js
-assert($('h1').css('color') === 'rgb(255, 192, 203)');
+assert($("h1").css("color") === "rgb(255, 192, 203)");
 ```
 
 # --seed--

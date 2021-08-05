@@ -2,7 +2,7 @@
 id: 587d778b367417b2b2512aa8
 title: Agrega un selector de fechas accesible
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cR3bRbCV'
+videoUrl: "https://scrimba.com/c/cR3bRbCV"
 forumTopicId: 301008
 dashedName: add-an-accessible-date-picker
 ---
@@ -19,7 +19,7 @@ Aquí hay un ejemplo:
 
 ```html
 <label for="input1">Enter a date:</label>
-<input type="date" id="input1" name="input1">
+<input type="date" id="input1" name="input1" />
 ```
 
 # --instructions--
@@ -31,25 +31,25 @@ Camper Cat está organizando un torneo de Mortal Kombat y quiere pedir a los par
 Tu código debería añadir una etiqueta `input` para el campo de selección de fecha.
 
 ```js
-assert($('input').length == 2);
+assert($("input").length == 2);
 ```
 
 Tu etiqueta `input` debe tener un atributo `type` con un valor de `date`.
 
 ```js
-assert($('input').attr('type') == 'date');
+assert($("input").attr("type") == "date");
 ```
 
 Tu etiqueta `input` debe tener un atributo `id` con un valor de `pickdate`.
 
 ```js
-assert($('input').attr('id') == 'pickdate');
+assert($("input").attr("id") == "pickdate");
 ```
 
 Tu etiqueta `input` debe tener un atributo `name` con un valor de `date`.
 
 ```js
-assert($('input').attr('name') == 'date');
+assert($("input").attr("name") == "date");
 ```
 
 # --seed--
@@ -70,11 +70,9 @@ assert($('input').attr('name') == 'date');
 
         <!-- Only change code below this line -->
 
-
-
         <!-- Only change code above this line -->
 
-        <input type="submit" name="submit" value="Submit">
+        <input type="submit" name="submit" value="Submit" />
       </form>
     </section>
   </main>
@@ -95,8 +93,8 @@ assert($('input').attr('name') == 'date');
       <form>
         <p>Tell us the best date for the competition</p>
         <label for="pickdate">Preferred Date:</label>
-        <input type="date" id="pickdate" name="date">
-        <input type="submit" name="submit" value="Submit">
+        <input type="date" id="pickdate" name="date" />
+        <input type="submit" name="submit" value="Submit" />
       </form>
     </section>
   </main>

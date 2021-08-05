@@ -31,19 +31,19 @@ Utilizza il carattere di ancoraggio (`$`) per riconoscere la stringa `caboose` a
 Dovresti cercare `caboose` con l'ancora dollaro `$` nella tua espressione regolare.
 
 ```js
-assert(lastRegex.source == 'caboose$');
+assert(lastRegex.source == "caboose$");
 ```
 
 La tua espressione regolare non dovrebbe usare alcun flag.
 
 ```js
-assert(lastRegex.flags == '');
+assert(lastRegex.flags == "");
 ```
 
 Dovresti riconoscere `caboose` alla fine della stringa `The last car on a train is the caboose`
 
 ```js
-assert(lastRegex.test('The last car on a train is the caboose'));
+assert(lastRegex.test("The last car on a train is the caboose"));
 ```
 
 # --seed--

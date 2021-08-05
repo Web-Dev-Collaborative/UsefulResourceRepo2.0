@@ -16,11 +16,11 @@ Add the `name` attribute with the value `indoor-outdoor` to both radio buttons.
 Both radio buttons should still be located between opening and closing `label` element tags.
 
 ```js
-const labelChildNodes = [...document.querySelectorAll('form > label')].map(
+const labelChildNodes = [...document.querySelectorAll("form > label")].map(
   (node) => node.childNodes
 );
 assert(
-  labelChildNodes.filter((childNode) => childNode[0].nodeName === 'INPUT')
+  labelChildNodes.filter((childNode) => childNode[0].nodeName === "INPUT")
     .length === 2
 );
 ```
@@ -29,7 +29,7 @@ Both radio buttons should have a `name` attribute. Check that there is a space a
 
 ```js
 const radioButtons = [...document.querySelectorAll('input[type="radio"]')];
-assert(radioButtons.every((btn) => btn.hasAttribute('name')));
+assert(radioButtons.every((btn) => btn.hasAttribute("name")));
 ```
 
 Both radio buttons should have a `name` attribute with the value `indoor-outdoor`. You have either omitted the value or have a typo. Remember that attribute values should be surrounded with quotation marks.
@@ -38,7 +38,7 @@ Both radio buttons should have a `name` attribute with the value `indoor-outdoor
 const radioButtons = [...$('input[type="radio"]')];
 assert(
   radioButtons.every((btn) =>
-    btn.getAttribute('name').match(/^indoor-outdoor$/)
+    btn.getAttribute("name").match(/^indoor-outdoor$/)
   )
 );
 ```
@@ -67,7 +67,7 @@ assert(
         </ul>
         <figure>
           <img src="https://bit.ly/fcc-lasagna" alt="A slice of lasagna on a plate.">
-          <figcaption>Cats <em>love</em> lasagna.</figcaption>  
+          <figcaption>Cats <em>love</em> lasagna.</figcaption>
         </figure>
         <h3>Top 3 things cats hate:</h3>
         <ol>
@@ -77,7 +77,7 @@ assert(
         </ol>
         <figure>
           <img src="https://bit.ly/fcc-cats" alt="Five cats looking around a field.">
-          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>  
+          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>
         </figure>
       </section>
       <section>
@@ -95,4 +95,3 @@ assert(
   </body>
 </html>
 ```
-

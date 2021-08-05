@@ -17,14 +17,13 @@
  * federated IdP but is now trying to sign in with email/password.
  */
 
-goog.provide('firebaseui.auth.widget.handler.handleFederatedSignIn');
+goog.provide("firebaseui.auth.widget.handler.handleFederatedSignIn");
 
-goog.require('firebaseui.auth.ui.page.FederatedLinking');
-goog.require('firebaseui.auth.widget.Handler');
-goog.require('firebaseui.auth.widget.HandlerName');
-goog.require('firebaseui.auth.widget.handler');
-goog.require('firebaseui.auth.widget.handler.common');
-
+goog.require("firebaseui.auth.ui.page.FederatedLinking");
+goog.require("firebaseui.auth.widget.Handler");
+goog.require("firebaseui.auth.widget.HandlerName");
+goog.require("firebaseui.auth.widget.handler");
+goog.require("firebaseui.auth.widget.handler.common");
 
 /**
  * Handles the case where the user had previously signed in with a federated IdP
@@ -37,20 +36,30 @@ goog.require('firebaseui.auth.widget.handler.common');
  *     instead of password.
  * @param {string=} opt_infoBarMessage The message to show on info bar.
  */
-firebaseui.auth.widget.handler.handleFederatedSignIn = function(
-    app, container, email, providerId, opt_infoBarMessage) {
+firebaseui.auth.widget.handler.handleFederatedSignIn = function (
+  app,
+  container,
+  email,
+  providerId,
+  opt_infoBarMessage
+) {
   var component = new firebaseui.auth.ui.page.FederatedLinking(
-      email,
-      app.getConfig().getConfigForProvider(providerId),
-      // On submit.
-      function() {
-        // Pass the email since some OAuth providers support OAuth flow
-        // with a specified email.
-        firebaseui.auth.widget.handler.common.federatedSignIn(app, component,
-            providerId, email);
-      },
-      app.getConfig().getTosUrl(),
-      app.getConfig().getPrivacyPolicyUrl());
+    email,
+    app.getConfig().getConfigForProvider(providerId),
+    // On submit.
+    function () {
+      // Pass the email since some OAuth providers support OAuth flow
+      // with a specified email.
+      firebaseui.auth.widget.handler.common.federatedSignIn(
+        app,
+        component,
+        providerId,
+        email
+      );
+    },
+    app.getConfig().getTosUrl(),
+    app.getConfig().getPrivacyPolicyUrl()
+  );
 
   component.render(container);
   // Set current UI component.
@@ -61,9 +70,9 @@ firebaseui.auth.widget.handler.handleFederatedSignIn = function(
   }
 };
 
-
 // Register handler.
 firebaseui.auth.widget.handler.register(
-    firebaseui.auth.widget.HandlerName.FEDERATED_SIGN_IN,
-    /** @type {firebaseui.auth.widget.Handler} */
-    (firebaseui.auth.widget.handler.handleFederatedSignIn));
+  firebaseui.auth.widget.HandlerName.FEDERATED_SIGN_IN,
+  /** @type {firebaseui.auth.widget.Handler} */
+  (firebaseui.auth.widget.handler.handleFederatedSignIn)
+);

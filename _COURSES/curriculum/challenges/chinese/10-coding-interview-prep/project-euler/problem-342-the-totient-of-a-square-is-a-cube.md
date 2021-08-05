@@ -1,6 +1,6 @@
 ---
 id: 5900f4c31000cf542c50ffd5
-title: 'Problem 342: The totient of a square is a cube'
+title: "Problem 342: The totient of a square is a cube"
 challengeType: 5
 forumTopicId: 302001
 dashedName: problem-342-the-totient-of-a-square-is-a-cube
@@ -32,7 +32,6 @@ assert.strictEqual(euler342(), 5943040885644);
 
 ```js
 function euler342() {
-
   return true;
 }
 

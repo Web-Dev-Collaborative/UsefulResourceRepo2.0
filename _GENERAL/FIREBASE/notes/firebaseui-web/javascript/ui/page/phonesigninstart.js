@@ -16,25 +16,25 @@
  * @fileoverview UI component for the phone entry page.
  */
 
-goog.provide('firebaseui.auth.ui.page.PhoneSignInStart');
+goog.provide("firebaseui.auth.ui.page.PhoneSignInStart");
 
-goog.require('firebaseui.auth.soy2.page');
-goog.require('firebaseui.auth.ui.element');
-goog.require('firebaseui.auth.ui.element.dialog');
-goog.require('firebaseui.auth.ui.element.form');
-goog.require('firebaseui.auth.ui.element.phoneNumber');
-goog.require('firebaseui.auth.ui.element.recaptcha');
-goog.require('firebaseui.auth.ui.page.Base');
-goog.require('goog.dom.selection');
-goog.requireType('firebaseui.auth.data.country.LookupTree');
-goog.requireType('goog.dom.DomHelper');
-
+goog.require("firebaseui.auth.soy2.page");
+goog.require("firebaseui.auth.ui.element");
+goog.require("firebaseui.auth.ui.element.dialog");
+goog.require("firebaseui.auth.ui.element.form");
+goog.require("firebaseui.auth.ui.element.phoneNumber");
+goog.require("firebaseui.auth.ui.element.recaptcha");
+goog.require("firebaseui.auth.ui.page.Base");
+goog.require("goog.dom.selection");
+goog.requireType("firebaseui.auth.data.country.LookupTree");
+goog.requireType("goog.dom.DomHelper");
 
 /**
  * UI component for the user to enter their phone number.
  */
-firebaseui.auth.ui.page.PhoneSignInStart =
-    class extends firebaseui.auth.ui.page.Base {
+firebaseui.auth.ui.page.PhoneSignInStart = class extends (
+  firebaseui.auth.ui.page.Base
+) {
   /**
    * @param {function(?)} onSubmitClick Callback to invoke when enter key (or
    *     its equivalent) is detected on submission.
@@ -56,21 +56,33 @@ firebaseui.auth.ui.page.PhoneSignInStart =
    * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
    */
   constructor(
-      onSubmitClick, enableVisibleRecaptcha, opt_onCancelClick, opt_tosCallback,
-      opt_privacyPolicyCallback, opt_displayFullTosPpMessage, opt_lookupTree,
-      opt_countryId, opt_nationalNumber, opt_domHelper) {
+    onSubmitClick,
+    enableVisibleRecaptcha,
+    opt_onCancelClick,
+    opt_tosCallback,
+    opt_privacyPolicyCallback,
+    opt_displayFullTosPpMessage,
+    opt_lookupTree,
+    opt_countryId,
+    opt_nationalNumber,
+    opt_domHelper
+  ) {
     var nationalNumber = opt_nationalNumber || null;
     super(
-        firebaseui.auth.soy2.page.phoneSignInStart, {
-          enableVisibleRecaptcha: enableVisibleRecaptcha,
-          nationalNumber: nationalNumber,
-          displayCancelButton: !!opt_onCancelClick,
-          displayFullTosPpMessage: !!opt_displayFullTosPpMessage
-        },
-        opt_domHelper, 'phoneSignInStart', {
-          tosCallback: opt_tosCallback,
-          privacyPolicyCallback: opt_privacyPolicyCallback
-        });
+      firebaseui.auth.soy2.page.phoneSignInStart,
+      {
+        enableVisibleRecaptcha: enableVisibleRecaptcha,
+        nationalNumber: nationalNumber,
+        displayCancelButton: !!opt_onCancelClick,
+        displayFullTosPpMessage: !!opt_displayFullTosPpMessage,
+      },
+      opt_domHelper,
+      "phoneSignInStart",
+      {
+        tosCallback: opt_tosCallback,
+        privacyPolicyCallback: opt_privacyPolicyCallback,
+      }
+    );
     /** @private @const {?string} The default country to select. */
     this.countryId_ = opt_countryId || null;
     /** @private {boolean} Whether to enable visible reCAPTCHA. */
@@ -91,8 +103,9 @@ firebaseui.auth.ui.page.PhoneSignInStart =
     this.initPhoneNumberElement(this.lookupTree_, this.countryId_);
     // Handle a click on the submit button or cancel button.
     this.initFormElement(
-        /** @type {function(?)} */ (this.onSubmitClick_),
-        this.onCancelClick_ || undefined);
+      /** @type {function(?)} */ (this.onSubmitClick_),
+      this.onCancelClick_ || undefined
+    );
     this.setupFocus_();
     super.enterDocument();
   }
@@ -113,7 +126,9 @@ firebaseui.auth.ui.page.PhoneSignInStart =
     if (!this.enableVisibleRecaptcha_) {
       // When reCAPTCHA is not visible shift focus to submit button.
       this.focusToNextOnEnter(
-          this.getPhoneNumberElement(), this.getSubmitElement());
+        this.getPhoneNumberElement(),
+        this.getSubmitElement()
+      );
     }
     // Otherwise, can't force focus on visible reCAPTCHA.
 
@@ -121,47 +136,46 @@ firebaseui.auth.ui.page.PhoneSignInStart =
     // must be triggered by a button click, otherwise it may force a visible
     // challenge.
     this.submitOnEnter(
-        this.getSubmitElement(),
-        /** @type {function()} */ (this.onSubmitClick_));
+      this.getSubmitElement(),
+      /** @type {function()} */ (this.onSubmitClick_)
+    );
     // Auto focus the phone input and put the cursor at the end.
     this.getPhoneNumberElement().focus();
     goog.dom.selection.setCursorPosition(
-        this.getPhoneNumberElement(),
-        (this.getPhoneNumberElement().value || '').length);
+      this.getPhoneNumberElement(),
+      (this.getPhoneNumberElement().value || "").length
+    );
   }
 };
 
-
 goog.mixin(
-    firebaseui.auth.ui.page.PhoneSignInStart.prototype,
-    /** @lends {firebaseui.auth.ui.page.PhoneSignInStart.prototype} */
-    {
-      // For country selector list.
-      getDialogElement:
-          firebaseui.auth.ui.element.dialog.getDialogElement,
-      // For phone number input.
-      getPhoneNumberElement:
-          firebaseui.auth.ui.element.phoneNumber.getPhoneNumberElement,
-      getPhoneNumberErrorElement:
-          firebaseui.auth.ui.element.phoneNumber.getPhoneNumberErrorElement,
-      initPhoneNumberElement:
-          firebaseui.auth.ui.element.phoneNumber.initPhoneNumberElement,
-      getPhoneNumberValue:
-          firebaseui.auth.ui.element.phoneNumber.getPhoneNumberValue,
-      getCountrySelectorElement:
-           firebaseui.auth.ui.element.phoneNumber.getCountrySelectorElement,
+  firebaseui.auth.ui.page.PhoneSignInStart.prototype,
+  /** @lends {firebaseui.auth.ui.page.PhoneSignInStart.prototype} */
+  {
+    // For country selector list.
+    getDialogElement: firebaseui.auth.ui.element.dialog.getDialogElement,
+    // For phone number input.
+    getPhoneNumberElement:
+      firebaseui.auth.ui.element.phoneNumber.getPhoneNumberElement,
+    getPhoneNumberErrorElement:
+      firebaseui.auth.ui.element.phoneNumber.getPhoneNumberErrorElement,
+    initPhoneNumberElement:
+      firebaseui.auth.ui.element.phoneNumber.initPhoneNumberElement,
+    getPhoneNumberValue:
+      firebaseui.auth.ui.element.phoneNumber.getPhoneNumberValue,
+    getCountrySelectorElement:
+      firebaseui.auth.ui.element.phoneNumber.getCountrySelectorElement,
 
-      // For visible reCAPTCHA.
-      getRecaptchaElement:
-          firebaseui.auth.ui.element.recaptcha.getRecaptchaElement,
-      getRecaptchaErrorElement:
-          firebaseui.auth.ui.element.recaptcha.getRecaptchaErrorElement,
+    // For visible reCAPTCHA.
+    getRecaptchaElement:
+      firebaseui.auth.ui.element.recaptcha.getRecaptchaElement,
+    getRecaptchaErrorElement:
+      firebaseui.auth.ui.element.recaptcha.getRecaptchaErrorElement,
 
-      // For form.
-      getSubmitElement:
-          firebaseui.auth.ui.element.form.getSubmitElement,
-      getSecondaryLinkElement:
-          firebaseui.auth.ui.element.form.getSecondaryLinkElement,
-      initFormElement:
-          firebaseui.auth.ui.element.form.initFormElement
-    });
+    // For form.
+    getSubmitElement: firebaseui.auth.ui.element.form.getSubmitElement,
+    getSecondaryLinkElement:
+      firebaseui.auth.ui.element.form.getSecondaryLinkElement,
+    initFormElement: firebaseui.auth.ui.element.form.initFormElement,
+  }
+);

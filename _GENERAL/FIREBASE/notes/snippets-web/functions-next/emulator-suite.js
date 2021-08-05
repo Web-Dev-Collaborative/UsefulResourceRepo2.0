@@ -4,9 +4,9 @@
 import { initializeApp } from "firebase/app";
 
 initializeApp({
-  projectId: '### PROJECT ID ###',
-  apiKey: '### FIREBASE API KEY ###',
-  authDomain: '### FIREBASE AUTH DOMAIN ###',
+  projectId: "### PROJECT ID ###",
+  apiKey: "### FIREBASE API KEY ###",
+  authDomain: "### FIREBASE AUTH DOMAIN ###",
 });
 
 export function emulatorSettings() {
@@ -25,9 +25,9 @@ export async function callFunction() {
   const { getFunctions, httpsCallable } = require("firebase/functions");
 
   const functions = getFunctions(getApp());
-  const addMessage = httpsCallable(functions, 'addMessage');
+  const addMessage = httpsCallable(functions, "addMessage");
 
-  const result = await addMessage({ text: '<message text>'});
+  const result = await addMessage({ text: "<message text>" });
   /** @type {any} */
   const data = result.data;
   const sanitizedMessage = data.text;

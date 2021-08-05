@@ -15,14 +15,14 @@ Convierte los caracteres `&`, `<`, `>`, `"` (dobles comillas), y `'` (apóstrofo
 `convertHTML("Dolce & Gabbana")` debe devolver la cadena `Dolce &amp; Gabbana`.
 
 ```js
-assert.match(convertHTML('Dolce & Gabbana'), /Dolce &amp; Gabbana/);
+assert.match(convertHTML("Dolce & Gabbana"), /Dolce &amp; Gabbana/);
 ```
 
 `convertHTML("Hamburgers < Pizza < Tacos")` debe devolver la cadena `Hamburgers &lt; Pizza &lt; Tacos`.
 
 ```js
 assert.match(
-  convertHTML('Hamburgers < Pizza < Tacos'),
+  convertHTML("Hamburgers < Pizza < Tacos"),
   /Hamburgers &lt; Pizza &lt; Tacos/
 );
 ```
@@ -30,7 +30,7 @@ assert.match(
 `convertHTML("Sixty > twelve")` debe devolver la cadena `Sixty &gt; twelve`.
 
 ```js
-assert.match(convertHTML('Sixty > twelve'), /Sixty &gt; twelve/);
+assert.match(convertHTML("Sixty > twelve"), /Sixty &gt; twelve/);
 ```
 
 `convertHTML('Stuff in "quotation marks"')` debe devolver la cadena `Stuff in &quot;quotation marks&quot;`.
@@ -51,13 +51,13 @@ assert.match(convertHTML("Schindler's List"), /Schindler&apos;s List/);
 `convertHTML("<>")` debe devolver la cadena `&lt;&gt;`.
 
 ```js
-assert.match(convertHTML('<>'), /&lt;&gt;/);
+assert.match(convertHTML("<>"), /&lt;&gt;/);
 ```
 
 `convertHTML("abc")` debe devolver la cadena `abc`.
 
 ```js
-assert.strictEqual(convertHTML('abc'), 'abc');
+assert.strictEqual(convertHTML("abc"), "abc");
 ```
 
 # --seed--
@@ -75,14 +75,16 @@ convertHTML("Dolce & Gabbana");
 # --solutions--
 
 ```js
-var MAP = { '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&apos;'};
+var MAP = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&apos;",
+};
 
 function convertHTML(str) {
-  return str.replace(/[&<>"']/g, function(c) {
+  return str.replace(/[&<>"']/g, function (c) {
     return MAP[c];
   });
 }

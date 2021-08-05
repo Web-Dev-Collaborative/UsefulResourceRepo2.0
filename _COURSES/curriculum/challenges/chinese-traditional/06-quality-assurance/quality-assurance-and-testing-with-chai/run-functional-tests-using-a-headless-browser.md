@@ -57,9 +57,9 @@ test('#test - submit the input "surname" : "Polo"', function (done) {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=4').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=4").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -71,9 +71,9 @@ test('#test - submit the input "surname" : "Polo"', function (done) {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=4').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=4").then(
     (data) => {
-      assert.equal(data.assertions[0].method, 'browser.success');
+      assert.equal(data.assertions[0].method, "browser.success");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -85,9 +85,9 @@ test('#test - submit the input "surname" : "Polo"', function (done) {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=4').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=4").then(
     (data) => {
-      assert.equal(data.assertions[1].method, 'browser.text');
+      assert.equal(data.assertions[1].method, "browser.text");
       assert.match(data.assertions[1].args[0], /('|")span#name\1/);
       assert.match(data.assertions[1].args[1], /('|")Cristoforo\1/);
     },
@@ -101,9 +101,9 @@ test('#test - submit the input "surname" : "Polo"', function (done) {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=4').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=4").then(
     (data) => {
-      assert.equal(data.assertions[2].method, 'browser.text');
+      assert.equal(data.assertions[2].method, "browser.text");
       assert.match(data.assertions[2].args[0], /('|")span#surname\1/);
       assert.match(data.assertions[2].args[1], /('|")Colombo\1/);
     },
@@ -117,9 +117,9 @@ test('#test - submit the input "surname" : "Polo"', function (done) {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=functional&n=4').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=functional&n=4").then(
     (data) => {
-      assert.equal(data.assertions[3].method, 'browser.elements');
+      assert.equal(data.assertions[3].method, "browser.elements");
       assert.match(data.assertions[3].args[0], /('|")span#dates\1/);
       assert.equal(data.assertions[3].args[1], 1);
     },

@@ -41,37 +41,37 @@ assert(haRegex.source.match(/{.*?}/).length > 0);
 Your regex should not match the string `Hazzah`
 
 ```js
-assert(!haRegex.test('Hazzah'));
+assert(!haRegex.test("Hazzah"));
 ```
 
 Your regex should not match the string `Hazzzah`
 
 ```js
-assert(!haRegex.test('Hazzzah'));
+assert(!haRegex.test("Hazzzah"));
 ```
 
 Your regex should match the string `Hazzzzah`
 
 ```js
-assert('Hazzzzah'.match(haRegex)[0].length === 8);
+assert("Hazzzzah".match(haRegex)[0].length === 8);
 ```
 
 Your regex should match the string `Hazzzzzah`
 
 ```js
-assert('Hazzzzzah'.match(haRegex)[0].length === 9);
+assert("Hazzzzzah".match(haRegex)[0].length === 9);
 ```
 
 Your regex should match the string `Hazzzzzzah`
 
 ```js
-assert('Hazzzzzzah'.match(haRegex)[0].length === 10);
+assert("Hazzzzzzah".match(haRegex)[0].length === 10);
 ```
 
 Your regex should match the string `Hazzah` with 30 `z`'s in it.
 
 ```js
-assert('Hazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzah'.match(haRegex)[0].length === 34);
+assert("Hazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzah".match(haRegex)[0].length === 34);
 ```
 
 # --seed--

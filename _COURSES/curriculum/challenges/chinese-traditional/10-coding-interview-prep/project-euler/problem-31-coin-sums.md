@@ -1,6 +1,6 @@
 ---
 id: 5900f38b1000cf542c50fe9e
-title: 'Problem 31: Coin sums'
+title: "Problem 31: Coin sums"
 challengeType: 5
 forumTopicId: 301965
 dashedName: problem-31-coin-sums
@@ -23,7 +23,7 @@ How many different ways can `n` pence be made using any number of coins?
 `coinSums(50)` should return a number.
 
 ```js
-assert(typeof coinSums(50) === 'number');
+assert(typeof coinSums(50) === "number");
 ```
 
 `coinSums(50)` should return 451.
@@ -56,7 +56,6 @@ assert(coinSums(200) == 73682);
 
 ```js
 function coinSums(n) {
-
   return n;
 }
 
@@ -67,7 +66,7 @@ coinSums(200);
 
 ```js
 const coinSums = (n) => {
-  const getWays = (n, m=8, c=[1, 2, 5, 10, 20, 50, 100, 200]) => {
+  const getWays = (n, m = 8, c = [1, 2, 5, 10, 20, 50, 100, 200]) => {
     if (n === 0) return 1;
     if (m === 0 || n < 0) return 0;
     return getWays(n - c[m - 1], m, c) + getWays(n, m - 1, c);

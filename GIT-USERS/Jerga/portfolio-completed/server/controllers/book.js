@@ -1,5 +1,4 @@
-const Book = require('../models/book');
-
+const Book = require("../models/book");
 
 exports.getBooks = (req, res) => {
   Book.find({}, (err, allBooks) => {
@@ -8,8 +7,8 @@ exports.getBooks = (req, res) => {
     }
 
     return res.json(allBooks);
-  })
-}
+  });
+};
 
 exports.saveBook = (req, res) => {
   const bookData = req.body;
@@ -22,7 +21,7 @@ exports.saveBook = (req, res) => {
 
     return res.json(createdBook);
   });
-}
+};
 
 exports.updateBook = (req, res) => {
   const bookId = req.params.id;
@@ -41,26 +40,17 @@ exports.updateBook = (req, res) => {
 
       return res.json(foundBook);
     });
-  })
-}
+  });
+};
 
 exports.deleteBook = (req, res) => {
   const bookId = req.params.id;
 
-  Book.deleteOne({_id: bookId}, (err, deletedBook) => {
+  Book.deleteOne({ _id: bookId }, (err, deletedBook) => {
     if (err) {
       return res.status(422).send(err);
     }
 
-    return res.json({status: 'DELETED'});
-  })
-}
-
-
-
-
-
-
-
-
-
+    return res.json({ status: "DELETED" });
+  });
+};

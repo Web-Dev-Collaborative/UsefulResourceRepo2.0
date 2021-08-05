@@ -2,7 +2,7 @@
 id: 5690307fddb111c6084545d7
 title: Ordine logico nelle istruzioni If/Else
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cwNvMUV'
+videoUrl: "https://scrimba.com/c/cwNvMUV"
 forumTopicId: 18228
 dashedName: logical-order-in-if-else-statements
 ---
@@ -46,8 +46,8 @@ function bar(x) {
 Anche se queste due funzioni sembrano quasi identiche, se passiamo un numero ad entrambe otterremo output diversi.
 
 ```js
-foo(0)
-bar(0)
+foo(0);
+bar(0);
 ```
 
 `foo(0)` restituirà la stringa `Less than one`, e `bar(0)` restituirà la stringa `Less than two`.
@@ -61,19 +61,19 @@ Cambia l'ordine della logica nella funzione in modo che restituisca le affermazi
 `orderMyLogic(4)` dovrebbe restituire la stringa `Less than 5`
 
 ```js
-assert(orderMyLogic(4) === 'Less than 5');
+assert(orderMyLogic(4) === "Less than 5");
 ```
 
 `orderMyLogic(6)` dovrebbe restituire la stringa `Less than 10`
 
 ```js
-assert(orderMyLogic(6) === 'Less than 10');
+assert(orderMyLogic(6) === "Less than 10");
 ```
 
 `orderMyLogic(11)` dovrebbe restituire la stringa `Greater than or equal to 10`
 
 ```js
-assert(orderMyLogic(11) === 'Greater than or equal to 10');
+assert(orderMyLogic(11) === "Greater than or equal to 10");
 ```
 
 # --seed--
@@ -98,7 +98,7 @@ orderMyLogic(7);
 
 ```js
 function orderMyLogic(val) {
-  if(val < 5) {
+  if (val < 5) {
     return "Less than 5";
   } else if (val < 10) {
     return "Less than 10";

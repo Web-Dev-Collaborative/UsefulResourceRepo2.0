@@ -13,19 +13,19 @@ dashedName: set-up-the-environment
 添加 `socket.io@~2.3.0` 作爲依賴項，並且在你的服務器中和 `http` （內置在 Nodejs 中）一起導入/實例化。具體如下：
 
 ```javascript
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
+const http = require("http").createServer(app);
+const io = require("socket.io")(http);
 ```
 
-現在我們的 *express 應用*已經包含了 *http* 服務，接下來我們需要監聽 *http* 服務的事件。 爲此，我們需要把 `app.listen` 更新爲 `http.listen`。
+現在我們的 *express 應用*已經包含了 _http_ 服務，接下來我們需要監聽 _http_ 服務的事件。 爲此，我們需要把 `app.listen` 更新爲 `http.listen`。
 
-需要處理的第一件事是監聽客戶端的新連接。 <dfn>on</dfn> 關鍵字就是監聽這個特定事件。 它需要 2 個參數：一個包含所發出事件標題的字符串，以及一個用於傳遞數據的函數。 在連接監聽器中，我們用 *socket* 來代表它所包含的數據。 socket 就是指已連接到服務器的客戶端。
+需要處理的第一件事是監聽客戶端的新連接。 <dfn>on</dfn> 關鍵字就是監聽這個特定事件。 它需要 2 個參數：一個包含所發出事件標題的字符串，以及一個用於傳遞數據的函數。 在連接監聽器中，我們用 _socket_ 來代表它所包含的數據。 socket 就是指已連接到服務器的客戶端。
 
 爲了可以監聽服務器的連接事件，我們在數據庫連接的部分加入如下代碼：
 
 ```javascript
-io.on('connection', socket => {
-  console.log('A user has connected');
+io.on("connection", (socket) => {
+  console.log("A user has connected");
 });
 ```
 
@@ -50,12 +50,12 @@ let socket = io();
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.property(
         packJson.dependencies,
-        'socket.io',
+        "socket.io",
         'Your project should list "socket.io" as a dependency'
       );
     },
@@ -69,7 +69,7 @@ let socket = io();
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
@@ -87,12 +87,12 @@ let socket = io();
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
         /io.*=.*require.*('|")socket.io\1.*http/gi,
-        'You should correctly require and instantiate socket.io as io.'
+        "You should correctly require and instantiate socket.io as io."
       );
     },
     (xhr) => {
@@ -105,7 +105,7 @@ Socket.IO 應監聽連接。
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
@@ -123,12 +123,12 @@ Socket.IO 應監聽連接。
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/public/client.js').then(
+  $.get(getUserInput("url") + "/public/client.js").then(
     (data) => {
       assert.match(
         data,
         /socket.*=.*io/gi,
-        'Your client should be connection to server with the connection defined as socket'
+        "Your client should be connection to server with the connection defined as socket"
       );
     },
     (xhr) => {

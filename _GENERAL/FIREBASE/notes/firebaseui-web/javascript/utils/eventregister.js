@@ -17,13 +17,12 @@
  * native custom events are not supported in IE8.
  */
 
-goog.provide('firebaseui.auth.EventDispatcher');
-goog.provide('firebaseui.auth.EventRegister');
+goog.provide("firebaseui.auth.EventDispatcher");
+goog.provide("firebaseui.auth.EventRegister");
 
-goog.require('goog.array');
-goog.require('goog.events.EventTarget');
-goog.requireType('goog.events.Event');
-
+goog.require("goog.array");
+goog.require("goog.events.EventTarget");
+goog.requireType("goog.events.Event");
 
 /**
  * @private {!Object.<number, Array<firebaseui.auth.EventDispatcher>>} The map
@@ -31,12 +30,10 @@ goog.requireType('goog.events.Event');
  */
 firebaseui.auth.EventRegister.map_ = {};
 
-
 /**
  * @private {number} The counter of unique elements.
  */
 firebaseui.auth.EventRegister.counter_ = 0;
-
 
 /**
  * Dispatches a custom event on the element provided. If a dispatcher is
@@ -44,59 +41,67 @@ firebaseui.auth.EventRegister.counter_ = 0;
  * @param {!Element} el The element which event dispatcher would trigger event.
  * @param {goog.events.Event|Object|string} evt The event object.
  */
-firebaseui.auth.EventRegister.dispatchEvent = function(el, evt) {
+firebaseui.auth.EventRegister.dispatchEvent = function (el, evt) {
   if (!el) {
-     throw new Error('Event target element must be provided!');
+    throw new Error("Event target element must be provided!");
   }
   var key = firebaseui.auth.EventRegister.getKey_(el);
-  if (firebaseui.auth.EventRegister.map_[key] &&
-     firebaseui.auth.EventRegister.map_[key].length) {
+  if (
+    firebaseui.auth.EventRegister.map_[key] &&
+    firebaseui.auth.EventRegister.map_[key].length
+  ) {
     for (var i = 0; i < firebaseui.auth.EventRegister.map_[key].length; i++) {
       firebaseui.auth.EventRegister.map_[key][i].dispatchEvent(evt);
     }
   }
 };
 
-
 /**
  * Registers a dispatcher for event dispatching.
  * @param {firebaseui.auth.EventDispatcher} dispatcher The event dispatcher
  *     object.
  */
-firebaseui.auth.EventRegister.register = function(dispatcher) {
+firebaseui.auth.EventRegister.register = function (dispatcher) {
   var key = firebaseui.auth.EventRegister.getKey_(dispatcher.getElement());
   // Add the dispatcher in a map keyed by element ID, do not duplicate.
   if (!firebaseui.auth.EventRegister.map_[key]) {
     // New element.
     firebaseui.auth.EventRegister.map_[key] = [dispatcher];
-  } else if (!goog.array.contains(
+  } else if (
+    !goog.array.contains(
       /** @type {!Array<firebaseui.auth.EventDispatcher>} */ (
-          firebaseui.auth.EventRegister.map_[key]),
-      dispatcher)) {
+        firebaseui.auth.EventRegister.map_[key]
+      ),
+      dispatcher
+    )
+  ) {
     // Element found, make sure no duplicate dispatcher in element array before
     // adding.
     firebaseui.auth.EventRegister.map_[key].push(dispatcher);
   }
 };
 
-
 /**
  * Unregisters a dispatcher from event dispatching.
  * @param {firebaseui.auth.EventDispatcher} dispatcher The event dispatcher
  *     object.
  */
-firebaseui.auth.EventRegister.unregister = function(dispatcher) {
+firebaseui.auth.EventRegister.unregister = function (dispatcher) {
   var key = firebaseui.auth.EventRegister.getKey_(dispatcher.getElement());
   // Look up dispatchers for element requested, remove the requested dispatcher
   // from array if found.
-  if (firebaseui.auth.EventRegister.map_[key] &&
-      firebaseui.auth.EventRegister.map_[key].length) {
+  if (
+    firebaseui.auth.EventRegister.map_[key] &&
+    firebaseui.auth.EventRegister.map_[key].length
+  ) {
     goog.array.removeIf(
-        /** @type {!Array<firebaseui.auth.EventDispatcher>} */ (
-          firebaseui.auth.EventRegister.map_[key]),
-        function(current) {
-          return current == dispatcher;
-        });
+      /** @type {!Array<firebaseui.auth.EventDispatcher>} */ (
+        firebaseui.auth.EventRegister.map_[key]
+      ),
+      function (current) {
+        return current == dispatcher;
+      }
+    );
     // No more dispatchers for element, remove its entry from map.
     if (!firebaseui.auth.EventRegister.map_[key].length) {
       delete firebaseui.auth.EventRegister.map_[key];
@@ -104,21 +109,19 @@ firebaseui.auth.EventRegister.unregister = function(dispatcher) {
   }
 };
 
-
 /**
  * @param {Element} el The element which identifying key is to be returned.
  * @return {number} Returns the hash map key corresponding to the element
  *     provided.
  * @private
  */
-firebaseui.auth.EventRegister.getKey_ = function(el) {
-  if (typeof el.dispatchId_ === 'undefined') {
+firebaseui.auth.EventRegister.getKey_ = function (el) {
+  if (typeof el.dispatchId_ === "undefined") {
     el.dispatchId_ = firebaseui.auth.EventRegister.counter_;
     firebaseui.auth.EventRegister.counter_++;
   }
   return el.dispatchId_;
 };
-
 
 /**
  * An event dispatcher wrapper for an element. Anytime an event is to be
@@ -131,7 +134,7 @@ firebaseui.auth.EventDispatcher = class extends goog.events.EventTarget {
    */
   constructor(el) {
     if (!el) {
-      throw new Error('Event target element must be provided!');
+      throw new Error("Event target element must be provided!");
     }
     super();
     this.el_ = el;

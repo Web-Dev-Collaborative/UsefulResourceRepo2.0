@@ -12,7 +12,7 @@ You have now seen two kinds of properties: <dfn>own properties</dfn> and `protot
 
 ```js
 function Bird(name) {
-  this.name = name;  //own property
+  this.name = name; //own property
 }
 
 Bird.prototype.numLegs = 2; // prototype property
@@ -27,7 +27,7 @@ let ownProps = [];
 let prototypeProps = [];
 
 for (let property in duck) {
-  if(duck.hasOwnProperty(property)) {
+  if (duck.hasOwnProperty(property)) {
     ownProps.push(property);
   } else {
     prototypeProps.push(property);
@@ -49,13 +49,13 @@ Add all of the own properties of `beagle` to the array `ownProps`. Add all of th
 The `ownProps` array should only contain `name`.
 
 ```js
-assert.deepEqual(ownProps, ['name']);
+assert.deepEqual(ownProps, ["name"]);
 ```
 
 The `prototypeProps` array should only contain `numLegs`.
 
 ```js
-assert.deepEqual(prototypeProps, ['numLegs']);
+assert.deepEqual(prototypeProps, ["numLegs"]);
 ```
 
 You should solve this challenge without using the built in method `Object.keys()`.

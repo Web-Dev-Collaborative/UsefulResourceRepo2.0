@@ -7,8 +7,8 @@ const Cv = () => {
       <BasePage>
         <h1>I am cv page</h1>
       </BasePage>
-    </BaseLayout >
-  )
-}
+    </BaseLayout>
+  );
+};
 
 export default Cv;

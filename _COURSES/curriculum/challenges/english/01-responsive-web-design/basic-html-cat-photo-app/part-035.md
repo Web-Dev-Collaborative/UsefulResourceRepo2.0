@@ -16,40 +16,40 @@ Add an `action` attribute with the value `https://freecatphotoapp.com/submit-cat
 Your `form` element should have an opening tag and closing tag in the correct order. You may be missing one or both of the required tags, or have them in the wrong order.
 
 ```js
-const noSpaces = code.replace(/\s/g, '');
+const noSpaces = code.replace(/\s/g, "");
 assert(
-  document.querySelector('form') &&
+  document.querySelector("form") &&
     code.match(/<\/form>/g) &&
-    noSpaces.indexOf('<form') < noSpaces.indexOf('</form>')
+    noSpaces.indexOf("<form") < noSpaces.indexOf("</form>")
 );
 ```
 
 Your `form` element nested in the last `section` element should be below the `h2` element. You have the `h2` element and the `form` element in the wrong order.
 
 ```js
-assert(document.querySelector('form').previousElementSibling.nodeName === 'H2');
+assert(document.querySelector("form").previousElementSibling.nodeName === "H2");
 ```
 
 Your `form` element should have no content. Remove any HTML elements or text between the `form` element's tags.
 
 ```js
-assert($('form')[0].innerHTML.trim().length === 0);
+assert($("form")[0].innerHTML.trim().length === 0);
 ```
 
 Your `form` element does not have an `action` attribute. Check that there is a space after the opening tag's name and/or there are spaces before all attribute names.
 
 ```js
-const form = document.querySelector('form');
-assert(form.hasAttribute('action'));
+const form = document.querySelector("form");
+assert(form.hasAttribute("action"));
 ```
 
 Your `form` element should have an `action` attribute with the value `https://freecatphotoapp.com/submit-cat-photo`.
 
 ```js
-const form = document.querySelector('form');
+const form = document.querySelector("form");
 assert(
   form
-    .getAttribute('action')
+    .getAttribute("action")
     .match(/^https:\/\/freecatphotoapp\.com\/submit-cat-photo$/)
 );
 ```
@@ -76,8 +76,15 @@ assert(
       <section>
         <h2>Cat Photos</h2>
         <!-- TODO: Add link to cat photos -->
-        <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        <p>
+          Click here to view more
+          <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+        </p>
+        <a href="https://freecatphotoapp.com"
+          ><img
+            src="https://bit.ly/fcc-relaxing-cat"
+            alt="A cute orange cat lying on its back."
+        /></a>
       </section>
       <section>
         <h2>Cat Lists</h2>
@@ -88,8 +95,11 @@ assert(
           <li>lasagna</li>
         </ul>
         <figure>
-          <img src="https://bit.ly/fcc-lasagna" alt="A slice of lasagna on a plate.">
-          <figcaption>Cats <em>love</em> lasagna.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-lasagna"
+            alt="A slice of lasagna on a plate."
+          />
+          <figcaption>Cats <em>love</em> lasagna.</figcaption>
         </figure>
         <h3>Top 3 things cats hate:</h3>
         <ol>
@@ -98,19 +108,20 @@ assert(
           <li>other cats</li>
         </ol>
         <figure>
-          <img src="https://bit.ly/fcc-cats" alt="Five cats looking around a field.">
-          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-cats"
+            alt="Five cats looking around a field."
+          />
+          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>
         </figure>
       </section>
       <section>
         <h2>Cat Form</h2>
---fcc-editable-region--
-        <form>
-        </form>
---fcc-editable-region--
+        --fcc-editable-region--
+        <form></form>
+        --fcc-editable-region--
       </section>
     </main>
   </body>
 </html>
 ```
-

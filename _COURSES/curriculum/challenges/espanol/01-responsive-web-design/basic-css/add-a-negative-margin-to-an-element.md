@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08823
 title: Añade un margen negativo a un elemento
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cnpyGs3'
+videoUrl: "https://scrimba.com/c/cnpyGs3"
 forumTopicId: 16166
 dashedName: add-a-negative-margin-to-an-element
 ---
@@ -24,7 +24,7 @@ Cambia el `margin` de la caja azul a `-15px` para que llene todo el ancho horizo
 Tu clase `blue-box` debería dar a los elementos un `margin` de `-15px`.
 
 ```js
-assert($('.blue-box').css('margin-top') === '-15px');
+assert($(".blue-box").css("margin-top") === "-15px");
 ```
 
 # --seed--

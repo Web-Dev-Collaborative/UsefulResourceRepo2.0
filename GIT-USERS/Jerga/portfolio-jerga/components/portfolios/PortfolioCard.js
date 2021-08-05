@@ -1,13 +1,19 @@
-import React from 'react';
-import { Card, CardHeader, CardBody, CardText, CardTitle, Button } from 'reactstrap';
-import PortfolioCardDetail from './PortfolioCardDetail';
+import React from "react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardText,
+  CardTitle,
+  Button,
+} from "reactstrap";
+import PortfolioCardDetail from "./PortfolioCardDetail";
 
 export default class PortfolioCard extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: false,
     };
 
     this.handleToggle = this.handleToggle.bind(this);
@@ -15,7 +21,7 @@ export default class PortfolioCard extends React.Component {
 
   handleToggle() {
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: !this.state.isOpen,
     });
   }
 
@@ -25,21 +31,28 @@ export default class PortfolioCard extends React.Component {
 
     return (
       <span onClick={this.handleToggle}>
-
-        <PortfolioCardDetail toggle={this.handleToggle} portfolio={portfolio} isOpen={isOpen}/>
+        <PortfolioCardDetail
+          toggle={this.handleToggle}
+          portfolio={portfolio}
+          isOpen={isOpen}
+        />
 
         <Card className="portfolio-card">
-          <CardHeader className="portfolio-card-header">{portfolio.position}</CardHeader>
+          <CardHeader className="portfolio-card-header">
+            {portfolio.position}
+          </CardHeader>
           <CardBody>
             <p className="portfolio-card-city">{portfolio.location}</p>
-            <CardTitle className="portfolio-card-title">{portfolio.title}</CardTitle>
-            <CardText className="portfolio-card-text">{portfolio.description}</CardText>
-            <div className="readMore">
-              {children}
-            </div>
+            <CardTitle className="portfolio-card-title">
+              {portfolio.title}
+            </CardTitle>
+            <CardText className="portfolio-card-text">
+              {portfolio.description}
+            </CardText>
+            <div className="readMore">{children}</div>
           </CardBody>
         </Card>
       </span>
-    )
+    );
   }
 }

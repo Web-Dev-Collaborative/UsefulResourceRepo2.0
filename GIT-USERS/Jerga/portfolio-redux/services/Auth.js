@@ -1,20 +1,23 @@
-import auth0 from 'auth0-js';
-import Cookie from 'js-cookie';
-import jwt from 'jsonwebtoken';
-import fetch from 'isomorphic-unfetch';
+import auth0 from "auth0-js";
+import Cookie from "js-cookie";
+import jwt from "jsonwebtoken";
+import fetch from "isomorphic-unfetch";
 
 class Auth {
   constructor() {
-    const redirectUri = process.env.NODE_ENV === 'production' ? 'https://port-fel.herokuapp.com' : 'http://localhost:3000';
+    const redirectUri =
+      process.env.NODE_ENV === "production"
+        ? "https://port-fel.herokuapp.com"
+        : "http://localhost:3000";
 
     this.auth0 = new auth0.WebAuth({
       // the following three lines MUST be updated
-      domain: 'eincode.eu.auth0.com',
-      audience: 'https://eincode.eu.auth0.com/userinfo',
-      clientID: 'N1hKhhP0PacJO4EjIWURIcnzBt88P3Q1',
+      domain: "eincode.eu.auth0.com",
+      audience: "https://eincode.eu.auth0.com/userinfo",
+      clientID: "N1hKhhP0PacJO4EjIWURIcnzBt88P3Q1",
       redirectUri: `${redirectUri}/callback`,
-      responseType: 'token id_token',
-      scope: 'openid profile app_metadata'
+      responseType: "token id_token",
+      scope: "openid profile app_metadata",
     });
 
     this._isFetching = false;
@@ -36,24 +39,26 @@ class Auth {
         this.setSession(authResult);
         resolve();
       });
-    })
+    });
   }
 
   async getTokenForBrowser() {
-    const token = Cookie.getJSON('jwt');
+    const token = Cookie.getJSON("jwt");
     const validToken = await this.verifyToken(token);
     if (validToken) {
-      return Cookie.getJSON('user');
+      return Cookie.getJSON("user");
     }
   }
 
   async getTokenForServer(req) {
     if (req.headers.cookie) {
-      const jwtFromCookie = req.headers.cookie.split(';').find(c => c.trim().startsWith('jwt='));
+      const jwtFromCookie = req.headers.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("jwt="));
       if (!jwtFromCookie) {
         return undefined;
       }
-      const token = jwtFromCookie.split('=')[1];
+      const token = jwtFromCookie.split("=")[1];
       const validToken = await this.verifyToken(token);
       if (validToken) {
         return jwt.decode(token);
@@ -64,7 +69,9 @@ class Auth {
   }
 
   async getJWK() {
-    const res = await fetch(`https://eincode.eu.auth0.com/.well-known/jwks.json`);
+    const res = await fetch(
+      `https://eincode.eu.auth0.com/.well-known/jwks.json`
+    );
     const jwk = await res.json();
     return jwk;
   }
@@ -74,7 +81,7 @@ class Auth {
       const decodedToken = jwt.decode(token, { complete: true });
       const jwk = await this.getJWK();
       let cert = jwk.keys[0].x5c[0];
-      cert = cert.match(/.{1,64}/g).join('\n');
+      cert = cert.match(/.{1,64}/g).join("\n");
       cert = `-----BEGIN CERTIFICATE-----\n${cert}\n-----END CERTIFICATE-----\n`;
       if (jwk.keys[0].kid === decodedToken.header.kid) {
         try {
@@ -94,18 +101,18 @@ class Auth {
     // set the time that the id token will expire at
     this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
 
-    Cookie.set('user', authResult.idTokenPayload);
-    Cookie.set('jwt', authResult.idToken);
+    Cookie.set("user", authResult.idTokenPayload);
+    Cookie.set("jwt", authResult.idToken);
   }
 
   signOut() {
     this.auth0.logout({
-      returnTo: '',
-      clientID: 'N1hKhhP0PacJO4EjIWURIcnzBt88P3Q1',
+      returnTo: "",
+      clientID: "N1hKhhP0PacJO4EjIWURIcnzBt88P3Q1",
     });
 
-    Cookie.remove('jwt');
-    Cookie.remove('user');
+    Cookie.remove("jwt");
+    Cookie.remove("user");
   }
 
   silentAuth() {
@@ -115,8 +122,8 @@ class Auth {
       this.auth0.checkSession({}, (err, authResult) => {
         if (err) {
           this._isFetching = false;
-          return reject(err)
-        };
+          return reject(err);
+        }
 
         this.setSession(authResult);
         this._isFetching = false;
@@ -144,7 +151,6 @@ class Auth {
   signIn() {
     this.auth0.authorize();
   }
-
 }
 
 const auth0Client = new Auth();

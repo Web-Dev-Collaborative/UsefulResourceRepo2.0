@@ -1,40 +1,39 @@
-
 export default {
   data() {
     return {
       activeStep: 1,
-      steps: []
-    }
+      steps: [],
+    };
   },
   computed: {
     stepsLength() {
-      return this.steps.length
+      return this.steps.length;
     },
     isLastStep() {
-      return this.activeStep === this.stepsLength
+      return this.activeStep === this.stepsLength;
     },
     isFirstStep() {
-      return this.activeStep === 1
+      return this.activeStep === 1;
     },
     progress() {
-      return `${100 / this.stepsLength * this.activeStep}%`
+      return `${(100 / this.stepsLength) * this.activeStep}%`;
     },
     activeComponent() {
-      return this.steps[this.activeStep - 1]
-    }
+      return this.steps[this.activeStep - 1];
+    },
   },
   methods: {
     nextStep() {
-      this.activeStep++
+      this.activeStep++;
     },
     previousStep() {
-      this.activeStep--
+      this.activeStep--;
     },
     navigateTo(step) {
-      this.activeStep = step
+      this.activeStep = step;
     },
     activeComponentClass(step) {
-      return this.activeStep === step ? 'is-active' : ''
-    }
-  }
-}
+      return this.activeStep === step ? "is-active" : "";
+    },
+  },
+};

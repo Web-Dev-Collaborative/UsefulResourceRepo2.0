@@ -1,6 +1,6 @@
 ---
 id: 5900f3e81000cf542c50fefb
-title: 'Problem 124: Ordered radicals'
+title: "Problem 124: Ordered radicals"
 challengeType: 5
 forumTopicId: 301751
 dashedName: problem-124-ordered-radicals
@@ -52,7 +52,6 @@ assert.strictEqual(euler124(), 21417);
 
 ```js
 function euler124() {
-
   return true;
 }
 

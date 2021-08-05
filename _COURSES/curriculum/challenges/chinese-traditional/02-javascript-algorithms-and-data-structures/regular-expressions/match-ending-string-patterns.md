@@ -31,19 +31,19 @@ storyRegex.test(noEnding);
 你應該在正則表達式使用美元符號 `$` 來搜尋 `caboose`。
 
 ```js
-assert(lastRegex.source == 'caboose$');
+assert(lastRegex.source == "caboose$");
 ```
 
 你的正則表達式不應該使用任何標誌。
 
 ```js
-assert(lastRegex.flags == '');
+assert(lastRegex.flags == "");
 ```
 
 你應該在字符串 `The last car on a train is the caboose` 的末尾匹配 `caboose`。
 
 ```js
-assert(lastRegex.test('The last car on a train is the caboose'));
+assert(lastRegex.test("The last car on a train is the caboose"));
 ```
 
 # --seed--

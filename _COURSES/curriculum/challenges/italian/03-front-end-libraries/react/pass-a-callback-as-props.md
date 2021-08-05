@@ -24,7 +24,7 @@ Il componente `MyApp` dovrebbe effettuare il render.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(MyApp));
-    return mockedComponent.find('MyApp').length === 1;
+    return mockedComponent.find("MyApp").length === 1;
   })()
 );
 ```
@@ -35,7 +35,7 @@ Il componente `GetInput` dovrebbe effettuare il render.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(MyApp));
-    return mockedComponent.find('GetInput').length === 1;
+    return mockedComponent.find("GetInput").length === 1;
   })()
 );
 ```
@@ -46,7 +46,7 @@ Il componente `RenderInput` dovrebbe effettuare il render.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(MyApp));
-    return mockedComponent.find('RenderInput').length === 1;
+    return mockedComponent.find("RenderInput").length === 1;
   })()
 );
 ```
@@ -59,18 +59,18 @@ async () => {
     new Promise((resolve, reject) => setTimeout(() => resolve(fn()), 250));
   const mockedComponent = Enzyme.mount(React.createElement(MyApp));
   const state_1 = () => {
-    mockedComponent.setState({ inputValue: '' });
+    mockedComponent.setState({ inputValue: "" });
     return waitForIt(() => mockedComponent.state());
   };
   const state_2 = () => {
     mockedComponent
-      .find('input')
-      .simulate('change', { target: { value: 'TestInput' } });
+      .find("input")
+      .simulate("change", { target: { value: "TestInput" } });
     return waitForIt(() => mockedComponent.state());
   };
   const updated_1 = await state_1();
   const updated_2 = await state_2();
-  assert(updated_1.inputValue === '' && updated_2.inputValue === 'TestInput');
+  assert(updated_1.inputValue === "" && updated_2.inputValue === "TestInput");
 };
 ```
 
@@ -82,11 +82,11 @@ async () => {
     new Promise((resolve, reject) => setTimeout(() => resolve(fn()), 250));
   const mockedComponent = Enzyme.mount(React.createElement(MyApp));
   const state_1 = () => {
-    mockedComponent.setState({ inputValue: 'TestName' });
+    mockedComponent.setState({ inputValue: "TestName" });
     return waitForIt(() => mockedComponent);
   };
   const updated_1 = await state_1();
-  assert(updated_1.find('p').text().includes('TestName'));
+  assert(updated_1.find("p").text().includes("TestName"));
 };
 ```
 
@@ -95,7 +95,7 @@ async () => {
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<MyApp />, document.getElementById('root'))
+ReactDOM.render(<MyApp />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -105,25 +105,25 @@ class MyApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: ''
-    }
+      inputValue: "",
+    };
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
     this.setState({
-      inputValue: event.target.value
+      inputValue: event.target.value,
     });
   }
   render() {
     return (
-       <div>
-        { /* Change code below this line */ }
+      <div>
+        {/* Change code below this line */}
 
-        { /* Change code above this line */ }
-       </div>
+        {/* Change code above this line */}
+      </div>
     );
   }
-};
+}
 
 class GetInput extends React.Component {
   constructor(props) {
@@ -133,13 +133,11 @@ class GetInput extends React.Component {
     return (
       <div>
         <h3>Get Input:</h3>
-        <input
-          value={this.props.input}
-          onChange={this.props.handleChange}/>
+        <input value={this.props.input} onChange={this.props.handleChange} />
       </div>
     );
   }
-};
+}
 
 class RenderInput extends React.Component {
   constructor(props) {
@@ -153,7 +151,7 @@ class RenderInput extends React.Component {
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -163,27 +161,27 @@ class MyApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: ''
-    }
-  this.handleChange = this.handleChange.bind(this);
+      inputValue: "",
+    };
+    this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
     this.setState({
-      inputValue: event.target.value
+      inputValue: event.target.value,
     });
   }
   render() {
     return (
-       <div>
-         <GetInput
-           input={this.state.inputValue}
-           handleChange={this.handleChange}/>
-         <RenderInput
-           input={this.state.inputValue}/>
-       </div>
+      <div>
+        <GetInput
+          input={this.state.inputValue}
+          handleChange={this.handleChange}
+        />
+        <RenderInput input={this.state.inputValue} />
+      </div>
     );
   }
-};
+}
 
 class GetInput extends React.Component {
   constructor(props) {
@@ -193,13 +191,11 @@ class GetInput extends React.Component {
     return (
       <div>
         <h3>Get Input:</h3>
-        <input
-          value={this.props.input}
-          onChange={this.props.handleChange}/>
+        <input value={this.props.input} onChange={this.props.handleChange} />
       </div>
     );
   }
-};
+}
 
 class RenderInput extends React.Component {
   constructor(props) {
@@ -213,5 +209,5 @@ class RenderInput extends React.Component {
       </div>
     );
   }
-};
+}
 ```

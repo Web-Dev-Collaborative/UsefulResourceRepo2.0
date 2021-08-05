@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244dd
 title: 使用 Switch 语句从许多选项中进行选择
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c4mv4fm'
+videoUrl: "https://scrimba.com/c/c4mv4fm"
 forumTopicId: 18277
 dashedName: selecting-from-many-options-with-switch-statements
 ---
@@ -14,7 +14,7 @@ dashedName: selecting-from-many-options-with-switch-statements
 这是 `switch` 语句的示例：
 
 ```js
-switch(lowercaseLetter) {
+switch (lowercaseLetter) {
   case "a":
     console.log("A");
     break;
@@ -39,25 +39,25 @@ switch(lowercaseLetter) {
 `caseInSwitch(1)` 值应该为字符串 `alpha`
 
 ```js
-assert(caseInSwitch(1) === 'alpha');
+assert(caseInSwitch(1) === "alpha");
 ```
 
 `caseInSwitch(2)` 值应该为字符串 `beta`
 
 ```js
-assert(caseInSwitch(2) === 'beta');
+assert(caseInSwitch(2) === "beta");
 ```
 
 `caseInSwitch(3)` 值应该为字符串 `gamma`
 
 ```js
-assert(caseInSwitch(3) === 'gamma');
+assert(caseInSwitch(3) === "gamma");
 ```
 
 `caseInSwitch(4)` 值应该为字符串 `delta`
 
 ```js
-assert(caseInSwitch(4) === 'delta');
+assert(caseInSwitch(4) === "delta");
 ```
 
 不能使用任何 `if` 或 `else` 表达式
@@ -81,8 +81,6 @@ function caseInSwitch(val) {
   var answer = "";
   // Only change code below this line
 
-
-
   // Only change code above this line
   return answer;
 }
@@ -96,7 +94,7 @@ caseInSwitch(1);
 function caseInSwitch(val) {
   var answer = "";
 
-  switch(val) {
+  switch (val) {
     case 1:
       answer = "alpha";
       break;

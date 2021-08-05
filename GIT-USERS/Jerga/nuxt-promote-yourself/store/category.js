@@ -1,31 +1,29 @@
-
-
-
 export const state = () => ({
-  items: []
-})
+  items: [],
+});
 
 export const getters = {
   hasCategories(state) {
-    return state.items.length > 0
-  }
-}
+    return state.items.length > 0;
+  },
+};
 
 export const actions = {
-  fetchCategories({state, commit, getters}) {
-    if (getters.hasCategories) return
+  fetchCategories({ state, commit, getters }) {
+    if (getters.hasCategories) return;
 
-    return this.$axios.$get('/api/v1/categories')
-      .then(categories => {
-        commit('setCategories', categories)
-        return state.items
+    return this.$axios
+      .$get("/api/v1/categories")
+      .then((categories) => {
+        commit("setCategories", categories);
+        return state.items;
       })
-      .catch(error => Promise.reject(error))
-  }
-}
+      .catch((error) => Promise.reject(error));
+  },
+};
 
 export const mutations = {
   setCategories(state, categories) {
-    state.items = categories
-  }
-}
+    state.items = categories;
+  },
+};

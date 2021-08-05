@@ -12,7 +12,7 @@ En el siguiente ejemplo, el constructor `Bird` define dos propiedades: `name` y 
 
 ```js
 function Bird(name) {
-  this.name  = name;
+  this.name = name;
   this.numLegs = 2;
 }
 
@@ -26,7 +26,7 @@ let canary = new Bird("Tweety");
 let ownProps = [];
 
 for (let property in duck) {
-  if(duck.hasOwnProperty(property)) {
+  if (duck.hasOwnProperty(property)) {
     ownProps.push(property);
   }
 }
@@ -45,7 +45,7 @@ Agrega todas las propiedades directas de `canary` al arreglo `ownProps`.
 `ownProps` debe incluir los valores `numLegs` y `name`.
 
 ```js
-assert(ownProps.indexOf('name') !== -1 && ownProps.indexOf('numLegs') !== -1);
+assert(ownProps.indexOf("name") !== -1 && ownProps.indexOf("numLegs") !== -1);
 ```
 
 Debes resolver este desafío sin usar el método `Object.keys()`.
@@ -88,7 +88,7 @@ function Bird(name) {
 }
 
 let canary = new Bird("Tweety");
-function getOwnProps (obj) {
+function getOwnProps(obj) {
   const props = [];
 
   for (let prop in obj) {

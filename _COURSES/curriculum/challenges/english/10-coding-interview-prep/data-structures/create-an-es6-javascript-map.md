@@ -19,13 +19,13 @@ Define a JavaScript Map object and assign to it a variable called myMap. Add the
 The myMap object should exist.
 
 ```js
-assert(typeof myMap === 'object');
+assert(typeof myMap === "object");
 ```
 
 myMap should contain the key value pair `freeCodeCamp`, `Awesome!`.
 
 ```js
-assert(myMap.get('freeCodeCamp') === 'Awesome!');
+assert(myMap.get("freeCodeCamp") === "Awesome!");
 ```
 
 # --seed--

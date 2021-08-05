@@ -7,10 +7,10 @@
 import { getStorage, ref } from "firebase/storage";
 
 const storage = getStorage();
-const spaceRef = ref(storage, 'images/space.jpg');
+const spaceRef = ref(storage, "images/space.jpg");
 
 // References can be chained together multiple times
-const earthRef = ref(spaceRef.parent, 'earth.jpg');
+const earthRef = ref(spaceRef.parent, "earth.jpg");
 // earthRef points to 'images/earth.jpg'
 
 // nullRef is null, since the parent of root is null

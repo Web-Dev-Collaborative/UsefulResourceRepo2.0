@@ -31,8 +31,6 @@ jobs:
           npm ci
           npm install -g lerna
           lerna bootstrap
-      
+
       - name: Run tests
         run: npm test
-
-      

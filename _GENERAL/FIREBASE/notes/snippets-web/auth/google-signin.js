@@ -12,19 +12,20 @@ function googleProvider() {
   // [END auth_google_provider_create]
 
   // [START auth_google_provider_scopes]
-  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
   // [END auth_google_provider_scopes]
-  
+
   // [START auth_google_provider_params]
   provider.setCustomParameters({
-    'login_hint': 'user@example.com'
+    login_hint: "user@example.com",
   });
   // [END auth_google_provider_params]
 }
 
 function googleSignInPopup(provider) {
   // [START auth_google_signin_popup]
-  firebase.auth()
+  firebase
+    .auth()
     .signInWithPopup(provider)
     .then((result) => {
       /** @type {firebase.auth.OAuthCredential} */
@@ -35,7 +36,8 @@ function googleSignInPopup(provider) {
       // The signed-in user info.
       var user = result.user;
       // ...
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -50,7 +52,8 @@ function googleSignInPopup(provider) {
 
 function googleSignInRedirectResult() {
   // [START auth_google_signin_redirect_result]
-  firebase.auth()
+  firebase
+    .auth()
     .getRedirectResult()
     .then((result) => {
       if (result.credential) {
@@ -63,7 +66,8 @@ function googleSignInRedirectResult() {
       }
       // The signed-in user info.
       var user = result.user;
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -82,22 +86,25 @@ function googleBuildAndSignIn(id_token) {
   var credential = firebase.auth.GoogleAuthProvider.credential(id_token);
 
   // Sign in with credential from the Google user.
-  firebase.auth().signInWithCredential(credential).catch((error) => {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-    // ...
-  });
+  firebase
+    .auth()
+    .signInWithCredential(credential)
+    .catch((error) => {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
   // [END auth_google_build_signin]
 }
 
 // [START auth_google_callback]
 function onSignIn(googleUser) {
-  console.log('Google Auth Response', googleUser);
+  console.log("Google Auth Response", googleUser);
   // We need to register an Observer on Firebase Auth to make sure auth is initialized.
   var unsubscribe = firebase.auth().onAuthStateChanged((firebaseUser) => {
     unsubscribe();
@@ -105,23 +112,27 @@ function onSignIn(googleUser) {
     if (!isUserEqual(googleUser, firebaseUser)) {
       // Build Firebase credential with the Google ID token.
       var credential = firebase.auth.GoogleAuthProvider.credential(
-          googleUser.getAuthResponse().id_token);
-  
+        googleUser.getAuthResponse().id_token
+      );
+
       // Sign in with credential from the Google user.
       // [START auth_google_signin_credential]
-      firebase.auth().signInWithCredential(credential).catch((error) => {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        // ...
-      });
+      firebase
+        .auth()
+        .signInWithCredential(credential)
+        .catch((error) => {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // The email of the user's account used.
+          var email = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          var credential = error.credential;
+          // ...
+        });
       // [END auth_google_signin_credential]
     } else {
-      console.log('User already signed-in Firebase.');
+      console.log("User already signed-in Firebase.");
     }
   });
 }
@@ -132,8 +143,11 @@ function isUserEqual(googleUser, firebaseUser) {
   if (firebaseUser) {
     var providerData = firebaseUser.providerData;
     for (var i = 0; i < providerData.length; i++) {
-      if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
-          providerData[i].uid === googleUser.getBasicProfile().getId()) {
+      if (
+        providerData[i].providerId ===
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
+        providerData[i].uid === googleUser.getBasicProfile().getId()
+      ) {
         // We don't need to reauth the Firebase connection.
         return true;
       }

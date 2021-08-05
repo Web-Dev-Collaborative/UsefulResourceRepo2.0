@@ -2,7 +2,7 @@
 id: 587d78a6367417b2b2512adc
 title: 使用 CSS Transform skex 属性沿Y轴倾斜元素
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c2MZ2uB'
+videoUrl: "https://scrimba.com/c/c2MZ2uB"
 forumTopicId: 301075
 dashedName: use-the-css-transform-property-skewy-to-skew-an-element-along-the-y-axis
 ---
@@ -36,7 +36,6 @@ assert(code.match(/#top\s*?{\s*?.*?\s*?transform:\s*?skewY\(-10deg\);/g));
   }
   #top {
     background-color: red;
-
   }
   #bottom {
     background-color: blue;

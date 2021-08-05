@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08828
 title: 創建一個有序列表
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/cQ3B8TM'
+videoUrl: "https://scrimba.com/p/pVMPUv/cQ3B8TM"
 forumTopicId: 16824
 dashedName: create-an-ordered-list
 ---
@@ -33,37 +33,37 @@ HTML 中有用於創建<dfn>有序列表</dfn>的特定元素。
 應包含一個有序列表，內容是貓咪最討厭的三樣東西（`Top 3 things cats hate:`）。
 
 ```js
-assert(/Top 3 things cats hate:/i.test($('ol').prev().text()));
+assert(/Top 3 things cats hate:/i.test($("ol").prev().text()));
 ```
 
 應包含有一個無序列表，內容是貓咪最喜歡的東西（`Things cats love:`）。
 
 ```js
-assert(/Things cats love:/i.test($('ul').prev().text()));
+assert(/Things cats love:/i.test($("ul").prev().text()));
 ```
 
 頁面應只包含一個 `ul` 元素。
 
 ```js
-assert.equal($('ul').length, 1);
+assert.equal($("ul").length, 1);
 ```
 
 頁面應只包含一個 `ol` 元素。
 
 ```js
-assert.equal($('ol').length, 1);
+assert.equal($("ol").length, 1);
 ```
 
 `ul` 無序列表中應包含 3 個 `li` 元素。
 
 ```js
-assert.equal($('ul li').length, 3);
+assert.equal($("ul li").length, 3);
 ```
 
 `ol` 有序列表應該包含 3 個 `li` 元素。
 
 ```js
-assert.equal($('ol li').length, 3);
+assert.equal($("ol li").length, 3);
 ```
 
 `ul` 無序列表應有結束標籤。
@@ -97,7 +97,7 @@ assert(
 無序列表裏的 `li` 元素內容不應爲空。
 
 ```js
-$('ul li').each((i, val) =>
+$("ul li").each((i, val) =>
   assert(__helpers.removeWhiteSpace(val.textContent))
 );
 ```
@@ -105,7 +105,7 @@ $('ul li').each((i, val) =>
 有序列表裏的 `li` 元素內容不應該爲空。
 
 ```js
-$('ol li').each((i, val) =>
+$("ol li").each((i, val) =>
   assert(!!__helpers.removeWhiteSpace(val.textContent))
 );
 ```
@@ -119,7 +119,11 @@ $('ol li').each((i, val) =>
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>
@@ -128,7 +132,6 @@ $('ol li').each((i, val) =>
     <li>lasagna</li>
   </ul>
   <p>Top 3 things cats hate:</p>
-
 </main>
 ```
 
@@ -139,7 +142,11 @@ $('ol li').each((i, val) =>
 <main>
   <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
 
   <p>Things cats love:</p>
   <ul>

@@ -22,7 +22,7 @@ React 還有一個設置默認 props 的選項。 可以將默認 props 作爲�
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(ShoppingCart));
-    return mockedComponent.find('ShoppingCart').length === 1;
+    return mockedComponent.find("ShoppingCart").length === 1;
   })()
 );
 ```
@@ -34,7 +34,7 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(ShoppingCart));
     mockedComponent.setProps({ items: undefined });
-    return mockedComponent.find('ShoppingCart').props().items === 0;
+    return mockedComponent.find("ShoppingCart").props().items === 0;
   })()
 );
 ```
@@ -44,7 +44,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<ShoppingCart />, document.getElementById('root'))
+ReactDOM.render(<ShoppingCart />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -55,7 +55,7 @@ const ShoppingCart = (props) => {
     <div>
       <h1>Shopping Cart Component</h1>
     </div>
-  )
+  );
 };
 // Change code below this line
 ```
@@ -68,11 +68,11 @@ const ShoppingCart = (props) => {
     <div>
       <h1>Shopping Cart Component</h1>
     </div>
-  )
+  );
 };
 
 // Change code below this line
 ShoppingCart.defaultProps = {
-  items: 0
-}
+  items: 0,
+};
 ```

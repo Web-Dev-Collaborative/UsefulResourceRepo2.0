@@ -14,15 +14,16 @@ JavaScript 的`XMLHttpRequest`方法也用於將數據發佈到服務器。 這�
 
 ```js
 const xhr = new XMLHttpRequest();
-xhr.open('POST', url, true);
-xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+xhr.open("POST", url, true);
+xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
 xhr.onreadystatechange = function () {
-  if (xhr.readyState === 4 && xhr.status === 201){
+  if (xhr.readyState === 4 && xhr.status === 201) {
     const serverResponse = JSON.parse(xhr.response);
-    document.getElementsByClassName('message')[0].textContent = serverResponse.userName + serverResponse.suffix;
+    document.getElementsByClassName("message")[0].textContent =
+      serverResponse.userName + serverResponse.suffix;
   }
 };
-const body = JSON.stringify({ userName: userName, suffix: ' loves cats!' });
+const body = JSON.stringify({ userName: userName, suffix: " loves cats!" });
 xhr.send(body);
 ```
 
@@ -84,13 +85,11 @@ assert(code.match(/\.send\(\s*?body\s*?\)/g));
 
 ```html
 <script>
-  document.addEventListener('DOMContentLoaded', function(){
-    document.getElementById('sendMessage').onclick = function(){
-
-      const userName = document.getElementById('name').value;
-      const url = 'https://jsonplaceholder.typicode.com/posts';
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("sendMessage").onclick = function () {
+      const userName = document.getElementById("name").value;
+      const url = "https://jsonplaceholder.typicode.com/posts";
       // Add your code below this line
-
 
       // Add your code above this line
     };
@@ -119,22 +118,19 @@ assert(code.match(/\.send\(\s*?body\s*?\)/g));
     padding: 5px 10px 8px 10px;
   }
   button:hover {
-    background-color: #0F5897;
-    border: 1px solid #0F5897;
+    background-color: #0f5897;
+    border: 1px solid #0f5897;
   }
 </style>
 
 <h1>Cat Friends</h1>
-<p class="message box">
-  Reply from Server will be here
-</p>
+<p class="message box">Reply from Server will be here</p>
 <p>
-  <label for="name">Your name:
-    <input type="text" id="name"/>
+  <label for="name"
+    >Your name:
+    <input type="text" id="name" />
   </label>
-  <button id="sendMessage">
-    Send Message
-  </button>
+  <button id="sendMessage">Send Message</button>
 </p>
 ```
 
@@ -142,23 +138,26 @@ assert(code.match(/\.send\(\s*?body\s*?\)/g));
 
 ```html
 <script>
-  document.addEventListener('DOMContentLoaded', function(){
-    document.getElementById('sendMessage').onclick = function(){
-
-      const userName = document.getElementById('name').value;
-      const url = 'https://jsonplaceholder.typicode.com/posts';
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("sendMessage").onclick = function () {
+      const userName = document.getElementById("name").value;
+      const url = "https://jsonplaceholder.typicode.com/posts";
       // Add your code below this line
       const xhr = new XMLHttpRequest();
-      xhr.open('POST', url, true);
-      xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
       xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 201){
+        if (xhr.readyState === 4 && xhr.status === 201) {
           const serverResponse = JSON.parse(xhr.response);
-          document.getElementsByClassName('message')[0].textContent = serverResponse.userName + serverResponse.suffix;
-       }
-     };
-     const body = JSON.stringify({ userName: userName, suffix: ' loves cats!' });
-     xhr.send(body);
+          document.getElementsByClassName("message")[0].textContent =
+            serverResponse.userName + serverResponse.suffix;
+        }
+      };
+      const body = JSON.stringify({
+        userName: userName,
+        suffix: " loves cats!",
+      });
+      xhr.send(body);
       // Add your code above this line
     };
   });
@@ -186,21 +185,18 @@ assert(code.match(/\.send\(\s*?body\s*?\)/g));
     padding: 5px 10px 8px 10px;
   }
   button:hover {
-    background-color: #0F5897;
-    border: 1px solid #0F5897;
+    background-color: #0f5897;
+    border: 1px solid #0f5897;
   }
 </style>
 
 <h1>Cat Friends</h1>
-<p class="message">
-  Reply from Server will be here
-</p>
+<p class="message">Reply from Server will be here</p>
 <p>
-  <label for="name">Your name:
-    <input type="text" id="name"/>
+  <label for="name"
+    >Your name:
+    <input type="text" id="name" />
   </label>
-  <button id="sendMessage">
-    Send Message
-  </button>
+  <button id="sendMessage">Send Message</button>
 </p>
 ```

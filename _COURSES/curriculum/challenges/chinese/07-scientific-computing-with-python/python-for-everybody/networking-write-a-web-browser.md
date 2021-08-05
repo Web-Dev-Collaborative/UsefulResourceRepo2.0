@@ -1,6 +1,6 @@
 ---
 id: 5e7b9f0c0b6c005b0e76f073
-title: '联网：编写一个 Web 浏览器'
+title: "联网：编写一个 Web 浏览器"
 challengeType: 11
 videoId: zjyT9DaAjx4
 dashedName: networking-write-a-web-browser
@@ -47,4 +47,3 @@ mysock.close()
 ## --video-solution--
 
 4
-

@@ -27,13 +27,13 @@ Clone your `target5` element and append it to your `left-well`.
 Your `target5` element should be inside your `right-well`.
 
 ```js
-assert($('#right-well').children('#target5').length > 0);
+assert($("#right-well").children("#target5").length > 0);
 ```
 
 A copy of your `target5` element should also be inside your `left-well`.
 
 ```js
-assert($('#left-well').children('#target5').length > 0);
+assert($("#left-well").children("#target5").length > 0);
 ```
 
 You should only use jQuery to move these elements.
@@ -48,12 +48,11 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();
     $("#target2").appendTo("#right-well");
-
   });
 </script>
 
@@ -86,7 +85,7 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();

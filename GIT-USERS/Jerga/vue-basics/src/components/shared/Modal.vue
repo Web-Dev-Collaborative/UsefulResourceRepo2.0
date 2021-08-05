@@ -1,18 +1,14 @@
-
-
-
 <template>
   <div v-if="isOpen" class="app-modal">
     <!-- Modal content -->
     <div class="app-modal-content">
       <span @click="$emit('on-close')" class="close">&times;</span>
       <div class="mb-3">
-        <slot><p>Some text in the Modal..</p>
-        </slot>
+        <slot><p>Some text in the Modal..</p> </slot>
       </div>
-      <button
-        @click="$emit('on-submit')"
-        class="btn btn-primary">Submit</button>
+      <button @click="$emit('on-submit')" class="btn btn-primary">
+        Submit
+      </button>
     </div>
   </div>
 </template>
@@ -22,11 +18,11 @@ export default {
   props: {
     isOpen: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
-  emits: ['on-close', 'on-submit']
-}
+  emits: ["on-close", "on-submit"],
+};
 </script>
 
 <style scoped>
@@ -39,8 +35,8 @@ export default {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */

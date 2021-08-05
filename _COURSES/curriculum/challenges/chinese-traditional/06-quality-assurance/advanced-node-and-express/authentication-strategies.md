@@ -15,17 +15,23 @@ dashedName: authentication-strategies
 然後，需要讓 passport **使用**一個實例化的 LocalStrategy 對象，這個對象的一些設置已完成。 請注意，接下來的所有代碼都應寫在連接數據庫的回調中，因爲它們的執行都依賴數據庫。
 
 ```js
-passport.use(new LocalStrategy(
-  function(username, password, done) {
+passport.use(
+  new LocalStrategy(function (username, password, done) {
     myDataBase.findOne({ username: username }, function (err, user) {
-      console.log('User '+ username +' attempted to log in.');
-      if (err) { return done(err); }
-      if (!user) { return done(null, false); }
-      if (password !== user.password) { return done(null, false); }
+      console.log("User " + username + " attempted to log in.");
+      if (err) {
+        return done(err);
+      }
+      if (!user) {
+        return done(null, false);
+      }
+      if (password !== user.password) {
+        return done(null, false);
+      }
       return done(null, user);
     });
-  }
-));
+  })
+);
 ```
 
 這就是我們的用戶驗證邏輯： 首先根據用戶輸入的用戶名在數據庫中尋找用戶；然後檢查密碼是否匹配，最後如果沒有發生錯誤（比如密碼錯誤），那麼就會返回 `user` 對象並通過驗證。
@@ -42,12 +48,12 @@ passport.use(new LocalStrategy(
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/package.json').then(
+  $.get(getUserInput("url") + "/_api/package.json").then(
     (data) => {
       var packJson = JSON.parse(data);
       assert.property(
         packJson.dependencies,
-        'passport-local',
+        "passport-local",
         'Your project should list "passport-local " as a dependency'
       );
     },
@@ -61,22 +67,22 @@ passport.use(new LocalStrategy(
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
         /require.*("|')passport-local("|')/gi,
-        'You should have required passport-local'
+        "You should have required passport-local"
       );
       assert.match(
         data,
         /new LocalStrategy/gi,
-        'You should have told passport to use a new strategy'
+        "You should have told passport to use a new strategy"
       );
       assert.match(
         data,
         /findOne/gi,
-        'Your new local strategy should use the findOne query to find a username based on the inputs'
+        "Your new local strategy should use the findOne query to find a username based on the inputs"
       );
     },
     (xhr) => {

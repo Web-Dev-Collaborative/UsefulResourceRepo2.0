@@ -81,9 +81,9 @@ describe('Performance Monitoring > perf_logger', () => {
     stub(attributeUtils, 'getServiceWorkerStatus').returns(
       SERVICE_WORKER_STATUS
     );
-    SettingsService.prototype.firebaseAppInstance = ({
+    SettingsService.prototype.firebaseAppInstance = {
       options: { appId: APP_ID }
-    } as unknown) as FirebaseApp;
+    } as unknown as FirebaseApp;
     clock = useFakeTimers();
   });
 

@@ -1,5 +1,10 @@
-import React from 'react';
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import React from "react";
+import {
+  ButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
 
 export default class PortButtonDropdown extends React.Component {
   constructor(props) {
@@ -7,13 +12,13 @@ export default class PortButtonDropdown extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      dropdownOpen: false
+      dropdownOpen: false,
     };
   }
 
   toggle() {
     this.setState({
-      dropdownOpen: !this.state.dropdownOpen
+      dropdownOpen: !this.state.dropdownOpen,
     });
   }
 
@@ -21,23 +26,25 @@ export default class PortButtonDropdown extends React.Component {
   renderMenu(items) {
     return (
       <DropdownMenu>
-        {
-          items.map((item) => (
-              <DropdownItem key={item.key} {...item.handlers}>{item.text}</DropdownItem>
-            )
-          )
-        }
+        {items.map((item) => (
+          <DropdownItem key={item.key} {...item.handlers}>
+            {item.text}
+          </DropdownItem>
+        ))}
       </DropdownMenu>
-    )
+    );
   }
 
   render() {
     const { items } = this.props;
 
     return (
-      <ButtonDropdown className="port-dropdown" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle caret size="sm">
-        </DropdownToggle>
+      <ButtonDropdown
+        className="port-dropdown"
+        isOpen={this.state.dropdownOpen}
+        toggle={this.toggle}
+      >
+        <DropdownToggle caret size="sm"></DropdownToggle>
         {this.renderMenu(items)}
       </ButtonDropdown>
     );

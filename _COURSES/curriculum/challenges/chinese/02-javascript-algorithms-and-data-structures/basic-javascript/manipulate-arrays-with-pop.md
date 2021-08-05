@@ -2,7 +2,7 @@
 id: 56bbb991ad1ed5201cd392cc
 title: 使用 pop() 操作数组
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cRbVZAB'
+videoUrl: "https://scrimba.com/c/cRbVZAB"
 forumTopicId: 18236
 dashedName: manipulate-arrays-with-pop
 ---
@@ -35,7 +35,7 @@ console.log(threeArr);
 ```js
 assert(
   (function (d) {
-    if (d[0][0] == 'John' && d[0][1] === 23 && d[1] == undefined) {
+    if (d[0][0] == "John" && d[0][1] === 23 && d[1] == undefined) {
       return true;
     } else {
       return false;
@@ -55,7 +55,7 @@ assert(/removedFromMyArray\s*=\s*myArray\s*.\s*pop\s*(\s*)/.test(code));
 ```js
 assert(
   (function (d) {
-    if (d[0] == 'cat' && d[1] === 2 && d[2] == undefined) {
+    if (d[0] == "cat" && d[1] === 2 && d[2] == undefined) {
       return true;
     } else {
       return false;
@@ -69,14 +69,24 @@ assert(
 ## --after-user-code--
 
 ```js
-(function(y, z){return 'myArray = ' + JSON.stringify(y) + ' & removedFromMyArray = ' + JSON.stringify(z);})(myArray, removedFromMyArray);
+(function (y, z) {
+  return (
+    "myArray = " +
+    JSON.stringify(y) +
+    " & removedFromMyArray = " +
+    JSON.stringify(z)
+  );
+})(myArray, removedFromMyArray);
 ```
 
 ## --seed-contents--
 
 ```js
 // Setup
-var myArray = [["John", 23], ["cat", 2]];
+var myArray = [
+  ["John", 23],
+  ["cat", 2],
+];
 
 // Only change code below this line
 var removedFromMyArray;
@@ -85,6 +95,9 @@ var removedFromMyArray;
 # --solutions--
 
 ```js
-var myArray = [["John", 23], ["cat", 2]];
+var myArray = [
+  ["John", 23],
+  ["cat", 2],
+];
 var removedFromMyArray = myArray.pop();
 ```

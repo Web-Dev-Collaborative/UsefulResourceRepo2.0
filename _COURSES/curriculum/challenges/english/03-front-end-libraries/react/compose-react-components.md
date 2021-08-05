@@ -24,7 +24,7 @@ The `TypesOfFood` component should return a single `div` element.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(TypesOfFood));
-    return mockedComponent.children().type() === 'div';
+    return mockedComponent.children().type() === "div";
   })()
 );
 ```
@@ -35,7 +35,7 @@ The `TypesOfFood` component should return the `Fruits` component.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(TypesOfFood));
-    return mockedComponent.children().childAt(1).name() === 'Fruits';
+    return mockedComponent.children().childAt(1).name() === "Fruits";
   })()
 );
 ```
@@ -47,9 +47,9 @@ assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(TypesOfFood));
     return (
-      mockedComponent.find('Fruits').children().find('NonCitrus').length ===
+      mockedComponent.find("Fruits").children().find("NonCitrus").length ===
         1 &&
-      mockedComponent.find('Fruits').children().find('Citrus').length === 1
+      mockedComponent.find("Fruits").children().find("Citrus").length === 1
     );
   })()
 );
@@ -61,7 +61,7 @@ The `TypesOfFood` component should return the `Vegetables` component below the `
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(TypesOfFood));
-    return mockedComponent.children().childAt(2).name() === 'Vegetables';
+    return mockedComponent.children().childAt(2).name() === "Vegetables";
   })()
 );
 ```
@@ -85,7 +85,7 @@ class NonCitrus extends React.Component {
       </div>
     );
   }
-};
+}
 class Citrus extends React.Component {
   render() {
     return (
@@ -100,7 +100,7 @@ class Citrus extends React.Component {
       </div>
     );
   }
-};
+}
 class Vegetables extends React.Component {
   render() {
     return (
@@ -113,14 +113,14 @@ class Vegetables extends React.Component {
         </ul>
       </div>
     );
-     }
-};
+  }
+}
 ```
 
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<TypesOfFood />, document.getElementById('root'))
+ReactDOM.render(<TypesOfFood />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -134,30 +134,30 @@ class Fruits extends React.Component {
     return (
       <div>
         <h2>Fruits:</h2>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
 
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
       </div>
     );
   }
-};
+}
 
 class TypesOfFood extends React.Component {
   constructor(props) {
-     super(props);
+    super(props);
   }
   render() {
     return (
       <div>
         <h1>Types of Food:</h1>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
 
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
         <Vegetables />
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -171,29 +171,29 @@ class Fruits extends React.Component {
     return (
       <div>
         <h2>Fruits:</h2>
-        { /* Change code below this line */ }
+        {/* Change code below this line */}
         <NonCitrus />
         <Citrus />
-        { /* Change code above this line */ }
+        {/* Change code above this line */}
       </div>
-    )
+    );
   }
 }
 
 class TypesOfFood extends React.Component {
   constructor(props) {
-     super(props);
+    super(props);
   }
-    render() {
-      return (
-        <div>
+  render() {
+    return (
+      <div>
         <h1>Types of Food:</h1>
-          { /* Change code below this line */ }
-          <Fruits />
-          { /* Change code above this line */ }
-          <Vegetables />
-        </div>
-      );
-    }
-};
+        {/* Change code below this line */}
+        <Fruits />
+        {/* Change code above this line */}
+        <Vegetables />
+      </div>
+    );
+  }
+}
 ```

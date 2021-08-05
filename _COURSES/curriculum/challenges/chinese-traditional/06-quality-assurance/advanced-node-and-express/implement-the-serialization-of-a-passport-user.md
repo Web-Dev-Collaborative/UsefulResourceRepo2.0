@@ -10,29 +10,29 @@ dashedName: implement-the-serialization-of-a-passport-user
 
 截至目前，我們還沒有配置完數據庫，因此還無法加載用戶數據。 實現這個的方式很多，但對於我們的項目，一旦服務器啓動，那麼只要有 app 實例在運行，數據庫就應一直處於連接狀態。 爲此，你需要在環境變量 `MONGO_URI` 中添加你的數據庫地址（比如：`mongodb+srv://:@cluster0-jvwxi.mongodb.net/?retryWrites=true&w=majority`）。 我們會在 `connection.js` 文件中調用它。
 
-*你可以在 [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) 創建一個免費的數據庫。*
+_你可以在 [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) 創建一個免費的數據庫。_
 
 現在我們想要連接到數據庫，然後開始監聽請求。 這樣做的目的是在連接數據庫之前或者出現數據庫錯誤時，不接收任何請求。 要實現這一點，你需要在以下代碼中包含序列化和應用的路由：
 
 ```js
-myDB(async client => {
-  const myDataBase = await client.db('database').collection('users');
+myDB(async (client) => {
+  const myDataBase = await client.db("database").collection("users");
 
   // Be sure to change the title
-  app.route('/').get((req, res) => {
+  app.route("/").get((req, res) => {
     //Change the response to render the Pug template
-    res.render('pug', {
-      title: 'Connected to Database',
-      message: 'Please login'
+    res.render("pug", {
+      title: "Connected to Database",
+      message: "Please login",
     });
   });
 
   // Serialization and deserialization here...
 
   // Be sure to add this...
-}).catch(e => {
-  app.route('/').get((req, res) => {
-    res.render('pug', { title: e, message: 'Unable to login' });
+}).catch((e) => {
+  app.route("/").get((req, res) => {
+    res.render("pug", { title: e, message: "Unable to login" });
   });
 });
 // app.listen out here...
@@ -48,12 +48,12 @@ myDB(async client => {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/').then(
+  $.get(getUserInput("url") + "/").then(
     (data) => {
       assert.match(
         data,
         /Connected to Database/gi,
-        'You successfully connected to the database!'
+        "You successfully connected to the database!"
       );
     },
     (xhr) => {
@@ -66,12 +66,12 @@ myDB(async client => {
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
         /null,\s*doc/gi,
-        'The callback in deserializeUser of (null, null) should be altered to (null, doc)'
+        "The callback in deserializeUser of (null, null) should be altered to (null, doc)"
       );
     },
     (xhr) => {

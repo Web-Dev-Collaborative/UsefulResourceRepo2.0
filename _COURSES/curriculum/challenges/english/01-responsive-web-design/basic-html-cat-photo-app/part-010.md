@@ -16,7 +16,7 @@ Add an anchor element after the paragraph that links to `https://freecatphotoapp
 Your anchor (`a`) element should have an opening tag. Opening tags have this syntax: `<elementName>`.
 
 ```js
-assert(document.querySelector('a'));
+assert(document.querySelector("a"));
 ```
 
 Your anchor (`a`) element should have a closing tag. Closing tags have a `/` just after the `<` character.
@@ -28,24 +28,24 @@ assert(code.match(/<\/a\>/));
 Your anchor (`a`) element should be below the `p` element. You have them in the wrong order.
 
 ```js
-const collection = [...document.querySelectorAll('a, p')].map(
+const collection = [...document.querySelectorAll("a, p")].map(
   (node) => node.nodeName
 );
-assert(collection.indexOf('P') < collection.indexOf('A'));
+assert(collection.indexOf("P") < collection.indexOf("A"));
 ```
 
 Your anchor (`a`) element does not have an `href` attribute. Check that there is a space after the opening tag's name and/or there are spaces before all attribute names.
 
 ```js
-assert(document.querySelector('a').hasAttribute('href'));
+assert(document.querySelector("a").hasAttribute("href"));
 ```
 
 Your anchor (`a`) element should link to `https://freecatphotoapp.com`. You have either omitted the URL or have a typo.
 
 ```js
 assert(
-  document.querySelector('a').getAttribute('href') ===
-    'https://freecatphotoapp.com'
+  document.querySelector("a").getAttribute("href") ===
+    "https://freecatphotoapp.com"
 );
 ```
 
@@ -68,12 +68,14 @@ assert(
     <main>
       <h2>Cat Photos</h2>
       <!-- TODO: Add link to cat photos -->
---fcc-editable-region--
+      --fcc-editable-region--
       <p>Click here to view more cat photos.</p>
---fcc-editable-region--
-      <img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back.">
+      --fcc-editable-region--
+      <img
+        src="https://bit.ly/fcc-relaxing-cat"
+        alt="A cute orange cat lying on its back."
+      />
     </main>
   </body>
 </html>
 ```
-

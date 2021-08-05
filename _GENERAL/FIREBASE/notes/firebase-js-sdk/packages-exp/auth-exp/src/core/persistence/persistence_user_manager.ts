@@ -114,9 +114,8 @@ export class PersistenceUserManager {
     }
 
     // Use the first persistence that supports a full read-write roundtrip (or fallback to memory).
-    let chosenPersistence = _getInstance<PersistenceInternal>(
-      inMemoryPersistence
-    );
+    let chosenPersistence =
+      _getInstance<PersistenceInternal>(inMemoryPersistence);
     for (const persistence of persistenceHierarchy) {
       if (await persistence._isAvailable()) {
         chosenPersistence = persistence;

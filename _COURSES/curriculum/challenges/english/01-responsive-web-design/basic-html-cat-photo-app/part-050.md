@@ -16,7 +16,7 @@ Add a `legend` element with the text `Is your cat an indoor or outdoor cat?` abo
 Your `legend` element should have an opening tag. Opening tags have the following syntax: `<elementName>`.
 
 ```js
-assert(document.querySelector('legend'));
+assert(document.querySelector("legend"));
 ```
 
 Your `legend` element should have a closing tag. Closing tags have a `/` just after the `<` character.
@@ -28,13 +28,13 @@ assert(code.match(/<\/legend\>/));
 Your `legend` element should be the first element right below `fieldset` element's opening tag and before the first radio button's opening `label` tag. It is not in the correct position.
 
 ```js
-const fieldsetElem = document.querySelector('fieldset');
+const fieldsetElem = document.querySelector("fieldset");
 const fieldsetElemChildren = fieldsetElem.children;
 assert(
-  fieldsetElem.firstElementChild.nodeName === 'LEGEND' &&
-    fieldsetElemChildren[1].nodeName === 'LABEL' &&
-    fieldsetElemChildren[1].children[0].nodeName === 'INPUT' &&
-    fieldsetElemChildren[1].children[0].id === 'indoor'
+  fieldsetElem.firstElementChild.nodeName === "LEGEND" &&
+    fieldsetElemChildren[1].nodeName === "LABEL" &&
+    fieldsetElemChildren[1].children[0].nodeName === "INPUT" &&
+    fieldsetElemChildren[1].children[0].id === "indoor"
 );
 ```
 
@@ -42,8 +42,8 @@ Your `legend` element's text should be `Is your cat an indoor or outdoor cat?`. 
 
 ```js
 const extraSpacesRemoved = document
-  .querySelector('legend')
-  .innerText.replace(/\s+/g, ' ');
+  .querySelector("legend")
+  .innerText.replace(/\s+/g, " ");
 assert(extraSpacesRemoved.match(/Is your cat an indoor or outdoor cat\??$/i));
 ```
 
@@ -59,8 +59,15 @@ assert(extraSpacesRemoved.match(/Is your cat an indoor or outdoor cat\??$/i));
       <section>
         <h2>Cat Photos</h2>
         <!-- TODO: Add link to cat photos -->
-        <p>Click here to view more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+        <p>
+          Click here to view more
+          <a target="_blank" href="https://freecatphotoapp.com">cat photos</a>.
+        </p>
+        <a href="https://freecatphotoapp.com"
+          ><img
+            src="https://bit.ly/fcc-relaxing-cat"
+            alt="A cute orange cat lying on its back."
+        /></a>
       </section>
       <section>
         <h2>Cat Lists</h2>
@@ -71,8 +78,11 @@ assert(extraSpacesRemoved.match(/Is your cat an indoor or outdoor cat\??$/i));
           <li>lasagna</li>
         </ul>
         <figure>
-          <img src="https://bit.ly/fcc-lasagna" alt="A slice of lasagna on a plate.">
-          <figcaption>Cats <em>love</em> lasagna.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-lasagna"
+            alt="A slice of lasagna on a plate."
+          />
+          <figcaption>Cats <em>love</em> lasagna.</figcaption>
         </figure>
         <h3>Top 3 things cats hate:</h3>
         <ol>
@@ -81,20 +91,44 @@ assert(extraSpacesRemoved.match(/Is your cat an indoor or outdoor cat\??$/i));
           <li>other cats</li>
         </ol>
         <figure>
-          <img src="https://bit.ly/fcc-cats" alt="Five cats looking around a field.">
-          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>  
+          <img
+            src="https://bit.ly/fcc-cats"
+            alt="Five cats looking around a field."
+          />
+          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>
         </figure>
       </section>
       <section>
         <h2>Cat Form</h2>
         <form action="https://freecatphotoapp.com/submit-cat-photo">
           <fieldset>
---fcc-editable-region--
-            <label><input id="indoor" type="radio" name="indoor-outdoor" value="indoor"> Indoor</label>
-            <label><input id="outdoor" type="radio" name="indoor-outdoor" value="outdoor"> Outdoor</label>
---fcc-editable-region--
+            --fcc-editable-region--
+            <label
+              ><input
+                id="indoor"
+                type="radio"
+                name="indoor-outdoor"
+                value="indoor"
+              />
+              Indoor</label
+            >
+            <label
+              ><input
+                id="outdoor"
+                type="radio"
+                name="indoor-outdoor"
+                value="outdoor"
+              />
+              Outdoor</label
+            >
+            --fcc-editable-region--
           </fieldset>
-          <input type="text" name="catphotourl" placeholder="cat photo URL" required>
+          <input
+            type="text"
+            name="catphotourl"
+            placeholder="cat photo URL"
+            required
+          />
           <button type="submit">Submit</button>
         </form>
       </section>
@@ -102,4 +136,3 @@ assert(extraSpacesRemoved.match(/Is your cat an indoor or outdoor cat\??$/i));
   </body>
 </html>
 ```
-

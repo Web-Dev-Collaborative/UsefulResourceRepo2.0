@@ -15,29 +15,29 @@ Implement functions to encrypt and decrypt a message using the [straddling check
 `straddle` should be a function.
 
 ```js
-assert(typeof straddle == 'function');
+assert(typeof straddle == "function");
 ```
 
-`straddle("One night-it was on the twentieth of March, 1888-I was returning.",["ESTONIA  R", "BCDFGHJKLM", "PQUVWXYZ./"])` should return a string.
+`straddle("One night-it was on the twentieth of March, 1888-I was returning.",["ESTONIA R", "BCDFGHJKLM", "PQUVWXYZ./"])` should return a string.
 
 ```js
 assert(
   typeof straddle(
-    'One night-it was on the twentieth of March, 1888-I was returning.',
-    ['ESTONIA  R', 'BCDFGHJKLM', 'PQUVWXYZ./']
-  ) == 'string'
+    "One night-it was on the twentieth of March, 1888-I was returning.",
+    ["ESTONIA  R", "BCDFGHJKLM", "PQUVWXYZ./"]
+  ) == "string"
 );
 ```
 
-`straddle("One night-it was on the twentieth of March, 1888-I was returning.",["ESTONIA  R", "BCDFGHJKLM", "PQUVWXYZ./"])` should return `"34045747525284613427502840425027537379697175891898898898584619028294547488"`.
+`straddle("One night-it was on the twentieth of March, 1888-I was returning.",["ESTONIA R", "BCDFGHJKLM", "PQUVWXYZ./"])` should return `"34045747525284613427502840425027537379697175891898898898584619028294547488"`.
 
 ```js
 assert.equal(
   straddle(
-    'One night-it was on the twentieth of March, 1888-I was returning.',
-    ['ESTONIA  R', 'BCDFGHJKLM', 'PQUVWXYZ./']
+    "One night-it was on the twentieth of March, 1888-I was returning.",
+    ["ESTONIA  R", "BCDFGHJKLM", "PQUVWXYZ./"]
   ),
-  '34045747525284613427502840425027537379697175891898898898584619028294547488'
+  "34045747525284613427502840425027537379697175891898898898584619028294547488"
 );
 ```
 
@@ -45,12 +45,12 @@ assert.equal(
 
 ```js
 assert.equal(
-  straddle('One night-it was on the twentieth of March, 1888-I was returning', [
-    'HOL MES RT',
-    'ABCDFGIJKN',
-    'PQUVWXYZ./'
+  straddle("One night-it was on the twentieth of March, 1888-I was returning", [
+    "HOL MES RT",
+    "ABCDFGIJKN",
+    "PQUVWXYZ./",
   ]),
-  '139539363509369743061399059745399365901344308320791798798798367430685972839363935'
+  "139539363509369743061399059745399365901344308320791798798798367430685972839363935"
 );
 ```
 
@@ -58,41 +58,41 @@ assert.equal(
 
 ```js
 assert.equal(
-  straddle('Thecheckerboardcakerecipespecifies3largeeggsand2.25cupsofflour.', [
-    'ET AON RIS',
-    'BCDFGHJKLM',
-    'PQ/UVWXYZ.'
+  straddle("Thecheckerboardcakerecipespecifies3largeeggsand2.25cupsofflour.", [
+    "ET AON RIS",
+    "BCDFGHJKLM",
+    "PQ/UVWXYZ.",
   ]),
-  '125021250212707204372221327070218600960021823809623283724002424935226226962262521636094232328463769'
+  "125021250212707204372221327070218600960021823809623283724002424935226226962262521636094232328463769"
 );
 ```
 
 `unstraddle` should be a function.
 
 ```js
-assert(typeof unstraddle == 'function');
+assert(typeof unstraddle == "function");
 ```
 
-`unstraddle("34045747525284613427502840425027537379697175891898898898584619028294547488",["ESTONIA  R", "BCDFGHJKLM", "PQUVWXYZ./"])` should return a string.
+`unstraddle("34045747525284613427502840425027537379697175891898898898584619028294547488",["ESTONIA R", "BCDFGHJKLM", "PQUVWXYZ./"])` should return a string.
 
 ```js
 assert(
   typeof unstraddle(
-    '34045747525284613427502840425027537379697175891898898898584619028294547488',
-    ['ESTONIA  R', 'BCDFGHJKLM', 'PQUVWXYZ./']
-  ) == 'string'
+    "34045747525284613427502840425027537379697175891898898898584619028294547488",
+    ["ESTONIA  R", "BCDFGHJKLM", "PQUVWXYZ./"]
+  ) == "string"
 );
 ```
 
-`unstraddle("34045747525284613427502840425027537379697175891898898898584619028294547488",["ESTONIA  R", "BCDFGHJKLM", "PQUVWXYZ./"])` should return `"ONENIGHTITWASONTHETWENTIETHOFMARCH1888IWASRETURNING."`.
+`unstraddle("34045747525284613427502840425027537379697175891898898898584619028294547488",["ESTONIA R", "BCDFGHJKLM", "PQUVWXYZ./"])` should return `"ONENIGHTITWASONTHETWENTIETHOFMARCH1888IWASRETURNING."`.
 
 ```js
 assert.equal(
   unstraddle(
-    '34045747525284613427502840425027537379697175891898898898584619028294547488',
-    ['ESTONIA  R', 'BCDFGHJKLM', 'PQUVWXYZ./']
+    "34045747525284613427502840425027537379697175891898898898584619028294547488",
+    ["ESTONIA  R", "BCDFGHJKLM", "PQUVWXYZ./"]
   ),
-  'ONENIGHTITWASONTHETWENTIETHOFMARCH1888IWASRETURNING.'
+  "ONENIGHTITWASONTHETWENTIETHOFMARCH1888IWASRETURNING."
 );
 ```
 
@@ -101,10 +101,10 @@ assert.equal(
 ```js
 assert.equal(
   unstraddle(
-    '139539363509369743061399059745399365901344308320791798798798367430685972839363935',
-    ['HOL MES RT', 'ABCDFGIJKN', 'PQUVWXYZ./']
+    "139539363509369743061399059745399365901344308320791798798798367430685972839363935",
+    ["HOL MES RT", "ABCDFGIJKN", "PQUVWXYZ./"]
   ),
-  'ONENIGHTITWASONTHETWENTIETHOFMARCH1888IWASRETURNING'
+  "ONENIGHTITWASONTHETWENTIETHOFMARCH1888IWASRETURNING"
 );
 ```
 
@@ -113,10 +113,10 @@ assert.equal(
 ```js
 assert.equal(
   unstraddle(
-    '125021250212707204372221327070218600960021823809623283724002424935226226962262521636094232328463769',
-    ['ET AON RIS', 'BCDFGHJKLM', 'PQ/UVWXYZ.']
+    "125021250212707204372221327070218600960021823809623283724002424935226226962262521636094232328463769",
+    ["ET AON RIS", "BCDFGHJKLM", "PQ/UVWXYZ."]
   ),
-  'THECHECKERBOARDCAKERECIPESPECIFIES3LARGEEGGSAND2.25CUPSOFFLOUR.'
+  "THECHECKERBOARDCAKERECIPESPECIFIES3LARGEEGGSAND2.25CUPSOFFLOUR."
 );
 ```
 
@@ -125,13 +125,9 @@ assert.equal(
 ## --seed-contents--
 
 ```js
-function straddle(message, alphabet) {
+function straddle(message, alphabet) {}
 
-}
-
-function unstraddle(message, alphabet) {
-
-}
+function unstraddle(message, alphabet) {}
 ```
 
 # --solutions--
@@ -139,33 +135,33 @@ function unstraddle(message, alphabet) {
 ```js
 function straddle(message, alphabet) {
   var prefixes = new Array(
-    '',
-    alphabet[0].indexOf(' '),
-    alphabet[0].lastIndexOf(' ')
+    "",
+    alphabet[0].indexOf(" "),
+    alphabet[0].lastIndexOf(" ")
   );
 
-  var out = '';
+  var out = "";
   message = message.toUpperCase();
-  message = message.replace(/([0-9])/g, '/$1'); // dumb way to escape numbers
+  message = message.replace(/([0-9])/g, "/$1"); // dumb way to escape numbers
   for (var i = 0; i < message.length; i++) {
     var chr = message[i];
-    if (chr == ' ') continue;
+    if (chr == " ") continue;
     for (var j = 0; j < 3; j++) {
       var k = alphabet[j].indexOf(chr);
       if (k < 0) continue;
       out += prefixes[j].toString() + k;
     }
-    if (chr == '/') out += message[++i];
+    if (chr == "/") out += message[++i];
   }
   return out;
 }
 function unstraddle(message, alphabet) {
   var prefixes = new Array(
-    '',
-    alphabet[0].indexOf(' '),
-    alphabet[0].lastIndexOf(' ')
+    "",
+    alphabet[0].indexOf(" "),
+    alphabet[0].lastIndexOf(" ")
   );
-  var out = '';
+  var out = "";
   var n, o;
   for (var i = 0; i < message.length; i++) {
     n = message[i] * 1;
@@ -179,7 +175,7 @@ function unstraddle(message, alphabet) {
       default:
         o = alphabet[0][n];
     }
-    o == '/' ? (out += message[++i]) : (out += o);
+    o == "/" ? (out += message[++i]) : (out += o);
   }
   return out;
 }

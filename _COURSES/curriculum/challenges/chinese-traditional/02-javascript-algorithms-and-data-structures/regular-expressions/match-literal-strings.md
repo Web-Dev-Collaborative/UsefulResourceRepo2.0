@@ -44,7 +44,7 @@ assert(waldoRegex.test(waldoIsHiding));
 你的正則表達式 `waldoRegex` 不應該搜尋其他的任何內容。
 
 ```js
-assert(!waldoRegex.test('Somewhere is hiding in this text.'));
+assert(!waldoRegex.test("Somewhere is hiding in this text."));
 ```
 
 你應該使用你的正則表達式對字符串執行文字匹配。

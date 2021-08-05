@@ -1,7 +1,4 @@
+import Vue from "vue";
+import NavLink from "~/components/shared/NavLink";
 
-
-import Vue from 'vue'
-import NavLink from '~/components/shared/NavLink'
-
-Vue.component('NavLink', NavLink)
-
+Vue.component("NavLink", NavLink);

@@ -1,6 +1,6 @@
 ---
 id: 5900f4491000cf542c50ff5c
-title: 'Problem 221: Alexandrian Integers'
+title: "Problem 221: Alexandrian Integers"
 challengeType: 5
 forumTopicId: 301864
 dashedName: problem-221-alexandrian-integers
@@ -30,7 +30,6 @@ assert.strictEqual(euler221(), 1884161251122450);
 
 ```js
 function euler221() {
-
   return true;
 }
 

@@ -26,7 +26,7 @@ Your `Queue` class should have a `enqueue` method.
 assert(
   (function () {
     var test = new Queue();
-    return typeof test.enqueue === 'function';
+    return typeof test.enqueue === "function";
   })()
 );
 ```
@@ -37,7 +37,7 @@ Your `Queue` class should have a `dequeue` method.
 assert(
   (function () {
     var test = new Queue();
-    return typeof test.dequeue === 'function';
+    return typeof test.dequeue === "function";
   })()
 );
 ```
@@ -48,7 +48,7 @@ Your `Queue` class should have a `front` method.
 assert(
   (function () {
     var test = new Queue();
-    return typeof test.front === 'function';
+    return typeof test.front === "function";
   })()
 );
 ```
@@ -59,7 +59,7 @@ Your `Queue` class should have a `size` method.
 assert(
   (function () {
     var test = new Queue();
-    return typeof test.size === 'function';
+    return typeof test.size === "function";
   })()
 );
 ```
@@ -70,7 +70,7 @@ Your `Queue` class should have an `isEmpty` method.
 assert(
   (function () {
     var test = new Queue();
-    return typeof test.isEmpty === 'function';
+    return typeof test.isEmpty === "function";
   })()
 );
 ```
@@ -81,9 +81,9 @@ The `dequeue` method should remove and return the front element of the queue
 assert(
   (function () {
     var test = new Queue();
-    test.enqueue('Smith');
-    test.enqueue('John');
-    return test.dequeue() === 'Smith';
+    test.enqueue("Smith");
+    test.enqueue("John");
+    return test.dequeue() === "Smith";
   })()
 );
 ```
@@ -94,9 +94,9 @@ The `front` method should return value of the front element of the queue
 assert(
   (function () {
     var test = new Queue();
-    test.enqueue('Smith');
-    test.enqueue('John');
-    return test.front() === 'Smith';
+    test.enqueue("Smith");
+    test.enqueue("John");
+    return test.front() === "Smith";
   })()
 );
 ```
@@ -107,7 +107,7 @@ The `size` method should return the length of the queue
 assert(
   (function () {
     var test = new Queue();
-    test.enqueue('Smith');
+    test.enqueue("Smith");
     return test.size() === 1;
   })()
 );
@@ -119,7 +119,7 @@ The `isEmpty` method should return `false` if there are elements in the queue
 assert(
   (function () {
     var test = new Queue();
-    test.enqueue('Smith');
+    test.enqueue("Smith");
     return !test.isEmpty();
   })()
 );
@@ -132,7 +132,7 @@ assert(
 ```js
 function Queue() {
   var collection = [];
-  this.print = function() {
+  this.print = function () {
     console.log(collection);
   };
   // Only change code below this line
@@ -144,31 +144,31 @@ function Queue() {
 # --solutions--
 
 ```js
-function Queue () { 
-    var collection = [];
-    this.print = function() {
-        console.log(collection);
-    };
-    // Only change code below this line
-    this.enqueue = function(item) {
-        collection.push(item);
-    }
+function Queue() {
+  var collection = [];
+  this.print = function () {
+    console.log(collection);
+  };
+  // Only change code below this line
+  this.enqueue = function (item) {
+    collection.push(item);
+  };
 
-    this.dequeue = function() {
-        return collection.shift();
-    }
+  this.dequeue = function () {
+    return collection.shift();
+  };
 
-    this.front = function() {
-        return collection[0];
-    }
+  this.front = function () {
+    return collection[0];
+  };
 
-    this.size = function(){
-        return collection.length;
-    }
+  this.size = function () {
+    return collection.length;
+  };
 
-    this.isEmpty = function() {
-        return collection.length === 0 ? true : false;
-    }
-    // Only change code above this line
+  this.isEmpty = function () {
+    return collection.length === 0 ? true : false;
+  };
+  // Only change code above this line
 }
 ```

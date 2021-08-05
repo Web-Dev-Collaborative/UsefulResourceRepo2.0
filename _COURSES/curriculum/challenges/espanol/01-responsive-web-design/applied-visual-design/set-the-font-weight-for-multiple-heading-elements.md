@@ -2,7 +2,7 @@
 id: 587d781c367417b2b2512ac3
 title: Establece el font-weight para varios elementos de títulos
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/crVWRHq'
+videoUrl: "https://scrimba.com/c/crVWRHq"
 forumTopicId: 301069
 dashedName: set-the-font-weight-for-multiple-heading-elements
 ---
@@ -22,37 +22,37 @@ La propiedad `font-weight` establece que tan gruesos o delgados son los caracter
 Tu código debe establecer la propiedad `font-weight` para la etiqueta `h1` en 800.
 
 ```js
-assert($('h1').css('font-weight') == '800');
+assert($("h1").css("font-weight") == "800");
 ```
 
 Tu código debe establecer la propiedad `font-weight` para la etiqueta `h2` en 600.
 
 ```js
-assert($('h2').css('font-weight') == '600');
+assert($("h2").css("font-weight") == "600");
 ```
 
 Tu código debe establecer la propiedad `font-weight` para la etiqueta `h3` en 500.
 
 ```js
-assert($('h3').css('font-weight') == '500');
+assert($("h3").css("font-weight") == "500");
 ```
 
 Tu código debe establecer la propiedad `font-weight` para la etiqueta `h4` en 400.
 
 ```js
-assert($('h4').css('font-weight') == '400');
+assert($("h4").css("font-weight") == "400");
 ```
 
 Tu código debe establecer la propiedad `font-weight` para la etiqueta `h5` en 300.
 
 ```js
-assert($('h5').css('font-weight') == '300');
+assert($("h5").css("font-weight") == "300");
 ```
 
 Tu código debe establecer la propiedad `font-weight` para la etiqueta `h6` en 200.
 
 ```js
-assert($('h6').css('font-weight') == '200');
+assert($("h6").css("font-weight") == "200");
 ```
 
 # --seed--
@@ -63,27 +63,21 @@ assert($('h6').css('font-weight') == '200');
 <style>
   h1 {
     font-size: 68px;
-
   }
   h2 {
     font-size: 52px;
-
   }
   h3 {
     font-size: 40px;
-
   }
   h4 {
     font-size: 32px;
-
   }
   h5 {
     font-size: 21px;
-
   }
   h6 {
     font-size: 14px;
-
   }
 </style>
 <h1>This is h1 text</h1>

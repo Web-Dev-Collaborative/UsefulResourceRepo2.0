@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08824
 title: 给元素的每一侧添加不同的内边距
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cB7mwUw'
+videoUrl: "https://scrimba.com/c/cB7mwUw"
 forumTopicId: 16634
 dashedName: add-different-padding-to-each-side-of-an-element
 ---
@@ -22,25 +22,25 @@ CSS 允许你使用 `padding-top`、`padding-right`、`padding-bottom`、`paddin
 class 为 `blue-box` 的元素的上内边距属性值 `padding` 应为 `40px`。
 
 ```js
-assert($('.blue-box').css('padding-top') === '40px');
+assert($(".blue-box").css("padding-top") === "40px");
 ```
 
 class 为 `blue-box` 的元素的右内边距属性值 `padding` 应为 `20px`。
 
 ```js
-assert($('.blue-box').css('padding-right') === '20px');
+assert($(".blue-box").css("padding-right") === "20px");
 ```
 
 class 为 `blue-box` 的元素的下内边距属性值 `padding` 应为 `20px`。
 
 ```js
-assert($('.blue-box').css('padding-bottom') === '20px');
+assert($(".blue-box").css("padding-bottom") === "20px");
 ```
 
 class 为 `blue-box` 的元素的左内边距属性值 `padding` 应为 `40px`。
 
 ```js
-assert($('.blue-box').css('padding-left') === '40px');
+assert($(".blue-box").css("padding-left") === "40px");
 ```
 
 # --seed--

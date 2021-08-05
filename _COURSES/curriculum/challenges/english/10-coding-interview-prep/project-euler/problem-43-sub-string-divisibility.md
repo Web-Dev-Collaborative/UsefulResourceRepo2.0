@@ -1,6 +1,6 @@
 ---
 id: 5900f3971000cf542c50feaa
-title: 'Problem 43: Sub-string divisibility'
+title: "Problem 43: Sub-string divisibility"
 challengeType: 5
 forumTopicId: 302100
 dashedName: problem-43-sub-string-divisibility
@@ -29,31 +29,31 @@ Find the sum of all 0 to `n` pandigital numbers with sub-strings fulfilling `n -
 `substringDivisibility(5)` should return a number.
 
 ```js
-assert(typeof substringDivisibility(5) === 'number');
+assert(typeof substringDivisibility(5) === "number");
 ```
 
 `substringDivisibility(5)` should return `12444480`.
 
 ```js
-assert.strictEqual(substringDivisibility(5), 12444480)
+assert.strictEqual(substringDivisibility(5), 12444480);
 ```
 
 `substringDivisibility(7)` should return `1099210170`.
 
 ```js
-assert.strictEqual(substringDivisibility(7), 1099210170)
+assert.strictEqual(substringDivisibility(7), 1099210170);
 ```
 
 `substringDivisibility(8)` should return `1113342912`.
 
 ```js
-assert.strictEqual(substringDivisibility(8), 1113342912)
+assert.strictEqual(substringDivisibility(8), 1113342912);
 ```
 
 `substringDivisibility(9)` should return `16695334890`.
 
 ```js
-assert.strictEqual(substringDivisibility(9), 16695334890)
+assert.strictEqual(substringDivisibility(9), 16695334890);
 ```
 
 # --seed--
@@ -62,7 +62,6 @@ assert.strictEqual(substringDivisibility(9), 16695334890)
 
 ```js
 function substringDivisibility(n) {
-
   return true;
 }
 
@@ -88,7 +87,7 @@ function substringDivisibility(n) {
   function heapsPermutations(k, digits, conditionCheck, results) {
     if (k === 1) {
       if (conditionCheck(digits)) {
-        const number = parseInt(digits.join(''), 10);
+        const number = parseInt(digits.join(""), 10);
         results.push(number);
       }
       return;

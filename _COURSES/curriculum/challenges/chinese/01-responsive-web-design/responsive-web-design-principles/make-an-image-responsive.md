@@ -2,7 +2,7 @@
 id: 587d78b1367417b2b2512b09
 title: 使图片自适应设备尺寸
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pzrPu4/cz763UD'
+videoUrl: "https://scrimba.com/p/pzrPu4/cz763UD"
 forumTopicId: 301140
 dashedName: make-an-image-responsive
 ---
@@ -29,7 +29,7 @@ img {
 `responsive-img` 类应将 `max-width` 设置为 `100%`。
 
 ```js
-assert(getComputedStyle($('.responsive-img')[0]).maxWidth === '100%');
+assert(getComputedStyle($(".responsive-img")[0]).maxWidth === "100%");
 ```
 
 `responsive-img` 类应将 `height` 设置为 `auto`。
@@ -44,34 +44,46 @@ assert(code.match(/height:\s*?auto;/g));
 
 ```html
 <style>
-.responsive-img {
+  .responsive-img {
+  }
 
-
-}
-
-img {
-  width: 600px;
-}
+  img {
+    width: 600px;
+  }
 </style>
 
-<img class="responsive-img" src="https://s3.amazonaws.com/freecodecamp/FCCStickerPack.jpg" alt="freeCodeCamp stickers set">
-<img src="https://s3.amazonaws.com/freecodecamp/FCCStickerPack.jpg" alt="freeCodeCamp stickers set">
+<img
+  class="responsive-img"
+  src="https://s3.amazonaws.com/freecodecamp/FCCStickerPack.jpg"
+  alt="freeCodeCamp stickers set"
+/>
+<img
+  src="https://s3.amazonaws.com/freecodecamp/FCCStickerPack.jpg"
+  alt="freeCodeCamp stickers set"
+/>
 ```
 
 # --solutions--
 
 ```html
 <style>
-.responsive-img {
-  max-width: 100%;
-  height: auto;
-}
+  .responsive-img {
+    max-width: 100%;
+    height: auto;
+  }
 
-img {
-  width: 600px;
-}
+  img {
+    width: 600px;
+  }
 </style>
 
-<img class="responsive-img" src="https://s3.amazonaws.com/freecodecamp/FCCStickerPack.jpg" alt="freeCodeCamp stickers set">
-<img src="https://s3.amazonaws.com/freecodecamp/FCCStickerPack.jpg" alt="freeCodeCamp stickers set">
+<img
+  class="responsive-img"
+  src="https://s3.amazonaws.com/freecodecamp/FCCStickerPack.jpg"
+  alt="freeCodeCamp stickers set"
+/>
+<img
+  src="https://s3.amazonaws.com/freecodecamp/FCCStickerPack.jpg"
+  alt="freeCodeCamp stickers set"
+/>
 ```

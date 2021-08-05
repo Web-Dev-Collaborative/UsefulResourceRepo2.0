@@ -8,7 +8,7 @@ body,
 }
 
 .App {
-  font-family: 'Molle', cursive;
+  font-family: "Molle", cursive;
   text-align: center;
   color: #ffffff;
   h1 {
@@ -23,7 +23,7 @@ body,
   background-image: linear-gradient(to top right, #a18cd1 0%, #fbc2eb 100%);
 
   .family-button {
-    font-family: 'Molle', cursive;
+    font-family: "Molle", cursive;
     margin-right: 16px;
     font-size: 16px;
     padding: 8px 12px;
@@ -38,7 +38,9 @@ body,
       color: #ffffff;
     }
 
-    &:focus {outline:0;}
+    &:focus {
+      outline: 0;
+    }
 
     &:last-child {
       margin-right: 0;
@@ -57,9 +59,10 @@ body,
   padding: 32px;
 }
 
-.parents, .siblings {
+.parents,
+.siblings {
   display: flex;
-    justify-content: center;
+  justify-content: center;
   align-items: center;
 }
 

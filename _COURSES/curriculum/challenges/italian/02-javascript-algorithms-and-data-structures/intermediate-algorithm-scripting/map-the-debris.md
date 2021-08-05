@@ -23,8 +23,8 @@ Il raggio della terra è 6367.4447 chilometri, e il valore GM della Terra è 398
 `orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}])` dovrebbe restituire `[{name: "sputnik", orbitalPeriod: 86400}]`.
 
 ```js
-assert.deepEqual(orbitalPeriod([{ name: 'sputnik', avgAlt: 35873.5553 }]), [
-  { name: 'sputnik', orbitalPeriod: 86400 }
+assert.deepEqual(orbitalPeriod([{ name: "sputnik", avgAlt: 35873.5553 }]), [
+  { name: "sputnik", orbitalPeriod: 86400 },
 ]);
 ```
 
@@ -33,14 +33,14 @@ assert.deepEqual(orbitalPeriod([{ name: 'sputnik', avgAlt: 35873.5553 }]), [
 ```js
 assert.deepEqual(
   orbitalPeriod([
-    { name: 'iss', avgAlt: 413.6 },
-    { name: 'hubble', avgAlt: 556.7 },
-    { name: 'moon', avgAlt: 378632.553 }
+    { name: "iss", avgAlt: 413.6 },
+    { name: "hubble", avgAlt: 556.7 },
+    { name: "moon", avgAlt: 378632.553 },
   ]),
   [
-    { name: 'iss', orbitalPeriod: 5557 },
-    { name: 'hubble', orbitalPeriod: 5734 },
-    { name: 'moon', orbitalPeriod: 2377399 }
+    { name: "iss", orbitalPeriod: 5557 },
+    { name: "hubble", orbitalPeriod: 5734 },
+    { name: "moon", orbitalPeriod: 2377399 },
   ]
 );
 ```
@@ -56,7 +56,7 @@ function orbitalPeriod(arr) {
   return arr;
 }
 
-orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]);
+orbitalPeriod([{ name: "sputnik", avgAlt: 35873.5553 }]);
 ```
 
 # --solutions--
@@ -66,13 +66,15 @@ function orbitalPeriod(arr) {
   var GM = 398600.4418;
   var earthRadius = 6367.4447;
   var TAU = 2 * Math.PI;
-  return arr.map(function(obj) {
+  return arr.map(function (obj) {
     return {
       name: obj.name,
-      orbitalPeriod: Math.round(TAU * Math.sqrt(Math.pow(obj.avgAlt+earthRadius, 3)/GM))
+      orbitalPeriod: Math.round(
+        TAU * Math.sqrt(Math.pow(obj.avgAlt + earthRadius, 3) / GM)
+      ),
     };
   });
 }
 
-orbitalPeriod([{name : "sputkin", avgAlt : 35873.5553}]);
+orbitalPeriod([{ name: "sputkin", avgAlt: 35873.5553 }]);
 ```

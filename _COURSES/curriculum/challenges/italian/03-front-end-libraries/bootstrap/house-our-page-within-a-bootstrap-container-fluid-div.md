@@ -17,7 +17,7 @@ Nidifichiamo l'elemento `h3` all'interno di un elemento `div` di classe `contain
 Il tuo elemento `div` dovrebbe avere la classe `container-fluid`.
 
 ```js
-assert($('div').hasClass('container-fluid'));
+assert($("div").hasClass("container-fluid"));
 ```
 
 Ognuno dei tuoi elementi `div` dovrebbe avere un tag di chiusura.
@@ -33,7 +33,7 @@ assert(
 Il tuo elemento `h3` dovrebbe essere annidato all'interno di un elemento `div`.
 
 ```js
-assert($('div').children('h3').length > 0);
+assert($("div").children("h3").length > 0);
 ```
 
 # --seed--
@@ -48,6 +48,6 @@ assert($('div').children('h3').length > 0);
 
 ```html
 <div class="container-fluid">
-    <h3 class="text-primary text-center">jQuery Playground</h3>
+  <h3 class="text-primary text-center">jQuery Playground</h3>
 </div>
 ```

@@ -1,6 +1,6 @@
 ---
 id: 5900f39f1000cf542c50feb2
-title: 'Problem 51: Prime digit replacements'
+title: "Problem 51: Prime digit replacements"
 challengeType: 5
 forumTopicId: 302162
 dashedName: problem-51-prime-digit-replacements
@@ -19,7 +19,7 @@ Find the smallest prime which, by replacing part of the number (not necessarily 
 `primeDigitReplacements(6)` should return a number.
 
 ```js
-assert(typeof primeDigitReplacements(6) === 'number');
+assert(typeof primeDigitReplacements(6) === "number");
 ```
 
 `primeDigitReplacements(6)` should return `13`.
@@ -46,7 +46,6 @@ assert.strictEqual(primeDigitReplacements(8), 121313);
 
 ```js
 function primeDigitReplacements(n) {
-
   return true;
 }
 
@@ -61,20 +60,20 @@ function primeDigitReplacements(n) {
     const prime = number.toString();
     const lastDigit = prime[prime.length - 1];
     return (
-      doesReplacingMakeFamily(prime, '0', primesMap, n) ||
-      (lastDigit !== '1' &&
-        doesReplacingMakeFamily(prime, '1', primesMap, n)) ||
-      doesReplacingMakeFamily(prime, '2', primesMap, n)
+      doesReplacingMakeFamily(prime, "0", primesMap, n) ||
+      (lastDigit !== "1" &&
+        doesReplacingMakeFamily(prime, "1", primesMap, n)) ||
+      doesReplacingMakeFamily(prime, "2", primesMap, n)
     );
   }
 
   function doesReplacingMakeFamily(prime, digitToReplace, primesMap, family) {
     let count = 0;
-    const replaceWith = '0123456789';
+    const replaceWith = "0123456789";
 
     for (let i = 0; i < replaceWith.length; i++) {
       const nextNumber = parseInt(
-        prime.replace(new RegExp(digitToReplace, 'g'), replaceWith[i]),
+        prime.replace(new RegExp(digitToReplace, "g"), replaceWith[i]),
         10
       );
 

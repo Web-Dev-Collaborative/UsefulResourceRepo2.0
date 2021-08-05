@@ -63,9 +63,8 @@ var getIdToken = function () {
 var runWorkerTests = function (googleIdToken) {
   var inMemoryPersistence = firebase.auth.Auth.Persistence.NONE;
   var expectedDisplayName = 'Test User';
-  var oauthCredential = firebase.auth.GoogleAuthProvider.credential(
-    googleIdToken
-  );
+  var oauthCredential =
+    firebase.auth.GoogleAuthProvider.credential(googleIdToken);
   var provider = new firebase.auth.GoogleAuthProvider();
   var OPERATION_NOT_SUPPORTED_CODE =
     'auth/operation-not-supported-in-this-environment';

@@ -23,7 +23,7 @@ Implement the Hofstadter Q Sequence equation as a function. The function should 
 `hofstadterQ` should be a function.
 
 ```js
-assert(typeof hofstadterQ === 'function');
+assert(typeof hofstadterQ === "function");
 ```
 
 `hofstadterQ()` should return `integer`
@@ -69,7 +69,6 @@ const res = [502, 755, 1005, 1261];
 
 ```js
 function hofstadterQ(n) {
-
   return n;
 }
 ```
@@ -77,11 +76,11 @@ function hofstadterQ(n) {
 # --solutions--
 
 ```js
-function hofstadterQ (n) {
+function hofstadterQ(n) {
   const memo = [1, 1, 1];
   const Q = function (i) {
     let result = memo[i];
-    if (typeof result !== 'number') {
+    if (typeof result !== "number") {
       result = Q(i - Q(i - 1)) + Q(i - Q(i - 2));
       memo[i] = result;
     }

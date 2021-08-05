@@ -23,27 +23,27 @@ ReactDOM 提供了一個簡單的方法來將 React 元素呈現給 DOM，如下
 常量 `JSX` 應該返回一個 `div` 元素。
 
 ```js
-assert(JSX.type === 'div');
+assert(JSX.type === "div");
 ```
 
 `div` 應該包含一個 `h1` 標籤作爲第一個元素。
 
 ```js
-assert(JSX.props.children[0].type === 'h1');
+assert(JSX.props.children[0].type === "h1");
 ```
 
 `div` 應該包含一個 `p` 標籤作爲第二個元素。
 
 ```js
-assert(JSX.props.children[1].type === 'p');
+assert(JSX.props.children[1].type === "p");
 ```
 
 提供的 JSX 元素應該渲染到 id 爲 `challenge-node` 的 DOM 節點。
 
 ```js
 assert(
-  document.getElementById('challenge-node').childNodes[0].innerHTML ===
-    '<h1>Hello World</h1><p>Lets render this to the DOM</p>'
+  document.getElementById("challenge-node").childNodes[0].innerHTML ===
+    "<h1>Hello World</h1><p>Lets render this to the DOM</p>"
 );
 ```
 
@@ -65,11 +65,11 @@ const JSX = (
 
 ```jsx
 const JSX = (
-<div>
-  <h1>Hello World</h1>
-  <p>Lets render this to the DOM</p>
-</div>
+  <div>
+    <h1>Hello World</h1>
+    <p>Lets render this to the DOM</p>
+  </div>
 );
 // Change code below this line
-ReactDOM.render(JSX, document.getElementById('challenge-node'));
+ReactDOM.render(JSX, document.getElementById("challenge-node"));
 ```

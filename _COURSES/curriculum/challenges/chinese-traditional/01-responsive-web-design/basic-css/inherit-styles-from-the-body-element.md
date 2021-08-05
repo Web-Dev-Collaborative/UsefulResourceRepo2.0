@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08746
 title: 從 body 元素繼承樣式
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c9bmdtR'
+videoUrl: "https://scrimba.com/c/c9bmdtR"
 forumTopicId: 18204
 dashedName: inherit-styles-from-the-body-element
 ---
@@ -26,15 +26,15 @@ dashedName: inherit-styles-from-the-body-element
 應創建一個 `h1` 元素。
 
 ```js
-assert($('h1').length > 0);
+assert($("h1").length > 0);
 ```
 
 `h1` 元素的內容文本應爲 `Hello World`。
 
 ```js
 assert(
-  $('h1').length > 0 &&
-    $('h1')
+  $("h1").length > 0 &&
+    $("h1")
       .text()
       .match(/hello world/i)
 );
@@ -53,15 +53,15 @@ assert(
 `body` 元素的 `color` 屬性值應爲 `green`。
 
 ```js
-assert($('body').css('color') === 'rgb(0, 128, 0)');
+assert($("body").css("color") === "rgb(0, 128, 0)");
 ```
 
 `body` 元素的 `font-family` 屬性值應爲 `monospace`。
 
 ```js
 assert(
-  $('body')
-    .css('font-family')
+  $("body")
+    .css("font-family")
     .match(/monospace/i)
 );
 ```
@@ -70,9 +70,9 @@ assert(
 
 ```js
 assert(
-  $('h1').length > 0 &&
-    $('h1')
-      .css('font-family')
+  $("h1").length > 0 &&
+    $("h1")
+      .css("font-family")
       .match(/monospace/i)
 );
 ```
@@ -80,7 +80,7 @@ assert(
 `h1` 元素的字體顏色應繼承 `body` 元素所設置的綠色。
 
 ```js
-assert($('h1').length > 0 && $('h1').css('color') === 'rgb(0, 128, 0)');
+assert($("h1").length > 0 && $("h1").css("color") === "rgb(0, 128, 0)");
 ```
 
 # --seed--
@@ -92,7 +92,6 @@ assert($('h1').length > 0 && $('h1').css('color') === 'rgb(0, 128, 0)');
   body {
     background-color: black;
   }
-
 </style>
 ```
 
@@ -105,7 +104,6 @@ assert($('h1').length > 0 && $('h1').css('color') === 'rgb(0, 128, 0)');
     font-family: monospace;
     color: green;
   }
-
 </style>
 <h1>Hello World!</h1>
 ```

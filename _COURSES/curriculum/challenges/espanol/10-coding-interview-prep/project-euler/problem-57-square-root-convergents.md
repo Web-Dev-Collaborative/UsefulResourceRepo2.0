@@ -1,6 +1,6 @@
 ---
 id: 5900f3a51000cf542c50feb8
-title: 'Problem 57: Square root convergents'
+title: "Problem 57: Square root convergents"
 challengeType: 5
 forumTopicId: 302168
 dashedName: problem-57-square-root-convergents
@@ -31,7 +31,7 @@ In the first one-thousand expansions, how many fractions contain a numerator wit
 `squareRootConvergents()` should return a number.
 
 ```js
-assert(typeof squareRootConvergents() === 'number');
+assert(typeof squareRootConvergents() === "number");
 ```
 
 `squareRootConvergents()` should return 153.
@@ -46,7 +46,6 @@ assert.strictEqual(squareRootConvergents(), 153);
 
 ```js
 function squareRootConvergents() {
-
   return true;
 }
 

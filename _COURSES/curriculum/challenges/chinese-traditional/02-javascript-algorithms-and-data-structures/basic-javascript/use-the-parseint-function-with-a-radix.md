@@ -2,7 +2,7 @@
 id: 587d7b7e367417b2b2512b22
 title: 使用 parseInt 函數並傳入一個基數
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c6K4Kh3'
+videoUrl: "https://scrimba.com/c/c6K4Kh3"
 forumTopicId: 301182
 dashedName: use-the-parseint-function-with-a-radix
 ---
@@ -40,25 +40,25 @@ assert(/parseInt/g.test(code));
 `convertToInteger("10011")` 應該返回一個數字。
 
 ```js
-assert(typeof convertToInteger('10011') === 'number');
+assert(typeof convertToInteger("10011") === "number");
 ```
 
 `convertToInteger("10011")` 應該返回 19。
 
 ```js
-assert(convertToInteger('10011') === 19);
+assert(convertToInteger("10011") === 19);
 ```
 
 `convertToInteger("111001")` 應該返回 57。
 
 ```js
-assert(convertToInteger('111001') === 57);
+assert(convertToInteger("111001") === 57);
 ```
 
 `convertToInteger("JamesBond")`應該返回 `NaN`。
 
 ```js
-assert.isNaN(convertToInteger('JamesBond'));
+assert.isNaN(convertToInteger("JamesBond"));
 ```
 
 # --seed--
@@ -66,9 +66,7 @@ assert.isNaN(convertToInteger('JamesBond'));
 ## --seed-contents--
 
 ```js
-function convertToInteger(str) {
-
-}
+function convertToInteger(str) {}
 
 convertToInteger("10011");
 ```

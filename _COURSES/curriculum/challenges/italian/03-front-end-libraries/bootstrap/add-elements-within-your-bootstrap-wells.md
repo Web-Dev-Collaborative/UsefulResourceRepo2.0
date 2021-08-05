@@ -18,15 +18,15 @@ Tre elementi `button` dovrebbero essere annidati all'interno di ciascuno dei tuo
 
 ```js
 assert(
-  $('div.well:eq(0)').children('button').length === 3 &&
-    $('div.well:eq(1)').children('button').length === 3
+  $("div.well:eq(0)").children("button").length === 3 &&
+    $("div.well:eq(1)").children("button").length === 3
 );
 ```
 
 Dovresti avere un totale di 6 elementi `button`.
 
 ```js
-assert($('button') && $('button').length > 5);
+assert($("button") && $("button").length > 5);
 ```
 
 Tutti i tuoi elementi `button` dovrebbero avere tag di chiusura.
@@ -48,18 +48,10 @@ assert(
   <h3 class="text-primary text-center">jQuery Playground</h3>
   <div class="row">
     <div class="col-xs-6">
-      <div class="well">
-
-
-
-      </div>
+      <div class="well"></div>
     </div>
     <div class="col-xs-6">
-      <div class="well">
-
-
-
-      </div>
+      <div class="well"></div>
     </div>
   </div>
 </div>

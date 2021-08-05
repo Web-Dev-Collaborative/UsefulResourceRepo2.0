@@ -9,4 +9,3 @@ function emulatorConnect() {
   useAuthEmulator(auth, "http://localhost:9099");
   // [END auth_emulator_connect]
 }
-

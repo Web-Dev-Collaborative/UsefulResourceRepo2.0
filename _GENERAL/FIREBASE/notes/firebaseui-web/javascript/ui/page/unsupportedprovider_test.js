@@ -16,31 +16,29 @@
  * @fileoverview Tests for the unsupported provider page.
  */
 
-goog.provide('firebaseui.auth.ui.page.UnsupportedProviderTest');
-goog.setTestOnly('firebaseui.auth.ui.page.UnsupportedProviderTest');
+goog.provide("firebaseui.auth.ui.page.UnsupportedProviderTest");
+goog.setTestOnly("firebaseui.auth.ui.page.UnsupportedProviderTest");
 
-goog.require('firebaseui.auth.ui.element.FormTestHelper');
-goog.require('firebaseui.auth.ui.element.TosPpTestHelper');
-goog.require('firebaseui.auth.ui.page.PageTestHelper');
-goog.require('firebaseui.auth.ui.page.UnsupportedProvider');
-goog.require('goog.dom');
-goog.require('goog.dom.TagName');
-goog.require('goog.testing.MockClock');
-goog.require('goog.testing.jsunit');
-goog.require('goog.userAgent');
-
+goog.require("firebaseui.auth.ui.element.FormTestHelper");
+goog.require("firebaseui.auth.ui.element.TosPpTestHelper");
+goog.require("firebaseui.auth.ui.page.PageTestHelper");
+goog.require("firebaseui.auth.ui.page.UnsupportedProvider");
+goog.require("goog.dom");
+goog.require("goog.dom.TagName");
+goog.require("goog.testing.MockClock");
+goog.require("goog.testing.jsunit");
+goog.require("goog.userAgent");
 
 var mockClock;
 var root;
 var component;
 // Test helper for submit button and secondary link.
 var formTestHelper =
-    new firebaseui.auth.ui.element.FormTestHelper().registerTests();
+  new firebaseui.auth.ui.element.FormTestHelper().registerTests();
 var tosPpTestHelper =
-    new firebaseui.auth.ui.element.TosPpTestHelper().registerTests();
+  new firebaseui.auth.ui.element.TosPpTestHelper().registerTests();
 var pageTestHelper =
-    new firebaseui.auth.ui.page.PageTestHelper().registerTests();
-
+  new firebaseui.auth.ui.page.PageTestHelper().registerTests();
 
 function setUp() {
   // Set up clock.
@@ -49,19 +47,24 @@ function setUp() {
   root = goog.dom.createDom(goog.dom.TagName.DIV);
   document.body.appendChild(root);
   component = new firebaseui.auth.ui.page.UnsupportedProvider(
-      'user@example.com',
-      goog.bind(
-          firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
-          formTestHelper),
-      goog.bind(
-          firebaseui.auth.ui.element.FormTestHelper.prototype.onLinkClick,
-          formTestHelper),
-      goog.bind(
-          firebaseui.auth.ui.element.TosPpTestHelper.prototype.onTosLinkClick,
-          tosPpTestHelper),
-      goog.bind(
-          firebaseui.auth.ui.element.TosPpTestHelper.prototype.onPpLinkClick,
-          tosPpTestHelper));
+    "user@example.com",
+    goog.bind(
+      firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
+      formTestHelper
+    ),
+    goog.bind(
+      firebaseui.auth.ui.element.FormTestHelper.prototype.onLinkClick,
+      formTestHelper
+    ),
+    goog.bind(
+      firebaseui.auth.ui.element.TosPpTestHelper.prototype.onTosLinkClick,
+      tosPpTestHelper
+    ),
+    goog.bind(
+      firebaseui.auth.ui.element.TosPpTestHelper.prototype.onPpLinkClick,
+      tosPpTestHelper
+    )
+  );
   component.render(root);
   formTestHelper.setComponent(component);
   // Reset previous state of form helper.
@@ -72,7 +75,6 @@ function setUp() {
   pageTestHelper.setClock(mockClock).setComponent(component);
 }
 
-
 function tearDown() {
   // Tear down clock.
   mockClock.tick(Infinity);
@@ -81,17 +83,16 @@ function tearDown() {
   goog.dom.removeNode(root);
 }
 
-
 function testInitialFocus() {
   // Test that initial focus is on submit (continue) button.
   if (goog.userAgent.IE && !goog.userAgent.isDocumentModeOrHigher(9)) {
     return;
   }
   assertEquals(
-      component.getSubmitElement(),
-      goog.dom.getActiveElement(document));
+    component.getSubmitElement(),
+    goog.dom.getActiveElement(document)
+  );
 }
-
 
 function testUnsupportedProvider_pageEvents() {
   // Run page event tests.
@@ -100,18 +101,20 @@ function testUnsupportedProvider_pageEvents() {
   component.dispose();
   // Initialize component.
   component = new firebaseui.auth.ui.page.UnsupportedProvider(
-      'user@example.com',
-      goog.bind(
-          firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
-          formTestHelper),
-      goog.bind(
-          firebaseui.auth.ui.element.FormTestHelper.prototype.onLinkClick,
-          formTestHelper));
+    "user@example.com",
+    goog.bind(
+      firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
+      formTestHelper
+    ),
+    goog.bind(
+      firebaseui.auth.ui.element.FormTestHelper.prototype.onLinkClick,
+      formTestHelper
+    )
+  );
   // Run all page helper tests.
   pageTestHelper.runTests(component, root);
 }
 
-
 function testGetPageId() {
-  assertEquals('unsupportedProvider', component.getPageId());
+  assertEquals("unsupportedProvider", component.getPageId());
 }

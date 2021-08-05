@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244c0
 title: Ámbito global vs. local en funciones
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c2QwKH2'
+videoUrl: "https://scrimba.com/c/c2QwKH2"
 forumTopicId: 18194
 dashedName: global-vs--local-scope-in-functions
 ---
@@ -32,13 +32,13 @@ Añade una variable local a la función `myOutfit` para sobrescribir el valor de
 No debes cambiar el valor del `outerWear` global.
 
 ```js
-assert(outerWear === 'T-Shirt');
+assert(outerWear === "T-Shirt");
 ```
 
 `myOutfit` debe devolver la cadena `sweater`.
 
 ```js
-assert(myOutfit() === 'sweater');
+assert(myOutfit() === "sweater");
 ```
 
 No debes cambiar la declaración de devolución.
@@ -57,8 +57,6 @@ var outerWear = "T-Shirt";
 
 function myOutfit() {
   // Only change code below this line
-
-
 
   // Only change code above this line
   return outerWear;

@@ -1,6 +1,6 @@
 ---
 id: 5900f3a61000cf542c50feb9
-title: 'Problem 58: Spiral primes'
+title: "Problem 58: Spiral primes"
 challengeType: 5
 forumTopicId: 302169
 dashedName: problem-58-spiral-primes
@@ -29,7 +29,7 @@ If one complete new layer is wrapped around the spiral above, a square spiral wi
 `spiralPrimes()` should return a number.
 
 ```js
-assert(typeof spiralPrimes() === 'number');
+assert(typeof spiralPrimes() === "number");
 ```
 
 `spiralPrimes()` should return 26241.
@@ -44,7 +44,6 @@ assert.strictEqual(spiralPrimes(), 26241);
 
 ```js
 function spiralPrimes() {
-
   return true;
 }
 

@@ -21,7 +21,7 @@ dashedName: extract-state-logic-to-redux
 應存在一個值爲字符串 `ADD` 的常量 `ADD`。
 
 ```js
-assert(ADD === 'ADD');
+assert(ADD === "ADD");
 ```
 
 創建 action 的函數 `addMessage` 應返回 `type` 等於 `ADD` 的對象，其返回的 `message` 即被傳入的消息。
@@ -29,8 +29,8 @@ assert(ADD === 'ADD');
 ```js
 assert(
   (function () {
-    const addAction = addMessage('__TEST__MESSAGE__');
-    return addAction.type === ADD && addAction.message === '__TEST__MESSAGE__';
+    const addAction = addMessage("__TEST__MESSAGE__");
+    return addAction.type === ADD && addAction.message === "__TEST__MESSAGE__";
   })()
 );
 ```
@@ -38,7 +38,7 @@ assert(
 `messageReducer` 應是一個函數。
 
 ```js
-assert(typeof messageReducer === 'function');
+assert(typeof messageReducer === "function");
 ```
 
 存在一個 store 且其初始狀態爲空數組。
@@ -47,7 +47,7 @@ assert(typeof messageReducer === 'function');
 assert(
   (function () {
     const initialState = store.getState();
-    return typeof store === 'object' && initialState.length === 0;
+    return typeof store === "object" && initialState.length === 0;
   })()
 );
 ```
@@ -59,9 +59,9 @@ assert(
   (function () {
     const initialState = store.getState();
     const isFrozen = DeepFreeze(initialState);
-    store.dispatch(addMessage('__A__TEST__MESSAGE'));
+    store.dispatch(addMessage("__A__TEST__MESSAGE"));
     const addState = store.getState();
-    return isFrozen && addState[0] === '__A__TEST__MESSAGE';
+    return isFrozen && addState[0] === "__A__TEST__MESSAGE";
   })()
 );
 ```
@@ -72,7 +72,7 @@ assert(
 assert(
   (function () {
     const addState = store.getState();
-    store.dispatch({ type: 'FAKE_ACTION' });
+    store.dispatch({ type: "FAKE_ACTION" });
     const testState = store.getState();
     return addState === testState;
   })()
@@ -90,22 +90,19 @@ assert(
 # --solutions--
 
 ```jsx
-const ADD = 'ADD';
+const ADD = "ADD";
 
 const addMessage = (message) => {
   return {
     type: ADD,
-    message
-  }
+    message,
+  };
 };
 
 const messageReducer = (state = [], action) => {
   switch (action.type) {
     case ADD:
-      return [
-        ...state,
-        action.message
-      ];
+      return [...state, action.message];
     default:
       return state;
   }

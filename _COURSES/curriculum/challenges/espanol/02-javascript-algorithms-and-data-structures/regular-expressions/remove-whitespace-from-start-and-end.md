@@ -21,7 +21,7 @@ Escribe una expresión regular y usa los métodos de cadena apropiados para elim
 `result` debe ser igual a la cadena `Hello, World!`
 
 ```js
-assert(result === 'Hello, World!');
+assert(result === "Hello, World!");
 ```
 
 Tu solución no debe usar el método `String.prototype.trim()`.
@@ -51,5 +51,5 @@ let result = hello; // Change this line
 ```js
 let hello = "   Hello, World!  ";
 let wsRegex = /^(\s+)(.+[^\s])(\s+)$/;
-let result = hello.replace(wsRegex, '$2');
+let result = hello.replace(wsRegex, "$2");
 ```

@@ -41,7 +41,7 @@ assert.sameMembers(
       [0, 1, 0, 0],
       [1, 0, 1, 0],
       [0, 1, 0, 1],
-      [0, 0, 1, 0]
+      [0, 0, 1, 0],
     ];
     return dfs(graph, 1);
   })(),
@@ -58,7 +58,7 @@ assert(
       [0, 1, 0, 0],
       [1, 0, 1, 0],
       [0, 1, 0, 1],
-      [0, 0, 1, 0]
+      [0, 0, 1, 0],
     ];
     return dfs(graph, 1);
   })().length === 4
@@ -74,7 +74,7 @@ assert.sameMembers(
       [0, 1, 0, 0],
       [1, 0, 1, 0],
       [0, 1, 0, 0],
-      [0, 0, 0, 0]
+      [0, 0, 0, 0],
     ];
     return dfs(graph, 3);
   })(),
@@ -91,7 +91,7 @@ assert(
       [0, 1, 0, 0],
       [1, 0, 1, 0],
       [0, 1, 0, 0],
-      [0, 0, 0, 0]
+      [0, 0, 0, 0],
     ];
     return dfs(graph, 3);
   })().length === 1
@@ -107,7 +107,7 @@ assert.sameMembers(
       [0, 1, 0, 0],
       [1, 0, 0, 0],
       [0, 0, 0, 1],
-      [0, 0, 1, 0]
+      [0, 0, 1, 0],
     ];
     return dfs(graph, 3);
   })(),
@@ -124,7 +124,7 @@ assert(
       [0, 1, 0, 0],
       [1, 0, 0, 0],
       [0, 0, 0, 1],
-      [0, 0, 1, 0]
+      [0, 0, 1, 0],
     ];
     return dfs(graph, 3);
   })().length === 2
@@ -140,7 +140,7 @@ assert.sameMembers(
       [0, 1, 0, 0],
       [1, 0, 0, 0],
       [0, 0, 0, 1],
-      [0, 0, 1, 0]
+      [0, 0, 1, 0],
     ];
     return dfs(graph, 0);
   })(),
@@ -157,7 +157,7 @@ assert(
       [0, 1, 0, 0],
       [1, 0, 0, 0],
       [0, 0, 0, 1],
-      [0, 0, 1, 0]
+      [0, 0, 1, 0],
     ];
     return dfs(graph, 0);
   })().length === 2
@@ -169,15 +169,13 @@ assert(
 ## --seed-contents--
 
 ```js
-function dfs(graph, root) {
-
-}
+function dfs(graph, root) {}
 
 var exDFSGraph = [
   [0, 1, 0, 0],
   [1, 0, 1, 0],
   [0, 1, 0, 1],
-  [0, 0, 1, 0]
+  [0, 0, 1, 0],
 ];
 console.log(dfs(exDFSGraph, 3));
 ```
@@ -186,23 +184,23 @@ console.log(dfs(exDFSGraph, 3));
 
 ```js
 function dfs(graph, root) {
-    var stack = [];
-    var tempV;
-    var visited = [];
-    var tempVNeighbors = [];
-    stack.push(root);
-    while (stack.length > 0) {
-        tempV = stack.pop();
-        if (visited.indexOf(tempV) == -1) {
-            visited.push(tempV);
-            tempVNeighbors = graph[tempV];
-            for (var i = 0; i < tempVNeighbors.length; i++) {
-                if (tempVNeighbors[i] == 1) {
-                    stack.push(i);
-                }
-            }
+  var stack = [];
+  var tempV;
+  var visited = [];
+  var tempVNeighbors = [];
+  stack.push(root);
+  while (stack.length > 0) {
+    tempV = stack.pop();
+    if (visited.indexOf(tempV) == -1) {
+      visited.push(tempV);
+      tempVNeighbors = graph[tempV];
+      for (var i = 0; i < tempVNeighbors.length; i++) {
+        if (tempVNeighbors[i] == 1) {
+          stack.push(i);
         }
+      }
     }
-    return visited;
+  }
+  return visited;
 }
 ```

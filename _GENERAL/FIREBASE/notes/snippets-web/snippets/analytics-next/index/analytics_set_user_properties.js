@@ -7,5 +7,5 @@
 import { getAnalytics, setUserProperties } from "firebase/analytics";
 
 const analytics = getAnalytics();
-setUserProperties(analytics, { favorite_food: 'apples' });
+setUserProperties(analytics, { favorite_food: "apples" });
 // [END analytics_set_user_properties_modular]

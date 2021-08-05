@@ -1,6 +1,6 @@
 ---
 id: 5e8f2f13c4cdbe86b5c72d8f
-title: 'Core Learning Algorithms: Clustering'
+title: "Core Learning Algorithms: Clustering"
 challengeType: 11
 videoId: 8sqIaHc9Cz4
 dashedName: core-learning-algorithms-clustering
@@ -35,4 +35,3 @@ Reassign each K point to the closest K centeroid.
 ## --video-solution--
 
 4
-

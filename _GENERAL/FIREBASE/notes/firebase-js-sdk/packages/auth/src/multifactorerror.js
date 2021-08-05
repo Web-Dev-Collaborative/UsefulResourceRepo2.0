@@ -14,12 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 /**
  * @fileoverview Defines the MultiFactorError class, a subclass of
  * fireauth.AuthError.
  */
-
 
 goog.provide('fireauth.MultiFactorError');
 
@@ -28,7 +27,6 @@ goog.require('fireauth.MultiFactorResolver');
 goog.require('fireauth.authenum.Error');
 goog.require('fireauth.object');
 goog.require('goog.object');
-
 
 /**
  * Multi-factor error with resolver, used to resolve sign-in after a two-factor
@@ -47,25 +45,32 @@ goog.require('goog.object');
  * @constructor
  * @extends {fireauth.AuthError}
  */
-fireauth.MultiFactorError = function(
-    auth, errorResponse, onIdTokenResolver, message) {
+fireauth.MultiFactorError = function (
+  auth,
+  errorResponse,
+  onIdTokenResolver,
+  message
+) {
   fireauth.MultiFactorError.base(
-      this,
-      'constructor',
-      fireauth.authenum.Error.MFA_REQUIRED,
-      message,
-      errorResponse);
+    this,
+    'constructor',
+    fireauth.authenum.Error.MFA_REQUIRED,
+    message,
+    errorResponse
+  );
   this.serverResponse_ = goog.object.clone(errorResponse);
   /**
    * @const @private {!fireauth.MultiFactorResolver} The multi-factor resolver
    *     instance.
    */
-  this.resolver_ =
-      new fireauth.MultiFactorResolver(auth, errorResponse, onIdTokenResolver);
+  this.resolver_ = new fireauth.MultiFactorResolver(
+    auth,
+    errorResponse,
+    onIdTokenResolver
+  );
   fireauth.object.setReadonlyProperty(this, 'resolver', this.resolver_);
 };
 goog.inherits(fireauth.MultiFactorError, fireauth.AuthError);
-
 
 /**
  * Initializes a `MultiFactorError` from the plain object provided. If the
@@ -82,18 +87,25 @@ goog.inherits(fireauth.MultiFactorError, fireauth.AuthError);
  *     representation of the response. null is returned if the response is not
  *     a valid MultiFactorError plain object representation.
  */
-fireauth.MultiFactorError.fromPlainObject =
-    function(response, auth, onIdTokenResolver) {
-  if (response &&
-      goog.isObject(response['serverResponse']) &&
-      response['code'] === 'auth/' + fireauth.authenum.Error.MFA_REQUIRED) {
+fireauth.MultiFactorError.fromPlainObject = function (
+  response,
+  auth,
+  onIdTokenResolver
+) {
+  if (
+    response &&
+    goog.isObject(response['serverResponse']) &&
+    response['code'] === 'auth/' + fireauth.authenum.Error.MFA_REQUIRED
+  ) {
     try {
       return new fireauth.MultiFactorError(
-          auth,
-          /** @type {!fireauth.MultiFactorResolver.ErrorResponse} */ (
-              response['serverResponse']),
-          onIdTokenResolver,
-          response['message']);
+        auth,
+        /** @type {!fireauth.MultiFactorResolver.ErrorResponse} */ (
+          response['serverResponse']
+        ),
+        onIdTokenResolver,
+        response['message']
+      );
     } catch (e) {
       return null;
     }

@@ -14,10 +14,10 @@ Later on, you will be adding more elements to the dashboard container. Set the `
 test-text
 
 ```js
-const dashboard = $('.dashboard');
+const dashboard = $(".dashboard");
 assert(
-  dashboard.css('display') === 'flex' &&
-    dashboard.css('align-items') === 'center'
+  dashboard.css("display") === "flex" &&
+    dashboard.css("align-items") === "center"
 );
 ```
 
@@ -42,20 +42,18 @@ assert(
 
 ```html
 <style>
-body {
-  background-color: #ccc;
-  padding: 100px 10px;
-}
+  body {
+    background-color: #ccc;
+    padding: 100px 10px;
+  }
 
-.dashboard {
-  width: 980px;
-  height: 500px;
-  background-color: white;
-  box-shadow: 5px 5px 5px 5px #888;
-  margin: auto;
-
-  
-}
+  .dashboard {
+    width: 980px;
+    height: 500px;
+    background-color: white;
+    box-shadow: 5px 5px 5px 5px #888;
+    margin: auto;
+  }
 </style>
 ```
 
@@ -63,19 +61,19 @@ body {
 
 ```html
 <style>
-body {
-  background-color: #ccc;
-  padding: 100px 10px;
-}
+  body {
+    background-color: #ccc;
+    padding: 100px 10px;
+  }
 
-.dashboard {
-  width: 980px;
-  height: 500px;
-  background-color: white;
-  box-shadow: 5px 5px 5px 5px #888;
-  margin: auto;
-  display: flex;
-  align-items: center;  
-}
+  .dashboard {
+    width: 980px;
+    height: 500px;
+    background-color: white;
+    box-shadow: 5px 5px 5px 5px #888;
+    margin: auto;
+    display: flex;
+    align-items: center;
+  }
 </style>
 ```

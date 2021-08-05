@@ -26,7 +26,7 @@ React 組件可以在本地管理自己的狀態，但是對於複雜的應用�
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(DisplayMessages));
-    return mockedComponent.find('div').text() === '';
+    return mockedComponent.find("div").text() === "";
   })()
 );
 ```
@@ -37,10 +37,10 @@ assert(
 (getUserInput) =>
   assert(
     (function () {
-      const noWhiteSpace = __helpers.removeWhiteSpace(getUserInput('index'));
+      const noWhiteSpace = __helpers.removeWhiteSpace(getUserInput("index"));
       return (
-        noWhiteSpace.includes('constructor(props)') &&
-        noWhiteSpace.includes('super(props')
+        noWhiteSpace.includes("constructor(props)") &&
+        noWhiteSpace.includes("super(props")
       );
     })()
   );
@@ -54,8 +54,8 @@ assert(
     const mockedComponent = Enzyme.mount(React.createElement(DisplayMessages));
     const initialState = mockedComponent.state();
     return (
-      typeof initialState === 'object' &&
-      initialState.input === '' &&
+      typeof initialState === "object" &&
+      initialState.input === "" &&
       Array.isArray(initialState.messages) &&
       initialState.messages.length === 0
     );
@@ -68,7 +68,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<DisplayMessages />, document.getElementById('root'))
+ReactDOM.render(<DisplayMessages />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -79,9 +79,9 @@ class DisplayMessages extends React.Component {
 
   // Change code above this line
   render() {
-    return <div />
+    return <div />;
   }
-};
+}
 ```
 
 # --solutions--
@@ -91,12 +91,12 @@ class DisplayMessages extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: '',
-      messages: []
-    }
+      input: "",
+      messages: [],
+    };
   }
   render() {
-    return <div/>
+    return <div />;
   }
-};
+}
 ```

@@ -2,7 +2,7 @@
 id: 587d78a3367417b2b2512ad1
 title: 瞭解互補色
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c2MD3Tr'
+videoUrl: "https://scrimba.com/c/c2MD3Tr"
 forumTopicId: 301056
 dashedName: learn-about-complementary-colors
 ---
@@ -32,13 +32,13 @@ dashedName: learn-about-complementary-colors
 class 爲 `blue` 的 `div` 元素應有一個 `background-color`，顏色爲藍色。
 
 ```js
-assert($('.blue').css('background-color') == 'rgb(0, 0, 255)');
+assert($(".blue").css("background-color") == "rgb(0, 0, 255)");
 ```
 
 class 爲 `yellow` 的 `div` 元素的 `background-color` 屬性，顏色爲黃色。
 
 ```js
-assert($('.yellow').css('background-color') == 'rgb(255, 255, 0)');
+assert($(".yellow").css("background-color") == "rgb(255, 255, 0)");
 ```
 
 # --seed--
@@ -48,7 +48,7 @@ assert($('.yellow').css('background-color') == 'rgb(255, 255, 0)');
 ```html
 <style>
   body {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
   }
   .blue {
     background-color: #000000;
@@ -71,7 +71,7 @@ assert($('.yellow').css('background-color') == 'rgb(255, 255, 0)');
 ```html
 <style>
   body {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
   }
   .blue {
     background-color: blue;

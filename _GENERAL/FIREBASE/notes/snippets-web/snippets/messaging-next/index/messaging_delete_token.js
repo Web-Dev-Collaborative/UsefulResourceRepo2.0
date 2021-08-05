@@ -7,10 +7,12 @@
 import { getMessaging, deleteToken } from "firebase/messaging";
 
 const messaging = getMessaging();
-deleteToken(messaging).then(() => {
-  console.log('Token deleted.');
-  // ...
-}).catch((err) => {
-  console.log('Unable to delete token. ', err);
-});
+deleteToken(messaging)
+  .then(() => {
+    console.log("Token deleted.");
+    // ...
+  })
+  .catch((err) => {
+    console.log("Unable to delete token. ", err);
+  });
 // [END messaging_delete_token_modular]

@@ -1,6 +1,6 @@
 ---
 id: 5900f49b1000cf542c50ffad
-title: 'Problem 302: Strong Achilles Numbers'
+title: "Problem 302: Strong Achilles Numbers"
 challengeType: 5
 forumTopicId: 301956
 dashedName: problem-302-strong-achilles-numbers
@@ -36,7 +36,6 @@ assert.strictEqual(euler302(), 1170060);
 
 ```js
 function euler302() {
-
   return true;
 }
 

@@ -257,9 +257,8 @@ export default new Command("ext:update <extensionInstanceId> [updateSource]")
         instanceId,
       };
       if (newSourceName.includes("publisher")) {
-        const { publisherId, extensionId, version } = extensionsApi.parseExtensionVersionName(
-          newSourceName
-        );
+        const { publisherId, extensionId, version } =
+          extensionsApi.parseExtensionVersionName(newSourceName);
         updateOptions.extRef = `${publisherId}/${extensionId}@${version}`;
       } else {
         updateOptions.source = newSource;

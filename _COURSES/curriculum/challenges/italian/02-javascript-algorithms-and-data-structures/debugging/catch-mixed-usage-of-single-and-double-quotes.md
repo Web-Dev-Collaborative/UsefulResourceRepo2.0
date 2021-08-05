@@ -25,7 +25,8 @@ I primi due sono corretti, ma il terzo è sbagliato.
 Naturalmente, va bene usare solo uno stile di virgolette. Puoi fare l'escaping delle virgolette all'interno della stringa usando il carattere di escape backslash (`\`):
 
 ```js
-const allSameQuotes = 'I\'ve had a perfectly wonderful evening, but this wasn\'t it.';
+const allSameQuotes =
+  "I've had a perfectly wonderful evening, but this wasn't it.";
 ```
 
 # --instructions--
@@ -58,6 +59,6 @@ console.log(innerHtml);
 # --solutions--
 
 ```js
-let innerHtml = "<p>Click here to <a href=\"#Home\">return home</a></p>";
+let innerHtml = '<p>Click here to <a href="#Home">return home</a></p>';
 console.log(innerHtml);
 ```

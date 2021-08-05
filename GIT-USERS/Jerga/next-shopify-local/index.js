@@ -1,102 +1,103 @@
-const express = require('express')
-const { ApolloServer, gql } = require('apollo-server-express')
-const { DEF_CHECKOUT } = require("./default-data")
+const express = require("express");
+const { ApolloServer, gql } = require("apollo-server-express");
+const { DEF_CHECKOUT } = require("./default-data");
 
-const fs = require('fs'),
-    path = require('path'),
-    filePath = path.join(__dirname, "data", 'index.json');
+const fs = require("fs"),
+  path = require("path"),
+  filePath = path.join(__dirname, "data", "index.json");
 
 const convertNodeToCursor = (node, field = "id") => {
-  return Buffer.from(node[field], 'binary').toString('base64')
-}
+  return Buffer.from(node[field], "binary").toString("base64");
+};
 
 const convertCursorToNodeId = (cursor, field = "id") => {
-  return Buffer.from(cursor[field], 'base64').toString('binary')
-}
+  return Buffer.from(cursor[field], "base64").toString("binary");
+};
 
 // Get Custom Data From JSON -> getData("products")
 const getData = (type) => {
   return new Promise((res, rej) => {
-    fs.readFile(filePath, {encoding: 'utf-8'}, function(err, sData){
+    fs.readFile(filePath, { encoding: "utf-8" }, function (err, sData) {
       if (err) {
-        return rej("Cannot read the file!")
+        return rej("Cannot read the file!");
       }
 
-      const data = JSON.parse(sData)
-      return res(data)
-    })
-  })
-}
+      const data = JSON.parse(sData);
+      return res(data);
+    });
+  });
+};
 
 const saveData = (data) => {
-  const stringifiedData = JSON.stringify(data, null, 2)
+  const stringifiedData = JSON.stringify(data, null, 2);
   return new Promise((res, rej) => {
-    fs.writeFile(filePath, stringifiedData, function(err){
+    fs.writeFile(filePath, stringifiedData, function (err) {
       if (err) {
-        return rej("Cannot read the file!")
+        return rej("Cannot read the file!");
       }
 
-      return res("Data Saved!")
-    })
-  })
-}
+      return res("Data Saved!");
+    });
+  });
+};
 
 const getTotalPrice = (lineItems) => {
   return lineItems.reduce((acc, li) => {
-    return acc + Number(li.variant.priceV2.amount) * li.quantity
-  }, 0)
-}
+    return acc + Number(li.variant.priceV2.amount) * li.quantity;
+  }, 0);
+};
 
 const getAllProducts = (args) => {
-  let { first = 30, afterCursor } = args
-  let afterIndex = 0
+  let { first = 30, afterCursor } = args;
+  let afterIndex = 0;
   return new Promise((res, rej) => {
-    fs.readFile(filePath, {encoding: 'utf-8'}, function(err, sData){
+    fs.readFile(filePath, { encoding: "utf-8" }, function (err, sData) {
       if (!err) {
-        const data = JSON.parse(sData)["products"]
+        const data = JSON.parse(sData)["products"];
 
-        if (typeof afterCursor === 'string') {
+        if (typeof afterCursor === "string") {
           /* Extracting nodeId from afterCursor */
-          let nodeId = convertCursorToNodeId(afterCursor)
+          let nodeId = convertCursorToNodeId(afterCursor);
           /* Finding the index of nodeId */
-          let nodeIndex = data.findIndex(d => d.id === nodeId)
+          let nodeIndex = data.findIndex((d) => d.id === nodeId);
           if (nodeIndex >= 0) {
-              afterIndex = nodeIndex + 1 // 1 is added to exclude the afterIndex node and include items after it
+            afterIndex = nodeIndex + 1; // 1 is added to exclude the afterIndex node and include items after it
           }
         }
 
-        const slicedData = data.slice(afterIndex, afterIndex + first)
-        const edges = slicedData.map (node => {
+        const slicedData = data.slice(afterIndex, afterIndex + first);
+        const edges = slicedData.map((node) => {
           return {
             node,
-            cursor: convertNodeToCursor(node)
-          }
-        })
+            cursor: convertNodeToCursor(node),
+          };
+        });
 
-        let startCursor, endCursor = null
+        let startCursor,
+          endCursor = null;
         if (edges.length > 0) {
-            startCursor = convertNodeToCursor(edges[0].node)
-            endCursor = convertNodeToCursor(edges[edges.length - 1].node)
+          startCursor = convertNodeToCursor(edges[0].node);
+          endCursor = convertNodeToCursor(edges[edges.length - 1].node);
         }
-        let hasNextPage = data.length > afterIndex + first
-        let hasPreviousPage = afterIndex > 0
+        let hasNextPage = data.length > afterIndex + first;
+        let hasPreviousPage = afterIndex > 0;
 
-      res({
-        totalCount: data.length,
-        edges,
-        pageInfo: {
-          startCursor,
-          endCursor,
-          hasNextPage,
-          hasPreviousPage
-        }
-    })
-    } else {
-      rej("File Error!")
-    }
+        res({
+          totalCount: data.length,
+          edges,
+          pageInfo: {
+            startCursor,
+            endCursor,
+            hasNextPage,
+            hasPreviousPage,
+          },
+        });
+      } else {
+        rej("File Error!");
+      }
     });
-  })
-}
+  });
+};
 
 const typeDefs = gql`
   type PageInfo {
@@ -271,24 +272,30 @@ const typeDefs = gql`
 
   type Mutation {
     checkoutCreate(input: CheckoutCreateInput): CheckoutResponse
-    checkoutLineItemsAdd(checkoutId: ID, lineItems: [CheckoutLineItemInput]): CheckoutResponse
-    checkoutLineItemsUpdate(checkoutId: ID, lineItems: [CheckoutLineItemUpdateInput]): CheckoutResponse
+    checkoutLineItemsAdd(
+      checkoutId: ID
+      lineItems: [CheckoutLineItemInput]
+    ): CheckoutResponse
+    checkoutLineItemsUpdate(
+      checkoutId: ID
+      lineItems: [CheckoutLineItemUpdateInput]
+    ): CheckoutResponse
     checkoutLineItemsRemove(checkoutId: ID, lineItemIds: [ID]): CheckoutResponse
   }
 `;
 
 const resolvers = {
   Node: {
-    __resolveType (obj, ctx, info) {
+    __resolveType(obj, ctx, info) {
       return obj.__typename; // GraphQLError is thrown
-    }
+    },
   },
   Checkout: {
     lineItems: (parent, args, context, info) => {
-      const edges = parent.lineItems.map (node => ({
+      const edges = parent.lineItems.map((node) => ({
         node,
-        cursor: convertNodeToCursor(node, "id")
-      }))
+        cursor: convertNodeToCursor(node, "id"),
+      }));
 
       return {
         edges,
@@ -296,17 +303,17 @@ const resolvers = {
           startCursor: null,
           endCursor: null,
           hasNextPage: false,
-          hasPreviousPage: false
-        }
-      }
-    }
+          hasPreviousPage: false,
+        },
+      };
+    },
   },
   Product: {
     images: (parent, args, context, info) => {
-      const edges = parent.images.map (node => ({
+      const edges = parent.images.map((node) => ({
         node,
-        cursor: convertNodeToCursor(node, "originalSrc")
-      }))
+        cursor: convertNodeToCursor(node, "originalSrc"),
+      }));
 
       return {
         edges,
@@ -314,22 +321,21 @@ const resolvers = {
           startCursor: null,
           endCursor: null,
           hasNextPage: false,
-          hasPreviousPage: false
-        }
-      }
+          hasPreviousPage: false,
+        },
+      };
     },
     variants: (parent, args, context, info) => {
-      const edges = parent.variants.map (node => {
-
-        node.product = {}
-        node.product.handle = parent.handle
-        node.image = parent.images[0]
+      const edges = parent.variants.map((node) => {
+        node.product = {};
+        node.product.handle = parent.handle;
+        node.image = parent.images[0];
 
         return {
           node,
-          cursor: convertNodeToCursor(node, "id")
-        }
-      })
+          cursor: convertNodeToCursor(node, "id"),
+        };
+      });
 
       return {
         edges,
@@ -337,165 +343,171 @@ const resolvers = {
           startCursor: null,
           endCursor: null,
           hasNextPage: false,
-          hasPreviousPage: false
-        }
-      }
-    }
+          hasPreviousPage: false,
+        },
+      };
+    },
   },
   Mutation: {
     checkoutLineItemsRemove: async (_, { checkoutId, lineItemIds }) => {
-      const data = await getData()
-      const { checkout } = data
+      const data = await getData();
+      const { checkout } = data;
 
-      lineItemIds.forEach(liId => {
-        const liIndex = checkout.lineItems.findIndex(sli => {
-          return sli.id === liId
-        })
-        checkout.lineItems.splice(liIndex, 1)
-      })
+      lineItemIds.forEach((liId) => {
+        const liIndex = checkout.lineItems.findIndex((sli) => {
+          return sli.id === liId;
+        });
+        checkout.lineItems.splice(liIndex, 1);
+      });
 
       checkout.totalPriceV2.amount = getTotalPrice(checkout.lineItems) || 0;
       checkout.subtotalPriceV2.amount = getTotalPrice(checkout.lineItems) || 0;
 
-      await saveData({...data, checkout})
+      await saveData({ ...data, checkout });
 
       return {
         checkout,
-        checkoutUserErrors: []
-      }
+        checkoutUserErrors: [],
+      };
     },
     checkoutLineItemsUpdate: async (_, { checkoutId, lineItems }) => {
-      const data = await getData()
-      const { checkout } = data
-      const storedLineItems = checkout.lineItems
+      const data = await getData();
+      const { checkout } = data;
+      const storedLineItems = checkout.lineItems;
 
-      lineItems.forEach(li => {
-        const liIndex = checkout.lineItems.findIndex(sli => {
-          return sli.id === li.id
-        })
-        storedLineItems[liIndex].quantity = li.quantity
+      lineItems.forEach((li) => {
+        const liIndex = checkout.lineItems.findIndex((sli) => {
+          return sli.id === li.id;
+        });
+        storedLineItems[liIndex].quantity = li.quantity;
         if (storedLineItems[liIndex].quantity === 0) {
-          checkout.lineItems.splice(liIndex, 1)
+          checkout.lineItems.splice(liIndex, 1);
         }
-      })
+      });
 
-      checkout.totalPriceV2.amount = getTotalPrice(checkout.lineItems) || 0;;
+      checkout.totalPriceV2.amount = getTotalPrice(checkout.lineItems) || 0;
       checkout.subtotalPriceV2.amount = getTotalPrice(checkout.lineItems) || 0;
 
-      await saveData({...data, checkout})
+      await saveData({ ...data, checkout });
 
       return {
         checkout,
-        checkoutUserErrors: []
-      }
+        checkoutUserErrors: [],
+      };
     },
     checkoutLineItemsAdd: async (_, { checkoutId, lineItems }) => {
-      const data = await getData()
-      const { checkout } = data
+      const data = await getData();
+      const { checkout } = data;
 
       if (!checkout) {
-        throw new Error("Checkout is not created!")
+        throw new Error("Checkout is not created!");
       }
 
       function findVariantsProduct(products, variantId) {
-        const product = products.filter(p => {
-          return p.variants.find(v => v.id === variantId)
-        })[0] || null
+        const product =
+          products.filter((p) => {
+            return p.variants.find((v) => v.id === variantId);
+          })[0] || null;
 
-        return product
+        return product;
       }
 
       if (checkout.lineItems && checkout.lineItems.length > 0) {
         checkout.lineItems.forEach((chLi, index) => {
-          const existingLiIndex = lineItems.findIndex(li => li.variantId === chLi.variantId)
+          const existingLiIndex = lineItems.findIndex(
+            (li) => li.variantId === chLi.variantId
+          );
 
           if (existingLiIndex >= 0) {
-            checkout.lineItems[index].quantity++
-            lineItems.splice(existingLiIndex, 1)
+            checkout.lineItems[index].quantity++;
+            lineItems.splice(existingLiIndex, 1);
           }
-        })
+        });
       }
 
-        lineItems.forEach(li => {
-        const product = findVariantsProduct(data["products"], li.variantId)
-        li.id = li.variantId + "__LI"
-        li.title = product.title
-        li.variant = product.variants.find(v => {
-          return v.id === li.variantId
-        })
-        li.variant.image = product.images[0]
-        li.product = product
-      })
+      lineItems.forEach((li) => {
+        const product = findVariantsProduct(data["products"], li.variantId);
+        li.id = li.variantId + "__LI";
+        li.title = product.title;
+        li.variant = product.variants.find((v) => {
+          return v.id === li.variantId;
+        });
+        li.variant.image = product.images[0];
+        li.product = product;
+      });
 
-      checkout.lineItems = [...checkout.lineItems, ...lineItems]
-      checkout.totalPriceV2.amount =getTotalPrice(checkout.lineItems) || 0;
+      checkout.lineItems = [...checkout.lineItems, ...lineItems];
+      checkout.totalPriceV2.amount = getTotalPrice(checkout.lineItems) || 0;
       checkout.subtotalPriceV2.amount = getTotalPrice(checkout.lineItems) || 0;
       await saveData({
         ...data,
-        checkout
-      })
+        checkout,
+      });
 
       return {
         checkout,
-        checkoutUserErrors: []
-      }
+        checkoutUserErrors: [],
+      };
     },
     checkoutCreate: async () => {
-      const data = await getData()
-      const { checkout } = data
+      const data = await getData();
+      const { checkout } = data;
 
       if (!checkout.id) {
         await saveData({
           ...data,
-          checkout: DEF_CHECKOUT
-        })
+          checkout: DEF_CHECKOUT,
+        });
       }
       return {
         checkout: !checkout.id ? DEF_CHECKOUT : checkout,
-        checkoutUserErrors: []
-      }
-    }
+        checkoutUserErrors: [],
+      };
+    },
   },
   Query: {
     node: async (_, { id }) => {
-      const data = await getData()
+      const data = await getData();
       let foundNode = null;
 
-      Object.keys(data).forEach(dataType => {
-        const entity = data[dataType]
-        if (foundNode) { return; }
-        if (Array.isArray(entity)) {
-          foundNode = entity.find(e => e.id === id)
-        } else if (entity.id === id) {
-          foundNode = entity
+      Object.keys(data).forEach((dataType) => {
+        const entity = data[dataType];
+        if (foundNode) {
+          return;
         }
-      })
+        if (Array.isArray(entity)) {
+          foundNode = entity.find((e) => e.id === id);
+        } else if (entity.id === id) {
+          foundNode = entity;
+        }
+      });
 
-      return foundNode
+      return foundNode;
     },
     hello: () => {
-      return 'Hello world!';
+      return "Hello world!";
     },
     productByHandle: async (parent, args, ...rest) => {
-      let { handle } = args
-      const products = await getAllProducts(args)
+      let { handle } = args;
+      const products = await getAllProducts(args);
 
-      const product = products.edges.find(e => e.node.handle === handle)?.node
-      return product || null
+      const product = products.edges.find(
+        (e) => e.node.handle === handle
+      )?.node;
+      return product || null;
     },
     products: (parent, args, context, info) => {
-      return getAllProducts(args)
-    }
+      return getAllProducts(args);
+    },
   },
 };
 
-const server = new ApolloServer({ typeDefs, resolvers })
-server.start()
+const server = new ApolloServer({ typeDefs, resolvers });
+server.start();
 
 const app = express();
 server.applyMiddleware({ app });
 
-
 app.listen(4000, () => {
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
-})
+  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+});

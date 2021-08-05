@@ -1,6 +1,6 @@
 ---
 id: 5900f4d21000cf542c50ffe5
-title: 'Problem 358: Cyclic numbers'
+title: "Problem 358: Cyclic numbers"
 challengeType: 5
 forumTopicId: 302018
 dashedName: problem-358-cyclic-numbers
@@ -34,7 +34,6 @@ assert.strictEqual(euler358(), 3284144505);
 
 ```js
 function euler358() {
-
   return true;
 }
 

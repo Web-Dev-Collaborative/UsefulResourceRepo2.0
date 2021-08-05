@@ -39,37 +39,37 @@ assert(ohRegex.source.match(/{.*?}/).length > 0);
 你的正則表達式不應匹配字符串 `Ohh no`
 
 ```js
-assert(!ohRegex.test('Ohh no'));
+assert(!ohRegex.test("Ohh no"));
 ```
 
 你的正則表達式應該匹配字符串 `Ohhh no`
 
 ```js
-assert('Ohhh no'.match(ohRegex)[0].length === 7);
+assert("Ohhh no".match(ohRegex)[0].length === 7);
 ```
 
 你的正則表達式應該匹配字符串 `Ohhhh no`
 
 ```js
-assert('Ohhhh no'.match(ohRegex)[0].length === 8);
+assert("Ohhhh no".match(ohRegex)[0].length === 8);
 ```
 
 你的正則表達式應該匹配字符串 `Ohhhhh no`
 
 ```js
-assert('Ohhhhh no'.match(ohRegex)[0].length === 9);
+assert("Ohhhhh no".match(ohRegex)[0].length === 9);
 ```
 
 你的正則表達式應該匹配字符串 `Ohhhhhh no`
 
 ```js
-assert('Ohhhhhh no'.match(ohRegex)[0].length === 10);
+assert("Ohhhhhh no".match(ohRegex)[0].length === 10);
 ```
 
 你的正則表達式應該匹配字符串 `Ohhhhhhh no`
 
 ```js
-assert(!ohRegex.test('Ohhhhhhh no'));
+assert(!ohRegex.test("Ohhhhhhh no"));
 ```
 
 # --seed--

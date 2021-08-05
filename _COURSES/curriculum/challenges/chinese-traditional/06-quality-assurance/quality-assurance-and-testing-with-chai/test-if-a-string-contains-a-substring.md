@@ -22,9 +22,9 @@ dashedName: test-if-a-string-contains-a-substring
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=13').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=13").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -36,11 +36,11 @@ dashedName: test-if-a-string-contains-a-substring
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=13').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=13").then(
     (data) => {
       assert.equal(
         data.assertions[0].method,
-        'include',
+        "include",
         "'Arrow' contains 'row'..."
       );
     },
@@ -54,11 +54,11 @@ dashedName: test-if-a-string-contains-a-substring
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=13').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=13").then(
     (data) => {
       assert.equal(
         data.assertions[1].method,
-        'notInclude',
+        "notInclude",
         "... a 'dart' doesn't contain a 'queue'"
       );
     },

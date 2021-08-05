@@ -1,6 +1,6 @@
 ---
 id: 5900f3b61000cf542c50fec8
-title: 'Problem 73: Counting fractions in a range'
+title: "Problem 73: Counting fractions in a range"
 challengeType: 5
 forumTopicId: 302186
 dashedName: problem-73-counting-fractions-in-a-range
@@ -23,7 +23,7 @@ How many fractions lie between 1/3 and 1/2 in the sorted set of reduced proper f
 `countingFractionsInARange()` should return a number.
 
 ```js
-assert(typeof countingFractionsInARange() === 'number');
+assert(typeof countingFractionsInARange() === "number");
 ```
 
 `countingFractionsInARange()` should return 7295372.
@@ -38,7 +38,6 @@ assert.strictEqual(countingFractionsInARange(), 7295372);
 
 ```js
 function countingFractionsInARange() {
-
   return true;
 }
 

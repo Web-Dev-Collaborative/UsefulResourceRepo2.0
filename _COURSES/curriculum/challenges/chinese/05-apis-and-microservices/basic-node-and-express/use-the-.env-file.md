@@ -28,7 +28,7 @@ dashedName: use-the--env-file
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/use-env-vars').then(
+  $.get(getUserInput("url") + "/_api/use-env-vars").then(
     (data) => {
       assert.isTrue(
         data.passed,

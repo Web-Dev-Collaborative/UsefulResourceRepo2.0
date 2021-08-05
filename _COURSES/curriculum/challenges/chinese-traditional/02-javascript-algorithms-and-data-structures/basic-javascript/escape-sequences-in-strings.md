@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244b6
 title: 轉義字符
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cvmqRh6'
+videoUrl: "https://scrimba.com/c/cvmqRh6"
 forumTopicId: 17567
 dashedName: escape-sequences-in-strings
 ---
@@ -18,7 +18,7 @@ dashedName: escape-sequences-in-strings
 
 <table class='table table-striped'><thead><tr><th>代碼</th><th>輸出</th></tr></thead><tbody><tr><td><code>\'</code></td><td>單引號</td></tr><tr><td><code>\"</code></td><td>雙引號</td></tr><tr><td><code>\\</code></td><td>反斜槓</td></tr><tr><td><code>\n</code></td><td>換行符</td></tr><tr><td><code>\r</code></td><td>回車符</td></tr><tr><td><code>\t</code></td><td>製表符</td></tr><tr><td><code>\b</code></td><td>退格</td></tr><tr><td><code>\f</code></td><td>換頁符</td></tr></tbody></table>
 
-*請注意，必須對反斜槓本身進行轉義，它才能顯示爲反斜槓。*
+_請注意，必須對反斜槓本身進行轉義，它才能顯示爲反斜槓。_
 
 # --instructions--
 
@@ -73,7 +73,7 @@ assert(/SecondLine\nThirdLine/.test(myStr));
 `myStr` 應該只包含上面要求的字符。
 
 ```js
-assert(myStr === 'FirstLine\n\t\\SecondLine\nThirdLine');
+assert(myStr === "FirstLine\n\t\\SecondLine\nThirdLine");
 ```
 
 # --seed--
@@ -81,9 +81,11 @@ assert(myStr === 'FirstLine\n\t\\SecondLine\nThirdLine');
 ## --after-user-code--
 
 ```js
-(function(){
-if (myStr !== undefined){
-console.log('myStr:\n' + myStr);}})();
+(function () {
+  if (myStr !== undefined) {
+    console.log("myStr:\n" + myStr);
+  }
+})();
 ```
 
 ## --seed-contents--

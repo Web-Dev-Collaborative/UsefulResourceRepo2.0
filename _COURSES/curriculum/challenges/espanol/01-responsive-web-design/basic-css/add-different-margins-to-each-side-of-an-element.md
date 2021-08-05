@@ -2,7 +2,7 @@
 id: bad87fee1248bd9aedf08824
 title: Añade márgenes diferentes a cada lado de un elemento
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cg4RWh4'
+videoUrl: "https://scrimba.com/c/cg4RWh4"
 forumTopicId: 16633
 dashedName: add-different-margins-to-each-side-of-an-element
 ---
@@ -22,25 +22,25 @@ Asigna a la caja azul un `margin` de `40px` en sus lados superior e izquierdo, p
 Tu clase `blue-box` debe asignar al lado superior (top) de los elementos `40px` de `margin`.
 
 ```js
-assert($('.blue-box').css('margin-top') === '40px');
+assert($(".blue-box").css("margin-top") === "40px");
 ```
 
 Tu clase `blue-box` debe asignar al lado derecho (right) de los elementos `20px` de `margin`.
 
 ```js
-assert($('.blue-box').css('margin-right') === '20px');
+assert($(".blue-box").css("margin-right") === "20px");
 ```
 
 Tu clase `blue-box` debe asignar al lado inferior (bottom) de los elementos `20px` de `margin`.
 
 ```js
-assert($('.blue-box').css('margin-bottom') === '20px');
+assert($(".blue-box").css("margin-bottom") === "20px");
 ```
 
 Tu clase `blue-box` debe asignar al lado izquierdo (left) de los elementos `40px` de `margin`.
 
 ```js
-assert($('.blue-box').css('margin-left') === '40px');
+assert($(".blue-box").css("margin-left") === "40px");
 ```
 
 # --seed--

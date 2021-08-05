@@ -21,7 +21,7 @@ Colora il tuo elemento `h3` con la classe Bootstrap `text-primary` e centralo co
 Dovresti aggiungere un elemento `h3` alla tua pagina.
 
 ```js
-assert($('h3') && $('h3').length > 0);
+assert($("h3") && $("h3").length > 0);
 ```
 
 Il tuo elemento `h3` dovrebbe avere un tag di chiusura.
@@ -37,19 +37,19 @@ assert(
 Il tuo elemento `h3` dovrebbe essere colorato applicando la classe `text-primary`
 
 ```js
-assert($('h3').hasClass('text-primary'));
+assert($("h3").hasClass("text-primary"));
 ```
 
 Il tuo elemento `h3` dovrebbe essere centrato applicando la classe `text-center`
 
 ```js
-assert($('h3').hasClass('text-center'));
+assert($("h3").hasClass("text-center"));
 ```
 
 Il tuo elemento `h3` dovrebbe avere il testo `jQuery Playground`.
 
 ```js
-assert.isTrue(/jquery(\s)+playground/gi.test($('h3').text()));
+assert.isTrue(/jquery(\s)+playground/gi.test($("h3").text()));
 ```
 
 # --seed--

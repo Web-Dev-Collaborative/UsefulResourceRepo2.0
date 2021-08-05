@@ -14,10 +14,10 @@
 
 /** @fileoverview FirebaseUI error. */
 
-goog.module('firebaseui.auth.AuthUIError');
+goog.module("firebaseui.auth.AuthUIError");
 goog.module.declareLegacyNamespace();
 
-const strings = goog.require('firebaseui.auth.soy2.strings');
+const strings = goog.require("firebaseui.auth.soy2.strings");
 
 /** Error that can be returned to the developer. */
 class AuthUIError extends Error {
@@ -32,8 +32,8 @@ class AuthUIError extends Error {
     /** @export */
     this.code = AuthUIError.ERROR_CODE_PREFIX + code;
     /** @export */
-    this.message = opt_message ||
-        AuthUIError.getDefaultErrorMessage_(this.code) || '';
+    this.message =
+      opt_message || AuthUIError.getDefaultErrorMessage_(this.code) || "";
     /** @export */
     this.credential = opt_credential || null;
   }
@@ -41,8 +41,8 @@ class AuthUIError extends Error {
   /** @return {!Object} The plain object form of the error. */
   toPlainObject() {
     return {
-      'code': this.code,
-      'message': this.message,
+      code: this.code,
+      message: this.message,
     };
   }
 
@@ -62,7 +62,7 @@ class AuthUIError extends Error {
    * @private
    */
   static getDefaultErrorMessage_(code) {
-    return strings.errorAuthUI({code: code}).toString();
+    return strings.errorAuthUI({ code: code }).toString();
   }
 }
 
@@ -70,14 +70,14 @@ class AuthUIError extends Error {
  * The error prefix for AuthUIError.
  * @protected {string}
  */
-AuthUIError.ERROR_CODE_PREFIX = 'firebaseui/';
+AuthUIError.ERROR_CODE_PREFIX = "firebaseui/";
 
 /**
  * Developer facing FirebaseUI error codes.
  * @enum {string}
  */
 AuthUIError.Error = {
-  MERGE_CONFLICT: 'anonymous-upgrade-merge-conflict',
+  MERGE_CONFLICT: "anonymous-upgrade-merge-conflict",
 };
 
 exports = AuthUIError;

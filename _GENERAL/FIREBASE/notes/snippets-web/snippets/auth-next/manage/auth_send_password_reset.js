@@ -9,10 +9,12 @@ import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 const auth = getAuth();
 const emailAddress = "user@example.com";
 
-sendPasswordResetEmail(auth, emailAddress).then(() => {
-  // Email sent.
-}).catch((error) => {
-  // An error ocurred
-  // ...
-});
+sendPasswordResetEmail(auth, emailAddress)
+  .then(() => {
+    // Email sent.
+  })
+  .catch((error) => {
+    // An error ocurred
+    // ...
+  });
 // [END auth_send_password_reset_modular]

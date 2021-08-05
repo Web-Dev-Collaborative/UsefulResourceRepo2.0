@@ -17,18 +17,16 @@ function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect('/');
-};
+  res.redirect("/");
+}
 ```
 
-然後，在 profile 頁面請求中，添加 *ensureAuthenticated* 作爲中間件，放在 get 請求（包含渲染頁面的函數）的參數之前。
+然後，在 profile 頁面請求中，添加 _ensureAuthenticated_ 作爲中間件，放在 get 請求（包含渲染頁面的函數）的參數之前。
 
 ```js
-app
- .route('/profile')
- .get(ensureAuthenticated, (req,res) => {
-    res.render(process.cwd() + '/views/pug/profile');
- });
+app.route("/profile").get(ensureAuthenticated, (req, res) => {
+  res.render(process.cwd() + "/views/pug/profile");
+});
 ```
 
 完成上述要求後，請提交你的頁面鏈接。 如果你遇到了問題，可以參考[這裏](https://gist.github.com/camperbot/ae49b8778cab87e93284a91343da0959)的答案。
@@ -39,17 +37,17 @@ app
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/server.js').then(
+  $.get(getUserInput("url") + "/_api/server.js").then(
     (data) => {
       assert.match(
         data,
         /ensureAuthenticated[^]*req.isAuthenticated/gi,
-        'Your ensureAuthenticated middleware should be defined and utilize the req.isAuthenticated function'
+        "Your ensureAuthenticated middleware should be defined and utilize the req.isAuthenticated function"
       );
       assert.match(
         data,
         /profile[^]*get[^]*ensureAuthenticated/gi,
-        'Your ensureAuthenticated middleware should be attached to the /profile route'
+        "Your ensureAuthenticated middleware should be attached to the /profile route"
       );
     },
     (xhr) => {
@@ -62,12 +60,12 @@ app
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/profile').then(
+  $.get(getUserInput("url") + "/profile").then(
     (data) => {
       assert.match(
         data,
         /Home page/gi,
-        'An attempt to go to the profile at this point should redirect to the homepage since we are not logged in'
+        "An attempt to go to the profile at this point should redirect to the homepage since we are not logged in"
       );
     },
     (xhr) => {

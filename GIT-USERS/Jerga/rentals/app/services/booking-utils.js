@@ -1,4 +1,4 @@
-import Service from '@ember/service';
+import Service from "@ember/service";
 
 export default Service.extend({
   totalPrice(daily_price, days) {
@@ -10,14 +10,14 @@ export default Service.extend({
   },
 
   orderResults(results) {
-  let groupedItems = [];
-  const itemsPerRow = 3;
+    let groupedItems = [];
+    const itemsPerRow = 3;
 
-  let allItems = results.map(obj => obj);
-  while(allItems.length){
-    groupedItems.push(allItems.splice(0,itemsPerRow));
-  }
+    let allItems = results.map((obj) => obj);
+    while (allItems.length) {
+      groupedItems.push(allItems.splice(0, itemsPerRow));
+    }
 
-  return groupedItems;
-  }
+    return groupedItems;
+  },
 });

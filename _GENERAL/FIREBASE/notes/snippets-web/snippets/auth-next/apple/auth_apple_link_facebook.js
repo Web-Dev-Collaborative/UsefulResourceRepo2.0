@@ -8,18 +8,17 @@ import { getAuth, linkWithPopup, FacebookAuthProvider } from "firebase/auth";
 
 const auth = getAuth();
 const provider = new FacebookAuthProvider();
-provider.addScope('user_birthday');
+provider.addScope("user_birthday");
 
 // Assuming the current user is an Apple user linking a Facebook provider.
 linkWithPopup(auth.currentUser, provider)
-    .then((result) => {
-      // Facebook credential is linked to the current Apple user.
-      // ...
-
-      // The user can now sign in to the same account
-      // with either Apple or Facebook.
-    })
-    .catch((error) => {
-      // Handle error.
-    });
+  .then((result) => {
+    // Facebook credential is linked to the current Apple user.
+    // ...
+    // The user can now sign in to the same account
+    // with either Apple or Facebook.
+  })
+  .catch((error) => {
+    // Handle error.
+  });
 // [END auth_apple_link_facebook_modular]

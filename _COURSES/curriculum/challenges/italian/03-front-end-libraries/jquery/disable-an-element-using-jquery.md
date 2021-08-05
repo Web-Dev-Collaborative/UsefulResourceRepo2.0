@@ -28,8 +28,8 @@ Il bottone `target1` dovrebbe essere disabilitato.
 
 ```js
 assert(
-  $('#target1') &&
-    $('#target1').prop('disabled') &&
+  $("#target1") &&
+    $("#target1").prop("disabled") &&
     code.match(/["']disabled["'],( true|true)/g)
 );
 ```
@@ -37,7 +37,7 @@ assert(
 Nessun altro bottone dovrebbe essere disabilitato.
 
 ```js
-assert($('#target2') && !$('#target2').prop('disabled'));
+assert($("#target2") && !$("#target2").prop("disabled"));
 ```
 
 Dovresti usare solo jQuery per aggiungere queste classi all'elemento.
@@ -52,9 +52,8 @@ assert(!code.match(/disabled[^<]*>/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
-
   });
 </script>
 
@@ -87,10 +86,9 @@ assert(!code.match(/disabled[^<]*>/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
-
   });
 </script>
 

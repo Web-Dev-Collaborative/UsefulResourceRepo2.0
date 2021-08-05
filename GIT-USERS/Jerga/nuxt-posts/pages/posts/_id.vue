@@ -8,11 +8,11 @@
               <div class="section">
                 <div class="title">
                   <h1>Detail View</h1>
-                  <hr>
+                  <hr />
                 </div>
                 <div class="post-content">
-                  <h1 class="title">{{post.title}}</h1>
-                  <h2 class="subtitle">{{post.subtitle}}</h2>
+                  <h1 class="title">{{ post.title }}</h1>
+                  <h2 class="subtitle">{{ post.subtitle }}</h2>
                   <div class="markdown">
                     <!-- Post Markdown content -->
                     <div v-html="compiledMarkdown"></div>
@@ -32,27 +32,18 @@
 export default {
   computed: {
     post() {
-      return this.$store.state.post.item
+      return this.$store.state.post.item;
     },
     compiledMarkdown() {
       if (process.client) {
-        return marked(this.post.content, {sanitize: true})
+        return marked(this.post.content, { sanitize: true });
       }
 
-      return ''
-    }
+      return "";
+    },
   },
-  fetch({params, store}) {
-    return store.dispatch('post/fetchPostById', params.id)
-  }
-}
+  fetch({ params, store }) {
+    return store.dispatch("post/fetchPostById", params.id);
+  },
+};
 </script>
-
-
-
-
-
-
-
-
-

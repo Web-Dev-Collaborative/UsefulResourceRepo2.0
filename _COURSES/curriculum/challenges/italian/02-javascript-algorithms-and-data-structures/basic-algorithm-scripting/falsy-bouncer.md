@@ -19,19 +19,19 @@ Suggerimento: Prova a convertire ogni valore in un Booleano.
 `bouncer([7, "ate", "", false, 9])` dovrebbe restituire `[7, "ate", 9]`.
 
 ```js
-assert.deepEqual(bouncer([7, 'ate', '', false, 9]), [7, 'ate', 9]);
+assert.deepEqual(bouncer([7, "ate", "", false, 9]), [7, "ate", 9]);
 ```
 
 `bouncer(["a", "b", "c"])` dovrebbe restituire `["a", "b", "c"]`.
 
 ```js
-assert.deepEqual(bouncer(['a', 'b', 'c']), ['a', 'b', 'c']);
+assert.deepEqual(bouncer(["a", "b", "c"]), ["a", "b", "c"]);
 ```
 
 `bouncer([false, null, 0, NaN, undefined, ""])` dovrebbe restituire `[]`.
 
 ```js
-assert.deepEqual(bouncer([false, null, 0, NaN, undefined, '']), []);
+assert.deepEqual(bouncer([false, null, 0, NaN, undefined, ""]), []);
 ```
 
 `bouncer([null, NaN, 1, 2, undefined])` dovrebbe restituire `[1, 2]`.
@@ -56,7 +56,7 @@ bouncer([7, "ate", "", false, 9]);
 
 ```js
 function bouncer(arr) {
-  return arr.filter(e => e);
+  return arr.filter((e) => e);
 }
 
 bouncer([7, "ate", "", false, 9]);

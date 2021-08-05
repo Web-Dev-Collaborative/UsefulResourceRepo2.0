@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
- /**
+/**
  * @fileoverview Defines the RecaptchaLoader implementation used to load all
  * the grecaptcha dependencies.
  */
@@ -31,13 +31,12 @@ goog.require('goog.html.TrustedResourceUrl');
 goog.require('goog.net.jsloader');
 goog.require('goog.string.Const');
 
-
 /**
  * Utility to help load reCAPTCHA dependencies for specified languages.
  * @constructor
  * @implements {fireauth.RecaptchaLoader}
  */
-fireauth.RecaptchaRealLoader = function() {
+fireauth.RecaptchaRealLoader = function () {
   /**
    * @private {number} The reCAPTCHA instance counter. This is used to track the
    *     number of reCAPTCHAs rendered on the page. This is needed to allow
@@ -55,12 +54,11 @@ fireauth.RecaptchaRealLoader = function() {
   this.cbName_ = '__rcb' + Math.floor(Math.random() * 1000000).toString();
 };
 
-
 /** @private @const {!goog.string.Const} The reCAPTCHA javascript source URL. */
 fireauth.RecaptchaRealLoader.RECAPTCHA_SRC_ = goog.string.Const.from(
-    'https://www.google.com/recaptcha/api.js?onload=%{onload}&render=explicit' +
-    '&hl=%{hl}');
-
+  'https://www.google.com/recaptcha/api.js?onload=%{onload}&render=explicit' +
+    '&hl=%{hl}'
+);
 
 /**
  * The default timeout delay (units in milliseconds) for requests loading
@@ -69,8 +67,7 @@ fireauth.RecaptchaRealLoader.RECAPTCHA_SRC_ = goog.string.Const.from(
  * @private
  */
 fireauth.RecaptchaRealLoader.DEFAULT_DEPENDENCY_TIMEOUT_ =
-    new fireauth.util.Delay(30000, 60000);
-
+  new fireauth.util.Delay(30000, 60000);
 
 /**
  * Loads the grecaptcha client library if it is not loaded and returns a promise
@@ -81,29 +78,26 @@ fireauth.RecaptchaRealLoader.DEFAULT_DEPENDENCY_TIMEOUT_ =
  *     grecaptcha is loaded.
  * @override
  */
-fireauth.RecaptchaRealLoader.prototype.loadRecaptchaDeps =
-    function(hl) {
+fireauth.RecaptchaRealLoader.prototype.loadRecaptchaDeps = function (hl) {
   var self = this;
-  return new goog.Promise(function(resolve, reject) {
-    var timer = setTimeout(
-        function() {
-          reject(new fireauth.AuthError(
-              fireauth.authenum.Error.NETWORK_REQUEST_FAILED));
-        },
-        fireauth.RecaptchaRealLoader.DEFAULT_DEPENDENCY_TIMEOUT_
-            .get()
-    );
+  return new goog.Promise(function (resolve, reject) {
+    var timer = setTimeout(function () {
+      reject(
+        new fireauth.AuthError(fireauth.authenum.Error.NETWORK_REQUEST_FAILED)
+      );
+    }, fireauth.RecaptchaRealLoader.DEFAULT_DEPENDENCY_TIMEOUT_.get());
     // Load grecaptcha SDK if not already loaded or language changed since last
     // load and no other rendered reCAPTCHA is visible,
     if (!goog.global['grecaptcha'] || (hl !== self.hl_ && !self.counter_)) {
       // reCAPTCHA saves the onload function and applies it on subsequent
       // reloads. This means that the callback name has to remain the same.
-      goog.global[self.cbName_] = function() {
+      goog.global[self.cbName_] = function () {
         if (!goog.global['grecaptcha']) {
           clearTimeout(timer);
           // This should not happen.
-          reject(new fireauth.AuthError(
-              fireauth.authenum.Error.INTERNAL_ERROR));
+          reject(
+            new fireauth.AuthError(fireauth.authenum.Error.INTERNAL_ERROR)
+          );
         } else {
           // Update the current language code.
           self.hl_ = hl;
@@ -111,8 +105,10 @@ fireauth.RecaptchaRealLoader.prototype.loadRecaptchaDeps =
           // Wrap grecaptcha.render to keep track of rendered grecaptcha. This
           // helps detect if the developer rendered a non
           // firebase.auth.RecaptchaVerifier reCAPTCHA.
-          goog.global['grecaptcha']['render'] =
-              function(container, parameters) {
+          goog.global['grecaptcha']['render'] = function (
+            container,
+            parameters
+          ) {
             var widgetId = render(container, parameters);
             // Increment only after render succeeds, in case an error is thrown
             // during rendering.
@@ -126,18 +122,23 @@ fireauth.RecaptchaRealLoader.prototype.loadRecaptchaDeps =
       };
       // Construct reCAPTCHA URL and on load, run the temporary function.
       var url = goog.html.TrustedResourceUrl.format(
-          fireauth.RecaptchaRealLoader.RECAPTCHA_SRC_,
-          {'onload': self.cbName_, 'hl': hl || ''});
+        fireauth.RecaptchaRealLoader.RECAPTCHA_SRC_,
+        { 'onload': self.cbName_, 'hl': hl || '' }
+      );
       // TODO: eventually, replace all dependencies on goog.net.jsloader.
-      goog.Promise.resolve(goog.net.jsloader.safeLoad(url))
-          .thenCatch(function(error) {
-            clearTimeout(timer);
-            // In case library fails to load, typically due to a network error,
-            // reset cached loader to null to force a refresh on a retrial.
-            reject(new fireauth.AuthError(
-                fireauth.authenum.Error.INTERNAL_ERROR,
-                'Unable to load external reCAPTCHA dependencies!'));
-          });
+      goog.Promise.resolve(goog.net.jsloader.safeLoad(url)).thenCatch(function (
+        error
+      ) {
+        clearTimeout(timer);
+        // In case library fails to load, typically due to a network error,
+        // reset cached loader to null to force a refresh on a retrial.
+        reject(
+          new fireauth.AuthError(
+            fireauth.authenum.Error.INTERNAL_ERROR,
+            'Unable to load external reCAPTCHA dependencies!'
+          )
+        );
+      });
     } else {
       clearTimeout(timer);
       resolve(goog.global['grecaptcha']);
@@ -145,16 +146,13 @@ fireauth.RecaptchaRealLoader.prototype.loadRecaptchaDeps =
   });
 };
 
-
 /**
  * Decrements the reCAPTCHA instance counter.
  * @override
  */
-fireauth.RecaptchaRealLoader.prototype.clearSingleRecaptcha =
-    function() {
+fireauth.RecaptchaRealLoader.prototype.clearSingleRecaptcha = function () {
   this.counter_--;
 };
-
 
 /**
  * @private {?fireauth.RecaptchaRealLoader} The singleton instance
@@ -162,16 +160,14 @@ fireauth.RecaptchaRealLoader.prototype.clearSingleRecaptcha =
  */
 fireauth.RecaptchaRealLoader.instance_ = null;
 
-
 /**
  * @return {!fireauth.RecaptchaRealLoader} The singleton reCAPTCHA
  *     dependency loader instance.
  */
-fireauth.RecaptchaRealLoader.getInstance = function() {
+fireauth.RecaptchaRealLoader.getInstance = function () {
   // Check if there is an existing instance. Otherwise create one and cache it.
   if (!fireauth.RecaptchaRealLoader.instance_) {
-    fireauth.RecaptchaRealLoader.instance_ =
-        new fireauth.RecaptchaRealLoader();
+    fireauth.RecaptchaRealLoader.instance_ = new fireauth.RecaptchaRealLoader();
   }
   return fireauth.RecaptchaRealLoader.instance_;
 };

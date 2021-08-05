@@ -7,7 +7,6 @@ FirebaseUI React Components provides React Wrappers on top of the [Firebase UI W
 
 FirebaseUI Auth provides a drop-in auth solution that handles the UI flows for signing in users with email addresses and passwords, and Identity Provider Sign In using Google, Facebook and others. It is built on top of Firebase Auth.
 
-
 ## Installation and Usage
 
 > For an example on how to use the FirebaseAuth react component have a look at the [example](./example) folder.
@@ -25,20 +24,20 @@ npm install --save firebase
 ```
 
 In your app:
-  1. Import the `FirebaseAuth` or the `StyledFirebaseAuth` component from `react-firebaseui` and import `firebase`.
-  2. Configure Firebase as described in [the Firebase Docs](https://firebase.google.com/docs/web/setup).
-  3. Write a Firebase UI configuration as described in [firebase/firebaseui-web](https://github.com/firebase/firebaseui-web#configuration).
-  4. Use the `FirebaseAuth` component in your template passing it the **Firebase UI configuration** and a **Firebase Auth instance**.
 
+1. Import the `FirebaseAuth` or the `StyledFirebaseAuth` component from `react-firebaseui` and import `firebase`.
+2. Configure Firebase as described in [the Firebase Docs](https://firebase.google.com/docs/web/setup).
+3. Write a Firebase UI configuration as described in [firebase/firebaseui-web](https://github.com/firebase/firebaseui-web#configuration).
+4. Use the `FirebaseAuth` component in your template passing it the **Firebase UI configuration** and a **Firebase Auth instance**.
 
 ### `FirebaseAuth` vs. `StyledFirebaseAuth`
 
 There are two similar components that allow you to add FirebaseUI auth to your application: `FirebaseAuth` and `StyledFirebaseAuth`.
- - `FirebaseAuth` has a reference to the FirebaseUI CSS file (it `requires` the CSS).
- - `StyledFirebaseAuth` is bundled with the CSS directly.
+
+- `FirebaseAuth` has a reference to the FirebaseUI CSS file (it `requires` the CSS).
+- `StyledFirebaseAuth` is bundled with the CSS directly.
 
 For simplicity you should use `StyledFirebaseAuth` and for potential better performances and build sizes you can use `FirebaseAuth`. `FirebaseAuth` is meant to be used with a CSS/style loader as part of your webpack built configuration. See the [Packing your app](#packing-your-app) section.
-
 
 ### Using `StyledFirebaseAuth` with a redirect
 
@@ -46,14 +45,14 @@ Below is an example on how to use `FirebaseAuth` with a redirect upon sign-in:
 
 ```js
 // Import FirebaseAuth and firebase.
-import React from 'react';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import firebase from 'firebase';
+import React from "react";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import firebase from "firebase";
 
 // Configure Firebase.
 const config = {
-  apiKey: 'AIzaSyAeue-AsYu76MMQlTOM-KlbYBlusW9c1FM',
-  authDomain: 'myproject-1234.firebaseapp.com',
+  apiKey: "AIzaSyAeue-AsYu76MMQlTOM-KlbYBlusW9c1FM",
+  authDomain: "myproject-1234.firebaseapp.com",
   // ...
 };
 firebase.initializeApp(config);
@@ -61,9 +60,9 @@ firebase.initializeApp(config);
 // Configure FirebaseUI.
 const uiConfig = {
   // Popup signin flow rather than redirect flow.
-  signInFlow: 'popup',
+  signInFlow: "popup",
   // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-  signInSuccessUrl: '/signedIn',
+  signInSuccessUrl: "/signedIn",
   // We will display Google and Facebook as auth providers.
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -81,7 +80,7 @@ function SignInScreen() {
   );
 }
 
-export default SignInScreen
+export default SignInScreen;
 ```
 
 ### Using `StyledFirebaseAuth` with local state.
@@ -90,14 +89,14 @@ Below is an example on how to use `StyledFirebaseAuth` with a state change upon 
 
 ```js
 // Import FirebaseAuth and firebase.
-import React, { useEffect, useState } from 'react';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import firebase from 'firebase';
+import React, { useEffect, useState } from "react";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import firebase from "firebase";
 
 // Configure Firebase.
 const config = {
-  apiKey: 'AIzaSyAeue-AsYu76MMQlTOM-KlbYBlusW9c1FM',
-  authDomain: 'myproject-1234.firebaseapp.com',
+  apiKey: "AIzaSyAeue-AsYu76MMQlTOM-KlbYBlusW9c1FM",
+  authDomain: "myproject-1234.firebaseapp.com",
   // ...
 };
 firebase.initializeApp(config);
@@ -105,11 +104,11 @@ firebase.initializeApp(config);
 // Configure FirebaseUI.
 const uiConfig = {
   // Popup signin flow rather than redirect flow.
-  signInFlow: 'popup',
+  signInFlow: "popup",
   // We will display Google and Facebook as auth providers.
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.FacebookAuthProvider.PROVIDER_ID
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
   ],
   callbacks: {
     // Avoid redirects after sign-in.
@@ -122,9 +121,11 @@ function SignInScreen() {
 
   // Listen to the Firebase Auth state and set the local state.
   useEffect(() => {
-    const unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
-      setIsSignedIn(!!user);
-    });
+    const unregisterAuthObserver = firebase
+      .auth()
+      .onAuthStateChanged((user) => {
+        setIsSignedIn(!!user);
+      });
     return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
   }, []);
 
@@ -133,14 +134,20 @@ function SignInScreen() {
       <div>
         <h1>My App</h1>
         <p>Please sign-in:</p>
-        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+        <StyledFirebaseAuth
+          uiConfig={uiConfig}
+          firebaseAuth={firebase.auth()}
+        />
       </div>
     );
   }
   return (
     <div>
       <h1>My App</h1>
-      <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
+      <p>
+        Welcome {firebase.auth().currentUser.displayName}! You are now
+        signed-in!
+      </p>
       <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
     </div>
   );
@@ -161,11 +168,14 @@ return (
   <div>
     <h1>My App</h1>
     <p>Please sign-in:</p>
-    <StyledFirebaseAuth uiCallback={ui => ui.disableAutoSignIn()} uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
+    <StyledFirebaseAuth
+      uiCallback={(ui) => ui.disableAutoSignIn()}
+      uiConfig={uiConfig}
+      firebaseAuth={firebase.auth()}
+    />
   </div>
 );
 ```
-
 
 ## Packing your app
 
@@ -180,9 +190,9 @@ If you are using webpack you'll need to add [CSS loaders](https://github.com/web
     rules: [
       {
         test: /\.css/,
-        use: [ 'style-loader', 'css-loader' ]
-      }
-    ]
+        use: ["style-loader", "css-loader"],
+      },
+    ];
   }
 }
 ```
@@ -264,7 +274,7 @@ If you are using CSS modules in your app you need to handle the CSS files in `/n
 To change the styling of the `FirebaseAuth` or the `StyledFirebaseAuth` widget you can override some of its CSS. To do this, import a CSS that will be included in your packed application. For instance create a `firebaseui-styling.global.css` file and import it in your app:
 
 ```js
-import './firebaseui-styling.global.css'; // Import globally. Not with CSS modules.
+import "./firebaseui-styling.global.css"; // Import globally. Not with CSS modules.
 ```
 
 > Note: If you are using the [With ExtractTextPlugin and CSS modules](#with-extracttextplugin-and-css-modules) Webpack build rule above, the `.global.css` suffix will make sure the CSS file is imported globally and not ran through modules support.
@@ -273,18 +283,15 @@ If you would like to see an example of styling, have a look at the [example app]
 
 Alternatively you can include the styling in a `<style>` tag in your application's markup.
 
-
 ## Server-Side Rendering (SSR)
 
 FirebaseUI React cannot be rendered server-side because the underlying, wrapped library ([FirebaseUI](https://npmjs.com/package/firebaseui)) does not work server-side.
 
 You can still import and include this library in an app that uses SSR: there should be no errors but no elements will be rendered.
 
-
 ## Contributing
 
 We'd love that you contribute to the project. Before doing so please read our [Contributor guide](CONTRIBUTING.md).
-
 
 ## License
 

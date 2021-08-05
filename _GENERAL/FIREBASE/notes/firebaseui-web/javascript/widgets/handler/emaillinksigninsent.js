@@ -16,12 +16,12 @@
  * @fileoverview Email link sign in sent handler.
  */
 
-goog.provide('firebaseui.auth.widget.handler.handleEmailLinkSignInSent');
+goog.provide("firebaseui.auth.widget.handler.handleEmailLinkSignInSent");
 
-goog.require('firebaseui.auth.ui.page.EmailLinkSignInSent');
-goog.require('firebaseui.auth.widget.Handler');
-goog.require('firebaseui.auth.widget.HandlerName');
-goog.require('firebaseui.auth.widget.handler');
+goog.require("firebaseui.auth.ui.page.EmailLinkSignInSent");
+goog.require("firebaseui.auth.widget.Handler");
+goog.require("firebaseui.auth.widget.HandlerName");
+goog.require("firebaseui.auth.widget.handler");
 
 /**
  * Handles email link sign in sent.
@@ -35,28 +35,35 @@ goog.require('firebaseui.auth.widget.handler');
  * @param {?firebaseui.auth.PendingEmailCredential=} opt_pendingCredential The
  *     pending credential to link to a successfully signed in user.
  */
-firebaseui.auth.widget.handler.handleEmailLinkSignInSent = function(
-    app, container, email, onCancelClick, opt_pendingCredential) {
+firebaseui.auth.widget.handler.handleEmailLinkSignInSent = function (
+  app,
+  container,
+  email,
+  onCancelClick,
+  opt_pendingCredential
+) {
   var component = new firebaseui.auth.ui.page.EmailLinkSignInSent(
-      email,
-      // On trouble getting email click.
-      function() {
-        component.dispose();
-        firebaseui.auth.widget.handler.handle(
-            firebaseui.auth.widget.HandlerName.EMAIL_NOT_RECEIVED,
-            app,
-            container,
-            email,
-            onCancelClick,
-            opt_pendingCredential);
-      },
-      // On back button click.
-      function() {
-        component.dispose();
-        onCancelClick();
-      },
-      app.getConfig().getTosUrl(),
-      app.getConfig().getPrivacyPolicyUrl());
+    email,
+    // On trouble getting email click.
+    function () {
+      component.dispose();
+      firebaseui.auth.widget.handler.handle(
+        firebaseui.auth.widget.HandlerName.EMAIL_NOT_RECEIVED,
+        app,
+        container,
+        email,
+        onCancelClick,
+        opt_pendingCredential
+      );
+    },
+    // On back button click.
+    function () {
+      component.dispose();
+      onCancelClick();
+    },
+    app.getConfig().getTosUrl(),
+    app.getConfig().getPrivacyPolicyUrl()
+  );
   component.render(container);
   // Set current UI component.
   app.setCurrentComponent(component);
@@ -64,6 +71,7 @@ firebaseui.auth.widget.handler.handleEmailLinkSignInSent = function(
 
 // Register handler.
 firebaseui.auth.widget.handler.register(
-    firebaseui.auth.widget.HandlerName.EMAIL_LINK_SIGN_IN_SENT,
-    /** @type {!firebaseui.auth.widget.Handler} */
-    (firebaseui.auth.widget.handler.handleEmailLinkSignInSent));
+  firebaseui.auth.widget.HandlerName.EMAIL_LINK_SIGN_IN_SENT,
+  /** @type {!firebaseui.auth.widget.Handler} */
+  (firebaseui.auth.widget.handler.handleEmailLinkSignInSent)
+);

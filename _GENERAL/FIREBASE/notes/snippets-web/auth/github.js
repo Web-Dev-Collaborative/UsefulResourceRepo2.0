@@ -10,12 +10,12 @@ function githubProvider() {
   // [END auth_github_provider_create]
 
   // [START auth_github_provider_scopes]
-  provider.addScope('repo');
+  provider.addScope("repo");
   // [END auth_github_provider_scopes]
 
   // [START auth_github_provider_params]
   provider.setCustomParameters({
-    'allow_signup': 'false'
+    allow_signup: "false",
   });
   // [END auth_github_provider_params]
 }
@@ -41,7 +41,8 @@ function githubSignInPopup(provider) {
       // The signed-in user info.
       var user = result.user;
       // ...
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -56,7 +57,8 @@ function githubSignInPopup(provider) {
 
 function githubSignInRedirectResult() {
   // [START auth_github_signin_redirect_result]
-  firebase.auth()
+  firebase
+    .auth()
     .getRedirectResult()
     .then((result) => {
       if (result.credential) {
@@ -70,7 +72,8 @@ function githubSignInRedirectResult() {
 
       // The signed-in user info.
       var user = result.user;
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;

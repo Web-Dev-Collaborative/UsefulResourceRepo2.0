@@ -13,9 +13,7 @@ React 中最重要的主題之一是 `state`。 state 包含應用程序需要�
 可以在類組件的 `constructor` 上聲明 `state` 屬性來在 React 組件中創建 state， 它在創建時使用 `state` 初始化組件。 `state` 屬性必須設置爲 JavaScript `object`（對象）。 聲明如下：
 
 ```jsx
-this.state = {
-
-}
+this.state = {};
 ```
 
 可以在組件的整個生命週期內訪問 `state` 對象， 可以更新它、在 UI 中渲染它，也可以將其作爲 props 傳遞給子組件。 `state` 對象的使用可以很簡單，亦可以很複雜，就看你怎麼用了。 請注意，必須通過擴展 `React.Component` 來創建類組件，以便像這樣創建 `state`。
@@ -34,7 +32,7 @@ assert(
     const mockedComponent = Enzyme.mount(
       React.createElement(StatefulComponent)
     );
-    return mockedComponent.find('StatefulComponent').length === 1;
+    return mockedComponent.find("StatefulComponent").length === 1;
   })()
 );
 ```
@@ -48,8 +46,8 @@ assert(
       React.createElement(StatefulComponent)
     );
     return (
-      mockedComponent.find('div').length === 1 &&
-      mockedComponent.find('h1').length === 1
+      mockedComponent.find("div").length === 1 &&
+      mockedComponent.find("h1").length === 1
     );
   })()
 );
@@ -65,7 +63,7 @@ assert(
     );
     const initialState = mockedComponent.state();
     return (
-      typeof initialState === 'object' && typeof initialState.name === 'string'
+      typeof initialState === "object" && typeof initialState.name === "string"
     );
   })()
 );
@@ -80,7 +78,7 @@ assert(
       React.createElement(StatefulComponent)
     );
     const initialState = mockedComponent.state();
-    return mockedComponent.find('h1').text() === initialState.name;
+    return mockedComponent.find("h1").text() === initialState.name;
   })()
 );
 ```
@@ -90,7 +88,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<StatefulComponent />, document.getElementById('root'))
+ReactDOM.render(<StatefulComponent />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -110,7 +108,7 @@ class StatefulComponent extends React.Component {
       </div>
     );
   }
-};
+}
 ```
 
 # --solutions--
@@ -120,8 +118,8 @@ class StatefulComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'freeCodeCamp!'
-    }
+      name: "freeCodeCamp!",
+    };
   }
   render() {
     return (
@@ -130,5 +128,5 @@ class StatefulComponent extends React.Component {
       </div>
     );
   }
-};
+}
 ```

@@ -2,7 +2,7 @@
 id: 587d7791367417b2b2512ab3
 title: Creare equilibrio visivo usando la proprietà text-align
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c3b4EAp'
+videoUrl: "https://scrimba.com/c/c3b4EAp"
 forumTopicId: 301053
 dashedName: create-visual-balance-using-the-text-align-property
 ---
@@ -30,13 +30,13 @@ Allinea il testo del tag `h4`, quello che dice "Google", al centro. Giustifica q
 Il tuo codice dovrebbe utilizzare la proprietà text-align sul tag `h4` per impostarlo a `center`.
 
 ```js
-assert($('h4').css('text-align') == 'center');
+assert($("h4").css("text-align") == "center");
 ```
 
 Il tuo codice dovrebbe utilizzare la proprietà text-align sul tag `p` per impostarlo su `justify`.
 
 ```js
-assert($('p').css('text-align') == 'justify');
+assert($("p").css("text-align") == "justify");
 ```
 
 # --seed--
@@ -46,14 +46,11 @@ assert($('p').css('text-align') == 'justify');
 ```html
 <style>
   h4 {
-
   }
   p {
-
   }
   .links {
     margin-right: 20px;
-
   }
   .fullCard {
     border: 1px solid #ccc;
@@ -69,11 +66,24 @@ assert($('p').css('text-align') == 'justify');
   <div class="cardContent">
     <div class="cardText">
       <h4>Google</h4>
-      <p>Google was founded by Larry Page and Sergey Brin while they were Ph.D. students at Stanford University.</p>
+      <p>
+        Google was founded by Larry Page and Sergey Brin while they were Ph.D.
+        students at Stanford University.
+      </p>
     </div>
     <div class="cardLinks">
-      <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a>
-      <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+      <a
+        href="https://en.wikipedia.org/wiki/Larry_Page"
+        target="_blank"
+        class="links"
+        >Larry Page</a
+      >
+      <a
+        href="https://en.wikipedia.org/wiki/Sergey_Brin"
+        target="_blank"
+        class="links"
+        >Sergey Brin</a
+      >
     </div>
   </div>
 </div>
@@ -91,7 +101,6 @@ assert($('p').css('text-align') == 'justify');
   }
   .links {
     margin-right: 20px;
-
   }
   .fullCard {
     border: 1px solid #ccc;
@@ -107,11 +116,24 @@ assert($('p').css('text-align') == 'justify');
   <div class="cardContent">
     <div class="cardText">
       <h4>Google</h4>
-      <p>Google was founded by Larry Page and Sergey Brin while they were Ph.D. students at Stanford University.</p>
+      <p>
+        Google was founded by Larry Page and Sergey Brin while they were Ph.D.
+        students at Stanford University.
+      </p>
     </div>
     <div class="cardLinks">
-      <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a>
-      <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+      <a
+        href="https://en.wikipedia.org/wiki/Larry_Page"
+        target="_blank"
+        class="links"
+        >Larry Page</a
+      >
+      <a
+        href="https://en.wikipedia.org/wiki/Sergey_Brin"
+        target="_blank"
+        class="links"
+        >Sergey Brin</a
+      >
     </div>
   </div>
 </div>

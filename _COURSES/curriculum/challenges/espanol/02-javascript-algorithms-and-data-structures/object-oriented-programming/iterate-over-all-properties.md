@@ -12,7 +12,7 @@ Ahora has visto dos tipos de propiedades: <dfn>propiedades directas</dfn> y prop
 
 ```js
 function Bird(name) {
-  this.name = name;  //own property
+  this.name = name; //own property
 }
 
 Bird.prototype.numLegs = 2; // prototype property
@@ -27,7 +27,7 @@ let ownProps = [];
 let prototypeProps = [];
 
 for (let property in duck) {
-  if(duck.hasOwnProperty(property)) {
+  if (duck.hasOwnProperty(property)) {
     ownProps.push(property);
   } else {
     prototypeProps.push(property);
@@ -49,13 +49,13 @@ Agrega todas las propiedades directas de `beagle` al arreglo `ownProps`. Agrega 
 El arreglo `ownProps` debe contener solo `name`.
 
 ```js
-assert.deepEqual(ownProps, ['name']);
+assert.deepEqual(ownProps, ["name"]);
 ```
 
 El arreglo `prototypeProps` debe contener solo `numLegs`.
 
 ```js
-assert.deepEqual(prototypeProps, ['numLegs']);
+assert.deepEqual(prototypeProps, ["numLegs"]);
 ```
 
 Debes resolver este desafío sin usar el método incorporado `Object.keys()`.

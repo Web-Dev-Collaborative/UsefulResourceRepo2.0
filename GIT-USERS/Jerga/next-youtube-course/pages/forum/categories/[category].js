@@ -1,10 +1,9 @@
-
-import { PageTitle } from 'components/shared';
+import { PageTitle } from "components/shared";
 
 const Topics = () => {
   return (
     <>
-      <PageTitle text="Specific Category"/>
+      <PageTitle text="Specific Category" />
       <section className="fj-topic-list">
         <table className="table table-hover ">
           <thead>
@@ -18,9 +17,7 @@ const Topics = () => {
           <tbody>
             <tr>
               <th>
-                <a href="/forum/topics/someId">
-                  Some Topic Info
-                </a>
+                <a href="/forum/topics/someId">Some Topic Info</a>
               </th>
               <td className="category">General Discussion</td>
               <td>Filip Jerga</td>
@@ -28,9 +25,7 @@ const Topics = () => {
             </tr>
             <tr>
               <th>
-                <a href="/forum/topics/someId">
-                  Some Topic Info
-                </a>
+                <a href="/forum/topics/someId">Some Topic Info</a>
               </th>
               <td className="category">General Discussion</td>
               <td>Filip Jerga</td>
@@ -38,9 +33,7 @@ const Topics = () => {
             </tr>
             <tr>
               <th>
-                <a href="/forum/topics/someId">
-                  Some Topic Info
-                </a>
+                <a href="/forum/topics/someId">Some Topic Info</a>
               </th>
               <td className="category">General Discussion</td>
               <td>Filip Jerga</td>
@@ -49,11 +42,8 @@ const Topics = () => {
           </tbody>
         </table>
       </section>
-
     </>
-  )
-}
-
-
+  );
+};
 
 export default Topics;

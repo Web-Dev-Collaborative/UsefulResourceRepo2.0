@@ -42,13 +42,13 @@ assert(beagle.numLegs !== undefined);
 `beagle.numLegs` 应该是一个数字。
 
 ```js
-assert(typeof beagle.numLegs === 'number');
+assert(typeof beagle.numLegs === "number");
 ```
 
 `numLegs` 应该是一个 `prototype` 属性，而不是一个自身属性。
 
 ```js
-assert(beagle.hasOwnProperty('numLegs') === false);
+assert(beagle.hasOwnProperty("numLegs") === false);
 ```
 
 # --seed--
@@ -60,8 +60,6 @@ function Dog(name) {
   this.name = name;
 }
 
-
-
 // Only change code above this line
 let beagle = new Dog("Snoopy");
 ```
@@ -69,7 +67,7 @@ let beagle = new Dog("Snoopy");
 # --solutions--
 
 ```js
-function Dog (name) {
+function Dog(name) {
   this.name = name;
 }
 Dog.prototype.numLegs = 4;

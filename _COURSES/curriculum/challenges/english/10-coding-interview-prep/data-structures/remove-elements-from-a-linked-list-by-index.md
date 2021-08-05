@@ -30,7 +30,7 @@ Your `LinkedList` class should have a `removeAt` method.
 assert(
   (function () {
     var test = new LinkedList();
-    return typeof test.removeAt === 'function';
+    return typeof test.removeAt === "function";
   })()
 );
 ```
@@ -41,9 +41,9 @@ Your `removeAt` method should reduce the `length` of the linked list by one.
 assert(
   (function () {
     var test = new LinkedList();
-    test.add('cat');
-    test.add('dog');
-    test.add('kitten');
+    test.add("cat");
+    test.add("dog");
+    test.add("kitten");
     test.removeAt(1);
     return test.size() === 2;
   })()
@@ -56,10 +56,10 @@ Your `removeAt` method should remove the element at the specified index from the
 assert(
   (function () {
     var test = new LinkedList();
-    test.add('cat');
-    test.add('dog');
-    test.add('kitten');
-    test.add('bird');
+    test.add("cat");
+    test.add("dog");
+    test.add("kitten");
+    test.add("bird");
     test.removeAt(1);
     return (
       JSON.stringify(test.head()) ===
@@ -75,9 +75,9 @@ When only one element is present in the linked list, your `removeAt` method shou
 assert(
   (function () {
     var test = new LinkedList();
-    test.add('cat');
+    test.add("cat");
     var removedItem = test.removeAt(0);
-    return test.head() === null && test.size() === 0 && removedItem === 'cat';
+    return test.head() === null && test.size() === 0 && removedItem === "cat";
   })()
 );
 ```
@@ -88,10 +88,10 @@ Your `removeAt` method should return the element of the removed node.
 assert(
   (function () {
     var test = new LinkedList();
-    test.add('cat');
-    test.add('dog');
-    test.add('kitten');
-    return test.removeAt(1) === 'dog';
+    test.add("cat");
+    test.add("dog");
+    test.add("kitten");
+    return test.removeAt(1) === "dog";
   })()
 );
 ```
@@ -102,9 +102,9 @@ Your `removeAt` method should return `null` and the linked list should not chang
 assert(
   (function () {
     var test = new LinkedList();
-    test.add('cat');
-    test.add('dog');
-    test.add('kitten');
+    test.add("cat");
+    test.add("dog");
+    test.add("kitten");
     var removedItem = test.removeAt(-1);
     return (
       removedItem === null &&
@@ -121,9 +121,9 @@ Your `removeAt` method should return `null` and the linked list should not chang
 assert(
   (function () {
     var test = new LinkedList();
-    test.add('cat');
-    test.add('dog');
-    test.add('kitten');
+    test.add("cat");
+    test.add("dog");
+    test.add("kitten");
     var removedItem = test.removeAt(3);
     return (
       removedItem === null &&
@@ -143,28 +143,28 @@ function LinkedList() {
   var length = 0;
   var head = null;
 
-  var Node = function(element){
+  var Node = function (element) {
     this.element = element;
     this.next = null;
   };
 
-  this.size = function(){
+  this.size = function () {
     return length;
   };
 
-  this.head = function(){
+  this.head = function () {
     return head;
   };
 
-  this.add = function(element){
+  this.add = function (element) {
     var node = new Node(element);
-    if(head === null){
+    if (head === null) {
       head = node;
     } else {
       var currentNode = head;
 
-      while(currentNode.next){
-        currentNode  = currentNode.next;
+      while (currentNode.next) {
+        currentNode = currentNode.next;
       }
 
       currentNode.next = node;

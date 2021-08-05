@@ -4,8 +4,7 @@ title: 使用 jQuery 選擇元素的特定子元素
 challengeType: 6
 forumTopicId: 18315
 required:
-  - 
-    link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: target-a-specific-child-of-an-element-using-jquery
 ---
 
@@ -31,15 +30,15 @@ $(".target:nth-child(3)").addClass("animated bounce");
 
 ```js
 assert(
-  $('.target:nth-child(2)').hasClass('animated') &&
-    $('.target:nth-child(2)').hasClass('bounce')
+  $(".target:nth-child(2)").hasClass("animated") &&
+    $(".target:nth-child(2)").hasClass("bounce")
 );
 ```
 
 應該僅兩個元素有彈跳（bounce）動畫效果。
 
 ```js
-assert($('.animated.bounce').length === 2);
+assert($(".animated.bounce").length === 2);
 ```
 
 你應該使用 `:nth-child()` 選擇器修改這些元素。
@@ -65,7 +64,7 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();
@@ -73,7 +72,6 @@ assert(
     $("#target5").clone().appendTo("#left-well");
     $("#target1").parent().css("background-color", "red");
     $("#right-well").children().css("color", "orange");
-
   });
 </script>
 
@@ -106,7 +104,7 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
     $("#target4").remove();

@@ -2,7 +2,7 @@
 id: 587d78ae367417b2b2512afc
 title: Usare la proprietà flex-grow per espandere gli elementi
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVaDAv/c2p78cg'
+videoUrl: "https://scrimba.com/p/pVaDAv/c2p78cg"
 forumTopicId: 301111
 dashedName: use-the-flex-grow-property-to-expand-items
 ---
@@ -22,13 +22,13 @@ Aggiungi la proprietà CSS `flex-grow` sia a `#box-1` che a `#box-2`. Dai a `#bo
 L'elemento `#box-1` dovrebbe avere la proprietà `flex-grow` impostata su un valore di `1`.
 
 ```js
-assert($('#box-1').css('flex-grow') == '1');
+assert($("#box-1").css("flex-grow") == "1");
 ```
 
 L'elemento `#box-2` dovrebbe avere la proprietà `flex-grow` impostata su un valore di `2`.
 
 ```js
-assert($('#box-2').css('flex-grow') == '2');
+assert($("#box-2").css("flex-grow") == "2");
 ```
 
 # --seed--
@@ -45,13 +45,11 @@ assert($('#box-2').css('flex-grow') == '2');
   #box-1 {
     background-color: dodgerblue;
     height: 200px;
-
   }
 
   #box-2 {
     background-color: orangered;
     height: 200px;
-
   }
 </style>
 

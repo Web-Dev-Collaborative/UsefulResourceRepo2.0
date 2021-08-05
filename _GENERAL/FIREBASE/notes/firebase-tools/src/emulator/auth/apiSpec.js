@@ -112,8 +112,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitV1IssueSamlResponseResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV1IssueSamlResponseResponse",
                 },
               },
             },
@@ -265,8 +264,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitV1SendVerificationCodeResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV1SendVerificationCodeResponse",
                 },
               },
             },
@@ -276,8 +274,7 @@ export default {
           content: {
             "application/json": {
               schema: {
-                $ref:
-                  "#/components/schemas/GoogleCloudIdentitytoolkitV1SendVerificationCodeRequest",
+                $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV1SendVerificationCodeRequest",
               },
             },
           },
@@ -308,8 +305,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitV1SignInWithCustomTokenResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV1SignInWithCustomTokenResponse",
                 },
               },
             },
@@ -319,8 +315,7 @@ export default {
           content: {
             "application/json": {
               schema: {
-                $ref:
-                  "#/components/schemas/GoogleCloudIdentitytoolkitV1SignInWithCustomTokenRequest",
+                $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV1SignInWithCustomTokenRequest",
               },
             },
           },
@@ -351,8 +346,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitV1SignInWithEmailLinkResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV1SignInWithEmailLinkResponse",
                 },
               },
             },
@@ -393,8 +387,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitV1SignInWithGameCenterResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV1SignInWithGameCenterResponse",
                 },
               },
             },
@@ -404,8 +397,7 @@ export default {
           content: {
             "application/json": {
               schema: {
-                $ref:
-                  "#/components/schemas/GoogleCloudIdentitytoolkitV1SignInWithGameCenterRequest",
+                $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV1SignInWithGameCenterRequest",
               },
             },
           },
@@ -477,8 +469,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitV1SignInWithPasswordResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV1SignInWithPasswordResponse",
                 },
               },
             },
@@ -519,8 +510,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitV1SignInWithPhoneNumberResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV1SignInWithPhoneNumberResponse",
                 },
               },
             },
@@ -530,8 +520,7 @@ export default {
           content: {
             "application/json": {
               schema: {
-                $ref:
-                  "#/components/schemas/GoogleCloudIdentitytoolkitV1SignInWithPhoneNumberRequest",
+                $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV1SignInWithPhoneNumberRequest",
               },
             },
           },
@@ -759,8 +748,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitV1GetRecaptchaParamResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV1GetRecaptchaParamResponse",
                 },
               },
             },
@@ -792,8 +780,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitV1GetSessionCookiePublicKeysResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV1GetSessionCookiePublicKeysResponse",
                 },
               },
             },
@@ -868,8 +855,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitV1CreateSessionCookieResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV1CreateSessionCookieResponse",
                 },
               },
             },
@@ -1010,8 +996,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitV1BatchDeleteAccountsResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV1BatchDeleteAccountsResponse",
                 },
               },
             },
@@ -1405,8 +1390,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitV1CreateSessionCookieResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV1CreateSessionCookieResponse",
                 },
               },
             },
@@ -1513,8 +1497,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitV1BatchDeleteAccountsResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV1BatchDeleteAccountsResponse",
                 },
               },
             },
@@ -1903,8 +1886,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentResponse",
                 },
               },
             },
@@ -1914,8 +1896,7 @@ export default {
           content: {
             "application/json": {
               schema: {
-                $ref:
-                  "#/components/schemas/GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentRequest",
+                $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentRequest",
               },
             },
           },
@@ -1946,8 +1927,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitV2StartMfaEnrollmentResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV2StartMfaEnrollmentResponse",
                 },
               },
             },
@@ -2027,8 +2007,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitV2FinalizeMfaSignInResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitV2FinalizeMfaSignInResponse",
                 },
               },
             },
@@ -2108,8 +2087,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpsResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpsResponse",
                 },
               },
             },
@@ -2159,8 +2137,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig",
                 },
               },
             },
@@ -2187,8 +2164,7 @@ export default {
           content: {
             "application/json": {
               schema: {
-                $ref:
-                  "#/components/schemas/GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig",
+                $ref: "#/components/schemas/GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig",
               },
             },
           },
@@ -2210,8 +2186,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponse",
                 },
               },
             },
@@ -2427,8 +2402,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponse",
                 },
               },
             },
@@ -2525,8 +2499,7 @@ export default {
             content: {
               "*/*": {
                 schema: {
-                  $ref:
-                    "#/components/schemas/GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponse",
+                  $ref: "#/components/schemas/GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponse",
                 },
               },
             },
@@ -5206,8 +5179,7 @@ export default {
           defaultSupportedIdpConfigs: {
             description: "The set of configs.",
             items: {
-              $ref:
-                "#/components/schemas/GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig",
+              $ref: "#/components/schemas/GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig",
             },
             type: "array",
           },

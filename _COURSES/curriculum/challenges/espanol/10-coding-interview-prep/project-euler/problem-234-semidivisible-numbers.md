@@ -1,6 +1,6 @@
 ---
 id: 5900f4571000cf542c50ff69
-title: 'Problem 234: Semidivisible numbers'
+title: "Problem 234: Semidivisible numbers"
 challengeType: 5
 forumTopicId: 301878
 dashedName: problem-234-semidivisible-numbers
@@ -32,7 +32,6 @@ assert.strictEqual(euler234(), 1259187438574927000);
 
 ```js
 function euler234() {
-
   return true;
 }
 

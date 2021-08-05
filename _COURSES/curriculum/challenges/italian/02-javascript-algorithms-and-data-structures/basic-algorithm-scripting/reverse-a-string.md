@@ -19,25 +19,25 @@ Il tuo risultato deve essere una stringa.
 `reverseString("hello")` dovrebbe restituire una stringa.
 
 ```js
-assert(typeof reverseString('hello') === 'string');
+assert(typeof reverseString("hello") === "string");
 ```
 
 `reverseString("hello")` dovrebbe restituire la stringa `olleh`.
 
 ```js
-assert(reverseString('hello') === 'olleh');
+assert(reverseString("hello") === "olleh");
 ```
 
 `reverseString("Howdy")` dovrebbe restituire la stringa `ydwoH`.
 
 ```js
-assert(reverseString('Howdy') === 'ydwoH');
+assert(reverseString("Howdy") === "ydwoH");
 ```
 
 `reverseString("Greetings from Earth")` dovrebbe restituire la stringa `htraE morf sgniteerG`.
 
 ```js
-assert(reverseString('Greetings from Earth') === 'htraE morf sgniteerG');
+assert(reverseString("Greetings from Earth") === "htraE morf sgniteerG");
 ```
 
 # --seed--
@@ -56,7 +56,7 @@ reverseString("hello");
 
 ```js
 function reverseString(str) {
-  return str.split('').reverse().join('');
+  return str.split("").reverse().join("");
 }
 
 reverseString("hello");

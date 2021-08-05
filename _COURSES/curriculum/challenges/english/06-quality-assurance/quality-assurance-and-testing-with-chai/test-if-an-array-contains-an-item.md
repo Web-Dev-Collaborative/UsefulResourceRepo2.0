@@ -20,9 +20,9 @@ All tests should pass.
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=11').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=11").then(
     (data) => {
-      assert.equal(data.state, 'passed');
+      assert.equal(data.state, "passed");
     },
     (xhr) => {
       throw new Error(xhr.responseText);
@@ -34,11 +34,11 @@ You should choose the correct method for the first assertion - `include` vs. `no
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=11').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=11").then(
     (data) => {
       assert.equal(
         data.assertions[0].method,
-        'notInclude',
+        "notInclude",
         "It's summer in july..."
       );
     },
@@ -52,12 +52,12 @@ You should choose the correct method for the second assertion - `include` vs. `n
 
 ```js
 (getUserInput) =>
-  $.get(getUserInput('url') + '/_api/get-tests?type=unit&n=11').then(
+  $.get(getUserInput("url") + "/_api/get-tests?type=unit&n=11").then(
     (data) => {
       assert.equal(
         data.assertions[1].method,
-        'include',
-        'JavaScript is a backend language !!'
+        "include",
+        "JavaScript is a backend language !!"
       );
     },
     (xhr) => {

@@ -63,7 +63,7 @@ assert(
 `counterReducer` 必须是一个函数。
 
 ```js
-assert(typeof counterReducer === 'function');
+assert(typeof counterReducer === "function");
 ```
 
 # --seed--
@@ -86,11 +86,11 @@ const store = null; // Define the Redux store here, passing in your reducers
 # --solutions--
 
 ```js
-const INCREMENT = 'INCREMENT';
-const DECREMENT = 'DECREMENT';
+const INCREMENT = "INCREMENT";
+const DECREMENT = "DECREMENT";
 
 const counterReducer = (state = 0, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case INCREMENT:
       return state + 1;
     case DECREMENT:
@@ -102,14 +102,14 @@ const counterReducer = (state = 0, action) => {
 
 const incAction = () => {
   return {
-    type: INCREMENT
-  }
+    type: INCREMENT,
+  };
 };
 
 const decAction = () => {
   return {
-    type: DECREMENT
-  }
+    type: DECREMENT,
+  };
 };
 
 const store = Redux.createStore(counterReducer);

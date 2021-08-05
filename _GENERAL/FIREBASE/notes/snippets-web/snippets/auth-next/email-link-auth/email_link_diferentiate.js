@@ -4,10 +4,14 @@
 // To make edits to the snippets in this file, please edit the source
 
 // [START email_link_diferentiate_modular]
-import { getAuth, fetchSignInMethodsForEmail, EmailAuthProvider} from "firebase/auth";
+import {
+  getAuth,
+  fetchSignInMethodsForEmail,
+  EmailAuthProvider,
+} from "firebase/auth";
 
 // After asking the user for their email.
-const email = window.prompt('Please provide your email');
+const email = window.prompt("Please provide your email");
 
 const auth = getAuth();
 fetchSignInMethodsForEmail(auth, email)
@@ -18,10 +22,15 @@ fetchSignInMethodsForEmail(auth, email)
     // 'emailLink' if the user previously signed in with an email/link
     // 'password' if the user has a password.
     // A user could have both.
-    if (signInMethods.indexOf(EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD) != -1) {
+    if (
+      signInMethods.indexOf(EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD) !=
+      -1
+    ) {
       // User can sign in with email/password.
     }
-    if (signInMethods.indexOf(EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD) != -1) {
+    if (
+      signInMethods.indexOf(EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD) != -1
+    ) {
       // User can sign in with email/link.
     }
   })

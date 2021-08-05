@@ -171,9 +171,8 @@ export class Provider<T extends Name> {
       instanceIdentifier,
       instanceDeferred
     ] of this.instancesDeferred.entries()) {
-      const normalizedIdentifier = this.normalizeInstanceIdentifier(
-        instanceIdentifier
-      );
+      const normalizedIdentifier =
+        this.normalizeInstanceIdentifier(instanceIdentifier);
 
       try {
         // `getOrInitializeService()` should always return a valid instance since a component is guaranteed. use ! to make typescript happy.
@@ -243,9 +242,8 @@ export class Provider<T extends Name> {
       instanceIdentifier,
       instanceDeferred
     ] of this.instancesDeferred.entries()) {
-      const normalizedDeferredIdentifier = this.normalizeInstanceIdentifier(
-        instanceIdentifier
-      );
+      const normalizedDeferredIdentifier =
+        this.normalizeInstanceIdentifier(instanceIdentifier);
       if (normalizedIdentifier === normalizedDeferredIdentifier) {
         instanceDeferred.resolve(instance);
       }

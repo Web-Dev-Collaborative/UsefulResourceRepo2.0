@@ -8,7 +8,7 @@ import { getStorage, ref, getMetadata } from "firebase/storage";
 
 // Create a reference to the file whose metadata we want to retrieve
 const storage = getStorage();
-const forestRef = ref(storage, 'images/forest.jpg');
+const forestRef = ref(storage, "images/forest.jpg");
 
 // Get metadata properties
 getMetadata(forestRef)

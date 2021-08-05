@@ -49,25 +49,25 @@ Un `h1`, un `p` y una lista desordenada que contiene tres elementos `li`. Puedes
 La constante `JSX` debe devolver un elemento `div`.
 
 ```js
-assert(JSX.type === 'div');
+assert(JSX.type === "div");
 ```
 
 El `div` debe contener una etiqueta `h1` como primer elemento.
 
 ```js
-assert(JSX.props.children[0].type === 'h1');
+assert(JSX.props.children[0].type === "h1");
 ```
 
 El `div` debe contener una etiqueta `p` como segundo elemento.
 
 ```js
-assert(JSX.props.children[1].type === 'p');
+assert(JSX.props.children[1].type === "p");
 ```
 
 El `div` debe contener una etiqueta `ul` como tercer elemento.
 
 ```js
-assert(JSX.props.children[2].type === 'ul');
+assert(JSX.props.children[2].type === "ul");
 ```
 
 El `ul` debe contener tres elementos `li`.
@@ -75,8 +75,8 @@ El `ul` debe contener tres elementos `li`.
 ```js
 assert(
   JSX.props.children
-    .filter((ele) => ele.type === 'ul')[0]
-    .props.children.filter((ele) => ele.type === 'li').length === 3
+    .filter((ele) => ele.type === "ul")[0]
+    .props.children.filter((ele) => ele.type === "li").length === 3
 );
 ```
 
@@ -85,7 +85,7 @@ assert(
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(JSX, document.getElementById('root'))
+ReactDOM.render(JSX, document.getElementById("root"));
 ```
 
 ## --seed-contents--
@@ -98,13 +98,14 @@ ReactDOM.render(JSX, document.getElementById('root'))
 
 ```jsx
 const JSX = (
-<div>
-  <h1>Hello JSX!</h1>
-  <p>Some info</p>
-  <ul>
-    <li>An item</li>
-    <li>Another item</li>
-    <li>A third item</li>
-  </ul>
-</div>);
+  <div>
+    <h1>Hello JSX!</h1>
+    <p>Some info</p>
+    <ul>
+      <li>An item</li>
+      <li>Another item</li>
+      <li>A third item</li>
+    </ul>
+  </div>
+);
 ```

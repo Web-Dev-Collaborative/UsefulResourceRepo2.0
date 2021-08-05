@@ -2,7 +2,7 @@
 id: 5690307fddb111c6084545d7
 title: if else 語句中的邏輯順序
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cwNvMUV'
+videoUrl: "https://scrimba.com/c/cwNvMUV"
 forumTopicId: 18228
 dashedName: logical-order-in-if-else-statements
 ---
@@ -46,8 +46,8 @@ function bar(x) {
 這兩個函數看起來幾乎一模一樣，我們傳一個值進去看看它們有什麼區別。
 
 ```js
-foo(0)
-bar(0)
+foo(0);
+bar(0);
 ```
 
 `foo(0)` 將返回字符串 `Less than one`，`bar(0)` 將返回字符串 `Less than two`。
@@ -61,19 +61,19 @@ bar(0)
 `orderMyLogic(4)` 應該返回字符串 `Less than 5`
 
 ```js
-assert(orderMyLogic(4) === 'Less than 5');
+assert(orderMyLogic(4) === "Less than 5");
 ```
 
 `orderMyLogic(6)` 應該返回字符串 `Less than 10`
 
 ```js
-assert(orderMyLogic(6) === 'Less than 10');
+assert(orderMyLogic(6) === "Less than 10");
 ```
 
 `orderMyLogic(11)`應該返回 `Greater than or equal to 10`。
 
 ```js
-assert(orderMyLogic(11) === 'Greater than or equal to 10');
+assert(orderMyLogic(11) === "Greater than or equal to 10");
 ```
 
 # --seed--
@@ -98,7 +98,7 @@ orderMyLogic(7);
 
 ```js
 function orderMyLogic(val) {
-  if(val < 5) {
+  if (val < 5) {
     return "Less than 5";
   } else if (val < 10) {
     return "Less than 10";

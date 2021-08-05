@@ -2,7 +2,7 @@
 id: bad88fee1348bd9aedf08825
 title: Ajusta el padding (relleno) de un elemento
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cED8ZC2'
+videoUrl: "https://scrimba.com/c/cED8ZC2"
 forumTopicId: 301083
 dashedName: adjust-the-padding-of-an-element
 ---
@@ -30,7 +30,7 @@ Cambia el `padding` de la caja azul para que coincida con el de la caja roja.
 Tu clase `blue-box` debe asignar a los elementos `20px` de `padding`.
 
 ```js
-assert($('.blue-box').css('padding-top') === '20px');
+assert($(".blue-box").css("padding-top") === "20px");
 ```
 
 # --seed--

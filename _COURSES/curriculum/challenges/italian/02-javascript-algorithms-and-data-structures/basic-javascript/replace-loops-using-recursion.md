@@ -13,25 +13,25 @@ dashedName: replace-loops-using-recursion
 La ricorsione è il concetto che una funzione può essere espressa in termini di se stessa. Per aiutarti a comprenderlo, inizia pensando al seguente compito: moltiplica i primi `n` elementi di un array per creare il prodotto di questi elementi. Utilizzando un ciclo `for`, potresti fare così:
 
 ```js
-  function multiply(arr, n) {
-    var product = 1;
-    for (var i = 0; i < n; i++) {
-        product *= arr[i];
-    }
-    return product;
+function multiply(arr, n) {
+  var product = 1;
+  for (var i = 0; i < n; i++) {
+    product *= arr[i];
   }
+  return product;
+}
 ```
 
 Tuttavia, nota che `multiply(arr, n) == multiply(arr, n - 1) * arr[n - 1]`. Questo significa che puoi riscrivere `multiply` in termini di se stessa e non aver mai bisogno di utilizzare un ciclo.
 
 ```js
-  function multiply(arr, n) {
-    if (n <= 0) {
-      return 1;
-    } else {
-      return multiply(arr, n - 1) * arr[n - 1];
-    }
+function multiply(arr, n) {
+  if (n <= 0) {
+    return 1;
+  } else {
+    return multiply(arr, n - 1) * arr[n - 1];
   }
+}
 ```
 
 La versione ricorsiva di `multiply` si interrompe in questo modo. Nel <dfn>caso base</dfn>, dove `n <= 0`, restituisce 1. Per valori più grandi di `n`, essa chiama sé stessa, ma con `n - 1`. Quella chiamata di funzione è valutata allo stesso modo, chiamando `multiply` di nuovo fino a `n <= 0`. A questo punto, tutte le funzioni possono restituire il loro valore e l'originale `multiply` restituisce la risposta.
@@ -65,17 +65,13 @@ assert.equal(sum([2, 3, 4, 5], 3), 9);
 Il tuo codice non deve fare affidamento su alcun tipo di ciclo (`for` o `while` o funzioni di ordine superiore come `forEach`, `map`, `filter` o `reduce`.).
 
 ```js
-assert(
-  !code.match(/for|while|forEach|map|filter|reduce/g)
-);
+assert(!code.match(/for|while|forEach|map|filter|reduce/g));
 ```
 
 Dovresti usare la ricorsione per risolvere questo problema.
 
 ```js
-assert(
-  sum.toString().match(/sum\(.*\)/g).length > 1
-);
+assert(sum.toString().match(/sum\(.*\)/g).length > 1);
 ```
 
 # --seed--
@@ -85,7 +81,6 @@ assert(
 ```js
 function sum(arr, n) {
   // Only change code below this line
-
   // Only change code above this line
 }
 ```
@@ -95,7 +90,7 @@ function sum(arr, n) {
 ```js
 function sum(arr, n) {
   // Only change code below this line
-  if(n <= 0) {
+  if (n <= 0) {
     return 0;
   } else {
     return sum(arr, n - 1) + arr[n - 1];

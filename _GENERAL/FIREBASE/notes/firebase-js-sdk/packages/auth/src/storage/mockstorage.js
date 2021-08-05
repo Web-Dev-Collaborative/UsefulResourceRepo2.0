@@ -22,7 +22,6 @@ goog.require('fireauth.storage.Storage');
 goog.require('fireauth.util');
 goog.require('goog.array');
 
-
 /**
  * Mock storage structure useful for testing and mocking local storage and other
  * types of storage without depending on any native type of storage.
@@ -30,7 +29,7 @@ goog.require('goog.array');
  * @implements {fireauth.storage.Storage}
  * @extends {fireauth.storage.InMemoryStorage}
  */
-fireauth.storage.MockStorage = function() {
+fireauth.storage.MockStorage = function () {
   /**
    * @private {!Array<function((!goog.events.BrowserEvent|!Array<string>))>} The
    *     storage listeners.
@@ -42,37 +41,38 @@ fireauth.storage.MockStorage = function() {
 };
 goog.inherits(fireauth.storage.MockStorage, fireauth.storage.InMemoryStorage);
 
-
 /**
  * @param {function((!goog.events.BrowserEvent|!Array<string>))} listener The
  *     storage event listener.
  * @override
  */
-fireauth.storage.MockStorage.prototype.addStorageListener = function(listener) {
+fireauth.storage.MockStorage.prototype.addStorageListener = function (
+  listener
+) {
   this.storageListeners_.push(listener);
 };
 
-
 /**
  * @param {function((!goog.events.BrowserEvent|!Array<string>))} listener The
  *     storage event listener.
  * @override
  */
-fireauth.storage.MockStorage.prototype.removeStorageListener = function(
-    listener) {
-  goog.array.removeAllIf(this.storageListeners_, function(ele) {
+fireauth.storage.MockStorage.prototype.removeStorageListener = function (
+  listener
+) {
+  goog.array.removeAllIf(this.storageListeners_, function (ele) {
     return ele == listener;
   });
 };
-
 
 /**
  * Simulates a storage event getting triggered which would trigger any attached
  * listener. Any fired event would also update the underlying storage map.
  * @param {!Event} storageEvent The storage event triggered.
  */
-fireauth.storage.MockStorage.prototype.fireBrowserEvent =
-    function(storageEvent) {
+fireauth.storage.MockStorage.prototype.fireBrowserEvent = function (
+  storageEvent
+) {
   // Get key of storage event.
   var key = storageEvent.key;
   if (key != null) {
@@ -90,13 +90,12 @@ fireauth.storage.MockStorage.prototype.fireBrowserEvent =
     this.clear();
   }
   // Trigger all attached storage listeners.
-  goog.array.forEach(this.storageListeners_, function(listener) {
+  goog.array.forEach(this.storageListeners_, function (listener) {
     listener([key]);
   });
 };
 
-
 /** Clears all stored data. */
-fireauth.storage.MockStorage.prototype.clear = function() {
+fireauth.storage.MockStorage.prototype.clear = function () {
   this.storage = {};
 };

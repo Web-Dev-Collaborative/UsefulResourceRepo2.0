@@ -33,10 +33,9 @@ assert(code.match(/import\s+subtract\s+from\s+('|")\.\/math_functions\.js\1/g));
 ## --seed-contents--
 
 ```js
-  
 // Only change code above this line
 
-subtract(7,4);
+subtract(7, 4);
 ```
 
 # --solutions--
@@ -44,5 +43,5 @@ subtract(7,4);
 ```js
 import subtract from "./math_functions.js";
 
-subtract(7,4);
+subtract(7, 4);
 ```

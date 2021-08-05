@@ -1,6 +1,6 @@
 ---
 id: 5900f4da1000cf542c50ffed
-title: 'Problem 366: Stone Game III'
+title: "Problem 366: Stone Game III"
 challengeType: 5
 forumTopicId: 302027
 dashedName: problem-366-stone-game-iii
@@ -40,7 +40,6 @@ assert.strictEqual(euler366(), 88351299);
 
 ```js
 function euler366() {
-
   return true;
 }
 

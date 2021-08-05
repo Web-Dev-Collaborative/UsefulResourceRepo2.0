@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08826
 title: Use Clockwise Notation to Specify the Padding of an Element
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cB7mBS9'
+videoUrl: "https://scrimba.com/c/cB7mBS9"
 forumTopicId: 18346
 dashedName: use-clockwise-notation-to-specify-the-padding-of-an-element
 ---
@@ -26,25 +26,25 @@ Use Clockwise Notation to give the `.blue-box` class a `padding` of `40px` on it
 Your `blue-box` class should give the top of elements `40px` of `padding`.
 
 ```js
-assert($('.blue-box').css('padding-top') === '40px');
+assert($(".blue-box").css("padding-top") === "40px");
 ```
 
 Your `blue-box` class should give the right of elements `20px` of `padding`.
 
 ```js
-assert($('.blue-box').css('padding-right') === '20px');
+assert($(".blue-box").css("padding-right") === "20px");
 ```
 
 Your `blue-box` class should give the bottom of elements `20px` of `padding`.
 
 ```js
-assert($('.blue-box').css('padding-bottom') === '20px');
+assert($(".blue-box").css("padding-bottom") === "20px");
 ```
 
 Your `blue-box` class should give the left of elements `40px` of `padding`.
 
 ```js
-assert($('.blue-box').css('padding-left') === '40px');
+assert($(".blue-box").css("padding-left") === "40px");
 ```
 
 You should use the clockwise notation to set the padding of `blue-box` class.
@@ -52,7 +52,7 @@ You should use the clockwise notation to set the padding of `blue-box` class.
 ```js
 assert(
   /\.blue-box\s*{[\s\S]*padding[\s]*:\s*\d+px\s+\d+px\s+\d+px\s+\d+px(;\s*[^}]+\s*}|;?\s*})/.test(
-    __helpers.removeCssComments($('style').text())
+    __helpers.removeCssComments($("style").text())
   )
 );
 ```

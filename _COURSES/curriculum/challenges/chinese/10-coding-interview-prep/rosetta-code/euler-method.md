@@ -98,13 +98,13 @@ First parameter to the function is initial time, second parameter is initial tem
 `eulersMethod` should be a function.
 
 ```js
-assert(typeof eulersMethod === 'function');
+assert(typeof eulersMethod === "function");
 ```
 
 `eulersMethod(0, 100, 100, 2)` should return a number.
 
 ```js
-assert(typeof eulersMethod(0, 100, 100, 2) === 'number');
+assert(typeof eulersMethod(0, 100, 100, 2) === "number");
 ```
 
 `eulersMethod(0, 100, 100, 2)` should return 20.0424631833732.
@@ -130,9 +130,7 @@ assert.equal(eulersMethod(0, 100, 100, 10), 20.000472392);
 ## --seed-contents--
 
 ```js
-function eulersMethod(x1, y1, x2, h) {
-
-}
+function eulersMethod(x1, y1, x2, h) {}
 ```
 
 # --solutions--

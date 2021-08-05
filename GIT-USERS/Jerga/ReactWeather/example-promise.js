@@ -16,7 +16,7 @@
 //     return new Promise(function (resolve, reject) {
 //         setTimeout(function(){
 //         resolve(79);
-//         reject("City not found"); 
+//         reject("City not found");
 //         }, 1000);
 //     });
 // }
@@ -38,7 +38,7 @@
 // }
 
 // addPromise(85, 12).then(function(sum){
-//   console.log("success", sum) 
+//   console.log("success", sum)
 // }, function(err){
 //     console.log("Error: ", err);
 // });

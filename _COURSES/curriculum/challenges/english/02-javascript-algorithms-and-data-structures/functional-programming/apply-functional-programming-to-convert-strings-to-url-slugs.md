@@ -37,28 +37,28 @@ assert(!code.match(/\.?[\s\S]*?replace/g));
 `urlSlug("Winter Is Coming")` should return the string `winter-is-coming`.
 
 ```js
-assert(urlSlug('Winter Is Coming') === 'winter-is-coming');
+assert(urlSlug("Winter Is Coming") === "winter-is-coming");
 ```
 
-`urlSlug(" Winter Is  Coming")` should return the string `winter-is-coming`.
+`urlSlug(" Winter Is Coming")` should return the string `winter-is-coming`.
 
 ```js
-assert(urlSlug(' Winter Is  Coming') === 'winter-is-coming');
+assert(urlSlug(" Winter Is  Coming") === "winter-is-coming");
 ```
 
 `urlSlug("A Mind Needs Books Like A Sword Needs A Whetstone")` should return the string `a-mind-needs-books-like-a-sword-needs-a-whetstone`.
 
 ```js
 assert(
-  urlSlug('A Mind Needs Books Like A Sword Needs A Whetstone') ===
-    'a-mind-needs-books-like-a-sword-needs-a-whetstone'
+  urlSlug("A Mind Needs Books Like A Sword Needs A Whetstone") ===
+    "a-mind-needs-books-like-a-sword-needs-a-whetstone"
 );
 ```
 
 `urlSlug("Hold The Door")` should return the string `hold-the-door`.
 
 ```js
-assert(urlSlug('Hold The Door') === 'hold-the-door');
+assert(urlSlug("Hold The Door") === "hold-the-door");
 ```
 
 # --seed--
@@ -67,10 +67,7 @@ assert(urlSlug('Hold The Door') === 'hold-the-door');
 
 ```js
 // Only change code below this line
-function urlSlug(title) {
-
-
-}
+function urlSlug(title) {}
 // Only change code above this line
 ```
 

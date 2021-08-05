@@ -12,7 +12,8 @@
             @input="($event) => emitCourseValue($event, 'price')"
             class="input is-medium"
             type="text"
-            placeholder="179.99">
+            placeholder="179.99"
+          />
         </div>
       </div>
       <div class="field">
@@ -23,7 +24,8 @@
             @input="($event) => emitCourseValue($event, 'discountedPrice')"
             class="input is-medium"
             type="text"
-            placeholder="9.99">
+            placeholder="9.99"
+          />
         </div>
       </div>
     </div>
@@ -34,22 +36,13 @@ export default {
   props: {
     course: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     emitCourseValue(e, field) {
-      this.$emit('courseValueUpdated', {value: e.target.value, field})
-    }
-  }
-}
+      this.$emit("courseValueUpdated", { value: e.target.value, field });
+    },
+  },
+};
 </script>
-
-
-
-
-
-
-
-
-

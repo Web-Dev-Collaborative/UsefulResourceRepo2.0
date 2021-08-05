@@ -13,7 +13,8 @@
             v-model="form.title"
             class="input"
             type="text"
-            placeholder="Awesome Title">
+            placeholder="Awesome Title"
+          />
         </div>
       </div>
 
@@ -24,7 +25,8 @@
             v-model="form.subtitle"
             class="input"
             type="text"
-            placeholder="Awesome subtitle">
+            placeholder="Awesome subtitle"
+          />
         </div>
       </div>
       <div class="field">
@@ -33,7 +35,8 @@
           <textarea
             v-model="form.content"
             class="textarea"
-            placeholder="Awesome Content">
+            placeholder="Awesome Content"
+          >
           </textarea>
         </div>
       </div>
@@ -46,50 +49,40 @@
 </template>
 
 <script>
-import Modal from '~/components/shared/Modal'
+import Modal from "~/components/shared/Modal";
 export default {
   components: {
-    Modal
+    Modal,
   },
   data() {
     return {
       form: {
-        title: '',
-        subtitle: '',
-        content: ''
-      }
-    }
+        title: "",
+        subtitle: "",
+        content: "",
+      },
+    };
   },
   computed: {
     compiledMarkdown() {
       if (process.client) {
-        return marked(this.form.content, {sanitize: true})
+        return marked(this.form.content, { sanitize: true });
       }
 
-      return ''
-    }
+      return "";
+    },
   },
   methods: {
-    createPost({closeModal, data}) {
-      this.$store.dispatch('post/createPost', {...this.form})
-      closeModal()
-      this.resetForm()
+    createPost({ closeModal, data }) {
+      this.$store.dispatch("post/createPost", { ...this.form });
+      closeModal();
+      this.resetForm();
     },
     resetForm() {
-      this.form.title = ''
-      this.form.subtitle = ''
-      this.form.content = ''
-    }
-  }
-}
+      this.form.title = "";
+      this.form.subtitle = "";
+      this.form.content = "";
+    },
+  },
+};
 </script>
-
-
-
-
-
-
-
-
-
-

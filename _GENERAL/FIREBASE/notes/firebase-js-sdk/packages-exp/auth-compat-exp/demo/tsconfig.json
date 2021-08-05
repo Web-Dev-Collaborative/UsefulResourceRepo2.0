@@ -3,11 +3,6 @@
   "compilerOptions": {
     "outDir": "dist"
   },
-  "include": [
-    "../../../packages/firebase/app",
-    "../**/*",
-  ],
-  "exclude": [
-    "dist/**/*"
-  ]
+  "include": ["../../../packages/firebase/app", "../**/*"],
+  "exclude": ["dist/**/*"]
 }

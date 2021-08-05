@@ -1,6 +1,6 @@
 ---
 id: 5900f39e1000cf542c50feb1
-title: 'Problem 50: Consecutive prime sum'
+title: "Problem 50: Consecutive prime sum"
 challengeType: 5
 forumTopicId: 302161
 dashedName: problem-50-consecutive-prime-sum
@@ -23,7 +23,7 @@ Which prime, below one-million, can be written as the sum of the most consecutiv
 `consecutivePrimeSum(1000)` should return a number.
 
 ```js
-assert(typeof consecutivePrimeSum(1000) === 'number');
+assert(typeof consecutivePrimeSum(1000) === "number");
 ```
 
 `consecutivePrimeSum(1000)` should return 953.
@@ -44,7 +44,6 @@ assert.strictEqual(consecutivePrimeSum(1000000), 997651);
 
 ```js
 function consecutivePrimeSum(limit) {
-
   return true;
 }
 
@@ -81,7 +80,7 @@ function consecutivePrimeSum(limit) {
   let primeSum = [...primes];
   primeSum.reduce((acc, n, i) => {
     primeSum[i] += acc;
-    return acc += n;
+    return (acc += n);
   }, 0);
 
   for (let j = primeSum.length - 1; j >= 0; j--) {

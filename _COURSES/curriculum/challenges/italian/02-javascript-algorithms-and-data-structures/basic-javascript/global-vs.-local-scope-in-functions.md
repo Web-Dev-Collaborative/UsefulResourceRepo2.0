@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244c0
 title: Ambito globale e ambito locale nelle funzioni
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c2QwKH2'
+videoUrl: "https://scrimba.com/c/c2QwKH2"
 forumTopicId: 18194
 dashedName: global-vs--local-scope-in-functions
 ---
@@ -32,13 +32,13 @@ Aggiungi una variabile locale alla funzione `myOutfit` per sovrascrivere il valo
 Non dovresti cambiare il valore della variabile globale `outerWear`.
 
 ```js
-assert(outerWear === 'T-Shirt');
+assert(outerWear === "T-Shirt");
 ```
 
 `myOutfit` dovrebbe restituire la stringa `sweater`.
 
 ```js
-assert(myOutfit() === 'sweater');
+assert(myOutfit() === "sweater");
 ```
 
 Non dovresti cambiare l'istruzione return.
@@ -57,8 +57,6 @@ var outerWear = "T-Shirt";
 
 function myOutfit() {
   // Only change code below this line
-
-
 
   // Only change code above this line
   return outerWear;

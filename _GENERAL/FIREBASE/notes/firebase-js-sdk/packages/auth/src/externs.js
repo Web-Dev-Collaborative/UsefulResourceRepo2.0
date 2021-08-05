@@ -19,13 +19,11 @@
  * @fileoverview Firebase Auth-specific externs.
  */
 
-
 /**
  * A verifier that asserts that the user calling an API is a real user.
  * @interface
  */
-firebase.auth.ApplicationVerifier = function() {};
-
+firebase.auth.ApplicationVerifier = function () {};
 
 /**
  * The type of the ApplicationVerifier assertion, e.g. "recaptcha".
@@ -33,10 +31,9 @@ firebase.auth.ApplicationVerifier = function() {};
  */
 firebase.auth.ApplicationVerifier.prototype.type;
 
-
 /**
  * Returns a promise for the assertion to verify the app identity, e.g. the
  * g-recaptcha-response in reCAPTCHA.
  * @return {!firebase.Promise<string>}
  */
-firebase.auth.ApplicationVerifier.prototype.verify = function() {};
+firebase.auth.ApplicationVerifier.prototype.verify = function () {};

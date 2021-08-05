@@ -2,7 +2,7 @@
 id: 58a7a6ebf9a6318348e2d5aa
 title: 修改動畫的填充模式
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cVJDmcE'
+videoUrl: "https://scrimba.com/c/cVJDmcE"
 forumTopicId: 301064
 dashedName: modify-fill-mode-of-an-animation
 ---
@@ -48,7 +48,7 @@ assert(
   button {
     border-radius: 5px;
     color: white;
-    background-color: #0F5897;
+    background-color: #0f5897;
     padding: 5px 10px 8px 10px;
   }
   button:hover {
@@ -74,7 +74,7 @@ assert(
   button {
     border-radius: 5px;
     color: white;
-    background-color: #0F5897;
+    background-color: #0f5897;
     padding: 5px 10px 8px 10px;
   }
   button:hover {

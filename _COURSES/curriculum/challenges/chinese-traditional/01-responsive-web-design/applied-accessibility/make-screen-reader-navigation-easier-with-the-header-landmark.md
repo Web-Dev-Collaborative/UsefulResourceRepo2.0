@@ -2,7 +2,7 @@
 id: 587d7787367417b2b2512aa1
 title: 使用 header 元素來讓屏幕閱讀器更容易進行導航
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/cB76vtv'
+videoUrl: "https://scrimba.com/c/cB76vtv"
 forumTopicId: 301023
 dashedName: make-screen-reader-navigation-easier-with-the-header-landmark
 ---
@@ -24,19 +24,19 @@ Camper Cat 正在創作一些訓練忍者的精彩文章，並打算爲這些文
 應該存在一個 `header` 標籤。
 
 ```js
-assert($('header').length == 1);
+assert($("header").length == 1);
 ```
 
 `header` 標籤中應包含 `h1`。
 
 ```js
-assert($('header').children('h1').length == 1);
+assert($("header").children("h1").length == 1);
 ```
 
 不應存在 `div` 標籤。
 
 ```js
-assert($('div').length == 0);
+assert($("div").length == 0);
 ```
 
 確保 `header` 標籤是閉合的。
@@ -54,27 +54,35 @@ assert(
 
 ```html
 <body>
-
   <div>
     <h1>Training with Camper Cat</h1>
   </div>
 
-
   <main>
     <section id="stealth">
       <h2>Stealth &amp; Agility Training</h2>
-      <article><h3>Climb foliage quickly using a minimum spanning tree approach</h3></article>
+      <article>
+        <h3>Climb foliage quickly using a minimum spanning tree approach</h3>
+      </article>
       <article><h3>No training is NP-complete without parkour</h3></article>
     </section>
     <section id="combat">
       <h2>Combat Training</h2>
-      <article><h3>Dispatch multiple enemies with multithreaded tactics</h3></article>
-      <article><h3>Goodbye world: 5 proven ways to knock out an opponent</h3></article>
+      <article>
+        <h3>Dispatch multiple enemies with multithreaded tactics</h3>
+      </article>
+      <article>
+        <h3>Goodbye world: 5 proven ways to knock out an opponent</h3>
+      </article>
     </section>
     <section id="weapons">
       <h2>Weapons Training</h2>
-      <article><h3>Swords: the best tool to literally divide and conquer</h3></article>
-      <article><h3>Breadth-first or depth-first in multi-weapon training?</h3></article>
+      <article>
+        <h3>Swords: the best tool to literally divide and conquer</h3>
+      </article>
+      <article>
+        <h3>Breadth-first or depth-first in multi-weapon training?</h3>
+      </article>
     </section>
   </main>
 </body>
@@ -84,27 +92,35 @@ assert(
 
 ```html
 <body>
-
   <header>
     <h1>Training with Camper Cat</h1>
   </header>
 
-
   <main>
     <section id="stealth">
       <h2>Stealth &amp; Agility Training</h2>
-      <article><h3>Climb foliage quickly using a minimum spanning tree approach</h3></article>
+      <article>
+        <h3>Climb foliage quickly using a minimum spanning tree approach</h3>
+      </article>
       <article><h3>No training is NP-complete without parkour</h3></article>
     </section>
     <section id="combat">
       <h2>Combat Training</h2>
-      <article><h3>Dispatch multiple enemies with multithreaded tactics</h3></article>
-      <article><h3>Goodbye world: 5 proven ways to knock out an opponent</h3></article>
+      <article>
+        <h3>Dispatch multiple enemies with multithreaded tactics</h3>
+      </article>
+      <article>
+        <h3>Goodbye world: 5 proven ways to knock out an opponent</h3>
+      </article>
     </section>
     <section id="weapons">
       <h2>Weapons Training</h2>
-      <article><h3>Swords: the best tool to literally divide and conquer</h3></article>
-      <article><h3>Breadth-first or depth-first in multi-weapon training?</h3></article>
+      <article>
+        <h3>Swords: the best tool to literally divide and conquer</h3>
+      </article>
+      <article>
+        <h3>Breadth-first or depth-first in multi-weapon training?</h3>
+      </article>
     </section>
   </main>
 </body>

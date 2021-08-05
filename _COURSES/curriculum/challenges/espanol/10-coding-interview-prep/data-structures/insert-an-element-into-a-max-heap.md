@@ -50,10 +50,10 @@ The MaxHeap data structure should exist.
 assert(
   (function () {
     var test = false;
-    if (typeof MaxHeap !== 'undefined') {
+    if (typeof MaxHeap !== "undefined") {
       test = new MaxHeap();
     }
-    return typeof test == 'object';
+    return typeof test == "object";
   })()
 );
 ```
@@ -64,12 +64,12 @@ MaxHeap should have a method called insert.
 assert(
   (function () {
     var test = false;
-    if (typeof MaxHeap !== 'undefined') {
+    if (typeof MaxHeap !== "undefined") {
       test = new MaxHeap();
     } else {
       return false;
     }
-    return typeof test.insert == 'function';
+    return typeof test.insert == "function";
   })()
 );
 ```
@@ -80,12 +80,12 @@ MaxHeap should have a method called print.
 assert(
   (function () {
     var test = false;
-    if (typeof MaxHeap !== 'undefined') {
+    if (typeof MaxHeap !== "undefined") {
       test = new MaxHeap();
     } else {
       return false;
     }
-    return typeof test.print == 'function';
+    return typeof test.print == "function";
   })()
 );
 ```
@@ -96,7 +96,7 @@ The insert method should add elements according to the max heap property.
 assert(
   (function () {
     var test = false;
-    if (typeof MaxHeap !== 'undefined') {
+    if (typeof MaxHeap !== "undefined") {
       test = new MaxHeap();
     } else {
       return false;
@@ -117,9 +117,8 @@ assert(
 ## --seed-contents--
 
 ```js
-var MaxHeap = function() {
+var MaxHeap = function () {
   // Only change code below this line
-
   // Only change code above this line
 };
 ```
@@ -127,23 +126,23 @@ var MaxHeap = function() {
 # --solutions--
 
 ```js
-var MaxHeap = function() {
-    // Only change code below this line
-    this.heap = [null];
-    this.insert = (ele) => {
-        var index = this.heap.length;
-        var arr = [...this.heap];
-        arr.push(ele);
-        while (ele > arr[Math.floor(index / 2)] && index > 1) {
-            arr[index] = arr[Math.floor(index / 2)];
-            arr[Math.floor(index / 2)] = ele;
-            index = arr[Math.floor(index / 2)];
-        }
-        this.heap = arr;
+var MaxHeap = function () {
+  // Only change code below this line
+  this.heap = [null];
+  this.insert = (ele) => {
+    var index = this.heap.length;
+    var arr = [...this.heap];
+    arr.push(ele);
+    while (ele > arr[Math.floor(index / 2)] && index > 1) {
+      arr[index] = arr[Math.floor(index / 2)];
+      arr[Math.floor(index / 2)] = ele;
+      index = arr[Math.floor(index / 2)];
     }
-    this.print = () => {
-        return this.heap.slice(1);
-    }
-    // Only change code above this line
+    this.heap = arr;
+  };
+  this.print = () => {
+    return this.heap.slice(1);
+  };
+  // Only change code above this line
 };
 ```

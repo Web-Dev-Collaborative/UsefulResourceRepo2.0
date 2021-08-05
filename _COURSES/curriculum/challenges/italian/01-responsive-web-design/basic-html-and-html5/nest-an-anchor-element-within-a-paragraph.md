@@ -12,17 +12,21 @@ Puoi annidare i link all'interno di altri elementi di testo.
 
 ```html
 <p>
-  Here's a <a target="_blank" href="https://www.freecodecamp.org"> link to www.freecodecamp.org</a> for you to follow.
+  Here's a
+  <a target="_blank" href="https://www.freecodecamp.org">
+    link to www.freecodecamp.org</a
+  >
+  for you to follow.
 </p>
 ```
 
 Andiamo a scomporre l'esempio. Il testo normale viene inserito nell'elemento `p`:
 
 ```html
-<p> Here's a ... for you to follow. </p>
+<p>Here's a ... for you to follow.</p>
 ```
 
-Poi viene l'elemento *anchor*`<a>` (che richiede un tag di chiusura `</a>`):
+Poi viene l'elemento _anchor_`<a>` (che richiede un tag di chiusura `</a>`):
 
 ```html
 <a> ... </a>
@@ -53,24 +57,20 @@ Annida l'elemento `a` esistente all'interno di un nuovo elemento `p`. Il nuovo p
 Dovresti avere un solo elemento `a`.
 
 ```js
-assert(
-  $('a').length  === 1 
-);
+assert($("a").length === 1);
 ```
 
 L'elemento `a` dovrebbe essere collegato a "`https://www.freecatphotoapp.com`".
 
 ```js
-assert(
-  $('a[href="https://www.freecatphotoapp.com"]').length  === 1 
-);
+assert($('a[href="https://www.freecatphotoapp.com"]').length === 1);
 ```
 
 Il tuo elemento `a` dovrebbe avere il testo di ancoraggio: `cat photos`
 
 ```js
 assert(
-  $('a')
+  $("a")
     .text()
     .match(/cat\sphotos/gi)
 );
@@ -79,15 +79,13 @@ assert(
 Dovresti creare un elemento `p`. Ci dovrebbe essere almeno 3 tag `p` nel tuo codice HTML
 
 ```js
-assert($('p') && $('p').length > 2);
+assert($("p") && $("p").length > 2);
 ```
 
 Il tuo elemento `a` dovrebbe essere annidato nel nuovo elemento `p`.
 
 ```js
-assert(
-  $('a[href="https://www.freecatphotoapp.com"]').parent().is('p')
-);
+assert($('a[href="https://www.freecatphotoapp.com"]').parent().is("p"));
 ```
 
 Il tuo elemento `p` dovrebbe avere il testo `View more` (con uno spazio dopo di esso).
@@ -105,7 +103,7 @@ Il tuo elemento `a` <em>non</em> dovrebbe contenere il testo `View more`.
 
 ```js
 assert(
-  !$('a')
+  !$("a")
     .text()
     .match(/View\smore/gi)
 );
@@ -138,13 +136,22 @@ assert(
 ```html
 <h2>CatPhotoApp</h2>
 <main>
-
   <a href="https://www.freecatphotoapp.com" target="_blank">cat photos</a>
 
-  <img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back.">
+  <img
+    src="https://www.bit.ly/fcc-relaxing-cat"
+    alt="A cute orange cat lying on its back."
+  />
 
-  <p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p>
-  <p>Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere rip the couch sleep in the sink fluffy fur catnip scratched.</p>
+  <p>
+    Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching
+    attack your ankles chase the red dot, hairball run catnip eat the grass
+    sniff.
+  </p>
+  <p>
+    Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere
+    rip the couch sleep in the sink fluffy fur catnip scratched.
+  </p>
 </main>
 ```
 
@@ -153,11 +160,24 @@ assert(
 ```html
 <h2>CatPhotoApp</h2>
 <main>
-  <p>View more <a target="_blank" href="https://www.freecatphotoapp.com">cat photos</a></p>
+  <p>
+    View more
+    <a target="_blank" href="https://www.freecatphotoapp.com">cat photos</a>
+  </p>
 
-  <img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back.">
+  <img
+    src="https://www.bit.ly/fcc-relaxing-cat"
+    alt="A cute orange cat lying on its back."
+  />
 
-  <p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p>
-  <p>Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere rip the couch sleep in the sink fluffy fur catnip scratched.</p>
+  <p>
+    Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching
+    attack your ankles chase the red dot, hairball run catnip eat the grass
+    sniff.
+  </p>
+  <p>
+    Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere
+    rip the couch sleep in the sink fluffy fur catnip scratched.
+  </p>
 </main>
 ```

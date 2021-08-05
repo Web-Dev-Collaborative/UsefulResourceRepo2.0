@@ -21,13 +21,13 @@ L'editor di codice ha già uno store, delle azioni e dei creatori di azioni conf
 Chiamando la funzione `loginUser` dovrebbe essere restituito un oggetto con proprietà type impostata alla stringa `LOGIN`.
 
 ```js
-assert(loginUser().type === 'LOGIN');
+assert(loginUser().type === "LOGIN");
 ```
 
 Chiamando la funzione `logoutUser` dovrebbe essere restituito un oggetto con proprietà type impostata alla stringa `LOGOUT`.
 
 ```js
-assert(logoutUser().type === 'LOGOUT');
+assert(logoutUser().type === "LOGOUT");
 ```
 
 Lo store dovrebbe essere inizializzato con un oggetto con una proprietà `authenticated` impostata a `false`.
@@ -72,9 +72,9 @@ La funzione `authReducer` dovrebbe gestire più tipi di azione con un'istruzione
 ```js
 (getUserInput) =>
   assert(
-    getUserInput('index').toString().includes('switch') &&
-      getUserInput('index').toString().includes('case') &&
-      getUserInput('index').toString().includes('default')
+    getUserInput("index").toString().includes("switch") &&
+      getUserInput("index").toString().includes("case") &&
+      getUserInput("index").toString().includes("default")
   );
 ```
 
@@ -84,12 +84,11 @@ La funzione `authReducer` dovrebbe gestire più tipi di azione con un'istruzione
 
 ```js
 const defaultState = {
-  authenticated: false
+  authenticated: false,
 };
 
 const authReducer = (state = defaultState, action) => {
   // Change code below this line
-
   // Change code above this line
 };
 
@@ -97,14 +96,14 @@ const store = Redux.createStore(authReducer);
 
 const loginUser = () => {
   return {
-    type: 'LOGIN'
-  }
+    type: "LOGIN",
+  };
 };
 
 const logoutUser = () => {
   return {
-    type: 'LOGOUT'
-  }
+    type: "LOGOUT",
+  };
 };
 ```
 
@@ -112,41 +111,37 @@ const logoutUser = () => {
 
 ```js
 const defaultState = {
-  authenticated: false
+  authenticated: false,
 };
 
 const authReducer = (state = defaultState, action) => {
-
   switch (action.type) {
-
-    case 'LOGIN':
+    case "LOGIN":
       return {
-        authenticated: true
-      }
+        authenticated: true,
+      };
 
-    case 'LOGOUT':
+    case "LOGOUT":
       return {
-        authenticated: false
-      }
+        authenticated: false,
+      };
 
     default:
       return state;
-
   }
-
 };
 
 const store = Redux.createStore(authReducer);
 
 const loginUser = () => {
   return {
-    type: 'LOGIN'
-  }
+    type: "LOGIN",
+  };
 };
 
 const logoutUser = () => {
   return {
-    type: 'LOGOUT'
-  }
+    type: "LOGOUT",
+  };
 };
 ```

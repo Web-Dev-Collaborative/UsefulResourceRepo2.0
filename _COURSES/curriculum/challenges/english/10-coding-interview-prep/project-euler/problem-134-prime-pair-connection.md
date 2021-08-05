@@ -1,6 +1,6 @@
 ---
 id: 5900f3f21000cf542c50ff05
-title: 'Problem 134: Prime pair connection'
+title: "Problem 134: Prime pair connection"
 challengeType: 5
 forumTopicId: 301762
 dashedName: problem-134-prime-pair-connection
@@ -28,7 +28,6 @@ assert.strictEqual(euler134(), 18613426663617120);
 
 ```js
 function euler134() {
-
   return true;
 }
 

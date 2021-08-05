@@ -8,12 +8,15 @@ import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 
 const app1 = initializeApp({
-  databaseURL: "https://testapp-1234-1.firebaseio.com"
+  databaseURL: "https://testapp-1234-1.firebaseio.com",
 });
 
-const app2 = initializeApp({
-  databaseURL: "https://testapp-1234-2.firebaseio.com"
-}, 'app2');
+const app2 = initializeApp(
+  {
+    databaseURL: "https://testapp-1234-2.firebaseio.com",
+  },
+  "app2"
+);
 
 // Get the default database instance for an app1
 const database1 = getDatabase(app1);

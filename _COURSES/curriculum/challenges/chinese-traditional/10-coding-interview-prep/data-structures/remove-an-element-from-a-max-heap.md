@@ -28,10 +28,10 @@ The MaxHeap data structure should exist.
 assert(
   (function () {
     var test = false;
-    if (typeof MaxHeap !== 'undefined') {
+    if (typeof MaxHeap !== "undefined") {
       test = new MaxHeap();
     }
-    return typeof test == 'object';
+    return typeof test == "object";
   })()
 );
 ```
@@ -42,12 +42,12 @@ MaxHeap should have a method called print.
 assert(
   (function () {
     var test = false;
-    if (typeof MaxHeap !== 'undefined') {
+    if (typeof MaxHeap !== "undefined") {
       test = new MaxHeap();
     } else {
       return false;
     }
-    return typeof test.print == 'function';
+    return typeof test.print == "function";
   })()
 );
 ```
@@ -58,12 +58,12 @@ MaxHeap should have a method called insert.
 assert(
   (function () {
     var test = false;
-    if (typeof MaxHeap !== 'undefined') {
+    if (typeof MaxHeap !== "undefined") {
       test = new MaxHeap();
     } else {
       return false;
     }
-    return typeof test.insert == 'function';
+    return typeof test.insert == "function";
   })()
 );
 ```
@@ -74,12 +74,12 @@ MaxHeap should have a method called remove.
 assert(
   (function () {
     var test = false;
-    if (typeof MaxHeap !== 'undefined') {
+    if (typeof MaxHeap !== "undefined") {
       test = new MaxHeap();
     } else {
       return false;
     }
-    return typeof test.remove == 'function';
+    return typeof test.remove == "function";
   })()
 );
 ```
@@ -90,7 +90,7 @@ The remove method should remove the greatest element from the max heap while mai
 assert(
   (function () {
     var test = false;
-    if (typeof MaxHeap !== 'undefined') {
+    if (typeof MaxHeap !== "undefined") {
       test = new MaxHeap();
     } else {
       return false;
@@ -104,7 +104,7 @@ assert(
     result.push(test.remove());
     result.push(test.remove());
     result.push(test.remove());
-    return result.join('') == '5003003010';
+    return result.join("") == "5003003010";
   })()
 );
 ```
@@ -114,7 +114,7 @@ assert(
 ## --seed-contents--
 
 ```js
-var MaxHeap = function() {
+var MaxHeap = function () {
   this.heap = [null];
   this.insert = (ele) => {
     var index = this.heap.length;
@@ -126,10 +126,10 @@ var MaxHeap = function() {
       index = arr[Math.floor(index / 2)];
     }
     this.heap = arr;
-  }
+  };
   this.print = () => {
     return this.heap.slice(1);
-  }
+  };
   // Only change code below this line
 
   // Only change code above this line

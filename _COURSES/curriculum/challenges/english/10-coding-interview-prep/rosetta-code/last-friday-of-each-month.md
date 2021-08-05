@@ -15,13 +15,13 @@ Write a function that returns the date of the last Friday of a given month for a
 `lastFriday` should be a function.
 
 ```js
-assert(typeof lastFriday == 'function');
+assert(typeof lastFriday == "function");
 ```
 
 `lastFriday(2018, 1)` should return a number.
 
 ```js
-assert(typeof lastFriday(2018, 1) == 'number');
+assert(typeof lastFriday(2018, 1) == "number");
 ```
 
 `lastFriday(2018, 1)` should return `26`.
@@ -77,9 +77,7 @@ assert.equal(lastFriday(2005, 8), 26);
 ## --seed-contents--
 
 ```js
-function lastFriday(year, month) {
-
-}
+function lastFriday(year, month) {}
 ```
 
 # --solutions--

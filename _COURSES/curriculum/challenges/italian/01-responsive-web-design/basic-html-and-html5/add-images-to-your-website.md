@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08812
 title: Aggiungere immagini al tuo sito web
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/c8EbJf2'
+videoUrl: "https://scrimba.com/p/pVMPUv/c8EbJf2"
 forumTopicId: 16640
 dashedName: add-images-to-your-website
 ---
@@ -14,7 +14,7 @@ Puoi aggiungere immagini al tuo sito web utilizzando l'elemento `img` e facendol
 Un esempio di questo è:
 
 ```html
-<img src="https://www.freecatphotoapp.com/your-image.jpg">
+<img src="https://www.freecatphotoapp.com/your-image.jpg" />
 ```
 
 Nota che gli elementi `img` si auto-completano.
@@ -28,7 +28,10 @@ Idealmente l'attributo `alt` non dovrebbe contenere caratteri speciali a meno ch
 Aggiungiamo un attributo `alt` al nostro esempio `img` precedente:
 
 ```html
-<img src="https://www.freecatphotoapp.com/your-image.jpg" alt="A business cat wearing a necktie.">
+<img
+  src="https://www.freecatphotoapp.com/your-image.jpg"
+  alt="A business cat wearing a necktie."
+/>
 ```
 
 # --instructions--
@@ -46,21 +49,23 @@ Infine, non dimenticare di dare al tuo elemento `img` un attributo `alt` con il 
 La tua pagina dovrebbe avere un elemento immagine.
 
 ```js
-assert($('img').length);
+assert($("img").length);
 ```
 
 La tua immagine dovrebbe avere un attributo `src` che punta all'immagine del gattino.
 
 ```js
-assert(/^https:\/\/(www\.)?bit\.ly\/fcc-relaxing-cat$/i.test($('img').attr('src')));
+assert(
+  /^https:\/\/(www\.)?bit\.ly\/fcc-relaxing-cat$/i.test($("img").attr("src"))
+);
 ```
 
 L'elemento `alt` della tua immagine non dovrebbe essere vuoto.
 
 ```js
 assert(
-  $('img').attr('alt') &&
-    $('img').attr('alt').length &&
+  $("img").attr("alt") &&
+    $("img").attr("alt").length &&
     /<img\S*alt=(['"])(?!\1|>)\S+\1\S*\/?>/.test(
       __helpers.removeWhiteSpace(code)
     )
@@ -74,10 +79,15 @@ assert(
 ```html
 <h2>CatPhotoApp</h2>
 <main>
-
-
-  <p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p>
-  <p>Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere rip the couch sleep in the sink fluffy fur catnip scratched.</p>
+  <p>
+    Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching
+    attack your ankles chase the red dot, hairball run catnip eat the grass
+    sniff.
+  </p>
+  <p>
+    Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere
+    rip the couch sleep in the sink fluffy fur catnip scratched.
+  </p>
 </main>
 ```
 
@@ -86,8 +96,19 @@ assert(
 ```html
 <h2>CatPhotoApp</h2>
 <main>
-  <a href="#"><img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
-  <p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p>
-  <p>Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere rip the couch sleep in the sink fluffy fur catnip scratched.</p>
+  <a href="#"
+    ><img
+      src="https://www.bit.ly/fcc-relaxing-cat"
+      alt="A cute orange cat lying on its back."
+  /></a>
+  <p>
+    Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching
+    attack your ankles chase the red dot, hairball run catnip eat the grass
+    sniff.
+  </p>
+  <p>
+    Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere
+    rip the couch sleep in the sink fluffy fur catnip scratched.
+  </p>
 </main>
 ```

@@ -15,13 +15,13 @@ Write a function to find the sum of squares of an array of integers.
 `sumsq` should be a function.
 
 ```js
-assert(typeof sumsq == 'function');
+assert(typeof sumsq == "function");
 ```
 
 `sumsq([1, 2, 3, 4, 5])` should return a number.
 
 ```js
-assert(typeof sumsq([1, 2, 3, 4, 5]) == 'number');
+assert(typeof sumsq([1, 2, 3, 4, 5]) == "number");
 ```
 
 `sumsq([1, 2, 3, 4, 5])` should return `55`.
@@ -59,9 +59,7 @@ assert.equal(sumsq([12, 33, 26, 18, 1, 16, 3]), 2499);
 ## --seed-contents--
 
 ```js
-function sumsq(array) {
-
-}
+function sumsq(array) {}
 ```
 
 # --solutions--

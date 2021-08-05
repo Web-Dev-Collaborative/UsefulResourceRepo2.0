@@ -44,35 +44,35 @@ La tua espressione regolare `unRegex` dovrebbe riconoscere `run` nella stringa `
 
 ```js
 unRegex.lastIndex = 0;
-assert(unRegex.test('Let us go on a run.'));
+assert(unRegex.test("Let us go on a run."));
 ```
 
 La tua espressione regolare `unRegex` dovrebbe riconoscere `sun` nella stringa `The sun is out today.`
 
 ```js
 unRegex.lastIndex = 0;
-assert(unRegex.test('The sun is out today.'));
+assert(unRegex.test("The sun is out today."));
 ```
 
 La tua espressione regolare `unRegex` dovrebbe riconoscere `fun` nella stringa `Coding is a lot of fun.`
 
 ```js
 unRegex.lastIndex = 0;
-assert(unRegex.test('Coding is a lot of fun.'));
+assert(unRegex.test("Coding is a lot of fun."));
 ```
 
 La tua espressione regolare `unRegex` dovrebbe riconoscere `pun` nella stringa `Seven days without a pun makes one weak.`
 
 ```js
 unRegex.lastIndex = 0;
-assert(unRegex.test('Seven days without a pun makes one weak.'));
+assert(unRegex.test("Seven days without a pun makes one weak."));
 ```
 
 La tua espressione regolare `unRegex` dovrebbe riconoscere `nun` nella stringa `One takes a vow to be a nun.`
 
 ```js
 unRegex.lastIndex = 0;
-assert(unRegex.test('One takes a vow to be a nun.'));
+assert(unRegex.test("One takes a vow to be a nun."));
 ```
 
 La tua espressione regolare `unRegex` dovrebbe riconoscere `bun` nella stringa `She got fired from the hot dog stand for putting her hair in a bun.`
@@ -81,7 +81,7 @@ La tua espressione regolare `unRegex` dovrebbe riconoscere `bun` nella stringa `
 unRegex.lastIndex = 0;
 assert(
   unRegex.test(
-    'She got fired from the hot dog stand for putting her hair in a bun.'
+    "She got fired from the hot dog stand for putting her hair in a bun."
   )
 );
 ```
@@ -90,14 +90,14 @@ La tua espressione regolare `unRegex` non dovrebbe riconoscere la stringa `There
 
 ```js
 unRegex.lastIndex = 0;
-assert(!unRegex.test('There is a bug in my code.'));
+assert(!unRegex.test("There is a bug in my code."));
 ```
 
 La tua espressione regolare `unRegex` non dovrebbe riconoscere la stringa `Catch me if you can.`
 
 ```js
 unRegex.lastIndex = 0;
-assert(!unRegex.test('Catch me if you can.'));
+assert(!unRegex.test("Catch me if you can."));
 ```
 
 # --seed--

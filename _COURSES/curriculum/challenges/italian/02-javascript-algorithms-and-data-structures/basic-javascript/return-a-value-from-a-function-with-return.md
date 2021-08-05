@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244c2
 title: Restituire un valore da una funzione con Return
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cy87wue'
+videoUrl: "https://scrimba.com/c/cy87wue"
 forumTopicId: 18271
 dashedName: return-a-value-from-a-function-with-return
 ---
@@ -33,7 +33,7 @@ Crea una funzione `timesFive` che accetta un argomento, lo moltiplica per `5`e r
 `timesFive` dovrebbe essere una funzione
 
 ```js
-assert(typeof timesFive === 'function');
+assert(typeof timesFive === "function");
 ```
 
 `timesFive(5)` dovrebbe restituire `25`

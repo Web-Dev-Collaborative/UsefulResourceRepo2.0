@@ -5,14 +5,14 @@
 
 // [START add_alan_turing_modular]
 // Add a second document with a generated ID.
-import { addDoc, collection } from "firebase/firestore"; 
+import { addDoc, collection } from "firebase/firestore";
 
 try {
   const docRef = await addDoc(collection(db, "users"), {
     first: "Alan",
     middle: "Mathison",
     last: "Turing",
-    born: 1912
+    born: 1912,
   });
 
   console.log("Document written with ID: ", docRef.id);

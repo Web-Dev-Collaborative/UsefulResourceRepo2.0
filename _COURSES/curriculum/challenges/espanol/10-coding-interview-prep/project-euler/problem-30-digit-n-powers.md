@@ -1,6 +1,6 @@
 ---
 id: 5900f38a1000cf542c50fe9d
-title: 'Problem 30: Digit n powers'
+title: "Problem 30: Digit n powers"
 challengeType: 5
 forumTopicId: 301953
 dashedName: problem-30-digit-n-powers
@@ -27,7 +27,7 @@ Find the sum of all the numbers that can be written as the sum of `n` powers of 
 `digitnPowers(2)` should return a number.
 
 ```js
-assert(typeof digitnPowers(2) === 'number');
+assert(typeof digitnPowers(2) === "number");
 ```
 
 `digitnPowers(2)` should return 0.
@@ -60,7 +60,6 @@ assert(digitnPowers(5) == 443839);
 
 ```js
 function digitnPowers(n) {
-
   return n;
 }
 

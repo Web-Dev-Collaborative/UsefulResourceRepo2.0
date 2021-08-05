@@ -2,7 +2,7 @@
 id: 5a94fe2669fb03452672e45e
 title: 使用 grid-area 創建區域模板
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pByETK/c6N7VhK'
+videoUrl: "https://scrimba.com/p/pByETK/c6N7VhK"
 forumTopicId: 301135
 dashedName: use-grid-area-without-creating-an-areas-template
 ---
@@ -12,13 +12,16 @@ dashedName: use-grid-area-without-creating-an-areas-template
 我們在上一次挑戰中學到的 `grid-area` 屬性還有另一種使用方式。 如果網格中沒有定義區域模板，你也可以像這樣爲它添加一個模板：
 
 ```css
-item1 { grid-area: 1/1/2/4; }
+item1 {
+  grid-area: 1/1/2/4;
+}
 ```
 
 這裏使用了你之前學習的網格線編號來定義網格項的區域。 上例中數字代表這些值：
 
 ```css
-grid-area: horizontal line to start at / vertical line to start at / horizontal line to end at / vertical line to end at;
+grid-area: horizontal line to start at / vertical line to start at / horizontal
+  line to end at / vertical line to end at;
 ```
 
 因此，示例中的網格項將佔用第 1 條水平網格線（起始）和第 2 條水平網格線（終止）之間的行，及第 1 條垂直網格線（起始）和第 4 條垂直網格線（終止）之間的列。
@@ -45,15 +48,22 @@ assert(
 
 ```html
 <style>
-  .item1{background:LightSkyBlue;}
-  .item2{background:LightSalmon;}
-  .item3{background:PaleTurquoise;}
-  .item4{background:LightPink;}
+  .item1 {
+    background: LightSkyBlue;
+  }
+  .item2 {
+    background: LightSalmon;
+  }
+  .item3 {
+    background: PaleTurquoise;
+  }
+  .item4 {
+    background: LightPink;
+  }
 
   .item5 {
     background: PaleGreen;
     /* Only change code below this line */
-
 
     /* Only change code above this line */
   }
@@ -82,5 +92,9 @@ assert(
 # --solutions--
 
 ```html
-<style>.item5 {grid-area: 3/1/4/4;}</style>
+<style>
+  .item5 {
+    grid-area: 3/1/4/4;
+  }
+</style>
 ```

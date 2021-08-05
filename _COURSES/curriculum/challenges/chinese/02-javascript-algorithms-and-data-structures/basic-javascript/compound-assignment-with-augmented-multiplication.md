@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244b1
 title: 复合赋值之 *=
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c83vrfa'
+videoUrl: "https://scrimba.com/c/c83vrfa"
 forumTopicId: 16662
 dashedName: compound-assignment-with-augmented-multiplication
 ---
@@ -66,7 +66,9 @@ assert(
 ## --after-user-code--
 
 ```js
-(function(a,b,c){ return "a = " + a + ", b = " + b + ", c = " + c; })(a,b,c);
+(function (a, b, c) {
+  return "a = " + a + ", b = " + b + ", c = " + c;
+})(a, b, c);
 ```
 
 ## --seed-contents--

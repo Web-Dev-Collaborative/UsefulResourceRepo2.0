@@ -10,7 +10,7 @@ dashedName: where-do-i-belong
 
 數組（第一個參數）在排序後，將一個值（第二個參數）插入該數組，並使數組保持有序。返回這個新插入元素的最小索引值。 返回值應爲一個數字。
 
-例如，`getIndexToIns([1,2,3,4], 1.5)` 應該返回 `1` 因爲1.5 大於 `1`（索引爲 0）且小於 `2`（索引爲 1）。
+例如，`getIndexToIns([1,2,3,4], 1.5)` 應該返回 `1` 因爲 1.5 大於 `1`（索引爲 0）且小於 `2`（索引爲 1）。
 
 同樣地，`getIndexToIns([20,3,5], 19)` 應該返回 `2`。 因爲數組排序後會變成 `[3,5,20]`，而 `19` 小於 `20`（索引爲 2）且大於 `5`（索引爲 1）。
 
@@ -25,7 +25,7 @@ assert(getIndexToIns([10, 20, 30, 40, 50], 35) === 3);
 `getIndexToIns([10, 20, 30, 40, 50], 35)` 應返回一個數字。
 
 ```js
-assert(typeof getIndexToIns([10, 20, 30, 40, 50], 35) === 'number');
+assert(typeof getIndexToIns([10, 20, 30, 40, 50], 35) === "number");
 ```
 
 `getIndexToIns([10, 20, 30, 40, 50], 30)` 應返回 `2`。
@@ -37,7 +37,7 @@ assert(getIndexToIns([10, 20, 30, 40, 50], 30) === 2);
 `getIndexToIns([10, 20, 30, 40, 50], 30)` 應返回一個數字。
 
 ```js
-assert(typeof getIndexToIns([10, 20, 30, 40, 50], 30) === 'number');
+assert(typeof getIndexToIns([10, 20, 30, 40, 50], 30) === "number");
 ```
 
 `getIndexToIns([40, 60], 50)` 應返回 `1`。
@@ -49,7 +49,7 @@ assert(getIndexToIns([40, 60], 50) === 1);
 `getIndexToIns([40, 60], 50)` 應返回一個數字。
 
 ```js
-assert(typeof getIndexToIns([40, 60], 50) === 'number');
+assert(typeof getIndexToIns([40, 60], 50) === "number");
 ```
 
 `getIndexToIns([3, 10, 5], 3)` 應返回 `0`。
@@ -61,7 +61,7 @@ assert(getIndexToIns([3, 10, 5], 3) === 0);
 `getIndexToIns([3, 10, 5], 3)` 應返回一個數字。
 
 ```js
-assert(typeof getIndexToIns([3, 10, 5], 3) === 'number');
+assert(typeof getIndexToIns([3, 10, 5], 3) === "number");
 ```
 
 `getIndexToIns([5, 3, 20, 3], 5)` 應返回 `2`。
@@ -73,7 +73,7 @@ assert(getIndexToIns([5, 3, 20, 3], 5) === 2);
 `getIndexToIns([5, 3, 20, 3], 5)` 應返回一個數字。
 
 ```js
-assert(typeof getIndexToIns([5, 3, 20, 3], 5) === 'number');
+assert(typeof getIndexToIns([5, 3, 20, 3], 5) === "number");
 ```
 
 `getIndexToIns([2, 20, 10], 19)` 應返回 `2`。
@@ -85,7 +85,7 @@ assert(getIndexToIns([2, 20, 10], 19) === 2);
 `getIndexToIns([2, 20, 10], 19)` 應返回一個數字。
 
 ```js
-assert(typeof getIndexToIns([2, 20, 10], 19) === 'number');
+assert(typeof getIndexToIns([2, 20, 10], 19) === "number");
 ```
 
 `getIndexToIns([2, 5, 10], 15)` 應返回 `3`。
@@ -97,7 +97,7 @@ assert(getIndexToIns([2, 5, 10], 15) === 3);
 `getIndexToIns([2, 5, 10], 15)` 應返回一個數字。
 
 ```js
-assert(typeof getIndexToIns([2, 5, 10], 15) === 'number');
+assert(typeof getIndexToIns([2, 5, 10], 15) === "number");
 ```
 
 `getIndexToIns([], 1)`應該返回 `0`。
@@ -109,7 +109,7 @@ assert(getIndexToIns([], 1) === 0);
 `getIndexToIns([], 1)` 應返回一個數字。
 
 ```js
-assert(typeof getIndexToIns([], 1) === 'number');
+assert(typeof getIndexToIns([], 1) === "number");
 ```
 
 # --seed--

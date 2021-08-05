@@ -23,7 +23,7 @@
   and correctly spawn "./script.js" while preserving the
   "--foo" argument.
 */
-exports.Script_NodeJS = function() {
+exports.Script_NodeJS = function () {
   const execArgv = [];
   let script = "";
   const scriptArgv = [];
@@ -50,9 +50,9 @@ exports.Script_NodeJS = function() {
       env: process.env,
       cwd: process.cwd(),
       stdio: "inherit",
-      execArgv
+      execArgv,
     })
-    .on("exit", code => {
+    .on("exit", (code) => {
       process.exit(code);
     });
 };
@@ -70,16 +70,13 @@ exports.Script_NodeJS = function() {
   tools. It finds references to "node" and ensures that
   they be redirected back into Firepit as well.
 */
-exports.Script_ShellJS = async function() {
+exports.Script_ShellJS = async function () {
   const path = require("path");
   const child_process = require("child_process");
   const isWin = process.platform === "win32";
   const args = process.argv.slice(2);
 
-  appendToPath(isWin, [
-    __dirname,
-    path.join(process.cwd(), "node_modules/.bin")
-  ]);
+  appendToPath(isWin, [__dirname, path.join(process.cwd(), "node_modules/.bin")]);
 
   let index;
   if ((index = args.indexOf("-c")) !== -1) {
@@ -96,27 +93,24 @@ exports.Script_ShellJS = async function() {
   let cmd;
   if (cmdRuntime === "node") {
     if ([".", "/"].indexOf(cmdScript[0]) === -1) {
-      cmdScript = await getSafeCrossPlatformPath(
-        isWin,
-        path.join(process.cwd(), cmdScript)
-      );
+      cmdScript = await getSafeCrossPlatformPath(isWin, path.join(process.cwd(), cmdScript));
     }
 
     cmd = child_process.fork(cmdScript, otherArgs, {
       env: process.env,
       cwd: process.cwd(),
-      stdio: "inherit"
+      stdio: "inherit",
     });
   } else {
     cmd = child_process.spawn(cmdRuntime, [cmdScript, ...otherArgs], {
       env: process.env,
       cwd: process.cwd(),
       stdio: "inherit",
-      shell: true
+      shell: true,
     });
   }
 
-  cmd.on("exit", code => {
+  cmd.on("exit", (code) => {
     process.exit(code);
   });
 };

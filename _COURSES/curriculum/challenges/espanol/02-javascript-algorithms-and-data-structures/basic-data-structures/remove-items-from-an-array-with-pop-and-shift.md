@@ -8,12 +8,12 @@ dashedName: remove-items-from-an-array-with-pop-and-shift
 
 # --description--
 
-Tanto `push()` como `unshift()` tienen métodos correspondientes que son casi opuestos funcionales: `pop()` y `shift()`. Como ya habrás adivinado, en lugar de agregar, `pop()` *elimina* un elemento al final de un arreglo, mientras que `shift()` elimina un elemento al principio. La diferencia clave entre `pop()` y `shift()` y sus primos `push()` y `unshift()`, es que ninguno de los dos métodos toma parámetros, y cada uno sólo permite modificar un arreglo por un solo elemento a la vez.
+Tanto `push()` como `unshift()` tienen métodos correspondientes que son casi opuestos funcionales: `pop()` y `shift()`. Como ya habrás adivinado, en lugar de agregar, `pop()` _elimina_ un elemento al final de un arreglo, mientras que `shift()` elimina un elemento al principio. La diferencia clave entre `pop()` y `shift()` y sus primos `push()` y `unshift()`, es que ninguno de los dos métodos toma parámetros, y cada uno sólo permite modificar un arreglo por un solo elemento a la vez.
 
 Echemos un vistazo:
 
 ```js
-let greetings = ['whats up?', 'hello', 'see ya!'];
+let greetings = ["whats up?", "hello", "see ya!"];
 
 greetings.pop();
 ```
@@ -43,9 +43,9 @@ Hemos definido una función, `popShift`, el cual toma un arreglo como argumento 
 `popShift(["challenge", "is", "not", "complete"])` debe devolver `["challenge", "complete"]`
 
 ```js
-assert.deepEqual(popShift(['challenge', 'is', 'not', 'complete']), [
-  'challenge',
-  'complete'
+assert.deepEqual(popShift(["challenge", "is", "not", "complete"]), [
+  "challenge",
+  "complete",
 ]);
 ```
 
@@ -72,7 +72,7 @@ function popShift(arr) {
   return [shifted, popped];
 }
 
-console.log(popShift(['challenge', 'is', 'not', 'complete']));
+console.log(popShift(["challenge", "is", "not", "complete"]));
 ```
 
 # --solutions--

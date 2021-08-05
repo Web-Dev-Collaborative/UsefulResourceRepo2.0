@@ -2,7 +2,7 @@
 id: bad87fee1348bd9aedf08801
 title: 用 p 元素代表段落
 challengeType: 0
-videoUrl: 'https://scrimba.com/p/pVMPUv/ceZ7DtN'
+videoUrl: "https://scrimba.com/p/pVMPUv/ceZ7DtN"
 forumTopicId: 18202
 dashedName: inform-with-the-paragraph-element
 ---
@@ -28,13 +28,13 @@ dashedName: inform-with-the-paragraph-element
 应包含一个 `p` 元素。
 
 ```js
-assert($('p').length > 0);
+assert($("p").length > 0);
 ```
 
 `p` 元素的内容文本应为 `Hello Paragraph`。
 
 ```js
-assert.isTrue(/hello(\s)+paragraph/gi.test($('p').text()));
+assert.isTrue(/hello(\s)+paragraph/gi.test($("p").text()));
 ```
 
 `p` 元素应有结束标签。

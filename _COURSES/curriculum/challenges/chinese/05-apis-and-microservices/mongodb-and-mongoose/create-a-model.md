@@ -19,7 +19,7 @@ Replit 是一个真实的服务器，在其中，通过 handler 函数和数据�
 ```js
 /* Example */
 
-const someFunc = function(done) {
+const someFunc = function (done) {
   //... do something (risky) ...
   if (error) return done(error);
   done(null, result);
@@ -48,26 +48,26 @@ favoriteFoods : array of strings (*)
 
 ```js
 (getUserInput) =>
-  $.post(getUserInput('url') + '/_api/mongoose-model', {
-    name: 'Mike',
+  $.post(getUserInput("url") + "/_api/mongoose-model", {
+    name: "Mike",
     age: 28,
-    favoriteFoods: ['pizza', 'cheese']
+    favoriteFoods: ["pizza", "cheese"],
   }).then(
     (data) => {
-      assert.equal(data.name, 'Mike', '"model.name" is not what expected');
-      assert.equal(data.age, '28', '"model.age" is not what expected');
+      assert.equal(data.name, "Mike", '"model.name" is not what expected');
+      assert.equal(data.age, "28", '"model.age" is not what expected');
       assert.isArray(
         data.favoriteFoods,
         '"model.favoriteFoods" is not an Array'
       );
       assert.include(
         data.favoriteFoods,
-        'pizza',
+        "pizza",
         '"model.favoriteFoods" does not include the expected items'
       );
       assert.include(
         data.favoriteFoods,
-        'cheese',
+        "cheese",
         '"model.favoriteFoods" does not include the expected items'
       );
     },

@@ -1,6 +1,6 @@
 ---
 id: 5900f4a81000cf542c50ffbb
-title: 'Problem 316: Numbers in decimal expansions'
+title: "Problem 316: Numbers in decimal expansions"
 challengeType: 5
 forumTopicId: 301972
 dashedName: problem-316-numbers-in-decimal-expansions
@@ -36,7 +36,6 @@ assert.strictEqual(euler316(), 542934735751917760);
 
 ```js
 function euler316() {
-
   return true;
 }
 

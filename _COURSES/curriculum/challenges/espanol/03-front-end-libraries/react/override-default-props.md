@@ -24,7 +24,7 @@ The component `ShoppingCart` should render.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(ShoppingCart));
-    return mockedComponent.find('ShoppingCart').length === 1;
+    return mockedComponent.find("ShoppingCart").length === 1;
   })()
 );
 ```
@@ -35,7 +35,7 @@ The component `Items` should render.
 assert(
   (function () {
     const mockedComponent = Enzyme.mount(React.createElement(ShoppingCart));
-    return mockedComponent.find('Items').length === 1;
+    return mockedComponent.find("Items").length === 1;
   })()
 );
 ```
@@ -48,10 +48,10 @@ The `Items` component should have a prop of `{ quantity: 10 }` passed from the `
     (function () {
       const mockedComponent = Enzyme.mount(React.createElement(ShoppingCart));
       return (
-        mockedComponent.find('Items').props().quantity == 10 &&
-        getUserInput('index')
-          .replace(/ /g, '')
-          .includes('<Itemsquantity={10}/>')
+        mockedComponent.find("Items").props().quantity == 10 &&
+        getUserInput("index")
+          .replace(/ /g, "")
+          .includes("<Itemsquantity={10}/>")
       );
     })()
   );
@@ -62,51 +62,59 @@ The `Items` component should have a prop of `{ quantity: 10 }` passed from the `
 ## --after-user-code--
 
 ```jsx
-ReactDOM.render(<ShoppingCart />, document.getElementById('root'))
+ReactDOM.render(<ShoppingCart />, document.getElementById("root"));
 ```
 
 ## --seed-contents--
 
 ```jsx
 const Items = (props) => {
-  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
-}
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>;
+};
 
 Items.defaultProps = {
-  quantity: 0
-}
+  quantity: 0,
+};
 
 class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
-    { /* Change code below this line */ }
-    return <Items />
-    { /* Change code above this line */ }
+    {
+      /* Change code below this line */
+    }
+    return <Items />;
+    {
+      /* Change code above this line */
+    }
   }
-};
+}
 ```
 
 # --solutions--
 
 ```jsx
 const Items = (props) => {
-  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
-}
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>;
+};
 
 Items.defaultProps = {
-  quantity: 0
-}
+  quantity: 0,
+};
 
 class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
-    { /* Change code below this line */ }
-    return <Items quantity = {10} />
-    { /* Change code above this line */ }
+    {
+      /* Change code below this line */
+    }
+    return <Items quantity={10} />;
+    {
+      /* Change code above this line */
+    }
   }
-};
+}
 ```

@@ -33,19 +33,19 @@ Create a constructor, `Dog`, with properties `name`, `color`, and `numLegs` that
 `Dog` should have a `name` property set to a string.
 
 ```js
-assert(typeof new Dog().name === 'string');
+assert(typeof new Dog().name === "string");
 ```
 
 `Dog` should have a `color` property set to a string.
 
 ```js
-assert(typeof new Dog().color === 'string');
+assert(typeof new Dog().color === "string");
 ```
 
 `Dog` should have a `numLegs` property set to a number.
 
 ```js
-assert(typeof new Dog().numLegs === 'number');
+assert(typeof new Dog().numLegs === "number");
 ```
 
 # --seed--
@@ -59,9 +59,9 @@ assert(typeof new Dog().numLegs === 'number');
 # --solutions--
 
 ```js
-function Dog (name, color, numLegs) {
-  this.name = 'name';
-  this.color = 'color';
+function Dog(name, color, numLegs) {
+  this.name = "name";
+  this.color = "color";
   this.numLegs = 4;
 }
 ```

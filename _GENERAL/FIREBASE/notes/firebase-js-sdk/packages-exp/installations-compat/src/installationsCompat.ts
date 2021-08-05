@@ -28,7 +28,8 @@ import {
 } from '@firebase/installations-exp';
 
 export class InstallationsCompat
-  implements FirebaseInstallationsCompat, _FirebaseService {
+  implements FirebaseInstallationsCompat, _FirebaseService
+{
   constructor(
     public app: FirebaseApp,
     readonly _delegate: FirebaseInstallations

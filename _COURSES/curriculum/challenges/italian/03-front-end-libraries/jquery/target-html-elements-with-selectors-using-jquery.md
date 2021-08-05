@@ -4,8 +4,7 @@ title: Identificare gli elementi HTML con i selettori usando jQuery
 challengeType: 6
 forumTopicId: 18319
 required:
-  - 
-    link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: target-html-elements-with-selectors-using-jquery
 ---
 
@@ -30,7 +29,7 @@ Nota che abbiamo già incluso sia la libreria jQuery che la libreria Animate.css
 Dovresti usare la funzione jQuery `addClass()` per dare alle classi `animated` e `bounce` ai tuoi elementi `button`.
 
 ```js
-assert($('button').hasClass('animated') && $('button').hasClass('bounce'));
+assert($("button").hasClass("animated") && $("button").hasClass("bounce"));
 ```
 
 Dovresti usare solo jQuery per aggiungere queste classi all'elemento.
@@ -43,7 +42,7 @@ Il tuo codice jQuery dovrebbe essere all'interno della funzione `$(document).rea
 
 ```js
 assert(
-  code.replace(/\s/g, '').match(/\$\(document\)\.ready\(function\(\)\{\$/g)
+  code.replace(/\s/g, "").match(/\$\(document\)\.ready\(function\(\)\{\$/g)
 );
 ```
 
@@ -53,9 +52,7 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
-
-  });
+  $(document).ready(function () {});
 </script>
 
 <!-- Only change code above this line -->
@@ -87,7 +84,7 @@ assert(
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated bounce");
   });
 </script>

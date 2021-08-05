@@ -2,7 +2,7 @@
 id: bd7993c9c69feddfaeb8bdef
 title: 使用 JavaScript 數組將多個值存儲在一個變量中
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/crZQWAm'
+videoUrl: "https://scrimba.com/c/crZQWAm"
 forumTopicId: 18309
 dashedName: store-multiple-values-in-one-variable-using-javascript-arrays
 ---
@@ -14,7 +14,7 @@ dashedName: store-multiple-values-in-one-variable-using-javascript-arrays
 以左方括號開始定義一個數組，以右方括號結束，裏面每個元素之間用逗號隔開，例如：
 
 ```js
-var sandwich = ["peanut butter", "jelly", "bread"]
+var sandwich = ["peanut butter", "jelly", "bread"];
 ```
 
 # --instructions--
@@ -26,19 +26,19 @@ var sandwich = ["peanut butter", "jelly", "bread"]
 `myArray` 應爲數組。
 
 ```js
-assert(typeof myArray == 'object');
+assert(typeof myArray == "object");
 ```
 
 `myArray` 數組的第一個元素應該是一個字符串。
 
 ```js
-assert(typeof myArray[0] !== 'undefined' && typeof myArray[0] == 'string');
+assert(typeof myArray[0] !== "undefined" && typeof myArray[0] == "string");
 ```
 
 `myArray` 數組的第二個元素應該是一個數字。
 
 ```js
-assert(typeof myArray[1] !== 'undefined' && typeof myArray[1] == 'number');
+assert(typeof myArray[1] !== "undefined" && typeof myArray[1] == "number");
 ```
 
 # --seed--
@@ -46,7 +46,9 @@ assert(typeof myArray[1] !== 'undefined' && typeof myArray[1] == 'number');
 ## --after-user-code--
 
 ```js
-(function(z){return z;})(myArray);
+(function (z) {
+  return z;
+})(myArray);
 ```
 
 ## --seed-contents--

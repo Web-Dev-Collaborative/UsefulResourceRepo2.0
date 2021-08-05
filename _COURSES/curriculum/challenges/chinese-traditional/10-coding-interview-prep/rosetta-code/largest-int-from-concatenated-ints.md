@@ -15,13 +15,13 @@ Given a set of positive integers, write a function to order the integers in such
 `maxCombine` should be a function.
 
 ```js
-assert(typeof maxCombine == 'function');
+assert(typeof maxCombine == "function");
 ```
 
 `maxCombine([1, 3, 3, 4, 55])` should return a number.
 
 ```js
-assert(typeof maxCombine([1, 3, 3, 4, 55]) == 'number');
+assert(typeof maxCombine([1, 3, 3, 4, 55]) == "number");
 ```
 
 `maxCombine([1, 3, 3, 4, 55])` should return `554331`.
@@ -59,9 +59,7 @@ assert.equal(maxCombine([54, 546, 548, 60]), 6054854654);
 ## --seed-contents--
 
 ```js
-function maxCombine(xs) {
-
-}
+function maxCombine(xs) {}
 ```
 
 # --solutions--
@@ -70,7 +68,7 @@ function maxCombine(xs) {
 function maxCombine(xs) {
   return parseInt(
     xs
-      .sort(function(x, y) {
+      .sort(function (x, y) {
         var a = x.toString(),
           b = y.toString(),
           ab = parseInt(a + b),
@@ -78,7 +76,7 @@ function maxCombine(xs) {
 
         return ab > ba ? -1 : ab < ba ? 1 : 0;
       })
-      .join(''),
+      .join(""),
     10
   );
 }

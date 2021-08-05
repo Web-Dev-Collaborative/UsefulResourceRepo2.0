@@ -1,11 +1,11 @@
-import Typed from 'react-typed';
+import Typed from "react-typed";
 
-function typed () {
-  const roles = ['Developer', 'Tech Enthusiast', 'Team Player']
-  return(
+function typed() {
+  const roles = ["Developer", "Tech Enthusiast", "Team Player"];
+  return (
     <div>
       <Typed
-       loop
+        loop
         typeSpeed={60}
         backSpeed={60}
         strings={roles}
@@ -16,7 +16,7 @@ function typed () {
         cursorChar="|"
       />
     </div>
-  )
+  );
 }
 
-export default typed
+export default typed;

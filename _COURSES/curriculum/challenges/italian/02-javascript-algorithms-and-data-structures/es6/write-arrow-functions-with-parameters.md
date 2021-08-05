@@ -20,7 +20,7 @@ doubler(4);
 Se una funzione a freccia ha un unico parametro, le parentesi che racchiudono il parametro possono essere omesse.
 
 ```js
-const doubler = item => item * 2;
+const doubler = (item) => item * 2;
 ```
 
 È possibile passare più di un argomento ad una funzione freccia.
@@ -41,21 +41,21 @@ Riscrivi la funzione `myConcat` che concatena i contenuti di `arr2` a quelli di 
 Dovresti sostituire la parola chiave `var`.
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/var/g));
+(getUserInput) => assert(!getUserInput("index").match(/var/g));
 ```
 
 `myConcat` dovrebbe essere una variabile costante (usando `const`).
 
 ```js
-(getUserInput) => assert(getUserInput('index').match(/const\s+myConcat/g));
+(getUserInput) => assert(getUserInput("index").match(/const\s+myConcat/g));
 ```
 
 `myConcat` dovrebbe essere una funzione freccia con due parametri
 
 ```js
 assert(
-  /myConcat=\(\w+,\w+\)=>/.test(code.replace(/\s/g, '')) &&
-    typeof myConcat === 'function'
+  /myConcat=\(\w+,\w+\)=>/.test(code.replace(/\s/g, "")) &&
+    typeof myConcat === "function"
 );
 ```
 
@@ -68,7 +68,7 @@ assert.deepEqual(myConcat([1, 2], [3, 4, 5]), [1, 2, 3, 4, 5]);
 La parola chiave `function` non dovrebbe essere usata.
 
 ```js
-(getUserInput) => assert(!getUserInput('index').match(/function/g));
+(getUserInput) => assert(!getUserInput("index").match(/function/g));
 ```
 
 # --seed--
@@ -76,7 +76,7 @@ La parola chiave `function` non dovrebbe essere usata.
 ## --seed-contents--
 
 ```js
-var myConcat = function(arr1, arr2) {
+var myConcat = function (arr1, arr2) {
   return arr1.concat(arr2);
 };
 
@@ -86,7 +86,7 @@ console.log(myConcat([1, 2], [3, 4, 5]));
 # --solutions--
 
 ```js
-const myConcat = (arr1, arr2) =>  {
+const myConcat = (arr1, arr2) => {
   return arr1.concat(arr2);
 };
 

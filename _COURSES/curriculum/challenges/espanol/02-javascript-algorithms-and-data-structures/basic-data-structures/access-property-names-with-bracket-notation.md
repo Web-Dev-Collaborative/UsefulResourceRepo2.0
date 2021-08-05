@@ -26,7 +26,7 @@ Hemos definido una función, `checkInventory`, que recibe como argumento un elem
 `checkInventory` debe ser una función.
 
 ```js
-assert.strictEqual(typeof checkInventory, 'function');
+assert.strictEqual(typeof checkInventory, "function");
 ```
 
 El objeto `foods` debe tener solo los siguientes pares clave-valor: `apples: 25`, `oranges: 32`, `plums: 28`, `bananas: 13`, `grapes: 35`, `strawberries: 27`.
@@ -38,26 +38,26 @@ assert.deepEqual(foods, {
   plums: 28,
   bananas: 13,
   grapes: 35,
-  strawberries: 27
+  strawberries: 27,
 });
 ```
 
 `checkInventory("apples")` debe devolver `25`.
 
 ```js
-assert.strictEqual(checkInventory('apples'), 25);
+assert.strictEqual(checkInventory("apples"), 25);
 ```
 
 `checkInventory("bananas")` debe devolver `13`.
 
 ```js
-assert.strictEqual(checkInventory('bananas'), 13);
+assert.strictEqual(checkInventory("bananas"), 13);
 ```
 
 `checkInventory("strawberries")` debe devolver `27`.
 
 ```js
-assert.strictEqual(checkInventory('strawberries'), 27);
+assert.strictEqual(checkInventory("strawberries"), 27);
 ```
 
 # --seed--
@@ -71,12 +71,11 @@ let foods = {
   plums: 28,
   bananas: 13,
   grapes: 35,
-  strawberries: 27
+  strawberries: 27,
 };
 
 function checkInventory(scannedItem) {
   // Only change code below this line
-
   // Only change code above this line
 }
 
@@ -92,7 +91,7 @@ let foods = {
   plums: 28,
   bananas: 13,
   grapes: 35,
-  strawberries: 27
+  strawberries: 27,
 };
 
 function checkInventory(scannedItem) {

@@ -2,7 +2,7 @@
 id: 5a9d725e424fe3d0e10cad10
 title: 使用 CSS 变量一次更改多个元素
 challengeType: 0
-videoUrl: 'https://scrimba.com/c/c6bDECm'
+videoUrl: "https://scrimba.com/c/c6bDECm"
 forumTopicId: 301093
 dashedName: use-css-variables-to-change-several-elements-at-once
 ---
@@ -50,7 +50,6 @@ assert(
 ```html
 <style>
   .penguin {
-
     /* Only change code below this line */
     --penguin-skin: black;
     --penguin-belly: gray;
@@ -218,7 +217,7 @@ assert(
   }
 
   body {
-    background:#c6faf1;
+    background: #c6faf1;
   }
 
   .penguin * {
@@ -253,5 +252,11 @@ assert(
 # --solutions--
 
 ```html
-<style>.penguin {--penguin-skin: gray; --penguin-belly: white; --penguin-beak: orange;}</style>
+<style>
+  .penguin {
+    --penguin-skin: gray;
+    --penguin-belly: white;
+    --penguin-beak: orange;
+  }
+</style>
 ```

@@ -1,6 +1,6 @@
 ---
 id: 5900f40e1000cf542c50ff21
-title: 'Problem 162: Hexadecimal numbers'
+title: "Problem 162: Hexadecimal numbers"
 challengeType: 5
 forumTopicId: 301796
 dashedName: problem-162-hexadecimal-numbers
@@ -29,7 +29,7 @@ Give your answer as a hexadecimal number.
 `euler162()` should return 3D58725572C62302.
 
 ```js
-assert.strictEqual(euler162(), '3D58725572C62302');
+assert.strictEqual(euler162(), "3D58725572C62302");
 ```
 
 # --seed--
@@ -38,7 +38,6 @@ assert.strictEqual(euler162(), '3D58725572C62302');
 
 ```js
 function euler162() {
-
   return true;
 }
 

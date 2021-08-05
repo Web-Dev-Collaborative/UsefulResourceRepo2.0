@@ -2,7 +2,7 @@
 id: 587d7b7e367417b2b2512b21
 title: Usa múltiples operadores condicionales (ternarios)
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cyWJBT4'
+videoUrl: "https://scrimba.com/c/cyWJBT4"
 forumTopicId: 301179
 dashedName: use-multiple-conditional-ternary-operators
 ---
@@ -17,11 +17,9 @@ La siguiente función utiliza sentencias `if`, `else if`, y `else` para comproba
 function findGreaterOrEqual(a, b) {
   if (a === b) {
     return "a and b are equal";
-  }
-  else if (a > b) {
+  } else if (a > b) {
     return "a is greater";
-  }
-  else {
+  } else {
     return "b is greater";
   }
 }
@@ -31,8 +29,10 @@ La función anterior puede ser reescrita utilizando múltiples operadores condic
 
 ```js
 function findGreaterOrEqual(a, b) {
-  return (a === b) ? "a and b are equal" 
-    : (a > b) ? "a is greater" 
+  return a === b
+    ? "a and b are equal"
+    : a > b
+    ? "a is greater"
     : "b is greater";
 }
 ```
@@ -41,7 +41,11 @@ Se considera buena práctica dar formato a múltiples operadores condicionales d
 
 ```js
 function findGreaterOrEqual(a, b) {
-  return (a === b) ? "a and b are equal" : (a > b) ? "a is greater" : "b is greater";
+  return a === b
+    ? "a and b are equal"
+    : a > b
+    ? "a is greater"
+    : "b is greater";
 }
 ```
 
@@ -60,19 +64,19 @@ assert(/.+?\s*?\?\s*?.+?\s*?:\s*?.+?\s*?\?\s*?.+?\s*?:\s*?.+?/gi.test(code));
 `checkSign(10)` debe devolver la cadena `positive`. Ten en cuenta que la capitalización importa
 
 ```js
-assert(checkSign(10) === 'positive');
+assert(checkSign(10) === "positive");
 ```
 
 `checkSign(-12)` debe devolver la cadena `negative`. Ten en cuenta que la capitalización importa
 
 ```js
-assert(checkSign(-12) === 'negative');
+assert(checkSign(-12) === "negative");
 ```
 
 `checkSign(0)` debe devolver la cadena `zero`. Ten en cuenta que la capitalización importa
 
 ```js
-assert(checkSign(0) === 'zero');
+assert(checkSign(0) === "zero");
 ```
 
 # --seed--
@@ -80,9 +84,7 @@ assert(checkSign(0) === 'zero');
 ## --seed-contents--
 
 ```js
-function checkSign(num) {
-
-}
+function checkSign(num) {}
 
 checkSign(10);
 ```
@@ -91,6 +93,6 @@ checkSign(10);
 
 ```js
 function checkSign(num) {
-  return (num > 0) ? 'positive' : (num < 0) ? 'negative' : 'zero';
+  return num > 0 ? "positive" : num < 0 ? "negative" : "zero";
 }
 ```

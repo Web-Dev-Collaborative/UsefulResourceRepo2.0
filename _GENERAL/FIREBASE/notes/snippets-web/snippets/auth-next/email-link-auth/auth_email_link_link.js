@@ -8,7 +8,9 @@ import { getAuth, linkWithCredential, EmailAuthProvider } from "firebase/auth";
 
 // Construct the email link credential from the current URL.
 const credential = EmailAuthProvider.credentialWithLink(
-  email, window.location.href);
+  email,
+  window.location.href
+);
 
 // Link the credential to the current user.
 const auth = getAuth();

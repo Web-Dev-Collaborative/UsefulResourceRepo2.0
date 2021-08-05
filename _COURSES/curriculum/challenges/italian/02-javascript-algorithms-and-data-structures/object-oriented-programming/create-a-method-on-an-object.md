@@ -16,7 +16,9 @@ I metodi sono proprietà che sono funzioni. Questo aggiunge comportamenti divers
 let duck = {
   name: "Aflac",
   numLegs: 2,
-  sayName: function() {return "The name of this duck is " + duck.name + ".";}
+  sayName: function () {
+    return "The name of this duck is " + duck.name + ".";
+  },
 };
 duck.sayName();
 ```
@@ -32,13 +34,13 @@ Dai all'oggetto `dog` un metodo chiamato `sayLegs`. Il metodo dovrebbe restituir
 `dog.sayLegs()` dovrebbe essere una funzione.
 
 ```js
-assert(typeof dog.sayLegs === 'function');
+assert(typeof dog.sayLegs === "function");
 ```
 
 `dog.sayLegs()` dovrebbe restituire la stringa data; nota che la punteggiatura e la spaziatura contano.
 
 ```js
-assert(dog.sayLegs() === 'This dog has 4 legs.');
+assert(dog.sayLegs() === "This dog has 4 legs.");
 ```
 
 # --seed--
@@ -49,7 +51,6 @@ assert(dog.sayLegs() === 'This dog has 4 legs.');
 let dog = {
   name: "Spot",
   numLegs: 4,
-
 };
 
 dog.sayLegs();
@@ -61,9 +62,9 @@ dog.sayLegs();
 let dog = {
   name: "Spot",
   numLegs: 4,
-  sayLegs () {
-    return 'This dog has ' + this.numLegs + ' legs.';
-  }
+  sayLegs() {
+    return "This dog has " + this.numLegs + " legs.";
+  },
 };
 
 dog.sayLegs();

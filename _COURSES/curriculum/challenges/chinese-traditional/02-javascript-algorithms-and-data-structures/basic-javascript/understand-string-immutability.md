@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244ba
 title: 瞭解字符串的不變性
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cWPVaUR'
+videoUrl: "https://scrimba.com/c/cWPVaUR"
 forumTopicId: 18331
 dashedName: understand-string-immutability
 ---
@@ -34,7 +34,7 @@ myStr = "Job";
 `myStr` 的值應該是字符串 `Hello World`。
 
 ```js
-assert(myStr === 'Hello World');
+assert(myStr === "Hello World");
 ```
 
 不要修改註釋上面的代碼。
@@ -48,7 +48,9 @@ assert(/myStr = "Jello World"/.test(code));
 ## --after-user-code--
 
 ```js
-(function(v){return "myStr = " + v;})(myStr);
+(function (v) {
+  return "myStr = " + v;
+})(myStr);
 ```
 
 ## --seed-contents--

@@ -4,8 +4,7 @@ title: Identificare lo stesso elemento con diversi selettori jQuery
 challengeType: 6
 forumTopicId: 18322
 required:
-  - 
-    link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css'
+  - link: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.css"
 dashedName: target-the-same-element-with-multiple-jquery-selectors
 ---
 
@@ -13,7 +12,7 @@ dashedName: target-the-same-element-with-multiple-jquery-selectors
 
 Ora conosci tre modi per identificare gli elementi: per tipo: `$("button")`, per classe: `$(".btn")`, e per id `$("#target1")`.
 
-Anche se è possibile aggiungere più classi in una singola chiamata di `.addClass()`, aggiungiamole allo stesso elemento in *tre modi diversi*.
+Anche se è possibile aggiungere più classi in una singola chiamata di `.addClass()`, aggiungiamole allo stesso elemento in _tre modi diversi_.
 
 Usando `.addClass()`, aggiungi una sola classe alla volta allo stesso elemento, in tre modi diversi:
 
@@ -58,9 +57,9 @@ Il tuo elemento `#target1` dovrebbe avere le classi `animated`‚ `shake` e `btn
 
 ```js
 assert(
-  $('#target1').hasClass('animated') &&
-    $('#target1').hasClass('shake') &&
-    $('#target1').hasClass('btn-primary')
+  $("#target1").hasClass("animated") &&
+    $("#target1").hasClass("shake") &&
+    $("#target1").hasClass("btn-primary")
 );
 ```
 
@@ -76,9 +75,7 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
-
-  });
+  $(document).ready(function () {});
 </script>
 
 <!-- Only change code above this line -->
@@ -110,7 +107,7 @@ assert(!code.match(/class.*animated/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("button").addClass("animated");
     $(".btn").addClass("shake");
     $("#target1").addClass("btn-primary");

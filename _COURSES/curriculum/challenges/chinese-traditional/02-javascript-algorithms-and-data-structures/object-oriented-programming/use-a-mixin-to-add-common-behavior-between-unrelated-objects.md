@@ -13,10 +13,10 @@ dashedName: use-a-mixin-to-add-common-behavior-between-unrelated-objects
 對於不相關的對象，更好的方法是使用 <dfn>mixins</dfn>。 mixin 允許其他對象使用函數集合。
 
 ```js
-let flyMixin = function(obj) {
-  obj.fly = function() {
+let flyMixin = function (obj) {
+  obj.fly = function () {
     console.log("Flying, wooosh!");
-  }
+  };
 };
 ```
 
@@ -25,12 +25,12 @@ let flyMixin = function(obj) {
 ```js
 let bird = {
   name: "Donald",
-  numLegs: 2
+  numLegs: 2,
 };
 
 let plane = {
   model: "777",
-  numPassengers: 524
+  numPassengers: 524,
 };
 
 flyMixin(bird);
@@ -57,19 +57,19 @@ plane.fly();
 你應該聲明一個變量名爲 `glideMixin` 的函數。
 
 ```js
-assert(typeof glideMixin === 'function');
+assert(typeof glideMixin === "function");
 ```
 
 你應該在 `bird`上使用 `glideMixin`，以提供 `glide` 方法。
 
 ```js
-assert(typeof bird.glide === 'function');
+assert(typeof bird.glide === "function");
 ```
 
 你應該在 `boat` 上使用 `glideMixin`，以爲其提供 `glide` 方法。
 
 ```js
-assert(typeof boat.glide === 'function');
+assert(typeof boat.glide === "function");
 ```
 
 # --seed--
@@ -79,12 +79,12 @@ assert(typeof boat.glide === 'function');
 ```js
 let bird = {
   name: "Donald",
-  numLegs: 2
+  numLegs: 2,
 };
 
 let boat = {
   name: "Warrior",
-  type: "race-boat"
+  type: "race-boat",
 };
 
 // Only change code below this line
@@ -95,15 +95,15 @@ let boat = {
 ```js
 let bird = {
   name: "Donald",
-  numLegs: 2
+  numLegs: 2,
 };
 
 let boat = {
   name: "Warrior",
-  type: "race-boat"
+  type: "race-boat",
 };
-function glideMixin (obj) {
-  obj.glide = () => 'Gliding!';
+function glideMixin(obj) {
+  obj.glide = () => "Gliding!";
 }
 
 glideMixin(bird);

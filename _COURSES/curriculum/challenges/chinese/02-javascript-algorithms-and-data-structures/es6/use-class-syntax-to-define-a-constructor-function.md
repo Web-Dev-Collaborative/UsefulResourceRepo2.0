@@ -15,10 +15,10 @@ ES6 提供了一个新的创建对象的语法，使用关键字 <dfn>class</dfn
 在 ES5 里面，我们通常会定义一个构造函数 `constructor`，然后使用 `new` 关键字来实例化一个对象：
 
 ```js
-var SpaceShuttle = function(targetPlanet){
+var SpaceShuttle = function (targetPlanet) {
   this.targetPlanet = targetPlanet;
-}
-var zeus = new SpaceShuttle('Jupiter');
+};
+var zeus = new SpaceShuttle("Jupiter");
 ```
 
 `class` 语法只是简单地替换了构造函数 `constructor` 的写法：
@@ -29,7 +29,7 @@ class SpaceShuttle {
     this.targetPlanet = targetPlanet;
   }
 }
-const zeus = new SpaceShuttle('Jupiter');
+const zeus = new SpaceShuttle("Jupiter");
 ```
 
 应该注意 `class` 关键字声明了一个新的函数，里面添加了一个构造函数。 当用 `new` 创建一个新的对象时，构造函数会被调用。
@@ -50,7 +50,7 @@ const zeus = new SpaceShuttle('Jupiter');
 
 ```js
 assert(
-  typeof Vegetable === 'function' && typeof Vegetable.constructor === 'function'
+  typeof Vegetable === "function" && typeof Vegetable.constructor === "function"
 );
 ```
 
@@ -64,15 +64,15 @@ assert(code.match(/class/g));
 
 ```js
 assert(() => {
-  const a = new Vegetable('apple');
-  return typeof a === 'object';
+  const a = new Vegetable("apple");
+  return typeof a === "object";
 });
 ```
 
 `carrot.name` 应该返回 `carrot`。
 
 ```js
-assert(carrot.name == 'carrot');
+assert(carrot.name == "carrot");
 ```
 
 # --seed--
@@ -84,7 +84,7 @@ assert(carrot.name == 'carrot');
 
 // Only change code above this line
 
-const carrot = new Vegetable('carrot');
+const carrot = new Vegetable("carrot");
 console.log(carrot.name); // Should display 'carrot'
 ```
 
@@ -96,5 +96,5 @@ class Vegetable {
     this.name = name;
   }
 }
-const carrot = new Vegetable('carrot');
+const carrot = new Vegetable("carrot");
 ```

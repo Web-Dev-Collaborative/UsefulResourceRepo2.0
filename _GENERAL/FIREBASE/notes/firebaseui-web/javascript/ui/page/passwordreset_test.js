@@ -16,36 +16,34 @@
  * @fileoverview Tests for the password reset page.
  */
 
-goog.provide('firebaseui.auth.ui.page.PasswordResetTest');
-goog.setTestOnly('firebaseui.auth.ui.page.PasswordResetTest');
+goog.provide("firebaseui.auth.ui.page.PasswordResetTest");
+goog.setTestOnly("firebaseui.auth.ui.page.PasswordResetTest");
 
-goog.require('firebaseui.auth.ui.element.FormTestHelper');
-goog.require('firebaseui.auth.ui.element.InfoBarTestHelper');
-goog.require('firebaseui.auth.ui.element.NewPasswordTestHelper');
-goog.require('firebaseui.auth.ui.page.PageTestHelper');
-goog.require('firebaseui.auth.ui.page.PasswordReset');
-goog.require('goog.dom');
-goog.require('goog.dom.TagName');
-goog.require('goog.events.KeyCodes');
-goog.require('goog.testing.MockClock');
-goog.require('goog.testing.events');
-goog.require('goog.testing.jsunit');
-goog.require('goog.userAgent');
-
+goog.require("firebaseui.auth.ui.element.FormTestHelper");
+goog.require("firebaseui.auth.ui.element.InfoBarTestHelper");
+goog.require("firebaseui.auth.ui.element.NewPasswordTestHelper");
+goog.require("firebaseui.auth.ui.page.PageTestHelper");
+goog.require("firebaseui.auth.ui.page.PasswordReset");
+goog.require("goog.dom");
+goog.require("goog.dom.TagName");
+goog.require("goog.events.KeyCodes");
+goog.require("goog.testing.MockClock");
+goog.require("goog.testing.events");
+goog.require("goog.testing.jsunit");
+goog.require("goog.userAgent");
 
 var mockClock;
 var root;
 var component;
 var newPasswordTestHelper =
-    new firebaseui.auth.ui.element.NewPasswordTestHelper().registerTests();
-var formTestHelper = new firebaseui.auth.ui.element.FormTestHelper().
-    excludeTests('testOnLinkClick_', 'testOnLinkEnter_').
-    registerTests();
+  new firebaseui.auth.ui.element.NewPasswordTestHelper().registerTests();
+var formTestHelper = new firebaseui.auth.ui.element.FormTestHelper()
+  .excludeTests("testOnLinkClick_", "testOnLinkEnter_")
+  .registerTests();
 var infoBarTestHelper =
-    new firebaseui.auth.ui.element.InfoBarTestHelper().registerTests();
+  new firebaseui.auth.ui.element.InfoBarTestHelper().registerTests();
 var pageTestHelper =
-    new firebaseui.auth.ui.page.PageTestHelper().registerTests();
-
+  new firebaseui.auth.ui.page.PageTestHelper().registerTests();
 
 function setUp() {
   // Set up clock.
@@ -54,10 +52,12 @@ function setUp() {
   root = goog.dom.createDom(goog.dom.TagName.DIV);
   document.body.appendChild(root);
   component = new firebaseui.auth.ui.page.PasswordReset(
-      'user@example.com',
-      goog.bind(
-          firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
-          formTestHelper));
+    "user@example.com",
+    goog.bind(
+      firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
+      formTestHelper
+    )
+  );
   component.render(root);
   newPasswordTestHelper.setComponent(component);
   formTestHelper.setComponent(component);
@@ -67,7 +67,6 @@ function setUp() {
   pageTestHelper.setClock(mockClock).setComponent(component);
 }
 
-
 function tearDown() {
   // Tear down clock.
   mockClock.tick(Infinity);
@@ -76,23 +75,23 @@ function tearDown() {
   goog.dom.removeNode(root);
 }
 
-
 function testInitialFocus() {
   if (goog.userAgent.IE && !goog.userAgent.isDocumentModeOrHigher(9)) {
     return;
   }
   assertEquals(
-      component.getNewPasswordElement(),
-      goog.dom.getActiveElement(document));
+    component.getNewPasswordElement(),
+    goog.dom.getActiveElement(document)
+  );
 }
-
 
 function testSubmitOnNewPasswordEnter() {
   goog.testing.events.fireKeySequence(
-      component.getNewPasswordElement(), goog.events.KeyCodes.ENTER);
+    component.getNewPasswordElement(),
+    goog.events.KeyCodes.ENTER
+  );
   formTestHelper.assertSubmitted();
 }
-
 
 function testPasswordReset_pageEvents() {
   // Run page event tests.
@@ -101,15 +100,16 @@ function testPasswordReset_pageEvents() {
   component.dispose();
   // Initialize component.
   component = new firebaseui.auth.ui.page.PasswordReset(
-      'user@example.com',
-      goog.bind(
-          firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
-          formTestHelper));
+    "user@example.com",
+    goog.bind(
+      firebaseui.auth.ui.element.FormTestHelper.prototype.onSubmit,
+      formTestHelper
+    )
+  );
   // Run all page helper tests.
   pageTestHelper.runTests(component, root);
 }
 
-
 function testPasswordReset_getPageId() {
-  assertEquals('passwordReset', component.getPageId());
+  assertEquals("passwordReset", component.getPageId());
 }

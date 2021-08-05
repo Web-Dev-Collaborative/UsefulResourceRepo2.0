@@ -18,88 +18,88 @@
  * @fileoverview Binds handlers for phone confirmation code UI element.
  */
 
-goog.provide('firebaseui.auth.ui.element.phoneConfirmationCode');
+goog.provide("firebaseui.auth.ui.element.phoneConfirmationCode");
 
-goog.require('firebaseui.auth.ui.element');
-goog.require('goog.string');
-goog.require('goog.ui.Component');
+goog.require("firebaseui.auth.ui.element");
+goog.require("goog.string");
+goog.require("goog.ui.Component");
 
+goog.scope(function () {
+  var element = firebaseui.auth.ui.element;
 
-goog.scope(function() {
-var element = firebaseui.auth.ui.element;
+  /**
+   * @return {?Element} The confirmation code input.
+   * @this {goog.ui.Component}
+   */
+  element.phoneConfirmationCode.getPhoneConfirmationCodeElement = function () {
+    return this.getElementByClass("firebaseui-id-phone-confirmation-code");
+  };
 
+  /**
+   * @return {?Element} The error message element for the confirmation code input.
+   * @this {goog.ui.Component}
+   */
+  element.phoneConfirmationCode.getPhoneConfirmationCodeErrorElement =
+    function () {
+      return this.getElementByClass(
+        "firebaseui-id-phone-confirmation-code-error"
+      );
+    };
 
-/**
- * @return {?Element} The confirmation code input.
- * @this {goog.ui.Component}
- */
-element.phoneConfirmationCode.getPhoneConfirmationCodeElement = function() {
-  return this.getElementByClass('firebaseui-id-phone-confirmation-code');
-};
-
-
-/**
- * @return {?Element} The error message element for the confirmation code input.
- * @this {goog.ui.Component}
- */
-element.phoneConfirmationCode.getPhoneConfirmationCodeErrorElement =
-    function() {
-  return this.getElementByClass('firebaseui-id-phone-confirmation-code-error');
-};
-
-
-/**
- * Initializes the phone confirmation code element.
- * @param {function()=} opt_onEnter Callback to invoke when the ENTER key is
- *     pressed.
- * @this {goog.ui.Component}
- */
-element.phoneConfirmationCode.initPhoneConfirmationCodeElement = function(
-    opt_onEnter) {
-  var confirmationCodeElement =
+  /**
+   * Initializes the phone confirmation code element.
+   * @param {function()=} opt_onEnter Callback to invoke when the ENTER key is
+   *     pressed.
+   * @this {goog.ui.Component}
+   */
+  element.phoneConfirmationCode.initPhoneConfirmationCodeElement = function (
+    opt_onEnter
+  ) {
+    var confirmationCodeElement =
       element.phoneConfirmationCode.getPhoneConfirmationCodeElement.call(this);
-  var errorElement =
+    var errorElement =
       element.phoneConfirmationCode.getPhoneConfirmationCodeErrorElement.call(
-          this);
-  element.listenForInputEvent(this, confirmationCodeElement, function(e) {
-    // Clear the error message.
-    if (element.isShown(errorElement)) {
-      element.setValid(confirmationCodeElement, true);
-      element.hide(errorElement);
-    }
-  });
-  if (opt_onEnter) {
-    element.listenForEnterEvent(this, confirmationCodeElement, function(e) {
-      opt_onEnter();
+        this
+      );
+    element.listenForInputEvent(this, confirmationCodeElement, function (e) {
+      // Clear the error message.
+      if (element.isShown(errorElement)) {
+        element.setValid(confirmationCodeElement, true);
+        element.hide(errorElement);
+      }
     });
-  }
-};
+    if (opt_onEnter) {
+      element.listenForEnterEvent(this, confirmationCodeElement, function (e) {
+        opt_onEnter();
+      });
+    }
+  };
 
-
-/**
- * @return {?string} The confirmation code if valid
- * @this {goog.ui.Component}
- */
-element.phoneConfirmationCode.checkAndGetPhoneConfirmationCode = function() {
-  var code = goog.string.trim(
+  /**
+   * @return {?string} The confirmation code if valid
+   * @this {goog.ui.Component}
+   */
+  element.phoneConfirmationCode.checkAndGetPhoneConfirmationCode = function () {
+    var code = goog.string.trim(
       element.getInputValue(
-          element.phoneConfirmationCode.getPhoneConfirmationCodeElement.call(
-              this)) ||
-      '');
-  if (element.phoneConfirmationCode.isValidVerificationCode_(code)) {
-    return code;
-  } else {
-    return null;
-  }
-};
+        element.phoneConfirmationCode.getPhoneConfirmationCodeElement.call(this)
+      ) || ""
+    );
+    if (element.phoneConfirmationCode.isValidVerificationCode_(code)) {
+      return code;
+    } else {
+      return null;
+    }
+  };
 
-/**
- * @param {string} verificationCode The code entered by the user.
- * @return {boolean} True if the given code is any six digit number.
- * @private
- */
-element.phoneConfirmationCode.isValidVerificationCode_ = function(
-    verificationCode) {
-  return /^\d{6}$/.test(verificationCode);
-};
+  /**
+   * @param {string} verificationCode The code entered by the user.
+   * @return {boolean} True if the given code is any six digit number.
+   * @private
+   */
+  element.phoneConfirmationCode.isValidVerificationCode_ = function (
+    verificationCode
+  ) {
+    return /^\d{6}$/.test(verificationCode);
+  };
 });

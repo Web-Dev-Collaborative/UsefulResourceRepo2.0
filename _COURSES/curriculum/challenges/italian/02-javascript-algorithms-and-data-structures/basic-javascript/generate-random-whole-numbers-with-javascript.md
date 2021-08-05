@@ -2,7 +2,7 @@
 id: cf1111c1c12feddfaeb1bdef
 title: Generare numeri interi casuali con JavaScript
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/cRn6bfr'
+videoUrl: "https://scrimba.com/c/cRn6bfr"
 forumTopicId: 18186
 dashedName: generate-random-whole-numbers-with-javascript
 ---
@@ -33,7 +33,7 @@ Il risultato di `randomWholeNum` dovrebbe essere un numero intero.
 
 ```js
 assert(
-  typeof randomWholeNum() === 'number' &&
+  typeof randomWholeNum() === "number" &&
     (function () {
       var r = randomWholeNum();
       return Math.floor(r) === r;
@@ -67,14 +67,15 @@ assert(code.match(/Math.floor/g).length >= 1);
 ## --after-user-code--
 
 ```js
-(function(){return randomWholeNum();})();
+(function () {
+  return randomWholeNum();
+})();
 ```
 
 ## --seed-contents--
 
 ```js
 function randomWholeNum() {
-
   // Only change code below this line
 
   return Math.random();

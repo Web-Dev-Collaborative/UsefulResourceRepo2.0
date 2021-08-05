@@ -2,7 +2,7 @@
 id: 56533eb9ac21ba0edf2244e0
 title: Sostituire le catene di If Else con Switch
 challengeType: 1
-videoUrl: 'https://scrimba.com/c/c3JE8fy'
+videoUrl: "https://scrimba.com/c/c3JE8fy"
 forumTopicId: 18266
 dashedName: replacing-if-else-chains-with-switch
 ---
@@ -24,7 +24,7 @@ if (val === 1) {
 può essere sostituito con:
 
 ```js
-switch(val) {
+switch (val) {
   case 1:
     answer = "a";
     break;
@@ -63,43 +63,43 @@ assert(code.match(/break/g).length >= 4);
 `chainToSwitch("bob")` dovrebbe essere la stringa `Marley`
 
 ```js
-assert(chainToSwitch('bob') === 'Marley');
+assert(chainToSwitch("bob") === "Marley");
 ```
 
 `chainToSwitch(42)` dovrebbe essere la stringa `The Answer`
 
 ```js
-assert(chainToSwitch(42) === 'The Answer');
+assert(chainToSwitch(42) === "The Answer");
 ```
 
 `chainToSwitch(1)` dovrebbe essere la stringa `There is no #1`
 
 ```js
-assert(chainToSwitch(1) === 'There is no #1');
+assert(chainToSwitch(1) === "There is no #1");
 ```
 
 `chainToSwitch(99)` dovrebbe essere la stringa `Missed me by this much!`
 
 ```js
-assert(chainToSwitch(99) === 'Missed me by this much!');
+assert(chainToSwitch(99) === "Missed me by this much!");
 ```
 
 `chainToSwitch(7)` dovrebbe essere la stringa `Ate Nine`
 
 ```js
-assert(chainToSwitch(7) === 'Ate Nine');
+assert(chainToSwitch(7) === "Ate Nine");
 ```
 
 `chainToSwitch("John")` dovrebbe essere `""` (stringa vuota)
 
 ```js
-assert(chainToSwitch('John') === '');
+assert(chainToSwitch("John") === "");
 ```
 
 `chainToSwitch(156)` dovrebbe essere `""` (stringa vuota)
 
 ```js
-assert(chainToSwitch(156) === '');
+assert(chainToSwitch(156) === "");
 ```
 
 # --seed--
@@ -136,7 +136,7 @@ chainToSwitch(7);
 function chainToSwitch(val) {
   var answer = "";
 
-  switch(val) {
+  switch (val) {
     case "bob":
       answer = "Marley";
       break;

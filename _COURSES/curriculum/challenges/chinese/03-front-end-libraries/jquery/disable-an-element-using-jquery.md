@@ -28,8 +28,8 @@ $("button").prop("disabled", true);
 
 ```js
 assert(
-  $('#target1') &&
-    $('#target1').prop('disabled') &&
+  $("#target1") &&
+    $("#target1").prop("disabled") &&
     code.match(/["']disabled["'],( true|true)/g)
 );
 ```
@@ -37,7 +37,7 @@ assert(
 不应该禁用其它的按钮。
 
 ```js
-assert($('#target2') && !$('#target2').prop('disabled'));
+assert($("#target2") && !$("#target2").prop("disabled"));
 ```
 
 应该仅用 jQuery 给元素添加这些 class。
@@ -52,9 +52,8 @@ assert(!code.match(/disabled[^<]*>/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
-
   });
 </script>
 
@@ -87,10 +86,9 @@ assert(!code.match(/disabled[^<]*>/g));
 
 ```html
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#target1").css("color", "red");
     $("#target1").prop("disabled", true);
-
   });
 </script>
 

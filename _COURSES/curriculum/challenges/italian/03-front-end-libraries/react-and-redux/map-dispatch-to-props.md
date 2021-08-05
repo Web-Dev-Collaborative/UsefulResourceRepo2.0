@@ -33,8 +33,8 @@ assert(
   (function () {
     const addMessageTest = addMessage();
     return (
-      addMessageTest.hasOwnProperty('type') &&
-      addMessageTest.hasOwnProperty('message')
+      addMessageTest.hasOwnProperty("type") &&
+      addMessageTest.hasOwnProperty("message")
     );
   })()
 );
@@ -43,13 +43,13 @@ assert(
 `mapDispatchToProps` dovrebbe essere una funzione.
 
 ```js
-assert(typeof mapDispatchToProps === 'function');
+assert(typeof mapDispatchToProps === "function");
 ```
 
 `mapDispatchToProps` dovrebbe restituire un oggetto.
 
 ```js
-assert(typeof mapDispatchToProps() === 'object');
+assert(typeof mapDispatchToProps() === "object");
 ```
 
 Spedire `addMessage` con `submitNewMessage` da `mapDispatchToProps` dovrebbe restituire un messaggio alla funzione dispatch.
@@ -62,9 +62,9 @@ assert(
       testAction = fn;
     };
     let dispatchFn = mapDispatchToProps(dispatch);
-    dispatchFn.submitNewMessage('__TEST__MESSAGE__');
+    dispatchFn.submitNewMessage("__TEST__MESSAGE__");
     return (
-      testAction.type === 'ADD' && testAction.message === '__TEST__MESSAGE__'
+      testAction.type === "ADD" && testAction.message === "__TEST__MESSAGE__"
     );
   })()
 );
@@ -77,9 +77,9 @@ assert(
 ```jsx
 const addMessage = (message) => {
   return {
-    type: 'ADD',
-    message: message
-  }
+    type: "ADD",
+    message: message,
+  };
 };
 
 // Change code below this line
@@ -90,18 +90,18 @@ const addMessage = (message) => {
 ```jsx
 const addMessage = (message) => {
   return {
-    type: 'ADD',
-    message: message
-  }
+    type: "ADD",
+    message: message,
+  };
 };
 
 // Change code below this line
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    submitNewMessage: function(message) {
+    submitNewMessage: function (message) {
       dispatch(addMessage(message));
-    }
-  }
+    },
+  };
 };
 ```

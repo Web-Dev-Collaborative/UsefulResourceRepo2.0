@@ -129,7 +129,7 @@ div + .group,
 }
 
 .form-bordered {
-  border: 1px solid #CCC;
+  border: 1px solid #ccc;
   border-radius: 9px;
   padding: 5px;
 }
