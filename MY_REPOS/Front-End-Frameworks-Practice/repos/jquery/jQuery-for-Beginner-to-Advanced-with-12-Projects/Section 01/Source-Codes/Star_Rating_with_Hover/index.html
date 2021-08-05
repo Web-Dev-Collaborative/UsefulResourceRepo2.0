@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Star rating with Hover</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            /*$(function(){
+
+            });*/
+            $(document).ready(function(){
+                var src;
+                var nameparts = new Array();
+                var filename = new Array();
+                $('img').hover(function(){
+                    src = $(this).attr('src');
+                    nameparts = src.split('.');
+                    filename = nameparts[0].split('-');
+                    //filename[1]
+                    for(var i=1;i<=filename[1];i++){
+                        $('body img:nth-child('+i+')').attr('src','star-'+i+'-active.jpg');
+                    }
+                },function(){
+                    for(var i=1;i<=filename[1];i++){
+                        $('body img:nth-child('+i+')').attr('src','star-'+i+'.jpg');
+                    }
+                });
+            });
+        </script>
+    </head>
+    
+    <body>
+        <img src="star-1.jpg" /><img src="star-2.jpg" /><img src="star-3.jpg" /><img src="star-4.jpg" /><img src="star-5.jpg" />
+    </body>
+</html>

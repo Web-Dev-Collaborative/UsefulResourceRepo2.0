@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Clickable Block</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(function(){
+                $('.pane-list li').click(function(){
+                    window.location = $(this).find("a").attr('href');
+                    return false;
+                });
+            });
+        </script>
+        <style>
+            body{
+                margin: 10px auto;
+                width: 470px;
+            }
+            a{
+                color: #333300;
+                text-decoration: none;
+            }
+            a:visited{
+                color: #660099;
+            }
+            a:hover{
+                color: #808000;
+                text-decoration: underline;
+            }
+            h3{
+                margin: 0;
+                padding: 0 0 4px;
+            }
+            p{
+                margin: 0;
+                padding: 0 0 8px;
+            }
+            .pane-list{
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            .pane-list li{
+                background: #ecfad7;
+                padding: 10px 20px 10px;
+                border-top: solid 1px #c4df9b;
+                cursor: pointer;
+            }
+            .pane-list li:hover{
+                background: #f6ffe9;
+            }
+        </style>
+    </head>
+    <body>
+        <ul class="pane-list">
+            <li>
+                <h3><a href="https://jquery.com/">jQuery Official Website</a></h3>
+                <p>jQuery is a fast, small, and feature-rich JavaScript library.</p>
+            </li>
+            <li>
+                <h3>jQuery Tutorial</h3>
+                <p>Featuring one of the best <a href="https://www.w3schools.com/jquery/default.asp">jQuery tutorial for beginners.</a></p>
+            </li>
+            <li>
+                <h3>Official jQuery learning website</h3>
+                <p><a href="https://learn.jquery.com/">Learning Center</a> is the Official jQuery learning website.</p>
+            </li>
+        </ul>
+    </body>
+</html>

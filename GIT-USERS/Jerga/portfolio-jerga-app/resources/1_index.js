@@ -16,7 +16,7 @@
                     Have a look at my portfolio and job history.
                   </div>
                 </div>
-                <img className="image" src="/images/section-1.png" />
+                <img className="image" src="/images/section-1.png"/>
                 <div className="shadow-custom">
                   <div className="shadow-inner"> </div>
                 </div>
@@ -27,16 +27,17 @@
         <Col md="6" className="hero-welcome-wrapper">
           <div className="hero-welcome-text">
             <h1>
-              Welcome to the portfolio website of Filip Jerga. Get informed,
-              collaborate and discover projects I was working on through the
-              years!
+              Welcome to the portfolio website of Filip Jerga.
+              Get informed, collaborate and discover projects I was working on through the years!
             </h1>
           </div>
           <div className="hero-welcome-bio">
-            <h1>Let's take a look on my work.</h1>
+            <h1>
+              Let's take a look on my work.
+            </h1>
           </div>
         </Col>
       </Row>
     </Container>
   </div>
-</BaseLayout>;
+</BaseLayout>

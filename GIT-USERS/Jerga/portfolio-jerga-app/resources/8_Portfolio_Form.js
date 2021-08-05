@@ -1,12 +1,20 @@
 <form>
   <div className="form-group">
     <label htmlFor="title">Title</label>
-    <input name="title" type="text" className="form-control" id="title" />
+    <input
+      name="title"
+      type="text"
+      className="form-control"
+      id="title"/>
   </div>
 
   <div className="form-group">
     <label htmlFor="city">Company</label>
-    <input name="company" type="text" className="form-control" id="company" />
+    <input
+      name="company"
+      type="text"
+      className="form-control"
+      id="company"/>
   </div>
 
   <div className="form-group">
@@ -15,18 +23,25 @@
       name="companyWebsite"
       type="text"
       className="form-control"
-      id="companyWebsite"
-    />
+      id="companyWebsite"/>
   </div>
 
   <div className="form-group">
     <label htmlFor="street">Location</label>
-    <input name="location" type="text" className="form-control" id="location" />
+    <input
+      name="location"
+      type="text"
+      className="form-control"
+      id="location"/>
   </div>
 
   <div className="form-group">
     <label htmlFor="street">Job Title</label>
-    <input name="jobTitle" type="text" className="form-control" id="jobTitle" />
+    <input
+      name="jobTitle"
+      type="text"
+      className="form-control"
+      id="jobTitle"/>
   </div>
 
   <div className="form-group">
@@ -36,20 +51,25 @@
       rows="5"
       type="text"
       className="form-control"
-      id="description"
-    ></textarea>
+      id="description">
+    </textarea>
   </div>
 
   <div className="form-group">
     <label htmlFor="street">Start Date</label>
-    <div>{/* Date picker here */}</div>
+    <div>
+      {/* Date picker here */}
+    </div>
   </div>
 
   <div className="form-group">
     <label htmlFor="street">End Date</label>
-    <div>{/* Date picker here */}</div>
+    <div>
+      {/* Date picker here */}
+    </div>
   </div>
-  <button type="submit" className="btn btn-primary">
-    Create
+  <button
+    type="submit"
+    className="btn btn-primary">Create
   </button>
-</form>;
+</form>

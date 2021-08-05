@@ -1,12 +1,9 @@
-import { Container, Row, Col, Button } from "reactstrap";
-import Link from "next/link";
+import { Container, Row, Col, Button } from 'reactstrap';
+import Link from 'next/link'
 
 <BaseLayout navClass="transparent" user={user} loading={false}>
   {/* MASTHEAD */}
-  <div
-    className="masthead"
-    style={{ backgroundImage: `url(/images/home-bg.jpg)` }}
-  >
+  <div className="masthead" style={{"backgroundImage": `url(/images/home-bg.jpg)`}}>
     <div className="overlay"></div>
     <Container>
       <Row>
@@ -14,11 +11,10 @@ import Link from "next/link";
           <div className="site-heading">
             <h1>Blogs Dashboard</h1>
             <span className="subheading">
-              Let's write some nice blog today{" "}
-              <Link href="/blogs/new">
+              Let's write some nice blog today{' '}
+                <Link href='/blogs/new'>
                 <Button color="primary">Create a new Blog</Button>
-              </Link>
-            </span>
+              </Link></span>
           </div>
         </div>
       </Row>
@@ -35,4 +31,4 @@ import Link from "next/link";
       </Col>
     </Row>
   </BasePage>
-</BaseLayout>;
+</BaseLayout>

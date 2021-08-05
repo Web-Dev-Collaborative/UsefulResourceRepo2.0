@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fade In on Hover</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(function(){
+                $('#container img').animate({'opacity':'0.5'});
+                $('#container img').hover(function(){
+                    $(this).stop().animate({'opacity':'1.0'});
+                },function(){
+                    $(this).stop().animate({'opacity':'0.5'});
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="container">
+            <img src="Duck-Hunt-Lite.png" width="200" height="200" />
+            <img src="Math-Games.png" width="200" height="200" />
+            <img src="Compass.png" width="200" height="200" />
+            <img src="Weather-Update.png" width="200" height="200" />
+        </div>
+    </body>
+</html>

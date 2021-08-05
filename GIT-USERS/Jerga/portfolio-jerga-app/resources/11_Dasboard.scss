@@ -21,7 +21,7 @@
       &:focus,
       &:hover {
         text-decoration: none;
-        color: #18bc9c;
+        color: #18BC9C;
       }
       > .post-title {
         font-size: 30px;
@@ -47,7 +47,7 @@
         &:focus,
         &:hover {
           text-decoration: underline;
-          color: #18bc9c;
+          color: #18BC9C;
         }
       }
     }
@@ -158,8 +158,10 @@
 
 // USER_BLOGS --------------------------------------
 .base-page {
+
   &.blog-user-page {
     padding-top: 50px;
+
 
     .user-blogs-list {
       list-style: none;
