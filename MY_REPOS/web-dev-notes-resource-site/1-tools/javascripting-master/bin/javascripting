@@ -1,3 +1,0 @@
-#!/usr/bin/env node
-
-require('../index').execute(process.argv.slice(2))

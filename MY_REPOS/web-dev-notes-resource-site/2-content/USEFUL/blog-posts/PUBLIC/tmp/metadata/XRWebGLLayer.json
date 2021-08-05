@@ -1,1 +1,0 @@
-{"name":"XRWebGLLayer","setName":"WebXR","hasDescriptions":false,"instanceProperties":[{"name":"antialias"},{"name":"framebuffer"},{"name":"framebufferHeight"},{"name":"framebufferWidth"},{"name":"ignoreDepthValues"}],"instanceMethods":[{"name":"getViewport"}],"instanceEvents":[],"properties":[],"methods":[{"name":"getNativeFramebufferScaleFactor"}]}

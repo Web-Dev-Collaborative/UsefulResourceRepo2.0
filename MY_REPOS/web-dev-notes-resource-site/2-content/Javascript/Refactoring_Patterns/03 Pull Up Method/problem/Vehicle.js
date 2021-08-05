@@ -1,3 +1,0 @@
-function Vehicle() {
-    // Other methods
-}

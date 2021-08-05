@@ -1,1 +1,0 @@
-{"name":"SVGAnimationElement","setName":"SVG","hasDescriptions":true,"instanceProperties":[{"name":"targetElement"}],"instanceMethods":[{"name":"getCurrentTime"},{"name":"getSimpleDuration"},{"name":"getStartTime"}],"instanceEvents":[],"properties":[],"methods":[]}

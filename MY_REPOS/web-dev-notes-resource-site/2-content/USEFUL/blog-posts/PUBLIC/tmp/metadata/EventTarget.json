@@ -1,1 +1,0 @@
-{"name":"EventTarget","setName":"DOM","hasDescriptions":true,"instanceProperties":[],"instanceMethods":[{"name":"addEventListener"},{"name":"dispatchEvent"},{"name":"removeEventListener"}],"instanceEvents":[],"properties":[],"methods":[]}

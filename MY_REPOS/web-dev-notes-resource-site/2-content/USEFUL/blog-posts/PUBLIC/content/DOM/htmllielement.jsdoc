@@ -1,9 +1,0 @@
-HTMLLIElement : HTMLElement
-
-
-Spec:
-https://html.spec.whatwg.org/#htmllielement
-
-----
-instance.value : Number
-
