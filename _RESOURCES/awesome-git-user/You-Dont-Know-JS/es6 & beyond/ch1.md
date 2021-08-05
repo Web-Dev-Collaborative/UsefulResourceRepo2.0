@@ -1,21 +1,22 @@
 # You Don't Know JS: ES6 & Beyond
+
 # Chapter 1: ES? Now & Future
 
-Before you dive into this book, you should have a solid working proficiency over JavaScript up to the most recent standard (at the time of this writing), which is commonly called *ES5* (technically ES 5.1). Here, we plan to talk squarely about the upcoming *ES6*, as well as cast our vision beyond to understand how JS will evolve moving forward.
+Before you dive into this book, you should have a solid working proficiency over JavaScript up to the most recent standard (at the time of this writing), which is commonly called _ES5_ (technically ES 5.1). Here, we plan to talk squarely about the upcoming _ES6_, as well as cast our vision beyond to understand how JS will evolve moving forward.
 
 If you are still looking for confidence with JavaScript, I highly recommend you read the other titles in this series first:
 
-* *Up & Going*: Are you new to programming and JS? This is the roadmap you need to consult as you start your learning journey.
-* *Scope & Closures*: Did you know that JS lexical scope is based on compiler (not interpreter!) semantics? Can you explain how closures are a direct result of lexical scope and functions as values?
-* *this & Object Prototypes*: Can you recite the four simple rules for how `this` is bound? Have you been muddling through fake "classes" in JS instead of adopting the simpler "behavior delegation" design pattern? Ever heard of *objects linked to other objects* (OLOO)?
-* *Types & Grammar*: Do you know the built-in types in JS, and more importantly, do you know how to properly and safely use coercion between types? How comfortable are you with the nuances of JS grammar/syntax?
-* *Async & Performance*: Are you still using callbacks to manage your asynchrony? Can you explain what a promise is and why/how it solves "callback hell"? Do you know how to use generators to improve the legibility of async code? What exactly constitutes mature optimization of JS programs and individual operations?
+- _Up & Going_: Are you new to programming and JS? This is the roadmap you need to consult as you start your learning journey.
+- _Scope & Closures_: Did you know that JS lexical scope is based on compiler (not interpreter!) semantics? Can you explain how closures are a direct result of lexical scope and functions as values?
+- _this & Object Prototypes_: Can you recite the four simple rules for how `this` is bound? Have you been muddling through fake "classes" in JS instead of adopting the simpler "behavior delegation" design pattern? Ever heard of _objects linked to other objects_ (OLOO)?
+- _Types & Grammar_: Do you know the built-in types in JS, and more importantly, do you know how to properly and safely use coercion between types? How comfortable are you with the nuances of JS grammar/syntax?
+- _Async & Performance_: Are you still using callbacks to manage your asynchrony? Can you explain what a promise is and why/how it solves "callback hell"? Do you know how to use generators to improve the legibility of async code? What exactly constitutes mature optimization of JS programs and individual operations?
 
 If you've already read all those titles and you feel pretty comfortable with the topics they cover, it's time we dive into the evolution of JS to explore all the changes coming not only soon but farther over the horizon.
 
 Unlike ES5, ES6 is not just a modest set of new APIs added to the language. It incorporates a whole slew of new syntactic forms, some of which may take quite a bit of getting used to. There's also a variety of new organization forms and new API helpers for various data types.
 
-ES6 is a radical jump forward for the language. Even if you think you know JS in ES5, ES6 is full of new stuff you *don't know yet*, so get ready! This book explores all the major themes of ES6 that you need to get up to speed on, and even gives you a glimpse of future features coming down the track that you should be aware of.
+ES6 is a radical jump forward for the language. Even if you think you know JS in ES5, ES6 is full of new stuff you _don't know yet_, so get ready! This book explores all the major themes of ES6 that you need to get up to speed on, and even gives you a glimpse of future features coming down the track that you should be aware of.
 
 **Warning:** All code in this book assumes an ES6+ environment. At the time of this writing, ES6 support varies quite a bit in browsers and JS environments (like Node.js), so your mileage may vary.
 
@@ -27,7 +28,7 @@ The earliest versions, ES1 and ES2, were not widely known or implemented. ES3 wa
 
 In 2009, ES5 was officially finalized (later ES5.1 in 2011), and settled as the widespread standard for JS for the modern revolution and explosion of browsers, such as Firefox, Chrome, Opera, Safari, and many others.
 
-Leading up to the expected *next* version of JS (slipped from 2013 to 2014 and then 2015), the obvious and common label in discourse has been ES6.
+Leading up to the expected _next_ version of JS (slipped from 2013 to 2014 and then 2015), the obvious and common label in discourse has been ES6.
 
 However, late into the ES6 specification timeline, suggestions have surfaced that versioning may in the future switch to a year-based schema, such as ES2016 (aka ES7) to refer to whatever version of the specification is finalized before the end of 2016. Some disagree, but ES6 will likely maintain its dominant mindshare over the late-change substitute ES2015. However, ES2016 may in fact signal the new year-based schema.
 
@@ -45,30 +46,30 @@ The way ES5 appears to have played out in the broader industry, the typical mind
 
 It's widely considered to be a harmful approach for the future of the JS ecosystem to wait around and trail the specification by so many years. All those responsible for evolving the language desire for developers to begin basing their code on the new features and patterns as soon as they stabilize in specification form and browsers have a chance to implement them.
 
-So how do we resolve this seeming contradiction? The answer is tooling, specifically a technique called *transpiling* (transformation + compiling). Roughly, the idea is to use a special tool to transform your ES6 code into equivalent (or close!) matches that work in ES5 environments.
+So how do we resolve this seeming contradiction? The answer is tooling, specifically a technique called _transpiling_ (transformation + compiling). Roughly, the idea is to use a special tool to transform your ES6 code into equivalent (or close!) matches that work in ES5 environments.
 
 For example, consider shorthand property definitions (see "Object Literal Extensions" in Chapter 2). Here's the ES6 form:
 
 ```js
-var foo = [1,2,3];
+var foo = [1, 2, 3];
 
 var obj = {
-	foo		// means `foo: foo`
+  foo, // means `foo: foo`
 };
 
-obj.foo;	// [1,2,3]
+obj.foo; // [1,2,3]
 ```
 
 But (roughly) here's how that transpiles:
 
 ```js
-var foo = [1,2,3];
+var foo = [1, 2, 3];
 
 var obj = {
-	foo: foo
+  foo: foo,
 };
 
-obj.foo;	// [1,2,3]
+obj.foo; // [1,2,3]
 ```
 
 This is a minor but pleasant transformation that lets us shorten the `foo: foo` in an object literal declaration to just `foo`, if the names are the same.
@@ -83,18 +84,18 @@ For example, `Object.is(..)` is a new utility for checking strict equality of tw
 
 ```js
 if (!Object.is) {
-	Object.is = function(v1, v2) {
-		// test for `-0`
-		if (v1 === 0 && v2 === 0) {
-			return 1 / v1 === 1 / v2;
-		}
-		// test for `NaN`
-		if (v1 !== v1) {
-			return v2 !== v2;
-		}
-		// everything else
-		return v1 === v2;
-	};
+  Object.is = function (v1, v2) {
+    // test for `-0`
+    if (v1 === 0 && v2 === 0) {
+      return 1 / v1 === 1 / v2;
+    }
+    // test for `NaN`
+    if (v1 !== v1) {
+      return v2 !== v2;
+    }
+    // everything else
+    return v1 === v2;
+  };
 }
 ```
 

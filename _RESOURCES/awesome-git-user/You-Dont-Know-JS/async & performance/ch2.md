@@ -1,7 +1,8 @@
 # You Don't Know JS: Async & Performance
+
 # Chapter 2: Callbacks
 
-In Chapter 1, we explored the terminology and concepts around asynchronous programming in JavaScript. Our focus is on understanding the single-threaded (one-at-a-time) event loop queue that drives all "events" (async function invocations). We also explored various ways that concurrency patterns explain the relationships (if any!) between *simultaneously* running chains of events, or "processes" (tasks, function calls, etc.).
+In Chapter 1, we explored the terminology and concepts around asynchronous programming in JavaScript. Our focus is on understanding the single-threaded (one-at-a-time) event loop queue that drives all "events" (async function invocations). We also explored various ways that concurrency patterns explain the relationships (if any!) between _simultaneously_ running chains of events, or "processes" (tasks, function calls, etc.).
 
 All our examples in Chapter 1 used the function as the individual, indivisible unit of operations, whereby inside the function, statements run in predictable order (above the compiler level!), but at the function-ordering level, events (aka async function invocations) can happen in a variety of orders.
 
@@ -11,7 +12,7 @@ As you no doubt have observed, callbacks are by far the most common way that asy
 
 Countless JS programs, even very sophisticated and complex ones, have been written upon no other async foundation than the callback (with of course the concurrency interaction patterns we explored in Chapter 1). The callback function is the async work horse for JavaScript, and it does its job respectably.
 
-Except... callbacks are not without their shortcomings. Many developers are excited by the *promise* (pun intended!) of better async patterns. But it's impossible to effectively use any abstraction if you don't understand what it's abstracting, and why.
+Except... callbacks are not without their shortcomings. Many developers are excited by the _promise_ (pun intended!) of better async patterns. But it's impossible to effectively use any abstraction if you don't understand what it's abstracting, and why.
 
 In this chapter, we will explore a couple of those in depth, as motivation for why more sophisticated async patterns (explored in subsequent chapters of this book) are necessary and desired.
 
@@ -27,17 +28,17 @@ ajax( "..", function(..){
 // B
 ```
 
-`// A` and `// B` represent the first half of the program (aka the *now*), and `// C` marks the second half of the program (aka the *later*). The first half executes right away, and then there's a "pause" of indeterminate length. At some future moment, if the Ajax call completes, then the program will pick up where it left off, and *continue* with the second half.
+`// A` and `// B` represent the first half of the program (aka the _now_), and `// C` marks the second half of the program (aka the _later_). The first half executes right away, and then there's a "pause" of indeterminate length. At some future moment, if the Ajax call completes, then the program will pick up where it left off, and _continue_ with the second half.
 
-In other words, the callback function wraps or encapsulates the *continuation* of the program.
+In other words, the callback function wraps or encapsulates the _continuation_ of the program.
 
 Let's make the code even simpler:
 
 ```js
 // A
-setTimeout( function(){
-	// C
-}, 1000 );
+setTimeout(function () {
+  // C
+}, 1000);
 // B
 ```
 
@@ -65,7 +66,7 @@ I'm not talking about all our involuntary, subconscious, automatic brain functio
 
 We're instead talking about whatever task is at the forefront of our minds at the moment. For me, it's writing the text in this book right now. Am I doing any other higher level brain function at exactly this same moment? Nope, not really. I get distracted quickly and easily -- a few dozen times in these last couple of paragraphs!
 
-When we *fake* multitasking, such as trying to type something at the same time we're talking to a friend or family member on the phone, what we're actually most likely doing is acting as fast context switchers. In other words, we switch back and forth between two or more tasks in rapid succession, *simultaneously* progressing on each task in tiny, fast little chunks. We do it so fast that to the outside world it appears as if we're doing these things *in parallel*.
+When we _fake_ multitasking, such as trying to type something at the same time we're talking to a friend or family member on the phone, what we're actually most likely doing is acting as fast context switchers. In other words, we switch back and forth between two or more tasks in rapid succession, _simultaneously_ progressing on each task in tiny, fast little chunks. We do it so fast that to the outside world it appears as if we're doing these things _in parallel_.
 
 Does that sound suspiciously like async evented concurrency (like the sort that happens in JS) to you?! If not, go back and read Chapter 1 again!
 
@@ -123,18 +124,17 @@ And **that** is why it's so hard to accurately author and reason about async JS 
 Consider:
 
 ```js
-listen( "click", function handler(evt){
-	setTimeout( function request(){
-		ajax( "http://some.url.1", function response(text){
-			if (text == "hello") {
-				handler();
-			}
-			else if (text == "world") {
-				request();
-			}
-		} );
-	}, 500) ;
-} );
+listen("click", function handler(evt) {
+  setTimeout(function request() {
+    ajax("http://some.url.1", function response(text) {
+      if (text == "hello") {
+        handler();
+      } else if (text == "world") {
+        request();
+      }
+    });
+  }, 500);
+});
 ```
 
 There's a good chance code like that is recognizable to you. We've got a chain of three functions nested together, each one representing a step in an asynchronous series (task, "process").
@@ -147,7 +147,7 @@ First, we're waiting for the "click" event, then we're waiting for the timer to 
 
 At first glance, this code may seem to map its asynchrony naturally to sequential brain planning.
 
-First (*now*), we:
+First (_now_), we:
 
 ```js
 listen( "..", function handler(..){
@@ -155,7 +155,7 @@ listen( "..", function handler(..){
 } );
 ```
 
-Then *later*, we:
+Then _later_, we:
 
 ```js
 setTimeout( function request(..){
@@ -163,7 +163,7 @@ setTimeout( function request(..){
 }, 500) ;
 ```
 
-Then still *later*, we:
+Then still _later_, we:
 
 ```js
 ajax( "..", function response(..){
@@ -171,7 +171,7 @@ ajax( "..", function response(..){
 } );
 ```
 
-And finally (most *later*), we:
+And finally (most _later_), we:
 
 ```js
 if ( .. ) {
@@ -187,42 +187,42 @@ First, it's an accident of the example that our steps are on subsequent lines (1
 But also, there's something deeper wrong, which isn't evident just in that code example. Let me make up another scenario (pseudocode-ish) to illustrate it:
 
 ```js
-doA( function(){
-	doB();
+doA(function () {
+  doB();
 
-	doC( function(){
-		doD();
-	} )
+  doC(function () {
+    doD();
+  });
 
-	doE();
-} );
+  doE();
+});
 
 doF();
 ```
 
 While the experienced among you will correctly identify the true order of operations here, I'm betting it is more than a little confusing at first glance, and takes some concerted mental cycles to arrive at. The operations will happen in this order:
 
-* `doA()`
-* `doF()`
-* `doB()`
-* `doC()`
-* `doE()`
-* `doD()`
+- `doA()`
+- `doF()`
+- `doB()`
+- `doC()`
+- `doE()`
+- `doD()`
 
 Did you get that right the very first time you glanced at the code?
 
 OK, some of you are thinking I was unfair in my function naming, to intentionally lead you astray. I swear I was just naming in top-down appearance order. But let me try again:
 
 ```js
-doA( function(){
-	doC();
+doA(function () {
+  doC();
 
-	doD( function(){
-		doF();
-	} )
+  doD(function () {
+    doF();
+  });
 
-	doE();
-} );
+  doE();
+});
 
 doB();
 ```
@@ -240,23 +240,22 @@ Is nesting the problem? Is that what makes it so hard to trace the async flow? T
 But let me rewrite the previous nested event/timeout/Ajax example without using nesting:
 
 ```js
-listen( "click", handler );
+listen("click", handler);
 
 function handler() {
-	setTimeout( request, 500 );
+  setTimeout(request, 500);
 }
 
-function request(){
-	ajax( "http://some.url.1", response );
+function request() {
+  ajax("http://some.url.1", response);
 }
 
-function response(text){
-	if (text == "hello") {
-		handler();
-	}
-	else if (text == "world") {
-		request();
-	}
+function response(text) {
+  if (text == "hello") {
+    handler();
+  } else if (text == "world") {
+    request();
+  }
 }
 ```
 
@@ -268,7 +267,7 @@ Another thing to notice: to get steps 2, 3, and 4 linked together so they happen
 
 But the hardcoding definitely makes the code a bit more brittle, as it doesn't account for anything going wrong that might cause a deviation in the progression of steps. For example, if step 2 fails, step 3 never gets reached, nor does step 2 retry, or move to an alternate error handling flow, and so on.
 
-All of these issues are things you *can* manually hardcode into each step, but that code is often very repetitive and not reusable in other steps or in other async flows in your program.
+All of these issues are things you _can_ manually hardcode into each step, but that code is often very repetitive and not reusable in other steps or in other async flows in your program.
 
 Even though our brains might plan out a series of tasks in a sequential type of way (this, then this, then this), the evented nature of our brain operation makes recovery/retry/forking of flow control almost effortless. If you're out running errands, and you realize you left a shopping list at home, it doesn't end the day because you didn't plan that ahead of time. Your brain routes around this hiccup easily: you go home, get the list, then head right back out to the store.
 
@@ -276,7 +275,7 @@ But the brittle nature of manually hardcoded callbacks (even with hardcoded erro
 
 **That** is what "callback hell" is all about! The nesting/indentation are basically a side show, a red herring.
 
-And as if all that's not enough, we haven't even touched what happens when two or more chains of these callback continuations are happening *simultaneously*, or when the third step branches out into "parallel" callbacks with gates or latches, or... OMG, my brain hurts, how about yours!?
+And as if all that's not enough, we haven't even touched what happens when two or more chains of these callback continuations are happening _simultaneously_, or when the third step branches out into "parallel" callbacks with gates or latches, or... OMG, my brain hurts, how about yours!?
 
 Are you catching the notion here that our sequential, blocking brain planning behaviors just don't map well onto callback-oriented async code? That's the first major deficiency to articulate about callbacks: they express asynchrony in code in ways our brains have to fight just to keep in sync with (pun intended!).
 
@@ -294,7 +293,7 @@ ajax( "..", function(..){
 // B
 ```
 
-`// A` and `// B` happen *now*, under the direct control of the main JS program. But `// C` gets deferred to happen *later*, and under the control of another party -- in this case, the `ajax(..)` function. In a basic sense, that sort of hand-off of control doesn't regularly cause lots of problems for programs.
+`// A` and `// B` happen _now_, under the direct control of the main JS program. But `// C` gets deferred to happen _later_, and under the control of another party -- in this case, the `ajax(..)` function. In a basic sense, that sort of hand-off of control doesn't regularly cause lots of problems for programs.
 
 But don't be fooled by its infrequency that this control switch isn't a big deal. In fact, it's one of the worst (and yet most subtle) problems about callback-driven design. It revolves around the idea that sometimes `ajax(..)` (i.e., the "party" you hand your callback continuation to) is not a function that you wrote, or that you directly control. Many times, it's a utility provided by some third party.
 
@@ -311,10 +310,10 @@ You notice that they've provided what looks like an async tracking utility, prob
 This code might look like:
 
 ```js
-analytics.trackPurchase( purchaseData, function(){
-	chargeCreditCard();
-	displayThankyouPage();
-} );
+analytics.trackPurchase(purchaseData, function () {
+  chargeCreditCard();
+  displayThankyouPage();
+});
 ```
 
 Easy enough, right? You write the code, test it, everything works, and you deploy to production. Everyone's happy!
@@ -333,20 +332,20 @@ Apparently, the developers at the analytics company had been working on some exp
 
 What's next?
 
-You talk it over with your boss, but he's not feeling particularly comfortable with the state of things. He insists, and you reluctantly agree, that you can't trust *them* anymore (that's what bit you), and that you'll need to figure out how to protect the checkout code from such a vulnerability again.
+You talk it over with your boss, but he's not feeling particularly comfortable with the state of things. He insists, and you reluctantly agree, that you can't trust _them_ anymore (that's what bit you), and that you'll need to figure out how to protect the checkout code from such a vulnerability again.
 
 After some tinkering, you implement some simple ad hoc code like the following, which the team seems happy with:
 
 ```js
 var tracked = false;
 
-analytics.trackPurchase( purchaseData, function(){
-	if (!tracked) {
-		tracked = true;
-		chargeCreditCard();
-		displayThankyouPage();
-	}
-} );
+analytics.trackPurchase(purchaseData, function () {
+  if (!tracked) {
+    tracked = true;
+    chargeCreditCard();
+    displayThankyouPage();
+  }
+});
 ```
 
 **Note:** This should look familiar to you from Chapter 1, because we're essentially creating a latch to handle if there happen to be multiple concurrent invocations of our callback.
@@ -355,12 +354,12 @@ But then one of your QA engineers asks, "what happens if they never call the cal
 
 You begin to chase down the rabbit hole, and think of all the possible things that could go wrong with them calling your callback. Here's roughly the list you come up with of ways the analytics utility could misbehave:
 
-* Call the callback too early (before it's been tracked)
-* Call the callback too late (or never)
-* Call the callback too few or too many times (like the problem you encountered!)
-* Fail to pass along any necessary environment/parameters to your callback
-* Swallow any errors/exceptions that may happen
-* ...
+- Call the callback too early (before it's been tracked)
+- Call the callback too late (or never)
+- Call the callback too few or too many times (like the problem you encountered!)
+- Fail to pass along any necessary environment/parameters to your callback
+- Swallow any errors/exceptions that may happen
+- ...
 
 That should feel like a troubling list, because it is. You're probably slowly starting to realize that you're going to have to invent an awful lot of ad hoc logic **in each and every single callback** that's passed to a utility you're not positive you can trust.
 
@@ -370,53 +369,56 @@ Now you realize a bit more completely just how hellish "callback hell" is.
 
 Some of you may be skeptical at this point whether this is as big a deal as I'm making it out to be. Perhaps you don't interact with truly third-party utilities much if at all. Perhaps you use versioned APIs or self-host such libraries, so that its behavior can't be changed out from underneath you.
 
-So, contemplate this: can you even *really* trust utilities that you do theoretically control (in your own code base)?
+So, contemplate this: can you even _really_ trust utilities that you do theoretically control (in your own code base)?
 
 Think of it this way: most of us agree that at least to some extent we should build our own internal functions with some defensive checks on the input parameters, to reduce/prevent unexpected issues.
 
 Overly trusting of input:
+
 ```js
-function addNumbers(x,y) {
-	// + is overloaded with coercion to also be
-	// string concatenation, so this operation
-	// isn't strictly safe depending on what's
-	// passed in.
-	return x + y;
+function addNumbers(x, y) {
+  // + is overloaded with coercion to also be
+  // string concatenation, so this operation
+  // isn't strictly safe depending on what's
+  // passed in.
+  return x + y;
 }
 
-addNumbers( 21, 21 );	// 42
-addNumbers( 21, "21" );	// "2121"
+addNumbers(21, 21); // 42
+addNumbers(21, "21"); // "2121"
 ```
 
 Defensive against untrusted input:
-```js
-function addNumbers(x,y) {
-	// ensure numerical input
-	if (typeof x != "number" || typeof y != "number") {
-		throw Error( "Bad parameters" );
-	}
 
-	// if we get here, + will safely do numeric addition
-	return x + y;
+```js
+function addNumbers(x, y) {
+  // ensure numerical input
+  if (typeof x != "number" || typeof y != "number") {
+    throw Error("Bad parameters");
+  }
+
+  // if we get here, + will safely do numeric addition
+  return x + y;
 }
 
-addNumbers( 21, 21 );	// 42
-addNumbers( 21, "21" );	// Error: "Bad parameters"
+addNumbers(21, 21); // 42
+addNumbers(21, "21"); // Error: "Bad parameters"
 ```
 
 Or perhaps still safe but friendlier:
-```js
-function addNumbers(x,y) {
-	// ensure numerical input
-	x = Number( x );
-	y = Number( y );
 
-	// + will safely do numeric addition
-	return x + y;
+```js
+function addNumbers(x, y) {
+  // ensure numerical input
+  x = Number(x);
+  y = Number(y);
+
+  // + will safely do numeric addition
+  return x + y;
 }
 
-addNumbers( 21, 21 );	// 42
-addNumbers( 21, "21" );	// 42
+addNumbers(21, 21); // 42
+addNumbers(21, "21"); // 42
 ```
 
 However you go about it, these sorts of checks/normalizations are fairly common on function inputs, even with code we theoretically entirely trust. In a crude sort of way, it's like the programming equivalent of the geopolitical principle of "Trust But Verify."
@@ -425,9 +427,9 @@ So, doesn't it stand to reason that we should do the same thing about compositio
 
 But callbacks don't really offer anything to assist us. We have to construct all that machinery ourselves, and it often ends up being a lot of boilerplate/overhead that we repeat for every single async callback.
 
-The most troublesome problem with callbacks is *inversion of control* leading to a complete breakdown along all those trust lines.
+The most troublesome problem with callbacks is _inversion of control_ leading to a complete breakdown along all those trust lines.
 
-If you have code that uses callbacks, especially but not exclusively with third-party utilities, and you're not already applying some sort of mitigation logic for all these *inversion of control* trust issues, your code *has* bugs in it right now even though they may not have bitten you yet. Latent bugs are still bugs.
+If you have code that uses callbacks, especially but not exclusively with third-party utilities, and you're not already applying some sort of mitigation logic for all these _inversion of control_ trust issues, your code _has_ bugs in it right now even though they may not have bitten you yet. Latent bugs are still bugs.
 
 Hell indeed.
 
@@ -439,14 +441,14 @@ For example, regarding more graceful error handling, some API designs provide fo
 
 ```js
 function success(data) {
-	console.log( data );
+  console.log(data);
 }
 
 function failure(err) {
-	console.error( err );
+  console.error(err);
 }
 
-ajax( "http://some.url.1", success, failure );
+ajax("http://some.url.1", success, failure);
 ```
 
 In APIs of this design, often the `failure()` error handler is optional, and if not provided it will be assumed you want the errors swallowed. Ugh.
@@ -456,18 +458,18 @@ In APIs of this design, often the `failure()` error handler is optional, and if 
 Another common callback pattern is called "error-first style" (sometimes called "Node style," as it's also the convention used across nearly all Node.js APIs), where the first argument of a single callback is reserved for an error object (if any). If success, this argument will be empty/falsy (and any subsequent arguments will be the success data), but if an error result is being signaled, the first argument is set/truthy (and usually nothing else is passed):
 
 ```js
-function response(err,data) {
-	// error?
-	if (err) {
-		console.error( err );
-	}
-	// otherwise, assume success
-	else {
-		console.log( data );
-	}
+function response(err, data) {
+  // error?
+  if (err) {
+    console.error(err);
+  }
+  // otherwise, assume success
+  else {
+    console.log(data);
+  }
 }
 
-ajax( "http://some.url.1", response );
+ajax("http://some.url.1", response);
 ```
 
 In both of these cases, several things should be observed.
@@ -479,20 +481,18 @@ Also, don't miss the fact that while it's a standard pattern you can employ, it'
 What about the trust issue of never being called? If this is a concern (and it probably should be!), you likely will need to set up a timeout that cancels the event. You could make a utility (proof-of-concept only shown) to help you with that:
 
 ```js
-function timeoutify(fn,delay) {
-	var intv = setTimeout( function(){
-			intv = null;
-			fn( new Error( "Timeout!" ) );
-		}, delay )
-	;
-
-	return function() {
-		// timeout hasn't happened yet?
-		if (intv) {
-			clearTimeout( intv );
-			fn.apply( this, [ null ].concat( [].slice.call( arguments ) ) );
-		}
-	};
+function timeoutify(fn, delay) {
+  var intv = setTimeout(function () {
+    intv = null;
+    fn(new Error("Timeout!"));
+  }, delay);
+  return function () {
+    // timeout hasn't happened yet?
+    if (intv) {
+      clearTimeout(intv);
+      fn.apply(this, [null].concat([].slice.call(arguments)));
+    }
+  };
 }
 ```
 
@@ -500,19 +500,18 @@ Here's how you use it:
 
 ```js
 // using "error-first style" callback design
-function foo(err,data) {
-	if (err) {
-		console.error( err );
-	}
-	else {
-		console.log( data );
-	}
+function foo(err, data) {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(data);
+  }
 }
 
-ajax( "http://some.url.1", timeoutify( foo, 500 ) );
+ajax("http://some.url.1", timeoutify(foo, 500));
 ```
 
-Another trust issue is being called "too early." In application-specific terms, this may actually involve being called before some critical task is complete. But more generally, the problem is evident in utilities that can either invoke the callback you provide *now* (synchronously), or *later* (asynchronously).
+Another trust issue is being called "too early." In application-specific terms, this may actually involve being called before some critical task is complete. But more generally, the problem is evident in utilities that can either invoke the callback you provide _now_ (synchronously), or _later_ (asynchronously).
 
 This nondeterminism around the sync-or-async behavior is almost always going to lead to very difficult to track down bugs. In some circles, the fictional insanity-inducing monster named Zalgo is used to describe the sync/async nightmares. "Don't release Zalgo!" is a common cry, and it leads to very sound advice: always invoke callbacks asynchronously, even if that's "right away" on the next turn of the event loop, so that all callbacks are predictably async.
 
@@ -522,12 +521,12 @@ Consider:
 
 ```js
 function result(data) {
-	console.log( a );
+  console.log(a);
 }
 
 var a = 0;
 
-ajax( "..pre-cached-url..", result );
+ajax("..pre-cached-url..", result);
 a++;
 ```
 
@@ -539,33 +538,31 @@ What if you don't know whether the API in question will always execute async? Yo
 
 ```js
 function asyncify(fn) {
-	var orig_fn = fn,
-		intv = setTimeout( function(){
-			intv = null;
-			if (fn) fn();
-		}, 0 )
-	;
+  var orig_fn = fn,
+    intv = setTimeout(function () {
+      intv = null;
+      if (fn) fn();
+    }, 0);
+  fn = null;
 
-	fn = null;
-
-	return function() {
-		// firing too quickly, before `intv` timer has fired to
-		// indicate async turn has passed?
-		if (intv) {
-			fn = orig_fn.bind.apply(
-				orig_fn,
-				// add the wrapper's `this` to the `bind(..)`
-				// call parameters, as well as currying any
-				// passed in parameters
-				[this].concat( [].slice.call( arguments ) )
-			);
-		}
-		// already async
-		else {
-			// invoke original function
-			orig_fn.apply( this, arguments );
-		}
-	};
+  return function () {
+    // firing too quickly, before `intv` timer has fired to
+    // indicate async turn has passed?
+    if (intv) {
+      fn = orig_fn.bind.apply(
+        orig_fn,
+        // add the wrapper's `this` to the `bind(..)`
+        // call parameters, as well as currying any
+        // passed in parameters
+        [this].concat([].slice.call(arguments))
+      );
+    }
+    // already async
+    else {
+      // invoke original function
+      orig_fn.apply(this, arguments);
+    }
+  };
 }
 ```
 
@@ -573,12 +570,12 @@ You use `asyncify(..)` like this:
 
 ```js
 function result(data) {
-	console.log( a );
+  console.log(a);
 }
 
 var a = 0;
 
-ajax( "..pre-cached-url..", asyncify( result ) );
+ajax("..pre-cached-url..", asyncify(result));
 a++;
 ```
 
@@ -598,10 +595,10 @@ First, our brains plan things out in sequential, blocking, single-threaded seman
 
 We need a way to express asynchrony in a more synchronous, sequential, blocking manner, just like our brains do.
 
-Second, and more importantly, callbacks suffer from *inversion of control* in that they implicitly give control over to another party (often a third-party utility not in your control!) to invoke the *continuation* of your program. This control transfer leads us to a troubling list of trust issues, such as whether the callback is called more times than we expect.
+Second, and more importantly, callbacks suffer from _inversion of control_ in that they implicitly give control over to another party (often a third-party utility not in your control!) to invoke the _continuation_ of your program. This control transfer leads us to a troubling list of trust issues, such as whether the callback is called more times than we expect.
 
 Inventing ad hoc logic to solve these trust issues is possible, but it's more difficult than it should be, and it produces clunkier and harder to maintain code, as well as code that is likely insufficiently protected from these hazards until you get visibly bitten by the bugs.
 
 We need a generalized solution to **all of the trust issues**, one that can be reused for as many callbacks as we create without all the extra boilerplate overhead.
 
-We need something better than callbacks. They've served us well to this point, but the *future* of JavaScript demands more sophisticated and capable async patterns. The subsequent chapters in this book will dive into those emerging evolutions.
+We need something better than callbacks. They've served us well to this point, but the _future_ of JavaScript demands more sophisticated and capable async patterns. The subsequent chapters in this book will dive into those emerging evolutions.

@@ -1,4 +1,5 @@
-# You Don't Know JS: *this* & Object Prototypes
+# You Don't Know JS: _this_ & Object Prototypes
+
 # Foreword
 
 While reading this book in preparation for writing this foreword, I was forced to reflect on how I learned JavaScript and how much it has changed over the last 15 years that I have been programming and developing with it.
@@ -11,9 +12,9 @@ When anything seems like magic, it is usually a good indication you are at the d
 
 One of my regrets as I look over the past 15 years is that I didn’t give JavaScript more of a chance before 2005, or more accurately, that I lacked the foresight to see JavaScript as a true programming language that is just as useful as C++, C#, Java, and many others.
 
-If I had this *You Don’t Know JS* series of books at the start of my career, my career history would look much different than it does today. And that is one of the things I love about this series: it explains JS at a level that builds your understanding as you go through the series, but in a fun and informative way.
+If I had this _You Don’t Know JS_ series of books at the start of my career, my career history would look much different than it does today. And that is one of the things I love about this series: it explains JS at a level that builds your understanding as you go through the series, but in a fun and informative way.
 
-*this & Object Prototypes* is a wonderful continuation to the series. It does a great and natural job of building on the prior book, Scope & Closures, and extending that knowledge to a very important part of the JS language, the `this` keyword and prototypes. These two simple things are pivotal for what you will learn in the future books, because they are foundational to doing real programming with JavaScript. The concept of how to create objects, relate them, and extend them to represent things in your application is necessary to create large and complex applications in JavaScript. And without them, creating complex applications (such as Google Maps) wouldn’t be possible in JavaScript.
+_this & Object Prototypes_ is a wonderful continuation to the series. It does a great and natural job of building on the prior book, Scope & Closures, and extending that knowledge to a very important part of the JS language, the `this` keyword and prototypes. These two simple things are pivotal for what you will learn in the future books, because they are foundational to doing real programming with JavaScript. The concept of how to create objects, relate them, and extend them to represent things in your application is necessary to create large and complex applications in JavaScript. And without them, creating complex applications (such as Google Maps) wouldn’t be possible in JavaScript.
 
 I would say that the vast majority of web developers probably have never built a JavaScript object and just treat the language as event-binding glue between buttons and AJAX requests. I was in that camp at a point in my career, but after I learned how to master prototypes and create objects in JavaScript, a world of possibilities opened up for me. If you fall into the category of just creating event-binding glue code, this book is a must-read; if you just need a refresher, this book will be a go-to resource for you. Either way, you will not be disappointed. Trust me!
 

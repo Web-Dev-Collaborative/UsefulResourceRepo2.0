@@ -1641,8 +1641,7 @@
   "at": {
     "changes": ["4.2", "5.0.0"],
     "ligatures": [],
-    "search": {
-    },
+    "search": {},
     "styles": ["solid"],
     "unicode": "f1fa",
     "label": "At",

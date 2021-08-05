@@ -1,4 +1,5 @@
 # You Don't Know JS: Types & Grammar
+
 # Appendix A: Mixed Environment JavaScript
 
 Beyond the core language mechanics we've fully explored in this book, there are several ways that your JS code can behave differently when it runs in the real world. If JS was executing purely inside an engine, it'd be entirely predictable based on nothing but the black-and-white of the spec. But JS pretty much always runs in the context of a hosting environment, which exposes your code to some degree of unpredictability.
@@ -17,9 +18,9 @@ The proper way to consider these deviations is that they are only reliably prese
 
 The main compatibility differences:
 
-* Octal number literals are allowed, such as `0123` (decimal `83`) in non-`strict mode`.
-* `window.escape(..)` and `window.unescape(..)` allow you to escape or unescape strings with `%`-delimited hexadecimal escape sequences. For example: `window.escape( "?foo=97%&bar=3%" )` produces `"%3Ffoo%3D97%25%26bar%3D3%25"`.
-* `String.prototype.substr` is quite similar to `String.prototype.substring`, except that instead of the second parameter being the ending index (noninclusive), the second parameter is the `length` (number of characters to include).
+- Octal number literals are allowed, such as `0123` (decimal `83`) in non-`strict mode`.
+- `window.escape(..)` and `window.unescape(..)` allow you to escape or unescape strings with `%`-delimited hexadecimal escape sequences. For example: `window.escape( "?foo=97%&bar=3%" )` produces `"%3Ffoo%3D97%25%26bar%3D3%25"`.
+- `String.prototype.substr` is quite similar to `String.prototype.substring`, except that instead of the second parameter being the ending index (noninclusive), the second parameter is the `length` (number of characters to include).
 
 ### Web ECMAScript
 
@@ -27,10 +28,10 @@ The Web ECMAScript specification (http://javascript.spec.whatwg.org/) covers the
 
 In other words, these items are "required" of browsers (to be compatible with each other) but are not (as of the time of writing) listed in the "Annex B" section of the official spec:
 
-* `<!--` and `-->` are valid single-line comment delimiters.
-* `String.prototype` additions for returning HTML-formatted strings: `anchor(..)`, `big(..)`, `blink(..)`, `bold(..)`, `fixed(..)`, `fontcolor(..)`, `fontsize(..)`, `italics(..)`, `link(..)`, `small(..)`, `strike(..)`, and `sub(..)`. **Note:** These are very rarely used in practice, and are generally discouraged in favor of other built-in DOM APIs or user-defined utilities.
-* `RegExp` extensions: `RegExp.$1` .. `RegExp.$9` (match-groups) and `RegExp.lastMatch`/`RegExp["$&"]` (most recent match).
-* `Function.prototype` additions: `Function.prototype.arguments` (aliases internal `arguments` object) and `Function.caller` (aliases internal `arguments.caller`). **Note:** `arguments` and thus `arguments.caller` are deprecated, so you should avoid using them if possible. That goes doubly so for these aliases -- don't use them!
+- `<!--` and `-->` are valid single-line comment delimiters.
+- `String.prototype` additions for returning HTML-formatted strings: `anchor(..)`, `big(..)`, `blink(..)`, `bold(..)`, `fixed(..)`, `fontcolor(..)`, `fontsize(..)`, `italics(..)`, `link(..)`, `small(..)`, `strike(..)`, and `sub(..)`. **Note:** These are very rarely used in practice, and are generally discouraged in favor of other built-in DOM APIs or user-defined utilities.
+- `RegExp` extensions: `RegExp.$1` .. `RegExp.$9` (match-groups) and `RegExp.lastMatch`/`RegExp["$&"]` (most recent match).
+- `Function.prototype` additions: `Function.prototype.arguments` (aliases internal `arguments` object) and `Function.caller` (aliases internal `arguments.caller`). **Note:** `arguments` and thus `arguments.caller` are deprecated, so you should avoid using them if possible. That goes doubly so for these aliases -- don't use them!
 
 **Note:** Some other minor and rarely used deviations are not included in our list here. See the external "Annex B" and "Web ECMAScript" documents for more detailed information as needed.
 
@@ -43,12 +44,12 @@ The well-covered rules for how variables behave in JS have exceptions to them wh
 For example:
 
 ```js
-var a = document.createElement( "div" );
+var a = document.createElement("div");
 
-typeof a;								// "object" -- as expected
-Object.prototype.toString.call( a );	// "[object HTMLDivElement]"
+typeof a; // "object" -- as expected
+Object.prototype.toString.call(a); // "[object HTMLDivElement]"
 
-a.tagName;								// "DIV"
+a.tagName; // "DIV"
 ```
 
 `a` is not just an `object`, but a special host object because it's a DOM element. It has a different internal `[[Class]]` value (`"HTMLDivElement"`) and comes with predefined (and often unchangeable) properties.
@@ -57,15 +58,15 @@ Another such quirk has already been covered, in the "Falsy Objects" section in C
 
 Other behavior variations with host objects to be aware of can include:
 
-* not having access to normal `object` built-ins like `toString()`
-* not being overwritable
-* having certain predefined read-only properties
-* having methods that cannot be `this`-overriden to other objects
-* and more...
+- not having access to normal `object` built-ins like `toString()`
+- not being overwritable
+- having certain predefined read-only properties
+- having methods that cannot be `this`-overriden to other objects
+- and more...
 
 Host objects are critical to making our JS code work with its surrounding environment. But it's important to note when you're interacting with a host object and be careful assuming its behaviors, as they will quite often not conform to regular JS `object`s.
 
-One notable example of a host object that you probably interact with regularly is the `console` object and its various functions (`log(..)`, `error(..)`, etc.). The `console` object is provided by the *hosting environment* specifically so your code can interact with it for various development-related output tasks.
+One notable example of a host object that you probably interact with regularly is the `console` object and its various functions (`log(..)`, `error(..)`, etc.). The `console` object is provided by the _hosting environment_ specifically so your code can interact with it for various development-related output tasks.
 
 In browsers, `console` hooks up to the developer tools' console display, whereas in node.js and other server-side JS environments, `console` is generally connected to the standard-output (`stdout`) and standard-error (`stderr`) streams of the JavaScript environment system process.
 
@@ -83,10 +84,10 @@ And:
 
 ```js
 if (typeof foo == "undefined") {
-	foo = 42;		// will never run
+  foo = 42; // will never run
 }
 
-console.log( foo );	// HTML element
+console.log(foo); // HTML element
 ```
 
 You're perhaps used to managing global variable tests (using `typeof` or `.. in window` checks) under the assumption that only JS code creates such variables, but as you can see, the contents of your hosting HTML page can also create them, which can easily throw off your existence check logic if you're not careful.
@@ -95,9 +96,9 @@ This is yet one more reason why you should, if at all possible, avoid using glob
 
 ## Native Prototypes
 
-One of the most widely known and classic pieces of JavaScript *best practice* wisdom is: **never extend native prototypes**.
+One of the most widely known and classic pieces of JavaScript _best practice_ wisdom is: **never extend native prototypes**.
 
-Whatever method or property name you come up with to add to `Array.prototype` that doesn't (yet) exist, if it's a useful addition and well-designed, and properly named, there's a strong chance it *could* eventually end up being added to the spec -- in which case your extension is now in conflict.
+Whatever method or property name you come up with to add to `Array.prototype` that doesn't (yet) exist, if it's a useful addition and well-designed, and properly named, there's a strong chance it _could_ eventually end up being added to the spec -- in which case your extension is now in conflict.
 
 Here's a real example that actually happened to me that illustrates this point well.
 
@@ -107,8 +108,8 @@ After almost a week of analysis/debugging, I found that the site in question had
 
 ```js
 // Netscape 4 doesn't have Array.push
-Array.prototype.push = function(item) {
-	this[this.length] = item;
+Array.prototype.push = function (item) {
+  this[this.length] = item;
 };
 ```
 
@@ -128,10 +129,10 @@ Next, don't unconditionally define extensions (because you can overwrite natives
 
 ```js
 if (!Array.prototype.push) {
-	// Netscape 4 doesn't have Array.push
-	Array.prototype.push = function(item) {
-		this[this.length] = item;
-	};
+  // Netscape 4 doesn't have Array.push
+  Array.prototype.push = function (item) {
+    this[this.length] = item;
+  };
 }
 ```
 
@@ -142,31 +143,29 @@ The `if` statement guard would have only defined this hacked `push()` for JS env
 
 What that highlights is an interesting question that, frankly, doesn't get enough attention from JS developers: **Should you EVER rely on native built-in behavior** if your code is running in any environment where it's not the only code present?
 
-The strict answer is **no**, but that's awfully impractical. Your code usually can't redefine its own private untouchable versions of all built-in behavior relied on. Even if you *could*, that's pretty wasteful.
+The strict answer is **no**, but that's awfully impractical. Your code usually can't redefine its own private untouchable versions of all built-in behavior relied on. Even if you _could_, that's pretty wasteful.
 
 So, should you feature-test for the built-in behavior as well as compliance-testing that it does what you expect? And what if that test fails -- should your code just refuse to run?
 
 ```js
 // don't trust Array.prototype.push
-(function(){
-	if (Array.prototype.push) {
-		var a = [];
-		a.push(1,2);
-		if (a[0] === 1 && a[1] === 2) {
-			// tests passed, safe to use!
-			return;
-		}
-	}
+(function () {
+  if (Array.prototype.push) {
+    var a = [];
+    a.push(1, 2);
+    if (a[0] === 1 && a[1] === 2) {
+      // tests passed, safe to use!
+      return;
+    }
+  }
 
-	throw Error(
-		"Array#push() is missing/broken!"
-	);
+  throw Error("Array#push() is missing/broken!");
 })();
 ```
 
 In theory, that sounds plausible, but it's also pretty impractical to design tests for every single built-in method.
 
-So, what should we do? Should we *trust but verify* (feature- and compliance-test) **everything**? Should we just assume existence is compliance and let breakage (caused by others) bubble up as it will?
+So, what should we do? Should we _trust but verify_ (feature- and compliance-test) **everything**? Should we just assume existence is compliance and let breakage (caused by others) bubble up as it will?
 
 There's no great answer. The only fact that can be observed is that extending native prototypes is the only way these things bite you.
 
@@ -182,10 +181,10 @@ If you could see into the future, and know for sure what a future standard was g
 
 ```js
 if (!Array.prototype.foobar) {
-	// silly, silly
-	Array.prototype.foobar = function() {
-		this.push( "foo", "bar" );
-	};
+  // silly, silly
+  Array.prototype.foobar = function () {
+    this.push("foo", "bar");
+  };
 }
 ```
 
@@ -205,7 +204,7 @@ Many developers at least accept some common partial polyfills (like for instance
 
 Some developers believe that the `if` guard around a polyfill/shim should include some form of conformance test, replacing the existing method either if it's absent or fails the tests. This extra layer of compliance testing is sometimes used to distinguish "shim" (compliance tested) from "polyfill" (existence checked).
 
-The only absolute take-away is that there is no absolute *right* answer here. Extending natives, even when done "safely" in older environments, is not 100% safe. The same goes for relying upon (possibly extended) natives in the presence of others' code.
+The only absolute take-away is that there is no absolute _right_ answer here. Extending natives, even when done "safely" in older environments, is not 100% safe. The same goes for relying upon (possibly extended) natives in the presence of others' code.
 
 Either should always be done with caution, defensive code, and lots of obvious documentation about the risks.
 
@@ -217,21 +216,23 @@ But do these separate files/code snippets constitute separate programs or are th
 
 The (perhaps surprising) reality is they act more like independent JS programs in most, but not all, respects.
 
-The one thing they *share* is the single `global` object (`window` in the browser), which means multiple files can append their code to that shared namespace and they can all interact.
+The one thing they _share_ is the single `global` object (`window` in the browser), which means multiple files can append their code to that shared namespace and they can all interact.
 
 So, if one `script` element defines a global function `foo()`, when a second `script` later runs, it can access and call `foo()` just as if it had defined the function itself.
 
-But global variable scope *hoisting* (see the *Scope & Closures* title of this series) does not occur across these boundaries, so the following code would not work (because `foo()`'s declaration isn't yet declared), regardless of if they are (as shown) inline `<script> .. </script>` elements or externally loaded `<script src=..></script>` files:
+But global variable scope _hoisting_ (see the _Scope & Closures_ title of this series) does not occur across these boundaries, so the following code would not work (because `foo()`'s declaration isn't yet declared), regardless of if they are (as shown) inline `<script> .. </script>` elements or externally loaded `<script src=..></script>` files:
 
 ```html
-<script>foo();</script>
+<script>
+  foo();
+</script>
 
 <script>
   function foo() { .. }
 </script>
 ```
 
-But either of these *would* work instead:
+But either of these _would_ work instead:
 
 ```html
 <script>
@@ -247,7 +248,9 @@ Or:
   function foo() { .. }
 </script>
 
-<script>foo();</script>
+<script>
+  foo();
+</script>
 ```
 
 Also, if an error occurs in a `script` element (inline or external), as a separate standalone JS program it will fail and stop, but any subsequent `script`s will run (still with the shared `global`) unimpeded.
@@ -257,12 +260,13 @@ You can create `script` elements dynamically from your code, and inject them int
 ```js
 var greeting = "Hello World";
 
-var el = document.createElement( "script" );
+var el = document.createElement("script");
 
-el.text = "function foo(){ alert( greeting );\
+el.text =
+  "function foo(){ alert( greeting );\
  } setTimeout( foo, 1000 );";
 
-document.body.appendChild( el );
+document.body.appendChild(el);
 ```
 
 **Note:** Of course, if you tried the above snippet but set `el.src` to some file URL instead of setting `el.text` to the code contents, you'd be dynamically creating an externally loaded `<script src=..></script>` element.
@@ -289,15 +293,15 @@ Another deprecated practice with inline `script` elements is including HTML-styl
 
 ```html
 <script>
-<!--
-alert( "Hello" );
-//-->
+  <!--
+  alert("Hello");
+  //-->
 </script>
 
 <script>
-<!--//--><![CDATA[//><!--
-alert( "World" );
-//--><!]]>
+  <!--//--><![CDATA[//><!--
+  alert("World");
+  //--><!]]>
 </script>
 ```
 
@@ -321,13 +325,14 @@ StackOverflow user "art4theSould" creatively worked all these reserved words int
 > Extends final export throws.
 >
 > Try import double enum?
+>
 > - False, boolean, abstract function,
-> Implements typeof transient break!
-> Void static, default do,
-> Switch int native new.
-> Else, delete null public var
-> In return for const, true, char
-> …Finally catch byte.
+>   Implements typeof transient break!
+>   Void static, default do,
+>   Switch int native new.
+>   Else, delete null public var
+>   In return for const, true, char
+>   …Finally catch byte.
 
 **Note:** This poem includes words that were reserved in ES3 (`byte`, `long`, etc.) that are no longer reserved as of ES5.
 
@@ -343,7 +348,7 @@ But this is allowed:
 
 ```js
 var obj = { import: "42" };
-console.log( obj.import );
+console.log(obj.import);
 ```
 
 You should be aware though that some older browser versions (mainly older IE) weren't completely consistent on applying these rules, so there are places where using reserved words in object property name locations can still cause issues. Carefully test all supported browser environments.
@@ -356,33 +361,33 @@ For example:
 
 ```js
 function addAll() {
-	var sum = 0;
-	for (var i=0; i < arguments.length; i++) {
-		sum += arguments[i];
-	}
-	return sum;
+  var sum = 0;
+  for (var i = 0; i < arguments.length; i++) {
+    sum += arguments[i];
+  }
+  return sum;
 }
 
 var nums = [];
-for (var i=1; i < 100000; i++) {
-	nums.push(i);
+for (var i = 1; i < 100000; i++) {
+  nums.push(i);
 }
 
-addAll( 2, 4, 6 );				// 12
-addAll.apply( null, nums );		// should be: 499950000
+addAll(2, 4, 6); // 12
+addAll.apply(null, nums); // should be: 499950000
 ```
 
 In some JS engines, you'll get the correct `499950000` answer, but in others (like Safari 6.x), you'll get the error: "RangeError: Maximum call stack size exceeded."
 
 Examples of other limits known to exist:
 
-* maximum number of characters allowed in a string literal (not just a string value)
-* size (bytes) of data that can be sent in arguments to a function call (aka stack size)
-* number of parameters in a function declaration
-* maximum depth of non-optimized call stack (i.e., with recursion): how long a chain of function calls from one to the other can be
-* number of seconds a JS program can run continuously blocking the browser
-* maximum length allowed for a variable name
-* ...
+- maximum number of characters allowed in a string literal (not just a string value)
+- size (bytes) of data that can be sent in arguments to a function call (aka stack size)
+- number of parameters in a function declaration
+- maximum depth of non-optimized call stack (i.e., with recursion): how long a chain of function calls from one to the other can be
+- number of seconds a JS program can run continuously blocking the browser
+- maximum length allowed for a variable name
+- ...
 
 It's not very common at all to run into these limits, but you should be aware that limits can and do exist, and importantly that they vary between engines.
 

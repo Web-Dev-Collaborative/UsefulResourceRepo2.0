@@ -1,4 +1,5 @@
 # You Don't Know JS: Async & Performance
+
 # Chapter 5: Program Performance
 
 This book so far has been all about how to leverage asynchrony patterns more effectively. But we haven't directly addressed why asynchrony really matters to JS. The most obvious explicit reason is **performance**.
@@ -31,14 +32,14 @@ And you'd want to know if these two pieces of the program have access to the sam
 
 Alternatively, you'd want to know how these two pieces could "communicate" if they couldn't share scope/resources.
 
-All these are great questions to consider as we explore a feature added to the web platform circa HTML5 called "Web Workers." This is a feature of the browser (aka host environment) and actually has almost nothing to do with the JS language itself. That is, JavaScript does not *currently* have any features that support threaded execution.
+All these are great questions to consider as we explore a feature added to the web platform circa HTML5 called "Web Workers." This is a feature of the browser (aka host environment) and actually has almost nothing to do with the JS language itself. That is, JavaScript does not _currently_ have any features that support threaded execution.
 
 But an environment like your browser can easily provide multiple instances of the JavaScript engine, each on its own thread, and let you run a different program in each thread. Each of those separate threaded pieces of your program is called a "(Web) Worker." This type of parallelism is called "task parallelism," as the emphasis is on splitting up chunks of your program to run in parallel.
 
 From your main JS program (or another Worker), you instantiate a Worker like so:
 
 ```js
-var w1 = new Worker( "http://some.url.1/mycoolworker.js" );
+var w1 = new Worker("http://some.url.1/mycoolworker.js");
 ```
 
 The URL should point to the location of a JS file (not an HTML page!) which is intended to be loaded into a Worker. The browser will then spin up a separate thread and let that file run as an independent program in that thread.
@@ -52,15 +53,15 @@ The `w1` Worker object is an event listener and trigger, which lets you subscrib
 Here's how to listen for events (actually, the fixed `"message"` event):
 
 ```js
-w1.addEventListener( "message", function(evt){
-	// evt.data
-} );
+w1.addEventListener("message", function (evt) {
+  // evt.data
+});
 ```
 
 And you can send the `"message"` event to the Worker:
 
 ```js
-w1.postMessage( "something cool to say" );
+w1.postMessage("something cool to say");
 ```
 
 Inside the Worker, the messaging is totally symmetrical:
@@ -68,11 +69,11 @@ Inside the Worker, the messaging is totally symmetrical:
 ```js
 // "mycoolworker.js"
 
-addEventListener( "message", function(evt){
-	// evt.data
-} );
+addEventListener("message", function (evt) {
+  // evt.data
+});
 
-postMessage( "a really cool reply" );
+postMessage("a really cool reply");
 ```
 
 Notice that a dedicated Worker is in a one-to-one relationship with the program that created it. That is, the `"message"` event doesn't need any disambiguation here, because we're sure that it could only have come from this one-to-one relationship -- either it came from the Worker or the main page.
@@ -95,7 +96,7 @@ You can also load extra JS scripts into your Worker, using `importScripts(..)`:
 
 ```js
 // inside the Worker
-importScripts( "foo.js", "bar.js" );
+importScripts("foo.js", "bar.js");
 ```
 
 These scripts are loaded synchronously, which means the `importScripts(..)` call will block the rest of the Worker's execution until the file(s) are finished loading and executing.
@@ -104,10 +105,10 @@ These scripts are loaded synchronously, which means the `importScripts(..)` call
 
 What are some common uses for Web Workers?
 
-* Processing intensive math calculations
-* Sorting large data sets
-* Data operations (compression, audio analysis, image pixel manipulations, etc.)
-* High-traffic network communications
+- Processing intensive math calculations
+- Sorting large data sets
+- Data operations (compression, audio analysis, image pixel manipulations, etc.)
+- High-traffic network communications
 
 ### Data Transfer
 
@@ -123,12 +124,12 @@ An even better option, especially for larger data sets, is "Transferable Objects
 
 There really isn't much you need to do to opt into a Transferable Object; any data structure that implements the Transferable interface (https://developer.mozilla.org/en-US/docs/Web/API/Transferable) will automatically be transferred this way (support Firefox & Chrome).
 
-For example, typed arrays like `Uint8Array` (see the *ES6 & Beyond* title of this series) are "Transferables." This is how you'd send a Transferable Object using `postMessage(..)`:
+For example, typed arrays like `Uint8Array` (see the _ES6 & Beyond_ title of this series) are "Transferables." This is how you'd send a Transferable Object using `postMessage(..)`:
 
 ```js
 // `foo` is a `Uint8Array` for instance
 
-postMessage( foo.buffer, [ foo.buffer ] );
+postMessage(foo.buffer, [foo.buffer]);
 ```
 
 The first parameter is the raw buffer and the second parameter is a list of what to transfer.
@@ -139,22 +140,22 @@ Browsers that don't support Transferable Objects simply degrade to structured cl
 
 If your site or app allows for loading multiple tabs of the same page (a common feature), you may very well want to reduce the resource usage of their system by preventing duplicate dedicated Workers; the most common limited resource in this respect is a socket network connection, as browsers limit the number of simultaneous connections to a single host. Of course, limiting multiple connections from a client also eases your server resource requirements.
 
-In this case, creating a single centralized Worker that all the page instances of your site or app can *share* is quite useful.
+In this case, creating a single centralized Worker that all the page instances of your site or app can _share_ is quite useful.
 
 That's called a `SharedWorker`, which you create like so (support for this is limited to Firefox and Chrome):
 
 ```js
-var w1 = new SharedWorker( "http://some.url.1/mycoolworker.js" );
+var w1 = new SharedWorker("http://some.url.1/mycoolworker.js");
 ```
 
 Because a shared Worker can be connected to or from more than one program instance or page on your site, the Worker needs a way to know which program a message comes from. This unique identification is called a "port" -- think network socket ports. So the calling program must use the `port` object of the Worker for communication:
 
 ```js
-w1.port.addEventListener( "message", handleMessages );
+w1.port.addEventListener("message", handleMessages);
 
 // ..
 
-w1.port.postMessage( "something cool" );
+w1.port.postMessage("something cool");
 ```
 
 Also, the port connection must be initialized, as:
@@ -163,7 +164,7 @@ Also, the port connection must be initialized, as:
 w1.port.start();
 ```
 
-Inside the shared Worker, an extra event must be handled: `"connect"`. This event provides the port `object` for that particular connection. The most convenient way to keep multiple connections separate is to use closure (see *Scope & Closures* title of this series) over the `port`, as shown next, with the event listening and transmitting for that connection defined inside the handler for the `"connect"` event:
+Inside the shared Worker, an extra event must be handled: `"connect"`. This event provides the port `object` for that particular connection. The most convenient way to keep multiple connections separate is to use closure (see _Scope & Closures_ title of this series) over the `port`, as shown next, with the event listening and transmitting for that connection defined inside the handler for the `"connect"` event:
 
 ```js
 // inside the shared Worker
@@ -215,14 +216,14 @@ The performance benefits for data-intensive applications (signal analysis, matri
 Early proposal forms of the SIMD API at the time of this writing look like this:
 
 ```js
-var v1 = SIMD.float32x4( 3.14159, 21.0, 32.3, 55.55 );
-var v2 = SIMD.float32x4( 2.1, 3.2, 4.3, 5.4 );
+var v1 = SIMD.float32x4(3.14159, 21.0, 32.3, 55.55);
+var v2 = SIMD.float32x4(2.1, 3.2, 4.3, 5.4);
 
-var v3 = SIMD.int32x4( 10, 101, 1001, 10001 );
-var v4 = SIMD.int32x4( 10, 20, 30, 40 );
+var v3 = SIMD.int32x4(10, 101, 1001, 10001);
+var v4 = SIMD.int32x4(10, 20, 30, 40);
 
-SIMD.float32x4.mul( v1, v2 );	// [ 6.597339, 67.2, 138.89, 299.97 ]
-SIMD.int32x4.add( v3, v4 );		// [ 20, 121, 1031, 10041 ]
+SIMD.float32x4.mul(v1, v2); // [ 6.597339, 67.2, 138.89, 299.97 ]
+SIMD.int32x4.add(v3, v4); // [ 20, 121, 1031, 10041 ]
 ```
 
 Shown here are two different vector data types, 32-bit floating-point numbers and 32-bit integer numbers. You can see that these vectors are sized exactly to four 32-bit elements, as this matches the SIMD vector sizes (128-bit) available in most modern CPUs. It's also possible we may see an `x8` (or larger!) version of these APIs in the future.
@@ -233,9 +234,9 @@ Besides `mul()` and `add()`, many other operations are likely to be included, su
 
 ## asm.js
 
-"asm.js" (http://asmjs.org/) is a label for a highly optimizable subset of the JavaScript language. By carefully avoiding certain mechanisms and patterns that are *hard* to optimize (garbage collection, coercion, etc.), asm.js-styled code can be recognized by the JS engine and given special attention with aggressive low-level optimizations.
+"asm.js" (http://asmjs.org/) is a label for a highly optimizable subset of the JavaScript language. By carefully avoiding certain mechanisms and patterns that are _hard_ to optimize (garbage collection, coercion, etc.), asm.js-styled code can be recognized by the JS engine and given special attention with aggressive low-level optimizations.
 
-Distinct from other program performance mechanisms discussed in this chapter, asm.js isn't necessarily something that needs to be adopted into the JS language specification. There *is* an asm.js specification (http://asmjs.org/spec/latest/), but it's mostly for tracking an agreed upon set of candidate inferences for optimization rather than a set of requirements of JS engines.
+Distinct from other program performance mechanisms discussed in this chapter, asm.js isn't necessarily something that needs to be adopted into the JS language specification. There _is_ an asm.js specification (http://asmjs.org/spec/latest/), but it's mostly for tracking an agreed upon set of candidate inferences for optimization rather than a set of requirements of JS engines.
 
 There's not currently any new syntax being proposed. Instead, asm.js suggests ways to recognize existing standard JS syntax that conforms to the rules of asm.js and let engines implement their own optimizations accordingly.
 
@@ -243,7 +244,7 @@ There's been some disagreement between browser vendors over exactly how asm.js s
 
 ### How to Optimize with asm.js
 
-The first thing to understand about asm.js optimizations is around types and coercion (see the *Types & Grammar* title of this series). If the JS engine has to track multiple different types of values in a variable through various operations, so that it can handle coercions between types as necessary, that's a lot of extra work that keeps the program optimization suboptimal.
+The first thing to understand about asm.js optimizations is around types and coercion (see the _Types & Grammar_ title of this series). If the JS engine has to track multiple different types of values in a variable through various operations, so that it can handle coercions between types as necessary, that's a lot of extra work that keeps the program optimization suboptimal.
 
 **Note:** We're going to use asm.js-style code here for illustration purposes, but be aware that it's not commonly expected that you'll author such code by hand. asm.js is more intended to a compilation target from other tools, such as Emscripten (https://github.com/kripken/emscripten/wiki). It's of course possible to write your own asm.js code, but that's usually a bad idea because the code is very low level and managing it can be very time consuming and error prone. Nevertheless, there may be cases where you'd want to hand tweak your code for asm.js optimization purposes.
 
@@ -269,19 +270,19 @@ var a = 42;
 var b = a | 0;
 ```
 
-Here, we've used the `|` ("binary OR") with value `0`, which has no effect on the value other than to make sure it's a 32-bit integer. That code run in a normal JS engine works just fine, but when run in an asm.js-aware JS engine it *can* signal that `b` should always be treated as a 32-bit integer, so the coercion tracking can be skipped.
+Here, we've used the `|` ("binary OR") with value `0`, which has no effect on the value other than to make sure it's a 32-bit integer. That code run in a normal JS engine works just fine, but when run in an asm.js-aware JS engine it _can_ signal that `b` should always be treated as a 32-bit integer, so the coercion tracking can be skipped.
 
 Similarly, the addition operation between two variables can be restricted to a more performant integer addition (instead of floating point):
 
 ```js
-(a + b) | 0
+(a + b) | 0;
 ```
 
 Again, the asm.js-aware JS engine can see that hint and infer that the `+` operation should be 32-bit integer addition because the end result of the whole expression would automatically be 32-bit integer conformed anyway.
 
 ### asm.js Modules
 
-One of the biggest detractors to performance in JS is around memory allocation, garbage collection, and scope access. asm.js suggests one of the ways around these issues is to declare a more formalized asm.js "module" -- do not confuse these with ES6 modules; see the *ES6 & Beyond* title of this series.
+One of the biggest detractors to performance in JS is around memory allocation, garbage collection, and scope access. asm.js suggests one of the ways around these issues is to declare a more formalized asm.js "module" -- do not confuse these with ES6 modules; see the _ES6 & Beyond_ title of this series.
 
 For an asm.js module, you need to explicitly pass in a tightly conformed namespace -- this is referred to in the spec as `stdlib`, as it should represent standard libraries needed -- to import necessary symbols, rather than just using globals via lexical scope. In the base case, the `window` object is an acceptable `stdlib` object for asm.js module purposes, but you could and perhaps should construct an even more restricted one.
 
@@ -290,61 +291,59 @@ You also must declare a "heap" -- which is just a fancy term for a reserved spot
 A "heap" is likely a typed `ArrayBuffer`, such as:
 
 ```js
-var heap = new ArrayBuffer( 0x10000 );	// 64k heap
+var heap = new ArrayBuffer(0x10000); // 64k heap
 ```
 
 Using that pre-reserved 64k of binary space, an asm.js module can store and retrieve values in that buffer without any memory allocation or garbage collection penalties. For example, the `heap` buffer could be used inside the module to back an array of 64-bit float values like this:
 
 ```js
-var arr = new Float64Array( heap );
+var arr = new Float64Array(heap);
 ```
 
 OK, so let's make a quick, silly example of an asm.js-styled module to illustrate how these pieces fit together. We'll define a `foo(..)` that takes a start (`x`) and end (`y`) integer for a range, and calculates all the inner adjacent multiplications of the values in the range, and then finally averages those values together:
 
 ```js
-function fooASM(stdlib,foreign,heap) {
-	"use asm";
+function fooASM(stdlib, foreign, heap) {
+  "use asm";
 
-	var arr = new stdlib.Int32Array( heap );
+  var arr = new stdlib.Int32Array(heap);
 
-	function foo(x,y) {
-		x = x | 0;
-		y = y | 0;
+  function foo(x, y) {
+    x = x | 0;
+    y = y | 0;
 
-		var i = 0;
-		var p = 0;
-		var sum = 0;
-		var count = ((y|0) - (x|0)) | 0;
+    var i = 0;
+    var p = 0;
+    var sum = 0;
+    var count = ((y | 0) - (x | 0)) | 0;
 
-		// calculate all the inner adjacent multiplications
-		for (i = x | 0;
-			(i | 0) < (y | 0);
-			p = (p + 8) | 0, i = (i + 1) | 0
-		) {
-			// store result
-			arr[ p >> 3 ] = (i * (i + 1)) | 0;
-		}
+    // calculate all the inner adjacent multiplications
+    for (i = x | 0; (i | 0) < (y | 0); p = (p + 8) | 0, i = (i + 1) | 0) {
+      // store result
+      arr[p >> 3] = (i * (i + 1)) | 0;
+    }
 
-		// calculate average of all intermediate values
-		for (i = 0, p = 0;
-			(i | 0) < (count | 0);
-			p = (p + 8) | 0, i = (i + 1) | 0
-		) {
-			sum = (sum + arr[ p >> 3 ]) | 0;
-		}
+    // calculate average of all intermediate values
+    for (
+      i = 0, p = 0;
+      (i | 0) < (count | 0);
+      p = (p + 8) | 0, i = (i + 1) | 0
+    ) {
+      sum = (sum + arr[p >> 3]) | 0;
+    }
 
-		return +(sum / count);
-	}
+    return +(sum / count);
+  }
 
-	return {
-		foo: foo
-	};
+  return {
+    foo: foo,
+  };
 }
 
-var heap = new ArrayBuffer( 0x1000 );
-var foo = fooASM( window, null, heap ).foo;
+var heap = new ArrayBuffer(0x1000);
+var foo = fooASM(window, null, heap).foo;
 
-foo( 10, 20 );		// 233
+foo(10, 20); // 233
 ```
 
 **Note:** This asm.js example is hand authored for illustration purposes, so it doesn't represent the same code that would be produced from a compilation tool targeting asm.js. But it does show the typical nature of asm.js code, especially the type hinting and use of the `heap` buffer for temporary variable storage.
@@ -365,4 +364,4 @@ SIMD proposes to map CPU-level parallel math operations to JavaScript APIs for h
 
 Finally, asm.js describes a small subset of JavaScript that avoids the hard-to-optimize parts of JS (like garbage collection and coercion) and lets the JS engine recognize and run such code through aggressive optimizations. asm.js could be hand authored, but that's extremely tedious and error prone, akin to hand authoring assembly language (hence the name). Instead, the main intent is that asm.js would be a good target for cross-compilation from other highly optimized program languages -- for example, Emscripten (https://github.com/kripken/emscripten/wiki) transpiling C/C++ to JavaScript.
 
-While not covered explicitly in this chapter, there are even more radical ideas under very early discussion for JavaScript, including approximations of direct threaded functionality (not just hidden behind data structure APIs). Whether that happens explicitly, or we just see more parallelism creep into JS behind the scenes, the future of more optimized program-level performance in JS looks really *promising*.
+While not covered explicitly in this chapter, there are even more radical ideas under very early discussion for JavaScript, including approximations of direct threaded functionality (not just hidden behind data structure APIs). Whether that happens explicitly, or we just see more parallelism creep into JS behind the scenes, the future of more optimized program-level performance in JS looks really _promising_.

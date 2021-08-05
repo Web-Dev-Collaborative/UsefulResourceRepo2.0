@@ -1,7 +1,8 @@
 # You Don't Know JS: Scope & Closures
+
 # Chapter 2: Lexical Scope
 
-In Chapter 1, we defined "scope" as the set of rules that govern how the *Engine* can look up a variable by its identifier name and find it, either in the current *Scope*, or in any of the *Nested Scopes* it's contained within.
+In Chapter 1, we defined "scope" as the set of rules that govern how the _Engine_ can look up a variable by its identifier name and find it, either in the current _Scope_, or in any of the _Nested Scopes_ it's contained within.
 
 There are two predominant models for how scope works. The first of these is by far the most common, used by the vast majority of programming languages. It's called **Lexical Scope**, and we will examine it in-depth. The other model, which is still used by some languages (such as Bash scripting, some modes in Perl, etc.) is called **Dynamic Scope**.
 
@@ -21,17 +22,16 @@ Let's consider this block of code:
 
 ```js
 function foo(a) {
+  var b = a * 2;
 
-	var b = a * 2;
+  function bar(c) {
+    console.log(a, b, c);
+  }
 
-	function bar(c) {
-		console.log( a, b, c );
-	}
-
-	bar(b * 3);
+  bar(b * 3);
 }
 
-foo( 2 ); // 2 4 12
+foo(2); // 2 4 12
 ```
 
 There are three nested scopes inherent in this code example. It may be helpful to think about these scopes as bubbles inside of each other.
@@ -52,25 +52,25 @@ Notice that these nested bubbles are strictly nested. We're not talking about Ve
 
 ### Look-ups
 
-The structure and relative placement of these scope bubbles fully explains to the *Engine* all the places it needs to look to find an identifier.
+The structure and relative placement of these scope bubbles fully explains to the _Engine_ all the places it needs to look to find an identifier.
 
-In the above code snippet, the *Engine* executes the `console.log(..)` statement and goes looking for the three referenced variables `a`, `b`, and `c`. It first starts with the innermost scope bubble, the scope of the `bar(..)` function. It won't find `a` there, so it goes up one level, out to the next nearest scope bubble, the scope of `foo(..)`. It finds `a` there, and so it uses that `a`. Same thing for `b`. But `c`, it does find inside of `bar(..)`.
+In the above code snippet, the _Engine_ executes the `console.log(..)` statement and goes looking for the three referenced variables `a`, `b`, and `c`. It first starts with the innermost scope bubble, the scope of the `bar(..)` function. It won't find `a` there, so it goes up one level, out to the next nearest scope bubble, the scope of `foo(..)`. It finds `a` there, and so it uses that `a`. Same thing for `b`. But `c`, it does find inside of `bar(..)`.
 
 Had there been a `c` both inside of `bar(..)` and inside of `foo(..)`, the `console.log(..)` statement would have found and used the one in `bar(..)`, never getting to the one in `foo(..)`.
 
 **Scope look-up stops once it finds the first match**. The same identifier name can be specified at multiple layers of nested scope, which is called "shadowing" (the inner identifier "shadows" the outer identifier). Regardless of shadowing, scope look-up always starts at the innermost scope being executed at the time, and works its way outward/upward until the first match, and stops.
 
-**Note:** Global variables are also automatically properties of the global object (`window` in browsers, etc.), so it *is* possible to reference a global variable not directly by its lexical name, but instead indirectly as a property reference of the global object.
+**Note:** Global variables are also automatically properties of the global object (`window` in browsers, etc.), so it _is_ possible to reference a global variable not directly by its lexical name, but instead indirectly as a property reference of the global object.
 
 ```js
-window.a
+window.a;
 ```
 
 This technique gives access to a global variable which would otherwise be inaccessible due to it being shadowed. However, non-global shadowed variables cannot be accessed.
 
-No matter *where* a function is invoked from, or even *how* it is invoked, its lexical scope is **only** defined by where the function was declared.
+No matter _where_ a function is invoked from, or even _how_ it is invoked, its lexical scope is **only** defined by where the function was declared.
 
-The lexical scope look-up process *only* applies to first-class identifiers, such as the `a`, `b`, and `c`. If you had a reference to `foo.bar.baz` in a piece of code, the lexical scope look-up would apply to finding the `foo` identifier, but once it locates that variable, object property-access rules take over to resolve the `bar` and `baz` properties, respectively.
+The lexical scope look-up process _only_ applies to first-class identifiers, such as the `a`, `b`, and `c`. If you had a reference to `foo.bar.baz` in a piece of code, the lexical scope look-up would apply to finding the `foo` identifier, but once it locates that variable, object property-access rules take over to resolve the `bar` and `baz` properties, respectively.
 
 ## Cheating Lexical
 
@@ -86,19 +86,19 @@ The `eval(..)` function in JavaScript takes a string as an argument, and treats 
 
 Evaluating `eval(..)` (pun intended) in that light, it should be clear how `eval(..)` allows you to modify the lexical scope environment by cheating and pretending that author-time (aka, lexical) code was there all along.
 
-On subsequent lines of code after an `eval(..)` has executed, the *Engine* will not "know" or "care" that the previous code in question was dynamically interpreted and thus modified the lexical scope environment. The *Engine* will simply perform its lexical scope look-ups as it always does.
+On subsequent lines of code after an `eval(..)` has executed, the _Engine_ will not "know" or "care" that the previous code in question was dynamically interpreted and thus modified the lexical scope environment. The _Engine_ will simply perform its lexical scope look-ups as it always does.
 
 Consider the following code:
 
 ```js
 function foo(str, a) {
-	eval( str ); // cheating!
-	console.log( a, b );
+  eval(str); // cheating!
+  console.log(a, b);
 }
 
 var b = 2;
 
-foo( "var b = 3;", 1 ); // 1 3
+foo("var b = 3;", 1); // 1 3
 ```
 
 The string `"var b = 3;"` is treated, at the point of the `eval(..)` call, as code that was there all along. Because that code happens to declare a new variable `b`, it modifies the existing lexical scope of `foo(..)`. In fact, as mentioned above, this code actually creates variable `b` inside of `foo(..)` that shadows the `b` that was declared in the outer (global) scope.
@@ -113,15 +113,15 @@ By default, if a string of code that `eval(..)` executes contains one or more de
 
 ```js
 function foo(str) {
-   "use strict";
-   eval( str );
-   console.log( a ); // ReferenceError: a is not defined
+  "use strict";
+  eval(str);
+  console.log(a); // ReferenceError: a is not defined
 }
 
-foo( "var a = 2" );
+foo("var a = 2");
 ```
 
-There are other facilities in JavaScript which amount to a very similar effect to `eval(..)`. `setTimeout(..)` and `setInterval(..)` *can* take a string for their respective first argument, the contents of which are `eval`uated as the code of a dynamically-generated function. This is old, legacy behavior and long-since deprecated. Don't do it!
+There are other facilities in JavaScript which amount to a very similar effect to `eval(..)`. `setTimeout(..)` and `setInterval(..)` _can_ take a string for their respective first argument, the contents of which are `eval`uated as the code of a dynamically-generated function. This is old, legacy behavior and long-since deprecated. Don't do it!
 
 The `new Function(..)` function constructor similarly takes a string of code in its **last** argument to turn into a dynamically-generated function (the first argument(s), if any, are the named parameters for the new function). This function-constructor syntax is slightly safer than `eval(..)`, but it should still be avoided in your code.
 
@@ -131,15 +131,15 @@ The use-cases for dynamically generating code inside your program are incredibly
 
 The other frowned-upon (and now deprecated!) feature in JavaScript which cheats lexical scope is the `with` keyword. There are multiple valid ways that `with` can be explained, but I will choose here to explain it from the perspective of how it interacts with and affects lexical scope.
 
-`with` is typically explained as a short-hand for making multiple property references against an object *without* repeating the object reference itself each time.
+`with` is typically explained as a short-hand for making multiple property references against an object _without_ repeating the object reference itself each time.
 
 For example:
 
 ```js
 var obj = {
-	a: 1,
-	b: 2,
-	c: 3
+  a: 1,
+  b: 2,
+  c: 3,
 };
 
 // more "tedious" to repeat "obj"
@@ -149,9 +149,9 @@ obj.c = 4;
 
 // "easier" short-hand
 with (obj) {
-	a = 3;
-	b = 4;
-	c = 5;
+  a = 3;
+  b = 4;
+  c = 5;
 }
 ```
 
@@ -159,25 +159,25 @@ However, there's much more going on here than just a convenient short-hand for o
 
 ```js
 function foo(obj) {
-	with (obj) {
-		a = 2;
-	}
+  with (obj) {
+    a = 2;
+  }
 }
 
 var o1 = {
-	a: 3
+  a: 3,
 };
 
 var o2 = {
-	b: 3
+  b: 3,
 };
 
-foo( o1 );
-console.log( o1.a ); // 2
+foo(o1);
+console.log(o1.a); // 2
 
-foo( o2 );
-console.log( o2.a ); // undefined
-console.log( a ); // 2 -- Oops, leaked global!
+foo(o2);
+console.log(o2.a); // undefined
+console.log(a); // 2 -- Oops, leaked global!
 ```
 
 In this code example, two objects `o1` and `o2` are created. One has an `a` property, and the other does not. The `foo(..)` function takes an object reference `obj` as an argument, and calls `with (obj) { .. }` on the reference. Inside the `with` block, we make what appears to be a normal lexical reference to a variable `a`, an LHS reference in fact (see Chapter 1), to assign to it the value of `2`.
@@ -186,7 +186,7 @@ When we pass in `o1`, the `a = 2` assignment finds the property `o1.a` and assig
 
 But then we note a peculiar side-effect, the fact that a global variable `a` was created by the `a = 2` assignment. How can this be?
 
-The `with` statement takes an object, one which has zero or more properties, and **treats that object as if *it* is a wholly separate lexical scope**, and thus the object's properties are treated as lexically defined identifiers in that "scope".
+The `with` statement takes an object, one which has zero or more properties, and **treats that object as if _it_ is a wholly separate lexical scope**, and thus the object's properties are treated as lexically defined identifiers in that "scope".
 
 **Note:** Even though a `with` block treats an object like a lexical scope, a normal `var` declaration inside that `with` block will not be scoped to that `with` block, but instead the containing function scope.
 
@@ -196,7 +196,7 @@ Understood in this way, the "scope" declared by the `with` statement when we pas
 
 Neither the "scope" of `o2`, nor the scope of `foo(..)`, nor the global scope even, has an `a` identifier to be found, so when `a = 2` is executed, it results in the automatic-global being created (since we're in non-strict mode).
 
-It is a strange sort of mind-bending thought to see `with` turning, at runtime, an object and its properties into a "scope" *with* "identifiers". But that is the clearest explanation I can give for the results we see.
+It is a strange sort of mind-bending thought to see `with` turning, at runtime, an object and its properties into a "scope" _with_ "identifiers". But that is the clearest explanation I can give for the results we see.
 
 **Note:** In addition to being a bad idea to use, both `eval(..)` and `with` are affected (restricted) by Strict Mode. `with` is outright disallowed, whereas various forms of indirect or unsafe `eval(..)` are disallowed while retaining the core functionality.
 
@@ -204,20 +204,20 @@ It is a strange sort of mind-bending thought to see `with` turning, at runtime, 
 
 Both `eval(..)` and `with` cheat the otherwise author-time defined lexical scope by modifying or creating new lexical scope at runtime.
 
-So, what's the big deal, you ask? If they offer more sophisticated functionality and coding flexibility, aren't these *good* features? **No.**
+So, what's the big deal, you ask? If they offer more sophisticated functionality and coding flexibility, aren't these _good_ features? **No.**
 
-The JavaScript *Engine* has a number of performance optimizations that it performs during the compilation phase. Some of these boil down to being able to essentially statically analyze the code as it lexes, and pre-determine where all the variable and function declarations are, so that it takes less effort to resolve identifiers during execution.
+The JavaScript _Engine_ has a number of performance optimizations that it performs during the compilation phase. Some of these boil down to being able to essentially statically analyze the code as it lexes, and pre-determine where all the variable and function declarations are, so that it takes less effort to resolve identifiers during execution.
 
-But if the *Engine* finds an `eval(..)` or `with` in the code, it essentially has to *assume* that all its awareness of identifier location may be invalid, because it cannot know at lexing time exactly what code you may pass to `eval(..)` to modify the lexical scope, or the contents of the object you may pass to `with` to create a new lexical scope to be consulted.
+But if the _Engine_ finds an `eval(..)` or `with` in the code, it essentially has to _assume_ that all its awareness of identifier location may be invalid, because it cannot know at lexing time exactly what code you may pass to `eval(..)` to modify the lexical scope, or the contents of the object you may pass to `with` to create a new lexical scope to be consulted.
 
-In other words, in the pessimistic sense, most of those optimizations it *would* make are pointless if `eval(..)` or `with` are present, so it simply doesn't perform the optimizations *at all*.
+In other words, in the pessimistic sense, most of those optimizations it _would_ make are pointless if `eval(..)` or `with` are present, so it simply doesn't perform the optimizations _at all_.
 
-Your code will almost certainly tend to run slower simply by the fact that you include an `eval(..)` or `with` anywhere in the code. No matter how smart the *Engine* may be about trying to limit the side-effects of these pessimistic assumptions, **there's no getting around the fact that without the optimizations, code runs slower.**
+Your code will almost certainly tend to run slower simply by the fact that you include an `eval(..)` or `with` anywhere in the code. No matter how smart the _Engine_ may be about trying to limit the side-effects of these pessimistic assumptions, **there's no getting around the fact that without the optimizations, code runs slower.**
 
 ## Review (TL;DR)
 
 Lexical scope means that scope is defined by author-time decisions of where functions are declared. The lexing phase of compilation is essentially able to know where and how all identifiers are declared, and thus predict how they will be looked-up during execution.
 
-Two mechanisms in JavaScript can "cheat" lexical scope: `eval(..)` and `with`. The former can modify existing lexical scope (at runtime) by evaluating a string of "code" which has one or more declarations in it. The latter essentially creates a whole new lexical scope (again, at runtime) by treating an object reference *as* a "scope" and that object's properties as scoped identifiers.
+Two mechanisms in JavaScript can "cheat" lexical scope: `eval(..)` and `with`. The former can modify existing lexical scope (at runtime) by evaluating a string of "code" which has one or more declarations in it. The latter essentially creates a whole new lexical scope (again, at runtime) by treating an object reference _as_ a "scope" and that object's properties as scoped identifiers.
 
-The downside to these mechanisms is that it defeats the *Engine*'s ability to perform compile-time optimizations regarding scope look-up, because the *Engine* has to assume pessimistically that such optimizations will be invalid. Code *will* run slower as a result of using either feature. **Don't use them.**
+The downside to these mechanisms is that it defeats the _Engine_'s ability to perform compile-time optimizations regarding scope look-up, because the _Engine_ has to assume pessimistically that such optimizations will be invalid. Code _will_ run slower as a result of using either feature. **Don't use them.**

@@ -1,4 +1,5 @@
 # You Don't Know JS: Scope & Closures
+
 # Chapter 4: Hoisting
 
 By now, you should be fairly comfortable with the idea of scope, and how variables are attached to different levels of scope depending on where and how they are declared. Both function scope and block scope behave by the same rules in this regard: any variable declared within a scope is attached to that scope.
@@ -16,7 +17,7 @@ a = 2;
 
 var a;
 
-console.log( a );
+console.log(a);
 ```
 
 What do you expect to be printed in the `console.log(..)` statement?
@@ -26,7 +27,7 @@ Many developers would expect `undefined`, since the `var a` statement comes afte
 Consider another piece of code:
 
 ```js
-console.log( a );
+console.log(a);
 
 var a = 2;
 ```
@@ -39,7 +40,7 @@ Unfortunately, both guesses are incorrect. `undefined` is the output.
 
 ## The Compiler Strikes Again
 
-To answer this question, we need to refer back to Chapter 1, and our discussion of compilers. Recall that the *Engine* actually will compile your JavaScript code before it interprets it. Part of the compilation phase was to find and associate all declarations with their appropriate scopes. Chapter 2 showed us that this is the heart of Lexical Scope.
+To answer this question, we need to refer back to Chapter 1, and our discussion of compilers. Recall that the _Engine_ actually will compile your JavaScript code before it interprets it. Part of the compilation phase was to find and associate all declarations with their appropriate scopes. Chapter 2 showed us that this is the heart of Lexical Scope.
 
 So, the best way to think about things is that all declarations, both variables and functions, are processed first, before any part of your code is executed.
 
@@ -50,10 +51,11 @@ Our first snippet then should be thought of as being handled like this:
 ```js
 var a;
 ```
+
 ```js
 a = 2;
 
-console.log( a );
+console.log(a);
 ```
 
 ...where the first part is the compilation and the second part is the execution.
@@ -63,8 +65,9 @@ Similarly, our second snippet is actually processed as:
 ```js
 var a;
 ```
+
 ```js
-console.log( a );
+console.log(a);
 
 a = 2;
 ```
@@ -73,29 +76,29 @@ So, one way of thinking, sort of metaphorically, about this process, is that var
 
 In other words, **the egg (declaration) comes before the chicken (assignment)**.
 
-**Note:** Only the declarations themselves are hoisted, while any assignments or other executable logic are left *in place*. If hoisting were to re-arrange the executable logic of our code, that could wreak havoc.
+**Note:** Only the declarations themselves are hoisted, while any assignments or other executable logic are left _in place_. If hoisting were to re-arrange the executable logic of our code, that could wreak havoc.
 
 ```js
 foo();
 
 function foo() {
-	console.log( a ); // undefined
+  console.log(a); // undefined
 
-	var a = 2;
+  var a = 2;
 }
 ```
 
-The function `foo`'s declaration (which in this case *includes* the implied value of it as an actual function) is hoisted, such that the call on the first line is able to execute.
+The function `foo`'s declaration (which in this case _includes_ the implied value of it as an actual function) is hoisted, such that the call on the first line is able to execute.
 
 It's also important to note that hoisting is **per-scope**. So while our previous snippets were simplified in that they only included global scope, the `foo(..)` function we are now examining itself exhibits that `var a` is hoisted to the top of `foo(..)` (not, obviously, to the top of the program). So the program can perhaps be more accurately interpreted like this:
 
 ```js
 function foo() {
-	var a;
+  var a;
 
-	console.log( a ); // undefined
+  console.log(a); // undefined
 
-	a = 2;
+  a = 2;
 }
 
 foo();
@@ -107,7 +110,7 @@ Function declarations are hoisted, as we just saw. But function expressions are 
 foo(); // not ReferenceError, but TypeError!
 
 var foo = function bar() {
-	// ...
+  // ...
 };
 ```
 
@@ -120,7 +123,7 @@ foo(); // TypeError
 bar(); // ReferenceError
 
 var foo = function bar() {
-	// ...
+  // ...
 };
 ```
 
@@ -140,7 +143,7 @@ foo = function() {
 
 ## Functions First
 
-Both function declarations and variable declarations are hoisted. But a subtle detail (that *can* show up in code with multiple "duplicate" declarations) is that functions are hoisted first, and then variables.
+Both function declarations and variable declarations are hoisted. But a subtle detail (that _can_ show up in code with multiple "duplicate" declarations) is that functions are hoisted first, and then variables.
 
 Consider:
 
@@ -150,45 +153,45 @@ foo(); // 1
 var foo;
 
 function foo() {
-	console.log( 1 );
+  console.log(1);
 }
 
-foo = function() {
-	console.log( 2 );
+foo = function () {
+  console.log(2);
 };
 ```
 
-`1` is printed instead of `2`! This snippet is interpreted by the *Engine* as:
+`1` is printed instead of `2`! This snippet is interpreted by the _Engine_ as:
 
 ```js
 function foo() {
-	console.log( 1 );
+  console.log(1);
 }
 
 foo(); // 1
 
-foo = function() {
-	console.log( 2 );
+foo = function () {
+  console.log(2);
 };
 ```
 
 Notice that `var foo` was the duplicate (and thus ignored) declaration, even though it came before the `function foo()...` declaration, because function declarations are hoisted before normal variables.
 
-While multiple/duplicate `var` declarations are effectively ignored, subsequent function declarations *do* override previous ones.
+While multiple/duplicate `var` declarations are effectively ignored, subsequent function declarations _do_ override previous ones.
 
 ```js
 foo(); // 3
 
 function foo() {
-	console.log( 1 );
+  console.log(1);
 }
 
-var foo = function() {
-	console.log( 2 );
+var foo = function () {
+  console.log(2);
 };
 
 function foo() {
-	console.log( 3 );
+  console.log(3);
 }
 ```
 
@@ -201,10 +204,13 @@ foo(); // "b"
 
 var a = true;
 if (a) {
-   function foo() { console.log( "a" ); }
-}
-else {
-   function foo() { console.log( "b" ); }
+  function foo() {
+    console.log("a");
+  }
+} else {
+  function foo() {
+    console.log("b");
+  }
 }
 ```
 
@@ -212,10 +218,10 @@ However, it's important to note that this behavior is not reliable and is subjec
 
 ## Review (TL;DR)
 
-We can be tempted to look at `var a = 2;` as one statement, but the JavaScript *Engine* does not see it that way. It sees `var a` and `a = 2` as two separate statements, the first one a compiler-phase task, and the second one an execution-phase task.
+We can be tempted to look at `var a = 2;` as one statement, but the JavaScript _Engine_ does not see it that way. It sees `var a` and `a = 2` as two separate statements, the first one a compiler-phase task, and the second one an execution-phase task.
 
-What this leads to is that all declarations in a scope, regardless of where they appear, are processed *first* before the code itself is executed. You can visualize this as declarations (variables and functions) being "moved" to the top of their respective scopes, which we call "hoisting".
+What this leads to is that all declarations in a scope, regardless of where they appear, are processed _first_ before the code itself is executed. You can visualize this as declarations (variables and functions) being "moved" to the top of their respective scopes, which we call "hoisting".
 
-Declarations themselves are hoisted, but assignments, even assignments of function expressions, are *not* hoisted.
+Declarations themselves are hoisted, but assignments, even assignments of function expressions, are _not_ hoisted.
 
 Be careful about duplicate declarations, especially mixed between normal var declarations and function declarations -- peril awaits if you do!

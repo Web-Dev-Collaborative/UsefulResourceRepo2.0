@@ -1,4 +1,5 @@
 # You Don't Know JS: Up & Going
+
 # Appendix A: Acknowledgments
 
 I have many people to thank for making this book title and the overall series happen.

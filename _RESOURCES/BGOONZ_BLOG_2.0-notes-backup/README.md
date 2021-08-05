@@ -35,13 +35,13 @@ update the content files and instantly see your updates in the browser.
 
 Stackbit will execute following steps for you
 
--   Create a new GitHub repository with the contents of this repository.
--   Create [Netlify](https://www.netlify.com) site connected to the GitHub repo
--   Deploy the Netlify site.
--   Create a "commit" webhook in GitHub that will trigger Netlify deployment as
-    soon as new commit is pushed to GitHub.
--   Create a Stackbit project that will allow you edit your website via on-page
-    visual editing experience.
+- Create a new GitHub repository with the contents of this repository.
+- Create [Netlify](https://www.netlify.com) site connected to the GitHub repo
+- Deploy the Netlify site.
+- Create a "commit" webhook in GitHub that will trigger Netlify deployment as
+  soon as new commit is pushed to GitHub.
+- Create a Stackbit project that will allow you edit your website via on-page
+  visual editing experience.
 
 ## Editing Content 📝
 
@@ -52,11 +52,11 @@ on-page editing experience provided by the [Stackbit Studio](https://stackbit.co
 
 Here's a few resources to get you started:
 
--   📺 &nbsp; [Editing Content](https://stackbit.link/project-readme-editing-video)
--   📺 &nbsp; [Adding, Reordering and Deleting Items](https://stackbit.link/project-readme-adding-video)
--   📺 &nbsp; [Collaboration](https://stackbit.link/project-readme-collaboration-video)
--   📺 &nbsp; [Publishing](https://stackbit.link/project-readme-publishing-video)
--   📚 &nbsp; [Stackbit Documentation](https://stackbit.link/project-readme-documentation)
+- 📺 &nbsp; [Editing Content](https://stackbit.link/project-readme-editing-video)
+- 📺 &nbsp; [Adding, Reordering and Deleting Items](https://stackbit.link/project-readme-adding-video)
+- 📺 &nbsp; [Collaboration](https://stackbit.link/project-readme-collaboration-video)
+- 📺 &nbsp; [Publishing](https://stackbit.link/project-readme-publishing-video)
+- 📚 &nbsp; [Stackbit Documentation](https://stackbit.link/project-readme-documentation)
 
 If you need a hand, make sure to check the [Stackbit support page](https://stackbit.link/project-readme-support).
 

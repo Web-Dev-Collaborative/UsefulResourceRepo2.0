@@ -1,5 +1,6 @@
-# Build a Website With Gatsby 
-*Source code for YouTube video tutorial series*<br>
+# Build a Website With Gatsby
+
+_Source code for YouTube video tutorial series_<br>
 [Build a Website With Gatsby](https://www.youtube.com/playlist?list=PLASldBPN_pkASjaDYtNEU_KSU2gksvFHg)
 
 <img src="https://codingthesmartway.com/wp-content/uploads/2019/02/gatsby-logo.png" width="100" />

@@ -1,16 +1,15 @@
 ---
 name: Foreign Translation Request
 about: Want to request a translation into a foreign language?
-labels: 
-
+labels:
 ---
 
 Please check these issues first:
 
-* https://github.com/getify/You-Dont-Know-JS/issues?utf8=%E2%9C%93&q=label%3A%22foreign+language+translations%22+
-* https://github.com/getify/You-Dont-Know-JS/issues/9
-* https://github.com/getify/You-Dont-Know-JS/issues/900
-* https://github.com/getify/You-Dont-Know-JS/issues/1378
+- https://github.com/getify/You-Dont-Know-JS/issues?utf8=%E2%9C%93&q=label%3A%22foreign+language+translations%22+
+- https://github.com/getify/You-Dont-Know-JS/issues/9
+- https://github.com/getify/You-Dont-Know-JS/issues/900
+- https://github.com/getify/You-Dont-Know-JS/issues/1378
 
 To summarize, the steps for a foreign language translation are:
 

@@ -74,11 +74,6 @@
   <img width="30px" height="30px" src="/icons/youtube.svg" />
 </a>
 
-
-
-
-
-
 <!--
 **willjw3/willjw3** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 

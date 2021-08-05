@@ -1,11 +1,12 @@
 # You Don't Know JS: ES6 & Beyond
+
 # Chapter 8: Beyond ES6
 
-At the time of this writing, the final draft of ES6 (*ECMAScript 2015*) is shortly headed toward its final official vote of approval by ECMA. But even as ES6 is being finalized, the TC39 committee is already hard at work on features for ES7/2016 and beyond.
+At the time of this writing, the final draft of ES6 (_ECMAScript 2015_) is shortly headed toward its final official vote of approval by ECMA. But even as ES6 is being finalized, the TC39 committee is already hard at work on features for ES7/2016 and beyond.
 
 As we discussed in Chapter 1, it's expected that the cadence of progress for JS is going to accelerate from updating once every several years to having an official version update once per year (hence the year-based naming). That alone is going to radically change how JS developers learn about and keep up with the language.
 
-But even more importantly, the committee is actually going to work feature by feature. As soon as a feature is spec-complete and has its kinks worked out through implementation experiments in a few browsers, that feature will be considered stable enough to start using. We're all strongly encouraged to adopt features once they're ready instead of waiting for some official standards vote. If you haven't already learned ES6, the time is *past due* to get on board!
+But even more importantly, the committee is actually going to work feature by feature. As soon as a feature is spec-complete and has its kinks worked out through implementation experiments in a few browsers, that feature will be considered stable enough to start using. We're all strongly encouraged to adopt features once they're ready instead of waiting for some official standards vote. If you haven't already learned ES6, the time is _past due_ to get on board!
 
 As the time of this writing, a list of future proposals and their status can be seen here (https://github.com/tc39/ecma262#current-proposals).
 
@@ -22,31 +23,25 @@ In "Generators + Promises" in Chapter 4, we mentioned that there's a proposal fo
 Recall this generator example from Chapter 4:
 
 ```js
-run( function *main() {
-	var ret = yield step1();
+run(function* main() {
+  var ret = yield step1();
 
-	try {
-		ret = yield step2( ret );
-	}
-	catch (err) {
-		ret = yield step2Failed( err );
-	}
+  try {
+    ret = yield step2(ret);
+  } catch (err) {
+    ret = yield step2Failed(err);
+  }
 
-	ret = yield Promise.all([
-		step3a( ret ),
-		step3b( ret ),
-		step3c( ret )
-	]);
+  ret = yield Promise.all([step3a(ret), step3b(ret), step3c(ret)]);
 
-	yield step4( ret );
-} )
-.then(
-	function fulfilled(){
-		// `*main()` completed successfully
-	},
-	function rejected(reason){
-		// Oops, something went wrong
-	}
+  yield step4(ret);
+}).then(
+  function fulfilled() {
+    // `*main()` completed successfully
+  },
+  function rejected(reason) {
+    // Oops, something went wrong
+  }
 );
 ```
 
@@ -54,32 +49,26 @@ The proposed `async function` syntax can express this same flow control logic wi
 
 ```js
 async function main() {
-	var ret = await step1();
+  var ret = await step1();
 
-	try {
-		ret = await step2( ret );
-	}
-	catch (err) {
-		ret = await step2Failed( err );
-	}
+  try {
+    ret = await step2(ret);
+  } catch (err) {
+    ret = await step2Failed(err);
+  }
 
-	ret = await Promise.all( [
-		step3a( ret ),
-		step3b( ret ),
-		step3c( ret )
-	] );
+  ret = await Promise.all([step3a(ret), step3b(ret), step3c(ret)]);
 
-	await step4( ret );
+  await step4(ret);
 }
 
-main()
-.then(
-	function fulfilled(){
-		// `main()` completed successfully
-	},
-	function rejected(reason){
-		// Oops, something went wrong
-	}
+main().then(
+  function fulfilled() {
+    // `main()` completed successfully
+  },
+  function rejected(reason) {
+    // Oops, something went wrong
+  }
 );
 ```
 
@@ -91,59 +80,56 @@ If you're a C# developer and this `async`/`await` looks familiar, it's because t
 
 Babel, Traceur and other transpilers already have early support for the current status of `async function`s, so you can start using them already. However, in the next section "Caveats", we'll see why you perhaps shouldn't jump on that ship quite yet.
 
-**Note:** There's also a proposal for `async function*`, which would be called an "async generator." You can both `yield` and `await` in the same code, and even combine those operations in the same statement: `x = await yield y`. The "async generator" proposal seems to be more in flux -- namely, its return value is not fully worked out yet. Some feel it should be an *observable*, which is kind of like the combination of an iterator and a promise. For now, we won't go further into that topic, but stay tuned as it evolves.
+**Note:** There's also a proposal for `async function*`, which would be called an "async generator." You can both `yield` and `await` in the same code, and even combine those operations in the same statement: `x = await yield y`. The "async generator" proposal seems to be more in flux -- namely, its return value is not fully worked out yet. Some feel it should be an _observable_, which is kind of like the combination of an iterator and a promise. For now, we won't go further into that topic, but stay tuned as it evolves.
 
 ### Caveats
 
-One unresolved point of contention with `async function` is that because it only returns a promise, there's no way from the outside to *cancel* an `async function` instance that's currently running. This can be a problem if the async operation is resource intensive, and you want to free up the resources as soon as you're sure the result won't be needed.
+One unresolved point of contention with `async function` is that because it only returns a promise, there's no way from the outside to _cancel_ an `async function` instance that's currently running. This can be a problem if the async operation is resource intensive, and you want to free up the resources as soon as you're sure the result won't be needed.
 
 For example:
 
 ```js
 async function request(url) {
-	var resp = await (
-		new Promise( function(resolve,reject){
-			var xhr = new XMLHttpRequest();
-			xhr.open( "GET", url );
-			xhr.onreadystatechange = function(){
-				if (xhr.readyState == 4) {
-					if (xhr.status == 200) {
-						resolve( xhr );
-					}
-					else {
-						reject( xhr.statusText );
-					}
-				}
-			};
-			xhr.send();
-		} )
-	);
+  var resp = await new Promise(function (resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          resolve(xhr);
+        } else {
+          reject(xhr.statusText);
+        }
+      }
+    };
+    xhr.send();
+  });
 
-	return resp.responseText;
+  return resp.responseText;
 }
 
-var pr = request( "http://some.url.1" );
+var pr = request("http://some.url.1");
 
 pr.then(
-	function fulfilled(responseText){
-		// ajax success
-	},
-	function rejected(reason){
-		// Oops, something went wrong
-	}
+  function fulfilled(responseText) {
+    // ajax success
+  },
+  function rejected(reason) {
+    // Oops, something went wrong
+  }
 );
 ```
 
 This `request(..)` that I've conceived is somewhat like the `fetch(..)` utility that's recently been proposed for inclusion into the web platform. So the concern is, what happens if you want to use the `pr` value to somehow indicate that you want to cancel a long-running Ajax request, for example?
 
-Promises are not cancelable (at the time of writing, anyway). In my opinion, as well as many others, they never should be (see the *Async & Performance* title of this series). And even if a promise did have a `cancel()` method on it, does that necessarily mean that calling `pr.cancel()` should actually propagate a cancelation signal all the way back up the promise chain to the `async function`?
+Promises are not cancelable (at the time of writing, anyway). In my opinion, as well as many others, they never should be (see the _Async & Performance_ title of this series). And even if a promise did have a `cancel()` method on it, does that necessarily mean that calling `pr.cancel()` should actually propagate a cancelation signal all the way back up the promise chain to the `async function`?
 
 Several possible resolutions to this debate have surfaced:
 
-* `async function`s won't be cancelable at all (status quo)
-* A "cancel token" can be passed to an async function at call time
-* Return value changes to a cancelable-promise type that's added
-* Return value changes to something else non-promise (e.g., observable, or control token with promise and cancel capabilities)
+- `async function`s won't be cancelable at all (status quo)
+- A "cancel token" can be passed to an async function at call time
+- Return value changes to a cancelable-promise type that's added
+- Return value changes to something else non-promise (e.g., observable, or control token with promise and cancel capabilities)
 
 At the time of this writing, `async function`s return regular promises, so it's less likely that the return value will entirely change. But it's too early to tell where things will land. Keep an eye on this discussion.
 
@@ -155,12 +141,12 @@ It appears likely that post ES6, we'll see support added directly to the languag
 
 There are six types of changes that you can observe:
 
-* add
-* update
-* delete
-* reconfigure
-* setPrototype
-* preventExtensions
+- add
+- update
+- delete
+- reconfigure
+- setPrototype
+- preventExtensions
 
 By default, you'll be notified of all these change types, but you can filter down to only the ones you care about.
 
@@ -170,13 +156,13 @@ Consider:
 var obj = { a: 1, b: 2 };
 
 Object.observe(
-	obj,
-	function(changes){
-		for (var change of changes) {
-			console.log( change );
-		}
-	},
-	[ "add", "update", "delete" ]
+  obj,
+  function (changes) {
+    for (var change of changes) {
+      console.log(change);
+    }
+  },
+  ["add", "update", "delete"]
 );
 
 obj.c = 3;
@@ -191,11 +177,12 @@ delete obj.b;
 
 In addition to the main `"add"`, `"update"`, and `"delete"` change types:
 
-* The `"reconfigure"` change event is fired if one of the object's properties is reconfigured with `Object.defineProperty(..)`, such as changing its `writable` attribute. See the *this & Object Prototypes* title of this series for more information.
-* The `"preventExtensions"` change event is fired if the object is made non-extensible via `Object.preventExtensions(..)`.
+- The `"reconfigure"` change event is fired if one of the object's properties is reconfigured with `Object.defineProperty(..)`, such as changing its `writable` attribute. See the _this & Object Prototypes_ title of this series for more information.
+- The `"preventExtensions"` change event is fired if the object is made non-extensible via `Object.preventExtensions(..)`.
 
-   Because both `Object.seal(..)` and `Object.freeze(..)` also imply `Object.preventExtensions(..)`, they'll also fire its corresponding change event. In addition, `"reconfigure"` change events will also be fired for each property on the object.
-* The `"setPrototype"` change event is fired if the `[[Prototype]]` of an object is changed, either by setting it with the `__proto__` setter, or using `Object.setPrototypeOf(..)`.
+  Because both `Object.seal(..)` and `Object.freeze(..)` also imply `Object.preventExtensions(..)`, they'll also fire its corresponding change event. In addition, `"reconfigure"` change events will also be fired for each property on the object.
+
+- The `"setPrototype"` change event is fired if the `[[Prototype]]` of an object is changed, either by setting it with the `__proto__` setter, or using `Object.setPrototypeOf(..)`.
 
 Notice that these change events are notified immediately after said change. Don't confuse this with proxies (see Chapter 7) where you can intercept the actions before they occur. Object observation lets you respond after a change (or set of changes) occurs.
 
@@ -206,64 +193,58 @@ In addition to the six built-in change event types, you can also listen for and 
 Consider:
 
 ```js
-function observer(changes){
-	for (var change of changes) {
-		if (change.type == "recalc") {
-			change.object.c =
-				change.object.oldValue +
-				change.object.a +
-				change.object.b;
-		}
-	}
+function observer(changes) {
+  for (var change of changes) {
+    if (change.type == "recalc") {
+      change.object.c =
+        change.object.oldValue + change.object.a + change.object.b;
+    }
+  }
 }
 
-function changeObj(a,b) {
-	var notifier = Object.getNotifier( obj );
+function changeObj(a, b) {
+  var notifier = Object.getNotifier(obj);
 
-	obj.a = a * 2;
-	obj.b = b * 3;
+  obj.a = a * 2;
+  obj.b = b * 3;
 
-	// queue up change events into a set
-	notifier.notify( {
-		type: "recalc",
-		name: "c",
-		oldValue: obj.c
-	} );
+  // queue up change events into a set
+  notifier.notify({
+    type: "recalc",
+    name: "c",
+    oldValue: obj.c,
+  });
 }
 
 var obj = { a: 1, b: 2, c: 3 };
 
-Object.observe(
-	obj,
-	observer,
-	["recalc"]
-);
+Object.observe(obj, observer, ["recalc"]);
 
-changeObj( 3, 11 );
+changeObj(3, 11);
 
-obj.a;			// 12
-obj.b;			// 30
-obj.c;			// 3
+obj.a; // 12
+obj.b; // 30
+obj.c; // 3
 ```
 
 The change set (`"recalc"` custom event) has been queued for delivery to the observer, but not delivered yet, which is why `obj.c` is still `3`.
 
-The changes are by default delivered at the end of the current event loop (see the *Async & Performance* title of this series). If you want to deliver them immediately, use `Object.deliverChangeRecords(observer)`. Once the change events are delivered, you can observe `obj.c` updated as expected:
+The changes are by default delivered at the end of the current event loop (see the _Async & Performance_ title of this series). If you want to deliver them immediately, use `Object.deliverChangeRecords(observer)`. Once the change events are delivered, you can observe `obj.c` updated as expected:
 
 ```js
-obj.c;			// 42
+obj.c; // 42
 ```
 
 In the previous example, we called `notifier.notify(..)` with the complete change event record. An alternative form for queuing change records is to use `performChange(..)`, which separates specifying the type of the event from the rest of event record's properties (via a function callback). Consider:
 
 ```js
-notifier.performChange( "recalc", function(){
-	return {
-		name: "c",
-		// `this` is the object under observation
-		oldValue: this.c
-	};
-} );
+notifier.performChange("recalc", function () {
+  return {
+    name: "c",
+    // `this` is the object under observation
+    oldValue: this.c,
+  };
+});
 ```
 
 In certain circumstances, this separation of concerns may map more cleanly to your usage pattern.
@@ -277,16 +258,14 @@ For example:
 ```js
 var obj = { a: 1, b: 2 };
 
-Object.observe( obj, function observer(changes) {
-	for (var change of changes) {
-		if (change.type == "setPrototype") {
-			Object.unobserve(
-				change.object, observer
-			);
-			break;
-		}
-	}
-} );
+Object.observe(obj, function observer(changes) {
+  for (var change of changes) {
+    if (change.type == "setPrototype") {
+      Object.unobserve(change.object, observer);
+      break;
+    }
+  }
+});
 ```
 
 In this trivial example, we listen for change events until we see the `"setPrototype"` event come through, at which time we stop observing any more change events.
@@ -298,10 +277,10 @@ An operator has been proposed for JavaScript to perform exponentiation in the sa
 ```js
 var a = 2;
 
-a ** 4;			// Math.pow( a, 4 ) == 16
+a ** 4; // Math.pow( a, 4 ) == 16
 
-a **= 3;		// a = Math.pow( a, 3 )
-a;				// 8
+a **= 3; // a = Math.pow( a, 3 )
+a; // 8
 ```
 
 **Note:** `**` is essentially the same as it appears in Python, Ruby, Perl, and others.
@@ -314,10 +293,10 @@ Such a feature was considered for ES6, but was deferred to be considered after E
 
 ```js
 var o1 = { a: 1, b: 2 },
-	o2 = { c: 3 },
-	o3 = { ...o1, ...o2, d: 4 };
+  o2 = { c: 3 },
+  o3 = { ...o1, ...o2, d: 4 };
 
-console.log( o3.a, o3.b, o3.c, o3.d );
+console.log(o3.a, o3.b, o3.c, o3.d);
 // 1 2 3 4
 ```
 
@@ -327,7 +306,7 @@ The `...` operator might also be used to gather an object's destructured propert
 var o1 = { b: 2, c: 3, d: 4 };
 var { b, ...o2 } = o1;
 
-console.log( b, o2.c, o2.d );		// 2 3 4
+console.log(b, o2.c, o2.d); // 2 3 4
 ```
 
 Here, the `...o2` re-gathers the destructured `c` and `d` properties back into an `o2` object (`o2` does not have a `b` property like `o1` does).
@@ -339,22 +318,22 @@ Again, these are just proposals under consideration beyond ES6. But it'll be coo
 One extremely common task JS developers need to perform is searching for a value inside an array of values. The way this has always been done is:
 
 ```js
-var vals = [ "foo", "bar", 42, "baz" ];
+var vals = ["foo", "bar", 42, "baz"];
 
-if (vals.indexOf( 42 ) >= 0) {
-	// found it!
+if (vals.indexOf(42) >= 0) {
+  // found it!
 }
 ```
 
 The reason for the `>= 0` check is because `indexOf(..)` returns a numeric value of `0` or greater if found, or `-1` if not found. In other words, we're using an index-returning function in a boolean context. But because `-1` is truthy instead of falsy, we have to be more manual with our checks.
 
-In the *Types & Grammar* title of this series, I explored another pattern that I slightly prefer:
+In the _Types & Grammar_ title of this series, I explored another pattern that I slightly prefer:
 
 ```js
-var vals = [ "foo", "bar", 42, "baz" ];
+var vals = ["foo", "bar", 42, "baz"];
 
-if (~vals.indexOf( 42 )) {
-	// found it!
+if (~vals.indexOf(42)) {
+  // found it!
 }
 ```
 
@@ -365,28 +344,28 @@ While I think that's an improvement, others strongly disagree. However, no one c
 So a proposal has surfaced and gained a lot of support for adding a real boolean-returning array search method, called `includes(..)`:
 
 ```js
-var vals = [ "foo", "bar", 42, "baz" ];
+var vals = ["foo", "bar", 42, "baz"];
 
-if (vals.includes( 42 )) {
-	// found it!
+if (vals.includes(42)) {
+  // found it!
 }
 ```
 
-**Note:** `Array#includes(..)` uses matching logic that will find `NaN` values, but will not distinguish between `-0` and `0` (see the *Types & Grammar* title of this series). If you don't care about `-0` values in your programs, this will likely be exactly what you're hoping for. If you *do* care about `-0`, you'll need to do your own searching logic, likely using the `Object.is(..)` utility (see Chapter 6).
+**Note:** `Array#includes(..)` uses matching logic that will find `NaN` values, but will not distinguish between `-0` and `0` (see the _Types & Grammar_ title of this series). If you don't care about `-0` values in your programs, this will likely be exactly what you're hoping for. If you _do_ care about `-0`, you'll need to do your own searching logic, likely using the `Object.is(..)` utility (see Chapter 6).
 
 ## SIMD
 
-We cover Single Instruction, Multiple Data (SIMD) in more detail in the *Async & Performance* title of this series, but it bears a brief mention here, as it's one of the next likely features to land in a future JS.
+We cover Single Instruction, Multiple Data (SIMD) in more detail in the _Async & Performance_ title of this series, but it bears a brief mention here, as it's one of the next likely features to land in a future JS.
 
-The SIMD API exposes various low-level (CPU) instructions that can operate on more than a single number value at a time. For example, you'll be able to specify two *vectors* of 4 or 8 numbers each, and multiply the respective elements all at once (data parallelism!).
+The SIMD API exposes various low-level (CPU) instructions that can operate on more than a single number value at a time. For example, you'll be able to specify two _vectors_ of 4 or 8 numbers each, and multiply the respective elements all at once (data parallelism!).
 
 Consider:
 
 ```js
-var v1 = SIMD.float32x4( 3.14159, 21.0, 32.3, 55.55 );
-var v2 = SIMD.float32x4( 2.1, 3.2, 4.3, 5.4 );
+var v1 = SIMD.float32x4(3.14159, 21.0, 32.3, 55.55);
+var v2 = SIMD.float32x4(2.1, 3.2, 4.3, 5.4);
 
-SIMD.float32x4.mul( v1, v2 );
+SIMD.float32x4.mul(v1, v2);
 // [ 6.597339, 67.2, 138.89, 299.97 ]
 ```
 
@@ -400,9 +379,9 @@ Brendan Eich made a late breaking announcement near the completion of the first 
 
 One of the strongest pressures on the recent (and near future) design changes of the JS language has been the desire that it become a more suitable target for transpilation/cross-compilation from other languages (like C/C++, ClojureScript, etc.). Obviously, performance of code running as JavaScript has been a primary concern.
 
-As discussed in the *Async & Performance* title of this series, a few years ago a group of developers at Mozilla introduced an idea to JavaScript called ASM.js. ASM.js is a subset of valid JS that most significantly restricts certain actions that make code hard for the JS engine to optimize. The result is that ASM.js compatible code running in an ASM-aware engine can run remarkably faster, nearly on par with native optimized C equivalents. Many viewed ASM.js as the most likely backbone on which performance-hungry applications would ride in JavaScript.
+As discussed in the _Async & Performance_ title of this series, a few years ago a group of developers at Mozilla introduced an idea to JavaScript called ASM.js. ASM.js is a subset of valid JS that most significantly restricts certain actions that make code hard for the JS engine to optimize. The result is that ASM.js compatible code running in an ASM-aware engine can run remarkably faster, nearly on par with native optimized C equivalents. Many viewed ASM.js as the most likely backbone on which performance-hungry applications would ride in JavaScript.
 
-In other words, all roads to running code in the browser *lead through JavaScript*.
+In other words, all roads to running code in the browser _lead through JavaScript_.
 
 That is, until the WASM announcement. WASM provides an alternate path for other languages to target the browser's runtime environment without having to first pass through JavaScript. Essentially, if WASM takes off, JS engines will grow an extra capability to execute a binary format of code that can be seen as somewhat similar to a bytecode (like that which runs on the JVM).
 

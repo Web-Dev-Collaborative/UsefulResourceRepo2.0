@@ -2,24 +2,24 @@
 title: Typography
 weight: 1
 seo:
-    title: Typography
-    description: This is the typography page
-    extra:
-        - name: 'og:type'
-          value: website
-          keyName: property
-        - name: 'og:title'
-          value: Typography
-          keyName: property
-        - name: 'og:description'
-          value: This is the typography page
-          keyName: property
-        - name: 'twitter:card'
-          value: summary
-        - name: 'twitter:title'
-          value: Typography
-        - name: 'twitter:description'
-          value: This is the typography page
+  title: Typography
+  description: This is the typography page
+  extra:
+    - name: "og:type"
+      value: website
+      keyName: property
+    - name: "og:title"
+      value: Typography
+      keyName: property
+    - name: "og:description"
+      value: This is the typography page
+      keyName: property
+    - name: "twitter:card"
+      value: summary
+    - name: "twitter:title"
+      value: Typography
+    - name: "twitter:description"
+      value: This is the typography page
 layout: docs
 ---
 
@@ -52,11 +52,11 @@ Quisque facilisis erat a dui. Nam malesuada ornare dolor. Cras gravida, diam sit
 
 ## Unordered Lists
 
--   Donec non tortor in arcu mollis feugiat
--   Lorem ipsum dolor sit amet, consectetuer adipiscing elit
--   Donec id eros eget quam aliquam gravida
--   Vivamus convallis urna id felis
--   Nulla porta tempus sapien
+- Donec non tortor in arcu mollis feugiat
+- Lorem ipsum dolor sit amet, consectetuer adipiscing elit
+- Donec id eros eget quam aliquam gravida
+- Vivamus convallis urna id felis
+- Nulla porta tempus sapien
 
 ## Ordered Lists
 

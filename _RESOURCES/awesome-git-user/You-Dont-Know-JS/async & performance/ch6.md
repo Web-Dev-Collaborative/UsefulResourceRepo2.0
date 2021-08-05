@@ -1,11 +1,12 @@
 # You Don't Know JS: Async & Performance
+
 # Chapter 6: Benchmarking & Tuning
 
 As the first four chapters of this book were all about performance as a coding pattern (asynchrony and concurrency), and Chapter 5 was about performance at the macro program architecture level, this chapter goes after the topic of performance at the micro level, focusing on single expressions/statements.
 
 One of the most common areas of curiosity -- indeed, some developers can get quite obsessed about it -- is in analyzing and testing various options for how to write a line or chunk of code, and which one is faster.
 
-We're going to look at some of these issues, but it's important to understand from the outset that this chapter is **not** about feeding the obsession of micro-performance tuning, like whether some given JS engine can run `++a` faster than `a++`. The more important goal of this chapter is to figure out what kinds of JS performance matter and which ones don't, *and how to tell the difference*.
+We're going to look at some of these issues, but it's important to understand from the outset that this chapter is **not** about feeding the obsession of micro-performance tuning, like whether some given JS engine can run `++a` faster than `a++`. The more important goal of this chapter is to figure out what kinds of JS performance matter and which ones don't, _and how to tell the difference_.
 
 But even before we get there, we need to explore how to most accurately and reliably test JS performance, because there's tons of misconceptions and myths that have flooded our collective cult knowledge base. We've got to sift through all that junk to find some clarity.
 
@@ -14,13 +15,13 @@ But even before we get there, we need to explore how to most accurately and reli
 OK, time to start dispelling some misconceptions. I'd wager the vast majority of JS developers, if asked to benchmark the speed (execution time) of a certain operation, would initially go about it something like this:
 
 ```js
-var start = (new Date()).getTime();	// or `Date.now()`
+var start = new Date().getTime(); // or `Date.now()`
 
 // do some operation
 
-var end = (new Date()).getTime();
+var end = new Date().getTime();
 
-console.log( "Duration:", (end - start) );
+console.log("Duration:", end - start);
 ```
 
 Raise your hand if that's roughly what came to your mind. Yep, I thought so. There's a lot wrong with this approach, but don't feel bad; **we've all been there.**
@@ -67,24 +68,24 @@ But just for quick illustration purposes, here's how you could use Benchmark.js 
 
 ```js
 function foo() {
-	// operation(s) to test
+  // operation(s) to test
 }
 
 var bench = new Benchmark(
-	"foo test",				// test name
-	foo,					// function to test (just contents)
-	{
-		// ..				// optional extra options (see docs)
-	}
+  "foo test", // test name
+  foo, // function to test (just contents)
+  {
+    // ..				// optional extra options (see docs)
+  }
 );
 
-bench.hz;					// number of operations per second
-bench.stats.moe;			// margin of error
-bench.stats.variance;		// variance across samples
+bench.hz; // number of operations per second
+bench.stats.moe; // margin of error
+bench.stats.variance; // variance across samples
 // ..
 ```
 
-There's *lots* more to learn about using Benchmark.js besides this glance I'm including here. But the point is that it's handling all of the complexities of setting up a fair, reliable, and valid performance benchmark for a given piece of JavaScript code. If you're going to try to test and benchmark your code, this library is the first place you should turn.
+There's _lots_ more to learn about using Benchmark.js besides this glance I'm including here. But the point is that it's handling all of the complexities of setting up a fair, reliable, and valid performance benchmark for a given piece of JavaScript code. If you're going to try to test and benchmark your code, this library is the first place you should turn.
 
 We're showing here the usage to test a single operation like X, but it's fairly common that you want to compare X to Y. This is easy to do by simply setting up two different tests in a "Suite" (a Benchmark.js organizational feature). Then, you run them head-to-head, and compare the statistics to conclude whether X or Y was faster.
 
@@ -98,13 +99,13 @@ In the previous code snippet, we glossed over the "extra options" `{ .. }` objec
 
 These two options let you define functions to be called before and after your test case runs.
 
-It's incredibly important to understand that your `setup` and `teardown` code **does not run for each test iteration**. The best way to think about it is that there's an outer loop (repeating cycles), and an inner loop (repeating test iterations). `setup` and `teardown` are run at the beginning and end of each *outer* loop (aka cycle) iteration, but not inside the inner loop.
+It's incredibly important to understand that your `setup` and `teardown` code **does not run for each test iteration**. The best way to think about it is that there's an outer loop (repeating cycles), and an inner loop (repeating test iterations). `setup` and `teardown` are run at the beginning and end of each _outer_ loop (aka cycle) iteration, but not inside the inner loop.
 
 Why does this matter? Let's imagine you have a test case that looks like this:
 
 ```js
 a = a + "w";
-b = a.charAt( 1 );
+b = a.charAt(1);
 ```
 
 Then, you set up your test `setup` as follows:
@@ -152,12 +153,12 @@ var twelve = "12";
 var foo = "foo";
 
 // test 1
-var X1 = parseInt( twelve );
-var X2 = parseInt( foo );
+var X1 = parseInt(twelve);
+var X2 = parseInt(foo);
 
 // test 2
-var Y1 = Number( twelve );
-var Y2 = Number( foo );
+var Y1 = Number(twelve);
+var Y2 = Number(foo);
 ```
 
 If you understand what `parseInt(..)` does compared to `Number(..)`, you might intuit that `parseInt(..)` potentially has "more work" to do, especially in the `foo` case. Or you might intuit that they should have the same amount of work to do in the `foo` case, as both should be able to stop at the first character `"f"`.
@@ -180,7 +181,7 @@ The point I'm trying to make is that you really don't know for sure exactly what
 
 Does that mean you can't really do any useful testing? **Definitely not!**
 
-What this boils down to is that testing *not real* code gives you *not real* results. In so much as is possible and practical, you should test actual real, non-trivial snippets of your code, and under as best of real conditions as you can actually hope to. Only then will the results you get have a chance to approximate reality.
+What this boils down to is that testing _not real_ code gives you _not real_ results. In so much as is possible and practical, you should test actual real, non-trivial snippets of your code, and under as best of real conditions as you can actually hope to. Only then will the results you get have a chance to approximate reality.
 
 Microbenchmarks like `++x` vs `x++` are so incredibly likely to be bogus, we might as well just flatly assume them as such.
 
@@ -211,69 +212,68 @@ Consider:
 ```js
 // Case 1
 var x = [];
-for (var i=0; i<10; i++) {
-	x[i] = "x";
+for (var i = 0; i < 10; i++) {
+  x[i] = "x";
 }
 
 // Case 2
 var x = [];
-for (var i=0; i<10; i++) {
-	x[x.length] = "x";
+for (var i = 0; i < 10; i++) {
+  x[x.length] = "x";
 }
 
 // Case 3
 var x = [];
-for (var i=0; i<10; i++) {
-	x.push( "x" );
+for (var i = 0; i < 10; i++) {
+  x.push("x");
 }
 ```
 
 Some observations to ponder about this test scenario:
 
-* It's extremely common for devs to put their own loops into test cases, and they forget that Benchmark.js already does all the repetition you need. There's a really strong chance that the `for` loops in these cases are totally unnecessary noise.
-* The declaring and initializing of `x` is included in each test case, possibly unnecessarily. Recall from earlier that if `x = []` were in the `setup` code, it wouldn't actually be run before each test iteration, but instead once at the beginning of each cycle. That means `x` would continue growing quite large, not just the size `10` implied by the `for` loops.
+- It's extremely common for devs to put their own loops into test cases, and they forget that Benchmark.js already does all the repetition you need. There's a really strong chance that the `for` loops in these cases are totally unnecessary noise.
+- The declaring and initializing of `x` is included in each test case, possibly unnecessarily. Recall from earlier that if `x = []` were in the `setup` code, it wouldn't actually be run before each test iteration, but instead once at the beginning of each cycle. That means `x` would continue growing quite large, not just the size `10` implied by the `for` loops.
 
-   So is the intent to make sure the tests are constrained only to how the JS engine behaves with very small arrays (size `10`)? That *could* be the intent, but if it is, you have to consider if that's not focusing far too much on nuanced internal implementation details.
+  So is the intent to make sure the tests are constrained only to how the JS engine behaves with very small arrays (size `10`)? That _could_ be the intent, but if it is, you have to consider if that's not focusing far too much on nuanced internal implementation details.
 
-   On the other hand, does the intent of the test embrace the context that the arrays will actually be growing quite large? Is the JS engines' behavior with larger arrays relevant and accurate when compared with the intended real world usage?
+  On the other hand, does the intent of the test embrace the context that the arrays will actually be growing quite large? Is the JS engines' behavior with larger arrays relevant and accurate when compared with the intended real world usage?
 
-* Is the intent to find out how much `x.length` or `x.push(..)` add to the performance of the operation to append to the `x` array? OK, that might be a valid thing to test. But then again, `push(..)` is a function call, so of course it's going to be slower than `[..]` access. Arguably, cases 1 and 2 are fairer than case 3.
-
+- Is the intent to find out how much `x.length` or `x.push(..)` add to the performance of the operation to append to the `x` array? OK, that might be a valid thing to test. But then again, `push(..)` is a function call, so of course it's going to be slower than `[..]` access. Arguably, cases 1 and 2 are fairer than case 3.
 
 Here's another example that illustrates a common apples-to-oranges flaw:
 
 ```js
 // Case 1
-var x = ["John","Albert","Sue","Frank","Bob"];
+var x = ["John", "Albert", "Sue", "Frank", "Bob"];
 x.sort();
 
 // Case 2
-var x = ["John","Albert","Sue","Frank","Bob"];
-x.sort( function mySort(a,b){
-	if (a < b) return -1;
-	if (a > b) return 1;
-	return 0;
-} );
+var x = ["John", "Albert", "Sue", "Frank", "Bob"];
+x.sort(function mySort(a, b) {
+  if (a < b) return -1;
+  if (a > b) return 1;
+  return 0;
+});
 ```
 
 Here, the obvious intent is to find out how much slower the custom `mySort(..)` comparator is than the built-in default comparator. But by specifying the function `mySort(..)` as inline function expression, you've created an unfair/bogus test. Here, the second case is not only testing a custom user JS function, **but it's also testing creating a new function expression for each iteration.**
 
 Would it surprise you to find out that if you run a similar test but update it to isolate only for creating an inline function expression versus using a pre-declared function, the inline function expression creation can be from 2% to 20% slower!?
 
-Unless your intent with this test *is* to consider the inline function expression creation "cost," a better/fairer test would put `mySort(..)`'s declaration in the page setup -- don't put it in the test `setup` as that's unnecessary redeclaration for each cycle -- and simply reference it by name in the test case: `x.sort(mySort)`.
+Unless your intent with this test _is_ to consider the inline function expression creation "cost," a better/fairer test would put `mySort(..)`'s declaration in the page setup -- don't put it in the test `setup` as that's unnecessary redeclaration for each cycle -- and simply reference it by name in the test case: `x.sort(mySort)`.
 
 Building on the previous example, another pitfall is in opaquely avoiding or adding "extra work" to one test case that creates an apples-to-oranges scenario:
 
 ```js
 // Case 1
-var x = [12,-14,0,3,18,0,2.9];
+var x = [12, -14, 0, 3, 18, 0, 2.9];
 x.sort();
 
 // Case 2
-var x = [12,-14,0,3,18,0,2.9];
-x.sort( function mySort(a,b){
-	return a - b;
-} );
+var x = [12, -14, 0, 3, 18, 0, 2.9];
+x.sort(function mySort(a, b) {
+  return a - b;
+});
 ```
 
 Setting aside the previously mentioned inline function expression pitfall, the second case's `mySort(..)` works in this case because you have provided it numbers, but would have of course failed with strings. The first case doesn't throw an error, but it actually behaves differently and has a different outcome! It should be obvious, but: **a different outcome between two test cases almost certainly invalidates the entire test!**
@@ -294,7 +294,7 @@ var x;
 var y = x ? 1 : 2;
 ```
 
-Here, the intent might be to test the performance impact of the coercion to a Boolean that the `? :` operator will do if the `x` expression is not already a Boolean (see the *Types & Grammar* title of this book series). So, you're apparently OK with the fact that there is extra work to do the coercion in the second case.
+Here, the intent might be to test the performance impact of the coercion to a Boolean that the `? :` operator will do if the `x` expression is not already a Boolean (see the _Types & Grammar_ title of this book series). So, you're apparently OK with the fact that there is extra work to do the coercion in the second case.
 
 The subtle problem? You're setting `x`'s value in the first case and not setting it in the other, so you're actually doing work in the first case that you're not doing in the second. To eliminate any potential (albeit minor) skew, try:
 
@@ -314,7 +314,7 @@ Now there's an assignment in both cases, so the thing you want to test -- the co
 
 Let me see if I can articulate the bigger point I'm trying to make here.
 
-Good test authoring requires careful analytical thinking about what differences exist between two test cases and whether the differences between them are *intentional* or *unintentional*.
+Good test authoring requires careful analytical thinking about what differences exist between two test cases and whether the differences between them are _intentional_ or _unintentional_.
 
 Intentional differences are of course normal and OK, but it's too easy to create unintentional differences that skew your results. You have to be really, really careful to avoid that skew. Moreover, you may intend a difference but it may not be obvious to other readers of your test what your intent was, so they may doubt (or trust!) your test incorrectly. How do you fix that?
 
@@ -335,30 +335,30 @@ Let's consider this piece of code:
 ```js
 var foo = 41;
 
-(function(){
-	(function(){
-		(function(baz){
-			var bar = foo + baz;
-			// ..
-		})(1);
-	})();
+(function () {
+  (function () {
+    (function (baz) {
+      var bar = foo + baz;
+      // ..
+    })(1);
+  })();
 })();
 ```
 
-You may think about the `foo` reference in the innermost function as needing to do a three-level scope lookup. We covered in the *Scope & Closures* title of this book series how lexical scope works, and the fact that the compiler generally caches such lookups so that referencing `foo` from different scopes doesn't really practically "cost" anything extra.
+You may think about the `foo` reference in the innermost function as needing to do a three-level scope lookup. We covered in the _Scope & Closures_ title of this book series how lexical scope works, and the fact that the compiler generally caches such lookups so that referencing `foo` from different scopes doesn't really practically "cost" anything extra.
 
 But there's something deeper to consider. What if the compiler realizes that `foo` isn't referenced anywhere else but that one location, and it further notices that the value never is anything except the `41` as shown?
 
-Isn't it quite possible and acceptable that the JS compiler could decide to just remove the `foo` variable entirely, and *inline* the value, such as this:
+Isn't it quite possible and acceptable that the JS compiler could decide to just remove the `foo` variable entirely, and _inline_ the value, such as this:
 
 ```js
-(function(){
-	(function(){
-		(function(baz){
-			var bar = 41 + baz;
-			// ..
-		})(1);
-	})();
+(function () {
+  (function () {
+    (function (baz) {
+      var bar = 41 + baz;
+      // ..
+    })(1);
+  })();
 })();
 ```
 
@@ -370,31 +370,31 @@ Another example:
 
 ```js
 function factorial(n) {
-	if (n < 2) return 1;
-	return n * factorial( n - 1 );
+  if (n < 2) return 1;
+  return n * factorial(n - 1);
 }
 
-factorial( 5 );		// 120
+factorial(5); // 120
 ```
 
 Ah, the good ol' fashioned "factorial" algorithm! You might assume that the JS engine will run that code mostly as is. And to be honest, it might -- I'm not really sure.
 
 But as an anecdote, the same code expressed in C and compiled with advanced optimizations would result in the compiler realizing that the call `factorial(5)` can just be replaced with the constant value `120`, eliminating the function and call entirely!
 
-Moreover, some engines have a practice called "unrolling recursion," where it can realize that the recursion you've expressed can actually be done "easier" (i.e., more optimally) with a loop. It's possible the preceding code could be *rewritten* by a JS engine to run as:
+Moreover, some engines have a practice called "unrolling recursion," where it can realize that the recursion you've expressed can actually be done "easier" (i.e., more optimally) with a loop. It's possible the preceding code could be _rewritten_ by a JS engine to run as:
 
 ```js
 function factorial(n) {
-	if (n < 2) return 1;
+  if (n < 2) return 1;
 
-	var res = 1;
-	for (var i=n; i>1; i--) {
-		res *= i;
-	}
-	return res;
+  var res = 1;
+  for (var i = n; i > 1; i--) {
+    res *= i;
+  }
+  return res;
 }
 
-factorial( 5 );		// 120
+factorial(5); // 120
 ```
 
 Now, let's imagine that in the earlier snippet you had been worried about whether `n * factorial(n-1)` or `n *= factorial(--n)` runs faster. Maybe you even did a performance benchmark to try to figure out which was better. But you miss the fact that in the bigger context, the engine may not run either line of code because it may unroll the recursion!
@@ -405,18 +405,18 @@ That sort of obsession is basically nonsense in modern JavaScript. That's the ki
 
 ```js
 // Option 1
-for (var i=0; i<10; i++) {
-	console.log( i );
+for (var i = 0; i < 10; i++) {
+  console.log(i);
 }
 
 // Option 2
-for (var i=0; i<10; ++i) {
-	console.log( i );
+for (var i = 0; i < 10; ++i) {
+  console.log(i);
 }
 
 // Option 3
-for (var i=-1; ++i<10; ) {
-	console.log( i );
+for (var i = -1; ++i < 10; ) {
+  console.log(i);
 }
 ```
 
@@ -456,12 +456,12 @@ There's a movement among some in the JS dev community, especially those who work
 
 Some commonly cited examples (https://github.com/petkaantonov/bluebird/wiki/Optimization-killers) for v8:
 
-* Don't pass the `arguments` variable from one function to any other function, as such "leakage" slows down the function implementation.
-* Isolate a `try..catch` in its own function. Browsers struggle with optimizing any function with a `try..catch` in it, so moving that construct to its own function means you contain the de-optimization harm while letting the surrounding code be optimizable.
+- Don't pass the `arguments` variable from one function to any other function, as such "leakage" slows down the function implementation.
+- Isolate a `try..catch` in its own function. Browsers struggle with optimizing any function with a `try..catch` in it, so moving that construct to its own function means you contain the de-optimization harm while letting the surrounding code be optimizable.
 
 But rather than focus on those tips specifically, let's sanity check the v8-only optimization approach in a general sense.
 
-Are you genuinely writing code that only needs to run in one JS engine? Even if your code is entirely intended for Node.js *right now*, is the assumption that v8 will *always* be the used JS engine reliable? Is it possible that someday a few years from now, there's another server-side JS platform besides Node.js that you choose to run your code on? What if what you optimized for before is now a much slower way of doing that operation on the new engine?
+Are you genuinely writing code that only needs to run in one JS engine? Even if your code is entirely intended for Node.js _right now_, is the assumption that v8 will _always_ be the used JS engine reliable? Is it possible that someday a few years from now, there's another server-side JS platform besides Node.js that you choose to run your code on? What if what you optimized for before is now a much slower way of doing that operation on the new engine?
 
 Or what if your code always stays running on v8 from here on out, but v8 decides at some point to change the way some set of operations works such that what used to be fast is now slow, and vice versa?
 
@@ -475,7 +475,7 @@ Except, somewhere along the way, the JS engines changed approaches for internall
 
 Once that new approach to handling strings and concatenation took hold, unfortunately all the code out in the wild that was using array `join(..)` to concatenate strings was then sub-optimal.
 
-Another example: at one time, the Opera browser differed from other browsers in how it handled the boxing/unboxing of primitive wrapper objects (see the *Types & Grammar* title of this book series). As such, their advice to developers was to use a `String` object instead of the primitive `string` value if properties like `length` or methods like `charAt(..)` needed to be accessed. This advice may have been correct for Opera at the time, but it was literally completely opposite for other major contemporary browsers, as they had optimizations specifically for the `string` primitives and not their object wrapper counterparts.
+Another example: at one time, the Opera browser differed from other browsers in how it handled the boxing/unboxing of primitive wrapper objects (see the _Types & Grammar_ title of this book series). As such, their advice to developers was to use a `String` object instead of the primitive `string` value if properties like `length` or methods like `charAt(..)` needed to be accessed. This advice may have been correct for Opera at the time, but it was literally completely opposite for other major contemporary browsers, as they had optimizations specifically for the `string` primitives and not their object wrapper counterparts.
 
 I think these various gotchas are at least possible, if not likely, for code even today. So I'm very cautious about making wide ranging performance optimizations in my JS code based purely on engine implementation details, **especially if those details are only true of a single engine**.
 
@@ -489,7 +489,7 @@ But it's troublesome to suggest that just one browser's trouble with performance
 
 In the days when a browser only updated once every five years, that was a tougher call to make. But as it stands now, browsers across the board are updating at a much more rapid interval (though obviously the mobile world still lags), and they're all competing to optimize web features better and better.
 
-If you run across a case where a browser *does* have a performance wart that others don't suffer from, make sure to report it to them through whatever means you have available. Most browsers have open public bug trackers suitable for this purpose.
+If you run across a case where a browser _does_ have a performance wart that others don't suffer from, make sure to report it to them through whatever means you have available. Most browsers have open public bug trackers suitable for this purpose.
 
 **Tip:** I'd only suggest working around a performance issue in a browser if it was a really drastic show-stopper, not just an annoyance or frustration. And I'd be very careful to check that the performance hack didn't have noticeable negative side effects in another browser.
 
@@ -507,25 +507,25 @@ Here is Knuth's quote, in context:
 
 (http://web.archive.org/web/20130731202547/http://pplab.snu.ac.kr/courses/adv_pl05/papers/p261-knuth.pdf, Computing Surveys, Vol 6, No 4, December 1974)
 
-I believe it's a fair paraphrasing to say that Knuth *meant*: "non-critical path optimization is the root of all evil." So the key is to figure out if your code is on the critical path -- you should optimize it! -- or not.
+I believe it's a fair paraphrasing to say that Knuth _meant_: "non-critical path optimization is the root of all evil." So the key is to figure out if your code is on the critical path -- you should optimize it! -- or not.
 
 I'd even go so far as to say this: no amount of time spent optimizing critical paths is wasted, no matter how little is saved; but no amount of optimization on noncritical paths is justified, no matter how much is saved.
 
 If your code is on the critical path, such as a "hot" piece of code that's going to be run over and over again, or in UX critical places where users will notice, like an animation loop or CSS style updates, then you should spare no effort in trying to employ relevant, measurably significant optimizations.
 
-For example, consider a critical path animation loop that needs to coerce a string value to a number. There are of course multiple ways to do that (see the *Types & Grammar* title of this book series), but which one if any is the fastest?
+For example, consider a critical path animation loop that needs to coerce a string value to a number. There are of course multiple ways to do that (see the _Types & Grammar_ title of this book series), but which one if any is the fastest?
 
 ```js
-var x = "42";	// need number `42`
+var x = "42"; // need number `42`
 
 // Option 1: let implicit coercion automatically happen
 var y = x / 2;
 
 // Option 2: use `parseInt(..)`
-var y = parseInt( x, 0 ) / 2;
+var y = parseInt(x, 0) / 2;
 
 // Option 3: use `Number(..)`
-var y = Number( x ) / 2;
+var y = Number(x) / 2;
 
 // Option 4: use `+` unary operator
 var y = +x / 2;
@@ -548,7 +548,7 @@ While performance is very important in critical paths of your program, it's not 
 
 ## Tail Call Optimization (TCO)
 
-As we briefly mentioned earlier, ES6 includes a specific requirement that ventures into the world of performance. It's related to a specific form of optimization that can occur with function calls: *tail call optimization*.
+As we briefly mentioned earlier, ES6 includes a specific requirement that ventures into the world of performance. It's related to a specific form of optimization that can occur with function calls: _tail call optimization_.
 
 Briefly, a "tail call" is a function call that appears at the "tail" of another function, such that after the call finishes, there's nothing left to do (except perhaps return its result value).
 
@@ -556,53 +556,53 @@ For example, here's a non-recursive setup with tail calls:
 
 ```js
 function foo(x) {
-	return x;
+  return x;
 }
 
 function bar(y) {
-	return foo( y + 1 );	// tail call
+  return foo(y + 1); // tail call
 }
 
 function baz() {
-	return 1 + bar( 40 );	// not tail call
+  return 1 + bar(40); // not tail call
 }
 
-baz();						// 42
+baz(); // 42
 ```
 
-`foo(y+1)` is a tail call in `bar(..)` because after `foo(..)` finishes, `bar(..)` is also finished except in this case returning the result of the `foo(..)` call. However, `bar(40)` is *not* a tail call because after it completes, its result value must be added to `1` before `baz()` can return it.
+`foo(y+1)` is a tail call in `bar(..)` because after `foo(..)` finishes, `bar(..)` is also finished except in this case returning the result of the `foo(..)` call. However, `bar(40)` is _not_ a tail call because after it completes, its result value must be added to `1` before `baz()` can return it.
 
 Without getting into too much nitty-gritty detail, calling a new function requires an extra amount of reserved memory to manage the call stack, called a "stack frame." So the preceding snippet would generally require a stack frame for each of `baz()`, `bar(..)`, and `foo(..)` all at the same time.
 
-However, if a TCO-capable engine can realize that the `foo(y+1)` call is in *tail position* meaning `bar(..)` is basically complete, then when calling `foo(..)`, it doesn't need to create a new stack frame, but can instead reuse the existing stack frame from `bar(..)`. That's not only faster, but it also uses less memory.
+However, if a TCO-capable engine can realize that the `foo(y+1)` call is in _tail position_ meaning `bar(..)` is basically complete, then when calling `foo(..)`, it doesn't need to create a new stack frame, but can instead reuse the existing stack frame from `bar(..)`. That's not only faster, but it also uses less memory.
 
-That sort of optimization isn't a big deal in a simple snippet, but it becomes a *much bigger deal* when dealing with recursion, especially if the recursion could have resulted in hundreds or thousands of stack frames. With TCO the engine can perform all those calls with a single stack frame!
+That sort of optimization isn't a big deal in a simple snippet, but it becomes a _much bigger deal_ when dealing with recursion, especially if the recursion could have resulted in hundreds or thousands of stack frames. With TCO the engine can perform all those calls with a single stack frame!
 
-Recursion is a hairy topic in JS because without TCO, engines have had to implement arbitrary (and different!) limits to how deep they will let the recursion stack get before they stop it, to prevent running out of memory. With TCO, recursive functions with *tail position* calls can essentially run unbounded, because there's never any extra usage of memory!
+Recursion is a hairy topic in JS because without TCO, engines have had to implement arbitrary (and different!) limits to how deep they will let the recursion stack get before they stop it, to prevent running out of memory. With TCO, recursive functions with _tail position_ calls can essentially run unbounded, because there's never any extra usage of memory!
 
 Consider that recursive `factorial(..)` from before, but rewritten to make it TCO friendly:
 
 ```js
 function factorial(n) {
-	function fact(n,res) {
-		if (n < 2) return res;
+  function fact(n, res) {
+    if (n < 2) return res;
 
-		return fact( n - 1, n * res );
-	}
+    return fact(n - 1, n * res);
+  }
 
-	return fact( n, 1 );
+  return fact(n, 1);
 }
 
-factorial( 5 );		// 120
+factorial(5); // 120
 ```
 
-This version of `factorial(..)` is still recursive, but it's also optimizable with TCO, because both inner `fact(..)` calls are in *tail position*.
+This version of `factorial(..)` is still recursive, but it's also optimizable with TCO, because both inner `fact(..)` calls are in _tail position_.
 
 **Note:** It's important to note that TCO only applies if there's actually a tail call. If you write recursive functions without tail calls, the performance will still fall back to normal stack frame allocation, and the engines' limits on such recursive call stacks will still apply. Many recursive functions can be rewritten as we just showed with `factorial(..)`, but it takes careful attention to detail.
 
-One reason that ES6 requires engines to implement TCO rather than leaving it up to their discretion is because the *lack of TCO* actually tends to reduce the chances that certain algorithms will be implemented in JS using recursion, for fear of the call stack limits.
+One reason that ES6 requires engines to implement TCO rather than leaving it up to their discretion is because the _lack of TCO_ actually tends to reduce the chances that certain algorithms will be implemented in JS using recursion, for fear of the call stack limits.
 
-If the lack of TCO in the engine would just gracefully degrade to slower performance in all cases, it wouldn't probably have been something that ES6 needed to *require*. But because the lack of TCO can actually make certain programs impractical, it's more an important feature of the language than just a hidden implementation detail.
+If the lack of TCO in the engine would just gracefully degrade to slower performance in all cases, it wouldn't probably have been something that ES6 needed to _require_. But because the lack of TCO can actually make certain programs impractical, it's more an important feature of the language than just a hidden implementation detail.
 
 ES6 guarantees that from now on, JS developers will be able to rely on this optimization across all ES6+ compliant browsers. That's a win for JS performance!
 
@@ -616,4 +616,4 @@ It's important to get as many test results from as many different environments a
 
 Many common performance tests unfortunately obsess about irrelevant microperformance details like `x++` versus `++x`. Writing good tests means understanding how to focus on big picture concerns, like optimizing on the critical path, and avoiding falling into traps like different JS engines' implementation details.
 
-Tail call optimization (TCO) is a required optimization as of ES6 that will make some recursive patterns practical in JS where they would have been impossible otherwise. TCO allows a function call in the *tail position* of another function to execute without needing any extra resources, which means the engine no longer needs to place arbitrary restrictions on call stack depth for recursive algorithms.
+Tail call optimization (TCO) is a required optimization as of ES6 that will make some recursive patterns practical in JS where they would have been impossible otherwise. TCO allows a function call in the _tail position_ of another function to execute without needing any extra resources, which means the engine no longer needs to place arbitrary restrictions on call stack depth for recursive algorithms.

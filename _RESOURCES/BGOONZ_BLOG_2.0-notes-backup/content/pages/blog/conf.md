@@ -1,38 +1,38 @@
 ---
 title: New Conference
 excerpt: >-
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-    incididunt ut labore et dolore magna aliqua. Ac ut consequat semper viverra
-    nam libero justo laoreet sit.
-date: '2021-05-23'
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Ac ut consequat semper viverra
+  nam libero justo laoreet sit.
+date: "2021-05-23"
 thumb_image: images/2.jpg
 image: images/2.jpg
 seo:
-    title: New Conference
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
-    extra:
-        - name: 'og:type'
-          value: article
-          keyName: property
-        - name: 'og:title'
-          value: New Conference
-          keyName: property
-        - name: 'og:description'
-          value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
-          keyName: property
-        - name: 'og:image'
-          value: images/2.jpg
-          keyName: property
-          relativeUrl: true
-        - name: 'twitter:card'
-          value: summary_large_image
-        - name: 'twitter:title'
-          value: New Conference
-        - name: 'twitter:description'
-          value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
-        - name: 'twitter:image'
-          value: images/2.jpg
-          relativeUrl: true
+  title: New Conference
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+  extra:
+    - name: "og:type"
+      value: article
+      keyName: property
+    - name: "og:title"
+      value: New Conference
+      keyName: property
+    - name: "og:description"
+      value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      keyName: property
+    - name: "og:image"
+      value: images/2.jpg
+      keyName: property
+      relativeUrl: true
+    - name: "twitter:card"
+      value: summary_large_image
+    - name: "twitter:title"
+      value: New Conference
+    - name: "twitter:description"
+      value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    - name: "twitter:image"
+      value: images/2.jpg
+      relativeUrl: true
 layout: post
 ---
 
