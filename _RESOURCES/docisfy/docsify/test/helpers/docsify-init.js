@@ -78,7 +78,7 @@ async function docsifyInit(options = {}) {
         loadSidebar: Boolean(settings.markdown.sidebar),
       };
 
-      const updateBasePath = config => {
+      const updateBasePath = (config) => {
         if (config.basePath) {
           config.basePath = new URL(config.basePath, TEST_HOST).href;
         }
@@ -86,7 +86,7 @@ async function docsifyInit(options = {}) {
 
       // Config as function
       if (typeof options.config === 'function') {
-        return function(vm) {
+        return function (vm) {
           const config = { ...sharedConfig, ...options.config(vm) };
 
           updateBasePath(config);
@@ -142,12 +142,12 @@ async function docsifyInit(options = {}) {
     // Merge scripts and remove duplicates
     scriptURLs: []
       .concat(options.scriptURLs || '')
-      .filter(url => url)
-      .map(url => new URL(url, TEST_HOST).href),
+      .filter((url) => url)
+      .map((url) => new URL(url, TEST_HOST).href),
     styleURLs: []
       .concat(options.styleURLs || '')
-      .filter(url => url)
-      .map(url => new URL(url, TEST_HOST).href),
+      .filter((url) => url)
+      .map((url) => new URL(url, TEST_HOST).href),
   };
 
   // Routes
@@ -190,7 +190,7 @@ async function docsifyInit(options = {}) {
           .header('Content-Type', contentType);
       });
     } else {
-      await page.route(urlGlob, route => route.fulfill(response));
+      await page.route(urlGlob, (route) => route.fulfill(response));
     }
   }
 
@@ -217,7 +217,7 @@ async function docsifyInit(options = {}) {
       typeof val === 'function' ? `__FN__${val.toString()}` : val
     );
 
-    await page.evaluate(config => {
+    await page.evaluate((config) => {
       // Restore config functions from strings
       const configObj = JSON.parse(config, (key, val) =>
         /^__FN__/.test(val)
@@ -240,7 +240,9 @@ async function docsifyInit(options = {}) {
       document.head.appendChild(linkElm);
     }
   } else if (isPlaywright) {
-    await Promise.all(settings.styleURLs.map(url => page.addStyleTag({ url })));
+    await Promise.all(
+      settings.styleURLs.map((url) => page.addStyleTag({ url }))
+    );
   }
 
   // JavaScript URLs
@@ -280,7 +282,7 @@ async function docsifyInit(options = {}) {
       styleElm.textContent = stripIndent`${settings.style}`;
       headElm.appendChild(styleElm);
     } else if (isPlaywright) {
-      await page.evaluate(data => {
+      await page.evaluate((data) => {
         const headElm = document.querySelector('head');
         const styleElm = document.createElement('style');
 
@@ -322,11 +324,11 @@ async function docsifyInit(options = {}) {
     if (selector) {
       if (isJSDOM) {
         htmlArr = [...document.querySelectorAll(selector)].map(
-          elm => elm.outerHTML
+          (elm) => elm.outerHTML
         );
       } else {
-        htmlArr = await page.$$eval(selector, elms =>
-          elms.map(e => e.outerHTML)
+        htmlArr = await page.$$eval(selector, (elms) =>
+          elms.map((e) => e.outerHTML)
         );
       }
     } else {
@@ -336,7 +338,7 @@ async function docsifyInit(options = {}) {
     }
 
     if (htmlArr.length) {
-      htmlArr.forEach(html => {
+      htmlArr.forEach((html) => {
         if (settings._logHTML.format !== false) {
           html = prettier.format(html, { parser: 'html' });
         }

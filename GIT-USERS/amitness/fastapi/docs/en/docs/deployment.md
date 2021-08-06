@@ -42,7 +42,7 @@ If you use any other tool to manage your installations, like Poetry, Pipenv, or 
 
 ### Available versions
 
-You can see the available versions (e.g. to check what is the current latest) in the [Release Notes](release-notes.md){.internal-link target=_blank}.
+You can see the available versions (e.g. to check what is the current latest) in the [Release Notes](release-notes.md){.internal-link target=\_blank}.
 
 ### About versions
 
@@ -51,7 +51,7 @@ Following the Semantic Versioning conventions, any version below `1.0.0` could p
 FastAPI also follows the convention that any "PATCH" version change is for bug fixes and non-breaking changes.
 
 !!! tip
-    The "PATCH" is the last number, for example, in `0.2.3`, the PATCH version is `3`.
+The "PATCH" is the last number, for example, in `0.2.3`, the PATCH version is `3`.
 
 So, you should be able to pin to a version like:
 
@@ -62,13 +62,13 @@ fastapi>=0.45.0,<0.46.0
 Breaking changes and new features are added in "MINOR" versions.
 
 !!! tip
-    The "MINOR" is the number in the middle, for example, in `0.2.3`, the MINOR version is `2`.
+The "MINOR" is the number in the middle, for example, in `0.2.3`, the MINOR version is `2`.
 
 ### Upgrading the FastAPI versions
 
 You should add tests for your app.
 
-With **FastAPI** it's very easy (thanks to Starlette), check the docs: [Testing](tutorial/testing.md){.internal-link target=_blank}
+With **FastAPI** it's very easy (thanks to Starlette), check the docs: [Testing](tutorial/testing.md){.internal-link target=\_blank}
 
 After you have tests, then you can upgrade the **FastAPI** version to a more recent one, and make sure that all your code is working correctly by running your tests.
 
@@ -98,10 +98,10 @@ pydantic>=1.2.0,<2.0.0
 
 In this section you'll see instructions and links to guides to know how to:
 
-* Make your **FastAPI** application a Docker image/container with maximum performance. In about **5 min**.
-* (Optionally) understand what you, as a developer, need to know about HTTPS.
-* Set up a Docker Swarm mode cluster with automatic HTTPS, even on a simple $5 USD/month server. In about **20 min**.
-* Generate and deploy a full **FastAPI** application, using your Docker Swarm cluster, with HTTPS, etc. In about **10 min**.
+- Make your **FastAPI** application a Docker image/container with maximum performance. In about **5 min**.
+- (Optionally) understand what you, as a developer, need to know about HTTPS.
+- Set up a Docker Swarm mode cluster with automatic HTTPS, even on a simple $5 USD/month server. In about **20 min**.
+- Generate and deploy a full **FastAPI** application, using your Docker Swarm cluster, with HTTPS, etc. In about **10 min**.
 
 You can use <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a> for deployment. It has several advantages like security, replicability, development simplicity, etc.
 
@@ -114,12 +114,12 @@ This image has an "auto-tuning" mechanism included, so that you can just add you
 But you can still change and update all the configurations with environment variables or configuration files.
 
 !!! tip
-    To see all the configurations and options, go to the Docker image page: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
+To see all the configurations and options, go to the Docker image page: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 
 ### Create a `Dockerfile`
 
-* Go to your project directory.
-* Create a `Dockerfile` with:
+- Go to your project directory.
+- Create a `Dockerfile` with:
 
 ```Dockerfile
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
@@ -129,7 +129,7 @@ COPY ./app /app
 
 #### Bigger Applications
 
-If you followed the section about creating [Bigger Applications with Multiple Files](tutorial/bigger-applications.md){.internal-link target=_blank}, your `Dockerfile` might instead look like:
+If you followed the section about creating [Bigger Applications with Multiple Files](tutorial/bigger-applications.md){.internal-link target=\_blank}, your `Dockerfile` might instead look like:
 
 ```Dockerfile
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
@@ -157,8 +157,8 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 ### Create the **FastAPI** Code
 
-* Create an `app` directory and enter in it.
-* Create a `main.py` file with:
+- Create an `app` directory and enter in it.
+- Create a `main.py` file with:
 
 ```Python
 from typing import Optional
@@ -178,7 +178,7 @@ def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 ```
 
-* You should now have a directory structure like:
+- You should now have a directory structure like:
 
 ```
 .
@@ -189,8 +189,8 @@ def read_item(item_id: int, q: Optional[str] = None):
 
 ### Build the Docker image
 
-* Go to the project directory (in where your `Dockerfile` is, containing your `app` directory).
-* Build your FastAPI image:
+- Go to the project directory (in where your `Dockerfile` is, containing your `app` directory).
+- Build your FastAPI image:
 
 <div class="termy">
 
@@ -204,7 +204,7 @@ $ docker build -t myimage .
 
 ### Start the Docker container
 
-* Run a container based on your image:
+- Run a container based on your image:
 
 <div class="termy">
 
@@ -251,31 +251,31 @@ It is easy to assume that HTTPS is something that is just "enabled" or not.
 But it is way more complex than that.
 
 !!! tip
-    If you are in a hurry or don't care, continue with the next section for step by step instructions to set everything up.
+If you are in a hurry or don't care, continue with the next section for step by step instructions to set everything up.
 
 To learn the basics of HTTPS, from a consumer perspective, check <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>.
 
 Now, from a developer's perspective, here are several things to have in mind while thinking about HTTPS:
 
-* For HTTPS, the server needs to have "certificates" generated by a third party.
-    * Those certificates are actually acquired from the third-party, not "generated".
-* Certificates have a lifetime.
-    * They expire.
-    * And then they need to be renewed, acquired again from the third party.
-* The encryption of the connection happens at the TCP level.
-    * That's one layer below HTTP.
-    * So, the certificate and encryption handling is done before HTTP.
-* TCP doesn't know about "domains". Only about IP addresses.
-    * The information about the specific domain requested goes in the HTTP data.
-* The HTTPS certificates "certify" a certain domain, but the protocol and encryption happen at the TCP level, before knowing which domain is being dealt with.
-* By default, that would mean that you can only have one HTTPS certificate per IP address.
-    * No matter how big your server is or how small each application you have on it might be.
-    * There is a solution to this, however.
-* There's an extension to the TLS protocol (the one handling the encryption at the TCP level, before HTTP) called <a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication">SNI</abbr></a>.
-    * This SNI extension allows one single server (with a single IP address) to have several HTTPS certificates and serve multiple HTTPS domains/applications.
-    * For this to work, a single component (program) running on the server, listening on the public IP address, must have all the HTTPS certificates in the server.
-* After obtaining a secure connection, the communication protocol is still HTTP.
-    * The contents are encrypted, even though they are being sent with the HTTP protocol.
+- For HTTPS, the server needs to have "certificates" generated by a third party.
+  - Those certificates are actually acquired from the third-party, not "generated".
+- Certificates have a lifetime.
+  - They expire.
+  - And then they need to be renewed, acquired again from the third party.
+- The encryption of the connection happens at the TCP level.
+  - That's one layer below HTTP.
+  - So, the certificate and encryption handling is done before HTTP.
+- TCP doesn't know about "domains". Only about IP addresses.
+  - The information about the specific domain requested goes in the HTTP data.
+- The HTTPS certificates "certify" a certain domain, but the protocol and encryption happen at the TCP level, before knowing which domain is being dealt with.
+- By default, that would mean that you can only have one HTTPS certificate per IP address.
+  - No matter how big your server is or how small each application you have on it might be.
+  - There is a solution to this, however.
+- There's an extension to the TLS protocol (the one handling the encryption at the TCP level, before HTTP) called <a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication">SNI</abbr></a>.
+  - This SNI extension allows one single server (with a single IP address) to have several HTTPS certificates and serve multiple HTTPS domains/applications.
+  - For this to work, a single component (program) running on the server, listening on the public IP address, must have all the HTTPS certificates in the server.
+- After obtaining a secure connection, the communication protocol is still HTTP.
+  - The contents are encrypted, even though they are being sent with the HTTP protocol.
 
 It is a common practice to have one program/HTTP server running on the server (the machine, host, etc.) and managing all the HTTPS parts : sending the decrypted HTTP requests to the actual HTTP application running in the same server (the **FastAPI** application, in this case), take the HTTP response from the application, encrypt it using the appropriate certificate and sending it back to the client using HTTPS. This server is often called a <a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">TLS Termination Proxy</a>.
 
@@ -317,7 +317,7 @@ To set up a Docker Swarm Mode cluster with Traefik and HTTPS handling, follow th
 
 ### Deploy a FastAPI application
 
-The easiest way to set everything up, would be using the [**FastAPI** Project Generators](project-generation.md){.internal-link target=_blank}.
+The easiest way to set everything up, would be using the [**FastAPI** Project Generators](project-generation.md){.internal-link target=\_blank}.
 
 It is designed to be integrated with this Docker Swarm cluster with Traefik and HTTPS described above.
 

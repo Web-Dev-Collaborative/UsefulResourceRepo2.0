@@ -1,17 +1,14 @@
-{% extends "layout.html" %}
-
-{% block jumbotron %}
+{% extends "layout.html" %} {% block jumbotron %}
 <div class="jumbotron">
-   <h1>Python Cheat Sheet</h1>
-   <p>Cheat sheet of Python. Some basic concepts to write a loop more like Python.</p>
+  <h1>Python Cheat Sheet</h1>
+  <p>
+    Cheat sheet of Python. Some basic concepts to write a loop more like Python.
+  </p>
 </div>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="row col-md-4 col-xs-12">
-
-<h3>More Readable Iteration in Python</h3>
-<pre class="code python">
+  <h3>More Readable Iteration in Python</h3>
+  <pre class="code python">
 # not an elegant way in Python 
 &gt;&gt;&gt; l = [1,2,3,4,5]
 &gt;&gt;&gt; i=0
@@ -30,9 +27,10 @@
 ...   print _item,
 ... 
 1 2 3 4 5
-</pre>
-<h3>How for loop doing?</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>How for loop doing?</h3>
+  <pre class="code python">
 &gt;&gt;&gt; for _i in a:
 ...   print _i,
 ... 
@@ -48,9 +46,10 @@
 ...   print _i,
 ... 
 1 2 3 4 5
-</pre>
-<h3>Be cartful of assign a list to a list</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>Be cartful of assign a list to a list</h3>
+  <pre class="code python">
 &gt;&gt;&gt; a = [1,2,3]
 &gt;&gt;&gt; b = a
 &gt;&gt;&gt; a.append('test')
@@ -68,10 +67,11 @@
 [1, 2, 3, 'test']
 &gt;&gt;&gt; b
 [1, 2, 3]
-</pre>
+</pre
+  >
 
-<h3>Consume iterable object using iterator next()</h3>
-<pre class="code python">
+  <h3>Consume iterable object using iterator next()</h3>
+  <pre class="code python">
 # sometime don't want use for loop
 # StopIteration indicate loop finish
 &gt;&gt;&gt; a = [1,2,3,4,5]
@@ -83,34 +83,38 @@
 ...   pass
 ... 
 1 2 3 4 5
-</pre>
+</pre
+  >
 
-<h3>Iterate list - Get List Item</h3>
-<pre class="code python">
+  <h3>Iterate list - Get List Item</h3>
+  <pre class="code python">
 &gt;&gt;&gt; my_list = [1,2,3,4,5]
 &gt;&gt;&gt; for _i in my_list:
 ...   print _i,
 ... 
 1 2 3 4 5
-</pre>
-<h3>Iterate string - Get char Item</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>Iterate string - Get char Item</h3>
+  <pre class="code python">
 &gt;&gt;&gt; my_str = "Hello"
 &gt;&gt;&gt; for _s in my_str:
 ...   print _s,
 ... 
 H e l l o
-</pre>
-<h3>Iterate dict - Get Keys</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>Iterate dict - Get Keys</h3>
+  <pre class="code python">
 &gt;&gt;&gt; my_dict={'k1':1,'k2':2,'k3':3}
 &gt;&gt;&gt; for _d in my_dict:
 ...   print _d,
 ... 
 k3 k2 k1
-</pre>
-<h3>Iterate dictionary - Get Values</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>Iterate dictionary - Get Values</h3>
+  <pre class="code python">
 &gt;&gt;&gt; my_dict.values()
 [3, 2, 1]
 &gt;&gt;&gt; for _v in my_dict.values():
@@ -123,10 +127,11 @@ k3 k2 k1
 ...   print _v,
 ... 
 3 2 1
-</pre>
+</pre
+  >
 
-<h3>Iterate dictionary - Get Keys and Values at The Same Time</h3>
-<pre class="code python">
+  <h3>Iterate dictionary - Get Keys and Values at The Same Time</h3>
+  <pre class="code python">
 &gt;&gt;&gt; my_dict={'k1':1,'k2':2,'k3':3}
 &gt;&gt;&gt; my_dict.items()
 [('k3', 3), ('k2', 2), ('k1', 1)]
@@ -144,13 +149,13 @@ k1 1
 k3 3
 k2 2
 k1 1
-</pre>
+</pre
+  >
 </div>
 
 <div class="row col-md-4 col-xs-12">
-
-<h3>How do I get index at the same time?</h3>
-<pre class="code python">
+  <h3>How do I get index at the same time?</h3>
+  <pre class="code python">
 &gt;&gt;&gt; l = [1,2,3]
 # not a good way in Python
 &gt;&gt;&gt; for _i in range(len(l)):
@@ -170,10 +175,11 @@ k1 1
 &gt;&gt;&gt; a = ['yo','~','man']
 &gt;&gt;&gt; list(enumerate(a))
 [(0, 'yo'), (1, '~'), (2, 'man')]
-</pre>
+</pre
+  >
 
-<h3>How do I loop over two lists?</h3>
-<pre class="code python">
+  <h3>How do I loop over two lists?</h3>
+  <pre class="code python">
 # not a good way in Python
 &gt;&gt;&gt; names=['bob','alice']
 &gt;&gt;&gt; weights=[60,55]
@@ -190,9 +196,10 @@ alice 55
 ... 
 bob 60
 alice 55
-</pre>
-<h3>dict() Accept a stream of pairs</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>dict() Accept a stream of pairs</h3>
+  <pre class="code python">
 # transfer between pair list and dict
 &gt;&gt;&gt; d={'k3': 3, 'k2': 2, 'k1': 1}
 &gt;&gt;&gt; pairs=d.items()
@@ -207,9 +214,10 @@ alice 55
 &gt;&gt;&gt; weights=[60,55]
 &gt;&gt;&gt; dict(zip(name,weights))
 {'a': 60, 'l': 55}
-</pre>
-<h3>Powerful of pair and dict</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>Powerful of pair and dict</h3>
+  <pre class="code python">
 # find max value
 &gt;&gt;&gt; d={'k3': 3, 'k2': 2, 'k1': 1}
 &gt;&gt;&gt; max(d.values())
@@ -224,10 +232,11 @@ alice 55
 &gt;&gt;&gt; d = {'1':3,'2':2,'3':0}
 &gt;&gt;&gt; max(d, key=d.get)
 '1'
-</pre>
+</pre
+  >
 
-<h3>filter</h3>
-<pre class="code python">
+  <h3>filter</h3>
+  <pre class="code python">
 # filter list
 &gt;&gt;&gt; a = [1,2,3,4,5]
 &gt;&gt;&gt; [_ for _ in a if _&gt;3]
@@ -251,10 +260,11 @@ alice 55
 [('k3', 3)]
 &gt;&gt;&gt; dict(l)
 {'k3': 3}
-</pre>
+</pre
+  >
 
-<h3>How to using __getitem__?</h3>
-<pre class="code python">
+  <h3>How to using __getitem__?</h3>
+  <pre class="code python">
 # enable object "getitem" like list 
 &gt;&gt;&gt; class itemobj(object):
 ...   def __init__(self):
@@ -281,9 +291,10 @@ int
 &gt;&gt;&gt; ex['k2']
 str
 2
-</pre>
-<h3>General with Get, Set and Delete item</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>General with Get, Set and Delete item</h3>
+  <pre class="code python">
 &gt;&gt;&gt; class itemobj(object):
 ...   def __init__(self,):
 ...     self._a = [1,2,3,4,5]
@@ -318,13 +329,13 @@ str
 &gt;&gt;&gt; del ex[3]
 &gt;&gt;&gt; ex
 [1, 2, 3, 5]{'k3': 3, 'k2': 2}
-</pre>
+</pre
+  >
 </div>
 
 <div class="row col-md-4 col-xs-12">
-
-<h3>Make Customized Object Support "in" Expression</h3>
-<pre class="code python">
+  <h3>Make Customized Object Support "in" Expression</h3>
+  <pre class="code python">
 &gt;&gt;&gt; class ObjSupportIn(object):
 ...   def __init__(self):
 ...     self._a = [1,2,3,4,5]
@@ -338,9 +349,10 @@ str
 False
 &gt;&gt;&gt; 3 in ex
 True
-</pre>
-<h3>Make Customized Object Iterable</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>Make Customized Object Iterable</h3>
+  <pre class="code python">
 &gt;&gt;&gt; class iterable(object):
 ...   def __init__(self):
 ...     self._a = [1,2,3,4,5]
@@ -362,9 +374,10 @@ True
 &gt;&gt;&gt; it = iter(ex)
 &gt;&gt;&gt; it.next()
 1
-</pre>
-<h3>Generator - Keep produce value over and over again</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>Generator - Keep produce value over and over again</h3>
+  <pre class="code python">
 # using scenario: for saving memory
 # saving prime in memory
 &gt;&gt;&gt; def prime(n):
@@ -401,10 +414,11 @@ True
 ...   print p.next(),
 ... 
 2 3 5 7 11 13 17 19
-</pre>
+</pre
+  >
 
-<h3>Implement customized range function via generator</h3>
-<pre class="code python">
+  <h3>Implement customized range function via generator</h3>
+  <pre class="code python">
 &gt;&gt;&gt; def frange(start,stop,increment):
 ...   x = start
 ...   while x &lt; stop:
@@ -413,10 +427,11 @@ True
 ... 
 &gt;&gt;&gt; [_ for _ in frange(0,3,0.5)]
 [0, 0.5, 1.0, 1.5, 2.0, 2.5]
-</pre>
+</pre
+  >
 
-<h3>Implement iterable object via generator</h3>
-<pre class="code python">
+  <h3>Implement iterable object via generator</h3>
+  <pre class="code python">
 &gt;&gt;&gt; class countdown(object):
 ...   def __init__(self,start):
 ...     self._start = start
@@ -439,10 +454,11 @@ True
 ...   print _,
 ... 
 1 2 3 4 5 6 7 8 9
-</pre>
+</pre
+  >
 
-<h3>Slice Generator via itertools</h3>
-<pre class="code python">
+  <h3>Slice Generator via itertools</h3>
+  <pre class="code python">
 # actually, generator cannot be sliced
 # need using itertools.islice to slice
 &gt;&gt;&gt; def fib(n):
@@ -460,10 +476,11 @@ True
 ...     print _,
 ... 
 55 89 144 233 377
-</pre>
+</pre
+  >
 
-<h3>Generator Delegating</h3>
-<pre class="code python">
+  <h3>Generator Delegating</h3>
+  <pre class="code python">
 # using "yield from" (appear in Python3)
 # delegating from list
 &gt;&gt;&gt; def chain(a,b):
@@ -488,12 +505,7 @@ True
 ...   print(_, end=" ")
 ... 
 5 4 3 2 1 &gt;&gt;&gt;
-</pre>
-
+</pre
+  >
 </div>
-{% endblock %}
-
-{% block script %}
-{{ super() }}
-
-{% endblock %}
+{% endblock %} {% block script %} {{ super() }} {% endblock %}

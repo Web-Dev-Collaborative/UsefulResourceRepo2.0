@@ -10,13 +10,16 @@ excerpt: Learn how to use the modern pathlib module to perform tasks you have be
 In this article, I will go over the most frequent tasks related to file paths and show how you can refactor the old approach of using [os.path](https://docs.python.org/3/library/os.path.html) module to the new cleaner way using [pathlib](https://docs.python.org/3/library/pathlib.html) module.
 
 ## Joining paths
+
 ```python
 import os
 base_path = '/home/ubuntu/'
 filename = 'data.csv'
 os.path.join(base_path, filename)
 ```
+
 In pathlib, we can use the division operator to separate the paths elegantly.
+
 ```python
 from pathlib import Path
 base_path = '/home/ubuntu/'
@@ -25,6 +28,7 @@ Path(base_path) / filename
 ```
 
 ## Get absolute path
+
 ```python
 import os
 os.path.abspath(__file__)
@@ -36,16 +40,19 @@ Path(__file__).resolve()
 ```
 
 ## Get current working directory
+
 ```python
 import os
 os.getcwd()
 ```
+
 ```python
 from pathlib import Path
 Path.cwd()
 ```
 
 ## Check if path is a file
+
 ```python
 import os
 os.path.isfile('/home/ubuntu/data.csv')
@@ -57,6 +64,7 @@ Path('/home/ubuntu/data.csv').is_file()
 ```
 
 ## Check if path is a directory
+
 ```python
 import os
 os.path.isdir('/home/ubuntu/')
@@ -68,6 +76,7 @@ Path('/home/ubuntu/').is_dir()
 ```
 
 ## Check if a path exists
+
 ```python
 import os
 os.path.exists('/home/ubuntu/')
@@ -79,6 +88,7 @@ Path('/home/ubuntu/').exists()
 ```
 
 ## Get path to folder containing a file
+
 ```python
 import os
 os.path.dirname('/home/ubuntu/data.csv')
@@ -92,6 +102,7 @@ Path('/home/ubuntu/data.csv').parent
 ```
 
 ## Get the path to the home directory
+
 ```python
 import os
 os.path.expanduser('~')
@@ -103,17 +114,20 @@ Path.home()
 ```
 
 ## Expand the user home directory in a path
+
 ```python
 import os
 os.path.expanduser('~/Desktop')
 # '/home/ubuntu/Desktop'
 ```
+
 ```python
 from pathlib import Path
 Path('~/Desktop').expanduser()
 ```
 
 ## Get size in bytes of a file
+
 ```python
 import os
 os.path.getsize('/home/ubuntu/data.csv')
@@ -125,6 +139,7 @@ Path('/home/ubuntu/data.csv').stat().st_size
 ```
 
 ## Get file extension
+
 ```python
 import os
 path, ext = os.path.splitext('/home/ubuntu/hello.py')
@@ -138,6 +153,7 @@ Path('/home/ubuntu/hello.py').suffix
 ```
 
 ## Change permission of a file
+
 ```python
 import os
 os.chmod('key.pem', 0o400)
@@ -149,11 +165,13 @@ Path('key.pem').chmod(0o400)
 ```
 
 ## Get file name without directory
+
 ```python
 import os
 os.path.basename('/home/ubuntu/hello.py')
 # hello.py
 ```
+
 ```python
 from pathlib import Path
 Path('/home/ubuntu/hello.py').name
@@ -161,6 +179,7 @@ Path('/home/ubuntu/hello.py').name
 ```
 
 ## List contents of a directory
+
 ```python
 import os
 os.listdir()
@@ -172,6 +191,7 @@ Path().iterdir()
 ```
 
 ## Create a directory
+
 ```python
 import os
 os.makedirs('/home/ubuntu/data', exist_ok=True)
@@ -183,6 +203,7 @@ Path('/home/ubuntu/data').mkdir(exist_ok=True)
 ```
 
 ## Rename files or directories
+
 ```python
 import os
 os.rename('rows.csv', 'data.csv')
@@ -194,6 +215,7 @@ Path('rows.csv').rename('data.csv')
 ```
 
 ## Delete a directory
+
 ```python
 import os
 os.rmdir('/home/ubuntu/test')
@@ -205,6 +227,7 @@ Path('/home/ubuntu/test').rmdir()
 ```
 
 ## Reading a file
+
 ```python
 import os
 p = os.path.join('/home/ubuntu', 'data.csv')
@@ -212,7 +235,9 @@ p = os.path.join('/home/ubuntu', 'data.csv')
 with open(p) as fp:
     data = fp.read()
 ```
+
 In new versions of python, you can directly pass a pathlib `Path` to the `open()` function.
+
 ```python
 from pathlib import Path
 path = Path('/home/ubuntu/') / 'data.csv'
@@ -222,6 +247,7 @@ with open(path) as fp:
 ```
 
 In older versions, you can either convert the path to a string using `str()` or use the `open()` method.
+
 ```python
 from pathlib import Path
 path = Path('/home/ubuntu/data.csv')

@@ -2,11 +2,10 @@
 
 Visualizing the [Mandelbrot set](https://en.wikipedia.org/wiki/Mandelbrot_set)
 doesn't have anything to do with machine learning, but it makes for a fun
-example of how one can use TensorFlow for general mathematics.  This is
+example of how one can use TensorFlow for general mathematics. This is
 actually a pretty naive implementation of the visualization, but it makes the
-point.  (We may end up providing a more elaborate implementation down the line
+point. (We may end up providing a more elaborate implementation down the line
 to produce more truly beautiful images.)
-
 
 ## Basic Setup
 
@@ -112,5 +111,3 @@ DisplayFractal(ns.eval())
 ![jpeg](https://www.tensorflow.org/images/mandelbrot_output.jpg)
 
 Not bad!
-
-

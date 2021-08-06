@@ -12,291 +12,309 @@
 // https://github.com/umdjs/umd/blob/master/jqueryPlugin.js
 
 (function (factory) {
-	if (typeof define === 'function' && define.amd) {
-		// if AMD loader is available, register as an anonymous module.
-		define(['jquery'], factory);
-	} else if (typeof exports === 'object') {
-		// Node/CommonJS
-		module.exports = factory(require('jquery'));
-	} else {
-		// OR use browser globals if AMD is not present
-		factory(jQuery);
-	}
-}(function ($) {
-	// -- END UMD WRAPPER PREFACE --
+  if (typeof define === "function" && define.amd) {
+    // if AMD loader is available, register as an anonymous module.
+    define(["jquery"], factory);
+  } else if (typeof exports === "object") {
+    // Node/CommonJS
+    module.exports = factory(require("jquery"));
+  } else {
+    // OR use browser globals if AMD is not present
+    factory(jQuery);
+  }
+})(function ($) {
+  // -- END UMD WRAPPER PREFACE --
 
-	// -- BEGIN MODULE CODE HERE --
+  // -- BEGIN MODULE CODE HERE --
 
-	var old = $.fn.placard;
-	var EVENT_CALLBACK_MAP = { 'accepted': 'onAccept', 'cancelled': 'onCancel' };
+  var old = $.fn.placard;
+  var EVENT_CALLBACK_MAP = { accepted: "onAccept", cancelled: "onCancel" };
 
-	// PLACARD CONSTRUCTOR AND PROTOTYPE
+  // PLACARD CONSTRUCTOR AND PROTOTYPE
 
-	var Placard = function (element, options) {
-		var self = this;
-		this.$element = $(element);
-		this.options = $.extend({}, $.fn.placard.defaults, options);
+  var Placard = function (element, options) {
+    var self = this;
+    this.$element = $(element);
+    this.options = $.extend({}, $.fn.placard.defaults, options);
 
-		this.$accept = this.$element.find('.placard-accept');
-		this.$cancel = this.$element.find('.placard-cancel');
-		this.$field = this.$element.find('.placard-field');
-		this.$footer = this.$element.find('.placard-footer');
-		this.$header = this.$element.find('.placard-header');
-		this.$popup = this.$element.find('.placard-popup');
+    this.$accept = this.$element.find(".placard-accept");
+    this.$cancel = this.$element.find(".placard-cancel");
+    this.$field = this.$element.find(".placard-field");
+    this.$footer = this.$element.find(".placard-footer");
+    this.$header = this.$element.find(".placard-header");
+    this.$popup = this.$element.find(".placard-popup");
 
-		this.actualValue = null;
-		this.clickStamp = '_';
-		this.previousValue = '';
-		if (this.options.revertOnCancel === -1) {
-			this.options.revertOnCancel = (this.$accept.length > 0) ? true : false;
-		}
+    this.actualValue = null;
+    this.clickStamp = "_";
+    this.previousValue = "";
+    if (this.options.revertOnCancel === -1) {
+      this.options.revertOnCancel = this.$accept.length > 0 ? true : false;
+    }
 
-		this.isInput = this.$field.is('input');
+    this.isInput = this.$field.is("input");
 
-		this.$field.on('focus.fu.placard', $.proxy(this.show, this));
-		this.$field.on('keydown.fu.placard', $.proxy(this.keyComplete, this));
-		this.$accept.on('click.fu.placard', $.proxy(this.complete, this, 'accepted'));
-		this.$cancel.on('click.fu.placard', function (e) {
-			e.preventDefault(); self.complete('cancelled');
-		});
+    this.$field.on("focus.fu.placard", $.proxy(this.show, this));
+    this.$field.on("keydown.fu.placard", $.proxy(this.keyComplete, this));
+    this.$accept.on(
+      "click.fu.placard",
+      $.proxy(this.complete, this, "accepted")
+    );
+    this.$cancel.on("click.fu.placard", function (e) {
+      e.preventDefault();
+      self.complete("cancelled");
+    });
 
-		this.ellipsis();
-	};
+    this.ellipsis();
+  };
 
-	Placard.prototype = {
-		constructor: Placard,
+  Placard.prototype = {
+    constructor: Placard,
 
-		complete: function (action) {
-			var func = this.options[ EVENT_CALLBACK_MAP[action] ];
+    complete: function (action) {
+      var func = this.options[EVENT_CALLBACK_MAP[action]];
 
-			var obj = {
-				previousValue: this.previousValue,
-				value: this.$field.val()
-			};
-			if (func) {
-				func(obj);
-				this.$element.trigger(action + '.fu.placard', obj);
-			} else {
-				if (action === 'cancelled' && this.options.revertOnCancel) {
-					this.$field.val(this.previousValue);
-				}
+      var obj = {
+        previousValue: this.previousValue,
+        value: this.$field.val(),
+      };
+      if (func) {
+        func(obj);
+        this.$element.trigger(action + ".fu.placard", obj);
+      } else {
+        if (action === "cancelled" && this.options.revertOnCancel) {
+          this.$field.val(this.previousValue);
+        }
 
-				this.$element.trigger(action + '.fu.placard', obj);
-				this.hide();
-			}
-		},
+        this.$element.trigger(action + ".fu.placard", obj);
+        this.hide();
+      }
+    },
 
-		keyComplete: function (e) {
-			if (this.isInput && e.keyCode === 13) {
-				this.complete('accepted');
-				this.$field.blur();
-			} else if (e.keyCode === 27) {
-				this.complete('cancelled');
-				this.$field.blur();
-			}
-		},
+    keyComplete: function (e) {
+      if (this.isInput && e.keyCode === 13) {
+        this.complete("accepted");
+        this.$field.blur();
+      } else if (e.keyCode === 27) {
+        this.complete("cancelled");
+        this.$field.blur();
+      }
+    },
 
-		destroy: function () {
-			this.$element.remove();
-			// remove any external bindings
-			$(document).off('click.fu.placard.externalClick.' + this.clickStamp);
-			// set input value attrbute
-			this.$element.find('input').each(function () {
-				$(this).attr('value', $(this).val());
-			});
-			// empty elements to return to original markup
-			// [none]
-			// return string of markup
-			return this.$element[0].outerHTML;
-		},
+    destroy: function () {
+      this.$element.remove();
+      // remove any external bindings
+      $(document).off("click.fu.placard.externalClick." + this.clickStamp);
+      // set input value attrbute
+      this.$element.find("input").each(function () {
+        $(this).attr("value", $(this).val());
+      });
+      // empty elements to return to original markup
+      // [none]
+      // return string of markup
+      return this.$element[0].outerHTML;
+    },
 
-		disable: function () {
-			this.$element.addClass('disabled');
-			this.$field.attr('disabled', 'disabled');
-			this.hide();
-		},
+    disable: function () {
+      this.$element.addClass("disabled");
+      this.$field.attr("disabled", "disabled");
+      this.hide();
+    },
 
-		ellipsis: function () {
-			var field, i, str;
-			if (this.$element.attr('data-ellipsis') === 'true') {
-				field = this.$field.get(0);
-				if (this.$field.is('input')) {
-					field.scrollLeft = 0;
-				} else {
-					field.scrollTop = 0;
-					if (field.clientHeight < field.scrollHeight) {
-						this.actualValue = this.$field.val();
-						this.$field.val('');
-						str = '';
-						i = 0;
-						while (field.clientHeight >= field.scrollHeight) {
-							str += this.actualValue[i];
-							this.$field.val(str + '...');
-							i++;
-						}
-						str = (str.length > 0) ? str.substring(0, str.length - 1) : '';
-						this.$field.val(str + '...');
-					}
+    ellipsis: function () {
+      var field, i, str;
+      if (this.$element.attr("data-ellipsis") === "true") {
+        field = this.$field.get(0);
+        if (this.$field.is("input")) {
+          field.scrollLeft = 0;
+        } else {
+          field.scrollTop = 0;
+          if (field.clientHeight < field.scrollHeight) {
+            this.actualValue = this.$field.val();
+            this.$field.val("");
+            str = "";
+            i = 0;
+            while (field.clientHeight >= field.scrollHeight) {
+              str += this.actualValue[i];
+              this.$field.val(str + "...");
+              i++;
+            }
+            str = str.length > 0 ? str.substring(0, str.length - 1) : "";
+            this.$field.val(str + "...");
+          }
+        }
+      }
+    },
 
-				}
+    enable: function () {
+      this.$element.removeClass("disabled");
+      this.$field.removeAttr("disabled");
+    },
 
-			}
-		},
+    externalClickListener: function (e, force) {
+      if (force === true || this.isExternalClick(e)) {
+        this.complete(this.options.externalClickAction);
+      }
+    },
 
-		enable: function () {
-			this.$element.removeClass('disabled');
-			this.$field.removeAttr('disabled');
-		},
+    getValue: function () {
+      if (this.actualValue !== null) {
+        return this.actualValue;
+      } else {
+        return this.$field.val();
+      }
+    },
 
-		externalClickListener: function (e, force) {
-			if (force === true || this.isExternalClick(e)) {
-				this.complete(this.options.externalClickAction);
-			}
-		},
+    hide: function () {
+      if (!this.$element.hasClass("showing")) {
+        return;
+      }
 
-		getValue: function () {
-			if (this.actualValue !== null) {
-				return this.actualValue;
-			} else {
-				return this.$field.val();
-			}
-		},
+      this.$element.removeClass("showing");
+      this.ellipsis();
+      $(document).off("click.fu.placard.externalClick." + this.clickStamp);
+      this.$element.trigger("hidden.fu.placard");
+    },
 
-		hide: function () {
-			if (!this.$element.hasClass('showing')) {
-				return;
-			}
+    isExternalClick: function (e) {
+      var el = this.$element.get(0);
+      var exceptions = this.options.externalClickExceptions || [];
+      var $originEl = $(e.target);
+      var i, l;
 
-			this.$element.removeClass('showing');
-			this.ellipsis();
-			$(document).off('click.fu.placard.externalClick.' + this.clickStamp);
-			this.$element.trigger('hidden.fu.placard');
-		},
+      if (
+        e.target === el ||
+        $originEl.parents(".placard:first").get(0) === el
+      ) {
+        return false;
+      } else {
+        for (i = 0, l = exceptions.length; i < l; i++) {
+          if (
+            $originEl.is(exceptions[i]) ||
+            $originEl.parents(exceptions[i]).length > 0
+          ) {
+            return false;
+          }
+        }
+      }
 
-		isExternalClick: function (e) {
-			var el = this.$element.get(0);
-			var exceptions = this.options.externalClickExceptions || [];
-			var $originEl = $(e.target);
-			var i, l;
+      return true;
+    },
 
-			if (e.target === el || $originEl.parents('.placard:first').get(0) === el) {
-				return false;
-			} else {
-				for (i = 0, l = exceptions.length; i < l; i++) {
-					if ($originEl.is(exceptions[i]) || $originEl.parents(exceptions[i]).length > 0) {
-						return false;
-					}
+    setValue: function (val) {
+      this.$field.val(val);
+      if (!this.$element.hasClass("showing")) {
+        this.ellipsis();
+      }
+    },
 
-				}
-			}
+    show: function () {
+      var other;
 
-			return true;
-		},
+      if (this.$element.hasClass("showing")) {
+        return;
+      }
 
-		setValue: function (val) {
-			this.$field.val(val);
-			if (!this.$element.hasClass('showing')) {
-				this.ellipsis();
-			}
-		},
+      other = $(document).find(".placard.showing");
+      if (other.length > 0) {
+        if (
+          other.data("fu.placard") &&
+          other.data("fu.placard").options.explicit
+        ) {
+          return;
+        }
 
-		show: function () {
-			var other;
+        other.placard("externalClickListener", {}, true);
+      }
 
-			if (this.$element.hasClass('showing')) {
-				return;
-			}
+      this.previousValue = this.$field.val();
 
-			other = $(document).find('.placard.showing');
-			if (other.length > 0) {
-				if (other.data('fu.placard') && other.data('fu.placard').options.explicit) {
-					return;
-				}
+      this.$element.addClass("showing");
+      if (this.actualValue !== null) {
+        this.$field.val(this.actualValue);
+        this.actualValue = null;
+      }
 
-				other.placard('externalClickListener', {}, true);
-			}
+      if (this.$header.length > 0) {
+        this.$popup.css("top", "-" + this.$header.outerHeight(true) + "px");
+      }
 
-			this.previousValue = this.$field.val();
+      if (this.$footer.length > 0) {
+        this.$popup.css("bottom", "-" + this.$footer.outerHeight(true) + "px");
+      }
 
-			this.$element.addClass('showing');
-			if (this.actualValue !== null) {
-				this.$field.val(this.actualValue);
-				this.actualValue = null;
-			}
+      this.$element.trigger("shown.fu.placard");
+      this.clickStamp =
+        new Date().getTime() + (Math.floor(Math.random() * 100) + 1);
+      if (!this.options.explicit) {
+        $(document).on(
+          "click.fu.placard.externalClick." + this.clickStamp,
+          $.proxy(this.externalClickListener, this)
+        );
+      }
+    },
+  };
 
-			if (this.$header.length > 0) {
-				this.$popup.css('top', '-' + this.$header.outerHeight(true) + 'px');
-			}
+  // PLACARD PLUGIN DEFINITION
 
-			if (this.$footer.length > 0) {
-				this.$popup.css('bottom', '-' + this.$footer.outerHeight(true) + 'px');
-			}
+  $.fn.placard = function (option) {
+    var args = Array.prototype.slice.call(arguments, 1);
+    var methodReturn;
 
-			this.$element.trigger('shown.fu.placard');
-			this.clickStamp = new Date().getTime() + (Math.floor(Math.random() * 100) + 1);
-			if (!this.options.explicit) {
-				$(document).on('click.fu.placard.externalClick.' + this.clickStamp, $.proxy(this.externalClickListener, this));
-			}
-		}
-	};
+    var $set = this.each(function () {
+      var $this = $(this);
+      var data = $this.data("fu.placard");
+      var options = typeof option === "object" && option;
 
-	// PLACARD PLUGIN DEFINITION
+      if (!data) {
+        $this.data("fu.placard", (data = new Placard(this, options)));
+      }
 
-	$.fn.placard = function (option) {
-		var args = Array.prototype.slice.call(arguments, 1);
-		var methodReturn;
+      if (typeof option === "string") {
+        methodReturn = data[option].apply(data, args);
+      }
+    });
 
-		var $set = this.each(function () {
-			var $this = $(this);
-			var data = $this.data('fu.placard');
-			var options = typeof option === 'object' && option;
+    return methodReturn === undefined ? $set : methodReturn;
+  };
 
-			if (!data) {
-				$this.data('fu.placard', (data = new Placard(this, options)));
-			}
+  $.fn.placard.defaults = {
+    onAccept: undefined,
+    onCancel: undefined,
+    externalClickAction: "cancelled",
+    externalClickExceptions: [],
+    explicit: false,
+    revertOnCancel: -1, //negative 1 will check for an '.placard-accept' button. Also can be set to true or false
+  };
 
-			if (typeof option === 'string') {
-				methodReturn = data[option].apply(data, args);
-			}
-		});
+  $.fn.placard.Constructor = Placard;
 
-		return (methodReturn === undefined) ? $set : methodReturn;
-	};
+  $.fn.placard.noConflict = function () {
+    $.fn.placard = old;
+    return this;
+  };
 
-	$.fn.placard.defaults = {
-		onAccept: undefined,
-		onCancel: undefined,
-		externalClickAction: 'cancelled',
-		externalClickExceptions: [],
-		explicit: false,
-		revertOnCancel: -1//negative 1 will check for an '.placard-accept' button. Also can be set to true or false
-	};
+  // DATA-API
 
-	$.fn.placard.Constructor = Placard;
+  $(document).on(
+    "focus.fu.placard.data-api",
+    "[data-initialize=placard]",
+    function (e) {
+      var $control = $(e.target).closest(".placard");
+      if (!$control.data("fu.placard")) {
+        $control.placard($control.data());
+      }
+    }
+  );
 
-	$.fn.placard.noConflict = function () {
-		$.fn.placard = old;
-		return this;
-	};
+  // Must be domReady for AMD compatibility
+  $(function () {
+    $("[data-initialize=placard]").each(function () {
+      var $this = $(this);
+      if ($this.data("fu.placard")) return;
+      $this.placard($this.data());
+    });
+  });
 
-	// DATA-API
-
-	$(document).on('focus.fu.placard.data-api', '[data-initialize=placard]', function (e) {
-		var $control = $(e.target).closest('.placard');
-		if (!$control.data('fu.placard')) {
-			$control.placard($control.data());
-		}
-	});
-
-	// Must be domReady for AMD compatibility
-	$(function () {
-		$('[data-initialize=placard]').each(function () {
-			var $this = $(this);
-			if ($this.data('fu.placard')) return;
-			$this.placard($this.data());
-		});
-	});
-
-	// -- BEGIN UMD WRAPPER AFTERWORD --
-}));
+  // -- BEGIN UMD WRAPPER AFTERWORD --
+});
 // -- END UMD WRAPPER AFTERWORD --

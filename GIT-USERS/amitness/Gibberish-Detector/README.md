@@ -1,19 +1,21 @@
 # Overview
 
-
 Fork of rrenaud's [Gibberish-Detector](https://github.com/rrenaud/Gibberish-Detector) to support Python 3 and switch to 3-character [markov chain](http://en.wikipedia.org/wiki/Markov_chain).
 
 ## Usage
 
 First train the model:
+
 ```
 python gib_detect_train.py
 ```
 
 Then try it on some sample input
+
 ```
 python gib_detect.py
 ```
+
 ```shell
 my name is rob and i like to hack True
 
@@ -33,9 +35,10 @@ yay! True
 ```
 
 ## How it works
+
 The markov chain first 'trains' or 'studies' a few MB of English text, recording how often characters appear next to each other. Eg, given the text "Rob likes hacking" it sees Ro, ob, o[space], [space]l, ... It just counts these pairs. After it has finished reading through the training data, it normalizes the counts. Then each character has a probability distribution of 27 followup character (26 letters + space) following the given initial.
 
-So then given a string, it measures the probability of generating that string according to the summary by just multiplying out the probabilities of the adjacent pairs of characters in that string. EG, for that "Rob likes hacking" string, it would compute prob['r']['o'] * prob['o']['b'] * prob['b'][' '] ... This probability then measures the amount of 'surprise' assigned to this string according the data the model observed when training. If there is funny business with the input string, it will pass through some pairs with very low counts in the training phase, and hence have low probability/high surprise.
+So then given a string, it measures the probability of generating that string according to the summary by just multiplying out the probabilities of the adjacent pairs of characters in that string. EG, for that "Rob likes hacking" string, it would compute prob['r']['o'] _ prob['o']['b'] _ prob['b'][' '] ... This probability then measures the amount of 'surprise' assigned to this string according the data the model observed when training. If there is funny business with the input string, it will pass through some pairs with very low counts in the training phase, and hence have low probability/high surprise.
 
 I then look at the amount of surprise per character for a few known good strings, and a few known bad strings, and pick a threshold between the most surprising good string and the least surprising bad string. Then I use that threshold whenever to classify any new piece of text.
 

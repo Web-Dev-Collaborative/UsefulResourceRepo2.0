@@ -82,10 +82,10 @@ bazel run -c opt //tensorflow/cc/example:example
 This example shows some of the important features of the C++ API such as the
 following:
 
-* Constructing tensor constants from C++ nested initializer lists
-* Constructing and naming of TensorFlow operations
-* Specifying optional attributes to operation constructors
-* Executing and fetching the tensor values from the TensorFlow session.
+- Constructing tensor constants from C++ nested initializer lists
+- Constructing and naming of TensorFlow operations
+- Specifying optional attributes to operation constructors
+- Executing and fetching the tensor values from the TensorFlow session.
 
 We will delve into the details of each below.
 
@@ -117,10 +117,10 @@ appends `name` to the prefix of names for operations created using the returned
 
 Here are some of the properties controlled by a `Scope` object:
 
-* Operation names
-* Set of control dependencies for an operation
-* Device placement for an operation
-* Kernel attribute for an operation
+- Operation names
+- Set of control dependencies for an operation
+- Device placement for an operation
+- Kernel attribute for an operation
 
 Please refer to `tensorflow::Scope` for the complete list of member functions
 that let you create child scopes with new properties.
@@ -152,20 +152,20 @@ The first parameter for all operation constructors is always a `Scope` object.
 Tensor inputs and mandatory attributes form the rest of the arguments.
 
 For optional arguments, constructors have an optional parameter that allows
-optional attributes.  For operations with optional arguments, the constructor's
+optional attributes. For operations with optional arguments, the constructor's
 last optional parameter is a `struct` type called `[operation]:Attrs` that
 contains data members for each optional attribute. You can construct such
 `Attrs` in multiple ways:
 
-* You can specify a single optional attribute by constructing an `Attrs` object
-using the `static` functions provided in the C++ class for the operation. For
-example:
+- You can specify a single optional attribute by constructing an `Attrs` object
+  using the `static` functions provided in the C++ class for the operation. For
+  example:
 
 ```c++
 auto m = MatMul(scope, a, b, MatMul::TransposeA(true));
 ```
 
-* You can specify multiple optional attributes by chaining together functions
+- You can specify multiple optional attributes by chaining together functions
   available in the `Attrs` struct. For example:
 
 ```c++
@@ -178,7 +178,7 @@ auto m = MatMul(scope, a, b, MatMul::Attrs().TransposeA(true).TransposeB(true));
 The arguments and return values of operations are handled in different ways
 depending on their type:
 
-* For operations that return single tensors, the object returned by
+- For operations that return single tensors, the object returned by
   the operation object can be passed directly to other operation
   constructors. For example:
 
@@ -187,7 +187,7 @@ auto m = MatMul(scope, x, W);
 auto sum = Add(scope, m, bias);
 ```
 
-* For operations producing multiple outputs, the object returned by the
+- For operations producing multiple outputs, the object returned by the
   operation constructor has a member for each of the outputs. The names of those
   members are identical to the names present in the `OpDef` for the
   operation. For example:
@@ -198,7 +198,7 @@ auto u = Unique(scope, a);
 auto m = Add(scope, u.y, b);
 ```
 
-* Operations producing a list-typed output return an object that can
+- Operations producing a list-typed output return an object that can
   be indexed using the `[]` operator. That object can also be directly passed to
   other constructors that expect list-typed inputs. For example:
 
@@ -217,14 +217,14 @@ constants. You may explicitly create a tensor constant by calling the
 `tensorflow::ops::Const` function from various kinds of C++ values. For
 example:
 
-* Scalars
+- Scalars
 
 ```c++
 auto f = Const(scope, 42.0f);
 auto s = Const(scope, "hello world!");
 ```
 
-* Nested initializer lists
+- Nested initializer lists
 
 ```c++
 // 2x2 matrix
@@ -235,7 +235,7 @@ auto c2 = Const(scope, { { {1}, {2}, {3} } });
 auto c3 = ops::Const(scope, { { {}, {} } });
 ```
 
-* Shapes explicitly specified
+- Shapes explicitly specified
 
 ```c++
 // 2x2 matrix with all elements = 10

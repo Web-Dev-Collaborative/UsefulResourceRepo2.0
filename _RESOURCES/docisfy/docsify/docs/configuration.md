@@ -16,7 +16,7 @@ The config can also be defined as a function, in which case the first argument i
 
 ```html
 <script>
-  window.$docsify = function(vm) {
+  window.$docsify = function (vm) {
     return {
       markdown: {
         renderer: {
@@ -319,14 +319,14 @@ window.$docsify = {
   markdown: {
     smartypants: true,
     renderer: {
-      link: function() {
+      link: function () {
         // ...
       },
     },
   },
 
   // function
-  markdown: function(marked, renderer) {
+  markdown: function (marked, renderer) {
     // ...
     return marked;
   },
@@ -435,7 +435,7 @@ See https://github.com/lukeed/tinydate#patterns
 window.$docsify = {
   formatUpdated: '{MM}/{DD} {HH}:{mm}',
 
-  formatUpdated: function(time) {
+  formatUpdated: function (time) {
     // ...
 
     return time;

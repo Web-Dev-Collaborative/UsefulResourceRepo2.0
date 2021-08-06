@@ -409,7 +409,7 @@ File: Components
 }
 .checkbox input[type="checkbox"]:checked + label::after {
   content: "\f00c";
-  font-family: 'FontAwesome';
+  font-family: "FontAwesome";
 }
 .checkbox input[type="checkbox"]:disabled + label::before {
   background-color: #eeeeee;
@@ -702,7 +702,7 @@ File: Components
 }
 .panel-border .panel-heading {
   background-color: #ffffff;
-  border-top: 3px solid #DADFE2 !important;
+  border-top: 3px solid #dadfe2 !important;
   padding: 10px 20px 0px;
 }
 .panel-border .panel-body {
@@ -744,20 +744,20 @@ File: Components
   border-color: #4c5667 !important;
   color: #4c5667 !important;
 }
-.panel-group .panel .panel-heading a[data-toggle=collapse].collapsed:before {
-  content: '\f0d7';
+.panel-group .panel .panel-heading a[data-toggle="collapse"].collapsed:before {
+  content: "\f0d7";
 }
 .panel-group .panel .panel-heading .accordion-toggle.collapsed:before {
-  content: '\f0d7';
+  content: "\f0d7";
 }
-.panel-group .panel .panel-heading a[data-toggle=collapse] {
+.panel-group .panel .panel-heading a[data-toggle="collapse"] {
   display: block;
 }
-.panel-group .panel .panel-heading a[data-toggle=collapse]:before {
-  content: '\f0d8';
+.panel-group .panel .panel-heading a[data-toggle="collapse"]:before {
+  content: "\f0d8";
   display: block;
   float: right;
-  font-family: 'FontAwesome';
+  font-family: "FontAwesome";
   font-size: 14px;
   text-align: right;
   width: 25px;
@@ -766,10 +766,10 @@ File: Components
   display: block;
 }
 .panel-group .panel .panel-heading .accordion-toggle:before {
-  content: '\f0d8';
+  content: "\f0d8";
   display: block;
   float: right;
-  font-family: 'FontAwesome';
+  font-family: "FontAwesome";
   font-size: 14px;
   text-align: right;
   width: 25px;
@@ -895,7 +895,7 @@ File: Components
   animation: loaderAnimate2 1000ms ease-in-out infinite;
   border-radius: 50%;
   clip: rect(0, 30px, 30px, 15px);
-  content: '';
+  content: "";
   height: 30px;
   position: absolute;
   width: 30px;
@@ -1148,9 +1148,12 @@ table.focus-on tbody tr.focused td {
 }
 .table-rep-plugin .checkbox-row input[type="checkbox"]:checked + label::after {
   content: "\f00c";
-  font-family: 'FontAwesome';
+  font-family: "FontAwesome";
 }
-.table-rep-plugin .checkbox-row input[type="checkbox"]:disabled + label::before {
+.table-rep-plugin
+  .checkbox-row
+  input[type="checkbox"]:disabled
+  + label::before {
   background-color: #eeeeee;
   cursor: not-allowed;
 }
@@ -1162,7 +1165,7 @@ table.focus-on tbody tr.focused td {
   color: #ffffff;
 }
 .fixed-table-container tbody .selected td {
-  background-color: #F4F8FB;
+  background-color: #f4f8fb;
 }
 .modal-block {
   background: transparent;
@@ -1209,7 +1212,7 @@ div.dataTables_info {
   background-color: #ebeff2;
 }
 .footable-row-detail {
-  background-color: #F0F4F7;
+  background-color: #f0f4f7;
 }
 /* Bootstrap Table */
 .fixed-table-pagination .pagination-detail,
@@ -1731,7 +1734,7 @@ div.dataTables_info {
   border-color: #5d9cec;
 }
 .daterangepicker .input-mini.active {
-  border: 1px solid #AAAAAA;
+  border: 1px solid #aaaaaa;
 }
 .daterangepicker .ranges li {
   -webkit-border-radius: 2px;
@@ -1827,7 +1830,7 @@ div.dataTables_info {
   padding: 0px;
 }
 .wizard > .content > .body input {
-  border: 1px solid #E3E3E3;
+  border: 1px solid #e3e3e3;
 }
 .wizard > .content > .body ul > li {
   display: block;

@@ -4,46 +4,46 @@ You can also use <a href="https://github.com/encode/databases" class="external-l
 
 It is compatible with:
 
-* PostgreSQL
-* MySQL
-* SQLite
+- PostgreSQL
+- MySQL
+- SQLite
 
 In this example, we'll use **SQLite**, because it uses a single file and Python has integrated support. So, you can copy this example and run it as is.
 
 Later, for your production application, you might want to use a database server like **PostgreSQL**.
 
 !!! tip
-    You could adopt ideas from the section about SQLAlchemy ORM ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), like using utility functions to perform operations in the database, independent of your **FastAPI** code.
+You could adopt ideas from the section about SQLAlchemy ORM ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=\_blank}), like using utility functions to perform operations in the database, independent of your **FastAPI** code.
 
     This section doesn't apply those ideas, to be equivalent to the counterpart in <a href="https://www.starlette.io/database/" class="external-link" target="_blank">Starlette</a>.
 
 ## Import and set up `SQLAlchemy`
 
-* Import `SQLAlchemy`.
-* Create a `metadata` object.
-* Create a table `notes` using the `metadata` object.
+- Import `SQLAlchemy`.
+- Create a `metadata` object.
+- Create a table `notes` using the `metadata` object.
 
 ```Python hl_lines="4  14  16-22"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
 !!! tip
-    Notice that all this code is pure SQLAlchemy Core.
+Notice that all this code is pure SQLAlchemy Core.
 
     `databases` is not doing anything here yet.
 
 ## Import and set up `databases`
 
-* Import `databases`.
-* Create a `DATABASE_URL`.
-* Create a `database` object.
+- Import `databases`.
+- Create a `DATABASE_URL`.
+- Create a `database` object.
 
 ```Python hl_lines="3  9  12"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
 !!! tip
-    If you were connecting to a different database (e.g. PostgreSQL), you would need to change the `DATABASE_URL`.
+If you were connecting to a different database (e.g. PostgreSQL), you would need to change the `DATABASE_URL`.
 
 ## Create the tables
 
@@ -51,8 +51,8 @@ In this case, we are creating the tables in the same Python file, but in product
 
 Here, this section would run directly, right before starting your **FastAPI** application.
 
-* Create an `engine`.
-* Create all the tables from the `metadata` object.
+- Create an `engine`.
+- Create all the tables from the `metadata` object.
 
 ```Python hl_lines="25-28"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
@@ -62,8 +62,8 @@ Here, this section would run directly, right before starting your **FastAPI** ap
 
 Create Pydantic models for:
 
-* Notes to be created (`NoteIn`).
-* Notes to be returned (`Note`).
+- Notes to be created (`NoteIn`).
+- Notes to be returned (`Note`).
 
 ```Python hl_lines="31-33  36-39"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
@@ -75,8 +75,8 @@ So, you will be able to see it all in the interactive API docs.
 
 ## Connect and disconnect
 
-* Create your `FastAPI` application.
-* Create event handlers to connect and disconnect from the database.
+- Create your `FastAPI` application.
+- Create event handlers to connect and disconnect from the database.
 
 ```Python hl_lines="42  45-47  50-52"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
@@ -84,14 +84,14 @@ So, you will be able to see it all in the interactive API docs.
 
 ## Read notes
 
-Create the *path operation function* to read notes:
+Create the _path operation function_ to read notes:
 
 ```Python hl_lines="55-58"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
 !!! Note
-    Notice that as we communicate with the database using `await`, the *path operation function* is declared with `async`.
+Notice that as we communicate with the database using `await`, the _path operation function_ is declared with `async`.
 
 ### Notice the `response_model=List[Note]`
 
@@ -101,14 +101,14 @@ That documents (and validates, serializes, filters) the output data, as a `list`
 
 ## Create notes
 
-Create the *path operation function* to create notes:
+Create the _path operation function_ to create notes:
 
 ```Python hl_lines="61-65"
 {!../../../docs_src/async_sql_databases/tutorial001.py!}
 ```
 
 !!! Note
-    Notice that as we communicate with the database using `await`, the *path operation function* is declared with `async`.
+Notice that as we communicate with the database using `await`, the _path operation function_ is declared with `async`.
 
 ### About `{**note.dict(), "id": last_record_id}`
 

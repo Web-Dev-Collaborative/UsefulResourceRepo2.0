@@ -34,8 +34,8 @@ docs/zh-cn/guide.md   => http://domain.com/zh-cn/guide
 
 <script>
   window.$docsify = {
-    loadSidebar: true
-  }
+    loadSidebar: true,
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 ```
@@ -45,8 +45,8 @@ docs/zh-cn/guide.md   => http://domain.com/zh-cn/guide
 ```markdown
 <!-- docs/_sidebar.md -->
 
-* [Главая](/)
-* [Руководство](guide.md)
+- [Главая](/)
+- [Руководство](guide.md)
 ```
 
 Вам нужно создать `.nojekyll` в `./docs`, чтобы GitHub Pages предотвратил игнорировать файлы, начинающиеся с символа подчёркивания `_`.
@@ -60,9 +60,9 @@ docs/zh-cn/guide.md   => http://domain.com/zh-cn/guide
   window.$docsify = {
     loadSidebar: true,
     alias: {
-      '/.*/_sidebar.md': '/_sidebar.md'
-    }
-  }
+      "/.*/_sidebar.md": "/_sidebar.md",
+    },
+  };
 </script>
 ```
 
@@ -78,8 +78,8 @@ docs/zh-cn/guide.md   => http://domain.com/zh-cn/guide
 <script>
   window.$docsify = {
     loadSidebar: true,
-    subMaxLevel: 2
-  }
+    subMaxLevel: 2,
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 ```

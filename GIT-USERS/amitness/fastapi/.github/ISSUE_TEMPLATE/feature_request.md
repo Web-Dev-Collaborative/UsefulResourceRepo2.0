@@ -3,26 +3,25 @@ name: Feature request
 about: Suggest an idea for this project
 title: ""
 labels: enhancement
-assignees: ''
-
+assignees: ""
 ---
 
 ### First check
 
-* [ ] I added a very descriptive title to this issue.
-* [ ] I used the GitHub search to find a similar issue and didn't find it.
-* [ ] I searched the FastAPI documentation, with the integrated search.
-* [ ] I already searched in Google "How to X in FastAPI" and didn't find any information.
-* [ ] I already read and followed all the tutorial in the docs and didn't find an answer.
-* [ ] I already checked if it is not related to FastAPI but to [Pydantic](https://github.com/samuelcolvin/pydantic).
-* [ ] I already checked if it is not related to FastAPI but to [Swagger UI](https://github.com/swagger-api/swagger-ui).
-* [ ] I already checked if it is not related to FastAPI but to [ReDoc](https://github.com/Redocly/redoc).
-* [ ] After submitting this, I commit to:
-    * Read open issues with questions until I find 2 issues where I can help someone and add a comment to help there.
-    * Or, I already hit the "watch" button in this repository to receive notifications and I commit to help at least 2 people that ask questions in the future.
-    * Implement a Pull Request for a confirmed bug.
+- [ ] I added a very descriptive title to this issue.
+- [ ] I used the GitHub search to find a similar issue and didn't find it.
+- [ ] I searched the FastAPI documentation, with the integrated search.
+- [ ] I already searched in Google "How to X in FastAPI" and didn't find any information.
+- [ ] I already read and followed all the tutorial in the docs and didn't find an answer.
+- [ ] I already checked if it is not related to FastAPI but to [Pydantic](https://github.com/samuelcolvin/pydantic).
+- [ ] I already checked if it is not related to FastAPI but to [Swagger UI](https://github.com/swagger-api/swagger-ui).
+- [ ] I already checked if it is not related to FastAPI but to [ReDoc](https://github.com/Redocly/redoc).
+- [ ] After submitting this, I commit to:
+  - Read open issues with questions until I find 2 issues where I can help someone and add a comment to help there.
+  - Or, I already hit the "watch" button in this repository to receive notifications and I commit to help at least 2 people that ask questions in the future.
+  - Implement a Pull Request for a confirmed bug.
 
-<!-- 
+<!--
 
 I'm asking all this because answering questions and solving problems in GitHub issues consumes a lot of time. I end up not being able to add new features, fix bugs, review Pull Requests, etc. as fast as I wish because I have to spend too much time handling issues.
 
@@ -53,9 +52,9 @@ def read_root():
 
 <!-- Replace the content below with your own feature request -->
 
-* Open the browser and call the endpoint `/`.
-* It returns a JSON with `{"Hello": "World"}`.
-* I would like it to have an extra parameter to teleport me to the moon and back.
+- Open the browser and call the endpoint `/`.
+- It returns a JSON with `{"Hello": "World"}`.
+- I would like it to have an extra parameter to teleport me to the moon and back.
 
 ### The solution you would like
 
@@ -82,8 +81,8 @@ To wait for Space X moon travel plans to drop down long after they release them.
 
 ### Environment
 
-* OS: [e.g. Linux / Windows / macOS]:
-* FastAPI Version [e.g. 0.3.0]:
+- OS: [e.g. Linux / Windows / macOS]:
+- FastAPI Version [e.g. 0.3.0]:
 
 To know the FastAPI version use:
 
@@ -91,7 +90,7 @@ To know the FastAPI version use:
 python -c "import fastapi; print(fastapi.__version__)"
 ```
 
-* Python version:
+- Python version:
 
 To know the Python version use:
 

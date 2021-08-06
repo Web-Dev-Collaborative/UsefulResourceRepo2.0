@@ -2,12 +2,12 @@
 
 **docsify**内置的代码高亮工具是 [Prism](https://github.com/PrismJS/prism)。Prism 默认支持的语言如下：
 
-* Markup - `markup`, `html`, `xml`, `svg`, `mathml`, `ssml`, `atom`, `rss`
-* CSS - `css`
-* C-like - `clike`
-* JavaScript - `javascript`, `js`
+- Markup - `markup`, `html`, `xml`, `svg`, `mathml`, `ssml`, `atom`, `rss`
+- CSS - `css`
+- C-like - `clike`
+- JavaScript - `javascript`, `js`
 
-[添加额外的语法支持](https://prismjs.com/#supported-languages)需要通过CDN添加相应的[语法文件](https://cdn.jsdelivr.net/npm/prismjs@1/components/) :
+[添加额外的语法支持](https://prismjs.com/#supported-languages)需要通过 CDN 添加相应的[语法文件](https://cdn.jsdelivr.net/npm/prismjs@1/components/) :
 
 ```html
 <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
@@ -27,7 +27,7 @@ echo "hello"
 ```
 
 ```php
-function getAdder(int $x): int 
+function getAdder(int $x): int
 {
     return 123;
 }
@@ -46,7 +46,7 @@ echo "hello"
 ```
 
 ```php
-function getAdder(int $x): int 
+function getAdder(int $x): int
 {
     return 123;
 }

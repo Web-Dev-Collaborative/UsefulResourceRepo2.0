@@ -1,17 +1,15 @@
-{% extends "layout.html" %}
-
-{% block jumbotron %}
+{% extends "layout.html" %} {% block jumbotron %}
 <div class="jumbotron">
-   <h1>Ruby Socket Cheat Sheet</h1>
-   <p>Cheat sheet of Ruby. Some basic socket concepts for a newbie Ruby programmer need to know.</p>
+  <h1>Ruby Socket Cheat Sheet</h1>
+  <p>
+    Cheat sheet of Ruby. Some basic socket concepts for a newbie Ruby programmer
+    need to know.
+  </p>
 </div>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="row col-md-4 col-xs-12">
-
-<h3>Simple Echo TCPServer</h3>
-<pre class="code ruby">
+  <h3>Simple Echo TCPServer</h3>
+  <pre class="code ruby">
 require 'socket'
 
 port = 9527
@@ -27,10 +25,11 @@ end
 # bash&gt; nc localhost 9527
 # Hello World
 # Hello World
-</pre>
+</pre
+  >
 
-<h3>Simple Echo TCP Socket Server</h3>
-<pre class="code ruby">
+  <h3>Simple Echo TCP Socket Server</h3>
+  <pre class="code ruby">
 require 'socket'
 include Socket::Constants
 
@@ -51,10 +50,11 @@ loop do
   conn.puts msg
   conn.close
 end
-</pre>
+</pre
+  >
 
-<h3>Simple Echo UDPSocket Server</h3>
-<pre class="code ruby">
+  <h3>Simple Echo UDPSocket Server</h3>
+  <pre class="code ruby">
 require 'socket'
 include Socket::Constants
 
@@ -75,10 +75,11 @@ end
 # bash&gt; nc -u 192.168.1.50 9527
 # Hello Ruby
 # Hello Ruby
-</pre>
+</pre
+  >
 
-<h3>Simple Echo UDP Socket Server</h3>
-<pre class="code ruby">
+  <h3>Simple Echo UDP Socket Server</h3>
+  <pre class="code ruby">
 require 'socket'
 include Socket::Constants
 
@@ -108,15 +109,13 @@ end
 # bash&gt; nc -u 192.168.99.1 9527
 # Hello Ruby
 # Hello Ruby
-</pre>
-
-
+</pre
+  >
 </div>
 
 <div class="row col-md-4 col-xs-12">
-
-<h3>Ruby UDP Broadcast - Client</h3>
-<pre class="code ruby">
+  <h3>Ruby UDP Broadcast - Client</h3>
+  <pre class="code ruby">
 require 'socket'
 include Socket::Constants
 
@@ -135,10 +134,11 @@ end
 
 # bash&gt; nc -k -w 1 -ul 9527
 # Hello Ruby
-</pre>
+</pre
+  >
 
-<h3>Ruby UDP Broadcast - Server</h3>
-<pre class="code ruby">
+  <h3>Ruby UDP Broadcast - Server</h3>
+  <pre class="code ruby">
 require 'socket'
 include Socket::Constants
 
@@ -164,10 +164,11 @@ end
 # bash2&gt; socat - udp-datagram:\
 # &gt; 255.255.255.255:9527,broadcast
 # Hello Ruby
-</pre>
+</pre
+  >
 
-<h3>Simple Echo UNIX Socket Server</h3>
-<pre class="code ruby">
+  <h3>Simple Echo UNIX Socket Server</h3>
+  <pre class="code ruby">
 require 'socket'
 include Socket::Constants
 
@@ -196,10 +197,11 @@ end
 # bash&gt; nc -U ruby_unix.sock
 # Hello Ruby
 # Hello Ruby
-</pre>
+</pre
+  >
 
-<h3>Async Socket Server - Thread</h3>
-<pre class="code ruby">
+  <h3>Async Socket Server - Thread</h3>
+  <pre class="code ruby">
 require 'socket'
 include Socket::Constants
 
@@ -240,13 +242,13 @@ end
 # bash2&gt; nc localhost 9527
 # Ruby World
 # Ruby World
-</pre>
+</pre
+  >
 </div>
 
 <div class="row col-md-4 col-xs-12">
-
-<h3>Async Socket Server - IO.select</h3>
-<pre class="code ruby">
+  <h3>Async Socket Server - IO.select</h3>
+  <pre class="code ruby">
 require 'socket'
 include Socket::Constants
 
@@ -302,12 +304,8 @@ end
 # bash2&gt; nc localhost 5566
 # Ruby Hello
 # Ruby Hello
-</pre>
+</pre
+  >
 </div>
 
-{% endblock %}
-
-{% block script %}
-{{ super() }}
-
-{% endblock %}
+{% endblock %} {% block script %} {{ super() }} {% endblock %}

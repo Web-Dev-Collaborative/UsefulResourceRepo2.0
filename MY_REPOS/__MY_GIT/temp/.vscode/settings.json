@@ -1,0 +1,6 @@
+{
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportUnboundVariable": "information",
+    "reportImplicitStringConcatenation": "warning"
+  }
+}

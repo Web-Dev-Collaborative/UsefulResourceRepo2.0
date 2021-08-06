@@ -75,12 +75,12 @@
             '/zh-cn/': '搜索',
             '/': 'Search',
           },
-          pathNamespaces: ['/es', '/de-de', '/ru-ru', '/zh-cn']
+          pathNamespaces: ['/es', '/de-de', '/ru-ru', '/zh-cn'],
         },
         plugins: [
           DocsifyCarbon.create('CEBI6KQE', 'docsifyjsorg'),
-          function(hook, vm) {
-            hook.beforeEach(function(html) {
+          function (hook, vm) {
+            hook.beforeEach(function (html) {
               if (/githubusercontent\.com/.test(vm.route.file)) {
                 url = vm.route.file
                   .replace('raw.githubusercontent.com', 'github.com')

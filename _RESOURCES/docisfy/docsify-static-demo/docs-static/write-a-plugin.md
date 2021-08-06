@@ -7,18 +7,18 @@ A plugin is simply a function that takes `hook` as an argument. The hook support
 ```js
 window.$docsify = {
   plugins: [
-    function(hook, vm) {
-      hook.init(function() {
+    function (hook, vm) {
+      hook.init(function () {
         // Called when the script starts running, only trigger once, no arguments,
       });
 
-      hook.beforeEach(function(content) {
+      hook.beforeEach(function (content) {
         // Invoked each time before parsing the Markdown file.
         // ...
         return content;
       });
 
-      hook.afterEach(function(html, next) {
+      hook.afterEach(function (html, next) {
         // Invoked each time after the Markdown file is parsed.
         // beforeEach and afterEach support asynchronous。
         // ...
@@ -26,20 +26,20 @@ window.$docsify = {
         next(html);
       });
 
-      hook.doneEach(function() {
+      hook.doneEach(function () {
         // Invoked each time after the data is fully loaded, no arguments,
         // ...
       });
 
-      hook.mounted(function() {
+      hook.mounted(function () {
         // Called after initial completion. Only trigger once, no arguments.
       });
 
-      hook.ready(function() {
+      hook.ready(function () {
         // Called after initial completion, no arguments.
       });
-    }
-  ]
+    },
+  ],
 };
 ```
 
@@ -54,20 +54,20 @@ Add footer component in each pages.
 ```js
 window.$docsify = {
   plugins: [
-    function(hook) {
+    function (hook) {
       var footer = [
-        '<hr/>',
-        '<footer>',
+        "<hr/>",
+        "<footer>",
         '<span><a href="https://github.com/QingWei-Li">cinwell</a> &copy;2017.</span>',
         '<span>Proudly published with <a href="https://github.com/docsifyjs/docsify" target="_blank">docsify</a>.</span>',
-        '</footer>'
-      ].join('');
+        "</footer>",
+      ].join("");
 
-      hook.afterEach(function(html) {
+      hook.afterEach(function (html) {
         return html + footer;
       });
-    }
-  ]
+    },
+  ],
 };
 ```
 
@@ -76,23 +76,23 @@ window.$docsify = {
 ```js
 window.$docsify = {
   plugins: [
-    function(hook, vm) {
-      hook.beforeEach(function(html) {
+    function (hook, vm) {
+      hook.beforeEach(function (html) {
         var url =
-          'https://github.com/docsifyjs/docsify/blob/master/docs' +
+          "https://github.com/docsifyjs/docsify/blob/master/docs" +
           vm.route.file;
-        var editHtml = '[📝 EDIT DOCUMENT](' + url + ')\n';
+        var editHtml = "[📝 EDIT DOCUMENT](" + url + ")\n";
 
         return (
           editHtml +
           html +
-          '\n----\n' +
-          'Last modified {docsify-updated} ' +
+          "\n----\n" +
+          "Last modified {docsify-updated} " +
           editHtml
         );
       });
-    }
-  ]
+    },
+  ],
 };
 ```
 

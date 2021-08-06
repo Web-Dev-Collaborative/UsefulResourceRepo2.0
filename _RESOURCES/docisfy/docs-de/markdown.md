@@ -7,12 +7,12 @@ window.$docsify = {
   markdown: {
     smartypants: true,
     renderer: {
-      link: function() {
+      link: function () {
         // ...
-      }
-    }
-  }
-}
+      },
+    },
+  },
+};
 ```
 
 ?> Für mögliche Einstellungen, siehe [marked Dokumentation](https://github.com/markedjs/marked#options-1)
@@ -21,14 +21,13 @@ Du kannst die Regeln auch beliebig anpassen.
 
 ```js
 window.$docsify = {
-  markdown: function(marked, renderer) {
+  markdown: function (marked, renderer) {
     // ...
 
-    return marked
-  }
-}
+    return marked;
+  },
+};
 ```
-
 
 ## mermaid Unterstützung
 
@@ -42,16 +41,15 @@ mermaid.initialize({ startOnLoad: false });
 window.$docsify = {
   markdown: {
     renderer: {
-      code: function(code, lang) {
+      code: function (code, lang) {
         if (lang === "mermaid") {
           return (
             '<div class="mermaid">' + mermaid.render(lang, code) + "</div>"
           );
         }
         return this.origin.code.apply(this, arguments);
-      }
-    }
-  }
-}
+      },
+    },
+  },
+};
 ```
-

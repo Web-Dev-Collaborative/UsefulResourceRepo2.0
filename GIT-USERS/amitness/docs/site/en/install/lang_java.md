@@ -5,23 +5,21 @@ TensorFlow provides a
 particularly useful for loading models created with Python and running them
 within a Java application.
 
-Caution: The TensorFlow Java API is *not* covered by the TensorFlow
+Caution: The TensorFlow Java API is _not_ covered by the TensorFlow
 [API stability guarantees](../guide/version_compat.md).
-
 
 ## Supported Platforms
 
 TensorFlow for Java is supported on the following systems:
 
-* Ubuntu 16.04 or higher; 64-bit, x86
-* macOS 10.12.6 (Sierra) or higher
-* Windows 7 or higher; 64-bit, x86
+- Ubuntu 16.04 or higher; 64-bit, x86
+- macOS 10.12.6 (Sierra) or higher
+- Windows 7 or higher; 64-bit, x86
 
 To install TensorFlow on Android, see
 [Android TensorFlow support](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/android){:.external}
 and the
 [TensorFlow Android Camera Demo](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/android){:.external}.
-
 
 ## TensorFlow with Apache Maven
 
@@ -124,7 +122,6 @@ The command outputs: <code>Hello from <em>version</em></code>
 
 Success: TensorFlow for Java is configured.
 
-
 ## TensorFlow with the JDK
 
 TensorFlow can be used with the JDK through the Java Native Interface (JNI).
@@ -133,7 +130,7 @@ TensorFlow can be used with the JDK through the Java Native Interface (JNI).
 
 1. Download the TensorFlow Jar Archive (JAR): [libtensorflow.jar](https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-1.12.0.jar)
 2. Download and extract the Java Native Interface (JNI) file for your operating
-system and processor support:
+   system and processor support:
 
 <table>
   <tr><th>JNI version</th><th>URL</th></tr>
@@ -166,7 +163,6 @@ Note: On Windows, the native library (`tensorflow_jni.dll`) requires
 `msvcp140.dll` at runtime. See the [Windows build from source](./source_windows.md)
 guide to install the [Visual C++ 2015 Redistributable](https://www.microsoft.com/en-us/download/details.aspx?id=48145){:.external}.
 
-
 ### Compile
 
 Using the `HelloTensorFlow.java` file from the [previous example](#example),
@@ -196,7 +192,6 @@ the extracted JNI library.
 The command outputs: <code>Hello from <em>version</em></code>
 
 Success: TensorFlow for Java is configured.
-
 
 ## Build from source
 

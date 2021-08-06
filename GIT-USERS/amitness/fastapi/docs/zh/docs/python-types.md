@@ -13,7 +13,7 @@
 但即使你不会用到 **FastAPI**，了解一下类型提示也会让你从中受益。
 
 !!! note
-    如果你已经精通 Python，并且了解关于类型提示的一切知识，直接跳到下一章节吧。
+如果你已经精通 Python，并且了解关于类型提示的一切知识，直接跳到下一章节吧。
 
 ## 动机
 
@@ -31,9 +31,9 @@ John Doe
 
 这个函数做了下面这些事情：
 
-* 接收 `first_name` 和 `last_name` 参数。
-* 通过 `title()` 将每个参数的第一个字母转换为大写形式。
-* 中间用一个空格来<abbr title="将它们按顺序放置组合成一个整体。">拼接</abbr>它们。
+- 接收 `first_name` 和 `last_name` 参数。
+- 通过 `title()` 将每个参数的第一个字母转换为大写形式。
+- 中间用一个空格来<abbr title="将它们按顺序放置组合成一个整体。">拼接</abbr>它们。
 
 ```Python hl_lines="2"
 {!../../../docs_src/python_types/tutorial001.py!}
@@ -135,10 +135,10 @@ John Doe
 
 比如以下类型：
 
-* `int`
-* `float`
-* `bool`
-* `bytes`
+- `int`
+- `float`
+- `bool`
+- `bytes`
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial005.py!}
@@ -194,8 +194,8 @@ John Doe
 
 这表示：
 
-* 变量 `items_t` 是一个 `tuple`，其中的每个元素都是 `int` 类型。
-* 变量 `items_s` 是一个 `set`，其中的每个元素都是 `bytes` 类型。
+- 变量 `items_t` 是一个 `tuple`，其中的每个元素都是 `int` 类型。
+- 变量 `items_s` 是一个 `set`，其中的每个元素都是 `bytes` 类型。
 
 #### 字典
 
@@ -211,9 +211,9 @@ John Doe
 
 这表示：
 
-* 变量 `prices` 是一个 `dict`：
-    * 这个 `dict` 的所有键为 `str` 类型（可以看作是字典内每个元素的名称）。
-    * 这个 `dict` 的所有值为 `float` 类型（可以看作是字典内每个元素的价格）。
+- 变量 `prices` 是一个 `dict`：
+  - 这个 `dict` 的所有键为 `str` 类型（可以看作是字典内每个元素的名称）。
+  - 这个 `dict` 的所有值为 `float` 类型（可以看作是字典内每个元素的价格）。
 
 ### 类作为类型
 
@@ -254,11 +254,11 @@ John Doe
 ```
 
 !!! info
-    想进一步了解 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic，请阅读其文档</a>.
+想进一步了解 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic，请阅读其文档</a>.
 
 整个 **FastAPI** 建立在 Pydantic 的基础之上。
 
-实际上你将在 [教程 - 用户指南](tutorial/index.md){.internal-link target=_blank} 看到很多这种情况。
+实际上你将在 [教程 - 用户指南](tutorial/index.md){.internal-link target=\_blank} 看到很多这种情况。
 
 ## **FastAPI** 中的类型提示
 
@@ -266,21 +266,21 @@ John Doe
 
 使用 **FastAPI** 时用类型提示声明参数可以获得：
 
-* **编辑器支持**。
-* **类型检查**。
+- **编辑器支持**。
+- **类型检查**。
 
 ...并且 **FastAPI** 还会用这些类型声明来：
 
-* **定义参数要求**：声明对请求路径参数、查询参数、请求头、请求体、依赖等的要求。
-* **转换数据**：将来自请求的数据转换为需要的类型。
-* **校验数据**： 对于每一个请求：
-    * 当数据校验失败时自动生成**错误信息**返回给客户端。
-* 使用 OpenAPI **记录** API：
-    * 然后用于自动生成交互式文档的用户界面。
+- **定义参数要求**：声明对请求路径参数、查询参数、请求头、请求体、依赖等的要求。
+- **转换数据**：将来自请求的数据转换为需要的类型。
+- **校验数据**： 对于每一个请求：
+  - 当数据校验失败时自动生成**错误信息**返回给客户端。
+- 使用 OpenAPI **记录** API：
+  - 然后用于自动生成交互式文档的用户界面。
 
-听上去有点抽象。不过不用担心。你将在 [教程 - 用户指南](tutorial/index.md){.internal-link target=_blank} 中看到所有的实战。
+听上去有点抽象。不过不用担心。你将在 [教程 - 用户指南](tutorial/index.md){.internal-link target=\_blank} 中看到所有的实战。
 
 最重要的是，通过使用标准的 Python 类型，只需要在一个地方声明（而不是添加更多的类、装饰器等），**FastAPI** 会为你完成很多的工作。
 
 !!! info
-    如果你已经阅读了所有教程，回过头来想了解有关类型的更多信息，<a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">来自 `mypy` 的"速查表"</a>是不错的资源。
+如果你已经阅读了所有教程，回过头来想了解有关类型的更多信息，<a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">来自 `mypy` 的"速查表"</a>是不错的资源。

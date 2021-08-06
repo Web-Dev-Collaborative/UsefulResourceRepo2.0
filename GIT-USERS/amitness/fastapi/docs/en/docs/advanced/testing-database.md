@@ -1,6 +1,6 @@
 # Testing a Database
 
-You can use the same dependency overrides from [Testing Dependencies with Overrides](testing-dependencies.md){.internal-link target=_blank} to alter a database for testing.
+You can use the same dependency overrides from [Testing Dependencies with Overrides](testing-dependencies.md){.internal-link target=\_blank} to alter a database for testing.
 
 You could want to set up a different database for testing, rollback the data after the tests, pre-fill it with some testing data, etc.
 
@@ -8,7 +8,7 @@ The main idea is exactly the same you saw in that previous chapter.
 
 ## Add tests for the SQL app
 
-Let's update the example from [SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank} to use a testing database.
+Let's update the example from [SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=\_blank} to use a testing database.
 
 All the app code is the same, you can go back to that chapter check how it was.
 
@@ -16,7 +16,7 @@ The only changes here are in the new testing file.
 
 Your normal dependency `get_db()` would return a database session.
 
-In the test, you could use a dependency override to return your *custom* database session instead of the one that would be used normally.
+In the test, you could use a dependency override to return your _custom_ database session instead of the one that would be used normally.
 
 In this example we'll create a temporary database only for the tests.
 
@@ -26,7 +26,7 @@ We create a new file at `sql_app/tests/test_sql_app.py`.
 
 So the new file structure looks like:
 
-``` hl_lines="9-11"
+```hl_lines="9-11"
 .
 └── sql_app
     ├── __init__.py
@@ -53,7 +53,7 @@ But the rest of the session code is more or less the same, we just copy it.
 ```
 
 !!! tip
-    You could reduce duplication in that code by putting it in a function and using it from both `database.py` and `tests/test_sql_app.py`.
+You could reduce duplication in that code by putting it in a function and using it from both `database.py` and `tests/test_sql_app.py`.
 
     For simplicity and to focus on the specific testing code, we are just copying it.
 
@@ -82,7 +82,7 @@ Now we create the dependency override and add it to the overrides for our app.
 ```
 
 !!! tip
-    The code for `override_get_db()` is almost exactly the same as for `get_db()`, but in `override_get_db()` we use the `TestingSessionLocal` for the testing database instead.
+The code for `override_get_db()` is almost exactly the same as for `get_db()`, but in `override_get_db()` we use the `TestingSessionLocal` for the testing database instead.
 
 ## Test the app
 

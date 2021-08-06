@@ -9,11 +9,13 @@ define(function () {
      */
     this.showHelpDialog = function ($editable, $dialog) {
       return $.Deferred(function (deferred) {
-        var $helpDialog = $dialog.find('.note-help-dialog');
+        var $helpDialog = $dialog.find(".note-help-dialog");
 
-        $helpDialog.one('hidden.bs.modal', function () {
-          deferred.resolve();
-        }).modal('show');
+        $helpDialog
+          .one("hidden.bs.modal", function () {
+            deferred.resolve();
+          })
+          .modal("show");
       }).promise();
     };
 
@@ -22,11 +24,11 @@ define(function () {
      */
     this.show = function (layoutInfo) {
       var $dialog = layoutInfo.dialog(),
-          $editable = layoutInfo.editable();
+        $editable = layoutInfo.editable();
 
-      handler.invoke('editor.saveRange', $editable, true);
+      handler.invoke("editor.saveRange", $editable, true);
       this.showHelpDialog($editable, $dialog).then(function () {
-        handler.invoke('editor.restoreRange', $editable);
+        handler.invoke("editor.restoreRange", $editable);
       });
     };
   };

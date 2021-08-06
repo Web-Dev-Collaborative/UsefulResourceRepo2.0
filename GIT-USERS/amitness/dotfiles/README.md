@@ -1,10 +1,11 @@
 # dotfiles
-Configuration for my machine
 
+Configuration for my machine
 
 Date format: %a %b %e, %I:%M
 
 ## Manual Steps
+
 - [ ] Setup SSH keys on [GitHub](https://github.com/settings/keys)
 - [ ] Chrome
 - [ ] Slack
@@ -16,28 +17,33 @@ Date format: %a %b %e, %I:%M
 - [ ] [Miniconda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html#install-linux-silent)
 - [ ] Set keyboard shortcuts
 - [ ] Setup [Autojump](https://www.linode.com/docs/tools-reference/tools/faster-file-navigation-with-autojump/#debian-ubuntu)
-- [ ] Setup Yakuake theme: https://store.kde.org/p/1106258/  
+- [ ] Setup Yakuake theme: https://store.kde.org/p/1106258/
 - [ ] Setup Yakuake open link in google: https://askubuntu.com/questions/62182/how-do-i-change-the-default-browser-that-konsole-opens-urls-with
 - [ ] Set yakuake on startup applications
 - [ ] Install hosts file: [hosts](https://github.com/StevenBlack/hosts) or [adsorber](https://github.com/stablestud/adsorber#portable-mode)
 - [ ] Install fzf: https://github.com/junegunn/fzf
+
 ```shell
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 cd ~/.fzf/
 ./install
 ```
+
 - [ ] [Change docstring style in Pycharm](https://intellij-support.jetbrains.com/hc/en-us/community/posts/115000784410-how-to-change-pycharm-default-commenting-style-for-function-)
 - [ ] Add to ~/.bashrc
+
 ```
 if [ -f ~/.bash_profile ]; then
     . ~/.bash_profile
 fi
 ```
+
 - Clone `scripts` to home
 - Sync VSCode settings via git
 - Set preferred applications
 
 ## Repetitive steps
+
 - Create bootable ISO: [etcher](https://github.com/balena-io/etcher)
 - Custom disk partition in linux mint installation: [video](https://youtu.be/Nps2RF8fq18)
 - Perform mintupdate
@@ -46,47 +52,50 @@ fi
 - Install hub: https://github.com/github/hub
 
 ## VSCode
+
 - Set `window.titleBarStyle": "custom"` to use VSCode themed title bar
 - Change `Workbench > Tree: Indent` from 8 to 20.
 
 ## Repeated commands
 
 ## Custom Keyboard Shortcuts
-|Command | Shortcut|
-|---|---|
-|xkill|Ctrl + Alt + X|
-|code|Ctrl + Alt + M|
-|xset dpms force off|Ctrl + Alt + J|
-|shutdown -h now|Ctrl + Alt + K|
-|shutdown -r now|Ctrl + Alt + R|
-|google-chrome|Ctrl + Alt + C|
-|daily.py|Ctrl + Alt + D|
-|weekend.py|Ctrl + Shift + W|
-|xed|Ctrl + Alt + G|
-|office.py|Ctrl + Shift + Q|
 
+| Command             | Shortcut         |
+| ------------------- | ---------------- |
+| xkill               | Ctrl + Alt + X   |
+| code                | Ctrl + Alt + M   |
+| xset dpms force off | Ctrl + Alt + J   |
+| shutdown -h now     | Ctrl + Alt + K   |
+| shutdown -r now     | Ctrl + Alt + R   |
+| google-chrome       | Ctrl + Alt + C   |
+| daily.py            | Ctrl + Alt + D   |
+| weekend.py          | Ctrl + Shift + W |
+| xed                 | Ctrl + Alt + G   |
+| office.py           | Ctrl + Shift + Q |
 
 ## Articles
-01. [Install TLP to save battery life](http://linrunner.de/en/tlp/docs/tlp-faq.html)
 
-02. [Disable AMD Driver](#) 
- * http://www.mostthingsweb.com/2014/07/disable-radeon-power-management-newer-linux-kernels/ 
- * http://askubuntu.com/questions/96983/how-to-completely-shutdown-ati-card
- * http://forums.fedoraforum.org/archive/index.php/t-290649.html
+1.  [Install TLP to save battery life](http://linrunner.de/en/tlp/docs/tlp-faq.html)
 
-03. [Disable problem detected popup at startup](http://askubuntu.com/questions/133385/getting-system-program-problem-detected-pops-up-regularly-after-upgrade)
+2.  [Disable AMD Driver](#)
 
-04. [Save Brightness Settings on Startup](http://askubuntu.com/questions/151651/brightness-is-reset-to-maximum-on-every-restart/227553#227553)
+- http://www.mostthingsweb.com/2014/07/disable-radeon-power-management-newer-linux-kernels/
+- http://askubuntu.com/questions/96983/how-to-completely-shutdown-ati-card
+- http://forums.fedoraforum.org/archive/index.php/t-290649.html
 
-05. [Add shutdown keyboard shortcut](https://amitness.com/ubuntu-keyboard-shortcut#ubuntu-keyboard-shortcut)
+3.  [Disable problem detected popup at startup](http://askubuntu.com/questions/133385/getting-system-program-problem-detected-pops-up-regularly-after-upgrade)
 
-06. [Make desktop icon more visible in Cinnamon](http://forums.fedoraforum.org/showthread.php?t=300371)
+4.  [Save Brightness Settings on Startup](http://askubuntu.com/questions/151651/brightness-is-reset-to-maximum-on-every-restart/227553#227553)
 
-07. [Disable Ads using hosts file](http://winhelp2002.mvps.org/hosts.txt)
+5.  [Add shutdown keyboard shortcut](https://amitness.com/ubuntu-keyboard-shortcut#ubuntu-keyboard-shortcut)
 
-08. [Install youtube-dl to download videos](https://rg3.github.io/youtube-dl/download.html)
+6.  [Make desktop icon more visible in Cinnamon](http://forums.fedoraforum.org/showthread.php?t=300371)
 
-09. [Make pomodoro timer in bash script](http://superuser.com/questions/224265/pomodoro-timer-for-linux)
+7.  [Disable Ads using hosts file](http://winhelp2002.mvps.org/hosts.txt)
+
+8.  [Install youtube-dl to download videos](https://rg3.github.io/youtube-dl/download.html)
+
+9.  [Make pomodoro timer in bash script](http://superuser.com/questions/224265/pomodoro-timer-for-linux)
 
 10. [Make GIMP Behave like Photoshop](http://www.noobslab.com/2014/03/give-new-looks-to-gimp-image-editor.html)
 
@@ -106,15 +115,15 @@ fi
 
 18. [Use default linux terminal for Codeblocks IDE](http://ubuntuforums.org/showthread.php?t=1464940)
 
-19. [Make Bash Aliases permanent](http://askubuntu.com/questions/17536/how-do-i-create-a-permanent-bash-alias) 
+19. [Make Bash Aliases permanent](http://askubuntu.com/questions/17536/how-do-i-create-a-permanent-bash-alias)
 
 20. [Fix for bash error when alias points to command containing quotes](http://stackoverflow.com/questions/1250079/how-to-escape-single-quotes-within-single-quoted-strings)
 
-21. [Replace cinnamon with mate DE](https://www.reddit.com/r/linux/comments/29x2gs/mint_17_how_does_one_replace_cinamon_with_mate/) 
+21. [Replace cinnamon with mate DE](https://www.reddit.com/r/linux/comments/29x2gs/mint_17_how_does_one_replace_cinamon_with_mate/)
 
 22. [Auto-text completion for Gedit](https://github.com/nymanjens/gedit-intelligent-text-completion)
 
-23. [Make filezilla open editor in gedit](http://superuser.com/questions/159846/change-filezilla-settings-in-ubuntu-linux-so-view-edit-uses-gedit) 
+23. [Make filezilla open editor in gedit](http://superuser.com/questions/159846/change-filezilla-settings-in-ubuntu-linux-so-view-edit-uses-gedit)
 
 24. [Change Sudo Timeout](http://itsfoss.com/change-sudo-password-timeout-ubuntu/)
 

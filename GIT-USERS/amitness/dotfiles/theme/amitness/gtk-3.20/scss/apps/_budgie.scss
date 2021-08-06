@@ -3,25 +3,25 @@
 *******************/
 
 @include exports("budgie-desktop") {
-    .budgie-container {
-        background-color: transparent;
+  .budgie-container {
+    background-color: transparent;
+  }
+
+  .raven {
+    background-color: transparentize($bg_color, 0.07);
+
+    .raven-header {
+      background-color: $bg_color;
+      border: solid $borders_color;
+      border-width: 1px 0;
     }
 
-    .raven {
-        background-color: transparentize($bg_color, .07);
-
-        .raven-header {
-            background-color: $bg_color;
-            border: solid $borders_color;
-            border-width: 1px 0;
-        }
-
-        .raven-background {
-            background-color: transparentize($bg_color, .07);
-        }
+    .raven-background {
+      background-color: transparentize($bg_color, 0.07);
     }
+  }
 
-    .raven-mpris {
-        background-color: transparentize($bg_color, .3);
-    }
+  .raven-mpris {
+    background-color: transparentize($bg_color, 0.3);
+  }
 }

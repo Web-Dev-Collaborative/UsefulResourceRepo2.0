@@ -18,9 +18,9 @@ docsify init ./docs
 
 Después de que se complete `init`, puede ver la lista de archivos en el subdirectorio `./docs`.
 
-* `index.html` como el archivo de entrada
-* `README.md` como la página de inicio (la principal)
-* `.nojekyll` impide que las páginas de GitHub ignoren los archivos que comienzan con un guión bajo
+- `index.html` como el archivo de entrada
+- `README.md` como la página de inicio (la principal)
+- `.nojekyll` impide que las páginas de GitHub ignoren los archivos que comienzan con un guión bajo
 
 Puede actualizar fácilmente la documentación en `./docs/README.md`, por supuesto puede agregar [más páginas](/es/more-pages.md).
 
@@ -43,21 +43,21 @@ Si no te gusta `npm` o tiene problemas para instalar la herramienta, puede crear
 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css">
-</head>
-<body>
-  <div id="app"></div>
-  <script>
-    window.$docsify = {
-      //...
-    }
-  </script>
-  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
-</body>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      window.$docsify = {
+        //...
+      };
+    </script>
+    <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  </body>
 </html>
 ```
 
@@ -72,23 +72,23 @@ cd docs && python -m SimpleHTTPServer 3000
 Si desea, puede mostrar un diálogo de carga antes de que docsify comience a mostrar su documentación:
 
 ```html
-  <!-- index.html -->
+<!-- index.html -->
 
-  <div id="app">Please wait...</div>
+<div id="app">Please wait...</div>
 ```
 
 Debes de configurar el atributo `data-app` si cambiaste `el`:
 
 ```html
-  <!-- index.html -->
+<!-- index.html -->
 
-  <div data-app id="main">Please wait...</div>
+<div data-app id="main">Please wait...</div>
 
-  <script>
-    window.$docsify = {
-      el: '#main'
-    }
-  </script>
+<script>
+  window.$docsify = {
+    el: "#main",
+  };
+</script>
 ```
 
 Comparar la [configuración de el](/es/configuration.md#el).

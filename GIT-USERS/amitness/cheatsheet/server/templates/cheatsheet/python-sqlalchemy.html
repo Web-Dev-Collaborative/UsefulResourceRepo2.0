@@ -1,17 +1,15 @@
-{% extends "layout.html" %}
-
-{% block jumbotron %}
+{% extends "layout.html" %} {% block jumbotron %}
 <div class="jumbotron">
-   <h1>Sqlalchemy Cheat Sheet</h1>
-   <p>Cheat sheet of Python. Some basic concept for Python programmer need to know.</p>
+  <h1>Sqlalchemy Cheat Sheet</h1>
+  <p>
+    Cheat sheet of Python. Some basic concept for Python programmer need to
+    know.
+  </p>
 </div>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="row col-md-4 col-xs-12">
-
-<h3>Sqlalchemy Support DBAPI - PEP249</h3>
-<pre class="code python">
+  <h3>Sqlalchemy Support DBAPI - PEP249</h3>
+  <pre class="code python">
 from sqlalchemy import create_engine 
 
 db_uri = "sqlite:///db.sqlite"
@@ -45,9 +43,10 @@ print result.fetchall()
 # bash&gt; python ex.py
 # (1, u'raw1')
 # []
-</pre>
-<h3>Transaction and Connect Object</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>Transaction and Connect Object</h3>
+  <pre class="code python">
 from sqlalchemy import create_engine
 
 db_uri = 'sqlite:///db.sqlite'
@@ -62,10 +61,11 @@ conn.execute('INSERT INTO "EX1" (name) '
 trans.commit()
 # Close connection
 conn.close()
-</pre>
+</pre
+  >
 
-<h3>Metadata - Generating Database Schema</h3>
-<pre class="code python">
+  <h3>Metadata - Generating Database Schema</h3>
+  <pre class="code python">
 from sqlalchemy import create_engine
 from sqlalchemy import MetaData
 from sqlalchemy import Table
@@ -89,10 +89,11 @@ for _t in metadata.tables:
 
 # bash&gt; ex.py
 # Table:  Example
-</pre>
+</pre
+  >
 
-<h3>Inspect - Get Database Information</h3>
-<pre class="code python">
+  <h3>Inspect - Get Database Information</h3>
+  <pre class="code python">
 from sqlalchemy import create_engine
 from sqlalchemy import inspect
 
@@ -106,12 +107,11 @@ print inspector.get_table_names()
 
 # Get column information
 print inspector.get_columns('EX1')
-</pre>
+</pre
+  >
 
-
-
-<h3>Reflection - Loading Table from Existing Database</h3>
-<pre class="code python">
+  <h3>Reflection - Loading Table from Existing Database</h3>
+  <pre class="code python">
 from sqlalchemy import create_engine
 from sqlalchemy import MetaData
 from sqlalchemy import Table 
@@ -126,10 +126,11 @@ print metadata.tables
 # reflect db schema to MetaData
 metadata.reflect(bind=engine)
 print metadata.tables
-</pre>
+</pre
+  >
 
-<h3>Get Table from MetaData</h3>
-<pre class="code python">
+  <h3>Get Table from MetaData</h3>
+  <pre class="code python">
 from sqlalchemy import create_engine
 from sqlalchemy import MetaData
 from sqlalchemy import Table
@@ -144,9 +145,10 @@ print metadata.tables
 # Get Table
 ex_table = metadata.tables['Example'] 
 print ex_table
-</pre>
-<h3>Create all Tables Store in "MetaData"</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>Create all Tables Store in "MetaData"</h3>
+  <pre class="code python">
 from sqlalchemy import create_engine
 from sqlalchemy import MetaData
 from sqlalchemy import Table
@@ -182,9 +184,10 @@ meta.create_all()
 #	 val INTEGER, 
 #	 PRIMARY KEY (id)
 # );
-</pre>
-<h3>Create Specific Table</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>Create Specific Table</h3>
+  <pre class="code python">
 from sqlalchemy import create_engine
 from sqlalchemy import MetaData
 from sqlalchemy import Table
@@ -212,9 +215,10 @@ t1.create()
 #	 name VARCHAR, 
 #	 PRIMARY KEY (id)
 # );
-</pre>
-<h3>Some Table Object Operation</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>Some Table Object Operation</h3>
+  <pre class="code python">
 from sqlalchemy import MetaData
 from sqlalchemy import Table
 from sqlalchemy import Column
@@ -247,13 +251,13 @@ print c.table
 # key
 # key
 # ex_table
-</pre>
+</pre
+  >
 </div>
 
 <div class="row col-md-4 col-xs-12">
-
-<h3>SQL Expression Language</h3>
-<pre class="code python">
+  <h3>SQL Expression Language</h3>
+  <pre class="code python">
 # Think Column as "ColumnElement"
 # Implement via overwrite special function
 from sqlalchemy import MetaData
@@ -308,10 +312,11 @@ print (table.c.l_name.in_(['a','b']))
 # example.id + :id_1
 # example.l_name || :l_name_1
 # example.l_name IN (:l_name_1, :l_name_2)
-</pre>
+</pre
+  >
 
-<h3>insert() - Create an "INSERT" Statement</h3>
-<pre class="code python">
+  <h3>insert() - Create an "INSERT" Statement</h3>
+  <pre class="code python">
 from sqlalchemy import create_engine
 from sqlalchemy import MetaData
 from sqlalchemy import Table
@@ -343,10 +348,11 @@ conn.execute(table.insert(),[
    {'l_name':'Hi','f_name':'bob'},
    {'l_name':'yo','f_name':'alice'}
 ])
-</pre>
+</pre
+  >
 
-<h3>select() - Create a "SELECT" Statement</h3>
-<pre class="code python">
+  <h3>select() - Create a "SELECT" Statement</h3>
+  <pre class="code python">
 from sqlalchemy import create_engine
 from sqlalchemy import MetaData
 from sqlalchemy import Table
@@ -401,10 +407,11 @@ for _row in res:
 # (u'Hi', u'bob')
 # (1, u'Hello', u'World')
 # (4, u'Hi', u'bob')
-</pre>
+</pre
+  >
 
-<h3>join() - Joined Two Tables via "JOIN" Statement</h3>
-<pre class="code python">
+  <h3>join() - Joined Two Tables via "JOIN" Statement</h3>
+  <pre class="code python">
 from sqlalchemy import create_engine
 from sqlalchemy import MetaData
 from sqlalchemy import Table
@@ -448,9 +455,10 @@ for _row in res:
 # bash&gt; python ex.py
 # (u'Hello', u'yo@test')
 # (u'Hi', u'ker@test')
-</pre>
-<h3>Delete Rows from Table</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>Delete Rows from Table</h3>
+  <pre class="code python">
 from sqlalchemy import create_engine
 from sqlalchemy import MetaData
 
@@ -486,13 +494,13 @@ for _row in res:
 # ----- delete -----
 # (2, u'Hi', u'bob')
 # (3, u'yo', u'alice')
-</pre>
+</pre
+  >
 </div>
 
 <div class="row col-md-4 col-xs-12">
-
-<h3>Check Table Existing</h3>
-<pre class="code python">
+  <h3>Check Table Existing</h3>
+  <pre class="code python">
 from sqlalchemy import create_engine
 from sqlalchemy import MetaData
 from sqlalchemy import Column
@@ -535,11 +543,7 @@ for _t in ins.get_table_names():
 # ----------
 # ex_t
 # user
-</pre>
+</pre
+  >
 </div>
-{% endblock %}
-
-{% block script %}
-{{ super() }}
-
-{% endblock %}
+{% endblock %} {% block script %} {{ super() }} {% endblock %}

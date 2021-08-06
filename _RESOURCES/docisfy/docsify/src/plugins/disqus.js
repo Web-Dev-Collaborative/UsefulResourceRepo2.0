@@ -11,7 +11,7 @@ function install(hook, vm) {
     throw Error('$docsify.disqus is required');
   }
 
-  hook.init(_ => {
+  hook.init((_) => {
     const script = dom.create('script');
 
     script.async = true;
@@ -20,7 +20,7 @@ function install(hook, vm) {
     dom.appendTo(dom.body, script);
   });
 
-  hook.mounted(_ => {
+  hook.mounted((_) => {
     const div = dom.create('div');
     div.id = 'disqus_thread';
     const main = dom.getNode('#main');
@@ -28,18 +28,18 @@ function install(hook, vm) {
     dom.appendTo(dom.find('.content'), div);
 
     // eslint-disable-next-line
-    window.disqus_config = function() {
+    window.disqus_config = function () {
       this.page.url = location.origin + '/-' + vm.route.path;
       this.page.identifier = vm.route.path;
       this.page.title = document.title;
     };
   });
 
-  hook.doneEach(_ => {
+  hook.doneEach((_) => {
     if (typeof window.DISQUS !== 'undefined') {
       window.DISQUS.reset({
         reload: true,
-        config: function() {
+        config: function () {
           this.page.url = location.origin + '/-' + vm.route.path;
           this.page.identifier = vm.route.path;
           this.page.title = document.title;

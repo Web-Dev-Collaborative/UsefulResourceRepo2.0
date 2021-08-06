@@ -36,9 +36,7 @@
   "dawn.com": true,
   "donaldsonvillechief.com": true,
   "witness.co.za": true,
-  "sportsinteraction.com": [
-    "news"
-  ],
+  "sportsinteraction.com": ["news"],
   "kpsplocal2.com": true,
   "bunburymail.com.au": true,
   "thedailyrecord.com": true,
@@ -157,9 +155,7 @@
   "areawidenews.com": true,
   "informationweek.com": true,
   "inventorspot.com": true,
-  "newsweek.com": [
-    "current"
-  ],
+  "newsweek.com": ["current"],
   "turkishweekly.net": true,
   "themountainmail.com": true,
   "advicetrade.com": true,
@@ -250,21 +246,13 @@
   "onmilwaukee.com": true,
   "norwichguidon.com": true,
   "news.com.au": true,
-  "madison.com": [
-    "host"
-  ],
+  "madison.com": ["host"],
   "foxcharlotte.com": true,
   "neagle.com": true,
   "fourthestatenewspaper.com": true,
   "pressdemocrat.com": true,
   "perezhilton.com": true,
-  "gmnews.com": [
-    "ems",
-    "ns",
-    "suburban",
-    "ebs",
-    "nbs"
-  ],
+  "gmnews.com": ["ems", "ns", "suburban", "ebs", "nbs"],
   "bizjournals.com": true,
   "take40.com": true,
   "moortowntoday.co.uk": true,
@@ -273,13 +261,8 @@
   "piratefm.co.uk": true,
   "slashdot.org": true,
   "new-magazine.co.uk": true,
-  "vivanews.com": [
-    "en"
-  ],
-  "vrvm.com": [
-    "vw",
-    "mh"
-  ],
+  "vivanews.com": ["en"],
+  "vrvm.com": ["vw", "mh"],
   "keprtv.com": true,
   "thestar.com.my": true,
   "kfoxtv.com": true,
@@ -291,9 +274,7 @@
   "thedailyjournal.com": true,
   "fox19.com": true,
   "maribyrnongweekly.com.au": true,
-  "rutgers.edu": [
-    "news"
-  ],
+  "rutgers.edu": ["news"],
   "mrsec.com": true,
   "obama.net": true,
   "weartv.com": true,
@@ -305,13 +286,8 @@
   "cpheraldleader.com": true,
   "whbf.com": true,
   "nbc17.com": true,
-  "coastalcourier.com": [
-    "community",
-    "beta"
-  ],
-  "yonhapnews.co.kr": [
-    "english"
-  ],
+  "coastalcourier.com": ["community", "beta"],
+  "yonhapnews.co.kr": ["english"],
   "cnsnews.com": true,
   "compareaway.co.uk": true,
   "dakotavoice.com": true,
@@ -338,9 +314,7 @@
   "wvnstv.com": true,
   "magharebia.com": true,
   "baylorlariat.com": true,
-  "hku.hk": [
-    "cmp"
-  ],
+  "hku.hk": ["cmp"],
   "bleedinggreennation.com": true,
   "videogamingpros.com": true,
   "worthingherald.co.uk": true,
@@ -362,9 +336,7 @@
   "ivillage.com": true,
   "colliemail.com.au": true,
   "kptm.com": true,
-  "accuracast.com": [
-    "news"
-  ],
+  "accuracast.com": ["news"],
   "hastingstribune.com": true,
   "usamarketnews.com": true,
   "lexch.com": true,
@@ -414,9 +386,7 @@
   "wsav.com": true,
   "zeenews.com": true,
   "wcvarones.com": true,
-  "guestofaguest.com": [
-    "la"
-  ],
+  "guestofaguest.com": ["la"],
   "praguemonitor.com": true,
   "abcmontana.com": true,
   "670kboi.com": true,
@@ -436,9 +406,7 @@
   "ptleader.com": true,
   "hillsnews.com.au": true,
   "mrc.org": true,
-  "xinhuanet.com": [
-    "news"
-  ],
+  "xinhuanet.com": ["news"],
   "newsrecord.org": true,
   "9news.com": true,
   "corsicanadailysun.com": true,
@@ -458,9 +426,7 @@
   "magicvalley.com": true,
   "ocala.com": true,
   "poundmag.com": true,
-  "hereisthecity.com": [
-    "news"
-  ],
+  "hereisthecity.com": ["news"],
   "theyeshivaworld.com": true,
   "volunteertv.com": true,
   "computing.co.uk": true,
@@ -543,17 +509,13 @@
   "gazettextra.com": true,
   "accessatlanta.com": true,
   "thepilot.com": true,
-  "duke.edu": [
-    "today"
-  ],
+  "duke.edu": ["today"],
   "thesiuslawnews.com": true,
   "dailystar.com.lb": true,
   "expatica.com": true,
   "communitypub.com": true,
   "cbs42.com": true,
-  "aljazeera.net": [
-    "english"
-  ],
+  "aljazeera.net": ["english"],
   "lakeshoreadvance.com": true,
   "dailyiowan.com": true,
   "westportnow.com": true,
@@ -598,9 +560,7 @@
   "swnewsherald.com": true,
   "cnn.com": true,
   "music-news.com": true,
-  "wisc.edu": [
-    "news"
-  ],
+  "wisc.edu": ["news"],
   "socialistworker.co.uk": true,
   "globalcomment.com": true,
   "cyprus-mail.com": true,
@@ -634,16 +594,12 @@
   "am770chqr.com": true,
   "stcatharinesstandard.ca": true,
   "thisishullandeastriding.co.uk": true,
-  "rti.org.tw": [
-    "english"
-  ],
+  "rti.org.tw": ["english"],
   "annarbor.com": true,
   "wetmtv.com": true,
   "pressgazette.co.uk": true,
   "expressindia.com": true,
-  "arizona.edu": [
-    "wildcat"
-  ],
+  "arizona.edu": ["wildcat"],
   "wdsu.com": true,
   "wetzelchronicle.com": true,
   "wordpress.com": [
@@ -660,9 +616,7 @@
   "observernews.net": true,
   "thisdaylive.com": true,
   "starherald.net": true,
-  "nikkei.com": [
-    "e"
-  ],
+  "nikkei.com": ["e"],
   "benningtonvalepress.com": true,
   "dailymirror.lk": true,
   "kwch.com": true,
@@ -700,9 +654,7 @@
   "leadertelegram.com": true,
   "tribbleagency.com": true,
   "midwestsportsfans.com": true,
-  "bigpond.com": [
-    "wap.news"
-  ],
+  "bigpond.com": ["wap.news"],
   "business-standard.com": true,
   "neshobademocrat.com": true,
   "thelondoner.ca": true,
@@ -741,9 +693,7 @@
   "sheboyganpress.com": true,
   "solariasun.com": true,
   "thelantern.com": true,
-  "greekreporter.com": [
-    "greece"
-  ],
+  "greekreporter.com": ["greece"],
   "belladogmagazine.com": true,
   "driffieldtoday.co.uk": true,
   "dailynewspulse.com": true,
@@ -762,9 +712,7 @@
   "theeagle.com": true,
   "cambridge-news.co.uk": true,
   "broadcastengineering.com": true,
-  "nzcity.co.nz": [
-    "home"
-  ],
+  "nzcity.co.nz": ["home"],
   "frasercoastchronicle.com.au": true,
   "centralwesterndaily.com.au": true,
   "businessdayonline.com": true,
@@ -819,9 +767,7 @@
   "myjournalcourier.com": true,
   "gaytoday.com": true,
   "lehighvalleylive.com": true,
-  "mu.nu": [
-    "mypetjawa"
-  ],
+  "mu.nu": ["mypetjawa"],
   "football-news.org.uk": true,
   "healthnewstrack.com": true,
   "whdh.com": true,
@@ -855,9 +801,7 @@
   "calverleytoday.co.uk": true,
   "cbs19.tv": true,
   "dailyherald.com": true,
-  "htnp.com": [
-    "mansfield"
-  ],
+  "htnp.com": ["mansfield"],
   "theitem.com": true,
   "texastribune.org": true,
   "westbranchtimes.com": true,
@@ -897,28 +841,20 @@
   "bbc.com": true,
   "politicallyillustrated.com": true,
   "keysnet.com": true,
-  "indiatimes.com": [
-    "photogallery",
-    "economictimes",
-    "timesofindia"
-  ],
+  "indiatimes.com": ["photogallery", "economictimes", "timesofindia"],
   "arkansasnews.com": true,
   "royalgazette.com": true,
   "the-leader.net": true,
   "tnr.com": true,
   "westhartfordnews.com": true,
-  "tamu.edu": [
-    "tamunews"
-  ],
+  "tamu.edu": ["tamunews"],
   "mauinow.com": true,
   "scallywagandvagabond.com": true,
   "wcfcourier.com": true,
   "claytoday.biz": true,
   "stabroeknews.com": true,
   "rferl.org": true,
-  "terra.com": [
-    "en"
-  ],
+  "terra.com": ["en"],
   "forexpros.com": true,
   "okmagazine.com": true,
   "shinyshiny.tv": true,
@@ -929,30 +865,21 @@
   "record-eagle.com": true,
   "housatonictimes.com": true,
   "theshorthorn.com": true,
-  "intoday.in": [
-    "businesstoday",
-    "indiatoday"
-  ],
+  "intoday.in": ["businesstoday", "indiatoday"],
   "northumberlandtoday.com": true,
   "media247.co.uk": true,
   "live5news.com": true,
   "register-herald.com": true,
-  "injuryboard.com": [
-    "stcloud"
-  ],
+  "injuryboard.com": ["stcloud"],
   "foreignaffairs.com": true,
-  "consumerreports.org": [
-    "news"
-  ],
+  "consumerreports.org": ["news"],
   "daltondailycitizen.com": true,
   "wgmd.com": true,
   "hammeroftruth.com": true,
   "baycitizen.org": true,
   "praguepost.com": true,
   "newsok.com": true,
-  "portlandmercury.com": [
-    "blogtown"
-  ],
+  "portlandmercury.com": ["blogtown"],
   "wbir.com": true,
   "sundaysun.co.uk": true,
   "begadistrictnews.com.au": true,
@@ -1020,13 +947,9 @@
   "wlns.com": true,
   "gulftoday.ae": true,
   "t2conline.com": true,
-  "nasdaq.com": [
-    "community"
-  ],
+  "nasdaq.com": ["community"],
   "bentoneveningnews.com": true,
-  "outlookindia.com": [
-    "news"
-  ],
+  "outlookindia.com": ["news"],
   "thegurdontimes.com": true,
   "recordcourier.com": true,
   "easttexasreview.com": true,
@@ -1034,9 +957,7 @@
   "clactonandfrintongazette.co.uk": true,
   "smdp.com": true,
   "stlbeacon.org": true,
-  "tradeindia.com": [
-    "smetimes"
-  ],
+  "tradeindia.com": ["smetimes"],
   "cincinnati.com": true,
   "westmorelandtimes.com": true,
   "centralasianewswire.com": true,
@@ -1057,16 +978,11 @@
   "ny1.com": true,
   "isportsweb.com": true,
   "thisisnottingham.co.uk": true,
-  "zap2it.com": [
-    "tvbythenumbers",
-    "tvovermind"
-  ],
+  "zap2it.com": ["tvbythenumbers", "tvovermind"],
   "armidaleexpress.com.au": true,
   "marinecorpstimes.com": true,
   "israelidiamond.co.il": true,
-  "ncpolicywatch.org": [
-    "pulse"
-  ],
+  "ncpolicywatch.org": ["pulse"],
   "gulf-times.com": true,
   "niagaraadvance.ca": true,
   "celebrity-gossip.net": true,
@@ -1130,10 +1046,7 @@
   "vaildaily.com": true,
   "heraldsun.com.au": true,
   "apunkachoice.com": true,
-  "ap.org": [
-    "customwire",
-    "hosted"
-  ],
+  "ap.org": ["customwire", "hosted"],
   "edp24.co.uk": true,
   "heraldtimesonline.com": true,
   "theonion.com": true,
@@ -1160,10 +1073,7 @@
   "theguardianonline.com": true,
   "effinghamdailynews.com": true,
   "dodbuzz.com": true,
-  "psu.edu": [
-    "aa",
-    "live"
-  ],
+  "psu.edu": ["aa", "live"],
   "kmvt.com": true,
   "parentdish.com": true,
   "bi-me.com": true,
@@ -1176,10 +1086,7 @@
   "headlineplanet.com": true,
   "sussexcountian.com": true,
   "smartmoney.com": true,
-  "in.com": [
-    "tech2",
-    "ibnlive"
-  ],
+  "in.com": ["tech2", "ibnlive"],
   "rochestercitynewspaper.com": true,
   "lep.co.uk": true,
   "ktre.com": true,
@@ -1195,11 +1102,7 @@
   "morleyobserver.co.uk": true,
   "hollywooddame.com": true,
   "allhiphop.com": true,
-  "today.com": [
-    "moms",
-    "bites",
-    "digitallife"
-  ],
+  "today.com": ["moms", "bites", "digitallife"],
   "columbiatribune.com": true,
   "saipantribune.com": true,
   "plastemart.com": true,
@@ -1207,17 +1110,13 @@
   "scaddistrict.com": true,
   "aljazeera.com": true,
   "easydestination.net": true,
-  "aol.com": [
-    "news.travel"
-  ],
+  "aol.com": ["news.travel"],
   "chbcnews.ca": true,
   "westseattleblog.com": true,
   "bnd.com": true,
   "af.mil": true,
   "journal-news.net": true,
-  "cbronline.com": [
-    "security"
-  ],
+  "cbronline.com": ["security"],
   "pocket-lint.com": true,
   "mv-voice.com": true,
   "hinckleytimes.net": true,
@@ -1283,9 +1182,7 @@
   "dailynewstoyou.com": true,
   "insidethegames.biz": true,
   "wnyt.com": true,
-  "farsnews.com": [
-    "english"
-  ],
+  "farsnews.com": ["english"],
   "wrn.com": true,
   "lebanon-express.com": true,
   "irinnews.org": true,
@@ -1339,9 +1236,7 @@
   "3news.co.nz": true,
   "crabbygolightly.com": true,
   "jta.org": true,
-  "our-hometown.com": [
-    "kingsvillerecord"
-  ],
+  "our-hometown.com": ["kingsvillerecord"],
   "pressconnects.com": true,
   "chickashanews.com": true,
   "argusobserver.com": true,
@@ -1438,10 +1333,7 @@
   "projectqatlanta.com": true,
   "accidentinjurylawyerblog.com": true,
   "byronnews.com.au": true,
-  "msn.co.nz": [
-    "entertainment",
-    "news"
-  ],
+  "msn.co.nz": ["entertainment", "news"],
   "niemanwatchdog.org": true,
   "dailyfill.com": true,
   "northcountrynow.com": true,
@@ -1567,9 +1459,7 @@
   "lubbockonline.com": true,
   "nrtoday.com": true,
   "outdoorlife.com": true,
-  "buzznet.com": [
-    "justjared"
-  ],
+  "buzznet.com": ["justjared"],
   "nbcchicago.com": true,
   "ausbt.com.au": true,
   "theunion.com": true,
@@ -1586,13 +1476,7 @@
   "milfordbeacon.com": true,
   "banmoco.co.uk": true,
   "forexhound.com": true,
-  "peacefmonline.com": [
-    "business",
-    "news",
-    "sports",
-    "foreign",
-    "showbiz"
-  ],
+  "peacefmonline.com": ["business", "news", "sports", "foreign", "showbiz"],
   "ilkestonadvertiser.co.uk": true,
   "neworleanscitybusiness.com": true,
   "chroniclelive.co.uk": true,
@@ -1605,9 +1489,7 @@
   "newsandtribune.com": true,
   "dailytimes.com.pk": true,
   "ahherald.com": true,
-  "tycoonresearch.com": [
-    "tycoonreport"
-  ],
+  "tycoonresearch.com": ["tycoonreport"],
   "enterprisenews.com": true,
   "baltimoresportsreport.com": true,
   "newstribune.info": true,
@@ -1642,12 +1524,7 @@
   "newsherald.com": true,
   "meforum.org": true,
   "voxbikol.com": true,
-  "canoe.ca": [
-    "money",
-    "technology",
-    "jam",
-    "cnews"
-  ],
+  "canoe.ca": ["money", "technology", "jam", "cnews"],
   "nationalpost.com": true,
   "thefilmstage.com": true,
   "shalomlife.com": true,
@@ -1655,9 +1532,7 @@
   "forexlive.com": true,
   "gazettevirginian.com": true,
   "kgan.com": true,
-  "wa.gov": [
-    "atg"
-  ],
+  "wa.gov": ["atg"],
   "worcesternews.co.uk": true,
   "necn.com": true,
   "moneytalksnews.com": true,
@@ -1665,9 +1540,7 @@
   "hiphopblog.com": true,
   "wmfd.com": true,
   "dallasvoice.com": true,
-  "idg.com.au": [
-    "pcworld"
-  ],
+  "idg.com.au": ["pcworld"],
   "bonnercountydailybee.com": true,
   "naplesnews.com": true,
   "seroundtable.com": true,
@@ -1709,11 +1582,7 @@
   "journalstar.com": true,
   "eurasiareview.com": true,
   "scienceblogs.com": true,
-  "curbed.com": [
-    "ny",
-    "chicago",
-    "dc"
-  ],
+  "curbed.com": ["ny", "chicago", "dc"],
   "petaluma360.com": true,
   "lmtribune.com": true,
   "americansuperstarmag.com": true,
@@ -1817,22 +1686,15 @@
   "uiargonaut.com": true,
   "smmercury.com": true,
   "wzzm13.com": true,
-  "ninemsn.com.au": [
-    "news",
-    "finance"
-  ],
+  "ninemsn.com.au": ["news", "finance"],
   "wizbangblog.com": true,
   "northernweekly.com.au": true,
   "americanchronicle.com": true,
   "amw.com": true,
   "thedailystamford.com": true,
-  "malaysiasun.com": [
-    "story"
-  ],
+  "malaysiasun.com": ["story"],
   "wgil.com": true,
-  "cafemom.com": [
-    "thestir"
-  ],
+  "cafemom.com": ["thestir"],
   "2dayfm.com.au": true,
   "nevadaappeal.com": true,
   "lexingtonchronicle.com": true,
@@ -1848,9 +1710,7 @@
   "bioprepwatch.com": true,
   "lankaweb.com": true,
   "dailybulletin.com": true,
-  "blorge.com": [
-    "tech"
-  ],
+  "blorge.com": ["tech"],
   "eitb.com": true,
   "glassrbije.org": true,
   "valleycentral.com": true,
@@ -1879,9 +1739,7 @@
   "onlinenews.com.pk": true,
   "newsandtech.com": true,
   "mid-day.com": true,
-  "birminghamstar.com": [
-    "story"
-  ],
+  "birminghamstar.com": ["story"],
   "huliq.com": true,
   "onlinejournal.com": true,
   "worldtvpc.com": true,
@@ -1901,9 +1759,7 @@
   "lasnark.com": true,
   "washingtonpost.com": true,
   "mainstreet.com": true,
-  "financialpost.com": [
-    "business"
-  ],
+  "financialpost.com": ["business"],
   "thepeninsulaqatar.com": true,
   "scoop.co.nz": true,
   "the420times.com": true,
@@ -1936,9 +1792,7 @@
   "snohomishtimes.com": true,
   "pmnewsnigeria.com": true,
   "ky3.com": true,
-  "mainichi.jp": [
-    "mdn"
-  ],
+  "mainichi.jp": ["mdn"],
   "cachevalleydaily.com": true,
   "local12.com": true,
   "sierraexpressmedia.com": true,
@@ -2001,9 +1855,7 @@
   "abc6onyourside.com": true,
   "zmescience.com": true,
   "andersonfreepress.net": true,
-  "opb.org": [
-    "news"
-  ],
+  "opb.org": ["news"],
   "denverpost.com": true,
   "lohud.com": true,
   "wlsam.com": true,
@@ -2034,15 +1886,8 @@
   "mywabashvalley.com": true,
   "horncastlenews.co.uk": true,
   "964eagle.co.uk": true,
-  "radiovaticana.org": [
-    "oecumene"
-  ],
-  "go.com": [
-    "abcnews",
-    "abclocal",
-    "sports.espn",
-    "espn"
-  ],
+  "radiovaticana.org": ["oecumene"],
+  "go.com": ["abcnews", "abclocal", "sports.espn", "espn"],
   "dscriber.com": true,
   "thetyee.ca": true,
   "hamptonroads.com": true,
@@ -2073,12 +1918,7 @@
   "eastbayexpress.com": true,
   "thespectrum.com": true,
   "nbcwashington.com": true,
-  "globaltimes.cn": [
-    "business",
-    "life",
-    "world",
-    "opinion"
-  ],
+  "globaltimes.cn": ["business", "life", "world", "opinion"],
   "thecandor.com": true,
   "pepperdine-graphic.com": true,
   "aurorasentinel.com": true,
@@ -2089,9 +1929,7 @@
   "nbc11news.com": true,
   "king5.com": true,
   "snarkfood.com": true,
-  "wikinews.org": [
-    "en"
-  ],
+  "wikinews.org": ["en"],
   "ballinaadvocate.com.au": true,
   "kjct8.com": true,
   "ology.com": true,
@@ -2118,10 +1956,7 @@
   "realtruth.org": true,
   "thisisleicestershire.co.uk": true,
   "anchorweb.org": true,
-  "upenn.edu": [
-    "knowledge.wharton",
-    "knowledgetoday.wharton"
-  ],
+  "upenn.edu": ["knowledge.wharton", "knowledgetoday.wharton"],
   "devilslakejournal.com": true,
   "sofiaecho.com": true,
   "who2.com": true,
@@ -2138,13 +1973,8 @@
   "nybooks.com": true,
   "pr-usa.net": true,
   "pal-item.com": true,
-  "publicradio.org": [
-    "marketplace",
-    "minnesota"
-  ],
-  "galatta.com": [
-    "english"
-  ],
+  "publicradio.org": ["marketplace", "minnesota"],
+  "galatta.com": ["english"],
   "sify.com": true,
   "showbizspy.com": true,
   "philly.com": true,
@@ -2163,9 +1993,7 @@
   "strategicsourceror.com": true,
   "kxxv.com": true,
   "channel4.com": true,
-  "globalsecurity.org": [
-    "sitrep"
-  ],
+  "globalsecurity.org": ["sitrep"],
   "thedailyaztec.com": true,
   "businessspectator.com.au": true,
   "benningtonbanner.com": true,
@@ -2177,9 +2005,7 @@
   "businessghana.com": true,
   "canyon-news.com": true,
   "goozernation.com": true,
-  "streetsblog.org": [
-    "dc"
-  ],
+  "streetsblog.org": ["dc"],
   "ugo.com": true,
   "michiganmessenger.com": true,
   "glendalenewspress.com": true,
@@ -2211,9 +2037,7 @@
   "sanduskyregister.com": true,
   "claytodayonline.com": true,
   "forbesadvocate.com.au": true,
-  "umich.edu": [
-    "ns"
-  ],
+  "umich.edu": ["ns"],
   "shropshirestar.com": true,
   "ocolympian.com": true,
   "nbc.com": true,
@@ -2222,17 +2046,13 @@
   "normantranscript.com": true,
   "witf.org": true,
   "youngwitness.com.au": true,
-  "ntdtv.com": [
-    "english"
-  ],
+  "ntdtv.com": ["english"],
   "thenews-messenger.com": true,
   "heritage.org": true,
   "socialistalternative.org": true,
   "xxlmag.com": true,
   "desotoexplorer.com": true,
-  "nationalgeographic.com": [
-    "newswatch"
-  ],
+  "nationalgeographic.com": ["newswatch"],
   "nigeriamasterweb.com": true,
   "2point6billion.com": true,
   "yournabe.com": true,
@@ -2255,9 +2075,7 @@
   "gcobb.com": true,
   "flipthemedia.com": true,
   "brownsvilleherald.com": true,
-  "sportingnews.com": [
-    "aol"
-  ],
+  "sportingnews.com": ["aol"],
   "philstar.com": true,
   "architectsjournal.co.uk": true,
   "nyblueprint.com": true,
@@ -2278,9 +2096,7 @@
   "nwfdailynews.com": true,
   "mediaite.com": true,
   "pbpulse.com": true,
-  "idg.no": [
-    "news"
-  ],
+  "idg.no": ["news"],
   "badgerherald.com": true,
   "gympietimes.com.au": true,
   "safm.com.au": true,
@@ -2357,9 +2173,7 @@
   "dane101.com": true,
   "minonline.com": true,
   "millercountyliberal.com": true,
-  "pinkpaper.com": [
-    "news"
-  ],
+  "pinkpaper.com": ["news"],
   "recorderonline.com": true,
   "meridianbooster.com": true,
   "wjon.com": true,
@@ -2374,12 +2188,7 @@
   "gateschilipost.com": true,
   "southwestiowanews.com": true,
   "allmediany.com": true,
-  "talkingpointsmemo.com": [
-    "tpmlivewire",
-    "tpmdc",
-    "tpmmuckraker",
-    "tpmcafe"
-  ],
+  "talkingpointsmemo.com": ["tpmlivewire", "tpmdc", "tpmmuckraker", "tpmcafe"],
   "phuketgazette.net": true,
   "ennaharonline.com": true,
   "thefilmpilgrim.com": true,
@@ -2394,9 +2203,7 @@
   "thiscantbehappening.net": true,
   "wtop.com": true,
   "current-movie-reviews.com": true,
-  "gnom.es": [
-    "news"
-  ],
+  "gnom.es": ["news"],
   "techdigest.tv": true,
   "politico.com": true,
   "pcworld.com": true,
@@ -2418,23 +2225,17 @@
   "dailypress.net": true,
   "digtriad.com": true,
   "fredonialeader.com": true,
-  "rfi.fr": [
-    "english"
-  ],
+  "rfi.fr": ["english"],
   "digitaljournal.com": true,
   "bnet.com": true,
-  "statepaper.com": [
-    "nebraska"
-  ],
+  "statepaper.com": ["nebraska"],
   "oregoncommentator.com": true,
   "gloria-center.org": true,
   "socialitelife.com": true,
   "thisishampshire.net": true,
   "martinsvillebulletin.com": true,
   "wealthdaily.com": true,
-  "ain.cu": [
-    "cubanews"
-  ],
+  "ain.cu": ["cubanews"],
   "northumberlandgazette.co.uk": true,
   "guardian-series.co.uk": true,
   "westkentuckystar.com": true,
@@ -2444,9 +2245,7 @@
   "myfoxphoenix.com": true,
   "canadianchristianity.com": true,
   "justsearch.co.uk": true,
-  "mit.edu": [
-    "tech"
-  ],
+  "mit.edu": ["tech"],
   "dailyrecord.com": true,
   "postcrescent.com": true,
   "thecourier.co.uk": true,
@@ -2544,27 +2343,20 @@
   "guyism.com": true,
   "bleacherreport.com": true,
   "ajc.com": true,
-  "firedoglake.com": [
-    "news",
-    "my"
-  ],
+  "firedoglake.com": ["news", "my"],
   "ubergizmo.com": true,
   "victoriaadvocate.com": true,
   "theargus.co.uk": true,
   "midhurstandpetworth.co.uk": true,
   "counton2.com": true,
   "mysinchew.com": true,
-  "morningstar.com": [
-    "news"
-  ],
+  "morningstar.com": ["news"],
   "vintoniowa.org": true,
   "cantonrep.com": true,
   "ekmulakatnews.com": true,
   "dagblog.com": true,
   "yorkpress.co.uk": true,
-  "dmagazine.com": [
-    "frontburner"
-  ],
+  "dmagazine.com": ["frontburner"],
   "emirates247.com": true,
   "wiltonvillager.com": true,
   "geneseorepublic.com": true,
@@ -2585,17 +2377,13 @@
   "southyorkshiretimes.co.uk": true,
   "stargazette.com": true,
   "kapptv.com": true,
-  "lalate.com": [
-    "news"
-  ],
+  "lalate.com": ["news"],
   "cincyjungle.com": true,
   "wtap.com": true,
   "koco.com": true,
   "gulfnews.com": true,
   "wirenh.com": true,
-  "mercopress.com": [
-    "en"
-  ],
+  "mercopress.com": ["en"],
   "newstribune.com": true,
   "misformusic.com": true,
   "bigislandvideonews.com": true,
@@ -2608,9 +2396,7 @@
   "eastaurorany.com": true,
   "livemint.com": true,
   "nbc-2.com": true,
-  "bangordailynews.com": [
-    "new"
-  ],
+  "bangordailynews.com": ["new"],
   "worldscreen.com": true,
   "thisdishisvegetarian.com": true,
   "journalinquirer.com": true,
@@ -2620,9 +2406,7 @@
   "jamaicaobserver.com": true,
   "mpbn.net": true,
   "citizensvoice.com": true,
-  "trend.az": [
-    "en"
-  ],
+  "trend.az": ["en"],
   "elon.edu": true,
   "thekansan.com": true,
   "southjerseylocalnews.com": true,
@@ -2636,9 +2420,7 @@
   "marinelog.com": true,
   "thinkprogress.org": true,
   "wehonews.com": true,
-  "hsj.org": [
-    "my"
-  ],
+  "hsj.org": ["my"],
   "nzcatholic.org.nz": true,
   "timesrecordnews.com": true,
   "cafe.com": true,
@@ -2651,9 +2433,7 @@
   "kfdm.com": true,
   "stamfordmercury.co.uk": true,
   "bordermail.com.au": true,
-  "albeu.com": [
-    "english"
-  ],
+  "albeu.com": ["english"],
   "dailytidings.com": true,
   "taipeitimes.com": true,
   "sundaygazettemail.com": true,
@@ -2661,9 +2441,7 @@
   "registerguard.com": true,
   "ghanabusinessnews.com": true,
   "wbay.com": true,
-  "techworld.com": [
-    "news"
-  ],
+  "techworld.com": ["news"],
   "wtkr.com": true,
   "kingmandailyminer.com": true,
   "eveningtimes.co.uk": true,
@@ -2672,19 +2450,14 @@
   "torontosun.com": true,
   "chinapost.com.tw": true,
   "ftleavenworthlamp.com": true,
-  "scout.com": [
-    "mbd"
-  ],
+  "scout.com": ["mbd"],
   "nwitimes.com": true,
   "dfwcatholic.org": true,
   "sundayworld.co.za": true,
   "imarketnews.com": true,
   "goldinvestingnews.com": true,
   "fox11online.com": true,
-  "radio.com": [
-    "kncifm",
-    "guestlist"
-  ],
+  "radio.com": ["kncifm", "guestlist"],
   "sfgate.com": true,
   "kirotv.com": true,
   "thepoke.co.uk": true,
@@ -2729,9 +2502,7 @@
   "ewireinformer.com": true,
   "swcbulletin.com": true,
   "dailyrecord.co.uk": true,
-  "pnn.ps": [
-    "english"
-  ],
+  "pnn.ps": ["english"],
   "katu.com": true,
   "isurfhopkins.com": true,
   "fitsnews.com": true,
@@ -2757,14 +2528,10 @@
   ],
   "connectionnewspapers.com": true,
   "pasadenastarnews.com": true,
-  "alarabiya.net": [
-    "english"
-  ],
+  "alarabiya.net": ["english"],
   "macon.com": true,
   "dothaneagle.com": true,
-  "donga.com": [
-    "english"
-  ],
+  "donga.com": ["english"],
   "standard-journal.com": true,
   "scientificamerican.com": true,
   "mdjonline.com": true,
@@ -2822,10 +2589,7 @@
   "thisisstaffordshire.co.uk": true,
   "sooeveningnews.com": true,
   "ktts.com": true,
-  "cbslocal.com": [
-    "newyork",
-    "stlouis"
-  ],
+  "cbslocal.com": ["newyork", "stlouis"],
   "post-journal.com": true,
   "finchannel.com": true,
   "spamfighter.com": true,
@@ -2833,9 +2597,7 @@
   "easternriverinachronicle.com.au": true,
   "inlandnewstoday.com": true,
   "bluemountaineagle.com": true,
-  "ahram.org.eg": [
-    "english"
-  ],
+  "ahram.org.eg": ["english"],
   "sthelensstar.co.uk": true,
   "meadowlakeprogress.com": true,
   "worldjewishcongress.org": true,
@@ -2852,9 +2614,7 @@
   "sandiego.com": true,
   "send2press.com": true,
   "taiwannews.com.tw": true,
-  "oanda.com": [
-    "forexblog"
-  ],
+  "oanda.com": ["forexblog"],
   "kvnonews.com": true,
   "screenjunkies.com": true,
   "dailyamericannews.com": true,
@@ -2879,9 +2639,7 @@
   "illinois.gov": true,
   "themoscowtimes.com": true,
   "spaldingtoday.co.uk": true,
-  "thewolf.co.uk": [
-    "test"
-  ],
+  "thewolf.co.uk": ["test"],
   "nbcnewyork.com": true,
   "gvnews.com": true,
   "sltrib.com": true,
@@ -2899,10 +2657,7 @@
   "phillyburbs.com": true,
   "hotmommagossip.com": true,
   "myfoxatlanta.com": true,
-  "typepad.com": [
-    "amlawdaily",
-    "legaltimes"
-  ],
+  "typepad.com": ["amlawdaily", "legaltimes"],
   "kfyrtv.com": true,
   "lythamstannesexpress.co.uk": true,
   "amestrib.com": true,
@@ -2927,12 +2682,7 @@
   "famagusta-gazette.com": true,
   "wthr.com": true,
   "valleyadvocate.com": true,
-  "farmonline.com.au": [
-    "theland",
-    "fw",
-    "sl",
-    "sj"
-  ],
+  "farmonline.com.au": ["theland", "fw", "sl", "sj"],
   "abpnews.com": true,
   "themedialine.org": true,
   "dailynorseman.com": true,
@@ -3018,9 +2768,7 @@
   "pcworld.co.nz": true,
   "ttnews.com": true,
   "minnesotaindependent.com": true,
-  "whiterivernews.com": [
-    "wcsi"
-  ],
+  "whiterivernews.com": ["wcsi"],
   "theweedblog.com": true,
   "abs-cbnnews.com": true,
   "kcpw.org": true,
@@ -3035,13 +2783,8 @@
   "fa-mag.com": true,
   "wistv.com": true,
   "bucksfreepress.co.uk": true,
-  "ammonnews.net": [
-    "en"
-  ],
-  "stv.tv": [
-    "news",
-    "entertainment"
-  ],
+  "ammonnews.net": ["en"],
+  "stv.tv": ["news", "entertainment"],
   "moderntimesmagazine.com": true,
   "newrichmond-news.com": true,
   "thedailyweston.com": true,
@@ -3062,10 +2805,7 @@
   "jstandard.com": true,
   "titansized.com": true,
   "smithtownradio.com": true,
-  "lohudblogs.com": [
-    "rockland",
-    "polhudson"
-  ],
+  "lohudblogs.com": ["rockland", "polhudson"],
   "mailonsunday.co.uk": true,
   "businessdailyafrica.com": true,
   "borglobe.com": true,
@@ -3076,9 +2816,7 @@
   "kold.com": true,
   "leaderpost.com": true,
   "argusleader.com": true,
-  "wbru.com": [
-    "news"
-  ],
+  "wbru.com": ["news"],
   "iberkshires.com": true,
   "eurasianet.org": true,
   "mandh-online.com": true,
@@ -3095,9 +2833,7 @@
   "newsandstar.co.uk": true,
   "globes.co.il": true,
   "morning-times.com": true,
-  "sciencemag.org": [
-    "news"
-  ],
+  "sciencemag.org": ["news"],
   "core77.com": true,
   "space.com": true,
   "heart.co.uk": true,
@@ -3128,9 +2864,7 @@
   "hepburnadvocate.com.au": true,
   "ozarksfirst.com": true,
   "theroot.com": true,
-  "health.com": [
-    "news"
-  ],
+  "health.com": ["news"],
   "myedmondsnews.com": true,
   "esecurityplanet.com": true,
   "crosbyherald.co.uk": true,
@@ -3166,13 +2900,9 @@
   "eveningexpress.co.uk": true,
   "huffingtonpost.com": true,
   "indrus.in": true,
-  "err.ee": [
-    "news"
-  ],
+  "err.ee": ["news"],
   "sunderlandecho.com": true,
-  "cnet.co.uk": [
-    "crave"
-  ],
+  "cnet.co.uk": ["crave"],
   "calcuttatube.com": true,
   "madisonet.com": true,
   "daily49er.com": true,
@@ -3252,9 +2982,7 @@
   "thesmokinggun.com": true,
   "duluthnewstribune.com": true,
   "madisoncountycourier.com": true,
-  "bryancountynews.net": [
-    "beta"
-  ],
+  "bryancountynews.net": ["beta"],
   "star-telegram.com": true,
   "drogheda-independent.ie": true,
   "thirdfactor.com": true,
@@ -3268,10 +2996,7 @@
   "haysfreepress.com": true,
   "irontontribune.com": true,
   "ncnn.com": true,
-  "sovereignsociety.com": [
-    "nestmann",
-    "bauman"
-  ],
+  "sovereignsociety.com": ["nestmann", "bauman"],
   "climbthenet.com": true,
   "tbo.com": true,
   "kidsolo.com": true,
@@ -3280,9 +3005,7 @@
   "newshounds.us": true,
   "kuik.com": true,
   "morrisdailyherald.com": true,
-  "infoshop.org": [
-    "news"
-  ],
+  "infoshop.org": ["news"],
   "wtvbam.com": true,
   "aledotimesrecord.com": true,
   "pocononews.net": true,
@@ -3290,14 +3013,10 @@
   "newsandsentinel.com": true,
   "fleckingrecords.co.uk": true,
   "postzambia.com": true,
-  "discovery.com": [
-    "news"
-  ],
+  "discovery.com": ["news"],
   "healthcanal.com": true,
   "njeffersonnews.com": true,
-  "northcoastnow.com": [
-    "chronicle"
-  ],
+  "northcoastnow.com": ["chronicle"],
   "itpro.co.uk": true,
   "wkzo.com": true,
   "therolladailynews.com": true,
@@ -3355,9 +3074,7 @@
   "csmonitor.com": true,
   "washingtonian.com": true,
   "sunatimes.com": true,
-  "mediamonitors.net": [
-    "usa"
-  ],
+  "mediamonitors.net": ["usa"],
   "forexnewsnow.com": true,
   "firehouse.com": true,
   "hometownlife.com": true,
@@ -3374,9 +3091,7 @@
   "thetandd.com": true,
   "radaronline.com": true,
   "thehindu.com": true,
-  "bviplatinum.com": [
-    "preview"
-  ],
+  "bviplatinum.com": ["preview"],
   "woio.com": true,
   "news.az": true,
   "manchesterjournal.com": true,
@@ -3391,14 +3106,10 @@
   "theherald.com.au": true,
   "shephard.co.uk": true,
   "prescottenews.com": true,
-  "chosun.com": [
-    "english"
-  ],
+  "chosun.com": ["english"],
   "news.am": true,
   "lancasterguardian.co.uk": true,
-  "ucla.edu": [
-    "newsroom"
-  ],
+  "ucla.edu": ["newsroom"],
   "wkbw.com": true,
   "upstreamonline.com": true,
   "daily-times.com": true,
@@ -3464,9 +3175,7 @@
   "hoteliermiddleeast.com": true,
   "longridgenews.co.uk": true,
   "ontheredcarpet.com": true,
-  "gopride.com": [
-    "chicago"
-  ],
+  "gopride.com": ["chicago"],
   "the-daily-record.com": true,
   "statenews.com": true,
   "bellinghamherald.com": true,
@@ -3550,12 +3259,8 @@
   "cornellsun.com": true,
   "businessreport.com": true,
   "telegram.com": true,
-  "rian.ru": [
-    "en"
-  ],
-  "sympatico.ca": [
-    "autos"
-  ],
+  "rian.ru": ["en"],
+  "sympatico.ca": ["autos"],
   "herald-mail.com": true,
   "theaustralian.com.au": true,
   "blackstarnews.com": true,
@@ -3584,16 +3289,12 @@
   "wtrf.com": true,
   "urbanacitizen.com": true,
   "embassymag.ca": true,
-  "sme.sk": [
-    "spectator"
-  ],
+  "sme.sk": ["spectator"],
   "yle.fi": true,
   "newsguardian.co.uk": true,
   "hartfordbusiness.com": true,
   "fierceonlinevideo.com": true,
-  "24hrs.ca": [
-    "vancouver"
-  ],
+  "24hrs.ca": ["vancouver"],
   "crosswalk.com": true,
   "heartlandconnection.com": true,
   "theatlanticwire.com": true,
@@ -3641,36 +3342,28 @@
   "sourcesecurity.com": true,
   "gigwise.com": true,
   "t3.com": true,
-  "racked.com": [
-    "ny"
-  ],
+  "racked.com": ["ny"],
   "dalje.com": true,
   "boulderweekly.com": true,
   "yourtango.com": true,
   "oriongazette.com": true,
   "marketwatch.com": true,
   "theisraelproject.org": true,
-  "citizen-publications.com": [
-    "kc"
-  ],
+  "citizen-publications.com": ["kc"],
   "ckhid.com": true,
   "politicmo.com": true,
   "capecodtoday.com": true,
   "popmatters.com": true,
   "todaystmj4.com": true,
   "miamiherald.com": true,
-  "villagesoup.com": [
-    "knox"
-  ],
+  "villagesoup.com": ["knox"],
   "digitalspy.com": true,
   "fox13now.com": true,
   "washburnreview.org": true,
   "watoday.com.au": true,
   "comparecarrentals.com": true,
   "eprisenow.com": true,
-  "sophos.com": [
-    "nakedsecurity"
-  ],
+  "sophos.com": ["nakedsecurity"],
   "wboc.com": true,
   "brooklyneagle.com": true,
   "citytv.com": true,
@@ -3731,9 +3424,7 @@
   "wsoctv.com": true,
   "wokv.com": true,
   "poststarnews.com": true,
-  "ign.com": [
-    "movies"
-  ],
+  "ign.com": ["movies"],
   "laneytower.com": true,
   "paulsvalleydailydemocrat.com": true,
   "heritage.com": true,
@@ -3818,9 +3509,7 @@
   "broadcastnow.co.uk": true,
   "groesbeckjournal.com": true,
   "hindustantimes.com": true,
-  "peopledaily.com.cn": [
-    "english"
-  ],
+  "peopledaily.com.cn": ["english"],
   "prowrestling.com": true,
   "tdn.com": true,
   "thonline.com": true,
@@ -3864,14 +3553,10 @@
   "leighreporter.co.uk": true,
   "wesh.com": true,
   "etfdailynews.com": true,
-  "vovnews.vn": [
-    "english"
-  ],
+  "vovnews.vn": ["english"],
   "statepress.com": true,
   "thyblackman.com": true,
-  "vietnamnet.vn": [
-    "english"
-  ],
+  "vietnamnet.vn": ["english"],
   "commentarymagazine.com": true,
   "kentsterling.com": true,
   "emergencymgmt.com": true,
@@ -3975,18 +3660,14 @@
   "connectedinternet.co.uk": true,
   "windsorstar.com": true,
   "bournemouthecho.co.uk": true,
-  "narconews.com": [
-    "narcosphere"
-  ],
+  "narconews.com": ["narcosphere"],
   "gomonews.com": true,
   "hqyellowknife.com": true,
   "stylecaster.com": true,
   "zimeye.org": true,
   "udayton.edu": true,
   "middletownpress.com": true,
-  "usf.edu": [
-    "wusf"
-  ],
+  "usf.edu": ["wusf"],
   "metrowny.com": true,
   "femalefirst.co.uk": true,
   "crainsnewyork.com": true,
@@ -4027,9 +3708,7 @@
   "tcf.org": true,
   "havasunews.com": true,
   "saljournal.com": true,
-  "fhsu.edu": [
-    "leader"
-  ],
+  "fhsu.edu": ["leader"],
   "hiphopdx.com": true,
   "mountainfm.net": true,
   "iol.co.za": true,
@@ -4037,9 +3716,7 @@
   "wfae.org": true,
   "mcot.net": true,
   "marshallindependent.com": true,
-  "csun.edu": [
-    "sundial"
-  ],
+  "csun.edu": ["sundial"],
   "opendemocracy.net": true,
   "bostonglobe.com": true,
   "myfox8.com": true,
@@ -4050,9 +3727,7 @@
   "liveoilprices.co.uk": true,
   "zambianchronicle.com": true,
   "internetevolution.com": true,
-  "cubaweb.cu": [
-    "ain"
-  ],
+  "cubaweb.cu": ["ain"],
   "news1130.com": true,
   "mainjustice.com": true,
   "morungexpress.com": true,
@@ -4064,9 +3739,7 @@
   "stamfordadvocate.com": true,
   "themalaysianinsider.com": true,
   "legislativegazette.com": true,
-  "dogster.com": [
-    "dogblog"
-  ],
+  "dogster.com": ["dogblog"],
   "hawkesbaytoday.co.nz": true,
   "fedsmith.com": true,
   "periscopepost.com": true,
@@ -4079,10 +3752,7 @@
   "theinsider.com": true,
   "pnwlocalnews.com": true,
   "thedailyworld.com": true,
-  "mlb.com": [
-    "mlb",
-    "newyork.yankees"
-  ],
+  "mlb.com": ["mlb", "newyork.yankees"],
   "fusedfilm.com": true,
   "thewetumpkaherald.com": true,
   "baltimoresun.com": true,
@@ -4127,9 +3797,7 @@
   "cio.com.au": true,
   "kozmedia.com": true,
   "cecilwhig.com": true,
-  "paly.net": [
-    "voice"
-  ],
+  "paly.net": ["voice"],
   "guardian.co.tt": true,
   "carolinalive.com": true,
   "concordmonitor.com": true,
@@ -4148,9 +3816,7 @@
   "hqkelowna.com": true,
   "wbez.org": true,
   "marxist.com": true,
-  "utexas.edu": [
-    "knightcenter"
-  ],
+  "utexas.edu": ["knightcenter"],
   "thisisfakediy.co.uk": true,
   "globalresearch.ca": true,
   "star-magazine.co.uk": true,
@@ -4167,9 +3833,7 @@
   "epolitix.com": true,
   "peoplewithvoices.com": true,
   "timesnow.tv": true,
-  "cri.cn": [
-    "english"
-  ],
+  "cri.cn": ["english"],
   "free-times.com": true,
   "kpic.com": true,
   "wataugademocrat.com": true,
@@ -4203,15 +3867,11 @@
   "publicopiniononline.com": true,
   "ciol.com": true,
   "thirdcoastdigest.com": true,
-  "vgchartz.com": [
-    "gamrconnect"
-  ],
+  "vgchartz.com": ["gamrconnect"],
   "tengossip.com": true,
   "rabble.ca": true,
   "auroraadvertiser.net": true,
-  "myjoyonline.com": [
-    "news"
-  ],
+  "myjoyonline.com": ["news"],
   "sddt.com": true,
   "insightcrime.org": true,
   "thedailytimes.com": true,
@@ -4227,9 +3887,7 @@
   "pharmpro.com": true,
   "theatlantic.com": true,
   "myloansconsolidated.com": true,
-  "hjnews.com": [
-    "news"
-  ],
+  "hjnews.com": ["news"],
   "jezebel.com": true,
   "globalanimal.org": true,
   "budapestreport.com": true,
@@ -4253,30 +3911,22 @@
   "globaltoronto.com": true,
   "ktvb.com": true,
   "bsudailynews.com": true,
-  "warnerbros.com": [
-    "extratv"
-  ],
+  "warnerbros.com": ["extratv"],
   "consortiumnews.com": true,
   "lakelandecho.co.uk": true,
   "cbc.ca": true,
   "pointoflaw.com": true,
-  "alshahid.net": [
-    "english"
-  ],
+  "alshahid.net": ["english"],
   "augustagazette.com": true,
   "mymotherlode.com": true,
-  "earthweb.com": [
-    "itmanagement"
-  ],
+  "earthweb.com": ["itmanagement"],
   "lompocrecord.com": true,
   "stuff.co.nz": true,
   "washingtoncitypaper.com": true,
   "worldsentinel.com": true,
   "cagesideseats.com": true,
   "kjonline.com": true,
-  "sky.com": [
-    "movies"
-  ],
+  "sky.com": ["movies"],
   "pressandjournal.co.uk": true,
   "biggovernment.com": true,
   "qcsunonline.com": true,
@@ -4297,9 +3947,7 @@
   "klfy.com": true,
   "vancouverobserver.com": true,
   "adirondackdailyenterprise.com": true,
-  "ontario.ca": [
-    "news"
-  ],
+  "ontario.ca": ["news"],
   "dcbureau.org": true,
   "swns.com": true,
   "eldoradonews.com": true,
@@ -4344,9 +3992,7 @@
   "nerdtrek.com": true,
   "oudaily.com": true,
   "monashweekly.com.au": true,
-  "lancasteronline.com": [
-    "articles"
-  ],
+  "lancasteronline.com": ["articles"],
   "coastreportonline.com": true,
   "kboi2.com": true,
   "rap-up.com": true,
@@ -4370,13 +4016,8 @@
   "bloginity.com": true,
   "eldoradotimes.com": true,
   "stoptheaclu.com": true,
-  "joins.com": [
-    "joongangdaily"
-  ],
-  "antiwar.com": [
-    "news",
-    "original"
-  ],
+  "joins.com": ["joongangdaily"],
+  "antiwar.com": ["news", "original"],
   "chabad.org": true,
   "beatricedailysun.com": true,
   "newscow.net": true,
@@ -4435,9 +4076,7 @@
   "thedailybeast.com": true,
   "fairfieldweekly.com": true,
   "cheboygannews.com": true,
-  "mensnewsdaily.com": [
-    "amyalkon"
-  ],
+  "mensnewsdaily.com": ["amyalkon"],
   "spiceislander.com": true,
   "carmitimes.com": true,
   "thefrontierpost.com": true,
@@ -4517,9 +4156,7 @@
   "wsls.com": true,
   "pnosker.com": true,
   "evolutionnews.org": true,
-  "auburnjournal.com": [
-    "my"
-  ],
+  "auburnjournal.com": ["my"],
   "thisisplymouth.co.uk": true,
   "cubed3.com": true,
   "riverdalepress.com": true,
@@ -4533,9 +4170,7 @@
   "wdel.com": true,
   "wellsvilledaily.com": true,
   "forbes.com": true,
-  "maktoob.com": [
-    "en.news"
-  ],
+  "maktoob.com": ["en.news"],
   "bet.com": true,
   "journaltimes.com": true,
   "medialifemagazine.com": true,
@@ -4568,9 +4203,7 @@
   "timeoutchicagokids.com": true,
   "jhvonline.com": true,
   "bedfordtoday.co.uk": true,
-  "bhaskar.com": [
-    "daily"
-  ],
+  "bhaskar.com": ["daily"],
   "wayneindependent.com": true,
   "laweekly.com": true,
   "golocalprov.com": true,
@@ -4587,9 +4220,7 @@
   "wirelessfederation.com": true,
   "yourhoustonnews.com": true,
   "ktuu.com": true,
-  "generation-nt.com": [
-    "us"
-  ],
+  "generation-nt.com": ["us"],
   "inewsone.com": true,
   "prmac.com": true,
   "dailynews-record.com": true,
@@ -4606,9 +4237,7 @@
   "wdio.com": true,
   "nbcphiladelphia.com": true,
   "siliconindia.com": true,
-  "macfound.org": [
-    "asiasecurity"
-  ],
+  "macfound.org": ["asiasecurity"],
   "businessworld.in": true,
   "idahostatesman.com": true,
   "thesunnews.net": true,
@@ -4628,9 +4257,7 @@
   "financenews.co.uk": true,
   "informationnigeria.org": true,
   "cfra.com": true,
-  "mywebpal.com": [
-    "news"
-  ],
+  "mywebpal.com": ["news"],
   "dailymail.co.uk": true,
   "portlandtribune.com": true,
   "fiveaa.com.au": true,
@@ -4662,9 +4289,7 @@
   "katytimes.com": true,
   "nl-aid.org": true,
   "thedailymail.net": true,
-  "ucsb.edu": [
-    "thebottomline.as"
-  ],
+  "ucsb.edu": ["thebottomline.as"],
   "theenergycollective.com": true,
   "sknvibes.com": true,
   "alabamas13.com": true,
@@ -4676,9 +4301,7 @@
   "deseretnews.com": true,
   "portstephensexaminer.com.au": true,
   "arabamericannews.com": true,
-  "aol.co.uk": [
-    "music"
-  ],
+  "aol.co.uk": ["music"],
   "edenmagnet.com.au": true,
   "reformer.com": true,
   "clickondetroit.com": true,
@@ -4713,9 +4336,7 @@
   "thewestsidegazette.com": true,
   "progressillinois.com": true,
   "humanevents.com": true,
-  "samaylive.com": [
-    "english"
-  ],
+  "samaylive.com": ["english"],
   "helenair.com": true,
   "fox8.com": true,
   "investors.com": true,
@@ -4753,9 +4374,7 @@
   "kippreport.com": true,
   "khaleejtimes.com": true,
   "zamboangatoday.ph": true,
-  "womansday.com": [
-    "dailywd"
-  ],
+  "womansday.com": ["dailywd"],
   "hudson-ny.org": true,
   "androidapps.com": true,
   "independent-bangladesh.com": true,
@@ -4782,9 +4401,7 @@
   "futuresmag.com": true,
   "myrecordjournal.com": true,
   "todaysthv.com": true,
-  "apa.az": [
-    "en"
-  ],
+  "apa.az": ["en"],
   "wrestlinginc.com": true,
   "tri-statedefenderonline.com": true,
   "birminghammail.net": true,
@@ -4920,9 +4537,7 @@
   "irishexaminer.com": true,
   "marconews.com": true,
   "abna.ir": true,
-  "breitbart.com": [
-    "bighollywood"
-  ],
+  "breitbart.com": ["bighollywood"],
   "boorowanewsonline.com.au": true,
   "nzherald.co.nz": true,
   "colorlines.com": true,
@@ -4933,10 +4548,7 @@
   "gaynz.com": true,
   "latrobevalleyexpress.com.au": true,
   "vanityfair.com": true,
-  "ynn.com": [
-    "centralny",
-    "austin"
-  ],
+  "ynn.com": ["centralny", "austin"],
   "waynesvilledailyguide.com": true,
   "ktar.com": true,
   "wfpl.org": true,
@@ -4955,9 +4567,7 @@
   "gacksports.com": true,
   "newsinenglish.no": true,
   "news4jax.com": true,
-  "spb.ru": [
-    "times"
-  ],
+  "spb.ru": ["times"],
   "tribwekchron.com": true,
   "ketknbc.com": true,
   "platts.com": true,
@@ -4984,9 +4594,7 @@
   "wfuv.org": true,
   "newsday.com": true,
   "wasecacountynews.com": true,
-  "iu.edu": [
-    "newsinfo"
-  ],
+  "iu.edu": ["newsinfo"],
   "dailyamerican.com": true,
   "espn1420.com": true,
   "campaigniran.org": true,
@@ -5025,9 +4633,7 @@
   "venturebeat.com": true,
   "globaltvedmonton.com": true,
   "mtexpress.com": true,
-  "argentinastar.com": [
-    "story"
-  ],
+  "argentinastar.com": ["story"],
   "gtglobaltrader.com": true,
   "catholic.net": true,
   "wired.co.uk": true,
@@ -5045,9 +4651,7 @@
   "moviefone.co.uk": true,
   "mywebtimes.com": true,
   "610cktb.com": true,
-  "japantimes.co.jp": [
-    "search"
-  ],
+  "japantimes.co.jp": ["search"],
   "fresnobee.com": true,
   "oilweek.com": true,
   "waginargus.com.au": true,
@@ -5075,9 +4679,7 @@
   "jewcy.com": true,
   "972mag.com": true,
   "moneyweb.co.za": true,
-  "pravda.ru": [
-    "english"
-  ],
+  "pravda.ru": ["english"],
   "sctimes.com": true,
   "myfoxhouston.com": true,
   "aina.org": true,
@@ -5091,10 +4693,7 @@
   "buzzfeed.com": true,
   "bakewelltoday.co.uk": true,
   "cbs12.com": true,
-  "augusta.com": [
-    "mirror",
-    "chronicle"
-  ],
+  "augusta.com": ["mirror", "chronicle"],
   "agi.it": true,
   "dailydemocrat.com": true,
   "trcbnews.com": true,
@@ -5105,9 +4704,7 @@
   "themoralliberal.com": true,
   "wcyb.com": true,
   "haliburtonecho.ca": true,
-  "nwsource.com": [
-    "seattletimes"
-  ],
+  "nwsource.com": ["seattletimes"],
   "sportsnet.ca": true,
   "newstalkzb.co.nz": true,
   "floridanewswire.com": true,
@@ -5118,9 +4715,7 @@
   "newbernsj.com": true,
   "3aw.com.au": true,
   "foreignpolicyjournal.com": true,
-  "csufresno.edu": [
-    "collegian"
-  ],
+  "csufresno.edu": ["collegian"],
   "northcentralohio.com": true,
   "poland.pl": true,
   "thesudburystar.com": true,
@@ -5128,9 +4723,7 @@
   "complex.com": true,
   "utdailybeacon.com": true,
   "dailyorange.com": true,
-  "testcountry.com": [
-    "hometestingblog"
-  ],
+  "testcountry.com": ["hometestingblog"],
   "sinhalaya.com": true,
   "melbourneweeklyportphillip.com.au": true,
   "journalstandard.com": true,
@@ -5140,9 +4733,7 @@
   "kxlh.com": true,
   "hutchnews.com": true,
   "sta.si": true,
-  "construction.com": [
-    "archrecord"
-  ],
+  "construction.com": ["archrecord"],
   "metronews.ca": true,
   "minotdailynews.com": true,
   "mi2n.com": true,
@@ -5164,9 +4755,7 @@
   "wpln.org": true,
   "yankton.net": true,
   "thebahamasweekly.com": true,
-  "ruvr.ru": [
-    "english"
-  ],
+  "ruvr.ru": ["english"],
   "sfappeal.com": true,
   "euroweeklynews.com": true,
   "bruinsnation.com": true,
@@ -5227,12 +4816,8 @@
   "wsws.org": true,
   "ticklethewire.com": true,
   "krdo.com": true,
-  "capital.gr": [
-    "english"
-  ],
-  "byu.edu": [
-    "universe"
-  ],
+  "capital.gr": ["english"],
+  "byu.edu": ["universe"],
   "dansvilleonline.com": true,
   "napavalleyregister.com": true,
   "mmdnewswire.com": true,
@@ -5240,9 +4825,7 @@
   "laredosun.us": true,
   "wexfordpeople.ie": true,
   "wdtn.com": true,
-  "worldmag.com": [
-    "online"
-  ],
+  "worldmag.com": ["online"],
   "earnedmedia.org": true,
   "bcinterruption.com": true,
   "etonline.com": true,
@@ -5303,9 +4886,7 @@
   "mcalesternews.com": true,
   "imao.us": true,
   "buzzfeednews.com": true,
-  "16reels.com": [
-    "telugu"
-  ],
+  "16reels.com": ["telugu"],
   "fuelfix.com": true,
   "theintelligencer.net": true,
   "moultrieobserver.com": true,
@@ -5394,9 +4975,7 @@
   "maximumedge.com": true,
   "ecollegetimes.com": true,
   "peterleemail.co.uk": true,
-  "drjays.com": [
-    "live"
-  ],
+  "drjays.com": ["live"],
   "wset.com": true,
   "abajournal.com": true,
   "krqe.com": true,
@@ -5432,9 +5011,7 @@
   "morningstarpublishing.com": true,
   "globalsaskatoon.com": true,
   "expatforum.com": true,
-  "mongolnews.mn": [
-    "ubpost"
-  ],
+  "mongolnews.mn": ["ubpost"],
   "viscosimedia.com": true,
   "brecorder.com": true,
   "beauregarddailynews.net": true,
@@ -5453,12 +5030,8 @@
   "computerworld.co.ke": true,
   "houstonherald.com": true,
   "timesofmalta.com": true,
-  "einnews.com": [
-    "uspolitics"
-  ],
-  "eastday.com": [
-    "english"
-  ],
+  "einnews.com": ["uspolitics"],
+  "eastday.com": ["english"],
   "fox59.com": true,
   "sundaytimes.lk": true,
   "episcopalchurch.org": true,
@@ -5491,9 +5064,7 @@
   "namibian.com.na": true,
   "mercedsunstar.com": true,
   "myfoxmemphis.com": true,
-  "thomsonreuters.com": [
-    "newsandinsight"
-  ],
+  "thomsonreuters.com": ["newsandinsight"],
   "metroweekly.com": true,
   "austin360.com": true,
   "norwichbulletin.com": true,
@@ -5527,9 +5098,7 @@
   "avstop.com": true,
   "centralpennbusiness.com": true,
   "thescore.ie": true,
-  "albuquerqueexpress.com": [
-    "story"
-  ],
+  "albuquerqueexpress.com": ["story"],
   "cinemablend.com": true,
   "wmur.com": true,
   "sbs.com.au": true,

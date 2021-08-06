@@ -3,7 +3,7 @@
 TensorFlow computation graphs are powerful but complicated. The graph visualization can help you understand and debug them. Here's an example of the visualization at work.
 
 ![Visualization of a TensorFlow graph](https://www.tensorflow.org/images/graph_vis_animation.gif "Visualization of a TensorFlow graph")
-*Visualization of a TensorFlow graph.*
+_Visualization of a TensorFlow graph._
 
 To see your own graph, run TensorBoard pointing it to the log directory of the job, click on the graph tab on the top pane and select the appropriate run using the menu at the upper left corner. For in depth information on how to run TensorBoard and make sure you are logging all the necessary information, see [TensorBoard: Visualizing Learning](../guide/summaries_and_tensorboard.md).
 
@@ -12,7 +12,7 @@ To see your own graph, run TensorBoard pointing it to the log directory of the j
 Typical TensorFlow graphs can have many thousands of nodes--far too many to see
 easily all at once, or even to lay out using standard graph tools. To simplify,
 variable names can be scoped and the visualization uses this information to
-define a hierarchy on the nodes in the graph.  By default, only the top of this
+define a hierarchy on the nodes in the graph. By default, only the top of this
 hierarchy is shown. Here is an example that defines three operations under the
 `hidden` name scope using
 `tf.name_scope`:
@@ -28,9 +28,9 @@ with tf.name_scope('hidden') as scope:
 
 This results in the following three op names:
 
-* `hidden/alpha`
-* `hidden/weights`
-* `hidden/biases`
+- `hidden/alpha`
+- `hidden/weights`
+- `hidden/biases`
 
 By default, the visualization will collapse all three into a node labeled `hidden`.
 The extra detail isn't lost. You can double-click, or click
@@ -77,8 +77,8 @@ have a control dependency on an initialization step. Drawing all edges between
 the `init` node and its dependencies would create a very cluttered view.
 
 To reduce clutter, the visualization separates out all high-degree nodes to an
-*auxiliary* area on the right and doesn't draw lines to represent their edges.
-Instead of lines, we draw small *node icons* to indicate the connections.
+_auxiliary_ area on the right and doesn't draw lines to represent their edges.
+Instead of lines, we draw small _node icons_ to indicate the connections.
 Separating out the auxiliary nodes typically doesn't remove critical
 information since these nodes are usually related to bookkeeping functions.
 See [Interaction](#interaction) for how to move nodes between the main graph
@@ -103,9 +103,9 @@ and the auxiliary area.
   </tr>
 </table>
 
-One last structural simplification is *series collapsing*. Sequential
+One last structural simplification is _series collapsing_. Sequential
 motifs--that is, nodes whose names differ by a number at the end and have
-isomorphic structures--are collapsed into a single *stack* of nodes, as shown
+isomorphic structures--are collapsed into a single _stack_ of nodes, as shown
 below. For networks with long sequences, this greatly simplifies the view. As
 with hierarchical nodes, double-clicking expands the series. See
 [Interaction](#interaction) for how to disable/enable series collapsing for a
@@ -133,17 +133,17 @@ specific set of nodes.
 Finally, as one last aid to legibility, the visualization uses special icons
 for constants and summary nodes. To summarize, here's a table of node symbols:
 
-Symbol | Meaning
---- | ---
-![Name scope](https://www.tensorflow.org/images/namespace_node.png "Name scope") | *High-level* node representing a name scope. Double-click to expand a high-level node.
-![Sequence of unconnected nodes](https://www.tensorflow.org/images/horizontal_stack.png "Sequence of unconnected nodes") | Sequence of numbered nodes that are not connected to each other.
-![Sequence of connected nodes](https://www.tensorflow.org/images/vertical_stack.png "Sequence of connected nodes") | Sequence of numbered nodes that are connected to each other.
-![Operation node](https://www.tensorflow.org/images/op_node.png "Operation node") | An individual operation node.
-![Constant node](https://www.tensorflow.org/images/constant.png "Constant node") | A constant.
-![Summary node](https://www.tensorflow.org/images/summary.png "Summary node") | A summary node.
-![Data flow edge](https://www.tensorflow.org/images/dataflow_edge.png "Data flow edge") | Edge showing the data flow between operations.
-![Control dependency edge](https://www.tensorflow.org/images/control_edge.png "Control dependency edge") | Edge showing the control dependency between operations.
-![Reference edge](https://www.tensorflow.org/images/reference_edge.png "Reference edge") | A reference edge showing that the outgoing operation node can mutate the incoming tensor.
+| Symbol                                                                                                                   | Meaning                                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| ![Name scope](https://www.tensorflow.org/images/namespace_node.png "Name scope")                                         | _High-level_ node representing a name scope. Double-click to expand a high-level node.    |
+| ![Sequence of unconnected nodes](https://www.tensorflow.org/images/horizontal_stack.png "Sequence of unconnected nodes") | Sequence of numbered nodes that are not connected to each other.                          |
+| ![Sequence of connected nodes](https://www.tensorflow.org/images/vertical_stack.png "Sequence of connected nodes")       | Sequence of numbered nodes that are connected to each other.                              |
+| ![Operation node](https://www.tensorflow.org/images/op_node.png "Operation node")                                        | An individual operation node.                                                             |
+| ![Constant node](https://www.tensorflow.org/images/constant.png "Constant node")                                         | A constant.                                                                               |
+| ![Summary node](https://www.tensorflow.org/images/summary.png "Summary node")                                            | A summary node.                                                                           |
+| ![Data flow edge](https://www.tensorflow.org/images/dataflow_edge.png "Data flow edge")                                  | Edge showing the data flow between operations.                                            |
+| ![Control dependency edge](https://www.tensorflow.org/images/control_edge.png "Control dependency edge")                 | Edge showing the control dependency between operations.                                   |
+| ![Reference edge](https://www.tensorflow.org/images/reference_edge.png "Reference edge")                                 | A reference edge showing that the outgoing operation node can mutate the incoming tensor. |
 
 ## Interaction {#interaction}
 
@@ -183,9 +183,9 @@ clarity to the network's structure. By right clicking on a node or pressing
 buttons on the bottom of that node's info card, you can make the following
 changes to its layout:
 
-* Nodes can be moved between the main graph and the auxiliary area.
-* A series of nodes can be ungrouped so that the nodes in the series do not
-appear grouped together. Ungrouped series can likewise be regrouped.
+- Nodes can be moved between the main graph and the auxiliary area.
+- A series of nodes can be ungrouped so that the nodes in the series do not
+  appear grouped together. Ungrouped series can likewise be regrouped.
 
 Selection can also be helpful in understanding high-degree nodes. Select any
 high-degree node, and the corresponding node icons for its other connections
@@ -196,7 +196,7 @@ Clicking on a node name in the info card will select it. If necessary, the
 viewpoint will automatically pan so that the node is visible.
 
 Finally, you can choose two color schemes for your graph, using the color menu
-above the legend. The default *Structure View* shows structure: when two
+above the legend. The default _Structure View_ shows structure: when two
 high-level nodes have the same structure, they appear in the same color of the
 rainbow. Uniquely structured nodes are gray. There's a second view, which shows
 what device the different operations run on. Name scopes are colored
@@ -230,6 +230,7 @@ labels edges with tensor dimensions, and edge thickness reflects total tensor
 size. To include tensor shapes in the `GraphDef` pass the actual graph object
 (as in `sess.graph`) to the `FileWriter` when serializing the graph.
 The images below show the CIFAR-10 model with tensor shape information:
+
 <table width="100%;">
   <tr>
     <td style="width: 100%;">
@@ -300,7 +301,6 @@ step, fading out unused nodes. In the controls on the left hand side, you will
 be able to color the nodes by total memory or total compute time. Additionally,
 clicking on a node will display the exact total memory, compute time, and
 tensor output sizes.
-
 
 <table width="100%;">
   <tr style="height: 380px">

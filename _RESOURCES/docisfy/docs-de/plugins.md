@@ -7,39 +7,39 @@ Als Standardeinstellung werden Hyperlinks auf der aktuellen Seite erkannt und de
 ```html
 <script>
   window.$docsify = {
-    search: 'auto', // Standard
+    search: "auto", // Standard
 
-    search : [
-      '/',            // => /README.md
-      '/guide',       // => /guide.md
-      '/get-started', // => /get-started.md
-      '/de-de/',      // => /de-de/README.md
+    search: [
+      "/", // => /README.md
+      "/guide", // => /guide.md
+      "/get-started", // => /get-started.md
+      "/de-de/", // => /de-de/README.md
     ],
 
     // vollständige Parameter für die Einstellungen
     search: {
       maxAge: 86400000, // Verfallszeit, als Standard ein Tag
       paths: [], // oder 'auto'
-      placeholder: 'Type to search',
+      placeholder: "Type to search",
 
       // Lokalisation
       placeholder: {
-        '/de-de/': 'Suche',
-        '/': 'Search'
+        "/de-de/": "Suche",
+        "/": "Search",
       },
 
-      noData: 'No Results!',
+      noData: "No Results!",
 
       // Lokalisation
       noData: {
-        '/de-de/': 'Keine Ergebnisse',
-        '/': 'No Results'
+        "/de-de/": "Keine Ergebnisse",
+        "/": "No Results",
       },
 
       // Headline depth, 1 - 6
-      depth: 2
-    }
-  }
+      depth: 2,
+    },
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
@@ -52,8 +52,8 @@ Installiere diese Erweiterung und passe die track id an:
 ```html
 <script>
   window.$docsify = {
-    ga: 'UA-XXXXX-Y'
-  }
+    ga: "UA-XXXXX-Y",
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/ga.min.js"></script>
@@ -62,7 +62,10 @@ Installiere diese Erweiterung und passe die track id an:
 Konfiguration über `data-ga`:
 
 ```html
-<script src="//unpkg.com/docsify/lib/docsify.min.js" data-ga="UA-XXXXX-Y"></script>
+<script
+  src="//unpkg.com/docsify/lib/docsify.min.js"
+  data-ga="UA-XXXXX-Y"
+></script>
 <script src="//unpkg.com/docsify/lib/plugins/ga.min.js"></script>
 ```
 
@@ -93,7 +96,7 @@ Medium's Bilderzoom. Basierend auf [medium-zoom](https://github.com/francoischal
 Exclude the special image
 
 ```markdown
-![](image.png ':no-zoom')
+![](image.png ":no-zoom")
 ```
 
 ## Auf GitHub ändern
@@ -125,8 +128,8 @@ Siehe auch [jperasmus/docsify-copy-code](https://github.com/jperasmus/docsify-co
 ```html
 <script>
   window.$docsify = {
-    disqus: 'shortname'
-  }
+    disqus: "shortname",
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/plugins/disqus.min.js"></script>
 ```
@@ -136,20 +139,22 @@ Siehe auch [jperasmus/docsify-copy-code](https://github.com/jperasmus/docsify-co
 [Gitalk](https://github.com/gitalk/gitalk) basiert auf Github Issue und Preact.
 
 ```html
-<link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css" />
 
 <script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script>
 <script src="//unpkg.com/gitalk/dist/gitalk.min.js"></script>
 <script>
   const gitalk = new Gitalk({
-    clientID: 'Github Application Client ID',
-    clientSecret: 'Github Application Client Secret',
-    repo: 'Github repo',
-    owner: 'Github repo owner',
-    admin: ['Github repo collaborators, only these guys can initialize github issues'],
+    clientID: "Github Application Client ID",
+    clientSecret: "Github Application Client Secret",
+    repo: "Github repo",
+    owner: "Github repo owner",
+    admin: [
+      "Github repo collaborators, only these guys can initialize github issues",
+    ],
     // facebook-like distraction free mode
-    distractionFreeMode: false
-  })
+    distractionFreeMode: false,
+  });
 </script>
 ```
 

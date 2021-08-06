@@ -18,9 +18,9 @@ docsify init ./docs
 
 Nachdem der Befehl `init` vollständig ausgeführt wurde, kannst du folgende Dateien im Unterordner `./docs` finden:
 
-* `index.html` als zentrale Datei
-* `README.md` als die Startseite für die Dokumentation
-* `.nojekyll` verhindert, dass Github Pages Dateien ignoriert, die mit einem Unterstrich beginnen.
+- `index.html` als zentrale Datei
+- `README.md` als die Startseite für die Dokumentation
+- `.nojekyll` verhindert, dass Github Pages Dateien ignoriert, die mit einem Unterstrich beginnen.
 
 Du kannst die Dokumentation über die Datei `./docs/README.md` nach Belieben ändern, und natürlich [weitere Seiten](de-de/more-pages.md) hinzufügen.
 
@@ -43,21 +43,21 @@ Wenn du `npm` nicht verwenden möchtest, oder Probleme bei der Installation des 
 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css">
-</head>
-<body>
-  <div id="app"></div>
-  <script>
-    window.$docsify = {
-      //...
-    }
-  </script>
-  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
-</body>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      window.$docsify = {
+        //...
+      };
+    </script>
+    <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  </body>
 </html>
 ```
 
@@ -72,23 +72,23 @@ cd docs && python -m SimpleHTTPServer 3000
 Wenn du möchtest, kann **docsify** einen Ladedialog anzeigen, während es deine Dokumentation umwandelt:
 
 ```html
-  <!-- index.html -->
+<!-- index.html -->
 
-  <div id="app">Please wait...</div>
+<div id="app">Please wait...</div>
 ```
 
 Du solltest das `data-app` Attribut anpassen, wenn du `el` geändert hast:
 
 ```html
-  <!-- index.html -->
+<!-- index.html -->
 
-  <div data-app id="main">Please wait...</div>
+<div data-app id="main">Please wait...</div>
 
-  <script>
-    window.$docsify = {
-      el: '#main'
-    }
-  </script>
+<script>
+  window.$docsify = {
+    el: "#main",
+  };
+</script>
 ```
 
 Vergleiche [el Einstellungen](configuration.md#el).

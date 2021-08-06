@@ -1,7 +1,7 @@
 # Extending OpenAPI
 
 !!! warning
-    This is a rather advanced feature. You probably can skip it.
+This is a rather advanced feature. You probably can skip it.
 
     If you are just following the tutorial - user guide, you can probably skip this section.
 
@@ -17,7 +17,7 @@ The normal (default) process, is as follows.
 
 A `FastAPI` application (instance) has an `.openapi()` method that is expected to return the OpenAPI schema.
 
-As part of the application object creation, a *path operation* for `/openapi.json` (or for whatever you set your `openapi_url`) is registered.
+As part of the application object creation, a _path operation_ for `/openapi.json` (or for whatever you set your `openapi_url`) is registered.
 
 It just returns a JSON response with the result of the application's `.openapi()` method.
 
@@ -27,11 +27,11 @@ If it doesn't, it generates them using the utility function at `fastapi.openapi.
 
 And that function `get_openapi()` receives as parameters:
 
-* `title`: The OpenAPI title, shown in the docs.
-* `version`: The version of your API, e.g. `2.5.0`.
-* `openapi_version`: The version of the OpenAPI specification used. By default, the latest: `3.0.2`.
-* `description`: The description of your API.
-* `routes`: A list of routes, these are each of the registered *path operations*. They are taken from `app.routes`.
+- `title`: The OpenAPI title, shown in the docs.
+- `version`: The version of your API, e.g. `2.5.0`.
+- `openapi_version`: The version of the OpenAPI specification used. By default, the latest: `3.0.2`.
+- `description`: The description of your API.
+- `routes`: A list of routes, these are each of the registered _path operations_. They are taken from `app.routes`.
 
 ## Overriding the defaults
 
@@ -132,12 +132,12 @@ You can probably right-click each link and select an option similar to `Save lin
 
 **Swagger UI** uses the files:
 
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
+- <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
+- <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
 
 And **ReDoc** uses the file:
 
-* <a href="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
+- <a href="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
 
 After that, your file structure could look like:
 
@@ -156,7 +156,6 @@ After that, your file structure could look like:
 
 Now you need to install `aiofiles`:
 
-
 <div class="termy">
 
 ```console
@@ -169,8 +168,8 @@ $ pip install aiofiles
 
 ### Serve the static files
 
-* Import `StaticFiles`.
-* "Mount" a `StaticFiles()` instance in a specific path.
+- Import `StaticFiles`.
+- "Mount" a `StaticFiles()` instance in a specific path.
 
 ```Python hl_lines="7  11"
 {!../../../docs_src/extending_openapi/tutorial002.py!}
@@ -212,15 +211,15 @@ To disable them, set their URLs to `None` when creating your `FastAPI` app:
 
 ### Include the custom docs
 
-Now you can create the *path operations* for the custom docs.
+Now you can create the _path operations_ for the custom docs.
 
 You can re-use FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
 
-* `openapi_url`: the URL where the HTML page for the docs can get the OpenAPI schema for your API. You can use here the attribute `app.openapi_url`.
-* `title`: the title of your API.
-* `oauth2_redirect_url`: you can use `app.swagger_ui_oauth2_redirect_url` here to use the default.
-* `swagger_js_url`: the URL where the HTML for your Swagger UI docs can get the **JavaScript** file. This is the one that your own app is now serving.
-* `swagger_css_url`: the URL where the HTML for your Swagger UI docs can get the **CSS** file. This is the one that your own app is now serving.
+- `openapi_url`: the URL where the HTML page for the docs can get the OpenAPI schema for your API. You can use here the attribute `app.openapi_url`.
+- `title`: the title of your API.
+- `oauth2_redirect_url`: you can use `app.swagger_ui_oauth2_redirect_url` here to use the default.
+- `swagger_js_url`: the URL where the HTML for your Swagger UI docs can get the **JavaScript** file. This is the one that your own app is now serving.
+- `swagger_css_url`: the URL where the HTML for your Swagger UI docs can get the **CSS** file. This is the one that your own app is now serving.
 
 And similarly for ReDoc...
 
@@ -229,15 +228,15 @@ And similarly for ReDoc...
 ```
 
 !!! tip
-    The *path operation* for `swagger_ui_redirect` is a helper for when you use OAuth2.
+The _path operation_ for `swagger_ui_redirect` is a helper for when you use OAuth2.
 
     If you integrate your API with an OAuth2 provider, you will be able to authenticate and come back to the API docs with the acquired credentials. And interact with it using the real OAuth2 authentication.
 
     Swagger UI will handle it behind the scenes for you, but it needs this "redirect" helper.
 
-### Create a *path operation* to test it
+### Create a _path operation_ to test it
 
-Now, to be able to test that everything works, create a *path operation*:
+Now, to be able to test that everything works, create a _path operation_:
 
 ```Python hl_lines="39-41"
 {!../../../docs_src/extending_openapi/tutorial002.py!}

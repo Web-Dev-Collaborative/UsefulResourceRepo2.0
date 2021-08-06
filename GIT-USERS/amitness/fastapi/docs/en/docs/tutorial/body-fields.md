@@ -1,6 +1,6 @@
 # Body - Fields
 
-The same way you can declare additional validation and metadata in *path operation function* parameters with `Query`, `Path` and `Body`, you can declare validation and metadata inside of Pydantic models using Pydantic's `Field`.
+The same way you can declare additional validation and metadata in _path operation function_ parameters with `Query`, `Path` and `Body`, you can declare validation and metadata inside of Pydantic models using Pydantic's `Field`.
 
 ## Import `Field`
 
@@ -11,7 +11,7 @@ First, you have to import it:
 ```
 
 !!! warning
-    Notice that `Field` is imported directly from `pydantic`, not from `fastapi` as are all the rest (`Query`, `Path`, `Body`, etc).
+Notice that `Field` is imported directly from `pydantic`, not from `fastapi` as are all the rest (`Query`, `Path`, `Body`, etc).
 
 ## Declare model attributes
 
@@ -24,7 +24,7 @@ You can then use `Field` with model attributes:
 `Field` works the same way as `Query`, `Path` and `Body`, it has all the same parameters, etc.
 
 !!! note "Technical Details"
-    Actually, `Query`, `Path` and others you'll see next create objects of subclasses of a common `Param` class, which is itself a subclass of Pydantic's `FieldInfo` class.
+Actually, `Query`, `Path` and others you'll see next create objects of subclasses of a common `Param` class, which is itself a subclass of Pydantic's `FieldInfo` class.
 
     And Pydantic's `Field` returns an instance of `FieldInfo` as well.
 
@@ -33,7 +33,7 @@ You can then use `Field` with model attributes:
     Remember that when you import `Query`, `Path`, and others from `fastapi`, those are actually functions that return special classes.
 
 !!! tip
-    Notice how each model's attribute with a type, default value and `Field` has the same structure as a *path operation function's* parameter, with `Field` instead of `Path`, `Query` and `Body`.
+Notice how each model's attribute with a type, default value and `Field` has the same structure as a _path operation function's_ parameter, with `Field` instead of `Path`, `Query` and `Body`.
 
 ## Add extra information
 

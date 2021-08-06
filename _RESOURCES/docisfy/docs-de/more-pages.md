@@ -36,8 +36,8 @@ Als Erstes musst du `loadSidebar` auf **true** setzen, vergleiche [Einstellungen
 
 <script>
   window.$docsify = {
-    loadSidebar: true
-  }
+    loadSidebar: true,
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 ```
@@ -47,8 +47,8 @@ Als Zweites erstellst du eine Datei namens `_sidebar.md`:
 ```markdown
 <!-- docs/_sidebar.md -->
 
-* [Home](/)
-* [Guide](de-de/guide.md)
+- [Home](/)
+- [Guide](de-de/guide.md)
 ```
 
 !> Solltest du Github Pages verwenden, musst du zusätzlich eine Datei namens `.nojekyll` in `./docs` erstellen, um zu verhindern, dass Github Dateien ignoriert, die mit einem Unterstrich anfangen.
@@ -62,9 +62,9 @@ Du kannst `alias` definieren, um einen überflüssigen fallback zu vermeiden.
   window.$docsify = {
     loadSidebar: true,
     alias: {
-      '/.*/_sidebar.md': '/_sidebar.md'
-    }
-  }
+      "/.*/_sidebar.md": "/_sidebar.md",
+    },
+  };
 </script>
 ```
 
@@ -78,8 +78,8 @@ Eine angepasste Seitenleist kann auch automatisch ein Inhaltsverzeichnis generie
 <script>
   window.$docsify = {
     loadSidebar: true,
-    subMaxLevel: 2
-  }
+    subMaxLevel: 2,
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 ```

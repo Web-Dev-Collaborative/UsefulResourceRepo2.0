@@ -1,14 +1,17 @@
 @font-face {
-  font-family: 'footable';
-  src: url('fonts/footable.eot');
-  src: url('fonts/footable.eot?#iefix') format('embedded-opentype'), url('fonts/footable.woff') format('woff'), url('fonts/footable.ttf') format('truetype'), url('fonts/footable.svg#footable') format('svg');
+  font-family: "footable";
+  src: url("fonts/footable.eot");
+  src: url("fonts/footable.eot?#iefix") format("embedded-opentype"),
+    url("fonts/footable.woff") format("woff"),
+    url("fonts/footable.ttf") format("truetype"),
+    url("fonts/footable.svg#footable") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   @font-face {
-    font-family: 'footable';
-    src: url('fonts/footable.svg#footable') format('svg');
+    font-family: "footable";
+    src: url("fonts/footable.svg#footable") format("svg");
     font-weight: normal;
     font-style: normal;
   }
@@ -18,12 +21,15 @@
   /** SORTING **/
 
   /** PAGINATION **/
-
 }
 .footable.breakpoint > tbody > tr.footable-detail-show > td {
   border-bottom: none;
 }
-.footable.breakpoint > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+.footable.breakpoint
+  > tbody
+  > tr.footable-detail-show
+  > td
+  > span.footable-toggle:before {
   content: "\e001";
 }
 .footable.breakpoint > tbody > tr:hover:not(.footable-row-detail) {
@@ -35,7 +41,7 @@
 }
 .footable.breakpoint > tbody > tr > td > span.footable-toggle {
   display: inline-block;
-  font-family: 'footable';
+  font-family: "footable";
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -48,64 +54,144 @@
 .footable.breakpoint > tbody > tr > td > span.footable-toggle:before {
   content: "\e000";
 }
-.footable.breakpoint.toggle-circle > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-circle
+  > tbody
+  > tr.footable-detail-show
+  > td
+  > span.footable-toggle:before {
   content: "\e005";
 }
-.footable.breakpoint.toggle-circle > tbody > tr > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-circle
+  > tbody
+  > tr
+  > td
+  > span.footable-toggle:before {
   content: "\e004";
 }
-.footable.breakpoint.toggle-circle-filled > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-circle-filled
+  > tbody
+  > tr.footable-detail-show
+  > td
+  > span.footable-toggle:before {
   content: "\e003";
 }
-.footable.breakpoint.toggle-circle-filled > tbody > tr > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-circle-filled
+  > tbody
+  > tr
+  > td
+  > span.footable-toggle:before {
   content: "\e002";
 }
-.footable.breakpoint.toggle-square > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-square
+  > tbody
+  > tr.footable-detail-show
+  > td
+  > span.footable-toggle:before {
   content: "\e007";
 }
-.footable.breakpoint.toggle-square > tbody > tr > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-square
+  > tbody
+  > tr
+  > td
+  > span.footable-toggle:before {
   content: "\e006";
 }
-.footable.breakpoint.toggle-square-filled > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-square-filled
+  > tbody
+  > tr.footable-detail-show
+  > td
+  > span.footable-toggle:before {
   content: "\e009";
 }
-.footable.breakpoint.toggle-square-filled > tbody > tr > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-square-filled
+  > tbody
+  > tr
+  > td
+  > span.footable-toggle:before {
   content: "\e008";
 }
-.footable.breakpoint.toggle-arrow > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-arrow
+  > tbody
+  > tr.footable-detail-show
+  > td
+  > span.footable-toggle:before {
   content: "\e00f";
 }
-.footable.breakpoint.toggle-arrow > tbody > tr > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-arrow
+  > tbody
+  > tr
+  > td
+  > span.footable-toggle:before {
   content: "\e011";
 }
-.footable.breakpoint.toggle-arrow-small > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-arrow-small
+  > tbody
+  > tr.footable-detail-show
+  > td
+  > span.footable-toggle:before {
   content: "\e013";
 }
-.footable.breakpoint.toggle-arrow-small > tbody > tr > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-arrow-small
+  > tbody
+  > tr
+  > td
+  > span.footable-toggle:before {
   content: "\e015";
 }
-.footable.breakpoint.toggle-arrow-circle > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-arrow-circle
+  > tbody
+  > tr.footable-detail-show
+  > td
+  > span.footable-toggle:before {
   content: "\e01b";
 }
-.footable.breakpoint.toggle-arrow-circle > tbody > tr > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-arrow-circle
+  > tbody
+  > tr
+  > td
+  > span.footable-toggle:before {
   content: "\e01d";
 }
-.footable.breakpoint.toggle-arrow-circle-filled > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-arrow-circle-filled
+  > tbody
+  > tr.footable-detail-show
+  > td
+  > span.footable-toggle:before {
   content: "\e00b";
 }
-.footable.breakpoint.toggle-arrow-circle-filled > tbody > tr > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-arrow-circle-filled
+  > tbody
+  > tr
+  > td
+  > span.footable-toggle:before {
   content: "\e00d";
 }
-.footable.breakpoint.toggle-arrow-tiny > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-arrow-tiny
+  > tbody
+  > tr.footable-detail-show
+  > td
+  > span.footable-toggle:before {
   content: "\e01f";
 }
-.footable.breakpoint.toggle-arrow-tiny > tbody > tr > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-arrow-tiny
+  > tbody
+  > tr
+  > td
+  > span.footable-toggle:before {
   content: "\e021";
 }
-.footable.breakpoint.toggle-arrow-alt > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-arrow-alt
+  > tbody
+  > tr.footable-detail-show
+  > td
+  > span.footable-toggle:before {
   content: "\e017";
 }
-.footable.breakpoint.toggle-arrow-alt > tbody > tr > td > span.footable-toggle:before {
+.footable.breakpoint.toggle-arrow-alt
+  > tbody
+  > tr
+  > td
+  > span.footable-toggle:before {
   content: "\e019";
 }
 .footable.breakpoint.toggle-medium > tbody > tr > td > span.footable-toggle {
@@ -125,15 +211,23 @@
 .footable > thead > tr > th.footable-sortable:hover {
   cursor: pointer;
 }
-.footable > thead > tr > th.footable-sorted > span.footable-sort-indicator:before {
+.footable
+  > thead
+  > tr
+  > th.footable-sorted
+  > span.footable-sort-indicator:before {
   content: "\e013";
 }
-.footable > thead > tr > th.footable-sorted-desc > span.footable-sort-indicator:before {
+.footable
+  > thead
+  > tr
+  > th.footable-sorted-desc
+  > span.footable-sort-indicator:before {
   content: "\e012";
 }
 .footable > thead > tr > th > span.footable-sort-indicator {
   display: inline-block;
-  font-family: 'footable';
+  font-family: "footable";
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -151,11 +245,11 @@
 .footable.no-paging .hide-if-no-paging {
   display: none;
 }
-.footable-row-detail{
-  background-color:#f5f5f5
+.footable-row-detail {
+  background-color: #f5f5f5;
 }
 .footable-row-detail-inner {
-  display: table;  
+  display: table;
 }
 .footable-row-detail-row {
   display: table-row;

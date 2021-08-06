@@ -33,7 +33,7 @@ And then **FastAPI** will call that override instead of the original dependency.
 ```
 
 !!! tip
-    You can set a dependency override for a dependency used anywhere in your **FastAPI** application.
+You can set a dependency override for a dependency used anywhere in your **FastAPI** application.
 
     The original dependency could be used in a *path operation function*, a *path operation decorator* (when you don't use the return value), a `.include_router()` call, etc.
 
@@ -46,4 +46,4 @@ app.dependency_overrides = {}
 ```
 
 !!! tip
-    If you want to override a dependency only during some tests, you can set the override at the beginning of the test (inside the test function) and reset it at the end (at the end of the test function).
+If you want to override a dependency only during some tests, you can set the override at the beginning of the test (inside the test function) and reset it at the end (at the end of the test function).

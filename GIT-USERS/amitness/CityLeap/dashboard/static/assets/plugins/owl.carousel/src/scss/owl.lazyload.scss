@@ -2,17 +2,16 @@
  * 	Owl Carousel - Lazy Load Plugin
  */
 
-@import 'mixins';
+@import "mixins";
 
 .owl-carousel {
-	.owl-item {
-		.owl-lazy {
-  			opacity: 0;
-  			@include transition(opacity, 400ms, ease);
-  		}
-		img{
-			transform-style: preserve-3d;
-		}
-	}
+  .owl-item {
+    .owl-lazy {
+      opacity: 0;
+      @include transition(opacity, 400ms, ease);
+    }
+    img {
+      transform-style: preserve-3d;
+    }
+  }
 }
-

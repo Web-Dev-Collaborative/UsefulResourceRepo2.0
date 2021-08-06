@@ -1,6 +1,6 @@
 # custom-rom
-A custom ROM I had developed for [LG L3](http://www.gsmarena.com/lg_optimus_l3_e405-4835.php) smartphone.
 
+A custom ROM I had developed for [LG L3](http://www.gsmarena.com/lg_optimus_l3_e405-4835.php) smartphone.
 
 ## Improvements over Stock ROM
 
@@ -20,6 +20,6 @@ A custom ROM I had developed for [LG L3](http://www.gsmarena.com/lg_optimus_l3_e
 - Push notification fixed to get it instantly
 - Many other small tweaks
 
-
 ## Installation
+
 Download from [here](https://github.com/studenton/custom-rom/archive/master.zip) and flash.

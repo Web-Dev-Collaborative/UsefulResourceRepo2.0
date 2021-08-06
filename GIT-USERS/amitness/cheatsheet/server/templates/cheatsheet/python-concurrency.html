@@ -1,17 +1,15 @@
-{% extends "layout.html" %}
-
-{% block jumbotron %}
+{% extends "layout.html" %} {% block jumbotron %}
 <div class="jumbotron">
-   <h1>Python Cheat Sheet</h1>
-   <p>Cheat sheet of Python. Some concurrency concept for Python programmer need to know.</p>
+  <h1>Python Cheat Sheet</h1>
+  <p>
+    Cheat sheet of Python. Some concurrency concept for Python programmer need
+    to know.
+  </p>
 </div>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="row col-md-4 col-xs-12">
-
-<h3>Create a Thread Via threading</h3>
-<pre class="code python">
+  <h3>Create a Thread Via threading</h3>
+  <pre class="code python">
 &gt;&gt;&gt; from threading import Thread
 &gt;&gt;&gt; class Worker(Thread):
 ...   def __init__(self, id):
@@ -36,9 +34,10 @@ I am worker 2
 &gt;&gt;&gt; t1.start()
 I am worker 1
 I am worker 2
-</pre>
-<h3>Thread Performance Problem - GIL</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>Thread Performance Problem - GIL</h3>
+  <pre class="code python">
 # GIL - Global Interpreter Lock
 # see: <a href="http://www.slideshare.net/emayssat/pythonunderstanding-gil">Ungerstanging the Python GIL</a>
 &gt;&gt;&gt; from threading import Thread
@@ -70,8 +69,8 @@ I am worker 2
 # !Thread get bad Performance
 # since cost on context switch
 </pre>
-<h3>Consumer and Producer Architecture</h3>
-<pre class="code python">
+  <h3>Consumer and Producer Architecture</h3>
+  <pre class="code python">
 # This architecture make concurrency easy
 &gt;&gt;&gt; from threading import Thread
 &gt;&gt;&gt; from Queue import Queue
@@ -98,11 +97,11 @@ I am worker 2
 &gt;&gt;&gt; t1 = Thread(target=producer)
 &gt;&gt;&gt; t2 = Thread(target=consumer)
 &gt;&gt;&gt; t1.start();t2.start()
-</pre>
+</pre
+  >
 
-
-<h3>Thread Pool Templeate</h3>
-<pre class="code python">
+  <h3>Thread Pool Templeate</h3>
+  <pre class="code python">
 # producer and consumer architecture
 from Queue import Queue
 from threading import Thread
@@ -143,10 +142,11 @@ if __name__ == '__main__':
    for _ in range(3):
       pool.add_task(fib,35)
    pool.wait_complete()
-</pre>
+</pre
+  >
 
-<h3>Using multiprocessing ThreadPool</h3>
-<pre class="code python">
+  <h3>Using multiprocessing ThreadPool</h3>
+  <pre class="code python">
 # ThreadPool is not in python doc
 &gt;&gt;&gt; from multiprocessing.pool import \
 ...      ThreadPool
@@ -188,10 +188,11 @@ ordinary_map()
 # cost: 0.562669038773
 # ordinary_map
 # cost: 0.38525390625
-</pre>
+</pre
+  >
 
-<h3>Synchronization Options in "threading"</h3>
-<pre class="code python">
+  <h3>Synchronization Options in "threading"</h3>
+  <pre class="code python">
 # sync primitive
 threading.Lock
 
@@ -208,10 +209,11 @@ threading.Event
 
 # combination of locking and signaling
 threading.Condition
-</pre>
+</pre
+  >
 
-<h3>Simple synchronization primitive - Mutex lock</h3>
-<pre class="code python">
+  <h3>Simple synchronization primitive - Mutex lock</h3>
+  <pre class="code python">
 &gt;&gt;&gt; from threading import Thread
 &gt;&gt;&gt; from threading import Lock
 &gt;&gt;&gt; lock = Lock()
@@ -236,10 +238,11 @@ task2 get
 &gt;&gt;&gt; t1.start();t2.start()
 task1 get
 task2 get
-</pre>
+</pre
+  >
 
-<h3>Deadlock - happen when more than one mutex lock</h3>
-<pre class="code python">
+  <h3>Deadlock - happen when more than one mutex lock</h3>
+  <pre class="code python">
 # deadlock example as below
 &gt;&gt;&gt; import threading
 &gt;&gt;&gt; import time
@@ -268,13 +271,13 @@ get lock1
 True
 &gt;&gt;&gt; t2.isAlive()
 True
-</pre>
+</pre
+  >
 </div>
 
 <div class="row col-md-4 col-xs-12">
-
-<h3>Implement "Monitor" Via RLock</h3>
-<pre class="code python">
+  <h3>Implement "Monitor" Via RLock</h3>
+  <pre class="code python">
 # ref:<a href="http://www.slideshare.net/dabeaz/an-introduction-to-python-concurrency?related=1"> SlideShare - David Beazley</a>
 # example.py
 from threading import Thread
@@ -312,8 +315,8 @@ t2.join()
 # 2 in ker
 </pre>
 
-<h3>Using Semaphore to control resource</h3>
-<pre class="code python">
+  <h3>Using Semaphore to control resource</h3>
+  <pre class="code python">
 # example.py
 from threading import Thread
 from threading import Semaphore
@@ -348,10 +351,11 @@ for _t in threads:
 # 1 release sema
 # 4 release sema
 # 3 release sema
-</pre>
+</pre
+  >
 
-<h3>Using Semaphore to signal other to task work</h3>
-<pre class="code python">
+  <h3>Using Semaphore to signal other to task work</h3>
+  <pre class="code python">
 # example.py
 from threading import Thread
 from threading import Semaphore
@@ -377,11 +381,11 @@ t1.join()
 # bash&gt; python example.py
 # signaling task2 to work
 # task1 call me to work
-</pre>
+</pre
+  >
 
-
-<h3>Using event to ensure some task has done</h3>
-<pre class="code python">
+  <h3>Using event to ensure some task has done</h3>
+  <pre class="code python">
 # example.py
 from threading import Thread
 from threading import Event
@@ -410,12 +414,12 @@ e.set()
 # 2 get event set
 #  3 get event set
 # 1 get event set
-</pre>
+</pre
+  >
 
+  <h3>Implement a thread-safe priority queue via condition</h3>
 
-<h3>Implement a thread-safe priority queue via condition</h3>
-
-<pre class="code python">
+  <pre class="code python">
 # ex.py
 import threading
 import heapq
@@ -477,10 +481,11 @@ t1.join();t2.join()
 # consumer put value
 # 0.09123101305407577
 # wait...
-</pre>
+</pre
+  >
 
-<h3>Multiprocessing - Solving GIL Problem Via Processes</h3>
-<pre class="code python">
+  <h3>Multiprocessing - Solving GIL Problem Via Processes</h3>
+  <pre class="code python">
 # see: <a href="https://docs.python.org/2/library/multiprocessing.html">multiprocessing</a>
 &gt;&gt;&gt; from multiprocessing import Pool
 &gt;&gt;&gt; def fib(n):
@@ -512,8 +517,8 @@ t1.join();t2.join()
 13.2433719635
 </pre>
 
-<h3>Custom multiprocessing map</h3>
-<pre class="code python">
+  <h3>Custom multiprocessing map</h3>
+  <pre class="code python">
 # ref: <a href="http://stackoverflow.com/questions/3288595/multiprocessing-using-pool-map-on-a-function-defined-in-a-class">stackoverflow</a>
 from multiprocessing import Process, Pipe
 from itertools import izip
@@ -537,13 +542,11 @@ print parmap(lambda x:x**x,range(1,5))
 # output:
 # [1, 4, 27, 256]
 </pre>
-
 </div>
 
 <div class="row col-md-4 col-xs-12">
-
-<h3>Simple round-robin Scheduler</h3>
-<pre class="code python">
+  <h3>Simple round-robin Scheduler</h3>
+  <pre class="code python">
 &gt;&gt;&gt; def fib(n):
 ...   if n &lt;= 2:
 ...     return 1
@@ -577,9 +580,10 @@ print parmap(lambda x:x**x,range(1,5))
 done
 5
 done
-</pre>
-<h3>Simple round-robin Scheduler with blocking function</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>Simple round-robin Scheduler with blocking function</h3>
+  <pre class="code python">
 # ref: <a href="https://www.youtube.com/watch?v=MCs5OvhV9S4">PyCon 2015 - David Beazley</a>
 import socket
 from select import select
@@ -650,8 +654,8 @@ run()
 # 55
 </pre>
 
-<h3>PoolExecutor</h3>
-<pre class="code python">
+  <h3>PoolExecutor</h3>
+  <pre class="code python">
 # python2.x is module futures on PyPI
 # new in Python3.2
 &gt;&gt;&gt; from concurrent.futures import \
@@ -711,10 +715,11 @@ thread cost: 12.550225019454956
 9227465
 9227465
 pocess cost: 5.538189888000488
-</pre>
+</pre
+  >
 
-<h3>What "with ThreadPoolExecutor" doing?</h3>
-<pre class="code python">
+  <h3>What "with ThreadPoolExecutor" doing?</h3>
+  <pre class="code python">
 import concurrent.futures as cf
 
 def fib(n):
@@ -737,10 +742,11 @@ print(res)
 # bash&gt; python3 test.py 
 # 832040
 # 832040
-</pre>
+</pre
+  >
 
-<h3>Future object</h3>
-<pre class="code python">
+  <h3>Future object</h3>
+  <pre class="code python">
 # future: deferred computation
 # add_done_callback
 import concurrent.futures as cf
@@ -783,10 +789,11 @@ res: 832040
 res: 1346269
 res: 2178309
 end
-</pre>
+</pre
+  >
 
-<h3>Future error handling</h3>
-<pre class="code python">
+  <h3>Future error handling</h3>
+  <pre class="code python">
 import concurrent.futures as cf
 
 def spam():
@@ -808,12 +815,7 @@ def thread_spam():
 &gt;&gt;&gt; thread_spam()
 callback handler
 get RuntimeError
-</pre>
-
+</pre
+  >
 </div>
-{% endblock %}
-
-{% block script %}
-{{ super() }}
-
-{% endblock %}
+{% endblock %} {% block script %} {{ super() }} {% endblock %}

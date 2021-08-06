@@ -12,6 +12,6 @@ Use Plugin: [bootstrap-table-flat-json](https://github.com/djhvscf/bootstrap-tab
 
 ### flat
 
-* type: Boolean
-* description: Set true to flat the JSON object.
-* default: `false`
+- type: Boolean
+- description: Set true to flat the JSON object.
+- default: `false`

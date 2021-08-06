@@ -12,7 +12,7 @@
 
 ## 额外的校验
 
-我们打算添加约束条件：即使 `q` 是可选的，但只要提供了该参数，则该参数值**不能超过50个字符的长度**。
+我们打算添加约束条件：即使 `q` 是可选的，但只要提供了该参数，则该参数值**不能超过 50 个字符的长度**。
 
 ### 导入 `Query`
 
@@ -52,7 +52,7 @@ q: str = None
 q: str = Query(None, max_length=50)
 ```
 
-将会校验数据，在数据无效时展示清晰的错误信息，并在 OpenAPI 模式的*路径操作*中记录该参​​数。
+将会校验数据，在数据无效时展示清晰的错误信息，并在 OpenAPI 模式的*路径操作*中记录该参 ​​ 数。
 
 ## 添加更多校验
 
@@ -72,9 +72,9 @@ q: str = Query(None, max_length=50)
 
 这个指定的正则表达式通过以下规则检查接收到的参数值：
 
-* `^`：以该符号之后的字符开头，符号之前没有字符。
-* `fixedquery`: 值精确地等于 `fixedquery`。
-* `$`: 到此结束，在 `fixedquery` 之后没有更多字符。
+- `^`：以该符号之后的字符开头，符号之前没有字符。
+- `fixedquery`: 值精确地等于 `fixedquery`。
+- `$`: 到此结束，在 `fixedquery` 之后没有更多字符。
 
 如果你对所有的这些**「正则表达式」**概念感到迷茫，请不要担心。对于许多人来说这都是一个困难的主题。你仍然可以在无需正则表达式的情况下做很多事情。
 
@@ -91,7 +91,7 @@ q: str = Query(None, max_length=50)
 ```
 
 !!! note
-    具有默认值还会使该参数成为可选参数。
+具有默认值还会使该参数成为可选参数。
 
 ## 声明为必需参数
 
@@ -120,7 +120,7 @@ q: str = Query(None, min_length=3)
 ```
 
 !!! info
-    如果你之前没见过 `...` 这种用法：它是一个特殊的单独值，它是 <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">Python 的一部分并且被称为「省略号」</a>。
+如果你之前没见过 `...` 这种用法：它是一个特殊的单独值，它是 <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">Python 的一部分并且被称为「省略号」</a>。
 
 这将使 **FastAPI** 知道此查询参数是必需的。
 
@@ -154,7 +154,7 @@ http://localhost:8000/items/?q=foo&q=bar
 ```
 
 !!! tip
-    要声明类型为 `list` 的查询参数，如上例所示，你需要显式地使用 `Query`，否则该参数将被解释为请求体。
+要声明类型为 `list` 的查询参数，如上例所示，你需要显式地使用 `Query`，否则该参数将被解释为请求体。
 
 交互式 API 文档将会相应地进行更新，以允许使用多个值：
 
@@ -194,7 +194,7 @@ http://localhost:8000/items/
 ```
 
 !!! note
-    请记住，在这种情况下 FastAPI 将不会检查列表的内容。
+请记住，在这种情况下 FastAPI 将不会检查列表的内容。
 
     例如，`List[int]` 将检查（并记录到文档）列表的内容必须是整数。但是单独的 `list` 不会。
 
@@ -205,7 +205,7 @@ http://localhost:8000/items/
 这些信息将包含在生成的 OpenAPI 模式中，并由文档用户界面和外部工具所使用。
 
 !!! note
-    请记住，不同的工具对 OpenAPI 的支持程度可能不同。
+请记住，不同的工具对 OpenAPI 的支持程度可能不同。
 
     其中一些可能不会展示所有已声明的额外信息，尽管在大多数情况下，缺少的这部分功能已经计划进行开发。
 
@@ -265,16 +265,16 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 通用的校验和元数据：
 
-* `alias`
-* `title`
-* `description`
-* `deprecated`
+- `alias`
+- `title`
+- `description`
+- `deprecated`
 
 特定于字符串的校验：
 
-* `min_length`
-* `max_length`
-* `regex`
+- `min_length`
+- `max_length`
+- `regex`
 
 在这些示例中，你了解了如何声明对 `str` 值的校验。
 

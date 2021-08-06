@@ -28,37 +28,36 @@ multiplication).
 Dataflow has several advantages that TensorFlow leverages when executing your
 programs:
 
-* **Parallelism.** By using explicit edges to represent dependencies between
+- **Parallelism.** By using explicit edges to represent dependencies between
   operations, it is easy for the system to identify operations that can execute
   in parallel.
 
-* **Distributed execution.** By using explicit edges to represent the values
+- **Distributed execution.** By using explicit edges to represent the values
   that flow between operations, it is possible for TensorFlow to partition your
   program across multiple devices (CPUs, GPUs, and TPUs) attached to different
   machines. TensorFlow inserts the necessary communication and coordination
   between devices.
 
-* **Compilation.** TensorFlow's [XLA compiler](../performance/xla/index.md) can
+- **Compilation.** TensorFlow's [XLA compiler](../performance/xla/index.md) can
   use the information in your dataflow graph to generate faster code, for
   example, by fusing together adjacent operations.
 
-* **Portability.** The dataflow graph is a language-independent representation
+- **Portability.** The dataflow graph is a language-independent representation
   of the code in your model. You can build a dataflow graph in Python, store it
   in a [SavedModel](../guide/saved_model.md), and restore it in a C++ program for
   low-latency inference.
-
 
 ## What is a `tf.Graph`?
 
 A `tf.Graph` contains two relevant kinds of information:
 
-* **Graph structure.** The nodes and edges of the graph, indicating how
+- **Graph structure.** The nodes and edges of the graph, indicating how
   individual operations are composed together, but not prescribing how they
   should be used. The graph structure is like assembly code: inspecting it can
   convey some useful information, but it does not contain all of the useful
   context that source code conveys.
 
-* **Graph collections.** TensorFlow provides a general mechanism for storing
+- **Graph collections.** TensorFlow provides a general mechanism for storing
   collections of metadata in a `tf.Graph`. The `tf.add_to_collection` function
   enables you to associate a list of objects with a key (where `tf.GraphKeys`
   defines some of the standard keys), and `tf.get_collection` enables you to
@@ -69,24 +68,23 @@ A `tf.Graph` contains two relevant kinds of information:
   `tf.train.Optimizer`, the variables in these collections are used as the
   default arguments.
 
-
 ## Building a `tf.Graph`
 
 Most TensorFlow programs start with a dataflow graph construction phase. In this
 phase, you invoke TensorFlow API functions that construct new `tf.Operation`
 (node) and `tf.Tensor` (edge) objects and add them to a `tf.Graph`
 instance. TensorFlow provides a **default graph** that is an implicit argument
-to all API functions in the same context.  For example:
+to all API functions in the same context. For example:
 
-* Calling `tf.constant(42.0)` creates a single `tf.Operation` that produces the
+- Calling `tf.constant(42.0)` creates a single `tf.Operation` that produces the
   value `42.0`, adds it to the default graph, and returns a `tf.Tensor` that
   represents the value of the constant.
 
-* Calling `tf.matmul(x, y)` creates a single `tf.Operation` that multiplies
+- Calling `tf.matmul(x, y)` creates a single `tf.Operation` that multiplies
   the values of `tf.Tensor` objects `x` and `y`, adds it to the default graph,
   and returns a `tf.Tensor` that represents the result of the multiplication.
 
-* Executing `v = tf.Variable(0)` adds to the graph a `tf.Operation` that will
+- Executing `v = tf.Variable(0)` adds to the graph a `tf.Operation` that will
   store a writeable tensor value that persists between `tf.Session.run` calls.
   The `tf.Variable` object wraps this operation, and can be used [like a
   tensor](#tensor-like-objects), which will read the current value of the
@@ -95,7 +93,7 @@ to all API functions in the same context.  For example:
   create `tf.Operation` objects that, when executed, update the stored value.
   (See [Variables](../guide/variables.md) for more information about variables.)
 
-* Calling `tf.train.Optimizer.minimize` will add operations and tensors to the
+- Calling `tf.train.Optimizer.minimize` will add operations and tensors to the
   default graph that calculates gradients, and return a `tf.Operation` that,
   when run, will apply those gradients to a set of variables.
 
@@ -121,14 +119,14 @@ your graph, but giving operations descriptive names can make your program easier
 to read and debug. The TensorFlow API provides two ways to override the name of
 an operation:
 
-* Each API function that creates a new `tf.Operation` or returns a new
+- Each API function that creates a new `tf.Operation` or returns a new
   `tf.Tensor` accepts an optional `name` argument. For example,
   `tf.constant(42.0, name="answer")` creates a new `tf.Operation` named
   `"answer"` and returns a `tf.Tensor` named `"answer:0"`. If the default graph
   already contains an operation named `"answer"`, then TensorFlow would append
   `"_1"`, `"_2"`, and so on to the name, in order to make it unique.
 
-* The `tf.name_scope` function makes it possible to add a **name scope** prefix
+- The `tf.name_scope` function makes it possible to add a **name scope** prefix
   to all operations created in a particular context. The current name scope
   prefix is a `"/"`-delimited list of the names of all active `tf.name_scope`
   context managers. If a name scope has already been used in the current
@@ -164,8 +162,8 @@ Note that `tf.Tensor` objects are implicitly named after the `tf.Operation`
 that produces the tensor as output. A tensor name has the form `"<OP_NAME>:<i>"`
 where:
 
-* `"<OP_NAME>"` is the name of the operation that produces it.
-* `"<i>"` is an integer representing the index of that tensor among the
+- `"<OP_NAME>"` is the name of the operation that produces it.
+- `"<i>"` is an integer representing the index of that tensor among the
   operation's outputs.
 
 ## Placing operations on different devices
@@ -183,12 +181,12 @@ A **device specification** has the following form:
 
 where:
 
-* `<JOB_NAME>` is an alpha-numeric string that does not start with a number.
-* `<DEVICE_TYPE>` is a registered device type (such as `GPU` or `CPU`).
-* `<TASK_INDEX>` is a non-negative integer representing the index of the task
+- `<JOB_NAME>` is an alpha-numeric string that does not start with a number.
+- `<DEVICE_TYPE>` is a registered device type (such as `GPU` or `CPU`).
+- `<TASK_INDEX>` is a non-negative integer representing the index of the task
   in the job named `<JOB_NAME>`. See `tf.train.ClusterSpec` for an explanation
   of jobs and tasks.
-* `<DEVICE_INDEX>` is a non-negative integer representing the index of the
+- `<DEVICE_INDEX>` is a non-negative integer representing the index of the
   device, for example, to distinguish between different GPU devices used in the
   same process.
 
@@ -210,6 +208,7 @@ with tf.device("/device:GPU:0"):
   # Operations created in this context will be pinned to the GPU.
   result = tf.matmul(weights, img)
 ```
+
 If you are deploying TensorFlow in a [typical distributed configuration](../deploy/distributed.md),
 you might specify the job name and task ID to place variables on
 a task in the parameter server job (`"/job:ps"`), and the other operations on
@@ -260,11 +259,11 @@ a **tensor-like object** in place of a `tf.Tensor`, and implicitly convert it
 to a `tf.Tensor` using the `tf.convert_to_tensor` method. Tensor-like objects
 include elements of the following types:
 
-* `tf.Tensor`
-* `tf.Variable`
-* [`numpy.ndarray`](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html)
-* `list` (and lists of tensor-like objects)
-* Scalar Python types: `bool`, `float`, `int`, `str`
+- `tf.Tensor`
+- `tf.Variable`
+- [`numpy.ndarray`](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html)
+- `list` (and lists of tensor-like objects)
+- Scalar Python types: `bool`, `float`, `int`, `str`
 
 You can register additional tensor-like types using
 `tf.register_tensor_conversion_function`.
@@ -315,7 +314,7 @@ described below.
 
 `tf.Session.__init__` accepts three optional arguments:
 
-* **`target`.** If this argument is left empty (the default), the session will
+- **`target`.** If this argument is left empty (the default), the session will
   only use devices in the local machine. However, you may also specify a
   `grpc://` URL to specify the address of a TensorFlow server, which gives the
   session access to all devices on machines that this server controls. See
@@ -325,33 +324,32 @@ described below.
   process as the client. The [distributed TensorFlow](../deploy/distributed.md)
   deployment guide describes other common scenarios.
 
-* **`graph`.** By default, a new `tf.Session` will be bound to---and only able
+- **`graph`.** By default, a new `tf.Session` will be bound to---and only able
   to run operations in---the current default graph. If you are using multiple
   graphs in your program (see [Programming with multiple
   graphs](#programming_with_multiple_graphs) for more details), you can specify
   an explicit `tf.Graph` when you construct the session.
 
-* **`config`.** This argument allows you to specify a `tf.ConfigProto` that
+- **`config`.** This argument allows you to specify a `tf.ConfigProto` that
   controls the behavior of the session. For example, some of the configuration
   options include:
 
-    * `allow_soft_placement`. Set this to `True` to enable a "soft" device
+  - `allow_soft_placement`. Set this to `True` to enable a "soft" device
     placement algorithm, which ignores `tf.device` annotations that attempt
     to place CPU-only operations on a GPU device, and places them on the CPU
     instead.
 
-    * `cluster_def`. When using distributed TensorFlow, this option allows you
+  - `cluster_def`. When using distributed TensorFlow, this option allows you
     to specify what machines to use in the computation, and provide a mapping
     between job names, task indices, and network addresses. See
     `tf.train.ClusterSpec.as_cluster_def` for details.
 
-    * `graph_options.optimizer_options`. Provides control over the optimizations
+  - `graph_options.optimizer_options`. Provides control over the optimizations
     that TensorFlow performs on your graph before executing it.
 
-    * `gpu_options.allow_growth`. Set this to `True` to change the GPU memory
+  - `gpu_options.allow_growth`. Set this to `True` to change the GPU memory
     allocator so that it gradually increases the amount of memory allocated,
     rather than allocating most of the memory at startup.
-
 
 ### Using `tf.Session.run` to execute operations
 
@@ -441,7 +439,6 @@ with tf.Session() as sess:
   print(metadata.step_stats)
 ```
 
-
 ## Visualizing your graph
 
 TensorFlow includes tools that can help you to understand the code in a graph.
@@ -507,14 +504,14 @@ to all API functions in the same context. For many applications, a single graph
 is sufficient. However, TensorFlow also provides methods for manipulating
 the default graph, which can be useful in more advanced use cases. For example:
 
-* A `tf.Graph` defines the namespace for `tf.Operation` objects: each
+- A `tf.Graph` defines the namespace for `tf.Operation` objects: each
   operation in a single graph must have a unique name. TensorFlow will
   "uniquify" the names of operations by appending `"_1"`, `"_2"`, and so on to
   their names if the requested name is already taken. Using multiple explicitly
   created graphs gives you more control over what name is given to each
   operation.
 
-* The default graph stores information about every `tf.Operation` and
+- The default graph stores information about every `tf.Operation` and
   `tf.Tensor` that was ever added to it. If your program creates a large number
   of unconnected subgraphs, it may be more efficient to use a different
   `tf.Graph` to build each subgraph, so that unrelated state can be garbage

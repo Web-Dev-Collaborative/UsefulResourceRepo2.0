@@ -12,7 +12,7 @@ But first, let's check some small concepts.
 
 ## In a hurry?
 
-If you don't care about any of these terms and you just need to add security with authentication based on username and password *right now*, skip to the next chapters.
+If you don't care about any of these terms and you just need to add security with authentication based on username and password _right now_, skip to the next chapters.
 
 ## OAuth2
 
@@ -33,8 +33,7 @@ It is not very popular or used nowadays.
 OAuth2 doesn't specify how to encrypt the communication, it expects you to have your application served with HTTPS.
 
 !!! tip
-    In the section about **deployment** you will see how to set up HTTPS for free, using Traefik and Let's Encrypt.
-
+In the section about **deployment** you will see how to set up HTTPS for free, using Traefik and Let's Encrypt.
 
 ## OpenID Connect
 
@@ -68,27 +67,26 @@ By using them, you can take advantage of all these standard-based tools, includi
 
 OpenAPI defines the following security schemes:
 
-* `apiKey`: an application specific key that can come from:
-    * A query parameter.
-    * A header.
-    * A cookie.
-* `http`: standard HTTP authentication systems, including:
-    * `bearer`: a header `Authorization` with a value of `Bearer ` plus a token. This is inherited from OAuth2.
-    * HTTP Basic authentication.
-    * HTTP Digest, etc.
-* `oauth2`: all the OAuth2 ways to handle security (called "flows").
-    * Several of these flows are appropriate for building an OAuth 2.0 authentication provider (like Google, Facebook, Twitter, GitHub, etc):
-        * `implicit`
-        * `clientCredentials`
-        * `authorizationCode`
-    * But there is one specific "flow" that can be perfectly used for handling authentication in the same application directly:
-        * `password`: some next chapters will cover examples of this.
-* `openIdConnect`: has a way to define how to discover OAuth2 authentication data automatically.
-    * This automatic discovery is what is defined in the OpenID Connect specification.
-
+- `apiKey`: an application specific key that can come from:
+  - A query parameter.
+  - A header.
+  - A cookie.
+- `http`: standard HTTP authentication systems, including:
+  - `bearer`: a header `Authorization` with a value of `Bearer ` plus a token. This is inherited from OAuth2.
+  - HTTP Basic authentication.
+  - HTTP Digest, etc.
+- `oauth2`: all the OAuth2 ways to handle security (called "flows").
+  - Several of these flows are appropriate for building an OAuth 2.0 authentication provider (like Google, Facebook, Twitter, GitHub, etc):
+    - `implicit`
+    - `clientCredentials`
+    - `authorizationCode`
+  - But there is one specific "flow" that can be perfectly used for handling authentication in the same application directly:
+    - `password`: some next chapters will cover examples of this.
+- `openIdConnect`: has a way to define how to discover OAuth2 authentication data automatically.
+  - This automatic discovery is what is defined in the OpenID Connect specification.
 
 !!! tip
-    Integrating other authentication/authorization providers like Google, Facebook, Twitter, GitHub, etc. is also possible and relatively easy.
+Integrating other authentication/authorization providers like Google, Facebook, Twitter, GitHub, etc. is also possible and relatively easy.
 
     The most complex problem is building an authentication/authorization provider like those, but **FastAPI** gives you the tools to do it easily, while doing the heavy lifting for you.
 

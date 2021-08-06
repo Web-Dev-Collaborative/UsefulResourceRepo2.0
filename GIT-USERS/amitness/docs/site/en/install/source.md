@@ -1,12 +1,11 @@
 # Build from source
 
-Build a TensorFlow *pip* package from source and install it on Ubuntu Linux and
+Build a TensorFlow _pip_ package from source and install it on Ubuntu Linux and
 macOS. While the instructions might work for other systems, it is only tested and
 supported for Ubuntu and macOS.
 
 Note: We already provide well-tested, pre-built [TensorFlow packages](./pip.md)
 for Linux and macOS systems.
-
 
 ## Setup for Linux and macOS
 
@@ -33,7 +32,7 @@ Install the following build tools to configure your development environment.
 </section>
 </div><!--/ds-selector-tabs-->
 
-Install the TensorFlow *pip* package dependencies (if using a virtual environment,
+Install the TensorFlow _pip_ package dependencies (if using a virtual environment,
 omit the `--user` argument):
 
 <pre class="prettyprint lang-bsh">
@@ -55,7 +54,7 @@ Add the location of the Bazel executable to your `PATH` environment variable.
 
 ### Install GPU support (optional, Linux only)
 
-There is *no* GPU support for macOS.
+There is _no_ GPU support for macOS.
 
 Read the [GPU support](./gpu.md) guide to install the drivers and additional
 software required to run TensorFlow on a GPU.
@@ -80,7 +79,6 @@ to build:
 git checkout <em>branch_name</em>  # r1.9, r1.10, etc.
 </pre>
 
-
 ## Configure the build
 
 Configure your system build by running the following at the root of your
@@ -102,9 +100,9 @@ You have bazel 0.15.0 installed.
 Please specify the location of python. [Default is /usr/bin/python]: <b>/usr/bin/python2.7</b>
 
 Found possible Python library paths:
-  /usr/local/lib/python2.7/dist-packages
-  /usr/lib/python2.7/dist-packages
-Please input the desired Python library path to use.  Default is [/usr/lib/python2.7/dist-packages]
+/usr/local/lib/python2.7/dist-packages
+/usr/lib/python2.7/dist-packages
+Please input the desired Python library path to use. Default is [/usr/lib/python2.7/dist-packages]
 
 Do you wish to build TensorFlow with jemalloc as malloc support? [Y/n]:
 jemalloc as malloc support will be enabled for TensorFlow.
@@ -168,9 +166,10 @@ Would you like to interactively configure ./WORKSPACE for Android builds? [y/N]:
 Not configuring the WORKSPACE for Android builds.
 
 Preconfigured Bazel build configs. You can use any of the below by adding "--config=<>" to your build command. See tools/bazel.rc for more details.
-    --config=mkl            # Build with MKL support.
-    --config=monolithic     # Config for mostly static monolithic build.
+--config=mkl # Build with MKL support.
+--config=monolithic # Config for mostly static monolithic build.
 Configuration finished
+
 </pre>
 </section>
 
@@ -191,8 +190,8 @@ for examples.
 There are some preconfigured build configs available that can be added to the
 `bazel build` command, for example:
 
-* `--config=mkl` —Support for the [Intel® MKL-DNN](https://github.com/intel/mkl-dnn){:.external}.
-* `--config=monolithic` —Configuration for a mostly static, monolithic build.
+- `--config=mkl` —Support for the [Intel® MKL-DNN](https://github.com/intel/mkl-dnn){:.external}.
+- `--config=monolithic` —Configuration for a mostly static, monolithic build.
 
 Note: Starting with TensorFlow 1.6, binaries use AVX instructions which may not
 run on older CPUs.
@@ -271,7 +270,6 @@ pip install /tmp/tensorflow_pkg/tensorflow-<var>version</var>-<var>tags</var>.wh
 
 Success: TensorFlow is now installed.
 
-
 ## Docker Linux builds
 
 TensorFlow's Docker development images are an easy way to set up an environment
@@ -287,7 +285,7 @@ Python&nbsp;2 package from the latest TensorFlow source code. See the
 [Docker guide](./docker.md) for available TensorFlow `-devel` tags.
 
 Download the latest development image and start a Docker container that we'll
-use to build the *pip* package:
+use to build the _pip_ package:
 
 <pre class="prettyprint lang-bsh">
 <code class="devsite-terminal">docker pull tensorflow/tensorflow<var>:nightly-devel</var></code>
@@ -314,8 +312,8 @@ With the source tree set up, build the TensorFlow package within the container's
 virtual environment:
 
 1. Configure the build—this prompts the user to answer build configuration questions.
-2. Build the tool used to create the *pip* package.
-3. Run the tool to create the *pip* package.
+2. Build the tool used to create the _pip_ package.
+3. Run the tool to create the _pip_ package.
 4. Adjust the ownership permissions of the file for outside the container.
 
 <pre class="devsite-disable-click-to-copy prettyprint lang-bsh">
@@ -340,21 +338,21 @@ Install and verify the package within the container:
 
 Success: TensorFlow is now installed.
 
-On your host machine, the TensorFlow *pip* package is in the current directory
+On your host machine, the TensorFlow _pip_ package is in the current directory
 (with host user permissions): <code>./tensorflow-<var>version</var>-<var>tags</var>.whl</code>
 
 ### GPU support
 
-Docker is the easiest way to build GPU support for TensorFlow since the *host*
+Docker is the easiest way to build GPU support for TensorFlow since the _host_
 machine only requires the
 [NVIDIA®&nbsp;driver](https://github.com/NVIDIA/nvidia-docker/wiki/Frequently-Asked-Questions#how-do-i-install-the-nvidia-driver){:.external}
-(the *NVIDIA® CUDA® Toolkit* doesn't have to be installed). See the
+(the _NVIDIA® CUDA® Toolkit_ doesn't have to be installed). See the
 [GPU support guide](./gpu.md) and the TensorFlow [Docker guide](./docker.md)
 to set up [nvidia-docker](https://github.com/NVIDIA/nvidia-docker){:.external} (Linux only).
 
 The following example downloads the TensorFlow `:nightly-devel-gpu-py3` image
 and uses `nvidia-docker` to run the GPU-enabled container. This development image
-is configured to build a Python 3 *pip* package with GPU support:
+is configured to build a Python 3 _pip_ package with GPU support:
 
 <pre class="prettyprint lang-bsh">
 <code class="devsite-terminal">docker pull tensorflow/tensorflow<var>:nightly-devel-gpu-py3</var></code>
@@ -386,7 +384,6 @@ Install and verify the package within the container and check for a GPU:
 </pre>
 
 Success: TensorFlow is now installed.
-
 
 ## Tested build configurations
 

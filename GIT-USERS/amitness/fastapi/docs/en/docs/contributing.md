@@ -1,6 +1,6 @@
 # Development - Contributing
 
-First, you might want to see the basic ways to [help FastAPI and get help](help-fastapi.md){.internal-link target=_blank}.
+First, you might want to see the basic ways to [help FastAPI and get help](help-fastapi.md){.internal-link target=\_blank}.
 
 ## Developing
 
@@ -84,10 +84,8 @@ To check it worked, use:
 
 If it shows the `pip` binary at `env/bin/pip` then it worked. 🎉
 
-
-
 !!! tip
-    Every time you install a new package with `pip` under that environment, activate the environment again.
+Every time you install a new package with `pip` under that environment, activate the environment again.
 
     This makes sure that if you use a terminal program installed by that package (like `flit`), you use the one from your local environment and not any other that could be installed globally.
 
@@ -186,7 +184,7 @@ The documentation uses <a href="https://www.mkdocs.org/" class="external-link" t
 And there are extra tools/scripts in place to handle translations in `./scripts/docs.py`.
 
 !!! tip
-    You don't need to see the code in `./scripts/docs.py`, you just use it in the command line.
+You don't need to see the code in `./scripts/docs.py`, you just use it in the command line.
 
 All the documentation is in Markdown format in the directory `./docs/en/`.
 
@@ -204,9 +202,9 @@ Most of the tests actually run against the example source files in the documenta
 
 This helps making sure that:
 
-* The documentation is up to date.
-* The documentation examples can be run as is.
-* Most of the features are covered by the documentation, ensured by test coverage.
+- The documentation is up to date.
+- The documentation examples can be run as is.
+- Most of the features are covered by the documentation, ensured by test coverage.
 
 During local development, there is a script that builds the site and checks for any changes, live-reloading:
 
@@ -269,26 +267,26 @@ Here are the steps to help with translations.
 
 #### Tips and guidelines
 
-* Check the currently <a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">existing pull requests</a> for your language and add reviews requesting changes or approving them.
+- Check the currently <a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">existing pull requests</a> for your language and add reviews requesting changes or approving them.
 
 !!! tip
-    You can <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">add comments with change suggestions</a> to existing pull requests.
+You can <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">add comments with change suggestions</a> to existing pull requests.
 
     Check the docs about <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">adding a pull request review</a> to approve it or request changes.
 
-* Check in the <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">issues</a> to see if there's one coordinating translations for your language.
+- Check in the <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">issues</a> to see if there's one coordinating translations for your language.
 
-* Add a single pull request per page translated. That will make it much easier for others to review it.
+- Add a single pull request per page translated. That will make it much easier for others to review it.
 
 For the languages I don't speak, I'll wait for several others to review the translation before merging.
 
-* You can also check if there are translations for your language and add a review to them, that will help me know that the translation is correct and I can merge it.
+- You can also check if there are translations for your language and add a review to them, that will help me know that the translation is correct and I can merge it.
 
-* Use the same Python examples and only translate the text in the docs. You don't have to change anything for this to work.
+- Use the same Python examples and only translate the text in the docs. You don't have to change anything for this to work.
 
-* Use the same images, file names, and links. You don't have to change anything for it to work.
+- Use the same images, file names, and links. You don't have to change anything for it to work.
 
-* To check the 2-letter code for the language you want to translate you can use the table <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link" target="_blank">List of ISO 639-1 codes</a>.
+- To check the 2-letter code for the language you want to translate you can use the table <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link" target="_blank">List of ISO 639-1 codes</a>.
 
 #### Existing language
 
@@ -297,7 +295,7 @@ Let's say you want to translate a page for a language that already has translati
 In the case of Spanish, the 2-letter code is `es`. So, the directory for Spanish translations is located at `docs/es/`.
 
 !!! tip
-    The main ("official") language is English, located at `docs/en/`.
+The main ("official") language is English, located at `docs/en/`.
 
 Now run the live server for the docs in Spanish:
 
@@ -320,30 +318,30 @@ If you look at the FastAPI docs website, you will see that every language has al
 
 But when you run it locally like this, you will only see the pages that are already translated.
 
-Now let's say that you want to add a translation for the section [Features](features.md){.internal-link target=_blank}.
+Now let's say that you want to add a translation for the section [Features](features.md){.internal-link target=\_blank}.
 
-* Copy the file at:
+- Copy the file at:
 
 ```
 docs/en/docs/features.md
 ```
 
-* Paste it in exactly the same location but for the language you want to translate, e.g.:
+- Paste it in exactly the same location but for the language you want to translate, e.g.:
 
 ```
 docs/es/docs/features.md
 ```
 
 !!! tip
-    Notice that the only change in the path and file name is the language code, from `en` to `es`.
+Notice that the only change in the path and file name is the language code, from `en` to `es`.
 
-* Now open the MkDocs config file for English at:
+- Now open the MkDocs config file for English at:
 
 ```
 docs/en/docs/mkdocs.yml
 ```
 
-* Find the place where that `docs/features.md` is located in the config file. Somewhere like:
+- Find the place where that `docs/features.md` is located in the config file. Somewhere like:
 
 ```YAML hl_lines="8"
 site_name: FastAPI
@@ -356,13 +354,13 @@ nav:
 - features.md
 ```
 
-* Open the MkDocs config file for the language you are editing, e.g.:
+- Open the MkDocs config file for the language you are editing, e.g.:
 
 ```
 docs/es/docs/mkdocs.yml
 ```
 
-* Add it there at the exact same location it was for English, e.g.:
+- Add it there at the exact same location it was for English, e.g.:
 
 ```YAML hl_lines="8"
 site_name: FastAPI
@@ -407,7 +405,7 @@ Updating en
 Now you can check in your code editor the newly created directory `docs/ht/`.
 
 !!! tip
-    Create a first pull request with just this, to set up the configuration for the new language, before adding translations.
+Create a first pull request with just this, to set up the configuration for the new language, before adding translations.
 
     That way others can help with other pages while you work on the first one. 🚀
 

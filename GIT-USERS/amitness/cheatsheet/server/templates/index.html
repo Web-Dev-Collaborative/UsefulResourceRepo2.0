@@ -1,202 +1,246 @@
-{% extends "layout.html"%}
-{% block body %}
+{% extends "layout.html"%} {% block body %}
 
 <div class="col-md-8 col-md-offset-2 col-xs-12">
-   <div class="panel panel-default boardless">
-<!-- panel contents -->
-<div class="panel-heading boardless"><b>Catalog</b></div>
+  <div class="panel panel-default boardless">
+    <!-- panel contents -->
+    <div class="panel-heading boardless"><b>Catalog</b></div>
 
-<!-- Table -->
-<div class="table-responsive">
-<table class="table table-hover boardless">
-   <thead>
-      <tr><th>Subject</th><th>Description</th><th>Create time</th><th>Modify time</th></tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='git-cs') }}">Git Basic</a>
-         </td>
-         <td>Some basic concepts of Git</td>
-         <td>2016/1/17</td>
-         <td>2016/1/17</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='python-cs') }}">Python Basic</a>
-         </td>
-         <td>Some basic concepts of Python</td>
-         <td>2015/10/21</td>
-         <td>2015/10/21</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='python-iter-cs') }}">Python Iterator</a>
-         </td>
-         <td>Writing a loop more like Python</td>
-         <td>2015/11/3</td>
-         <td>2015/11/3</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='python-generator') }}">Python Generator</a>
-         </td>
-         <td>How powerful of generator in Python</td>
-         <td>2015/11/3</td>
-         <td>2016/2/10</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='python-metaprogramming') }}">Python Metaprogramming</a>
-         </td>
-         <td>Python code that manipulates Python code</td>
-         <td>2015/11/4</td>
-         <td>2015/11/5</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='python-network-cs') }}">Python Socket</a>
-         </td>
-         <td>Some basic concepts of socket in Python</td>
-         <td>2015/10/21</td>
-         <td>2015/10/21</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='python-concurrency') }}">Python Concurrency</a>
-         </td>
-         <td>Some basic concepts of concurrency in Python</td>
-         <td>2015/11/9</td>
-         <td>2016/2/12</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='python-asyncio') }}">Python Asyncio</a>
-         </td>
-         <td>Some basic concepts of asyncio in Python</td>
-         <td>2016/2/13</td>
-         <td>2016/2/13</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='python-daemon-cs') }}">Python Daemon</a>
-         </td>
-         <td>A basic daemon write in Python</td>
-         <td>2015/11/2</td>
-         <td>2015/11/2</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='python-test') }}">Python Test</a>
-         </td>
-         <td>Some basic concepts of test in Python</td>
-         <td>2016/1/31</td>
-         <td>2016/1/31</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='python-argparse-cs') }}">Python Argparse</a>
-         </td>
-         <td>Python arguments parser</td>
-         <td>2016/1/11</td>
-         <td>2016/1/11</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='python-sqlalchemy') }}">Python Sqlalchemy</a>
-         </td>
-         <td>Python database operation via sqlalchemy</td>
-         <td>2015/11/2</td>
-         <td>2015/11/2</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='python-ctypes') }}">Python ctypes</a>
-         </td>
-         <td>Basic concepts of Python ctypes</td>
-         <td>2016/1/22</td>
-         <td>2016/1/22</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='python-capi-cs') }}">Python C API</a>
-         </td>
-         <td>Basic concepts of Python C API</td>
-         <td>2015/12/5</td>
-         <td>2015/12/5</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='python-pattern-in-c') }}">Python Style in C</a>
-         </td>
-         <td>Some Python design pattern in C</td>
-         <td>2015/11/2</td>
-         <td>2015/11/2</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='ruby-basic-cs') }}">Ruby Basic (1)</a>
-         </td>
-         <td>Some basic concepts of Ruby</td>
-         <td>2015/11/21</td>
-         <td>2015/11/28</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='ruby-basic-adv-cs') }}">Ruby Basic (2)</a>
-         </td>
-         <td>Some basic concepts of Ruby</td>
-         <td>2015/11/28</td>
-         <td>2015/12/23</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='ruby-socket-cs') }}">Ruby Socket</a>
-         </td>
-         <td>Some basic concepts of socket in Ruby</td>
-         <td>2015/11/29</td>
-         <td>2015/12/5</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='cpp-basic-cs') }}">C++ Basic</a>
-         </td>
-         <td>Some basic concepts of C++</td>
-         <td>2015/11/1</td>
-         <td>2015/11/1</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='chartist-js-cs') }}">Chartist.js</a>
-         </td>
-         <td>Some basic templates of chartist.js</td>
-         <td>2015/11/24</td>
-         <td>2015/11/24</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='gnu-autotool-cs') }}">GNU Autotool</a>
-         </td>
-         <td>Some basic concepts of GNU Autotool</td>
-         <td>2015/11/7</td>
-         <td>2015/11/7</td>
-      </tr>
-      <tr>
-         <td>
-            <a href="{{ url_for('cheatsheet', page='chef-basic') }}">Chef Basic</a>
-         </td>
-         <td>Some basic concepts of Chef</td>
-         <td>2016/2/6</td>
-         <td>2016/2/6</td>
-      </tr>
-   </tbody>
-</table>
+    <!-- Table -->
+    <div class="table-responsive">
+      <table class="table table-hover boardless">
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Description</th>
+            <th>Create time</th>
+            <th>Modify time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='git-cs') }}">Git Basic</a>
+            </td>
+            <td>Some basic concepts of Git</td>
+            <td>2016/1/17</td>
+            <td>2016/1/17</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='python-cs') }}"
+                >Python Basic</a
+              >
+            </td>
+            <td>Some basic concepts of Python</td>
+            <td>2015/10/21</td>
+            <td>2015/10/21</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='python-iter-cs') }}"
+                >Python Iterator</a
+              >
+            </td>
+            <td>Writing a loop more like Python</td>
+            <td>2015/11/3</td>
+            <td>2015/11/3</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='python-generator') }}"
+                >Python Generator</a
+              >
+            </td>
+            <td>How powerful of generator in Python</td>
+            <td>2015/11/3</td>
+            <td>2016/2/10</td>
+          </tr>
+          <tr>
+            <td>
+              <a
+                href="{{ url_for('cheatsheet', page='python-metaprogramming') }}"
+                >Python Metaprogramming</a
+              >
+            </td>
+            <td>Python code that manipulates Python code</td>
+            <td>2015/11/4</td>
+            <td>2015/11/5</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='python-network-cs') }}"
+                >Python Socket</a
+              >
+            </td>
+            <td>Some basic concepts of socket in Python</td>
+            <td>2015/10/21</td>
+            <td>2015/10/21</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='python-concurrency') }}"
+                >Python Concurrency</a
+              >
+            </td>
+            <td>Some basic concepts of concurrency in Python</td>
+            <td>2015/11/9</td>
+            <td>2016/2/12</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='python-asyncio') }}"
+                >Python Asyncio</a
+              >
+            </td>
+            <td>Some basic concepts of asyncio in Python</td>
+            <td>2016/2/13</td>
+            <td>2016/2/13</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='python-daemon-cs') }}"
+                >Python Daemon</a
+              >
+            </td>
+            <td>A basic daemon write in Python</td>
+            <td>2015/11/2</td>
+            <td>2015/11/2</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='python-test') }}"
+                >Python Test</a
+              >
+            </td>
+            <td>Some basic concepts of test in Python</td>
+            <td>2016/1/31</td>
+            <td>2016/1/31</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='python-argparse-cs') }}"
+                >Python Argparse</a
+              >
+            </td>
+            <td>Python arguments parser</td>
+            <td>2016/1/11</td>
+            <td>2016/1/11</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='python-sqlalchemy') }}"
+                >Python Sqlalchemy</a
+              >
+            </td>
+            <td>Python database operation via sqlalchemy</td>
+            <td>2015/11/2</td>
+            <td>2015/11/2</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='python-ctypes') }}"
+                >Python ctypes</a
+              >
+            </td>
+            <td>Basic concepts of Python ctypes</td>
+            <td>2016/1/22</td>
+            <td>2016/1/22</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='python-capi-cs') }}"
+                >Python C API</a
+              >
+            </td>
+            <td>Basic concepts of Python C API</td>
+            <td>2015/12/5</td>
+            <td>2015/12/5</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='python-pattern-in-c') }}"
+                >Python Style in C</a
+              >
+            </td>
+            <td>Some Python design pattern in C</td>
+            <td>2015/11/2</td>
+            <td>2015/11/2</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='ruby-basic-cs') }}"
+                >Ruby Basic (1)</a
+              >
+            </td>
+            <td>Some basic concepts of Ruby</td>
+            <td>2015/11/21</td>
+            <td>2015/11/28</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='ruby-basic-adv-cs') }}"
+                >Ruby Basic (2)</a
+              >
+            </td>
+            <td>Some basic concepts of Ruby</td>
+            <td>2015/11/28</td>
+            <td>2015/12/23</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='ruby-socket-cs') }}"
+                >Ruby Socket</a
+              >
+            </td>
+            <td>Some basic concepts of socket in Ruby</td>
+            <td>2015/11/29</td>
+            <td>2015/12/5</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='cpp-basic-cs') }}"
+                >C++ Basic</a
+              >
+            </td>
+            <td>Some basic concepts of C++</td>
+            <td>2015/11/1</td>
+            <td>2015/11/1</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='chartist-js-cs') }}"
+                >Chartist.js</a
+              >
+            </td>
+            <td>Some basic templates of chartist.js</td>
+            <td>2015/11/24</td>
+            <td>2015/11/24</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='gnu-autotool-cs') }}"
+                >GNU Autotool</a
+              >
+            </td>
+            <td>Some basic concepts of GNU Autotool</td>
+            <td>2015/11/7</td>
+            <td>2015/11/7</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{{ url_for('cheatsheet', page='chef-basic') }}"
+                >Chef Basic</a
+              >
+            </td>
+            <td>Some basic concepts of Chef</td>
+            <td>2016/2/6</td>
+            <td>2016/2/6</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- ./panel -->
 </div>
-   </div> <!-- ./panel -->
-</div>
 
-{% endblock %}
-
-{% block script %}
-{{ super() }}
-{% endblock %}
+{% endblock %} {% block script %} {{ super() }} {% endblock %}

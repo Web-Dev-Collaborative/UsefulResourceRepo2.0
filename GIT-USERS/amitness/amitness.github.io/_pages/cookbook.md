@@ -10,6 +10,7 @@ toc_sticky: true
 This is a personal collection of repetitive commands and snippets for ML projects.
 
 ## AWS
+
 **Specify key manually in boto3**  
 {% gist 9c80648a506cfee097533c29cb424262 %}
 
@@ -22,52 +23,61 @@ This is a personal collection of repetitive commands and snippets for ML project
 **AWS ML services**  
 {% gist c19a8c2e297bf50fde70471911e76ccc %}
 
-**Enable static website hosting on S3**   
+**Enable static website hosting on S3**  
 Enable hosting
+
 ```shell
 aws s3 website s3://somebucket --index-document index.html
 ```
+
 Goto `Permissions > Public Access Settings > Edit` and change (`Block new public bucket policies`, `Block public and cross-account access if bucket has public policies`, and `Block new public ACLs and uploading public objects`) to false.
 
 Navigate to `Permissions > Bucket Policy` and paste this policy.
 {% gist 4a78d1e72517645f8cead3a8f92bc677 %}
 
-
 ## Conda
-**Install OpenCV in conda**  
+
+**Install OpenCV in conda**
+
 ```shell
 conda install -c conda-forge open-cv
 ```
 
-**Update conda**  
+**Update conda**
+
 ```shell
 conda update -n base -c defaults conda
 ```
 
-**Make binaries work on Mac**  
+**Make binaries work on Mac**
+
 ```shell
 sudo xcode-select --install
 conda install clang_osx-64 clangxx_osx-64 gfortran_osx-64
 ```
 
-**Create/Update conda environment from file**  
+**Create/Update conda environment from file**
+
 ```shell
 conda env create -f environment.yml
 conda env update -f environment.yml
 ```
 
-**Install CUDA toolkit in conda**  
+**Install CUDA toolkit in conda**
+
 ```shell
 conda install cudatoolkit=9.2 -c pytorch
 conda install cudatoolkit=10.0 -c pytorch
 ```
 
 **Disable auto-activation of conda environment**
+
 ```shell
 conda config --set auto_activate_base false
 ```
 
 **Disable multithreading in numpy**
+
 ```shell
 export OMP_NUM_THREADS=1
 export OPENBLAS_NUM_THREADS=1
@@ -75,15 +85,16 @@ export OPENMP_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 ```
 
-**Faster alternatives to Conda**  
+**Faster alternatives to Conda**
 
-|Docker Image|Remarks|
-|---|---|
-|[micromaba-docker](https://github.com/mamba-org/micromamba-docker)|Small binary version of mamba|
-|[condaforge/mambaforge](https://hub.docker.com/r/condaforge/mambaforge)|Docker image with conda-forge and mamba|
-|[condaforge/miniforge](https://github.com/conda-forge/miniforge)|Docker image with conda-forge as default channel|
+| Docker Image                                                            | Remarks                                          |
+| ----------------------------------------------------------------------- | ------------------------------------------------ |
+| [micromaba-docker](https://github.com/mamba-org/micromamba-docker)      | Small binary version of mamba                    |
+| [condaforge/mambaforge](https://hub.docker.com/r/condaforge/mambaforge) | Docker image with conda-forge and mamba          |
+| [condaforge/miniforge](https://github.com/conda-forge/miniforge)        | Docker image with conda-forge as default channel |
 
 ## Celery
+
 **Run celery workers**  
 File `tasks.py` contains celery object, concurrency is set to 1 and no threads or process are used with `-P solo`
 
@@ -98,20 +109,24 @@ celery -A tasks.celery worker --loglevel=info -P solo
 {% gist 9a43c5708db77a2842f4eadf13b0d2e9 %}
 
 ## Docker
+
 **Start docker-compose as daemon**
+
 ```shell
 docker-compose up --build -d
 ```
 
 **Use journald as logging driver**  
-Edit `/etc/docker/daemon.json`, add this json and restart.  
+Edit `/etc/docker/daemon.json`, add this json and restart.
+
 ```json
 {
   "log-driver": "journald"
 }
 ```
 
-**Send logs to CloudWatch**   
+**Send logs to CloudWatch**
+
 ```shell
 sudo nano /etc/docker/daemon.json
 ```
@@ -123,7 +138,8 @@ sudo systemctl daemon-reload
 sudo service docker restart
 ```
 
-**Set environment variable globally in daemon**  
+**Set environment variable globally in daemon**
+
 ```shell
 mkdir -p /etc/systemd/system/docker.service.d/
 sudo nano /etc/systemd/system/docker.service.d/aws-credentials.conf
@@ -137,6 +153,7 @@ sudo service docker restart
 ```
 
 **Disable pip cache and version check**
+
 ```shell
 ENV PIP_NO_CACHE_DIR=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=1
@@ -145,7 +162,8 @@ ENV PIP_NO_CACHE_DIR=1 \
 **Dockerfile for FastAPI**  
 {% gist ac87e33d8522f5734e5b9c085bca86ae %}
 
-**Return exit code in docker-compose**  
+**Return exit code in docker-compose**
+
 ```shell
 docker-compose up --abort-on-container-exit --exit-code-from worker
 ```
@@ -154,6 +172,7 @@ docker-compose up --abort-on-container-exit --exit-code-from worker
 {% gist fd1c143e9488c6715f7a1e6313e50321 %}
 
 ## FastAPI
+
 **Use debugging mode**  
 {% gist 38ec3f01fc77026f8ace72b3d9d31cfc %}
 
@@ -170,23 +189,28 @@ docker-compose up --abort-on-container-exit --exit-code-from worker
 {% gist a3f049b9675039c164ef17c6b414f7a3 %}
 
 ## Flask
+
 **Test API in flask**
 {% gist ff5579911c0eb7d4aa193596e02b9135 %}
 
 **Load model only once before first request**
 {% gist b471ceba9b0e6268aa5818ff82a36177 %}
 
-## Gensim  
-**Load binary format in Word2Vec**  
+## Gensim
+
+**Load binary format in Word2Vec**
+
 ```python
 from gensim.models import KeyedVectors
-model = KeyedVectors.load_word2vec_format('model.bin', 
+model = KeyedVectors.load_word2vec_format('model.bin',
                                           binary=True)
 model.most_similar('apple')
 ```
 
 ## Git
-**Prevent git from asking for password**  
+
+**Prevent git from asking for password**
+
 ```shell
 git config credential.helper 'cache --timeout=1800'
 ```
@@ -194,20 +218,23 @@ git config credential.helper 'cache --timeout=1800'
 **Whitelist in .gitignore**  
 {% gist 416ea3274dfd05509ab3c12a4c222a2e %}
 
-**Clone private repo using personal token**  
+**Clone private repo using personal token**
 
 Create token from [settings](https://github.com/settings/tokens) and run:
+
 ```shell
 git clone https://<token>@github.com/amitness/example.git
 ```
 
-**Create alias to run command**  
+**Create alias to run command**
+
 ```shell
 # git test
 git config --global alias.test "!python -m doctest``"
 ```
 
-**Install Git LFS**  
+**Install Git LFS**
+
 ```shell
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 sudo apt-get install git-lfs
@@ -216,51 +243,61 @@ sudo apt-get install git-lfs
 **Triggers for GitHub Action**  
 {% gist c2c60e7dbb5fa0f3b6161d018014371a %}
 
-**Useful GitHub Actions**  
+**Useful GitHub Actions**
 
-|Action|Remarks|
-|---|---|
-|[scrape.yml](https://github.com/simonw/cdc-vaccination-history/blob/main/.github/workflows/scrape.yml)|Scrap webpage and save to repo|
+| Action                                                                                                 | Remarks                        |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------ |
+| [scrape.yml](https://github.com/simonw/cdc-vaccination-history/blob/main/.github/workflows/scrape.yml) | Scrap webpage and save to repo |
 
 ## Gunicorn
-**Increase timeout**  
+
+**Increase timeout**
+
 ```shell
 gunicorn --bind 0.0.0.0:5000 main:app --timeout 6000
 ```
 
-**Check error logs**  
+**Check error logs**
+
 ```shell
 tail -f /var/log/gunicorn/error_
 ```
 
-**Run two workers**  
+**Run two workers**
+
 ```shell
 gunicorn main:app  --preload -w 2 -b 0.0.0.0:5000
 ```
 
 **Use pseudo-threads**  
 If `CPU cores=1`, then suggested concurrency = `2*1+1=3`
+
 ```shell
 gunicorn main:app --worker-class=gevent --worker-connections=1000 --workers=3
 ```
 
 **Use multiple threads**  
 If `CPU cores=4`, then suggested concurrency = `2*4+1=9`
+
 ```shell
 gunicorn main:app --workers=3 --threads=3
 ```
 
-**Use in-memory file system for heartbeat file**    
+**Use in-memory file system for heartbeat file**
+
 ```shell
 gunicorn --worker-tmp-dir /dev/shm
 ```
 
-## Huey  
+## Huey
+
 **Add background task to add 2 numbers**  
 {%gist c2ec5221c1d759c43f77111c438d13e5 %}
 
 ## Jupyter
-**Auto-import common libraries**  
+
+**Auto-import common libraries**
+
 1. Create `startup` folder in `~/.ipython/profile_default`
 2. Create a python file `start.py`
 3. Add imports there.
@@ -272,10 +309,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 ```
 
-**Make auto-reload of modules by default**  
+**Make auto-reload of modules by default**
+
 1. Create `startup` folder in `~/.ipython/profile_default`
 2. Add this file
-{% gist f466f85ca2b7e7d93386547737c36a4d %}
+   {% gist f466f85ca2b7e7d93386547737c36a4d %}
 
 **Auto print all expressions**  
 Edit `~/.ipython/profile_default/ipython_config.py` and add
@@ -289,7 +327,7 @@ pip install --user ipykernel
 python -m ipykernel install --user --name=condaenv
 ```
 
-**Add R kernel to jupyter**    
+**Add R kernel to jupyter**
 
 ```shell
 conda install -c r r-irkernel
@@ -299,17 +337,20 @@ cd /lib/x86_64-linux-gnu/
 sudo ln -s libreadline.so.7.0 libreadline.so.6
 ```
 
-**Start notebook on remote server**  
+**Start notebook on remote server**
+
 ```shell
 jupyter notebook --ip=0.0.0.0 --no-browser
 ```
 
-**Serve as voila app**  
+**Serve as voila app**
+
 ```shell
 voila --port=$PORT --no-browser app.ipynb
 ```
 
-**Enable widgets in jupyter lab**  
+**Enable widgets in jupyter lab**
+
 ```shell
 pip install jupyterlab
 pip install ipywidgets
@@ -317,7 +358,8 @@ jupyter nbextension enable --py widgetsnbextension
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
 ```
 
-**Switch to language server in jupyter lab**  
+**Switch to language server in jupyter lab**
+
 ```shell
 pip install — pre jupyter-lsp
 jupyter labextension install @krassowski/jupyterlab-lsp
@@ -325,7 +367,9 @@ pip install python-language-server[all]
 ```
 
 ## Kaggle
-**Add kaggle credentials**  
+
+**Add kaggle credentials**
+
 ```shell
 pip install --upgrade kaggle kaggle-cli
 
@@ -335,17 +379,21 @@ chmod 600 /root/.kaggle/kaggle.json
 ```
 
 ## Linux
+
 **Zip a folder**
+
 ```shell
 zip -r folder.zip folder
 ```
 
-**Use remote server as VPN**  
+**Use remote server as VPN**
+
 ```shell
 ssh -D 8888 -f -C -q -N ubuntu@example.com
 ```
 
-**SSH Tunneling for multiple ports (5555, 5556)**  
+**SSH Tunneling for multiple ports (5555, 5556)**
+
 ```shell
 ssh -N -f -L localhost:5555:127.0.0.1:5555 -L localhost:5556:127.0.0.1:5556 ubuntu@example.com
 ```
@@ -357,17 +405,20 @@ Enable `GatewayPorts=yes` in `/etc/ssh/sshd_config` on server.
 ssh -NT -R example.com:5000:localhost:5000 ubuntu@example.com -i ~/.ssh/xyz.pem -o GatewayPorts=yes
 ```
 
-**Copy remote files to local**  
+**Copy remote files to local**
+
 ```shell
 scp ubuntu@example.com:/mnt/file.zip .
 ```
 
 **Set correct permission for PEM file**
+
 ```shell
 chmod 400 credentials.pem
 ```
 
 **Clear DNS cache**
+
 ```shell
 sudo service network-manager restart
 sudo service dns-clean
@@ -375,7 +426,8 @@ sudo systemctl restart dnsmasq
 sudo iptables -F
 ```
 
-**Unzip .xz file**  
+**Unzip .xz file**
+
 ```shell
 sudo apt-get install xz-utils
 unxz ne.txt.xz
@@ -383,6 +435,7 @@ unxz ne.txt.xz
 
 **Disable password-based login on server**  
 Edit this file and set `PasswordAuthentication` to `no`
+
 ```shell
 sudo nano /etc/ssh/sshd_config
 ```
@@ -390,27 +443,32 @@ sudo nano /etc/ssh/sshd_config
 **Auto-generate help for make files**  
 {% gist 14ba10992f7437cfac2b7a64a8f0a67a %}
 
-**Rebind prefix for tmux**   
+**Rebind prefix for tmux**  
 Edit `~/.tmux.conf` with below content and reload by running `tmux source-file ~/.tmux.conf`
 {% gist 53fc232f5ce70b8b773e4abf8bbcf13a %}
 
-**Clear DNS cache**  
+**Clear DNS cache**
+
 ```shell
 sudo systemd-resolve --flush-caches
 ```
 
-**Reset GPU**  
+**Reset GPU**
+
 ```shell
 sudo rmmod nvidia_uvm
 sudo modprobe nvidia_uvm
 ```
 
 ## Markdown
+
 **Add comparison of code blocks side by side**  
 [Solution](https://stackoverflow.com/a/59314488/10137343)
 
-## Nginx  
-**Assign path to port**  
+## Nginx
+
+**Assign path to port**
+
 ```shell
 location /demo/ {
                 proxy_pass http://localhost:5000/;
@@ -432,8 +490,10 @@ sudo nano /etc/nginx/proxy_params
 **Setup nginx for prodigy**  
 {% gist 2cc8f79a12a89e6cd22857c5bab49c8c %}
 
-## NLTK  
-**Get list of all POS tags**  
+## NLTK
+
+**Get list of all POS tags**
+
 ```python
 import nltk
 nltk.download('tagsets')
@@ -441,38 +501,45 @@ nltk.help.upenn_tagset()
 ```
 
 ## NPM
+
 **Upgrade to latest node version**
+
 ```shell
 npm cache clean -f
-npm install -g n 
+npm install -g n
 n stable
 ```
 
 ## Pandas
-**Save with quoted strings**  
+
+**Save with quoted strings**
+
 ```python
-df.to_csv('data.csv', 
-            index=False, 
+df.to_csv('data.csv',
+            index=False,
             quotechar='"',
             quoting=csv.QUOTE_NONNUMERIC)
 ```
 
-## Postgres  
+## Postgres
+
 **Import database dump**  
-If database name is `test` and user is `postgres`.  
+If database name is `test` and user is `postgres`.
 
 ```shell
 pg_restore -U postgres -d test < example.dump
 ```
 
 ## Pycharm
+
 **Add keyboard shortcut for custom command**  
 [Link](https://intellij-support.jetbrains.com/hc/en-us/community/posts/207070295/comments/207021015)
 
 **Enable pytest as default test runner**  
-![](/images/pytest-pycharm.png){:.align-center}  
+![](/images/pytest-pycharm.png){:.align-center}
 
 ## Pydantic
+
 **Allow camel case field name from frontend**  
 {%gist 97f5d44088ddf5ffa97f0cdb4b3360ba %}
 
@@ -480,20 +547,24 @@ pg_restore -U postgres -d test < example.dump
 {% gist f9cc1f2afa48762aad5352aeb3043777 %}
 
 ## Python
-**Install build utilities**  
+
+**Install build utilities**
+
 ```shell
 sudo apt update
 sudo apt install build-essential python3-dev
 sudo apt install python-pip virtualenv
 ```
 
-**Install mysqlclient**  
+**Install mysqlclient**
+
 ```shell
 sudo apt install libmysqlclient-dev mysql-server
 pip install mysqlclient
 ```
 
-**Get memory usage of python script**  
+**Get memory usage of python script**
+
 ```python
 import os
 import psutil
@@ -506,7 +577,8 @@ print(process.memory_info().rss)
 
 {% gist 6883909479adb11c0f3fee924175f21d %}
 
-**Install package from TestPyPi**  
+**Install package from TestPyPi**
+
 ```shell
 pip install --index-url https://test.pypi.org/simple
 	    --extra-index-url https://pypi.org/simple
@@ -520,11 +592,13 @@ pip install --index-url https://test.pypi.org/simple
 Place `setup.cfg` alongside `setup.py`.
 {% gist 1945560267d80062c63f88a87ade299f %}
 
-**Send email with SMTP**  
-- Enable `less secure app access` in [settings](https://myaccount.google.com/lesssecureapps) of gmail.
-{% gist 7a806edddd79f2e7e0e743ec756ca4e5 %}
+**Send email with SMTP**
 
-**Run selenium on chromium**  
+- Enable `less secure app access` in [settings](https://myaccount.google.com/lesssecureapps) of gmail.
+  {% gist 7a806edddd79f2e7e0e743ec756ca4e5 %}
+
+**Run selenium on chromium**
+
 ```shell
 sudo apt update
 sudo apt install chromium-chromedriver
@@ -540,18 +614,22 @@ Run `pip install fake_useragent`.
 {% gist 35d9049ac4d742a3ac472271e9c658db %}
 
 ## PyTorch
-**Install CPU-only version of PyTorch**  
+
+**Install CPU-only version of PyTorch**
+
 ```shell
 conda install pytorch torchvision cpuonly -c pytorch
 ```
 
-**Auto-select proper pytorch version based on GPU**  
+**Auto-select proper pytorch version based on GPU**
+
 ```shell
 pip install light-the-torch
 ltt install torch torchvision
 ```
 
-**Set random seed**  
+**Set random seed**
+
 ```python
 seed = 42
 random.seed(seed)
@@ -563,16 +641,20 @@ torch.cuda.manual_seed_all(seed)
 **Create custom transformation**  
 {% gist d5b8d17d2d31987c687b52185a978b0f %}
 
-## Pytest  
+## Pytest
+
 **Disable warnings in pytest**  
 {% gist 67534a1fc7cc0ec98613d748a2b2b039 %}
 
 ## Pytorch Lightning
+
 **Use model checkpoint callback**  
 {% gist a64feca21ea6afbe3e873dbdbed7f384 %}
 
 ## Redis
+
 **Connect to redis from commandline**
+
 ```shell
 redis-cli -h 1.1.1.1 -p 6380 -a password
 ```
@@ -581,48 +663,59 @@ redis-cli -h 1.1.1.1 -p 6380 -a password
 {% gist 73c6f7c46e9d2ac076ee7285d92f3855 %}
 
 **Use URL for redis**  
-If password is present:  
+If password is present:
+
 ```
 redis://:{password}@{hostname}:{port}/{db_number}
 ```
-else  
+
+else
+
 ```
 redis://{hostname}:{port}/{db_number}
 ```
 
-**Add password to redis server**  
-  
-Edit `/etc/redis/redis.conf` file.  
+**Add password to redis server**
+
+Edit `/etc/redis/redis.conf` file.
+
 ```shell
 sudo nano /etc/redis/redis.conf
 ```
 
 Uncomment this line and set password.
+
 ```shell
 # requirepass yourpassword
 ```
 
 Restart redis server.
+
 ```shell
 sudo service redis-server restart
 ```
 
-**Enable cluster mode locally**  
-- Edit `/etc/redis/redis.conf` file.  
+**Enable cluster mode locally**
+
+- Edit `/etc/redis/redis.conf` file.
+
 ```shell
 sudo nano /etc/redis/redis.conf
 ```
 
 - Uncomment this line and save file.
-{% gist cf2ac62e38d2e20ff06e52ac49ae58df %}
+  {% gist cf2ac62e38d2e20ff06e52ac49ae58df %}
 
 - Restart redis server.
+
 ```shell
 sudo service redis-server restart
 ```
 
 ## Requests
-**Post JSON data to endpoint**  
+
+**Post JSON data to endpoint**
+
 ```python
 import requests
 
@@ -640,12 +733,14 @@ response = requests.post('http://example.com',
 {% gist 740413007cdc3505e04f0b5ea40cb01c %}
 
 ## SSH
+
 **Add server alias to SSH config**  
 Add to `~/.ssh/config`
 
 {% gist edf6f3333146eb6ab2df0113f23dd837 %}
 
 ## Streamlit
+
 **Disable CORS**  
 Create `~/.streamlit/config.toml`
 
@@ -654,10 +749,11 @@ Create `~/.streamlit/config.toml`
 enableCORS = false
 ```
 
-**File Uploader**  
+**File Uploader**
+
 ```python
-file = st.file_uploader("Upload file", 
-                        type=['csv', 'xlsx'], 
+file = st.file_uploader("Upload file",
+                        type=['csv', 'xlsx'],
                         encoding='latin-1')
 df = pd.read_csv(file)
 ```
@@ -689,6 +785,7 @@ Add `requirements.txt`, create [Procfile](https://github.com/arvkevi/nba-roster-
 
 **Deploy streamlit on google cloud**  
 Create [Dockerfile](https://github.com/Jcharis/Streamlit_DataScience_Apps/blob/master/Deploying_Streamlit_Apps_To_GCP/Dockerfile), [app.yaml](https://github.com/Jcharis/Streamlit_DataScience_Apps/blob/master/Deploying_Streamlit_Apps_To_GCP/app.yaml) and run:
+
 ```shell
 gcloud config set project your_projectname
 gcloud app deploy
@@ -697,19 +794,21 @@ gcloud app deploy
 **Render SVG**  
 {% gist 6d32bc45b4eafb619126a9e7549fda71 %}
 
-
 ## Tensorflow
+
 **Install CPU-only version of Tensorflow**
 
 ```shell
 conda install tensorflow-mkl
 ```
+
 or
+
 ```shell
 pip install tensorflow-cpu==2.1.0
 ```
 
-**Install custom builds for CPU**  
+**Install custom builds for CPU**
 
 Find link from [https://github.com/lakshayg/tensorflow-build](https://github.com/lakshayg/tensorflow-build)
 
@@ -717,7 +816,8 @@ Find link from [https://github.com/lakshayg/tensorflow-build](https://github.com
 pip install --ignore-installed --upgrade "url"
 ```
 
-**Install with GPU support**  
+**Install with GPU support**
+
 ```shell
 conda create --name tensorflow-22 \
     tensorflow-gpu=2.2 \
@@ -727,17 +827,20 @@ conda create --name tensorflow-22 \
     pip=20.0
 ```
 
-**Use only single GPU**  
+**Use only single GPU**
+
 ```shell
 export CUDA_VISIBLE_DEVICES=0
 ```
 
-**Allocate memory as needed**  
+**Allocate memory as needed**
+
 ```shell
 export TF_FORCE_GPU_ALLOW_GROWTH='true'
 ```
 
-**Enable XLA**  
+**Enable XLA**
+
 ```python
 import tensorflow as tf
 tf.config.optimizer.set_jit(True)
@@ -750,6 +853,7 @@ tf.config.optimizer.set_jit(True)
 {% gist 5c63f2101652ecbeadf5e5c505d40922 %}
 
 **Upload tensorboard data to cloud**
+
 ```shell
 tensorboard dev upload --logdir ./logs \
     --name "XYZ" \
@@ -763,5 +867,6 @@ tensorboard dev upload --logdir ./logs \
 {% gist acea96a3ceb801de6ea7a27c9f112645 %}
 
 ## Textblob
+
 **Backtranslate a text**  
 {% gist d1c3d33098b00aa7362b0e753352cc9a %}

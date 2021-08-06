@@ -10,7 +10,7 @@ Du kannst den Quellcode des npm Packets auch über [unpkg.com/docsify/](https://
 
 ```html
 <!-- lade CSS -->
-<link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css">
+<link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css" />
 
 <!-- lade Script -->
 <script src="//unpkg.com/docsify/lib/docsify.js"></script>
@@ -22,7 +22,7 @@ Alternativ kannst du auch die [komprimierten Dateien](#komprimierte-dateien) ver
 
 ```html
 <!-- lade CSS -->
-<link rel="stylesheet" href="//unpkg.com/docsify@2.0.0/themes/vue.css">
+<link rel="stylesheet" href="//unpkg.com/docsify@2.0.0/themes/vue.css" />
 
 <!-- lade Script -->
 <script src="//unpkg.com/docsify@2.0.0/lib/docsify.js"></script>
@@ -32,7 +32,7 @@ Alternativ kannst du auch die [komprimierten Dateien](#komprimierte-dateien) ver
 
 ```html
 <!-- lade CSS -->
-<link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+<link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css" />
 
 <!-- lade Script -->
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
@@ -42,7 +42,7 @@ oder auch:
 
 ```html
 <!-- lade CSS -->
-<link rel="stylesheet" href="//unpkg.com/docsify@2.0.0/lib/themes/vue.css">
+<link rel="stylesheet" href="//unpkg.com/docsify@2.0.0/lib/themes/vue.css" />
 
 <!-- lade Script -->
 <script src="//unpkg.com/docsify@2.0.0/lib/docsify.min.js"></script>

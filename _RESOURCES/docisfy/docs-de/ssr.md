@@ -1,7 +1,7 @@
 # Server-Side Rendering
 
-* siehe <https://docsify.now.sh>
-* Quellcode siehe <https://github.com/docsifyjs/docsify-ssr-demo>
+- siehe <https://docsify.now.sh>
+- Quellcode siehe <https://github.com/docsifyjs/docsify-ssr-demo>
 
 ## Warum SSR?
 
@@ -25,9 +25,7 @@ npm i now docsify-cli -D
     "start": "docsify start . -c ssr.config.js",
     "deploy": "now -p"
   },
-  "files": [
-    "docs"
-  ],
+  "files": ["docs"],
   "docsify": {
     "config": {
       "basePath": "https://docsify.js.org/",
@@ -65,28 +63,35 @@ Du kannst eine Vorlage für deine gesammte Seite wie folgt erstellen:
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>docsify</title>
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css" title="vue">
-</head>
-<body>
-  <!--inject-app-->
-  <!--inject-config-->
-</body>
-<script src="//unpkg.com/docsify/lib/docsify.js"></script>
-<script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
-<script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
-<script src="//unpkg.com/prismjs/components/prism-markdown.min.js"></script>
-<script src="//unpkg.com/prismjs/components/prism-nginx.min.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <title>docsify</title>
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="//unpkg.com/docsify/themes/vue.css"
+      title="vue"
+    />
+  </head>
+  <body>
+    <!--inject-app-->
+    <!--inject-config-->
+  </body>
+  <script src="//unpkg.com/docsify/lib/docsify.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
+  <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
+  <script src="//unpkg.com/prismjs/components/prism-markdown.min.js"></script>
+  <script src="//unpkg.com/prismjs/components/prism-nginx.min.js"></script>
 </html>
 ```
 
 Die Vorlage sollte folgende Kommentare für die Anzeige von Inhalten enthalten:
 
- - `<!--inject-app-->`
- - `<!--inject-config-->`
+- `<!--inject-app-->`
+- `<!--inject-config-->`
 
 ## Einstellungen
 
@@ -94,11 +99,11 @@ Du kannst die Einstellungen in einer speziellen Datei oder in `package.json` vor
 
 ```js
 module.exports = {
-  template: './ssr.html',
+  template: "./ssr.html",
   config: {
-   // docsify config
-  }
-}
+    // docsify config
+  },
+};
 ```
 
 ## Deploy für deinen VPS

@@ -4,9 +4,9 @@
 
 > Un generador mágico de sitios de documentación
 
-* Simple y liviano (~21kB gzipped)
-* No genera archivos HTML estáticos
-* Multiples Diseños
+- Simple y liviano (~21kB gzipped)
+- No genera archivos HTML estáticos
+- Multiples Diseños
 
 [GitHub](https://github.com/docsifyjs/docsify/)
 [Empezar](/es/#docsify)

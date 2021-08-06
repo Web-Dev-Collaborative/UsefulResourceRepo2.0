@@ -1144,7 +1144,8 @@
       /*! no static exports found */
       /***/ function (module, exports, __webpack_require__) {
         "use strict"
-        /* WEBPACK VAR INJECTION */ ;(function (module, setImmediate) {
+        /* WEBPACK VAR INJECTION */
+        ;(function (module, setImmediate) {
           ;(function () {
             var enterModule =
               typeof reactHotLoaderGlobal !== "undefined"
@@ -1214,7 +1215,6 @@
               "/workspace/UsefulResourceRepo2.0/_RESOURCES/awesome-git-user/blogsite/node_modules/gatsby-plugin-netlify-cms/cms-identity.js"
             )
           })()
-
           ;(function () {
             var leaveModule =
               typeof reactHotLoaderGlobal !== "undefined"
@@ -1243,7 +1243,8 @@
       /*! no static exports found */
       /***/ function (module, exports, __webpack_require__) {
         "use strict"
-        /* WEBPACK VAR INJECTION */ ;(function (module) {
+        /* WEBPACK VAR INJECTION */
+        ;(function (module) {
           ;(function () {
             var enterModule =
               typeof reactHotLoaderGlobal !== "undefined"
@@ -1295,7 +1296,6 @@
            */
 
           _netlifyCmsApp.default.registerPreviewStyle("cms.css")
-
           ;(function () {
             var reactHotLoader =
               typeof reactHotLoaderGlobal !== "undefined"
@@ -1317,7 +1317,6 @@
               "/workspace/UsefulResourceRepo2.0/_RESOURCES/awesome-git-user/blogsite/node_modules/gatsby-plugin-netlify-cms/cms.js"
             )
           })()
-
           ;(function () {
             var leaveModule =
               typeof reactHotLoaderGlobal !== "undefined"

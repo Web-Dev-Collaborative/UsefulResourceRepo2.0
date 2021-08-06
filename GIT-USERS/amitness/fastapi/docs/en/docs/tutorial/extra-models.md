@@ -4,12 +4,12 @@ Continuing with the previous example, it will be common to have more than one re
 
 This is especially the case for user models, because:
 
-* The **input model** needs to be able to have a password.
-* The **output model** should not have a password.
-* The **database model** would probably need to have a hashed password.
+- The **input model** needs to be able to have a password.
+- The **output model** should not have a password.
+- The **database model** would probably need to have a hashed password.
 
 !!! danger
-    Never store user's plaintext passwords. Always store a "secure hash" that you can then verify.
+Never store user's plaintext passwords. Always store a "secure hash" that you can then verify.
 
     If you don't know, you will learn what a "password hash" is in the [security chapters](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
 
@@ -132,7 +132,7 @@ UserInDB(
 ```
 
 !!! warning
-    The supporting additional functions are just to demo a possible flow of the data, but they of course are not providing any real security.
+The supporting additional functions are just to demo a possible flow of the data, but they of course are not providing any real security.
 
 ## Reduce duplication
 
@@ -163,7 +163,7 @@ It will be defined in OpenAPI with `anyOf`.
 To do that, use the standard Python type hint <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
 
 !!! note
-    When defining a <a href="https://pydantic-docs.helpmanual.io/usage/types/#unions" class="external-link" target="_blank">`Union`</a>, include the most specific type first, followed by the less specific type. In the example below, the more specific `PlaneItem` comes before `CarItem` in `Union[PlaneItem, CarItem]`.
+When defining a <a href="https://pydantic-docs.helpmanual.io/usage/types/#unions" class="external-link" target="_blank">`Union`</a>, include the most specific type first, followed by the less specific type. In the example below, the more specific `PlaneItem` comes before `CarItem` in `Union[PlaneItem, CarItem]`.
 
 ```Python hl_lines="1  14-15  18-20  33"
 {!../../../docs_src/extra_models/tutorial003.py!}

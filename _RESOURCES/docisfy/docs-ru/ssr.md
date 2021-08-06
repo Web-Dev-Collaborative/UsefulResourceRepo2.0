@@ -5,6 +5,7 @@
 Репозиторий здесь https://github.com/QingWei-Li/docsify-ssr-demo
 
 ## Почему SSR?
+
 - Лучший для SEO
 - Почувствовать себя крутым
 
@@ -25,9 +26,7 @@ npm i now docsify-cli -D
     "start": "docsify start . -c ssr.config.js",
     "deploy": "now -p"
   },
-  "files": [
-    "docs"
-  ],
+  "files": ["docs"],
   "docsify": {
     "config": {
       "basePath": "https://docsify.js.org/",
@@ -65,27 +64,35 @@ now -p
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>docsify</title>
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css" title="vue">
-</head>
-<body>
-  <!--inject-app-->
-  <!--inject-config-->
-  <script src="//unpkg.com/docsify/lib/docsify.js"></script>
-  <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
-  <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
-  <script src="//unpkg.com/prismjs/components/prism-markdown.min.js"></script>
-  <script src="//unpkg.com/prismjs/components/prism-nginx.min.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>docsify</title>
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="//unpkg.com/docsify/themes/vue.css"
+      title="vue"
+    />
+  </head>
+  <body>
+    <!--inject-app-->
+    <!--inject-config-->
+    <script src="//unpkg.com/docsify/lib/docsify.js"></script>
+    <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-markdown.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-nginx.min.js"></script>
+  </body>
 </html>
 ```
 
 Шаблон должен содержать эти комментарии для отображаемого содержимого приложения.
- - `<!--inject-app-->`
- - `<!--inject-config-->`
+
+- `<!--inject-app-->`
+- `<!--inject-config-->`
 
 ## Конфигурация
 
@@ -93,12 +100,12 @@ now -p
 
 ```js
 module.exports = {
-  template: './ssr.html',
+  template: "./ssr.html",
   maxAge: 60 * 60 * 1000, // lru-cache config
   config: {
-   // docsify config
-  }
-}
+    // docsify config
+  },
+};
 ```
 
 ## Развертывание на VPS
@@ -122,5 +129,3 @@ renderer.renderToString(url)
   .then(html => {})
   .catch(err => {})
 ```
-
-

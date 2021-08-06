@@ -2,17 +2,17 @@
 
 PREREQUISITES:
 
-*   Some familiarity with C++.
-*   Must have [downloaded TensorFlow source](../../install/source.md), and be
-    able to build it.
+- Some familiarity with C++.
+- Must have [downloaded TensorFlow source](../../install/source.md), and be
+  able to build it.
 
 We divide the task of supporting a file format into two pieces:
 
-*   File formats: We use a reader `tf.data.Dataset` to read raw *records* (which
-    are typically represented by scalar string tensors, but can have more
-    structure) from a file.
-*   Record formats: We use decoder or parsing ops to turn a string record
-    into tensors usable by TensorFlow.
+- File formats: We use a reader `tf.data.Dataset` to read raw _records_ (which
+  are typically represented by scalar string tensors, but can have more
+  structure) from a file.
+- Record formats: We use decoder or parsing ops to turn a string record
+  into tensors usable by TensorFlow.
 
 For example, to re-implement `tf.contrib.data.make_csv_dataset` function, we
 could use `tf.data.TextLineDataset` to extract the records, and then
@@ -23,30 +23,30 @@ each line of text in the dataset.
 
 ## Writing a `Dataset` for a file format
 
-A `tf.data.Dataset` represents a sequence of *elements*, which can be the
+A `tf.data.Dataset` represents a sequence of _elements_, which can be the
 individual records in a file. There are several examples of "reader" datasets
 that are already built into TensorFlow:
 
-*   `tf.data.TFRecordDataset`
-    ([source in `kernels/data/reader_dataset_ops.cc`](https://www.tensorflow.org/code/tensorflow/core/kernels/data/reader_dataset_ops.cc))
-*   `tf.data.FixedLengthRecordDataset`
-    ([source in `kernels/data/reader_dataset_ops.cc`](https://www.tensorflow.org/code/tensorflow/core/kernels/data/reader_dataset_ops.cc))
-*   `tf.data.TextLineDataset`
-    ([source in `kernels/data/reader_dataset_ops.cc`](https://www.tensorflow.org/code/tensorflow/core/kernels/data/reader_dataset_ops.cc))
+- `tf.data.TFRecordDataset`
+  ([source in `kernels/data/reader_dataset_ops.cc`](https://www.tensorflow.org/code/tensorflow/core/kernels/data/reader_dataset_ops.cc))
+- `tf.data.FixedLengthRecordDataset`
+  ([source in `kernels/data/reader_dataset_ops.cc`](https://www.tensorflow.org/code/tensorflow/core/kernels/data/reader_dataset_ops.cc))
+- `tf.data.TextLineDataset`
+  ([source in `kernels/data/reader_dataset_ops.cc`](https://www.tensorflow.org/code/tensorflow/core/kernels/data/reader_dataset_ops.cc))
 
 Each of these implementations comprises three related classes:
 
-* A `tensorflow::DatasetOpKernel` subclass (e.g. `TextLineDatasetOp`), which
+- A `tensorflow::DatasetOpKernel` subclass (e.g. `TextLineDatasetOp`), which
   tells TensorFlow how to construct a dataset object from the inputs to and
   attrs of an op, in its `MakeDataset()` method.
 
-* A `tensorflow::GraphDatasetBase` subclass (e.g. `TextLineDatasetOp::Dataset`),
-  which represents the *immutable* definition of the dataset itself, and tells
+- A `tensorflow::GraphDatasetBase` subclass (e.g. `TextLineDatasetOp::Dataset`),
+  which represents the _immutable_ definition of the dataset itself, and tells
   TensorFlow how to construct an iterator object over that dataset, in its
   `MakeIteratorInternal()` method.
 
-* A `tensorflow::DatasetIterator<Dataset>` subclass (e.g.
-  `TextLineDatasetOp::Dataset::Iterator`), which represents the *mutable* state
+- A `tensorflow::DatasetIterator<Dataset>` subclass (e.g.
+  `TextLineDatasetOp::Dataset::Iterator`), which represents the _mutable_ state
   of an iterator over a particular dataset, and tells TensorFlow how to get the
   next element from the iterator, in its `GetNextInternal()` method.
 
@@ -286,19 +286,19 @@ You can see some examples of `Dataset` wrapper classes in
 Generally this is an ordinary op that takes a scalar string record as input, and
 so follow [the instructions to add an Op](./op.md).
 You may optionally take a scalar string key as input, and include that in error
-messages reporting improperly formatted data.  That way users can more easily
+messages reporting improperly formatted data. That way users can more easily
 track down where the bad data came from.
 
 Examples of Ops useful for decoding records:
 
-*   `tf.parse_single_example` (and `tf.parse_example`)
-*   `tf.decode_csv`
-*   `tf.decode_raw`
+- `tf.parse_single_example` (and `tf.parse_example`)
+- `tf.decode_csv`
+- `tf.decode_raw`
 
 Note that it can be useful to use multiple Ops to decode a particular record
-format.  For example, you may have an image saved as a string in
+format. For example, you may have an image saved as a string in
 [a `tf.train.Example` protocol buffer](https://www.tensorflow.org/code/tensorflow/core/example/example.proto).
 Depending on the format of that image, you might take the corresponding output
 from a `tf.parse_single_example` op and call `tf.image.decode_jpeg`,
-`tf.image.decode_png`, or `tf.decode_raw`.  It is common to take the output
+`tf.image.decode_png`, or `tf.decode_raw`. It is common to take the output
 of `tf.decode_raw` and use `tf.slice` and `tf.reshape` to extract pieces.

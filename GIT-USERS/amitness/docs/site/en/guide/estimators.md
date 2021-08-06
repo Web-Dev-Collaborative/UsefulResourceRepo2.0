@@ -4,13 +4,13 @@ This document introduces `tf.estimator`—a high-level TensorFlow
 API that greatly simplifies machine learning programming. Estimators encapsulate
 the following actions:
 
-*   training
-*   evaluation
-*   prediction
-*   export for serving
+- training
+- evaluation
+- prediction
+- export for serving
 
 You may either use the pre-made Estimators we provide or write your
-own custom Estimators.  All Estimators—whether pre-made or custom—are
+own custom Estimators. All Estimators—whether pre-made or custom—are
 classes based on the `tf.estimator.Estimator` class.
 
 For a quick example try [Estimator tutorials](../tutorials/estimators/linear.ipynb).
@@ -20,48 +20,45 @@ For an overview of the API design, see our white paper [here](https://arxiv.org/
 Note: TensorFlow also includes a deprecated `Estimator` class at
 `tf.contrib.learn.Estimator`, which you should not use.
 
-
 ## Advantages of Estimators
 
 Estimators provide the following benefits:
 
-*   You can run Estimator-based models on a local host or on a
-    distributed multi-server environment without changing your model.
-    Furthermore, you can run Estimator-based models on CPUs, GPUs,
-    or TPUs without recoding your model.
-*   Estimators simplify sharing implementations between model developers.
-*   You can develop a state of the art model with high-level intuitive code.
-    In short, it is generally much easier to create models with Estimators
-    than with the low-level TensorFlow APIs.
-*   Estimators are themselves built on `tf.keras.layers`, which
-    simplifies customization.
-*   Estimators build the graph for you.
-*   Estimators provide a safe distributed training loop that controls how and
-    when to:
-    *   build the graph
-    *   initialize variables
-    *   load data
-    *   handle exceptions
-    *   create checkpoint files and recover from failures
-    *   save summaries for TensorBoard
+- You can run Estimator-based models on a local host or on a
+  distributed multi-server environment without changing your model.
+  Furthermore, you can run Estimator-based models on CPUs, GPUs,
+  or TPUs without recoding your model.
+- Estimators simplify sharing implementations between model developers.
+- You can develop a state of the art model with high-level intuitive code.
+  In short, it is generally much easier to create models with Estimators
+  than with the low-level TensorFlow APIs.
+- Estimators are themselves built on `tf.keras.layers`, which
+  simplifies customization.
+- Estimators build the graph for you.
+- Estimators provide a safe distributed training loop that controls how and
+  when to:
+  - build the graph
+  - initialize variables
+  - load data
+  - handle exceptions
+  - create checkpoint files and recover from failures
+  - save summaries for TensorBoard
 
 When writing an application with Estimators, you must separate the data input
-pipeline from the model.  This separation simplifies experiments with
+pipeline from the model. This separation simplifies experiments with
 different data sets.
-
 
 ## Pre-made Estimators
 
 Pre-made Estimators enable you to work at a much higher conceptual level
 than the base TensorFlow APIs. You no longer have to worry about creating
 the computational graph or sessions since Estimators handle all
-the "plumbing" for you.  That is, pre-made Estimators create and manage
-`tf.Graph` and `tf.Session` objects for you.  Furthermore,
+the "plumbing" for you. That is, pre-made Estimators create and manage
+`tf.Graph` and `tf.Session` objects for you. Furthermore,
 pre-made Estimators let you experiment with different model architectures by
-making only minimal code changes.  `tf.estimator.DNNClassifier`,
+making only minimal code changes. `tf.estimator.DNNClassifier`,
 for example, is a pre-made Estimator class that trains classification models
 based on dense, feed-forward neural networks.
-
 
 ### Structure of a pre-made Estimators program
 
@@ -73,10 +70,10 @@ of the following four steps:
     import the test set. Each dataset importing function must return two
     objects:
 
-    *   a dictionary in which the keys are feature names and the
-        values are Tensors (or SparseTensors) containing the corresponding
-        feature data
-    *   a Tensor containing one or more labels
+    - a dictionary in which the keys are feature names and the
+      values are Tensors (or SparseTensors) containing the corresponding
+      feature data
+    - a Tensor containing one or more labels
 
     For example, the following code illustrates the basic skeleton for
     an input function:
@@ -90,7 +87,7 @@ of the following four steps:
 2.  **Define the feature columns.** Each `tf.feature_column`
     identifies a feature name, its type, and any input pre-processing.
     For example, the following snippet creates three feature
-    columns that hold integer or floating-point data.  The first two
+    columns that hold integer or floating-point data. The first two
     feature columns simply identify the feature's name and type. The
     third feature column also specifies a lambda the program will invoke
     to scale the raw data:
@@ -101,7 +98,7 @@ of the following four steps:
         median_education = tf.feature_column.numeric_column('median_education',
                             normalizer_fn=lambda x: x - global_education_mean)
 
-3.  **Instantiate the relevant pre-made Estimator.**  For example, here's
+3.  **Instantiate the relevant pre-made Estimator.** For example, here's
     a sample instantiation of a pre-made Estimator named `LinearClassifier`:
 
         # Instantiate an estimator, passing the feature columns.
@@ -115,20 +112,18 @@ of the following four steps:
         # my_training_set is the function created in Step 1
         estimator.train(input_fn=my_training_set, steps=2000)
 
-
 ### Benefits of pre-made Estimators
 
 Pre-made Estimators encode best practices, providing the following benefits:
 
-*   Best practices for determining where different parts of the computational
-    graph should run, implementing strategies on a single machine or on a
-    cluster.
-*   Best practices for event (summary) writing and universally useful
-    summaries.
+- Best practices for determining where different parts of the computational
+  graph should run, implementing strategies on a single machine or on a
+  cluster.
+- Best practices for event (summary) writing and universally useful
+  summaries.
 
 If you don't use pre-made Estimators, you must implement the preceding
 features yourself.
-
 
 ## Custom Estimators
 
@@ -139,7 +134,6 @@ someone else has already implemented the model function. When relying
 on a custom Estimator, you must write the model function yourself. A
 [companion document](../guide/custom_estimators.md)
 explains how to write the model function.
-
 
 ## Recommended workflow
 
@@ -153,7 +147,6 @@ We recommend the following workflow:
     experiments to determine which pre-made Estimator produces the
     best results.
 4.  Possibly, further improve your model by building your own custom Estimator.
-
 
 ## Creating Estimators from Keras models
 
@@ -187,6 +180,7 @@ train_input_fn = tf.estimator.inputs.numpy_input_fn(
 # To train, we call Estimator's train function:
 est_inception_v3.train(input_fn=train_input_fn, steps=2000)
 ```
+
 Note that the names of feature columns and labels of a keras estimator come from
 the corresponding compiled keras model. For example, the input key names for
 `train_input_fn` above can be obtained from `keras_inception_v3.input_names`,

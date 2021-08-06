@@ -77,7 +77,6 @@ Railscasts-like style (c) Visoft, Inc. (Damien White)
   color: #da4939;
 }
 
-
 .hljs-symbol,
 .hljs-built_in,
 .ruby .hljs-symbol .hljs-string,
@@ -92,8 +91,6 @@ Railscasts-like style (c) Visoft, Inc. (Damien White)
 .markdown .hljs-link_url {
   text-decoration: underline;
 }
-
-
 
 .hljs-params,
 .hljs-variable,

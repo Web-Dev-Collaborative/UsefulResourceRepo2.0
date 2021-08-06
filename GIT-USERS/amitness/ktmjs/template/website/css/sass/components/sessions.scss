@@ -1,7 +1,8 @@
-@import 'base/typography';
-@import 'base/pallete';
+@import "base/typography";
+@import "base/pallete";
 
-.Sessions {}
+.Sessions {
+}
 .Sessions .Session {
   margin-top: 80px;
 
@@ -10,10 +11,9 @@
   }
 }
 
-.Session  {
-
+.Session {
   &__Number {
-    @include font('lato', 'bold', 16px, 19px);
+    @include font("lato", "bold", 16px, 19px);
     letter-spacing: 2px;
     text-transform: uppercase;
   }
@@ -21,25 +21,25 @@
   &__Splitter {
     border: 0;
     border-bottom: 3px solid;
-    @include color('pure-black', 'border');
+    @include color("pure-black", "border");
   }
 
-  &__Title  {
+  &__Title {
     margin-top: 20px;
-    @include font('lato', 'bold', 25px, 30px);
+    @include font("lato", "bold", 25px, 30px);
   }
 
   &__Time {
     margin-top: 5px;
-    @include font('lato', 'regular', 18px, 22px);
+    @include font("lato", "regular", 18px, 22px);
   }
 
-  &__Description  {
+  &__Description {
     margin-top: 20px;
-    @include font('georgia', 'regular', 16px, 25px);
+    @include font("georgia", "regular", 16px, 25px);
   }
 
-  &__Speaker  {
+  &__Speaker {
     margin-top: 25px;
   }
 }

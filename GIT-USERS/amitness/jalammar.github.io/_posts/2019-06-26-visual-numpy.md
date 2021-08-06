@@ -4,14 +4,12 @@ published: True
 title: A Visual Intro to NumPy and Data Representation
 ---
 
-
 <div class="img-div-any-width" markdown="0">
   <image src="/images/numpy/numpy-array.png"/>
   <br />
 </div>
 
 The [NumPy](https://www.numpy.org/) package is the workhorse of data analysis, machine learning, and scientific computing in the python ecosystem. It vastly simplifies manipulating and crunching vectors and matrices. Some of python's leading package rely on NumPy as a fundamental piece of their infrastructure (examples include scikit-learn, SciPy, pandas, and tensorflow). Beyond the ability to slice and dice numeric data, mastering numpy will give you an edge when dealing and debugging with advanced usecases in these libraries.
-
 
 In this post, we'll look at some of the main ways to use NumPy and how it can represent different types of data (tables, images, text...etc) before we an serve them to machine learning models.
 
@@ -20,7 +18,6 @@ In this post, we'll look at some of the main ways to use NumPy and how it can re
 ```python
 import numpy as np
 ```
-
 
 ## Creating Arrays
 
@@ -41,6 +38,7 @@ There are often cases when we want NumPy to initialize the values of the array f
 Once we've created our arrays, we can start to manipulate them in interesting ways.
 
 ## Array Arithmetic
+
 Let's create two NumPy arrays to showcase their usefulness. We'll call them `data` and `ones`:
 
 <div class="img-div-any-width" markdown="0">
@@ -50,7 +48,7 @@ Let's create two NumPy arrays to showcase their usefulness. We'll call them `dat
 
 <br />
 
-Adding them up position-wise (i.e. adding the values of each row) is as simple as typing ```data + ones```:
+Adding them up position-wise (i.e. adding the values of each row) is as simple as typing `data + ones`:
 
 <div class="img-div-any-width" markdown="0">
   <image src="/images/numpy/numpy-arrays-adding-1.png"/>
@@ -70,8 +68,7 @@ And it's not only addition that we can do this way:
 
 <br />
 
-There are often cases when we want carry out an operation between an array and a single number (we can also call this an operation between a vector and a scalar). Say, for example, our array represents distance in miles and we want to convert it to kilometers. We simply say ```data * 1.6```:
-
+There are often cases when we want carry out an operation between an array and a single number (we can also call this an operation between a vector and a scalar). Say, for example, our array represents distance in miles and we want to convert it to kilometers. We simply say `data * 1.6`:
 
 <div class="img-div-any-width" markdown="0">
   <image src="/images/numpy/numpy-array-broadcast.png"/>
@@ -80,8 +77,7 @@ There are often cases when we want carry out an operation between an array and a
 
 <br />
 
-See how NumPy understood that operation to mean that the multiplication should happen with each cell? That concept is called *broadcasting*, and it's very useful.
-
+See how NumPy understood that operation to mean that the multiplication should happen with each cell? That concept is called _broadcasting_, and it's very useful.
 
 ## Indexing
 
@@ -102,7 +98,6 @@ Additional benefits NumPy gives us are aggregation functions:
 </div>
 
 In addition to `min`, `max`, and `sum`, you get all the greats like `mean` to get the average, `prod` to get the result of multiplying all the elements together, `std` to get standard deviation, and [plenty of others](https://jakevdp.github.io/PythonDataScienceHandbook/02.04-computation-on-arrays-aggregates.html).
-
 
 ## In more dimensions
 
@@ -185,13 +180,13 @@ Indexing and slicing operations become even more useful when we're manipulating 
 ### Matrix Aggregation
 
 We can aggregate matrices the same way we aggregated vectors:
+
 <div class="img-div-any-width" markdown="0">
   <image src="/images/numpy/numpy-matrix-aggregation-1.png"/>
   <br />
 </div>
 
 <br />
-
 
 Not only can we aggregate all the values in a matrix, but we can also aggregate across the rows or columns by using the `axis` parameter:
 
@@ -201,7 +196,6 @@ Not only can we aggregate all the values in a matrix, but we can also aggregate 
 </div>
 
 <br />
-
 
 ## Transposing and Reshaping
 
@@ -214,26 +208,23 @@ A common need when dealing with matrices is the need to rotate them. This is oft
 
 <br />
 
-
 In more advanced use case, you may find yourself needing to switch the dimensions of a certain matrix. This is often the case in machine learning applications where a certain model expects a certain shape for the inputs that is different from your dataset. NumPy's `reshape()` method is useful in these cases. You just pass it the new dimensions you want for the matrix. You can pass -1 for a dimension and NumPy can infer the correct dimension based on your matrix:
-
 
 <div class="img-div-any-width" markdown="0">
   <image src="/images/numpy/numpy-reshape.png"/>
   <br />
 </div>
 
-
 <br />
 
 ## Yet More Dimensions
+
 NumPy can do everything we've mentioned in any number of dimensions. Its central data structure is called ndarray (N-Dimensional Array) for a reason.
 
 <div class="img-div-any-width" markdown="0">
   <image src="/images/numpy/numpy-3d-array.png"/>
   <br />
 </div>
-
 
 In a lot of ways, dealing with a new dimension is just adding a comma to the parameters of a NumPy function:
 
@@ -242,13 +233,12 @@ In a lot of ways, dealing with a new dimension is just adding a comma to the par
   <br />
 </div>
 
-
 ## Practical Usage
 
 And now for the payoff. Here are some examples of the useful things NumPy will help you through.
 
-
 ### Formulas
+
 Implementing mathematical formulas that work on matrices and vectors is a key use case to consider NumPy for. It's why NumPy is the darling of the scientific python community. For example, consider the mean square error formula that is central to supervised machine learning models tackling regression problems:
 
 <div class="img-div-any-width" markdown="0">
@@ -305,13 +295,13 @@ Now we sum these values:
 
 Which results in the error value for that prediction and a score for the quality of the model.
 
-
 ### Data Representation
 
 Think of all the data types you'll need to crunch and build models around (spreadsheets, images, audio...etc). So many of them are perfectly suited for representation in an n-dimensional array:
 
 #### Tables and Spreadsheets
- * A spreadsheet or a table of values is a two dimensional matrix. Each sheet in a spreadsheet can be its own variable. The most popular abstraction in python for those is the [pandas dataframe](/gentle-visual-intro-to-data-analysis-python-pandas/), which actually uses NumPy and builds on top of it.
+
+- A spreadsheet or a table of values is a two dimensional matrix. Each sheet in a spreadsheet can be its own variable. The most popular abstraction in python for those is the [pandas dataframe](/gentle-visual-intro-to-data-analysis-python-pandas/), which actually uses NumPy and builds on top of it.
 
  <div class="img-div-any-width" markdown="0">
    <image src="/images/pandas-intro/0%20excel-to-pandas.png"/>
@@ -319,9 +309,10 @@ Think of all the data types you'll need to crunch and build models around (sprea
  </div>
 
 #### Audio and Timeseries
- * An audio file is a one-dimensional array of samples. Each sample is a number representing a tiny chunk of the audio signal. CD-quality audio may have 44,100 samples per second and each sample is an integer between -65535 and 65536. Meaning if you have a ten-seconds WAVE file of CD-quality, you can load it in a NumPy array with length 10 * 44,100 = 441,000 samples. Want to extract the first second of audio? simply load the file into a NumPy array that we'll call `audio`, and get `audio[:44100]`.
 
- Here's a look at a slice of an audio file:
+- An audio file is a one-dimensional array of samples. Each sample is a number representing a tiny chunk of the audio signal. CD-quality audio may have 44,100 samples per second and each sample is an integer between -65535 and 65536. Meaning if you have a ten-seconds WAVE file of CD-quality, you can load it in a NumPy array with length 10 \* 44,100 = 441,000 samples. Want to extract the first second of audio? simply load the file into a NumPy array that we'll call `audio`, and get `audio[:44100]`.
+
+Here's a look at a slice of an audio file:
 
   <div class="img-div-any-width" markdown="0">
     <image src="/images/numpy/numpy-audio.png"/>
@@ -331,28 +322,27 @@ Think of all the data types you'll need to crunch and build models around (sprea
 The same goes for time-series data (for example, the price of a stock over time).
 
 #### Images
- * An image is a matrix of pixels of size (height x width).
 
-   * If the image is black and white (a.k.a. grayscale), each pixel can be represented by a single number (commonly between 0 (black) and 255 (white)). Want to crop the top left 10 x 10 pixel part of the image? Just tell NumPy to get you `image[:10,:10]`.
+- An image is a matrix of pixels of size (height x width).
+
+  - If the image is black and white (a.k.a. grayscale), each pixel can be represented by a single number (commonly between 0 (black) and 255 (white)). Want to crop the top left 10 x 10 pixel part of the image? Just tell NumPy to get you `image[:10,:10]`.
 
 Here's a look at a slice of an image file:
-
 
  <div class="img-div-any-width" markdown="0">
    <image src="/images/numpy/numpy-grayscale-image.png"/>
    <br />
  </div>
 
+- If the image is colored, then each pixel is represented by three numbers - a value for each of red, green, and blue. In that case we need a 3rd dimension (because each cell can only contain one number). So a colored image is represented by an ndarray of dimensions: (height x width x 3).
 
-   * If the image is colored, then each pixel is represented by three numbers - a value for each of red, green, and blue. In that case we need a 3rd dimension (because each cell can only contain one number). So a colored image is represented by an ndarray of dimensions: (height x width x 3).
-
-
-        <div class="img-div-any-width" markdown="0">
-          <image src="/images/numpy/numpy-color-image.png"/>
-          <br />
-        </div>
+     <div class="img-div-any-width" markdown="0">
+       <image src="/images/numpy/numpy-color-image.png"/>
+       <br />
+     </div>
 
 #### Language
+
 If we're dealing with text, the story is a little different. The numeric representation of text requires a step of building a vocabulary (an inventory of all the unique words the model knows) and an [embedding step](/illustrated-word2vec/). Let us see the steps of numerically representing this (translated) quote by an ancient spirit:
 
 "Have the bards who preceded me left any theme unsung?"
@@ -385,10 +375,7 @@ These ids still don't provide much information value to a model. So before feedi
   <br />
 </div>
 
-
-
-You can see that this NumPy array has the dimensions [embedding_dimension x sequence_length]. In practice these would be the other way around, but I'm presenting it this way for visual consistency. For performance reasons, deep learning models tend to preserve the first dimension for batch size (because the model can be trained faster if multiple examples are trained in parallel). This is a clear case where ```reshape()``` becomes super useful. A model like [BERT](/illustrated-bert/), for example, would expect its inputs in the shape: [batch_size, sequence_length, embedding_size].
-
+You can see that this NumPy array has the dimensions [embedding_dimension x sequence_length]. In practice these would be the other way around, but I'm presenting it this way for visual consistency. For performance reasons, deep learning models tend to preserve the first dimension for batch size (because the model can be trained faster if multiple examples are trained in parallel). This is a clear case where `reshape()` becomes super useful. A model like [BERT](/illustrated-bert/), for example, would expect its inputs in the shape: [batch_size, sequence_length, embedding_size].
 
 <div class="img-div-any-width" markdown="0">
   <image src="/images/numpy/numpy-nlp-bert-shape.png"/>

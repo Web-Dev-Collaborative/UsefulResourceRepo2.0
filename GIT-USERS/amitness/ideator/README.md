@@ -7,19 +7,19 @@ Developed as part of [Techrise](https://www.techrise.me/) web development bootca
 ## Usage
 
 1. Clone the repo  
-  ```git clone https://github.com/amitness/ideator```
+   `git clone https://github.com/amitness/ideator`
 
 2. Install dependencies  
-  ```bundle install```
+   `bundle install`
 
 3. Create database with rake.
-    ```
-    rake db:create
-    rake db:migrate
-    ```
-
+   ```
+   rake db:create
+   rake db:migrate
+   ```
 
 ## Contributing
+
 1. [Create an issue](https://github.com/amitness/ideator/issues/new) if there is one.
 2. [Fork the repo](https://github.com/amitness/ideator/fork).
 3. Create your feature branch (`git checkout -b your-feature`).

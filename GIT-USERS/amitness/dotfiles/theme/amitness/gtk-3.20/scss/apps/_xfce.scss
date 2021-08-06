@@ -5,26 +5,28 @@
 ****************/
 
 @include exports("xfce") {
-    .XfceHeading {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        background-image: none;
-        background-color: $base_color;
-        color: $text_color;
+  .XfceHeading {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-image: none;
+    background-color: $base_color;
+    color: $text_color;
+  }
+
+  .xfce4-panel {
+    @extend %panel;
+
+    font: inherit;
+
+    button {
+      @extend %panelbutton;
     }
 
-    .xfce4-panel {
-        @extend %panel;
+    menu {
+      -gtk-icon-effect: none;
 
-        font: inherit;
-
-        button { @extend %panelbutton; }
-
-        menu {
-            -gtk-icon-effect: none;
-
-            text-shadow: none;
-        }
+      text-shadow: none;
     }
+  }
 }

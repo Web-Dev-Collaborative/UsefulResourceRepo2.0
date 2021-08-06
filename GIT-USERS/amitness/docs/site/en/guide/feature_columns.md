@@ -29,18 +29,18 @@ input data. Real-life input data, however, often contains non-numerical
 (categorical) data. For example, consider a `product_class` feature that can
 contain the following three non-numerical values:
 
-* `kitchenware`
-* `electronics`
-* `sports`
+- `kitchenware`
+- `electronics`
+- `sports`
 
 ML models generally represent categorical values as simple vectors in which a
 1 represents the presence of a value and a 0 represents the absence of a value.
 For example, when `product_class` is set to `sports`, an ML model would usually
-represent `product_class` as  `[0, 0, 1]`, meaning:
+represent `product_class` as `[0, 0, 1]`, meaning:
 
-* `0`: `kitchenware` is absent
-* `0`: `electronics` is absent
-* `1`: `sports` is present
+- `0`: `kitchenware` is absent
+- `0`: `electronics` is absent
+- `1`: `sports` is present
 
 So, although raw data can be numerical or categorical, an ML model represents
 all features as numbers.
@@ -78,10 +78,10 @@ Let's look at these functions in more detail.
 The Iris classifier calls the `tf.feature_column.numeric_column` function for
 all input features:
 
-  * `SepalLength`
-  * `SepalWidth`
-  * `PetalLength`
-  * `PetalWidth`
+- `SepalLength`
+- `SepalWidth`
+- `PetalLength`
+- `PetalWidth`
 
 Although `tf.numeric_column` provides optional arguments, calling
 `tf.numeric_column` without any arguments, as follows, is a fine way to specify
@@ -96,7 +96,7 @@ numeric_feature_column = tf.feature_column.numeric_column(key="SepalLength")
 To specify a non-default numerical data type, use the `dtype` argument. For
 example:
 
-``` python
+```python
 # Represent a tf.float64 scalar.
 numeric_feature_column = tf.feature_column.numeric_column(key="SepalLength",
                                                           dtype=tf.float64)
@@ -106,6 +106,7 @@ By default, a numeric column creates a single value (scalar). Use the shape
 argument to specify another shape. For example:
 
 <!--TODO(markdaoust) link to full example-->
+
 ```python
 # Represent a 10-element vector in which each cell contains a tf.float32.
 vector_feature_column = tf.feature_column.numeric_column(key="Bowling",
@@ -115,10 +116,11 @@ vector_feature_column = tf.feature_column.numeric_column(key="Bowling",
 matrix_feature_column = tf.feature_column.numeric_column(key="MyMatrix",
                                                          shape=[10,5])
 ```
+
 ### Bucketized column
 
 Often, you don't want to feed a number directly into the model, but instead
-split its value into different categories based on numerical ranges.  To do so,
+split its value into different categories based on numerical ranges. To do so,
 create a `tf.feature_column.bucketized_column`. For
 example, consider raw data that represents the year a house was built. Instead
 of representing that year as a scalar numeric column, we could split the year
@@ -133,12 +135,12 @@ Dividing year data into four buckets.
 
 The model will represent the buckets as follows:
 
-|Date Range |Represented as... |
-|:----------|:-----------------|
-|< 1960               | [1, 0, 0, 0] |
-|>= 1960 but < 1980   | [0, 1, 0, 0] |
-|>= 1980 but < 2000   | [0, 0, 1, 0] |
-|>= 2000              | [0, 0, 0, 1] |
+| Date Range         | Represented as... |
+| :----------------- | :---------------- |
+| < 1960             | [1, 0, 0, 0]      |
+| >= 1960 but < 1980 | [0, 1, 0, 0]      |
+| >= 1980 but < 2000 | [0, 0, 1, 0]      |
+| >= 2000            | [0, 0, 0, 1]      |
 
 Why would you want to split a number—a perfectly valid input to your
 model—into a categorical value? Well, notice that the categorization splits a
@@ -154,6 +156,7 @@ flexibility that the model can use to learn.
 The following code demonstrates how to create a bucketized feature:
 
 <!--TODO(markdaoust) link to full example - housing price grid?-->
+
 ```python
 # First, convert the raw input to a numeric column.
 numeric_feature_column = tf.feature_column.numeric_column("Year")
@@ -163,9 +166,9 @@ bucketized_feature_column = tf.feature_column.bucketized_column(
     source_column = numeric_feature_column,
     boundaries = [1960, 1980, 2000])
 ```
+
 Note that specifying a _three_-element boundaries vector creates a
 _four_-element bucketized vector.
-
 
 ### Categorical identity column
 
@@ -173,7 +176,7 @@ _four_-element bucketized vector.
 columns. In traditional bucketized columns, each bucket represents a range of
 values (for example, from 1960 to 1979). In a categorical identity column, each
 bucket represents a single, unique integer. For example, let's say you want to
-represent the integer range `[0, 4)`.  That is, you want to represent the
+represent the integer range `[0, 4)`. That is, you want to represent the
 integers 0, 1, 2, or 3. In this case, the categorical identity mapping looks
 like this:
 
@@ -190,14 +193,14 @@ in a categorical identity column. For example, instead of using a string to
 represent the `product_class`, let's represent each class with a unique integer
 value. That is:
 
-* `0="kitchenware"`
-* `1="electronics"`
-* `2="sport"`
+- `0="kitchenware"`
+- `1="electronics"`
+- `2="sport"`
 
 Call `tf.feature_column.categorical_column_with_identity` to implement a
 categorical identity column. For example:
 
-``` python
+```python
 # Create categorical output for an integer feature named "my_feature_b",
 # The values of my_feature_b must be >= 0 and < num_buckets
 identity_feature_column = tf.feature_column.categorical_column_with_identity(
@@ -230,8 +233,8 @@ As you can see, categorical vocabulary columns are kind of an enum version of
 categorical identity columns. TensorFlow provides two different functions to
 create categorical vocabulary columns:
 
-* `tf.feature_column.categorical_column_with_vocabulary_list`
-* `tf.feature_column.categorical_column_with_vocabulary_file`
+- `tf.feature_column.categorical_column_with_vocabulary_list`
+- `tf.feature_column.categorical_column_with_vocabulary_file`
 
 `categorical_column_with_vocabulary_list` maps each string to an integer based
 on an explicit vocabulary list. For example:
@@ -280,7 +283,7 @@ our product_class example has only 3 categories. Often though, the number of
 categories can be so big that it's not possible to have individual categories
 for each vocabulary word or integer because that would consume too much memory.
 For these cases, we can instead turn the question around and ask, "How many
-categories am I willing to have for my input?"  In fact, the
+categories am I willing to have for my input?" In fact, the
 `tf.feature_column.categorical_column_with_hash_bucket` function enables you
 to specify the number of categories. For this type of feature column the model
 calculates a hash value of the input, then puts it into one of
@@ -294,12 +297,13 @@ feature_id = hash(raw_feature) % hash_bucket_size
 
 The code to create the `feature_column` might look something like this:
 
-``` python
+```python
 hashed_feature_column =
     tf.feature_column.categorical_column_with_hash_bucket(
         key = "some_feature",
         hash_bucket_size = 100) # The number of categories
 ```
+
 At this point, you might rightfully think: "This is crazy!" After all, we are
 forcing the different input values to a smaller set of categories. This means
 that two probably unrelated inputs will be mapped to the same
@@ -353,7 +357,7 @@ earlier, with the `tf.feature_column.crossed_column` function.
 
 <!--TODO(markdaoust) link to full example-->
 
-``` python
+```python
 def make_dataset(latitude, longitude, labels):
     assert latitude.shape == longitude.shape == labels.shape
 
@@ -388,15 +392,15 @@ est = tf.estimator.LinearRegressor(fc, ...)
 
 You may create a feature cross from either of the following:
 
-* Feature names; that is, names from the `dict` returned from `input_fn`.
-* Any categorical column, except `categorical_column_with_hash_bucket`
+- Feature names; that is, names from the `dict` returned from `input_fn`.
+- Any categorical column, except `categorical_column_with_hash_bucket`
   (since `crossed_column` hashes the input).
 
 When the feature columns `latitude_bucket_fc` and `longitude_bucket_fc` are
 crossed, TensorFlow will create `(latitude_fc, longitude_fc)` pairs for each
 example. This would produce a full grid of possibilities as follows:
 
-``` None
+```None
  (0,0),  (0,1)...  (0,99)
  (1,0),  (1,1)...  (1,99)
    ...     ...       ...
@@ -442,7 +446,7 @@ Representing data in indicator columns.
 Here's how you create an indicator column by calling
 `tf.feature_column.indicator_column`:
 
-``` python
+```python
 categorical_column = ... # Create any type of categorical column.
 
 # Represent the categorical column as an indicator column.
@@ -465,10 +469,10 @@ input examples consist of different words from a limited palette of only 81
 words. Further suppose that the data set provides the following input
 words in 4 separate examples:
 
-* `"dog"`
-* `"spoon"`
-* `"scissors"`
-* `"guitar"`
+- `"dog"`
+- `"spoon"`
+- `"scissors"`
+- `"guitar"`
 
 In that case, the following figure illustrates the processing path for
 embedding columns or indicator columns.
@@ -488,12 +492,12 @@ function maps "spoon" to `[32]`. (The 32 comes from our imagination—the actual
 values depend on the mapping function.) You may then represent these numerical
 categorical values in either of the following two ways:
 
-* As an indicator column. A function converts each numeric categorical value
+- As an indicator column. A function converts each numeric categorical value
   into an 81-element vector (because our palette consists of 81 words), placing
   a 1 in the index of the categorical value (0, 32, 79, 80) and a 0 in all the
   other positions.
 
-* As an embedding column. A function uses the numerical categorical values
+- As an embedding column. A function uses the numerical categorical values
   `(0, 32, 79, 80)` as indices to a lookup table. Each slot in that lookup table
   contains a 3-element vector.
 
@@ -515,16 +519,17 @@ That is, the embedding vector dimension should be the 4th root of the number of
 categories. Since our vocabulary size in this example is 81, the recommended
 number of dimensions is 3:
 
-``` python
+```python
 3 =  81**0.25
 ```
+
 Note that this is just a general guideline; you can set the number of embedding
 dimensions as you please.
 
 Call `tf.feature_column.embedding_column` to create an `embedding_column` as
 suggested by the following snippet:
 
-``` python
+```python
 categorical_column = ... # Create any categorical column
 
 # Represent the categorical column as an embedding column.
@@ -543,30 +548,30 @@ columns.
 As the following list indicates, not all Estimators permit all types of
 `feature_columns` argument(s):
 
-* `tf.estimator.LinearClassifier` and
+- `tf.estimator.LinearClassifier` and
   `tf.estimator.LinearRegressor`: Accept all types of
   feature column.
-* `tf.estimator.DNNClassifier` and
+- `tf.estimator.DNNClassifier` and
   `tf.estimator.DNNRegressor`: Only accept dense columns. Other
   column types must be wrapped in either an `indicator_column` or
   `embedding_column`.
-* `tf.estimator.DNNLinearCombinedClassifier` and
+- `tf.estimator.DNNLinearCombinedClassifier` and
   `tf.estimator.DNNLinearCombinedRegressor`:
-    * The `linear_feature_columns` argument accepts any feature column type.
-    * The `dnn_feature_columns` argument only accepts dense columns.
+  - The `linear_feature_columns` argument accepts any feature column type.
+  - The `dnn_feature_columns` argument only accepts dense columns.
 
 ## Other Sources
 
 For more examples on feature columns, view the following:
 
-* The [Low Level Introduction](../guide/low_level_intro.md#feature_columns) demonstrates how
+- The [Low Level Introduction](../guide/low_level_intro.md#feature_columns) demonstrates how
   experiment directly with `feature_columns` using TensorFlow's low level APIs.
-* The [Estimator wide and deep learning tutorial](https://github.com/tensorflow/models/tree/master/official/wide_deep)
+- The [Estimator wide and deep learning tutorial](https://github.com/tensorflow/models/tree/master/official/wide_deep)
   solves a binary classification problem using `feature_columns` on a variety of
   input data types.
 
 To learn more about embeddings, see the following:
 
-* [Deep Learning, NLP, and representations](http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/)
+- [Deep Learning, NLP, and representations](http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/)
   (Chris Olah's blog)
-* The TensorFlow [Embedding Projector](http://projector.tensorflow.org)
+- The TensorFlow [Embedding Projector](http://projector.tensorflow.org)

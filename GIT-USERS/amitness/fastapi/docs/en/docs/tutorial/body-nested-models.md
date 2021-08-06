@@ -28,8 +28,8 @@ First, import `List` from standard Python's `typing` module:
 
 To declare types that have type parameters (internal types), like `list`, `dict`, `tuple`:
 
-* Import them from the `typing` module
-* Pass the internal type(s) as "type parameters" using square brackets: `[` and `]`
+- Import them from the `typing` module
+- Pass the internal type(s) as "type parameters" using square brackets: `[` and `]`
 
 ```Python
 from typing import List
@@ -109,10 +109,10 @@ This would mean that **FastAPI** would expect a body similar to:
 
 Again, doing just that declaration, with **FastAPI** you get:
 
-* Editor support (completion, etc), even for nested models
-* Data conversion
-* Data validation
-* Automatic documentation
+- Editor support (completion, etc), even for nested models
+- Data conversion
+- Data validation
+- Automatic documentation
 
 ## Special types and validation
 
@@ -163,7 +163,7 @@ This will expect (convert, validate, document, etc) a JSON body like:
 ```
 
 !!! info
-    Notice how the `images` key now has a list of image objects.
+Notice how the `images` key now has a list of image objects.
 
 ## Deeply nested models
 
@@ -174,7 +174,7 @@ You can define arbitrarily deeply nested models:
 ```
 
 !!! info
-    Notice how `Offer` has a list of `Item`s, which in turn have an optional list of `Image`s
+Notice how `Offer` has a list of `Item`s, which in turn have an optional list of `Image`s
 
 ## Bodies of pure lists
 
@@ -223,12 +223,12 @@ In this case, you would accept any `dict` as long as it has `int` keys with `flo
 ```
 
 !!! tip
-    Have in mind that JSON only supports `str` as keys.
+Have in mind that JSON only supports `str` as keys.
 
     But Pydantic has automatic data conversion.
 
     This means that, even though your API clients can only send strings as keys, as long as those strings contain pure integers, Pydantic will convert them and validate them.
-    
+
     And the `dict` you receive as `weights` will actually have `int` keys and `float` values.
 
 ## Recap
@@ -237,8 +237,8 @@ With **FastAPI** you have the maximum flexibility provided by Pydantic models, w
 
 But with all the benefits:
 
-* Editor support (completion everywhere!)
-* Data conversion (a.k.a. parsing / serialization)
-* Data validation
-* Schema documentation
-* Automatic docs
+- Editor support (completion everywhere!)
+- Data conversion (a.k.a. parsing / serialization)
+- Data validation
+- Schema documentation
+- Automatic docs

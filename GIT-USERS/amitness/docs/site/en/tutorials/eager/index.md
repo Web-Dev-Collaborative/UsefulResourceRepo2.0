@@ -10,4 +10,3 @@ auto&nbsp;differentiation. Start with these notebooks, then read the
 3. [Custom training: basics](custom_training.ipynb)
 4. [Custom layers](custom_layers.ipynb)
 5. [Custom training: walkthrough](custom_training_walkthrough.ipynb)
-

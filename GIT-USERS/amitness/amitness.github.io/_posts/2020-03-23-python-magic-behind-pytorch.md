@@ -11,14 +11,15 @@ header:
   teaser: /images/python-behind-pytorch.png
 ---
 
-PyTorch has emerged as one of the go-to deep learning frameworks in recent years. This popularity can be attributed to its easy to use API and it being more "pythonic".  
+PyTorch has emerged as one of the go-to deep learning frameworks in recent years. This popularity can be attributed to its easy to use API and it being more "pythonic".
 
 ![Python and PyTorch combined Logo](/images/python-behind-pytorch.png){: .align-center}
 
 PyTorch leverages numerous native features of Python to give us a consistent and clean API. In this article, I will explain those native features in detail. Learning these will help you better understand why you do things a certain way in PyTorch and make better use of what it has to offer.
 
 ## Magic Methods in Layers
-Layers such as ```nn.Linear()``` are some of the basic constructs in PyTorch that we use to build our models. You import the layer and apply them to tensors.  
+
+Layers such as `nn.Linear()` are some of the basic constructs in PyTorch that we use to build our models. You import the layer and apply them to tensors.
 
 ```python
 import torch
@@ -29,18 +30,18 @@ layer = nn.Linear(784, 10)
 output = layer(x)
 ```
 
-Here we are able to call layer on some tensor `x`, so it must be a function right? Is `nn.Linear()` returning a function? Let's verify it by checking the type.  
+Here we are able to call layer on some tensor `x`, so it must be a function right? Is `nn.Linear()` returning a function? Let's verify it by checking the type.
 
 ```python
 >>> type(layer)
 <class 'torch.nn.modules.linear.Linear'>
 ```
 
-Surprise! `nn.Linear` is actually a class and layer an object of that class.  
+Surprise! `nn.Linear` is actually a class and layer an object of that class.
 
 > "What! How could we call it then? Aren't only functions supposed to be callable?"
 
-Nope, we can create callable objects as well. Python provides a native way to make objects created from classes callable by using magic functions. 
+Nope, we can create callable objects as well. Python provides a native way to make objects created from classes callable by using magic functions.
 Let's see a simple example of a class that doubles a number.
 
 ```python
@@ -75,12 +76,14 @@ def double(x):
 ```
 
 Even functions invoke the`__call__` method behind the scenes.
+
 ```python
 >>> double.__call__(2)
 4
 ```
 
 ## Magic methods in Forward Pass
+
 Let's see an example of a model that applies a single fully connected layer to MNIST images to get 10 outputs.
 
 ```python
@@ -89,13 +92,13 @@ import torch.nn as nn
 class Model(nn.Module):
     def __init__(self):
         super().__init__()
-        self.fc1 = nn.Linear(784, 10)        
+        self.fc1 = nn.Linear(784, 10)
 
     def forward(self, x):
         return self.fc1(x)
 ```
 
-The following code should be familiar to you. We are computing output of this model on some tensor x.  
+The following code should be familiar to you. We are computing output of this model on some tensor x.
 
 ```python
 x = torch.rand(10, 784)
@@ -105,7 +108,7 @@ output = model(x)
 
 We know calling the model directly on some tensor executes the `.forward()` function on it. How does that work?
 
-It's the same reason in previous example. We're inheriting the class `nn.Module`. Internally, `nn.Module` has a `__call__()` magic method that calls the `.forward()`. So, when we override `.forward()` method later, it's executed.  
+It's the same reason in previous example. We're inheriting the class `nn.Module`. Internally, `nn.Module` has a `__call__()` magic method that calls the `.forward()`. So, when we override `.forward()` method later, it's executed.
 
 ```python
 # nn.Module
@@ -116,16 +119,17 @@ class Module(object):
         return self.forward(x)
 ```
 
-Thus, we were able to call the model directly on tensors.  
+Thus, we were able to call the model directly on tensors.
 
 ```python
 output = model(x)
-# model.__call__(x) 
+# model.__call__(x)
 #   -> model.forward(x)
 ```
 
 ## Magic methods in Dataset
-In PyTorch, it is common to create a custom class inheriting from the `Dataset` class to prepare our training and test datasets. Have you ever wondered why we define methods with obscure names like `__len__` and `__getitem__` in it?  
+
+In PyTorch, it is common to create a custom class inheriting from the `Dataset` class to prepare our training and test datasets. Have you ever wondered why we define methods with obscure names like `__len__` and `__getitem__` in it?
 
 ```python
 from torch.utils.data import Dataset
@@ -148,7 +152,7 @@ class Numbers(Dataset):
 (1, 0)
 ```
 
-These methods are builtin magic methods of Python. You know how we can get the length of iterables like list and tuples using `len` function.  
+These methods are builtin magic methods of Python. You know how we can get the length of iterables like list and tuples using `len` function.
 
 ```python
 >>> x = [10, 20, 30]
@@ -156,7 +160,7 @@ These methods are builtin magic methods of Python. You know how we can get the l
 3
 ```
 
-Python allows defining a `__len__` on our custom class so that `len()` works on it. For example,  
+Python allows defining a `__len__` on our custom class so that `len()` works on it. For example,
 
 ```python
 class Data(object):
@@ -168,7 +172,7 @@ class Data(object):
 10
 ```
 
-Similarly, you know how we can access elements of list and tuples using index notation.  
+Similarly, you know how we can access elements of list and tuples using index notation.
 
 ```python
 >>> x = [10, 20, 30]
@@ -176,7 +180,7 @@ Similarly, you know how we can access elements of list and tuples using index no
 10
 ```
 
-Python allows a `__getitem__` magic method to allow such functionality for custom classes. For example,  
+Python allows a `__getitem__` magic method to allow such functionality for custom classes. For example,
 
 ```python
 class Data(object):
@@ -191,7 +195,7 @@ class Data(object):
 10
 ```
 
-With the above concept, now you can easily understand the builtin dataset like MNIST and what you can do with them.  
+With the above concept, now you can easily understand the builtin dataset like MNIST and what you can do with them.
 
 ```python
 from torchvision.datasets import MNIST
@@ -204,33 +208,35 @@ from torchvision.datasets import MNIST
 ```
 
 ## Magic methods in DataLoader
-Let's create a dataloader for a training dataset of MNIST digits.  
+
+Let's create a dataloader for a training dataset of MNIST digits.
 
 ```python
 from torchvision.datasets import MNIST
 from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 
-trainset = MNIST(root='mnist', 
-                 download=True, 
-                 train=True, 
+trainset = MNIST(root='mnist',
+                 download=True,
+                 train=True,
                  transform=transforms.ToTensor())
 trainloader = DataLoader(trainset, batch_size=32, shuffle=True)
 ```
 
-Now, let's try accessing first batch from the data loader directly without looping. If we try to access it via index, we get an exception.  
+Now, let's try accessing first batch from the data loader directly without looping. If we try to access it via index, we get an exception.
 
 ```python
 >>> trainloader[0]
 TypeError: 'DataLoader' object does not support indexing
 ```
+
 You might have been used to doing it in this way.
 
 ```python
 images, labels =  next(iter(trainloader))
 ```
 
-Have you ever wondered why do we wrap trainloader by `iter()` and then call `next()`? Let's demystify this.  
+Have you ever wondered why do we wrap trainloader by `iter()` and then call `next()`? Let's demystify this.
 
 Consider a list `x` with 3 elements. In Python, we can create an iterator out of `x` using the `iter` function.
 
@@ -254,7 +260,7 @@ StopIteration:
 
 We get each element and when we reach the end of the list, we get a `StopIteration` exception.
 
-This pattern matches our usual machine learning workflow where we take small batches of data at a time in memory and do the forward and backward pass. So, `DataLoader` also incorporates this pattern in PyTorch.  
+This pattern matches our usual machine learning workflow where we take small batches of data at a time in memory and do the forward and backward pass. So, `DataLoader` also incorporates this pattern in PyTorch.
 
 To create iterators out of classes in Python, we need to define magic methods `__iter__` and `__next__`
 
@@ -267,7 +273,7 @@ class ExampleLoader(object):
         return self
 
     def __next__(self):
-        return next(self.data)        
+        return next(self.data)
 
 >>> l = ExampleLoader([1, 2, 3])
 >>> next(iter(l))
@@ -314,4 +320,5 @@ images, labels = trainloader.__iter__().__next__()
 Thus, we get images and labels for a single batch.
 
 ## Conclusion
+
 Thus, we saw how PyTorch borrows several advanced concepts from native Python itself in its API design. I hope the article was helpful to demystify how these concepts work behind the scenes and will help you become a better PyTorch user.

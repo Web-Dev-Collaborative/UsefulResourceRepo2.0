@@ -1,6 +1,6 @@
 # Get Current User
 
-In the previous chapter the security system (which is based on the dependency injection system) was giving the *path operation function* a `token` as a `str`:
+In the previous chapter the security system (which is based on the dependency injection system) was giving the _path operation function_ a `token` as a `str`:
 
 ```Python hl_lines="10"
 {!../../../docs_src/security/tutorial001.py!}
@@ -28,7 +28,7 @@ Remember that dependencies can have sub-dependencies?
 
 `get_current_user` will have a dependency with the same `oauth2_scheme` we created before.
 
-The same as we were doing before in the *path operation* directly, our new dependency `get_current_user` will receive a `token` as a `str` from the sub-dependency `oauth2_scheme`:
+The same as we were doing before in the _path operation_ directly, our new dependency `get_current_user` will receive a `token` as a `str` from the sub-dependency `oauth2_scheme`:
 
 ```Python hl_lines="25"
 {!../../../docs_src/security/tutorial002.py!}
@@ -44,7 +44,7 @@ The same as we were doing before in the *path operation* directly, our new depen
 
 ## Inject the current user
 
-So now we can use the same `Depends` with our `get_current_user` in the *path operation*:
+So now we can use the same `Depends` with our `get_current_user` in the _path operation_:
 
 ```Python hl_lines="31"
 {!../../../docs_src/security/tutorial002.py!}
@@ -55,19 +55,18 @@ Notice that we declare the type of `current_user` as the Pydantic model `User`.
 This will help us inside of the function with all the completion and type checks.
 
 !!! tip
-    You might remember that request bodies are also declared with Pydantic models.
+You might remember that request bodies are also declared with Pydantic models.
 
     Here **FastAPI** won't get confused because you are using `Depends`.
 
 !!! check
-    The way this dependency system is designed allows us to have different dependencies (different "dependables") that all return a `User` model.
+The way this dependency system is designed allows us to have different dependencies (different "dependables") that all return a `User` model.
 
     We are not restricted to having only one dependency that can return that type of data.
 
-
 ## Other models
 
-You can now get the current user directly in the *path operation functions* and deal with the security mechanisms at the **Dependency Injection** level, using `Depends`.
+You can now get the current user directly in the _path operation functions_ and deal with the security mechanisms at the **Dependency Injection** level, using `Depends`.
 
 And you can use any model or data for the security requirements (in this case, a Pydantic model `User`).
 
@@ -81,10 +80,9 @@ You actually don't have users that log in to your application but robots, bots, 
 
 Just use any kind of model, any kind of class, any kind of database that you need for your application. **FastAPI** has you covered with the dependency injection system.
 
-
 ## Code size
 
-This example might seem verbose. Have in mind that we are mixing security, data models utility functions and *path operations* in the same file.
+This example might seem verbose. Have in mind that we are mixing security, data models utility functions and _path operations_ in the same file.
 
 But here's the key point.
 
@@ -92,11 +90,11 @@ The security and dependency injection stuff is written once.
 
 And you can make it as complex as you want. And still, have it written only once, in a single place. With all the flexibility.
 
-But you can have thousands of endpoints (*path operations*) using the same security system.
+But you can have thousands of endpoints (_path operations_) using the same security system.
 
 And all of them (or any portion of them that you want) can take the advantage of re-using these dependencies or any other dependencies you create.
 
-And all these thousands of *path operations* can be as small as 3 lines:
+And all these thousands of _path operations_ can be as small as 3 lines:
 
 ```Python hl_lines="30-32"
 {!../../../docs_src/security/tutorial002.py!}
@@ -104,10 +102,10 @@ And all these thousands of *path operations* can be as small as 3 lines:
 
 ## Recap
 
-You can now get the current user directly in your *path operation function*.
+You can now get the current user directly in your _path operation function_.
 
 We are already halfway there.
 
-We just need to add a *path operation* for the user/client to actually send the `username` and `password`.
+We just need to add a _path operation_ for the user/client to actually send the `username` and `password`.
 
 That comes next.

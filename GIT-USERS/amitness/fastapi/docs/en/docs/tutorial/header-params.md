@@ -21,12 +21,12 @@ The first value is the default value, you can pass all the extra validation or a
 ```
 
 !!! note "Technical Details"
-    `Header` is a "sister" class of `Path`, `Query` and `Cookie`. It also inherits from the same common `Param` class.
+`Header` is a "sister" class of `Path`, `Query` and `Cookie`. It also inherits from the same common `Param` class.
 
     But remember that when you import `Query`, `Path`, `Header`, and others from `fastapi`, those are actually functions that return special classes.
 
 !!! info
-    To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.
+To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.
 
 ## Automatic conversion
 
@@ -49,8 +49,7 @@ If for some reason you need to disable automatic conversion of underscores to hy
 ```
 
 !!! warning
-    Before setting `convert_underscores` to `False`, bear in mind that some HTTP proxies and servers disallow the usage of headers with underscores.
-
+Before setting `convert_underscores` to `False`, bear in mind that some HTTP proxies and servers disallow the usage of headers with underscores.
 
 ## Duplicate headers
 
@@ -66,7 +65,7 @@ For example, to declare a header of `X-Token` that can appear more than once, yo
 {!../../../docs_src/header_params/tutorial003.py!}
 ```
 
-If you communicate with that *path operation* sending two HTTP headers like:
+If you communicate with that _path operation_ sending two HTTP headers like:
 
 ```
 X-Token: foo

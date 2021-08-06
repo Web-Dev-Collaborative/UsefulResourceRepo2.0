@@ -17,9 +17,9 @@ Lade Vue in `./index.html`.
 
 Dann kannst du sofort Vue Code in deinen Markdown Dateien verwenden. `new Vue({ el: '#main' })` wird als Standard ausgeführt, um Instanzen zu erschaffen.
 
-*README.md*
+_README.md_
 
-```markdown
+````markdown
 # Vue guide
 
 `v-for` usage.
@@ -34,10 +34,11 @@ Dann kannst du sofort Vue Code in deinen Markdown Dateien verwenden. `new Vue({ 
   <li v-for="i in 10">{{ i }}</li>
 </ul>
 ```
+````
 
 Du kannst manuell eine Vue Instanz initialisieren.
 
-*README.md*
+_README.md_
 
 ```markdown
 # Vue demo
@@ -58,11 +59,11 @@ Du kannst manuell eine Vue Instanz initialisieren.
 
 [Vuep](https://github.com/QingWei-Li/vuep) ist eine Komponente zur Darstellung von Vue Komponenten mit einem Liveeditor und einer Vorschau.Unterstützt die Vue Komponenten spec und JSX.
 
-*index.html*
+_index.html_
 
 ```html
 <!-- injizieren von CSS -->
-<link rel="stylesheet" href="//unpkg.com/vuep/dist/vuep.css">
+<link rel="stylesheet" href="//unpkg.com/vuep/dist/vuep.css" />
 
 <!-- injizieren von JS -->
 <script src="//unpkg.com/vue"></script>
@@ -75,7 +76,7 @@ Du kannst manuell eine Vue Instanz initialisieren.
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 ```
 
-*README.md*
+_README.md_
 
 ```markdown
 # Vuep

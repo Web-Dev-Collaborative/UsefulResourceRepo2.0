@@ -4,7 +4,7 @@
   margin-left: 25px;
   padding: 10px;
   border-radius: 5px;
-  background: #EEE;
+  background: #eee;
   color: #333;
   text-align: center;
   font-size: 14px;
@@ -20,7 +20,7 @@
   border-width: 10px;
   border-style: solid;
   border-color: transparent;
-  border-right-color: #EEE;
+  border-right-color: #eee;
   content: "";
 }
 

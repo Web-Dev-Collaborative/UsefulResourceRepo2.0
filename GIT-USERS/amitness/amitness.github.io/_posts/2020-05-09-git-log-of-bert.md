@@ -10,16 +10,16 @@ header:
   teaser: /images/research-paper-as-forks.png
 ---
 
-I recently came across an interesting thread on Twitter discussing a hypothetical scenario where research papers are published on GitHub and subsequent papers are diffs over the original paper. Information overload has been a real problem in ML with so many new papers coming every month.  
+I recently came across an interesting thread on Twitter discussing a hypothetical scenario where research papers are published on GitHub and subsequent papers are diffs over the original paper. Information overload has been a real problem in ML with so many new papers coming every month.
+
 <div class="img-center">     
 <blockquote class="twitter-tweet tw-align-center" data-lang="en" data-dnt="true"><p lang="en" dir="ltr">If you could represent a paper as a code diff, many papers could be compressed down to &lt;50 lines :) The diff would also be more intuitive to read and eval standardized.<br><br>Some ideas are so different that this wouldn’t apply, but I think it would work well for the majority. <a href="https://t.co/JoAcIK9Cm7">https://t.co/JoAcIK9Cm7</a></p>&mdash; Denny Britz (@dennybritz) <a href="https://twitter.com/dennybritz/status/1254006850388983808?ref_src=twsrc%5Etfw">April 25, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 <br>
-This post is a fun experiment showcasing how the commit history could look like for the BERT paper and some of its subsequent variants.  
+This post is a fun experiment showcasing how the commit history could look like for the BERT paper and some of its subsequent variants.
 
 ![Forks of BERT paper](/images/research-paper-as-forks.png){: .align-center}
 <br>
-
 
 <article class="notice--primary">
 <div class="message-body">
@@ -49,7 +49,6 @@ Cross-lingual Language Model Pretraining
   </div>
 </article>
 
-
 <article class="notice--primary">
 <div class="message-body">
 <p style="color: #A57705;">commit <a href="https://arxiv.org/abs/1901.08746">arXiv:1901.08746</a></p>   
@@ -74,7 +73,6 @@ Multi-Task Deep Neural Networks for Natural Language Understanding
 <p style="color: #7a942e;">+Multi-task Learning</p>  
   </div>
 </article>
-
 
 <article class="notice--primary">
 <div class="message-body">
@@ -110,7 +108,6 @@ XLNet: Generalized Autoregressive Pretraining for Language Understanding
   </div>
 </article>
 
-
 <article class="notice--primary">
 <div class="message-body">
 <p style="color: #A57705;">commit <a href="https://arxiv.org/abs/1907.10529">arXiv:1907.10529</a></p>   
@@ -127,7 +124,6 @@ SpanBERT: Improving Pre-training by Representing and Predicting Spans
 <p style="color: #7a942e;">+Single-Sequence Training</p>  
   </div>
 </article>
-
 
 <article class="notice--primary">
 <div class="message-body">

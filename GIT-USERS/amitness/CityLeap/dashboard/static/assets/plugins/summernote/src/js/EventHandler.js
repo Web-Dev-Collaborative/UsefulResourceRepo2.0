@@ -1,27 +1,44 @@
 define([
-  'summernote/core/agent',
-  'summernote/core/func',
-  'summernote/core/dom',
-  'summernote/core/async',
-  'summernote/core/key',
-  'summernote/core/list',
-  'summernote/editing/History',
-  'summernote/module/Editor',
-  'summernote/module/Toolbar',
-  'summernote/module/Statusbar',
-  'summernote/module/Popover',
-  'summernote/module/Handle',
-  'summernote/module/Fullscreen',
-  'summernote/module/Codeview',
-  'summernote/module/DragAndDrop',
-  'summernote/module/Clipboard',
-  'summernote/module/LinkDialog',
-  'summernote/module/ImageDialog',
-  'summernote/module/HelpDialog'
-], function (agent, func, dom, async, key, list, History,
-             Editor, Toolbar, Statusbar, Popover, Handle, Fullscreen, Codeview,
-             DragAndDrop, Clipboard, LinkDialog, ImageDialog, HelpDialog) {
-
+  "summernote/core/agent",
+  "summernote/core/func",
+  "summernote/core/dom",
+  "summernote/core/async",
+  "summernote/core/key",
+  "summernote/core/list",
+  "summernote/editing/History",
+  "summernote/module/Editor",
+  "summernote/module/Toolbar",
+  "summernote/module/Statusbar",
+  "summernote/module/Popover",
+  "summernote/module/Handle",
+  "summernote/module/Fullscreen",
+  "summernote/module/Codeview",
+  "summernote/module/DragAndDrop",
+  "summernote/module/Clipboard",
+  "summernote/module/LinkDialog",
+  "summernote/module/ImageDialog",
+  "summernote/module/HelpDialog",
+], function (
+  agent,
+  func,
+  dom,
+  async,
+  key,
+  list,
+  History,
+  Editor,
+  Toolbar,
+  Statusbar,
+  Popover,
+  Handle,
+  Fullscreen,
+  Codeview,
+  DragAndDrop,
+  Clipboard,
+  LinkDialog,
+  ImageDialog,
+  HelpDialog
+) {
   /**
    * @class EventHandler
    *
@@ -34,7 +51,7 @@ define([
     /**
      * Modules
      */
-    var modules = this.modules = {
+    var modules = (this.modules = {
       editor: new Editor(this),
       toolbar: new Toolbar(this),
       statusbar: new Statusbar(this),
@@ -46,8 +63,8 @@ define([
       clipboard: new Clipboard(this),
       linkDialog: new LinkDialog(this),
       imageDialog: new ImageDialog(this),
-      helpDialog: new HelpDialog(this)
-    };
+      helpDialog: new HelpDialog(this),
+    });
 
     /**
      * invoke module's method
@@ -60,7 +77,7 @@ define([
       var moduleAndMethod = list.head(list.from(arguments));
       var args = list.tail(list.from(arguments));
 
-      var splits = moduleAndMethod.split('.');
+      var splits = moduleAndMethod.split(".");
       var hasSeparator = splits.length > 1;
       var moduleName = hasSeparator && list.head(splits);
       var methodName = hasSeparator ? list.last(splits) : list.head(splits);
@@ -87,15 +104,19 @@ define([
      * @param {String} eventNamespace
      * @returns {Function}
      */
-    var bindCustomEvent = this.bindCustomEvent = function ($holder, callbacks, eventNamespace) {
+    var bindCustomEvent = (this.bindCustomEvent = function (
+      $holder,
+      callbacks,
+      eventNamespace
+    ) {
       return function () {
-        var callback = callbacks[func.namespaceToCamel(eventNamespace, 'on')];
+        var callback = callbacks[func.namespaceToCamel(eventNamespace, "on")];
         if (callback) {
           callback.apply($holder[0], arguments);
         }
-        return $holder.trigger('summernote.' + eventNamespace, arguments);
+        return $holder.trigger("summernote." + eventNamespace, arguments);
       };
-    };
+    });
 
     /**
      * insert Images from file array.
@@ -106,27 +127,41 @@ define([
      */
     this.insertImages = function (layoutInfo, files) {
       var $editor = layoutInfo.editor(),
-          $editable = layoutInfo.editable(),
-          $holder = layoutInfo.holder();
+        $editable = layoutInfo.editable(),
+        $holder = layoutInfo.holder();
 
-      var callbacks = $editable.data('callbacks');
-      var options = $editor.data('options');
+      var callbacks = $editable.data("callbacks");
+      var options = $editor.data("options");
 
       // If onImageUpload options setted
       if (callbacks.onImageUpload) {
-        bindCustomEvent($holder, callbacks, 'image.upload')(files);
-      // else insert Image as dataURL
+        bindCustomEvent($holder, callbacks, "image.upload")(files);
+        // else insert Image as dataURL
       } else {
         $.each(files, function (idx, file) {
           var filename = file.name;
-          if (options.maximumImageFileSize && options.maximumImageFileSize < file.size) {
-            bindCustomEvent($holder, callbacks, 'image.upload.error')(options.langInfo.image.maximumFileSizeError);
+          if (
+            options.maximumImageFileSize &&
+            options.maximumImageFileSize < file.size
+          ) {
+            bindCustomEvent(
+              $holder,
+              callbacks,
+              "image.upload.error"
+            )(options.langInfo.image.maximumFileSizeError);
           } else {
-            async.readFileAsDataURL(file).then(function (sDataURL) {
-              modules.editor.insertImage($editable, sDataURL, filename);
-            }).fail(function () {
-              bindCustomEvent($holder, callbacks, 'image.upload.error')(options.langInfo.image.maximumFileSizeError);
-            });
+            async
+              .readFileAsDataURL(file)
+              .then(function (sDataURL) {
+                modules.editor.insertImage($editable, sDataURL, filename);
+              })
+              .fail(function () {
+                bindCustomEvent(
+                  $holder,
+                  callbacks,
+                  "image.upload.error"
+                )(options.langInfo.image.maximumFileSizeError);
+              });
           }
         });
       }
@@ -166,7 +201,7 @@ define([
        */
       codeview: function (layoutInfo) {
         modules.codeview.toggle(layoutInfo);
-      }
+      },
     };
 
     var hMousedown = function (event) {
@@ -191,7 +226,7 @@ define([
       if (!styleInfo) {
         return;
       }
-      var isAirMode = layoutInfo.editor().data('options').airMode;
+      var isAirMode = layoutInfo.editor().data("options").airMode;
       if (!isAirMode) {
         modules.toolbar.update(layoutInfo.toolbar(), styleInfo);
       }
@@ -219,41 +254,54 @@ define([
 
     var hToolbarAndPopoverMousedown = function (event) {
       // prevent default event when insertTable (FF, Webkit)
-      var $btn = $(event.target).closest('[data-event]');
+      var $btn = $(event.target).closest("[data-event]");
       if ($btn.length) {
         event.preventDefault();
       }
     };
 
     var hToolbarAndPopoverClick = function (event) {
-      var $btn = $(event.target).closest('[data-event]');
+      var $btn = $(event.target).closest("[data-event]");
 
       if (!$btn.length) {
         return;
       }
 
-      var eventName = $btn.attr('data-event'),
-          value = $btn.attr('data-value'),
-          hide = $btn.attr('data-hide');
+      var eventName = $btn.attr("data-event"),
+        value = $btn.attr("data-value"),
+        hide = $btn.attr("data-hide");
 
       var layoutInfo = dom.makeLayoutInfo(event.target);
 
       // before command: detect control selection element($target)
       var $target;
-      if ($.inArray(eventName, ['resize', 'floatMe', 'removeMedia', 'imageShape']) !== -1) {
-        var $selection = layoutInfo.handle().find('.note-control-selection');
-        $target = $($selection.data('target'));
+      if (
+        $.inArray(eventName, [
+          "resize",
+          "floatMe",
+          "removeMedia",
+          "imageShape",
+        ]) !== -1
+      ) {
+        var $selection = layoutInfo.handle().find(".note-control-selection");
+        $target = $($selection.data("target"));
       }
 
       // If requested, hide the popover when the button is clicked.
       // Useful for things like showHelpDialog.
       if (hide) {
-        $btn.parents('.popover').hide();
+        $btn.parents(".popover").hide();
       }
 
       if ($.isFunction($.summernote.pluginEvents[eventName])) {
-        $.summernote.pluginEvents[eventName](event, modules.editor, layoutInfo, value);
-      } else if (modules.editor[eventName]) { // on command
+        $.summernote.pluginEvents[eventName](
+          event,
+          modules.editor,
+          layoutInfo,
+          value
+        );
+      } else if (modules.editor[eventName]) {
+        // on command
         var $editable = layoutInfo.editable();
         $editable.focus();
         modules.editor[eventName]($editable, value, $target);
@@ -264,8 +312,8 @@ define([
       }
 
       // after command
-      if ($.inArray(eventName, ['backColor', 'foreColor']) !== -1) {
-        var options = layoutInfo.editor().data('options', options);
+      if ($.inArray(eventName, ["backColor", "foreColor"]) !== -1) {
+        var options = layoutInfo.editor().data("options", options);
         var module = options.airMode ? modules.popover : modules.toolbar;
         module.updateRecentColor(list.head($btn), eventName, value);
       }
@@ -277,9 +325,9 @@ define([
     var hDimensionPickerMove = function (event, options) {
       var $picker = $(event.target.parentNode); // target is mousecatcher
       var $dimensionDisplay = $picker.next();
-      var $catcher = $picker.find('.note-dimension-picker-mousecatcher');
-      var $highlighted = $picker.find('.note-dimension-picker-highlighted');
-      var $unhighlighted = $picker.find('.note-dimension-picker-unhighlighted');
+      var $catcher = $picker.find(".note-dimension-picker-mousecatcher");
+      var $highlighted = $picker.find(".note-dimension-picker-highlighted");
+      var $unhighlighted = $picker.find(".note-dimension-picker-unhighlighted");
 
       var posOffset;
       // HTML5 with jQuery - e.offsetX is undefined in Firefox
@@ -287,34 +335,34 @@ define([
         var posCatcher = $(event.target).offset();
         posOffset = {
           x: event.pageX - posCatcher.left,
-          y: event.pageY - posCatcher.top
+          y: event.pageY - posCatcher.top,
         };
       } else {
         posOffset = {
           x: event.offsetX,
-          y: event.offsetY
+          y: event.offsetY,
         };
       }
 
       var dim = {
         c: Math.ceil(posOffset.x / PX_PER_EM) || 1,
-        r: Math.ceil(posOffset.y / PX_PER_EM) || 1
+        r: Math.ceil(posOffset.y / PX_PER_EM) || 1,
       };
 
-      $highlighted.css({ width: dim.c + 'em', height: dim.r + 'em' });
-      $catcher.attr('data-value', dim.c + 'x' + dim.r);
+      $highlighted.css({ width: dim.c + "em", height: dim.r + "em" });
+      $catcher.attr("data-value", dim.c + "x" + dim.r);
 
       if (3 < dim.c && dim.c < options.insertTableMaxSize.col) {
-        $unhighlighted.css({ width: dim.c + 1 + 'em'});
+        $unhighlighted.css({ width: dim.c + 1 + "em" });
       }
 
       if (3 < dim.r && dim.r < options.insertTableMaxSize.row) {
-        $unhighlighted.css({ height: dim.r + 1 + 'em'});
+        $unhighlighted.css({ height: dim.r + 1 + "em" });
       }
 
-      $dimensionDisplay.html(dim.c + ' x ' + dim.r);
+      $dimensionDisplay.html(dim.c + " x " + dim.r);
     };
-    
+
     /**
      * bind KeyMap on keydown
      *
@@ -325,13 +373,19 @@ define([
       var $editor = layoutInfo.editor();
       var $editable = layoutInfo.editable();
 
-      $editable.on('keydown', function (event) {
+      $editable.on("keydown", function (event) {
         var keys = [];
 
         // modifier
-        if (event.metaKey) { keys.push('CMD'); }
-        if (event.ctrlKey && !event.altKey) { keys.push('CTRL'); }
-        if (event.shiftKey) { keys.push('SHIFT'); }
+        if (event.metaKey) {
+          keys.push("CMD");
+        }
+        if (event.ctrlKey && !event.altKey) {
+          keys.push("CTRL");
+        }
+        if (event.shiftKey) {
+          keys.push("SHIFT");
+        }
 
         // keycode
         var keyName = key.nameFromCode[event.keyCode];
@@ -340,7 +394,7 @@ define([
         }
 
         var pluginEvent;
-        var keyString = keys.join('+');
+        var keyString = keys.join("+");
         var eventName = keyMap[keyString];
         if (eventName) {
           // FIXME Summernote doesn't support event pipeline yet.
@@ -357,7 +411,7 @@ define([
           if ($.isFunction(pluginEvent)) {
             pluginEvent(event, modules.editor, layoutInfo);
           } else if (modules.editor[eventName]) {
-            modules.editor[eventName]($editable, $editor.data('options'));
+            modules.editor[eventName]($editable, $editor.data("options"));
             event.preventDefault();
           } else if (commands[eventName]) {
             commands[eventName].call(this, layoutInfo);
@@ -378,19 +432,19 @@ define([
     this.attach = function (layoutInfo, options) {
       // handlers for editable
       if (options.shortcuts) {
-        this.bindKeyMap(layoutInfo, options.keyMap[agent.isMac ? 'mac' : 'pc']);
+        this.bindKeyMap(layoutInfo, options.keyMap[agent.isMac ? "mac" : "pc"]);
       }
-      layoutInfo.editable().on('mousedown', hMousedown);
-      layoutInfo.editable().on('keyup mouseup', hKeyupAndMouseup);
-      layoutInfo.editable().on('scroll', hScroll);
+      layoutInfo.editable().on("mousedown", hMousedown);
+      layoutInfo.editable().on("keyup mouseup", hKeyupAndMouseup);
+      layoutInfo.editable().on("scroll", hScroll);
 
       // handler for clipboard
       modules.clipboard.attach(layoutInfo, options);
 
       // handler for handle and popover
       modules.handle.attach(layoutInfo, options);
-      layoutInfo.popover().on('click', hToolbarAndPopoverClick);
-      layoutInfo.popover().on('mousedown', hToolbarAndPopoverMousedown);
+      layoutInfo.popover().on("click", hToolbarAndPopoverClick);
+      layoutInfo.popover().on("mousedown", hToolbarAndPopoverMousedown);
 
       // handler for drag and drop
       modules.dragAndDrop.attach(layoutInfo, options);
@@ -398,43 +452,48 @@ define([
       // handlers for frame mode (toolbar, statusbar)
       if (!options.airMode) {
         // handler for toolbar
-        layoutInfo.toolbar().on('click', hToolbarAndPopoverClick);
-        layoutInfo.toolbar().on('mousedown', hToolbarAndPopoverMousedown);
+        layoutInfo.toolbar().on("click", hToolbarAndPopoverClick);
+        layoutInfo.toolbar().on("mousedown", hToolbarAndPopoverMousedown);
 
         // handler for statusbar
         modules.statusbar.attach(layoutInfo, options);
       }
 
       // handler for table dimension
-      var $catcherContainer = options.airMode ? layoutInfo.popover() :
-                                                layoutInfo.toolbar();
-      var $catcher = $catcherContainer.find('.note-dimension-picker-mousecatcher');
-      $catcher.css({
-        width: options.insertTableMaxSize.col + 'em',
-        height: options.insertTableMaxSize.row + 'em'
-      }).on('mousemove', function (event) {
-        hDimensionPickerMove(event, options);
-      });
+      var $catcherContainer = options.airMode
+        ? layoutInfo.popover()
+        : layoutInfo.toolbar();
+      var $catcher = $catcherContainer.find(
+        ".note-dimension-picker-mousecatcher"
+      );
+      $catcher
+        .css({
+          width: options.insertTableMaxSize.col + "em",
+          height: options.insertTableMaxSize.row + "em",
+        })
+        .on("mousemove", function (event) {
+          hDimensionPickerMove(event, options);
+        });
 
       // save options on editor
-      layoutInfo.editor().data('options', options);
+      layoutInfo.editor().data("options", options);
 
       // ret styleWithCSS for backColor / foreColor clearing with 'inherit'.
       if (!agent.isMSIE) {
         // [workaround] for Firefox
         //  - protect FF Error: NS_ERROR_FAILURE: Failure
         setTimeout(function () {
-          document.execCommand('styleWithCSS', 0, options.styleWithSpan);
+          document.execCommand("styleWithCSS", 0, options.styleWithSpan);
         }, 0);
       }
 
       // History
       var history = new History(layoutInfo.editable());
-      layoutInfo.editable().data('NoteHistory', history);
+      layoutInfo.editable().data("NoteHistory", history);
 
       // All editor status will be saved on editable with jquery's data
       // for support multiple editor with singleton object.
-      layoutInfo.editable().data('callbacks', {
+      layoutInfo.editable().data("callbacks", {
         onInit: options.onInit,
         onFocus: options.onFocus,
         onBlur: options.onBlur,
@@ -448,7 +507,7 @@ define([
         onImageUpload: options.onImageUpload,
         onImageUploadError: options.onImageUploadError,
         onMediaDelete: options.onMediaDelete,
-        onToolbarClick: options.onToolbarClick
+        onToolbarClick: options.onToolbarClick,
       });
 
       var styleInfo = modules.editor.styleFromNode(layoutInfo.editable());
@@ -463,54 +522,71 @@ define([
     this.attachCustomEvent = function (layoutInfo, options) {
       var $holder = layoutInfo.holder();
       var $editable = layoutInfo.editable();
-      var callbacks = $editable.data('callbacks');
+      var callbacks = $editable.data("callbacks");
 
-      $editable.focus(bindCustomEvent($holder, callbacks, 'focus'));
-      $editable.blur(bindCustomEvent($holder, callbacks, 'blur'));
+      $editable.focus(bindCustomEvent($holder, callbacks, "focus"));
+      $editable.blur(bindCustomEvent($holder, callbacks, "blur"));
 
       $editable.keydown(function (event) {
         if (event.keyCode === key.code.ENTER) {
-          bindCustomEvent($holder, callbacks, 'enter').call(this, event);
+          bindCustomEvent($holder, callbacks, "enter").call(this, event);
         }
-        bindCustomEvent($holder, callbacks, 'keydown').call(this, event);
+        bindCustomEvent($holder, callbacks, "keydown").call(this, event);
       });
-      $editable.keyup(bindCustomEvent($holder, callbacks, 'keyup'));
+      $editable.keyup(bindCustomEvent($holder, callbacks, "keyup"));
 
-      $editable.on('mousedown', bindCustomEvent($holder, callbacks, 'mousedown'));
-      $editable.on('mouseup', bindCustomEvent($holder, callbacks, 'mouseup'));
-      $editable.on('scroll', bindCustomEvent($holder, callbacks, 'scroll'));
+      $editable.on(
+        "mousedown",
+        bindCustomEvent($holder, callbacks, "mousedown")
+      );
+      $editable.on("mouseup", bindCustomEvent($holder, callbacks, "mouseup"));
+      $editable.on("scroll", bindCustomEvent($holder, callbacks, "scroll"));
 
-      $editable.on('paste', bindCustomEvent($holder, callbacks, 'paste'));
-      
+      $editable.on("paste", bindCustomEvent($holder, callbacks, "paste"));
+
       // [workaround] IE doesn't have input events for contentEditable
       //  - see: https://goo.gl/4bfIvA
-      var changeEventName = agent.isMSIE ? 'DOMCharacterDataModified DOMSubtreeModified DOMNodeInserted' : 'input';
+      var changeEventName = agent.isMSIE
+        ? "DOMCharacterDataModified DOMSubtreeModified DOMNodeInserted"
+        : "input";
       $editable.on(changeEventName, function () {
-        bindCustomEvent($holder, callbacks, 'change')($editable.html(), $editable);
+        bindCustomEvent(
+          $holder,
+          callbacks,
+          "change"
+        )($editable.html(), $editable);
       });
 
       if (!options.airMode) {
-        layoutInfo.toolbar().click(bindCustomEvent($holder, callbacks, 'toolbar.click'));
-        layoutInfo.popover().click(bindCustomEvent($holder, callbacks, 'popover.click'));
+        layoutInfo
+          .toolbar()
+          .click(bindCustomEvent($holder, callbacks, "toolbar.click"));
+        layoutInfo
+          .popover()
+          .click(bindCustomEvent($holder, callbacks, "popover.click"));
       }
 
       // Textarea: auto filling the code before form submit.
       if (dom.isTextarea(list.head($holder))) {
-        $holder.closest('form').submit(function (e) {
+        $holder.closest("form").submit(function (e) {
           layoutInfo.holder().val(layoutInfo.holder().code());
-          bindCustomEvent($holder, callbacks, 'submit').call(this, e, $holder.code());
+          bindCustomEvent($holder, callbacks, "submit").call(
+            this,
+            e,
+            $holder.code()
+          );
         });
       }
 
       // textarea auto sync
       if (dom.isTextarea(list.head($holder)) && options.textareaAutoSync) {
-        $holder.on('summernote.change', function () {
+        $holder.on("summernote.change", function () {
           layoutInfo.holder().val(layoutInfo.holder().code());
         });
       }
 
       // fire init event
-      bindCustomEvent($holder, callbacks, 'init')(layoutInfo);
+      bindCustomEvent($holder, callbacks, "init")(layoutInfo);
 
       // fire plugin init event
       for (var i = 0, len = $.summernote.plugins.length; i < len; i++) {
@@ -519,7 +595,7 @@ define([
         }
       }
     };
-      
+
     this.detach = function (layoutInfo, options) {
       layoutInfo.holder().off();
       layoutInfo.editable().off();

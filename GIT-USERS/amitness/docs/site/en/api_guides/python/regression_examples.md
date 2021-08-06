@@ -39,9 +39,7 @@ The preceding examples rely on the following data set utility:
         <tt>dnn_regression.py</tt>) can use.</td>
   </tr>
 
-
 </table>
-
 
 <!--
 ## Linear regression concepts
@@ -56,13 +54,13 @@ watch the following video:
 [When MLCC becomes available externally, add links to the relevant MLCC units.]
 -->
 
-
 <a name="running"></a>
+
 ## Running the examples
 
 You must [install TensorFlow](../../install/) prior to running these examples.
 Depending on the way you've installed TensorFlow, you might also
-need to activate your TensorFlow environment.  Then, do the following:
+need to activate your TensorFlow environment. Then, do the following:
 
 1. Clone the TensorFlow repository from github.
 2. `cd` to the top of the downloaded tree.
@@ -79,14 +77,14 @@ python linear_regressor.py
 
 During training, all three programs output the following information:
 
-* The name of the checkpoint directory, which is important for TensorBoard.
-* The training loss after every 100 iterations, which helps you
+- The name of the checkpoint directory, which is important for TensorBoard.
+- The training loss after every 100 iterations, which helps you
   determine whether the model is converging.
 
 For example, here's some possible output for the `linear_regressor.py`
 program:
 
-``` None
+```None
 INFO:tensorflow:Saving checkpoints for 1 into /tmp/tmpAObiz9/model.ckpt.
 INFO:tensorflow:loss = 161.308, step = 1
 INFO:tensorflow:global_step/sec: 1557.24
@@ -100,8 +98,8 @@ INFO:tensorflow:Saving checkpoints for 1000 into /tmp/tmpAObiz9/model.ckpt.
 INFO:tensorflow:Loss for final step: 5.12413.
 ```
 
-
 <a name="basic"></a>
+
 ## linear_regressor.py
 
 `linear_regressor.py` trains a model that predicts the price of a car from
@@ -133,9 +131,8 @@ two numerical features.
 After training the model, the program concludes by outputting predicted
 car prices for two car models.
 
-
-
 <a name="categorical"></a>
+
 ## linear_regression_categorical.py
 
 This program illustrates ways to represent categorical features. It
@@ -166,14 +163,14 @@ categorical and numerical features.
   </tr>
 </table>
 
-
 <a name="dnn"></a>
+
 ## dnn_regression.py
 
 Like `linear_regression_categorical.py`, the `dnn_regression.py` example
 trains a model that predicts the price of a car from two features.
 Unlike `linear_regression_categorical.py`, the `dnn_regression.py` example uses
-a deep neural network to train the model.  Both examples rely on the same
+a deep neural network to train the model. Both examples rely on the same
 features; `dnn_regression.py` demonstrates how to treat categorical features
 in a deep neural network.
 
@@ -205,8 +202,8 @@ in a deep neural network.
 After printing loss values, the program outputs the Mean Square Error
 on a test set.
 
-
 <a name="dnn"></a>
+
 ## custom_regression.py
 
 The `custom_regression.py` example also trains a model that predicts the price

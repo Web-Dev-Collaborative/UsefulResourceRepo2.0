@@ -8,9 +8,9 @@ Similar to [GitBook](https://www.gitbook.com), you can deploy files to GitHub Pa
 
 There're three places to populate your docs for your Github repository:
 
-* `docs/` folder
-* master branch
-* gh-pages branch
+- `docs/` folder
+- master branch
+- gh-pages branch
 
 It is recommended that you save your files to the `./docs` subfolder of the `master` branch of your repository. Then select `master branch /docs folder` as your Github Pages source in your repositories' settings page.
 
@@ -25,7 +25,7 @@ If you are deploying your master branch, include `.gitlab-ci.yml` with the follo
 
 ?> The `.public` workaround is so `cp` doesn't also copy `public/` to itself in an infinite loop.
 
-``` YAML
+```YAML
 pages:
   stage: deploy
   script:
@@ -43,7 +43,7 @@ pages:
 
 ## Firebase Hosting
 
-!> You'll need to install the Firebase CLI using `npm i -g firebase-tools` after signing into the [Firebase Console](https://console.firebase.google.com) using a Google Account.  
+!> You'll need to install the Firebase CLI using `npm i -g firebase-tools` after signing into the [Firebase Console](https://console.firebase.google.com) using a Google Account.
 
 Using Terminal determine and navigate to the directory for your Firebase Project - this could be `~/Projects/Docs` etc. From there, run `firebase init`, choosing `Hosting` from the menu (use **space** to select, **arrow keys** to change options and **enter** to confirm). Follow the setup instructions.
 
@@ -53,11 +53,7 @@ You should have your `firebase.json` file looking similar to this (I changed the
 {
   "hosting": {
     "public": "site",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   }
 }
 ```

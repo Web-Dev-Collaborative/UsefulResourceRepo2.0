@@ -30,9 +30,9 @@ immediately. See the [eager execution guide](./eager.md) for using eager executi
 to create more readable, intuitive TensorFlow code.
 
 However, without eager execution enabled, an operation like `tf.matmul` above does
-*not* execute immediately, but, instead, builds a fragment of a TensorFlow graph.
+_not_ execute immediately, but, instead, builds a fragment of a TensorFlow graph.
 
-Why graphs?  TensorFlow graphs can help with distribution, optimization, and putting
+Why graphs? TensorFlow graphs can help with distribution, optimization, and putting
 models into production. In the suggested expression, `a`, `b`, and `c` are `tf.Tensor`
 objects. A `tf.Tensor` object is a symbolic handle to the result of an
 operation, but does not actually hold the values of the operation's
@@ -53,7 +53,7 @@ device, and `"/device:GPU:i"` (or `"/gpu:i"`) for the *i*th GPU device.
 #### How do I place operations on a particular device?
 
 To explicitly place a group of operations on a device, create them within a
-`tf.device` context.  See the [using GPUs guide](./using_gpu.md) for details
+`tf.device` context. See the [using GPUs guide](./using_gpu.md) for details
 about how TensorFlow assigns operations to devices.
 
 You can also look at
@@ -130,12 +130,12 @@ end of the call.
 When you use graph execution, the TensorFlow runtime parallelizes
 execution across many different dimensions:
 
-* The individual ops have parallel implementations, using multiple cores in a
+- The individual ops have parallel implementations, using multiple cores in a
   CPU, or multiple threads in a GPU.
-* Independent nodes in a TensorFlow graph can run in parallel on multiple
+- Independent nodes in a TensorFlow graph can run in parallel on multiple
   devices, which makes it possible to speed up
   [CIFAR-10 training using multiple GPUs](../tutorials/images/deep_cnn.md).
-* The Session API allows multiple concurrent steps (i.e. calls to
+- The Session API allows multiple concurrent steps (i.e. calls to
   `tf.Session.run` in parallel). This
   enables the runtime to get higher throughput, if a single step does not use
   all of the resources in your computer.
@@ -149,7 +149,7 @@ executing and constructing graphs are also available for
 
 TensorFlow also has a
 [C-based client API](https://www.tensorflow.org/code/tensorflow/c/c_api.h)
-to help build support for more client languages.  We invite contributions of new
+to help build support for more client languages. We invite contributions of new
 language bindings.
 
 Bindings for various other languages (such as
@@ -171,7 +171,7 @@ simpler interface and improved performance.
 
 The `tf.ReaderBase` and
 `tf.QueueBase` classes provide special operations that
-can *block* until input (or free space in a bounded queue) becomes
+can _block_ until input (or free space in a bounded queue) becomes
 available. These operations allow you to build sophisticated
 [input pipelines](../api_guides/python/reading_data.md), at the cost of making the
 TensorFlow computation somewhat more complicated. See the how-to documentation
@@ -186,7 +186,7 @@ See the [variables guide](./variables.md) and the
 
 #### Should I turn on `use_resource=True` when constructing variables?
 
-Yes.  This uses safer memory behavior, and will be the default in
+Yes. This uses safer memory behavior, and will be the default in
 TensorFlow 2.0.
 
 #### What is the lifetime of a variable?
@@ -245,13 +245,12 @@ When building a variable-size graph, the most important thing to remember is not
 to encode the batch size as a Python constant, but instead to use a symbolic
 `Tensor` to represent it. The following tips may be useful:
 
-* Use [`batch_size = tf.shape(input)[0]`](../api_docs/python/array_ops.md#shape)
+- Use [`batch_size = tf.shape(input)[0]`](../api_docs/python/array_ops.md#shape)
   to extract the batch dimension from a `Tensor` called `input`, and store it in
   a `Tensor` called `batch_size`.
 
-* Use `tf.reduce_mean` instead
+- Use `tf.reduce_mean` instead
   of `tf.reduce_sum(...) / batch_size`.
-
 
 ## TensorBoard
 
@@ -262,7 +261,7 @@ See the [graph visualization tutorial](../guide/graph_viz.md).
 #### What is the simplest way to send data to TensorBoard?
 
 Add summary ops to your TensorFlow graph, and write
-these summaries to a log directory.  Then, start TensorBoard using
+these summaries to a log directory. Then, start TensorBoard using
 
     python tensorflow/tensorboard/tensorboard.py --logdir=path/to/log-directory
 
@@ -303,13 +302,12 @@ The most efficient method to customize the parsing behavior is to
 data format. The [guide to handling new data formats](extend/formats.md) has
 more information about the steps for doing this.
 
-
 ## Miscellaneous
 
 #### What is TensorFlow's coding style convention?
 
 The TensorFlow Python API adheres to the
-[PEP8](https://www.python.org/dev/peps/pep-0008/) conventions.<sup>*</sup> In
+[PEP8](https://www.python.org/dev/peps/pep-0008/) conventions.<sup>\*</sup> In
 particular, we use `CamelCase` names for classes, and `snake_case` names for
 functions, methods, and properties. We also adhere to the
 [Google Python style guide](https://google.github.io/styleguide/pyguide.html).
@@ -317,6 +315,5 @@ functions, methods, and properties. We also adhere to the
 The TensorFlow C++ code base adheres to the
 [Google C++ style guide](https://google.github.io/styleguide/cppguide.html).
 
-(<sup>*</sup> With one exception: we use 2-space indentation instead of 4-space
+(<sup>\*</sup> With one exception: we use 2-space indentation instead of 4-space
 indentation.)
-

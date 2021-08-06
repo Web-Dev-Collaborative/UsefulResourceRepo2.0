@@ -9,7 +9,7 @@
 我们使用 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 模型来声明**请求**体，并能够获得它们所具有的所有能力和优点。
 
 !!! info
-    你不能使用 `GET` 操作（HTTP 方法）发送请求体。
+你不能使用 `GET` 操作（HTTP 方法）发送请求体。
 
     要发送数据，你必须使用下列方法之一：`POST`（较常见）、`PUT`、`DELETE` 或 `PATCH`。
 
@@ -67,14 +67,14 @@
 
 仅仅使用了 Python 类型声明，**FastAPI** 将会：
 
-* 将请求体作为 JSON 读取。
-* 转换为相应的类型（在需要时）。
-* 校验数据。
-    * 如果数据无效，将返回一条清晰易读的错误信息，指出不正确数据的确切位置和内容。
-* 将接收的数据赋值到参数 `item` 中。
-    * 由于你已经在函数中将它声明为 `Item` 类型，你还将获得对于所有属性及其类型的一切编辑器支持（代码补全等）。
-* 为你的模型生成 <a href="http://json-schema.org" class="external-link" target="_blank">JSON 模式</a> 定义，你还可以在其他任何对你的项目有意义的地方使用它们。
-* 这些模式将成为生成的 OpenAPI 模式的一部分，并且被自动化文档 <abbr title="用户界面">UI</abbr> 所使用。
+- 将请求体作为 JSON 读取。
+- 转换为相应的类型（在需要时）。
+- 校验数据。
+  - 如果数据无效，将返回一条清晰易读的错误信息，指出不正确数据的确切位置和内容。
+- 将接收的数据赋值到参数 `item` 中。
+  - 由于你已经在函数中将它声明为 `Item` 类型，你还将获得对于所有属性及其类型的一切编辑器支持（代码补全等）。
+- 为你的模型生成 <a href="http://json-schema.org" class="external-link" target="_blank">JSON 模式</a> 定义，你还可以在其他任何对你的项目有意义的地方使用它们。
+- 这些模式将成为生成的 OpenAPI 模式的一部分，并且被自动化文档 <abbr title="用户界面">UI</abbr> 所使用。
 
 ## 自动化文档
 
@@ -138,10 +138,10 @@ Pydantic 本身甚至也进行了一些更改以支持此功能。
 
 函数参数将依次按如下规则进行识别：
 
-* 如果在**路径**中也声明了该参数，它将被用作路径参数。
-* 如果参数属于**单一类型**（比如 `int`、`float`、`str`、`bool` 等）它将被解释为**查询**参数。
-* 如果参数的类型被声明为一个 **Pydantic 模型**，它将被解释为**请求体**。
+- 如果在**路径**中也声明了该参数，它将被用作路径参数。
+- 如果参数属于**单一类型**（比如 `int`、`float`、`str`、`bool` 等）它将被解释为**查询**参数。
+- 如果参数的类型被声明为一个 **Pydantic 模型**，它将被解释为**请求体**。
 
 ## 不使用 Pydantic
 
-如果你不想使用 Pydantic 模型，你还可以使用 **Body** 参数。请参阅文档 [请求体 - 多个参数：请求体中的单一值](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}。
+如果你不想使用 Pydantic 模型，你还可以使用 **Body** 参数。请参阅文档 [请求体 - 多个参数：请求体中的单一值](body-multiple-params.md#singular-values-in-body){.internal-link target=\_blank}。

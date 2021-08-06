@@ -13,7 +13,7 @@ This is just a **quick tutorial / refresher** about Python type hints. It covers
 But even if you never use **FastAPI**, you would benefit from learning a bit about them.
 
 !!! note
-    If you are a Python expert, and you already know everything about type hints, skip to the next chapter.
+If you are a Python expert, and you already know everything about type hints, skip to the next chapter.
 
 ## Motivation
 
@@ -29,11 +29,11 @@ Calling this program outputs:
 John Doe
 ```
 
-The function does the following: 
+The function does the following:
 
-* Takes a `first_name` and `last_name`.
-* Converts the first letter of each one to upper case with `title()`.
-* <abbr title="Puts them together, as one. With the contents of one after the other.">Concatenates</abbr> them with a space in the middle.
+- Takes a `first_name` and `last_name`.
+- Converts the first letter of each one to upper case with `title()`.
+- <abbr title="Puts them together, as one. With the contents of one after the other.">Concatenates</abbr> them with a space in the middle.
 
 ```Python hl_lines="2"
 {!../../../docs_src/python_types/tutorial001.py!}
@@ -135,10 +135,10 @@ You can declare all the standard Python types, not only `str`.
 
 You can use, for example:
 
-* `int`
-* `float`
-* `bool`
-* `bytes`
+- `int`
+- `float`
+- `bool`
+- `bytes`
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial005.py!}
@@ -173,7 +173,7 @@ As the list is a type that contains some internal types, you put them in square 
 ```
 
 !!! tip
-    Those internal types in the square brackets are called "type parameters".
+Those internal types in the square brackets are called "type parameters".
 
     In this case, `str` is the type parameter passed to `List`.
 
@@ -199,8 +199,8 @@ You would do the same to declare `tuple`s and `set`s:
 
 This means:
 
-* The variable `items_t` is a `tuple` with 3 items, an `int`, another `int`, and a `str`.
-* The variable `items_s` is a `set`, and each of its items is of type `bytes`.
+- The variable `items_t` is a `tuple` with 3 items, an `int`, another `int`, and a `str`.
+- The variable `items_s` is a `set`, and each of its items is of type `bytes`.
 
 #### `Dict`
 
@@ -216,9 +216,9 @@ The second type parameter is for the values of the `dict`:
 
 This means:
 
-* The variable `prices` is a `dict`:
-    * The keys of this `dict` are of type `str` (let's say, the name of each item).
-    * The values of this `dict` are of type `float` (let's say, the price of each item).
+- The variable `prices` is a `dict`:
+  - The keys of this `dict` are of type `str` (let's say, the name of each item).
+  - The values of this `dict` are of type `float` (let's say, the price of each item).
 
 #### `Optional`
 
@@ -234,12 +234,12 @@ Using `Optional[str]` instead of just `str` will let the editor help you detecti
 
 These types that take type parameters in square brackets, like:
 
-* `List`
-* `Tuple`
-* `Set`
-* `Dict`
-* `Optional`
-* ...and others.
+- `List`
+- `Tuple`
+- `Set`
+- `Dict`
+- `Optional`
+- ...and others.
 
 are called **Generic types** or **Generics**.
 
@@ -282,11 +282,11 @@ Taken from the official Pydantic docs:
 ```
 
 !!! info
-    To learn more about <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic, check its docs</a>.
+To learn more about <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic, check its docs</a>.
 
 **FastAPI** is all based on Pydantic.
 
-You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
+You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=\_blank}.
 
 ## Type hints in **FastAPI**
 
@@ -294,21 +294,21 @@ You will see a lot more of all this in practice in the [Tutorial - User Guide](t
 
 With **FastAPI** you declare parameters with type hints and you get:
 
-* **Editor support**.
-* **Type checks**.
+- **Editor support**.
+- **Type checks**.
 
 ...and **FastAPI** uses the same declarations to:
 
-* **Define requirements**: from request path parameters, query parameters, headers, bodies, dependencies, etc.
-* **Convert data**: from the request to the required type.
-* **Validate data**: coming from each request:
-    * Generating **automatic errors** returned to the client when the data is invalid.
-* **Document** the API using OpenAPI:
-    * which is then used by the automatic interactive documentation user interfaces.
+- **Define requirements**: from request path parameters, query parameters, headers, bodies, dependencies, etc.
+- **Convert data**: from the request to the required type.
+- **Validate data**: coming from each request:
+  - Generating **automatic errors** returned to the client when the data is invalid.
+- **Document** the API using OpenAPI:
+  - which is then used by the automatic interactive documentation user interfaces.
 
-This might all sound abstract. Don't worry. You'll see all this in action in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
+This might all sound abstract. Don't worry. You'll see all this in action in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=\_blank}.
 
 The important thing is that by using standard Python types, in a single place (instead of adding more classes, decorators, etc), **FastAPI** will do a lot of the work for you.
 
 !!! info
-    If you already went through all the tutorial and came back to see more about types, a good resource is <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">the "cheat sheet" from `mypy`</a>.
+If you already went through all the tutorial and came back to see more about types, a good resource is <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">the "cheat sheet" from `mypy`</a>.

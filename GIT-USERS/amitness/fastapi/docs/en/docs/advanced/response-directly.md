@@ -1,12 +1,12 @@
 # Return a Response Directly
 
-When you create a **FastAPI** *path operation* you can normally return any data from it: a `dict`, a `list`, a Pydantic model, a database model, etc.
+When you create a **FastAPI** _path operation_ you can normally return any data from it: a `dict`, a `list`, a Pydantic model, a database model, etc.
 
-By default, **FastAPI** would automatically convert that return value to JSON using the `jsonable_encoder` explained in [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank}.
+By default, **FastAPI** would automatically convert that return value to JSON using the `jsonable_encoder` explained in [JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=\_blank}.
 
 Then, behind the scenes, it would put that JSON-compatible data (e.g. a `dict`) inside of a `JSONResponse` that would be used to send the response to the client.
 
-But you can return a `JSONResponse` directly from your *path operations*.
+But you can return a `JSONResponse` directly from your _path operations_.
 
 It might be useful, for example, to return custom headers or cookies.
 
@@ -15,7 +15,7 @@ It might be useful, for example, to return custom headers or cookies.
 In fact, you can return any `Response` or any sub-class of it.
 
 !!! tip
-    `JSONResponse` itself is a sub-class of `Response`.
+`JSONResponse` itself is a sub-class of `Response`.
 
 And when you return a `Response`, **FastAPI** will pass it directly.
 
@@ -36,7 +36,7 @@ For those cases, you can use the `jsonable_encoder` to convert your data before 
 ```
 
 !!! note "Technical Details"
-    You could also use `from starlette.responses import JSONResponse`.
+You could also use `from starlette.responses import JSONResponse`.
 
     **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
 
@@ -58,6 +58,6 @@ You could put your XML content in a string, put it in a `Response`, and return i
 
 When you return a `Response` directly its data is not validated, converted (serialized), nor documented automatically.
 
-But you can still document it as described in [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
+But you can still document it as described in [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=\_blank}.
 
 You can see in later sections how to use/declare these custom `Response`s while still having automatic data conversion, documentation, etc.

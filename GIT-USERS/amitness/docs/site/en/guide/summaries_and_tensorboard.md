@@ -43,8 +43,7 @@ recognizing MNIST digits. You'd like to record how the learning rate
 varies over time, and how the objective function is changing. Collect these by
 attaching `tf.summary.scalar` ops
 to the nodes that output the learning rate and loss respectively. Then, give
-each `scalar_summary` a meaningful `tag`, like `'learning rate'` or `'loss
-function'`.
+each `scalar_summary` a meaningful `tag`, like `'learning rate'` or `'loss function'`.
 
 Perhaps you'd also like to visualize the distributions of activations coming
 off a particular layer, or the distribution of gradients or weights. Collect
@@ -199,18 +198,16 @@ for i in range(FLAGS.max_steps):
 
 You're now all set to visualize this data using TensorBoard.
 
-
 ## Launching TensorBoard
 
-To run TensorBoard, use the following command (alternatively `python -m
-tensorboard.main`)
+To run TensorBoard, use the following command (alternatively `python -m tensorboard.main`)
 
 ```bash
 tensorboard --logdir=path/to/log-directory
 ```
 
 where `logdir` points to the directory where the `FileWriter` serialized its
-data.  If this `logdir` directory contains subdirectories which contain
+data. If this `logdir` directory contains subdirectories which contain
 serialized data from separate runs, then TensorBoard will visualize the data
 from all of those runs. Once TensorBoard is running, navigate your web browser
 to `localhost:6006` to view the TensorBoard.
@@ -218,7 +215,7 @@ to `localhost:6006` to view the TensorBoard.
 When looking at TensorBoard, you will see the navigation tabs in the top right
 corner. Each tab represents a set of serialized data that can be visualized.
 
-For in depth information on how to use the *graph* tab to visualize your graph,
+For in depth information on how to use the _graph_ tab to visualize your graph,
 see [TensorBoard: Graph Visualization](../guide/graph_viz.md).
 
 For more usage information on TensorBoard in general, see the

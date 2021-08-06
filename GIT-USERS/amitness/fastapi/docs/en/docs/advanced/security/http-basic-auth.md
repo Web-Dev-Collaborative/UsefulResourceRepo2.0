@@ -14,11 +14,11 @@ Then, when you type that username and password, the browser sends them in the he
 
 ## Simple HTTP Basic Auth
 
-* Import `HTTPBasic` and `HTTPBasicCredentials`.
-* Create a "`security` scheme" using `HTTPBasic`.
-* Use that `security` with a dependency in your *path operation*.
-* It returns an object of type `HTTPBasicCredentials`:
-    * It contains the `username` and `password` sent.
+- Import `HTTPBasic` and `HTTPBasicCredentials`.
+- Create a "`security` scheme" using `HTTPBasic`.
+- Use that `security` with a dependency in your _path operation_.
+- It returns an object of type `HTTPBasicCredentials`:
+  - It contains the `username` and `password` sent.
 
 ```Python hl_lines="2  6  10"
 {!../../../docs_src/security/tutorial006.py!}

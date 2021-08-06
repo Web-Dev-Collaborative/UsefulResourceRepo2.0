@@ -1,17 +1,15 @@
-{% extends "layout.html" %}
-
-{% block jumbotron %}
+{% extends "layout.html" %} {% block jumbotron %}
 <div class="jumbotron">
-   <h1>Python Cheat Sheet</h1>
-   <p>Cheat sheet of Python. Some C API concepts for Python programmer need to know.</p>
+  <h1>Python Cheat Sheet</h1>
+  <p>
+    Cheat sheet of Python. Some C API concepts for Python programmer need to
+    know.
+  </p>
 </div>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="row col-md-4 col-xs-12">
-
-<h3>PyObject header</h3>
-<pre class="code c">
+  <h3>PyObject header</h3>
+  <pre class="code c">
 // ref: python source code
 // Python/Include/object.c
 #define _PyObject_HEAD_EXTRA \
@@ -22,10 +20,11 @@
     _PyObject_HEAD_EXTRA \
     Py_ssize_t ob_refcnt;\
     struct _typeobject *ob_type;
-</pre>
+</pre
+  >
 
-<h3>C type and PythonTypeObject Convert</h3>
-<pre class="code c">
+  <h3>C type and PythonTypeObject Convert</h3>
+  <pre class="code c">
 // ref: <a href="https://docs.python.org/2/c-api/int.html">PyIntObject</a>
 // Integer
 PyObject *PyInt_FromString(
@@ -162,8 +161,8 @@ int PyDict_Next(
     PyObject **pvalue);
 </pre>
 
-<h3>Python C API Template</h3>
-<pre class="code c">
+  <h3>Python C API Template</h3>
+  <pre class="code c">
 // spam.c
 #include &lt;Python.h&gt;
 
@@ -222,10 +221,11 @@ initspam(void)
 END:
     return;
 }
-</pre>
+</pre
+  >
 
-<h3>Compile(Build) Module</h3>
-<pre class="code python">
+  <h3>Compile(Build) Module</h3>
+  <pre class="code python">
 # setup.py
 from distutils.core import setup
 from distutils.core import Extension
@@ -249,13 +249,13 @@ setup(name="spam", version="1.0",
 ... 
 &gt;&gt;&gt; pyspam.__doc__
 'python spam object'
-</pre>
+</pre
+  >
 </div>
 
 <div class="row col-md-4 col-xs-12">
-
-<h3>PyObject with Member and Methods</h3>
-<pre class="code c">
+  <h3>PyObject with Member and Methods</h3>
+  <pre class="code c">
 #include &lt;Python.h&gt;
 #include &lt;structmember.h&gt;
 
@@ -498,9 +498,8 @@ END:
 </div>
 
 <div class="row col-md-4 col-xs-12">
-
-<h3>Compile Extension with Particular Compiler</h3>
-<pre class="code python">
+  <h3>Compile Extension with Particular Compiler</h3>
+  <pre class="code python">
 # method 1: set "CC" environment
 bash&gt; CC=gcc python setup.py build
 
@@ -515,10 +514,11 @@ setup(name="spam", version="1.0",
     ext_modules=[
         Extension("spam", ["spam.c"])])
 
-</pre>
+</pre
+  >
 
-<h3>Profile C API Function</h3>
-<pre class="code python">
+  <h3>Profile C API Function</h3>
+  <pre class="code python">
 &gt;&gt;&gt; import spam
 &gt;&gt;&gt; o = spam.SpamKlass()
 &gt;&gt;&gt; def profile(func):
@@ -546,12 +546,8 @@ setup(name="spam", version="1.0",
 0.0106310844421
 &gt;&gt;&gt; pyfib(30)
 0.399799108505
-</pre>
-
+</pre
+  >
 </div>
 
-{% endblock %}
-
-{% block script %}
-{{ super() }}
-{% endblock %}
+{% endblock %} {% block script %} {{ super() }} {% endblock %}

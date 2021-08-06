@@ -28,8 +28,8 @@
 
 <script>
   window.$docsify = {
-    loadNavbar: true
-  }
+    loadNavbar: true,
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 ```
@@ -37,9 +37,9 @@
 ```markdown
 <!-- _navbar.md -->
 
-* [En](/)
-* [chinese](/zh-cn/)
-* [russian](/ru-ru/)
+- [En](/)
+- [chinese](/zh-cn/)
+- [russian](/ru-ru/)
 ```
 
 !> Вам нужно создать `.nojekyll` в `./docs`, чтобы при использовании GitHub Pages не игнорировались файлы, начинающиеся с подчеркивания.
@@ -53,24 +53,24 @@
 ```markdown
 <!-- _navbar.md -->
 
-* Getting started
+- Getting started
 
-  * [Quick start](quickstart.md)
-  * [Writing more pages](more-pages.md)
-  * [Custom navbar](custom-navbar.md)
-  * [Cover page](cover.md)
+  - [Quick start](quickstart.md)
+  - [Writing more pages](more-pages.md)
+  - [Custom navbar](custom-navbar.md)
+  - [Cover page](cover.md)
 
-* Configuration
-  * [Configuration](configuration.md)
-  * [Themes](themes.md)
-  * [Using plugins](plugins.md)
-  * [Markdown configuration](markdown.md)
-  * [Language highlight](language-highlight.md)
+- Configuration
+  - [Configuration](configuration.md)
+  - [Themes](themes.md)
+  - [Using plugins](plugins.md)
+  - [Markdown configuration](markdown.md)
+  - [Language highlight](language-highlight.md)
 ```
 
 отображается как
 
-![Nesting navbar](../_images/nested-navbar.png 'Nesting navbar')
+![Nesting navbar](../_images/nested-navbar.png "Nesting navbar")
 
 ## Объединение navbars с плагином emoji
 
@@ -82,7 +82,7 @@
 <script>
   window.$docsify = {
     // ...
-  }
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/emoji.min.js"></script>
@@ -93,8 +93,6 @@
 ```markdown
 <!-- _navbar.md -->
 
-* [:us:, :uk:](/)
-* [:cn:](/zh-cn/)
+- [:us:, :uk:](/)
+- [:cn:](/zh-cn/)
 ```
-
-

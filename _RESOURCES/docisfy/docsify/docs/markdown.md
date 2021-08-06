@@ -7,12 +7,12 @@ window.$docsify = {
   markdown: {
     smartypants: true,
     renderer: {
-      link: function() {
+      link: function () {
         // ...
-      }
-    }
-  }
-}
+      },
+    },
+  },
+};
 ```
 
 ?> Configuration Options Reference: [marked documentation](https://marked.js.org/#/USING_ADVANCED.md)
@@ -21,12 +21,12 @@ You can completely customize the parsing rules.
 
 ```js
 window.$docsify = {
-  markdown: function(marked, renderer) {
+  markdown: function (marked, renderer) {
     // ...
 
-    return marked
-  }
-}
+    return marked;
+  },
+};
 ```
 
 ## Supports mermaid
@@ -42,15 +42,17 @@ mermaid.initialize({ startOnLoad: false });
 window.$docsify = {
   markdown: {
     renderer: {
-      code: function(code, lang) {
-        if (lang === "mermaid") {
+      code: function (code, lang) {
+        if (lang === 'mermaid') {
           return (
-            '<div class="mermaid">' + mermaid.render('mermaid-svg-' + num++, code) + "</div>"
+            '<div class="mermaid">' +
+            mermaid.render('mermaid-svg-' + num++, code) +
+            '</div>'
           );
         }
         return this.origin.code.apply(this, arguments);
-      }
-    }
-  }
-}
+      },
+    },
+  },
+};
 ```

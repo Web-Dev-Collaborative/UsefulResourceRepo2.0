@@ -1,4 +1,5 @@
 ### Development Staus
+
 [![Build Status](https://travis-ci.org/crazyguitar/cheatsheet.svg)](https://travis-ci.org/crazyguitar/cheatsheet)
 [![codecov.io](https://codecov.io/github/crazyguitar/cheatsheet/coverage.svg?branch=master)](https://codecov.io/github/crazyguitar/cheatsheet?branch=master)
 

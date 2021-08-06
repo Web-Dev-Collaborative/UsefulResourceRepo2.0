@@ -1,0 +1,11 @@
+# https://help.github.com/articles/about-codeowners/
+# Last matching pattern takes preecedence.
+
+# Default owners for everything in repo.
+*  @lamberta @MarkDaoust @yashk2810 @anirudh161
+
+# Docs
+/site/en/guide/keras/ @fchollet @lamberta @MarkDaoust @yashk2810 @anirudh161
+
+# Community
+/site/en/community/ @ewilderj @lamberta

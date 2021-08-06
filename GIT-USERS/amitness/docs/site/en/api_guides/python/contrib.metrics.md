@@ -1,4 +1,5 @@
 # Metrics (contrib)
+
 [TOC]
 
 ##Ops for evaluation metrics and summary statistics.
@@ -31,13 +32,13 @@ Each metric function adds nodes to the graph that hold the state necessary to
 compute the value of the metric as well as a set of operations that actually
 perform the computation. Every metric evaluation is composed of three steps
 
-* Initialization: initializing the metric state.
-* Aggregation: updating the values of the metric state.
-* Finalization: computing the final metric value.
+- Initialization: initializing the metric state.
+- Aggregation: updating the values of the metric state.
+- Finalization: computing the final metric value.
 
 In the above example, calling streaming_mean creates a pair of state variables
 that will contain (1) the running sum and (2) the count of the number of samples
-in the sum.  Because the streaming metrics use local variables,
+in the sum. Because the streaming metrics use local variables,
 the Initialization stage is performed by running the op returned
 by `tf.local_variables_initializer()`. It sets the sum and count variables to
 zero.
@@ -86,48 +87,48 @@ labels and predictions tensors and results in a weighted average of the metric.
 
 ## Metric `Ops`
 
-*   `tf.contrib.metrics.streaming_accuracy`
-*   `tf.contrib.metrics.streaming_mean`
-*   `tf.contrib.metrics.streaming_recall`
-*   `tf.contrib.metrics.streaming_recall_at_thresholds`
-*   `tf.contrib.metrics.streaming_precision`
-*   `tf.contrib.metrics.streaming_precision_at_thresholds`
-*   `tf.contrib.metrics.streaming_auc`
-*   `tf.contrib.metrics.streaming_recall_at_k`
-*   `tf.contrib.metrics.streaming_mean_absolute_error`
-*   `tf.contrib.metrics.streaming_mean_iou`
-*   `tf.contrib.metrics.streaming_mean_relative_error`
-*   `tf.contrib.metrics.streaming_mean_squared_error`
-*   `tf.contrib.metrics.streaming_mean_tensor`
-*   `tf.contrib.metrics.streaming_root_mean_squared_error`
-*   `tf.contrib.metrics.streaming_covariance`
-*   `tf.contrib.metrics.streaming_pearson_correlation`
-*   `tf.contrib.metrics.streaming_mean_cosine_distance`
-*   `tf.contrib.metrics.streaming_percentage_less`
-*   `tf.contrib.metrics.streaming_sensitivity_at_specificity`
-*   `tf.contrib.metrics.streaming_sparse_average_precision_at_k`
-*   `tf.contrib.metrics.streaming_sparse_precision_at_k`
-*   `tf.contrib.metrics.streaming_sparse_precision_at_top_k`
-*   `tf.contrib.metrics.streaming_sparse_recall_at_k`
-*   `tf.contrib.metrics.streaming_specificity_at_sensitivity`
-*   `tf.contrib.metrics.streaming_concat`
-*   `tf.contrib.metrics.streaming_false_negatives`
-*   `tf.contrib.metrics.streaming_false_negatives_at_thresholds`
-*   `tf.contrib.metrics.streaming_false_positives`
-*   `tf.contrib.metrics.streaming_false_positives_at_thresholds`
-*   `tf.contrib.metrics.streaming_true_negatives`
-*   `tf.contrib.metrics.streaming_true_negatives_at_thresholds`
-*   `tf.contrib.metrics.streaming_true_positives`
-*   `tf.contrib.metrics.streaming_true_positives_at_thresholds`
-*   `tf.contrib.metrics.auc_using_histogram`
-*   `tf.contrib.metrics.accuracy`
-*   `tf.contrib.metrics.aggregate_metrics`
-*   `tf.contrib.metrics.aggregate_metric_map`
-*   `tf.contrib.metrics.confusion_matrix`
+- `tf.contrib.metrics.streaming_accuracy`
+- `tf.contrib.metrics.streaming_mean`
+- `tf.contrib.metrics.streaming_recall`
+- `tf.contrib.metrics.streaming_recall_at_thresholds`
+- `tf.contrib.metrics.streaming_precision`
+- `tf.contrib.metrics.streaming_precision_at_thresholds`
+- `tf.contrib.metrics.streaming_auc`
+- `tf.contrib.metrics.streaming_recall_at_k`
+- `tf.contrib.metrics.streaming_mean_absolute_error`
+- `tf.contrib.metrics.streaming_mean_iou`
+- `tf.contrib.metrics.streaming_mean_relative_error`
+- `tf.contrib.metrics.streaming_mean_squared_error`
+- `tf.contrib.metrics.streaming_mean_tensor`
+- `tf.contrib.metrics.streaming_root_mean_squared_error`
+- `tf.contrib.metrics.streaming_covariance`
+- `tf.contrib.metrics.streaming_pearson_correlation`
+- `tf.contrib.metrics.streaming_mean_cosine_distance`
+- `tf.contrib.metrics.streaming_percentage_less`
+- `tf.contrib.metrics.streaming_sensitivity_at_specificity`
+- `tf.contrib.metrics.streaming_sparse_average_precision_at_k`
+- `tf.contrib.metrics.streaming_sparse_precision_at_k`
+- `tf.contrib.metrics.streaming_sparse_precision_at_top_k`
+- `tf.contrib.metrics.streaming_sparse_recall_at_k`
+- `tf.contrib.metrics.streaming_specificity_at_sensitivity`
+- `tf.contrib.metrics.streaming_concat`
+- `tf.contrib.metrics.streaming_false_negatives`
+- `tf.contrib.metrics.streaming_false_negatives_at_thresholds`
+- `tf.contrib.metrics.streaming_false_positives`
+- `tf.contrib.metrics.streaming_false_positives_at_thresholds`
+- `tf.contrib.metrics.streaming_true_negatives`
+- `tf.contrib.metrics.streaming_true_negatives_at_thresholds`
+- `tf.contrib.metrics.streaming_true_positives`
+- `tf.contrib.metrics.streaming_true_positives_at_thresholds`
+- `tf.contrib.metrics.auc_using_histogram`
+- `tf.contrib.metrics.accuracy`
+- `tf.contrib.metrics.aggregate_metrics`
+- `tf.contrib.metrics.aggregate_metric_map`
+- `tf.contrib.metrics.confusion_matrix`
 
 ## Set `Ops`
 
-*   `tf.contrib.metrics.set_difference`
-*   `tf.contrib.metrics.set_intersection`
-*   `tf.contrib.metrics.set_size`
-*   `tf.contrib.metrics.set_union`
+- `tf.contrib.metrics.set_difference`
+- `tf.contrib.metrics.set_intersection`
+- `tf.contrib.metrics.set_size`
+- `tf.contrib.metrics.set_union`

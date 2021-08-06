@@ -14,7 +14,7 @@ function startServer(options = {}, cb = Function.prototype) {
     middleware: [
       {
         route: '/_blank.html',
-        handle: function(req, res, next) {
+        handle: function (req, res, next) {
           res.setHeader('Content-Type', 'text/html');
           res.end('');
           next();
@@ -26,7 +26,8 @@ function startServer(options = {}, cb = Function.prototype) {
     rewriteRules: [
       // Replace docsify-related CDN URLs with local paths
       {
-        match: /(https?:)?\/\/cdn\.jsdelivr\.net\/npm\/docsify(@\d?\.?\d?\.?\d)?\/lib\//g,
+        match:
+          /(https?:)?\/\/cdn\.jsdelivr\.net\/npm\/docsify(@\d?\.?\d?\.?\d)?\/lib\//g,
         replace: '/lib/',
       },
     ],
@@ -42,7 +43,7 @@ function startServer(options = {}, cb = Function.prototype) {
     snippetOptions: {
       rule: {
         match: /<\/body>/i,
-        fn: function(snippet, match) {
+        fn: function (snippet, match) {
           // Override changelog alias to load local changelog (see routes)
           const injectJS = `
             <script>

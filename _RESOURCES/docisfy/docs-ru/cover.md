@@ -11,8 +11,8 @@
 
 <script>
   window.$docsify = {
-    coverpage: true
-  }
+    coverpage: true,
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 ```
@@ -26,9 +26,9 @@
 
 > Магический генератор сайта документации
 
-* Простой и легковесный (~19kB gzipped)
-* Нет статически построенных html файлов
-* Множество тем оформления
+- Простой и легковесный (~19kB gzipped)
+- Нет статически построенных html файлов
+- Множество тем оформления
 
 [GitHub](https://github.com/QingWei-Li/docsify/)
 [Начать](#docsify)
@@ -55,7 +55,7 @@
 ![color](#f0f0f0)
 ```
 
-## Обложка как главная страница 
+## Обложка как главная страница
 
 Обычно, одновременно отображаются страница обложки и домашняя страница. Конечно, вы также можете отделить обложку через [опцию onlyCover](ru-ru/configuration.md#onlycover).
 
@@ -81,7 +81,7 @@
 
 ```js
 window.$docsify = {
-  coverpage: ['/', '/zh-cn/']
+  coverpage: ["/", "/zh-cn/"],
 };
 ```
 
@@ -90,10 +90,8 @@ window.$docsify = {
 ```js
 window.$docsify = {
   coverpage: {
-    '/': 'cover.md',
-    '/zh-cn/': 'cover.md'
-  }
+    "/": "cover.md",
+    "/zh-cn/": "cover.md",
+  },
 };
 ```
-
-

@@ -9,6 +9,7 @@ Hey! 👋
 This is me:
 
 {% if people %}
+
 <div class="user-list user-list-center">
 {% for user in people.maintainers %}
 
@@ -18,7 +19,7 @@ This is me:
 </div>
 {% endif %}
 
-I'm the creator and maintainer of **FastAPI**. You can read more about that in [Help FastAPI - Get Help - Connect with the author](help-fastapi.md#connect-with-the-author){.internal-link target=_blank}.
+I'm the creator and maintainer of **FastAPI**. You can read more about that in [Help FastAPI - Get Help - Connect with the author](help-fastapi.md#connect-with-the-author){.internal-link target=\_blank}.
 
 ...But here I want to show you the community.
 
@@ -28,17 +29,18 @@ I'm the creator and maintainer of **FastAPI**. You can read more about that in [
 
 These are the people that:
 
-* [Help others with issues (questions) in GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank}.
-* [Create Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}.
-* Review Pull Requests, [especially important for translations](contributing.md#translations){.internal-link target=_blank}.
+- [Help others with issues (questions) in GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=\_blank}.
+- [Create Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=\_blank}.
+- Review Pull Requests, [especially important for translations](contributing.md#translations){.internal-link target=\_blank}.
 
 A round of applause to them. 👏 🙇
 
 ## Most active users last month
 
-These are the users that have been [helping others the most with issues (questions) in GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} during the last month. ☕
+These are the users that have been [helping others the most with issues (questions) in GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=\_blank} during the last month. ☕
 
 {% if people %}
+
 <div class="user-list user-list-center">
 {% for user in people.last_month_active %}
 
@@ -52,11 +54,12 @@ These are the users that have been [helping others the most with issues (questio
 
 Here are the **FastAPI Experts**. 🤓
 
-These are the users that have [helped others the most with issues (questions) in GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=_blank} through *all time*.
+These are the users that have [helped others the most with issues (questions) in GitHub](help-fastapi.md#help-others-with-issues-in-github){.internal-link target=\_blank} through _all time_.
 
 They have proven to be experts by helping many others. ✨
 
 {% if people %}
+
 <div class="user-list user-list-center">
 {% for user in people.experts %}
 
@@ -70,11 +73,12 @@ They have proven to be experts by helping many others. ✨
 
 Here are the **Top Contributors**. 👷
 
-These users have [created the most Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank} that have been *merged*.
+These users have [created the most Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=\_blank} that have been _merged_.
 
 They have contributed source code, documentation, translations, etc. 📦
 
 {% if people %}
+
 <div class="user-list user-list-center">
 {% for user in people.top_contributors %}
 
@@ -92,13 +96,14 @@ These users are the **Top Reviewers**. 🕵️
 
 ### Reviews for Translations
 
-I only speak a few languages (and not very well 😅). So, the reviewers are the ones that have the [**power to approve translations**](contributing.md#translations){.internal-link target=_blank} of the documentation. Without them, there wouldn't be documentation in several other languages.
+I only speak a few languages (and not very well 😅). So, the reviewers are the ones that have the [**power to approve translations**](contributing.md#translations){.internal-link target=\_blank} of the documentation. Without them, there wouldn't be documentation in several other languages.
 
 ---
 
 The **Top Reviewers** 🕵️ have reviewed the most Pull Requests from others, ensuring the quality of the code, documentation, and especially, the **translations**.
 
 {% if people %}
+
 <div class="user-list user-list-center">
 {% for user in people.top_reviewers %}
 
@@ -115,6 +120,7 @@ These are the **Sponsors**. 😎
 They are supporting my work with **FastAPI** (and others) through <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub Sponsors</a>.
 
 {% if people %}
+
 <div class="user-list user-list-center">
 {% for user in people.sponsors %}
 

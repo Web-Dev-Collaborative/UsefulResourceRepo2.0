@@ -1,11 +1,9 @@
 # Partial Differential Equations
 
-TensorFlow isn't just for machine learning.  Here we give a (somewhat
+TensorFlow isn't just for machine learning. Here we give a (somewhat
 pedestrian) example of using TensorFlow for simulating the behavior of a
-[partial differential equation](
-https://en.wikipedia.org/wiki/Partial_differential_equation).
+[partial differential equation](https://en.wikipedia.org/wiki/Partial_differential_equation).
 We'll simulate the surface of square pond as a few raindrops land on it.
-
 
 ## Basic Setup
 
@@ -36,7 +34,7 @@ def DisplayArray(a, fmt='jpeg', rng=[0,1]):
 ```
 
 Here we start an interactive TensorFlow session for convenience in playing
-around.  A regular session would work as well if we were doing this in an
+around. A regular session would work as well if we were doing this in an
 executable .py file.
 
 ```python
@@ -44,7 +42,6 @@ sess = tf.InteractiveSession()
 ```
 
 ## Computational Convenience Functions
-
 
 ```python
 def make_kernel(a):
@@ -95,9 +92,7 @@ DisplayArray(u_init, rng=[-0.1, 0.1])
 
 ![jpeg](https://www.tensorflow.org/images/pde_output_1.jpg)
 
-
 Now let's specify the details of the differential equation.
-
 
 ```python
 # Parameters:

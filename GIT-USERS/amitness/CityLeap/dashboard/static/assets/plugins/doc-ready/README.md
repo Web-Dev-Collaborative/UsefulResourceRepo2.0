@@ -3,7 +3,7 @@
 Cross browser document ready helper. Supported by IE8+ and good browsers.
 
 ```js
-docReady( function() {
+docReady(function () {
   console.log("DOM is ready. Let's party");
 });
 ```

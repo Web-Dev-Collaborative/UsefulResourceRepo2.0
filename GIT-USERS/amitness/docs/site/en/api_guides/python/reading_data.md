@@ -5,12 +5,12 @@ Note: The preferred way to feed data into a tensorflow program is using the
 
 There are four methods of getting data into a TensorFlow program:
 
-*   `tf.data` API: Easily construct a complex input pipeline. (preferred method)
-*   Feeding: Python code provides the data when running each step.
-*   `QueueRunner`: a queue-based input pipeline reads the data from files
-    at the beginning of a TensorFlow graph.
-*   Preloaded data: a constant or variable in the TensorFlow graph holds
-    all the data (for small data sets).
+- `tf.data` API: Easily construct a complex input pipeline. (preferred method)
+- Feeding: Python code provides the data when running each step.
+- `QueueRunner`: a queue-based input pipeline reads the data from files
+  at the beginning of a TensorFlow graph.
+- Preloaded data: a constant or variable in the TensorFlow graph holds
+  all the data (for small data sets).
 
 [TOC]
 
@@ -62,12 +62,12 @@ API](../../guide/datasets.md).
 A typical queue-based pipeline for reading records from files has the following stages:
 
 1.  The list of filenames
-2.  *Optional* filename shuffling
-3.  *Optional* epoch limit
+2.  _Optional_ filename shuffling
+3.  _Optional_ epoch limit
 4.  Filename queue
 5.  A Reader for the file format
 6.  A decoder for a record read by the reader
-7.  *Optional* preprocessing
+7.  _Optional_ preprocessing
 8.  Example queue
 
 ### Filenames, shuffling, and epoch limits
@@ -93,7 +93,7 @@ block the reader.
 ### File formats
 
 Select the reader that matches your input file format and pass the filename
-queue to the reader's read method.  The read method outputs a key identifying
+queue to the reader's read method. The read method outputs a key identifying
 the file and record (useful for debugging if you have some weird records), and
 a scalar string value. Use one (or more) of the decoder and conversion ops to
 decode this string into the tensors that make up an example.
@@ -166,7 +166,7 @@ containing
 [`tf.train.Example` protocol buffers](https://www.tensorflow.org/code/tensorflow/core/example/example.proto)
 (which contain
 [`Features`](https://www.tensorflow.org/code/tensorflow/core/example/feature.proto)
-as a field).  You write a little program that gets your data, stuffs it in an
+as a field). You write a little program that gets your data, stuffs it in an
 `Example` protocol buffer, serializes the protocol buffer to a string, and then
 writes the string to a TFRecords file using the
 `tf.python_io.TFRecordWriter`.
@@ -176,7 +176,7 @@ converts MNIST data to this format.
 
 The recommended way to read a TFRecord file is with a `tf.data.TFRecordDataset`, [as in this example](https://www.tensorflow.org/code/tensorflow/examples/how_tos/reading_data/fully_connected_reader.py):
 
-``` python
+```python
     dataset = tf.data.TFRecordDataset(filename)
     dataset = dataset.repeat(num_epochs)
 
@@ -185,9 +185,9 @@ The recommended way to read a TFRecord file is with a `tf.data.TFRecordDataset`,
 ```
 
 To accomplish the same task with a queue based input pipeline requires the following code
-(using the same `decode` function from the above example): 
+(using the same `decode` function from the above example):
 
-``` python
+```python
   filename_queue = tf.train.string_input_producer([filename], num_epochs=num_epochs)
   reader = tf.TFRecordReader()
   _, serialized_example = reader.read(filename_queue)
@@ -199,14 +199,14 @@ To accomplish the same task with a queue based input pipeline requires the follo
 You can then do any preprocessing of these examples you want. This would be any
 processing that doesn't depend on trainable parameters. Examples include
 normalization of your data, picking a random slice, adding noise or distortions,
-etc.  See
+etc. See
 [`tensorflow_models/tutorials/image/cifar10/cifar10_input.py`](https://github.com/tensorflow/models/tree/master/tutorials/image/cifar10/cifar10_input.py)
 for an example.
 
 ### Batching
 
 At the end of the pipeline we use another queue to batch together examples for
-training, evaluation, or inference.  For this we use a queue that randomizes the
+training, evaluation, or inference. For this we use a queue that randomizes the
 order of examples, using the
 `tf.train.shuffle_batch`.
 
@@ -262,34 +262,34 @@ def input_pipeline(filenames, batch_size, read_threads, num_epochs=None):
 
 You still only use a single filename queue that is shared by all the readers.
 That way we ensure that the different readers use different files from the same
-epoch until all the files from the epoch have been started.  (It is also usually
+epoch until all the files from the epoch have been started. (It is also usually
 sufficient to have a single thread filling the filename queue.)
 
 An alternative is to use a single reader via the
 `tf.train.shuffle_batch`
-with `num_threads` bigger than 1.  This will make it read from a single file at
+with `num_threads` bigger than 1. This will make it read from a single file at
 the same time (but faster than with 1 thread), instead of N files at once.
 This can be important:
 
-*   If you have more reading threads than input files, to avoid the risk that
-    you will have two threads reading the same example from the same file near
-    each other.
-*   Or if reading N files in parallel causes too many disk seeks.
+- If you have more reading threads than input files, to avoid the risk that
+  you will have two threads reading the same example from the same file near
+  each other.
+- Or if reading N files in parallel causes too many disk seeks.
 
 How many threads do you need? the `tf.train.shuffle_batch*` functions add a
 summary to the graph that indicates how full the example queue is. If you have
-enough reading threads, that summary will stay above zero.  You can
+enough reading threads, that summary will stay above zero. You can
 [view your summaries as training progresses using TensorBoard](../../guide/summaries_and_tensorboard.md).
 
 ### Creating threads to prefetch using `QueueRunner` objects
 
 The short version: many of the `tf.train` functions listed above add
 `tf.train.QueueRunner` objects to your
-graph.  These require that you call
+graph. These require that you call
 `tf.train.start_queue_runners`
 before running any training or inference steps, or it will hang forever. This
 will start threads that run the input pipeline, filling the example queue so
-that the dequeue to get the examples will succeed.  This is best combined with a
+that the dequeue to get the examples will succeed. This is best combined with a
 `tf.train.Coordinator` to cleanly
 shut down these threads when there are errors. If you set a limit on the number
 of epochs, that will use an epoch counter that will need to be initialized. The
@@ -373,52 +373,52 @@ For more about threading, queues, QueueRunners, and Coordinators
 #### Aside: How clean shut-down when limiting epochs works
 
 Imagine you have a model that has set a limit on the number of epochs to train
-on.  That means that the thread generating filenames will only run that many
+on. That means that the thread generating filenames will only run that many
 times before generating an `OutOfRange` error. The QueueRunner will catch that
 error, close the filename queue, and exit the thread. Closing the queue does two
 things:
 
-*   Any future attempt to enqueue in the filename queue will generate an error.
-    At this point there shouldn't be any threads trying to do that, but this
-    is helpful when queues are closed due to other errors.
-*   Any current or future dequeue will either succeed (if there are enough
-    elements left) or fail (with an `OutOfRange` error) immediately.  They won't
-    block waiting for more elements to be enqueued, since by the previous point
-    that can't happen.
+- Any future attempt to enqueue in the filename queue will generate an error.
+  At this point there shouldn't be any threads trying to do that, but this
+  is helpful when queues are closed due to other errors.
+- Any current or future dequeue will either succeed (if there are enough
+  elements left) or fail (with an `OutOfRange` error) immediately. They won't
+  block waiting for more elements to be enqueued, since by the previous point
+  that can't happen.
 
 The point is that when the filename queue is closed, there will likely still be
 many filenames in that queue, so the next stage of the pipeline (with the reader
-and other preprocessing) may continue running for some time.  Once the filename
+and other preprocessing) may continue running for some time. Once the filename
 queue is exhausted, though, the next attempt to dequeue a filename (e.g. from a
 reader that has finished with the file it was working on) will trigger an
-`OutOfRange` error.  In this case, though, you might have multiple threads
-associated with a single QueueRunner.  If this isn't the last thread in the
-QueueRunner, the `OutOfRange` error just causes the one thread to exit.  This
+`OutOfRange` error. In this case, though, you might have multiple threads
+associated with a single QueueRunner. If this isn't the last thread in the
+QueueRunner, the `OutOfRange` error just causes the one thread to exit. This
 allows the other threads, which are still finishing up their last file, to
-proceed until they finish as well.  (Assuming you are using a
+proceed until they finish as well. (Assuming you are using a
 `tf.train.Coordinator`,
-other types of errors will cause all the threads to stop.)  Once all the reader
+other types of errors will cause all the threads to stop.) Once all the reader
 threads hit the `OutOfRange` error, only then does the next queue, the example
 queue, gets closed.
 
 Again, the example queue will have some elements queued, so training will
-continue until those are exhausted.  If the example queue is a
+continue until those are exhausted. If the example queue is a
 `tf.RandomShuffleQueue`, say
 because you are using `shuffle_batch` or `shuffle_batch_join`, it normally will
 avoid ever having fewer than its `min_after_dequeue` attr elements buffered.
 However, once the queue is closed that restriction will be lifted and the queue
-will eventually empty.  At that point the actual training threads, when they
+will eventually empty. At that point the actual training threads, when they
 try and dequeue from example queue, will start getting `OutOfRange` errors and
-exiting.  Once all the training threads are done,
+exiting. Once all the training threads are done,
 `tf.train.Coordinator.join`
 will return and you can exit cleanly.
 
 ### Filtering records or producing multiple examples per record
 
 Instead of examples with shapes `[x, y, z]`, you will produce a batch of
-examples with shape `[batch, x, y, z]`.  The batch size can be 0 if you want to
+examples with shape `[batch, x, y, z]`. The batch size can be 0 if you want to
 filter this record out (maybe it is in a hold-out set?), or bigger than 1 if you
-are producing multiple examples per record.  Then simply set `enqueue_many=True`
+are producing multiple examples per record. Then simply set `enqueue_many=True`
 when calling one of the batching functions (such as `shuffle_batch` or
 `shuffle_batch_join`).
 
@@ -434,8 +434,8 @@ batching (instead of using `tf.parse_single_example` before batching).
 This is only used for small data sets that can be loaded entirely in memory.
 There are two approaches:
 
-* Store the data in a constant.
-* Store the data in a variable, that you initialize (or assign to) and then
+- Store the data in a constant.
+- Store the data in a variable, that you initialize (or assign to) and then
   never change.
 
 Using a constant is a bit simpler, but uses more memory (since the constant is
@@ -471,35 +471,35 @@ with tf.Session() as sess:
 
 Setting `trainable=False` keeps the variable out of the
 `GraphKeys.TRAINABLE_VARIABLES` collection in the graph, so we won't try and
-update it when training.  Setting `collections=[]` keeps the variable out of the
+update it when training. Setting `collections=[]` keeps the variable out of the
 `GraphKeys.GLOBAL_VARIABLES` collection used for saving and restoring checkpoints.
 
 Either way,
 `tf.train.slice_input_producer`
-can be used to produce a slice at a time.  This shuffles the examples across an
-entire epoch, so further shuffling when batching is undesirable.  So instead of
+can be used to produce a slice at a time. This shuffles the examples across an
+entire epoch, so further shuffling when batching is undesirable. So instead of
 using the `shuffle_batch` functions, we use the plain
-`tf.train.batch` function.  To use
+`tf.train.batch` function. To use
 multiple preprocessing threads, set the `num_threads` parameter to a number
 bigger than 1.
 
 ## Multiple input pipelines
 
 Commonly you will want to train on one dataset and evaluate (or "eval") on
-another.  One way to do this is to actually have two separate graphs and
+another. One way to do this is to actually have two separate graphs and
 sessions, maybe in separate processes:
 
-* The training process reads training input data and periodically writes
+- The training process reads training input data and periodically writes
   checkpoint files with all the trained variables.
-* The evaluation process restores the checkpoint files into an inference
+- The evaluation process restores the checkpoint files into an inference
   model that reads validation input data.
 
 This is what is done `tf.estimator` and manually in
 [the example CIFAR-10 model](../../tutorials/images/deep_cnn.md#save-and-restore-checkpoints).
 This has a couple of benefits:
 
-* The eval is performed on a single snapshot of the trained variables.
-* You can perform the eval even after training has completed and exited.
+- The eval is performed on a single snapshot of the trained variables.
+- You can perform the eval even after training has completed and exited.
 
 You can have the train and eval in the same graph in the same process, and share
 their trained variables or layers. See [the shared variables tutorial](../../guide/variables.md).

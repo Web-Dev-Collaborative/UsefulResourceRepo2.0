@@ -30,17 +30,17 @@ You can connect with <a href="https://tiangolo.com" class="external-link" target
 
 You can:
 
-* <a href="https://github.com/tiangolo" class="external-link" target="_blank">Follow me on **GitHub**</a>.
-    * See other Open Source projects I have created that could help you.
-    * Follow me to see when I create a new Open Source project.
-* <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Follow me on **Twitter**</a>.
-    * Tell me how you use FastAPI (I love to hear that).
-    * Hear when I make announcements or release new tools.
-* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Connect with me on **Linkedin**</a>.
-    * Hear when I make announcements or release new tools (although I use Twitter more often 🤷‍♂).
-* Read what I write (or follow me) on <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> or <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>.
-    * Read other ideas, articles, and about tools I have created.
-    * Follow me to read when I publish something new.
+- <a href="https://github.com/tiangolo" class="external-link" target="_blank">Follow me on **GitHub**</a>.
+  - See other Open Source projects I have created that could help you.
+  - Follow me to see when I create a new Open Source project.
+- <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Follow me on **Twitter**</a>.
+  - Tell me how you use FastAPI (I love to hear that).
+  - Hear when I make announcements or release new tools.
+- <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Connect with me on **Linkedin**</a>.
+  - Hear when I make announcements or release new tools (although I use Twitter more often 🤷‍♂).
+- Read what I write (or follow me) on <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> or <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>.
+  - Read other ideas, articles, and about tools I have created.
+  - Follow me to read when I publish something new.
 
 ## Tweet about **FastAPI**
 
@@ -50,9 +50,9 @@ I love to hear about how **FastAPI** is being used, what have you liked in it, i
 
 ## Vote for FastAPI
 
-* <a href="https://www.slant.co/options/34241/~fastapi-review" class="external-link" target="_blank">Vote for **FastAPI** in Slant</a>.
-* <a href="https://alternativeto.net/software/fastapi/" class="external-link" target="_blank">Vote for **FastAPI** in AlternativeTo</a>.
-* <a href="https://github.com/marmelab/awesome-rest/pull/93" class="external-link" target="_blank">Vote for **FastAPI** on awesome-rest</a>.
+- <a href="https://www.slant.co/options/34241/~fastapi-review" class="external-link" target="_blank">Vote for **FastAPI** in Slant</a>.
+- <a href="https://alternativeto.net/software/fastapi/" class="external-link" target="_blank">Vote for **FastAPI** in AlternativeTo</a>.
+- <a href="https://github.com/marmelab/awesome-rest/pull/93" class="external-link" target="_blank">Vote for **FastAPI** on awesome-rest</a>.
 
 ## Help others with issues in GitHub
 
@@ -70,8 +70,8 @@ Then you can try and help them solving those issues.
 
 You can <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="external-link" target="_blank">create a new issue</a> in the GitHub repository, for example to:
 
-* Ask a question or ask about a problem.
-* Suggest a new feature.
+- Ask a question or ask about a problem.
+- Suggest a new feature.
 
 **Note**: if you create an issue then I'm going to ask you to also help others. 😉
 
@@ -79,10 +79,10 @@ You can <a href="https://github.com/tiangolo/fastapi/issues/new/choose" class="e
 
 You can <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">create a Pull Request</a>, for example:
 
-* To fix a typo you found on the documentation.
-* To propose new documentation sections.
-* To fix an existing issue/bug.
-* To add a new feature.
+- To fix a typo you found on the documentation.
+- To propose new documentation sections.
+- To fix an existing issue/bug.
+- To add a new feature.
 
 ## Join the chat
 
@@ -114,8 +114,8 @@ As you have seen in the documentation, FastAPI stands on the shoulders of giants
 
 You can also sponsor:
 
-* <a href="https://github.com/sponsors/samuelcolvin" class="external-link" target="_blank">Samuel Colvin (Pydantic)</a>
-* <a href="https://github.com/sponsors/encode" class="external-link" target="_blank">Encode (Starlette, Uvicorn)</a>
+- <a href="https://github.com/sponsors/samuelcolvin" class="external-link" target="_blank">Samuel Colvin (Pydantic)</a>
+- <a href="https://github.com/sponsors/encode" class="external-link" target="_blank">Encode (Starlette, Uvicorn)</a>
 
 ---
 

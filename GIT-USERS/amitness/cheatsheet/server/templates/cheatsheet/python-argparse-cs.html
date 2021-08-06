@@ -1,16 +1,15 @@
-{% extends "layout.html" %}
-
-{% block jumbotron %}
+{% extends "layout.html" %} {% block jumbotron %}
 <div class="jumbotron">
-   <h1>Python Cheat Sheet</h1>
-   <p>Cheat sheet of Python. Some argsparse concepts for Python programmer need to know.</p>
+  <h1>Python Cheat Sheet</h1>
+  <p>
+    Cheat sheet of Python. Some argsparse concepts for Python programmer need to
+    know.
+  </p>
 </div>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="row col-md-6 col-xs-12">
-<h3>argparse - basic usage</h3>
-<pre class="code python">
+  <h3>argparse - basic usage</h3>
+  <pre class="code python">
 # no arguments
 &gt;&gt;&gt; import argparse
 &gt;&gt;&gt; p = argparse.ArgumentParser()
@@ -41,10 +40,11 @@ positional arguments:
 
 optional arguments:
   -h, --help  show this help message and exit
-</pre>
+</pre
+  >
 
-<h3>argparse - basic help and parse args</h3>
-<pre class="code python">
+  <h3>argparse - basic help and parse args</h3>
+  <pre class="code python">
 # test.py
 import argparse
 parser = argparse.ArgumentParser()
@@ -67,10 +67,11 @@ print args.foo
 # 
 # bash&gt; python test.py -f foo
 # foo 
-</pre>
+</pre
+  >
 
-<h3>argparse - some basic arguments</h3>
-<pre class="code python">
+  <h3>argparse - some basic arguments</h3>
+  <pre class="code python">
 title
 description
 prog
@@ -82,10 +83,11 @@ metavar
 formatter_class
 nargs
 version
-</pre>
+</pre
+  >
 
-<h3>argparse - description</h3>
-<pre class="code python">
+  <h3>argparse - description</h3>
+  <pre class="code python">
 # without description
 &gt;&gt;&gt; import argparse
 &gt;&gt;&gt; p = argparse.ArgumentParser()
@@ -110,10 +112,11 @@ usage: [-h]
 
 optional arguments:
   -h, --help  show this help message and exit
-</pre>
+</pre
+  >
 
-<h3>argparse - metavar, help, prog, default</h3>
-<pre class="code python">
+  <h3>argparse - metavar, help, prog, default</h3>
+  <pre class="code python">
 # without title, metavar, help, prog
 import argparse
 p = argparse.ArgumentParser()
@@ -154,10 +157,11 @@ print args.print_str
 # hello world
 # bash&gt; python 02_parser_test.py -p kerker
 # kerker
-</pre>
+</pre
+  >
 
-<h3>argparse - action</h3>
-<pre class="code python">
+  <h3>argparse - action</h3>
+  <pre class="code python">
 # store: default action
 &gt;&gt;&gt; import argparse
 &gt;&gt;&gt; p = argparse.ArgumentParser()
@@ -231,14 +235,13 @@ print args
 # bash&gt; python test.py --foo ker
 # Namespace(foo=None) 'ker' '--foo'
 # Namespace(foo='ker')
-</pre>
-
+</pre
+  >
 </div>
 
 <div class="row col-md-6 col-xs-12">
-
-<h3>Sub-commeand - basic</h3>
-<pre class="code python">
+  <h3>Sub-commeand - basic</h3>
+  <pre class="code python">
 import argparse
 
 p = argparse.ArgumentParser()
@@ -279,10 +282,11 @@ print args.foo
 #
 # bash&gt; python test.py foo --foo "hello world"
 # hello world
-</pre>
+</pre
+  >
 
-<h3>Get subparser command</h3>
-<pre class="code python">
+  <h3>Get subparser command</h3>
+  <pre class="code python">
 &gt;&gt;&gt; import argparse
 &gt;&gt;&gt; p = argparse.ArgumentParser()
 &gt;&gt;&gt; sp = p.add_subparsers(dest='subcmd')
@@ -292,10 +296,11 @@ print args.foo
 &gt;&gt;&gt; args = p.parse_args(['foo', '--ker', 'hello world'])
 &gt;&gt;&gt; print args
 Namespace(ker='hello world', subcmd='foo')
-</pre>
+</pre
+  >
 
-<h3>Group subparser</h3>
-<pre class="code python">
+  <h3>Group subparser</h3>
+  <pre class="code python">
 import argparse
 
 desc = """
@@ -339,10 +344,11 @@ args = p.parse_args()
 #     bar        subcommand bar in group2
 #
 #   {hello,world,foo,bar}
-</pre>
+</pre
+  >
 
-<h3>Group arguments</h3>
-<pre class="code python">
+  <h3>Group arguments</h3>
+  <pre class="code python">
 import argparse
 
 p = argparse.ArgumentParser()
@@ -377,10 +383,11 @@ args = p.parse_args()
 #   group2 desciption
 #
 #   -b BAR, --bar BAR  bar
-</pre>
+</pre
+  >
 
-<h3>Mutual exclusion - only one of the arguments was present</h3>
-<pre class="code python">
+  <h3>Mutual exclusion - only one of the arguments was present</h3>
+  <pre class="code python">
 import argparse
 
 p = argparse.ArgumentParser(prog="PROG")
@@ -412,13 +419,8 @@ print args.b
 # bash&gt; python test.py -f foo -b bar
 # usage: PROG [-h] [-f F | -b B]
 # PROG: error: argument -b: not allowed with argument -f
-</pre>
-
+</pre
+  >
 </div>
 
-
-{% endblock %}
-
-{% block script %}
-{{ super() }}
-{% endblock %}
+{% endblock %} {% block script %} {{ super() }} {% endblock %}

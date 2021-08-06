@@ -21,8 +21,8 @@
 ```
 
 !!! note
-    路径参数总是必需的，因为它必须是路径的一部分。
-    
+路径参数总是必需的，因为它必须是路径的一部分。
+
     所以，你应该在声明时使用 `...` 将其标记为必需参数。
 
     然而，即使你使用 `None` 声明路径参数或设置一个其他默认值也不会有任何影响，它依然会是必需参数。
@@ -73,8 +73,8 @@ Python 不会对该 `*` 做任何事情，但是它将知道之后的所有参�
 
 同样的规则适用于：
 
-* `gt`：大于（`g`reater `t`han）
-* `le`：小于等于（`l`ess than or `e`qual）
+- `gt`：大于（`g`reater `t`han）
+- `le`：小于等于（`l`ess than or `e`qual）
 
 ```Python hl_lines="9"
 {!../../../docs_src/path_params_numeric_validations/tutorial005.py!}
@@ -96,22 +96,22 @@ Python 不会对该 `*` 做任何事情，但是它将知道之后的所有参�
 
 ## 总结
 
-你能够以与 [查询参数和字符串校验](query-params-str-validations.md){.internal-link target=_blank} 相同的方式使用 `Query`、`Path`（以及其他你还没见过的类）声明元数据和字符串校验。
+你能够以与 [查询参数和字符串校验](query-params-str-validations.md){.internal-link target=\_blank} 相同的方式使用 `Query`、`Path`（以及其他你还没见过的类）声明元数据和字符串校验。
 
 而且你还可以声明数值校验：
 
-* `gt`：大于（`g`reater `t`han）
-* `ge`：大于等于（`g`reater than or `e`qual）
-* `lt`：小于（`l`ess `t`han）
-* `le`：小于等于（`l`ess than or `e`qual）
+- `gt`：大于（`g`reater `t`han）
+- `ge`：大于等于（`g`reater than or `e`qual）
+- `lt`：小于（`l`ess `t`han）
+- `le`：小于等于（`l`ess than or `e`qual）
 
 !!! info
-    `Query`、`Path` 以及你后面会看到的其他类继承自一个共同的 `Param` 类（不需要直接使用它）。
+`Query`、`Path` 以及你后面会看到的其他类继承自一个共同的 `Param` 类（不需要直接使用它）。
 
     而且它们都共享相同的所有你已看到并用于添加额外校验和元数据的参数。
 
 !!! note "技术细节"
-    当你从 `fastapi` 导入 `Query`、`Path` 和其他同类对象时，它们实际上是函数。
+当你从 `fastapi` 导入 `Query`、`Path` 和其他同类对象时，它们实际上是函数。
 
     当被调用时，它们返回同名类的实例。
 

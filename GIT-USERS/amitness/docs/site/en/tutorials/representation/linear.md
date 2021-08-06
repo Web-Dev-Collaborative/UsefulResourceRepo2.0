@@ -4,13 +4,13 @@
 working with linear models in TensorFlow. This document provides an overview of
 those tools. It explains:
 
-   * What a linear model is.
-   * Why you might want to use a linear model.
-   * How Estimators make it easy to build linear models in TensorFlow.
-   * How you can use Estimators to combine linear models with.
-     deep learning to get the advantages of both.
+- What a linear model is.
+- Why you might want to use a linear model.
+- How Estimators make it easy to build linear models in TensorFlow.
+- How you can use Estimators to combine linear models with.
+  deep learning to get the advantages of both.
 
-Read this overview to decide whether the Estimator's linear model tools  might
+Read this overview to decide whether the Estimator's linear model tools might
 be useful to you. Then work through the
 [Estimator wide and deep learning tutorial](https://github.com/tensorflow/models/tree/master/official/wide_deep)
 to give it a try. This overview uses code samples from the tutorial, but the
@@ -43,15 +43,15 @@ demonstrated the power of more complex neural networks with many layers?
 
 Linear models:
 
-   * train quickly, compared to deep neural nets.
-   * can work well on very large feature sets.
-   * can be trained with algorithms that don't require a lot of fiddling
-   with learning rates, etc.
-   * can be interpreted and debugged more easily than neural nets.
-   You can examine the weights assigned to each feature to figure out what's
-   having the biggest impact on a prediction.
-   * provide an excellent starting point for learning about machine learning.
-   * are widely used in industry.
+- train quickly, compared to deep neural nets.
+- can work well on very large feature sets.
+- can be trained with algorithms that don't require a lot of fiddling
+  with learning rates, etc.
+- can be interpreted and debugged more easily than neural nets.
+  You can examine the weights assigned to each feature to figure out what's
+  having the biggest impact on a prediction.
+- provide an excellent starting point for learning about machine learning.
+- are widely used in industry.
 
 ## How do Estimators help you build linear models?
 
@@ -70,8 +70,8 @@ may represent a quantity like 'height', or it may represent a category like
 'eye_color' where the value is drawn from a set of discrete possibilities like
 {'blue', 'brown', 'green'}.
 
-In the case of both *continuous features* like 'height' and *categorical
-features* like 'eye_color', a single value in the data might get transformed
+In the case of both _continuous features_ like 'height' and _categorical
+features_ like 'eye_color', a single value in the data might get transformed
 into a sequence of numbers before it is input into the model. The
 `FeatureColumn` abstraction lets you manipulate the feature as a single
 semantic unit in spite of this fact. You can specify transformations and
@@ -128,7 +128,7 @@ You can get around this limitation by creating a new feature
 'favorite_sport_x_home_city'. The value of this feature for a given person is
 just the concatenation of the values of the two source features:
 'baseball_x_stlouis', for example. This sort of combination feature is called
-a *feature cross*.
+a _feature cross_.
 
 The `crossed_column()` method makes it easy to set up feature crosses:
 
@@ -151,7 +151,7 @@ of column as well.
 
 ##### Bucketization
 
-*Bucketization* turns a continuous column into a categorical column. This
+_Bucketization_ turns a continuous column into a categorical column. This
 transformation lets you use continuous features in feature crosses, or learn
 cases where specific value ranges have particular importance.
 
@@ -197,10 +197,10 @@ regression respectively.
 
 As with all tensorflow estimators, to run the estimator you just:
 
-   1. Instantiate the estimator class. For the two linear estimator classes,
-   you pass a list of `FeatureColumn`s to the constructor.
-   2. Call the estimator's `train()` method to train it.
-   3. Call the estimator's `evaluate()` method to see how it does.
+1.  Instantiate the estimator class. For the two linear estimator classes,
+    you pass a list of `FeatureColumn`s to the constructor.
+2.  Call the estimator's `train()` method to train it.
+3.  Call the estimator's `evaluate()` method to see how it does.
 
 For example:
 
@@ -235,5 +235,6 @@ e = tf.estimator.DNNLinearCombinedClassifier(
     dnn_feature_columns=deep_columns,
     dnn_hidden_units=[100, 50])
 ```
+
 For more information, see the
 [wide and deep learning tutorial](https://github.com/tensorflow/models/tree/master/official/wide_deep).

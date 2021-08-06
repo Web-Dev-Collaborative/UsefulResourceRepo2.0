@@ -3,21 +3,22 @@ layout: prediction_post
 published: True
 title: A Gentle Visual Intro to Data Analysis in Python Using Pandas
 ---
+
 <span class="discussion">Discussions:
 <a href="https://news.ycombinator.com/item?id=18351685" class="hn-link">Hacker News (195 points, 51 comments)</a>, <a href="https://www.reddit.com/r/Python/comments/9scznd/a_gentle_visual_intro_to_data_analysis_in_python/" class="">Reddit r/Python (140 points, 18 comments)</a>
 </span>
 
-
 If you're planning to learn data analysis, machine learning, or data science tools in python, you're most likely going to be using the wonderful <a href="https://pandas.pydata.org/">pandas</a> library. Pandas is an open source library for data manipulation and analysis in python.
 
 ## Loading Data
+
 One of the easiest ways to think about that, is that you can load tables (and excel files) and then slice and dice them in multiple ways:
 
 <img src="/images/pandas-intro/0 excel-to-pandas.png" />
 
 <!--more-->
 
-Pandas allows us to load a spreadsheet and manipulate it programmatically in python. The central concept in pandas is the type of object called a *DataFrame* -- basically a table of values which has a label for each row and column. Let's load this basic CSV file containing data from a music streaming service:
+Pandas allows us to load a spreadsheet and manipulate it programmatically in python. The central concept in pandas is the type of object called a _DataFrame_ -- basically a table of values which has a label for each row and column. Let's load this basic CSV file containing data from a music streaming service:
 
     df = pandas.read_csv('music.csv')
 
@@ -26,10 +27,10 @@ Now the variable `df` is a pandas DataFrame:
 <img src="/images/pandas-intro/1 view_pandas_dataframe.png" />
 
 ## Selection
+
 We can select any column using its label:
 
 <img src="/images/pandas-intro/2 select-column.png" />
-
 
 We can select one or multiple rows using their numbers:
 
@@ -38,7 +39,6 @@ We can select one or multiple rows using their numbers:
 We can select any slice of the table using a both column label and row numbers using `loc` (but here it would be inclusive of both bounding row numbers):
 
 <img src="/images/pandas-intro/4 select_column-and-rows.png" />
-
 
 ## Filtering
 
@@ -76,7 +76,6 @@ In addition to `sum()`, pandas provides multiple aggregation functions including
 
 If you use `groupby()` to its full potential, and use nothing else in pandas, then you'd be putting pandas to great use. But the library can still offer you much, much more.
 
-
 ## Creating New Columns from Existing Columns
 
 Often in the data analysis process, we find ourselves needing to create new columns from existing ones. Pandas makes this a breeze.
@@ -86,10 +85,13 @@ Often in the data analysis process, we find ourselves needing to create new colu
 By telling Pandas to divide a column by another column, it realizes that we want to do is divide the individual values respectively (i.e. each row's "Plays" value by that row's "Listeners" value).
 
 ## Get Hands On!
+
 You can get started playing with Pandas in your browser right now through this basic <a href="https://colab.research.google.com/github/jalammar/pandas-intro/blob/master/Pandas_Intro.ipynb">notebook hosted in Google Colab</a>. The notebook is also <a href="https://github.com/jalammar/pandas-intro/blob/master/Pandas_Intro.ipynb">available on Github</a> if you have your local environment set up.
 
 ## Learn More Pandas
+
 Want to learn more? Be sure to check out the <a href="https://pandas.pydata.org/pandas-docs/stable/10min.html">10 Minutes to pandas</a> tutorial in the official Pandas docs. Thanks to <a href="https://twitter.com/datapythonista">Marc Garcia</a> for initiating the thoughts for these visualizations and continuing to improve the pandas documentation.
 
 ## Your feedback is appreciated!
+
 Did you find this tutorial helpful? Any suggestions for improvement? Please let me know (<a href="https://twitter.com/jalammar">@jalammar</a>) know on Twitter. Thanks!

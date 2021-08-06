@@ -3,34 +3,42 @@
 *********/
 
 @include exports("nemo") {
-    .nemo-desktop.nemo-canvas-item {
-        color: $white;
-        text-shadow: 1px 1px $black;
+  .nemo-desktop.nemo-canvas-item {
+    color: $white;
+    text-shadow: 1px 1px $black;
 
-        &:active { color: $fg_color; }
-
-        &:selected { color: $selected_fg_color; }
-
-        &:active, &:hover, &:selected { text-shadow: none; }
+    &:active {
+      color: $fg_color;
     }
 
-    NemoPathbarButton {
-        @include button($toolbar_bg_color, $toolbar_fg_color);
-
-        -NemoPathbarButton-border-radius: $roundness;
+    &:selected {
+      color: $selected_fg_color;
     }
 
-    NemoPlacesTreeView {
-        -NemoPlacesTreeView-disk-full-bg-color: shade($toolbar_bg_color, .8);
-        -NemoPlacesTreeView-disk-full-fg-color: $selected_bg_color;
-        -NemoPlacesTreeView-disk-full-bar-width: 1px;
-        -NemoPlacesTreeView-disk-full-bar-radius: 1px;
-        -NemoPlacesTreeView-disk-full-bottom-padding: 2px;
-        -NemoPlacesTreeView-disk-full-max-length: 70px;
-
-        &:selected {
-            -NemoPlacesTreeView-disk-full-bg-color: $selected_fg_color;
-            -NemoPlacesTreeView-disk-full-fg-color: shade($selected_bg_color, 1.2);
-        }
+    &:active,
+    &:hover,
+    &:selected {
+      text-shadow: none;
     }
+  }
+
+  NemoPathbarButton {
+    @include button($toolbar_bg_color, $toolbar_fg_color);
+
+    -nemopathbarbutton-border-radius: $roundness;
+  }
+
+  NemoPlacesTreeView {
+    -nemoplacestreeview-disk-full-bg-color: shade($toolbar_bg_color, 0.8);
+    -nemoplacestreeview-disk-full-fg-color: $selected_bg_color;
+    -nemoplacestreeview-disk-full-bar-width: 1px;
+    -nemoplacestreeview-disk-full-bar-radius: 1px;
+    -nemoplacestreeview-disk-full-bottom-padding: 2px;
+    -nemoplacestreeview-disk-full-max-length: 70px;
+
+    &:selected {
+      -nemoplacestreeview-disk-full-bg-color: $selected_fg_color;
+      -nemoplacestreeview-disk-full-fg-color: shade($selected_bg_color, 1.2);
+    }
+  }
 }

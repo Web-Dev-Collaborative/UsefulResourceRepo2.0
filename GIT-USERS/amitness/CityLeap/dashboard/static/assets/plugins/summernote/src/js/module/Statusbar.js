@@ -1,6 +1,4 @@
-define([
-  'summernote/core/dom'
-], function (dom) {
+define(["summernote/core/dom"], function (dom) {
   var EDITABLE_PADDING = 24;
 
   var Statusbar = function () {
@@ -8,7 +6,7 @@ define([
 
     this.attach = function (layoutInfo, options) {
       if (!options.disableResizeEditor) {
-        layoutInfo.statusbar().on('mousedown', hStatusbarMousedown);
+        layoutInfo.statusbar().on("mousedown", hStatusbarMousedown);
       }
     };
 
@@ -25,18 +23,26 @@ define([
       var editableTop = $editable.offset().top - $document.scrollTop();
 
       var layoutInfo = dom.makeLayoutInfo(event.currentTarget || event.target);
-      var options = layoutInfo.editor().data('options');
+      var options = layoutInfo.editor().data("options");
 
-      $document.on('mousemove', function (event) {
-        var nHeight = event.clientY - (editableTop + EDITABLE_PADDING);
+      $document
+        .on("mousemove", function (event) {
+          var nHeight = event.clientY - (editableTop + EDITABLE_PADDING);
 
-        nHeight = (options.minHeight > 0) ? Math.max(nHeight, options.minHeight) : nHeight;
-        nHeight = (options.maxHeight > 0) ? Math.min(nHeight, options.maxHeight) : nHeight;
+          nHeight =
+            options.minHeight > 0
+              ? Math.max(nHeight, options.minHeight)
+              : nHeight;
+          nHeight =
+            options.maxHeight > 0
+              ? Math.min(nHeight, options.maxHeight)
+              : nHeight;
 
-        $editable.height(nHeight);
-      }).one('mouseup', function () {
-        $document.off('mousemove');
-      });
+          $editable.height(nHeight);
+        })
+        .one("mouseup", function () {
+          $document.off("mousemove");
+        });
     };
   };
 

@@ -6,10 +6,10 @@ This client could be a browser with a frontend, a code from someone else, an IoT
 
 You could need to tell the client that:
 
-* The client doesn't have enough privileges for that operation.
-* The client doesn't have access to that resource.
-* The item the client was trying to access doesn't exist.
-* etc.
+- The client doesn't have enough privileges for that operation.
+- The client doesn't have access to that resource.
+- The item the client was trying to access doesn't exist.
+- etc.
 
 In these cases, you would normally return an **HTTP status code** in the range of **400** (from 400 to 499).
 
@@ -35,7 +35,7 @@ To return HTTP responses with errors to the client you use `HTTPException`.
 
 Because it's a Python exception, you don't `return` it, you `raise` it.
 
-This also means that if you are inside a utility function that you are calling inside of your *path operation function*, and you raise the `HTTPException` from inside of that utility function, it won't run the rest of the code in the *path operation function*, it will terminate that request right away and send the HTTP error from the `HTTPException` to the client.
+This also means that if you are inside a utility function that you are calling inside of your _path operation function_, and you raise the `HTTPException` from inside of that utility function, it won't run the rest of the code in the _path operation function_, it will terminate that request right away and send the HTTP error from the `HTTPException` to the client.
 
 The benefit of raising an exception over `return`ing a value will be more evident in the section about Dependencies and Security.
 
@@ -64,7 +64,7 @@ But if the client requests `http://example.com/items/bar` (a non-existent `item_
 ```
 
 !!! tip
-    When raising an `HTTPException`, you can pass any value that can be converted to JSON as the parameter `detail`, not only `str`.
+When raising an `HTTPException`, you can pass any value that can be converted to JSON as the parameter `detail`, not only `str`.
 
     You could pass a `dict`, a `list`, etc.
 
@@ -96,7 +96,7 @@ You could add a custom exception handler with `@app.exception_handler()`:
 {!../../../docs_src/handling_errors/tutorial003.py!}
 ```
 
-Here, if you request `/unicorns/yolo`, the *path operation* will `raise` a `UnicornException`.
+Here, if you request `/unicorns/yolo`, the _path operation_ will `raise` a `UnicornException`.
 
 But it will be handled by the `unicorn_exception_handler`.
 
@@ -107,7 +107,7 @@ So, you will receive a clean error, with an HTTP status code of `418` and a JSON
 ```
 
 !!! note "Technical Details"
-    You could also use `from starlette.requests import Request` and `from starlette.responses import JSONResponse`.
+You could also use `from starlette.requests import Request` and `from starlette.responses import JSONResponse`.
 
     **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette. The same with `Request`.
 
@@ -161,7 +161,7 @@ path -> item_id
 #### `RequestValidationError` vs `ValidationError`
 
 !!! warning
-    These are technical details that you might skip if it's not important for you now.
+These are technical details that you might skip if it's not important for you now.
 
 `RequestValidationError` is a sub-class of Pydantic's <a href="https://pydantic-docs.helpmanual.io/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
 
@@ -169,7 +169,7 @@ path -> item_id
 
 But the client/user will not see it. Instead, the client will receive an "Internal Server Error" with a HTTP status code `500`.
 
-It should be this way because if you have a Pydantic `ValidationError` in your *response* or anywhere in your code (not in the client's *request*), it's actually a bug in your code.
+It should be this way because if you have a Pydantic `ValidationError` in your _response_ or anywhere in your code (not in the client's _request_), it's actually a bug in your code.
 
 And while you fix it, your clients/users shouldn't have access to internal information about the error, as that could expose a security vulnerability.
 
@@ -184,7 +184,7 @@ For example, you could want to return a plain text response instead of JSON for 
 ```
 
 !!! note "Technical Details"
-    You could also use `from starlette.responses import PlainTextResponse`.
+You could also use `from starlette.responses import PlainTextResponse`.
 
     **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
 

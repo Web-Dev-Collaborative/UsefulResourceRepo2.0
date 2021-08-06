@@ -12,6 +12,6 @@ Use Plugin: [bootstrap table filters](https://github.com/lukaskral/bootstrap-tab
 
 ### showFilter
 
-* type: Boolean
-* description: set true to show filter menu.
-* default: `false`
+- type: Boolean
+- description: set true to show filter menu.
+- default: `false`

@@ -5,7 +5,7 @@
 ```html
 <script>
   window.$docsify = {
-    repo: 'docsifyjs/docsify',
+    repo: "docsifyjs/docsify",
     maxLevel: 3,
     coverpage: true,
   };
@@ -21,7 +21,7 @@ docsify 初始化的挂载元素，可以是一个 CSS 选择器，默认为 `#a
 
 ```js
 window.$docsify = {
-  el: '#app',
+  el: "#app",
 };
 ```
 
@@ -34,9 +34,9 @@ window.$docsify = {
 
 ```js
 window.$docsify = {
-  repo: 'docsifyjs/docsify',
+  repo: "docsifyjs/docsify",
   // or
-  repo: 'https://github.com/docsifyjs/docsify/',
+  repo: "https://github.com/docsifyjs/docsify/",
 };
 ```
 
@@ -66,7 +66,7 @@ window.$docsify = {
   loadNavbar: true,
 
   // 加载 nav.md
-  loadNavbar: 'nav.md',
+  loadNavbar: "nav.md",
 };
 ```
 
@@ -83,7 +83,7 @@ window.$docsify = {
   loadSidebar: true,
 
   // 加载 summary.md
-  loadSidebar: 'summary.md',
+  loadSidebar: "summary.md",
 };
 ```
 
@@ -136,11 +136,11 @@ window.$docsify = {
 ```js
 window.$docsify = {
   // 入口文件改为 /home.md
-  homepage: 'home.md',
+  homepage: "home.md",
 
   // 文档和仓库根目录下的 README.md 内容一致
   homepage:
-    'https://raw.githubusercontent.com/docsifyjs/docsify/master/README.md',
+    "https://raw.githubusercontent.com/docsifyjs/docsify/master/README.md",
 };
 ```
 
@@ -152,14 +152,14 @@ window.$docsify = {
 
 ```js
 window.$docsify = {
-  basePath: '/path/',
+  basePath: "/path/",
 
   // 直接渲染其他域名的文档
-  basePath: 'https://docsify.js.org/',
+  basePath: "https://docsify.js.org/",
 
   // 甚至直接渲染其他仓库
   basePath:
-    'https://raw.githubusercontent.com/ryanmcdermott/clean-code-javascript/master/',
+    "https://raw.githubusercontent.com/ryanmcdermott/clean-code-javascript/master/",
 };
 ```
 
@@ -215,15 +215,15 @@ window.$docsify = {
   coverpage: true,
 
   // 自定义文件名
-  coverpage: 'cover.md',
+  coverpage: "cover.md",
 
   // 多个封面页
-  coverpage: ['/', '/zh-cn/'],
+  coverpage: ["/", "/zh-cn/"],
 
   // 多个封面页，并指定文件名
   coverpage: {
-    '/': 'cover.md',
-    '/zh-cn/': 'cover.md',
+    "/": "cover.md",
+    "/zh-cn/": "cover.md",
   },
 };
 ```
@@ -236,7 +236,7 @@ window.$docsify = {
 
 ```js
 window.$docsify = {
-  logo: '/_media/icon.svg',
+  logo: "/_media/icon.svg",
 };
 ```
 
@@ -248,7 +248,7 @@ window.$docsify = {
 
 ```js
 window.$docsify = {
-  name: 'docsify',
+  name: "docsify",
 };
 ```
 
@@ -256,7 +256,7 @@ name 项也可以包含自定义 HTML 代码来方便地定制。
 
 ```js
 window.$docsify = {
-  name: '<span>docsify</span>',
+  name: "<span>docsify</span>",
 };
 ```
 
@@ -269,12 +269,12 @@ window.$docsify = {
 
 ```js
 window.$docsify = {
-  nameLink: '/',
+  nameLink: "/",
 
   // 按照路由切换
   nameLink: {
-    '/zh-cn/': '/zh-cn/',
-    '/': '/',
+    "/zh-cn/": "/zh-cn/",
+    "/": "/",
   },
 };
 ```
@@ -291,14 +291,14 @@ window.$docsify = {
   markdown: {
     smartypants: true,
     renderer: {
-      link: function() {
+      link: function () {
         // ...
       },
     },
   },
 
   // function
-  markdown: function(marked, renderer) {
+  markdown: function (marked, renderer) {
     // ...
     return marked;
   },
@@ -313,7 +313,7 @@ window.$docsify = {
 
 ```js
 window.$docsify = {
-  themeColor: '#3F51B5'
+  themeColor: "#3F51B5",
 };
 ```
 
@@ -326,11 +326,11 @@ window.$docsify = {
 ```js
 window.$docsify = {
   alias: {
-    '/foo/(.*)': '/bar/$1', // supports regexp
-    '/zh-cn/changelog': '/changelog',
-    '/changelog':
-      'https://raw.githubusercontent.com/docsifyjs/docsify/master/CHANGELOG',
-    '/.*/_sidebar.md': '/_sidebar.md', // See #301
+    "/foo/(.*)": "/bar/$1", // supports regexp
+    "/zh-cn/changelog": "/changelog",
+    "/changelog":
+      "https://raw.githubusercontent.com/docsifyjs/docsify/master/CHANGELOG",
+    "/.*/_sidebar.md": "/_sidebar.md", // See #301
   },
 };
 ```
@@ -404,9 +404,9 @@ window.$docsify = {
 
 ```js
 window.$docsify = {
-  formatUpdated: '{MM}/{DD} {HH}:{mm}',
+  formatUpdated: "{MM}/{DD} {HH}:{mm}",
 
-  formatUpdated: function(time) {
+  formatUpdated: function (time) {
     // ...
 
     return time;
@@ -423,7 +423,7 @@ window.$docsify = {
 
 ```js
 window.$docsify = {
-  externalLinkTarget: '_self', // default: '_blank'
+  externalLinkTarget: "_self", // default: '_blank'
 };
 ```
 
@@ -436,7 +436,7 @@ window.$docsify = {
 
 ```js
 window.$docsify = {
-  cornerExternalLinkTarget: '_self', // default: '_blank'
+  cornerExternalLinkTarget: "_self", // default: '_blank'
 };
 ```
 
@@ -449,7 +449,7 @@ window.$docsify = {
 
 ```js
 window.$docsify = {
-  externalLinkRel: '', // default: 'noopener'
+  externalLinkRel: "", // default: 'noopener'
 };
 ```
 
@@ -460,7 +460,7 @@ window.$docsify = {
 
 ```js
 window.$docsify = {
-  routerMode: 'history', // default: 'hash'
+  routerMode: "history", // default: 'hash'
 };
 ```
 
@@ -472,7 +472,7 @@ window.$docsify = {
 
 ```js
 window.$docsify = {
-  crossOriginLinks: ['https://example.com/cross-origin-link'],
+  crossOriginLinks: ["https://example.com/cross-origin-link"],
 };
 ```
 
@@ -484,7 +484,7 @@ window.$docsify = {
 
 ```js
 window.$docsify = {
-  noCompileLinks: ['/foo', '/bar/.*'],
+  noCompileLinks: ["/foo", "/bar/.*"],
 };
 ```
 
@@ -509,7 +509,7 @@ window.$docsify = {
 ```js
 window.$docsify = {
   requestHeaders: {
-    'x-token': 'xxx',
+    "x-token": "xxx",
   },
 };
 ```
@@ -519,7 +519,7 @@ window.$docsify = {
 ```js
 window.$docsify = {
   requestHeaders: {
-    'cache-control': 'max-age=600',
+    "cache-control": "max-age=600",
   },
 };
 ```
@@ -532,7 +532,7 @@ window.$docsify = {
 
 ```js
 window.$docsify = {
-  ext: '.md',
+  ext: ".md",
 };
 ```
 
@@ -546,11 +546,11 @@ Example:
 
 - 尝试访问`/de/overview`，如果存在则显示
 - 如果不存在则尝试`/overview`（取决于默认语言），如果存在即显示
-- 如果也不存在，显示404页面
+- 如果也不存在，显示 404 页面
 
 ```js
 window.$docsify = {
-  fallbackLanguages: ['fr', 'de'],
+  fallbackLanguages: ["fr", "de"],
 };
 ```
 
@@ -566,21 +566,21 @@ window.$docsify = {
 };
 ```
 
-加载自定义404页面:
+加载自定义 404 页面:
 
 ```js
 window.$docsify = {
-  notFoundPage: 'my404.md',
+  notFoundPage: "my404.md",
 };
 ```
 
-加载正确的本地化过的404页面:
+加载正确的本地化过的 404 页面:
 
 ```js
 window.$docsify = {
   notFoundPage: {
-    '/': '_404.md',
-    '/de': 'de/_404.md',
+    "/": "_404.md",
+    "/de": "de/_404.md",
   },
 };
 ```
@@ -604,12 +604,12 @@ window.$docsify = {
 
 - type: `Object`
 
-创建并注册全局 [Vue组件](https://vuejs.org/v2/guide/components.html) 。组件是以组件名称为键，以包含 Vue 选项的对象为值来指定的。组件`data`对每个实例都是唯一的，并且在用户浏览网站时不会持久。
+创建并注册全局 [Vue 组件](https://vuejs.org/v2/guide/components.html) 。组件是以组件名称为键，以包含 Vue 选项的对象为值来指定的。组件`data`对每个实例都是唯一的，并且在用户浏览网站时不会持久。
 
 ```js
 window.$docsify = {
   vueComponents: {
-    'button-counter': {
+    "button-counter": {
       template: `
         <button @click="count += 1">
           You clicked me {{ count }} times
@@ -637,7 +637,7 @@ window.$docsify = {
 
 - type: `Object`
 
-指定 [Vue选项](https://vuejs.org/v2/api/#Options-Data) ，用于未明确使用[vueMounts](#mounting-dom-elements)、[vueComponents](#components)或[markdown脚本](#markdown-script)挂载的 Vue 内容。对全局`data`的更改将持续存在，并在任何使用全局引用的地方得到反映。
+指定 [Vue 选项](https://vuejs.org/v2/api/#Options-Data) ，用于未明确使用[vueMounts](#mounting-dom-elements)、[vueComponents](#components)或[markdown 脚本](#markdown-script)挂载的 Vue 内容。对全局`data`的更改将持续存在，并在任何使用全局引用的地方得到反映。
 
 ```js
 window.$docsify = {
@@ -671,12 +671,12 @@ window.$docsify = {
 
 - type: `Object`
 
-指定要挂载为 [Vue实例](https://vuejs.org/v2/guide/instance.html) 的 DOM 元素及其相关选项。挂载元素使用 [CSS选择器](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) 作为键，并使用包含 Vue 选项的对象作为其值。每次加载新页面时，Docsify 将挂载主内容区域中第一个匹配的元素。挂载元素`data`对每个实例来说都是唯一的，并且不会在用户浏览网站时持久存在。
+指定要挂载为 [Vue 实例](https://vuejs.org/v2/guide/instance.html) 的 DOM 元素及其相关选项。挂载元素使用 [CSS 选择器](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) 作为键，并使用包含 Vue 选项的对象作为其值。每次加载新页面时，Docsify 将挂载主内容区域中第一个匹配的元素。挂载元素`data`对每个实例来说都是唯一的，并且不会在用户浏览网站时持久存在。
 
 ```js
 window.$docsify = {
   vueMounts: {
-    '#counter': {
+    "#counter": {
       data() {
         return {
           count: 0,

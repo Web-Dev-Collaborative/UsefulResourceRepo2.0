@@ -1,26 +1,30 @@
 /* Color Pallete */
 
-$pallete : (
-  pure-white: #FFFFFF,
+$pallete: (
+  pure-white: #ffffff,
   igray: #808080,
-  silva: #AAAAAA,
-  nepal-red: #D0091E,
+  silva: #aaaaaa,
+  nepal-red: #d0091e,
   pure-black: #000000,
-  vicious: #27AE60
+  vicious: #27ae60,
 );
 
 /* Pallete helper methods.*/
-@mixin color($color, $type : 'color', $imp: false, $opacity : 1)  {
-  $color : map-get($pallete, $color);
+@mixin color($color, $type: "color", $imp: false, $opacity: 1) {
+  $color: map-get($pallete, $color);
 
-  @if $opacity != 1 { $color : rgba($color, $opacity);}
-  @if $imp == true { $color: $color !important; }
+  @if $opacity != 1 {
+    $color: rgba($color, $opacity);
+  }
+  @if $imp == true {
+    $color: $color !important;
+  }
 
-  @if $type == 'bg' {
+  @if $type == "bg" {
     background-color: $color;
-  } @else if $type == 'border'  {
+  } @else if $type == "border" {
     border-color: $color;
   } @else {
-    color : $color;
+    color: $color;
   }
 }

@@ -5,27 +5,24 @@ simplify installation and avoid library conflicts, we recommend using a
 [TensorFlow Docker image with GPU support](./docker.md) (Linux only). This setup
 only requires the [NVIDIA® GPU drivers](https://www.nvidia.com/drivers){:.external}.
 
-
 ## Hardware requirements
 
 The following GPU-enabled devices are supported:
 
-* NVIDIA® GPU card with CUDA® Compute Capability 3.5 or higher. See the list of
+- NVIDIA® GPU card with CUDA® Compute Capability 3.5 or higher. See the list of
   [CUDA-enabled GPU cards](https://developer.nvidia.com/cuda-gpus){:.external}.
-
 
 ## Software requirements
 
 The following NVIDIA® software must be installed on your system:
 
-* [NVIDIA® GPU drivers](https://www.nvidia.com/drivers){:.external} —CUDA 9.0 requires 384.x or higher.
-* [CUDA® Toolkit](https://developer.nvidia.com/cuda-zone){:.external} —TensorFlow supports CUDA 9.0.
-* [CUPTI](http://docs.nvidia.com/cuda/cupti/){:.external} ships with the CUDA Toolkit.
-* [cuDNN SDK](https://developer.nvidia.com/cudnn){:.external} (>= 7.2)
-* *(Optional)* [NCCL 2.2](https://developer.nvidia.com/nccl){:.external} for multiple GPU support.
-* *(Optional)* [TensorRT 4.0](https://docs.nvidia.com/deeplearning/sdk/tensorrt-install-guide/index.html){:.external}
+- [NVIDIA® GPU drivers](https://www.nvidia.com/drivers){:.external} —CUDA 9.0 requires 384.x or higher.
+- [CUDA® Toolkit](https://developer.nvidia.com/cuda-zone){:.external} —TensorFlow supports CUDA 9.0.
+- [CUPTI](http://docs.nvidia.com/cuda/cupti/){:.external} ships with the CUDA Toolkit.
+- [cuDNN SDK](https://developer.nvidia.com/cudnn){:.external} (>= 7.2)
+- _(Optional)_ [NCCL 2.2](https://developer.nvidia.com/nccl){:.external} for multiple GPU support.
+- _(Optional)_ [TensorRT 4.0](https://docs.nvidia.com/deeplearning/sdk/tensorrt-install-guide/index.html){:.external}
   to improve latency and throughput for inference on some models.
-
 
 ## Linux setup
 
@@ -71,7 +68,6 @@ it difficult to configure and debug build issues.
 <code class="devsite-terminal">sudo apt update</code>
 <code class="devsite-terminal">sudo apt install libnvinfer4=4.1.2-1+cuda9.0</code>
 </pre>
-
 
 ## Windows setup
 

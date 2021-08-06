@@ -3,18 +3,19 @@
 // eg: `inputs` can be set in DOM using `data-parsley-inputs="input, textarea"`
 // eg: `data-parsley-stop-on-first-failing-constraint="false"`
 
-define('parsley/defaults', function () {
+define("parsley/defaults", function () {
   var ParsleyDefaults = {
     // ### General
 
     // Default data-namespace for DOM API
-    namespace: 'data-parsley-',
+    namespace: "data-parsley-",
 
     // Supported inputs by default
-    inputs: 'input, textarea, select',
+    inputs: "input, textarea, select",
 
     // Excluded inputs by default
-    excluded: 'input[type=button], input[type=submit], input[type=reset], input[type=hidden]',
+    excluded:
+      "input[type=button], input[type=submit], input[type=reset], input[type=hidden]",
 
     // Stop validating field on highest priority failing constraint
     priorityEnabled: true,
@@ -35,16 +36,16 @@ define('parsley/defaults', function () {
     validationThreshold: 3,
 
     // Focused field on form validation error. 'first'|'last'|'none'
-    focus: 'first',
+    focus: "first",
 
     // `$.Event()` that will trigger validation. eg: `keyup`, `change`...
     trigger: false,
 
     // Class that would be added on every failing validation Parsley field
-    errorClass: 'parsley-error',
+    errorClass: "parsley-error",
 
     // Same for success validation
-    successClass: 'parsley-success',
+    successClass: "parsley-success",
 
     // Return the `$element` that will receive these above success or error classes
     // Could also be (and given directly from DOM) a valid selector like `'#div'`
@@ -58,7 +59,7 @@ define('parsley/defaults', function () {
     errorsWrapper: '<ul class="parsley-errors-list"></ul>',
 
     // li elem that would receive error message
-    errorTemplate: '<li></li>'
+    errorTemplate: "<li></li>",
   };
 
   return ParsleyDefaults;

@@ -10,12 +10,12 @@ embeddings".
 This tutorial is meant to highlight the interesting, substantive parts of
 building a word2vec model in TensorFlow.
 
-* We start by giving the motivation for why we would want to
-represent words as vectors.
-* We look at the intuition behind the model and how it is trained
-(with a splash of math for good measure).
-* We also show a simple implementation of the model in TensorFlow.
-* Finally, we look at ways to make the naive version scale better.
+- We start by giving the motivation for why we would want to
+  represent words as vectors.
+- We look at the intuition behind the model and how it is trained
+  (with a splash of math for good measure).
+- We also show a simple implementation of the model in TensorFlow.
+- Finally, we look at ways to make the naive version scale better.
 
 We walk through the code later during the tutorial, but if you'd prefer to dive
 straight in, feel free to look at the minimalistic implementation in
@@ -39,16 +39,16 @@ encoded as vectors of the individual raw pixel-intensities for image data, or
 e.g. power spectral density coefficients for audio data. For tasks like object
 or speech recognition we know that all the information required to successfully
 perform the task is encoded in the data (because humans can perform these tasks
-from the raw data).  However, natural language processing systems traditionally
+from the raw data). However, natural language processing systems traditionally
 treat words as discrete atomic symbols, and therefore 'cat' may be represented
-as  `Id537` and 'dog' as `Id143`.  These encodings are arbitrary, and provide
+as `Id537` and 'dog' as `Id143`. These encodings are arbitrary, and provide
 no useful information to the system regarding the relationships that may exist
 between the individual symbols. This means that the model can leverage
 very little of what it has learned about 'cats' when it is processing data about
 'dogs' (such that they are both animals, four-legged, pets, etc.). Representing
 words as unique, discrete ids furthermore leads to data sparsity, and usually
 means that we may need more data in order to successfully train statistical
-models.  Using vector representations can overcome some of these obstacles.
+models. Using vector representations can overcome some of these obstacles.
 
 <div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
 <img style="width:100%" src="https://www.tensorflow.org/images/audio-image-text.png" alt>
@@ -62,9 +62,9 @@ another on the
 [Distributional Hypothesis](https://en.wikipedia.org/wiki/Distributional_semantics#Distributional_Hypothesis),
 which states that words that appear in the same contexts share
 semantic meaning. The different approaches that leverage this principle can be
-divided into two categories: *count-based methods* (e.g.
+divided into two categories: _count-based methods_ (e.g.
 [Latent Semantic Analysis](https://en.wikipedia.org/wiki/Latent_semantic_analysis)),
-and *predictive methods* (e.g.
+and _predictive methods_ (e.g.
 [neural probabilistic language models](http://www.scholarpedia.org/article/Neural_net_language_models)).
 
 This distinction is elaborated in much more detail by
@@ -73,7 +73,7 @@ but in a nutshell: Count-based methods compute the statistics of
 how often some word co-occurs with its neighbor words in a large text corpus,
 and then map these count-statistics down to a small, dense vector for each word.
 Predictive models directly try to predict a word from its neighbors in terms of
-learned small, dense *embedding vectors* (considered parameters of the
+learned small, dense _embedding vectors_ (considered parameters of the
 model).
 
 Word2vec is a particularly computationally-efficient predictive model for
@@ -89,14 +89,13 @@ useful thing for smaller datasets. However, skip-gram treats each context-target
 pair as a new observation, and this tends to do better when we have larger
 datasets. We will focus on the skip-gram model in the rest of this tutorial.
 
-
 ## Scaling up with Noise-Contrastive Training
 
 Neural probabilistic language models are traditionally trained using the
 [maximum likelihood](https://en.wikipedia.org/wiki/Maximum_likelihood) (ML)
-principle  to maximize the probability of the next word \\(w_t\\) (for "target")
+principle to maximize the probability of the next word \\(w_t\\) (for "target")
 given the previous words \\(h\\) (for "history") in terms of a
-[*softmax* function](https://en.wikipedia.org/wiki/Softmax_function),
+[_softmax_ function](https://en.wikipedia.org/wiki/Softmax_function),
 
 $$
 \begin{align}
@@ -122,7 +121,7 @@ $$
 This yields a properly normalized probabilistic model for language modeling.
 However this is very expensive, because we need to compute and normalize each
 probability using the score for all other \\(V\\) words \\(w'\\) in the current
-context \\(h\\), *at every training step*.
+context \\(h\\), _at every training step_.
 
 <div style="width:60%; margin:auto; margin-bottom:10px; margin-top:20px;">
 <img style="width:100%" src="https://www.tensorflow.org/images/softmax-nplm.png" alt>
@@ -141,11 +140,13 @@ direction is simply inverted.
 
 Mathematically, the objective (for each example) is to maximize
 
-$$J_\text{NEG} = \log Q_\theta(D=1 |w_t, h) +
+$$
+J_\text{NEG} = \log Q_\theta(D=1 |w_t, h) +
   k \mathop{\mathbb{E}}_{\tilde w \sim P_\text{noise}}
-     \left[ \log Q_\theta(D = 0 |\tilde w, h) \right]$$
+     \left[ \log Q_\theta(D = 0 |\tilde w, h) \right]
+$$
 
-where \\(Q_\theta(D=1 | w, h)\\) is the binary logistic regression probability
+where \\(Q\_\theta(D=1 | w, h)\\) is the binary logistic regression probability
 under the model of seeing the word \\(w\\) in the context \\(h\\) in the dataset
 \\(D\\), calculated in terms of the learned embedding vectors \\(\theta\\). In
 practice we approximate the expectation by drawing \\(k\\) contrastive words
@@ -159,8 +160,8 @@ called
 and there is good mathematical motivation for using this loss function:
 The updates it proposes approximate the updates of the softmax function in the
 limit. But computationally it is especially appealing because computing the
-loss function now scales only with the number of *noise words* that we
-select (\\(k\\)), and not *all words* in the vocabulary (\\(V\\)). This makes it
+loss function now scales only with the number of _noise words_ that we
+select (\\(k\\)), and not _all words_ in the vocabulary (\\(V\\)). This makes it
 much faster to train. We will actually make use of the very similar
 [noise-contrastive estimation (NCE)](https://papers.nips.cc/paper/5165-learning-word-embeddings-efficiently-with-noise-contrastive-estimation.pdf)
 loss, for which TensorFlow has a handy helper function `tf.nn.nce_loss()`.
@@ -192,7 +193,7 @@ task becomes to predict 'the' and 'brown' from 'quick', 'quick' and 'fox' from
 
 `(quick, the), (quick, brown), (brown, quick), (brown, fox), ...`
 
-of `(input, output)` pairs.  The objective function is defined over the entire
+of `(input, output)` pairs. The objective function is defined over the entire
 dataset, but we typically optimize this with
 [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent)
 (SGD) using one example at a time (or a 'minibatch' of `batch_size` examples,
@@ -207,13 +208,15 @@ typically the unigram distribution, \\(P(w)\\). For simplicity let's say
 loss for this pair of observed and noisy examples, i.e. the objective at time
 step \\(t\\) becomes
 
-$$J^{(t)}_\text{NEG} = \log Q_\theta(D=1 | \text{the, quick}) +
-  \log(Q_\theta(D=0 | \text{sheep, quick}))$$
+$$
+J^{(t)}_\text{NEG} = \log Q_\theta(D=1 | \text{the, quick}) +
+  \log(Q_\theta(D=0 | \text{sheep, quick}))
+$$
 
 The goal is to make an update to the embedding parameters \\(\theta\\) to improve
-(in this case, maximize) this objective function.  We do this by deriving the
+(in this case, maximize) this objective function. We do this by deriving the
 gradient of the loss with respect to the embedding parameters \\(\theta\\), i.e.
-\\(\frac{\partial}{\partial \theta} J_\text{NEG}\\) (luckily TensorFlow provides
+\\(\frac{\partial}{\partial \theta} J\_\text{NEG}\\) (luckily TensorFlow provides
 easy helper functions for doing this!). We then perform an update to the
 embeddings by taking a small step in the direction of the gradient. When this
 process is repeated over the entire training set, this has the effect of
@@ -227,8 +230,8 @@ When we inspect these visualizations it becomes apparent that the vectors
 capture some general, and in fact quite useful, semantic information about
 words and their relationships to one another. It was very interesting when we
 first discovered that certain directions in the induced vector space specialize
-towards certain semantic relationships, e.g. *male-female*, *verb tense* and
-even *country-capital* relationships between words, as illustrated in the figure
+towards certain semantic relationships, e.g. _male-female_, _verb tense_ and
+even _country-capital_ relationships between words, as illustrated in the figure
 below (see also for example
 [Mikolov et al., 2013](https://www.aclweb.org/anthology/N13-1090)).
 
@@ -248,7 +251,7 @@ But for now, let's just use them to draw pretty pictures!
 ## Building the Graph
 
 This is all about embeddings, so let's define our embedding matrix.
-This is just a big random matrix to start.  We'll initialize the values to be
+This is just a big random matrix to start. We'll initialize the values to be
 uniform in the unit cube.
 
 ```python
@@ -258,8 +261,7 @@ embeddings = tf.Variable(
 
 The noise-contrastive estimation loss is defined in terms of a logistic regression
 model. For this, we need to define the weights and biases for each word in the
-vocabulary (also called the `output weights` as opposed to the `input
-embeddings`). So let's define that.
+vocabulary (also called the `output weights` as opposed to the `input embeddings`). So let's define that.
 
 ```python
 nce_weights = tf.Variable(
@@ -284,7 +286,7 @@ train_labels = tf.placeholder(tf.int32, shape=[batch_size, 1])
 ```
 
 Now what we need to do is look up the vector for each of the source words in
-the batch.  TensorFlow has handy helpers that make this easy.
+the batch. TensorFlow has handy helpers that make this easy.
 
 ```python
 embed = tf.nn.embedding_lookup(embeddings, train_inputs)
@@ -349,7 +351,7 @@ Embeddings are useful for a wide variety of prediction tasks in NLP. Short of
 training a full-blown part-of-speech model or named-entity model, one simple way
 to evaluate embeddings is to directly use them to predict syntactic and semantic
 relationships like `king is to queen as father is to ?`. This is called
-*analogical reasoning* and the task was introduced by
+_analogical reasoning_ and the task was introduced by
 [Mikolov and colleagues
 ](https://www.aclweb.org/anthology/N13-1090).
 Download the dataset for this task from
@@ -364,7 +366,6 @@ To achieve state-of-the-art performance on this task requires training over a
 very large dataset, carefully tuning the hyperparameters and making use of
 tricks like subsampling the data, which is out of the scope of this tutorial.
 
-
 ## Optimizing the Implementation
 
 Our vanilla implementation showcases the flexibility of TensorFlow. For
@@ -378,18 +379,18 @@ out several different ideas and iterating quickly.
 
 Once you have a model structure you're satisfied with, it may be worth
 optimizing your implementation to run more efficiently (and cover more data in
-less time).  For example, the naive code we used in this tutorial would suffer
+less time). For example, the naive code we used in this tutorial would suffer
 compromised speed because we use Python for reading and feeding data items --
-each of which require very little work on the TensorFlow back-end.  If you find
+each of which require very little work on the TensorFlow back-end. If you find
 your model is seriously bottlenecked on input data, you may want to implement a
 custom data reader for your problem, as described in
-[New Data Formats](../../extend/new_data_formats.md).  For the case of Skip-Gram
+[New Data Formats](../../extend/new_data_formats.md). For the case of Skip-Gram
 modeling, we've actually already done this for you as an example in
 [models/tutorials/embedding/word2vec.py](https://github.com/tensorflow/models/tree/master/tutorials/embedding/word2vec.py).
 
 If your model is no longer I/O bound but you want still more performance, you
 can take things further by writing your own TensorFlow Ops, as described in
-[Adding a New Op](../../extend/op.md).  Again we've provided an
+[Adding a New Op](../../extend/op.md). Again we've provided an
 example of this for the Skip-Gram case
 [models/tutorials/embedding/word2vec_optimized.py](https://github.com/tensorflow/models/tree/master/tutorials/embedding/word2vec_optimized.py).
 Feel free to benchmark these against each other to measure performance

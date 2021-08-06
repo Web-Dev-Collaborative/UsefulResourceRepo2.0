@@ -173,7 +173,7 @@ Python, you get a `TensorProto` object from a `NodeDef` representing a `Const`
 op by calling something like `some_node_def.attr['value'].tensor`.
 
 This will give you an object representing the weights data. The data itself
-will be stored in one of the lists with the suffix _val as indicated by the
+will be stored in one of the lists with the suffix \_val as indicated by the
 type of the object, for example `float_val` for 32-bit float data types.
 
 The ordering of convolution weight values is often tricky to deal with when

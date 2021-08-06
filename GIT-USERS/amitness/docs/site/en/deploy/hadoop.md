@@ -20,15 +20,15 @@ prefix to `hdfs://default/`.
 
 Set the following environment variables:
 
-* `JAVA_HOME` —Location of the Java installation.
-* `HADOOP_HDFS_HOME` —Location of the HDFS installation. The variable is optional
+- `JAVA_HOME` —Location of the Java installation.
+- `HADOOP_HDFS_HOME` —Location of the HDFS installation. The variable is optional
   if `libhdfs.so` is available in `LD_LIBRARY_PATH`. This can also be set using:
-  
+
   ```shell
   source ${HADOOP_HOME}/libexec/hadoop-config.sh
   ```
 
-* `LD_LIBRARY_PATH` —Include the path to `libjvm.so` and, optionally, the path to
+- `LD_LIBRARY_PATH` —Include the path to `libjvm.so` and, optionally, the path to
   `libhdfs.so`, if your Hadoop distribution did not install `libhdfs.so` in
   `${HADOOP_HDFS_HOME}/lib/native`. On Linux:
 
@@ -36,7 +36,7 @@ Set the following environment variables:
   export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${JAVA_HOME}/jre/lib/amd64/server
   ```
 
-* `CLASSPATH` —The Hadoop jars must be added to the class path before running
+- `CLASSPATH` —The Hadoop jars must be added to the class path before running
   TensorFlow. It's not enough to set CLASSPATH using:
   `${HADOOP_HOME}/libexec/hadoop-config.sh`. Globs must be expanded, as described
   in the `libhdfs` documentation:
@@ -45,9 +45,9 @@ Set the following environment variables:
   CLASSPATH=$(${HADOOP_HOME}/bin/hadoop classpath --glob) python your_script.py
   ```
 
-If the Hadoop cluster is in *secure mode*, set the following environment variable:
+If the Hadoop cluster is in _secure mode_, set the following environment variable:
 
-* `KRB5CCNAME` —Path of Kerberos ticket cache file. For example:
+- `KRB5CCNAME` —Path of Kerberos ticket cache file. For example:
 
   ```shell
   export KRB5CCNAME=/tmp/krb5cc_10002

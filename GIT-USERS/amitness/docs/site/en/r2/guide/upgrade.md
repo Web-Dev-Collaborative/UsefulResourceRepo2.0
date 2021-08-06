@@ -4,7 +4,7 @@ TensorFlow 2.0 release includes many API changes such as argument reorders, API
 symbol names, and more. The `tf_upgrade_v2` tool helps the transition by
 converting existing TensorFlow 1.12 Python scripts to TensorFlow 2.0 preview.
 
-Note: While the script produces code that runs in TensorFlow 2.0., it *does not*
+Note: While the script produces code that runs in TensorFlow 2.0., it _does not_
 transform the code to 2.0 best practices.
 
 ## Run the script from the pip package
@@ -17,7 +17,7 @@ The upgrade script can be run on a single Python file:
 tf_upgrade_v2 --infile foo.py --outfile foo-upgraded.py
 ```
 
-This prints a list of errors that the script *can not* fix. You can also run
+This prints a list of errors that the script _can not_ fix. You can also run
 it on a directory tree:
 
 ```
@@ -51,17 +51,17 @@ Renamed keyword argument from 'dimension' to 'axis'
 ## Caveats
 
 - Do not update parts of your code manually before running this script. In
-particular, functions that have had reordered arguments like `tf.argmax`
-or `tf.batch_to_space` cause the script to incorrectly add keyword
-arguments that mismap arguments.
+  particular, functions that have had reordered arguments like `tf.argmax`
+  or `tf.batch_to_space` cause the script to incorrectly add keyword
+  arguments that mismap arguments.
 - This script does not reorder arguments. Instead, the script adds keyword
-arguments to functions that have their arguments reordered.
+  arguments to functions that have their arguments reordered.
 - The conversion process is not able to upgrade all functions. One notable
-example is `tf.nn.conv2d` which no longer takes the `use_cudnn_on_gpu` argument.
-If the script detects this, it will report to stdout (and in the report) and you
-can fix it manually. For example if you have
-`tf.nn.conv2d(inputs, filters, strides, padding, use_cudnn_on_gpu=True)`
-you will need to change it to: `tf.nn.conv2d(input, filters, strides, padding)`.
+  example is `tf.nn.conv2d` which no longer takes the `use_cudnn_on_gpu` argument.
+  If the script detects this, it will report to stdout (and in the report) and you
+  can fix it manually. For example if you have
+  `tf.nn.conv2d(inputs, filters, strides, padding, use_cudnn_on_gpu=True)`
+  you will need to change it to: `tf.nn.conv2d(input, filters, strides, padding)`.
 
 ## Bugs
 

@@ -1,53 +1,59 @@
 @import url(//fonts.googleapis.com/css?family=PT+Sans:400,700,400italic);
 @import url(//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 
-body, .navbar-default {
-   background-color:#F2F1EF;
+body,
+.navbar-default {
+  background-color: #f2f1ef;
 }
 
-h1, h2, h3 , h4, h5 {
-   font-weight: 700;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 700;
 }
 p {
-   font-weight:500 !important;
+  font-weight: 500 !important;
 }
 
 h2.cs-section {
-   text-align: center;
+  text-align: center;
 }
 pre.code {
   font: normal 12pt Ubuntu Mono;
   overflow-y: auto;
   overflow-wrap: normal;
-  word-wrap:normal;
-  white-space:pre;
+  word-wrap: normal;
+  white-space: pre;
 }
 footer {
-   text-align: center;
-   font-weight:bold;
-   color: darkgray;
+  text-align: center;
+  font-weight: bold;
+  color: darkgray;
 }
 .jumbotron {
-   background-color: #F2F1EF;
+  background-color: #f2f1ef;
 }
 .row {
-   margin:auto;
+  margin: auto;
 }
 .navbar {
-   border: 0px;
+  border: 0px;
 }
-.boardless{
-   border:none !important;
+.boardless {
+  border: none !important;
 }
-.boardless td, .boardless th {
-   border: none !important;
+.boardless td,
+.boardless th {
+  border: none !important;
 }
 pre.code {
-   border: none;
+  border: none;
 }
 nav {
-   font-weight: 700;
+  font-weight: 700;
 }
 a {
-   text-decoration:none !important;
+  text-decoration: none !important;
 }

@@ -1,34 +1,22 @@
-{% extends "layout.html" %}
-
-{% block title %}Awardee Search: {{ company.name }}{% endblock %}
-
-{% block resources %}
-<link href="{{ url_for('static', filename='css/company.css') }}" rel="stylesheet" type="text/css" />
- <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+{% extends "layout.html" %} {% block title %}Awardee Search: {{ company.name
+}}{% endblock %} {% block resources %}
+<link
+  href="{{ url_for('static', filename='css/company.css') }}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"
+></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/heatmap.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-{% endblock %}
-
-{% block content %}
-
-{% include "sections/details.html" %}
-
-{% if company.rating %}
-{% include "sections/speed_gauge.html" %}
-{% endif %}
-
-{% if company.won_bids %}
-{% include "sections/pie_chart.html" %}
-{% endif %}
-
-{% if company.streaks %}
-{% include "sections/heatmap.html" %}
-{% endif %}
-
-{% endblock %}
-
-{% block scripts %}
-{% endblock %}
+{% endblock %} {% block content %} {% include "sections/details.html" %} {% if
+company.rating %} {% include "sections/speed_gauge.html" %} {% endif %} {% if
+company.won_bids %} {% include "sections/pie_chart.html" %} {% endif %} {% if
+company.streaks %} {% include "sections/heatmap.html" %} {% endif %} {% endblock
+%} {% block scripts %} {% endblock %}

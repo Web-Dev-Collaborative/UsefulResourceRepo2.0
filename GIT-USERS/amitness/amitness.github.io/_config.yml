@@ -31,7 +31,6 @@ twitter:
 markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
 
-
 # Outputting
 permalink: /:year/:month/:title/
 paginate: 5 # amount of posts to show
@@ -63,9 +62,9 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "Amit Chaudhary"
-  avatar : "/images/bio-photo.jpg"
-  bio    : "Research && Engineering"
+  name: "Amit Chaudhary"
+  avatar: "/images/bio-photo.jpg"
+  bio: "Research && Engineering"
   links:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
@@ -119,7 +118,6 @@ defaults:
     values:
       image: true
 
-
 category_archive:
   type: liquid
   path: /categories/
@@ -137,8 +135,8 @@ repository: "amitness/blog-comments"
 google_site_verification: "xETphZ5K1WItiUzH0YMRgZ8njDZlQMcGd_HD3zxGkuI"
 
 social:
-  type:  Person
-  name:  Amit Chaudhary
+  type: Person
+  name: Amit Chaudhary
   links:
     - "https://twitter.com/amitness"
     - "https://www.facebook.com/amitify"

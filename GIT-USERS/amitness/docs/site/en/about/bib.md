@@ -28,7 +28,6 @@ implementation were released as an open-source package under
 the Apache 2.0 license in November, 2015 and are available at
 www.tensorflow.org.
 
-
 ### In BibTeX format
 
 If you use TensorFlow in your research and would like to cite the TensorFlow
@@ -101,8 +100,6 @@ TensorFlow: Large-scale machine learning on heterogeneous systems,
 2015. Software available from tensorflow.org.
 </pre>
 
-
-
 ## TensorFlow: A System for Large-Scale Machine Learning
 
 [Access this white paper.](https://www.usenix.org/system/files/conference/osdi16/osdi16-abadi.pdf)
@@ -128,4 +125,3 @@ it has become widely used for machine learning research.
 In this paper, we describe the TensorFlow dataflow model
 and demonstrate the compelling performance that TensorFlow
 achieves for several real-world applications.
-

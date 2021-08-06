@@ -4,7 +4,6 @@ This guide contains instructions for defining and running a TensorFlow benchmark
 
 [TOC]
 
-
 ## Defining a Benchmark
 
 Defining a TensorFlow benchmark requires extending the `tf.test.Benchmark`
@@ -42,15 +41,14 @@ class SampleBenchmark(tf.test.Benchmark):
 if __name__ == "__main__":
   tf.test.main()
 ```
-See the full example for [SampleBenchmark](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/benchmark/).
 
+See the full example for [SampleBenchmark](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/benchmark/).
 
 Key points to note in the example above:
 
-* Benchmark class extends from `tf.test.Benchmark`.
-* Each benchmark method should start with `benchmark` prefix.
-* Benchmark method calls `report_benchmark` to report the metric value.
-
+- Benchmark class extends from `tf.test.Benchmark`.
+- Each benchmark method should start with `benchmark` prefix.
+- Benchmark method calls `report_benchmark` to report the metric value.
 
 ## Running with Python
 
@@ -63,7 +61,6 @@ python sample_benchmark.py --benchmarks=SampleBenchmark
 Setting the flag as `--benchmarks=.` or `--benchmarks=all` works as well.
 
 (Please ensure that Tensorflow is installed to successfully import the package in the line `import tensorflow as tf`. For installation instructions, see [Installing TensorFlow](../install/). This step is not necessary when running with Bazel.)
-
 
 ## Adding a `bazel` Target
 
@@ -87,7 +84,6 @@ You can run benchmarks in a `py_test` target by passing the `--benchmarks` flag.
 ```shell
 bazel test :sample_benchmark --test_arg=--benchmarks=all
 ```
-
 
 Now, add the `tf_py_logged_benchmark` target (if available). This target would
 pass in `--benchmarks=all` to the wrapped `py_test` target and provide a way to store output for our TensorFlow continuous build. The target `tf_py_logged_benchmark` should be available in TensorFlow repository.

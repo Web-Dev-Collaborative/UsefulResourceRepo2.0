@@ -16,8 +16,8 @@ http://127.0.0.1:8000/items/?skip=0&limit=10
 
 ...the query parameters are:
 
-* `skip`: with a value of `0`
-* `limit`: with a value of `10`
+- `skip`: with a value of `0`
+- `limit`: with a value of `10`
 
 As they are part of the URL, they are "naturally" strings.
 
@@ -25,10 +25,10 @@ But when you declare them with Python types (in the example above, as `int`), th
 
 All the same process that applied for path parameters also applies for query parameters:
 
-* Editor support (obviously)
-* Data <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>
-* Data validation
-* Automatic documentation
+- Editor support (obviously)
+- Data <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>
+- Data validation
+- Automatic documentation
 
 ## Defaults
 
@@ -56,8 +56,8 @@ http://127.0.0.1:8000/items/?skip=20
 
 The parameter values in your function will be:
 
-* `skip=20`: because you set it in the URL
-* `limit=10`: because that was the default value
+- `skip=20`: because you set it in the URL
+- `limit=10`: because that was the default value
 
 ## Optional parameters
 
@@ -70,10 +70,10 @@ The same way, you can declare optional query parameters, by setting their defaul
 In this case, the function parameter `q` will be optional, and will be `None` by default.
 
 !!! check
-    Also notice that **FastAPI** is smart enough to notice that the path parameter `item_id` is a path parameter and `q` is not, so, it's a query parameter.
+Also notice that **FastAPI** is smart enough to notice that the path parameter `item_id` is a path parameter and `q` is not, so, it's a query parameter.
 
 !!! note
-    FastAPI will know that `q` is optional because of the `= None`.
+FastAPI will know that `q` is optional because of the `= None`.
 
     The `Optional` in `Optional[str]` is not used by FastAPI (FastAPI will only use the `str` part), but the `Optional[str]` will let your editor help you finding errors in your code.
 
@@ -116,7 +116,6 @@ http://127.0.0.1:8000/items/foo?short=yes
 ```
 
 or any other case variation (uppercase, first letter in uppercase, etc), your function will see the parameter `short` with a `bool` value of `True`. Otherwise as `False`.
-
 
 ## Multiple path and query parameters
 
@@ -190,9 +189,9 @@ And of course, you can define some parameters as required, some as having a defa
 
 In this case, there are 3 query parameters:
 
-* `needy`, a required `str`.
-* `skip`, an `int` with a default value of `0`.
-* `limit`, an optional `int`.
+- `needy`, a required `str`.
+- `skip`, an `int` with a default value of `0`.
+- `limit`, an optional `int`.
 
 !!! tip
-    You could also use `Enum`s the same way as with [Path Parameters](path-params.md#predefined-values){.internal-link target=_blank}.
+You could also use `Enum`s the same way as with [Path Parameters](path-params.md#predefined-values){.internal-link target=\_blank}.

@@ -1,8 +1,8 @@
 # Docker
 
-[Docker](https://docs.docker.com/install/){:.external} uses *containers* to
+[Docker](https://docs.docker.com/install/){:.external} uses _containers_ to
 create virtual environments that isolate a TensorFlow installation from the rest
-of the system. TensorFlow programs are run *within* this virtual environment that
+of the system. TensorFlow programs are run _within_ this virtual environment that
 can share resources with its host machine (access directories, use the GPU,
 connect to the Internet, etc.). The
 [TensorFlow Docker images](https://hub.docker.com/r/tensorflow/tensorflow/){:.external}
@@ -10,42 +10,40 @@ are tested for each release.
 
 Docker is the easiest way to enable TensorFlow [GPU support](./gpu.md) on Linux since only the
 [NVIDIA® GPU driver](https://github.com/NVIDIA/nvidia-docker/wiki/Frequently-Asked-Questions#how-do-i-install-the-nvidia-driver){:.external}
-is required on the *host* machine (the *NVIDIA® CUDA® Toolkit* does not need to
+is required on the _host_ machine (the _NVIDIA® CUDA® Toolkit_ does not need to
 be installed).
-
 
 ## TensorFlow Docker requirements
 
 1. [Install Docker](https://docs.docker.com/install/){:.external} on
-   your local *host* machine.
+   your local _host_ machine.
 2. For GPU support on Linux, [install nvidia-docker](https://github.com/NVIDIA/nvidia-docker){:.external}.
 
 Note: To run the `docker` command without `sudo`, create the `docker` group and
 add your user. For details, see the
 [post-installation steps for Linux](https://docs.docker.com/install/linux/linux-postinstall/){:.external}.
 
-
 ## Download a TensorFlow Docker image
 
-The official TensorFlow Docker images are located in the 
+The official TensorFlow Docker images are located in the
 [tensorflow/tensorflow](https://hub.docker.com/r/tensorflow/tensorflow/){:.external}
 Docker Hub repository. Image releases [are tagged](https://hub.docker.com/r/tensorflow/tensorflow/tags/){:.external}
 using the following format:
 
 | Tag         | Description                                                                                       |
-| ---         | ---                                                                                               |
+| ----------- | ------------------------------------------------------------------------------------------------- |
 | `latest`    | The latest release of TensorFlow CPU binary image. Default.                                       |
 | `nightly`   | Nightly builds of the TensorFlow image. (unstable)                                                |
-| *`version`* | Specify the *version* of the TensorFlow binary image, for example: *1.12.0*                       |
+| _`version`_ | Specify the _version_ of the TensorFlow binary image, for example: _1.12.0_                       |
 | `devel`     | Nightly builds of a TensorFlow `master` development environment. Includes TensorFlow source code. |
 
-Each base *tag* has variants that add or change functionality:
+Each base _tag_ has variants that add or change functionality:
 
 | Tag Variants      | Description                                                                       |
-| ---               | ---                                                                               |
-| *`tag`*`-gpu`     | The specified *tag* release with GPU support. ([See below](#gpu_support))         |
-| *`tag`*`-py3`     | The specified *tag* release with Python 3 support.                                |
-| *`tag`*`-jupyter` | The specified *tag* release with Jupyter (includes TensorFlow tutorial notebooks) |
+| ----------------- | --------------------------------------------------------------------------------- |
+| _`tag`_`-gpu`     | The specified _tag_ release with GPU support. ([See below](#gpu_support))         |
+| _`tag`_`-py3`     | The specified _tag_ release with Python 3 support.                                |
+| _`tag`_`-jupyter` | The specified _tag_ release with Jupyter (includes TensorFlow tutorial notebooks) |
 
 You can use multiple variants at once. For example, the following downloads
 TensorFlow release images to your machine:
@@ -55,7 +53,6 @@ TensorFlow release images to your machine:
 <code class="devsite-terminal">docker pull tensorflow/tensorflow:devel-gpu           # nightly dev release w/ GPU support</code>
 <code class="devsite-terminal">docker pull tensorflow/tensorflow:latest-gpu-jupyter  # latest release w/ GPU support and Jupyter</code>
 </pre>
-
 
 ## Start a TensorFlow Docker container
 
@@ -88,7 +85,7 @@ docker run -it tensorflow/tensorflow bash
 
 Within the container, you can start a `python` session and import TensorFlow.
 
-To run a TensorFlow program developed on the *host* machine within a container,
+To run a TensorFlow program developed on the _host_ machine within a container,
 mount the host directory and change the container's working directory
 (`-v hostDir:containerDir -w workDir`):
 
@@ -109,12 +106,11 @@ docker run -it -p 8888:8888 tensorflow/tensorflow:nightly-py3-jupyter
 Follow the instructions and open the URL in your host web browser:
 `http://127.0.0.1:8888/?token=...`
 
-
 ## GPU support
 
-Docker is the easiest way to run TensorFlow on a GPU since the *host* machine
+Docker is the easiest way to run TensorFlow on a GPU since the _host_ machine
 only requires the [NVIDIA® driver](https://github.com/NVIDIA/nvidia-docker/wiki/Frequently-Asked-Questions#how-do-i-install-the-nvidia-driver){:.external}
-(the *NVIDIA® CUDA® Toolkit* is not required).
+(the _NVIDIA® CUDA® Toolkit_ is not required).
 
 Install [nvidia-docker](https://github.com/NVIDIA/nvidia-docker){:.external} to
 launch a Docker container with NVIDIA® GPU support. `nvidia-docker` is only

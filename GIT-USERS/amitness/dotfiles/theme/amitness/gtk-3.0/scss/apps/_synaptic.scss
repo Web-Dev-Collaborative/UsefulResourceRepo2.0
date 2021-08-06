@@ -3,13 +3,14 @@
 *************/
 
 @include exports("synaptic") {
-    GtkWindow > GtkVBox > .dock {
-        &, > GtkHBox > GtkToolbar {
-            @include linear-gradient($toolbar-bg-color);
+  GtkWindow > GtkVBox > .dock {
+    &,
+    > GtkHBox > GtkToolbar {
+      @include linear-gradient($toolbar-bg-color);
 
-            padding: $spacing;
-            border: 0;
-            color: $toolbar_fg_color;
-        }
+      padding: $spacing;
+      border: 0;
+      color: $toolbar_fg_color;
     }
+  }
 }

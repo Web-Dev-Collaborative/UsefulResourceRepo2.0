@@ -24,7 +24,7 @@ easy to define models which reuse layers.
 
 To create a variable with `tf.get_variable`, simply provide the name and shape
 
-``` python
+```python
 my_variable = tf.get_variable("my_variable", [1, 2, 3])
 ```
 
@@ -36,7 +36,7 @@ with shape `[1, 2, 3]`. This variable will, by default, have the `dtype`
 You may optionally specify the `dtype` and initializer to `tf.get_variable`. For
 example:
 
-``` python
+```python
 my_int_variable = tf.get_variable("my_int_variable", [1, 2, 3], dtype=tf.int32,
   initializer=tf.zeros_initializer)
 ```
@@ -44,7 +44,7 @@ my_int_variable = tf.get_variable("my_int_variable", [1, 2, 3], dtype=tf.int32,
 TensorFlow provides many convenient initializers. Alternatively, you may
 initialize a `tf.Variable` to have the value of a `tf.Tensor`. For example:
 
-``` python
+```python
 other_variable = tf.get_variable("other_variable", dtype=tf.int32,
   initializer=tf.constant([23, 42]))
 ```
@@ -52,8 +52,8 @@ other_variable = tf.get_variable("other_variable", dtype=tf.int32,
 Note that when the initializer is a `tf.Tensor` you should not specify the
 variable's shape, as the shape of the initializer tensor will be used.
 
-
 <a name="collections"></a>
+
 ### Variable collections
 
 Because disconnected parts of a TensorFlow program might want to create
@@ -63,16 +63,16 @@ of tensors or other objects, such as `tf.Variable` instances.
 
 By default every `tf.Variable` gets placed in the following two collections:
 
- * `tf.GraphKeys.GLOBAL_VARIABLES` --- variables that can be shared across
-   multiple devices,
- * `tf.GraphKeys.TRAINABLE_VARIABLES` --- variables for which TensorFlow will
-   calculate gradients.
+- `tf.GraphKeys.GLOBAL_VARIABLES` --- variables that can be shared across
+  multiple devices,
+- `tf.GraphKeys.TRAINABLE_VARIABLES` --- variables for which TensorFlow will
+  calculate gradients.
 
 If you don't want a variable to be trainable, add it to the
 `tf.GraphKeys.LOCAL_VARIABLES` collection instead. For example, the following
 snippet demonstrates how to add a variable named `my_local` to this collection:
 
-``` python
+```python
 my_local = tf.get_variable("my_local", shape=(),
 collections=[tf.GraphKeys.LOCAL_VARIABLES])
 ```
@@ -80,27 +80,26 @@ collections=[tf.GraphKeys.LOCAL_VARIABLES])
 Alternatively, you can specify `trainable=False` as an argument to
 `tf.get_variable`:
 
-``` python
+```python
 my_non_trainable = tf.get_variable("my_non_trainable",
                                    shape=(),
                                    trainable=False)
 ```
 
-
 You can also use your own collections. Any string is a valid collection name,
 and there is no need to explicitly create a collection. To add a variable (or
 any other object) to a collection after creating the variable, call
-`tf.add_to_collection`.  For example, the following code adds an existing
+`tf.add_to_collection`. For example, the following code adds an existing
 variable named `my_local` to a collection named `my_collection_name`:
 
-``` python
+```python
 tf.add_to_collection("my_collection_name", my_local)
 ```
 
 And to retrieve a list of all the variables (or other objects) you've placed in
 a collection you can use:
 
-``` python
+```python
 tf.get_collection("my_collection_name")
 ```
 
@@ -110,7 +109,7 @@ Just like any other TensorFlow operation, you can place variables on particular
 devices. For example, the following snippet creates a variable named `v` and
 places it on the second GPU device:
 
-``` python
+```python
 with tf.device("/device:GPU:1"):
   v = tf.get_variable("v", [1])
 ```
@@ -122,7 +121,7 @@ case, let each worker blithely forge ahead with its own independent copy of each
 variable. For this reason we provide `tf.train.replica_device_setter`, which
 can automatically place variables in parameter servers. For example:
 
-``` python
+```python
 cluster_spec = {
     "ps": ["ps0:2222", "ps1:2222"],
     "worker": ["worker0:2222", "worker1:2222", "worker2:2222"]}
@@ -136,7 +135,7 @@ with tf.device(tf.train.replica_device_setter(cluster=cluster_spec)):
 
 Before you can use a variable, it must be initialized. If you are programming in
 the low-level TensorFlow API (that is, you are explicitly creating your own
-graphs and sessions), you must explicitly initialize the variables.  Most
+graphs and sessions), you must explicitly initialize the variables. Most
 high-level frameworks such as `tf.contrib.slim`, `tf.estimator.Estimator` and
 `Keras` automatically initialize variables for you before training a model.
 
@@ -151,7 +150,7 @@ responsible for initializing all variables in the
 `tf.GraphKeys.GLOBAL_VARIABLES` collection. Running this operation initializes
 all variables. For example:
 
-``` python
+```python
 session.run(tf.global_variables_initializer())
 # Now all variables are initialized.
 ```
@@ -159,19 +158,17 @@ session.run(tf.global_variables_initializer())
 If you do need to initialize variables yourself, you can run the variable's
 initializer operation. For example:
 
-``` python
+```python
 session.run(my_variable.initializer)
 ```
-
 
 You can also ask which variables have still not been initialized. For example,
 the following code prints the names of all variables which have not yet been
 initialized:
 
-``` python
+```python
 print(session.run(tf.report_uninitialized_variables()))
 ```
-
 
 Note that by default `tf.global_variables_initializer` does not specify the
 order in which variables are initialized. Therefore, if the initial value of a
@@ -181,7 +178,7 @@ variables are initialized (say, if you use a variable's value while initializing
 another variable), it is best to use `variable.initialized_value()` instead of
 `variable`:
 
-``` python
+```python
 v = tf.get_variable("v", shape=(), initializer=tf.zeros_initializer())
 w = tf.get_variable("w", initializer=v.initialized_value() + 1)
 ```
@@ -191,7 +188,7 @@ w = tf.get_variable("w", initializer=v.initialized_value() + 1)
 To use the value of a `tf.Variable` in a TensorFlow graph, simply treat it like
 a normal `tf.Tensor`:
 
-``` python
+```python
 v = tf.get_variable("v", shape=(), initializer=tf.zeros_initializer())
 w = v + 1  # w is a tf.Tensor which is computed based on the value of v.
            # Any time a variable is used in an expression it gets automatically
@@ -202,7 +199,7 @@ To assign a value to a variable, use the methods `assign`, `assign_add`, and
 friends in the `tf.Variable` class. For example, here is how you can call these
 methods:
 
-``` python
+```python
 v = tf.get_variable("v", shape=(), initializer=tf.zeros_initializer())
 assignment = v.assign_add(1)
 tf.global_variables_initializer().run()
@@ -218,7 +215,7 @@ variable's value is being used at any point in time. To force a re-read of the
 value of a variable after something has happened, you can use
 `tf.Variable.read_value`. For example:
 
-``` python
+```python
 v = tf.get_variable("v", shape=(), initializer=tf.zeros_initializer())
 assignment = v.assign_add(1)
 with tf.control_dependencies([assignment]):
@@ -226,13 +223,12 @@ with tf.control_dependencies([assignment]):
                       # assign_add operation.
 ```
 
-
 ## Sharing variables
 
 TensorFlow supports two ways of sharing variables:
 
- * Explicitly passing `tf.Variable` objects around.
- * Implicitly wrapping `tf.Variable` objects within `tf.variable_scope` objects.
+- Explicitly passing `tf.Variable` objects around.
+- Implicitly wrapping `tf.Variable` objects within `tf.variable_scope` objects.
 
 While code which explicitly passes variables around is very clear, it is
 sometimes convenient to write TensorFlow functions that implicitly use
@@ -264,7 +260,7 @@ This function uses short names `weights` and `biases`, which is good for
 clarity. In a real model, however, we want many such convolutional layers, and
 calling this function repeatedly would not work:
 
-``` python
+```python
 input1 = tf.random_normal([1,10,10,32])
 input2 = tf.random_normal([1,20,20,32])
 x = conv_relu(input1, kernel_shape=[5, 5, 32, 32], bias_shape=[32])
@@ -288,7 +284,7 @@ def my_image_filter(input_images):
 If you do want the variables to be shared, you have two options. First, you can
 create a scope with the same name using `reuse=True`:
 
-``` python
+```python
 with tf.variable_scope("model"):
   output1 = my_image_filter(input1)
 with tf.variable_scope("model", reuse=True):
@@ -298,7 +294,7 @@ with tf.variable_scope("model", reuse=True):
 
 You can also call `scope.reuse_variables()` to trigger a reuse:
 
-``` python
+```python
 with tf.variable_scope("model") as scope:
   output1 = my_image_filter(input1)
   scope.reuse_variables()
@@ -309,11 +305,10 @@ with tf.variable_scope("model") as scope:
 Since depending on exact string names of scopes can feel dangerous, it's also
 possible to initialize a variable scope based on another one:
 
-``` python
+```python
 with tf.variable_scope("model") as scope:
   output1 = my_image_filter(input1)
 with tf.variable_scope(scope, reuse=True):
   output2 = my_image_filter(input2)
 
 ```
-

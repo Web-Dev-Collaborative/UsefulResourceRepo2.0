@@ -14,7 +14,7 @@ will also be helpful.
 This document is for developers who want to extend TensorFlow in some way not
 supported by current APIs, hardware engineers who want to optimize for
 TensorFlow, implementers of machine learning systems working on scaling and
-distribution, or anyone who wants to look under Tensorflow's hood. By the end of this document 
+distribution, or anyone who wants to look under Tensorflow's hood. By the end of this document
 you should understand the TensorFlow architecture well enough to read
 and modify the core TensorFlow code.
 
@@ -28,33 +28,31 @@ from the core runtime.
 
 **Figure 1**
 
-
 This document focuses on the following layers:
 
-*  **Client**:
-   *  Defines the computation as a dataflow graph.
-   *  Initiates graph execution using a [**session**](
-      https://www.tensorflow.org/code/tensorflow/python/client/session.py).
-*  **Distributed Master**
-   *  Prunes a specific subgraph from the graph, as defined by the arguments
-      to Session.run().
-   *  Partitions the subgraph into multiple pieces that run in different
-      processes and devices.
-   *  Distributes the graph pieces to worker services.
-   *  Initiates graph piece execution by worker services.
-*  **Worker Services** (one for each task)
-   *  Schedule the execution of graph operations using kernel implementations
-      appropriate to the available hardware (CPUs, GPUs, etc).
-   *  Send and receive operation results to and from other worker services.
-*  **Kernel Implementations**
-   *  Perform the computation for individual graph operations.
+- **Client**:
+  - Defines the computation as a dataflow graph.
+  - Initiates graph execution using a [**session**](https://www.tensorflow.org/code/tensorflow/python/client/session.py).
+- **Distributed Master**
+  - Prunes a specific subgraph from the graph, as defined by the arguments
+    to Session.run().
+  - Partitions the subgraph into multiple pieces that run in different
+    processes and devices.
+  - Distributes the graph pieces to worker services.
+  - Initiates graph piece execution by worker services.
+- **Worker Services** (one for each task)
+  - Schedule the execution of graph operations using kernel implementations
+    appropriate to the available hardware (CPUs, GPUs, etc).
+  - Send and receive operation results to and from other worker services.
+- **Kernel Implementations**
+  - Perform the computation for individual graph operations.
 
 Figure 2 illustrates the interaction of these components. "/job:worker/task:0" and
 "/job:ps/task:0" are both tasks with worker services. "PS" stands for "parameter
 server": a task responsible for storing and updating the model's parameters.
 Other tasks send updates to these parameters as they work on optimizing the
 parameters. This particular division of labor between tasks is not required, but
- is common for distributed training.
+is common for distributed training.
 
 ![TensorFlow Architecture Diagram](https://www.tensorflow.org/images/diag1.svg){: width="500"}
 
@@ -96,17 +94,17 @@ feature vector (x), adds a bias term (b) and saves the result in a variable
 
 ### Code
 
-*  `tf.Session`
+- `tf.Session`
 
 ## Distributed master
 
 The distributed master:
 
-*  prunes the graph to obtain the subgraph required to evaluate the nodes
-   requested by the client,
-*  partitions the graph to obtain graph pieces for
-   each participating device, and
-*  caches these pieces so that they may be re-used in subsequent steps.
+- prunes the graph to obtain the subgraph required to evaluate the nodes
+  requested by the client,
+- partitions the graph to obtain graph pieces for
+  each participating device, and
+- caches these pieces so that they may be re-used in subsequent steps.
 
 Since the master sees the overall computation for
 a step, it applies standard optimizations such as common subexpression
@@ -117,7 +115,6 @@ optimized subgraphs across a set of tasks.
 
 **Figure 4**
 
-
 Figure 5 shows a possible partition of our example graph. The distributed
 master has grouped the model parameters in order to place them together on the
 parameter server.
@@ -125,7 +122,6 @@ parameter server.
 ![Partitioned Graph](https://www.tensorflow.org/images/graph_split1.svg){: width="700"}
 
 **Figure 5**
-
 
 Where graph edges are cut by the partition, the distributed master inserts
 send and receive nodes to pass information between the distributed tasks
@@ -135,7 +131,6 @@ send and receive nodes to pass information between the distributed tasks
 
 **Figure 6**
 
-
 The distributed master then ships the graph pieces to the distributed tasks.
 
 ![Partitioned Graph](https://www.tensorflow.org/images/graph_workers_cln.svg){: width="700"}
@@ -144,17 +139,17 @@ The distributed master then ships the graph pieces to the distributed tasks.
 
 ### Code
 
-*  [MasterService API definition](https://www.tensorflow.org/code/tensorflow/core/protobuf/master_service.proto)
-*  [Master interface](https://www.tensorflow.org/code/tensorflow/core/distributed_runtime/master_interface.h)
+- [MasterService API definition](https://www.tensorflow.org/code/tensorflow/core/protobuf/master_service.proto)
+- [Master interface](https://www.tensorflow.org/code/tensorflow/core/distributed_runtime/master_interface.h)
 
 ## Worker Service
 
 The worker service in each task:
 
-*  handles requests from the master,
-*  schedules the execution of the kernels for the operations that comprise a
-   local subgraph, and
-*  mediates direct communication between tasks.
+- handles requests from the master,
+- schedules the execution of the kernels for the operations that comprise a
+  local subgraph, and
+- mediates direct communication between tasks.
 
 We optimize the worker service for running large graphs with low overhead. Our
 current implementation can execute tens of thousands of subgraphs per second,
@@ -166,15 +161,15 @@ streams.
 We specialize Send and Recv operations for each pair of source and destination
 device types:
 
-*  Transfers between local CPU and GPU devices use the
-   `cudaMemcpyAsync()` API to overlap computation and data transfer.
-*  Transfers between two local GPUs use peer-to-peer DMA, to avoid an expensive
-   copy via the host CPU.
+- Transfers between local CPU and GPU devices use the
+  `cudaMemcpyAsync()` API to overlap computation and data transfer.
+- Transfers between two local GPUs use peer-to-peer DMA, to avoid an expensive
+  copy via the host CPU.
 
 For transfers between tasks, TensorFlow uses multiple protocols, including:
 
-*  gRPC over TCP.
-*  RDMA over Converged Ethernet.
+- gRPC over TCP.
+- RDMA over Converged Ethernet.
 
 We also have preliminary support for NVIDIA's NCCL library for multi-GPU
 communication, see:
@@ -186,9 +181,9 @@ communication, see:
 
 ### Code
 
-*   [WorkerService API definition](https://www.tensorflow.org/code/tensorflow/core/protobuf/worker_service.proto)
-*   [Worker interface](https://www.tensorflow.org/code/tensorflow/core/distributed_runtime/worker_interface.h)
-*   [Remote rendezvous (for Send and Recv implementations)](https://www.tensorflow.org/code/tensorflow/core/distributed_runtime/rpc/rpc_rendezvous_mgr.h)
+- [WorkerService API definition](https://www.tensorflow.org/code/tensorflow/core/protobuf/worker_service.proto)
+- [Worker interface](https://www.tensorflow.org/code/tensorflow/core/distributed_runtime/worker_interface.h)
+- [Remote rendezvous (for Send and Recv implementations)](https://www.tensorflow.org/code/tensorflow/core/distributed_runtime/rpc/rpc_rendezvous_mgr.h)
 
 ## Kernel Implementations
 
@@ -212,7 +207,6 @@ fused kernels for some performance critical operations, such as the ReLU and
 Sigmoid activation functions and their corresponding gradients. The [XLA Compiler](../../xla/) has an
 experimental implementation of automatic kernel fusion.
 
-
 ### Code
 
-*   [`OpKernel` interface](https://www.tensorflow.org/code/tensorflow/core/framework/op_kernel.h)
+- [`OpKernel` interface](https://www.tensorflow.org/code/tensorflow/core/framework/op_kernel.h)

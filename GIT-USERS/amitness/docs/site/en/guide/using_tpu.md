@@ -1,29 +1,29 @@
 # Using TPUs
 
 Experimental support for Cloud TPUs is currently available for Keras and Colab.
-Run Colab notebooks on a TPU by changing the *hardware accelerator* in your notebook settings: *Runtime > Change runtime type > Hardware accelerator > TPU*. The following TPU-enabled Colab notebooks are available to test:
+Run Colab notebooks on a TPU by changing the _hardware accelerator_ in your notebook settings: _Runtime > Change runtime type > Hardware accelerator > TPU_. The following TPU-enabled Colab notebooks are available to test:
 
-  1. [A quick test, just to measure FLOPS](https://colab.research.google.com/notebooks/tpu.ipynb).
-  2. [A CNN image classifier with `tf.keras`](https://colab.research.google.com/github/tensorflow/tpu/blob/master/tools/colab/fashion_mnist.ipynb).
-  3. [An LSTM markov chain text generator with `tf.keras`](https://colab.research.google.com/github/tensorflow/tpu/blob/master/tools/colab/shakespeare_with_tpu_and_keras.ipynb)
+1. [A quick test, just to measure FLOPS](https://colab.research.google.com/notebooks/tpu.ipynb).
+2. [A CNN image classifier with `tf.keras`](https://colab.research.google.com/github/tensorflow/tpu/blob/master/tools/colab/fashion_mnist.ipynb).
+3. [An LSTM markov chain text generator with `tf.keras`](https://colab.research.google.com/github/tensorflow/tpu/blob/master/tools/colab/shakespeare_with_tpu_and_keras.ipynb)
 
 The above examples are the best way to get started with a cloud TPU.
 
 ## TPUEstimator
 
-The remainder of this doc is about using the `TPUEstimator` class to drive a 
+The remainder of this doc is about using the `TPUEstimator` class to drive a
 [Cloud TPU](https://cloud.google.com/tpu/), and highlights
 the differences compared to a standard `tf.estimator.Estimator`.
 
 This doc is aimed at users who:
 
-* Are familiar with TensorFlow's `Estimator` and `Dataset` APIs
-* Have maybe [tried out a Cloud TPU](https://cloud.google.com/tpu/docs/quickstart)
+- Are familiar with TensorFlow's `Estimator` and `Dataset` APIs
+- Have maybe [tried out a Cloud TPU](https://cloud.google.com/tpu/docs/quickstart)
   using an existing model.
-* Have, perhaps, skimmed the code of an example TPU model
+- Have, perhaps, skimmed the code of an example TPU model
   [[1]](https://github.com/tensorflow/models/blob/master/official/mnist/mnist_tpu.py)
   [[2]](https://github.com/tensorflow/tpu/tree/master/models).
-* Are interested in porting an existing `Estimator` model to
+- Are interested in porting an existing `Estimator` model to
   run on Cloud TPUs
 
 `tf.estimator.Estimator` are a model-level abstraction.
@@ -58,7 +58,7 @@ machine are relatively minor. The constructor requires two additional arguments.
 You should set the `use_tpu` argument to `False`, and pass a
 `tf.contrib.tpu.RunConfig` as the `config` argument, as shown below:
 
-``` python
+```python
 my_tpu_estimator = tf.contrib.tpu.TPUEstimator(
     model_fn=my_model_fn,
     config=tf.contrib.tpu.RunConfig()
@@ -69,7 +69,6 @@ Just this simple change will allow you to run a `TPUEstimator` locally.
 The majority of example TPU models can be run in this local mode,
 by setting the command line flags as follows:
 
-
 ```
 $> python mnist_tpu.py --use_tpu=false --master=''
 ```
@@ -79,16 +78,15 @@ API. It is not meant to be a complete TPU compatibility test. Successfully
 running a model locally in a `TPUEstimator` does not guarantee that it will
 work on a TPU.
 
-
 ### Building a `tpu.RunConfig`
 
-While the default `RunConfig` is sufficient  for local training, these settings
+While the default `RunConfig` is sufficient for local training, these settings
 cannot be ignored in real usage.
 
 A more typical setup for a `RunConfig`, that can be switched to use a Cloud
 TPU, might be as follows:
 
-``` python
+```python
 import tempfile
 import subprocess
 
@@ -128,7 +126,7 @@ my_tpu_run_config = tf.contrib.tpu.RunConfig(
 
 Then you must pass the `tf.contrib.tpu.RunConfig` to the constructor:
 
-``` python
+```python
 my_tpu_estimator = tf.contrib.tpu.TPUEstimator(
     model_fn=my_model_fn,
     config = my_tpu_run_config,
@@ -138,10 +136,9 @@ my_tpu_estimator = tf.contrib.tpu.TPUEstimator(
 Typically the `FLAGS` would be set by command line arguments. To switch from
 training locally to training on a cloud TPU you would need to:
 
-* Set `FLAGS.use_tpu` to `True`
-* Set `FLAGS.tpu_name` so the `tf.contrib.cluster_resolver.TPUClusterResolver` can find it
-* Set `FLAGS.model_dir` to a Google Cloud Storage bucket url (`gs://`).
-
+- Set `FLAGS.use_tpu` to `True`
+- Set `FLAGS.tpu_name` so the `tf.contrib.cluster_resolver.TPUClusterResolver` can find it
+- Set `FLAGS.model_dir` to a Google Cloud Storage bucket url (`gs://`).
 
 ## Optimizer
 
@@ -152,7 +149,7 @@ gradients and broadcast the result to each shard (each TPU core).
 The `CrossShardOptimizer` is not compatible with local training. So, to have
 the same code run both locally and on a Cloud TPU, add lines like the following:
 
-``` python
+```python
 optimizer = tf.train.GradientDescentOptimizer(learning_rate=learning_rate)
 if FLAGS.use_tpu:
   optimizer = tf.contrib.tpu.CrossShardOptimizer(optimizer)
@@ -162,7 +159,7 @@ If you prefer to avoid a global `FLAGS` variable in your model code, one
 approach is to set the optimizer as one of the `Estimator`'s params,
 as follows:
 
-``` python
+```python
 my_tpu_estimator = tf.contrib.tpu.TPUEstimator(
     model_fn=my_model_fn,
     config = my_tpu_run_config,
@@ -187,7 +184,6 @@ XLA uses a similar system for determining shapes at compile time. XLA requires
 that all tensor dimensions be statically defined at compile time. All shapes
 must evaluate to a constant, and not depend on external data, or stateful
 operations like variables or a random number generator.
-
 
 ### Summaries
 
@@ -254,13 +250,12 @@ model that the `Estimator` may need to interact with.
 `TPUEstimators` use a `tf.contrib.tpu.TPUEstimatorSpec`. There are a few
 differences between it and a standard `tf.estimator.EstimatorSpec`:
 
-
-*  The `eval_metric_ops` must be wrapped into a `metrics_fn`, this field is
-   renamed `eval_metrics` ([see above](#metrics)).
-*  The `tf.train.SessionRunHook` are unsupported, so these fields are
-   omitted.
-*  The `tf.train.Scaffold`, if used, must also be wrapped in a
-   function. This field is renamed to `scaffold_fn`.
+- The `eval_metric_ops` must be wrapped into a `metrics_fn`, this field is
+  renamed `eval_metrics` ([see above](#metrics)).
+- The `tf.train.SessionRunHook` are unsupported, so these fields are
+  omitted.
+- The `tf.train.Scaffold`, if used, must also be wrapped in a
+  function. This field is renamed to `scaffold_fn`.
 
 `Scaffold` and `Hooks` are for advanced usage, and can typically be omitted.
 
@@ -274,7 +269,7 @@ Cloud TPU itself. This section explains the two necessary adjustments.
 <!-- TODO(markdaoust) link to input_fn doc when it exists -->
 
 The `input_fn` for a standard `Estimator` _can_ include a
-`params` argument; the `input_fn` for a `TPUEstimator` *must* include a
+`params` argument; the `input_fn` for a `TPUEstimator` _must_ include a
 `params` argument. This is necessary to allow the estimator to set the batch
 size for each replica of the input stream. So the minimum signature for an
 `input_fn` for a `TPUEstimator` is:
@@ -294,7 +289,7 @@ The one requirement is that the batches of data fed from your input pipeline to
 the TPU have a static shape, as determined by the standard TensorFlow shape
 inference algorithm. Intermediate tensors are free to have a dynamic shapes.
 If shape inference has failed, but the shape is known it is possible to
-impose the correct shape using `tf.set_shape()`. 
+impose the correct shape using `tf.set_shape()`.
 
 In the example below the shape
 inference algorithm fails, but it is correctly using `set_shape`:
@@ -386,16 +381,15 @@ This together with the imagenet
 [models](https://github.com/tensorflow/tpu/tree/master/models)
 included in the repo demonstrate all of these best-practices.
 
-
 ## What Next
 
-* [Google Cloud TPU Documentation](https://cloud.google.com/tpu/docs/) —Set up
+- [Google Cloud TPU Documentation](https://cloud.google.com/tpu/docs/) —Set up
   and run a Google&nbsp;Cloud&nbsp;TPU.
-* [Migrating to TPUEstimator API](https://cloud.google.com/tpu/docs/tutorials/migrating-to-tpuestimator-api)
+- [Migrating to TPUEstimator API](https://cloud.google.com/tpu/docs/tutorials/migrating-to-tpuestimator-api)
   —This tutorial describes how to convert a model program using the Estimator&nbsp;API
-    to one using the `TPUEstimator` API.
-* [TPU Demos Repository](https://github.com/tensorflow/tpu) —Examples of
+  to one using the `TPUEstimator` API.
+- [TPU Demos Repository](https://github.com/tensorflow/tpu) —Examples of
   Cloud&nbsp;TPU compatible models.
-* The [Google Cloud TPU Performance Guide](https://cloud.google.com/tpu/docs/performance-guide)
+- The [Google Cloud TPU Performance Guide](https://cloud.google.com/tpu/docs/performance-guide)
   —Enhance Cloud TPU performance further by adjusting Cloud TPU configuration
   parameters for your application.

@@ -25,7 +25,7 @@ You can declare the type of a path parameter in the function, using standard Pyt
 In this case, `item_id` is declared to be an `int`.
 
 !!! check
-    This will give you editor support inside of your function, with error checks, completion, etc.
+This will give you editor support inside of your function, with error checks, completion, etc.
 
 ## Data <abbr title="also known as: serialization, parsing, marshalling">conversion</abbr>
 
@@ -36,7 +36,7 @@ If you run this example and open your browser at <a href="http://127.0.0.1:8000/
 ```
 
 !!! check
-    Notice that the value your function received (and returned) is `3`, as a Python `int`, not a string `"3"`.
+Notice that the value your function received (and returned) is `3`, as a Python `int`, not a string `"3"`.
 
     So, with that type declaration, **FastAPI** gives you automatic request <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
 
@@ -64,7 +64,7 @@ because the path parameter `item_id` had a value of `"foo"`, which is not an `in
 The same error would appear if you provided a `float` instead of an int, as in: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
 !!! check
-    So, with the same Python type declaration, **FastAPI** gives you data validation.
+So, with the same Python type declaration, **FastAPI** gives you data validation.
 
     Notice that the error also clearly states exactly the point where the validation didn't pass.
 
@@ -77,7 +77,7 @@ And when you open your browser at <a href="http://127.0.0.1:8000/docs" class="ex
 <img src="/img/tutorial/path-params/image01.png">
 
 !!! check
-    Again, just with that same Python type declaration, **FastAPI** gives you automatic, interactive documentation (integrating Swagger UI).
+Again, just with that same Python type declaration, **FastAPI** gives you automatic, interactive documentation (integrating Swagger UI).
 
     Notice that the path parameter is declared to be an integer.
 
@@ -101,13 +101,13 @@ Several of these are explored in the next chapters of the tutorial.
 
 ## Order matters
 
-When creating *path operations*, you can find situations where you have a fixed path.
+When creating _path operations_, you can find situations where you have a fixed path.
 
 Like `/users/me`, let's say that it's to get data about the current user.
 
 And then you can also have a path `/users/{user_id}` to get data about a specific user by some user ID.
 
-Because *path operations* are evaluated in order, you need to make sure that the path for `/users/me` is declared before the one for `/users/{user_id}`:
+Because _path operations_ are evaluated in order, you need to make sure that the path for `/users/me` is declared before the one for `/users/{user_id}`:
 
 ```Python hl_lines="6  11"
 {!../../../docs_src/path_params/tutorial003.py!}
@@ -117,7 +117,7 @@ Otherwise, the path for `/users/{user_id}` would match also for `/users/me`, "th
 
 ## Predefined values
 
-If you have a *path operation* that receives a *path parameter*, but you want the possible valid *path parameter* values to be predefined, you can use a standard Python <abbr title="Enumeration">`Enum`</abbr>.
+If you have a _path operation_ that receives a _path parameter_, but you want the possible valid _path parameter_ values to be predefined, you can use a standard Python <abbr title="Enumeration">`Enum`</abbr>.
 
 ### Create an `Enum` class
 
@@ -132,14 +132,14 @@ Then create class attributes with fixed values, which will be the available vali
 ```
 
 !!! info
-    <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (or enums) are available in Python</a> since version 3.4.
+<a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (or enums) are available in Python</a> since version 3.4.
 
 !!! tip
-    If you are wondering, "AlexNet", "ResNet", and "LeNet" are just names of Machine Learning <abbr title="Technically, Deep Learning model architectures">models</abbr>.
+If you are wondering, "AlexNet", "ResNet", and "LeNet" are just names of Machine Learning <abbr title="Technically, Deep Learning model architectures">models</abbr>.
 
-### Declare a *path parameter*
+### Declare a _path parameter_
 
-Then create a *path parameter* with a type annotation using the enum class you created (`ModelName`):
+Then create a _path parameter_ with a type annotation using the enum class you created (`ModelName`):
 
 ```Python hl_lines="16"
 {!../../../docs_src/path_params/tutorial005.py!}
@@ -147,23 +147,23 @@ Then create a *path parameter* with a type annotation using the enum class you c
 
 ### Check the docs
 
-Because the available values for the *path parameter* are predefined, the interactive docs can show them nicely:
+Because the available values for the _path parameter_ are predefined, the interactive docs can show them nicely:
 
 <img src="/img/tutorial/path-params/image03.png">
 
-### Working with Python *enumerations*
+### Working with Python _enumerations_
 
-The value of the *path parameter* will be an *enumeration member*.
+The value of the _path parameter_ will be an _enumeration member_.
 
-#### Compare *enumeration members*
+#### Compare _enumeration members_
 
-You can compare it with the *enumeration member* in your created enum `ModelName`:
+You can compare it with the _enumeration member_ in your created enum `ModelName`:
 
 ```Python hl_lines="17"
 {!../../../docs_src/path_params/tutorial005.py!}
 ```
 
-#### Get the *enumeration value*
+#### Get the _enumeration value_
 
 You can get the actual value (a `str` in this case) using `model_name.value`, or in general, `your_enum_member.value`:
 
@@ -172,11 +172,11 @@ You can get the actual value (a `str` in this case) using `model_name.value`, or
 ```
 
 !!! tip
-    You could also access the value `"lenet"` with `ModelName.lenet.value`.
+You could also access the value `"lenet"` with `ModelName.lenet.value`.
 
-#### Return *enumeration members*
+#### Return _enumeration members_
 
-You can return *enum members* from your *path operation*, even nested in a JSON body (e.g. a `dict`).
+You can return _enum members_ from your _path operation_, even nested in a JSON body (e.g. a `dict`).
 
 They will be converted to their corresponding values (strings in this case) before returning them to the client:
 
@@ -195,15 +195,15 @@ In your client you will get a JSON response like:
 
 ## Path parameters containing paths
 
-Let's say you have a *path operation* with a path `/files/{file_path}`.
+Let's say you have a _path operation_ with a path `/files/{file_path}`.
 
-But you need `file_path` itself to contain a *path*, like `home/johndoe/myfile.txt`.
+But you need `file_path` itself to contain a _path_, like `home/johndoe/myfile.txt`.
 
 So, the URL for that file would be something like: `/files/home/johndoe/myfile.txt`.
 
 ### OpenAPI support
 
-OpenAPI doesn't support a way to declare a *path parameter* to contain a *path* inside, as that could lead to scenarios that are difficult to test and define.
+OpenAPI doesn't support a way to declare a _path parameter_ to contain a _path_ inside, as that could lead to scenarios that are difficult to test and define.
 
 Nevertheless, you can still do it in **FastAPI**, using one of the internal tools from Starlette.
 
@@ -211,13 +211,13 @@ And the docs would still work, although not adding any documentation telling tha
 
 ### Path convertor
 
-Using an option directly from Starlette you can declare a *path parameter* containing a *path* using a URL like:
+Using an option directly from Starlette you can declare a _path parameter_ containing a _path_ using a URL like:
 
 ```
 /files/{file_path:path}
 ```
 
-In this case, the name of the parameter is `file_path`, and the last part, `:path`, tells it that the parameter should match any *path*.
+In this case, the name of the parameter is `file_path`, and the last part, `:path`, tells it that the parameter should match any _path_.
 
 So, you can use it with:
 
@@ -226,7 +226,7 @@ So, you can use it with:
 ```
 
 !!! tip
-    You could need the parameter to contain `/home/johndoe/myfile.txt`, with a leading slash (`/`).
+You could need the parameter to contain `/home/johndoe/myfile.txt`, with a leading slash (`/`).
 
     In that case, the URL would be: `/files//home/johndoe/myfile.txt`, with a double slash (`//`) between `files` and `home`.
 
@@ -234,10 +234,10 @@ So, you can use it with:
 
 With **FastAPI**, by using short, intuitive and standard Python type declarations, you get:
 
-* Editor support: error checks, autocompletion, etc.
-* Data "<abbr title="converting the string that comes from an HTTP request into Python data">parsing</abbr>"
-* Data validation
-* API annotation and automatic documentation
+- Editor support: error checks, autocompletion, etc.
+- Data "<abbr title="converting the string that comes from an HTTP request into Python data">parsing</abbr>"
+- Data validation
+- API annotation and automatic documentation
 
 And you only have to declare them once.
 

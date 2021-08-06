@@ -11,8 +11,8 @@ Poner `coverpage` a **true**, y crear un `_coverpage.md`:
 
 <script>
   window.$docsify = {
-    coverpage: true
-  }
+    coverpage: true,
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 ```
@@ -26,9 +26,9 @@ Poner `coverpage` a **true**, y crear un `_coverpage.md`:
 
 > A magical documentation site generator.
 
-* Simple and lightweight (~21kB gzipped)
-* No statically built html files
-* Multiple themes
+- Simple and lightweight (~21kB gzipped)
+- No statically built html files
+- Multiple themes
 
 [GitHub](https://github.com/docsify/docsify/)
 [Get Started](/es/#docsify)
@@ -81,7 +81,7 @@ Tu puedes configurar así:
 
 ```js
 window.$docsify = {
-  coverpage: ['/', '/zh-cn/']
+  coverpage: ["/", "/zh-cn/"],
 };
 ```
 
@@ -90,8 +90,8 @@ O bien con un nombre de archivo especial:
 ```js
 window.$docsify = {
   coverpage: {
-    '/': 'cover.md',
-    '/zh-cn/': 'cover.md'
-  }
+    "/": "cover.md",
+    "/zh-cn/": "cover.md",
+  },
 };
 ```

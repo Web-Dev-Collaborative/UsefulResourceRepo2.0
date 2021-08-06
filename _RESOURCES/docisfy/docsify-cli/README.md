@@ -111,6 +111,7 @@ docsify generate <path> [--sidebar _sidebar.md]
   - Description: Generate sidebar file, defaults to `_sidebar.md`.
 
 ## Contributing
+
 Please see the [Contributing Guidelines](./CONTRIBUTING.md)
 
 ## Contribution

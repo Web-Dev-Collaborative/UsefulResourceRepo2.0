@@ -1,17 +1,15 @@
-{% extends "layout.html" %}
-
-{% block jumbotron %}
+{% extends "layout.html" %} {% block jumbotron %}
 <div class="jumbotron">
-   <h1>Python Cheat Sheet</h1>
-   <p>Cheat sheet of Python. Some daemon concept for Python programmers need to know.</p>
+  <h1>Python Cheat Sheet</h1>
+  <p>
+    Cheat sheet of Python. Some daemon concept for Python programmers need to
+    know.
+  </p>
 </div>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="row col-md-4 col-xs-12">
-
-<h3>Simple Daemon</h3>
-<pre class="code python">
+  <h3>Simple Daemon</h3>
+  <pre class="code python">
 # Need using "kill" to kill process
 # 5 step need to do
 import os, sys, time
@@ -43,10 +41,11 @@ while True:
 
 # output:
 # bash&gt; tail -f /tmp/_.log
-</pre>
+</pre
+  >
 
-<h3>Simple Daemon - fork() Twice</h3>
-<pre class="code python">
+  <h3>Simple Daemon - fork() Twice</h3>
+  <pre class="code python">
 # prevent daemon control terminal
 # see:http://stackoverflow.com/q/881388
 import os, sys, time
@@ -80,10 +79,11 @@ while True:
    print "Hello World"
    sys.stdout.flush()
    time.sleep(5.)
-</pre>
+</pre
+  >
 
-<h3>Simple Daemon with pidfile</h3>
-<pre class="code python">
+  <h3>Simple Daemon with pidfile</h3>
+  <pre class="code python">
 # easiest way to check daemon alive
 # see:http://unix.stackexchange.com/q/12815
 # pidfile cannot always imply process alive
@@ -119,13 +119,13 @@ while True:
    print "Hello World"
    sys.stdout.flush()
    time.sleep(5.)
-</pre>
+</pre
+  >
 </div>
 
 <div class="row col-md-4 col-xs-12">
-
-<h3>Get Pid from Pidfile and Kill Daemon</h3>
-<pre class="code python">
+  <h3>Get Pid from Pidfile and Kill Daemon</h3>
+  <pre class="code python">
 &gt;&gt;&gt; import os, signal
 &gt;&gt;&gt; with open('/tmp/_.pid','r') as fd:
 ...   pid = int(fd.read().strip())
@@ -133,10 +133,11 @@ while True:
 ...   os.kill(pid, signal.SIGTERM)
 ... 
 68866
-</pre>
+</pre
+  >
 
-<h3>Daemon - Start, Stop, Restart</h3>
-<pre class="code python">
+  <h3>Daemon - Start, Stop, Restart</h3>
+  <pre class="code python">
 # using pidfile
 import os, sys, time
 from signal import SIGTERM
@@ -203,10 +204,11 @@ if __name__ == '__main__':
 # bash&gt; python example.py start
 # bash&gt; python example.py restart
 # bash&gt; python example.py stop 
-</pre>
+</pre
+  >
 
-<h3>Simple Daemon - Using python-daemon</h3>
-<pre class="code python">
+  <h3>Simple Daemon - Using python-daemon</h3>
+  <pre class="code python">
 # see: pypi/python-daemon
 # see: PEP 3143
 &gt;&gt;&gt; import daemon, os, time, sys
@@ -229,13 +231,13 @@ if __name__ == '__main__':
 
 # output:
 # bash&gt; tail -f /tmp/__.log
-</pre>
+</pre
+  >
 </div>
 
 <div class="row col-md-4 col-xs-12">
-
-<h3>Implement start, stop, restart in convenient way</h3>
-<pre class="code python">
+  <h3>Implement start, stop, restart in convenient way</h3>
+  <pre class="code python">
 # using daemon runner
 from daemon import runner
 import sys, time
@@ -261,11 +263,12 @@ daemon_runner.do_action()
 # bash&gt; tail -f /tmp/_.log
 # bash&gt; python example.py restart 
 # bash&gt; python example.py stop
-</pre>
+</pre
+  >
 
-<h3>Job Manager Daemon</h3>
+  <h3>Job Manager Daemon</h3>
 
-<pre class="code python">
+  <pre class="code python">
 # Consumer and Producer architecture
 import random, time, sys, Queue
 from threading import Thread
@@ -317,10 +320,11 @@ daemon_runner.do_action()
 # bash&gt; tail -f /tmp/_.log
 # bash&gt; python example.py restart
 # bash&gt; python example.py stop
-</pre>
+</pre
+  >
 
-<h3>How to Register as Service</h3>
-<pre class="code bash">
+  <h3>How to Register as Service</h3>
+  <pre class="code bash">
 # Step 1- copy pydaemon.sh to /etc/init.d
 # Step 2- copy pydaemon.py to /usr/share
 #!/bin/bash
@@ -345,11 +349,7 @@ esac
 
 # bash&gt; service pydaemon start
 # bash&gt; /etc/init.d/pydaemon start
-</pre>
+</pre
+  >
 </div>
-{% endblock %}
-
-{% block script %}
-{{ super() }}
-
-{% endblock %}
+{% endblock %} {% block script %} {{ super() }} {% endblock %}

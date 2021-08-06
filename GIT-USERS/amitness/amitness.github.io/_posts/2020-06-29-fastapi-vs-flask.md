@@ -4,7 +4,7 @@ date: 2020-06-29T12:00-00:00
 last_modified_at: 2020-08-16T00:00:00-00:00
 categories:
   - serving
-excerpt: A comprehensive guide to FastAPI with a side-by-side code comparison with Flask    
+excerpt: A comprehensive guide to FastAPI with a side-by-side code comparison with Flask
 header:
   og_image: /images/flask-to-fastapi.png
   teaser: "/images/flask-to-fastapi.png"
@@ -12,15 +12,15 @@ toc: true
 toc_sticky: true
 ---
 
-While Flask has become the de-facto choice for API development in Machine Learning projects, there is a new framework called FastAPI that has been getting a lot of community traction.  
+While Flask has become the de-facto choice for API development in Machine Learning projects, there is a new framework called FastAPI that has been getting a lot of community traction.
 
-![Flask and FastAPI Logo](/images/flask-to-fastapi.png){: .align-center}  
+![Flask and FastAPI Logo](/images/flask-to-fastapi.png){: .align-center}
 
-I recently decided to give FastAPI a spin by porting a production Flask project. It was very easy to pick up FastAPI coming from Flask and I was able to get things up and running in just a few hours. 
+I recently decided to give FastAPI a spin by porting a production Flask project. It was very easy to pick up FastAPI coming from Flask and I was able to get things up and running in just a few hours.
 
-The added benefit of automatic data validation, documentation generation and baked-in best-practices such as pydantic schemas and python typing makes this a strong choice for future projects.  
+The added benefit of automatic data validation, documentation generation and baked-in best-practices such as pydantic schemas and python typing makes this a strong choice for future projects.
 
-In this post, I will introduce FastAPI by contrasting the implementation of various common use-cases in both Flask and FastAPI.  
+In this post, I will introduce FastAPI by contrasting the implementation of various common use-cases in both Flask and FastAPI.
 
 <div class="notice--info">
 <strong>Version Info:</strong>
@@ -29,23 +29,28 @@ At the time of this writing, the Flask version is 1.1.2 and the FastAPI version 
 </p>
 </div>
 
-## Installation  
-Both Flask and FastAPI are available on PyPI. For conda, you need to use the `conda-forge` channel to install FastAPI while it's available in the default channel for Flask.  
+## Installation
+
+Both Flask and FastAPI are available on PyPI. For conda, you need to use the `conda-forge` channel to install FastAPI while it's available in the default channel for Flask.
 
 **Flask:**
+
 ```shell
 pip install flask
 conda install flask
 ```
 
 **FastAPI:**
+
 ```shell
 pip install fastapi uvicorn
 conda install fastapi uvicorn -c conda-forge
 ```
 
-## Running "Hello World" 
+## Running "Hello World"
+
 **Flask:**
+
 ```python
 # app.py
 from flask import Flask
@@ -60,12 +65,14 @@ if __name__ == '__main__':
     app.run()
 ```
 
-Now you can run the development server using the below command. It runs on port 5000 by default.  
+Now you can run the development server using the below command. It runs on port 5000 by default.
+
 ```shell
 python app.py
 ```
 
-**FastAPI**  
+**FastAPI**
+
 ```python
 # app.py
 import uvicorn
@@ -81,13 +88,16 @@ if __name__ == '__main__':
     uvicorn.run(app)
 ```
 
-FastAPI defers serving to a production-ready server called `uvicorn`. We can run it in development mode with a default port of 8000.   
+FastAPI defers serving to a production-ready server called `uvicorn`. We can run it in development mode with a default port of 8000.
+
 ```shell
 python app.py
 ```
 
-## Production server 
+## Production server
+
 **Flask:**
+
 ```python
 # app.py
 from flask import Flask
@@ -102,12 +112,14 @@ if __name__ == '__main__':
     app.run()
 ```
 
-For a production server, `gunicorn` is a common choice in Flask.  
+For a production server, `gunicorn` is a common choice in Flask.
+
 ```shell
 gunicorn app:app
 ```
 
-**FastAPI**  
+**FastAPI**
+
 ```python
 # app.py
 import uvicorn
@@ -124,46 +136,55 @@ if __name__ == '__main__':
 ```
 
 FastAPI defers serving to a production-ready server called [uvicorn](https://www.uvicorn.org/settings/). We can start the server as:
+
 ```shell
 uvicorn app:app
 ```
 
 You can also start it in hot-reload mode by running
+
 ```shell
 uvicorn app:app --reload
 ```
 
 Furthermore, you can change the port as well.
+
 ```shell
 uvicorn app:app --port 5000
 ```
 
 The number of workers can be controlled as well.
+
 ```shell
 uvicorn app:app --workers 2
 ```
 
-You can use `gunicorn` to manage uvicorn as well using the following command. All regular gunicorn flags such as number of workers(`-w`) work.  
+You can use `gunicorn` to manage uvicorn as well using the following command. All regular gunicorn flags such as number of workers(`-w`) work.
+
 ```shell
 gunicorn -k uvicorn.workers.UvicornWorker app:app
 ```
 
+## HTTP Methods
 
-## HTTP Methods  
 **Flask:**
+
 ```python
 @app.route('/', methods=['POST'])
 def example():
     ...
 ```
 
-**FastAPI:**  
+**FastAPI:**
+
 ```python
 @app.post('/')
 def example():
     ...
 ```
+
 You have individual decorator methods for each HTTP method.
+
 ```python
 @app.get('/')
 @app.put('/')
@@ -171,19 +192,21 @@ You have individual decorator methods for each HTTP method.
 @app.delete('/')
 ```
 
-## URL Variables  
-We want to get the user id from the URL e.g. `/users/1` and then return the user id to the user.  
- 
-**Flask:**  
+## URL Variables
+
+We want to get the user id from the URL e.g. `/users/1` and then return the user id to the user.
+
+**Flask:**
+
 ```python
 @app.route('/users/<int:user_id>')
 def get_user_details(user_id):
     return {'user_id': user_id}
 ```
 
-**FastAPI:**  
+**FastAPI:**
 
-In FastAPI, we make use of type hints in Python to specify all the data types. For example, here we specify that `user_id` should be an integer. The variable in the URL path is also specified similar to f-strings.  
+In FastAPI, we make use of type hints in Python to specify all the data types. For example, here we specify that `user_id` should be an integer. The variable in the URL path is also specified similar to f-strings.
 
 ```python
 @app.get('/users/{user_id}')
@@ -191,10 +214,12 @@ def get_user_details(user_id: int):
     return {'user_id': user_id}
 ```
 
-## Query Strings    
-We want to allow the user to specify a search term by using a query string `?q=abc` in the URL.  
- 
-**Flask:**  
+## Query Strings
+
+We want to allow the user to specify a search term by using a query string `?q=abc` in the URL.
+
+**Flask:**
+
 ```python
 from flask import request
 
@@ -204,15 +229,18 @@ def search():
     return {'query': query}
 ```
 
-**FastAPI:**  
+**FastAPI:**
+
 ```python
 @app.get('/search')
 def search(q: str):
     return {'query': q}
 ```
 
-## JSON POST Request  
-Let's take a toy example where we want to send a JSON POST request with a `text` key and get back a lowercased version.  
+## JSON POST Request
+
+Let's take a toy example where we want to send a JSON POST request with a `text` key and get back a lowercased version.
+
 ```json
 # Request
 {"text": "HELLO"}
@@ -221,8 +249,8 @@ Let's take a toy example where we want to send a JSON POST request with a `text`
 {"text": "hello"}
 ```
 
- 
-**Flask:**  
+**Flask:**
+
 ```python
 from flask import request
 
@@ -233,7 +261,8 @@ def lower_case():
 ```
 
 **FastAPI:**  
-If you simply replicate the functionality from Flask, you can do it as follows in FastAPI.  
+If you simply replicate the functionality from Flask, you can do it as follows in FastAPI.
+
 ```python
 from typing import Dict
 
@@ -243,7 +272,8 @@ def lower_case(json_data: Dict):
     return {'text': text.lower()}
 ```
 
-But, this is where FastAPI introduces a new concept of creating Pydantic schema that maps to the JSON data being received. We can refactor the above example using pydantic as:   
+But, this is where FastAPI introduces a new concept of creating Pydantic schema that maps to the JSON data being received. We can refactor the above example using pydantic as:
+
 ```python
 from pydantic import BaseModel
 
@@ -255,34 +285,35 @@ def lower_case(sentence: Sentence):
     return {'text': sentence.text.lower()}
 ```
 
-As seen, instead of getting a dictionary, the JSON data is converted into an object of the schema `Sentence`. As such, we can access the data using data attributes such as `sentence.text`. This also provides automatic validation of data types. If the user tries to send any data other than a string, they will be given an auto-generated validation error.  
-  
+As seen, instead of getting a dictionary, the JSON data is converted into an object of the schema `Sentence`. As such, we can access the data using data attributes such as `sentence.text`. This also provides automatic validation of data types. If the user tries to send any data other than a string, they will be given an auto-generated validation error.
+
 **Example Invalid Request**
+
 ```json
-{"text": null}
+{ "text": null }
 ```
 
 **Automatic Response**
+
 ```json
 {
-    "detail": [
-        {
-            "loc": [
-                "body",
-                "text"
-            ],
-            "msg": "none is not an allowed value",
-            "type": "type_error.none.not_allowed"
-        }
-    ]
+  "detail": [
+    {
+      "loc": ["body", "text"],
+      "msg": "none is not an allowed value",
+      "type": "type_error.none.not_allowed"
+    }
+  ]
 }
 ```
 
-## File Upload  
-Let's create an API to return the uploaded file name. The key used when uploading the file will be `file`.    
+## File Upload
+
+Let's create an API to return the uploaded file name. The key used when uploading the file will be `file`.
 
 **Flask**  
 Flask allows accessing the uploaded file via the request object.
+
 ```python
 # app.py
 
@@ -296,7 +327,7 @@ def upload_file():
 ```
 
 **FastAPI:**  
-FastAPI uses function parameter to specify the file key.  
+FastAPI uses function parameter to specify the file key.
 
 ```python
 # app.py
@@ -309,14 +340,17 @@ def upload_file(file: UploadFile = File(...)):
     return {'name': file.filename}
 ```
 
-## Form Submission   
-We want to access a text form field that's defined as shown below and echo the value.  
+## Form Submission
+
+We want to access a text form field that's defined as shown below and echo the value.
+
 ```html
-<input name='city' type='text'>
+<input name="city" type="text" />
 ```
 
 **Flask**  
 Flask allows accessing the form fields via the request object.
+
 ```python
 # app.py
 
@@ -330,7 +364,7 @@ def echo():
 ```
 
 **FastAPI:**  
-We use function parameter to define the key and data type for the form field.  
+We use function parameter to define the key and data type for the form field.
 
 ```python
 # app.py
@@ -343,6 +377,7 @@ def echo(city: str = Form(...)):
 ```
 
 We can also make the form field optional as shown below
+
 ```python
 from typing import Optional
 
@@ -351,19 +386,21 @@ def echo(city: Optional[str] = Form(None)):
     return {'city': city}
 ```
 
-Similarly, we can set a default value for the form field as shown below.  
+Similarly, we can set a default value for the form field as shown below.
+
 ```python
 @app.post('/submit')
 def echo(city: Optional[str] = Form('Paris')):
     return {'city': city}
 ```
 
+## Cookies
 
-## Cookies  
-We want to access a cookie called `name` from the request.  
+We want to access a cookie called `name` from the request.
 
 **Flask**  
 Flask allows accessing the cookies via the request object.
+
 ```python
 # app.py
 
@@ -377,7 +414,7 @@ def profile():
 ```
 
 **FastAPI:**  
-We use parameter to define the key for the cookie.  
+We use parameter to define the key for the cookie.
 
 ```python
 # app.py
@@ -389,16 +426,19 @@ def profile(name = Cookie(None)):
     return {'name': name}
 ```
 
-## Modular Views  
+## Modular Views
+
 We want to decompose the views from a single app.py into separate files.
+
 ```json
 - app.py
 - views
   - user.py
-``` 
- 
+```
+
 **Flask:**  
 In Flask, we use a concept called blueprints to manage this. We would first create a blueprint for the user view as:
+
 ```python
 # views/user.py
 from flask import Blueprint
@@ -409,7 +449,9 @@ def list_users():
     return {'users': ['a', 'b', 'c']}
 
 ```
+
 Then, this view is registered in the main `app.py` file.
+
 ```python
 # app.py
 from flask import Flask
@@ -421,6 +463,7 @@ app.register_blueprint(user_blueprint)
 
 **FastAPI:**  
 In FastAPI, the equivalent of a blueprint is called a router. First, we create a user router as:
+
 ```python
 # routers/user.py
 from fastapi import APIRouter
@@ -431,7 +474,8 @@ def list_users():
     return {'users': ['a', 'b', 'c']}
 ```
 
-Then, we attach this router to the main app object as:  
+Then, we attach this router to the main app object as:
+
 ```python
 # app.py
 from fastapi import FastAPI
@@ -441,13 +485,14 @@ app = FastAPI()
 app.include_router(user.router)
 ```
 
-## Data Validation  
+## Data Validation
+
 **Flask**  
 Flask doesn't provide any input data validation feature out-of-the-box. It's common practice to either write custom validation logic or use libraries such as [marshmalllow](https://marshmallow.readthedocs.io/en/stable/) or [pydantic](https://pydantic-docs.helpmanual.io/).
 
-**FastAPI:**  
+**FastAPI:**
 
-FastAPI wraps pydantic into its framework and allow data validation by simply using a combination of pydantic schema and python type hints.  
+FastAPI wraps pydantic into its framework and allow data validation by simply using a combination of pydantic schema and python type hints.
 
 ```python
 from fastapi import FastAPI
@@ -465,17 +510,19 @@ def save_user(user: User):
             'age': user.age}
 ```
 
-This code will perform automatic validation to ensure `name` is a string and `age` is an integer. If any other data type is sent, it auto-generates validation error with a relevant message.  
+This code will perform automatic validation to ensure `name` is a string and `age` is an integer. If any other data type is sent, it auto-generates validation error with a relevant message.
 
-Here are some examples of pydantic schema for common use-cases.  
- 
+Here are some examples of pydantic schema for common use-cases.
+
 ### Example 1: Key-value pairs
+
 ```json
 {
   "name": "Isaac",
   "age": 60
 }
 ```
+
 ```python
 from pydantic import BaseModel
 
@@ -484,12 +531,14 @@ class User(BaseModel):
     age: int
 ```
 
-### Example 2: Collection of things  
+### Example 2: Collection of things
+
 ```json
 {
   "series": ["GOT", "Dark", "Mr. Robot"]
 }
 ```
+
 ```python
 from pydantic import BaseModel
 from typing import List
@@ -498,7 +547,8 @@ class Metadata(BaseModel):
     series: List[str]
 ```
 
-### Example 3: Nested Objects  
+### Example 3: Nested Objects
+
 ```json
 {
   "users": [
@@ -514,6 +564,7 @@ class Metadata(BaseModel):
   "group": "Group A"
 }
 ```
+
 ```python
 from pydantic import BaseModel
 from typing import List
@@ -529,14 +580,16 @@ class UserGroup(BaseModel):
 
 You can learn more about Python Type hints from [here](https://fastapi.tiangolo.com/python-types/).
 
-## Automatic Documentation    
+## Automatic Documentation
+
 **Flask**  
-Flask doesn't provide any built-in feature for documentation generation. There are extensions such as [flask-swagger](https://pypi.org/project/flask-swagger/) or [flask-restful](https://flask-restplus.readthedocs.io/en/stable/swagger.html) to fill that gap but the workflow is comparatively complex.  
+Flask doesn't provide any built-in feature for documentation generation. There are extensions such as [flask-swagger](https://pypi.org/project/flask-swagger/) or [flask-restful](https://flask-restplus.readthedocs.io/en/stable/swagger.html) to fill that gap but the workflow is comparatively complex.
 
 **FastAPI:**  
 FastAPI automatically generates an interactive swagger documentation endpoint at `/docs` and a reference documentation at `/redoc`.
 
-For example, say we had a simple view given below that echoes what the user searched for.  
+For example, say we had a simple view given below that echoes what the user searched for.
+
 ```python
 # app.py
 from fastapi import FastAPI
@@ -549,22 +602,25 @@ def search(q: str):
 ```
 
 ### Swagger Documentation
-If you run the server and goto the endpoint `http://127.0.0.1:8000/docs`, you will get an auto-generated swagger documentation.  
 
-![OpenAPI Swagger UI in FastAPI](/images/fastapi-swagger.png){: .align-center}  
+If you run the server and goto the endpoint `http://127.0.0.1:8000/docs`, you will get an auto-generated swagger documentation.
 
-You can interactively try out the API from the browser itself.  
+![OpenAPI Swagger UI in FastAPI](/images/fastapi-swagger.png){: .align-center}
 
-![Interactive API Usage in FastAPI](/images/fastapi-swagger-interactive.png){: .align-center}  
+You can interactively try out the API from the browser itself.
+
+![Interactive API Usage in FastAPI](/images/fastapi-swagger-interactive.png){: .align-center}
 
 ### ReDoc Documentation
+
 In addition to swagger, if you goto the endpoint `http://127.0.0.01:8000/redoc`, you will get an auto-generated reference documentation. There is information on parameters, request format, response format and status codes.  
-![ReDoc functionality in FastAPI](/images/fastapi-redoc.png){: .align-center}  
+![ReDoc functionality in FastAPI](/images/fastapi-redoc.png){: .align-center}
 
+## Cross-Origin Resource Sharing(CORS)
 
-## Cross-Origin Resource Sharing(CORS)  
 **Flask**  
 Flask doesn't provide CORS support out of the box. We need to use extension such as [flask-cors](https://flask-cors.readthedocs.io/en/latest/) to configure CORS as shown below.
+
 ```python
 # app.py
 
@@ -576,7 +632,7 @@ CORS(app_)
 ```
 
 **FastAPI:**  
-FastAPI provides a [built-in middleware](https://fastapi.tiangolo.com/tutorial/cors/) to handle CORS. We show an example of CORS below where we are allowing any origin to access our APIs.  
+FastAPI provides a [built-in middleware](https://fastapi.tiangolo.com/tutorial/cors/) to handle CORS. We show an example of CORS below where we are allowing any origin to access our APIs.
 
 ```python
 # app.py
@@ -594,10 +650,12 @@ app.add_middleware(
 )
 ```
 
-## Conclusion  
-Thus, FastAPI is an excellent alternative to Flask for building robust APIs with best-practices baked in. You can refer to the [documentation](https://fastapi.tiangolo.com/) to learn more.    
+## Conclusion
+
+Thus, FastAPI is an excellent alternative to Flask for building robust APIs with best-practices baked in. You can refer to the [documentation](https://fastapi.tiangolo.com/) to learn more.
 
 ## References
+
 - [FastAPI Documentation](https://fastapi.tiangolo.com)
 - [Pydantic Documentation](https://pydantic-docs.helpmanual.io/)
 - [Uvicorn: The lightning-fast ASGI server](https://www.uvicorn.org/)

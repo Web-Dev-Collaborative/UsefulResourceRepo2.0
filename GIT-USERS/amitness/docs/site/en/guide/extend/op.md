@@ -13,16 +13,16 @@ a composition of existing Python ops or functions. If that isn't possible, you
 can create a custom C++ op. There are several reasons why you might want to
 create a custom C++ op:
 
-*   It's not easy or possible to express your operation as a composition of
-    existing ops.
-*   It's not efficient to express your operation as a composition of existing
-    primitives.
-*   You want to hand-fuse a composition of primitives that a future compiler
-    would find difficult fusing.
+- It's not easy or possible to express your operation as a composition of
+  existing ops.
+- It's not efficient to express your operation as a composition of existing
+  primitives.
+- You want to hand-fuse a composition of primitives that a future compiler
+  would find difficult fusing.
 
 For example, imagine you want to implement something like "median pooling",
 similar to the "MaxPool" operator, but computing medians over sliding windows
-instead of maximum values.  Doing this using a composition of operations may be
+instead of maximum values. Doing this using a composition of operations may be
 possible (e.g., using ExtractImagePatches and TopK), but may not be as
 performance- or memory-efficient as a native operation where you can do
 something more clever in a single, fused operation. As always, it is typically
@@ -54,11 +54,11 @@ To incorporate your custom op you'll need to:
 
 PREREQUISITES:
 
-*   Some familiarity with C++.
-*   Must have installed the
-    [TensorFlow binary](../../install), or must have
-    [downloaded TensorFlow source](../../install/source.md),
-    and be able to build it.
+- Some familiarity with C++.
+- Must have installed the
+  [TensorFlow binary](../../install), or must have
+  [downloaded TensorFlow source](../../install/source.md),
+  and be able to build it.
 
 [TOC]
 
@@ -95,9 +95,8 @@ to ensure that the output tensor is the same shape as the input tensor. For
 example, if the input is a tensor of shape [10, 20], then this shape function
 specifies that the output shape is also [10, 20].
 
-
->   A note on naming: The op name must be in CamelCase and it must be unique
->   among all other ops that are registered in the binary.
+> A note on naming: The op name must be in CamelCase and it must be unique
+> among all other ops that are registered in the binary.
 
 ## Implement the kernel for the op
 
@@ -153,11 +152,11 @@ To do this for the `ZeroOut` op, add the following to `zero_out.cc`:
 REGISTER_KERNEL_BUILDER(Name("ZeroOut").Device(DEVICE_CPU), ZeroOutOp);
 ```
 
->   Important: Instances of your OpKernel may be accessed concurrently.
->   Your `Compute` method must be thread-safe. Guard any access to class
->   members with a mutex. Or better yet, don't share state via class members!
->   Consider using a [`ResourceMgr`](https://www.tensorflow.org/code/tensorflow/core/framework/resource_mgr.h)
->   to keep track of op state.
+> Important: Instances of your OpKernel may be accessed concurrently.
+> Your `Compute` method must be thread-safe. Guard any access to class
+> members with a mutex. Or better yet, don't share state via class members!
+> Consider using a [`ResourceMgr`](https://www.tensorflow.org/code/tensorflow/core/framework/resource_mgr.h)
+> to keep track of op state.
 
 ### Multi-threaded CPU kernels
 
@@ -174,13 +173,13 @@ A GPU kernel is implemented in two parts: the OpKernel and the CUDA kernel and
 its launch code.
 
 Sometimes the OpKernel implementation is common between a CPU and GPU kernel,
-such as around inspecting inputs and allocating outputs.  In that case, a
+such as around inspecting inputs and allocating outputs. In that case, a
 suggested implementation is to:
 
 1. Define the OpKernel templated on the Device and the primitive type of the
    tensor.
 2. To do the actual computation of the output, the Compute function calls a
-    templated functor struct.
+   templated functor struct.
 3. The specialization of that functor for the CPUDevice is defined in the same
    file, but the specialization for the GPUDevice is defined in a .cu.cc file,
    since it will be compiled with the CUDA compiler.
@@ -318,6 +317,7 @@ template struct ExampleFunctor<GPUDevice, int32>;
 ```
 
 ## Build the op library
+
 ### Compile the op using your system compiler (TensorFlow binary installation)
 
 You should be able to compile `zero_out.cc` with a `C++` compiler such as `g++`
@@ -349,12 +349,12 @@ g++ -std=c++11 -shared zero_out.cc -o zero_out.so -fPIC ${TF_CFLAGS[@]} ${TF_LFL
 On Mac OS X, the additional flag "-undefined dynamic_lookup" is required when
 building the `.so` file.
 
->   Note on `gcc` version `>=5`: gcc uses the new C++
->   [ABI](https://gcc.gnu.org/gcc-5/changes.html#libstdcxx) since version `5`. The binary pip
->   packages available on the TensorFlow website are built with `gcc4` that uses
->   the older ABI. If you compile your op library with `gcc>=5`, add
->   `-D_GLIBCXX_USE_CXX11_ABI=0` to the command line to make the library
->   compatible with the older abi.
+> Note on `gcc` version `>=5`: gcc uses the new C++
+> [ABI](https://gcc.gnu.org/gcc-5/changes.html#libstdcxx) since version `5`. The binary pip
+> packages available on the TensorFlow website are built with `gcc4` that uses
+> the older ABI. If you compile your op library with `gcc>=5`, add
+> `-D_GLIBCXX_USE_CXX11_ABI=0` to the command line to make the library
+> compatible with the older abi.
 
 ### Compile the op using bazel (TensorFlow source installation)
 
@@ -376,14 +376,15 @@ Run the following command to build `zero_out.so`.
 ```bash
 $ bazel build --config opt //tensorflow/core/user_ops:zero_out.so
 ```
->   As explained above, if you are compiling with gcc>=5 add `--cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0"`
->   to the bazel command line.
 
->   Note: Although you can create a shared library (a `.so` file) with the
->   standard `cc_library` rule, we strongly recommend that you use the
->   `tf_custom_op_library` macro. It adds some required dependencies, and
->   performs checks to ensure that the shared library is compatible with
->   TensorFlow's plugin loading mechanism.
+> As explained above, if you are compiling with gcc>=5 add `--cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0"`
+> to the bazel command line.
+
+> Note: Although you can create a shared library (a `.so` file) with the
+> standard `cc_library` rule, we strongly recommend that you use the
+> `tf_custom_op_library` macro. It adds some required dependencies, and
+> performs checks to ensure that the shared library is compatible with
+> TensorFlow's plugin loading mechanism.
 
 ## Use the op in Python
 
@@ -404,7 +405,7 @@ with tf.Session(''):
 array([[1, 0], [0, 0]], dtype=int32)
 ```
 
-Keep in mind, the generated function will be given a snake\_case name (to comply
+Keep in mind, the generated function will be given a snake_case name (to comply
 with [PEP8](https://www.python.org/dev/peps/pep-0008/)). So, if your op is
 named `ZeroOut` in the C++ files, the python function will be called `zero_out`.
 
@@ -451,22 +452,22 @@ Now that you know how to build a basic (and somewhat restricted) op and
 implementation, we'll look at some of the more complicated things you will
 typically need to build into your op. This includes:
 
-*   [Conditional checks and validation](#conditional-checks-and-validation)
-*   [Op registration](#op-registration)
-    *   [Attrs](#attrs)
-    *   [Attr types](#attr-types)
-    *   [Polymorphism](#polymorphism)
-    *   [Inputs and outputs](#inputs-and-outputs)
-    *   [Backwards compatibility](#backwards-compatibility)
-*   [GPU support](#gpu-support)
-    *   [Compiling the kernel for the GPU device](#compiling-the-kernel-for-the-gpu-device)
-*   [Implement the gradient in Python](#implement-the-gradient-in-python)
-*   [Shape functions in C++](#shape-functions-in-c)
+- [Conditional checks and validation](#conditional-checks-and-validation)
+- [Op registration](#op-registration)
+  - [Attrs](#attrs)
+  - [Attr types](#attr-types)
+  - [Polymorphism](#polymorphism)
+  - [Inputs and outputs](#inputs-and-outputs)
+  - [Backwards compatibility](#backwards-compatibility)
+- [GPU support](#gpu-support)
+  - [Compiling the kernel for the GPU device](#compiling-the-kernel-for-the-gpu-device)
+- [Implement the gradient in Python](#implement-the-gradient-in-python)
+- [Shape functions in C++](#shape-functions-in-c)
 
 ### Conditional checks and validation
 
-The example above assumed that the op applied to a tensor of any shape.  What
-if it only applied to vectors?  That means adding a check to the above OpKernel
+The example above assumed that the op applied to a tensor of any shape. What
+if it only applied to vectors? That means adding a check to the above OpKernel
 implementation.
 
 ```c++
@@ -481,25 +482,25 @@ implementation.
 ```
 
 This asserts that the input is a vector, and returns having set the
-`InvalidArgument` status if it isn't.  The
+`InvalidArgument` status if it isn't. The
 [`OP_REQUIRES` macro][validation-macros] takes three arguments:
 
-*   The `context`, which can either be an `OpKernelContext` or
-    `OpKernelConstruction` pointer (see
-    [`tensorflow/core/framework/op_kernel.h`](https://www.tensorflow.org/code/tensorflow/core/framework/op_kernel.h)),
-    for its `SetStatus()` method.
-*   The condition.  For example, there are functions for validating the shape
-    of a tensor in
-    [`tensorflow/core/framework/tensor_shape.h`](https://www.tensorflow.org/code/tensorflow/core/framework/tensor_shape.h)
-*   The error itself, which is represented by a `Status` object, see
-    [`tensorflow/core/lib/core/status.h`](https://www.tensorflow.org/code/tensorflow/core/lib/core/status.h). A
-    `Status` has both a type (frequently `InvalidArgument`, but see the list of
-    types) and a message.  Functions for constructing an error may be found in
-    [`tensorflow/core/lib/core/errors.h`][validation-macros].
+- The `context`, which can either be an `OpKernelContext` or
+  `OpKernelConstruction` pointer (see
+  [`tensorflow/core/framework/op_kernel.h`](https://www.tensorflow.org/code/tensorflow/core/framework/op_kernel.h)),
+  for its `SetStatus()` method.
+- The condition. For example, there are functions for validating the shape
+  of a tensor in
+  [`tensorflow/core/framework/tensor_shape.h`](https://www.tensorflow.org/code/tensorflow/core/framework/tensor_shape.h)
+- The error itself, which is represented by a `Status` object, see
+  [`tensorflow/core/lib/core/status.h`](https://www.tensorflow.org/code/tensorflow/core/lib/core/status.h). A
+  `Status` has both a type (frequently `InvalidArgument`, but see the list of
+  types) and a message. Functions for constructing an error may be found in
+  [`tensorflow/core/lib/core/errors.h`][validation-macros].
 
 Alternatively, if you want to test whether a `Status` object returned from some
 function is an error, and if so return it, use
-[`OP_REQUIRES_OK`][validation-macros].  Both of these macros return from the
+[`OP_REQUIRES_OK`][validation-macros]. Both of these macros return from the
 function on error.
 
 ### Op registration
@@ -530,6 +531,7 @@ form [described below](#attr_types).
 
 For example, if you'd like the `ZeroOut` op to preserve a user-specified index,
 instead of only the 0th element, you can register the op like so:
+
 ```c++
 REGISTER_OP("ZeroOut")
     .Attr("preserve_index: int")
@@ -542,6 +544,7 @@ REGISTER_OP("ZeroOut")
 
 Your kernel can then access this attr in its constructor via the `context`
 parameter:
+
 ```c++
 class ZeroOutOp : public OpKernel {
  public:
@@ -563,6 +566,7 @@ class ZeroOutOp : public OpKernel {
 ```
 
 which can then be used in the `Compute` method:
+
 ```c++
   void Compute(OpKernelContext* context) override {
     // ...
@@ -587,37 +591,37 @@ which can then be used in the `Compute` method:
 
 The following types are supported in an attr:
 
-* `string`: Any sequence of bytes (not required to be UTF8).
-* `int`: A signed integer.
-* `float`: A floating point number.
-* `bool`: True or false.
-* `type`: One of the (non-ref) values of [`DataType`][DataTypeString].
-* `shape`: A [`TensorShapeProto`][TensorShapeProto].
-* `tensor`: A [`TensorProto`][TensorProto].
-* `list(<type>)`: A list of `<type>`, where `<type>` is one of the above types.
+- `string`: Any sequence of bytes (not required to be UTF8).
+- `int`: A signed integer.
+- `float`: A floating point number.
+- `bool`: True or false.
+- `type`: One of the (non-ref) values of [`DataType`][datatypestring].
+- `shape`: A [`TensorShapeProto`][tensorshapeproto].
+- `tensor`: A [`TensorProto`][tensorproto].
+- `list(<type>)`: A list of `<type>`, where `<type>` is one of the above types.
   Note that `list(list(<type>))` is invalid.
 
-See also: [`op_def_builder.cc:FinalizeAttr`][FinalizeAttr] for a definitive list.
+See also: [`op_def_builder.cc:FinalizeAttr`][finalizeattr] for a definitive list.
 
 ##### Default values & constraints
 
 Attrs may have default values, and some types of attrs can have constraints. To
 define an attr with constraints, you can use the following `<attr-type-expr>`s:
 
-* `{'<string1>', '<string2>'}`: The value must be a string that has either the
-  value `<string1>` or `<string2>`.  The name of the type, `string`, is implied
-  when you use this syntax.  This emulates an enum:
+- `{'<string1>', '<string2>'}`: The value must be a string that has either the
+  value `<string1>` or `<string2>`. The name of the type, `string`, is implied
+  when you use this syntax. This emulates an enum:
 
   ```c++
   REGISTER_OP("EnumExample")
       .Attr("e: {'apple', 'orange'}");
   ```
 
-* `{<type1>, <type2>}`: The value is of type `type`, and must be one of
+- `{<type1>, <type2>}`: The value is of type `type`, and must be one of
   `<type1>` or `<type2>`, where `<type1>` and `<type2>` are supported
-  `tf.DType`.  You don't specify
+  `tf.DType`. You don't specify
   that the type of the attr is `type`. This is implied when you have a list of
-  types in `{...}`.  For example, in this case the attr `t` is a type that must
+  types in `{...}`. For example, in this case the attr `t` is a type that must
   be an `int32`, a `float`, or a `bool`:
 
   ```c++
@@ -625,46 +629,47 @@ define an attr with constraints, you can use the following `<attr-type-expr>`s:
       .Attr("t: {int32, float, bool}");
   ```
 
-* There are shortcuts for common type constraints:
-    * `numbertype`: Type `type` restricted to the numeric (non-string and
-      non-bool) types.
-    * `realnumbertype`: Like `numbertype` without complex types.
-    * `quantizedtype`: Like `numbertype` but just the quantized number types.
+- There are shortcuts for common type constraints:
 
-    The specific lists of types allowed by these are defined by the functions
-    (like `NumberTypes()`) in
-    [`tensorflow/core/framework/types.h`](https://www.tensorflow.org/code/tensorflow/core/framework/types.h).
-    In this example the attr `t` must be one of the numeric types:
+  - `numbertype`: Type `type` restricted to the numeric (non-string and
+    non-bool) types.
+  - `realnumbertype`: Like `numbertype` without complex types.
+  - `quantizedtype`: Like `numbertype` but just the quantized number types.
 
-    ```c++
-    REGISTER_OP("NumberType")
-        .Attr("t: numbertype");
-    ```
+  The specific lists of types allowed by these are defined by the functions
+  (like `NumberTypes()`) in
+  [`tensorflow/core/framework/types.h`](https://www.tensorflow.org/code/tensorflow/core/framework/types.h).
+  In this example the attr `t` must be one of the numeric types:
 
-    For this op:
+  ```c++
+  REGISTER_OP("NumberType")
+      .Attr("t: numbertype");
+  ```
 
-    ```python
-    tf.number_type(t=tf.int32)  # Valid
-    tf.number_type(t=tf.bool)   # Invalid
-    ```
+  For this op:
 
-    Lists can be combined with other lists and single types.  The following
-    op allows attr `t` to be any of the numeric types, or the bool type:
+  ```python
+  tf.number_type(t=tf.int32)  # Valid
+  tf.number_type(t=tf.bool)   # Invalid
+  ```
 
-    ```c++
-    REGISTER_OP("NumberOrBooleanType")
-        .Attr("t: {numbertype, bool}");
-    ```
+  Lists can be combined with other lists and single types. The following
+  op allows attr `t` to be any of the numeric types, or the bool type:
 
-    For this op:
+  ```c++
+  REGISTER_OP("NumberOrBooleanType")
+      .Attr("t: {numbertype, bool}");
+  ```
 
-    ```python
-    tf.number_or_boolean_type(t=tf.int32)  # Valid
-    tf.number_or_boolean_type(t=tf.bool)   # Valid
-    tf.number_or_boolean_type(t=tf.string) # Invalid
-    ```
+  For this op:
 
-* `int >= <n>`: The value must be an int whose value is greater than or equal to
+  ```python
+  tf.number_or_boolean_type(t=tf.int32)  # Valid
+  tf.number_or_boolean_type(t=tf.bool)   # Valid
+  tf.number_or_boolean_type(t=tf.string) # Invalid
+  ```
+
+- `int >= <n>`: The value must be an int whose value is greater than or equal to
   `<n>`, where `<n>` is a natural number.
 
   For example, the following op registration specifies that the attr `a` must
@@ -675,7 +680,7 @@ define an attr with constraints, you can use the following `<attr-type-expr>`s:
       .Attr("a: int >= 2");
   ```
 
-* `list(<type>) >= <n>`: A list of type `<type>` whose length is greater than
+- `list(<type>) >= <n>`: A list of type `<type>` whose length is greater than
   or equal to `<n>`.
 
   For example, the following op registration specifies that the attr `a` is a
@@ -722,11 +727,12 @@ use `tf.DType`.
 
 For ops that can take different types as input or produce different output
 types, you can specify [an attr](#attrs) in
-[an input or output type](#inputs-and-outputs) in the op registration.  Typically
+[an input or output type](#inputs-and-outputs) in the op registration. Typically
 you would then register an `OpKernel` for each supported type.
 
 For instance, if you'd like the `ZeroOut` op to work on `float`s
 in addition to `int32`s, your op registration might look like:
+
 ```c++
 REGISTER_OP("ZeroOut")
     .Attr("T: {float, int32}")
@@ -738,9 +744,9 @@ Your op registration now specifies that the input's type must be `float`, or
 `int32`, and that its output will be the same type, since both have type `T`.
 
 > <a id="naming"></a>A note on naming: Inputs, outputs, and attrs generally should be
-> given snake\_case names.  The one exception is attrs that are used as the type
+> given snake_case names. The one exception is attrs that are used as the type
 > of an input or in the type of an input. Those attrs can be inferred when the
-> op is added to the graph and so don't appear in the op's function.  For
+> op is added to the graph and so don't appear in the op's function. For
 > example, this last definition of ZeroOut will generate a Python function that
 > looks like:
 >
@@ -853,6 +859,7 @@ REGISTER_KERNEL_BUILDER(
 > ```
 
 Let's say you wanted to add more types, say `double`:
+
 ```c++
 REGISTER_OP("ZeroOut")
     .Attr("T: {float, double, int32}")
@@ -861,31 +868,32 @@ REGISTER_OP("ZeroOut")
 ```
 
 Instead of writing another `OpKernel` with redundant code as above, often you
-will be able to use a C++ template instead.  You will still have one kernel
+will be able to use a C++ template instead. You will still have one kernel
 registration (`REGISTER_KERNEL_BUILDER` call) per overload.
+
 ```c++
 template <typename T>
 class ZeroOutOp : public OpKernel {
  public:
   explicit ZeroOutOp(OpKernelConstruction* context) : OpKernel(context) {}
-  
+
   void Compute(OpKernelContext* context) override {
     // Grab the input tensor
     const Tensor& input_tensor = context->input(0);
     auto input = input_tensor.flat<T>();
-    
+
     // Create an output tensor
     Tensor* output = NULL;
     OP_REQUIRES_OK(context,
                    context->allocate_output(0, input_tensor.shape(), &output));
     auto output_flat = output->template flat<T>();
-    
+
     // Set all the elements of the output tensor to 0
     const int N = input.size();
     for (int i = 0; i < N; i++) {
       output_flat(i) = 0;
     }
-    
+
     // Preserve the first input value
     if (N > 0) output_flat(0) = input(0);
   }
@@ -960,8 +968,8 @@ TF_CALL_REAL_NUMBER_TYPES(REGISTER_KERNEL);
 In addition to being able to accept or produce different types, ops can consume
 or produce a variable number of tensors.
 
-In the next example, the attr `T` holds a *list* of types, and is used as the
-type of both the input `in` and the output `out`.  The input and output are
+In the next example, the attr `T` holds a _list_ of types, and is used as the
+type of both the input `in` and the output `out`. The input and output are
 lists of tensors of that type (and the number and types of tensors in the output
 are the same as the input, since both have type `T`).
 
@@ -997,7 +1005,7 @@ REGISTER_OP("IntListInputExample")
 This accepts a list of `int32` tensors, and uses an `int` attr `N` to
 specify the length of the list.
 
-This can be made [type polymorphic](#type-polymorphism) as well.  In the next
+This can be made [type polymorphic](#type-polymorphism) as well. In the next
 example, the input is a list of tensors (with length `"N"`) of the same (but
 unspecified) type (`"T"`), and the output is a single tensor of matching type:
 
@@ -1052,7 +1060,7 @@ where `<name>` begins with a letter and can be composed of alphanumeric
 characters and underscores. `<io-type-expr>` is one of the following type
 expressions:
 
-* `<type>`, where `<type>` is a supported input type (e.g. `float`, `int32`,
+- `<type>`, where `<type>` is a supported input type (e.g. `float`, `int32`,
   `string`). This specifies a single tensor of the given type.
 
   See
@@ -1064,7 +1072,7 @@ expressions:
       .Input("complex_numbers: complex64");
   ```
 
-* `<attr-type>`, where `<attr-type>` is the name of an [Attr](#attrs) with type
+- `<attr-type>`, where `<attr-type>` is the name of an [Attr](#attrs) with type
   `type` or `list(type)` (with a possible type restriction). This syntax allows
   for [polymorphic ops](#polymorphism).
 
@@ -1096,10 +1104,10 @@ expressions:
   Note that the number and types of tensors in the output `out` is the same as
   in the input `in`, since both are of type `T`.
 
-* For a sequence of tensors with the same type: `<number> * <type>`, where
-  `<number>` is the name of an [Attr](#attrs) with type `int`.  The `<type>` can
+- For a sequence of tensors with the same type: `<number> * <type>`, where
+  `<number>` is the name of an [Attr](#attrs) with type `int`. The `<type>` can
   either be a `tf.DType`,
-  or the name of an attr with type `type`.  As an example of the first, this
+  or the name of an attr with type `type`. As an example of the first, this
   op accepts a list of `int32` tensors:
 
   ```c++
@@ -1118,13 +1126,13 @@ expressions:
       .Input("in: NumTensors * T")
   ```
 
-* For a reference to a tensor: `Ref(<type>)`, where `<type>` is one of the
+- For a reference to a tensor: `Ref(<type>)`, where `<type>` is one of the
   previous types.
 
-> A note on naming: Any attr used in the type of an input will be inferred.  By
+> A note on naming: Any attr used in the type of an input will be inferred. By
 > convention those inferred attrs use capital names (like `T` or `N`).
 > Otherwise inputs, outputs, and attrs have names like function parameters
-> (e.g. `num_outputs`).  For more details, see the
+> (e.g. `num_outputs`). For more details, see the
 > [earlier note on naming](#naming).
 
 For more details, see
@@ -1133,7 +1141,7 @@ For more details, see
 #### Backwards compatibility
 
 Let's assume you have written a nice, custom op and shared it with others, so
-you have happy customers using your operation.  However, you'd like to make
+you have happy customers using your operation. However, you'd like to make
 changes to the op in some way.
 
 In general, changes to existing, checked-in specifications must be
@@ -1144,40 +1152,39 @@ The details of `GraphDef` compatibility are
 
 There are several ways to preserve backwards-compatibility.
 
-1. Any new attrs added to an operation must have default values defined, and
-   with that default value the op must have the original behavior. To change an
-   operation from not polymorphic to polymorphic, you *must* give a default
-   value to the new type attr to preserve the original signature by default. For
-   example, if your operation was:
+1.  Any new attrs added to an operation must have default values defined, and
+    with that default value the op must have the original behavior. To change an
+    operation from not polymorphic to polymorphic, you _must_ give a default
+    value to the new type attr to preserve the original signature by default. For
+    example, if your operation was:
 
-       REGISTER_OP("MyGeneralUnaryOp")
-           .Input("in: float")
-           .Output("out: float");
+        REGISTER_OP("MyGeneralUnaryOp")
+            .Input("in: float")
+            .Output("out: float");
 
-   you can make it polymorphic in a backwards-compatible way using:
+    you can make it polymorphic in a backwards-compatible way using:
 
-       REGISTER_OP("MyGeneralUnaryOp")
-           .Input("in: T")
-           .Output("out: T")
-           .Attr("T: numerictype = DT_FLOAT");
+        REGISTER_OP("MyGeneralUnaryOp")
+            .Input("in: T")
+            .Output("out: T")
+            .Attr("T: numerictype = DT_FLOAT");
 
-2. You can safely make a constraint on an attr less restrictive.  For example,
-   you can change from `{int32, int64}` to `{int32, int64, float}` or `type`.
-   Or you may change from `{"apple", "orange"}` to `{"apple", "banana",
-   "orange"}` or `string`.
+2.  You can safely make a constraint on an attr less restrictive. For example,
+    you can change from `{int32, int64}` to `{int32, int64, float}` or `type`.
+    Or you may change from `{"apple", "orange"}` to `{"apple", "banana", "orange"}` or `string`.
 
-3. You can change single inputs / outputs into list inputs / outputs, as long as
-   the default for the list type matches the old signature.
+3.  You can change single inputs / outputs into list inputs / outputs, as long as
+    the default for the list type matches the old signature.
 
-4. You can add a new list input / output, if it defaults to empty.
+4.  You can add a new list input / output, if it defaults to empty.
 
-5. Namespace any new ops you create, by prefixing the op names with something
-   unique to your project. This avoids having your op colliding with any ops
-   that might be included in future versions of TensorFlow.
+5.  Namespace any new ops you create, by prefixing the op names with something
+    unique to your project. This avoids having your op colliding with any ops
+    that might be included in future versions of TensorFlow.
 
-6. Plan ahead! Try to anticipate future uses for the op. Some signature changes
-   can't be done in a compatible way (for example, making a list of the same
-   type into a list of varying types).
+6.  Plan ahead! Try to anticipate future uses for the op. Some signature changes
+    can't be done in a compatible way (for example, making a list of the same
+    type into a list of varying types).
 
 The full list of safe and unsafe changes can be found in
 [`tensorflow/core/framework/op_compatibility_test.cc`](https://www.tensorflow.org/code/tensorflow/core/framework/op_compatibility_test.cc).
@@ -1186,9 +1193,9 @@ a new operation with a new name with the new semantics.
 
 Also note that while these changes can maintain `GraphDef` compatibility, the
 generated Python code may change in a way that isn't compatible with old
-callers.  The Python API may be kept compatible by careful changes in a
+callers. The Python API may be kept compatible by careful changes in a
 hand-written Python wrapper, by keeping the old signature except possibly adding
-new optional arguments to the end.  Generally incompatible changes may only be
+new optional arguments to the end. Generally incompatible changes may only be
 made when TensorFlow's changes major versions, and must conform to the
 [`GraphDef` version semantics](../guide/version_compat.md#compatibility_of_graphs_and_checkpoints).
 
@@ -1212,7 +1219,7 @@ code among the CPU and GPU implementations, and it puts the GPU implementation
 into a separate file so that it can be compiled only by the GPU compiler.
 
 One thing to note, even when the GPU kernel version of `pad` is used, it still
-needs its `"paddings"` input in CPU memory.  To mark that inputs or outputs are
+needs its `"paddings"` input in CPU memory. To mark that inputs or outputs are
 kept on the CPU, add a `HostMemory()` call to the kernel registration, e.g.:
 
 ```c++
@@ -1255,7 +1262,7 @@ you'll need to specify the path explicitly in the second (g++) command above.
 For example, add `-L /usr/local/cuda-8.0/lib64/` if your CUDA is installed in
 `/usr/local/cuda-8.0`.
 
->   Note in some linux settings, additional options to `nvcc` compiling step are needed. Add `-D_MWAITXINTRIN_H_INCLUDED` to the `nvcc` command line to avoid errors from `mwaitxintrin.h`.
+> Note in some linux settings, additional options to `nvcc` compiling step are needed. Add `-D_MWAITXINTRIN_H_INCLUDED` to the `nvcc` command line to avoid errors from `mwaitxintrin.h`.
 
 ### Implement the gradient in Python
 
@@ -1271,12 +1278,14 @@ converts gradients \\(\partial L/ \partial y\\) of loss \\(L\\) with respect to
 \\(y\\) into gradients \\(\partial L/ \partial x\\) with respect to \\(x\\) via
 the chain rule:
 
-$$\frac{\partial L}{\partial x}
+$$
+\frac{\partial L}{\partial x}
     = \frac{\partial L}{\partial y} \frac{\partial y}{\partial x}
-    = \frac{\partial L}{\partial y} \frac{\partial f}{\partial x}.$$
+    = \frac{\partial L}{\partial y} \frac{\partial f}{\partial x}.
+$$
 
 In the case of `ZeroOut`, only one entry in the input affects the output, so the
-gradient with respect to the input is a sparse "one hot" tensor.  This is
+gradient with respect to the input is a sparse "one hot" tensor. This is
 expressed as follows:
 
 ```python
@@ -1307,33 +1316,33 @@ def _zero_out_grad(op, grad):
 Details about registering gradient functions with
 `tf.RegisterGradient`:
 
-* For an op with one output, the gradient function will take an
+- For an op with one output, the gradient function will take an
   `tf.Operation` `op` and a
   `tf.Tensor` `grad` and build new ops
   out of the tensors
   [`op.inputs[i]`](../../api_docs/python/framework.md#Operation.inputs),
-  [`op.outputs[i]`](../../api_docs/python/framework.md#Operation.outputs), and `grad`.  Information
+  [`op.outputs[i]`](../../api_docs/python/framework.md#Operation.outputs), and `grad`. Information
   about any attrs can be found via
   `tf.Operation.get_attr`.
 
-* If the op has multiple outputs, the gradient function will take `op` and
+- If the op has multiple outputs, the gradient function will take `op` and
   `grads`, where `grads` is a list of gradients with respect to each output.
   The result of the gradient function must be a list of `Tensor` objects
   representing the gradients with respect to each input.
 
-* If there is no well-defined gradient for some input, such as for integer
+- If there is no well-defined gradient for some input, such as for integer
   inputs used as indices, the corresponding returned gradient should be
-  `None`.  For example, for an op taking a floating point tensor `x` and an
+  `None`. For example, for an op taking a floating point tensor `x` and an
   integer index `i`, the gradient function would `return [x_grad, None]`.
 
-* If there is no meaningful gradient for the op at all, you often will not have
+- If there is no meaningful gradient for the op at all, you often will not have
   to register any gradient, and as long as the op's gradient is never needed,
   you will be fine. In some cases, an op has no well-defined gradient but can
   be involved in the computation of the gradient. Here you can use
   `ops.NotDifferentiable` to automatically propagate zeros backwards.
 
 Note that at the time the gradient function is called, only the data flow graph
-of ops is available, not the tensor data itself.  Thus, all computation must be
+of ops is available, not the tensor data itself. Thus, all computation must be
 performed using other tensorflow ops, to be run at graph execution time.
 
 ### Shape functions in C++
@@ -1414,7 +1423,7 @@ or both of them do not have complete information. Shape functions are defined
 for all of the core TensorFlow ops and provide many different usage examples.
 
 The `InferenceContext` class has a number of functions that can be used to
-define shape function manipulations.  For example, you can validate that a
+define shape function manipulations. For example, you can validate that a
 particular dimension has a very specific value using `InferenceContext::Dim` and
 `InferenceContext::WithValue`; you can specify that an output dimension is the
 sum / product of two input dimensions using `InferenceContext::Add` and
@@ -1431,29 +1440,28 @@ shape of the first output to (n, 3), where first input has shape (n, ...)
 
 If you have a complicated shape function, you should consider adding a test for
 validating that various input shape combinations produce the expected output
-shape combinations.  You can see examples of how to write these tests in some
+shape combinations. You can see examples of how to write these tests in some
 our
 [core ops tests](https://www.tensorflow.org/code/tensorflow/core/ops/array_ops_test.cc).
 (The syntax of `INFER_OK` and `INFER_ERROR` are a little cryptic, but try to be
-compact in representing input and output shape specifications in tests.  For
+compact in representing input and output shape specifications in tests. For
 now, see the surrounding comments in those tests to get a sense of the shape
 string specification).
 
-
-[core-array_ops]:https://www.tensorflow.org/code/tensorflow/core/ops/array_ops.cc
-[python-user_ops]:https://www.tensorflow.org/code/tensorflow/python/user_ops/user_ops.py
-[tf-kernels]:https://www.tensorflow.org/code/tensorflow/core/kernels/
-[user_ops]:https://www.tensorflow.org/code/tensorflow/core/user_ops/
-[pad_op]:https://www.tensorflow.org/code/tensorflow/core/kernels/pad_op.cc
-[standard_ops-py]:https://www.tensorflow.org/code/tensorflow/python/ops/standard_ops.py
-[standard_ops-cc]:https://www.tensorflow.org/code/tensorflow/cc/ops/standard_ops.h
-[python-BUILD]:https://www.tensorflow.org/code/tensorflow/python/BUILD
-[validation-macros]:https://www.tensorflow.org/code/tensorflow/core/lib/core/errors.h
-[op_def_builder]:https://www.tensorflow.org/code/tensorflow/core/framework/op_def_builder.h
-[register_types]:https://www.tensorflow.org/code/tensorflow/core/framework/register_types.h
-[FinalizeAttr]:https://www.tensorflow.org/code/tensorflow/core/framework/op_def_builder.cc
-[DataTypeString]:https://www.tensorflow.org/code/tensorflow/core/framework/types.cc
-[python-BUILD]:https://www.tensorflow.org/code/tensorflow/python/BUILD
-[types-proto]:https://www.tensorflow.org/code/tensorflow/core/framework/types.proto
-[TensorShapeProto]:https://www.tensorflow.org/code/tensorflow/core/framework/tensor_shape.proto
-[TensorProto]:https://www.tensorflow.org/code/tensorflow/core/framework/tensor.proto
+[core-array_ops]: https://www.tensorflow.org/code/tensorflow/core/ops/array_ops.cc
+[python-user_ops]: https://www.tensorflow.org/code/tensorflow/python/user_ops/user_ops.py
+[tf-kernels]: https://www.tensorflow.org/code/tensorflow/core/kernels/
+[user_ops]: https://www.tensorflow.org/code/tensorflow/core/user_ops/
+[pad_op]: https://www.tensorflow.org/code/tensorflow/core/kernels/pad_op.cc
+[standard_ops-py]: https://www.tensorflow.org/code/tensorflow/python/ops/standard_ops.py
+[standard_ops-cc]: https://www.tensorflow.org/code/tensorflow/cc/ops/standard_ops.h
+[python-build]: https://www.tensorflow.org/code/tensorflow/python/BUILD
+[validation-macros]: https://www.tensorflow.org/code/tensorflow/core/lib/core/errors.h
+[op_def_builder]: https://www.tensorflow.org/code/tensorflow/core/framework/op_def_builder.h
+[register_types]: https://www.tensorflow.org/code/tensorflow/core/framework/register_types.h
+[finalizeattr]: https://www.tensorflow.org/code/tensorflow/core/framework/op_def_builder.cc
+[datatypestring]: https://www.tensorflow.org/code/tensorflow/core/framework/types.cc
+[python-build]: https://www.tensorflow.org/code/tensorflow/python/BUILD
+[types-proto]: https://www.tensorflow.org/code/tensorflow/core/framework/types.proto
+[tensorshapeproto]: https://www.tensorflow.org/code/tensorflow/core/framework/tensor_shape.proto
+[tensorproto]: https://www.tensorflow.org/code/tensorflow/core/framework/tensor.proto

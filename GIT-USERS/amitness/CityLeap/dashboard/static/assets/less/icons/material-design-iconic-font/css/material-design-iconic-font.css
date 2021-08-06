@@ -3,16 +3,21 @@
  *  License - https://github.com/zavoloklom/material-design-iconic-font/blob/gh-pages/License.md (Attribution-ShareAlike 4.0 International license)
  */
 @font-face {
-  font-family: 'Material Design Iconic Font';
-  src: url('../fonts/Material-Design-Iconic-Font.eot?v=1.0.1');
-  src: url('../fonts/Material-Design-Iconic-Font.eot?#iefix&v=1.0.1') format('embedded-opentype'), url('../fonts/Material-Design-Iconic-Font.woff?v=1.0.1') format('woff'), url('../fonts/Material-Design-Iconic-Font.ttf?v=1.0.1') format('truetype'), url('../fonts/Material-Design-Iconic-Font.svg?v=1.0.1#Material-Design-Iconic-Font') format('svg');
+  font-family: "Material Design Iconic Font";
+  src: url("../fonts/Material-Design-Iconic-Font.eot?v=1.0.1");
+  src: url("../fonts/Material-Design-Iconic-Font.eot?#iefix&v=1.0.1")
+      format("embedded-opentype"),
+    url("../fonts/Material-Design-Iconic-Font.woff?v=1.0.1") format("woff"),
+    url("../fonts/Material-Design-Iconic-Font.ttf?v=1.0.1") format("truetype"),
+    url("../fonts/Material-Design-Iconic-Font.svg?v=1.0.1#Material-Design-Iconic-Font")
+      format("svg");
   font-weight: normal;
   font-style: normal;
 }
 [class^="md-"],
 [class*=" md-"] {
   display: inline-block;
-  font: normal normal normal 14px/1 'Material Design Iconic Font';
+  font: normal normal normal 14px/1 "Material Design Iconic Font";
   font-size: inherit;
   speak: none;
   text-rendering: auto;
@@ -25,7 +30,7 @@
 }
 .md-lg {
   font-size: 1.5em;
-  line-height: .5em;
+  line-height: 0.5em;
   vertical-align: -35%;
 }
 .md-2x {
@@ -41,24 +46,24 @@
   font-size: 5em;
 }
 .md-border {
-  padding: .2em .25em .15em;
+  padding: 0.2em 0.25em 0.15em;
   border: solid 0.08em grey;
-  border-radius: .1em;
+  border-radius: 0.1em;
 }
 .md-border-circle {
-  padding: .2em .25em .15em;
+  padding: 0.2em 0.25em 0.15em;
   border: solid 0.08em grey;
   border-radius: 50%;
 }
 [class^="md-"].pull-left,
 [class*=" md-"].pull-left {
   float: left;
-  margin-right: .3em;
+  margin-right: 0.3em;
 }
 [class^="md-"].pull-right,
 [class*=" md-"].pull-right {
   float: right;
-  margin-left: .3em;
+  margin-left: 0.3em;
 }
 .md-spin {
   -webkit-animation: md-spin 1.5s infinite linear;

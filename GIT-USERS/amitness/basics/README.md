@@ -1,12 +1,13 @@
 # basics
+
 List of common tasks you should be able to do in any programming language
 
+**Aim:**
 
-**Aim:** 
 > To list 20% of features which are used 80% of the time.
 
-
 ### Arrays / List
+
 - Declare array
 - Access element at index
 - Access last element
@@ -29,6 +30,7 @@ List of common tasks you should be able to do in any programming language
 - Find largest item
 
 ### Strings
+
 - Slicing
 - Uppercase
 - Lowercase
@@ -57,6 +59,7 @@ List of common tasks you should be able to do in any programming language
 - String interpolation
 
 ### Numbers
+
 - Integer
 - Floating point number
 - Arithmetic: Add, Subtract, Multiply, Divide

@@ -39,7 +39,7 @@ Embeddings are also valuable as outputs of machine learning. Because embeddings
 map objects to vectors, applications can use similarity in vector space (for
 instance, Euclidean distance or the angle between vectors) as a robust and
 flexible measure of object similarity. One common use is to find nearest
-neighbors.  Using the same word embeddings as above, for instance, here are the
+neighbors. Using the same word embeddings as above, for instance, here are the
 three nearest neighbors for each word and the corresponding angles:
 
 ```
@@ -89,35 +89,36 @@ model and render them in two or three dimensions.
 
 The Embedding Projector has three panels:
 
-- *Data panel* on the top left, where you can choose the run, the embedding
+- _Data panel_ on the top left, where you can choose the run, the embedding
   variable and data columns to color and label points by.
-- *Projections panel* on the bottom left, where you can choose the type of
+- _Projections panel_ on the bottom left, where you can choose the type of
   projection.
-- *Inspector panel* on the right side, where you can search for particular
+- _Inspector panel_ on the right side, where you can search for particular
   points and see a list of nearest neighbors.
 
 ### Projections
+
 The Embedding Projector provides three ways to reduce the dimensionality of a
 data set.
 
-- *[t-SNE](https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding)*:
+- _[t-SNE](https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding)_:
   a nonlinear nondeterministic algorithm (T-distributed stochastic neighbor
   embedding) that tries to preserve local neighborhoods in the data, often at
   the expense of distorting global structure. You can choose whether to compute
   two- or three-dimensional projections.
 
-- *[PCA](https://en.wikipedia.org/wiki/Principal_component_analysis)*:
+- _[PCA](https://en.wikipedia.org/wiki/Principal_component_analysis)_:
   a linear deterministic algorithm (principal component analysis) that tries to
   capture as much of the data variability in as few dimensions as possible. PCA
   tends to highlight large-scale structure in the data, but can distort local
   neighborhoods. The Embedding Projector computes the top 10 principal
   components, from which you can choose two or three to view.
 
-- *Custom*: a linear projection onto horizontal and vertical axes that you
+- _Custom_: a linear projection onto horizontal and vertical axes that you
   specify using labels in the data. You define the horizontal axis, for
   instance, by giving text patterns for "Left" and "Right". The Embedding
   Projector finds all points whose label matches the "Left" pattern and
-  computes the centroid of that set; similarly for "Right".  The line passing
+  computes the centroid of that set; similarly for "Right". The line passing
   through these two centroids defines the horizontal axis. The vertical axis is
   likewise computed from the centroids for points matching the "Up" and "Down"
   text patterns.
@@ -130,8 +131,8 @@ Further useful articles are
 
 You can explore visually by zooming, rotating, and panning using natural
 click-and-drag gestures. Hovering your mouse over a point will show any
-[metadata](#metadata) for that point.  You can also inspect nearest-neighbor
-subsets.  Clicking on a point causes the right pane to list the nearest
+[metadata](#metadata) for that point. You can also inspect nearest-neighbor
+subsets. Clicking on a point causes the right pane to list the nearest
 neighbors, along with distances to the current point. The nearest-neighbor
 points are also highlighted in the projection.
 
@@ -144,13 +145,13 @@ ways:
 - Enabling selection, clicking on a point and dragging defines a selection
   sphere.
 
-Then click the "Isolate *nnn* points" button at the top of the Inspector pane
+Then click the "Isolate _nnn_ points" button at the top of the Inspector pane
 on the right hand side. The following image shows 101 points selected and ready
 for the user to click "Isolate 101 points":
 
 ![Selection of nearest neighbors](https://www.tensorflow.org/images/embedding-nearest-points.png "Selection of nearest neighbors")
 
-*Selection of the nearest neighbors of “important” in a word embedding dataset.*
+_Selection of the nearest neighbors of “important” in a word embedding dataset._
 
 Advanced tip: filtering with custom projection can be powerful. Below, we
 filtered the 100 nearest neighbors of “politics” and projected them onto the
@@ -206,16 +207,16 @@ be a [TSV file](https://en.wikipedia.org/wiki/Tab-separated_values)
 </code>
 
 The order of lines in the metadata file is assumed to match the order of
-vectors in the embedding variable, except for the header.  Consequently, the
+vectors in the embedding variable, except for the header. Consequently, the
 (i+1)-th line in the metadata file corresponds to the i-th row of the embedding
-variable.  If the TSV metadata file has only a single column, then we don’t
+variable. If the TSV metadata file has only a single column, then we don’t
 expect a header row, and assume each row is the label of the embedding. We
 include this exception because it matches the commonly-used "vocab file"
 format.
 
 To use images as metadata, you must produce a single
 [sprite image](https://www.google.com/webhp#q=what+is+a+sprite+image),
-consisting of small thumbnails, one for each vector in the embedding.  The
+consisting of small thumbnails, one for each vector in the embedding. The
 sprite should store thumbnails in row-first order: the first data point placed
 in the top left and the last data point in the bottom right, though the last
 row doesn't have to be filled, as shown below.
@@ -241,12 +242,11 @@ row doesn't have to be filled, as shown below.
 Follow [this link](https://www.tensorflow.org/images/embedding-mnist.mp4)
 to see a fun example of thumbnail images in the Embedding Projector.
 
-
 ## Mini-FAQ
 
 **Is "embedding" an action or a thing?**
 Both. People talk about embedding words in a vector space (action) and about
-producing word embeddings (things).  Common to both is the notion of embedding
+producing word embeddings (things). Common to both is the notion of embedding
 as a mapping from discrete objects to vectors. Creating or applying that
 mapping is an action, but the mapping itself is a thing.
 
@@ -258,5 +258,5 @@ displaying many properties that are dramatically different from what our human
 intuition has learned about 2- and 3-dimensional spaces.
 
 **Is an embedding the same as an embedding layer?**
-No. An *embedding layer* is a part of neural network, but an *embedding* is a more
+No. An _embedding layer_ is a part of neural network, but an _embedding_ is a more
 general concept.

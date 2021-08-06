@@ -6,6 +6,6 @@ Data for federal structure of Nepal
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Provinces_of_Nepal_2015.png/640px-Provinces_of_Nepal_2015.png"/>
 </p>
 
-
 ## Credits
->Pic By Aotearoa - Own work based on File:Nepal zones-noname.svg, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=43507497
+
+> Pic By Aotearoa - Own work based on File:Nepal zones-noname.svg, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=43507497

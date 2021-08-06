@@ -5,14 +5,12 @@ TensorFlow provides a C API that can be used to build
 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/c/c_api.h" class="external"><code>c_api.h</code></a>
 and designed for simplicity and uniformity rather than convenience.
 
-
 ## Supported Platforms
 
 TensorFlow for C is supported on the following systems:
 
-* Linux, 64-bit, x86
-* macOS X, Version 10.12.6 (Sierra) or higher
-
+- Linux, 64-bit, x86
+- macOS X, Version 10.12.6 (Sierra) or higher
 
 ## Setup
 
@@ -74,7 +72,6 @@ export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:~/mydir/lib
 </section>
 </div><!--/ds-selector-tabs-->
 
-
 ## Build
 
 ### Example program
@@ -113,7 +110,6 @@ the compiler:
 <pre class="devsite-terminal devsite-click-to-copy">
 gcc -I/usr/local/include -L/usr/local/lib hello_tf.c -ltensorflow -o hello_tf
 </pre>
-
 
 ## Build from source
 

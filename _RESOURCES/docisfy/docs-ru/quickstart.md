@@ -18,9 +18,9 @@ docsify init ./docs
 
 После завершения `init` вы можете увидеть список файлов в подкаталоге `./docs`.
 
-* `index.html`  файл входа
-* `README.md`   домашняя страница
-* `.nojekyll`   предотвращает игнорирование GitHub Pages, файлов начинающиеся с символа подчёркивания `_`
+- `index.html` файл входа
+- `README.md` домашняя страница
+- `.nojekyll` предотвращает игнорирование GitHub Pages, файлов начинающиеся с символа подчёркивания `_`
 
 Вы можете легко обновить документацию в `./docs/README.md`, конечно, вы можете добавить [больше страниц](more-pages.md).
 
@@ -43,21 +43,21 @@ docsify serve docs
 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css">
-</head>
-<body>
-  <div id="app"></div>
-  <script>
-    window.$docsify = {
-      //...
-    }
-  </script>
-  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
-</body>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      window.$docsify = {
+        //...
+      };
+    </script>
+    <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  </body>
 </html>
 ```
 
@@ -72,25 +72,23 @@ cd docs && python -m SimpleHTTPServer 3000
 Если вы хотите, вы можете показать диалог загрузки, прежде чем docsify начнет визуализировать вашу документацию:
 
 ```html
-  <!-- index.html -->
+<!-- index.html -->
 
-  <div id="app">Пожалуйста, подождите...</div>
+<div id="app">Пожалуйста, подождите...</div>
 ```
 
 Вы должны установить атрибут `data-app`, если вы изменили `el`:
 
 ```html
-  <!-- index.html -->
+<!-- index.html -->
 
-  <div data-app id="main">Please wait...</div>
+<div data-app id="main">Please wait...</div>
 
-  <script>
-    window.$docsify = {
-      el: '#main'
-    }
-  </script>
+<script>
+  window.$docsify = {
+    el: "#main",
+  };
+</script>
 ```
 
 Подробнее про [конфигурацию el](ru-ru/configuration.md#el).
-
-

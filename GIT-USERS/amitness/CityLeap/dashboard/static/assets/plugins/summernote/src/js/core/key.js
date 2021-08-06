@@ -1,7 +1,4 @@
-define([
-  'summernote/core/list',
-  'summernote/core/func'
-], function (list, func) {
+define(["summernote/core/list", "summernote/core/func"], function (list, func) {
   /**
    * @class core.key
    *
@@ -12,40 +9,40 @@ define([
    */
   var key = (function () {
     var keyMap = {
-      'BACKSPACE': 8,
-      'TAB': 9,
-      'ENTER': 13,
-      'SPACE': 32,
+      BACKSPACE: 8,
+      TAB: 9,
+      ENTER: 13,
+      SPACE: 32,
 
       // Number: 0-9
-      'NUM0': 48,
-      'NUM1': 49,
-      'NUM2': 50,
-      'NUM3': 51,
-      'NUM4': 52,
-      'NUM5': 53,
-      'NUM6': 54,
-      'NUM7': 55,
-      'NUM8': 56,
+      NUM0: 48,
+      NUM1: 49,
+      NUM2: 50,
+      NUM3: 51,
+      NUM4: 52,
+      NUM5: 53,
+      NUM6: 54,
+      NUM7: 55,
+      NUM8: 56,
 
       // Alphabet: a-z
-      'B': 66,
-      'E': 69,
-      'I': 73,
-      'J': 74,
-      'K': 75,
-      'L': 76,
-      'R': 82,
-      'S': 83,
-      'U': 85,
-      'V': 86,
-      'Y': 89,
-      'Z': 90,
+      B: 66,
+      E: 69,
+      I: 73,
+      J: 74,
+      K: 75,
+      L: 76,
+      R: 82,
+      S: 83,
+      U: 85,
+      V: 86,
+      Y: 89,
+      Z: 90,
 
-      'SLASH': 191,
-      'LEFTBRACKET': 219,
-      'BACKSLASH': 220,
-      'RIGHTBRACKET': 221
+      SLASH: 191,
+      LEFTBRACKET: 219,
+      BACKSLASH: 220,
+      RIGHTBRACKET: 221,
     };
 
     return {
@@ -72,7 +69,7 @@ define([
        * @property {String} nameFromCode.8 "BACKSPACE"
        */
       nameFromCode: func.invertObject(keyMap),
-      code: keyMap
+      code: keyMap,
     };
   })();
 

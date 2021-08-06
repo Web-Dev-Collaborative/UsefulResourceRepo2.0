@@ -3,7 +3,7 @@ on:
   workflow_run:
     workflows:
       - Build Docs
-    types: 
+    types:
       - completed
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
         id: netlify
         uses: nwtgck/actions-netlify@v1.1.5
         with:
-          publish-dir: './site'
+          publish-dir: "./site"
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-commit-comment: false

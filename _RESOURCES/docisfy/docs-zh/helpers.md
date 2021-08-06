@@ -35,13 +35,13 @@ docsify 扩展了一些 Markdown 语法，可以让文档更易读。
 现在你可以做到这一点
 
 ```md
-[link](/demo/ ':ignore')
+[link](/demo/ ":ignore")
 ```
 
 即将会得到 `<a href="/demo/">link</a>` html 代码。不要担心，你仍然可以为链接设置标题。
 
 ```md
-[link](/demo/ ':ignore title')
+[link](/demo/ ":ignore title")
 
 <a href="/demo/" title="title">link</a>
 ```
@@ -49,14 +49,14 @@ docsify 扩展了一些 Markdown 语法，可以让文档更易读。
 ## 设置链接的 target 属性
 
 ```md
-[link](/demo ':target=_blank')
-[link](/demo2 ':target=_self')
+[link](/demo ":target=_blank")
+[link](/demo2 ":target=_self")
 ```
 
 ## 禁用链接
 
 ```md
-[link](/demo ':disabled')
+[link](/demo ":disabled")
 ```
 
 ## 跨域链接
@@ -64,7 +64,7 @@ docsify 扩展了一些 Markdown 语法，可以让文档更易读。
 只有当你同时设置了 `routerMode: 'history'` 和 `externalLinkTarget: '_self'` 时，你需要为这些跨域链接添加这个配置。
 
 ```md
-[example.com](https://example.com/ ':crossorgin')
+[example.com](https://example.com/ ":crossorgin")
 ```
 
 ## Github 任务列表
@@ -90,29 +90,29 @@ docsify 扩展了一些 Markdown 语法，可以让文档更易读。
 ### 缩放
 
 ```md
-![logo](https://docsify.js.org/_media/icon.svg ':size=WIDTHxHEIGHT')
-![logo](https://docsify.js.org/_media/icon.svg ':size=50x100')
-![logo](https://docsify.js.org/_media/icon.svg ':size=100')
+![logo](https://docsify.js.org/_media/icon.svg ":size=WIDTHxHEIGHT")
+![logo](https://docsify.js.org/_media/icon.svg ":size=50x100")
+![logo](https://docsify.js.org/_media/icon.svg ":size=100")
 
 <!-- 支持按百分比缩放 -->
 
-![logo](https://docsify.js.org/_media/icon.svg ':size=10%')
+![logo](https://docsify.js.org/_media/icon.svg ":size=10%")
 ```
 
-![logo](https://docsify.js.org/_media/icon.svg ':size=50x100')
-![logo](https://docsify.js.org/_media/icon.svg ':size=100')
-![logo](https://docsify.js.org/_media/icon.svg ':size=10%')
+![logo](https://docsify.js.org/_media/icon.svg ":size=50x100")
+![logo](https://docsify.js.org/_media/icon.svg ":size=100")
+![logo](https://docsify.js.org/_media/icon.svg ":size=10%")
 
 ### 设置图片的 Class
 
 ```md
-![logo](https://docsify.js.org/_media/icon.svg ':class=someCssClass')
+![logo](https://docsify.js.org/_media/icon.svg ":class=someCssClass")
 ```
 
 ### 设置图片的 ID
 
 ```md
-![logo](https://docsify.js.org/_media/icon.svg ':id=someCssId')
+![logo](https://docsify.js.org/_media/icon.svg ":id=someCssId")
 ```
 
 ## 设置标题的 id 属性

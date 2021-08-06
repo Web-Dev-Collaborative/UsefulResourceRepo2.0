@@ -7,12 +7,12 @@ window.$docsify = {
   markdown: {
     smartypants: true,
     renderer: {
-      link: function() {
+      link: function () {
         // ...
-      }
-    }
-  }
-}
+      },
+    },
+  },
+};
 ```
 
 ?> Ссылка на опции конфигурации [разметки документа](https://github.com/chjj/marked#options-1)
@@ -21,12 +21,12 @@ window.$docsify = {
 
 ```js
 window.$docsify = {
-  markdown: function(marked, renderer) {
+  markdown: function (marked, renderer) {
     // ...
 
-    return marked
-  }
-}
+    return marked;
+  },
+};
 ```
 
 ## Поддержка mermaid
@@ -41,17 +41,15 @@ mermaid.initialize({ startOnLoad: false });
 window.$docsify = {
   markdown: {
     renderer: {
-      code: function(code, lang) {
+      code: function (code, lang) {
         if (lang === "mermaid") {
           return (
             '<div class="mermaid">' + mermaid.render(lang, code) + "</div>"
           );
         }
         return this.origin.code.apply(this, arguments);
-      }
-    }
-  }
-}
+      },
+    },
+  },
+};
 ```
-
-

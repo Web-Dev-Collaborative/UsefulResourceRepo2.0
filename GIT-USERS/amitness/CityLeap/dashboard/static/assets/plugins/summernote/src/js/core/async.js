@@ -1,4 +1,4 @@
-define('summernote/core/async', function () {
+define("summernote/core/async", function () {
   /**
    * @class core.async
    *
@@ -25,11 +25,11 @@ define('summernote/core/async', function () {
           },
           onerror: function () {
             deferred.reject(this);
-          }
+          },
         }).readAsDataURL(file);
       }).promise();
     };
-  
+
     /**
      * @method createImage
      *
@@ -41,26 +41,31 @@ define('summernote/core/async', function () {
      */
     var createImage = function (sUrl, filename) {
       return $.Deferred(function (deferred) {
-        var $img = $('<img>');
+        var $img = $("<img>");
 
-        $img.one('load', function () {
-          $img.off('error abort');
-          deferred.resolve($img);
-        }).one('error abort', function () {
-          $img.off('load').detach();
-          deferred.reject($img);
-        }).css({
-          display: 'none'
-        }).appendTo(document.body).attr({
-          'src': sUrl,
-          'data-filename': filename
-        });
+        $img
+          .one("load", function () {
+            $img.off("error abort");
+            deferred.resolve($img);
+          })
+          .one("error abort", function () {
+            $img.off("load").detach();
+            deferred.reject($img);
+          })
+          .css({
+            display: "none",
+          })
+          .appendTo(document.body)
+          .attr({
+            src: sUrl,
+            "data-filename": filename,
+          });
       }).promise();
     };
 
     return {
       readFileAsDataURL: readFileAsDataURL,
-      createImage: createImage
+      createImage: createImage,
     };
   })();
 

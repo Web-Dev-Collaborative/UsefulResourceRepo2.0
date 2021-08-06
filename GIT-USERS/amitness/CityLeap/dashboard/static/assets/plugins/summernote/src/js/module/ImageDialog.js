@@ -1,6 +1,4 @@
-define([
-  'summernote/core/key'
-], function (key) {
+define(["summernote/core/key"], function (key) {
   var ImageDialog = function (handler) {
     /**
      * toggle button status
@@ -10,8 +8,8 @@ define([
      * @param {Boolean} isEnable
      */
     var toggleBtn = function ($btn, isEnable) {
-      $btn.toggleClass('disabled', !isEnable);
-      $btn.attr('disabled', !isEnable);
+      $btn.toggleClass("disabled", !isEnable);
+      $btn.attr("disabled", !isEnable);
     };
 
     /**
@@ -22,31 +20,33 @@ define([
      * @param {jQuery} $btn
      */
     var bindEnterKey = function ($input, $btn) {
-      $input.on('keypress', function (event) {
+      $input.on("keypress", function (event) {
         if (event.keyCode === key.code.ENTER) {
-          $btn.trigger('click');
+          $btn.trigger("click");
         }
       });
     };
 
     this.show = function (layoutInfo) {
       var $dialog = layoutInfo.dialog(),
-          $editable = layoutInfo.editable();
+        $editable = layoutInfo.editable();
 
-      handler.invoke('editor.saveRange', $editable);
-      this.showImageDialog($editable, $dialog).then(function (data) {
-        handler.invoke('editor.restoreRange', $editable);
+      handler.invoke("editor.saveRange", $editable);
+      this.showImageDialog($editable, $dialog)
+        .then(function (data) {
+          handler.invoke("editor.restoreRange", $editable);
 
-        if (typeof data === 'string') {
-          // image url
-          handler.invoke('editor.insertImage', $editable, data);
-        } else {
-          // array of files
-          handler.insertImages(layoutInfo, data);
-        }
-      }).fail(function () {
-        handler.invoke('editor.restoreRange', $editable);
-      });
+          if (typeof data === "string") {
+            // image url
+            handler.invoke("editor.insertImage", $editable, data);
+          } else {
+            // array of files
+            handler.insertImages(layoutInfo, data);
+          }
+        })
+        .fail(function () {
+          handler.invoke("editor.restoreRange", $editable);
+        });
     };
 
     /**
@@ -58,50 +58,58 @@ define([
      */
     this.showImageDialog = function ($editable, $dialog) {
       return $.Deferred(function (deferred) {
-        var $imageDialog = $dialog.find('.note-image-dialog');
+        var $imageDialog = $dialog.find(".note-image-dialog");
 
-        var $imageInput = $dialog.find('.note-image-input'),
-            $imageUrl = $dialog.find('.note-image-url'),
-            $imageBtn = $dialog.find('.note-image-btn');
+        var $imageInput = $dialog.find(".note-image-input"),
+          $imageUrl = $dialog.find(".note-image-url"),
+          $imageBtn = $dialog.find(".note-image-btn");
 
-        $imageDialog.one('shown.bs.modal', function () {
-          // Cloning imageInput to clear element.
-          $imageInput.replaceWith($imageInput.clone()
-            .on('change', function () {
-              deferred.resolve(this.files || this.value);
-              $imageDialog.modal('hide');
-            })
-            .val('')
-          );
+        $imageDialog
+          .one("shown.bs.modal", function () {
+            // Cloning imageInput to clear element.
+            $imageInput.replaceWith(
+              $imageInput
+                .clone()
+                .on("change", function () {
+                  deferred.resolve(this.files || this.value);
+                  $imageDialog.modal("hide");
+                })
+                .val("")
+            );
 
-          $imageBtn.click(function (event) {
-            event.preventDefault();
+            $imageBtn.click(function (event) {
+              event.preventDefault();
 
-            deferred.resolve($imageUrl.val());
-            $imageDialog.modal('hide');
-          });
+              deferred.resolve($imageUrl.val());
+              $imageDialog.modal("hide");
+            });
 
-          $imageUrl.on('keyup paste', function (event) {
-            var url;
-            
-            if (event.type === 'paste') {
-              url = event.originalEvent.clipboardData.getData('text');
-            } else {
-              url = $imageUrl.val();
+            $imageUrl
+              .on("keyup paste", function (event) {
+                var url;
+
+                if (event.type === "paste") {
+                  url = event.originalEvent.clipboardData.getData("text");
+                } else {
+                  url = $imageUrl.val();
+                }
+
+                toggleBtn($imageBtn, url);
+              })
+              .val("")
+              .trigger("focus");
+            bindEnterKey($imageUrl, $imageBtn);
+          })
+          .one("hidden.bs.modal", function () {
+            $imageInput.off("change");
+            $imageUrl.off("keyup paste keypress");
+            $imageBtn.off("click");
+
+            if (deferred.state() === "pending") {
+              deferred.reject();
             }
-            
-            toggleBtn($imageBtn, url);
-          }).val('').trigger('focus');
-          bindEnterKey($imageUrl, $imageBtn);
-        }).one('hidden.bs.modal', function () {
-          $imageInput.off('change');
-          $imageUrl.off('keyup paste keypress');
-          $imageBtn.off('click');
-
-          if (deferred.state() === 'pending') {
-            deferred.reject();
-          }
-        }).modal('show');
+          })
+          .modal("show");
       });
     };
   };

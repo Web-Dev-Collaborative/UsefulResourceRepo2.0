@@ -83,11 +83,11 @@ server {
 
 1.  登陆你的[Netlify](https://www.netlify.com/)账号
 2.  在[dashboard](https://app.netlify.com/)页上点击 **New site from Git**
-3.  选择那个你用来存储文档的git仓库，将 **Build Command** 留空, 将 **Publish directory** 区域填入你的`index.html`所在的目录，例如：填入`docs`(如果你的`index.html`的相对路径是`docs/index.html`的话)
+3.  选择那个你用来存储文档的 git 仓库，将 **Build Command** 留空, 将 **Publish directory** 区域填入你的`index.html`所在的目录，例如：填入`docs`(如果你的`index.html`的相对路径是`docs/index.html`的话)
 
 ### HTML5 路由
 
-当使用HTML5路由时，你需要设置一条将所有请求重定向到你的`index.html`的重定向规则。当你使用Netlify时这相当简单，在你的**Publish Directory**下创建一个`_redirects`文件，写进以下内容就可以了 :tada:
+当使用 HTML5 路由时，你需要设置一条将所有请求重定向到你的`index.html`的重定向规则。当你使用 Netlify 时这相当简单，在你的**Publish Directory**下创建一个`_redirects`文件，写进以下内容就可以了 :tada:
 
 ```sh
 /* /index.html 200
@@ -101,14 +101,14 @@ server {
 
 ## AWS Amplify
 
-1. 在 Docsify 项目的 `index.html` 中设置 routerMode 为 *history* 模式：
+1. 在 Docsify 项目的 `index.html` 中设置 routerMode 为 _history_ 模式：
 
 ```html
 <script>
-    window.$docsify = {
-      loadSidebar: true,
-      routerMode: 'history'
-    }
+  window.$docsify = {
+    loadSidebar: true,
+    routerMode: "history",
+  };
 </script>
 ```
 
@@ -127,7 +127,7 @@ frontend:
   artifacts:
     baseDirectory: /docs
     files:
-      - '**/*'
+      - "**/*"
   cache:
     paths: []
 ```
@@ -135,10 +135,10 @@ frontend:
 6. 依次添加如下跳转规则。注意第二条的 PNG 是图片格式，如果你要使用其它图片格式，可以相应修改。
 
 | Source address | Target address | Type          |
-|----------------|----------------|---------------|
-| /<*>.md        | /<*>.md        | 200 (Rewrite) |
-| /<*>.png       | /<*>.png       | 200 (Rewrite) |
-| /<*>           | /index.html    | 200 (Rewrite) |
+| -------------- | -------------- | ------------- |
+| /<\*>.md       | /<\*>.md       | 200 (Rewrite) |
+| /<\*>.png      | /<\*>.png      | 200 (Rewrite) |
+| /<\*>          | /index.html    | 200 (Rewrite) |
 
 ## Docker
 

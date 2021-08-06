@@ -1,82 +1,79 @@
-var AJAX_NS = 'ajax',
-	_ajaxCur,
-	_removeAjaxCursor = function() {
-		if(_ajaxCur) {
-			_body.removeClass(_ajaxCur);
-		}
-	},
-	_destroyAjaxRequest = function() {
-		_removeAjaxCursor();
-		if(mfp.req) {
-			mfp.req.abort();
-		}
-	};
+var AJAX_NS = "ajax",
+  _ajaxCur,
+  _removeAjaxCursor = function () {
+    if (_ajaxCur) {
+      _body.removeClass(_ajaxCur);
+    }
+  },
+  _destroyAjaxRequest = function () {
+    _removeAjaxCursor();
+    if (mfp.req) {
+      mfp.req.abort();
+    }
+  };
 
 $.magnificPopup.registerModule(AJAX_NS, {
+  options: {
+    settings: null,
+    cursor: "mfp-ajax-cur",
+    tError: '<a href="%url%">The content</a> could not be loaded.',
+  },
 
-	options: {
-		settings: null,
-		cursor: 'mfp-ajax-cur',
-		tError: '<a href="%url%">The content</a> could not be loaded.'
-	},
+  proto: {
+    initAjax: function () {
+      mfp.types.push(AJAX_NS);
+      _ajaxCur = mfp.st.ajax.cursor;
 
-	proto: {
-		initAjax: function() {
-			mfp.types.push(AJAX_NS);
-			_ajaxCur = mfp.st.ajax.cursor;
+      _mfpOn(CLOSE_EVENT + "." + AJAX_NS, _destroyAjaxRequest);
+      _mfpOn("BeforeChange." + AJAX_NS, _destroyAjaxRequest);
+    },
+    getAjax: function (item) {
+      if (_ajaxCur) _body.addClass(_ajaxCur);
 
-			_mfpOn(CLOSE_EVENT+'.'+AJAX_NS, _destroyAjaxRequest);
-			_mfpOn('BeforeChange.' + AJAX_NS, _destroyAjaxRequest);
-		},
-		getAjax: function(item) {
+      mfp.updateStatus("loading");
 
-			if(_ajaxCur)
-				_body.addClass(_ajaxCur);
+      var opts = $.extend(
+        {
+          url: item.src,
+          success: function (data, textStatus, jqXHR) {
+            var temp = {
+              data: data,
+              xhr: jqXHR,
+            };
 
-			mfp.updateStatus('loading');
+            _mfpTrigger("ParseAjax", temp);
 
-			var opts = $.extend({
-				url: item.src,
-				success: function(data, textStatus, jqXHR) {
-					var temp = {
-						data:data,
-						xhr:jqXHR
-					};
+            mfp.appendContent($(temp.data), AJAX_NS);
 
-					_mfpTrigger('ParseAjax', temp);
+            item.finished = true;
 
-					mfp.appendContent( $(temp.data), AJAX_NS );
+            _removeAjaxCursor();
 
-					item.finished = true;
+            mfp._setFocus();
 
-					_removeAjaxCursor();
+            setTimeout(function () {
+              mfp.wrap.addClass(READY_CLASS);
+            }, 16);
 
-					mfp._setFocus();
+            mfp.updateStatus("ready");
 
-					setTimeout(function() {
-						mfp.wrap.addClass(READY_CLASS);
-					}, 16);
+            _mfpTrigger("AjaxContentAdded");
+          },
+          error: function () {
+            _removeAjaxCursor();
+            item.finished = item.loadError = true;
+            mfp.updateStatus(
+              "error",
+              mfp.st.ajax.tError.replace("%url%", item.src)
+            );
+          },
+        },
+        mfp.st.ajax.settings
+      );
 
-					mfp.updateStatus('ready');
+      mfp.req = $.ajax(opts);
 
-					_mfpTrigger('AjaxContentAdded');
-				},
-				error: function() {
-					_removeAjaxCursor();
-					item.finished = item.loadError = true;
-					mfp.updateStatus('error', mfp.st.ajax.tError.replace('%url%', item.src));
-				}
-			}, mfp.st.ajax.settings);
-
-			mfp.req = $.ajax(opts);
-
-			return '';
-		}
-	}
+      return "";
+    },
+  },
 });
-
-
-
-
-
-	

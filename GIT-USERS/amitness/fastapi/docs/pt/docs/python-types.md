@@ -13,8 +13,7 @@ O **FastAPI** é baseado nesses type hints, eles oferecem muitas vantagens e ben
 Mas mesmo que você nunca use o **FastAPI**, você se beneficiaria de aprender um pouco sobre eles.
 
 !!! note "Nota"
-     Se você é um especialista em Python e já sabe tudo sobre type hints, pule para o próximo capítulo.
-
+Se você é um especialista em Python e já sabe tudo sobre type hints, pule para o próximo capítulo.
 
 ## Motivação
 
@@ -32,9 +31,9 @@ John Doe
 
 A função faz o seguinte:
 
-* Pega um `first_name` e `last_name`.
-* Converte a primeira letra de cada uma em maiúsculas com `title ()`.
-* <abbr title = "Agrupa-os, como um. Com o conteúdo de um após o outro."> Concatena </abbr> com um espaço no meio.
+- Pega um `first_name` e `last_name`.
+- Converte a primeira letra de cada uma em maiúsculas com `title ()`.
+- <abbr title = "Agrupa-os, como um. Com o conteúdo de um após o outro."> Concatena </abbr> com um espaço no meio.
 
 ```Python hl_lines="2"
 {!../../../docs_src/python_types/tutorial001.py!}
@@ -136,10 +135,10 @@ Você pode declarar todos os tipos padrão de Python, não apenas `str`.
 
 Você pode usar, por exemplo:
 
-* `int`
-* `float`
-* `bool`
-* `bytes`
+- `int`
+- `float`
+- `bool`
+- `bytes`
 
 ```Python hl_lines="1"
 {!../../../docs_src/python_types/tutorial005.py!}
@@ -174,7 +173,7 @@ Como a lista é um tipo que contém alguns tipos internos, você os coloca entre
 ```
 
 !!! tip "Dica"
-    Esses tipos internos entre colchetes são chamados de "parâmetros de tipo".
+Esses tipos internos entre colchetes são chamados de "parâmetros de tipo".
 
     Nesse caso, `str` é o parâmetro de tipo passado para `List`.
 
@@ -200,8 +199,8 @@ Você faria o mesmo para declarar `tuple`s e `set`s:
 
 Isso significa que:
 
-* A variável `items_t` é uma `tuple` com 3 itens, um `int`, outro `int` e uma `str`.
-* A variável `items_s` é um `set`, e cada um de seus itens é do tipo `bytes`.
+- A variável `items_t` é uma `tuple` com 3 itens, um `int`, outro `int` e uma `str`.
+- A variável `items_s` é um `set`, e cada um de seus itens é do tipo `bytes`.
 
 #### `Dict`
 
@@ -217,9 +216,9 @@ O segundo parâmetro de tipo é para os valores do `dict`:
 
 Isso significa que:
 
-* A variável `prices` é um dict`:
-    * As chaves deste `dict` são do tipo `str` (digamos, o nome de cada item).
-    * Os valores deste `dict` são do tipo `float` (digamos, o preço de cada item).
+- A variável `prices` é um dict`:
+  - As chaves deste `dict` são do tipo `str` (digamos, o nome de cada item).
+  - Os valores deste `dict` são do tipo `float` (digamos, o preço de cada item).
 
 #### `Opcional`
 
@@ -235,12 +234,12 @@ O uso de `Opcional [str]` em vez de apenas `str` permitirá que o editor o ajude
 
 Esses tipos que usam parâmetros de tipo entre colchetes, como:
 
-* `List`
-* `Tuple`
-* `Set`
-* `Dict`
-* `Opcional`
-* ...e outros.
+- `List`
+- `Tuple`
+- `Set`
+- `Dict`
+- `Opcional`
+- ...e outros.
 
 são chamados **tipos genéricos** ou **genéricos**.
 
@@ -283,11 +282,11 @@ Retirado dos documentos oficiais dos Pydantic:
 ```
 
 !!! info "Informação"
-    Para saber mais sobre o <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank"> Pydantic, verifique seus documentos </a>.
+Para saber mais sobre o <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank"> Pydantic, verifique seus documentos </a>.
 
 **FastAPI** é todo baseado em Pydantic.
 
-Você verá muito mais disso na prática no [Tutorial - Guia do usuário](tutorial/index.md){.internal-link target=_blank}.
+Você verá muito mais disso na prática no [Tutorial - Guia do usuário](tutorial/index.md){.internal-link target=\_blank}.
 
 ## Type hints em **FastAPI**
 
@@ -295,22 +294,21 @@ O **FastAPI** aproveita esses type hints para fazer várias coisas.
 
 Com o **FastAPI**, você declara parâmetros com type hints e obtém:
 
-* **Suporte ao editor**.
-* **Verificações de tipo**.
+- **Suporte ao editor**.
+- **Verificações de tipo**.
 
 ... e **FastAPI** usa as mesmas declarações para:
 
-* **Definir requisitos**: dos parâmetros do caminho da solicitação, parâmetros da consulta, cabeçalhos, corpos, dependências, etc.
-* **Converter dados**: da solicitação para o tipo necessário.
-* **Validar dados**: provenientes de cada solicitação:
-    * A geração de **erros automáticos** retornou ao cliente quando os dados são inválidos.
-* **Documente** a API usando OpenAPI:
-    * que é usado pelas interfaces de usuário da documentação interativa automática.
+- **Definir requisitos**: dos parâmetros do caminho da solicitação, parâmetros da consulta, cabeçalhos, corpos, dependências, etc.
+- **Converter dados**: da solicitação para o tipo necessário.
+- **Validar dados**: provenientes de cada solicitação:
+  - A geração de **erros automáticos** retornou ao cliente quando os dados são inválidos.
+- **Documente** a API usando OpenAPI:
+  - que é usado pelas interfaces de usuário da documentação interativa automática.
 
-Tudo isso pode parecer abstrato. Não se preocupe. Você verá tudo isso em ação no [Tutorial - Guia do usuário](tutorial/index.md){.internal-link target=_blank}.
+Tudo isso pode parecer abstrato. Não se preocupe. Você verá tudo isso em ação no [Tutorial - Guia do usuário](tutorial/index.md){.internal-link target=\_blank}.
 
 O importante é que, usando tipos padrão de Python, em um único local (em vez de adicionar mais classes, decoradores, etc.), o **FastAPI** fará muito trabalho para você.
 
 !!! info "Informação"
-    Se você já passou por todo o tutorial e voltou para ver mais sobre os tipos, um bom recurso é <a href = "https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class = "external-link "target =" _ blank "> a "cheat sheet" do `mypy` </a>.
-
+Se você já passou por todo o tutorial e voltou para ver mais sobre os tipos, um bom recurso é <a href = "https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class = "external-link "target =" \_ blank "> a "cheat sheet" do `mypy` </a>.

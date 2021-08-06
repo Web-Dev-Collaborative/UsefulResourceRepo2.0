@@ -1,16 +1,16 @@
-'use strict';
+"use strict";
 
-var express = require('express'),
-  path = require('path'),
+var express = require("express"),
+  path = require("path"),
   router = express.Router(),
-  multer = require('multer');
+  multer = require("multer");
 
 /* db */
-var db = require('../db.js')();
+var db = require("../db.js")();
 
 var _path = {
-  'companies': 'assets/admin/images/companies',
-  'people': 'assets/admin/images/people'
+  companies: "assets/admin/images/companies",
+  people: "assets/admin/images/people",
 };
 
 var storage = multer.diskStorage({
@@ -21,26 +21,33 @@ var storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     var filename = file.originalname;
-    cb(null, file.fieldname + '-' + Date.now() + '.' + filename.substr(filename.lastIndexOf('.')+1));
-  }
+    cb(
+      null,
+      file.fieldname +
+        "-" +
+        Date.now() +
+        "." +
+        filename.substr(filename.lastIndexOf(".") + 1)
+    );
+  },
 });
 
 var upload = multer({ storage: storage });
 
-router.get('/', function(req, res) {
+router.get("/", function (req, res) {
   db[req.query.for].find({}, function (err, docs) {
     res.send(docs);
   });
 });
 
-router.post('/', upload.single('image'), function(req, res) {
+router.post("/", upload.single("image"), function (req, res) {
   var params = {
-    'file': req.file,
-    'info': req.body
+    file: req.file,
+    info: req.body,
   };
 
-  db[req.body.for].insert(params, function(err, NewDoc) {
-    res.redirect('/' + req.body.for);
+  db[req.body.for].insert(params, function (err, NewDoc) {
+    res.redirect("/" + req.body.for);
   });
 });
 

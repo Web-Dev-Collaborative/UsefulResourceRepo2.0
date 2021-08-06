@@ -27,8 +27,8 @@ Alternativamente, puede crear un archivo de navegación personalizada basado en 
 
 <script>
   window.$docsify = {
-    loadNavbar: true
-  }
+    loadNavbar: true,
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 ```
@@ -36,8 +36,8 @@ Alternativamente, puede crear un archivo de navegación personalizada basado en 
 ```markdown
 <!-- _navbar.md -->
 
-* [En](/)
-* [chinese](/zh-cn/)
+- [En](/)
+- [chinese](/zh-cn/)
 ```
 
 !> Necesita crear un `.nojekyll` en `./docs` para evitar que GitHub Pages ignoren los archivos que comienzan con un guión bajo.
@@ -51,24 +51,24 @@ Puede crear listas secundarias al sangrar (tabular) elementos que están bajo un
 ```markdown
 <!-- _navbar.md -->
 
-* Getting started
+- Getting started
 
-  * [Quick start](/es/quickstart.md)
-  * [Writing more pages](/es/more-pages.md)
-  * [Custom navbar](/es/custom-navbar.md)
-  * [Cover page](/es/cover.md)
+  - [Quick start](/es/quickstart.md)
+  - [Writing more pages](/es/more-pages.md)
+  - [Custom navbar](/es/custom-navbar.md)
+  - [Cover page](/es/cover.md)
 
-* Configuration
-  * [Configuration](/es/configuration.md)
-  * [Themes](/es/themes.md)
-  * [Using plugins](/es/plugins.md)
-  * [Markdown configuration](/es/markdown.md)
-  * [Language highlight](/es/language-highlight.md)
+- Configuration
+  - [Configuration](/es/configuration.md)
+  - [Themes](/es/themes.md)
+  - [Using plugins](/es/plugins.md)
+  - [Markdown configuration](/es/markdown.md)
+  - [Language highlight](/es/language-highlight.md)
 ```
 
 produce
 
-![Navbar anidado](/es/_images/nested-navbar.png 'Nesting navbar')
+![Navbar anidado](/es/_images/nested-navbar.png "Nesting navbar")
 
 ## Combinando barras de navegación personalizadas con el plugin emoji
 
@@ -80,7 +80,7 @@ Si usas el [plugin emoji](/es/plugins#emoji):
 <script>
   window.$docsify = {
     // ...
-  }
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/emoji.min.js"></script>
@@ -91,6 +91,6 @@ podrias, por ejemplo, usar los emojis de banderas en tu archivo `_navbar.md`:
 ```markdown
 <!-- _navbar.md -->
 
-* [:us:, :uk:](/)
-* [:cn:](/zh-cn/)
+- [:us:, :uk:](/)
+- [:cn:](/zh-cn/)
 ```

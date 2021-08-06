@@ -2,8 +2,8 @@
 
 A [`MetaGraph`](https://www.tensorflow.org/code/tensorflow/core/protobuf/meta_graph.proto) contains both a TensorFlow GraphDef
 as well as associated metadata necessary for running computation in a
-graph when crossing a process boundary.  It can also be used for long
-term storage of graphs.  The MetaGraph contains the information required
+graph when crossing a process boundary. It can also be used for long
+term storage of graphs. The MetaGraph contains the information required
 to continue training, perform evaluation, or run inference on a previously trained graph.
 
 The APIs for exporting and importing the complete model are in
@@ -18,112 +18,110 @@ The information contained in a MetaGraph is expressed as a
 [`MetaGraphDef`](https://www.tensorflow.org/code/tensorflow/core/protobuf/meta_graph.proto)
 protocol buffer. It contains the following fields:
 
-* [`MetaInfoDef`](https://www.tensorflow.org/code/tensorflow/core/protobuf/meta_graph.proto) for meta information, such as version and other user information.
-* [`GraphDef`](https://www.tensorflow.org/code/tensorflow/core/framework/graph.proto) for describing the graph.
-* [`SaverDef`](https://www.tensorflow.org/code/tensorflow/core/protobuf/saver.proto) for the saver.
-* [`CollectionDef`](https://www.tensorflow.org/code/tensorflow/core/protobuf/meta_graph.proto)
-map that further describes additional components of the model such as
-[`Variables`](../../api_guides/python/state_ops.md),
-`tf.train.QueueRunner`, etc.
+- [`MetaInfoDef`](https://www.tensorflow.org/code/tensorflow/core/protobuf/meta_graph.proto) for meta information, such as version and other user information.
+- [`GraphDef`](https://www.tensorflow.org/code/tensorflow/core/framework/graph.proto) for describing the graph.
+- [`SaverDef`](https://www.tensorflow.org/code/tensorflow/core/protobuf/saver.proto) for the saver.
+- [`CollectionDef`](https://www.tensorflow.org/code/tensorflow/core/protobuf/meta_graph.proto)
+  map that further describes additional components of the model such as
+  [`Variables`](../../api_guides/python/state_ops.md),
+  `tf.train.QueueRunner`, etc.
 
 In order for a Python object to be serialized
 to and from `MetaGraphDef`, the Python class must implement `to_proto()` and
 `from_proto()` methods, and register them with the system using
 `register_proto_function`. For example:
 
-  ```Python
-  def to_proto(self, export_scope=None):
+```Python
+def to_proto(self, export_scope=None):
 
-    """Converts a `Variable` to a `VariableDef` protocol buffer.
+  """Converts a `Variable` to a `VariableDef` protocol buffer.
 
-    Args:
-      export_scope: Optional `string`. Name scope to remove.
+  Args:
+    export_scope: Optional `string`. Name scope to remove.
 
-    Returns:
-      A `VariableDef` protocol buffer, or `None` if the `Variable` is not
-      in the specified name scope.
-    """
-    if (export_scope is None or
-        self._variable.name.startswith(export_scope)):
-      var_def = variable_pb2.VariableDef()
-      var_def.variable_name = ops.strip_name_scope(
-          self._variable.name, export_scope)
-      var_def.initializer_name = ops.strip_name_scope(
-          self.initializer.name, export_scope)
-      var_def.snapshot_name = ops.strip_name_scope(
-          self._snapshot.name, export_scope)
-      if self._save_slice_info:
-        var_def.save_slice_info_def.MergeFrom(self._save_slice_info.to_proto(
-            export_scope=export_scope))
-      return var_def
-    else:
-      return None
+  Returns:
+    A `VariableDef` protocol buffer, or `None` if the `Variable` is not
+    in the specified name scope.
+  """
+  if (export_scope is None or
+      self._variable.name.startswith(export_scope)):
+    var_def = variable_pb2.VariableDef()
+    var_def.variable_name = ops.strip_name_scope(
+        self._variable.name, export_scope)
+    var_def.initializer_name = ops.strip_name_scope(
+        self.initializer.name, export_scope)
+    var_def.snapshot_name = ops.strip_name_scope(
+        self._snapshot.name, export_scope)
+    if self._save_slice_info:
+      var_def.save_slice_info_def.MergeFrom(self._save_slice_info.to_proto(
+          export_scope=export_scope))
+    return var_def
+  else:
+    return None
 
-  @staticmethod
-  def from_proto(variable_def, import_scope=None):
-    """Returns a `Variable` object created from `variable_def`."""
-    return Variable(variable_def=variable_def, import_scope=import_scope)
+@staticmethod
+def from_proto(variable_def, import_scope=None):
+  """Returns a `Variable` object created from `variable_def`."""
+  return Variable(variable_def=variable_def, import_scope=import_scope)
 
-  ops.register_proto_function(ops.GraphKeys.GLOBAL_VARIABLES,
-                              proto_type=variable_pb2.VariableDef,
-                              to_proto=Variable.to_proto,
-                              from_proto=Variable.from_proto)
-  ```
+ops.register_proto_function(ops.GraphKeys.GLOBAL_VARIABLES,
+                            proto_type=variable_pb2.VariableDef,
+                            to_proto=Variable.to_proto,
+                            from_proto=Variable.from_proto)
+```
 
 ## Exporting a Complete Model to MetaGraph
 
 The API for exporting a running model as a MetaGraph is `export_meta_graph()`.
 
-  ```Python
-  def export_meta_graph(filename=None, collection_list=None, as_text=False):
-    """Writes `MetaGraphDef` to save_path/filename.
+```Python
+def export_meta_graph(filename=None, collection_list=None, as_text=False):
+  """Writes `MetaGraphDef` to save_path/filename.
 
-    Args:
-      filename: Optional meta_graph filename including the path.
-      collection_list: List of string keys to collect.
-      as_text: If `True`, writes the meta_graph as an ASCII proto.
+  Args:
+    filename: Optional meta_graph filename including the path.
+    collection_list: List of string keys to collect.
+    as_text: If `True`, writes the meta_graph as an ASCII proto.
 
-    Returns:
-      A `MetaGraphDef` proto.
-    """
-  ```
+  Returns:
+    A `MetaGraphDef` proto.
+  """
+```
 
-  A `collection` can contain any Python objects that users would like to
-  be able to uniquely identify and easily retrieve. These objects can be
-  special operations in the graph, such as `train_op`, or hyper parameters,
-  such as "learning rate".  Users can specify the list of collections
-  they would like to export.  If no `collection_list` is specified,
-  all collections in the model will be exported.
+A `collection` can contain any Python objects that users would like to
+be able to uniquely identify and easily retrieve. These objects can be
+special operations in the graph, such as `train_op`, or hyper parameters,
+such as "learning rate". Users can specify the list of collections
+they would like to export. If no `collection_list` is specified,
+all collections in the model will be exported.
 
-  The API returns a serialized protocol buffer. If `filename` is
-  specified, the protocol buffer will also be written to a file.
+The API returns a serialized protocol buffer. If `filename` is
+specified, the protocol buffer will also be written to a file.
 
-  Here are some of the typical usage models:
+Here are some of the typical usage models:
 
-  * Export the default running graph:
+- Export the default running graph:
 
-  ```Python
-  # Build the model
+```Python
+# Build the model
+...
+with tf.Session() as sess:
+  # Use the model
   ...
-  with tf.Session() as sess:
-    # Use the model
-    ...
-  # Export the model to /tmp/my-model.meta.
-  meta_graph_def = tf.train.export_meta_graph(filename='/tmp/my-model.meta')
-  ```
+# Export the model to /tmp/my-model.meta.
+meta_graph_def = tf.train.export_meta_graph(filename='/tmp/my-model.meta')
+```
 
-  * Export the default running graph and only a subset of the collections.
+- Export the default running graph and only a subset of the collections.
 
-  ```Python
-  meta_graph_def = tf.train.export_meta_graph(
-      filename='/tmp/my-model.meta',
-      collection_list=["input_tensor", "output_tensor"])
-  ```
-
+```Python
+meta_graph_def = tf.train.export_meta_graph(
+    filename='/tmp/my-model.meta',
+    collection_list=["input_tensor", "output_tensor"])
+```
 
 The MetaGraph is also automatically exported via the `save()` API in
 `tf.train.Saver`.
-
 
 ## Import a MetaGraph
 
@@ -131,7 +129,7 @@ The API for importing a MetaGraph file into a graph is `import_meta_graph()`.
 
 Here are some of the typical usage models:
 
-* Import and continue training without building the model from scratch.
+- Import and continue training without building the model from scratch.
 
   ```Python
   ...
@@ -162,7 +160,7 @@ Here are some of the typical usage models:
       sess.run(train_op)
   ```
 
-* Import and extend the graph.
+- Import and extend the graph.
 
   For example, we can first build an inference graph, export it as a meta graph:
 
@@ -234,7 +232,7 @@ Here are some of the typical usage models:
     sess.run(train_op)
   ```
 
-* Import a graph with preset devices.
+- Import a graph with preset devices.
 
   Sometimes an exported meta graph is from a training environment that the
   importer doesn't have. For example, the model might have been trained
@@ -252,7 +250,7 @@ Here are some of the typical usage models:
     ...
   ```
 
-* Import within the default graph.
+- Import within the default graph.
 
   Sometimes you might want to run `export_meta_graph` and `import_meta_graph`
   in codelab using the default graph. In that case, you need to reset
@@ -268,7 +266,7 @@ Here are some of the typical usage models:
   ...
   ```
 
-* Retrieve Hyper Parameters
+- Retrieve Hyper Parameters
 
   ```Python
   filename = ".".join([tf.train.latest_checkpoint(train_dir), "meta"])

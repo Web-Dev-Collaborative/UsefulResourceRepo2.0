@@ -1,12 +1,12 @@
 # Learn and use machine learning
 
 This notebook collection is inspired by the book
-*[Deep Learning with Python](https://books.google.com/books?id=Yo3CAQAACAAJ)*.
+_[Deep Learning with Python](https://books.google.com/books?id=Yo3CAQAACAAJ)_.
 These tutorials use `tf.keras`, TensorFlow's high-level Python API for building
 and training deep learning models. To learn more about using Keras with
 TensorFlow, see the [TensorFlow Keras Guide](../../guide/keras).
 
-Publisher's note: *Deep Learning with Python* introduces the field of deep
+Publisher's note: _Deep Learning with Python_ introduces the field of deep
 learning using the Python language and the powerful Keras library. Written by
 Keras creator and Google AI researcher François Chollet, this book builds your
 understanding through intuitive explanations and practical examples.

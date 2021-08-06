@@ -10,14 +10,14 @@ Lee la guía [Inicio Rápido](/es/quickstart.md) para más detalles.
 
 ## Características
 
-* No hay archivos html creados de forma estática
-* Simple y liviano (~21kB gzipped)
-* Complemento de búsqueda inteligente de texto completo
-* Múltiples diseños
-* Complemento API de utilidad
-* Soporta Emoji
-* Compatible con IE11
-* Soporta server-side rendering ([ejemplo](https://github.com/docsifyjs/docsify-ssr-demo))
+- No hay archivos html creados de forma estática
+- Simple y liviano (~21kB gzipped)
+- Complemento de búsqueda inteligente de texto completo
+- Múltiples diseños
+- Complemento API de utilidad
+- Soporta Emoji
+- Compatible con IE11
+- Soporta server-side rendering ([ejemplo](https://github.com/docsifyjs/docsify-ssr-demo))
 
 ## Ejemplos
 

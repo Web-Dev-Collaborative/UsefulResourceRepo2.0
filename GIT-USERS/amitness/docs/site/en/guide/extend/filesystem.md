@@ -9,12 +9,12 @@ In order to both share and save certain types of state produced by TensorFlow,
 the framework assumes the existence of a reliable, shared filesystem. This
 shared filesystem has numerous uses, for example:
 
-*   Checkpoints of state are often saved to a distributed filesystem for
-    reliability and fault-tolerance.
-*   Training processes communicate with TensorBoard by writing event files
-    to a directory, which TensorBoard watches. A shared filesystem allows this
-    communication to work even when TensorBoard runs in a different process or
-    machine.
+- Checkpoints of state are often saved to a distributed filesystem for
+  reliability and fault-tolerance.
+- Training processes communicate with TensorBoard by writing event files
+  to a directory, which TensorBoard watches. A shared filesystem allows this
+  communication to work even when TensorBoard runs in a different process or
+  machine.
 
 There are many different implementations of shared or distributed filesystems in
 the real world, so TensorFlow provides an ability for users to implement a
@@ -28,15 +28,15 @@ that object at runtime in whichever process needs to write to that filesystem.
 
 Note that TensorFlow already includes many filesystem implementations, such as:
 
-*   A standard POSIX filesystem
+- A standard POSIX filesystem
 
-    Note: NFS filesystems often mount as a POSIX interface, and so standard
-    TensorFlow can work on top of NFS-mounted remote filesystems.
+  Note: NFS filesystems often mount as a POSIX interface, and so standard
+  TensorFlow can work on top of NFS-mounted remote filesystems.
 
-*   HDFS - the Hadoop File System
-*   GCS - Google Cloud Storage filesystem
-*   S3 - Amazon Simple Storage Service filesystem
-*   A "memory-mapped-file" filesystem
+- HDFS - the Hadoop File System
+- GCS - Google Cloud Storage filesystem
+- S3 - Amazon Simple Storage Service filesystem
+- A "memory-mapped-file" filesystem
 
 The rest of this guide describes how to implement a custom filesystem.
 
@@ -44,12 +44,12 @@ The rest of this guide describes how to implement a custom filesystem.
 
 To implement a custom filesystem plugin, you must do the following:
 
-*   Implement subclasses of `RandomAccessFile`, `WriteableFile`,
-    `AppendableFile`, and `ReadOnlyMemoryRegion`.
-*   Implement the `FileSystem` interface as a subclass.
-*   Register the `FileSystem` implementation with an appropriate prefix pattern.
-*   Load the filesystem plugin in a process that wants to write to that
-    filesystem.
+- Implement subclasses of `RandomAccessFile`, `WriteableFile`,
+  `AppendableFile`, and `ReadOnlyMemoryRegion`.
+- Implement the `FileSystem` interface as a subclass.
+- Register the `FileSystem` implementation with an appropriate prefix pattern.
+- Load the filesystem plugin in a process that wants to write to that
+  filesystem.
 
 ### The FileSystem interface
 
@@ -75,14 +75,14 @@ similar functionality, such as `hdfsDelete` for
 We suggest looking through these code examples to get an idea of how different
 filesystem implementations call their existing libraries. Examples include:
 
-*   [POSIX
-    plugin](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/platform/posix/posix_file_system.h)
-*   [HDFS
-    plugin](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/platform/hadoop/hadoop_file_system.h)
-*   [GCS
-    plugin](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/platform/cloud/gcs_file_system.h)
-*   [S3
-    plugin](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/platform/s3/s3_file_system.h)
+- [POSIX
+  plugin](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/platform/posix/posix_file_system.h)
+- [HDFS
+  plugin](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/platform/hadoop/hadoop_file_system.h)
+- [GCS
+  plugin](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/platform/cloud/gcs_file_system.h)
+- [S3
+  plugin](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/platform/s3/s3_file_system.h)
 
 #### The File interfaces
 

@@ -53,7 +53,7 @@ $ pip install fastapi[all]
 ...isso também inclui o `uvicorn`, que você pode usar como o servidor que rodará seu código.
 
 !!! nota
-    Você também pode instalar parte por parte.
+Você também pode instalar parte por parte.
 
     Isso é provavelmente o que você faria quando você quisesse lançar sua aplicação em produção:
 

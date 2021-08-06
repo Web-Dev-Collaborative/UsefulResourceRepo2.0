@@ -40,13 +40,13 @@ Daraus wird `<a href="/#/demo/">link</a>` und **docsify** lädt dann `/demo/READ
 Ändere deinen Link also zu:
 
 ```md
-[link](/demo/ ':ignore')
+[link](/demo/ ":ignore")
 ```
 
 Nun erhälst du den Link `<a href="/demo/">link</a>`. Einen Titel kannst du wie folgt einstellen:
 
 ```md
-[link](/demo/ ':ignore title')
+[link](/demo/ ":ignore title")
 
 <a href="/demo/" title="title">link</a>
 ```
@@ -54,14 +54,14 @@ Nun erhälst du den Link `<a href="/demo/">link</a>`. Einen Titel kannst du wie 
 ## Setze ein target attribute für deinen Link
 
 ```md
-[link](/demo ':target=_blank')
-[link](/demo2 ':target=_self')
+[link](/demo ":target=_blank")
+[link](/demo2 ":target=_self")
 ```
 
 ## Links deaktivieren
 
 ```md
-[link](/demo ':disable')
+[link](/demo ":disable")
 ```
 
 ## Github Task Lists
@@ -85,9 +85,9 @@ Nun erhälst du den Link `<a href="/demo/">link</a>`. Einen Titel kannst du wie 
 ## Größe von Bildern ändern
 
 ```md
-![logo](https://docsify.js.org/_media/icon.svg ':size=50x100')
-![logo](https://docsify.js.org/_media/icon.svg ':size=100')
+![logo](https://docsify.js.org/_media/icon.svg ":size=50x100")
+![logo](https://docsify.js.org/_media/icon.svg ":size=100")
 ```
 
-![logo](https://docsify.js.org/_media/icon.svg ':size=50x100')
-![logo](https://docsify.js.org/_media/icon.svg ':size=100')
+![logo](https://docsify.js.org/_media/icon.svg ":size=50x100")
+![logo](https://docsify.js.org/_media/icon.svg ":size=100")

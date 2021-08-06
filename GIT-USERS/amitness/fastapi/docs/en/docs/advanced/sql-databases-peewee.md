@@ -1,16 +1,16 @@
 # SQL (Relational) Databases with Peewee
 
 !!! warning
-    If you are just starting, the tutorial [SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank} that uses SQLAlchemy should be enough.
+If you are just starting, the tutorial [SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=\_blank} that uses SQLAlchemy should be enough.
 
     Feel free to skip this.
 
-If you are starting a project from scratch, you are probably better off with SQLAlchemy ORM ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), or any other async ORM.
+If you are starting a project from scratch, you are probably better off with SQLAlchemy ORM ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=\_blank}), or any other async ORM.
 
 If you already have a code base that uses <a href="http://docs.peewee-orm.com/en/latest/" class="external-link" target="_blank">Peewee ORM</a>, you can check here how to use it with **FastAPI**.
 
 !!! warning "Python 3.7+ required"
-    You will need Python 3.7 or above to safely use Peewee with FastAPI.
+You will need Python 3.7 or above to safely use Peewee with FastAPI.
 
 ## Peewee for async
 
@@ -25,11 +25,11 @@ But if you need to change some of the defaults, support more than one predefined
 Nevertheless, it's possible to do it, and here you'll see exactly what code you have to add to be able to use Peewee with FastAPI.
 
 !!! note "Technical Details"
-    You can read more about Peewee's stand about async in Python <a href="http://docs.peewee-orm.com/en/latest/peewee/database.html#async-with-gevent" class="external-link" target="_blank">in the docs</a>, <a href="https://github.com/coleifer/peewee/issues/263#issuecomment-517347032" class="external-link" target="_blank">an issue</a>, <a href="https://github.com/coleifer/peewee/pull/2072#issuecomment-563215132" class="external-link" target="_blank">a PR</a>.
+You can read more about Peewee's stand about async in Python <a href="http://docs.peewee-orm.com/en/latest/peewee/database.html#async-with-gevent" class="external-link" target="_blank">in the docs</a>, <a href="https://github.com/coleifer/peewee/issues/263#issuecomment-517347032" class="external-link" target="_blank">an issue</a>, <a href="https://github.com/coleifer/peewee/pull/2072#issuecomment-563215132" class="external-link" target="_blank">a PR</a>.
 
 ## The same app
 
-We are going to create the same application as in the SQLAlchemy tutorial ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}).
+We are going to create the same application as in the SQLAlchemy tutorial ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=\_blank}).
 
 Most of the code is actually the same.
 
@@ -66,7 +66,7 @@ Let's first check all the normal Peewee code, create a Peewee database:
 ```
 
 !!! tip
-    Have in mind that if you wanted to use a different database, like PostgreSQL, you couldn't just change the string. You would need to use a different Peewee database class.
+Have in mind that if you wanted to use a different database, like PostgreSQL, you couldn't just change the string. You would need to use a different Peewee database class.
 
 #### Note
 
@@ -95,7 +95,7 @@ The main issue with Peewee and FastAPI is that Peewee relies heavily on <a href=
 And `threading.local` is not compatible with the new async features of modern Python.
 
 !!! note "Technical Details"
-    `threading.local` is used to have a "magic" variable that has a different value for each thread.
+`threading.local` is used to have a "magic" variable that has a different value for each thread.
 
     This was useful in older frameworks designed to have one single thread per request, no more, no less.
 
@@ -126,7 +126,7 @@ It has all the logic to make Peewee use `contextvars` instead of `threading.loca
 So, we need to do some extra tricks to make it work as if it was just using `threading.local`. The `__init__`, `__setattr__`, and `__getattr__` implement all the required tricks for this to be used by Peewee without knowing that it is now compatible with FastAPI.
 
 !!! tip
-    This will just make Peewee behave correctly when used with FastAPI. Not randomly opening or closing connections that are being used, creating errors, etc.
+This will just make Peewee behave correctly when used with FastAPI. Not randomly opening or closing connections that are being used, creating errors, etc.
 
     But it doesn't give Peewee async super-powers. You should still use normal `def` functions and not `async def`.
 
@@ -139,10 +139,10 @@ Now, overwrite the `._state` internal attribute in the Peewee database `db` obje
 ```
 
 !!! tip
-    Make sure you overwrite `db._state` *after* creating `db`.
+Make sure you overwrite `db._state` _after_ creating `db`.
 
 !!! tip
-    You would do the same for any other Peewee database, including `PostgresqlDatabase`, `MySQLDatabase`, etc.
+You would do the same for any other Peewee database, including `PostgresqlDatabase`, `MySQLDatabase`, etc.
 
 ## Create the database models
 
@@ -155,7 +155,7 @@ Now create the Peewee models (classes) for `User` and `Item`.
 This is the same you would do if you followed the Peewee tutorial and updated the models to have the same data as in the SQLAlchemy tutorial.
 
 !!! tip
-    Peewee also uses the term "**model**" to refer to these classes and instances that interact with the database.
+Peewee also uses the term "**model**" to refer to these classes and instances that interact with the database.
 
     But Pydantic also uses the term "**model**" to refer to something different, the data validation, conversion, and documentation classes and instances.
 
@@ -166,7 +166,7 @@ Import `db` from `database` (the file `database.py` from above) and use it here.
 ```
 
 !!! tip
-    Peewee creates several magic attributes.
+Peewee creates several magic attributes.
 
     It will automatically add an `id` attribute as an integer to be the primary key.
 
@@ -179,13 +179,13 @@ Import `db` from `database` (the file `database.py` from above) and use it here.
 Now let's check the file `sql_app/schemas.py`.
 
 !!! tip
-    To avoid confusion between the Peewee *models* and the Pydantic *models*, we will have the file `models.py` with the Peewee models, and the file `schemas.py` with the Pydantic models.
+To avoid confusion between the Peewee _models_ and the Pydantic _models_, we will have the file `models.py` with the Peewee models, and the file `schemas.py` with the Pydantic models.
 
     These Pydantic models define more or less a "schema" (a valid data shape).
-    
+
     So this will help us avoiding confusion while using both.
 
-### Create the Pydantic *models* / schemas
+### Create the Pydantic _models_ / schemas
 
 Create all the same Pydantic models as in the SQLAlchemy tutorial:
 
@@ -194,13 +194,13 @@ Create all the same Pydantic models as in the SQLAlchemy tutorial:
 ```
 
 !!! tip
-    Here we are creating the models with an `id`.
+Here we are creating the models with an `id`.
 
     We didn't explicitly specify an `id` attribute in the Peewee models, but Peewee adds one automatically.
 
     We are also adding the magic `owner_id` attribute to `Item`.
 
-### Create a `PeeweeGetterDict` for the Pydantic *models* / schemas
+### Create a `PeeweeGetterDict` for the Pydantic _models_ / schemas
 
 When you access a relationship in a Peewee object, like in `some_user.items`, Peewee doesn't provide a `list` of `Item`.
 
@@ -208,11 +208,11 @@ It provides a special custom object of class `ModelSelect`.
 
 It's possible to create a `list` of its items with `list(some_user.items)`.
 
-But the object itself is not a `list`. And it's also not an actual Python <a href="https://docs.python.org/3/glossary.html#term-generator" class="external-link" target="_blank">generator</a>. Because of this, Pydantic doesn't know by default how to convert it to a `list` of Pydantic *models* / schemas.
+But the object itself is not a `list`. And it's also not an actual Python <a href="https://docs.python.org/3/glossary.html#term-generator" class="external-link" target="_blank">generator</a>. Because of this, Pydantic doesn't know by default how to convert it to a `list` of Pydantic _models_ / schemas.
 
 But recent versions of Pydantic allow providing a custom class that inherits from `pydantic.utils.GetterDict`, to provide the functionality used when using the `orm_mode = True` to retrieve the values for ORM model attributes.
 
-We are going to create a custom `PeeweeGetterDict` class and use it in all the same Pydantic *models* / schemas that use `orm_mode`:
+We are going to create a custom `PeeweeGetterDict` class and use it in all the same Pydantic _models_ / schemas that use `orm_mode`:
 
 ```Python hl_lines="3  8-13  31  49"
 {!../../../docs_src/sql_databases_peewee/sql_app/schemas.py!}
@@ -222,10 +222,10 @@ Here we are checking if the attribute that is being accessed (e.g. `.items` in `
 
 And if that's the case, just return a `list` with it.
 
-And then we use it in the Pydantic *models* / schemas that use `orm_mode = True`, with the configuration variable `getter_dict = PeeweeGetterDict`.
+And then we use it in the Pydantic _models_ / schemas that use `orm_mode = True`, with the configuration variable `getter_dict = PeeweeGetterDict`.
 
 !!! tip
-    We only need to create one `PeeweeGetterDict` class, and we can use it in all the Pydantic *models* / schemas.
+We only need to create one `PeeweeGetterDict` class, and we can use it in all the Pydantic _models_ / schemas.
 
 ## CRUD utils
 
@@ -249,7 +249,7 @@ Aso, when returning several objects, like in `get_users`, we directly call `list
 list(models.User.select())
 ```
 
-This is for the same reason that we had to create a custom `PeeweeGetterDict`. But by returning something that is already a `list` instead of the `peewee.ModelSelect` the `response_model` in the *path operation* with `List[models.User]` (that we'll see later) will work correctly.
+This is for the same reason that we had to create a custom `PeeweeGetterDict`. But by returning something that is already a `list` instead of the `peewee.ModelSelect` the `response_model` in the _path operation_ with `List[models.User]` (that we'll see later) will work correctly.
 
 ## Main **FastAPI** app
 
@@ -277,9 +277,9 @@ It is connecting to the database and storing the connection data in an internal 
 
 Because the database connection is potentially I/O blocking, this dependency is created with a normal `def` function.
 
-And then, in each *path operation function* that needs to access the database we add it as a dependency.
+And then, in each _path operation function_ that needs to access the database we add it as a dependency.
 
-But we are not using the value given by this dependency (it actually doesn't give any value, as it has an empty `yield`). So, we don't add it to the *path operation function* but to the *path operation decorator* in the `dependencies` parameter:
+But we are not using the value given by this dependency (it actually doesn't give any value, as it has an empty `yield`). So, we don't add it to the _path operation function_ but to the _path operation decorator_ in the `dependencies` parameter:
 
 ```Python hl_lines="32  40  47  59  65  72"
 {!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
@@ -298,7 +298,7 @@ For that, we need to create another `async` dependency `reset_db_state()` that i
 For the **next request**, as we will reset that context variable again in the `async` dependency `reset_db_state()` and then create a new connection in the `get_db()` dependency, that new request will have its own database state (connection, transactions, etc).
 
 !!! tip
-    As FastAPI is an async framework, one request could start being processed, and before finishing, another request could be received and start processing as well, and it all could be processed in the same thread.
+As FastAPI is an async framework, one request could start being processed, and before finishing, another request could be received and start processing as well, and it all could be processed in the same thread.
 
     But context variables are aware of these async features, so, a Peewee database state set in the `async` dependency `reset_db_state()` will keep its own data throughout the entire request.
 
@@ -316,9 +316,9 @@ async def reset_db_state():
     database.db.obj._state.reset()
 ```
 
-### Create your **FastAPI** *path operations*
+### Create your **FastAPI** _path operations_
 
-Now, finally, here's the standard **FastAPI** *path operations* code.
+Now, finally, here's the standard **FastAPI** _path operations_ code.
 
 ```Python hl_lines="32-37  40-43  46-53  56-62  65-68  71-79"
 {!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
@@ -338,7 +338,7 @@ user = await models.User.select().first()
 user = models.User.select().first()
 ```
 
-So, again, we should declare the *path operation functions* and the dependency without `async def`, just with a normal `def`, as:
+So, again, we should declare the _path operation functions_ and the dependency without `async def`, just with a normal `def`, as:
 
 ```Python hl_lines="2"
 # Something goes here
@@ -348,7 +348,7 @@ def read_users(skip: int = 0, limit: int = 100):
 
 ## Testing Peewee with async
 
-This example includes an extra *path operation* that simulates a long processing request with `time.sleep(sleep_time)`.
+This example includes an extra _path operation_ that simulates a long processing request with `time.sleep(sleep_time)`.
 
 It will have the database connection open at the beginning and will just wait some seconds before replying back. And each new request will wait one second less.
 
@@ -381,11 +381,11 @@ $ uvicorn sql_app.main:app --reload
 
 </div>
 
-Open your browser at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>  and create a couple of users.
+Open your browser at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> and create a couple of users.
 
-Then open 10 tabs at <a href="http://127.0.0.1:8000/docs#/default/read_slow_users_slowusers__get" class="external-link" target="_blank">http://127.0.0.1:8000/docs#/default/read_slow_users_slowusers__get</a> at the same time.
+Then open 10 tabs at <a href="http://127.0.0.1:8000/docs#/default/read_slow_users_slowusers__get" class="external-link" target="_blank">http://127.0.0.1:8000/docs#/default/read_slow_users_slowusers\_\_get</a> at the same time.
 
-Go to the *path operation* "Get `/slowusers/`" in all of the tabs. Use the "Try it out" button and execute the request in each tab, one right after the other.
+Go to the _path operation_ "Get `/slowusers/`" in all of the tabs. Use the "Try it out" button and execute the request in each tab, one right after the other.
 
 The tabs will wait for a bit and then some of them will show `Internal Server Error`.
 
@@ -429,37 +429,37 @@ Repeat the same process with the 10 tabs. This time all of them will wait and yo
 
 ## Review all the files
 
- Remember you should have a directory named `my_super_project` (or however you want) that contains a sub-directory called `sql_app`.
+Remember you should have a directory named `my_super_project` (or however you want) that contains a sub-directory called `sql_app`.
 
 `sql_app` should have the following files:
 
-* `sql_app/__init__.py`: is an empty file.
+- `sql_app/__init__.py`: is an empty file.
 
-* `sql_app/database.py`:
+- `sql_app/database.py`:
 
 ```Python
 {!../../../docs_src/sql_databases_peewee/sql_app/database.py!}
 ```
 
-* `sql_app/models.py`:
+- `sql_app/models.py`:
 
 ```Python
 {!../../../docs_src/sql_databases_peewee/sql_app/models.py!}
 ```
 
-* `sql_app/schemas.py`:
+- `sql_app/schemas.py`:
 
 ```Python
 {!../../../docs_src/sql_databases_peewee/sql_app/schemas.py!}
 ```
 
-* `sql_app/crud.py`:
+- `sql_app/crud.py`:
 
 ```Python
 {!../../../docs_src/sql_databases_peewee/sql_app/crud.py!}
 ```
 
-* `sql_app/main.py`:
+- `sql_app/main.py`:
 
 ```Python
 {!../../../docs_src/sql_databases_peewee/sql_app/main.py!}
@@ -468,7 +468,7 @@ Repeat the same process with the 10 tabs. This time all of them will wait and yo
 ## Technical Details
 
 !!! warning
-    These are very technical details that you probably don't need.
+These are very technical details that you probably don't need.
 
 ### The problem
 
@@ -478,7 +478,7 @@ Peewee uses <a href="https://docs.python.org/3/library/threading.html#thread-loc
 
 On top of that, an async framework could run some sync code in a threadpool (using `asyncio.run_in_executor`), but belonging to the same request.
 
-This means that, with Peewee's current implementation, multiple tasks could be using the same `threading.local` variable and end up sharing the same connection and data (that they shouldn't), and at the same time, if they execute sync I/O-blocking code in a threadpool (as with normal `def` functions in FastAPI, in *path operations*  and dependencies), that code won't have access to the database state variables, even while it's part of the same request and it should be able to get access to the same database state.
+This means that, with Peewee's current implementation, multiple tasks could be using the same `threading.local` variable and end up sharing the same connection and data (that they shouldn't), and at the same time, if they execute sync I/O-blocking code in a threadpool (as with normal `def` functions in FastAPI, in _path operations_ and dependencies), that code won't have access to the database state variables, even while it's part of the same request and it should be able to get access to the same database state.
 
 ### Context variables
 
@@ -514,9 +514,9 @@ And the context variable would be set again for the next request, even if they a
 
 ### Set database state in the dependency `get_db()`
 
-As `get_db()` is a normal `def` function, **FastAPI** will make it run in a threadpool, with a *copy* of the "context", holding the same value for the context variable (the `dict` with the reset database state). Then it can add database state to that `dict`, like the connection, etc.
+As `get_db()` is a normal `def` function, **FastAPI** will make it run in a threadpool, with a _copy_ of the "context", holding the same value for the context variable (the `dict` with the reset database state). Then it can add database state to that `dict`, like the connection, etc.
 
-But if the value of the context variable (the default `dict`) was set in that normal `def` function, it would create a new value that would stay only in that thread of the threadpool, and the rest of the code (like the *path operation functions*) wouldn't have access to it. In `get_db()` we can only set values in the `dict`, but not the entire `dict` itself.
+But if the value of the context variable (the default `dict`) was set in that normal `def` function, it would create a new value that would stay only in that thread of the threadpool, and the rest of the code (like the _path operation functions_) wouldn't have access to it. In `get_db()` we can only set values in the `dict`, but not the entire `dict` itself.
 
 So, we need to have the `async` dependency `reset_db_state()` to set the `dict` in the context variable. That way, all the code has access to the same `dict` for the database state for a single request.
 

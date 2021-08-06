@@ -12,20 +12,20 @@ Use Plugin: [bootstrap-table-filter-control](https://github.com/wenzhixin/bootst
 
 ### filterControl
 
-* type: Boolean
-* description: Set true to add an `input` or `select` into the column.
-* default: `false`
+- type: Boolean
+- description: Set true to add an `input` or `select` into the column.
+- default: `false`
 
 ## Column options
 
 ### filterControl
 
-* type: String
-* description: Set `input` or `select` to add one of those element into column.
-* default: `undefined`
+- type: String
+- description: Set `input` or `select` to add one of those element into column.
+- default: `undefined`
 
 ## Events
 
 ### onColumnSearch(column-search.bs.table)
 
-* Fired when we are searching into the column data
+- Fired when we are searching into the column data

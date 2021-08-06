@@ -24,7 +24,7 @@ Many APIs are either
 in TF 2.0. Some of the major changes include removing `tf.app`, `tf.flags`, and
 `tf.logging` in favor of the now open-source
 [absl-py](https://github.com/abseil/abseil-py), rehoming projects that lived in
-tf.contrib, and cleaning up the main tf.* namespace by moving lesser used
+tf.contrib, and cleaning up the main tf.\* namespace by moving lesser used
 functions into subpackages like tf.math. Some APIs have been replaced with their
 2.0 equivalents - tf.summary, tf.keras.metrics, and tf.keras.optimizers. The
 easiest way to automatically apply these renames is to use the
@@ -34,7 +34,7 @@ easiest way to automatically apply these renames is to use the
 
 TensorFlow 1.X requires users to manually stitch together an
 [abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) (the
-graph) by making tf.* API calls. It then requires users to manually compile the
+graph) by making tf.\* API calls. It then requires users to manually compile the
 abstract syntax tree by passing a set of output tensors and input tensors to a
 `session.run()` call. TensorFlow 2.0 executes eagerly (like Python normally
 does) and in 2.0, graphs and sessions should feel like implementation details.
@@ -72,11 +72,11 @@ compilation so that TensorFlow runs it as a single graph
 ([Functions 2.0 RFC](https://github.com/tensorflow/community/pull/20)). This
 mechanism allows TensorFlow 2.0 to gain all of the benefits of graph mode:
 
--   Performance: The function can be optimized (node pruning, kernel fusion,
-    etc.)
--   Portability: The function can be exported/reimported
-    ([SavedModel 2.0 RFC](https://github.com/tensorflow/community/pull/34)),
-    allowing users to reuse and share modular TensorFlow functions.
+- Performance: The function can be optimized (node pruning, kernel fusion,
+  etc.)
+- Portability: The function can be exported/reimported
+  ([SavedModel 2.0 RFC](https://github.com/tensorflow/community/pull/34)),
+  allowing users to reuse and share modular TensorFlow functions.
 
 ```
 # TensorFlow 1.X
@@ -92,11 +92,11 @@ JS. To help users avoid having to rewrite their code when adding `@tf.function`,
 [AutoGraph](autograph.md) will convert a subset of
 Python constructs into their TensorFlow equivalents:
 
-*   `print` -> `tf.print`
-*   `assert` -> `tf.Assert`
-*   `for`/`while` -> `tf.while_loop` (`break` and `continue` are supported)
-*   `if` -> `tf.cond`
-*   `for _ in dataset` -> `dataset.reduce`
+- `print` -> `tf.print`
+- `assert` -> `tf.Assert`
+- `for`/`while` -> `tf.while_loop` (`break` and `continue` are supported)
+- `if` -> `tf.cond`
+- `for _ in dataset` -> `dataset.reduce`
 
 AutoGraph supports arbitrary nestings of control flow, which makes it possible
 to performantly and concisely implement many complex ML programs such as
@@ -297,5 +297,4 @@ with test_summary_writer.as_default():
   test(model, test_x, test_y, optimizer.iterations)
 ```
 
-By then pointing TensorBoard at the summary directory (`tensorboard --logdir
-/tmp/summaries`), you can then visualize the generated summaries.
+By then pointing TensorBoard at the summary directory (`tensorboard --logdir /tmp/summaries`), you can then visualize the generated summaries.

@@ -4,10 +4,10 @@ window.ParsleyConfig.validators = window.ParsleyConfig.validators || {};
 
 window.ParsleyConfig.validators.luhn = {
   fn: function (value) {
-    value = value.replace(/[ -]/g, '');
+    value = value.replace(/[ -]/g, "");
     var digit, n, sum, _j, _len1, _ref2;
     sum = 0;
-    _ref2 = value.split('').reverse();
+    _ref2 = value.split("").reverse();
     for (n = _j = 0, _len1 = _ref2.length; _j < _len1; n = ++_j) {
       digit = _ref2[n];
       digit = +digit;
@@ -24,5 +24,5 @@ window.ParsleyConfig.validators.luhn = {
     }
     return sum % 10 === 0;
   },
-  priority: 32
+  priority: 32,
 };

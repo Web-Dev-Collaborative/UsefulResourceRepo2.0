@@ -5,16 +5,16 @@
  */
 .custombox-open,
 .custombox-open body {
-    overflow: hidden;
+  overflow: hidden;
 }
 .custombox-perspective,
-.custombox-perspective body  {
-    perspective: 600px;
-    height: 100%;
+.custombox-perspective body {
+  perspective: 600px;
+  height: 100%;
 }
 .custombox-overlay-open {
-    visibility: visible;
-    opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
 
 /*
@@ -23,48 +23,48 @@
  ----------------------------
  */
 .custombox-overlay {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    transition-delay: 0s;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  transition-delay: 0s;
 }
 .custombox-overlay-default {
-    transition-timing-function: linear;
-    transition-property: opacity;
-    opacity: 0;
+  transition-timing-function: linear;
+  transition-property: opacity;
+  opacity: 0;
 }
 .custombox-modal-wrapper {
-    right: 0;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    outline: 0 none;
-    overflow: auto;
-    position: fixed;
-    text-align: center;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  outline: 0 none;
+  overflow: auto;
+  position: fixed;
+  text-align: center;
 }
 .custombox-modal-container {
-    margin: 0 auto;
-    position: relative;
+  margin: 0 auto;
+  position: relative;
 }
 .custombox-modal img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 .custombox-scrollbar {
-    position: absolute;
-    top: -9999px;
-    width: 50px;
-    height: 50px;
-    overflow: scroll;
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
 }
 .custombox-loading {
-    position: fixed;
-    transform: translateY(-50%) translateX(-50%);
-    top: 50%;
-    left: 50%;
+  position: fixed;
+  transform: translateY(-50%) translateX(-50%);
+  top: 50%;
+  left: 50%;
 }
 
 /*
@@ -73,16 +73,16 @@
  ----------------------------
  */
 .custombox-overlay-letmein {
-    transition-property: all;
-    transition-timing-function: ease;
-    visibility: hidden;
+  transition-property: all;
+  transition-timing-function: ease;
+  visibility: hidden;
 }
 .custombox-overlay-open.custombox-overlay-letmein {
-    transform: rotateX(-2deg);
-    transform-origin: 50% 0;
-    transform-style: preserve-3d;
-    visibility: visible;
-    opacity: 1;
+  transform: rotateX(-2deg);
+  transform-origin: 50% 0;
+  transform-style: preserve-3d;
+  visibility: visible;
+  opacity: 1;
 }
 
 /*
@@ -91,13 +91,13 @@
  ----------------------------
  */
 .custombox-overlay-slidetogether {
-    transform: translateY(-100%);
-    transition-property: transform ease-in-out;
+  transform: translateY(-100%);
+  transition-property: transform ease-in-out;
 }
 
 .custombox-overlay-open.custombox-overlay-slidetogether {
-    transform: translateY(0);
-    transition-property: transform ease-in-out;
+  transform: translateY(0);
+  transition-property: transform ease-in-out;
 }
 
 /*
@@ -106,12 +106,12 @@
  ----------------------------
  */
 .custombox-overlay-corner {
-    transform: translateY(150px) translateX(150px);
-    transition-property: opacity, transform, visibility;
+  transform: translateY(150px) translateX(150px);
+  transition-property: opacity, transform, visibility;
 }
 .custombox-overlay-open.custombox-overlay-corner {
-    transform: translateY(0);
-    transition-property: opacity, transform;
+  transform: translateY(0);
+  transition-property: opacity, transform;
 }
 
 /*
@@ -120,12 +120,12 @@
  ----------------------------
  */
 .custombox-overlay-scale {
-    transform: scale(0.9);
-    transition-property: transform;
+  transform: scale(0.9);
+  transition-property: transform;
 }
 .custombox-overlay-open.custombox-overlay-scale {
-    transform: scale(1);
-    transition-property: transform;
+  transform: scale(1);
+  transition-property: transform;
 }
 
 /*
@@ -134,16 +134,16 @@
  ----------------------------
  */
 .custombox-overlay-door {
-    visibility: hidden;
-    width: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    transition-property: width ease-in-out;
+  visibility: hidden;
+  width: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition-property: width ease-in-out;
 }
 .custombox-overlay-open.custombox-overlay-door {
-    visibility: visible;
-    width: 100%;
-    transition-property: width ease-in-out;
+  visibility: visible;
+  width: 100%;
+  transition-property: width ease-in-out;
 }
 
 /*
@@ -152,20 +152,20 @@
  ----------------------------
  */
 .custombox-container-push {
-    overflow-x: hidden;
-    transition-property: transform;
+  overflow-x: hidden;
+  transition-property: transform;
 }
 .custombox-container-open.custombox-container-push {
-    transform: translateX(100%);
+  transform: translateX(100%);
 }
 .custombox-overlay-push {
-    backface-visibility: hidden;
-    transform: translateX(-100%);
-    transition-property: transform ease-in-out;
+  backface-visibility: hidden;
+  transform: translateX(-100%);
+  transition-property: transform ease-in-out;
 }
 .custombox-overlay-open.custombox-overlay-push {
-    transform: translateX(0);
-    transition-property: transform ease-in-out;
+  transform: translateX(0);
+  transition-property: transform ease-in-out;
 }
 
 /*
@@ -174,23 +174,23 @@
  ----------------------------
  */
 .custombox-open-contentscale body {
-    background-color: #DDD;
+  background-color: #ddd;
 }
 .custombox-container-contentscale {
-    transition: transform 0.5s;
-    overflow: hidden;
-    height: 100%;
+  transition: transform 0.5s;
+  overflow: hidden;
+  height: 100%;
 }
 .custombox-container-open.custombox-container-contentscale {
-    transform: scale(0.8);
+  transform: scale(0.8);
 }
 .custombox-overlay-contentscale {
-    transform: translateY(100%);
-    transition-property: transform ease-in-out;
+  transform: translateY(100%);
+  transition-property: transform ease-in-out;
 }
 .custombox-overlay-open.custombox-overlay-contentscale {
-    transform: translateY(0);
-    transition-property: transform ease-in-out;
+  transform: translateY(0);
+  transition-property: transform ease-in-out;
 }
 
 /*
@@ -199,26 +199,26 @@
  ----------------------------
  */
 .custombox-container-open.custombox-container-makeway {
-    height: 100%;
-    overflow: hidden;
+  height: 100%;
+  overflow: hidden;
 }
 .custombox-overlay-open.custombox-overlay-makeway {
-    transition-property: all;
+  transition-property: all;
 }
 .custombox-overlay-open.custombox-overlay-makeway,
 .custombox-container-open.custombox-container-makeway {
-    transform-style: preserve-3d;
-    transform-origin: 0 50%;
-    animation: rotateRightSideFirst 0.5s forwards ease-in;
+  transform-style: preserve-3d;
+  transform-origin: 0 50%;
+  animation: rotateRightSideFirst 0.5s forwards ease-in;
 }
 @keyframes rotateRightSideFirst {
-    50% {
-        transform: translateZ(-50px) rotateY(5deg);
-        animation-timing-function: ease-out;
-    }
-    100% {
-        transform: translateZ(-200px);
-    }
+  50% {
+    transform: translateZ(-50px) rotateY(5deg);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: translateZ(-200px);
+  }
 }
 
 /*
@@ -227,19 +227,19 @@
  ----------------------------
  */
 .custombox-overlay-open.custombox-overlay-slip {
-    transition-property: all;
+  transition-property: all;
 }
 .custombox-overlay-open.custombox-overlay-slip,
 .custombox-container-open.custombox-container-slip {
-    transform-style: preserve-3d;
-    transform-origin: 50% 100%;
-    animation: OpenTop 0.5s forwards ease-in-out;
+  transform-style: preserve-3d;
+  transform-origin: 50% 100%;
+  animation: OpenTop 0.5s forwards ease-in-out;
 }
 @keyframes OpenTop {
-    50% {
-        transform: rotateX(10deg);
-        animation-timing-function: ease-out;
-    }
+  50% {
+    transform: rotateX(10deg);
+    animation-timing-function: ease-out;
+  }
 }
 
 /*
@@ -248,15 +248,15 @@
  ----------------------------
  */
 .custombox-modal-fadein {
-    transform: scale(0.7);
-    transition-property: all;
-    opacity: 0;
-    visibility: hidden;
+  transform: scale(0.7);
+  transition-property: all;
+  opacity: 0;
+  visibility: hidden;
 }
 .custombox-modal-open .custombox-modal-fadein {
-    transform: scale(1);
-    opacity: 1;
-    visibility: visible;
+  transform: scale(1);
+  opacity: 1;
+  visibility: visible;
 }
 
 /*
@@ -266,12 +266,12 @@
  */
 .custombox-modal-container-slide > div,
 .custombox-modal-container-slidetogether > div {
-    opacity: 0;
-    float: left;
+  opacity: 0;
+  float: left;
 }
 .custombox-modal-open > .custombox-modal-container-slide > div,
 .custombox-modal-open > .custombox-modal-container-slidetogether > div {
-    opacity: 1;
+  opacity: 1;
 }
 
 /*
@@ -280,10 +280,10 @@
  ----------------------------
  */
 .custombox-modal-slide-top {
-    transform: translateY(-300%);
+  transform: translateY(-300%);
 }
 .custombox-modal-open .custombox-modal-slide-top {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 /*
@@ -292,10 +292,10 @@
  ----------------------------
  */
 .custombox-modal-slide-left {
-    transform: translateX(-300%);
+  transform: translateX(-300%);
 }
 .custombox-modal-open .custombox-modal-slide-left {
-    transform: translateX(0);
+  transform: translateX(0);
 }
 
 /*
@@ -304,10 +304,10 @@
  ----------------------------
  */
 .custombox-modal-slide-right {
-    transform: translateX(300%);
+  transform: translateX(300%);
 }
 .custombox-modal-open .custombox-modal-slide-right {
-    transform: translateX(0);
+  transform: translateX(0);
 }
 
 /*
@@ -316,10 +316,10 @@
  ----------------------------
  */
 .custombox-modal-slide-bottom {
-    transform: translateY(300%);
+  transform: translateY(300%);
 }
 .custombox-modal-open .custombox-modal-slide-bottom {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 /*
@@ -328,17 +328,17 @@
  ----------------------------
  */
 .custombox-modal-newspaper {
-    transform: scale(0) rotate(720deg);
-    opacity: 0;
-    transition-property: all;
-    position: absolute;
+  transform: scale(0) rotate(720deg);
+  opacity: 0;
+  transition-property: all;
+  position: absolute;
 }
 .custombox-overlay-newspaper {
-    transition-property: all;
+  transition-property: all;
 }
 .custombox-modal-open .custombox-modal-newspaper {
-    transform: scale(1) rotate(0deg);
-    opacity: 1;
+  transform: scale(1) rotate(0deg);
+  opacity: 1;
 }
 
 /*
@@ -347,18 +347,18 @@
  ----------------------------
  */
 .custombox-modal-container-fall {
-    perspective: 1300px;
+  perspective: 1300px;
 }
 .custombox-modal-fall {
-    transform-style: preserve-3d;
-    transform: translateZ(600px) rotateX(20deg);
-    opacity: 0;
+  transform-style: preserve-3d;
+  transform: translateZ(600px) rotateX(20deg);
+  opacity: 0;
 }
 .custombox-modal-open .custombox-modal-fall {
-    transition-timing-function: ease-in;
-    transition-property: all;
-    transform: translateZ(0) rotateX(0deg);
-    opacity: 1;
+  transition-timing-function: ease-in;
+  transition-property: all;
+  transform: translateZ(0) rotateX(0deg);
+  opacity: 1;
 }
 
 /*
@@ -367,21 +367,21 @@
  ----------------------------
  */
 .custombox-modal-container-sidefall {
-    perspective: 1300px;
+  perspective: 1300px;
 }
 .custombox-modal-wrapper-sidefall {
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 .custombox-modal-sidefall {
-    transform-style: preserve-3d;
-    transform: translate(30%) translateZ(600px) rotate(10deg);
-    opacity: 0;
+  transform-style: preserve-3d;
+  transform: translate(30%) translateZ(600px) rotate(10deg);
+  opacity: 0;
 }
 .custombox-modal-open .custombox-modal-sidefall {
-    transition-timing-function: ease-in;
-    transition-property: all;
-    transform: translate(0) translateZ(0) rotate(0deg);
-    opacity: 1;
+  transition-timing-function: ease-in;
+  transition-property: all;
+  transform: translate(0) translateZ(0) rotate(0deg);
+  opacity: 1;
 }
 
 /*
@@ -390,28 +390,28 @@
  ----------------------------
  */
 .custombox-open-blur .custombox-container-blur {
-    filter: blur(3px);
+  filter: blur(3px);
 }
 @media all and (-ms-high-contrast: none) {
-    .custombox-open-blur .custombox-container-blur {
-        text-shadow: 0 0 8px #000;
-        color: rgba(255,255,255,0);
-        filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
-        zoom: 1;
-    }
+  .custombox-open-blur .custombox-container-blur {
+    text-shadow: 0 0 8px #000;
+    color: rgba(255, 255, 255, 0);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+    zoom: 1;
+  }
 }
 .custombox-modal-blur {
-    transform: translateY(-5%);
-    opacity: 0;
-    position: absolute;
+  transform: translateY(-5%);
+  opacity: 0;
+  position: absolute;
 }
 .custombox-overlay-blur,
 .custombox-modal-container-blur {
-    transition-property: all;
+  transition-property: all;
 }
 .custombox-modal-open .custombox-modal-blur {
-    transform: translateY(0);
-    opacity: 1;
+  transform: translateY(0);
+  opacity: 1;
 }
 
 /*
@@ -420,7 +420,7 @@
  ----------------------------
  */
 .custombox-modal-container-flip {
-    perspective: 1300px;
+  perspective: 1300px;
 }
 
 /*
@@ -429,15 +429,15 @@
  ----------------------------
  */
 .custombox-modal-flip-horizontal {
-    position: absolute;
-    transform-style: preserve-3d;
-    transform: rotateY(-70deg);
-    transition-property: all;
-    opacity: 0;
+  position: absolute;
+  transform-style: preserve-3d;
+  transform: rotateY(-70deg);
+  transition-property: all;
+  opacity: 0;
 }
 .custombox-modal-open .custombox-modal-flip-horizontal {
-    transform: rotateY(0deg);
-    opacity: 1;
+  transform: rotateY(0deg);
+  opacity: 1;
 }
 
 /*
@@ -446,15 +446,15 @@
  ----------------------------
  */
 .custombox-modal-flip-vertical {
-    position: absolute;
-    transform-style: preserve-3d;
-    transform: rotateX(-70deg);
-    transition-property: all;
-    opacity: 0;
+  position: absolute;
+  transform-style: preserve-3d;
+  transform: rotateX(-70deg);
+  transition-property: all;
+  opacity: 0;
 }
 .custombox-modal-open .custombox-modal-flip-vertical {
-    transform: rotateX(0deg);
-    opacity: 1;
+  transform: rotateX(0deg);
+  opacity: 1;
 }
 
 /*
@@ -463,18 +463,18 @@
  ----------------------------
  */
 .custombox-modal-container-sign {
-    perspective: 1300px;
+  perspective: 1300px;
 }
 .custombox-modal-sign {
-    transform-style: preserve-3d;
-    transform: rotateX(-60deg);
-    transform-origin: 50% 0;
-    opacity: 0;
-    transition-property: all;
+  transform-style: preserve-3d;
+  transform: rotateX(-60deg);
+  transform-origin: 50% 0;
+  opacity: 0;
+  transition-property: all;
 }
 .custombox-modal-open .custombox-modal-sign {
-    transform: rotateX(0deg);
-    opacity: 1;
+  transform: rotateX(0deg);
+  opacity: 1;
 }
 
 /*
@@ -483,14 +483,14 @@
  ----------------------------
  */
 .custombox-modal-superscaled {
-    transform: scale(2);
-    opacity: 0;
-    transition-property: all;
-    position: absolute;
+  transform: scale(2);
+  opacity: 0;
+  transition-property: all;
+  position: absolute;
 }
 .custombox-modal-open .custombox-modal-superscaled {
-    transform: scale(1);
-    opacity: 1;
+  transform: scale(1);
+  opacity: 1;
 }
 
 /*
@@ -499,26 +499,26 @@
  ----------------------------
  */
 .custombox-modal-container-slit {
-    perspective: 1300px;
+  perspective: 1300px;
 }
 .custombox-modal-slit {
-    transform-style: preserve-3d;
-    transform: translateZ(-3000px) rotateY(90deg);
-    opacity: 0;
+  transform-style: preserve-3d;
+  transform: translateZ(-3000px) rotateY(90deg);
+  opacity: 0;
 }
 .custombox-modal-open .custombox-modal-slit {
-    animation: slit .7s forwards ease-out;
+  animation: slit 0.7s forwards ease-out;
 }
 @keyframes slit {
-    50% {
-        transform: translateZ(-250px) rotateY(89deg);
-        opacity: 1;
-        animation-timing-function: ease-out;
-    }
-    100% {
-        transform: translateZ(0) rotateY(0deg);
-        opacity: 1;
-    }
+  50% {
+    transform: translateZ(-250px) rotateY(89deg);
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: translateZ(0) rotateY(0deg);
+    opacity: 1;
+  }
 }
 
 /*
@@ -527,7 +527,7 @@
  ----------------------------
  */
 .custombox-modal-container-rotate {
-    perspective: 1300px;
+  perspective: 1300px;
 }
 
 /*
@@ -536,17 +536,17 @@
  ----------------------------
  */
 .custombox-modal-rotate-bottom {
-    transform-style: preserve-3d;
-    transform: translateY(100%) rotateX(90deg);
-    transform-origin: 0 100%;
-    opacity: 0;
-    transition-timing-function: ease-out;
-    transition-property: all;
-    position: absolute;
+  transform-style: preserve-3d;
+  transform: translateY(100%) rotateX(90deg);
+  transform-origin: 0 100%;
+  opacity: 0;
+  transition-timing-function: ease-out;
+  transition-property: all;
+  position: absolute;
 }
 .custombox-modal-open .custombox-modal-rotate-bottom {
-    transform: translateY(0) rotateX(0deg);
-    opacity: 1;
+  transform: translateY(0) rotateX(0deg);
+  opacity: 1;
 }
 
 /*
@@ -555,16 +555,16 @@
  ----------------------------
  */
 .custombox-modal-rotate-left {
-    transform-style: preserve-3d;
-    transform: translateZ(100px) translateX(-30%) rotateY(90deg);
-    transform-origin: 0 100%;
-    opacity: 0;
-    transition-property: all;
-    position: absolute;
+  transform-style: preserve-3d;
+  transform: translateZ(100px) translateX(-30%) rotateY(90deg);
+  transform-origin: 0 100%;
+  opacity: 0;
+  transition-property: all;
+  position: absolute;
 }
 .custombox-modal-open .custombox-modal-rotate-left {
-    transform: translateZ(0) translateX(0) rotateY(0deg);
-    opacity: 1;
+  transform: translateZ(0) translateX(0) rotateY(0deg);
+  opacity: 1;
 }
 
 /*
@@ -573,21 +573,21 @@
  ----------------------------
  */
 .custombox-modal-container-letmein {
-    transition-property: transform;
-    transform: rotateX(-2deg);
-    transform-origin: 50% 0;
-    transform-style: preserve-3d;
-    opacity: 1;
+  transition-property: transform;
+  transform: rotateX(-2deg);
+  transform-origin: 50% 0;
+  transform-style: preserve-3d;
+  opacity: 1;
 }
 .custombox-modal-letmein {
-    opacity: 0;
-    transform: translateY(300%);
-    float: left;
+  opacity: 0;
+  transform: translateY(300%);
+  float: left;
 }
 .custombox-modal-open .custombox-modal-letmein {
-    transform: translateY(0);
-    opacity: 1;
-    transition-property: all;
+  transform: translateY(0);
+  opacity: 1;
+  transition-property: all;
 }
 
 /*
@@ -596,16 +596,16 @@
  ----------------------------
  */
 .custombox-modal-makeway {
-    transform: translateX(200%);
-    opacity: 0;
-    float: left;
+  transform: translateX(200%);
+  opacity: 0;
+  float: left;
 }
 .custombox-modal-open .custombox-modal-makeway {
-    transform: translateX(0);
-    opacity: 1;
+  transform: translateX(0);
+  opacity: 1;
 }
 .custombox-modal-wrapper-makeway {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 /*
@@ -614,11 +614,11 @@
  ----------------------------
  */
 .custombox-modal-slip {
-    transform: translateY(-350%);
+  transform: translateY(-350%);
 }
 .custombox-modal-open .custombox-modal-slip {
-    transform: translateY(0);
-    transition-property: all;
+  transform: translateY(0);
+  transition-property: all;
 }
 
 /*
@@ -627,14 +627,14 @@
  ----------------------------
  */
 .custombox-modal-corner {
-    opacity: 0;
-    transform: translateY(150px) translateX(150px);
-    transition-property: opacity, transform, visibility;
+  opacity: 0;
+  transform: translateY(150px) translateX(150px);
+  transition-property: opacity, transform, visibility;
 }
 .custombox-modal-open .custombox-modal-corner {
-    transform: translateY(0);
-    opacity: 1;
-    transition-property: opacity, transform;
+  transform: translateY(0);
+  opacity: 1;
+  transition-property: opacity, transform;
 }
 
 /*
@@ -643,11 +643,10 @@
  ----------------------------
  */
 .custombox-modal-slidetogether {
-    transform: translateY(-600%);
-
+  transform: translateY(-600%);
 }
 .custombox-modal-open .custombox-modal-slidetogether {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 /*
@@ -656,14 +655,14 @@
  ----------------------------
  */
 .custombox-modal-scale {
-    transform: scale(0.9);
-    transition: transform;
-    opacity: 0;
+  transform: scale(0.9);
+  transition: transform;
+  opacity: 0;
 }
 .custombox-modal-open .custombox-modal-scale {
-    transform: scale(1);
-    transition: transform;
-    opacity: 1;
+  transform: scale(1);
+  transition: transform;
+  opacity: 1;
 }
 
 /*
@@ -672,12 +671,12 @@
  ----------------------------
  */
 .custombox-modal-door {
-    visibility: hidden;
-    opacity: 0;
+  visibility: hidden;
+  opacity: 0;
 }
 .custombox-modal-open .custombox-modal-door {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
 
 /*
@@ -686,10 +685,10 @@
  ----------------------------
  */
 .custombox-modal-push {
-    transform: translateX(-300%);
+  transform: translateX(-300%);
 }
 .custombox-modal-open .custombox-modal-push {
-    transform: translateX(0);
+  transform: translateX(0);
 }
 
 /*
@@ -698,12 +697,12 @@
  ----------------------------
  */
 .custombox-modal-contentscale {
-    transform: translateY(600%);
-    transition-property: transform ease-in-out;
-    position: absolute;
+  transform: translateY(600%);
+  transition-property: transform ease-in-out;
+  position: absolute;
 }
 .custombox-modal-open .custombox-modal-contentscale {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 /*
@@ -712,41 +711,41 @@
  ----------------------------
  */
 .custombox-modal-swell {
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-out;
-    animation-name: swell-close;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  animation-name: swell-close;
 }
 .custombox-modal-open .custombox-modal-swell {
-    animation-name: swell-open;
+  animation-name: swell-open;
 }
 @keyframes swell-open {
-    0% {
-        opacity: 0;
-        transform: translate3d(calc(-100vw - 50%), 0, 0);
-    }
-    50% {
-        opacity: 1;
-        transform: translate3d(100px, 0, 0);
-    }
-    100% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
+  0% {
+    opacity: 0;
+    transform: translate3d(calc(-100vw - 50%), 0, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(100px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 @keyframes swell-close {
-    0% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
-    50% {
-        opacity: 1;
-        transform: translate3d(-100px, 0, 0) scale3d(1.1, 1.1, 1);
-    }
-    100% {
-        opacity: 0;
-        transform: translate3d(calc(100vw + 50%), 0, 0)
-    }
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(-100px, 0, 0) scale3d(1.1, 1.1, 1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(calc(100vw + 50%), 0, 0);
+  }
 }
 
 /*
@@ -755,49 +754,50 @@
  ----------------------------
  */
 .custombox-modal-rotatedown {
-    animation-duration: 0.4s;
-    animation-timing-function: cubic-bezier(0.7,0,0.3,1);
-    animation-fill-mode: forwards;
-    transform-origin: -150% 50%;
-    animation-name: rotatedown-close;
-    overflow: hidden;
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+  animation-fill-mode: forwards;
+  transform-origin: -150% 50%;
+  animation-name: rotatedown-close;
+  overflow: hidden;
 }
 .custombox-modal-open .custombox-modal-rotatedown {
-    animation-name: rotatedown-open;
+  animation-name: rotatedown-open;
 }
 .custombox-modal-open .custombox-modal-rotatedown div > * {
-    animation: rotatedown-elem 0.4s both;
-    transform-origin: -50% 50%;
-    animation-timing-function: cubic-bezier(0.7,0,0.3,1);
-    animation-delay: 0.15s;
+  animation: rotatedown-elem 0.4s both;
+  transform-origin: -50% 50%;
+  animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+  animation-delay: 0.15s;
 }
 @keyframes rotatedown-open {
-    0% {
-        opacity: 0;
-        transform: rotate3d(0, 0, 1, -45deg);
-    }
-    100% {
-        opacity: 1;
-        transform: rotate3d(0, 0, 1, 0deg);
-    }
+  0% {
+    opacity: 0;
+    transform: rotate3d(0, 0, 1, -45deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
 }
 @keyframes rotatedown-close {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        transform: rotate3d(0, 0, 1, 45deg);
-    }
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate3d(0, 0, 1, 45deg);
+  }
 }
 @keyframes rotatedown-elem {
-    0% {
-        opacity: 0;
-        transform: translate3d(0, -150px, 0) rotate3d(0, 0, 1, -20deg);
-    }
-    100% { opacity: 1;
-        transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 0deg);
-    }
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -150px, 0) rotate3d(0, 0, 1, -20deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 0deg);
+  }
 }
 
 /*
@@ -806,67 +806,66 @@
  ----------------------------
  */
 .custombox-modal-flash {
-    animation-duration: 0.4s;
-    animation-fill-mode: forwards;
-    animation-timing-function: cubic-bezier(0.7,0,0.3,1);
-    animation-name: flash-close;
-    overflow: hidden;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+  animation-name: flash-close;
+  overflow: hidden;
 }
 .custombox-modal-open .custombox-modal-flash {
-    animation-name: flash-open;
+  animation-name: flash-open;
 }
 .custombox-modal-open .custombox-modal-flash div > * {
-    animation: flash-elem-open 0.4s cubic-bezier(0.7,0,0.3,1) both;
+  animation: flash-elem-open 0.4s cubic-bezier(0.7, 0, 0.3, 1) both;
 }
 .custombox-modal-flash div > * {
-    animation: flash-elem-close 0.4s cubic-bezier(0.7,0,0.3,1) both;
+  animation: flash-elem-close 0.4s cubic-bezier(0.7, 0, 0.3, 1) both;
 }
 @keyframes flash-open {
-    0% {
-        opacity: 0;
-        transform: translate3d(-400px, 0, 0)
-        scale3d(1.4, 0, 1);
-    }
-    100% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
-    }
+  0% {
+    opacity: 0;
+    transform: translate3d(-400px, 0, 0) scale3d(1.4, 0, 1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
 }
 @keyframes flash-close {
-    0% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
-    }
-    20% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
-    }
-    100% {
-        opacity: 0;
-        transform: translate3d(-400px, 0, 0) scale3d(1.4, 0, 1);
-    }
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+  20% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-400px, 0, 0) scale3d(1.4, 0, 1);
+  }
 }
 @keyframes flash-elem-open {
-    0% {
-        opacity: 0;
-        transform: translate3d(-100px, 0, 0);
-    }
-    20% {
-        opacity: 0;
-        transform: translate3d(-100px, 0, 0);
-    }
-    100% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
+  0% {
+    opacity: 0;
+    transform: translate3d(-100px, 0, 0);
+  }
+  20% {
+    opacity: 0;
+    transform: translate3d(-100px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 @keyframes flash-elem-close {
-    0% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
-    100% {
-        opacity: 0;
-        transform: translate3d(-100px, 0, 0);
-    }
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-100px, 0, 0);
+  }
 }

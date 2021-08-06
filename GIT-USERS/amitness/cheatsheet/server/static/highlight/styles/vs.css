@@ -22,8 +22,8 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 
 .hljs-keyword,
 .hljs-id,
-.hljs-built_in,.css
-.smalltalk .hljs-class,
+.hljs-built_in,
+.css .smalltalk .hljs-class,
 .hljs-winutils,
 .bash .hljs-variable,
 .tex .hljs-command,
@@ -84,10 +84,20 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
 }
 
 .hljs-type,
-.hljs-typename { font-weight: bold; }
+.hljs-typename {
+  font-weight: bold;
+}
 
-.vhdl .hljs-string { color: #666666; }
-.vhdl .hljs-literal { color: #a31515; }
-.vhdl .hljs-attribute { color: #00b0e8; }
+.vhdl .hljs-string {
+  color: #666666;
+}
+.vhdl .hljs-literal {
+  color: #a31515;
+}
+.vhdl .hljs-attribute {
+  color: #00b0e8;
+}
 
-.xml .hljs-attribute { color: #f00; }
+.xml .hljs-attribute {
+  color: #f00;
+}

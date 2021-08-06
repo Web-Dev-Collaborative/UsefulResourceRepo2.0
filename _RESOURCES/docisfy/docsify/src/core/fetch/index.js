@@ -17,7 +17,7 @@ function loadNested(path, qs, file, next, vm, first) {
     vm.router.getFile(path + file) + qs,
     false,
     vm.config.requestHeaders
-  ).then(next, _ => loadNested(path, qs, file, next, vm));
+  ).then(next, (_) => loadNested(path, qs, file, next, vm));
 }
 
 export function fetchMixin(proto) {
@@ -47,7 +47,7 @@ export function fetchMixin(proto) {
       case 'object':
         key = Object.keys(notFoundPage)
           .sort((a, b) => b.length - a.length)
-          .filter(k => path.match(new RegExp('^' + k)))[0];
+          .filter((k) => path.match(new RegExp('^' + k)))[0];
 
         path404 = (key && notFoundPage[key]) || defaultPath;
         break;
@@ -59,13 +59,13 @@ export function fetchMixin(proto) {
     return path404;
   };
 
-  proto._loadSideAndNav = function(path, qs, loadSidebar, cb) {
+  proto._loadSideAndNav = function (path, qs, loadSidebar, cb) {
     return () => {
       if (!loadSidebar) {
         return cb();
       }
 
-      const fn = result => {
+      const fn = (result) => {
         this._renderSidebar(result);
         cb();
       };
@@ -75,7 +75,7 @@ export function fetchMixin(proto) {
     };
   };
 
-  proto._fetch = function(cb = noop) {
+  proto._fetch = function (cb = noop) {
     const { query } = this.route;
     let { path } = this.route;
 
@@ -104,7 +104,7 @@ export function fetchMixin(proto) {
             opt,
             this._loadSideAndNav(path, qs, loadSidebar, cb)
           ),
-        _ => {
+        (_) => {
           this._fetchFallbackPage(path, qs, cb) || this._fetch404(file, qs, cb);
         }
       );
@@ -115,14 +115,14 @@ export function fetchMixin(proto) {
           path,
           qs,
           loadNavbar,
-          text => this._renderNav(text),
+          (text) => this._renderNav(text),
           this,
           true
         );
     }
   };
 
-  proto._fetchCover = function() {
+  proto._fetchCover = function () {
     const { coverpage, requestHeaders } = this.config;
     const query = this.route.query;
     const root = getParentPath(this.route.path);
@@ -145,11 +145,9 @@ export function fetchMixin(proto) {
       if (path) {
         path = this.router.getFile(root + path);
         this.coverIsHTML = /\.html$/g.test(path);
-        get(
-          path + stringifyQuery(query, ['id']),
-          false,
-          requestHeaders
-        ).then(text => this._renderCover(text, coverOnly));
+        get(path + stringifyQuery(query, ['id']), false, requestHeaders).then(
+          (text) => this._renderCover(text, coverOnly)
+        );
       } else {
         this._renderCover(null, coverOnly);
       }
@@ -158,7 +156,7 @@ export function fetchMixin(proto) {
     }
   };
 
-  proto.$fetch = function(
+  proto.$fetch = function (
     cb = noop,
     $resetEvents = this.$resetEvents.bind(this)
   ) {
@@ -179,7 +177,7 @@ export function fetchMixin(proto) {
     }
   };
 
-  proto._fetchFallbackPage = function(path, qs, cb = noop) {
+  proto._fetchFallbackPage = function (path, qs, cb = noop) {
     const { requestHeaders, fallbackLanguages, loadSidebar } = this.config;
 
     if (!fallbackLanguages) {
@@ -218,7 +216,7 @@ export function fetchMixin(proto) {
    * @returns {Boolean} True if the requested page is not found
    * @private
    */
-  proto._fetch404 = function(path, qs, cb = noop) {
+  proto._fetch404 = function (path, qs, cb = noop) {
     const { loadSidebar, requestHeaders, notFoundPage } = this.config;
 
     const fnLoadSideAndNav = this._loadSideAndNav(path, qs, loadSidebar, cb);
@@ -252,6 +250,6 @@ export function initFetch(vm) {
     callHook(vm, 'doneEach');
     callHook(vm, 'ready');
   } else {
-    vm.$fetch(_ => callHook(vm, 'ready'));
+    vm.$fetch((_) => callHook(vm, 'ready'));
   }
 }

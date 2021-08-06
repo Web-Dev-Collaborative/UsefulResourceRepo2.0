@@ -28,10 +28,10 @@ on the PTB dataset.
 
 This tutorial references the following files from `models/tutorials/rnn/ptb` in the [TensorFlow models repo](https://github.com/tensorflow/models):
 
-File | Purpose
---- | ---
-`ptb_word_lm.py` | The code to train a language model on the PTB dataset.
-`reader.py` | The code to read the dataset.
+| File             | Purpose                                                |
+| ---------------- | ------------------------------------------------------ |
+| `ptb_word_lm.py` | The code to train a language model on the PTB dataset. |
+| `reader.py`      | The code to read the dataset.                          |
 
 ## Download and Prepare the Data
 
@@ -51,9 +51,9 @@ The core of the model consists of an LSTM cell that processes one word at a
 time and computes probabilities of the possible values for the next word in the
 sentence. The memory state of the network is initialized with a vector of zeros
 and gets updated after reading each word. For computational reasons, we will
-process data in mini-batches of size `batch_size`.  In this example, it is
+process data in mini-batches of size `batch_size`. In this example, it is
 important to note that `current_batch_of_words` does not correspond to a
-"sentence" of words.  Every word in a batch should correspond to a time t.
+"sentence" of words. Every word in a batch should correspond to a time t.
 TensorFlow will automatically sum the gradients of each batch for you.
 
 For example:
@@ -154,7 +154,7 @@ differentiate the meaning of words just by looking at the data.
 
 We want to minimize the average negative log probability of the target words:
 
-$$ \text{loss} = -\frac{1}{N}\sum_{i=1}^{N} \ln p_{\text{target}_i} $$
+$$ \text{loss} = -\frac{1}{N}\sum*{i=1}^{N} \ln p*{\text{target}\_i} $$
 
 It is not very difficult to implement but the function
 `sequence_loss_by_example` is already available, so we can just use it here.
@@ -194,12 +194,13 @@ final_state = state
 ## Run the Code
 
 Before running the code, download the PTB dataset, as discussed at the beginning
-of this tutorial.  Then, extract the PTB dataset underneath your home directory
+of this tutorial. Then, extract the PTB dataset underneath your home directory
 as follows:
 
 ```bsh
 tar xvfz simple-examples.tgz -C $HOME
 ```
+
 _(Note: On Windows, you may need to use
 [other tools](https://wiki.haskell.org/How_to_unpack_a_tar_file_in_Windows).)_
 
@@ -224,7 +225,7 @@ be able to reach perplexity below 120 on the test set and the `large` one below
 There are several tricks that we haven't mentioned that make the model better,
 including:
 
-* decreasing learning rate schedule,
-* dropout between the LSTM layers.
+- decreasing learning rate schedule,
+- dropout between the LSTM layers.
 
 Study the code and modify it to improve the model even further.

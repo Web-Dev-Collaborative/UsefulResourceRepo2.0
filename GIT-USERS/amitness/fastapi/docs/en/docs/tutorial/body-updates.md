@@ -30,12 +30,12 @@ And the data would be saved with that "new" `tax` of `10.5`.
 
 ## Partial updates with `PATCH`
 
-You can also use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> operation to *partially* update data.
+You can also use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> operation to _partially_ update data.
 
 This means that you can send only the data that you want to update, leaving the rest intact.
 
 !!! Note
-    `PATCH` is less commonly used and known than `PUT`.
+`PATCH` is less commonly used and known than `PUT`.
 
     And many teams use only `PUT`, even for partial updates.
 
@@ -71,28 +71,28 @@ Like `stored_item_model.copy(update=update_data)`:
 
 In summary, to apply partial updates you would:
 
-* (Optionally) use `PATCH` instead of `PUT`.
-* Retrieve the stored data.
-* Put that data in a Pydantic model.
-* Generate a `dict` without default values from the input model (using `exclude_unset`).
-    * This way you can update only the values actually set by the user, instead of overriding values already stored with default values in your model.
-* Create a copy of the stored model, updating it's attributes with the received partial updates (using the `update` parameter).
-* Convert the copied model to something that can be stored in your DB (for example, using the `jsonable_encoder`).
-    * This is comparable to using the model's `.dict()` method again, but it makes sure (and converts) the values to data types that can be converted to JSON, for example, `datetime` to `str`.
-* Save the data to your DB.
-* Return the updated model.
+- (Optionally) use `PATCH` instead of `PUT`.
+- Retrieve the stored data.
+- Put that data in a Pydantic model.
+- Generate a `dict` without default values from the input model (using `exclude_unset`).
+  - This way you can update only the values actually set by the user, instead of overriding values already stored with default values in your model.
+- Create a copy of the stored model, updating it's attributes with the received partial updates (using the `update` parameter).
+- Convert the copied model to something that can be stored in your DB (for example, using the `jsonable_encoder`).
+  - This is comparable to using the model's `.dict()` method again, but it makes sure (and converts) the values to data types that can be converted to JSON, for example, `datetime` to `str`.
+- Save the data to your DB.
+- Return the updated model.
 
 ```Python hl_lines="30-37"
 {!../../../docs_src/body_updates/tutorial002.py!}
 ```
 
 !!! tip
-    You can actually use this same technique with an HTTP `PUT` operation.
+You can actually use this same technique with an HTTP `PUT` operation.
 
     But the example here uses `PATCH` because it was created for these use cases.
 
 !!! note
-    Notice that the input model is still validated.
+Notice that the input model is still validated.
 
     So, if you want to receive partial updates that can omit all the attributes, you need to have a model with all the attributes marked as optional (with default values or `None`).
 

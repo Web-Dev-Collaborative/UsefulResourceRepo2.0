@@ -10,15 +10,14 @@ accelerators.
 
 This guide does the following:
 
-*   Illustrates that TensorFlow input pipelines are essentially an
-    [ETL](https://en.wikipedia.org/wiki/Extract,_transform,_load) process.
-*   Describes common performance optimizations in the context of the `tf.data`
-    API.
-*   Discusses the performance implications of the order in which you apply
-    transformations.
-*   Summarizes the best practices for designing performant TensorFlow input
-    pipelines.
-
+- Illustrates that TensorFlow input pipelines are essentially an
+  [ETL](https://en.wikipedia.org/wiki/Extract,_transform,_load) process.
+- Describes common performance optimizations in the context of the `tf.data`
+  API.
+- Discusses the performance implications of the order in which you apply
+  transformations.
+- Summarizes the best practices for designing performant TensorFlow input
+  pipelines.
 
 ## Input Pipeline Structure
 
@@ -116,7 +115,6 @@ return dataset
 
 to:
 
-
 ```
 dataset = dataset.batch(batch_size=FLAGS.batch_size)
 dataset = dataset.prefetch(buffer_size=FLAGS.prefetch_buffer_size)
@@ -190,12 +188,11 @@ on every machine. A dataset pipeline that works well when reading data locally
 might become bottlenecked on I/O when reading data remotely because of the
 following differences between local and remote storage:
 
-
-*   **Time-to-first-byte:** Reading the first byte of a file from remote storage
-    can take orders of magnitude longer than from local storage.
-*   **Read throughput:** While remote storage typically offers large aggregate
-    bandwidth, reading a single file might only be able to utilize a small
-    fraction of this bandwidth.
+- **Time-to-first-byte:** Reading the first byte of a file from remote storage
+  can take orders of magnitude longer than from local storage.
+- **Read throughput:** While remote storage typically offers large aggregate
+  bandwidth, reading a single file might only be able to utilize a small
+  fraction of this bandwidth.
 
 In addition, once the raw bytes are read into memory, it may also be necessary
 to deserialize or decrypt the data
@@ -227,7 +224,6 @@ to:
 dataset = files.apply(tf.contrib.data.parallel_interleave(
     tf.data.TFRecordDataset, cycle_length=FLAGS.num_parallel_readers))
 ```
-
 
 The throughput of remote storage systems can vary over time due to load or
 network events. To account for this variance, the `parallel_interleave`
@@ -304,28 +300,28 @@ recommend shuffling before repeating.
 
 Here is a summary of the best practices for designing input pipelines:
 
-*   Use the `prefetch` transformation to overlap the work of a producer and
-    consumer. In particular, we recommend adding prefetch(n) (where n is the
-    number of elements / batches consumed by a training step) to the end of your
-    input pipeline to overlap the transformations performed on the CPU with the
-    training done on the accelerator.
-*   Parallelize the `map` transformation by setting the `num_parallel_calls`
-    argument. We recommend using the number of available CPU cores for its value.
-*   If you are combining pre-processed elements into a batch using the `batch`
-    transformation, we recommend using the fused `map_and_batch` transformation;
-    especially if you are using large batch sizes.
-*   If you are working with data stored remotely and / or requiring
-    deserialization, we recommend using the `parallel_interleave`
-    transformation to overlap the reading (and deserialization) of data from
-    different files.
-*   Vectorize cheap user-defined functions passed in to the `map` transformation
-    to amortize the overhead associated with scheduling and executing the
-    function.
-*   If your data can fit into memory, use the `cache` transformation to cache it
-    in memory during the first epoch, so that subsequent epochs can avoid the
-    overhead associated with reading, parsing, and transforming it.
-*   If your pre-processing increases the size of your data, we recommend
-    applying the `interleave`, `prefetch`, and `shuffle` first (if possible) to
-    reduce memory usage.
-*   We recommend applying the `shuffle` transformation _before_ the `repeat`
-    transformation, ideally using the fused `shuffle_and_repeat` transformation.
+- Use the `prefetch` transformation to overlap the work of a producer and
+  consumer. In particular, we recommend adding prefetch(n) (where n is the
+  number of elements / batches consumed by a training step) to the end of your
+  input pipeline to overlap the transformations performed on the CPU with the
+  training done on the accelerator.
+- Parallelize the `map` transformation by setting the `num_parallel_calls`
+  argument. We recommend using the number of available CPU cores for its value.
+- If you are combining pre-processed elements into a batch using the `batch`
+  transformation, we recommend using the fused `map_and_batch` transformation;
+  especially if you are using large batch sizes.
+- If you are working with data stored remotely and / or requiring
+  deserialization, we recommend using the `parallel_interleave`
+  transformation to overlap the reading (and deserialization) of data from
+  different files.
+- Vectorize cheap user-defined functions passed in to the `map` transformation
+  to amortize the overhead associated with scheduling and executing the
+  function.
+- If your data can fit into memory, use the `cache` transformation to cache it
+  in memory during the first epoch, so that subsequent epochs can avoid the
+  overhead associated with reading, parsing, and transforming it.
+- If your pre-processing increases the size of your data, we recommend
+  applying the `interleave`, `prefetch`, and `shuffle` first (if possible) to
+  reduce memory usage.
+- We recommend applying the `shuffle` transformation _before_ the `repeat`
+  transformation, ideally using the fused `shuffle_and_repeat` transformation.

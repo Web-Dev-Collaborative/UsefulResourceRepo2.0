@@ -1,12 +1,13 @@
-define('parsley/pubsub', [
-  'parsley/field',
-  'parsley/form',
-  'parsley/utils'
+define("parsley/pubsub", [
+  "parsley/field",
+  "parsley/form",
+  "parsley/utils",
 ], function (ParsleyField, ParsleyForm, ParsleyUtils) {
-  var
-    o = $({}),
+  var o = $({}),
     deprecated = function () {
-      ParsleyUtils.warnOnce("Parsley's pubsub module is deprecated; use the 'on' and 'off' methods on parsley instances or window.Parsley");
+      ParsleyUtils.warnOnce(
+        "Parsley's pubsub module is deprecated; use the 'on' and 'off' methods on parsley instances or window.Parsley"
+      );
     };
 
   // Returns an event handler that calls `fn` with the arguments it expects
@@ -22,7 +23,7 @@ define('parsley/pubsub', [
     return fn.parsleyAdaptedCallback;
   }
 
-  var eventPrefix = 'parsley:';
+  var eventPrefix = "parsley:";
   // Converts 'parsley:form:validate' into 'form:validate'
   function eventName(name) {
     if (name.lastIndexOf(eventPrefix, 0) === 0)
@@ -34,47 +35,55 @@ define('parsley/pubsub', [
   $.listen = function (name, callback) {
     var context;
     deprecated();
-    if ('object' === typeof arguments[1] && 'function' === typeof arguments[2]) {
+    if (
+      "object" === typeof arguments[1] &&
+      "function" === typeof arguments[2]
+    ) {
       context = arguments[1];
       callback = arguments[2];
     }
 
-    if ('function' !== typeof arguments[1])
-      throw new Error('Wrong parameters');
+    if ("function" !== typeof arguments[1]) throw new Error("Wrong parameters");
 
     window.Parsley.on(eventName(name), adapt(callback, context));
   };
 
   $.listenTo = function (instance, name, fn) {
     deprecated();
-    if (!(instance instanceof ParsleyField) && !(instance instanceof ParsleyForm))
-      throw new Error('Must give Parsley instance');
+    if (
+      !(instance instanceof ParsleyField) &&
+      !(instance instanceof ParsleyForm)
+    )
+      throw new Error("Must give Parsley instance");
 
-    if ('string' !== typeof name || 'function' !== typeof fn)
-      throw new Error('Wrong parameters');
+    if ("string" !== typeof name || "function" !== typeof fn)
+      throw new Error("Wrong parameters");
 
     instance.on(eventName(name), adapt(fn));
   };
 
   $.unsubscribe = function (name, fn) {
     deprecated();
-    if ('string' !== typeof name || 'function' !== typeof fn)
-      throw new Error('Wrong arguments');
+    if ("string" !== typeof name || "function" !== typeof fn)
+      throw new Error("Wrong arguments");
     window.Parsley.off(eventName(name), fn.parsleyAdaptedCallback);
   };
 
   $.unsubscribeTo = function (instance, name) {
     deprecated();
-    if (!(instance instanceof ParsleyField) && !(instance instanceof ParsleyForm))
-      throw new Error('Must give Parsley instance');
+    if (
+      !(instance instanceof ParsleyField) &&
+      !(instance instanceof ParsleyForm)
+    )
+      throw new Error("Must give Parsley instance");
     instance.off(eventName(name));
   };
 
   $.unsubscribeAll = function (name) {
     deprecated();
     window.Parsley.off(eventName(name));
-    $('form,input,textarea,select').each(function() {
-      var instance = $(this).data('Parsley');
+    $("form,input,textarea,select").each(function () {
+      var instance = $(this).data("Parsley");
       if (instance) {
         instance.off(eventName(name));
       }
@@ -84,7 +93,8 @@ define('parsley/pubsub', [
   // $.emit is deprecated. Use jQuery events instead.
   $.emit = function (name, instance) {
     deprecated();
-    var instanceGiven = (instance instanceof ParsleyField) || (instance instanceof ParsleyForm);
+    var instanceGiven =
+      instance instanceof ParsleyField || instance instanceof ParsleyForm;
     var args = Array.prototype.slice.call(arguments, instanceGiven ? 2 : 1);
     args.unshift(eventName(name));
     if (!instanceGiven) {
@@ -92,5 +102,4 @@ define('parsley/pubsub', [
     }
     instance.trigger.apply(instance, args);
   };
-
 });

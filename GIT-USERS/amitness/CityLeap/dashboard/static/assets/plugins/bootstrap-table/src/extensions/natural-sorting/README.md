@@ -10,4 +10,4 @@ Use Plugin: [bootstrap-table-natural-sorting](https://github.com/wenzhixin/boots
 
 ### Options
 
-* Just add data-sorter="alphanum" to any th
+- Just add data-sorter="alphanum" to any th

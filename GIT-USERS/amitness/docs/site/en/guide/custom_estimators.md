@@ -1,4 +1,3 @@
-
 # Creating Custom Estimators
 
 This document introduces custom Estimators. In particular, this document
@@ -29,8 +28,6 @@ with
 [`premade_estimator.py`](https://github.com/tensorflow/models/blob/master/samples/core/get_started/premade_estimator.py).
 (which is in the same directory).
 
-
-
 ## Pre-made vs. custom
 
 As the following figure shows, pre-made Estimators are subclasses of the
@@ -47,23 +44,23 @@ Pre-made and custom Estimators are all Estimators.
 </div>
 
 Pre-made Estimators are fully baked. Sometimes though, you need more control
-over an Estimator's behavior.  That's where custom Estimators come in. You can
+over an Estimator's behavior. That's where custom Estimators come in. You can
 create a custom Estimator to do just about anything. If you want hidden layers
 connected in some unusual fashion, write a custom Estimator. If you want to
 calculate a unique
 [metric](https://developers.google.com/machine-learning/glossary/#metric)
-for your model, write a custom Estimator.  Basically, if you want an Estimator
+for your model, write a custom Estimator. Basically, if you want an Estimator
 optimized for your specific problem, write a custom Estimator.
 
 A model function (or `model_fn`) implements the ML algorithm. The
 only difference between working with pre-made Estimators and custom Estimators
 is:
 
-* With pre-made Estimators, someone already wrote the model function for you.
-* With custom Estimators, you must write the model function.
+- With pre-made Estimators, someone already wrote the model function for you.
+- With custom Estimators, you must write the model function.
 
 Your model function could implement a wide range of algorithms, defining all
-sorts of hidden layers and metrics.  Like input functions, all model functions
+sorts of hidden layers and metrics. Like input functions, all model functions
 must accept a standard group of input parameters and return a standard group of
 output values. Just as input functions can leverage the Dataset API, model
 functions can leverage the Layers API and the Metrics API.
@@ -161,20 +158,20 @@ classifier = tf.estimator.Estimator(
 
 To implement a typical model function, you must do the following:
 
-* [Define the model](#define_the_model).
-* Specify additional calculations for each of
+- [Define the model](#define_the_model).
+- Specify additional calculations for each of
   the [three different modes](#modes):
-    * [Predict](#predict)
-    * [Evaluate](#evaluate)
-    * [Train](#train)
+  - [Predict](#predict)
+  - [Evaluate](#evaluate)
+  - [Train](#train)
 
 ## Define the model
 
 The basic deep neural network model must define the following three sections:
 
-* An [input layer](https://developers.google.com/machine-learning/glossary/#input_layer)
-* One or more [hidden layers](https://developers.google.com/machine-learning/glossary/#hidden_layer)
-* An [output layer](https://developers.google.com/machine-learning/glossary/#output_layer)
+- An [input layer](https://developers.google.com/machine-learning/glossary/#input_layer)
+- One or more [hidden layers](https://developers.google.com/machine-learning/glossary/#hidden_layer)
+- An [output layer](https://developers.google.com/machine-learning/glossary/#output_layer)
 
 ### Define the input layer
 
@@ -196,7 +193,6 @@ creating the model's input layer.
   src="../images/custom_estimators/input_layer.png">
 </div>
 
-
 ### Hidden Layers
 
 If you are creating a deep neural network, you must define one or more hidden
@@ -204,16 +200,16 @@ layers. The Layers API provides a rich set of functions to define all types of
 hidden layers, including convolutional, pooling, and dropout layers. For Iris,
 we're simply going to call `tf.layers.dense` to create hidden layers, with
 dimensions defined by `params['hidden_layers']`. In a `dense` layer each node
-is connected to every node in the preceding layer.  Here's the relevant code:
+is connected to every node in the preceding layer. Here's the relevant code:
 
-``` python
+```python
     # Build the hidden layers, sized according to the 'hidden_units' param.
     for units in params['hidden_units']:
         net = tf.layers.dense(net, units=units, activation=tf.nn.relu)
 ```
 
-* The `units` parameter defines the number of output neurons in a given layer.
-* The `activation` parameter defines the [activation function](https://developers.google.com/machine-learning/glossary/#activation_function) —
+- The `units` parameter defines the number of output neurons in a given layer.
+- The `activation` parameter defines the [activation function](https://developers.google.com/machine-learning/glossary/#activation_function) —
   [Relu](https://developers.google.com/machine-learning/glossary/#ReLU) in this
   case.
 
@@ -276,7 +272,7 @@ The model function gets invoked whenever someone calls the Estimator's `train`,
 `evaluate`, or `predict` methods. Recall that the signature for the model
 function looks like this:
 
-``` python
+```python
 def my_model_fn(
    features, # This is batch_features from input_fn
    labels,   # This is batch_labels from input_fn
@@ -288,19 +284,20 @@ Focus on that third argument, mode. As the following table shows, when someone
 calls `train`, `evaluate`, or `predict`, the Estimator framework invokes your model
 function with the mode parameter set as follows:
 
-| Estimator method                 |    Estimator Mode |
-|:---------------------------------|:------------------|
-|`tf.estimator.Estimator.train` |`tf.estimator.ModeKeys.TRAIN` |
-|`tf.estimator.Estimator.evaluate`  |`tf.estimator.ModeKeys.EVAL`      |
-|`tf.estimator.Estimator.predict`|`tf.estimator.ModeKeys.PREDICT` |
+| Estimator method                  | Estimator Mode                  |
+| :-------------------------------- | :------------------------------ |
+| `tf.estimator.Estimator.train`    | `tf.estimator.ModeKeys.TRAIN`   |
+| `tf.estimator.Estimator.evaluate` | `tf.estimator.ModeKeys.EVAL`    |
+| `tf.estimator.Estimator.predict`  | `tf.estimator.ModeKeys.PREDICT` |
 
 For example, suppose you instantiate a custom Estimator to generate an object
 named `classifier`. Then, you make the following call:
 
-``` python
+```python
 classifier = tf.estimator.Estimator(...)
 classifier.train(input_fn=lambda: my_input_fn(FILE_TRAIN, True, 500))
 ```
+
 The Estimator framework then calls your model function with mode set to
 `ModeKeys.TRAIN`.
 
@@ -332,6 +329,7 @@ if mode == tf.estimator.ModeKeys.PREDICT:
     }
     return tf.estimator.EstimatorSpec(mode, predictions=predictions)
 ```
+
 The prediction dictionary contains everything that your model returns when run
 in prediction mode.
 
@@ -343,11 +341,11 @@ in prediction mode.
 
 The `predictions` holds the following three key/value pairs:
 
-*   `class_ids` holds the class id (0, 1, or 2) representing the model's
-    prediction of the most likely species for this example.
-*   `probabilities` holds the three probabilities (in this example, 0.02, 0.95,
-    and 0.03)
-*   `logit` holds the raw logit values (in this example, -1.3, 2.6, and -0.9)
+- `class_ids` holds the class id (0, 1, or 2) representing the model's
+  prediction of the most likely species for this example.
+- `probabilities` holds the three probabilities (in this example, 0.02, 0.95,
+  and 0.03)
+- `logit` holds the raw logit values (in this example, -1.3, 2.6, and -0.9)
 
 We return that dictionary to the caller via the `predictions` parameter of the
 `tf.estimator.EstimatorSpec`. The Estimator's
@@ -383,13 +381,13 @@ or more metrics.
 
 Although returning metrics is optional, most custom Estimators do return at
 least one metric. TensorFlow provides a Metrics module `tf.metrics` to
-calculate common metrics.  For brevity's sake, we'll only return accuracy. The
+calculate common metrics. For brevity's sake, we'll only return accuracy. The
 `tf.metrics.accuracy` function compares our predictions against the
 true values, that is, against the labels provided by the input function. The
 `tf.metrics.accuracy` function requires the labels and predictions to have the
 same shape. Here's the call to `tf.metrics.accuracy`:
 
-``` python
+```python
 # Compute evaluation metrics.
 accuracy = tf.metrics.accuracy(labels=labels,
                                predictions=predicted_classes,
@@ -399,12 +397,12 @@ accuracy = tf.metrics.accuracy(labels=labels,
 The `tf.estimator.EstimatorSpec` returned for evaluation
 typically contains the following information:
 
-* `loss`, which is the model's loss
-* `eval_metric_ops`, which is an optional dictionary of metrics.
+- `loss`, which is the model's loss
+- `eval_metric_ops`, which is an optional dictionary of metrics.
 
 So, we'll create a dictionary containing our sole metric. If we had calculated
 other metrics, we would have added them as additional key/value pairs to that
-same dictionary.  Then, we'll pass that dictionary in the `eval_metric_ops`
+same dictionary. Then, we'll pass that dictionary in the `eval_metric_ops`
 argument of `tf.estimator.EstimatorSpec`. Here's the code:
 
 ```python
@@ -432,7 +430,7 @@ optimizers—feel free to experiment with them.
 
 Here is the code that builds the optimizer:
 
-``` python
+```python
 optimizer = tf.train.AdagradOptimizer(learning_rate=0.1)
 ```
 
@@ -449,15 +447,15 @@ argument of `minimize`.
 
 Here's the code to train the model:
 
-``` python
+```python
 train_op = optimizer.minimize(loss, global_step=tf.train.get_global_step())
 ```
 
 The `tf.estimator.EstimatorSpec` returned for training
 must have the following fields set:
 
-* `loss`, which contains the value of the loss function.
-* `train_op`, which executes a training step.
+- `loss`, which contains the value of the loss function.
+- `train_op`, which executes a training step.
 
 Here's our code to call `EstimatorSpec`:
 
@@ -483,6 +481,7 @@ Instantiate the custom Estimator through the Estimator base class as follows:
             'n_classes': 3,
         })
 ```
+
 Here the `params` dictionary serves the same purpose as the key-word
 arguments of `DNNClassifier`; that is, the `params` dictionary lets you
 configure your Estimator without modifying the code in the `model_fn`.
@@ -530,24 +529,24 @@ generates the following:
 <img style="display:block; margin: 0 auto"
   alt="steps/second 'scalar' graph from tensorboard"
   src="../images/custom_estimators/steps_per_second.png">
+
 </div>
 
 <div style="text-align: center">
 TensorBoard displays three graphs.
 </div>
 
-
 In brief, here's what the three graphs tell you:
 
-* global_step/sec: A performance indicator showing how many batches (gradient
+- global_step/sec: A performance indicator showing how many batches (gradient
   updates) we processed per second as the model trains.
 
-* loss: The loss reported.
+- loss: The loss reported.
 
-* accuracy: The accuracy is recorded by the following two lines:
+- accuracy: The accuracy is recorded by the following two lines:
 
-    * `eval_metric_ops={'my_accuracy': accuracy}`, during evaluation.
-    * `tf.summary.scalar('accuracy', accuracy[1])`, during training.
+  - `eval_metric_ops={'my_accuracy': accuracy}`, during evaluation.
+  - `tf.summary.scalar('accuracy', accuracy[1])`, during training.
 
 These tensorboard graphs are one of the main reasons it's important to pass a
 `global_step` to your optimizer's `minimize` method. The model can't record
@@ -555,8 +554,8 @@ the x-coordinate for these graphs without it.
 
 Note the following in the `my_accuracy` and `loss` graphs:
 
-* The orange line represents training.
-* The blue dot represents evaluation.
+- The orange line represents training.
+- The blue dot represents evaluation.
 
 During training, summaries (the orange line) are recorded periodically as
 batches are processed, which is why it becomes a graph spanning x-axis range.
@@ -578,7 +577,6 @@ disable/enable the reporting using the controls on the left side.
 Enable or disable reporting.
 </div>
 
-
 ## Summary
 
 Although pre-made Estimators can be an effective way to quickly create new
@@ -589,14 +587,14 @@ function for custom Estimators; everything else is the same.
 
 For more details, be sure to check out:
 
-* The
+- The
   [official TensorFlow implementation of MNIST](https://github.com/tensorflow/models/tree/master/official/mnist),
   which uses a custom estimator.
-* The TensorFlow
+- The TensorFlow
   [official models repository](https://github.com/tensorflow/models/tree/master/official),
   which contains more curated examples using custom estimators.
-* This [TensorBoard video](https://youtu.be/eBbEDRsCmv4), which introduces
+- This [TensorBoard video](https://youtu.be/eBbEDRsCmv4), which introduces
   TensorBoard.
-* The [Low Level Introduction](../guide/low_level_intro.md), which demonstrates
+- The [Low Level Introduction](../guide/low_level_intro.md), which demonstrates
   how to experiment directly with TensorFlow's low level APIs, making debugging
   easier.

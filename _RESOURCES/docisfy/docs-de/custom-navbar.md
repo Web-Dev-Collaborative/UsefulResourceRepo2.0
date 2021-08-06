@@ -27,8 +27,8 @@ Oder du kannst deine Navigationsleiste mit einer Datei basierend auf Markdown er
 
 <script>
   window.$docsify = {
-    loadNavbar: true
-  }
+    loadNavbar: true,
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 ```
@@ -36,8 +36,8 @@ Oder du kannst deine Navigationsleiste mit einer Datei basierend auf Markdown er
 ```markdown
 <!-- _navbar.md -->
 
-* [En](/)
-* [Deutsch](/de-de/)
+- [En](/)
+- [Deutsch](/de-de/)
 ```
 
 !> Solltest du Github Pages verwenden, musst du zusätzlich eine Datei namens `.nojekyll` in `./docs` erstellen, um zu verhindern, dass Github Dateien ignoriert, die mit einem Unterstrich anfangen.
@@ -53,24 +53,24 @@ Du kannst untergeordnete Listen erstellen, indem du untergeordnete Punkte einem 
 ```markdown
 <!-- _navbar.md -->
 
-* Getting started
+- Getting started
 
-  * [Quick start](de-de/quickstart.md)
-  * [Writing more pages](de-de/more-pages.md)
-  * [Custom navbar](de-de/custom-navbar.md)
-  * [Cover page](de-de/cover.md)
+  - [Quick start](de-de/quickstart.md)
+  - [Writing more pages](de-de/more-pages.md)
+  - [Custom navbar](de-de/custom-navbar.md)
+  - [Cover page](de-de/cover.md)
 
-* Configuration
-  * [Configuration](de-de/configuration.md)
-  * [Themes](de-de/themes.md)
-  * [Using plugins](de-de/plugins.md)
-  * [Markdown configuration](de-de/markdown.md)
-  * [Language highlight](de-de/language-highlight.md)
+- Configuration
+  - [Configuration](de-de/configuration.md)
+  - [Themes](de-de/themes.md)
+  - [Using plugins](de-de/plugins.md)
+  - [Markdown configuration](de-de/markdown.md)
+  - [Language highlight](de-de/language-highlight.md)
 ```
 
 wird also wie folgt aussehen
 
-![Verschachtelte navbar](../_images/nested-navbar.png 'Verschachtelte navbar')
+![Verschachtelte navbar](../_images/nested-navbar.png "Verschachtelte navbar")
 
 ## Verbindung von eigens angepassten Navigationsleisten mit der emoji Erweiterung
 
@@ -82,7 +82,7 @@ Solltest du die [emoji Erweiterung](plugins.md#emoji) verwenden:
 <script>
   window.$docsify = {
     // ...
-  }
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/emoji.min.js"></script>
@@ -93,6 +93,6 @@ so kannst du z.B. auch die Flaggenemojis in der Markdown Datei für deine angepa
 ```markdown
 <!-- _navbar.md -->
 
-* [:us:, :uk:](/)
-* [:de:](/de-de/)
+- [:us:, :uk:](/)
+- [:de:](/de-de/)
 ```

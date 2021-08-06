@@ -1,6 +1,7 @@
 # Credits
 
 Awesome NLP was seeded with curated content from the lot of repositories, some of which are listed below | [Back to Top](#contents)
+
 - Indonesian-NLP Section was seeded from [id-nlp-resource](https://github.com/kmkurn/id-nlp-resource)
 - [ai-reading-list](https://github.com/m0nologuer/AI-reading-list)
 - [nlp-reading-group](https://github.com/clulab/nlp-reading-group/wiki/Fall-2015-Reading-Schedule)

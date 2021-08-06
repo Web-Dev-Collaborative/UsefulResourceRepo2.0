@@ -1,7 +1,7 @@
-var rollup = require('rollup')
-var buble = require('rollup-plugin-buble')
-var async = require('rollup-plugin-async')
-var replace = require('rollup-plugin-replace')
+var rollup = require('rollup');
+var buble = require('rollup-plugin-buble');
+var async = require('rollup-plugin-async');
+var replace = require('rollup-plugin-replace');
 
 rollup
   .rollup({
@@ -10,26 +10,26 @@ rollup
       async(),
       replace({
         __VERSION__: process.env.VERSION || require('../package.json').version,
-        'process.env.SSR': true
+        'process.env.SSR': true,
       }),
       buble({
         transforms: {
-          generator: false
-        }
-      })
+          generator: false,
+        },
+      }),
     ],
-    onwarn: function () {}
+    onwarn: function () {},
   })
   .then(function (bundle) {
-    var dest = 'packages/docsify-server-renderer/build.js'
+    var dest = 'packages/docsify-server-renderer/build.js';
 
-    console.log(dest)
+    console.log(dest);
     return bundle.write({
       format: 'cjs',
-      file: dest
-    })
+      file: dest,
+    });
   })
   .catch(function (err) {
-    console.error(err)
-    process.exit(1)
-  })
+    console.error(err);
+    process.exit(1);
+  });

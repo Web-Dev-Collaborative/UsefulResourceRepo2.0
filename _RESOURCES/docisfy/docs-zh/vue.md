@@ -28,7 +28,7 @@
 
 ## 模板语法
 
-Vue[模板语法](https://vuejs.org/v2/guide/syntax.html) 用于创建动态内容。无需额外的配置，这种语法提供了一些有用的功能，如支持 [JavaScript表达式](https://vuejs.org/v2/guide/syntax.html#Using-JavaScript-Expressions) 和 Vue[指令](https://vuejs.org/v2/guide/syntax.html#Directives) 的循环和条件渲染。
+Vue[模板语法](https://vuejs.org/v2/guide/syntax.html) 用于创建动态内容。无需额外的配置，这种语法提供了一些有用的功能，如支持 [JavaScript 表达式](https://vuejs.org/v2/guide/syntax.html#Using-JavaScript-Expressions) 和 Vue[指令](https://vuejs.org/v2/guide/syntax.html#Directives) 的循环和条件渲染。
 
 ```markdown
 <!-- 在docsify中隐藏，在其他地方显示（如GitHub）。 -->
@@ -53,9 +53,9 @@ Vue[模板语法](https://vuejs.org/v2/guide/syntax.html) 用于创建动态内�
   <p>2 + 2 = {{ 2 + 2 }}</p>
 </output>
 
-[在GitHub上查看输出](https://github.com/docsifyjs/docsify/blob/develop/docs/vue.md#template-syntax)
+[在 GitHub 上查看输出](https://github.com/docsifyjs/docsify/blob/develop/docs/vue.md#template-syntax)
 
-当使用[data](#data)、[computed properties](#computed-properties)、[methods](#methods)和[lifecycle hooks](#lifecycle-hooks)时，Vue内容会变得更加有趣。这些选项可以作为[全局选项](#global-options)或在DOM中的[mounts](#mounts)和[component](#components)来指定。
+当使用[data](#data)、[computed properties](#computed-properties)、[methods](#methods)和[lifecycle hooks](#lifecycle-hooks)时，Vue 内容会变得更加有趣。这些选项可以作为[全局选项](#global-options)或在 DOM 中的[mounts](#mounts)和[component](#components)来指定。
 
 ### Data
 
@@ -90,7 +90,7 @@ Vue[模板语法](https://vuejs.org/v2/guide/syntax.html) 用于创建动态内�
   <p v-text="message">Text for GitHub</p>
 </output>
 
-[在GitHub上查看输出](https://github.com/docsifyjs/docsify/blob/develop/docs/vue.md#data)
+[在 GitHub 上查看输出](https://github.com/docsifyjs/docsify/blob/develop/docs/vue.md#data)
 
 ### Computed properties
 
@@ -195,7 +195,7 @@ Good {{ timeOfDay }}!
 
 ## Global options
 
-使用`vueGlobalOptions`来指定 [Vue options](https://vuejs.org/v2/api/#Options-Data) ，用于未明确挂载[vueMounts](#mounts)、[vueComponents](#components)或[markdown脚本](#markdown-script)的Vue内容。对全局`data`的更改将持续存在，并反映在任何使用全局引用的地方。
+使用`vueGlobalOptions`来指定 [Vue options](https://vuejs.org/v2/api/#Options-Data) ，用于未明确挂载[vueMounts](#mounts)、[vueComponents](#components)或[markdown 脚本](#markdown-script)的 Vue 内容。对全局`data`的更改将持续存在，并反映在任何使用全局引用的地方。
 
 ```js
 window.$docsify = {
@@ -239,12 +239,12 @@ window.$docsify = {
 
 ## Mounts
 
-使用`vueMounts`来指定要挂载为 [Vue实例](https://vuejs.org/v2/guide/instance.html) 的DOM元素及其相关选项。挂载元素使用 [CSS选择器](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) 作为键，并使用一个包含Vue选项的对象作为其值。每次加载新页面时，Docsify将挂载主内容区域中第一个匹配的元素。挂载元素`data`对每个实例来说都是唯一的，并且在用户浏览网站时不会持久。
+使用`vueMounts`来指定要挂载为 [Vue 实例](https://vuejs.org/v2/guide/instance.html) 的 DOM 元素及其相关选项。挂载元素使用 [CSS 选择器](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) 作为键，并使用一个包含 Vue 选项的对象作为其值。每次加载新页面时，Docsify 将挂载主内容区域中第一个匹配的元素。挂载元素`data`对每个实例来说都是唯一的，并且在用户浏览网站时不会持久。
 
 ```js
 window.$docsify = {
   vueMounts: {
-    '#counter': {
+    "#counter": {
       data() {
         return {
           count: 0,
@@ -271,12 +271,12 @@ window.$docsify = {
 
 ## Components
 
-使用`vueComponents`创建和注册全局[Vue组件](https://vuejs.org/v2/guide/components.html) 。组件是以组件名称为键，以包含Vue选项的对象为值来指定的。组件`data`对每个实例来说都是唯一的，并且在用户浏览网站时不会持久存在。
+使用`vueComponents`创建和注册全局[Vue 组件](https://vuejs.org/v2/guide/components.html) 。组件是以组件名称为键，以包含 Vue 选项的对象为值来指定的。组件`data`对每个实例来说都是唯一的，并且在用户浏览网站时不会持久存在。
 
 ```js
 window.$docsify = {
   vueComponents: {
-    'button-counter': {
+    "button-counter": {
       template: `
         <button @click="count += 1">
           You clicked me {{ count }} times
@@ -304,15 +304,15 @@ window.$docsify = {
 
 ## Markdown script
 
-Vue内容可以使用 Markdown 页面中的`<script>`标签进行挂载。
+Vue 内容可以使用 Markdown 页面中的`<script>`标签进行挂载。
 
-!> 只有 Markdown 文件中的第一个`<script>`标签会被执行。如果你想使用脚本标签挂载多个Vue实例，所有实例必须挂载在Markdown的第一个脚本标签内。
+!> 只有 Markdown 文件中的第一个`<script>`标签会被执行。如果你想使用脚本标签挂载多个 Vue 实例，所有实例必须挂载在 Markdown 的第一个脚本标签内。
 
 ```html
 <!-- Vue 2.x  -->
 <script>
   new Vue({
-    el: '#example',
+    el: "#example",
     // Options...
   });
 </script>
@@ -323,7 +323,7 @@ Vue内容可以使用 Markdown 页面中的`<script>`标签进行挂载。
 <script>
   Vue.createApp({
     // Options...
-  }).mount('#example');
+  }).mount("#example");
 </script>
 ```
 
@@ -349,13 +349,8 @@ Vue内容可以使用 Markdown 页面中的`<script>`标签进行挂载。
 
 ## 说明
 
-- Docsify 在每次加载页面时按以下顺序处理Vue内容：
-  1.执行 Markdown `<script>`
-  1.注册全局 `vueComponents`
-  1.挂载 `vueMounts`
-  1.自动挂载未安装的 `vueComponents`
-  1.使用 `vueGlobalOptions` 自动挂载未安装的Vue模板语法
-- 自动挂载Vue内容时，docsify将挂载Markdown中包含模板语法或组件的每个顶级元素。例如，在以下HTML中，将安装顶级`<p>`，`<my-component />`和`<div>`元素。
+- Docsify 在每次加载页面时按以下顺序处理 Vue 内容： 1.执行 Markdown `<script>` 1.注册全局 `vueComponents` 1.挂载 `vueMounts` 1.自动挂载未安装的 `vueComponents` 1.使用 `vueGlobalOptions` 自动挂载未安装的 Vue 模板语法
+- 自动挂载 Vue 内容时，docsify 将挂载 Markdown 中包含模板语法或组件的每个顶级元素。例如，在以下 HTML 中，将安装顶级`<p>`，`<my-component />`和`<div>`元素。
   ```html
   <p>{{ foo }}</p>
   <my-component />
@@ -364,5 +359,5 @@ Vue内容可以使用 Markdown 页面中的`<script>`标签进行挂载。
     <some-other-component />
   </div>
   ```
-- Docsify将不会挂载现有Vue实例或包含现有Vue实例的元素。
-- Docsify将在每次加载页面之前自动销毁/卸载其创建的所有Vue实例。
+- Docsify 将不会挂载现有 Vue 实例或包含现有 Vue 实例的元素。
+- Docsify 将在每次加载页面之前自动销毁/卸载其创建的所有 Vue 实例。

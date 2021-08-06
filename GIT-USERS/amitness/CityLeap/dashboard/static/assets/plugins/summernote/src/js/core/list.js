@@ -1,4 +1,4 @@
-define(['summernote/core/func'], function (func) {
+define(["summernote/core/func"], function (func) {
   /**
    * @class core.list
    *
@@ -48,7 +48,7 @@ define(['summernote/core/func'], function (func) {
      * returns item of array
      */
     var find = function (array, pred) {
-      for (var idx = 0, len = array.length; idx < len; idx ++) {
+      for (var idx = 0, len = array.length; idx < len; idx++) {
         var item = array[idx];
         if (pred(item)) {
           return item;
@@ -60,7 +60,7 @@ define(['summernote/core/func'], function (func) {
      * returns true if all of the values in the array pass the predicate truth test.
      */
     var all = function (array, pred) {
-      for (var idx = 0, len = array.length; idx < len; idx ++) {
+      for (var idx = 0, len = array.length; idx < len; idx++) {
         if (!pred(array[idx])) {
           return false;
         }
@@ -94,19 +94,21 @@ define(['summernote/core/func'], function (func) {
         return memo + fn(v);
       }, 0);
     };
-  
+
     /**
      * returns a copy of the collection with array type.
      * @param {Collection} collection - collection eg) node.childNodes, ...
      */
     var from = function (collection) {
-      var result = [], idx = -1, length = collection.length;
+      var result = [],
+        idx = -1,
+        length = collection.length;
       while (++idx < length) {
         result[idx] = collection[idx];
       }
       return result;
     };
-  
+
     /**
      * cluster elements by predicate function.
      *
@@ -115,19 +117,24 @@ define(['summernote/core/func'], function (func) {
      * @param {Array[]}
      */
     var clusterBy = function (array, fn) {
-      if (!array.length) { return []; }
+      if (!array.length) {
+        return [];
+      }
       var aTail = tail(array);
-      return aTail.reduce(function (memo, v) {
-        var aLast = last(memo);
-        if (fn(last(aLast), v)) {
-          aLast[aLast.length] = v;
-        } else {
-          memo[memo.length] = [v];
-        }
-        return memo;
-      }, [[head(array)]]);
+      return aTail.reduce(
+        function (memo, v) {
+          var aLast = last(memo);
+          if (fn(last(aLast), v)) {
+            aLast[aLast.length] = v;
+          } else {
+            memo[memo.length] = [v];
+          }
+          return memo;
+        },
+        [[head(array)]]
+      );
     };
-  
+
     /**
      * returns a copy of the array with all falsy values removed
      *
@@ -136,8 +143,10 @@ define(['summernote/core/func'], function (func) {
      */
     var compact = function (array) {
       var aResult = [];
-      for (var idx = 0, len = array.length; idx < len; idx ++) {
-        if (array[idx]) { aResult.push(array[idx]); }
+      for (var idx = 0, len = array.length; idx < len; idx++) {
+        if (array[idx]) {
+          aResult.push(array[idx]);
+        }
       }
       return aResult;
     };
@@ -150,7 +159,7 @@ define(['summernote/core/func'], function (func) {
     var unique = function (array) {
       var results = [];
 
-      for (var idx = 0, len = array.length; idx < len; idx ++) {
+      for (var idx = 0, len = array.length; idx < len; idx++) {
         if (!contains(results, array[idx])) {
           results.push(array[idx]);
         }
@@ -165,7 +174,9 @@ define(['summernote/core/func'], function (func) {
      */
     var next = function (array, item) {
       var idx = indexOf(array, item);
-      if (idx === -1) { return null; }
+      if (idx === -1) {
+        return null;
+      }
 
       return array[idx + 1];
     };
@@ -176,15 +187,29 @@ define(['summernote/core/func'], function (func) {
      */
     var prev = function (array, item) {
       var idx = indexOf(array, item);
-      if (idx === -1) { return null; }
+      if (idx === -1) {
+        return null;
+      }
 
       return array[idx - 1];
     };
-  
-    return { head: head, last: last, initial: initial, tail: tail,
-             prev: prev, next: next, find: find, contains: contains,
-             all: all, sum: sum, from: from,
-             clusterBy: clusterBy, compact: compact, unique: unique };
+
+    return {
+      head: head,
+      last: last,
+      initial: initial,
+      tail: tail,
+      prev: prev,
+      next: next,
+      find: find,
+      contains: contains,
+      all: all,
+      sum: sum,
+      from: from,
+      clusterBy: clusterBy,
+      compact: compact,
+      unique: unique,
+    };
   })();
 
   return list;

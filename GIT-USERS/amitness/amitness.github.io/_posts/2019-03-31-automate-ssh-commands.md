@@ -23,13 +23,17 @@ We had to perform these tasks every time to deploy the latest changes.
 
 I found the process repetitive and researched on whether it was possible to automate the commands I need to run
 after SSHing into the server.
+
 ```shell
 ssh -i "webapp.pem" ubuntu@example.com
 ```
 
 Turns out, we can write a shell script to automate the task.
+
 ## Step 1:
+
 Create a new shell script file `deploy.sh` with the following content. Modify it to point to your PEM file, username, and IP address.
+
 ```shell
 #!/bin/bash
 ssh -i "webapp.pem" ubuntu@example.com << EOF
@@ -40,10 +44,12 @@ EOF
 The above code prints 'Hello World' on the remote server.
 
 ## Step 2:
+
 You can write any shell commands between the two `EOF` and it will be run on the remote server.
 Add the sequence of commands you currently run manually on the server to this script.
 
 For the Django project, I wrote the following commands that pulls the latest code and restarts the services.
+
 ```python
 #!/bin/bash
 ssh -i "webapp.pem" ubuntu@example.com << EOF
@@ -76,13 +82,17 @@ EOF
 ```
 
 ## Step 3:
+
 Run the below command to change permissions of the script and make it executable.
+
 ```shell
 chmod a+x deploy.sh
 ```
 
 ## Step 4:
+
 Run the script and it will perform all the deployment.
+
 ```shell
 ./deploy.sh
 ```

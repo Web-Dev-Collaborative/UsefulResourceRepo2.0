@@ -9,7 +9,7 @@ For this reason it's common to provide them in environment variables that are re
 ## Environment Variables
 
 !!! tip
-    If you already know what "environment variables" are and how to use them, feel free to skip to the next section below.
+If you already know what "environment variables" are and how to use them, feel free to skip to the next section below.
 
 An <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">environment variable</a> (also known as "env var") is a variable that lives outside of the Python code, in the operating system, and could be read by your Python code (or by other programs as well).
 
@@ -61,7 +61,7 @@ print(f"Hello {name} from Python")
 ```
 
 !!! tip
-    The second argument to <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> is the default value to return.
+The second argument to <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> is the default value to return.
 
     If not provided, it's `None` by default, here we provide `"World"` as the default value to use.
 
@@ -115,7 +115,7 @@ Hello World from Python
 </div>
 
 !!! tip
-    You can read more about it at <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a>.
+You can read more about it at <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a>.
 
 ### Types and validation
 
@@ -140,7 +140,7 @@ You can use all the same validation features and tools you use for Pydantic mode
 ```
 
 !!! tip
-    If you want something quick to copy and paste, don't use this example, use the last one below.
+If you want something quick to copy and paste, don't use this example, use the last one below.
 
 Then, when you create an instance of that `Settings` class (in this case, in the `settings` object), Pydantic will read the environment variables in a case-insensitive way, so, an upper-case variable `APP_NAME` will still be read for the attribute `app_name`.
 
@@ -169,7 +169,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 </div>
 
 !!! tip
-    To set multiple env vars for a single command just separate them with a space, and put them all before the command.
+To set multiple env vars for a single command just separate them with a space, and put them all before the command.
 
 And then the `admin_email` setting would be set to `"deadpool@example.com"`.
 
@@ -179,7 +179,7 @@ And the `items_per_user` would keep its default value of `50`.
 
 ## Settings in another module
 
-You could put those settings in another module file as you saw in [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+You could put those settings in another module file as you saw in [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=\_blank}.
 
 For example, you could have a file `config.py` with:
 
@@ -194,7 +194,7 @@ And then use it in a file `main.py`:
 ```
 
 !!! tip
-    You would also need a file `__init__.py` as you saw on [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+You would also need a file `__init__.py` as you saw on [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=\_blank}.
 
 ## Settings in a dependency
 
@@ -221,11 +221,11 @@ Now we create a dependency that returns a new `config.Settings()`.
 ```
 
 !!! tip
-    We'll discuss the `@lru_cache()` in a bit.
+We'll discuss the `@lru_cache()` in a bit.
 
     For now you can assume `get_settings()` is a normal function.
 
-And then we can require it from the *path operation function* as a dependency and use it anywhere we need it.
+And then we can require it from the _path operation function_ as a dependency and use it anywhere we need it.
 
 ```Python hl_lines="16  18-20"
 {!../../../docs_src/settings/app02/main.py!}
@@ -250,14 +250,14 @@ If you have many settings that possibly change a lot, maybe in different environ
 This practice is common enough that it has a name, these environment variables are commonly placed in a file `.env`, and the file is called a "dotenv".
 
 !!! tip
-    A file starting with a dot (`.`) is a hidden file in Unix-like systems, like Linux and macOS.
+A file starting with a dot (`.`) is a hidden file in Unix-like systems, like Linux and macOS.
 
     But a dotenv file doesn't really have to have that exact filename.
 
 Pydantic has support for reading from these types of files using an external library. You can read more at <a href="https://pydantic-docs.helpmanual.io/usage/settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
 
 !!! tip
-    For this to work, you need to `pip install python-dotenv`.
+For this to work, you need to `pip install python-dotenv`.
 
 ### The `.env` file
 
@@ -279,7 +279,7 @@ And then update your `config.py` with:
 Here we create a class `Config` inside of your Pydantic `Settings` class, and set the `env_file` to the filename with the dotenv file we want to use.
 
 !!! tip
-    The `Config` class is used just for Pydantic configuration. You can read more at <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>
+The `Config` class is used just for Pydantic configuration. You can read more at <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>
 
 ### Creating the `Settings` only once with `lru_cache`
 
@@ -377,6 +377,6 @@ That way, it behaves almost as if it was just a global variable. But as it uses 
 
 You can use Pydantic Settings to handle the settings or configurations for your application, with all the power of Pydantic models.
 
-* By using a dependency you can simplify testing.
-* You can use `.env` files with it.
-* Using `@lru_cache()` lets you avoid reading the dotenv file again and again for each request, while allowing you to override it during testing.
+- By using a dependency you can simplify testing.
+- You can use `.env` files with it.
+- Using `@lru_cache()` lets you avoid reading the dotenv file again and again for each request, while allowing you to override it during testing.

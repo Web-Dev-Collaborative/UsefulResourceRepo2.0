@@ -4,8 +4,8 @@ The `tf.data` module contains a collection of classes that allows you to
 easily load data, manipulate it, and pipe it into your model. This document
 introduces the API by walking through two simple examples:
 
-* Reading in-memory data from numpy arrays.
-* Reading lines from a csv file.
+- Reading in-memory data from numpy arrays.
+- Reading lines from a csv file.
 
 <!-- TODO(markdaoust): Add links to an example reading from multiple-files
 (image_retraining), and a from_generator example. -->
@@ -19,7 +19,7 @@ the following `train_input_fn`, from
 [`iris_data.py`](https://github.com/tensorflow/models/blob/master/samples/core/get_started/iris_data.py),
 to pipe the data into the Estimator:
 
-``` python
+```python
 def train_input_fn(features, labels, batch_size):
     """An input function for training"""
     # Convert the inputs to a Dataset.
@@ -42,19 +42,19 @@ One exception is
 [`tuple`](https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences)
 which, as we will see, has special meaning for `Datasets`.
 
-* `features`: A `{'feature_name':array}` dictionary (or
+- `features`: A `{'feature_name':array}` dictionary (or
   [`DataFrame`](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html))
   containing the raw input features.
-* `labels` : An array containing the
+- `labels` : An array containing the
   [label](https://developers.google.com/machine-learning/glossary/#label)
   for each example.
-* `batch_size` : An integer indicating the desired batch size.
+- `batch_size` : An integer indicating the desired batch size.
 
 In [`premade_estimator.py`](https://github.com/tensorflow/models/blob/master/samples/core/get_started/premade_estimator.py)
 we retrieved the Iris data using the `iris_data.load_data()` function.
 You can run it, and unpack the results as follows:
 
-``` python
+```python
 import iris_data
 
 # Fetch the data
@@ -64,7 +64,7 @@ features, labels = train
 
 Then we passed this data to the input function, with a line similar to this:
 
-``` python
+```python
 batch_size=100
 iris_data.train_input_fn(features, labels, batch_size)
 ```
@@ -82,7 +82,7 @@ a 28x28 image.
 
 The code that returns this `Dataset` is as follows:
 
-``` python
+```python
 train, test = tf.keras.datasets.mnist.load_data()
 mnist_x, mnist_y = train
 
@@ -95,7 +95,7 @@ This will print the following line, showing the
 [types](../guide/tensors.md#data_types) of the items in
 the dataset. Note that a `Dataset` does not know how many items it contains.
 
-``` None
+```None
 <TensorSliceDataset shapes: (28,28), types: tf.uint8>
 ```
 
@@ -109,11 +109,12 @@ For example after converting the iris `features`
 to a standard python dictionary, you can then convert the dictionary of arrays
 to a `Dataset` of dictionaries as follows:
 
-``` python
+```python
 dataset = tf.data.Dataset.from_tensor_slices(dict(features))
 print(dataset)
 ```
-``` None
+
+```None
 <TensorSliceDataset
 
   shapes: {
@@ -137,11 +138,12 @@ adds another level of structure. It creates a dataset containing
 
 The following code shows that the label is a scalar with type `int64`:
 
-``` python
+```python
 # Convert the inputs to a Dataset.
 dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))
 print(dataset)
 ```
+
 ```
 <TensorSliceDataset
     shapes: (
@@ -165,7 +167,7 @@ can be used for training. Fortunately, the `tf.data.Dataset` class provides
 methods to better prepare the data for training. The next line of the input
 function takes advantage of several of these methods:
 
-``` python
+```python
 # Shuffle, repeat, and batch the examples.
 dataset = dataset.shuffle(1000).repeat().batch(batch_size)
 ```
@@ -184,15 +186,16 @@ dimension is added as the first dimension. The following code uses
 the `batch` method on the MNIST `Dataset`, from earlier. This results in a
 `Dataset` containing 3D arrays representing stacks of `(28,28)` images:
 
-``` python
+```python
 print(mnist_ds.batch(100))
 ```
 
-``` none
+```none
 <BatchDataset
   shapes: (?, 28, 28),
   types: tf.uint8>
 ```
+
 Note that the dataset has an unknown batch size because the last batch will
 have fewer elements.
 
@@ -202,6 +205,7 @@ elements where each scalar was previously:
 ```python
 print(dataset)
 ```
+
 ```
 <TensorSliceDataset
     shapes: (
@@ -217,7 +221,6 @@ print(dataset)
         tf.int64)>
 ```
 
-
 ### Return
 
 At this point the `Dataset` contains `(features_dict, labels)` pairs.
@@ -230,7 +233,6 @@ The `labels` can/should be omitted when using the `predict` method.
   TODO(markdaoust): link to `input_fn` doc when it exists
 -->
 
-
 ## Reading a CSV File
 
 The most common real-world use case for the `Dataset` class is to stream data
@@ -241,7 +243,7 @@ using a `Dataset`.
 The following call to the `iris_data.maybe_download` function downloads the
 data if necessary, and returns the pathnames of the resulting files:
 
-``` python
+```python
 import iris_data
 train_path, test_path = iris_data.maybe_download()
 ```
@@ -259,7 +261,7 @@ We start by building a `tf.data.TextLineDataset` object to
 read the file one line at a time. Then, we call the
 `tf.data.Dataset.skip` method to skip over the first line of the file, which contains a header, not an example:
 
-``` python
+```python
 ds = tf.data.TextLineDataset(train_path).skip(1)
 ```
 
@@ -275,11 +277,11 @@ necessary `(features, label)` pairs. The following `_parse_line` function
 calls `tf.decode_csv` to parse a single line into its features
 and the label. Since Estimators require that features be represented as a
 dictionary, we rely on Python's built-in `dict` and `zip` functions to build
-that dictionary.  The feature names are the keys of that dictionary.
+that dictionary. The feature names are the keys of that dictionary.
 We then call the dictionary's `pop` method to remove the label field from
 the features dictionary:
 
-``` python
+```python
 # Metadata describing the text columns
 COLUMNS = ['SepalLength', 'SepalWidth',
            'PetalLength', 'PetalWidth',
@@ -318,11 +320,12 @@ transform each item in the <code>Dataset</code>.
 So to parse the lines as they are streamed out of the csv file, we pass our
 `_parse_line` function to the `map` method:
 
-``` python
+```python
 ds = ds.map(_parse_line)
 print(ds)
 ```
-``` None
+
+```None
 <MapDataset
 shapes: (
     {SepalLength: (), PetalWidth: (), ...},
@@ -344,7 +347,7 @@ to `iris_data.train_input_fn` which was covered in the in the
 This function can be used as a replacement for
 `iris_data.train_input_fn`. It can be used to feed an estimator as follows:
 
-``` python
+```python
 train_path, test_path = iris_data.maybe_download()
 
 # All the inputs are numeric
@@ -376,12 +379,10 @@ transformations.
 Now you have the basic idea of how to efficiently load data into an
 Estimator. Consider the following documents next:
 
-
-* [Creating Custom Estimators](../guide/custom_estimators.md), which demonstrates how to build your own
+- [Creating Custom Estimators](../guide/custom_estimators.md), which demonstrates how to build your own
   custom `Estimator` model.
-* The [Low Level Introduction](../guide/low_level_intro.md#datasets), which demonstrates
+- The [Low Level Introduction](../guide/low_level_intro.md#datasets), which demonstrates
   how to experiment directly with `tf.data.Datasets` using TensorFlow's low
   level APIs.
-* [Importing Data](../guide/datasets.md) which goes into great detail about additional
+- [Importing Data](../guide/datasets.md) which goes into great detail about additional
   functionality of `Datasets`.
-

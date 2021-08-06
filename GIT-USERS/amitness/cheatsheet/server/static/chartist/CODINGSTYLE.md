@@ -13,13 +13,13 @@ and the raw files developers need to work with comply with the style guide.
 
 You can also contribute to this style guide!
 
-***
+---
 
 ## General style rules
 
 This section covers some general style rules that can be applied for HTML, Javascript and CSS / SCSS.
 
-***
+---
 
 ### File / Resource names
 
@@ -40,6 +40,7 @@ reeving which includes some pre-fixes (i.e. file hashes like 3fa89b.main.min.css
 dot's to separate the clear purpose of this additional meta-data in a filename.
 
 **Not recommended**
+
 ```
 MyScript.js
 myCamelCaseName.css
@@ -49,6 +50,7 @@ my-file-min.css
 ```
 
 **Recommended**
+
 ```
 my-script.js
 my-camel-case-name.css
@@ -57,7 +59,7 @@ thousand-and-one-scripts.js
 my-file.min.css
 ```
 
-***
+---
 
 ### Protocol
 
@@ -69,16 +71,19 @@ scripts unless the respective files are not available over both protocols.
 Omitting the protocol—which makes the URL relative—prevents mixed content issues and results in minor file size savings.
 
 **Not recommended**
+
 ```
 <script src="http://cdn.com/foundation.min.js"></script>
 ```
 
 **Recommended**
+
 ```
 <script src="//cdn.com/foundation.min.js"></script>
 ```
 
 **Not recommended**
+
 ```
 .example {
   background: url(http://static.example.com/images/bg.jpg);
@@ -86,13 +91,14 @@ Omitting the protocol—which makes the URL relative—prevents mixed content is
 ```
 
 **Recommended**
+
 ```
 .example {
   background: url(//static.example.com/images/bg.jpg);
 }
 ```
 
-***
+---
 
 ### Text indentation
 
@@ -129,7 +135,7 @@ Indent by 2 spaces at a time.
 }());
 ```
 
-***
+---
 
 ### Comments
 
@@ -143,6 +149,7 @@ When you comment code don't comment what's coded, comment why it was coded this 
 Also include links in your comments to open issues, specifications etc.
 
 **Not recommended**
+
 ```
 var offset = 0;
 
@@ -153,6 +160,7 @@ if(includeLabels) {
 ```
 
 **Recommended**
+
 ```
 var offset = 0;
 
@@ -168,7 +176,7 @@ use [JSDoc](http://usejsdoc.org/) or [YUIDoc](http://yui.github.io/yuidoc/). You
 documentation from these comments. This is also a great way to encourage developers to write comments. Once comments
 will be used to generate a living documentation they often start to spend more time for detailed comments.
 
-***
+---
 
 ### Code linting
 
@@ -180,11 +188,11 @@ For Javascript we recommend to use JSLint / JSHint. In the repository for this s
 [dotfile for jshint (.jshintrc)](.jshintrc). You can use this file with JSHint to enforce style
 checking in your Javascript projects.
 
-***
+---
 
 ## HTML style rules
 
-***
+---
 
 ### Document type
 
@@ -195,7 +203,7 @@ lacks both browser and infrastructure support and offers less room for optimizat
 
 Although fine with HTML, do not close void elements, i.e. write `<br>`, not `<br />`.
 
-***
+---
 
 ### HTML validity
 
@@ -207,12 +215,14 @@ Using valid HTML is a measurable baseline quality attribute that contributes to 
 and constraints, and that ensures proper HTML usage.
 
 **Not recommended**
+
 ```
 <title>Test</title>
 <article>This is only a test.
 ```
 
 **Recommended**
+
 ```
 <!DOCTYPE html>
 <meta charset="utf-8">
@@ -220,7 +230,7 @@ and constraints, and that ensures proper HTML usage.
 <article>This is only a test.</article>
 ```
 
-***
+---
 
 ### Optional Tags
 
@@ -231,7 +241,7 @@ therefore should not be used in the raw source files.
 Omitting tags can lead to significant page size reductions specially on large scale sites. For this purpose you should
 consider an HTML minification post processing of your raw files for distribution purpose.
 
-***
+---
 
 ### Script loading
 
@@ -260,6 +270,7 @@ discovers the script element at the end of the body, but they will then asynchro
 for CSSOM to complete before loading (execution will still happen after CSSOM).
 
 **Recommended for modern and old browsers**
+
 ```
 <html>
   <head>
@@ -274,6 +285,7 @@ for CSSOM to complete before loading (execution will still happen after CSSOM).
 ```
 
 **Recommended for only modern browsers**
+
 ```
 <html>
   <head>
@@ -286,7 +298,7 @@ for CSSOM to complete before loading (execution will still happen after CSSOM).
 </html>
 ```
 
-***
+---
 
 ### Semantics
 
@@ -298,6 +310,7 @@ Using HTML according to its purpose is important for accessibility, reuse, and c
 The following bad / good example should outline some of the major important semantic HTML cases:
 
 **Not recommended**
+
 ```
 <b>My page title</b>
 <div class="top-navigation">
@@ -331,6 +344,7 @@ The following bad / good example should outline some of the major important sema
 ```
 
 **Recommended**
+
 ```
 <!-- The page header should go into a header element -->
 <header>
@@ -399,7 +413,7 @@ The following bad / good example should outline some of the major important sema
 
 ```
 
-***
+---
 
 ### Multimedia fallback
 
@@ -414,11 +428,13 @@ either.
 you cannot immediately use CSS for, use no alternative text, as in alt="".)
 
 **Not recommended**
+
 ```
 <img src="luke-skywalker.jpg">
 ```
 
 **Recommended**
+
 ```
 <img src="luke-skywalker.jpg" alt="Luke skywalker riding an alien horse">
 ```
@@ -427,16 +443,18 @@ When writing alt tags always try to describe the image as if you'd need to descr
 over the phone or who can't see the real picture.
 
 **Not recommended**
+
 ```
 <img src="huge-spaceship-approaching-earth.jpg" alt="Header image">
 ```
 
 **Recommended**
+
 ```
 <img src="huge-spaceship-approaching-earth.jpg" alt="A huge spaceship that is approaching the earth">
 ```
 
-***
+---
 
 ### Separation of Concerns
 
@@ -464,6 +482,7 @@ Clean separation of concerns implies the following things:
 1.  Don't use presentational class names (i.e. red, left, center)
 
 **Not recommended**
+
 ```
 <!DOCTYPE html>
 <html>
@@ -486,6 +505,7 @@ Clean separation of concerns implies the following things:
 ```
 
 **Recommended**
+
 ```
 <!DOCTYPE html>
 <html>
@@ -510,7 +530,7 @@ Clean separation of concerns implies the following things:
 </html>
 ```
 
-***
+---
 
 ### HTML is content only
 
@@ -526,6 +546,7 @@ The only purpose of HTML markup is to represent content information.
 The following examples show two common things that are done wrong when it comes to solving design problems.
 
 **Not recommended**
+
 ```
 <!-- We should not introduce an additional element just to solve a design problem  -->
 <span class="text-box">
@@ -534,6 +555,7 @@ The following examples show two common things that are done wrong when it comes 
 </span>
 
 ```
+
 ```
 .text-box > .square {
   display: inline-block;
@@ -543,8 +565,8 @@ The following examples show two common things that are done wrong when it comes 
 }
 ```
 
-
 **Recommended**
+
 ```
 <!-- That's clean markup! -->
 <span class="text-box">
@@ -552,6 +574,7 @@ The following examples show two common things that are done wrong when it comes 
 </span>
 
 ```
+
 ```
 // We use a :before pseudo element to solve the design problem of placing a colored square in front of the text content
 .text-box:before {
@@ -567,6 +590,7 @@ The only reason for images and svg graphics to be included in the markup is beca
 information.
 
 **Not recommended**
+
 ```
 <!-- Content images should never be used for design elements!  -->
 <span class="text-box">
@@ -576,6 +600,7 @@ information.
 ```
 
 **Recommended**
+
 ```
 <!-- That's clean markup! -->
 <span class="text-box">
@@ -583,6 +608,7 @@ information.
 </span>
 
 ```
+
 ```
 // We use a :before pseudo element with a background image to solve the problem
 .text-box:before {
@@ -595,7 +621,7 @@ information.
 }
 ```
 
-***
+---
 
 ### Type attributes
 
@@ -604,18 +630,20 @@ and scripts (unless not using JavaScript). Specifying type attributes in these c
 HTML5 implies text/css and text/javascript as defaults. This can be safely done even for older browsers.
 
 **Not recommended**
+
 ```
 <link rel="stylesheet" href="main.css" type="text/css">
 <script src="main.js" type="text/javascript"></script>
 ```
 
 **Recommended**
+
 ```
 <link rel="stylesheet" href="main.css">
 <script src="main.js"></script>
 ```
 
-***
+---
 
 ### General Accessibility
 
@@ -627,7 +655,7 @@ which contains the defaults for the HTML semantic elements.
 
 Additional roles can be used to give more accessibility context (i.e. `role="tab"`).
 
-***
+---
 
 ### Tab Index for Accessibility
 
@@ -639,7 +667,7 @@ make the element focusable. This will also enable the CSS pseudo selector `:focu
 for `tabindex` or use `tabindex="0"` to group elements into one tab order level and enforce ordering in natural reading
 order.
 
-***
+---
 
 ### Microdata for SEO and Accessibility
 
@@ -654,6 +682,7 @@ You can visit [schema.org](http://schema.org/) for more details.
 Simple example of a movie on a web page:
 
 **Without microdata**
+
 ```
 <div>
  <h1>Avatar</h1>
@@ -664,6 +693,7 @@ Simple example of a movie on a web page:
 ```
 
 **With microdata**
+
 ```
 <div itemscope itemtype ="http://schema.org/Movie">
   <h1 itemprop="name">Avatar</h1>
@@ -675,7 +705,7 @@ Simple example of a movie on a web page:
 </div>
 ```
 
-***
+---
 
 ### IDs for anchors
 
@@ -690,7 +720,7 @@ so that the H3 below would be scrolled into the view.
 <h3 id="best-practices">Best practices</h3>
 ```
 
-***
+---
 
 ### General formatting
 
@@ -704,6 +734,7 @@ Also, indent them if they are child elements of a block, list, or table element.
 A linter is encouraged to throw a warning instead of an error.)
 
 **Recommended**
+
 ```
 <blockquote>
   <p><em>Space</em>, the final frontier.</p>
@@ -731,7 +762,7 @@ A linter is encouraged to throw a warning instead of an error.)
 </table>
 ```
 
-***
+---
 
 ### HTML quotation marks
 
@@ -739,20 +770,22 @@ When quoting attributes values, use double quotation marks. Use double ("") rath
 around attribute values.
 
 **Not recommended**
+
 ```
 <div class='news-article'></div>
 ```
 
 **Recommended**
+
 ```
 <div class="news-article"></div>
 ```
 
-***
+---
 
 ## Javascript style guide
 
-***
+---
 
 ### Global namespace pollution and IIFE
 
@@ -763,6 +796,7 @@ IIFE can also secure your code from modifications that happened in the global na
 window reference, overridden undefined keyword etc.)
 
 **Not recommended**
+
 ```
 var x = 10,
     y = 100;
@@ -773,6 +807,7 @@ console.log(window.x + ' ' + window.y);
 ```
 
 **Recommended**
+
 ```
 // We declare a IIFE and pass parameters into the function that we will use from the global space
 (function(log, w, undefined){
@@ -787,7 +822,7 @@ console.log(window.x + ' ' + window.y);
 }(window.console.log, window));
 ```
 
-***
+---
 
 ### IIFE (Immediately-Executed Function Expression)
 
@@ -800,11 +835,13 @@ writing the executing brackets outside of the surrounding brackets is valid the 
 sets clear boundaries for the IIFE as the surrounding brackets isolate the whole IIFE.
 
 **Not recommended**
+
 ```
 (function(){})();
 ```
 
 **Recommended**
+
 ```
 (function(){}());
 ```
@@ -821,6 +858,7 @@ The following pattern should be used to format your IIFE:
 ```
 
 If you want to use global variables or variables form an outer IIFE you should pass them as parameters to your IIFE:
+
 ```
 (function($, w, d){
   'use strict';
@@ -831,7 +869,7 @@ If you want to use global variables or variables form an outer IIFE you should p
 }(jQuery, window, document));
 ```
 
-***
+---
 
 ### Strict mode
 
@@ -846,6 +884,7 @@ your whole script by include it as first statement in your script. This could po
 libraries.
 
 **Not recommended**
+
 ```
 // Script starts here
 'use strict';
@@ -858,6 +897,7 @@ libraries.
 ```
 
 **Recommended**
+
 ```
 (function(){
   'use strict';
@@ -867,7 +907,7 @@ libraries.
 }());
 ```
 
-***
+---
 
 ### Variable declarations
 
@@ -879,18 +919,20 @@ So always declare with var.
 Using strict mode can help to identify issues where you might mistyped a variable name resulting in a ReferenceError.
 
 **Not recommended**
+
 ```
 x = 10;
 y = 100;
 ```
 
 **Recommended**
+
 ```
 var x = 10,
     y = 100;
 ```
 
-***
+---
 
 ### Understand Javascript scope and hoisting
 
@@ -903,6 +945,7 @@ To illustrate this check the following example that will show how a javascript i
 in a function scope:
 
 **Raw function**
+
 ```
 (function(log){
   'use strict';
@@ -930,6 +973,7 @@ in a function scope:
 ```
 
 **Hoisted by Javscript engine**
+
 ```
 (function(log){
   'use strict';
@@ -967,6 +1011,7 @@ in a function scope:
 Considering now the hoisting above you can now see that you could also run the following code without any exceptions:
 
 **Valid code**
+
 ```
 (function(log){
   'use strict';
@@ -1002,7 +1047,7 @@ As you can see this looks very confusing and misunderstanding hoisting can lead 
 risk of errors and bugs that resulted from misunderstanding hoisting your should follow the style rule of hoisted
 declarations in the next section.
 
-***
+---
 
 ### Use hoisted declarations
 
@@ -1013,6 +1058,7 @@ you should declare all your variables that you're using in a function as a fist 
 Use only one `var` keyword and comma separate multiple declarations.
 
 **Not recommended**
+
 ```
 (function(log){
   'use strict';
@@ -1038,6 +1084,7 @@ Use only one `var` keyword and comma separate multiple declarations.
 ```
 
 **Recommended**
+
 ```
 (function(log){
   'use strict';
@@ -1071,6 +1118,7 @@ Use only one `var` keyword and comma separate multiple declarations.
 Being pragmatic you should directly initialize your variables during hoisted declaration.
 
 **Not recommended**
+
 ```
 var a,
     b,
@@ -1082,13 +1130,14 @@ c = 100;
 ```
 
 **Recommended**
+
 ```
 var a = 10,
     b = 10,
     c = 100;
 ```
 
-***
+---
 
 ### Always use strict equal
 
@@ -1124,7 +1173,7 @@ down. A few examples can be seen below that should give you a indication how str
 }(window.console.log));
 ```
 
-***
+---
 
 ### Use truthy / falsy checks wisely
 
@@ -1166,7 +1215,7 @@ The following example shows how truthy / falsy checks work:
 }(window.console.log));
 ```
 
-***
+---
 
 ### Logical operators for variable assignments
 
@@ -1176,6 +1225,7 @@ of the expressions will be returned. This can be very helpful for variable assig
 order to simplify your code.
 
 **Not recommended**
+
 ```
 if(!x) {
   if(!y) {
@@ -1187,6 +1237,7 @@ if(!x) {
 ```
 
 **Recommended**
+
 ```
 x = x || y || 1;
 ```
@@ -1212,7 +1263,7 @@ This shorthand is often used to validated function parameters. The following exa
 }(window.console.log));
 ```
 
-***
+---
 
 ### Semicolons
 
@@ -1249,11 +1300,11 @@ var THINGS_TO_EAT = [apples, oysters, sprayOnCheese]  // No semicolon here.
 **So what happens?**
 
 1.  JavaScript error - first the function returning 42 is called with the second function as a parameter, then
-the number 42 is "called" resulting in an error.
+    the number 42 is "called" resulting in an error.
 1.  You will most likely get a 'no such property in undefined' error at runtime as it tries to
-call `x[ffVersion, ieVersion][isIE]()`.
+    call `x[ffVersion, ieVersion][isIE]()`.
 1.  `die` is always called since the array minus 1 is `NaN` which is never equal to anything (not even if
-`resultOfOperation()` returns `NaN`) and `THINGS_TO_EAT` gets assigned the result of `die()`.
+    `resultOfOperation()` returns `NaN`) and `THINGS_TO_EAT` gets assigned the result of `die()`.
 
 **Why?**
 
@@ -1279,14 +1330,14 @@ function foo() {
 }  // no semicolon here.
 ```
 
-***
+---
 
 ### Nested functions
 
 Nested functions can be very useful, for example in the creation of continuations and for the task of hiding helper
 functions. Feel free to use them.
 
-***
+---
 
 ### Function declaration within blocks
 
@@ -1294,6 +1345,7 @@ Do not declare functions in blocks. This is not valid in ECMAScript 5 strict mod
 top level. Don't hesitate to use variables initialized with function expressions inside of blocks though:
 
 **Not recommended**
+
 ```
 if (x) {
   function foo() {}
@@ -1301,13 +1353,14 @@ if (x) {
 ```
 
 **Recommended**
+
 ```
 if (x) {
   var foo = function() {};
 }
 ```
 
-***
+---
 
 ### Exceptions
 
@@ -1330,7 +1383,7 @@ if(name === undefined) {
 }
 ```
 
-***
+---
 
 ### Standard features
 
@@ -1338,7 +1391,7 @@ Always preferred over non-standards features. For maximum portability and compat
 features over non-standards features (e.g., `string.charAt(3)` over `string[3]` and element access with DOM functions
 instead of using an application-specific shorthand).
 
-***
+---
 
 ### Simple prototypical inheritance
 
@@ -1346,7 +1399,7 @@ If you need inheritance of your objects in Javascript follow a simple pattern to
 you'll end up with complex object inheritance consider a inheritance library like
 [Proto.js by Axel Rauschmayer](https://github.com/rauschma/proto-js).
 
-For simple cases use  like the bellow.
+For simple cases use like the bellow.
 
 ```
 (function(log){
@@ -1399,14 +1452,14 @@ For simple cases use  like the bellow.
 }(window.console.log));
 ```
 
-***
+---
 
 ### Use Closures
 
 The ability to create closures is perhaps the most useful and often overlooked feature of JS.
 Here is [a good description of how closures work](http://jibbering.com/faq/faq_notes/closures.html).
 
-***
+---
 
 ### Don't create functions in loops
 
@@ -1414,6 +1467,7 @@ It's generally a potential source for bugs if you write functions that create a 
 following example illustrates a common pitfall.
 
 **Not recommended**
+
 ```
 (function(log, w){
   'use strict';
@@ -1441,6 +1495,7 @@ The following variation of the above example solves our problem / bug but still 
 functions / closures inside of loops.
 
 **Not recommended**
+
 ```
 (function(log, w){
   'use strict';
@@ -1472,6 +1527,7 @@ The following variation solves our problem / bug and we also comply with our sty
 heavily overcomplicated and we should look for a better / easier way.
 
 **Partially recommended**
+
 ```
 (function(log, w){
   'use strict';
@@ -1503,6 +1559,7 @@ By using a functional approach for our loop we solve the problem immediately as 
 Functional style is recommended and will also lead to more natural and expected results.
 
 **Recommended**
+
 ```
 (function(log, w){
   'use strict';
@@ -1520,14 +1577,14 @@ Functional style is recommended and will also lead to more natural and expected 
 }(window.console.log, window));
 ```
 
-***
+---
 
 ### The (evil) eval function
 
 `eval()` makes for confusing semantics and is dangerous to use if the string being eval()'d contains user input.
 There's usually a better, clearer, and safer way to write your code, so its use is generally not permitted.
 
-***
+---
 
 ### The this keyword
 
@@ -1541,7 +1598,7 @@ Because this is so easy to get wrong, limit its use to those places where it is 
 - in constructors
 - in methods of objects (including in the creation of closures)
 
-***
+---
 
 ### Functional is preferred
 
@@ -1556,6 +1613,7 @@ Exception: In situations where performance is considered to be more important th
 consider the most performant solution over the most maintainable (i.e. using simple for loop over forEach)
 
 **Not recommended**
+
 ```
 (function(log){
   'use strict';
@@ -1575,6 +1633,7 @@ consider the most performant solution over the most maintainable (i.e. using sim
 ```
 
 **Recommended**
+
 ```
 (function(log){
   'use strict';
@@ -1594,6 +1653,7 @@ An other example would be to filter an array for certain criteria so that we can
 those elements that match the criteria.
 
 **Not recommended**
+
 ```
 (function(log){
   'use strict';
@@ -1615,6 +1675,7 @@ those elements that match the criteria.
 ```
 
 **Recommended**
+
 ```
 (function(log){
   'use strict';
@@ -1630,14 +1691,14 @@ those elements that match the criteria.
 }(window.console.log));
 ```
 
-***
+---
 
 ### Use ECMA Script 5
 
 Use the syntactical sugar and functional style that was added with ECMA Script 5. It's simplifying your programming
 style and makes your code more flexible and re-usable.
 
-***
+---
 
 ### Array and object property iteration
 
@@ -1672,13 +1733,13 @@ iteration at a certain condition.
 }(window.console.log));
 ```
 
-***
+---
 
 ### Don't use switch
 
 switch is a very error prone control statement in every programming language. Use if else if instead.
 
-***
+---
 
 ### Array and Object literals
 
@@ -1686,6 +1747,7 @@ Use Array and Object literals instead of Array and Object constructors. Array co
 arguments.
 
 **Not recommended**
+
 ```
 // Length is 3.
 var a1 = new Array(x1, x2, x3);
@@ -1706,6 +1768,7 @@ Because of this, if someone changes the code to pass 1 argument instead of 2 arg
 expected length. To avoid these kinds of weird cases, always use the more readable array literal.
 
 **Recommended**
+
 ```
 var a = [x1, x2, x3];
 var a2 = [x1, x2];
@@ -1716,6 +1779,7 @@ var a4 = [];
 Object constructors don't have the same problems, but for readability and consistency object literals should be used.
 
 **Not recommended**
+
 ```
 var o = new Object();
 
@@ -1729,6 +1793,7 @@ o2['strange key'] = 3;
 Should be written as:
 
 **Recommended**
+
 ```
 var o = {};
 
@@ -1740,14 +1805,14 @@ var o2 = {
 };
 ```
 
-***
+---
 
 ### Modifying prototypes of builtin objects
 
 Modifying builtins like `Object.prototype` and `Array.prototype` are strictly forbidden. Modifying other builtins like
 `Function.prototype` is less dangerous but still leads to hard to debug issues in production and should be avoided.
 
-***
+---
 
 ### Custom toString() methods
 
@@ -1757,7 +1822,7 @@ these criteria, it's very easy to run into serious problems. For example, if `to
 assert, assert might try to output the name of the object in which it failed, which of course requires
 calling `toString()`.
 
-***
+---
 
 ### Parentheses
 
@@ -1765,7 +1830,7 @@ Use sparingly and in general only where required by the syntax and semantics. Ne
 operators such as `delete`, `typeof` and `void` or after keywords such as `return`, `throw` as well
 as others (`case`, in or `new`).
 
-***
+---
 
 ### Strings
 
@@ -1776,7 +1841,7 @@ strings that include HTML:
 var msg = 'This is some HTML <div class="makes-sense"></div>';
 ```
 
-***
+---
 
 ### Conditional Ternary Operator (shorthand if)
 
@@ -1784,6 +1849,7 @@ Use the ternary operator for assignments or return statements. Use it only in si
 ones. No body likes to wrap his brain around 10 lines of nested ternary operators.
 
 **Not recommended**
+
 ```
 if(x === 10) {
   return 'valid';
@@ -1793,15 +1859,16 @@ if(x === 10) {
 ```
 
 **Recommended**
+
 ```
 return x === 10 ? 'valid' : 'invalid';
 ```
 
-***
+---
 
 ## CSS and Sass (SCSS) style rules
 
-***
+---
 
 ### ID and class naming
 
@@ -1818,6 +1885,7 @@ Even though class names and ID's have no semantic meaning to computer interprete
 choice as they represent the information meaning and don't introduce presentational constraints.
 
 **Not recommended**
+
 ```
 .fw-800 {
   font-weight: 800;
@@ -1829,6 +1897,7 @@ choice as they represent the information meaning and don't introduce presentatio
 ```
 
 **Recommended**
+
 ```
 .heavy {
   font-weight: 800;
@@ -1839,7 +1908,7 @@ choice as they represent the information meaning and don't introduce presentatio
 }
 ```
 
-***
+---
 
 ### Avoid ID's where possible
 
@@ -1848,6 +1917,7 @@ page. The only valid location for using an ID would be to identify a page or a w
 consider using a class that you use once instead of an id.
 
 **Not recommended**
+
 ```
 #content .title {
   font-size: 2em;
@@ -1855,6 +1925,7 @@ consider using a class that you use once instead of an id.
 ```
 
 **Recommended**
+
 ```
 .content .title {
   font-size: 2em;
@@ -1876,7 +1947,7 @@ html body div.content.news-content .title.content-title.important {
 }
 ```
 
-***
+---
 
 ### Avoid elements in CSS selectors
 
@@ -1889,6 +1960,7 @@ If you only care about sensible class names and don't use element selectors you'
 not your css.
 
 **Not recommended**
+
 ```
 div.content > header.content-header > h2.title {
   font-size: 2em;
@@ -1896,13 +1968,14 @@ div.content > header.content-header > h2.title {
 ```
 
 **Recommended**
+
 ```
 .content > .content-header > .title {
   font-size: 2em;
 }
 ```
 
-***
+---
 
 ### Be as precise as possible
 
@@ -1935,6 +2008,7 @@ The following CSS would apply to all three elements that have a title class. Thi
 with more granular selectors in order to fix the content title and the teaser title.
 
 **Not recommended**
+
 ```
 .content .title {
   font-size: 2rem;
@@ -1942,6 +2016,7 @@ with more granular selectors in order to fix the content title and the teaser ti
 ```
 
 **Recommended**
+
 ```
 .content > .title {
   font-size: 2rem;
@@ -1956,7 +2031,7 @@ with more granular selectors in order to fix the content title and the teaser ti
 }
 ```
 
-***
+---
 
 ### Shorthand Properties
 
@@ -1966,6 +2041,7 @@ only one value is explicitly set.
 Using shorthand properties is useful for code efficiency and understandability.
 
 **Not recommended**
+
 ```
 border-top-style: none;
 font-family: palatino, georgia, serif;
@@ -1978,31 +2054,34 @@ padding-top: 0;
 ```
 
 **Recommended**
+
 ```
 border-top: 0;
 font: 100%/1.6 palatino, georgia, serif;
 padding: 0 1em 2em;
 ```
 
-***
+---
 
 ### 0 and units
 
 Omit unit specification after “0” values. Do not use units after 0 values unless they are required.
 
 **Not recommended**
+
 ```
 padding-bottom: 0px;
 margin: 0em;
 ```
 
 **Recommended**
+
 ```
 padding-bottom: 0;
 margin: 0;
 ```
 
-***
+---
 
 ### Hexadecimal Notation
 
@@ -2012,16 +2091,18 @@ is shorter and more succinct.
 Always use lower case hex digits.
 
 **Not recommended**
+
 ```
 color: #FF33AA;
 ```
 
 **Recommended**
+
 ```
 color: #f3a;
 ```
 
-***
+---
 
 ### ID and Class Name Delimiters
 
@@ -2032,18 +2113,20 @@ Also as the standard foresees attribute selectors that recognise hyphens as sepa
 it's best to stick to the hyphen as separator.
 
 **Not recommended**
+
 ```
 .demoimage {}
 .error_status {}
 ```
 
 **Recommended**
+
 ```
 #video-id {}
 .ads-sample {}
 ```
 
-***
+---
 
 ### Hacks
 
@@ -2054,7 +2137,7 @@ detection and hacks a free pass will hurt projects in the long run as projects t
 resistance. That is, allowing and making it easy to use detection and hacks means using detection and hacks more
 frequently—and more frequently is too frequently.
 
-***
+---
 
 ### Declaration Order
 
@@ -2064,15 +2147,16 @@ to guarantee better readability and better scannability.
 As a best practice we should follow the following ordering (in the same order as the listing):
 
 1.  structural
-  1.  display
-  1.  position, left, top, right etc.
-  1.  overflow, float, clear etc.
-  1.  margin, padding
+1.  display
+1.  position, left, top, right etc.
+1.  overflow, float, clear etc.
+1.  margin, padding
 1.  skin
-  1.  background, border etc.
-  1.  font, text
+1.  background, border etc.
+1.  font, text
 
 **Not recommended**
+
 ```
 .box {
   font-family: 'Arial', sans-serif;
@@ -2091,6 +2175,7 @@ As a best practice we should follow the following ordering (in the same order as
 ```
 
 **Recommended**
+
 ```
 .box {
   display: block;
@@ -2108,13 +2193,14 @@ As a best practice we should follow the following ordering (in the same order as
 }
 ```
 
-***
+---
 
 ### Declaration Stops
 
 End every declaration with a semicolon for consistency and extensibility reasons and put each declaration on a new line.
 
 **Not recommended**
+
 ```
 .test {
   display: block; height: 100px
@@ -2122,6 +2208,7 @@ End every declaration with a semicolon for consistency and extensibility reasons
 ```
 
 **Recommended**
+
 ```
 .test {
   display: block;
@@ -2129,7 +2216,7 @@ End every declaration with a semicolon for consistency and extensibility reasons
 }
 ```
 
-***
+---
 
 ### Property Name Stops
 
@@ -2137,6 +2224,7 @@ Use a space after a property name’s colon. Always use a single space between p
 property and colon) for consistency reasons.
 
 **Not recommended**
+
 ```
 h3 {
   font-weight:bold;
@@ -2144,19 +2232,21 @@ h3 {
 ```
 
 **Recommended**
+
 ```
 h3 {
   font-weight: bold;
 }
 ```
 
-***
+---
 
 ### Selector and Declaration Separation
 
 Always start a new line for each selector and declaration.
 
 **Not recommended**
+
 ```
 a:focus, a:active {
   position: relative; top: 1px;
@@ -2164,6 +2254,7 @@ a:focus, a:active {
 ```
 
 **Recommended**
+
 ```
 h1,
 h2,
@@ -2173,13 +2264,14 @@ h3 {
 }
 ```
 
-***
+---
 
 ### Rule Separation
 
 Always put a blank line (two line breaks) between rules.
 
 **Recommended**
+
 ```
 html {
   background: #fff;
@@ -2191,7 +2283,7 @@ body {
 }
 ```
 
-***
+---
 
 ### CSS Quotation Marks
 
@@ -2199,6 +2291,7 @@ Use double ("") rather than single ('') quotation marks for attribute selectors 
 Do not use quotation marks in URI values (url()).
 
 **Not recommended**
+
 ```
 @import url('//cdn.com/foundation.css');
 
@@ -2212,6 +2305,7 @@ body:after {
 ```
 
 **Recommended**
+
 ```
 @import url(//cdn.com/foundation.css);
 
@@ -2224,7 +2318,7 @@ body:after {
 }
 ```
 
-***
+---
 
 ### Nested selectors (SCSS)
 
@@ -2234,6 +2328,7 @@ parent element will not receive any styling use a regular CSS selector chain. Th
 overcomplicated.
 
 **Not recommended**
+
 ```scss
 // Not a good example by not making use of nesting at all
 .content {
@@ -2246,6 +2341,7 @@ overcomplicated.
 ```
 
 **Not recommended**
+
 ```scss
 // Using nesting is better but not in all cases
 // Avoid nesting when there is no attributes and use selector chains instead
@@ -2261,6 +2357,7 @@ overcomplicated.
 ```
 
 **Recommended**
+
 ```scss
 // This example takes the best approach while nesting but use selector chains where possible
 .content {
@@ -2272,13 +2369,14 @@ overcomplicated.
 }
 ```
 
-***
+---
 
 ### Introducing space while nesting (SCSS)
 
 If you nest your selectors introduce blank line between your nested selectors and the css attributes.
 
 **Not recommended**
+
 ```scss
 .content {
   display: block;
@@ -2295,6 +2393,7 @@ If you nest your selectors introduce blank line between your nested selectors an
 ```
 
 **Recommended**
+
 ```scss
 .content {
   display: block;
@@ -2313,7 +2412,7 @@ If you nest your selectors introduce blank line between your nested selectors an
 }
 ```
 
-***
+---
 
 ### Contextual media queries (SCSS)
 
@@ -2326,6 +2425,7 @@ approach this allows you to write your mobile styles first and then use contextu
 them in order to provide the desktop styles.
 
 **Not recommended**
+
 ```scss
 // This mobile first example looks like plain CSS where the whole structure of SCSS is repeated
 // on the bottom in a media query. This is error prone and makes maintenance harder as it's not so easy to relate
@@ -2377,6 +2477,7 @@ them in order to provide the desktop styles.
 ```
 
 **Recommended**
+
 ```scss
 // This is the same example as above but here we use contextual media queries in order to put the different styles
 // for different media into the right context.
@@ -2424,7 +2525,7 @@ them in order to provide the desktop styles.
 }
 ```
 
-***
+---
 
 ### Nesting order and the parent selector (SCSS)
 
@@ -2442,6 +2543,7 @@ The following example should illustrate how this ordering will achieve a clear s
 parent selector.
 
 **Recommended**
+
 ```scss
 .product-teaser {
   // 1. Style attributes
@@ -2497,4 +2599,3 @@ parent selector.
   }
 }
 ```
-

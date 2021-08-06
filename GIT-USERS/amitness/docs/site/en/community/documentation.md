@@ -4,8 +4,8 @@ We welcome contributions to the TensorFlow documentation from the community.
 This document explains how you can contribute to that documentation. In
 particular, this document explains the following:
 
-* Where the documentation is located.
-* How to make conformant edits.
+- Where the documentation is located.
+- How to make conformant edits.
 
 You can view TensorFlow documentation at [tensorflow.org](https://www.tensorflow.org), and you
 can view and edit the raw files at the corresponding paths in
@@ -20,19 +20,19 @@ but we are unlikely to accept other documentation formats (or the tooling to
 generate them) into our repository. If you do choose to republish our
 documentation in another form, please be sure to include:
 
-* The version of the API this represents (for example, r1.0, master, etc.)
-* The commit or version from which the documentation was generated
-* Where to get the latest documentation (that is, https://www.tensorflow.org)
-* The Apache 2.0 license.
+- The version of the API this represents (for example, r1.0, master, etc.)
+- The commit or version from which the documentation was generated
+- Where to get the latest documentation (that is, https://www.tensorflow.org)
+- The Apache 2.0 license.
 
 ## Versions and branches
 
-[tensorflow.org](https://www.tensorflow.org), at root, shows documentation for the latest stable binary.  This
+[tensorflow.org](https://www.tensorflow.org), at root, shows documentation for the latest stable binary. This
 is the documentation you should be reading if you are using `pip install tensorflow`.
 
-The default TensorFlow pip package is built from the stable branch `rX.X` in the [main TensorFlow repository](https://github.com/tensorflow/tensorflow/). 
+The default TensorFlow pip package is built from the stable branch `rX.X` in the [main TensorFlow repository](https://github.com/tensorflow/tensorflow/).
 
-In contrast, to quickly publish fixes, the docs on the site are built from the [`docs/master` branch](https://github.com/tensorflow/docs/blob/master/site/en/). 
+In contrast, to quickly publish fixes, the docs on the site are built from the [`docs/master` branch](https://github.com/tensorflow/docs/blob/master/site/en/).
 
 Old versions of the documentation are available in the `rX.X` branches. An "old-version" branch will only be created when the next version is released: When `r1.11` is released, we will create the `r1.10` branch.
 
@@ -58,7 +58,6 @@ bazel run //tensorflow/tools/docs:generate -- --output_dir=/tmp/master_out
 The C++ API documentation is generated from XML files generated via doxygen;
 however, those tools are not available in open source at this time.
 
-
 ## Markdown and Notebooks
 
 TensorFlow documentation is written in Markdown (`.md`) or Notebooks (`.ipynb`). With a few exceptions,
@@ -76,7 +75,7 @@ following:
 - MathJax does not render properly on [GitHub](https://github.com/tensorflow/tensorflow).
 
 When writing MathJax, you can use <code>&#36;&#36;</code> and `\\(` and `\\)` to
-surround your math.  <code>&#36;&#36;</code> guards will cause line breaks, so
+surround your math. <code>&#36;&#36;</code> guards will cause line breaks, so
 within text, use `\\(` `\\)` instead.
 
 ### Links in Markdown
@@ -118,7 +117,7 @@ For the C++ API, use the namespace path in backticks:
 
 To link to source code, use a link starting with:
 `https://github.com/tensorflow/tensorflow/blob/master`, followed by the file
-path starting *from* the GitHub project root. (That is, don't repeat the name of
+path starting _from_ the GitHub project root. (That is, don't repeat the name of
 the GitHub repository a second time).
 
 ```
@@ -126,7 +125,7 @@ the GitHub repository a second time).
 in the TensorFlow repo](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/__init__.py)
 ```
 
-> [Example link to tensorflow/python/__init__.py, in the TensorFlow repo](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/__init__.py)
+> [Example link to tensorflow/python/**init**.py, in the TensorFlow repo](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/__init__.py)
 
 Do not include any additional parameters or query strings in the Markdown URL.
 
@@ -134,12 +133,12 @@ Do not include any additional parameters or query strings in the Markdown URL.
 
 Use regular Markdown links for:
 
--   external pages
--   pages on tensorflow.org that are not sourced in the
-    [tensorflow/docs](https://github.com/tensorflow/docs) repository
--   pages on tensorflow.org that are sourced from the
-    [tensorflow/docs](https://github.com/tensorflow/docs) repository, but from a
-    non-Markdown file (for example, a `.yaml` file).
+- external pages
+- pages on tensorflow.org that are not sourced in the
+  [tensorflow/docs](https://github.com/tensorflow/docs) repository
+- pages on tensorflow.org that are sourced from the
+  [tensorflow/docs](https://github.com/tensorflow/docs) repository, but from a
+  non-Markdown file (for example, a `.yaml` file).
 
 In these cases, follow the standard Markdown link syntax, and include the full
 URL.
@@ -152,11 +151,11 @@ Guides](../api_guides/python/).
 For classes and ops, ideally, you should provide the following information, in
 order of presentation:
 
-* A short sentence that describes what the op does.
-* A short description of what happens when you pass arguments to the op.
-* An example showing how the op works (pseudocode is best).
-* Requirements, caveats, important notes (if there are any).
-* Descriptions of inputs, outputs, and Attrs or other parameters of the op
+- A short sentence that describes what the op does.
+- A short description of what happens when you pass arguments to the op.
+- An example showing how the op works (pseudocode is best).
+- Requirements, caveats, important notes (if there are any).
+- Descriptions of inputs, outputs, and Attrs or other parameters of the op
   constructor.
 
 Each of these is described in more
@@ -171,17 +170,16 @@ restrictions).
 
 Put backticks around these things when they're used in text:
 
-* Argument names (for example, `input`, `x`, `tensor`)
-* Returned tensor names (for example, `output`, `idx`, `out`)
-* Data types (for example, `int32`, `float`, `uint8`)
-* Other op names referenced in text (for example, `list_diff()`, `shuffle()`)
-* Class names (for example, `Tensor` when you actually mean a `Tensor` object;
+- Argument names (for example, `input`, `x`, `tensor`)
+- Returned tensor names (for example, `output`, `idx`, `out`)
+- Data types (for example, `int32`, `float`, `uint8`)
+- Other op names referenced in text (for example, `list_diff()`, `shuffle()`)
+- Class names (for example, `Tensor` when you actually mean a `Tensor` object;
   don't capitalize or use backticks if you're just explaining what an op does to
   a tensor, or a graph, or an operation in general)
-* File names (for example, `image_ops.py`, or
+- File names (for example, `image_ops.py`, or
   `/path-to-your-data/xml/example-name`)
-* Math expressions or conditions (for example, `-1-input.dims() <= dim <=
-  input.dims()`)
+- Math expressions or conditions (for example, `-1-input.dims() <= dim <= input.dims()`)
 
 Put three backticks around sample code and pseudocode examples. And use `# ==>`
 instead of a single equal sign when you want to show what an op returns. For

@@ -1,17 +1,15 @@
-{% extends "layout.html" %}
-
-{% block jumbotron %}
+{% extends "layout.html" %} {% block jumbotron %}
 <div class="jumbotron">
-   <h1>Python Cheat Sheet</h1>
-   <p>Cheat sheet of Python. Some concepts of generator for a Python programmer need to know.</p>
+  <h1>Python Cheat Sheet</h1>
+  <p>
+    Cheat sheet of Python. Some concepts of generator for a Python programmer
+    need to know.
+  </p>
 </div>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="row col-md-4 col-xs-12">
-
-<h3>Using generator to produce value</h3>
-<pre class="code python">
+  <h3>Using generator to produce value</h3>
+  <pre class="code python">
 &gt;&gt;&gt; def prime(n):
 ...   p = 2
 ...   while n &gt; 0:
@@ -39,9 +37,10 @@ StopIteration
 ...   print(_, end=" ")
 ... 
 2 3 5 7 11 &gt;&gt;&gt;
-</pre>
-<h3>Implement iterable object via generator</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>Implement iterable object via generator</h3>
+  <pre class="code python">
 &gt;&gt;&gt; class count(object):
 ...   def __init__(self,n):
 ...     self._n = n
@@ -64,10 +63,11 @@ StopIteration
 ...   print(_, end=" ")
 ... 
 0 1 2 3 4 &gt;&gt;&gt;
-</pre>
+</pre
+  >
 
-<h3>Send message to generator</h3>
-<pre class="code python">
+  <h3>Send message to generator</h3>
+  <pre class="code python">
 &gt;&gt;&gt; def spam():
 ...   msg = yield
 ...   print("Message:",msg)
@@ -82,10 +82,11 @@ StopIteration
 ...   pass
 ... 
 Message: Hello World!
-</pre>
+</pre
+  >
 
-<h3>"yield from" expression</h3>
-<pre class="code python">
+  <h3>"yield from" expression</h3>
+  <pre class="code python">
 # delegating gen do nothing(pipe)
 &gt;&gt;&gt; def subgen():
 ...     try:
@@ -125,10 +126,11 @@ gen stop
 &gt;&gt;&gt; g.close()
 &gt;&gt;&gt; inspect.getgeneratorstate(g)
 'GEN_CLOSED'
-</pre>
+</pre
+  >
 
-<h3>yield (from) EXPR return RES</h3>
-<pre class="code python">
+  <h3>yield (from) EXPR return RES</h3>
+  <pre class="code python">
 &gt;&gt;&gt; def average():
 ...     total = .0
 ...     count = 0
@@ -172,10 +174,11 @@ gen stop
 ... 
 9527
 5566
-</pre>
+</pre
+  >
 
-<h3>Generate sequences via generator</h3>
-<pre class="code python">
+  <h3>Generate sequences via generator</h3>
+  <pre class="code python">
 # get a list via generator
 &gt;&gt;&gt; def chain():
 ...     for _ in 'ab':
@@ -194,10 +197,11 @@ gen stop
 &gt;&gt;&gt; a = list(chain())
 &gt;&gt;&gt; a
 ['a', 'b', range(0, 3)]
-</pre>
+</pre
+  >
 
-<h3>What "RES = yield from EXP" actually do?</h3>
-<pre class="code python">
+  <h3>What "RES = yield from EXP" actually do?</h3>
+  <pre class="code python">
 # ref: <a href="https://www.python.org/dev/peps/pep-0380">pep380</a>
 &gt;&gt;&gt; def subgen():
 ...     for _ in range(3):
@@ -241,9 +245,8 @@ gen stop
 </div>
 
 <div class="row col-md-4 col-xs-12">
-
-<h3>Glossary of Generator</h3>
-<pre class="code python">
+  <h3>Glossary of Generator</h3>
+  <pre class="code python">
 # generator function
 &gt;&gt;&gt; def gen_func():
 ...     yield 5566
@@ -272,10 +275,11 @@ StopIteration
 Traceback (most recent call last):
   File "&lt;stdin&gt;", line 1, in &lt;module&gt;
 StopIteration
-</pre>
+</pre
+  >
 
-<h3>Check generator type</h3>
-<pre class="code python">
+  <h3>Check generator type</h3>
+  <pre class="code python">
 &gt;&gt;&gt; from types import GeneratorType
 &gt;&gt;&gt; def gen_func():
 ...     yield 5566
@@ -285,10 +289,11 @@ StopIteration
 True
 &gt;&gt;&gt; isinstance(123, GeneratorType)
 False
-</pre>
+</pre
+  >
 
-<h3>Check Generator State</h3>
-<pre class="code python">
+  <h3>Check Generator State</h3>
+  <pre class="code python">
 &gt;&gt;&gt; import inspect
 &gt;&gt;&gt; def gen_func():
 ...     yield 9527
@@ -303,10 +308,11 @@ False
 &gt;&gt;&gt; g.close()
 &gt;&gt;&gt; inspect.getgeneratorstate(g)
 'GEN_CLOSED'
-</pre>
+</pre
+  >
 
-<h3>generator and contextmanager</h3>
-<pre class="code python">
+  <h3>generator and contextmanager</h3>
+  <pre class="code python">
 &gt;&gt;&gt; import contextlib
 &gt;&gt;&gt; @contextlib.contextmanager
 ... def mylist():
@@ -321,10 +327,11 @@ False
 ... 
 [1, 2, 3, 4, 5]
 exit scope
-</pre>
+</pre
+  >
 
-<h3>What @contextmanager actually doing?</h3>
-<pre class="code python">
+  <h3>What @contextmanager actually doing?</h3>
+  <pre class="code python">
 # ref: <a href="https://www.youtube.com/watch?v=5-qadlG7tWo">PyCon 2014 - David Beazley</a>
 # define a context manager class
 class GeneratorCM(object):
@@ -368,8 +375,8 @@ with mylist() as l:
 # exit scope
 </pre>
 
-<h3>'yield from' and '__iter__'</h3>
-<pre class="code python">
+  <h3>'yield from' and '__iter__'</h3>
+  <pre class="code python">
 &gt;&gt;&gt; class FakeGen:
 ...     def __iter__(self):
 ...         n = 0
@@ -404,10 +411,11 @@ with mylist() as l:
 9526
 &gt;&gt;&gt; next(g)
 9525
-</pre>
+</pre
+  >
 
-<h3>"yield from == await" expression</h3>
-<pre class="code python">
+  <h3>"yield from == await" expression</h3>
+  <pre class="code python">
 # "await" include in pyhton3.5
 import asyncio
 import socket
@@ -472,14 +480,13 @@ loop.run_forever()
 # bash3&gt; nc localhost 5566
 # World
 # World
-</pre>
-
+</pre
+  >
 </div>
 
 <div class="row col-md-4 col-xs-12">
-
-<h3>Closure in Python - using generator</h3>
-<pre class="code python">
+  <h3>Closure in Python - using generator</h3>
+  <pre class="code python">
 # nonlocal version
 &gt;&gt;&gt; def closure():
 ...     x = 5566
@@ -527,10 +534,11 @@ loop.run_forever()
 5568
 &gt;&gt;&gt; next(g)
 5569
-</pre>
+</pre
+  >
 
-<h3>Implement a simple scheduler via generator</h3>
-<pre class="code python">
+  <h3>Implement a simple scheduler via generator</h3>
+  <pre class="code python">
 # idea: write an event loop(scheduler)
 &gt;&gt;&gt; def fib(n):
 ...   if n&lt;=2:
@@ -565,10 +573,11 @@ Task done
 3
 5
 Task done
-</pre>
+</pre
+  >
 
-<h3>Implement Simple round-robin with blocking</h3>
-<pre class="code python">
+  <h3>Implement Simple round-robin with blocking</h3>
+  <pre class="code python">
 # ref: <a href="https://www.youtube.com/watch?v=MCs5OvhV9S4">PyCon 2015 - David Beazley</a>
 # skill: using task and wait queue
 from collections import deque
@@ -633,8 +642,8 @@ tasks.append(server())
 run()
 </pre>
 
-<h3>Implement simple round-robin with blocking and non-blocking</h3>
-<pre class="code pythob">
+  <h3>Implement simple round-robin with blocking and non-blocking</h3>
+  <pre class="code pythob">
 # this method will cause blocking hunger
 from collections import deque
 from select import select
@@ -706,12 +715,8 @@ def client_handler(conn):
 
 tasks.append(server())
 run()
-</pre>
+</pre
+  >
 </div>
 
-{% endblock %}
-
-{% block script %}
-{{ super() }}
-
-{% endblock %}
+{% endblock %} {% block script %} {{ super() }} {% endblock %}

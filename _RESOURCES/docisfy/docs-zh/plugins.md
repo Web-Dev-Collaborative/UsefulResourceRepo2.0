@@ -7,33 +7,33 @@
 ```html
 <script>
   window.$docsify = {
-    search: 'auto', // 默认值
+    search: "auto", // 默认值
 
-    search : [
-      '/',            // => /README.md
-      '/guide',       // => /guide.md
-      '/get-started', // => /get-started.md
-      '/zh-cn/',      // => /zh-cn/README.md
+    search: [
+      "/", // => /README.md
+      "/guide", // => /guide.md
+      "/get-started", // => /get-started.md
+      "/zh-cn/", // => /zh-cn/README.md
     ],
 
     // 完整配置参数
     search: {
       maxAge: 86400000, // 过期时间，单位毫秒，默认一天
       paths: [], // or 'auto'
-      placeholder: 'Type to search',
+      placeholder: "Type to search",
 
       // 支持本地化
       placeholder: {
-        '/zh-cn/': '搜索',
-        '/': 'Type to search'
+        "/zh-cn/": "搜索",
+        "/": "Type to search",
       },
 
-      noData: 'No Results!',
+      noData: "No Results!",
 
       // 支持本地化
       noData: {
-        '/zh-cn/': '找不到结果',
-        '/': 'No Results'
+        "/zh-cn/": "找不到结果",
+        "/": "No Results",
       },
 
       // 搜索标题的最大层级, 1 - 6
@@ -43,20 +43,20 @@
 
       // 避免搜索索引冲突
       // 同一域下的多个网站之间
-      namespace: 'website-1',
+      namespace: "website-1",
 
       // 使用不同的索引作为路径前缀（namespaces）
       // 注意：仅适用于 paths: 'auto' 模式
       //
       // 初始化索引时，我们从侧边栏查找第一个路径
       // 如果它与列表中的前缀匹配，我们将切换到相应的索引
-      pathNamespaces: ['/zh-cn', '/ru-ru', '/ru-ru/v1'],
+      pathNamespaces: ["/zh-cn", "/ru-ru", "/ru-ru/v1"],
 
       // 您可以提供一个正则表达式来匹配前缀。在这种情况下，
       // 匹配到的字符串将被用来识别索引
-      pathNamespaces: /^(\/(zh-cn|ru-ru))?(\/(v1|v2))?/
-    }
-  }
+      pathNamespaces: /^(\/(zh-cn|ru-ru))?(\/(v1|v2))?/,
+    },
+  };
 </script>
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
@@ -75,8 +75,8 @@
 ```html
 <script>
   window.$docsify = {
-    ga: 'UA-XXXXX-Y'
-  }
+    ga: "UA-XXXXX-Y",
+  };
 </script>
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/ga.min.js"></script>
@@ -85,7 +85,10 @@
 也可以通过 `data-ga` 配置 id。
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js" data-ga="UA-XXXXX-Y"></script>
+<script
+  src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"
+  data-ga="UA-XXXXX-Y"
+></script>
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/ga.min.js"></script>
 ```
 
@@ -97,7 +100,7 @@
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
 ```
 
-?> 如果你不想解析成表情符号，可以使用__colon_<span>_</span>或`&#58;`。如果你需要在标题中使用，我们建议使用`&#58;`。例如，`&#58;100:`。
+?> 如果你不想解析成表情符号，可以使用\__colon_<span>\_</span>或`&#58;`。如果你需要在标题中使用，我们建议使用`&#58;`。例如，`&#58;100:`。
 
 ## 外链脚本 - External Script
 
@@ -129,7 +132,7 @@ Medium's 风格的图片缩放插件. 基于 [medium-zoom](https://github.com/fr
 
 通过这个插件，示例代码可以在页面上即时呈现，让读者可以立即看到预览。当读者展开演示框时，源码和说明就会显示在那里，如果点击`Try in Jsfiddle`按钮，`jsfiddle.net`就会打开这个例子的代码，让读者自己修改代码和测试。
 
-docsify同时支持[Vue](https://njleonzhang.github.io/docsify-demo-box-vue/)和[React](https://njleonzhang.github.io/docsify-demo-box-react/)版本的插件。
+docsify 同时支持[Vue](https://njleonzhang.github.io/docsify-demo-box-vue/)和[React](https://njleonzhang.github.io/docsify-demo-box-react/)版本的插件。
 
 ## 复制到剪贴板
 
@@ -143,42 +146,44 @@ docsify同时支持[Vue](https://njleonzhang.github.io/docsify-demo-box-vue/)和
 
 ## Disqus
 
-Disqus评论系统支持。 https://disqus.com/
+Disqus 评论系统支持。 https://disqus.com/
 
 ```html
 <script>
   window.$docsify = {
-    disqus: 'shortname'
-  }
+    disqus: "shortname",
+  };
 </script>
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/disqus.min.js"></script>
 ```
 
 ## Gitalk
 
-[Gitalk](https://github.com/gitalk/gitalk)，一个现代化的，基于Preact和Github Issue的评论系统。
+[Gitalk](https://github.com/gitalk/gitalk)，一个现代化的，基于 Preact 和 Github Issue 的评论系统。
 
 ```html
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css" />
 
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
 <script>
   const gitalk = new Gitalk({
-    clientID: 'Github Application Client ID',
-    clientSecret: 'Github Application Client Secret',
-    repo: 'Github repo',
-    owner: 'Github repo owner',
-    admin: ['Github repo collaborators, only these guys can initialize github issues'],
+    clientID: "Github Application Client ID",
+    clientSecret: "Github Application Client Secret",
+    repo: "Github repo",
+    owner: "Github repo owner",
+    admin: [
+      "Github repo collaborators, only these guys can initialize github issues",
+    ],
     // facebook-like distraction free mode
-    distractionFreeMode: false
-  })
+    distractionFreeMode: false,
+  });
 </script>
 ```
 
 ## Pagination
 
-docsify的分页导航插件，由[@imyelo](https://github.com/imyelo)提供。
+docsify 的分页导航插件，由[@imyelo](https://github.com/imyelo)提供。
 
 ```html
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
@@ -189,29 +194,30 @@ docsify的分页导航插件，由[@imyelo](https://github.com/imyelo)提供。
 
 ## 字数统计
 
-这是一款为docsify提供文字统计的插件. [@827652549](https://github.com/827652549)提供
+这是一款为 docsify 提供文字统计的插件. [@827652549](https://github.com/827652549)提供
 
-它提供了统计中文汉字和英文单词的功能，并且排除了一些markdown语法的特殊字符例如*、-等
+它提供了统计中文汉字和英文单词的功能，并且排除了一些 markdown 语法的特殊字符例如\*、-等
 
 **Add JS**
+
 ```html
 <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
 ```
 
 **Add settings**
+
 ```js
 window.$docsify = {
-  count:{
-    countable:true,
-    fontsize:'0.9em',
-    color:'rgb(90,90,90)',
-    language:'chinese'
-  }
-}
+  count: {
+    countable: true,
+    fontsize: "0.9em",
+    color: "rgb(90,90,90)",
+    language: "chinese",
+  },
+};
 ```
 
 check [document](https://github.com/827652549/docsify-count)
-
 
 ## Code Fund
 

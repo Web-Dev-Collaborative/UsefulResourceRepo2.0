@@ -2,7 +2,7 @@
 
 **FastAPI** has optional support for GraphQL (provided by Starlette directly), using the `graphene` library.
 
-You can combine normal FastAPI *path operations* with GraphQL on the same application.
+You can combine normal FastAPI _path operations_ with GraphQL on the same application.
 
 ## Import and use `graphene`
 
@@ -23,7 +23,7 @@ Then import and add Starlette's `GraphQLApp`:
 ```
 
 !!! info
-    Here we are using `.add_route`, that is the way to add a route in Starlette (inherited by FastAPI) without declaring the specific operation (as would be with `.get()`, `.post()`, etc).
+Here we are using `.add_route`, that is the way to add a route in Starlette (inherited by FastAPI) without declaring the specific operation (as would be with `.get()`, `.post()`, etc).
 
 ## Check it
 
@@ -37,8 +37,8 @@ You will see GraphiQL web user interface:
 
 For more details, including:
 
-* Accessing request information
-* Adding background tasks
-* Using normal or async functions
+- Accessing request information
+- Adding background tasks
+- Using normal or async functions
 
 check the official <a href="https://www.starlette.io/graphql/" class="external-link" target="_blank">Starlette GraphQL docs</a>.

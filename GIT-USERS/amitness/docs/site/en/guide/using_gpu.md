@@ -6,9 +6,9 @@ On a typical system, there are multiple computing devices. In TensorFlow, the
 supported device types are `CPU` and `GPU`. They are represented as `strings`.
 For example:
 
-*   `"/cpu:0"`: The CPU of your machine.
-*   `"/device:GPU:0"`: The GPU of your machine, if you have one.
-*   `"/device:GPU:1"`: The second GPU of your machine, etc.
+- `"/cpu:0"`: The CPU of your machine.
+- `"/device:GPU:0"`: The GPU of your machine, if you have one.
+- `"/device:GPU:1"`: The second GPU of your machine, etc.
 
 If a TensorFlow operation has both CPU and GPU implementations, the GPU devices
 will be given priority when the operation is assigned to a device. For example,
@@ -86,7 +86,7 @@ By default, TensorFlow maps nearly all of the GPU memory of all GPUs (subject to
 [`CUDA_VISIBLE_DEVICES`](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#env-vars))
 visible to the process. This is done to more efficiently use the relatively
 precious GPU memory resources on the devices by reducing [memory
-fragmentation](https://en.wikipedia.org/wiki/Fragmentation_\(computing\)).
+fragmentation](<https://en.wikipedia.org/wiki/Fragmentation_(computing)>).
 
 In some cases it is desirable for the process to only allocate a subset of the
 available memory, or to only grow the memory usage as is needed by the process.
@@ -172,7 +172,7 @@ If you would like to run TensorFlow on multiple GPUs, you can construct your
 model in a multi-tower fashion where each tower is assigned to a different GPU.
 For example:
 
-``` python
+```python
 # Creates a graph.
 c = []
 for d in ['/device:GPU:2', '/device:GPU:3']:

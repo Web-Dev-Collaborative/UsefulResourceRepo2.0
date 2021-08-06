@@ -6,11 +6,11 @@
 
 Below is a snippet from the `vdc.geojson` file. It is the properties element for one of the VDCs.
 
-* The VDC is Bageswari
-* It is in the Bhaktapur district
-* It is in the Bagmati Zone
-* It is in the Central Development Region
-* It is in the country of Nepal
+- The VDC is Bageswari
+- It is in the Bhaktapur district
+- It is in the Bagmati Zone
+- It is in the Central Development Region
+- It is in the country of Nepal
 
 ```json
 {
@@ -40,4 +40,3 @@ Below is a snippet from the `vdc.geojson` file. It is the properties element for
 # wz-vdc.topojson file creation
 
 `wz-vdc.topojson` was created by uploading `wz-vdc.geojson` to http://www.mapshaper.org and then exporting it as topojson data
-

@@ -1,4 +1,5 @@
 # Integrate (contrib)
+
 [TOC]
 
 Integration and ODE solvers for TensorFlow.
@@ -38,4 +39,4 @@ plt.plot(x, z)
 
 ## Ops
 
-*   `tf.contrib.integrate.odeint`
+- `tf.contrib.integrate.odeint`

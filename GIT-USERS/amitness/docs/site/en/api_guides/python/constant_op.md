@@ -9,22 +9,22 @@ Note: Functions taking `Tensor` arguments can also take anything accepted by
 
 TensorFlow provides several operations that you can use to generate constants.
 
-*   `tf.zeros`
-*   `tf.zeros_like`
-*   `tf.ones`
-*   `tf.ones_like`
-*   `tf.fill`
-*   `tf.constant`
+- `tf.zeros`
+- `tf.zeros_like`
+- `tf.ones`
+- `tf.ones_like`
+- `tf.fill`
+- `tf.constant`
 
 ## Sequences
 
-*   `tf.linspace`
-*   `tf.range`
+- `tf.linspace`
+- `tf.range`
 
 ## Random Tensors
 
 TensorFlow has several ops that create random tensors with different
-distributions.  The random ops are stateful, and create new random values each
+distributions. The random ops are stateful, and create new random values each
 time they are evaluated.
 
 The `seed` keyword argument in these functions acts in conjunction with
@@ -77,11 +77,11 @@ sess.run(init)
 print(sess.run(var))
 ```
 
-*   `tf.random_normal`
-*   `tf.truncated_normal`
-*   `tf.random_uniform`
-*   `tf.random_shuffle`
-*   `tf.random_crop`
-*   `tf.multinomial`
-*   `tf.random_gamma`
-*   `tf.set_random_seed`
+- `tf.random_normal`
+- `tf.truncated_normal`
+- `tf.random_uniform`
+- `tf.random_shuffle`
+- `tf.random_crop`
+- `tf.multinomial`
+- `tf.random_gamma`
+- `tf.set_random_seed`

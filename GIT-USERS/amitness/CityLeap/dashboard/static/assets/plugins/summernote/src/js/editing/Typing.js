@@ -1,9 +1,8 @@
 define([
-  'summernote/core/dom',
-  'summernote/core/range',
-  'summernote/editing/Bullet'
+  "summernote/core/dom",
+  "summernote/core/range",
+  "summernote/editing/Bullet",
 ], function (dom, range, Bullet) {
-
   /**
    * @class editing.Typing
    *
@@ -11,7 +10,6 @@ define([
    *
    */
   var Typing = function () {
-
     // a Bullet instance to toggle lists off
     var bullet = new Bullet();
 
@@ -54,18 +52,20 @@ define([
           // disable UL/OL and escape!
           bullet.toggleList(splitRoot.parentNode.nodeName);
           return;
-        // if new line has content (not a line break)
+          // if new line has content (not a line break)
         } else {
           nextPara = dom.splitTree(splitRoot, rng.getStartPoint());
 
           var emptyAnchors = dom.listDescendant(splitRoot, dom.isEmptyAnchor);
-          emptyAnchors = emptyAnchors.concat(dom.listDescendant(nextPara, dom.isEmptyAnchor));
+          emptyAnchors = emptyAnchors.concat(
+            dom.listDescendant(nextPara, dom.isEmptyAnchor)
+          );
 
           $.each(emptyAnchors, function (idx, anchor) {
             dom.remove(anchor);
           });
         }
-      // no paragraph: insert empty paragraph
+        // no paragraph: insert empty paragraph
       } else {
         var next = rng.sc.childNodes[rng.so];
         nextPara = $(dom.emptyPara)[0];
@@ -77,9 +77,7 @@ define([
       }
 
       range.create(nextPara, 0).normalize().select();
-
     };
-
   };
 
   return Typing;

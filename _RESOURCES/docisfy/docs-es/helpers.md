@@ -41,13 +41,13 @@ It will be compiled to `<a href="/#/demo/">link</a>` and will be loaded `/demo/R
 Now you can do that
 
 ```md
-[link](/es//demo/ ':ignore')
+[link](/es//demo/ ":ignore")
 ```
 
 You will get `<a href="/demo/">link</a>`html. Do not worry, you can still set title for link.
 
 ```md
-[link](/es//demo/ ':ignore title')
+[link](/es//demo/ ":ignore title")
 
 <a href="/demo/" title="title">link</a>
 ```
@@ -55,30 +55,30 @@ You will get `<a href="/demo/">link</a>`html. Do not worry, you can still set ti
 ## Set target attribute for link
 
 ```md
-[link](/es//demo ':target=_blank')
-[link](/es//demo2 ':target=_self')
+[link](/es//demo ":target=_blank")
+[link](/es//demo2 ":target=_self")
 ```
 
 ## Disable link
 
 ```md
-[link](/es//demo ':disabled')
+[link](/es//demo ":disabled")
 ```
 
 ## Github Task Lists
 
 ```md
-* [ ] foo
-* bar
-* [x] baz
-* [] bam <~ not working
-  * [ ] bim
-  * [ ] lim
+- [ ] foo
+- bar
+- [x] baz
+- [] bam <~ not working
+  - [ ] bim
+  - [ ] lim
 ```
 
-* [ ] foo
-* bar
-* [x] baz
-* [] bam <~ not working
-  * [ ] bim
-  * [ ] lim
+- [ ] foo
+- bar
+- [x] baz
+- [] bam <~ not working
+  - [ ] bim
+  - [ ] lim

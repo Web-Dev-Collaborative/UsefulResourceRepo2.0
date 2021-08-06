@@ -79,7 +79,6 @@ trade-offs are worth it before using these cells. For example, while layer
 normalization can speed up convergence, because cuDNN is 20x faster, the fastest
 wall clock time to convergence is usually obtained without it.
 
-
 ## Manual tuning
 
 ### Optimizing for CPU
@@ -91,16 +90,16 @@ instructions supported by the target CPU.
 Beyond using the latest instruction sets, Intel® has added support for the
 Intel® Math Kernel Library for Deep Neural Networks (Intel® MKL-DNN) to
 TensorFlow. While the name is not completely accurate, these optimizations are
-often simply referred to as *MKL* or *TensorFlow with MKL*.
+often simply referred to as _MKL_ or _TensorFlow with MKL_.
 [TensorFlow with Intel® MKL-DNN](#tensorflow-with-intel-mkl-dnn) contains details
 about the MKL optimizations.
 
 The two configurations listed below are used to optimize CPU performance by
 adjusting the thread pools.
 
-* `intra_op_parallelism_threads`: Nodes that can use multiple threads to
+- `intra_op_parallelism_threads`: Nodes that can use multiple threads to
   parallelize their execution will schedule the individual pieces into this pool.
-* `inter_op_parallelism_threads`: All ready nodes are scheduled in this pool.
+- `inter_op_parallelism_threads`: All ready nodes are scheduled in this pool.
 
 These configurations are set using the `tf.ConfigProto` and passed to `tf.Session`
 in the `config` attribute as shown in the snippet below. For both configuration
@@ -128,7 +127,7 @@ Phi™ through the use of the Intel® Math Kernel Library for Deep Neural Networ
 (Intel® MKL-DNN) optimized primitives. The optimizations also provide speedups
 for the consumer line of processors, e.g. i5 and i7 Intel processors. The Intel
 published paper
-[TensorFlow* Optimizations on Modern Intel® Architecture](https://software.intel.com/en-us/articles/tensorflow-optimizations-on-modern-intel-architecture)
+[TensorFlow\* Optimizations on Modern Intel® Architecture](https://software.intel.com/en-us/articles/tensorflow-optimizations-on-modern-intel-architecture)
 contains additional details on the implementation.
 
 Note: MKL was added as of TensorFlow 1.2 and currently only works on Linux. It
@@ -171,13 +170,13 @@ working to get near performance parity when using `NHWC`.
 
 MKL uses the following environment variables to tune performance:
 
-* `KMP_BLOCKTIME` - Sets the time, in milliseconds, that a thread should wait,
+- `KMP_BLOCKTIME` - Sets the time, in milliseconds, that a thread should wait,
   after completing the execution of a parallel region, before sleeping.
-* `KMP_AFFINITY` - Enables the run-time library to bind threads to physical
+- `KMP_AFFINITY` - Enables the run-time library to bind threads to physical
   processing units.
-* `KMP_SETTINGS` - Enables (true) or disables (false) the printing of OpenMP*
+- `KMP_SETTINGS` - Enables (true) or disables (false) the printing of OpenMP\*
   run-time library environment variables during program execution.
-* `OMP_NUM_THREADS` - Specifies the number of threads to use.
+- `OMP_NUM_THREADS` - Specifies the number of threads to use.
 
 More details on the KMP variables are on
 [Intel's](https://software.intel.com/en-us/node/522775) site and the OMP
@@ -189,8 +188,8 @@ which is discussed below, the simplified advice is to set the
 `inter_op_parallelism_threads` equal to the number of physical CPUs and to set
 the following environment variables:
 
-* `KMP_BLOCKTIME=0`
-* `KMP_AFFINITY=granularity=fine,verbose,compact,1,0`
+- `KMP_BLOCKTIME=0`
+- `KMP_AFFINITY=granularity=fine,verbose,compact,1,0`
 
 Example setting MKL variables with command-line arguments:
 
@@ -212,25 +211,24 @@ if FLAGS.num_intra_threads > 0:
 There are models and hardware platforms that benefit from different settings.
 Each variable that impacts performance is discussed below.
 
-* `KMP_BLOCKTIME`: The MKL default is 200ms, which was not optimal in our
+- `KMP_BLOCKTIME`: The MKL default is 200ms, which was not optimal in our
   testing. 0 (0ms) was a good default for CNN based models that were tested.
   The best performance for AlexNex was achieved at 30ms and both GoogleNet and
   VGG11 performed best set at 1ms.
-* `KMP_AFFINITY`: The recommended setting is `granularity=fine,verbose,compact,1,0`.
-* `OMP_NUM_THREADS`: This defaults to the number of physical cores.
+- `KMP_AFFINITY`: The recommended setting is `granularity=fine,verbose,compact,1,0`.
+- `OMP_NUM_THREADS`: This defaults to the number of physical cores.
   Adjusting this parameter beyond matching the number of cores can have an
   impact when using Intel® Xeon Phi™ (Knights Landing) for some models. See
-  [TensorFlow* Optimizations on Modern Intel® Architecture](https://software.intel.com/en-us/articles/tensorflow-optimizations-on-modern-intel-architecture)
+  [TensorFlow\* Optimizations on Modern Intel® Architecture](https://software.intel.com/en-us/articles/tensorflow-optimizations-on-modern-intel-architecture)
   for optimal settings.
-* `intra_op_parallelism_threads`: Setting this equal to the number of
+- `intra_op_parallelism_threads`: Setting this equal to the number of
   physical cores is recommended. Setting the value to 0, which is the default,
   results in the value being set to the number of logical cores - this is an
   alternate option to try for some architectures. This value and `OMP_NUM_THREADS`
   should be equal.
-* `inter_op_parallelism_threads`: Setting this equal to the number of
+- `inter_op_parallelism_threads`: Setting this equal to the number of
   sockets is recommended. Setting the value to 0, which is the default,
   results in the value being set to the number of logical cores.
-
 
 ## Building and installing from source
 
@@ -254,7 +252,7 @@ bazel build -c opt --copt=-march="broadwell" --config=cuda //tensorflow/tools/pi
 
 ### Environment, build, and install tips
 
-* `./configure` asks which compute capability to include in the build. This
+- `./configure` asks which compute capability to include in the build. This
   does not impact overall performance but does impact initial startup. After
   running TensorFlow once, the compiled kernels are cached by CUDA. If using
   a docker container, the data is not cached and the penalty is paid each time
@@ -262,33 +260,32 @@ bazel build -c opt --copt=-march="broadwell" --config=cuda //tensorflow/tools/pi
   [compute capabilities](http://developer.nvidia.com/cuda-gpus)
   of the GPUs that will be used, e.g. P100: 6.0, Titan X (Pascal): 6.1,
   Titan X (Maxwell): 5.2, and K80: 3.7.
-* Use a version of `gcc` that supports all of the optimizations of the target
+- Use a version of `gcc` that supports all of the optimizations of the target
   CPU. The recommended minimum gcc version is 4.8.3. On OS X, upgrade to the
   latest Xcode version and use the version of clang that comes with Xcode.
-* Install the latest stable CUDA platform and cuDNN libraries supported by
+- Install the latest stable CUDA platform and cuDNN libraries supported by
   TensorFlow.
-
 
 ## History
 
 ### Data formats
 
-Data formats refers to the structure of the Tensor passed to a given *op*. The
+Data formats refers to the structure of the Tensor passed to a given _op_. The
 discussion below is specifically about 4D Tensors representing images. In
 TensorFlow the parts of the 4D tensor are often referred to by the following
 letters:
 
-* N refers to the number of images in a batch.
-* H refers to the number of pixels in the vertical (height) dimension.
-* W refers to the number of pixels in the horizontal (width) dimension.
-* C refers to the channels. For example, 1 for black and white or grayscale
+- N refers to the number of images in a batch.
+- H refers to the number of pixels in the vertical (height) dimension.
+- W refers to the number of pixels in the horizontal (width) dimension.
+- C refers to the channels. For example, 1 for black and white or grayscale
   and 3 for RGB.
 
 Within TensorFlow there are two naming conventions representing the two most
 common data formats:
 
-* `NCHW` or `channels_first`
-* `NHWC` or `channels_last`
+- `NCHW` or `channels_first`
+- `NHWC` or `channels_last`
 
 `NHWC` is the TensorFlow default and `NCHW` is the optimal format to use when
 training on NVIDIA GPUs using [cuDNN](https://developer.nvidia.com/cudnn).
@@ -305,7 +302,6 @@ The brief history of these two formats is that TensorFlow started by using
 on tools to auto rewrite graphs to make switching between the formats
 transparent and take advantages of micro optimizations where a GPU op may be
 faster using `NHWC` than the normally most efficient `NCHW`.
-
 
 ## Debugging
 
@@ -325,15 +321,15 @@ the difference in examples per second for the full model and the trivial model
 is minimal then the input pipeline is likely a bottleneck. Below are some other
 approaches to identifying issues:
 
-* Check if a GPU is underutilized by running `nvidia-smi -l 2`. If GPU
+- Check if a GPU is underutilized by running `nvidia-smi -l 2`. If GPU
   utilization is not approaching 80-100%, then the input pipeline may be the
   bottleneck.
-* Generate a timeline and look for large blocks of white space (waiting). An
+- Generate a timeline and look for large blocks of white space (waiting). An
   example of generating a timeline exists as part of the
   [XLA jit tutorial](../../extend/xla/jit.md).
-* Check CPU usage. It is possible to have an optimized input pipeline and lack
+- Check CPU usage. It is possible to have an optimized input pipeline and lack
   the CPU cycles to process the pipeline.
-* Estimate the throughput needed and verify the disk used is capable of that
+- Estimate the throughput needed and verify the disk used is capable of that
   level of throughput. Some cloud solutions have network attached disks that
   start as low as 50 MB/sec, which is slower than spinning disks (150 MB/sec),
   SATA SSDs (500 MB/sec), and PCIe SSDs (2,000+ MB/sec).

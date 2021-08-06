@@ -1,20 +1,22 @@
 # jvac
 
-
 ## Local Installation
 
-- Install the libraries 
+- Install the libraries
+
 ```shell
 chmod a+x install.sh
 sudo ./install.sh
 ```
 
 - Create virtual environment.
+
 ```shell
 virtualenv venv
 ```
 
 - Activate virtual environment.
+
 ```shell
 source venv/bin/activate
 ```
@@ -26,11 +28,13 @@ pip install -r requirements.txt
 ```
 
 - Install required gems for rails
+
 ```
 bundle install
 ```
 
 - Run the server and start coding
+
 ```
 rails server
 ```

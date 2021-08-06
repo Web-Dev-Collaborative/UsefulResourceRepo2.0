@@ -4,115 +4,113 @@
  * @version: v1.1.0
  */
 
-!function ($) {
+!(function ($) {
+  "use strict";
 
-    'use strict';
+  var getFieldIndex = function (columns, field) {
+    var index = -1;
 
-    var getFieldIndex = function (columns, field) {
-        var index = -1;
-
-        $.each(columns, function (i, column) {
-            if (column.field === field) {
-                index = i;
-                return false;
-            }
-            return true;
-        });
-        return index;
-    };
-
-    $.extend($.fn.bootstrapTable.defaults, {
-        reorderableColumns: false,
-        maxMovingRows: 10,
-        onReorderColumn: function (headerFields) {
-            return false;
-        }
+    $.each(columns, function (i, column) {
+      if (column.field === field) {
+        index = i;
+        return false;
+      }
+      return true;
     });
+    return index;
+  };
 
-    $.extend($.fn.bootstrapTable.Constructor.EVENTS, {
-        'reorder-column.bs.table': 'onReorderColumn'
-    });
+  $.extend($.fn.bootstrapTable.defaults, {
+    reorderableColumns: false,
+    maxMovingRows: 10,
+    onReorderColumn: function (headerFields) {
+      return false;
+    },
+  });
 
-    var BootstrapTable = $.fn.bootstrapTable.Constructor,
-        _initHeader = BootstrapTable.prototype.initHeader,
-        _toggleColumn = BootstrapTable.prototype.toggleColumn,
-        _toggleView = BootstrapTable.prototype.toggleView,
-        _resetView = BootstrapTable.prototype.resetView;
+  $.extend($.fn.bootstrapTable.Constructor.EVENTS, {
+    "reorder-column.bs.table": "onReorderColumn",
+  });
 
-    BootstrapTable.prototype.initHeader = function () {
-        _initHeader.apply(this, Array.prototype.slice.apply(arguments));
+  var BootstrapTable = $.fn.bootstrapTable.Constructor,
+    _initHeader = BootstrapTable.prototype.initHeader,
+    _toggleColumn = BootstrapTable.prototype.toggleColumn,
+    _toggleView = BootstrapTable.prototype.toggleView,
+    _resetView = BootstrapTable.prototype.resetView;
 
-        if (!this.options.reorderableColumns) {
-            return;
-        }
+  BootstrapTable.prototype.initHeader = function () {
+    _initHeader.apply(this, Array.prototype.slice.apply(arguments));
 
-        this.makeRowsReorderable();
-    };
+    if (!this.options.reorderableColumns) {
+      return;
+    }
 
-    BootstrapTable.prototype.toggleColumn = function () {
-        _toggleColumn.apply(this, Array.prototype.slice.apply(arguments));
+    this.makeRowsReorderable();
+  };
 
-        if (!this.options.reorderableColumns) {
-            return;
-        }
+  BootstrapTable.prototype.toggleColumn = function () {
+    _toggleColumn.apply(this, Array.prototype.slice.apply(arguments));
 
-        this.makeRowsReorderable();
-    };
+    if (!this.options.reorderableColumns) {
+      return;
+    }
 
-    BootstrapTable.prototype.toggleView = function () {
-        _toggleView.apply(this, Array.prototype.slice.apply(arguments));
+    this.makeRowsReorderable();
+  };
 
-        if (!this.options.reorderableColumns) {
-            return;
-        }
+  BootstrapTable.prototype.toggleView = function () {
+    _toggleView.apply(this, Array.prototype.slice.apply(arguments));
 
-        if (this.options.cardView) {
-            return;
-        }
+    if (!this.options.reorderableColumns) {
+      return;
+    }
 
-        this.makeRowsReorderable();
-    };
+    if (this.options.cardView) {
+      return;
+    }
 
-    BootstrapTable.prototype.resetView = function () {
-        _resetView.apply(this, Array.prototype.slice.apply(arguments));
+    this.makeRowsReorderable();
+  };
 
-        if (!this.options.reorderableColumns) {
-            return;
-        }
+  BootstrapTable.prototype.resetView = function () {
+    _resetView.apply(this, Array.prototype.slice.apply(arguments));
 
-        this.makeRowsReorderable();
-    };
+    if (!this.options.reorderableColumns) {
+      return;
+    }
 
-    BootstrapTable.prototype.makeRowsReorderable = function () {
+    this.makeRowsReorderable();
+  };
 
-        var that = this;
-        try {
-            $(this.$el).dragtable('destroy');
-        } catch (e) {}
-        $(this.$el).dragtable({
-            maxMovingRows: that.options.maxMovingRows,
-            clickDelay:200,
-            beforeStop: function() {
-                var ths = [],
-                    columns = [],
-                    columnIndex = -1;
-                that.$header.find('th').each(function (i) {
-                    ths.push($(this).data('field'));
-                });
-
-                for (var i = 0; i < ths.length; i++ ) {
-                    columnIndex = getFieldIndex(that.options.columns, ths[i]);
-                    if (columnIndex !== -1) {
-                        columns.push(that.options.columns[columnIndex]);
-                        that.options.columns.splice(columnIndex, 1);
-                    }
-                }
-
-                that.options.columns = that.options.columns.concat(columns);
-                that.header.fields = ths;
-                that.resetView();
-                that.trigger('reorder-column', ths);
-            }
+  BootstrapTable.prototype.makeRowsReorderable = function () {
+    var that = this;
+    try {
+      $(this.$el).dragtable("destroy");
+    } catch (e) {}
+    $(this.$el).dragtable({
+      maxMovingRows: that.options.maxMovingRows,
+      clickDelay: 200,
+      beforeStop: function () {
+        var ths = [],
+          columns = [],
+          columnIndex = -1;
+        that.$header.find("th").each(function (i) {
+          ths.push($(this).data("field"));
         });
-    };
-}(jQuery);
+
+        for (var i = 0; i < ths.length; i++) {
+          columnIndex = getFieldIndex(that.options.columns, ths[i]);
+          if (columnIndex !== -1) {
+            columns.push(that.options.columns[columnIndex]);
+            that.options.columns.splice(columnIndex, 1);
+          }
+        }
+
+        that.options.columns = that.options.columns.concat(columns);
+        that.header.fields = ths;
+        that.resetView();
+        that.trigger("reorder-column", ths);
+      },
+    });
+  };
+})(jQuery);

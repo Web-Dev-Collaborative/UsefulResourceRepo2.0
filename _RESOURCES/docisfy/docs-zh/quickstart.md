@@ -38,26 +38,29 @@ docsify serve docs
 
 如果不喜欢 npm 或者觉得安装工具太麻烦，我们可以直接手动创建一个 `index.html` 文件。
 
-*index.html*
+_index.html_
 
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css">
-</head>
-<body>
-  <div id="app"></div>
-  <script>
-    window.$docsify = {
-      //...
-    }
-  </script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
-</body>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css"
+    />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      window.$docsify = {
+        //...
+      };
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+  </body>
 </html>
 ```
 
@@ -75,24 +78,23 @@ cd docs && python -m http.server 3000
 
 初始化时会显示 `Loading...` 内容，你可以自定义提示信息。
 
-
 ```html
-  <!-- index.html -->
+<!-- index.html -->
 
-  <div id="app">加载中</div>
+<div id="app">加载中</div>
 ```
 
 如果更改了 `el` 的配置，需要将该元素加上 `data-app` 属性。
 
 ```html
-  <!-- index.html -->
-  <div data-app id="main">加载中</div>
+<!-- index.html -->
+<div data-app id="main">加载中</div>
 
-  <script>
-    window.$docsify = {
-      el: '#main'
-    }
-  </script>
+<script>
+  window.$docsify = {
+    el: "#main",
+  };
+</script>
 ```
 
 对比 [el 设置](zh-cn/configuration.md#el)。

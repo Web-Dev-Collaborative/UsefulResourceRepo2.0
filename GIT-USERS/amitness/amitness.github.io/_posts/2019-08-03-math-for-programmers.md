@@ -15,8 +15,6 @@ $$
 \frac{1}{N} \sum_{i=1}^{N} (y_i - \hat{y_i})^2
 $$
 
-
-
 ## Indexing
 
 $$
@@ -24,13 +22,15 @@ x_i
 $$
 
 This symbol is taking the value at i$$^{th}$$ index of a vector.
+
 ```python
 x = [10, 20, 30]
 i = 0
 print(x[i]) # 10
-``` 
+```
 
 This can be extended for 2D vectors and so on.
+
 $$
 x_{ij}
 $$
@@ -40,10 +40,9 @@ x = [ [10, 20, 30], [40, 50, 60] ]
 i = 0
 j = 1
 print(x[i][j]) # 20
-``` 
+```
 
 ## Sigma
-
 
 $$
 \sum_{i=1}^{N} x_i
@@ -59,7 +58,9 @@ for i in range(N):
     result = result + x[i]
 print(result)
 ```
+
 The above code can even be shortened using built-in functions in Python as
+
 ```python
 x = [1, 2, 3, 4, 5]
 result = sum(x)
@@ -82,14 +83,15 @@ for i in range(N):
 average = result / N
 print(average)
 ```
+
 The above code can even be shortened in Python as
+
 ```python
 x = [1, 2, 3, 4, 5]
 result = sum(x) / len(x)
 ```
 
 ## PI
-
 
 $$
 \prod_{i=1}^{N} x_i
@@ -107,16 +109,17 @@ print(result)
 ```
 
 ## Pipe
+
 The pipe symbol can mean different things based on where it's applied.
 
-### Absolute Value  
+### Absolute Value
 
 $$
-\lVert x \rVert 
+\lVert x \rVert
 $$
 
 $$
-\lVert y \rVert 
+\lVert y \rVert
 $$
 
 This symbol denotes the absolute value of a number i.e. without a sign.
@@ -126,13 +129,14 @@ x = 10
 y = -20
 abs(x) # 10
 abs(y) # 20
-``` 
+```
+
 <br>
 
-### Norm of vector  
+### Norm of vector
 
 $$
-\lVert x \rVert 
+\lVert x \rVert
 $$
 
 The norm is used to calculate the magnitude of a vector. In Python, this means squaring each element of an array, summing them and then taking the square root.
@@ -144,19 +148,20 @@ x = [1, 2, 3]
 math.sqrt(x[0]**2 + x[1]**2 + x[2]**2)
 ```
 
-## Belongs to  
+## Belongs to
 
 $$
 3\ \in\ X
 $$
 
 This symbol checks if an element is part of a set. In Python, this would be equivalent to
+
 ```python
 X = {1, 2, 3}
 3 in X
 ```
 
-## Function  
+## Function
 
 $$
 f: X \rightarrow Y
@@ -170,14 +175,14 @@ def f(X):
     return Y
 ```
 
-You will encounter the following symbols in place of X and Y. Here are what they mean:  
+You will encounter the following symbols in place of X and Y. Here are what they mean:
 
 $$
 f: R \rightarrow R
 $$
 
 `R` means input and outputs are real numbers and can take any value (integer, float, irrational, rational).
-In Python, this is equivalent to any value except complex numbers.  
+In Python, this is equivalent to any value except complex numbers.
 
 ```python
 import math
@@ -186,7 +191,7 @@ y = 2.5
 z = math.pi
 ```
 
-You will also encounter symbols such as  
+You will also encounter symbols such as
 
 $$
 f: R^d \rightarrow R
@@ -195,36 +200,40 @@ $$
 $$R^d$$ means d-dimensional vector of real numbers.
 
 Let's assume d = 2. In Python, an example can be a function that takes 2-D array and returns it's sum. It will be mapping a $$R^d$$ to $$R$$
+
 ```python
 X = [1, 2]
 f = sum
 Y = f(X)
 ```
 
-## Tensors  
-  
-### Transpose  
+## Tensors
+
+### Transpose
 
 $$
-X^{\mathsf{T}} 
+X^{\mathsf{T}}
 $$
 
 This is basically exchanging the rows and columns.
 In Python, this would be equivalent to
+
 ```python
 import numpy as np
-X = [[1, 2, 3], 
+X = [[1, 2, 3],
     [4, 5, 6]]
 np.transpose(X)
-```  
-Output would be a list with exchanged rows and columns.
 ```
-[[1, 4], 
+
+Output would be a list with exchanged rows and columns.
+
+```
+[[1, 4],
  [2, 5],
  [3, 6]]
 ```
 
-### Element wise multiplication  
+### Element wise multiplication
 
 $$
 z = x \odot y
@@ -234,9 +243,9 @@ It means multiplying the corresponding elements in two tensors. In Python, this 
 
 ```python
 import numpy as np
-x = [[1, 2], 
+x = [[1, 2],
     [3, 4]]
-y = [[2, 2], 
+y = [[2, 2],
     [2, 2]]
 z = np.multiply(x, y)
 ```

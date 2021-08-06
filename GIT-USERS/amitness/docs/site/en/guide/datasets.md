@@ -12,20 +12,20 @@ complicated transformations.
 
 The `tf.data` API introduces two new abstractions to TensorFlow:
 
-* A `tf.data.Dataset` represents a sequence of elements, in which
+- A `tf.data.Dataset` represents a sequence of elements, in which
   each element contains one or more `Tensor` objects. For example, in an image
   pipeline, an element might be a single training example, with a pair of
   tensors representing the image data and a label. There are two distinct
   ways to create a dataset:
 
-    * Creating a **source** (e.g. `Dataset.from_tensor_slices()`) constructs a
+  - Creating a **source** (e.g. `Dataset.from_tensor_slices()`) constructs a
     dataset from
     one or more `tf.Tensor` objects.
 
-    * Applying a **transformation** (e.g. `Dataset.batch()`) constructs a dataset
+  - Applying a **transformation** (e.g. `Dataset.batch()`) constructs a dataset
     from one or more `tf.data.Dataset` objects.
 
-* A `tf.data.Iterator` provides the main way to extract elements from a
+- A `tf.data.Iterator` provides the main way to extract elements from a
   dataset. The operation returned by `Iterator.get_next()` yields the next
   element of a `Dataset` when executed, and typically acts as the interface
   between input pipeline code and your model. The simplest iterator is a
@@ -40,14 +40,14 @@ The `tf.data` API introduces two new abstractions to TensorFlow:
 This section of the guide describes the fundamentals of creating different kinds
 of `Dataset` and `Iterator` objects, and how to extract data from them.
 
-To start an input pipeline, you must define a *source*. For example, to
+To start an input pipeline, you must define a _source_. For example, to
 construct a `Dataset` from some tensors in memory, you can use
 `tf.data.Dataset.from_tensors()` or
 `tf.data.Dataset.from_tensor_slices()`. Alternatively, if your input
 data are on disk in the recommended TFRecord format, you can construct a
 `tf.data.TFRecordDataset`.
 
-Once you have a `Dataset` object, you can *transform* it into a new `Dataset` by
+Once you have a `Dataset` object, you can _transform_ it into a new `Dataset` by
 chaining method calls on the `tf.data.Dataset` object. For example, you
 can apply per-element transformations such as `Dataset.map()` (to apply a
 function to each element), and multi-element transformations such as
@@ -66,12 +66,12 @@ type of iterator, and the options are outlined below.
 ### Dataset structure
 
 A dataset comprises elements that each have the same structure. An element
-contains one or more `tf.Tensor` objects, called *components*. Each component
+contains one or more `tf.Tensor` objects, called _components_. Each component
 has a `tf.DType` representing the type of elements in the tensor, and a
 `tf.TensorShape` representing the (possibly partially specified) static shape of
 each element. The `Dataset.output_types` and `Dataset.output_shapes` properties
 allow you to inspect the inferred types and shapes of each component of a
-dataset element. The *nested structure* of these properties map to the structure
+dataset element. The _nested structure_ of these properties map to the structure
 of an element, which may be a single tensor, a tuple of tensors, or a nested
 tuple of tensors. For example:
 
@@ -121,14 +121,14 @@ dataset3 = dataset3.filter(lambda x, (y, z): ...)
 ### Creating an iterator
 
 Once you have built a `Dataset` to represent your input data, the next step is to
-create an `Iterator` to access elements from that dataset.  The `tf.data` API
+create an `Iterator` to access elements from that dataset. The `tf.data` API
 currently supports the following iterators, in increasing level of
 sophistication:
 
-* **one-shot**,
-* **initializable**,
-* **reinitializable**, and
-* **feedable**.
+- **one-shot**,
+- **initializable**,
+- **reinitializable**, and
+- **feedable**.
 
 A **one-shot** iterator is the simplest form of iterator, which only supports
 iterating once through a dataset, with no need for explicit initialization.
@@ -151,7 +151,7 @@ with an `Estimator`.
 
 An **initializable** iterator requires you to run an explicit
 `iterator.initializer` operation before using it. In exchange for this
-inconvenience, it enables you to *parameterize* the definition of the dataset,
+inconvenience, it enables you to _parameterize_ the definition of the dataset,
 using one or more `tf.placeholder()` tensors that can be fed when you
 initialize the iterator. Continuing the `Dataset.range()` example:
 
@@ -323,7 +323,7 @@ next1, (next2, next3) = iterator.get_next()
 ```
 
 Note that `next1`, `next2`, and `next3` are tensors produced by the
-same op/node (created by `Iterator.get_next()`). Therefore,  evaluating *any* of
+same op/node (created by `Iterator.get_next()`). Therefore, evaluating _any_ of
 these tensors will advance the iterator for all components. A typical consumer
 of an iterator will include all components in a single expression.
 
@@ -383,7 +383,7 @@ copied multiple times---and can run into the 2GB limit for the `tf.GraphDef`
 protocol buffer.
 
 As an alternative, you can define the `Dataset` in terms of `tf.placeholder()`
-tensors, and *feed* the NumPy arrays when you initialize an `Iterator` over the
+tensors, and _feed_ the NumPy arrays when you initialize an `Iterator` over the
 dataset.
 
 ```python
@@ -462,7 +462,7 @@ filenames = ["/var/data/file1.txt", "/var/data/file2.txt"]
 dataset = tf.data.TextLineDataset(filenames)
 ```
 
-By default, a `TextLineDataset` yields *every* line of each file, which may
+By default, a `TextLineDataset` yields _every_ line of each file, which may
 not be desirable, for example if the file starts with a header line, or contains
 comments. These lines can be removed using the `Dataset.skip()` and
 `Dataset.filter()` transformations. To apply these transformations to each
@@ -494,7 +494,7 @@ Given one or more filenames and a list of defaults, a `CsvDataset` will produce
 a tuple of elements whose types correspond to the types of the defaults
 provided, per CSV record. Like `TFRecordDataset` and `TextLineDataset`,
 `CsvDataset` accepts `filenames` as a `tf.Tensor`, so you can parameterize it
-by passing a  `tf.placeholder(tf.string)`.
+by passing a `tf.placeholder(tf.string)`.
 
 ```
 # Creates a dataset that reads all of the records from two CSV files, each with
@@ -513,7 +513,7 @@ record_defaults = [[0.0]] * 8
 dataset = tf.contrib.data.CsvDataset(filenames, record_defaults)
 ```
 
-By default, a `CsvDataset` yields *every* column of *every* line of the file,
+By default, a `CsvDataset` yields _every_ column of _every_ line of the file,
 which may not be desirable, for example if the file starts with a header line
 that should be ignored, or if some columns are not required in the input.
 These lines and fields can be removed with the `header` and `select_cols`
@@ -525,6 +525,7 @@ arguments respectively.
 record_defaults = [[0.0]] * 2  # Only provide defaults for the selected columns
 dataset = tf.contrib.data.CsvDataset(filenames, record_defaults, header=True, select_cols=[2,4])
 ```
+
 <!--
 TODO(mrry): Add these sections.
 
@@ -536,9 +537,9 @@ TODO(mrry): Add these sections.
 The `Dataset.map(f)` transformation produces a new dataset by applying a given
 function `f` to each element of the input dataset. It is based on
 the
-[`map()` function](https://en.wikipedia.org/wiki/Map_(higher-order_function))
+[`map()` function](<https://en.wikipedia.org/wiki/Map_(higher-order_function)>)
 that is commonly applied to lists (and other structures) in functional
-programming languages.  The function `f` takes the `tf.Tensor` objects that
+programming languages. The function `f` takes the `tf.Tensor` objects that
 represent a single element in the input, and returns the `tf.Tensor` objects
 that will represent a single element in the new dataset. Its implementation uses
 standard TensorFlow operations to transform one element into another.
@@ -639,7 +640,7 @@ TODO(mrry): Add this section.
 The simplest form of batching stacks `n` consecutive elements of a dataset into
 a single element. The `Dataset.batch()` transformation does exactly this, with
 the same constraints as the `tf.stack()` operator, applied to each component
-of the elements: i.e. for each component *i*, all elements must have a tensor
+of the elements: i.e. for each component _i_, all elements must have a tensor
 of the exact same shape.
 
 ```python

@@ -4,41 +4,49 @@
 //     Parsley may be freely distributed under the MIT license.
 
 define([
-
   // ### Requirements
 
   // Handy third party functions
-  'parsley/utils',
+  "parsley/utils",
   // Parsley default configuration
-  'parsley/defaults',
+  "parsley/defaults",
   // An abstract class shared by `ParsleyField` and `ParsleyForm`
-  'parsley/abstract',
+  "parsley/abstract",
   // A proxy between Parsley and [Validator.js](http://validatorjs.org)
-  'parsley/validator',
+  "parsley/validator",
   // `ParsleyUI` static class. Handles all UI and UX
-  'parsley/ui',
+  "parsley/ui",
   // `ParsleyForm` Class. Handles form validation
-  'parsley/form',
+  "parsley/form",
   // `ParsleyField` Class. Handles field validation
-  'parsley/field',
+  "parsley/field",
   // `Multiple` Class. Extend `ParsleyField` to generate `ParsleyFieldMultiple`
-  'parsley/multiple',
+  "parsley/multiple",
   // Factory to create Parsley instances (Form, Field or FieldMultiple)
-  'parsley/factory',
+  "parsley/factory",
   // Tiny Parsley Pub / Sub mechanism, used for `ParsleyUI` and Listeners
-  'parsley/pubsub',
+  "parsley/pubsub",
   // Default en constraints messages
-  'i18n/en'
-], function (ParsleyUtils, ParsleyDefaults, ParsleyAbstract, ParsleyValidator, ParsleyUI, ParsleyForm, ParsleyField, ParsleyMultiple, ParsleyFactory) {
-
+  "i18n/en",
+], function (
+  ParsleyUtils,
+  ParsleyDefaults,
+  ParsleyAbstract,
+  ParsleyValidator,
+  ParsleyUI,
+  ParsleyForm,
+  ParsleyField,
+  ParsleyMultiple,
+  ParsleyFactory
+) {
   // Inherit `on`, `off` & `trigger` to Parsley:
   var Parsley = $.extend(new ParsleyAbstract(), {
-      $element: $(document),
-      actualizeOptions: null,
-      _resetOptions: null,
-      Factory: ParsleyFactory,
-      version: '@@version'
-    });
+    $element: $(document),
+    actualizeOptions: null,
+    _resetOptions: null,
+    Factory: ParsleyFactory,
+    version: "@@version",
+  });
 
   // Supplement ParsleyField and Form with ParsleyAbstract
   // This way, the constructors will have access to those methods
@@ -62,7 +70,7 @@ define([
 
     // Return undefined if applied to non existing DOM element
     if (!$(this).length) {
-      ParsleyUtils.warn('You must bind Parsley on an existing element.');
+      ParsleyUtils.warn("You must bind Parsley on an existing element.");
 
       return;
     }
@@ -72,32 +80,39 @@ define([
 
   // ### ParsleyField and ParsleyForm extension
   // Ensure the extension is now defined if it wasn't previously
-  if ('undefined' === typeof window.ParsleyExtend)
-    window.ParsleyExtend = {};
+  if ("undefined" === typeof window.ParsleyExtend) window.ParsleyExtend = {};
 
   // ### Parsley config
   // Inherit from ParsleyDefault, and copy over any existing values
-  Parsley.options = $.extend(ParsleyUtils.objectCreate(ParsleyDefaults), window.ParsleyConfig);
+  Parsley.options = $.extend(
+    ParsleyUtils.objectCreate(ParsleyDefaults),
+    window.ParsleyConfig
+  );
   window.ParsleyConfig = Parsley.options; // Old way of accessing global options
 
   // ### Globals
   window.Parsley = window.psly = Parsley;
   window.ParsleyUtils = ParsleyUtils;
-  window.ParsleyValidator = new ParsleyValidator(window.ParsleyConfig.validators, window.ParsleyConfig.i18n);
+  window.ParsleyValidator = new ParsleyValidator(
+    window.ParsleyConfig.validators,
+    window.ParsleyConfig.i18n
+  );
 
   // ### ParsleyUI
   // UI is a separate class that only listens to some events and then modifies the DOM accordingly
   // Could be overriden by defining a `window.ParsleyConfig.ParsleyUI` appropriate class (with `listen()` method basically)
-  window.ParsleyUI = 'function' === typeof window.ParsleyConfig.ParsleyUI ?
-    new window.ParsleyConfig.ParsleyUI().listen() : new ParsleyUI().listen();
+  window.ParsleyUI =
+    "function" === typeof window.ParsleyConfig.ParsleyUI
+      ? new window.ParsleyConfig.ParsleyUI().listen()
+      : new ParsleyUI().listen();
 
   // ### PARSLEY auto-binding
   // Prevent it by setting `ParsleyConfig.autoBind` to `false`
   if (false !== window.ParsleyConfig.autoBind)
     $(function () {
       // Works only on `data-parsley-validate`.
-      if ($('[data-parsley-validate]').length)
-        $('[data-parsley-validate]').parsley();
+      if ($("[data-parsley-validate]").length)
+        $("[data-parsley-validate]").parsley();
     });
 
   return Parsley;

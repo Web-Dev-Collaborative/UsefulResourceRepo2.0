@@ -3,10 +3,10 @@
 Es gibt im Moment vier Themes zur Auswahl, ähnlich wie die Webseiten von [Vue](//vuejs.org) oder [buble](//buble.surge.sh), sowie eine weitere, dunkle von [@liril-net](https://github.com/liril-net).
 
 ```html
-<link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css">
-<link rel="stylesheet" href="//unpkg.com/docsify/themes/buble.css">
-<link rel="stylesheet" href="//unpkg.com/docsify/themes/dark.css">
-<link rel="stylesheet" href="//unpkg.com/docsify/themes/pure.css">
+<link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css" />
+<link rel="stylesheet" href="//unpkg.com/docsify/themes/buble.css" />
+<link rel="stylesheet" href="//unpkg.com/docsify/themes/dark.css" />
+<link rel="stylesheet" href="//unpkg.com/docsify/themes/pure.css" />
 ```
 
 !> Komprimierte Dateien sind über `/lib/themes/` verfügbar.
@@ -14,10 +14,10 @@ Es gibt im Moment vier Themes zur Auswahl, ähnlich wie die Webseiten von [Vue](
 ```html
 <!-- komprimierte Versionen -->
 
-<link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
-<link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/buble.css">
-<link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/dark.css">
-<link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/pure.css">
+<link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css" />
+<link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/buble.css" />
+<link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/dark.css" />
+<link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/pure.css" />
 ```
 
 Solltest du weitere Themes erstellen, kannst du sie gerne der Allgemeinheit mit einem [pull request](https://github.com/docsifyjs/docsify/pulls) zur Verfügung stellen.
@@ -54,8 +54,6 @@ Solltest du weitere Themes erstellen, kannst du sie gerne der Allgemeinheit mit 
     });
   };
 </script>
-
-
 
 ## Andere themes
 

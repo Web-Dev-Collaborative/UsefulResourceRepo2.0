@@ -1,10 +1,12 @@
 # Contribution Guidelines
 
-## The pull request should have a useful title 
-Pull requests with `Update readme.md` as title are not informative enough. 
-Write about what additions you've made and *why* do you think it is useful. 
+## The pull request should have a useful title
+
+Pull requests with `Update readme.md` as title are not informative enough.
+Write about what additions you've made and _why_ do you think it is useful.
 
 ## Guidelines
+
 - Make an individual pull request for each suggestion
 - Use [title-casing](http://titlecapitalization.com) (AP style)
 - Use the following format: `[Relevant Link](link)`
@@ -15,6 +17,7 @@ Write about what additions you've made and *why* do you think it is useful.
 - The pull request and commit should have a useful title
 
 ## How to Contribute?
+
 You'll need a [GitHub account](https://github.com/join)!
 
 1. Access the GitHub page: https://github.com/keon/awesome-nlp
@@ -26,7 +29,7 @@ You'll need a [GitHub account](https://github.com/join)!
 
 ## Updating your Pull Request
 
-Sometimes, a maintainer of an awesome list will ask you to edit your Pull Request before it is included. This is normally due to spelling errors or because your PR didn't match the awesome-* list guidelines.
+Sometimes, a maintainer of an awesome list will ask you to edit your Pull Request before it is included. This is normally due to spelling errors or because your PR didn't match the awesome-\* list guidelines.
 
 [Here](https://github.com/RichardLitt/knowledge/blob/master/github/amending-a-commit-guide.md) is a write up on how to change a Pull Request, and the different ways you can do that.
 

@@ -1,14 +1,14 @@
-'use strict'
+"use strict";
 
-const serveStatic = require('serve-static')
-const connect = require('connect')
-const livereload = require('connect-livereload')
-const lrserver = require('livereload')
-const open = require('open')
-const chalk = require('chalk')
-const logger = require('../util/logger')
-const {exists, resolve} = require('../util')
-const getPort = require('get-port')
+const serveStatic = require("serve-static");
+const connect = require("connect");
+const livereload = require("connect-livereload");
+const lrserver = require("livereload");
+const open = require("open");
+const chalk = require("chalk");
+const logger = require("../util/logger");
+const { exists, resolve } = require("../util");
+const getPort = require("get-port");
 
 module.exports = function (
   path,
@@ -17,59 +17,59 @@ module.exports = function (
   livereloadPort,
   indexName
 ) {
-  getPort({port})
-    .then(p => {
-      port = p
-      return getPort({port: livereloadPort})
+  getPort({ port })
+    .then((p) => {
+      port = p;
+      return getPort({ port: livereloadPort });
     })
-    .then(p => {
-      livereloadPort = p
+    .then((p) => {
+      livereloadPort = p;
     })
-    .then(_ => {
-      path = resolve(path || '.')
-      const indexFile = resolve(path, indexName || 'index.html')
+    .then((_) => {
+      path = resolve(path || ".");
+      const indexFile = resolve(path, indexName || "index.html");
 
       if (!exists(indexFile)) {
         const msg =
-          '\nNo docs found ' +
+          "\nNo docs found " +
           indexFile +
-          '\nPlease run ' +
-          chalk.green('docsify init') +
-          ' first.\n'
-        console.log(msg)
-        process.exit(0)
+          "\nPlease run " +
+          chalk.green("docsify init") +
+          " first.\n";
+        console.log(msg);
+        process.exit(0);
       }
 
-      const server = connect()
+      const server = connect();
       server.use(
         livereload({
-          port: livereloadPort
+          port: livereloadPort,
         })
-      )
-      server.use(serveStatic(path, {index: indexName}))
-      server.listen(port)
+      );
+      server.use(serveStatic(path, { index: indexName }));
+      server.listen(port);
       lrserver
         .createServer({
-          extraExts: ['md'],
-          exclusions: ['node_modules/'],
-          port: livereloadPort
+          extraExts: ["md"],
+          exclusions: ["node_modules/"],
+          port: livereloadPort,
         })
-        .watch(path)
+        .watch(path);
 
       if (openInBrowser) {
-        open(`http://localhost:${port}`)
+        open(`http://localhost:${port}`);
       }
 
       const msg =
-        '\nServing ' +
+        "\nServing " +
         chalk.green(`${path}`) +
-        ' now.\n' +
-        'Listening at ' +
+        " now.\n" +
+        "Listening at " +
         chalk.green(`http://localhost:${port}`) +
-        '\n'
-      console.log(msg)
+        "\n";
+      console.log(msg);
     })
-    .catch(err => {
-      logger.error(err.message)
-    })
-}
+    .catch((err) => {
+      logger.error(err.message);
+    });
+};

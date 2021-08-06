@@ -1,7 +1,7 @@
 define([
-  'summernote/core/func',
-  'summernote/core/list',
-  'summernote/module/Button'
+  "summernote/core/func",
+  "summernote/core/list",
+  "summernote/module/Button",
 ], function (func, list, Button) {
   /**
    * @class module.Popover
@@ -32,7 +32,7 @@ define([
       // popover below placeholder.
       return {
         left: pos.left,
-        top: pos.top + height
+        top: pos.top + height,
       };
     };
 
@@ -45,9 +45,9 @@ define([
      */
     var showPopover = function ($popover, pos) {
       $popover.css({
-        display: 'block',
+        display: "block",
         left: pos.left,
-        top: pos.top
+        top: pos.top,
       });
     };
 
@@ -62,42 +62,51 @@ define([
     this.update = function ($popover, styleInfo, isAirMode) {
       button.update($popover, styleInfo);
 
-      var $linkPopover = $popover.find('.note-link-popover');
+      var $linkPopover = $popover.find(".note-link-popover");
       if (styleInfo.anchor) {
-        var $anchor = $linkPopover.find('a');
-        var href = $(styleInfo.anchor).attr('href');
-        var target = $(styleInfo.anchor).attr('target');
-        $anchor.attr('href', href).html(href);
+        var $anchor = $linkPopover.find("a");
+        var href = $(styleInfo.anchor).attr("href");
+        var target = $(styleInfo.anchor).attr("target");
+        $anchor.attr("href", href).html(href);
         if (!target) {
-          $anchor.removeAttr('target');
+          $anchor.removeAttr("target");
         } else {
-          $anchor.attr('target', '_blank');
+          $anchor.attr("target", "_blank");
         }
-        showPopover($linkPopover, posFromPlaceholder(styleInfo.anchor, {
-          isAirMode: isAirMode
-        }));
+        showPopover(
+          $linkPopover,
+          posFromPlaceholder(styleInfo.anchor, {
+            isAirMode: isAirMode,
+          })
+        );
       } else {
         $linkPopover.hide();
       }
 
-      var $imagePopover = $popover.find('.note-image-popover');
+      var $imagePopover = $popover.find(".note-image-popover");
       if (styleInfo.image) {
-        showPopover($imagePopover, posFromPlaceholder(styleInfo.image, {
-          isAirMode: isAirMode,
-          isLeftTop: true
-        }));
+        showPopover(
+          $imagePopover,
+          posFromPlaceholder(styleInfo.image, {
+            isAirMode: isAirMode,
+            isLeftTop: true,
+          })
+        );
       } else {
         $imagePopover.hide();
       }
 
-      var $airPopover = $popover.find('.note-air-popover');
+      var $airPopover = $popover.find(".note-air-popover");
       if (isAirMode && styleInfo.range && !styleInfo.range.isCollapsed()) {
         var rect = list.last(styleInfo.range.getClientRects());
         if (rect) {
           var bnd = func.rect2bnd(rect);
           showPopover($airPopover, {
-            left: Math.max(bnd.left + bnd.width / 2 - PX_POPOVER_ARROW_OFFSET_X, 0),
-            top: bnd.top + bnd.height
+            left: Math.max(
+              bnd.left + bnd.width / 2 - PX_POPOVER_ARROW_OFFSET_X,
+              0
+            ),
+            top: bnd.top + bnd.height,
           });
         }
       } else {

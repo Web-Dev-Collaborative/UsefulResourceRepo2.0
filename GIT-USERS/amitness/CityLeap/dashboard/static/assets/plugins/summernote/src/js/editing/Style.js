@@ -1,8 +1,8 @@
 define([
-  'summernote/core/agent',
-  'summernote/core/func',
-  'summernote/core/list',
-  'summernote/core/dom'
+  "summernote/core/agent",
+  "summernote/core/func",
+  "summernote/core/list",
+  "summernote/core/dom",
 ], function (agent, func, list, dom) {
   /**
    * @class editing.Style
@@ -42,9 +42,15 @@ define([
      * @return {Object}
      */
     this.fromNode = function ($node) {
-      var properties = ['font-family', 'font-size', 'text-align', 'list-style-type', 'line-height'];
+      var properties = [
+        "font-family",
+        "font-size",
+        "text-align",
+        "list-style-type",
+        "line-height",
+      ];
       var styleInfo = jQueryCSS($node, properties) || {};
-      styleInfo['font-size'] = parseInt(styleInfo['font-size'], 10);
+      styleInfo["font-size"] = parseInt(styleInfo["font-size"], 10);
       return styleInfo;
     };
 
@@ -55,11 +61,14 @@ define([
      * @param {Object} styleInfo
      */
     this.stylePara = function (rng, styleInfo) {
-      $.each(rng.nodes(dom.isPara, {
-        includeAncestor: true
-      }), function (idx, para) {
-        $(para).css(styleInfo);
-      });
+      $.each(
+        rng.nodes(dom.isPara, {
+          includeAncestor: true,
+        }),
+        function (idx, para) {
+          $(para).css(styleInfo);
+        }
+      );
     };
 
     /**
@@ -75,7 +84,7 @@ define([
     this.styleNodes = function (rng, options) {
       rng = rng.splitText();
 
-      var nodeName = options && options.nodeName || 'SPAN';
+      var nodeName = (options && options.nodeName) || "SPAN";
       var expandClosestSibling = !!(options && options.expandClosestSibling);
       var onlyPartialContains = !!(options && options.onlyPartialContains);
 
@@ -84,11 +93,15 @@ define([
       }
 
       var pred = dom.makePredByNodeName(nodeName);
-      var nodes = rng.nodes(dom.isText, {
-        fullyContains: true
-      }).map(function (text) {
-        return dom.singleChildAncestor(text, pred) || dom.wrap(text, nodeName);
-      });
+      var nodes = rng
+        .nodes(dom.isText, {
+          fullyContains: true,
+        })
+        .map(function (text) {
+          return (
+            dom.singleChildAncestor(text, pred) || dom.wrap(text, nodeName)
+          );
+        });
 
       if (expandClosestSibling) {
         if (onlyPartialContains) {
@@ -125,28 +138,45 @@ define([
       var styleInfo = this.fromNode($cont);
 
       // document.queryCommandState for toggle state
-      styleInfo['font-bold'] = document.queryCommandState('bold') ? 'bold' : 'normal';
-      styleInfo['font-italic'] = document.queryCommandState('italic') ? 'italic' : 'normal';
-      styleInfo['font-underline'] = document.queryCommandState('underline') ? 'underline' : 'normal';
-      styleInfo['font-strikethrough'] = document.queryCommandState('strikeThrough') ? 'strikethrough' : 'normal';
-      styleInfo['font-superscript'] = document.queryCommandState('superscript') ? 'superscript' : 'normal';
-      styleInfo['font-subscript'] = document.queryCommandState('subscript') ? 'subscript' : 'normal';
+      styleInfo["font-bold"] = document.queryCommandState("bold")
+        ? "bold"
+        : "normal";
+      styleInfo["font-italic"] = document.queryCommandState("italic")
+        ? "italic"
+        : "normal";
+      styleInfo["font-underline"] = document.queryCommandState("underline")
+        ? "underline"
+        : "normal";
+      styleInfo["font-strikethrough"] = document.queryCommandState(
+        "strikeThrough"
+      )
+        ? "strikethrough"
+        : "normal";
+      styleInfo["font-superscript"] = document.queryCommandState("superscript")
+        ? "superscript"
+        : "normal";
+      styleInfo["font-subscript"] = document.queryCommandState("subscript")
+        ? "subscript"
+        : "normal";
 
       // list-style-type to list-style(unordered, ordered)
       if (!rng.isOnList()) {
-        styleInfo['list-style'] = 'none';
+        styleInfo["list-style"] = "none";
       } else {
-        var aOrderedType = ['circle', 'disc', 'disc-leading-zero', 'square'];
-        var isUnordered = $.inArray(styleInfo['list-style-type'], aOrderedType) > -1;
-        styleInfo['list-style'] = isUnordered ? 'unordered' : 'ordered';
+        var aOrderedType = ["circle", "disc", "disc-leading-zero", "square"];
+        var isUnordered =
+          $.inArray(styleInfo["list-style-type"], aOrderedType) > -1;
+        styleInfo["list-style"] = isUnordered ? "unordered" : "ordered";
       }
 
       var para = dom.ancestor(rng.sc, dom.isPara);
-      if (para && para.style['line-height']) {
-        styleInfo['line-height'] = para.style.lineHeight;
+      if (para && para.style["line-height"]) {
+        styleInfo["line-height"] = para.style.lineHeight;
       } else {
-        var lineHeight = parseInt(styleInfo['line-height'], 10) / parseInt(styleInfo['font-size'], 10);
-        styleInfo['line-height'] = lineHeight.toFixed(1);
+        var lineHeight =
+          parseInt(styleInfo["line-height"], 10) /
+          parseInt(styleInfo["font-size"], 10);
+        styleInfo["line-height"] = lineHeight.toFixed(1);
       }
 
       styleInfo.anchor = rng.isOnAnchor() && dom.ancestor(rng.sc, dom.isAnchor);

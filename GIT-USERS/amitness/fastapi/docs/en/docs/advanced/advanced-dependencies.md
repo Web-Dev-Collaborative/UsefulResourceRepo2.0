@@ -22,7 +22,7 @@ To do that, we declare a method `__call__`:
 {!../../../docs_src/dependencies/tutorial011.py!}
 ```
 
-In this case, this `__call__` is what **FastAPI** will use to check for additional parameters and sub-dependencies, and this is what will be called to pass a value to the parameter in your *path operation function* later.
+In this case, this `__call__` is what **FastAPI** will use to check for additional parameters and sub-dependencies, and this is what will be called to pass a value to the parameter in your _path operation function_ later.
 
 ## Parameterize the instance
 
@@ -54,14 +54,14 @@ And when solving the dependency, **FastAPI** will call this `checker` like:
 checker(q="somequery")
 ```
 
-...and pass whatever that returns as the value of the dependency in our *path operation function* as the parameter `fixed_content_included`:
+...and pass whatever that returns as the value of the dependency in our _path operation function_ as the parameter `fixed_content_included`:
 
 ```Python hl_lines="20"
 {!../../../docs_src/dependencies/tutorial011.py!}
 ```
 
 !!! tip
-    All this might seem contrived. And it might not be very clear how is it useful yet.
+All this might seem contrived. And it might not be very clear how is it useful yet.
 
     These examples are intentionally simple, but show how it all works.
 

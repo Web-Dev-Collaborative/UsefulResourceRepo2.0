@@ -15,10 +15,10 @@
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 ```
 
-Затем вы можете сразу же написать Vue-код в файле Markdown. 
+Затем вы можете сразу же написать Vue-код в файле Markdown.
 Выражение `new Vue({ el: '#main' })` выполнится по умолчанию для создания экземпляра.
 
-*README.md*
+_README.md_
 
 ````markdown
 # Руководство по Vue
@@ -38,7 +38,7 @@
 
 Вы можете вручную инициализировать экземпляр Vue.
 
-*README.md*
+_README.md_
 
 ```markdown
 # Пример на Vue
@@ -59,11 +59,11 @@
 
 [Vuep](https://github.com/QingWei-Li/vuep) — компонент для отрисовки компонентов Vue с редактором в режиме реального времени без перезагрузки страницы и с предварительным просмотром. Поддерживает спецификацию компонентов Vue и JSX.
 
-*index.html*
+_index.html_
 
 ```html
 <!-- Подключить файл CSS -->
-<link rel="stylesheet" href="//unpkg.com/vuep/dist/vuep.css">
+<link rel="stylesheet" href="//unpkg.com/vuep/dist/vuep.css" />
 
 <!-- Подключить файлы JavaScript -->
 <script src="//unpkg.com/vue"></script>
@@ -76,7 +76,8 @@
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 ```
 
-*README.md*
+_README.md_
+
 ```markdown
 # Vuep
 
@@ -98,5 +99,3 @@
 ```
 
 ?> Пример опирается на [документацию Vuep](https://qingwei-li.github.io/vuep/).
-
-

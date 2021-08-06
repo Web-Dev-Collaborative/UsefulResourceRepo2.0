@@ -1,11 +1,10 @@
 define([
-  'summernote/core/func',
-  'summernote/core/list',
-  'summernote/core/agent'
+  "summernote/core/func",
+  "summernote/core/list",
+  "summernote/core/agent",
 ], function (func, list, agent) {
-
   var NBSP_CHAR = String.fromCharCode(160);
-  var ZERO_WIDTH_NBSP_CHAR = '\ufeff';
+  var ZERO_WIDTH_NBSP_CHAR = "\ufeff";
 
   /**
    * @class core.dom
@@ -25,7 +24,7 @@ define([
      * @return {Boolean}
      */
     var isEditable = function (node) {
-      return node && $(node).hasClass('note-editable');
+      return node && $(node).hasClass("note-editable");
     };
 
     /**
@@ -37,7 +36,7 @@ define([
      * @return {Boolean}
      */
     var isControlSizing = function (node) {
-      return node && $(node).hasClass('note-control-sizing');
+      return node && $(node).hasClass("note-control-sizing");
     };
 
     /**
@@ -60,42 +59,57 @@ define([
       var makeFinder;
 
       // air mode
-      if ($editor.hasClass('note-air-editor')) {
-        var id = list.last($editor.attr('id').split('-'));
+      if ($editor.hasClass("note-air-editor")) {
+        var id = list.last($editor.attr("id").split("-"));
         makeFinder = function (sIdPrefix) {
-          return function () { return $(sIdPrefix + id); };
+          return function () {
+            return $(sIdPrefix + id);
+          };
         };
 
         return {
-          editor: function () { return $editor; },
-          holder : function () { return $editor.data('holder'); },
-          editable: function () { return $editor; },
-          popover: makeFinder('#note-popover-'),
-          handle: makeFinder('#note-handle-'),
-          dialog: makeFinder('#note-dialog-')
+          editor: function () {
+            return $editor;
+          },
+          holder: function () {
+            return $editor.data("holder");
+          },
+          editable: function () {
+            return $editor;
+          },
+          popover: makeFinder("#note-popover-"),
+          handle: makeFinder("#note-handle-"),
+          dialog: makeFinder("#note-dialog-"),
         };
 
         // frame mode
       } else {
         makeFinder = function (className, $base) {
           $base = $base || $editor;
-          return function () { return $base.find(className); };
+          return function () {
+            return $base.find(className);
+          };
         };
 
-        var options = $editor.data('options');
-        var $dialogHolder = (options && options.dialogsInBody) ? $(document.body) : null;
+        var options = $editor.data("options");
+        var $dialogHolder =
+          options && options.dialogsInBody ? $(document.body) : null;
 
         return {
-          editor: function () { return $editor; },
-          holder : function () { return $editor.data('holder'); },
-          dropzone: makeFinder('.note-dropzone'),
-          toolbar: makeFinder('.note-toolbar'),
-          editable: makeFinder('.note-editable'),
-          codable: makeFinder('.note-codable'),
-          statusbar: makeFinder('.note-statusbar'),
-          popover: makeFinder('.note-popover'),
-          handle: makeFinder('.note-handle'),
-          dialog: makeFinder('.note-dialog', $dialogHolder)
+          editor: function () {
+            return $editor;
+          },
+          holder: function () {
+            return $editor.data("holder");
+          },
+          dropzone: makeFinder(".note-dropzone"),
+          toolbar: makeFinder(".note-toolbar"),
+          editable: makeFinder(".note-editable"),
+          codable: makeFinder(".note-codable"),
+          statusbar: makeFinder(".note-statusbar"),
+          popover: makeFinder(".note-popover"),
+          handle: makeFinder(".note-handle"),
+          dialog: makeFinder(".note-dialog", $dialogHolder),
         };
       }
     };
@@ -108,17 +122,19 @@ define([
      * @return {Object}
      */
     var makeLayoutInfo = function (descendant) {
-      var $target = $(descendant).closest('.note-editor, .note-air-editor, .note-air-layout');
+      var $target = $(descendant).closest(
+        ".note-editor, .note-air-editor, .note-air-layout"
+      );
 
       if (!$target.length) {
         return null;
       }
 
       var $editor;
-      if ($target.is('.note-editor, .note-air-editor')) {
+      if ($target.is(".note-editor, .note-air-editor")) {
         $editor = $target;
       } else {
-        $editor = $('#note-editor-' + list.last($target.attr('id').split('-')));
+        $editor = $("#note-editor-" + list.last($target.attr("id").split("-")));
       }
 
       return buildLayoutInfo($editor);
@@ -156,7 +172,9 @@ define([
      * @see http://www.w3.org/html/wg/drafts/html/master/syntax.html#void-elements
      */
     var isVoid = function (node) {
-      return node && /^BR|^IMG|^HR|^IFRAME|^BUTTON/.test(node.nodeName.toUpperCase());
+      return (
+        node && /^BR|^IMG|^HR|^IFRAME|^BUTTON/.test(node.nodeName.toUpperCase())
+      );
     };
 
     var isPara = function (node) {
@@ -168,40 +186,42 @@ define([
       return node && /^DIV|^P|^LI|^H[1-7]/.test(node.nodeName.toUpperCase());
     };
 
-    var isLi = makePredByNodeName('LI');
+    var isLi = makePredByNodeName("LI");
 
     var isPurePara = function (node) {
       return isPara(node) && !isLi(node);
     };
 
-    var isTable = makePredByNodeName('TABLE');
+    var isTable = makePredByNodeName("TABLE");
 
     var isInline = function (node) {
-      return !isBodyContainer(node) &&
-             !isList(node) &&
-             !isHr(node) &&
-             !isPara(node) &&
-             !isTable(node) &&
-             !isBlockquote(node);
+      return (
+        !isBodyContainer(node) &&
+        !isList(node) &&
+        !isHr(node) &&
+        !isPara(node) &&
+        !isTable(node) &&
+        !isBlockquote(node)
+      );
     };
 
     var isList = function (node) {
       return node && /^UL|^OL/.test(node.nodeName.toUpperCase());
     };
 
-    var isHr = makePredByNodeName('HR');
+    var isHr = makePredByNodeName("HR");
 
     var isCell = function (node) {
       return node && /^TD|^TH/.test(node.nodeName.toUpperCase());
     };
 
-    var isBlockquote = makePredByNodeName('BLOCKQUOTE');
+    var isBlockquote = makePredByNodeName("BLOCKQUOTE");
 
     var isBodyContainer = function (node) {
       return isCell(node) || isBlockquote(node) || isEditable(node);
     };
 
-    var isAnchor = makePredByNodeName('A');
+    var isAnchor = makePredByNodeName("A");
 
     var isParaInline = function (node) {
       return isInline(node) && !!ancestor(node, isPara);
@@ -211,7 +231,7 @@ define([
       return isInline(node) && !ancestor(node, isPara);
     };
 
-    var isBody = makePredByNodeName('BODY');
+    var isBody = makePredByNodeName("BODY");
 
     /**
      * returns whether nodeB is closest sibling of nodeA
@@ -221,8 +241,7 @@ define([
      * @return {Boolean}
      */
     var isClosestSibling = function (nodeA, nodeB) {
-      return nodeA.nextSibling === nodeB ||
-             nodeA.previousSibling === nodeB;
+      return nodeA.nextSibling === nodeB || nodeA.previousSibling === nodeB;
     };
 
     /**
@@ -251,7 +270,8 @@ define([
      * - [workaround] old IE only works with &nbsp;
      * - [workaround] IE11 and other browser works with bogus br
      */
-    var blankHTML = agent.isMSIE && agent.browserVersion < 11 ? '&nbsp;' : '<br>';
+    var blankHTML =
+      agent.isMSIE && agent.browserVersion < 11 ? "&nbsp;" : "<br>";
 
     /**
      * @method nodeLength
@@ -282,7 +302,7 @@ define([
       } else if (!isText(node) && len === 1 && node.innerHTML === blankHTML) {
         // ex) <p><br></p>, <span><br></span>
         return true;
-      } else if (list.all(node.childNodes, isText) && node.innerHTML === '') {
+      } else if (list.all(node.childNodes, isText) && node.innerHTML === "") {
         // ex) <p></p>, <span></span>
         return true;
       }
@@ -307,8 +327,12 @@ define([
      */
     var ancestor = function (node, pred) {
       while (node) {
-        if (pred(node)) { return node; }
-        if (isEditable(node)) { break; }
+        if (pred(node)) {
+          return node;
+        }
+        if (isEditable(node)) {
+          break;
+        }
 
         node = node.parentNode;
       }
@@ -325,9 +349,15 @@ define([
       node = node.parentNode;
 
       while (node) {
-        if (nodeLength(node) !== 1) { break; }
-        if (pred(node)) { return node; }
-        if (isEditable(node)) { break; }
+        if (nodeLength(node) !== 1) {
+          break;
+        }
+        if (pred(node)) {
+          return node;
+        }
+        if (isEditable(node)) {
+          break;
+        }
 
         node = node.parentNode;
       }
@@ -371,7 +401,9 @@ define([
     var commonAncestor = function (nodeA, nodeB) {
       var ancestors = listAncestor(nodeA);
       for (var n = nodeB; n; n = n.parentNode) {
-        if ($.inArray(n, ancestors) > -1) { return n; }
+        if ($.inArray(n, ancestors) > -1) {
+          return n;
+        }
       }
       return null; // difference document area
     };
@@ -387,7 +419,9 @@ define([
 
       var nodes = [];
       while (node) {
-        if (pred(node)) { break; }
+        if (pred(node)) {
+          break;
+        }
         nodes.push(node);
         node = node.previousSibling;
       }
@@ -405,7 +439,9 @@ define([
 
       var nodes = [];
       while (node) {
-        if (pred(node)) { break; }
+        if (pred(node)) {
+          break;
+        }
         nodes.push(node);
         node = node.nextSibling;
       }
@@ -444,7 +480,7 @@ define([
      */
     var wrap = function (node, wrapperName) {
       var parent = node.parentNode;
-      var wrapper = $('<' + wrapperName + '>')[0];
+      var wrapper = $("<" + wrapperName + ">")[0];
 
       parent.insertBefore(wrapper, node);
       wrapper.appendChild(node);
@@ -459,7 +495,8 @@ define([
      * @param {Node} preceding - predicate function
      */
     var insertAfter = function (node, preceding) {
-      var next = preceding.nextSibling, parent = preceding.parentNode;
+      var next = preceding.nextSibling,
+        parent = preceding.parentNode;
       if (next) {
         parent.insertBefore(node, next);
       } else {
@@ -611,7 +648,7 @@ define([
 
       return {
         node: node,
-        offset: offset
+        offset: offset,
       };
     };
 
@@ -642,7 +679,7 @@ define([
 
       return {
         node: node,
-        offset: offset
+        offset: offset,
       };
     };
 
@@ -659,18 +696,25 @@ define([
 
     /**
      * returns whether point is visible (can set cursor) or not.
-     * 
+     *
      * @param {BoundaryPoint} point
      * @return {Boolean}
      */
     var isVisiblePoint = function (point) {
-      if (isText(point.node) || !hasChildren(point.node) || isEmpty(point.node)) {
+      if (
+        isText(point.node) ||
+        !hasChildren(point.node) ||
+        isEmpty(point.node)
+      ) {
         return true;
       }
 
       var leftNode = point.node.childNodes[point.offset - 1];
       var rightNode = point.node.childNodes[point.offset];
-      if ((!leftNode || isVoid(leftNode)) && (!rightNode || isVoid(rightNode))) {
+      if (
+        (!leftNode || isVoid(leftNode)) &&
+        (!rightNode || isVoid(rightNode))
+      ) {
         return true;
       }
 
@@ -727,7 +771,7 @@ define([
       }
 
       var ch = point.node.nodeValue.charAt(point.offset - 1);
-      return ch && (ch !== ' ' && ch !== NBSP_CHAR);
+      return ch && ch !== " " && ch !== NBSP_CHAR;
     };
 
     /**
@@ -738,7 +782,12 @@ define([
      * @param {Function} handler
      * @param {Boolean} isSkipInnerOffset
      */
-    var walkPoint = function (startPoint, endPoint, handler, isSkipInnerOffset) {
+    var walkPoint = function (
+      startPoint,
+      endPoint,
+      handler,
+      isSkipInnerOffset
+    ) {
       var point = startPoint;
 
       while (point) {
@@ -748,9 +797,10 @@ define([
           break;
         }
 
-        var isSkipOffset = isSkipInnerOffset &&
-                           startPoint.node !== point.node &&
-                           endPoint.node !== point.node;
+        var isSkipOffset =
+          isSkipInnerOffset &&
+          startPoint.node !== point.node &&
+          endPoint.node !== point.node;
         point = nextPoint(point, isSkipOffset);
       }
     };
@@ -856,10 +906,13 @@ define([
           node = splitNode(point, options);
         }
 
-        return splitNode({
-          node: parent,
-          offset: node ? dom.position(node) : nodeLength(parent)
-        }, options);
+        return splitNode(
+          {
+            node: parent,
+            offset: node ? dom.position(node) : nodeLength(parent),
+          },
+          options
+        );
       });
     };
 
@@ -888,10 +941,12 @@ define([
       }
 
       // if splitRoot is exists, split with splitTree
-      var pivot = splitRoot && splitTree(splitRoot, point, {
-        isSkipPaddingBlankHTML: isInline,
-        isNotSplitEdgePoint: isInline
-      });
+      var pivot =
+        splitRoot &&
+        splitTree(splitRoot, point, {
+          isSkipPaddingBlankHTML: isInline,
+          isNotSplitEdgePoint: isInline,
+        });
 
       // if container is point.node, find pivot with point.offset
       if (!pivot && container === point.node) {
@@ -900,7 +955,7 @@ define([
 
       return {
         rightNode: pivot,
-        container: container
+        container: container,
       };
     };
 
@@ -921,8 +976,12 @@ define([
      * @param {Boolean} isRemoveChild
      */
     var remove = function (node, isRemoveChild) {
-      if (!node || !node.parentNode) { return; }
-      if (node.removeNode) { return node.removeNode(isRemoveChild); }
+      if (!node || !node.parentNode) {
+        return;
+      }
+      if (node.removeNode) {
+        return node.removeNode(isRemoveChild);
+      }
 
       var parent = node.parentNode;
       if (!isRemoveChild) {
@@ -985,7 +1044,7 @@ define([
       return newNode;
     };
 
-    var isTextarea = makePredByNodeName('TEXTAREA');
+    var isTextarea = makePredByNodeName("TEXTAREA");
 
     /**
      * @param {jQuery} $node
@@ -994,7 +1053,7 @@ define([
     var value = function ($node, stripLinebreaks) {
       var val = isTextarea($node[0]) ? $node.val() : $node.html();
       if (stripLinebreaks) {
-        return val.replace(/[\n\r]/g, '');
+        return val.replace(/[\n\r]/g, "");
       }
       return val;
     };
@@ -1014,11 +1073,13 @@ define([
         var regexTag = /<(\/?)(\b(?!!)[^>\s]*)(.*?)(\s*\/?>)/g;
         markup = markup.replace(regexTag, function (match, endSlash, name) {
           name = name.toUpperCase();
-          var isEndOfInlineContainer = /^DIV|^TD|^TH|^P|^LI|^H[1-7]/.test(name) &&
-                                       !!endSlash;
-          var isBlockNode = /^BLOCKQUOTE|^TABLE|^TBODY|^TR|^HR|^UL|^OL/.test(name);
+          var isEndOfInlineContainer =
+            /^DIV|^TD|^TH|^P|^LI|^H[1-7]/.test(name) && !!endSlash;
+          var isBlockNode = /^BLOCKQUOTE|^TABLE|^TBODY|^TR|^HR|^UL|^OL/.test(
+            name
+          );
 
-          return match + ((isEndOfInlineContainer || isBlockNode) ? '\n' : '');
+          return match + (isEndOfInlineContainer || isBlockNode ? "\n" : "");
         });
         markup = $.trim(markup);
       }
@@ -1034,7 +1095,7 @@ define([
       /** @property {String} blank */
       blank: blankHTML,
       /** @property {String} emptyPara */
-      emptyPara: '<p>' + blankHTML + '</p>',
+      emptyPara: "<p>" + blankHTML + "</p>",
       makePredByNodeName: makePredByNodeName,
       isEditable: isEditable,
       isControlSizing: isControlSizing,
@@ -1055,15 +1116,15 @@ define([
       isBlockquote: isBlockquote,
       isBodyContainer: isBodyContainer,
       isAnchor: isAnchor,
-      isDiv: makePredByNodeName('DIV'),
+      isDiv: makePredByNodeName("DIV"),
       isLi: isLi,
-      isBR: makePredByNodeName('BR'),
-      isSpan: makePredByNodeName('SPAN'),
-      isB: makePredByNodeName('B'),
-      isU: makePredByNodeName('U'),
-      isS: makePredByNodeName('S'),
-      isI: makePredByNodeName('I'),
-      isImg: makePredByNodeName('IMG'),
+      isBR: makePredByNodeName("BR"),
+      isSpan: makePredByNodeName("SPAN"),
+      isB: makePredByNodeName("B"),
+      isU: makePredByNodeName("U"),
+      isS: makePredByNodeName("S"),
+      isI: makePredByNodeName("I"),
+      isImg: makePredByNodeName("IMG"),
       isTextarea: isTextarea,
       isEmpty: isEmpty,
       isEmptyAnchor: func.and(isAnchor, isEmpty),
@@ -1108,7 +1169,7 @@ define([
       removeWhile: removeWhile,
       replace: replace,
       html: html,
-      value: value
+      value: value,
     };
   })();
 

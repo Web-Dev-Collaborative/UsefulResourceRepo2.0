@@ -8,10 +8,10 @@ how to solve the Iris classification problem in TensorFlow.
 Prior to using the sample code in this document, you'll need to do the
 following:
 
-* [Install TensorFlow](../install).
-* If you installed TensorFlow with virtualenv or Anaconda, activate your
+- [Install TensorFlow](../install).
+- If you installed TensorFlow with virtualenv or Anaconda, activate your
   TensorFlow environment.
-* Install or upgrade pandas by issuing the following command:
+- Install or upgrade pandas by issuing the following command:
 
         pip install pandas
 
@@ -19,15 +19,15 @@ following:
 
 Take the following steps to get the sample code we'll be going through:
 
-1. Clone the TensorFlow Models repository from GitHub by entering the following
-   command:
+1.  Clone the TensorFlow Models repository from GitHub by entering the following
+    command:
 
-        git clone https://github.com/tensorflow/models
+         git clone https://github.com/tensorflow/models
 
-1. Change directory within that branch to the location containing the examples
-   used in this document:
+1.  Change directory within that branch to the location containing the examples
+    used in this document:
 
-        cd models/samples/core/get_started/
+         cd models/samples/core/get_started/
 
 The program described in this document is
 [`premade_estimator.py`](https://github.com/tensorflow/models/blob/master/samples/core/get_started/premade_estimator.py).
@@ -39,7 +39,7 @@ to fetch its training data.
 
 You run TensorFlow programs as you would run any Python program. For example:
 
-``` bsh
+```bsh
 python premade_estimator.py
 ```
 
@@ -49,7 +49,7 @@ the model thinks there is a 99.6% chance that the first example in the test
 set is a Setosa. Since the test set expected Setosa, this appears to be
 a good prediction.
 
-``` None
+```None
 ...
 Prediction is "Setosa" (99.6%), expected "Setosa"
 
@@ -61,9 +61,9 @@ Prediction is "Virginica" (97.9%), expected "Virginica"
 If the program generates errors instead of answers, ask yourself the following
 questions:
 
-* Did you install TensorFlow properly?
-* Are you using the correct version of TensorFlow?
-* Did you activate the environment you installed TensorFlow in? (This is
+- Did you install TensorFlow properly?
+- Are you using the correct version of TensorFlow?
+- Did you activate the environment you installed TensorFlow in? (This is
   only relevant in certain installation mechanisms.)
 
 ## The programming stack
@@ -78,10 +78,10 @@ provides a programming stack consisting of multiple API layers:
 
 We strongly recommend writing TensorFlow programs with the following APIs:
 
-* [Estimators](../guide/estimators.md), which represent a complete model.
+- [Estimators](../guide/estimators.md), which represent a complete model.
   The Estimator API provides methods to train the model, to judge the model's
   accuracy, and to generate predictions.
-* [Datasets for Estimators](../guide/datasets_for_estimators.md), which build a data input
+- [Datasets for Estimators](../guide/datasets_for_estimators.md), which build a data input
   pipeline. The Dataset API has methods to load and manipulate data, and feed
   it into your model. The Dataset API meshes well with the Estimators API.
 
@@ -99,11 +99,11 @@ classifies Iris flowers into three different species based on the size of their
 </div>
 
 **From left to right,
-[*Iris setosa*](https://commons.wikimedia.org/w/index.php?curid=170298) (by
+[_Iris setosa_](https://commons.wikimedia.org/w/index.php?curid=170298) (by
 [Radomil](https://commons.wikimedia.org/wiki/User:Radomil), CC BY-SA 3.0),
-[*Iris versicolor*](https://commons.wikimedia.org/w/index.php?curid=248095) (by
+[_Iris versicolor_](https://commons.wikimedia.org/w/index.php?curid=248095) (by
 [Dlanglois](https://commons.wikimedia.org/wiki/User:Dlanglois), CC BY-SA 3.0),
-and [*Iris virginica*](https://www.flickr.com/photos/33397993@N05/3352169862)
+and [_Iris virginica_](https://www.flickr.com/photos/33397993@N05/3352169862)
 (by [Frank Mayfield](https://www.flickr.com/photos/33397993@N05), CC BY-SA
 2.0).**
 
@@ -114,36 +114,36 @@ The Iris data set contains four features and one
 The four features identify the following botanical characteristics of
 individual Iris flowers:
 
-* sepal length
-* sepal width
-* petal length
-* petal width
+- sepal length
+- sepal width
+- petal length
+- petal width
 
 Our model will represent these features as `float32` numerical data.
 
 The label identifies the Iris species, which must be one of the following:
 
-* Iris setosa (0)
-* Iris versicolor (1)
-* Iris virginica (2)
+- Iris setosa (0)
+- Iris versicolor (1)
+- Iris virginica (2)
 
 Our model will represent the label as `int32` categorical data.
 
 The following table shows three examples in the data set:
 
-|sepal length | sepal width | petal length | petal width| species (label) |
-|------------:|------------:|-------------:|-----------:|:---------------:|
-|         5.1 |         3.3 |          1.7 |        0.5 |   0 (Setosa)   |
-|         5.0 |         2.3 |          3.3 |        1.0 |   1 (versicolor)|
-|         6.4 |         2.8 |          5.6 |        2.2 |   2 (virginica) |
+| sepal length | sepal width | petal length | petal width | species (label) |
+| -----------: | ----------: | -----------: | ----------: | :-------------: |
+|          5.1 |         3.3 |          1.7 |         0.5 |   0 (Setosa)    |
+|          5.0 |         2.3 |          3.3 |         1.0 | 1 (versicolor)  |
+|          6.4 |         2.8 |          5.6 |         2.2 |  2 (virginica)  |
 
 ### The algorithm
 
 The program trains a Deep Neural Network classifier model having the following
 topology:
 
-* 2 hidden layers.
-* Each hidden layer contains 10 nodes.
+- 2 hidden layers.
+- Each hidden layer contains 10 nodes.
 
 The following figure illustrates the features, hidden layers, and predictions
 (not all of the nodes in the hidden layers are shown):
@@ -161,9 +161,9 @@ namely, the likelihood that this flower is the given Iris species. The sum of
 those output predictions will be 1.0. For example, the prediction on an
 unlabeled example might be something like the following:
 
-* 0.03 for Iris Setosa
-* 0.95 for Iris Versicolor
-* 0.02 for Iris Virginica
+- 0.03 for Iris Setosa
+- 0.95 for Iris Versicolor
+- 0.02 for Iris Virginica
 
 The preceding prediction indicates a 95% probability that the given unlabeled
 example is an Iris Versicolor.
@@ -186,11 +186,11 @@ We recommend using pre-made Estimators when just getting started.
 To write a TensorFlow program based on pre-made Estimators, you must perform the
 following tasks:
 
-* Create one or more input functions.
-* Define the model's feature columns.
-* Instantiate an Estimator, specifying the feature columns and various
+- Create one or more input functions.
+- Define the model's feature columns.
+- Instantiate an Estimator, specifying the feature columns and various
   hyperparameters.
-* Call one or more methods on the Estimator object, passing the appropriate
+- Call one or more methods on the Estimator object, passing the appropriate
   input function as the source of the data.
 
 Let's see how those tasks are implemented for Iris classification.
@@ -203,10 +203,10 @@ evaluating, and prediction.
 An **input function** is a function that returns a `tf.data.Dataset` object
 which outputs the following two-element tuple:
 
-* [`features`](https://developers.google.com/machine-learning/glossary/#feature) - A Python dictionary in which:
-    * Each key is the name of a feature.
-    * Each value is an array containing all of that feature's values.
-* `label` - An array containing the values of the
+- [`features`](https://developers.google.com/machine-learning/glossary/#feature) - A Python dictionary in which:
+  - Each key is the name of a feature.
+  - Each value is an array containing all of that feature's values.
+- `label` - An array containing the values of the
   [label](https://developers.google.com/machine-learning/glossary/#label) for
   every example.
 
@@ -236,13 +236,13 @@ following classes:
 
 Where the individual members are:
 
-* `Dataset` - Base class containing methods to create and transform
+- `Dataset` - Base class containing methods to create and transform
   datasets. Also allows you to initialize a dataset from data in memory, or from
   a Python generator.
-* `TextLineDataset` - Reads lines from text files.
-* `TFRecordDataset` - Reads records from TFRecord files.
-* `FixedLengthRecordDataset` - Reads fixed size records from binary files.
-* `Iterator` - Provides a way to access one data set element at a time.
+- `TextLineDataset` - Reads lines from text files.
+- `TFRecordDataset` - Reads records from TFRecord files.
+- `FixedLengthRecordDataset` - Reads fixed size records from binary files.
+- `Iterator` - Provides a way to access one data set element at a time.
 
 The Dataset API can handle a lot of common cases for you. For example,
 using the Dataset API, you can easily read in records from a large collection
@@ -255,7 +255,7 @@ in-memory data.
 Here is the input function used for training in this program, which is available
 in [`iris_data.py`](https://github.com/tensorflow/models/blob/master/samples/core/get_started/iris_data.py):
 
-``` python
+```python
 def train_input_fn(features, labels, batch_size):
     """An input function for training"""
     # Convert the inputs to a Dataset.
@@ -286,23 +286,22 @@ for key in train_x.keys():
     my_feature_columns.append(tf.feature_column.numeric_column(key=key))
 ```
 
-Feature columns can be far more sophisticated than those we're showing here.  We
+Feature columns can be far more sophisticated than those we're showing here. We
 detail feature columns [later on](../guide/feature_columns.md) in our Getting
 Started guide.
 
 Now that we have the description of how we want the model to represent the raw
 features, we can build the estimator.
 
-
 ## Instantiate an estimator
 
 The Iris problem is a classic classification problem. Fortunately, TensorFlow
 provides several pre-made classifier Estimators, including:
 
-* `tf.estimator.DNNClassifier` for deep models that perform multi-class
+- `tf.estimator.DNNClassifier` for deep models that perform multi-class
   classification.
-* `tf.estimator.DNNLinearCombinedClassifier` for wide & deep models.
-* `tf.estimator.LinearClassifier` for classifiers based on linear models.
+- `tf.estimator.DNNLinearCombinedClassifier` for wide & deep models.
+- `tf.estimator.LinearClassifier` for classifiers based on linear models.
 
 For the Iris problem, `tf.estimator.DNNClassifier` seems like the best choice.
 Here's how we instantiated this Estimator:
@@ -321,9 +320,9 @@ classifier = tf.estimator.DNNClassifier(
 
 Now that we have an Estimator object, we can call methods to do the following:
 
-* Train the model.
-* Evaluate the trained model.
-* Use the trained model to make predictions.
+- Train the model.
+- Evaluate the trained model.
+- Use the trained model to make predictions.
 
 ### Train the model
 
@@ -394,8 +393,7 @@ The `predict` method returns a Python iterable, yielding a dictionary of
 prediction results for each example. The following code prints a few
 predictions and their probabilities:
 
-
-``` python
+```python
 template = ('\nPrediction is "{}" ({:.1f}%), expected "{}"')
 
 for pred_dict, expec in zip(predictions, expected):
@@ -408,7 +406,7 @@ for pred_dict, expec in zip(predictions, expected):
 
 Running the preceding code yields the following output:
 
-``` None
+```None
 ...
 Prediction is "Setosa" (99.6%), expected "Setosa"
 
@@ -417,7 +415,6 @@ Prediction is "Versicolor" (99.8%), expected "Versicolor"
 Prediction is "Virginica" (97.9%), expected "Virginica"
 ```
 
-
 ## Summary
 
 Pre-made Estimators are an effective way to quickly create standard models.
@@ -425,8 +422,8 @@ Pre-made Estimators are an effective way to quickly create standard models.
 Now that you've gotten started writing TensorFlow programs, consider the
 following material:
 
-* [Checkpoints](../guide/checkpoints.md) to learn how to save and restore models.
-* [Datasets for Estimators](../guide/datasets_for_estimators.md) to learn more about importing
+- [Checkpoints](../guide/checkpoints.md) to learn how to save and restore models.
+- [Datasets for Estimators](../guide/datasets_for_estimators.md) to learn more about importing
   data into your model.
-* [Creating Custom Estimators](../guide/custom_estimators.md) to learn how to
+- [Creating Custom Estimators](../guide/custom_estimators.md) to learn how to
   write your own Estimator, customized for a particular problem.

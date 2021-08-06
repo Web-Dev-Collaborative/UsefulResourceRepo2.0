@@ -21,8 +21,8 @@ For example, to declare a `title` metadata value for the path parameter `item_id
 ```
 
 !!! note
-    A path parameter is always required as it has to be part of the path.
-    
+A path parameter is always required as it has to be part of the path.
+
     So, you should declare it with `...` to mark it as required.
 
     Nevertheless, even if you declared it with `None` or set a default value, it would not affect anything, it would still be always required.
@@ -73,8 +73,8 @@ Here, with `ge=1`, `item_id` will need to be an integer number "`g`reater than o
 
 The same applies for:
 
-* `gt`: `g`reater `t`han
-* `le`: `l`ess than or `e`qual
+- `gt`: `g`reater `t`han
+- `le`: `l`ess than or `e`qual
 
 ```Python hl_lines="9"
 {!../../../docs_src/path_params_numeric_validations/tutorial005.py!}
@@ -96,22 +96,22 @@ And the same for <abbr title="less than"><code>lt</code></abbr>.
 
 ## Recap
 
-With `Query`, `Path` (and others you haven't seen yet) you can declare metadata and string validations in the same ways as with [Query Parameters and String Validations](query-params-str-validations.md){.internal-link target=_blank}.
+With `Query`, `Path` (and others you haven't seen yet) you can declare metadata and string validations in the same ways as with [Query Parameters and String Validations](query-params-str-validations.md){.internal-link target=\_blank}.
 
 And you can also declare numeric validations:
 
-* `gt`: `g`reater `t`han
-* `ge`: `g`reater than or `e`qual
-* `lt`: `l`ess `t`han
-* `le`: `l`ess than or `e`qual
+- `gt`: `g`reater `t`han
+- `ge`: `g`reater than or `e`qual
+- `lt`: `l`ess `t`han
+- `le`: `l`ess than or `e`qual
 
 !!! info
-    `Query`, `Path` and others you will see later subclasses of a common `Param` class (that you don't need to use).
+`Query`, `Path` and others you will see later subclasses of a common `Param` class (that you don't need to use).
 
     And all of them share the same all these same parameters of additional validation and metadata you have seen.
 
 !!! note "Technical Details"
-    When you import `Query`, `Path` and others from `fastapi`, they are actually functions.
+When you import `Query`, `Path` and others from `fastapi`, they are actually functions.
 
     That when called, return instances of classes of the same name.
 

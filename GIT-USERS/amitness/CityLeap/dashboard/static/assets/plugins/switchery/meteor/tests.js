@@ -1,10 +1,9 @@
-'use strict';
+"use strict";
 
-Tinytest.add('Switchery integration', function (test) {
+Tinytest.add("Switchery integration", function (test) {
+  var checkbox = document.createElement("input");
+  checkbox.className = "js-switch";
+  var switchy = new Switchery(checkbox);
 
-    var checkbox = document.createElement('input');
-    checkbox.className = 'js-switch';
-    var switchy = new Switchery(checkbox);
-
-    test.instanceOf(switchy, Switchery, 'instantiation OK');
+  test.instanceOf(switchy, Switchery, "instantiation OK");
 });

@@ -1,4 +1,4 @@
-define(['jquery'], function ($) {
+define(["jquery"], function ($) {
   if (!Array.prototype.reduce) {
     /**
      * Array.prototype.reduce polyfill
@@ -10,7 +10,10 @@ define(['jquery'], function ($) {
      * @see http://goo.gl/WNriQD
      */
     Array.prototype.reduce = function (callback) {
-      var t = Object(this), len = t.length >>> 0, k = 0, value;
+      var t = Object(this),
+        len = t.length >>> 0,
+        k = 0,
+        value;
       if (arguments.length === 2) {
         value = arguments[1];
       } else {
@@ -18,7 +21,7 @@ define(['jquery'], function ($) {
           k++;
         }
         if (k >= len) {
-          throw new TypeError('Reduce of empty array with no initial value');
+          throw new TypeError("Reduce of empty array with no initial value");
         }
         value = t[k++];
       }
@@ -31,7 +34,7 @@ define(['jquery'], function ($) {
     };
   }
 
-  if ('function' !== typeof Array.prototype.filter) {
+  if ("function" !== typeof Array.prototype.filter) {
     /**
      * Array.prototype.filter polyfill
      *
@@ -41,7 +44,8 @@ define(['jquery'], function ($) {
      * @see http://goo.gl/T1KFnq
      */
     Array.prototype.filter = function (func) {
-      var t = Object(this), len = t.length >>> 0;
+      var t = Object(this),
+        len = t.length >>> 0;
 
       var res = [];
       var thisArg = arguments.length >= 2 ? arguments[1] : void 0;
@@ -53,7 +57,7 @@ define(['jquery'], function ($) {
           }
         }
       }
-  
+
       return res;
     };
   }
@@ -70,22 +74,22 @@ define(['jquery'], function ($) {
     Array.prototype.map = function (callback, thisArg) {
       var T, A, k;
       if (this === null) {
-        throw new TypeError(' this is null or not defined');
+        throw new TypeError(" this is null or not defined");
       }
 
       var O = Object(this);
       var len = O.length >>> 0;
-      if (typeof callback !== 'function') {
-        throw new TypeError(callback + ' is not a function');
+      if (typeof callback !== "function") {
+        throw new TypeError(callback + " is not a function");
       }
-  
+
       if (arguments.length > 1) {
         T = thisArg;
       }
-  
+
       A = new Array(len);
       k = 0;
-  
+
       while (k < len) {
         var kValue, mappedValue;
         if (k in O) {
@@ -99,7 +103,7 @@ define(['jquery'], function ($) {
     };
   }
 
-  var isSupportAmd = typeof define === 'function' && define.amd;
+  var isSupportAmd = typeof define === "function" && define.amd;
 
   /**
    * returns whether font is installed or not.
@@ -108,16 +112,22 @@ define(['jquery'], function ($) {
    * @return {Boolean}
    */
   var isFontInstalled = function (fontName) {
-    var testFontName = fontName === 'Comic Sans MS' ? 'Courier New' : 'Comic Sans MS';
-    var $tester = $('<div>').css({
-      position: 'absolute',
-      left: '-9999px',
-      top: '-9999px',
-      fontSize: '200px'
-    }).text('mmmmmmmmmwwwwwww').appendTo(document.body);
+    var testFontName =
+      fontName === "Comic Sans MS" ? "Courier New" : "Comic Sans MS";
+    var $tester = $("<div>")
+      .css({
+        position: "absolute",
+        left: "-9999px",
+        top: "-9999px",
+        fontSize: "200px",
+      })
+      .text("mmmmmmmmmwwwwwww")
+      .appendTo(document.body);
 
-    var originalWidth = $tester.css('fontFamily', testFontName).width();
-    var width = $tester.css('fontFamily', fontName + ',' + testFontName).width();
+    var originalWidth = $tester.css("fontFamily", testFontName).width();
+    var width = $tester
+      .css("fontFamily", fontName + "," + testFontName)
+      .width();
 
     $tester.remove();
 
@@ -148,7 +158,7 @@ define(['jquery'], function ($) {
    */
   var agent = {
     /** @property {Boolean} [isMac=false] true if this agent is Mac  */
-    isMac: navigator.appVersion.indexOf('Mac') > -1,
+    isMac: navigator.appVersion.indexOf("Mac") > -1,
     /** @property {Boolean} [isMSIE=false] true if this agent is a Internet Explorer  */
     isMSIE: isMSIE,
     /** @property {Boolean} [isFF=false] true if this agent is a Firefox  */
@@ -161,9 +171,11 @@ define(['jquery'], function ($) {
     /** @property {String} jqueryVersion current jQuery version string  */
     jqueryVersion: parseFloat($.fn.jquery),
     isSupportAmd: isSupportAmd,
-    hasCodeMirror: isSupportAmd ? require.specified('CodeMirror') : !!window.CodeMirror,
+    hasCodeMirror: isSupportAmd
+      ? require.specified("CodeMirror")
+      : !!window.CodeMirror,
     isFontInstalled: isFontInstalled,
-    isW3CRangeSupport: !!document.createRange
+    isW3CRangeSupport: !!document.createRange,
   };
 
   return agent;

@@ -7,7 +7,7 @@ In particular, this may be a good alternative to logic in a middleware.
 For example, if you want to read or manipulate the request body before it is processed by your application.
 
 !!! danger
-    This is an "advanced" feature.
+This is an "advanced" feature.
 
     If you are just starting with **FastAPI** you might want to skip this section.
 
@@ -15,9 +15,9 @@ For example, if you want to read or manipulate the request body before it is pro
 
 Some use cases include:
 
-* Converting non-JSON request bodies to JSON (e.g. <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
-* Decompressing gzip-compressed request bodies.
-* Automatically logging all request bodies.
+- Converting non-JSON request bodies to JSON (e.g. <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
+- Decompressing gzip-compressed request bodies.
+- Automatically logging all request bodies.
 
 ## Handling custom request body encodings
 
@@ -28,7 +28,7 @@ And an `APIRoute` subclass to use that custom request class.
 ### Create a custom `GzipRequest` class
 
 !!! tip
-    This is a toy example to demonstrate how it works, if you need Gzip support, you can use the provided [`GzipMiddleware`](./middleware.md#gzipmiddleware){.internal-link target=_blank}.
+This is a toy example to demonstrate how it works, if you need Gzip support, you can use the provided [`GzipMiddleware`](./middleware.md#gzipmiddleware){.internal-link target=\_blank}.
 
 First, we create a `GzipRequest` class, which will overwrite the `Request.body()` method to decompress the body in the presence of an appropriate header.
 
@@ -55,7 +55,7 @@ Here we use it to create a `GzipRequest` from the original request.
 ```
 
 !!! note "Technical Details"
-    A `Request` has a `request.scope` attribute, that's just a Python `dict` containing the metadata related to the request.
+A `Request` has a `request.scope` attribute, that's just a Python `dict` containing the metadata related to the request.
 
     A `Request` also has a `request.receive`, that's a function to "receive" the body of the request.
 
@@ -67,7 +67,7 @@ Here we use it to create a `GzipRequest` from the original request.
 
 The only thing the function returned by `GzipRequest.get_route_handler` does differently is convert the `Request` to a `GzipRequest`.
 
-Doing this, our `GzipRequest` will take care of decompressing the data (if necessary) before passing it to our *path operations*.
+Doing this, our `GzipRequest` will take care of decompressing the data (if necessary) before passing it to our _path operations_.
 
 After that, all of the processing logic is the same.
 
@@ -76,7 +76,7 @@ But because of our changes in `GzipRequest.body`, the request body will be autom
 ## Accessing the request body in an exception handler
 
 !!! tip
-    To solve this same problem, it's probably a lot easier to use the `body` in a custom handler for `RequestValidationError` ([Handling Errors](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
+To solve this same problem, it's probably a lot easier to use the `body` in a custom handler for `RequestValidationError` ([Handling Errors](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=\_blank}).
 
     But this example is still valid and it shows how to interact with the internal components.
 
@@ -102,7 +102,7 @@ You can also set the `route_class` parameter of an `APIRouter`:
 {!../../../docs_src/custom_request_and_route/tutorial003.py!}
 ```
 
-In this example, the *path operations* under the `router` will use the custom `TimedRoute` class, and will have an extra `X-Response-Time` header in the response with the time it took to generate the response:
+In this example, the _path operations_ under the `router` will use the custom `TimedRoute` class, and will have an extra `X-Response-Time` header in the response with the time it took to generate the response:
 
 ```Python hl_lines="13-20"
 {!../../../docs_src/custom_request_and_route/tutorial003.py!}

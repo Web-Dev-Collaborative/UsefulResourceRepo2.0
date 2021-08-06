@@ -13,8 +13,8 @@ _index.html_
 
 <script>
   window.$docsify = {
-    coverpage: true
-  }
+    coverpage: true,
+  };
 </script>
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 ```
@@ -85,7 +85,7 @@ _index.html_
 
 ```js
 window.$docsify = {
-  coverpage: ['/', '/zh-cn/']
+  coverpage: ["/", "/zh-cn/"],
 };
 ```
 
@@ -94,8 +94,8 @@ window.$docsify = {
 ```js
 window.$docsify = {
   coverpage: {
-    '/': 'cover.md',
-    '/zh-cn/': 'cover.md'
-  }
+    "/": "cover.md",
+    "/zh-cn/": "cover.md",
+  },
 };
 ```

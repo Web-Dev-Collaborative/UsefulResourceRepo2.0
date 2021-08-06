@@ -3,14 +3,13 @@
 This document examines how to save and restore TensorFlow models built with
 Estimators. TensorFlow provides two model formats:
 
-*   checkpoints, which is a format dependent on the code that created
-    the model.
-*   SavedModel, which is a format independent of the code that created
-    the model.
+- checkpoints, which is a format dependent on the code that created
+  the model.
+- SavedModel, which is a format independent of the code that created
+  the model.
 
 This document focuses on checkpoints. For details on `SavedModel`, see the
 [Saving and Restoring](../guide/saved_model.md) guide.
-
 
 ## Sample code
 
@@ -26,18 +25,17 @@ cd models/samples/core/get_started
 Most of the code snippets in this document are minor variations
 on `premade_estimator.py`.
 
-
 ## Saving partially-trained models
 
 Estimators automatically write the following to disk:
 
-*   **checkpoints**, which are versions of the model created during training.
-*   **event files**, which contain information that
-    [TensorBoard](https://developers.google.com/machine-learning/glossary/#TensorBoard)
-    uses to create visualizations.
+- **checkpoints**, which are versions of the model created during training.
+- **event files**, which contain information that
+  [TensorBoard](https://developers.google.com/machine-learning/glossary/#TensorBoard)
+  uses to create visualizations.
 
 To specify the top-level directory in which the Estimator stores its
-information, assign a value to the optional `model_dir` argument of *any*
+information, assign a value to the optional `model_dir` argument of _any_
 `Estimator`'s constructor.
 Taking `DNNClassifier` as an example,
 the following code sets the `model_dir`
@@ -52,7 +50,6 @@ classifier = tf.estimator.DNNClassifier(
 ```
 
 Suppose you call the Estimator's `train` method. For example:
-
 
 ```python
 classifier.train(
@@ -69,7 +66,6 @@ adds checkpoints and other files to the `model_dir` directory:
 <div style="text-align: center">
 The first call to train().
 </div>
-
 
 To see the objects in the created `model_dir` directory on a
 UNIX-based system, just call `ls` as follows:
@@ -90,13 +86,12 @@ model.ckpt-200.meta
 The preceding `ls` command shows that the Estimator created checkpoints
 at steps 1 (the start of training) and 200 (the end of training).
 
-
 ### Default checkpoint directory
 
 If you don't specify `model_dir` in an Estimator's constructor, the Estimator
 writes checkpoint files to a temporary directory chosen by Python's
 [tempfile.mkdtemp](https://docs.python.org/3/library/tempfile.html#tempfile.mkdtemp)
-function. For example, the following Estimator constructor does *not* specify
+function. For example, the following Estimator constructor does _not_ specify
 the `model_dir` argument:
 
 ```python
@@ -122,10 +117,10 @@ By default, the Estimator saves
 [checkpoints](https://developers.google.com/machine-learning/glossary/#checkpoint)
 in the `model_dir` according to the following schedule:
 
-*   Writes a checkpoint every 10 minutes (600 seconds).
-*   Writes a checkpoint when the `train` method starts (first iteration)
-    and completes (final iteration).
-*   Retains only the 5 most recent checkpoints in the directory.
+- Writes a checkpoint every 10 minutes (600 seconds).
+- Writes a checkpoint when the `train` method starts (first iteration)
+  and completes (final iteration).
+- Retains only the 5 most recent checkpoints in the directory.
 
 You may alter the default schedule by taking the following steps:
 
@@ -159,7 +154,7 @@ checkpoint to the `model_dir`. Each subsequent call to the Estimator's
 
 1.  The Estimator builds the model's
     [graph](https://developers.google.com/machine-learning/glossary/#graph)
-    by running the `model_fn()`.  (For details on the `model_fn()`, see
+    by running the `model_fn()`. (For details on the `model_fn()`, see
     [Creating Custom Estimators.](../guide/custom_estimators.md))
 2.  The Estimator initializes the weights of the new model from the data
     stored in the most recent checkpoint.
@@ -175,11 +170,10 @@ exist, TensorFlow rebuilds the model each time you call `train()`,
 Subsequent calls to train(), evaluate(), or predict()
 </div>
 
-
 ### Avoiding a bad restoration
 
 Restoring a model's state from a checkpoint only works if the model
-and checkpoint are compatible.  For example, suppose you trained a
+and checkpoint are compatible. For example, suppose you trained a
 `DNNClassifier` Estimator containing two hidden layers,
 each having 10 nodes:
 
@@ -199,7 +193,7 @@ After training (and, therefore, after creating checkpoints in `models/iris`),
 imagine that you changed the number of neurons in each hidden layer from 10 to
 20 and then attempted to retrain the model:
 
-``` python
+```python
 classifier2 = tf.estimator.DNNClassifier(
     feature_columns=my_feature_columns,
     hidden_units=[20, 20],  # Change the number of neurons in the model.
@@ -233,6 +227,6 @@ models created by Estimators.
 
 See the [Saving and Restoring](../guide/saved_model.md) guide for details about:
 
-*   Saving and restoring models using low-level TensorFlow APIs.
-*   Exporting and importing models in the SavedModel format, which is a
-    language-neutral, recoverable, serialization format.
+- Saving and restoring models using low-level TensorFlow APIs.
+- Exporting and importing models in the SavedModel format, which is a
+  language-neutral, recoverable, serialization format.

@@ -46,7 +46,6 @@ for step in range(N):
 
 Once that code runs, we can load the data into TensorBoard via the command line:
 
-
 ```sh
 tensorboard --logdir=/tmp/histogram_example
 ```
@@ -61,12 +60,13 @@ distributed data.
 compresses it into a histogram data structure consisting of many bins with
 widths and counts. For example, let's say we want to organize the numbers
 `[0.5, 1.1, 1.3, 2.2, 2.9, 2.99]` into bins. We could make three bins:
-* a bin
-containing everything from 0 to 1 (it would contain one element, 0.5),
-* a bin
-containing everything from 1-2 (it would contain two elements, 1.1 and 1.3),
-* a bin containing everything from 2-3 (it would contain three elements: 2.2,
-2.9 and 2.99).
+
+- a bin
+  containing everything from 0 to 1 (it would contain one element, 0.5),
+- a bin
+  containing everything from 1-2 (it would contain two elements, 1.1 and 1.3),
+- a bin containing everything from 2-3 (it would contain three elements: 2.2,
+  2.9 and 2.99).
 
 TensorFlow uses a similar approach to create bins, but unlike in our example, it
 doesn't create integer bins. For large, sparse datasets, that might result in
@@ -226,13 +226,17 @@ for step in range(N):
   summ = sess.run(summaries, feed_dict={k: k_val})
   writer.add_summary(summ, global_step=step)
 ```
+
 ### Gamma Distribution
+
 ![](https://www.tensorflow.org/images/tensorboard/histogram_dashboard/8_gamma.png)
 
 ### Uniform Distribution
+
 ![](https://www.tensorflow.org/images/tensorboard/histogram_dashboard/9_uniform.png)
 
 ### Poisson Distribution
+
 ![](https://www.tensorflow.org/images/tensorboard/histogram_dashboard/10_poisson.png)
 The poisson distribution is defined over the integers. So, all of the values
 being generated are perfect integers. The histogram compression moves the data
@@ -240,6 +244,6 @@ into floating-point bins, causing the visualization to show little
 bumps over the integer values rather than perfect spikes.
 
 ### All Together Now
+
 Finally, we can concatenate all of the data into one funny-looking curve.
 ![](https://www.tensorflow.org/images/tensorboard/histogram_dashboard/11_all_combined.png)
-

@@ -5,7 +5,7 @@ If you are building an application or a web API, it's rarely the case that you c
 **FastAPI** provides a convenience tool to structure your application while keeping all the flexibility.
 
 !!! info
-    If you come from Flask, this would be the equivalent of Flask's Blueprints.
+If you come from Flask, this would be the equivalent of Flask's Blueprints.
 
 ## An example file structure
 
@@ -23,7 +23,7 @@ Let's say you have a file structure like this:
 ```
 
 !!! tip
-    There are two `__init__.py` files: one in each directory or subdirectory.
+There are two `__init__.py` files: one in each directory or subdirectory.
 
     This is what allows importing code from one file into another.
 
@@ -33,28 +33,28 @@ Let's say you have a file structure like this:
     from app.routers import items
     ```
 
-* The `app` directory contains everything.
-* This `app` directory has an empty file `app/__init__.py`.
-    * So, the `app` directory is a "Python package" (a collection of "Python modules").
-* The `app` directory also has a `app/main.py` file.
-    * As it is inside a Python package directory (because there's a file `__init__.py`), it is a "module" of that package: `app.main`.
-* There's a subdirectory `app/routers/`.
-* The subdirectory `app/routers` also has an empty file `__init__.py`.
-    * So, it is a "Python subpackage".
-* The file `app/routers/items.py` is beside the `app/routers/__init__.py`.
-    * So, it's a submodule: `app.routers.items`.
-* The file `app/routers/users.py` is beside the `app/routers/__init__.py`.
-    * So, it's a submodule: `app.routers.users`.
+- The `app` directory contains everything.
+- This `app` directory has an empty file `app/__init__.py`.
+  - So, the `app` directory is a "Python package" (a collection of "Python modules").
+- The `app` directory also has a `app/main.py` file.
+  - As it is inside a Python package directory (because there's a file `__init__.py`), it is a "module" of that package: `app.main`.
+- There's a subdirectory `app/routers/`.
+- The subdirectory `app/routers` also has an empty file `__init__.py`.
+  - So, it is a "Python subpackage".
+- The file `app/routers/items.py` is beside the `app/routers/__init__.py`.
+  - So, it's a submodule: `app.routers.items`.
+- The file `app/routers/users.py` is beside the `app/routers/__init__.py`.
+  - So, it's a submodule: `app.routers.users`.
 
 ## `APIRouter`
 
 Let's say the file dedicated to handling just users is the submodule at `/app/routers/users.py`.
 
-You want to have the *path operations* related to your users separated from the rest of the code, to keep it organized.
+You want to have the _path operations_ related to your users separated from the rest of the code, to keep it organized.
 
 But it's still part of the same **FastAPI** application/web API (it's part of the same "Python Package").
 
-You can create the *path operations* for that module using `APIRouter`.
+You can create the _path operations_ for that module using `APIRouter`.
 
 ### Import `APIRouter`
 
@@ -64,9 +64,9 @@ You import it and create an "instance" the same way you would with the class `Fa
 {!../../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
-### *Path operations* with `APIRouter`
+### _Path operations_ with `APIRouter`
 
-And then you use it to declare your *path operations*.
+And then you use it to declare your _path operations_.
 
 Use it the same way you would use the `FastAPI` class:
 
@@ -81,7 +81,7 @@ All the same options are supported.
 All the same parameters, responses, dependencies, tags, etc.
 
 !!! tip
-    In this example, the variable is called `router`, but you can name it however you want.
+In this example, the variable is called `router`, but you can name it however you want.
 
 We are going to include this `APIrouter` in the main `FastAPI` app, but first, let's add another `APIRouter`.
 
@@ -89,16 +89,16 @@ We are going to include this `APIrouter` in the main `FastAPI` app, but first, l
 
 Let's say you also have the endpoints dedicated to handling "Items" from your application in the module at `app/routers/items.py`.
 
-You have *path operations* for:
+You have _path operations_ for:
 
-* `/items/`
-* `/items/{item_id}`
+- `/items/`
+- `/items/{item_id}`
 
 It's all the same structure as with `app/routers/users.py`.
 
 But let's say that this time we are more lazy.
 
-And we don't want to have to explicitly type `/items/` and `tags=["items"]` in every *path operation* (we will be able to do it later):
+And we don't want to have to explicitly type `/items/` and `tags=["items"]` in every _path operation_ (we will be able to do it later):
 
 ```Python hl_lines="6  11"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
@@ -108,7 +108,7 @@ And we don't want to have to explicitly type `/items/` and `tags=["items"]` in e
 
 We are not adding the prefix `/items/` nor the `tags=["items"]` to add them later.
 
-But we can add custom `tags` and `responses` that will be applied to a specific *path operation*:
+But we can add custom `tags` and `responses` that will be applied to a specific _path operation_:
 
 ```Python hl_lines="18-19"
 {!../../../docs_src/bigger_applications/app/routers/items.py!}
@@ -132,7 +132,7 @@ You import and create a `FastAPI` class as normally:
 
 ### Import the `APIRouter`
 
-But this time we are not adding *path operations* directly with the `FastAPI` `app`.
+But this time we are not adding _path operations_ directly with the `FastAPI` `app`.
 
 We import the other submodules that have `APIRouter`s:
 
@@ -152,9 +152,9 @@ from .routers import items, users
 
 Means:
 
-* Starting in the same package that this module (the file `app/main.py`) lives in (the directory `app/`)...
-* look for the subpackage `routers` (the directory at `app/routers/`)...
-* and from it, import the submodule `items` (the file at `app/routers/items.py`) and `users` (the file at `app/routers/users.py`)...
+- Starting in the same package that this module (the file `app/main.py`) lives in (the directory `app/`)...
+- look for the subpackage `routers` (the directory at `app/routers/`)...
+- and from it, import the submodule `items` (the file at `app/routers/items.py`) and `users` (the file at `app/routers/users.py`)...
 
 The module `items` will have a variable `router` (`items.router`). This is the same one we created in the file `app/routers/items.py`. It's an `APIRouter`. The same for the module `users`.
 
@@ -165,7 +165,7 @@ from app.routers import items, users
 ```
 
 !!! info
-    The first version is a "relative import".
+The first version is a "relative import".
 
     The second version is an "absolute import".
 
@@ -201,19 +201,19 @@ Now, let's include the `router` from the submodule `users`:
 ```
 
 !!! info
-    `users.router` contains the `APIRouter` inside of the file `app/routers/users.py`.
+`users.router` contains the `APIRouter` inside of the file `app/routers/users.py`.
 
 With `app.include_router()` we can add an `APIRouter` to the main `FastAPI` application.
 
 It will include all the routes from that router as part of it.
 
 !!! note "Technical Details"
-    It will actually internally create a *path operation* for each *path operation* that was declared in the `APIRouter`.
+It will actually internally create a _path operation_ for each _path operation_ that was declared in the `APIRouter`.
 
     So, behind the scenes, it will actually work as if everything was the same single app.
 
 !!! check
-    You don't have to worry about performance when including routers.
+You don't have to worry about performance when including routers.
 
     This will take microseconds and will only happen at startup.
 
@@ -223,11 +223,11 @@ It will include all the routes from that router as part of it.
 
 Now, let's include the router from the `items` submodule.
 
-But, remember that we were lazy and didn't add `/items/` nor `tags` to all the *path operations*?
+But, remember that we were lazy and didn't add `/items/` nor `tags` to all the _path operations_?
 
-We can add a prefix to all the *path operations* using the parameter `prefix` of `app.include_router()`.
+We can add a prefix to all the _path operations_ using the parameter `prefix` of `app.include_router()`.
 
-As the path of each *path operation* has to start with `/`, like in:
+As the path of each _path operation_ has to start with `/`, like in:
 
 ```Python hl_lines="1"
 @router.get("/{item_id}")
@@ -239,11 +239,11 @@ async def read_item(item_id: str):
 
 So, the prefix in this case would be `/items`.
 
-We can also add a list of `tags` that will be applied to all the *path operations* included in this router.
+We can also add a list of `tags` that will be applied to all the _path operations_ included in this router.
 
-And we can add predefined `responses` that will be included in all the *path operations* too.
+And we can add predefined `responses` that will be included in all the _path operations_ too.
 
-And we can add a list of `dependencies` that will be added to all the *path operations* in the router and will be executed/solved for each request made to them. Note that, much like dependencies in *path operation decorators*, no value will be passed to your *path operation function*.
+And we can add a list of `dependencies` that will be added to all the _path operations_ in the router and will be executed/solved for each request made to them. Note that, much like dependencies in _path operation decorators_, no value will be passed to your _path operation function_.
 
 ```Python hl_lines="8-10  14-20"
 {!../../../docs_src/bigger_applications/app/main.py!}
@@ -251,36 +251,36 @@ And we can add a list of `dependencies` that will be added to all the *path oper
 
 The end result is that the item paths are now:
 
-* `/items/`
-* `/items/{item_id}`
+- `/items/`
+- `/items/{item_id}`
 
 ...as we intended.
 
-* They will be marked with a list of tags that contain a single string `"items"`.
-* The *path operation* that declared a `"custom"` tag will have both tags, `items` and `custom`.
-    * These "tags" are especially useful for the automatic interactive documentation systems (using OpenAPI).
-* All of them will include the predefined `responses`.
-* The *path operation* that declared a custom `403` response will have both the predefined responses (`404`) and the `403` declared in it directly.
-* All these *path operations* will have the list of `dependencies` evaluated/executed before them.
-    * If you also declare dependencies in a specific *path operation*, **they will be executed too**.
-    * The router dependencies are executed first, then the [`dependencies` in the decorator](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, and then the normal parameter dependencies.
-    * You can also add [`Security` dependencies with `scopes`](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}.
+- They will be marked with a list of tags that contain a single string `"items"`.
+- The _path operation_ that declared a `"custom"` tag will have both tags, `items` and `custom`.
+  - These "tags" are especially useful for the automatic interactive documentation systems (using OpenAPI).
+- All of them will include the predefined `responses`.
+- The _path operation_ that declared a custom `403` response will have both the predefined responses (`404`) and the `403` declared in it directly.
+- All these _path operations_ will have the list of `dependencies` evaluated/executed before them.
+  - If you also declare dependencies in a specific _path operation_, **they will be executed too**.
+  - The router dependencies are executed first, then the [`dependencies` in the decorator](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=\_blank}, and then the normal parameter dependencies.
+  - You can also add [`Security` dependencies with `scopes`](../advanced/security/oauth2-scopes.md){.internal-link target=\_blank}.
 
 !!! tip
-    Having `dependencies` in a decorator can be used, for example, to require authentication for a whole group of *path operations*. Even if the dependencies are not added individually to each one of them.
+Having `dependencies` in a decorator can be used, for example, to require authentication for a whole group of _path operations_. Even if the dependencies are not added individually to each one of them.
 
 !!! check
-    The `prefix`, `tags`, `responses` and `dependencies` parameters are (as in many other cases) just a feature from **FastAPI** to help you avoid code duplication.
+The `prefix`, `tags`, `responses` and `dependencies` parameters are (as in many other cases) just a feature from **FastAPI** to help you avoid code duplication.
 
 !!! tip
-    You could also add *path operations* directly, for example with: `@app.get(...)`.
+You could also add _path operations_ directly, for example with: `@app.get(...)`.
 
     Apart from `app.include_router()`, in the same **FastAPI** app.
 
     It would still work the same.
 
 !!! info "Very Technical Details"
-    **Note**: this is a very technical detail that you probably can **just skip**.
+**Note**: this is a very technical detail that you probably can **just skip**.
 
     ---
 
@@ -312,7 +312,7 @@ You will see the automatic API docs, including the paths from all the submodules
 
 ## Include the same router multiple times with different `prefix`
 
-You can also use `.include_router()` multiple times with the *same* router using different prefixes.
+You can also use `.include_router()` multiple times with the _same_ router using different prefixes.
 
 This could be useful, for example, to expose the same API under different prefixes, e.g. `/api/v1` and `/api/latest`.
 

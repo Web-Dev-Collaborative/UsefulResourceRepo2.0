@@ -35,7 +35,7 @@ method creates a single-process cluster, with an in-process server.
 A TensorFlow "cluster" is a set of "tasks" that participate in the distributed
 execution of a TensorFlow graph. Each task is associated with a TensorFlow
 "server", which contains a "master" that can be used to create sessions, and a
-"worker" that executes operations in the graph.  A cluster can also be divided
+"worker" that executes operations in the graph. A cluster can also be divided
 into one or more "jobs", where each job contains one or more tasks.
 
 To create a cluster, you start one TensorFlow server per task in the cluster.
@@ -50,13 +50,12 @@ the following:
     the constructor, and identifying the local task with a job name
     and task index.
 
-
 ### Create a `tf.train.ClusterSpec` to describe the cluster
 
 The cluster specification dictionary maps job names to lists of network
 addresses. Pass this dictionary to
 the `tf.train.ClusterSpec`
-constructor.  For example:
+constructor. For example:
 
 <table>
   <tr><th><code>tf.train.ClusterSpec</code> construction</th><th>Available tasks</th>
@@ -89,7 +88,7 @@ set of local devices, a set of connections to other tasks in its
 `tf.train.ClusterSpec`, and a
 `tf.Session` that can use these
 to perform a distributed computation. Each server is a member of a specific
-named job and has a task index within that job.  A server can communicate with
+named job and has a task index within that job. A server can communicate with
 any other server in the cluster.
 
 For example, to launch a cluster with two servers running on `localhost:2222`
@@ -101,6 +100,7 @@ the local machine:
 cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
 server = tf.train.Server(cluster, job_name="local", task_index=0)
 ```
+
 ```python
 # In task 1:
 cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
@@ -156,12 +156,12 @@ job. All tasks typically run on different machines. There are many ways to
 specify this structure in TensorFlow, and we are building libraries that will
 simplify the work of specifying a replicated model. Possible approaches include:
 
-* **In-graph replication.** In this approach, the client builds a single
+- **In-graph replication.** In this approach, the client builds a single
   `tf.Graph` that contains one set of parameters (in `tf.Variable` nodes pinned
   to `/job:ps`); and multiple copies of the compute-intensive part of the model,
   each pinned to a different task in `/job:worker`.
 
-* **Between-graph replication.** In this approach, there is a separate client
+- **Between-graph replication.** In this approach, there is a separate client
   for each `/job:worker` task, typically in the same process as the worker
   task. Each client builds a similar graph containing the parameters (pinned to
   `/job:ps` as before using
@@ -170,11 +170,11 @@ simplify the work of specifying a replicated model. Possible approaches include:
   compute-intensive part of the model, pinned to the local task in
   `/job:worker`.
 
-* **Asynchronous training.** In this approach, each replica of the graph has an
+- **Asynchronous training.** In this approach, each replica of the graph has an
   independent training loop that executes without coordination. It is compatible
   with both forms of replication above.
 
-* **Synchronous training.** In this approach, all of the replicas read the same
+- **Synchronous training.** In this approach, all of the replicas read the same
   values for the current parameters, compute gradients in parallel, and then
   apply them together. It is compatible with in-graph replication (e.g. using
   gradient averaging as in the

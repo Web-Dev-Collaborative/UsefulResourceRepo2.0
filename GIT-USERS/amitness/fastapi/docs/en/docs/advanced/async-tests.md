@@ -73,7 +73,7 @@ The marker `@pytest.mark.asyncio` tells pytest that this test function should be
 ```
 
 !!! tip
-    Note that the test function is now `async def` instead of just `def` as before when using the `TestClient`.
+Note that the test function is now `async def` instead of just `def` as before when using the `TestClient`.
 
 Then we can create an `AsyncClient` with the app, and send async requests to it, using `await`.
 
@@ -90,11 +90,11 @@ response = client.get('/')
 that we used to make our requests with the `TestClient`.
 
 !!! tip
-    Note that we're using async/await with the new `AsyncClient` - the request is asynchronous.
+Note that we're using async/await with the new `AsyncClient` - the request is asynchronous.
 
 ## Other Asynchronous Function Calls
 
 As the testing function is now asynchronous, you can now also call (and `await`) other `async` functions apart from sending requests to your FastAPI application in your tests, exactly as you would call them anywhere else in your code.
 
 !!! tip
-    If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests (e.g. when using <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>) check out <a href="https://github.com/pytest-dev/pytest-asyncio/issues/38#issuecomment-264418154" class="external-link" target="_blank">this issue</a> in the pytest-asyncio repository.
+If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests (e.g. when using <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>) check out <a href="https://github.com/pytest-dev/pytest-asyncio/issues/38#issuecomment-264418154" class="external-link" target="_blank">this issue</a> in the pytest-asyncio repository.

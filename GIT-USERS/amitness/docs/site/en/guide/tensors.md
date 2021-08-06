@@ -14,9 +14,8 @@ graph to achieve the desired results.
 
 A `tf.Tensor` has the following properties:
 
- * a data type (`float32`, `int32`, or `string`, for example)
- * a shape
-
+- a data type (`float32`, `int32`, or `string`, for example)
+- a shape
 
 Each element in the Tensor has the same data type, and the data type is always
 known. The shape (that is, the number of dimensions it has and the size of each
@@ -28,10 +27,10 @@ time.
 Some types of tensors are special, and these will be covered in other
 units of the TensorFlow guide. The main ones are:
 
-  * `tf.Variable`
-  * `tf.constant`
-  * `tf.placeholder`
-  * `tf.SparseTensor`
+- `tf.Variable`
+- `tf.constant`
+- `tf.placeholder`
+- `tf.SparseTensor`
 
 With the exception of `tf.Variable`, the value of a tensor is immutable, which
 means that in the context of a single execution tensors only have a single
@@ -47,14 +46,13 @@ Note that rank in TensorFlow is not the same as matrix rank in mathematics.
 As the following table shows, each rank in TensorFlow corresponds to a
 different mathematical entity:
 
-Rank | Math entity
---- | ---
-0 | Scalar (magnitude only)
-1 | Vector (magnitude and direction)
-2 | Matrix (table of numbers)
-3 | 3-Tensor (cube of numbers)
-n | n-Tensor (you get the idea)
-
+| Rank | Math entity                      |
+| ---- | -------------------------------- |
+| 0    | Scalar (magnitude only)          |
+| 1    | Vector (magnitude and direction) |
+| 2    | Matrix (table of numbers)        |
+| 3    | 3-Tensor (cube of numbers)       |
+| n    | n-Tensor (you get the idea)      |
 
 ### Rank 0
 
@@ -82,7 +80,6 @@ first_primes = tf.Variable([2, 3, 5, 7, 11], tf.int32)
 its_very_complicated = tf.Variable([12.3 - 4.85j, 7.5 - 6.23j], tf.complex64)
 ```
 
-
 ### Higher ranks
 
 A rank 2 `tf.Tensor` object consists of at least one row and at least
@@ -101,7 +98,7 @@ Higher-rank Tensors, similarly, consist of an n-dimensional array. For example,
 during image processing, many tensors of rank 4 are used, with dimensions
 corresponding to example-in-batch, image width, image height, and color channel.
 
-``` python
+```python
 my_image = tf.zeros([10, 299, 299, 3])  # batch x height x width x color
 ```
 
@@ -137,14 +134,11 @@ you want to dynamically choose an element from the vector.
 For tensors of rank 2 or higher, the situation is more interesting. For a
 `tf.Tensor` of rank 2, passing two numbers returns a scalar, as expected:
 
-
 ```python
 my_scalar = my_matrix[1, 2]
 ```
 
-
 Passing a single number, however, returns a subvector of a matrix, as follows:
-
 
 ```python
 my_row_vector = my_matrix[2]
@@ -154,7 +148,6 @@ my_column_vector = my_matrix[:, 3]
 The `:` notation is python slicing syntax for "leave this dimension alone". This
 is useful in higher-rank Tensors, as it allows you to access its subvectors,
 submatrices, and even other subtensors.
-
 
 ## Shape
 
@@ -167,13 +160,13 @@ The TensorFlow documentation uses three notational conventions to describe
 tensor dimensionality: rank, shape, and dimension number. The following table
 shows how these relate to one another:
 
-Rank | Shape | Dimension number | Example
---- | --- | --- | ---
-0 | [] | 0-D | A 0-D tensor.  A scalar.
-1 | [D0] | 1-D | A 1-D tensor with shape [5].
-2 | [D0, D1] | 2-D | A 2-D tensor with shape [3, 4].
-3 | [D0, D1, D2] | 3-D | A 3-D tensor with shape [1, 4, 3].
-n | [D0, D1, ... Dn-1] | n-D | A tensor with shape [D0, D1, ... Dn-1].
+| Rank | Shape              | Dimension number | Example                                 |
+| ---- | ------------------ | ---------------- | --------------------------------------- |
+| 0    | []                 | 0-D              | A 0-D tensor. A scalar.                 |
+| 1    | [D0]               | 1-D              | A 1-D tensor with shape [5].            |
+| 2    | [D0, D1]           | 2-D              | A 2-D tensor with shape [3, 4].         |
+| 3    | [D0, D1, D2]       | 3-D              | A 3-D tensor with shape [1, 4, 3].      |
+| n    | [D0, D1, ... Dn-1] | n-D              | A tensor with shape [D0, D1, ... Dn-1]. |
 
 Shapes can be represented via Python lists / tuples of ints, or with the
 `tf.TensorShape`.
@@ -196,7 +189,7 @@ tensors by building other tensors that depend on the dynamic shape of the input
 For example, here is how to make a vector of zeros with the same size as the
 number of columns in a given matrix:
 
-``` python
+```python
 zeros = tf.zeros(my_matrix.shape[1])
 ```
 
@@ -239,7 +232,7 @@ those in `tf.Tensor`s.
 It is possible to cast `tf.Tensor`s from one datatype to another using
 `tf.cast`:
 
-``` python
+```python
 # Cast a constant integer tensor into floating point.
 float_tensor = tf.cast(tf.constant([1, 2, 3]), dtype=tf.float32)
 ```
@@ -278,7 +271,7 @@ its value might depend on dynamic information that is not available. For
 example, tensors that depend on `placeholder`s can't be evaluated without
 providing a value for the `placeholder`.
 
-``` python
+```python
 p = tf.placeholder(tf.float32)
 t = p + 1.0
 t.eval()  # This will fail, since the placeholder did not get a value.
@@ -298,13 +291,13 @@ to call `tf.train.start_queue_runners` before evaluating any `tf.Tensor`s.
 ## Printing Tensors
 
 For debugging purposes you might want to print the value of a `tf.Tensor`. While
- [tfdbg](../guide/debugger.md) provides advanced debugging support, TensorFlow also has an
- operation to directly print the value of a `tf.Tensor`.
+[tfdbg](../guide/debugger.md) provides advanced debugging support, TensorFlow also has an
+operation to directly print the value of a `tf.Tensor`.
 
 Note that you rarely want to use the following pattern when printing a
 `tf.Tensor`:
 
-``` python
+```python
 t = <<some tensorflow operation>>
 print(t)  # This will print the symbolic tensor when the graph is being built.
           # This tensor does not have a value in this context.
@@ -317,7 +310,7 @@ returns its first tensor argument unchanged while printing the set of
 
 To correctly use `tf.Print` its return value must be used. See the example below
 
-``` python
+```python
 t = <<some tensorflow operation>>
 tf.Print(t, [t])  # This does nothing
 t = tf.Print(t, [t])  # Here we are using the value returned by tf.Print
@@ -327,4 +320,3 @@ result = t + 1  # Now when result is evaluated the value of `t` will be printed.
 When you evaluate `result` you will evaluate everything `result` depends
 upon. Since `result` depends upon `t`, and evaluating `t` has the side effect of
 printing its input (the old value of `t`), `t` gets printed.
-

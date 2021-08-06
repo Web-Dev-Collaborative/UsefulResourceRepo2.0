@@ -7,7 +7,6 @@ Summary: ...
 Status: draft
 Authors: Amit Chaudhary
 
-
 ```python
 from cleanlab.latent_estimation import estimate_cv_predicted_probabilities
 from cleanlab.pruning import get_noise_indices
@@ -16,13 +15,13 @@ from cleanlab.pruning import get_noise_indices
 
 # pred = pipeline.predict(x)
 probabilities = estimate_cv_predicted_probabilities(
-    pipeline.steps[0][1].transform(x), 
-    np.array(y), 
+    pipeline.steps[0][1].transform(x),
+    np.array(y),
     clf=pipeline.steps[1][1]
 )
 label_error_indices = get_noise_indices(
-    s = np.array(y), 
-    psx = probabilities, 
+    s = np.array(y),
+    psx = probabilities,
 )
 ```
 

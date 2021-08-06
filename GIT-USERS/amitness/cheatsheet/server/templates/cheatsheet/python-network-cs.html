@@ -1,17 +1,15 @@
-{% extends "layout.html" %}
-
-{% block jumbotron %}
+{% extends "layout.html" %} {% block jumbotron %}
 <div class="jumbotron">
-   <h1>Python Cheat Sheet</h1>
-   <p>Cheat sheet of Python. Some nextwork concept for Python programmer need to know.</p>
+  <h1>Python Cheat Sheet</h1>
+  <p>
+    Cheat sheet of Python. Some nextwork concept for Python programmer need to
+    know.
+  </p>
 </div>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="row col-md-4 col-xs-12">
-
-<h3>Get Hostname</h3>
-<pre class="code python">
+  <h3>Get Hostname</h3>
+  <pre class="code python">
 &gt;&gt;&gt; import socket
 &gt;&gt;&gt; socket.gethostname()
 'MacBookPro-4380.local'
@@ -20,10 +18,11 @@
 '172.20.10.4'
 &gt;&gt;&gt; socket.gethostbyname('localhost')
 '127.0.0.1'
-</pre>
+</pre
+  >
 
-<h3>Simple TCP Echo Server</h3>
-<pre class="code python">
+  <h3>Simple TCP Echo Server</h3>
+  <pre class="code python">
 import socket
 
 class Server(object):
@@ -61,10 +60,11 @@ if __name__ == '__main__':
 # bash&gt; nc localhost 5566
 # Hello World 
 # Hello World 
-</pre>
+</pre
+  >
 
-<h3>Simple TCP Echo Server Via SocketServer</h3>
-<pre class="code python">
+  <h3>Simple TCP Echo Server Via SocketServer</h3>
+  <pre class="code python">
 &gt;&gt;&gt; import SocketServer
 &gt;&gt;&gt; bh = SocketServer.BaseRequestHandler
 &gt;&gt;&gt; class handler(bh):
@@ -80,10 +80,11 @@ if __name__ == '__main__':
 # bash&gt; nc -u localhost 5566
 # Hello World
 # Hello World
-</pre>
+</pre
+  >
 
-<h3>Simple UDP Echo Server</h3>
-<pre class="code python">
+  <h3>Simple UDP Echo Server</h3>
+  <pre class="code python">
 import socket
 
 class UDPServer(object):
@@ -116,9 +117,10 @@ if __name__ == '__main__':
 # bash&gt; nc -u localhost 5566
 # Hello World
 # Hello World
-</pre>
-<h3>Simple UDP Echo Server Via SocketServer</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>Simple UDP Echo Server Via SocketServer</h3>
+  <pre class="code python">
 &gt;&gt;&gt; import SocketServer
 &gt;&gt;&gt; bh = SocketServer.BaseRequestHandler
 &gt;&gt;&gt; class handler(bh):
@@ -134,10 +136,11 @@ if __name__ == '__main__':
 # bash&gt; nc -u localhost 5566
 # Hello World
 # Hello World
-</pre>
+</pre
+  >
 
-<h3>Simple UDP client - Sender</h3>
-<pre class="code python">
+  <h3>Simple UDP client - Sender</h3>
+  <pre class="code python">
 &gt;&gt;&gt; import socket
 &gt;&gt;&gt; import time
 &gt;&gt;&gt; sock = socket.socket(
@@ -151,10 +154,11 @@ if __name__ == '__main__':
 # bash&gt; nc -lu localhost 5566
 # Hello
 # Hello
-</pre>
+</pre
+  >
 
-<h3>Broadcast UDP Packets</h3>
-<pre class="code python">
+  <h3>Broadcast UDP Packets</h3>
+  <pre class="code python">
 &gt;&gt;&gt; import socket
 &gt;&gt;&gt; import time
 &gt;&gt;&gt; sock = socket.socket(
@@ -172,13 +176,13 @@ if __name__ == '__main__':
 ...
 # bash&gt; nc -k -w 1 -ul 5566
 # 1431473025.72
-</pre>
+</pre
+  >
 </div>
 
 <div class="row col-md-4 col-xs-12">
-
-<h3>Simple Asynchronous TCP Server - Thread</h3>
-<pre class="code python">
+  <h3>Simple Asynchronous TCP Server - Thread</h3>
+  <pre class="code python">
 &gt;&gt;&gt; from threading import Thread
 &gt;&gt;&gt; import socket
 &gt;&gt;&gt; def work(conn):
@@ -206,9 +210,10 @@ if __name__ == '__main__':
 # bash2&gt; nc localhost 5566
 # Ker Ker
 # Ker Ker
-</pre>
-<h3>Simple Asynchronous TCP Server - select</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>Simple Asynchronous TCP Server - select</h3>
+  <pre class="code python">
 from select import select
 import socket
 
@@ -250,9 +255,10 @@ except:
 # bash2&gt; nc localhost 5566
 # Ker Ker
 # Ker Ker
-</pre>
-<h3>High-Level API - selectors</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>High-Level API - selectors</h3>
+  <pre class="code python">
 # Pyton3.4+ only
 # Reference: <a href="https://docs.python.org/3.5/library/selectors.html">selectors</a> 
 import selectors
@@ -311,8 +317,8 @@ with Server(host, port) as (s,sel):
 # Hi
 </pre>
 
-<h3>Synchronous Simple UNIX Domain Socket</h3>
-<pre class="code python">
+  <h3>Synchronous Simple UNIX Domain Socket</h3>
+  <pre class="code python">
 import socket
 import contextlib
 import os
@@ -344,9 +350,10 @@ with DomainServer(addr) as sock:
 # bash &gt; nc -U ./domain.sock
 # Hello
 # Hello
-</pre>
-<h3>Asynchronous UNIX Domain Socket</h3>
-<pre class="code python">
+</pre
+  >
+  <h3>Asynchronous UNIX Domain Socket</h3>
+  <pre class="code python">
 import socket
 import os
 import contextlib
@@ -395,13 +402,13 @@ with DomainServer(addr) as sock:
 # bash&gt; nc -U ./domain.sock
 # KerKer
 # KerKer
-</pre>
+</pre
+  >
 </div>
 
 <div class="row col-md-4 col-xs-12">
-
-<h3>"socketpair" - Similar to PIPE</h3>
-<pre class="code python">
+  <h3>"socketpair" - Similar to PIPE</h3>
+  <pre class="code python">
 import socket
 import os
 import time
@@ -436,10 +443,11 @@ else:
 # Hi! Child!
 # Hi! Parent!
 # ...
-</pre>
+</pre
+  >
 
-<h3>Run a SimpleHTTPServer</h3>
-<pre class="code python">
+  <h3>Run a SimpleHTTPServer</h3>
+  <pre class="code python">
 # method 1
 # bash&gt; python -m SimpleHTTPServer 5566
 # method 2
@@ -450,11 +458,7 @@ else:
 &gt;&gt;&gt; s = ss.TCPServer(
 ...   host, h)
 &gt;&gt;&gt; s.serve_forever()
-</pre>
+</pre
+  >
 </div>
-{% endblock %}
-
-{% block script %}
-{{ super() }}
-
-{% endblock %}
+{% endblock %} {% block script %} {{ super() }} {% endblock %}

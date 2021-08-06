@@ -23,11 +23,11 @@ these models but the results are still hard to reproduce.
 We're now taking the next step by releasing code for running image recognition
 on our latest model, [Inception-v3].
 
-[QuocNet]: https://static.googleusercontent.com/media/research.google.com/en//archive/unsupervised_icml2012.pdf
-[AlexNet]: https://www.cs.toronto.edu/~fritz/absps/imagenet.pdf
-[Inception (GoogLeNet)]: https://arxiv.org/abs/1409.4842
-[BN-Inception-v2]: https://arxiv.org/abs/1502.03167
-[Inception-v3]: https://arxiv.org/abs/1512.00567
+[quocnet]: https://static.googleusercontent.com/media/research.google.com/en//archive/unsupervised_icml2012.pdf
+[alexnet]: https://www.cs.toronto.edu/~fritz/absps/imagenet.pdf
+[inception (googlenet)]: https://arxiv.org/abs/1409.4842
+[bn-inception-v2]: https://arxiv.org/abs/1502.03167
+[inception-v3]: https://arxiv.org/abs/1512.00567
 
 Inception-v3 is trained for the [ImageNet] Large Visual Recognition Challenge
 using the data from 2012. This is a standard task in computer vision,
@@ -46,10 +46,10 @@ validation data set; [Inception (GoogLeNet)] achieved 6.67%;
 [BN-Inception-v2] achieved 4.9%; [Inception-v3] reaches 3.46%.
 
 > How well do humans do on ImageNet Challenge? There's a [blog post] by
-Andrej Karpathy who attempted to measure his own performance. He reached
-5.1% top-5 error rate.
+> Andrej Karpathy who attempted to measure his own performance. He reached
+> 5.1% top-5 error rate.
 
-[ImageNet]: http://image-net.org/
+[imagenet]: http://image-net.org/
 [1000 classes]: http://image-net.org/challenges/LSVRC/2014/browse-synsets
 [blog post]: https://karpathy.github.io/2014/09/02/what-i-learned-from-competing-against-a-convnet-on-imagenet/
 
@@ -59,7 +59,6 @@ extract higher level features from this model which may be reused for other
 vision tasks.
 
 We're excited to see what the community will do with this model.
-
 
 ## Usage with Python API
 
@@ -90,7 +89,7 @@ If you wish to supply other JPEG images, you may do so by editing
 the `--image_file` argument.
 
 > If you download the model data to a different directory, you
-will need to point `--model_dir`  to the directory used.
+> will need to point `--model_dir` to the directory used.
 
 ## Usage with the C++ API
 
@@ -130,11 +129,11 @@ I tensorflow/examples/label_image/main.cc:206] academic gown (401): 0.0103579
 I tensorflow/examples/label_image/main.cc:206] pickelhaube (716): 0.00800814
 I tensorflow/examples/label_image/main.cc:206] bulletproof vest (466): 0.00535088
 ```
+
 In this case, we're using the default image of
 [Admiral Grace Hopper](https://en.wikipedia.org/wiki/Grace_Hopper), and you can
 see the network correctly identifies she's wearing a military uniform, with a high
 score of 0.8.
-
 
 <div style="width:45%; margin:auto; margin-bottom:10px; margin-top:20px;">
   <img style="width:100%" src="https://www.tensorflow.org/images/grace_hopper.jpg">
@@ -176,6 +175,7 @@ Status ReadTensorFromImageFile(string file_name, const int input_height,
                                std::vector<Tensor>* out_tensors) {
   tensorflow::GraphDefBuilder b;
 ```
+
 We start by creating a `GraphDefBuilder`, which is an object we can use to
 specify a model to run or load.
 
@@ -186,6 +186,7 @@ specify a model to run or load.
       tensorflow::ops::ReadFile(tensorflow::ops::Const(file_name, b.opts()),
                                 b.opts().WithName(input_name));
 ```
+
 We then start creating nodes for the small model we want to run
 to load, resize, and scale the pixel values to get the result the main model
 expects as its input. The first node we create is just a `Const` op that holds a
@@ -232,6 +233,7 @@ do this, but it does make debugging a bit easier.
       tensorflow::ops::Const({input_std}, b.opts()),
       b.opts().WithName(output_name));
 ```
+
 We then keep adding more nodes, to decode the file data as an image, to cast the
 integers into floating point values, to resize it, and then finally to run the
 subtraction and division operations on the pixel values.
@@ -242,6 +244,7 @@ subtraction and division operations on the pixel values.
   tensorflow::GraphDef graph;
   TF_RETURN_IF_ERROR(b.ToGraphDef(&graph));
 ```
+
 At the end of this we have
 a model definition stored in the b variable, which we turn into a full graph
 definition with the `ToGraphDef()` function.
@@ -253,6 +256,7 @@ definition with the `ToGraphDef()` function.
   TF_RETURN_IF_ERROR(session->Run({}, {output_name}, {}, out_tensors));
   return Status::OK();
 ```
+
 Then we create a `tf.Session`
 object, which is the interface to actually running the graph, and run it,
 specifying which node we want to get the output from, and where to put the
@@ -282,6 +286,7 @@ Status LoadGraph(string graph_file_name,
                                         graph_file_name, "'");
   }
 ```
+
 If you've looked through the image loading code, a lot of the terms should seem familiar. Rather than
 using a `GraphDefBuilder` to produce a `GraphDef` object, we load a protobuf file that
 directly contains the `GraphDef`.
@@ -295,6 +300,7 @@ directly contains the `GraphDef`.
   return Status::OK();
 }
 ```
+
 Then we create a Session object from that `GraphDef` and
 pass it back to the caller so that they can run it at a later time.
 
@@ -330,6 +336,7 @@ Status GetTopLabels(const std::vector<Tensor>& outputs, int how_many_labels,
   *indices = out_tensors[1];
   return Status::OK();
 ```
+
 The `PrintTopLabels()` function takes those sorted results, and prints them out in a
 friendly way. The `CheckTopLabel()` function is very similar, but just makes sure that
 the top label is the one we expect, for debugging purposes.
@@ -356,6 +363,7 @@ int main(int argc, char* argv[]) {
     return -1;
   }
 ```
+
 We load the main graph.
 
 ```C++
@@ -372,6 +380,7 @@ We load the main graph.
   }
   const Tensor& resized_tensor = resized_tensors[0];
 ```
+
 Load, resize, and process the input image.
 
 ```C++
@@ -384,6 +393,7 @@ Load, resize, and process the input image.
     return -1;
   }
 ```
+
 Here we run the loaded graph with the image as an input.
 
 ```C++
@@ -403,12 +413,14 @@ Here we run the loaded graph with the image as an input.
     }
   }
 ```
+
 For testing purposes we can check to make sure we get the output we expect here.
 
 ```C++
   // Do something interesting with the results we've generated.
   Status print_status = PrintTopLabels(outputs, FLAGS_labels);
 ```
+
 Finally we print the labels we found.
 
 ```C++
@@ -430,11 +442,10 @@ sorts of domains. We hope this small example gives you some ideas on how to use
 TensorFlow within your own products.
 
 > **EXERCISE**: Transfer learning is the idea that, if you know how to solve a task well, you
-should be able to transfer some of that understanding to solving related
-problems.  One way to perform transfer learning is to remove the final
-classification layer of the network and extract
-the [next-to-last layer of the CNN](https://arxiv.org/abs/1310.1531), in this case a 2048 dimensional vector.
-
+> should be able to transfer some of that understanding to solving related
+> problems. One way to perform transfer learning is to remove the final
+> classification layer of the network and extract
+> the [next-to-last layer of the CNN](https://arxiv.org/abs/1310.1531), in this case a 2048 dimensional vector.
 
 ## Resources for Learning More
 
@@ -452,4 +463,3 @@ to the TensorFlow [deep convolutional networks tutorial](../../tutorials/images/
 or start a bit more gently with our [Estimator MNIST tutorial](../estimators/cnn.md).
 Finally, if you want to get up to speed on research in this area, you can
 read the recent work of all the papers referenced in this tutorial.
-

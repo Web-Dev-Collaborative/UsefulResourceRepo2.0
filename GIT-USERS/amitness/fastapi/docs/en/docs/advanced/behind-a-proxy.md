@@ -40,7 +40,7 @@ proxy --> server
 ```
 
 !!! tip
-    The IP `0.0.0.0` is commonly used to mean that the program listens on all the IPs available in that machine/server.
+The IP `0.0.0.0` is commonly used to mean that the program listens on all the IPs available in that machine/server.
 
 The docs UI would also need the OpenAPI schema to declare that this API `server` is located at `/api/v1` (behind the proxy). For example:
 
@@ -78,7 +78,7 @@ $ uvicorn main:app --root-path /api/v1
 If you use Hypercorn, it also has the option `--root-path`.
 
 !!! note "Technical Details"
-    The ASGI specification defines a `root_path` for this use case.
+The ASGI specification defines a `root_path` for this use case.
 
     And the `--root-path` command line option provides that `root_path`.
 
@@ -169,7 +169,7 @@ Then create a file `traefik.toml` with:
 This tells Traefik to listen on port 9999 and to use another file `routes.toml`.
 
 !!! tip
-    We are using port 9999 instead of the standard HTTP port 80 so that you don't have to run it with admin (`sudo`) privileges.
+We are using port 9999 instead of the standard HTTP port 80 so that you don't have to run it with admin (`sudo`) privileges.
 
 Now create that other file `routes.toml`:
 
@@ -236,7 +236,7 @@ Now, if you go to the URL with the port for Uvicorn: <a href="http://127.0.0.1:8
 ```
 
 !!! tip
-    Notice that even though you are accessing it at `http://127.0.0.1:8000/app` it shows the `root_path` of `/api/v1`, taken from the option `--root-path`.
+Notice that even though you are accessing it at `http://127.0.0.1:8000/app` it shows the `root_path` of `/api/v1`, taken from the option `--root-path`.
 
 And now open the URL with the port for Traefik, including the path prefix: <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>.
 
@@ -280,11 +280,11 @@ This is because FastAPI uses this `root_path` to create the default `server` in 
 ## Additional servers
 
 !!! warning
-    This is a more advanced use case. Feel free to skip it.
+This is a more advanced use case. Feel free to skip it.
 
 By default, **FastAPI** will create a `server` in the OpenAPI schema with the URL for the `root_path`.
 
-But you can also provide other alternative `servers`, for example if you want *the same* docs UI to interact with a staging and production environments.
+But you can also provide other alternative `servers`, for example if you want _the same_ docs UI to interact with a staging and production environments.
 
 If you pass a custom list of `servers` and there's a `root_path` (because your API lives behind a proxy), **FastAPI** will insert a "server" with this `root_path` at the beginning of the list.
 
@@ -320,14 +320,14 @@ Will generate an OpenAPI schema like:
 ```
 
 !!! tip
-    Notice the auto-generated server with a `url` value of `/api/v1`, taken from the `root_path`.
+Notice the auto-generated server with a `url` value of `/api/v1`, taken from the `root_path`.
 
 In the docs UI at <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a> it would look like:
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
 !!! tip
-    The docs UI will interact with the server that you select.
+The docs UI will interact with the server that you select.
 
 ### Disable automatic server from `root_path`
 
@@ -341,6 +341,6 @@ and then it won't include it in the OpenAPI schema.
 
 ## Mounting a sub-application
 
-If you need to mount a sub-application (as described in [Sub Applications - Mounts](./sub-applications.md){.internal-link target=_blank}) while also using a proxy with `root_path`, you can do it normally, as you would expect.
+If you need to mount a sub-application (as described in [Sub Applications - Mounts](./sub-applications.md){.internal-link target=\_blank}) while also using a proxy with `root_path`, you can do it normally, as you would expect.
 
 FastAPI will internally use the `root_path` smartly, so it will just work. ✨

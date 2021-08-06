@@ -12,26 +12,24 @@ title: The Illustrated Word2vec
 Translations: <a href="https://mp.weixin.qq.com/s?__biz=MjM5MTQzNzU2NA==&mid=2651669277&idx=2&sn=bc8f0590f9e340c1f1359982726c5a30&chksm=bd4c648e8a3bed9817f30c5a512e79fe0cc6fbc58544f97c857c30b120e76508fef37cae49bc&scene=0&xtrack=1#rd">Chinese (Simplified)</a>, <a href="https://databreak.netlify.com/2019-04-25-illustrated_word2vec/">Korean</a>, <a href="https://habr.com/ru/post/446530/">Russian</a>
 </span>
 
-
 <div class="img-div-any-width" markdown="0">
   <image src="/images/word2vec/word2vec.png"/>
   <br />
 </div>
 
-
 <blockquote class='subtle'>
   “<strong>There is in all things a pattern that is part of our universe. It has symmetry, elegance, and grace</strong> - those qualities you find always in that which the true artist captures. You can find it in the turning of the seasons, in the way sand trails along a ridge, in the branch clusters of the creosote
   bush or the pattern of its leaves. <br /><br />
 
-  We try to copy these patterns in our lives and our society,
-  seeking the rhythms, the dances, the forms that comfort.
-  Yet, it is possible to see peril in the finding of
-  ultimate perfection. It is clear that the ultimate
-  pattern contains it own fixity. In such
-  perfection, all things move toward death.”
-  ~ Dune (1965)
-</blockquote>
+We try to copy these patterns in our lives and our society,
+seeking the rhythms, the dances, the forms that comfort.
+Yet, it is possible to see peril in the finding of
+ultimate perfection. It is clear that the ultimate
+pattern contains it own fixity. In such
+perfection, all things move toward death.”
+~ Dune (1965)
 
+</blockquote>
 
 I find the concept of embeddings to be one of the most fascinating ideas in machine learning. If you've ever used Siri, Google Assistant, Alexa, Google Translate, or even smartphone keyboard with next-word prediction, then chances are you've benefitted from this idea that has become central to Natural Language Processing models. There has been quite a development over the last couple of decades in using embeddings for neural models (Recent developments include contextualized word embeddings leading to cutting-edge models like [BERT](https://jalammar.github.io/illustrated-bert/) and GPT2).
 
@@ -42,6 +40,7 @@ In this post, we'll go over the concept of embedding, and the mechanics of gener
 <!--more-->
 
 # Personality Embeddings: What are you like?
+
 <blockquote class='subtle'>
 “I give you the desert chameleon, whose ability to blend itself into the background tells you all you need to know about the roots of ecology and the foundations of a personal identity” ~Children of Dune
 </blockquote>
@@ -54,7 +53,6 @@ Have you ever taken a personality test like MBTI -- or even better, the [Big Fiv
   <br />
   Example of the result of a Big Five Personality Trait test. It can really tell you a lot about yourself and is shown to have predictive ability in <a href="http://psychology.okstate.edu/faculty/jgrice/psyc4333/FiveFactor_GPAPaper.pdf">academic</a>, <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1744-6570.1999.tb00174.x">personal</a>, and <a href="https://www.massgeneral.org/psychiatry/assets/published_papers/soldz-1999.pdf">professional success</a>. <a href="https://projects.fivethirtyeight.com/personality-quiz/">This</a> is one place to find your results.
 </div>
-
 
 Imagine I've scored 38/100 as my introversion/extraversion score. we can plot that in this way:
 
@@ -78,8 +76,7 @@ How well do you feel you know a person knowing only this one piece of informatio
 
 I've hidden which traits we're plotting just so you get used to not knowing what each dimension represents -- but still getting a lot of value from the vector representation of a person's personality.
 
-We can now say that this vector partially represents my personality. The usefulness of such representation comes when you want to compare two other people to me. Say I get hit by a ```bus``` and I need to be replaced by someone with a similar personality. In the following figure, which of the two people is more similar to me?
-
+We can now say that this vector partially represents my personality. The usefulness of such representation comes when you want to compare two other people to me. Say I get hit by a `bus` and I need to be replaced by someone with a similar personality. In the following figure, which of the two people is more similar to me?
 
 <div class="img-div-any-width" markdown="0">
   <image src="/images/word2vec/personality-two-persons.png"/>
@@ -87,16 +84,13 @@ We can now say that this vector partially represents my personality. The usefuln
 
 When dealing with vectors, a common way to calculate a similarity score is [cosine_similarity](https://en.wikipedia.org/wiki/Cosine_similarity):
 
-
 <div class="img-div-any-width" markdown="0">
   <image src="/images/word2vec/cosine-similarity.png"/>
   <br />
   <span class="encoder">Person #1</span> is more similar to me in personality. Vectors pointing at the same direction (length plays a role as well) have a higher cosine similarity score.
 </div>
 
-
 Yet again, two dimensions aren't enough to capture enough information about how different people are. Decades of psychology research have led to five major traits (and plenty of sub-traits). So let's use all five dimensions in our comparison:
-
 
 <div class="img-div-any-width" markdown="0">
   <image src="/images/word2vec/big-five-vectors.png"/>
@@ -104,7 +98,6 @@ Yet again, two dimensions aren't enough to capture enough information about how 
 </div>
 
 The problem with five dimensions is that we lose the ability to draw neat little arrows in two dimensions. This is a common challenge in machine learning where we often have to think in higher-dimensional space. The good thing is, though, that cosine_similarity still works. It works with any number of dimensions:
-
 
 <div class="img-div-any-width" markdown="0">
   <image src="/images/word2vec/embeddings-cosine-personality.png"/>
@@ -117,12 +110,10 @@ At the end of this section, I want us to come out with two central ideas:
 1. We can represent people (and things) as vectors of numbers (which is great for machines!).
 2. We can easily calculate how similar vectors are to each other.
 
-
 <div class="img-div-any-width" markdown="0">
   <image src="/images/word2vec/section-1-takeaway-vectors-cosine.png"/>
   <br />
 </div>
-
 
 # Word Embeddings
 
@@ -161,7 +152,6 @@ Let's color code the cells based on their values (red if they're close to 2, whi
 </div>
 
 We'll proceed by ignoring the numbers and only looking at the colors to indicate the values of the cells. Let's now contrast "King" against other words:
-
 
 <div class="img-div-any-width" markdown="0">
   <image src="/images/word2vec/king-man-woman-embedding.png"/>
@@ -214,7 +204,8 @@ Now that we've looked at trained word embeddings, let's learn more about the tra
 <blockquote class='subtle'>
   “The prophet is not diverted by illusions of past, present and future. <strong>The fixity of language determines such linear distinctions.</strong> Prophets hold a key to the lock in a language. <br /> <br />
 
-  This is not a mechanical universe. The linear progression of events is imposed by the observer. Cause and effect? That's not it at all. <strong>The prophet utters fateful words.</strong> You glimpse a thing "destined to occur." But the prophetic instant releases something of infinite portent and power. The universe undergoes a ghostly shift.” ~God Emperor of Dune
+This is not a mechanical universe. The linear progression of events is imposed by the observer. Cause and effect? That's not it at all. <strong>The prophet utters fateful words.</strong> You glimpse a thing "destined to occur." But the prophetic instant releases something of infinite portent and power. The universe undergoes a ghostly shift.” ~God Emperor of Dune
+
 </blockquote>
 
 If one wanted to give an example of an NLP application, one of the best examples would be the next-word prediction feature of a smartphone keyboard. It's a feature that billions of people use hundreds of times every day.
@@ -224,7 +215,7 @@ If one wanted to give an example of an NLP application, one of the best examples
   <br />
 </div>
 
-Next-word prediction is a task that can be addressed by a *language model*. A language model can take a list of words (let's say two words), and attempt to predict the word that follows them.
+Next-word prediction is a task that can be addressed by a _language model_. A language model can take a list of words (let's say two words), and attempt to predict the word that follows them.
 
 In the screenshot above, we can think of the model as one that took in these two green words (<code class="plain_code mdc-text-green-600">thou shalt</code>) and returned a list of suggestions ("not" being the one with the highest probability):
 
@@ -278,7 +269,6 @@ The first step is the most relevant for us as we discuss embeddings. One of the 
 
 Let's now turn to the training process to learn more about how this embedding matrix was developed.
 
-
 # Language Model Training
 
 <blockquote class='subtle'>
@@ -306,18 +296,18 @@ As this window slides against the text, we (virtually) generate a dataset that w
 
 When we start, the window is on the first three words of the sentence:
 
-<br />  
+<br />
 
 <div class="img-div" markdown="0">
   <image src="/images/word2vec/lm-sliding-window.png"/>
   <br />
 </div>
 
-<br />  
+<br />
 
 We take the first two words to be features, and the third word to be a label:
 
-<br />  
+<br />
 
 <div class="img-div" markdown="0">
   <image src="/images/word2vec/lm-sliding-window-2.png"/>
@@ -325,11 +315,11 @@ We take the first two words to be features, and the third word to be a label:
   We now have generated the first sample in the dataset we can later use to train a language model.
 </div>
 
-<br />  
+<br />
 
 We then slide our window to the next position and create a second sample:
 
-<br />  
+<br />
 
 <div class="img-div" markdown="0">
   <image src="/images/word2vec/lm-sliding-window-3.png"/>
@@ -337,18 +327,18 @@ We then slide our window to the next position and create a second sample:
   An the second example is now generated.
 </div>
 
-<br />  
+<br />
 
 And pretty soon we have a larger dataset of which words tend to appear after different pairs of words:
 
-<br />  
+<br />
 
 <div class="img-div" markdown="0">
   <image src="/images/word2vec/lm-sliding-window-4.png"/>
   <br />  
 </div>
 
-<br />  
+<br />
 
 In practice, models tend to be trained while we're sliding the window. But I find it clearer to logically separate the "dataset generation" phase from the training phase. Aside from neural-network-based approaches to language modeling, a technique called N-grams was commonly used to train language models (see: Chapter 3 of [Speech and Language Processing](http://web.stanford.edu/~jurafsky/slp3/)). To see how this switch from N-grams to neural models reflects on real-world products, [here's a 2015 blog post from Swiftkey](https://blog.swiftkey.com/neural-networks-a-meaningful-leap-for-mobile-typing/), my favorite Android keyboard, introducing their neural language model and comparing it with their previous N-gram model. I like this example because it shows you how the algorithmic properties of embeddings can be described in marketing speech.
 
@@ -365,16 +355,14 @@ Knowing what you know from earlier in the post, fill in the blank:
   <br />  
 </div>
 
-The context I gave you here is five words before the blank word (and an earlier mention of "bus"). I'm sure most people would guess the word ```bus``` goes into the blank. But what if I gave you one more piece of information -- a word after the blank, would that change your answer?
-
+The context I gave you here is five words before the blank word (and an earlier mention of "bus"). I'm sure most people would guess the word `bus` goes into the blank. But what if I gave you one more piece of information -- a word after the blank, would that change your answer?
 
 <div class="img-div-any-width" markdown="0">
   <image src="/images/word2vec/jay_was_hit_by_a_bus.png"/>
   <br />  
 </div>
 
-This completely changes what should go in the blank. the word ```red``` is now the most likely to go into the blank. What we learn from this is the words both before and after a specific word carry informational value. It turns out that accounting for both directions (words to the left and to the right of the word we're guessing) leads to better word embeddings. Let's see how we can adjust the way we're training the model to account for this.
-
+This completely changes what should go in the blank. the word `red` is now the most likely to go into the blank. What we learn from this is the words both before and after a specific word carry informational value. It turns out that accounting for both directions (words to the left and to the right of the word we're guessing) leads to better word embeddings. Let's see how we can adjust the way we're training the model to account for this.
 
 # Skipgram
 
@@ -400,7 +388,6 @@ This is called a **Continuous Bag of Words** architecture and is described in [o
 
 Instead of guessing a word based on its context (the words before and after it), this other architecture tries to guess neighboring words using the current word. We can think of the window it slides against the training text as looking like this:
 
-
 <div class="img-div-any-width" markdown="0">
   <image src="/images/word2vec/skipgram-sliding-window.png"/>
   <br />  
@@ -409,29 +396,29 @@ Instead of guessing a word based on its context (the words before and after it),
 
 The pink boxes are in different shades because this sliding window actually creates four separate samples in our training dataset:
 
-<br />  
+<br />
 
 <div class="img-div-any-width" markdown="0">
   <image src="/images/word2vec/skipgram-sliding-window-samples.png"/>
   <br />  
 </div>
 
-<br />  
+<br />
 
 This method is called the **skipgram** architecture. We can visualize the sliding window as doing the following:
 
-<br />  
+<br />
 
 <div class="img-div" markdown="0">
   <image src="/images/word2vec/skipgram-sliding-window-1.png"/>
   <br />  
 </div>
 
-<br />  
+<br />
 
 This would add these four samples to our training dataset:
 
-<br />  
+<br />
 
 <div class="img-div" markdown="0">
   <image src="/images/word2vec/skipgram-sliding-window-2.png"/>
@@ -440,17 +427,17 @@ This would add these four samples to our training dataset:
 
 We then slide our window to the next position:
 
-<br />  
+<br />
 
 <div class="img-div" markdown="0">
   <image src="/images/word2vec/skipgram-sliding-window-3.png"/>
   <br />  
 </div>
-<br />  
+<br />
 
 Which generates our next four examples:
 
-<br />  
+<br />
 
 <div class="img-div" markdown="0">
   <image src="/images/word2vec/skipgram-sliding-window-4.png"/>
@@ -459,13 +446,12 @@ Which generates our next four examples:
 
 A couple of positions later, we have a lot more examples:
 
-<br />  
+<br />
 
 <div class="img-div-any-width" markdown="0">
   <image src="/images/word2vec/skipgram-sliding-window-5.png"/>
   <br />  
 </div>
-
 
 ## Revisiting the training process
 
@@ -475,9 +461,7 @@ A couple of positions later, we have a lot more examples:
 
 Now that we have our skipgram training dataset that we extracted from existing running text, let's glance at how we use it to train a basic neural language model that predicts the neighboring word.
 
-
-
-<br />  
+<br />
 
 <div class="img-div-any-width" markdown="0">
   <image src="/images/word2vec/skipgram-language-model-training.png"/>
@@ -486,8 +470,7 @@ Now that we have our skipgram training dataset that we extracted from existing r
 
 We start with the first sample in our dataset. We grab the feature and feed to the untrained model asking it to predict an appropriate neighboring word.
 
-<br />  
-
+<br />
 
 <div class="img-div" markdown="0">
   <image src="/images/word2vec/skipgram-language-model-training-2.png"/>
@@ -496,7 +479,7 @@ We start with the first sample in our dataset. We grab the feature and feed to t
 
 The model conducts the three steps and outputs a prediction vector (with a probability assigned to each word in its vocabulary). Since the model is untrained, it's prediction is sure to be wrong at this stage. But that's okay. We know what word it should have guessed -- the label/output cell in the row we're currently using to train the model:
 
-<br />  
+<br />
 
 <div class="img-div" markdown="0">
   <image src="/images/word2vec/skipgram-language-model-training-3.png"/>
@@ -504,31 +487,31 @@ The model conducts the three steps and outputs a prediction vector (with a proba
   The 'target vector' is one where the target word has the probability 1, and all other words have the probability 0.
 </div>
 
-<br />  
+<br />
 
 How far off was the model? We subtract the two vectors resulting in an error vector:
 
-<br />  
+<br />
 
 <div class="img-div" markdown="0">
   <image src="/images/word2vec/skipgram-language-model-training-4.png"/>
   <br />  
 </div>
 
-<br />  
+<br />
 
 This error vector can now be used to update the model so the next time, it's a little more likely to guess <code class="plain_code mdc-text-pink-500">thou</code> when it gets <code class="plain_code mdc-text-green-500">not</code> as input.
 
-<br />  
+<br />
 
 <div class="img-div" markdown="0">
   <image src="/images/word2vec/skipgram-language-model-training-5.png"/>
   <br />  
 </div>
 
-<br />  
+<br />
 
-And that concludes the first step of the training. We proceed to do the same process with the next sample in our dataset, and then the next, until we've covered all the samples in the dataset. That concludes one *epoch* of training. We do it over again for a number of epochs, and then we'd have our trained model and we can extract the embedding matrix from it and use it for any other application.
+And that concludes the first step of the training. We proceed to do the same process with the next sample in our dataset, and then the next, until we've covered all the samples in the dataset. That concludes one _epoch_ of training. We do it over again for a number of epochs, and then we'd have our trained model and we can extract the embedding matrix from it and use it for any other application.
 
 While this extends our understanding of the process, it's still not how word2vec is actually trained. We're missing a couple of key ideas.
 
@@ -539,14 +522,14 @@ While this extends our understanding of the process, it's still not how word2vec
 </blockquote>
 
 Recall the three steps of how this neural language model calculates its prediction:
-<br />  
+<br />
 
 <div class="img-div" markdown="0">
   <image src="/images/word2vec/language-model-expensive.png"/>
   <br />  
 </div>
 
-<br />  
+<br />
 
 The third step is very expensive from a computational point of view -- especially knowing that we will do it once for every training sample in our dataset (easily tens of millions of times). We need to do something to improve performance.
 
@@ -564,7 +547,6 @@ We'll focus on step 1. in this post as we're focusing on embeddings. To generate
 
 And switch it to a model that takes the input and output word, and outputs a score indicating if they're neighbors or not (0 for "not neighbors", 1 for "neighbors").
 
-
 <div class="img-div-any-width" markdown="0">
   <image src="/images/word2vec/are-the-words-neighbors.png "/>
   <br />  
@@ -574,27 +556,25 @@ This simple switch changes the model we need from a neural network, to a logisti
 
 This switch requires we switch the structure of our dataset -- the label is now a new column with values 0 or 1. They will be all 1 since all the words we added are neighbors.
 
-<br />  
+<br />
 
 <div class="img-div" markdown="0">
   <image src="/images/word2vec/word2vec-training-dataset.png "/>
   <br />  
 </div>
 
-<br />  
+<br />
 
 This can now be computed at blazing speed -- processing millions of examples in minutes. But there's one loophole we need to close. If all of our examples are positive (target: 1), we open ourself to the possibility of a smartass model that always returns 1 -- achieving 100% accuracy, but learning nothing and generating garbage embeddings.
-
 
 <div class="img-div" markdown="0">
   <image src="/images/word2vec/word2vec-smartass-model.png "/>
   <br />  
 </div>
 
-To address this, we need to introduce *negative samples* to our dataset -- samples of words that are not neighbors.  Our model needs to return 0 for those samples. Now that's a challenge that the model has to work hard to solve -- but still at blazing fast speed.
+To address this, we need to introduce _negative samples_ to our dataset -- samples of words that are not neighbors. Our model needs to return 0 for those samples. Now that's a challenge that the model has to work hard to solve -- but still at blazing fast speed.
 
-
-<br />  
+<br />
 
 <div class="img-div" markdown="0">
   <image src="/images/word2vec/word2vec-negative-sampling.png "/>
@@ -604,8 +584,7 @@ To address this, we need to introduce *negative samples* to our dataset -- sampl
 
 But what do we fill in as output words? We randomly sample words from our vocabulary
 
-<br />  
-
+<br />
 
 <div class="img-div" markdown="0">
   <image src="/images/word2vec/word2vec-negative-sampling-2.png "/>
@@ -622,8 +601,6 @@ We have now covered two of the central ideas in word2vec: as a pair, they're cal
   <image src="/images/word2vec/skipgram-with-negative-sampling.png "/>
   <br />  
 </div>
-
-
 
 # Word2vec Training Process
 
@@ -644,7 +621,6 @@ At the start of the training phase, we create two matrices -- an <code class="pl
 
 At the start of the training process, we initialize these matrices with random values. Then we start the training process. In each training step, we take one positive example and its associated negative examples. Let's take our first group:
 
-
 <div class="img-div-any-width" markdown="0">
   <image src="/images/word2vec/word2vec-training-example.png "/>
   <br />  
@@ -659,14 +635,12 @@ Now we have four words: the input word <code class="plain_code mdc-text-green-50
 
 Then, we take the dot product of the input embedding with each of the context embeddings. In each case, that would result in a number, that number indicates the similarity of the input and context embeddings
 
-
 <div class="img-div-any-width" markdown="0">
   <image src="/images/word2vec/word2vec-training-dot-product.png "/>
   <br />  
 </div>
 
 Now we need a way to turn these scores into something that looks like probabilities -- we need them to all be positive and have values between zero and one. This is a great task for [sigmoid](https://jalammar.github.io/feedforward-neural-networks-visual-interactive/#sigmoid-visualization), the [logistic operation](https://en.wikipedia.org/wiki/Logistic_function).
-
 
 <div class="img-div-any-width" markdown="0">
   <image src="/images/word2vec/word2vec-training-dot-product-sigmoid.png "/>
@@ -676,7 +650,6 @@ Now we need a way to turn these scores into something that looks like probabilit
 And we can now treat the output of the sigmoid operations as the model's output for these examples. You can see that <code class="plain_code mdc-text-purple-500">taco</code> has the highest score and <code class="plain_code mdc-text-purple-500">aaron</code> still has the lowest score both before and after the sigmoid operations.
 
 Now that the untrained model has made a prediction, and seeing as though we have an actual target label to compare against, let's calculate how much error is in the model's prediction. To do that, we just subtract the sigmoid scores from the target labels.
-
 
 <div class="img-div-any-width" markdown="0">
   <image src="/images/word2vec/word2vec-training-error.png "/>
@@ -703,6 +676,7 @@ This concludes the training step. We emerge from it with slightly better embeddi
 The embeddings continue to be improved while we cycle through our entire dataset for a number of times. We can then stop the training process, discard the <code class="plain_code mdc-text-purple-500">Context</code> matrix, and use the <code class="plain_code mdc-text-green-500">Embeddings</code> matrix as our pre-trained embeddings for the next task.
 
 # Window Size and Number of Negative Samples
+
 Two key hyperparameters in the word2vec training process are the window size and the number of negative samples.
 
 <div class="img-div" markdown="0">
@@ -710,8 +684,7 @@ Two key hyperparameters in the word2vec training process are the window size and
   <br />  
 </div>
 
-Different tasks are served better by different window sizes. One [heuristic](https://youtu.be/tAxrlAVw-Tk?t=648) is that smaller window sizes (2-15) lead to embeddings where high similarity scores between two embeddings indicates that the words are *interchangeable* (notice that antonyms are often interchangable if we're only looking at their surrounding words -- e.g. *good* and *bad* often appear in similar contexts). Larger window sizes (15-50, or even more) lead to embeddings where similarity is more indicative of *relatedness* of the words. In practice, you'll often have to provide [annotations](https://youtu.be/ao52o9l6KGw?t=287) that guide the embedding process leading to a useful similarity sense for your task. The Gensim default window size is 5 (two words before and two words after the input word, in addition to the input word itself).
-
+Different tasks are served better by different window sizes. One [heuristic](https://youtu.be/tAxrlAVw-Tk?t=648) is that smaller window sizes (2-15) lead to embeddings where high similarity scores between two embeddings indicates that the words are _interchangeable_ (notice that antonyms are often interchangable if we're only looking at their surrounding words -- e.g. _good_ and _bad_ often appear in similar contexts). Larger window sizes (15-50, or even more) lead to embeddings where similarity is more indicative of _relatedness_ of the words. In practice, you'll often have to provide [annotations](https://youtu.be/ao52o9l6KGw?t=287) that guide the embedding process leading to a useful similarity sense for your task. The Gensim default window size is 5 (two words before and two words after the input word, in addition to the input word itself).
 
 <div class="img-div" markdown="0">
   <image src="/images/word2vec/word2vec-negative-samples.png "/>
@@ -729,19 +702,19 @@ The number of negative samples is another factor of the training process. The or
 I hope that you now have a sense for word embeddings and the word2vec algorithm. I also hope that now when you read a paper mentioning "skip gram with negative sampling" (SGNS) (like the recommendation system papers at the top), that you have a better sense for these concepts. As always, all feedback is appreciated <a href="https://twitter.com/jalammar">@jalammar</a>.
 
 # References & Further Readings
-* [Distributed Representations of Words and Phrases and their Compositionality](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) [pdf]
-* [Efficient Estimation of Word Representations in Vector Space](https://arxiv.org/pdf/1301.3781.pdf) [pdf]
-* [A Neural Probabilistic Language Model](http://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf) [pdf]
-* [Speech and Language Processing](https://web.stanford.edu/~jurafsky/slp3/) by Dan Jurafsky and James H. Martin is a leading resource for NLP. Word2vec is tackled in Chapter 6.
-* [Neural Network Methods in Natural Language Processing](https://www.amazon.com/Language-Processing-Synthesis-Lectures-Technologies/dp/1627052984) by [Yoav Goldberg](https://twitter.com/yoavgo) is a great read for neural NLP topics.
-* [Chris McCormick](http://mccormickml.com/) has written some great blog posts about Word2vec. He also just released [The Inner Workings of word2vec](https://www.preview.nearist.ai/paid-ebook-and-tutorial), an E-book focused on the internals of word2vec.
-* Want to read the code? Here are two options:
-  * Gensim's [python implementation](https://github.com/RaRe-Technologies/gensim/blob/develop/gensim/models/word2vec.py) of word2vec
-  * Mikolov's original [implementation in C](https://github.com/tmikolov/word2vec/blob/master/word2vec.c) -- better yet, this [version with detailed comments](https://github.com/chrisjmccormick/word2vec_commented/blob/master/word2vec.c) from Chris McCormick.
-* [Evaluating distributional models of compositional semantics](http://sro.sussex.ac.uk/id/eprint/61062/1/Batchkarov,%20Miroslav%20Manov.pdf)
-* [On word embeddings](http://ruder.io/word-embeddings-1/index.html), [part 2](http://ruder.io/word-embeddings-softmax/)
-* [Dune](https://www.amazon.com/Dune-Frank-Herbert/dp/0441172717/)
 
+- [Distributed Representations of Words and Phrases and their Compositionality](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) [pdf]
+- [Efficient Estimation of Word Representations in Vector Space](https://arxiv.org/pdf/1301.3781.pdf) [pdf]
+- [A Neural Probabilistic Language Model](http://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf) [pdf]
+- [Speech and Language Processing](https://web.stanford.edu/~jurafsky/slp3/) by Dan Jurafsky and James H. Martin is a leading resource for NLP. Word2vec is tackled in Chapter 6.
+- [Neural Network Methods in Natural Language Processing](https://www.amazon.com/Language-Processing-Synthesis-Lectures-Technologies/dp/1627052984) by [Yoav Goldberg](https://twitter.com/yoavgo) is a great read for neural NLP topics.
+- [Chris McCormick](http://mccormickml.com/) has written some great blog posts about Word2vec. He also just released [The Inner Workings of word2vec](https://www.preview.nearist.ai/paid-ebook-and-tutorial), an E-book focused on the internals of word2vec.
+- Want to read the code? Here are two options:
+  - Gensim's [python implementation](https://github.com/RaRe-Technologies/gensim/blob/develop/gensim/models/word2vec.py) of word2vec
+  - Mikolov's original [implementation in C](https://github.com/tmikolov/word2vec/blob/master/word2vec.c) -- better yet, this [version with detailed comments](https://github.com/chrisjmccormick/word2vec_commented/blob/master/word2vec.c) from Chris McCormick.
+- [Evaluating distributional models of compositional semantics](http://sro.sussex.ac.uk/id/eprint/61062/1/Batchkarov,%20Miroslav%20Manov.pdf)
+- [On word embeddings](http://ruder.io/word-embeddings-1/index.html), [part 2](http://ruder.io/word-embeddings-softmax/)
+- [Dune](https://www.amazon.com/Dune-Frank-Herbert/dp/0441172717/)
 
 <br />
 <br />

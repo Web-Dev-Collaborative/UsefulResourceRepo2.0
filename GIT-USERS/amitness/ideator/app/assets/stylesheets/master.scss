@@ -1,13 +1,14 @@
-$primary-font: 'Open Sans', sans-serif;  
-$secondary-font: 'Dosis', sans-serif;  
-$main-blue: #337ab7; 
+$primary-font: "Open Sans", sans-serif;
+$secondary-font: "Dosis", sans-serif;
+$main-blue: #337ab7;
 $footer-height: 45px;
 
 .navbar-default {
   font-family: $secondary-font;
 }
 
-html, body {
+html,
+body {
   font-family: $primary-font;
 }
 
@@ -17,7 +18,7 @@ html, body {
 }
 
 .navbar-default .navbar-brand {
-  font-weight: 100; 
+  font-weight: 100;
   font-size: 30px;
   letter-spacing: 2px;
   color: $main-blue;
@@ -38,7 +39,6 @@ body {
   /* Pad bottom by footer height */
   padding: 0 0 $footer-height;
 }
-
 
 .footer {
   height: $footer-height;

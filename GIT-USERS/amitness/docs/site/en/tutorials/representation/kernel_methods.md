@@ -17,9 +17,9 @@ already have at least basic knowledge of kernel methods and Support Vector
 Machines (SVMs). If you are new to kernel methods, refer to either of the
 following sources for an introduction:
 
-* If you have a strong mathematical background:
-[Kernel Methods in Machine Learning](https://arxiv.org/pdf/math/0701907.pdf)
-* [Kernel method wikipedia page](https://en.wikipedia.org/wiki/Kernel_method)
+- If you have a strong mathematical background:
+  [Kernel Methods in Machine Learning](https://arxiv.org/pdf/math/0701907.pdf)
+- [Kernel method wikipedia page](https://en.wikipedia.org/wiki/Kernel_method)
 
 Currently, TensorFlow supports explicit kernel mappings for dense features only;
 TensorFlow will provide support for sparse features at a later release.
@@ -30,17 +30,19 @@ If you are not familiar with this API, The [Estimator guide](../../guide/estimat
 is a good place to start. We will use the MNIST dataset. The tutorial consists
 of the following steps:
 
-* Load and prepare MNIST data for classification.
-* Construct a simple linear model, train it, and evaluate it on the eval data.
-* Replace the linear model with a kernelized linear model, re-train, and
-re-evaluate.
+- Load and prepare MNIST data for classification.
+- Construct a simple linear model, train it, and evaluate it on the eval data.
+- Replace the linear model with a kernelized linear model, re-train, and
+  re-evaluate.
 
 ## Load and prepare MNIST data for classification
+
 Run the following utility command to load the MNIST dataset:
 
 ```python
 data = tf.contrib.learn.datasets.mnist.load_mnist()
 ```
+
 The preceding method loads the entire MNIST dataset (containing 70K samples) and
 splits it into train, validation, and test data with 55K, 5K, and 10K samples
 respectively. Each split contains one numpy array for images (with shape
@@ -88,6 +90,7 @@ eval_input_fn = get_input_fn(data.validation, batch_size=5000)
 ```
 
 ## Training a simple linear model
+
 We can now train a linear model over the MNIST dataset. We will use the
 `tf.contrib.learn.LinearClassifier` estimator with 10 classes representing the
 10 digits. The input features form a 784-dimensional dense vector which can
@@ -117,13 +120,14 @@ print('Elapsed time: {} seconds'.format(end - start))
 eval_metrics = estimator.evaluate(input_fn=eval_input_fn, steps=1)
 print(eval_metrics)
 ```
+
 The following table summarizes the results on the eval data.
 
-metric        | value
-:------------ | :------------
-loss          | 0.25 to 0.30
-accuracy      | 92.5%
-training time | ~25 seconds on my machine
+| metric        | value                     |
+| :------------ | :------------------------ |
+| loss          | 0.25 to 0.30              |
+| accuracy      | 92.5%                     |
+| training time | ~25 seconds on my machine |
 
 Note: Metrics will vary depending on various factors.
 
@@ -136,7 +140,6 @@ As an example, the following code constructs a LinearClassifier estimator that
 uses the Follow-The-Regularized-Leader (FTRL) optimization strategy with a
 specific learning rate and L2-regularization.
 
-
 ```python
 optimizer = tf.train.FtrlOptimizer(learning_rate=5.0, l2_regularization_strength=1.0)
 estimator = tf.contrib.learn.LinearClassifier(
@@ -147,6 +150,7 @@ Regardless of the values of the parameters, the maximum accuracy a linear model
 can achieve on this dataset caps at around **93%**.
 
 ## Using explicit kernel mappings with the linear model.
+
 The relatively high error (~7%) of the linear model over MNIST indicates that
 the input data is not linearly separable. We will use explicit kernel mappings
 to reduce the classification error.
@@ -160,8 +164,8 @@ model on the mapped features. This is shown in the following figure:
 <img src="https://www.tensorflow.org/versions/master/images/kernel_mapping.png" />
 </div>
 
-
 ### Technical details
+
 In this example we will use **Random Fourier Features**, introduced in the
 ["Random Features for Large-Scale Kernel Machines"](https://people.eecs.berkeley.edu/~brecht/papers/07.rah.rec.nips.pdf)
 paper by Rahimi and Recht, to map the input data. Random Fourier Features map a
@@ -194,6 +198,7 @@ much higher dimensional space than the original one. See
 for more details.
 
 ### Kernel classifier
+
 `tf.contrib.kernel_methods.KernelLinearClassifier` is a pre-packaged
 `tf.contrib.learn` estimator that combines the power of explicit kernel mappings
 with linear models. Its constructor is almost identical to that of the
@@ -201,7 +206,6 @@ LinearClassifier estimator with the additional option to specify a list of
 explicit kernel mappings to be applied to each feature the classifier uses. The
 following code snippet demonstrates how to replace LinearClassifier with
 KernelLinearClassifier.
-
 
 ```python
 # Specify the feature(s) to be used by the estimator. This is identical to the
@@ -227,6 +231,7 @@ print('Elapsed time: {} seconds'.format(end - start))
 eval_metrics = estimator.evaluate(input_fn=eval_input_fn, steps=1)
 print(eval_metrics)
 ```
+
 The only additional parameter passed to `KernelLinearClassifier` is a dictionary
 from feature_columns to a list of kernel mappings to be applied to the
 corresponding feature column. The following lines instruct the classifier to
@@ -241,6 +246,7 @@ kernel_mappers = {image_column: [kernel_mapper]}
 estimator = tf.contrib.kernel_methods.KernelLinearClassifier(
    n_classes=10, optimizer=optimizer, kernel_mappers=kernel_mappers)
 ```
+
 Notice the `stddev` parameter. This is the standard deviation (\\(\sigma\\)) of
 the approximated RBF kernel and controls the similarity measure used in
 classification. `stddev` is typically determined via hyperparameter tuning.
@@ -249,30 +255,31 @@ The results of running the preceding code are summarized in the following table.
 We can further increase the accuracy by increasing the output dimension of the
 mapping and tuning the standard deviation.
 
-metric        | value
-:------------ | :------------
-loss          | 0.10
-accuracy      | 97%
-training time | ~35 seconds on my machine
-
+| metric        | value                     |
+| :------------ | :------------------------ |
+| loss          | 0.10                      |
+| accuracy      | 97%                       |
+| training time | ~35 seconds on my machine |
 
 ### stddev
+
 The classification quality is very sensitive to the value of stddev. The
 following table shows the accuracy of the classifier on the eval data for
 different values of stddev. The optimal value is stddev=5.0. Notice how too
 small or too high stddev values can dramatically decrease the accuracy of the
 classification.
 
-stddev | eval accuracy
-:----- | :------------
-1.0    | 0.1362
-2.0    | 0.4764
-4.0    | 0.9654
-5.0    | 0.9766
-8.0    | 0.9714
-16.0   | 0.8878
+| stddev | eval accuracy |
+| :----- | :------------ |
+| 1.0    | 0.1362        |
+| 2.0    | 0.4764        |
+| 4.0    | 0.9654        |
+| 5.0    | 0.9766        |
+| 8.0    | 0.9714        |
+| 16.0   | 0.8878        |
 
 ### Output dimension
+
 Intuitively, the larger the output dimension of the mapping, the closer the
 inner product of two mapped vectors approximates the kernel, which typically
 translates to better classification accuracy. Another way to think about this is
@@ -286,18 +293,18 @@ output dimension and the training time, respectively.
 ![image](https://www.tensorflow.org/versions/master/images/acc_vs_outdim.png)
 ![image](https://www.tensorflow.org/versions/master/images/acc-vs-trn_time.png)
 
-
 ## Summary
+
 Explicit kernel mappings combine the predictive power of nonlinear models with
 the scalability of linear models. Unlike traditional dual kernel methods,
 explicit kernel methods can scale to millions or hundreds of millions of
 samples. When using explicit kernel mappings, consider the following tips:
 
-* Random Fourier Features can be particularly effective for datasets with dense
-features.
-* The parameters of the kernel mapping are often data-dependent. Model quality
-can be very sensitive to these parameters. Use hyperparameter tuning to find the
-optimal values.
-* If you have multiple numerical features, concatenate them into a single
-multi-dimensional feature and apply the kernel mapping to the concatenated
-vector.
+- Random Fourier Features can be particularly effective for datasets with dense
+  features.
+- The parameters of the kernel mapping are often data-dependent. Model quality
+  can be very sensitive to these parameters. Use hyperparameter tuning to find the
+  optimal values.
+- If you have multiple numerical features, concatenate them into a single
+  multi-dimensional feature and apply the kernel mapping to the concatenated
+  vector.

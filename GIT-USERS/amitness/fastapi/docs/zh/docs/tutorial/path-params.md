@@ -25,7 +25,7 @@
 在这个例子中，`item_id` 被声明为 `int` 类型。
 
 !!! check
-    这将为你的函数提供编辑器支持，包括错误检查、代码补全等等。
+这将为你的函数提供编辑器支持，包括错误检查、代码补全等等。
 
 ## 数据<abbr title="也被称为：序列化、解析">转换</abbr>
 
@@ -36,7 +36,7 @@
 ```
 
 !!! check
-    注意函数接收（并返回）的值为 3，是一个 Python `int` 值，而不是字符串 `"3"`。
+注意函数接收（并返回）的值为 3，是一个 Python `int` 值，而不是字符串 `"3"`。
 
     所以，**FastAPI** 通过上面的类型声明提供了对请求的自动<abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">"解析"</abbr>。
 
@@ -64,7 +64,7 @@
 如果你提供的是 `float` 而非整数也会出现同样的错误，比如： <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
 !!! check
-    所以，通过同样的 Python 类型声明，**FastAPI** 提供了数据校验功能。
+所以，通过同样的 Python 类型声明，**FastAPI** 提供了数据校验功能。
 
     注意上面的错误同样清楚地指出了校验未通过的具体原因。
 
@@ -77,7 +77,7 @@
 <img src="https://fastapi.tiangolo.com/img/tutorial/path-params/image01.png">
 
 !!! check
-    再一次，还是通过相同的 Python 类型声明，**FastAPI** 为你提供了自动生成的交互式文档（集成 Swagger UI）。
+再一次，还是通过相同的 Python 类型声明，**FastAPI** 为你提供了自动生成的交互式文档（集成 Swagger UI）。
 
     注意这里的路径参数被声明为一个整数。
 
@@ -108,6 +108,7 @@
 然后，你还可以使用路径 `/users/{user_id}` 来通过用户 ID 获取关于特定用户的数据。
 
 由于*路径操作*是按顺序依次运行的，你需要确保路径 `/users/me` 声明在路径 `/users/{user_id}`之前：
+
 ```Python hl_lines="6  11"
 {!../../../docs_src/path_params/tutorial003.py!}
 ```
@@ -131,10 +132,10 @@
 ```
 
 !!! info
-    <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">枚举（或 enums）</a>从 3.4 版本起在 Python 中可用。
+<a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">枚举（或 enums）</a>从 3.4 版本起在 Python 中可用。
 
 !!! tip
-    如果你想知道，"AlexNet"、"ResNet" 和 "LeNet" 只是机器学习中的<abbr title="技术上来说是深度学习模型架构">模型</abbr>名称。
+如果你想知道，"AlexNet"、"ResNet" 和 "LeNet" 只是机器学习中的<abbr title="技术上来说是深度学习模型架构">模型</abbr>名称。
 
 ### 声明*路径参数*
 
@@ -150,7 +151,7 @@
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/path-params/image03.png">
 
-### 使用 Python *枚举类型*
+### 使用 Python _枚举类型_
 
 *路径参数*的值将是一个*枚举成员*。
 
@@ -171,7 +172,7 @@
 ```
 
 !!! tip
-    你也可以通过 `ModelName.lenet.value` 来获取值 `"lenet"`。
+你也可以通过 `ModelName.lenet.value` 来获取值 `"lenet"`。
 
 #### 返回*枚举成员*
 
@@ -189,7 +190,7 @@
 
 但是你需要 `file_path` 自身也包含*路径*，比如 `home/johndoe/myfile.txt`。
 
-因此，该文件的URL将类似于这样：`/files/home/johndoe/myfile.txt`。
+因此，该文件的 URL 将类似于这样：`/files/home/johndoe/myfile.txt`。
 
 ### OpenAPI 支持
 
@@ -216,7 +217,7 @@ OpenAPI 不支持任何方式去声明*路径参数*以在其内部包含*路径
 ```
 
 !!! tip
-    你可能会需要参数包含 `/home/johndoe/myfile.txt`，以斜杠（`/`）开头。
+你可能会需要参数包含 `/home/johndoe/myfile.txt`，以斜杠（`/`）开头。
 
     在这种情况下，URL 将会是 `/files//home/johndoe/myfile.txt`，在`files` 和 `home` 之间有一个双斜杠（`//`）。
 
@@ -224,10 +225,10 @@ OpenAPI 不支持任何方式去声明*路径参数*以在其内部包含*路径
 
 使用 **FastAPI**，通过简短、直观和标准的 Python 类型声明，你将获得：
 
-* 编辑器支持：错误检查，代码补全等
-* 数据 "<abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">解析</abbr>"
-* 数据校验
-* API 标注和自动生成的文档
+- 编辑器支持：错误检查，代码补全等
+- 数据 "<abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">解析</abbr>"
+- 数据校验
+- API 标注和自动生成的文档
 
 而且你只需要声明一次即可。
 

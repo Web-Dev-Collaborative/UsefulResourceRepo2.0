@@ -11,7 +11,7 @@
 ```
 
 !!! warning
-    注意，`Field` 是直接从 `pydantic` 导入的，而不是像其他的（`Query`，`Path`，`Body` 等）都从 `fastapi` 导入。
+注意，`Field` 是直接从 `pydantic` 导入的，而不是像其他的（`Query`，`Path`，`Body` 等）都从 `fastapi` 导入。
 
 ## 声明模型属性
 
@@ -24,7 +24,7 @@
 `Field` 的工作方式和 `Query`、`Path` 和 `Body` 相同，包括它们的参数等等也完全相同。
 
 !!! note "技术细节"
-    实际上，`Query`、`Path` 和其他你将在之后看到的类，创建的是由一个共同的 `Params` 类派生的子类的对象，该共同类本身又是 Pydantic 的 `FieldInfo` 类的子类。
+实际上，`Query`、`Path` 和其他你将在之后看到的类，创建的是由一个共同的 `Params` 类派生的子类的对象，该共同类本身又是 Pydantic 的 `FieldInfo` 类的子类。
 
     Pydantic 的 `Field` 也会返回一个 `FieldInfo` 的实例。
 
@@ -33,7 +33,7 @@
     请记住当你从 `fastapi` 导入 `Query`、`Path` 等对象时，他们实际上是返回特殊类的函数。
 
 !!! tip
-    注意每个模型属性如何使用类型、默认值和 `Field` 在代码结构上和*路径操作函数*的参数是相同的，区别是用 `Field` 替换`Path`、`Query` 和 `Body`。
+注意每个模型属性如何使用类型、默认值和 `Field` 在代码结构上和*路径操作函数*的参数是相同的，区别是用 `Field` 替换`Path`、`Query` 和 `Body`。
 
 ## 添加额外信息
 

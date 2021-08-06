@@ -18,7 +18,7 @@ let vueGlobalData;
 function executeScript() {
   const script = dom
     .findAll('.markdown-section>script')
-    .filter(s => !/template/.test(s.type))[0];
+    .filter((s) => !/template/.test(s.type))[0];
   if (!script) {
     return false;
   }
@@ -50,7 +50,7 @@ function renderMain(html) {
     window.Vue.version &&
     Number(window.Vue.version.charAt(0));
 
-  const isMountedVue = elm => {
+  const isMountedVue = (elm) => {
     const isVue2 = Boolean(elm.__vue__ && elm.__vue__._isVue);
     const isVue3 = Boolean(elm._vnode && elm._vnode.__v_skip);
 
@@ -64,7 +64,7 @@ function renderMain(html) {
   if ('Vue' in window) {
     const mountedElms = dom
       .findAll('.markdown-section > *')
-      .filter(elm => isMountedVue(elm));
+      .filter((elm) => isMountedVue(elm));
 
     // Destroy/unmount existing Vue instances
     for (const mountedElm of mountedElms) {
@@ -96,7 +96,7 @@ function renderMain(html) {
 
     // Register global vueComponents
     if (vueVersion === 2 && vueComponentNames.length) {
-      vueComponentNames.forEach(name => {
+      vueComponentNames.forEach((name) => {
         const isNotRegistered = !window.Vue.options.components[name];
 
         if (isNotRegistered) {
@@ -117,7 +117,7 @@ function renderMain(html) {
     // vueMounts
     vueMountData.push(
       ...Object.keys(docsifyConfig.vueMounts || {})
-        .map(cssSelector => [
+        .map((cssSelector) => [
           dom.find(markdownElm, cssSelector),
           docsifyConfig.vueMounts[cssSelector],
         ])
@@ -151,9 +151,9 @@ function renderMain(html) {
         ...dom
           .findAll('.markdown-section > *')
           // Remove duplicates
-          .filter(elm => !vueMountData.some(([e, c]) => e === elm))
+          .filter((elm) => !vueMountData.some(([e, c]) => e === elm))
           // Detect Vue content
-          .filter(elm => {
+          .filter((elm) => {
             const isVueMount =
               // is a component
               elm.tagName.toLowerCase() in
@@ -167,7 +167,7 @@ function renderMain(html) {
 
             return isVueMount;
           })
-          .map(elm => {
+          .map((elm) => {
             // Clone global configuration
             const vueConfig = merge({}, docsifyConfig.vueGlobalOptions || {});
 
@@ -175,7 +175,7 @@ function renderMain(html) {
             // This provides a global store for all Vue instances that receive
             // vueGlobalOptions as their configuration.
             if (vueGlobalData) {
-              vueConfig.data = function() {
+              vueConfig.data = function () {
                 return vueGlobalData;
               };
             }
@@ -206,7 +206,7 @@ function renderMain(html) {
           const app = window.Vue.createApp(vueConfig);
 
           // Register global vueComponents
-          vueComponentNames.forEach(name => {
+          vueComponentNames.forEach((name) => {
             const config = docsifyConfig.vueComponents[name];
 
             app.component(name, config);
@@ -232,7 +232,7 @@ function renderNameLink(vm) {
     el.setAttribute('href', nameLink);
   } else if (typeof nameLink === 'object') {
     const match = Object.keys(nameLink).filter(
-      key => path.indexOf(key) > -1
+      (key) => path.indexOf(key) > -1
     )[0];
 
     el.setAttribute('href', nameLink[match]);
@@ -240,14 +240,14 @@ function renderNameLink(vm) {
 }
 
 export function renderMixin(proto) {
-  proto._renderTo = function(el, content, replace) {
+  proto._renderTo = function (el, content, replace) {
     const node = dom.getNode(el);
     if (node) {
       node[replace ? 'outerHTML' : 'innerHTML'] = content;
     }
   };
 
-  proto._renderSidebar = function(text) {
+  proto._renderSidebar = function (text) {
     const { maxLevel, subMaxLevel, loadSidebar, hideSidebar } = this.config;
 
     if (hideSidebar) {
@@ -255,7 +255,7 @@ export function renderMixin(proto) {
       [
         document.querySelector('aside.sidebar'),
         document.querySelector('button.sidebar-toggle'),
-      ].forEach(node => node.parentNode.removeChild(node));
+      ].forEach((node) => node.parentNode.removeChild(node));
       document.querySelector('section.content').style.right = 'unset';
       document.querySelector('section.content').style.left = 'unset';
       document.querySelector('section.content').style.position = 'relative';
@@ -277,7 +277,7 @@ export function renderMixin(proto) {
     this._bindEventOnRendered(activeEl);
   };
 
-  proto._bindEventOnRendered = function(activeEl) {
+  proto._bindEventOnRendered = function (activeEl) {
     const { autoHeader } = this.config;
 
     scrollActiveSidebar(this.router);
@@ -293,26 +293,26 @@ export function renderMixin(proto) {
     }
   };
 
-  proto._renderNav = function(text) {
+  proto._renderNav = function (text) {
     text && this._renderTo('nav', this.compiler.compile(text));
     if (this.config.loadNavbar) {
       getAndActive(this.router, 'nav');
     }
   };
 
-  proto._renderMain = function(text, opt = {}, next) {
+  proto._renderMain = function (text, opt = {}, next) {
     if (!text) {
       return renderMain.call(this, text);
     }
 
-    callHook(this, 'beforeEach', text, result => {
+    callHook(this, 'beforeEach', text, (result) => {
       let html;
       const callback = () => {
         if (opt.updatedAt) {
           html = formatUpdated(html, opt.updatedAt, this.config.formatUpdated);
         }
 
-        callHook(this, 'afterEach', html, hookData =>
+        callHook(this, 'afterEach', html, (hookData) =>
           renderMain.call(this, hookData)
         );
       };
@@ -327,7 +327,7 @@ export function renderMixin(proto) {
             compiler: this.compiler,
             raw: result,
           },
-          tokens => {
+          (tokens) => {
             html = this.compiler.compile(tokens);
             html = this.isRemoteUrl
               ? DOMPurify.sanitize(html, { ADD_TAGS: ['script'] })
@@ -340,7 +340,7 @@ export function renderMixin(proto) {
     });
   };
 
-  proto._renderCover = function(text, coverOnly) {
+  proto._renderCover = function (text, coverOnly) {
     const el = dom.getNode('.cover');
 
     dom.toggleClass(
@@ -384,7 +384,7 @@ export function renderMixin(proto) {
     sticky();
   };
 
-  proto._updateRender = function() {
+  proto._updateRender = function () {
     // Render name link
     renderNameLink(this);
   };

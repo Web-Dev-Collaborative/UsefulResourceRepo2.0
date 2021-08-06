@@ -25,7 +25,7 @@ $ uvicorn main:app --reload
 </div>
 
 !!! note
-    The command `uvicorn main:app` refers to:
+The command `uvicorn main:app` refers to:
 
     * `main`: the file `main.py` (the Python "module").
     * `app`: the object created inside of `main.py` with the line `app = FastAPI()`.
@@ -137,7 +137,7 @@ You could also use it to generate code automatically, for clients that communica
 `FastAPI` is a Python class that provides all the functionality for your API.
 
 !!! note "Technical Details"
-    `FastAPI` is a class that inherits directly from `Starlette`.
+`FastAPI` is a class that inherits directly from `Starlette`.
 
     You can use all the <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> functionality with `FastAPI` too.
 
@@ -181,7 +181,7 @@ $ uvicorn main:my_awesome_api --reload
 
 </div>
 
-### Step 3: create a *path operation*
+### Step 3: create a _path operation_
 
 #### Path
 
@@ -200,7 +200,7 @@ https://example.com/items/foo
 ```
 
 !!! info
-    A "path" is also commonly called an "endpoint" or a "route".
+A "path" is also commonly called an "endpoint" or a "route".
 
 While building an API, the "path" is the main way to separate "concerns" and "resources".
 
@@ -210,17 +210,17 @@ While building an API, the "path" is the main way to separate "concerns" and "re
 
 One of:
 
-* `POST`
-* `GET`
-* `PUT`
-* `DELETE`
+- `POST`
+- `GET`
+- `PUT`
+- `DELETE`
 
 ...and the more exotic ones:
 
-* `OPTIONS`
-* `HEAD`
-* `PATCH`
-* `TRACE`
+- `OPTIONS`
+- `HEAD`
+- `PATCH`
+- `TRACE`
 
 In the HTTP protocol, you can communicate to each path using one (or more) of these "methods".
 
@@ -230,16 +230,16 @@ When building APIs, you normally use these specific HTTP methods to perform a sp
 
 Normally you use:
 
-* `POST`: to create data.
-* `GET`: to read data.
-* `PUT`: to update data.
-* `DELETE`: to delete data.
+- `POST`: to create data.
+- `GET`: to read data.
+- `PUT`: to update data.
+- `DELETE`: to delete data.
 
 So, in OpenAPI, each of the HTTP methods is called an "operation".
 
 We are going to call them "**operations**" too.
 
-#### Define a *path operation decorator*
+#### Define a _path operation decorator_
 
 ```Python hl_lines="6"
 {!../../../docs_src/first_steps/tutorial001.py!}
@@ -247,11 +247,11 @@ We are going to call them "**operations**" too.
 
 The `@app.get("/")` tells **FastAPI** that the function right below is in charge of handling requests that go to:
 
-* the path `/`
-* using a <abbr title="an HTTP GET method"><code>get</code> operation</abbr>
+- the path `/`
+- using a <abbr title="an HTTP GET method"><code>get</code> operation</abbr>
 
 !!! info "`@decorator` Info"
-    That `@something` syntax in Python is called a "decorator".
+That `@something` syntax in Python is called a "decorator".
 
     You put it on top of a function. Like a pretty decorative hat (I guess that's where the term came from).
 
@@ -263,19 +263,19 @@ The `@app.get("/")` tells **FastAPI** that the function right below is in charge
 
 You can also use the other operations:
 
-* `@app.post()`
-* `@app.put()`
-* `@app.delete()`
+- `@app.post()`
+- `@app.put()`
+- `@app.delete()`
 
 And the more exotic ones:
 
-* `@app.options()`
-* `@app.head()`
-* `@app.patch()`
-* `@app.trace()`
+- `@app.options()`
+- `@app.head()`
+- `@app.patch()`
+- `@app.trace()`
 
 !!! tip
-    You are free to use each operation (HTTP method) as you wish.
+You are free to use each operation (HTTP method) as you wish.
 
     **FastAPI** doesn't enforce any specific meaning.
 
@@ -287,9 +287,9 @@ And the more exotic ones:
 
 This is our "**path operation function**":
 
-* **path**: is `/`.
-* **operation**: is `get`.
-* **function**: is the function below the "decorator" (below `@app.get("/")`).
+- **path**: is `/`.
+- **operation**: is `get`.
+- **function**: is the function below the "decorator" (below `@app.get("/")`).
 
 ```Python hl_lines="7"
 {!../../../docs_src/first_steps/tutorial001.py!}
@@ -310,7 +310,7 @@ You could also define it as a normal function instead of `async def`:
 ```
 
 !!! note
-    If you don't know the difference, check the [Async: *"In a hurry?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+If you don't know the difference, check the [Async: _"In a hurry?"_](../async.md#in-a-hurry){.internal-link target=\_blank}.
 
 ### Step 5: return the content
 
@@ -326,8 +326,8 @@ There are many other objects and models that will be automatically converted to 
 
 ## Recap
 
-* Import `FastAPI`.
-* Create an `app` instance.
-* Write a **path operation decorator** (like `@app.get("/")`).
-* Write a **path operation function** (like `def root(): ...` above).
-* Run the development server (like `uvicorn main:app --reload`).
+- Import `FastAPI`.
+- Create an `app` instance.
+- Write a **path operation decorator** (like `@app.get("/")`).
+- Write a **path operation function** (like `def root(): ...` above).
+- Run the development server (like `uvicorn main:app --reload`).

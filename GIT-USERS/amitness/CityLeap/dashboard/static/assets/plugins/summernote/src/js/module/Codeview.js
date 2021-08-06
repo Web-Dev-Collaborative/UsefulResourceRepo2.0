@@ -1,12 +1,8 @@
-define([
-  'summernote/core/agent',
-  'summernote/core/dom'
-], function (agent, dom) {
-
+define(["summernote/core/agent", "summernote/core/dom"], function (agent, dom) {
   var CodeMirror;
   if (agent.hasCodeMirror) {
     if (agent.isSupportAmd) {
-      require(['CodeMirror'], function (cm) {
+      require(["CodeMirror"], function (cm) {
         CodeMirror = cm;
       });
     } else {
@@ -18,11 +14,10 @@ define([
    * @class Codeview
    */
   var Codeview = function (handler) {
-
     this.sync = function (layoutInfo) {
-      var isCodeview = handler.invoke('codeview.isActivated', layoutInfo);
+      var isCodeview = handler.invoke("codeview.isActivated", layoutInfo);
       if (isCodeview && agent.hasCodeMirror) {
-        layoutInfo.codable().data('cmEditor').save();
+        layoutInfo.codable().data("cmEditor").save();
       }
     };
 
@@ -32,7 +27,7 @@ define([
      */
     this.isActivated = function (layoutInfo) {
       var $editor = layoutInfo.editor();
-      return $editor.hasClass('codeview');
+      return $editor.hasClass("codeview");
     };
 
     /**
@@ -55,22 +50,22 @@ define([
      */
     this.activate = function (layoutInfo) {
       var $editor = layoutInfo.editor(),
-          $toolbar = layoutInfo.toolbar(),
-          $editable = layoutInfo.editable(),
-          $codable = layoutInfo.codable(),
-          $popover = layoutInfo.popover(),
-          $handle = layoutInfo.handle();
+        $toolbar = layoutInfo.toolbar(),
+        $editable = layoutInfo.editable(),
+        $codable = layoutInfo.codable(),
+        $popover = layoutInfo.popover(),
+        $handle = layoutInfo.handle();
 
-      var options = $editor.data('options');
+      var options = $editor.data("options");
 
       $codable.val(dom.html($editable, options.prettifyHtml));
       $codable.height($editable.height());
 
-      handler.invoke('toolbar.updateCodeview', $toolbar, true);
-      handler.invoke('popover.hide', $popover);
-      handler.invoke('handle.hide', $handle);
+      handler.invoke("toolbar.updateCodeview", $toolbar, true);
+      handler.invoke("popover.hide", $popover);
+      handler.invoke("handle.hide", $handle);
 
-      $editor.addClass('codeview');
+      $editor.addClass("codeview");
 
       $codable.focus();
 
@@ -82,14 +77,14 @@ define([
         if (options.codemirror.tern) {
           var server = new CodeMirror.TernServer(options.codemirror.tern);
           cmEditor.ternServer = server;
-          cmEditor.on('cursorActivity', function (cm) {
+          cmEditor.on("cursorActivity", function (cm) {
             server.updateArgHints(cm);
           });
         }
 
         // CodeMirror hasn't Padding.
         cmEditor.setSize(null, $editable.outerHeight());
-        $codable.data('cmEditor', cmEditor);
+        $codable.data("cmEditor", cmEditor);
       }
     };
 
@@ -100,16 +95,16 @@ define([
      */
     this.deactivate = function (layoutInfo) {
       var $holder = layoutInfo.holder(),
-          $editor = layoutInfo.editor(),
-          $toolbar = layoutInfo.toolbar(),
-          $editable = layoutInfo.editable(),
-          $codable = layoutInfo.codable();
+        $editor = layoutInfo.editor(),
+        $toolbar = layoutInfo.toolbar(),
+        $editable = layoutInfo.editable(),
+        $codable = layoutInfo.codable();
 
-      var options = $editor.data('options');
+      var options = $editor.data("options");
 
       // deactivate CodeMirror as codable
       if (agent.hasCodeMirror) {
-        var cmEditor = $codable.data('cmEditor');
+        var cmEditor = $codable.data("cmEditor");
         $codable.val(cmEditor.getValue());
         cmEditor.toTextArea();
       }
@@ -118,18 +113,20 @@ define([
       var isChange = $editable.html() !== value;
 
       $editable.html(value);
-      $editable.height(options.height ? $codable.height() : 'auto');
-      $editor.removeClass('codeview');
+      $editable.height(options.height ? $codable.height() : "auto");
+      $editor.removeClass("codeview");
 
       if (isChange) {
         handler.bindCustomEvent(
-          $holder, $editable.data('callbacks'), 'change'
+          $holder,
+          $editable.data("callbacks"),
+          "change"
         )($editable.html(), $editable);
       }
 
       $editable.focus();
 
-      handler.invoke('toolbar.updateCodeview', $toolbar, false);
+      handler.invoke("toolbar.updateCodeview", $toolbar, false);
     };
   };
 

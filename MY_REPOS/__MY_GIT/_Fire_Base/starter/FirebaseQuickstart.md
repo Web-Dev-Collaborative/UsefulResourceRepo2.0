@@ -6,12 +6,11 @@
 
 The following lesson is a step-by-step breakdown of the basics of Firebase intended for both beginners and experienced users. My goal is to give you a foundation of knowledge that every Firebase developer should know…
 
-*   Use the Firebase CLI Tools to manage and deploy an app. (hosting)
-*   Setup basic user auth with Google Sign-In. (authentication)
-*   Create Firestore database records and listen to changes in realtime. (firestore)
+- Use the Firebase CLI Tools to manage and deploy an app. (hosting)
+- Setup basic user auth with Google Sign-In. (authentication)
+- Create Firestore database records and listen to changes in realtime. (firestore)
 
-Getting Started
----------------
+## Getting Started
 
 ### Create a Firebase Project
 
@@ -37,33 +36,32 @@ In the `<head>` of the HTML file, paste the snippet. Also, include script tags f
 
 💡 In VS Code you can type the `!` followed by tab to quickly generate HTML boilerplate.
 
-file\_type\_html index.html
+file_type_html index.html
 
     <head>
       <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
       <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
       <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
-    
+
       <script>
         var firebaseConfig = {
           // TODO: Add your our config here
         };
         firebase.initializeApp(firebaseConfig);
       </script>
-    
+
       <script src="app.js" defer></script>
     </head>
-    
+
     <body>
-    
+
         <h1>My Awesome App 🔥</h1>
-    
+
     </body>
-    
 
 In your JavaScript code, you can now reference `firebase`as a global variable. Log it out to make sure everything works.
 
-file\_type\_js\_official app.js
+file_type_js_official app.js
 
 ### Firebase CLI Tools
 
@@ -72,13 +70,12 @@ Now we’re ready to connect our local code to the cloud via the Firebase Tools 
 command line
 
     npm install -g firebase-tools
-    
+
     firebase login
-    
+
     firebase init
-    
+
     firebase serve
-    
 
 When initializing the project, select _hosting_ and and _emulators_. Select YES for single page application, then choose the defaults for all other options. After running the serve command, you should see your site on `http://localhost:5000` in the browser.
 
@@ -92,14 +89,13 @@ It’s very satisfying to launch your stuff to the Internet - Firebase makes dep
 
 command line
 
-![And we&rsquo;re live](chrome-extension://cjedbglnccaioiolemnfhjncicchinao/img/hosting-deploy.png)
+![And we’re live](chrome-extension://cjedbglnccaioiolemnfhjncicchinao/img/hosting-deploy.png)
 
 And we’re live
 
 Your app is now available on the web at the domains listed in the _hosting_ console.
 
-User Authentication
--------------------
+## User Authentication
 
 When starting with a new project, most of my focus goes into the user authentication flow. Many critical features need a signed-in user, so it’s a logical place to start. Firebase Auth provides a variety of ways to get users signed-in, but let’s stick with the easiest option - Google Sign-in.
 
@@ -117,51 +113,48 @@ Enable Google Sign-in
 
 First, we need some HTML to provide the UI for signed-in and signed-out users. The signed-in section will be hidden by default.
 
-file\_type\_html index.html
+file_type_html index.html
 
       <section id="whenSignedOut">
-    
+
         <button id="signInBtn">Sign in with Google</button>
-    
+
       </section>
-    
+
       <section id="whenSignedIn" hidden="true">
-    
+
         <div id="userDetails"></div>
-    
+
         <button id="signOutBtn">Sign Out</button>
-    
+
       </section>
-    
-    
 
 Next, we can grab the buttons from the HTML and register and event handler function using `onclick`. When clicked the button will use the `signInWithPopup` method from the auth SDK to open a window prompting the user to enter their Google credentials. Firebase creates JSON Web Token (JWT) that identifies the user on this browser and keeps them authenticated until the token is invalidated or destroyed by clicking sign-out.
 
-file\_type\_js\_official app.js
+file_type_js_official app.js
 
     const signInBtn = document.getElementById('signInBtn');
     const signOutBtn = document.getElementById('signOutBtn');
-    
+
     const auth = firebase.auth();
     const provider = new firebase.auth.GoogleAuthProvider();
-    
+
     /// Sign in event handlers
-    
+
     signInBtn.onclick = () => auth.signInWithPopup(provider);
-    
+
     signOutBtn.onclick = () => auth.signOut();
-    
 
 ### Listen to changes to the Auth State
 
 The `onAuthStateChanged` method runs a callback function each time the user’s auth state changes. If signed-in, the `user` param will be an object containing the user’s UID, email address, etc. If signed-out it will be null.
 
-file\_type\_js\_official app.js
+file_type_js_official app.js
 
     const whenSignedIn = document.getElementById('whenSignedIn');
     const whenSignedOut = document.getElementById('whenSignedOut');
     const userDetails = document.getElementById('userDetails');
-    
+
     auth.onAuthStateChanged(user => {
         if (user) {
             // signed in
@@ -175,14 +168,12 @@ file\_type\_js\_official app.js
             userDetails.innerHTML = '';
         }
     });
-    
 
 ![The current state of your demo should look similar to this](chrome-extension://cjedbglnccaioiolemnfhjncicchinao/img/demo-auth.png)
 
 The current state of your demo should look similar to this
 
-Firestore
----------
+## Firestore
 
 Once you have a user authenticated, you probably want that user do something interesting, which typically means saving records to a database. [Firestore](https://cloud.google.com/firestore) is a NoSQL [document-oriented](https://en.wikipedia.org/wiki/Document-oriented_database) database similar to MongoDB. It’s easy to manage and flexible, but modeling data relationships can be somewhat challenging. From the Firebase console, enable Firestore.
 
@@ -202,51 +193,49 @@ In this example we have a `things` collection. Our goal is to create a relations
 
 Now it’s time to give our user a way to create database records. Let’s start by adding some HTML where we can render out the items in the database.
 
-file\_type\_html index.html
+file_type_html index.html
 
       <section>
-    
+
         <h2>My Firestore Things</h2>
-    
+
         <ul id="thingsList"></ul>
-    
+
         <button id="createThing">Create a Thing</button>
-    
+
       </section>
-    
 
 Because the user must be signed-in, our code only runs when we have access to a user. The `thingsRef` points to a collection the database and provides methods to read and write to this location. Create a new document in the collection with `add`, where the argument is the actual data you want saved on the document.
 
-file\_type\_js\_official app.js
+file_type_js_official app.js
 
     const createThing = document.getElementById('createThing');
     const thingsList = document.getElementById('thingsList');
-    
+
     const db = firebase.firestore();
     let thingsRef;
     let unsubscribe;
-    
+
     auth.onAuthStateChanged(user => {
-    
+
         if (user) {
-    
+
             // Database Reference
             thingsRef = db.collection('things')
-    
+
             createThing.onclick = () => {
-    
+
                 const { serverTimestamp } = firebase.firestore.FieldValue;
-    
+
                 thingsRef.add({
                     uid: user.uid,
                     name: faker.commerce.productName(),
                     createdAt: serverTimestamp()
                 });
             }
-    
+
         }
     });
-    
 
 💡 Notice how I used `serverTimestamp()` and NOT a client-side source like `Date.now()` for the timestamp. This ensures you will have a consistent timestamp across all devices.
 
@@ -254,45 +243,43 @@ file\_type\_js\_official app.js
 
 Now that we can write to the database, let’s make a query to read data and listen to changes in realtime. Similar to user auth, a query has an `onSnapshot` method that fires a callback function whenever the underlying data changes.
 
-file\_type\_js\_official app.js
+file_type_js_official app.js
 
     let thingsRef;
     let unsubscribe;
-    
+
     auth.onAuthStateChanged(user => {
-    
+
         if (user) {
-    
+
             // Database Reference
             thingsRef = db.collection('things')
-    
+
             // ..... omitted .....
-    
+
             // Query
             unsubscribe = thingsRef.where('uid', '==', user.uid)
                 .onSnapshot(querySnapshot => {
-                    
+
                     // Map results to an array of li elements
-    
+
                     const items = querySnapshot.docs.map(doc => {
-    
+
                         return `<li>${doc.data().name}</li>`
-    
+
                     });
-    
+
                     thingsList.innerHTML = items.join('');
-    
+
                 });
-    
-    
-    
+
+
+
         } else {
             // Unsubscribe when the user signs out
             unsubscribe && unsubscribe();
         }
     });
-    
-    
 
 💡 Notice how we are defining the query’s return value as a variable named `unsubscribe` - this is a function we can call at some later point to turn-off the realtime subscription.
 
@@ -302,12 +289,11 @@ Certain queries can only be performed if an index is in place. The browser conso
 
 When combining a where method using `==` with a range operator like `<` or `orderBy` you will need an index, for example:
 
-file\_type\_js\_official app.js
+file_type_js_official app.js
 
     thingsRef
         .where('uid', '==', user.uid)
         .orderBy('createdAt') // Requires an index
-    
 
 ![When you see this error, follow the link to create a composite index](chrome-extension://cjedbglnccaioiolemnfhjncicchinao/img/composite-index.png)
 
@@ -319,30 +305,27 @@ At some point, your database will need full server-side [security rules](chrome-
 
 The rules below ensure that (1) the entire database is locked down and (2) authenticated users can ONLY modify their own data. You can configure these rules from the _Database » Rules_
 
-file\_type\_firebase firestore.rules
+file_type_firebase firestore.rules
 
     rules_version = '2';
     service cloud.firestore {
       match /databases/{database}/documents {
-    
+
         // Lock down the database
         match /{document=**} {
-          allow read, write: if false; 
-        
+          allow read, write: if false;
+
         // Allow authorized requests to the things collection
         match /things/{docId} {
           allow write: if request.auth.uid == request.resource.data.uid;
           allow read: if request.auth.uid == resource.data.uid;
         }
-        
+
       }
     }
-    
 
-The End
--------
+## The End
 
 That’s it! But we’ve only scratched the surface here. Fireship.io is entirely dedicated to building apps on Firebase, so take a look around and find something fun to build like [this](chrome-extension://cjedbglnccaioiolemnfhjncicchinao/lessons/build-a-chatbot-with-dialogflow/).
-
 
 [Source](https://fireship.io/lessons/firebase-quickstart/)

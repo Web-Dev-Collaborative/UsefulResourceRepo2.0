@@ -19,10 +19,10 @@ installation.
 To report bugs or make feature requests, file an issue on GitHub. Please choose
 the appropriate repository for the project. Major repositories include:
 
-  * [TensorFlow](https://github.com/tensorflow/tensorflow/issues)
-  * [TensorBoard](https://github.com/tensorflow/tensorboard/issues)
-  * [TensorFlow models](https://github.com/tensorflow/models/issues)
-  
+- [TensorFlow](https://github.com/tensorflow/tensorflow/issues)
+- [TensorBoard](https://github.com/tensorflow/tensorboard/issues)
+- [TensorFlow models](https://github.com/tensorflow/models/issues)
+
 ### Security
 
 Before using TensorFlow, please take a look at our [security model](https://github.com/tensorflow/tensorflow/blob/master/SECURITY.md#tensorflow-models-are-programs),
@@ -58,7 +58,7 @@ Our [YouTube Channel](http://youtube.com/tensorflow/) focuses on machine learnin
 and AI with TensorFlow. On it we have a number of new shows, including:
 
 - TensorFlow Meets: meet with community contributors to learn and share what they're doing
-- Ask TensorFlow: the team answers the best questions tagged #AskTensorFlow from social media 
+- Ask TensorFlow: the team answers the best questions tagged #AskTensorFlow from social media
 - Coding TensorFlow: short bites with tips for success with TensorFlow
 
 ## Community Support
@@ -77,9 +77,7 @@ can be found at [TensorFlow Mailing Lists](../community/lists.md).
 To meet with like-minded people local to you, check out the many
 [TensorFlow user groups](../community/groups.md) around the world.
 
-
 ## Contributing To TensorFlow
 
 We welcome contributions and collaboration on TensorFlow. For more information,
 please read [Contributing to TensorFlow](contributing.md).
-

@@ -3,21 +3,21 @@
 This guide gets you started programming in the low-level TensorFlow APIs
 (TensorFlow Core), showing you how to:
 
-  * Manage your own TensorFlow program (a `tf.Graph`) and TensorFlow
-    runtime (a `tf.Session`), instead of relying on Estimators to manage them.
-  * Run TensorFlow operations, using a `tf.Session`.
-  * Use high level components ([datasets](#datasets), [layers](#layers), and
-    [feature_columns](#feature_columns)) in this low level environment.
-  * Build your own training loop, instead of using the one
-    [provided by Estimators](../guide/premade_estimators.md).
+- Manage your own TensorFlow program (a `tf.Graph`) and TensorFlow
+  runtime (a `tf.Session`), instead of relying on Estimators to manage them.
+- Run TensorFlow operations, using a `tf.Session`.
+- Use high level components ([datasets](#datasets), [layers](#layers), and
+  [feature_columns](#feature_columns)) in this low level environment.
+- Build your own training loop, instead of using the one
+  [provided by Estimators](../guide/premade_estimators.md).
 
 We recommend using the higher level APIs to build models when possible.
 Knowing TensorFlow Core is valuable for the following reasons:
 
-  * Experimentation and debugging are both more straight forward
-    when you can use low level TensorFlow operations directly.
-  * It gives you a mental model of how things work internally when
-    using the higher level APIs.
+- Experimentation and debugging are both more straight forward
+  when you can use low level TensorFlow operations directly.
+- It gives you a mental model of how things work internally when
+  using the higher level APIs.
 
 ## Setup
 
@@ -25,9 +25,9 @@ Before using this guide, [install TensorFlow](../install).
 
 To get the most out of this guide, you should know the following:
 
-*   How to program in Python.
-*   At least a little bit about arrays.
-*   Ideally, something about machine learning.
+- How to program in Python.
+- At least a little bit about arrays.
+- Ideally, something about machine learning.
 
 Feel free to launch `python` and follow along with this walkthrough.
 Run the following lines to set up your Python environment:
@@ -71,11 +71,11 @@ sections:
 A **computational graph** is a series of TensorFlow operations arranged into a
 graph. The graph is composed of two types of objects.
 
-  * `tf.Operation` (or "ops"): The nodes of the graph.
-    Operations describe calculations that consume and produce tensors.
-  * `tf.Tensor`: The edges in the graph. These represent the values
-    that will flow through the graph. Most TensorFlow functions return
-    `tf.Tensors`.
+- `tf.Operation` (or "ops"): The nodes of the graph.
+  Operations describe calculations that consume and produce tensors.
+- `tf.Tensor`: The edges in the graph. These represent the values
+  that will flow through the graph. Most TensorFlow functions return
+  `tf.Tensors`.
 
 Important: `tf.Tensors` do not have values, they are just handles to elements
 in the computation graph.
@@ -181,7 +181,7 @@ print(sess.run({'ab':(a, b), 'total':total}))
 
 which returns the results in a structure of the same layout:
 
-``` None
+```None
 {'total': 7.0, 'ab': (3.0, 4.0)}
 ```
 
@@ -239,6 +239,7 @@ the `tf.Session.run` method to feed concrete values to the placeholders:
 print(sess.run(z, feed_dict={x: 3, y: 4.5}))
 print(sess.run(z, feed_dict={x: [1, 3], y: [2, 4]}))
 ```
+
 This results in the following output:
 
 ```
@@ -264,7 +265,7 @@ The simplest way to create an Iterator is with the
 For example, in the following code the `next_item` tensor will return a row from
 the `my_data` array on each `run` call:
 
-``` python
+```python
 my_data = [
     [0, 1,],
     [2, 3,],
@@ -279,7 +280,7 @@ Reaching the end of the data stream causes `Dataset` to throw an
 `tf.errors.OutOfRangeError`. For example, the following code
 reads the `next_item` until there is no more data to read:
 
-``` python
+```python
 while True:
   try:
     print(sess.run(next_item))
@@ -290,7 +291,7 @@ while True:
 If the `Dataset` depends on stateful operations you may need to
 initialize the iterator before using it, as shown below:
 
-``` python
+```python
 r = tf.random_normal([10,3])
 dataset = tf.data.Dataset.from_tensor_slices(r)
 iterator = dataset.make_initializable_iterator()
@@ -309,7 +310,7 @@ For more details on Datasets and Iterators see: [Importing Data](../guide/datase
 ## Layers
 
 A trainable model must modify the values in the graph to get new outputs with
-the same input.  `tf.layers` are the preferred way to add trainable
+the same input. `tf.layers` are the preferred way to add trainable
 parameters to a graph.
 
 Layers package together both the variables and the operations that act
@@ -355,7 +356,7 @@ creates and returns a handle to a TensorFlow operation. That op
 will initialize all the global variables when we run it with `tf.Session.run`.
 
 Also note that this `global_variables_initializer` only initializes variables
-that existed in the graph when the  initializer was created. So the initializer
+that existed in the graph when the initializer was created. So the initializer
 should be one of the last things added during graph construction.
 
 ### Executing Layers
@@ -403,7 +404,7 @@ The easiest way to experiment with feature columns is using the
 of a categorical column you must wrap it in an
 `tf.feature_column.indicator_column`. For example:
 
-``` python
+```python
 features = {
     'sales' : [[5], [10], [8], [9]],
     'department': ['sports', 'sports', 'gardening', 'gardening']}
@@ -427,7 +428,7 @@ initialized. Categorical columns use `tf.contrib.lookup`
 internally and these require a separate initialization op,
 `tf.tables_initializer`.
 
-``` python
+```python
 var_init = tf.global_variables_initializer()
 table_init = tf.tables_initializer()
 sess = tf.Session()
@@ -470,7 +471,7 @@ y_true = tf.constant([[0], [-1], [-2], [-3]], dtype=tf.float32)
 
 Next, build a simple linear model, with 1 output:
 
-``` python
+```python
 linear_model = tf.layers.Dense(units=1)
 
 y_pred = linear_model(x)
@@ -478,7 +479,7 @@ y_pred = linear_model(x)
 
 You can evaluate the predictions as follows:
 
-``` python
+```python
 sess = tf.Session()
 init = tf.global_variables_initializer()
 sess.run(init)
@@ -489,7 +490,7 @@ print(sess.run(y_pred))
 The model hasn't yet been trained, so the four "predicted" values aren't very
 good. Here's what we got; your own output will almost certainly differ:
 
-``` None
+```None
 [[ 0.02631879]
  [ 0.05263758]
  [ 0.07895637]
@@ -505,14 +506,15 @@ While you could do this manually with lower level math operations,
 the `tf.losses` module provides a set of common loss functions. You can use it
 to calculate the mean square error as follows:
 
-``` python
+```python
 loss = tf.losses.mean_squared_error(labels=y_true, predictions=y_pred)
 
 print(sess.run(loss))
 ```
+
 This will produce a loss value, something like:
 
-``` None
+```None
 2.23962
 ```
 
@@ -547,7 +549,7 @@ Since `train` is an op, not a tensor, it doesn't return a value when run.
 To see the progression of the loss during training, we run the loss tensor at
 the same time, producing output like the following:
 
-``` None
+```None
 1.35659
 1.00412
 0.759167
@@ -590,7 +592,7 @@ print(sess.run(y_pred))
 
 To learn more about building models with TensorFlow consider the following:
 
-* [Custom Estimators](../guide/custom_estimators.md), to learn how to build
+- [Custom Estimators](../guide/custom_estimators.md), to learn how to build
   customized models with TensorFlow. Your knowledge of TensorFlow Core will
   help you understand and debug your own models.
 
@@ -598,8 +600,6 @@ If you want to learn more about the inner workings of TensorFlow consider the
 following documents, which go into more depth on many of the topics discussed
 here:
 
-* [Graphs and Sessions](../guide/graphs.md)
-* [Tensors](../guide/tensors.md)
-* [Variables](../guide/variables.md)
-
-
+- [Graphs and Sessions](../guide/graphs.md)
+- [Tensors](../guide/tensors.md)
+- [Variables](../guide/variables.md)

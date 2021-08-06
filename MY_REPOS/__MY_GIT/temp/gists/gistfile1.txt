@@ -1,0 +1,3 @@
+Use this format for downloading subtitle for a video course on Coursera. Increment the 01_en for successive subtitles. 
+
+https://class.coursera.org/cplusplus4c-002/lecture/subtitles?q=01_en&format=srts

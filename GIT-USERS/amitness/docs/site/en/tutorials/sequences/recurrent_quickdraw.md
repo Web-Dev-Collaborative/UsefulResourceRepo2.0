@@ -1,6 +1,6 @@
 # Recurrent Neural Networks for Drawing Classification
 
-[Quick, Draw!]: http://quickdraw.withgoogle.com
+[quick, draw!]: http://quickdraw.withgoogle.com
 
 [Quick, Draw!] is a game where a player is challenged to draw a number of
 objects and see if a computer can recognize the drawing.
@@ -125,41 +125,56 @@ The original QuickDraw data is formatted as `ndjson` files where each line
 contains a JSON object like the following:
 
 ```json
-{"word":"cat",
- "countrycode":"VE",
- "timestamp":"2017-03-02 23:25:10.07453 UTC",
- "recognized":true,
- "key_id":"5201136883597312",
- "drawing":[
-   [
-     [130,113,99,109,76,64,55,48,48,51,59,86,133,154,170,203,214,217,215,208,186,176,162,157,132],
-     [72,40,27,79,82,88,100,120,134,152,165,184,189,186,179,152,131,114,100,89,76,0,31,65,70]
-   ],[
-     [76,28,7],
-     [136,128,128]
-   ],[
-     [76,23,0],
-     [160,164,175]
-   ],[
-     [87,52,37],
-     [175,191,204]
-   ],[
-     [174,220,246,251],
-     [134,132,136,139]
-   ],[
-     [175,255],
-     [147,168]
-   ],[
-     [171,208,215],
-     [164,198,210]
-   ],[
-     [130,110,108,111,130,139,139,119],
-     [129,134,137,144,148,144,136,130]
-   ],[
-     [107,106],
-     [96,113]
-   ]
- ]
+{
+  "word": "cat",
+  "countrycode": "VE",
+  "timestamp": "2017-03-02 23:25:10.07453 UTC",
+  "recognized": true,
+  "key_id": "5201136883597312",
+  "drawing": [
+    [
+      [
+        130, 113, 99, 109, 76, 64, 55, 48, 48, 51, 59, 86, 133, 154, 170, 203,
+        214, 217, 215, 208, 186, 176, 162, 157, 132
+      ],
+      [
+        72, 40, 27, 79, 82, 88, 100, 120, 134, 152, 165, 184, 189, 186, 179,
+        152, 131, 114, 100, 89, 76, 0, 31, 65, 70
+      ]
+    ],
+    [
+      [76, 28, 7],
+      [136, 128, 128]
+    ],
+    [
+      [76, 23, 0],
+      [160, 164, 175]
+    ],
+    [
+      [87, 52, 37],
+      [175, 191, 204]
+    ],
+    [
+      [174, 220, 246, 251],
+      [134, 132, 136, 139]
+    ],
+    [
+      [175, 255],
+      [147, 168]
+    ],
+    [
+      [171, 208, 215],
+      [164, 198, 210]
+    ],
+    [
+      [130, 110, 108, 111, 130, 139, 139, 119],
+      [129, 134, 137, 144, 148, 144, 136, 130]
+    ],
+    [
+      [107, 106],
+      [96, 113]
+    ]
+  ]
 }
 ```
 
@@ -202,8 +217,7 @@ category files in random order and write to a random shard.
 For the training data we read the first 10000 items for each class and for the
 eval data we read the next 1000 items for each class.
 
-This data is then reformatted into a tensor of shape `[num_training_samples,
-max_length, 3]`. Then we determine the bounding box of the original drawing in
+This data is then reformatted into a tensor of shape `[num_training_samples, max_length, 3]`. Then we determine the bounding box of the original drawing in
 screen coordinates and normalize the size such that the drawing has unit height.
 
 <center> ![Size normalization](../../images/quickdraw_sizenormalization.png) </center>
@@ -247,7 +261,7 @@ final_state = _add_rnn_layers(convolved, lengths)
 logits =_add_fc_layers(final_state)
 ```
 
-### _get_input_tensors
+### \_get_input_tensors
 
 To obtain the input features we first obtain the shape from the features dict
 and then create a 1D tensor of size `[batch_size]` containing the lengths of the
@@ -269,7 +283,7 @@ if targets is not None:
   targets = tf.squeeze(targets)
 ```
 
-### _add_conv_layers
+### \_add_conv_layers
 
 The desired number of convolution layers and the lengths of the filters is
 configured through the parameters `num_conv` and `conv_len` in the `params`
@@ -305,7 +319,7 @@ for i in range(len(params.num_conv)):
 return convolved, lengths
 ```
 
-### _add_rnn_layers
+### \_add_rnn_layers
 
 We pass the output from the convolutions into bidirectional LSTM layers for
 which we use a helper function from contrib.
@@ -333,7 +347,7 @@ zero_outside = tf.where(mask, outputs, tf.zeros_like(outputs))
 outputs = tf.reduce_sum(zero_outside, axis=1)
 ```
 
-### _add_fc_layers
+### \_add_fc_layers
 
 The embedding of the input is passed into a fully connected layer which we then
 use as a softmax layer.

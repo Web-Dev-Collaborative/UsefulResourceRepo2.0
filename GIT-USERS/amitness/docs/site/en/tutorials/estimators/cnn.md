@@ -46,25 +46,25 @@ architecture for image classification tasks. CNNs apply a series of filters to
 the raw pixel data of an image to extract and learn higher-level features, which
 the model can then use for classification. CNNs contains three components:
 
-*   **Convolutional layers**, which apply a specified number of convolution
-    filters to the image. For each subregion, the layer performs a set of
-    mathematical operations to produce a single value in the output feature map.
-    Convolutional layers then typically apply a
-    [ReLU activation function](https://en.wikipedia.org/wiki/Rectifier_\(neural_networks\)) to
-    the output to introduce nonlinearities into the model.
+- **Convolutional layers**, which apply a specified number of convolution
+  filters to the image. For each subregion, the layer performs a set of
+  mathematical operations to produce a single value in the output feature map.
+  Convolutional layers then typically apply a
+  [ReLU activation function](<https://en.wikipedia.org/wiki/Rectifier_(neural_networks)>) to
+  the output to introduce nonlinearities into the model.
 
-*   **Pooling layers**, which
-    [downsample the image data](https://en.wikipedia.org/wiki/Convolutional_neural_network#Pooling_layer)
-    extracted by the convolutional layers to reduce the dimensionality of the
-    feature map in order to decrease processing time. A commonly used pooling
-    algorithm is max pooling, which extracts subregions of the feature map
-    (e.g., 2x2-pixel tiles), keeps their maximum value, and discards all other
-    values.
+- **Pooling layers**, which
+  [downsample the image data](https://en.wikipedia.org/wiki/Convolutional_neural_network#Pooling_layer)
+  extracted by the convolutional layers to reduce the dimensionality of the
+  feature map in order to decrease processing time. A commonly used pooling
+  algorithm is max pooling, which extracts subregions of the feature map
+  (e.g., 2x2-pixel tiles), keeps their maximum value, and discards all other
+  values.
 
-*   **Dense (fully connected) layers**, which perform classification on the
-    features extracted by the convolutional layers and downsampled by the
-    pooling layers. In a dense layer, every node in the layer is connected to
-    every node in the preceding layer.
+- **Dense (fully connected) layers**, which perform classification on the
+  features extracted by the convolutional layers and downsampled by the
+  pooling layers. In a dense layer, every node in the layer is connected to
+  every node in the preceding layer.
 
 Typically, a CNN is composed of a stack of convolutional modules that perform
 feature extraction. Each module consists of a convolutional layer followed by a
@@ -103,13 +103,13 @@ following CNN architecture:
 The `tf.layers` module contains methods to create each of the three layer types
 above:
 
-*   `conv2d()`. Constructs a two-dimensional convolutional layer. Takes number
-    of filters, filter kernel size, padding, and activation function as
-    arguments.
-*   `max_pooling2d()`. Constructs a two-dimensional pooling layer using the
-    max-pooling algorithm. Takes pooling filter size and stride as arguments.
-*   `dense()`. Constructs a dense layer. Takes number of neurons and activation
-    function as arguments.
+- `conv2d()`. Constructs a two-dimensional convolutional layer. Takes number
+  of filters, filter kernel size, padding, and activation function as
+  arguments.
+- `max_pooling2d()`. Constructs a two-dimensional pooling layer using the
+  max-pooling algorithm. Takes pooling filter size and stride as arguments.
+- `dense()`. Constructs a dense layer. Takes number of neurons and activation
+  function as arguments.
 
 Each of these methods accepts a tensor as input and returns a transformed tensor
 as output. This makes it easy to connect one layer to another: just take the
@@ -202,17 +202,17 @@ for two-dimensional image data expect input tensors to have a shape of
 <em>channels</em>]</code> by default. This behavior can be changed using the
 <code><em>data_format</em></code> parameter; defined as follows:
 
-*   _`batch_size`_. Size of the subset of examples to use when performing
-    gradient descent during training.
-*   _`image_height`_. Height of the example images.
-*   _`image_width`_. Width of the example images.
-*   _`channels`_. Number of color channels in the example images. For color
-    images, the number of channels is 3 (red, green, blue). For monochrome
-    images, there is just 1 channel (black).
-*   _`data_format`_. A string, one of `channels_last` (default) or `channels_first`.
-      `channels_last` corresponds to inputs with shape
-      `(batch, ..., channels)` while `channels_first` corresponds to
-      inputs with shape `(batch, channels, ...)`.
+- _`batch_size`_. Size of the subset of examples to use when performing
+  gradient descent during training.
+- _`image_height`_. Height of the example images.
+- _`image_width`_. Width of the example images.
+- _`channels`_. Number of color channels in the example images. For color
+  images, the number of channels is 3 (red, green, blue). For monochrome
+  images, there is just 1 channel (black).
+- _`data_format`_. A string, one of `channels_last` (default) or `channels_first`.
+  `channels_last` corresponds to inputs with shape
+  `(batch, ..., channels)` while `channels_first` corresponds to
+  inputs with shape `(batch, channels, ...)`.
 
 Here, our MNIST dataset is composed of monochrome 28x28 pixel images, so the
 desired shape for our input layer is <code>[<em>batch_size</em>, 28, 28,
@@ -301,8 +301,8 @@ the first convolutional layer, which has a shape of <code>[<em>batch_size</em>,
 28, 28, 32]</code>.
 
 > Note: As with <code>conv2d()</code>, <code>max_pooling2d()</code> will instead
-> accept a shape of <code>[<em>batch_size</em>, <em>channels</em>, 
-> <em>image_height</em>, <em>image_width</em>]</code> when passed the argument
+> accept a shape of <code>[<em>batch_size</em>, <em>channels</em>,
+> > <em>image_height</em>, <em>image_width</em>]</code> when passed the argument
 > <code>data_format=channels_first</code>.
 
 The `pool_size` argument specifies the size of the max pooling filter as
@@ -358,11 +358,11 @@ our feature map (`pool2`) to shape <code>[<em>batch_size</em>,
 pool2_flat = tf.reshape(pool2, [-1, 7 * 7 * 64])
 ```
 
-In the `reshape()` operation above, the `-1` signifies that the *`batch_size`*
+In the `reshape()` operation above, the `-1` signifies that the _`batch_size`_
 dimension will be dynamically calculated based on the number of examples in our
-input data. Each example has 7 (`pool2` height) * 7 (`pool2` width) * 64
+input data. Each example has 7 (`pool2` height) _ 7 (`pool2` width) _ 64
 (`pool2` channels) features, so we want the `features` dimension to have a value
-of 7 * 7 * 64 (3136 in total). The output tensor, `pool2_flat`, has shape
+of 7 _ 7 _ 64 (3136 in total). The output tensor, `pool2_flat`, has shape
 <code>[<em>batch_size</em>, 3136]</code>.
 
 Now, we can use the `dense()` method in `layers` to connect our dense layer as
@@ -417,9 +417,9 @@ The logits layer of our model returns our predictions as raw values in a
 <code>[<em>batch_size</em>, 10]</code>-dimensional tensor. Let's convert these
 raw values into two different formats that our model function can return:
 
-*   The **predicted class** for each example: a digit from 0–9.
-*   The **probabilities** for each possible target class for each example: the
-    probability that the example is a 0, is a 1, is a 2, etc.
+- The **predicted class** for each example: a digit from 0–9.
+- The **probabilities** for each possible target class for each example: the
+  probability that the example is a 0, is a 1, is a 2, etc.
 
 For a given example, our predicted class is the element in the corresponding row
 of the logits tensor with the highest raw value. We can find the index of this
@@ -475,13 +475,11 @@ loss = tf.losses.sparse_softmax_cross_entropy(labels=labels, logits=logits)
 
 Let's take a closer look at what's happening above.
 
-Our `labels` tensor contains a list of prediction indices for our examples, e.g. `[1,
-9, ...]`. `logits` contains the linear outputs of our last layer. 
+Our `labels` tensor contains a list of prediction indices for our examples, e.g. `[1, 9, ...]`. `logits` contains the linear outputs of our last layer.
 
 `tf.losses.sparse_softmax_cross_entropy`, calculates the softmax crossentropy
 (aka: categorical crossentropy, negative log-likelihood) from these two inputs
 in an efficient, numerically stable way.
-
 
 ### Configure the Training Op
 
@@ -504,7 +502,6 @@ if mode == tf.estimator.ModeKeys.TRAIN:
 > functions, see ["Defining the training op for the model"](../../guide/custom_estimators.md#defining-the-training-op-for-the-model)
 > in the ["Creating Estimations in tf.estimator"](../../guide/custom_estimators.md) tutorial.
 
-
 ### Add evaluation metrics
 
 To add accuracy metric in our model, we define `eval_metric_ops` dict in EVAL
@@ -519,6 +516,7 @@ return tf.estimator.EstimatorSpec(
 ```
 
 <a id="train_eval_mnist"></a>
+
 ## Training and Evaluating the CNN MNIST Classifier
 
 We've coded our MNIST CNN model function; now we're ready to train and evaluate
@@ -686,9 +684,9 @@ Here, we've achieved an accuracy of 97.3% on our test data set.
 To learn more about TensorFlow Estimators and CNNs in TensorFlow, see the
 following resources:
 
-*   [Creating Estimators in tf.estimator](../../guide/custom_estimators.md)
-    provides an introduction to the TensorFlow Estimator API. It walks through
-    configuring an Estimator, writing a model function, calculating loss, and
-    defining a training op.
-*   [Advanced Convolutional Neural Networks](../../tutorials/images/deep_cnn.md) walks through how to build a MNIST CNN classification model
-    *without estimators* using lower-level TensorFlow operations.
+- [Creating Estimators in tf.estimator](../../guide/custom_estimators.md)
+  provides an introduction to the TensorFlow Estimator API. It walks through
+  configuring an Estimator, writing a model function, calculating loss, and
+  defining a training op.
+- [Advanced Convolutional Neural Networks](../../tutorials/images/deep_cnn.md) walks through how to build a MNIST CNN classification model
+  _without estimators_ using lower-level TensorFlow operations.

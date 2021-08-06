@@ -1,6 +1,5 @@
 name: Release
-on:
-  page_build
+on: page_build
 
 jobs:
   release:

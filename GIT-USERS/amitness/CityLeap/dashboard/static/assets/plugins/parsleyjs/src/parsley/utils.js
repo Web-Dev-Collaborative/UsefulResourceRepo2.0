@@ -1,4 +1,4 @@
-define('parsley/utils', function () {
+define("parsley/utils", function () {
   var globalID = 1,
     pastWarnings = {};
 
@@ -6,21 +6,19 @@ define('parsley/utils', function () {
     // Parsley DOM-API
     // returns object from dom attributes and values
     attr: function ($element, namespace, obj) {
-      var
-        attribute, attributes,
-        regex = new RegExp('^' + namespace, 'i');
+      var attribute,
+        attributes,
+        regex = new RegExp("^" + namespace, "i");
 
-      if ('undefined' === typeof obj)
-        obj = {};
+      if ("undefined" === typeof obj) obj = {};
       else {
         // Clear all own properties. This won't affect prototype's values
         for (var i in obj) {
-          if (obj.hasOwnProperty(i))
-            delete obj[i];
+          if (obj.hasOwnProperty(i)) delete obj[i];
         }
       }
 
-      if ('undefined' === typeof $element || 'undefined' === typeof $element[0])
+      if ("undefined" === typeof $element || "undefined" === typeof $element[0])
         return obj;
 
       attributes = $element[0].attributes;
@@ -28,7 +26,8 @@ define('parsley/utils', function () {
         attribute = attributes[i];
 
         if (attribute && attribute.specified && regex.test(attribute.name)) {
-          obj[this.camelize(attribute.name.slice(namespace.length))] = this.deserializeValue(attribute.value);
+          obj[this.camelize(attribute.name.slice(namespace.length))] =
+            this.deserializeValue(attribute.value);
         }
       }
 
@@ -36,7 +35,7 @@ define('parsley/utils', function () {
     },
 
     checkAttr: function ($element, namespace, checkAttr) {
-      return $element.is('[' + namespace + checkAttr + ']');
+      return $element.is("[" + namespace + checkAttr + "]");
     },
 
     setAttr: function ($element, namespace, attr, value) {
@@ -44,7 +43,7 @@ define('parsley/utils', function () {
     },
 
     generateID: function () {
-      return '' + globalID++;
+      return "" + globalID++;
     },
 
     /** Third party functions **/
@@ -53,65 +52,74 @@ define('parsley/utils', function () {
       var num;
 
       try {
-        return value ?
-          value == "true" ||
-          (value == "false" ? false :
-          value == "null" ? null :
-          !isNaN(num = Number(value)) ? num :
-          /^[\[\{]/.test(value) ? $.parseJSON(value) :
-          value)
+        return value
+          ? value == "true" ||
+              (value == "false"
+                ? false
+                : value == "null"
+                ? null
+                : !isNaN((num = Number(value)))
+                ? num
+                : /^[\[\{]/.test(value)
+                ? $.parseJSON(value)
+                : value)
           : value;
-      } catch (e) { return value; }
+      } catch (e) {
+        return value;
+      }
     },
 
     // Zepto camelize function
     camelize: function (str) {
       return str.replace(/-+(.)?/g, function (match, chr) {
-        return chr ? chr.toUpperCase() : '';
+        return chr ? chr.toUpperCase() : "";
       });
     },
 
     // Zepto dasherize function
     dasherize: function (str) {
-      return str.replace(/::/g, '/')
-        .replace(/([A-Z]+)([A-Z][a-z])/g, '$1_$2')
-        .replace(/([a-z\d])([A-Z])/g, '$1_$2')
-        .replace(/_/g, '-')
+      return str
+        .replace(/::/g, "/")
+        .replace(/([A-Z]+)([A-Z][a-z])/g, "$1_$2")
+        .replace(/([a-z\d])([A-Z])/g, "$1_$2")
+        .replace(/_/g, "-")
         .toLowerCase();
     },
 
-    warn: function() {
-      if (window.console && 'function' === typeof window.console.warn)
+    warn: function () {
+      if (window.console && "function" === typeof window.console.warn)
         window.console.warn.apply(window.console, arguments);
     },
 
-    warnOnce: function(msg) {
+    warnOnce: function (msg) {
       if (!pastWarnings[msg]) {
         pastWarnings[msg] = true;
         this.warn.apply(this, arguments);
       }
     },
 
-    _resetWarnings: function() {
+    _resetWarnings: function () {
       pastWarnings = {};
     },
 
     // Object.create polyfill, see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create#Polyfill
-    objectCreate: Object.create || (function () {
-      var Object = function () {};
-      return function (prototype) {
-        if (arguments.length > 1) {
-          throw Error('Second argument not supported');
-        }
-        if (typeof prototype != 'object') {
-          throw TypeError('Argument must be an object');
-        }
-        Object.prototype = prototype;
-        var result = new Object();
-        Object.prototype = null;
-        return result;
-      };
-    })()
+    objectCreate:
+      Object.create ||
+      (function () {
+        var Object = function () {};
+        return function (prototype) {
+          if (arguments.length > 1) {
+            throw Error("Second argument not supported");
+          }
+          if (typeof prototype != "object") {
+            throw TypeError("Argument must be an object");
+          }
+          Object.prototype = prototype;
+          var result = new Object();
+          Object.prototype = null;
+          return result;
+        };
+      })(),
   };
 
   return ParsleyUtils;

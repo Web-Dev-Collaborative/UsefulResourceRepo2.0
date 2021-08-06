@@ -3,4 +3,5 @@ layout: page
 title: About
 permalink: /about/
 ---
-*Polar Bear* is a lightweight and customisable Jekyll Theme.
+
+_Polar Bear_ is a lightweight and customisable Jekyll Theme.

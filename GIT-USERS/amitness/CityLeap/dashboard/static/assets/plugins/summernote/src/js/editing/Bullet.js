@@ -1,10 +1,9 @@
 define([
-  'summernote/core/list',
-  'summernote/core/func',
-  'summernote/core/dom',
-  'summernote/core/range'
+  "summernote/core/list",
+  "summernote/core/func",
+  "summernote/core/dom",
+  "summernote/core/range",
 ], function (list, func, dom, range) {
-
   /**
    * @class editing.Bullet
    *
@@ -19,7 +18,7 @@ define([
      * @type command
      */
     this.insertOrderedList = function () {
-      this.toggleList('OL');
+      this.toggleList("OL");
     };
 
     /**
@@ -30,7 +29,7 @@ define([
      * @type command
      */
     this.insertUnorderedList = function () {
-      this.toggleList('UL');
+      this.toggleList("UL");
     };
 
     /**
@@ -45,7 +44,7 @@ define([
       var rng = range.create().wrapBodyInlineWithPara();
 
       var paras = rng.nodes(dom.isPara, { includeAncestor: true });
-      var clustereds = list.clusterBy(paras, func.peq2('parentNode'));
+      var clustereds = list.clusterBy(paras, func.peq2("parentNode"));
 
       $.each(clustereds, function (idx, paras) {
         var head = list.head(paras);
@@ -53,7 +52,7 @@ define([
           self.wrapList(paras, head.parentNode.nodeName);
         } else {
           $.each(paras, function (idx, para) {
-            $(para).css('marginLeft', function (idx, val) {
+            $(para).css("marginLeft", function (idx, val) {
               return (parseInt(val, 10) || 0) + 25;
             });
           });
@@ -75,7 +74,7 @@ define([
       var rng = range.create().wrapBodyInlineWithPara();
 
       var paras = rng.nodes(dom.isPara, { includeAncestor: true });
-      var clustereds = list.clusterBy(paras, func.peq2('parentNode'));
+      var clustereds = list.clusterBy(paras, func.peq2("parentNode"));
 
       $.each(clustereds, function (idx, paras) {
         var head = list.head(paras);
@@ -83,9 +82,9 @@ define([
           self.releaseList([paras]);
         } else {
           $.each(paras, function (idx, para) {
-            $(para).css('marginLeft', function (idx, val) {
-              val = (parseInt(val, 10) || 0);
-              return val > 25 ? val - 25 : '';
+            $(para).css("marginLeft", function (idx, val) {
+              val = parseInt(val, 10) || 0;
+              return val > 25 ? val - 25 : "";
             });
           });
         }
@@ -107,7 +106,7 @@ define([
 
       var paras = rng.nodes(dom.isPara, { includeAncestor: true });
       var bookmark = rng.paraBookmark(paras);
-      var clustereds = list.clusterBy(paras, func.peq2('parentNode'));
+      var clustereds = list.clusterBy(paras, func.peq2("parentNode"));
 
       // paragraph to list
       if (list.find(paras, dom.isPurePara)) {
@@ -116,13 +115,15 @@ define([
           wrappedParas = wrappedParas.concat(self.wrapList(paras, listName));
         });
         paras = wrappedParas;
-      // list to paragraph or change list style
+        // list to paragraph or change list style
       } else {
-        var diffLists = rng.nodes(dom.isList, {
-          includeAncestor: true
-        }).filter(function (listNode) {
-          return !$.nodeName(listNode, listName);
-        });
+        var diffLists = rng
+          .nodes(dom.isList, {
+            includeAncestor: true,
+          })
+          .filter(function (listNode) {
+            return !$.nodeName(listNode, listName);
+          });
 
         if (diffLists.length) {
           $.each(diffLists, function (idx, listNode) {
@@ -150,11 +151,12 @@ define([
       var prevList = dom.isList(head.previousSibling) && head.previousSibling;
       var nextList = dom.isList(last.nextSibling) && last.nextSibling;
 
-      var listNode = prevList || dom.insertAfter(dom.create(listName || 'UL'), last);
+      var listNode =
+        prevList || dom.insertAfter(dom.create(listName || "UL"), last);
 
       // P to LI
       paras = paras.map(function (para) {
-        return dom.isPurePara(para) ? dom.replace(para, 'LI') : para;
+        return dom.isPurePara(para) ? dom.replace(para, "LI") : para;
       });
 
       // append to list(<ul>, <ol>)
@@ -182,29 +184,42 @@ define([
         var head = list.head(paras);
         var last = list.last(paras);
 
-        var headList = isEscapseToBody ? dom.lastAncestor(head, dom.isList) :
-                                         head.parentNode;
-        var lastList = headList.childNodes.length > 1 ? dom.splitTree(headList, {
-          node: last.parentNode,
-          offset: dom.position(last) + 1
-        }, {
-          isSkipPaddingBlankHTML: true
-        }) : null;
+        var headList = isEscapseToBody
+          ? dom.lastAncestor(head, dom.isList)
+          : head.parentNode;
+        var lastList =
+          headList.childNodes.length > 1
+            ? dom.splitTree(
+                headList,
+                {
+                  node: last.parentNode,
+                  offset: dom.position(last) + 1,
+                },
+                {
+                  isSkipPaddingBlankHTML: true,
+                }
+              )
+            : null;
 
-        var middleList = dom.splitTree(headList, {
-          node: head.parentNode,
-          offset: dom.position(head)
-        }, {
-          isSkipPaddingBlankHTML: true
-        });
+        var middleList = dom.splitTree(
+          headList,
+          {
+            node: head.parentNode,
+            offset: dom.position(head),
+          },
+          {
+            isSkipPaddingBlankHTML: true,
+          }
+        );
 
-        paras = isEscapseToBody ? dom.listDescendant(middleList, dom.isLi) :
-                                  list.from(middleList.childNodes).filter(dom.isLi);
+        paras = isEscapseToBody
+          ? dom.listDescendant(middleList, dom.isLi)
+          : list.from(middleList.childNodes).filter(dom.isLi);
 
         // LI to P
         if (isEscapseToBody || !dom.isList(headList.parentNode)) {
           paras = paras.map(function (para) {
-            return dom.replace(para, 'P');
+            return dom.replace(para, "P");
           });
         }
 
@@ -215,7 +230,9 @@ define([
         // remove empty lists
         var rootLists = list.compact([headList, middleList, lastList]);
         $.each(rootLists, function (idx, rootList) {
-          var listNodes = [rootList].concat(dom.listDescendant(rootList, dom.isList));
+          var listNodes = [rootList].concat(
+            dom.listDescendant(rootList, dom.isList)
+          );
           $.each(listNodes.reverse(), function (idx, listNode) {
             if (!dom.nodeLength(listNode)) {
               dom.remove(listNode, true);
@@ -232,4 +249,3 @@ define([
 
   return Bullet;
 });
-

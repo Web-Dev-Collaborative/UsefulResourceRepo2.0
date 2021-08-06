@@ -4,10 +4,10 @@ import * as getTimeOfDayModule from './fixtures/get-time-of-day.js';
 
 // Suite
 // -----------------------------------------------------------------------------
-describe(`Example Tests`, function() {
+describe(`Example Tests`, function () {
   // Tests
   // ---------------------------------------------------------------------------
-  describe('Jest & JSDOM basics', function() {
+  describe('Jest & JSDOM basics', function () {
     test('dom manipulation (jsdom)', () => {
       const testText = 'This is a test';
       const testHTML = `<h1>Test</h1><p>${testText}</p>`;
@@ -48,7 +48,7 @@ describe(`Example Tests`, function() {
     });
   });
 
-  describe('Fake Timers', function() {
+  describe('Fake Timers', function () {
     test('data & time', () => {
       const fakeDate = new Date().setHours(1);
 
@@ -61,7 +61,7 @@ describe(`Example Tests`, function() {
     });
   });
 
-  describe('Mocks & Spys', function() {
+  describe('Mocks & Spys', function () {
     test('mock import/require dependency using jest.fn()', () => {
       const testModule = require('./fixtures/get-time-of-day.js');
       const { greet: testGreet } = require('./fixtures/greet.js');

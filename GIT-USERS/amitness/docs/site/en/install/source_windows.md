@@ -1,6 +1,6 @@
 # Build from source on Windows
 
-Build a TensorFlow *pip* package from source and install it on Windows.
+Build a TensorFlow _pip_ package from source and install it on Windows.
 
 Note: We already provide well-tested, pre-built [TensorFlow packages](./pip.md)
 for Windows systems.
@@ -14,9 +14,9 @@ environment.
 
 Install a
 [Python 3.5.x or Python 3.6.x 64-bit release for Windows](https://www.python.org/downloads/windows/){:.external}.
-Select *pip* as an optional feature and add it to your `%PATH%` environmental variable.
+Select _pip_ as an optional feature and add it to your `%PATH%` environmental variable.
 
-Install the TensorFlow *pip* package dependencies:
+Install the TensorFlow _pip_ package dependencies:
 
 <pre class="devsite-click-to-copy">
 <code class="devsite-terminal tfo-terminal-windows">pip3 install six numpy wheel</code>
@@ -48,22 +48,21 @@ pacman -S git patch unzip
 
 ### Install Visual C++ Build Tools 2015
 
-Install the *Visual C++ build tools 2015*. This comes with *Visual Studio 2015*
+Install the _Visual C++ build tools 2015_. This comes with _Visual Studio 2015_
 but can be installed separately:
 
 1. Go to the [Visual Studio downloads](https://visualstudio.microsoft.com/vs/older-downloads/){:.external},
-2. Select *Redistributables and Build Tools*,
+2. Select _Redistributables and Build Tools_,
 3. Download and install:
-   - *Microsoft Visual C++ 2015 Redistributable Update 3*
-   - *Microsoft Build Tools 2015 Update 3*
+   - _Microsoft Visual C++ 2015 Redistributable Update 3_
+   - _Microsoft Build Tools 2015 Update 3_
 
-Note: TensorFlow is tested against the *Visual Studio 2015 Update 3*.
+Note: TensorFlow is tested against the _Visual Studio 2015 Update 3_.
 
 ### Install GPU support (optional)
 
 See the Windows [GPU support](./gpu.md) guide to install the drivers and additional
 software required to run TensorFlow on a GPU.
-
 
 ### Download the TensorFlow source code
 
@@ -87,7 +86,6 @@ git checkout <em>branch_name</em>  # r1.9, r1.10, etc.
 Key Point: If you're having build problems on the latest development branch, try
 a release branch that is known to work.
 
-
 ## Configure the build
 
 Configure your system build by running the following at the root of your
@@ -108,11 +106,11 @@ python ./configure.py
 Starting local Bazel server and connecting to it...
 ................
 You have bazel 0.15.0 installed.
-Please specify the location of python. [Default is C:\python36\python.exe]: 
+Please specify the location of python. [Default is C:\python36\python.exe]:
 
 Found possible Python library paths:
-  C:\python36\lib\site-packages
-Please input the desired Python library path to use.  Default is [C:\python36\lib\site-packages]
+C:\python36\lib\site-packages
+Please input the desired Python library path to use. Default is [C:\python36\lib\site-packages]
 
 Do you wish to build TensorFlow with CUDA support? [y/N]: <b>Y</b>
 CUDA support will be enabled for TensorFlow.
@@ -129,12 +127,13 @@ Please specify a list of comma-separated Cuda compute capabilities you want to b
 You can find the compute capability of your device at: https://developer.nvidia.com/cuda-gpus.
 Please note that each additional compute capability significantly increases your build time and binary size. [Default is: 3.5,7.0]: <b>3.7</b>
 
-Please specify optimization flags to use during compilation when bazel option "--config=opt" is specified [Default is /arch:AVX]: 
+Please specify optimization flags to use during compilation when bazel option "--config=opt" is specified [Default is /arch:AVX]:
 
 Would you like to override eigen strong inline for some C++ compilation to reduce the compilation time? [Y/n]:
 Eigen strong inline overridden.
 
 Configuration finished
+
 </pre>
 </section>
 
@@ -148,7 +147,6 @@ configuration step must be run again before building.
 
 Note: Starting with TensorFlow 1.6, binaries use AVX instructions which may not
 run on older CPUs.
-
 
 ## Build the pip package
 
@@ -210,7 +208,6 @@ pip3 install C:/tmp/tensorflow_pkg/tensorflow-<var>version</var>-cp36-cp36m-win_
 
 Success: TensorFlow is now installed.
 
-
 ## Build using the MSYS shell
 
 TensorFlow can also be built using the MSYS shell. Make the changes listed
@@ -247,7 +244,6 @@ For GPU support, add the CUDA and cuDNN bin directories to your `$PATH`:
 <code class="devsite-terminal">export PATH="/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v9.0/extras/CUPTI/libx64:$PATH"</code>
 <code class="devsite-terminal">export PATH="/c/tools/cuda/bin:$PATH"</code>
 </pre>
-
 
 ## Tested build configurations
 

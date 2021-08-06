@@ -14,30 +14,30 @@
  *
  */
 
-var transitionize = require('../transitionize');
+var transitionize = require("../transitionize");
 
-window.onload = function() {
-  var elem = document.querySelector('.js-elem')
-    , prop = {};
+window.onload = function () {
+  var elem = document.querySelector(".js-elem"),
+    prop = {};
 
-  elem.addEventListener('click', function() {
+  elem.addEventListener("click", function () {
     var position = parseInt(elem.style.left) || 0;
 
     if (position == 0) {
-      this.style.left = this.parentNode.offsetWidth - this.offsetWidth + 'px';
-      this.style.backgroundColor = '#53e7d0';
+      this.style.left = this.parentNode.offsetWidth - this.offsetWidth + "px";
+      this.style.backgroundColor = "#53e7d0";
 
       prop = {
-          'background-color': '0.3s'
-        , 'left': '0.3s'
+        "background-color": "0.3s",
+        left: "0.3s",
       };
     } else {
       this.style.left = 0;
-      this.style.backgroundColor = '#febf04';
+      this.style.backgroundColor = "#febf04";
 
       prop = {
-          'background-color': '1s'
-        , 'left': '1s'
+        "background-color": "1s",
+        left: "1s",
       };
     }
 

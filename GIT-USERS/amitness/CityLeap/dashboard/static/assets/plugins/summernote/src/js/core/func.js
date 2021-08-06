@@ -1,4 +1,4 @@
-define('summernote/core/func', function () {
+define("summernote/core/func", function () {
   /**
    * @class core.func
    *
@@ -56,7 +56,7 @@ define('summernote/core/func', function () {
      * @param {String} [prefix]
      */
     var uniqueId = function (prefix) {
-      var id = ++idCounter + '';
+      var id = ++idCounter + "";
       return prefix ? prefix + id : id;
     };
 
@@ -79,7 +79,7 @@ define('summernote/core/func', function () {
         top: rect.top + $document.scrollTop(),
         left: rect.left + $document.scrollLeft(),
         width: rect.right - rect.left,
-        height: rect.bottom - rect.top
+        height: rect.bottom - rect.top,
       };
     };
 
@@ -104,10 +104,16 @@ define('summernote/core/func', function () {
      * @return {String}
      */
     var namespaceToCamel = function (namespace, prefix) {
-      prefix = prefix || '';
-      return prefix + namespace.split('.').map(function (name) {
-        return name.substring(0, 1).toUpperCase() + name.substring(1);
-      }).join('');
+      prefix = prefix || "";
+      return (
+        prefix +
+        namespace
+          .split(".")
+          .map(function (name) {
+            return name.substring(0, 1).toUpperCase() + name.substring(1);
+          })
+          .join("")
+      );
     };
 
     return {
@@ -122,7 +128,7 @@ define('summernote/core/func', function () {
       uniqueId: uniqueId,
       rect2bnd: rect2bnd,
       invertObject: invertObject,
-      namespaceToCamel: namespaceToCamel
+      namespaceToCamel: namespaceToCamel,
     };
   })();
 

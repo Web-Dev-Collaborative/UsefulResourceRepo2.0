@@ -61,7 +61,7 @@ File: Pages
   font-size: 16px;
 }
 .fc-state-hover {
-  background: #F5F5F5;
+  background: #f5f5f5;
 }
 .fc-state-highlight {
   background: #f0f0f0;
@@ -108,7 +108,7 @@ File: Pages
 }
 /* Multiple */
 .ms-container {
-  background: transparent url('../images/multiple-arrow.png') no-repeat 50% 50%;
+  background: transparent url("../images/multiple-arrow.png") no-repeat 50% 50%;
 }
 .ms-container .ms-list {
   box-shadow: none;
@@ -129,7 +129,7 @@ File: Pages
 .select2-container .select2-choice {
   background-image: none !important;
   border: none !important;
-  height: auto  !important;
+  height: auto !important;
   padding: 0px !important;
   line-height: 22px !important;
   background-color: transparent !important;
@@ -163,9 +163,9 @@ File: Pages
   width: 100%;
 }
 .select2-container-multi .select2-choices {
-  border: 1px solid #E3E3E3  !important;
+  border: 1px solid #e3e3e3 !important;
   box-shadow: none !important;
-  background-image: none  !important;
+  background-image: none !important;
   -webkit-border-radius: 4px !important;
   border-radius: 4px !important;
   -moz-border-radius: 4px !important;
@@ -186,7 +186,7 @@ File: Pages
   font-family: inherit;
 }
 /* Bootstrap-select */
-.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
   width: 100% !important;
 }
 .bootstrap-select .dropdown-toggle:focus {
@@ -426,7 +426,9 @@ File: Pages
 .mce-container.mce-menu .mce-menu-item.mce-disabled.mce-selected .mce-text,
 .mce-container.mce-menu .mce-menu-item.mce-disabled:hover .mce-menu-shortcut,
 .mce-container.mce-menu .mce-menu-item.mce-disabled:focus .mce-menu-shortcut,
-.mce-container.mce-menu .mce-menu-item.mce-disabled.mce-selected .mce-menu-shortcut {
+.mce-container.mce-menu
+  .mce-menu-item.mce-disabled.mce-selected
+  .mce-menu-shortcut {
   color: #ffffff;
 }
 .mce-container.mce-menu .mce-menu-item-sep {
@@ -494,8 +496,8 @@ File: Pages
 }
 .notifyjs-metro-cool {
   color: #fafafa !important;
-  background-color: #4A525F;
-  border: 1px solid #4A525F;
+  background-color: #4a525f;
+  border: 1px solid #4a525f;
 }
 /* =============
    Bootstrap Range slider
@@ -510,7 +512,7 @@ File: Pages
   position: absolute;
   width: 20px;
   height: 20px;
-  border: 1px solid #EFF2F7;
+  border: 1px solid #eff2f7;
   background: #fff;
   cursor: pointer;
 }
@@ -609,9 +611,9 @@ File: Pages
   color: #36404a;
 }
 .percent:after {
-  content: '%';
+  content: "%";
   margin-left: 0.1em;
-  font-size: .8em;
+  font-size: 0.8em;
 }
 #flotTip {
   padding: 8px 12px;
@@ -791,7 +793,7 @@ File: Pages
   margin: 0 auto;
 }
 .cd-container::after {
-  content: '';
+  content: "";
   display: table;
   clear: both;
 }
@@ -803,7 +805,7 @@ File: Pages
 }
 #cd-timeline::before {
   background: #ffffff;
-  content: '';
+  content: "";
   height: 100%;
   left: 18px;
   position: absolute;
@@ -853,7 +855,8 @@ File: Pages
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08),
+    0 3px 0 4px rgba(0, 0, 0, 0.05);
   text-align: center;
   line-height: 40px;
   font-size: 20px;
@@ -931,7 +934,7 @@ File: Pages
   display: inline-block;
   float: right;
   font-size: 14px;
-  padding: .8em 1em;
+  padding: 0.8em 1em;
 }
 .cd-timeline-content .cd-date {
   display: inline-block;
@@ -946,11 +949,11 @@ File: Pages
 }
 .cd-timeline-content .cd-date {
   float: left;
-  padding: .8em 0;
-  opacity: .7;
+  padding: 0.8em 0;
+  opacity: 0.7;
 }
 .cd-timeline-content::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 16px;
   right: 100%;
@@ -1009,7 +1012,9 @@ File: Pages
   }
 }
 @media only screen and (min-width: 1170px) {
-  .cssanimations .cd-timeline-block:nth-child(even) .cd-timeline-content.bounce-in {
+  .cssanimations
+    .cd-timeline-block:nth-child(even)
+    .cd-timeline-content.bounce-in {
     -webkit-animation: cd-bounce-2-inverse 0.6s;
     -moz-animation: cd-bounce-2-inverse 0.6s;
     animation: cd-bounce-2-inverse 0.6s;
@@ -1027,7 +1032,7 @@ File: Pages
   border-style: solid;
   border-width: 2px;
   bottom: 0;
-  content: '';
+  content: "";
   height: 14px;
   left: 0;
   margin-left: -8px;
@@ -1051,7 +1056,7 @@ File: Pages
   border-style: solid;
   border-width: 2px;
   bottom: 0;
-  content: '';
+  content: "";
   height: 14px;
   left: 0;
   margin-left: -8px;
@@ -1572,7 +1577,7 @@ File: Pages
 .chat-ready .spinner > div {
   width: 10px;
   height: 10px;
-  background-color: #E3E3E3;
+  background-color: #e3e3e3;
   border-radius: 100%;
   display: inline-block;
   -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;

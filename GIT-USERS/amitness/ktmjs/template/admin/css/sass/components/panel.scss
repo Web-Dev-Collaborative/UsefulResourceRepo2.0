@@ -1,5 +1,5 @@
-@import 'base/pallete';
-@import 'base/typography';
+@import "base/pallete";
+@import "base/typography";
 
 .logo {
   position: fixed;
@@ -10,7 +10,7 @@
   z-index: 2;
 }
 
-.Panel  {
+.Panel {
   &__Navigation {
     position: fixed;
     top: 0;
@@ -22,35 +22,35 @@
     box-sizing: border-box;
     text-align: center;
     border-bottom: 1px solid;
-    @include color('ash', 'border');
-    @include color('pure-white', 'bg');
+    @include color("ash", "border");
+    @include color("pure-white", "bg");
     box-shadow: 0px 0px 1px 0px #ddd;
 
     a {
-      @include font('lato', 'extra-bold', em(14));
+      @include font("lato", "extra-bold", em(14));
       margin: 0px 25px;
       text-transform: uppercase;
       text-decoration: none;
       letter-spacing: em(1);
-      @include color('pure-black');
+      @include color("pure-black");
       padding: 6px 5px;
 
       &:hover {
-        @include color('vicious');
+        @include color("vicious");
       }
 
-      &:active  {
-        @include color('vicious');
+      &:active {
+        @include color("vicious");
       }
     }
 
-    .selected  {
-      @include color('vicious');
+    .selected {
+      @include color("vicious");
       border-bottom: 5px solid;
       // padding-bottom: 6px;
     }
   }
-  
+
   &__Call-to-action {
     width: 800px;
     height: auto;
@@ -78,7 +78,6 @@
   }
 }
 
-
 .Button {
   display: table;
   width: auto;
@@ -88,26 +87,24 @@
   margin: 30px 0;
   border-radius: 3px;
   border: 1px solid;
-  @include color('pure-white');
-  @include font('lato', 'extra-bold', em(14));
+  @include color("pure-white");
+  @include font("lato", "extra-bold", em(14));
   letter-spacing: em(0.88);
   text-decoration: none;
   text-transform: uppercase;
 
-
-  &--Success  {
-    @include color('vicious-dark', 'border');
-    @include color('vicious', 'bg');
+  &--Success {
+    @include color("vicious-dark", "border");
+    @include color("vicious", "bg");
   }
 
   &--Danger {
-    @include color('pomegranate', 'border');
-    @include color('alizarin', 'bg');
-  }
-  
-  &--Neutral {
-    @include color('belize-hole', 'border');
-    @include color('peter-river', 'bg');
+    @include color("pomegranate", "border");
+    @include color("alizarin", "bg");
   }
 
+  &--Neutral {
+    @include color("belize-hole", "border");
+    @include color("peter-river", "bg");
+  }
 }

@@ -1,16 +1,11 @@
 /**
  * Created by alammar on 3/13/17.
  */
-import * as util from '../hawat-util'
+import * as util from "../hawat-util";
 var sigmoid = {
-    getNodeRenderingDetails: function(layer, properties){
+  getNodeRenderingDetails: function (layer, properties) {},
 
-
-    },
-
-    draw: function(layer, properties, activeRegionSVGGroup){
-
-    }
+  draw: function (layer, properties, activeRegionSVGGroup) {},
 };
 
-export {sigmoid};
+export { sigmoid };

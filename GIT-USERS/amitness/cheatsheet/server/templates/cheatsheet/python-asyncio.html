@@ -1,17 +1,15 @@
-{% extends "layout.html" %}
-
-{% block jumbotron %}
+{% extends "layout.html" %} {% block jumbotron %}
 <div class="jumbotron">
-   <h1>Python Cheat Sheet</h1>
-   <p>Cheat sheet of Python. Some asyncio concepts for Python programmer need to know.</p>
+  <h1>Python Cheat Sheet</h1>
+  <p>
+    Cheat sheet of Python. Some asyncio concepts for Python programmer need to
+    know.
+  </p>
 </div>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="row col-md-4 col-xs-12">
-
-<h3>@asyncio.coroutine?</h3>
-<pre class="code python">
+  <h3>@asyncio.coroutine?</h3>
+  <pre class="code python">
 import asyncio
 import inspect
 from functools import wraps
@@ -46,10 +44,11 @@ loop.close()
 # output:
 # Hello Bar
 # Hello Foo
-</pre>
+</pre
+  >
 
-<h3>Task?</h3>
-<pre class="code python">
+  <h3>Task?</h3>
+  <pre class="code python">
 # goal: supervise coroutine run state
 # ref: asyncio/tasks.py
 import asyncio
@@ -105,10 +104,11 @@ loop.close()
 # output:
 # Hello Bar
 # hello Foo
-</pre>
+</pre
+  >
 
-<h3>What event loop doing? (without polling)</h3>
-<pre class="code python">
+  <h3>What event loop doing? (without polling)</h3>
+  <pre class="code python">
 import asyncio
 from collections import deque
 
@@ -190,12 +190,13 @@ loop.close()
 # output:
 # Foo 
 # Bar
-</pre>
+</pre
+  >
 </div>
 
 <div class="row col-md-4 col-xs-12">
-<h3>socket with asyncio</h3>
-<pre class="code python">
+  <h3>socket with asyncio</h3>
+  <pre class="code python">
 import asyncio
 import socket
 
@@ -240,10 +241,11 @@ loop.close()
 # bash2&gt; nc localhost 9527
 # World
 # World
-</pre>
+</pre
+  >
 
-<h3>Event Loop with Polling - Using selectors</h3>
-<pre class="code python">
+  <h3>Event Loop with Polling - Using selectors</h3>
+  <pre class="code python">
 # ref: <a href="https://www.youtube.com/watch?v=lYe8W04ERnY">PyCon 2015 - David Beazley</a>
 import asyncio
 import socket
@@ -353,8 +355,8 @@ loop.create_task(server())
 loop.run_forever()
 </pre>
 
-<h3>Inline callback</h3>
-<pre class="code python">
+  <h3>Inline callback</h3>
+  <pre class="code python">
 &gt;&gt;&gt; import asyncio
 &gt;&gt;&gt; async def foo():
 ...     await asyncio.sleep(1)
@@ -381,14 +383,13 @@ loop.run_forever()
 foo done
 bar done
 ker done
-</pre>
-
+</pre
+  >
 </div>
 
 <div class="row col-md-4 col-xs-12">
-
-<h3>Asynchronous Iterators</h3>
-<pre class="code python">
+  <h3>Asynchronous Iterators</h3>
+  <pre class="code python">
 # ref: <a href="https://www.python.org/dev/peps/pep-0492/">PEP-0492</a>
 # need Python &gt;= 3.5
 &gt;&gt;&gt; class AsyncIter:
@@ -416,8 +417,8 @@ ker done
 3
 </pre>
 
-<h3>Async Context Manager</h3>
-<pre class="code python">
+  <h3>Async Context Manager</h3>
+  <pre class="code python">
 # ref: <a href="https://www.python.org/dev/peps/pep-0492/">PEP-0492</a>
 # need Python &gt;= 3.5
 &gt;&gt;&gt; class AsyncCtxMgr:
@@ -444,8 +445,4 @@ hello block
 __aexit__
 </pre>
 </div>
-{% endblock %}
-
-{% block script %}
-{{ super() }}
-{% endblock %}
+{% endblock %} {% block script %} {{ super() }} {% endblock %}

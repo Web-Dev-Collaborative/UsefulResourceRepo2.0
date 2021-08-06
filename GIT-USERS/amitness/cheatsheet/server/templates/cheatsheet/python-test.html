@@ -1,18 +1,16 @@
-{% extends "layout.html" %}
-
-{% block jumbotron %}
+{% extends "layout.html" %} {% block jumbotron %}
 <div class="jumbotron">
-   <h1>Python Cheat Sheet</h1>
-   <p>Cheat sheet of Python. Some test concepts for a Python programmer need to know.</p>
+  <h1>Python Cheat Sheet</h1>
+  <p>
+    Cheat sheet of Python. Some test concepts for a Python programmer need to
+    know.
+  </p>
 </div>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="row">
-<div class="col-md-8 col-md-offset-2 col-xs-12">
-
-<h3>Write a simple Python unittest basic</h3>
-<pre class="code python">
+  <div class="col-md-8 col-md-offset-2 col-xs-12">
+    <h3>Write a simple Python unittest basic</h3>
+    <pre class="code python">
 # python unittet only run the function with prefix "test"
 &gt;&gt;&gt; import unittest
 &gt;&gt;&gt; class TestFoo(unittest.TestCase):
@@ -45,10 +43,11 @@ AssertionError: False is not true
 Ran 1 test in 0.000s
 
 FAILED (failures=1)
-</pre>
+</pre
+    >
 
-<h3>Python unittest setup & teardown hierarchy</h3>
-<pre class="code python">
+    <h3>Python unittest setup & teardown hierarchy</h3>
+    <pre class="code python">
 import unittest
 
 def fib(n):
@@ -96,10 +95,11 @@ teardown module
 Ran 2 tests in 0.000s
 
 OK
-</pre>
+</pre
+    >
 
-<h3>setUp & tearDown hierarchy from different unittest module</h3>
-<pre class="code python">
+    <h3>setUp & tearDown hierarchy from different unittest module</h3>
+    <pre class="code python">
 # test_module.py
 import unittest
 
@@ -160,10 +160,11 @@ bar tearDown
 Ran 2 tests in 0.000s
 
 OK
-</pre>
+</pre
+    >
 
-<h3>Run the tests via <code>unittest.TextTestRunner</code></h3>
-<pre class="code python">
+    <h3>Run the tests via <code>unittest.TextTestRunner</code></h3>
+    <pre class="code python">
 &gt;&gt;&gt; import unittest  
 &gt;&gt;&gt; class TestFoo(unittest.TestCase):
 ...     def test_foo(self):
@@ -180,10 +181,11 @@ test_foo (__main__.TestFoo) ... ok
 Ran 2 tests in 0.000s
 
 OK
-</pre>
+</pre
+    >
 
-<h3>Test raise exception</h3>
-<pre class="code python">
+    <h3>Test raise exception</h3>
+    <pre class="code python">
 &gt;&gt;&gt; import unittest  
 
 &gt;&gt;&gt; class TestRaiseException(unittest.TestCase):
@@ -217,10 +219,11 @@ AssertionError: SystemError not raised
 Ran 1 test in 0.000s
 
 FAILED (failures=1)
-</pre>
+</pre
+    >
 
-<h3>Pass arguments into a TestCase</h3>
-<pre class="code python">
+    <h3>Pass arguments into a TestCase</h3>
+    <pre class="code python">
 # ref: <a herf="http://stackoverflow.com/questions/1842168/python-unit-test-pass-command-line-arguments-to-setup-of-unittest-testcase">stackoverflow</a>
 &gt;&gt;&gt; import unittest  
 &gt;&gt;&gt; class TestArg(unittest.TestCase):
@@ -246,8 +249,8 @@ Ran 1 test in 0.000s
 OK
 </pre>
 
-<h3>Group multiple testcases into a suite</h3>
-<pre class="code python">
+    <h3>Group multiple testcases into a suite</h3>
+    <pre class="code python">
 &gt;&gt;&gt; import unittest  
 &gt;&gt;&gt; class TestFooBar(unittest.TestCase):
 ...     def test_foo(self):
@@ -275,10 +278,11 @@ test_world (__main__.TestHelloWorld) ... ok
 Ran 4 tests in 0.000s
 
 OK
-</pre>
+</pre
+    >
 
-<h3>Group multiple tests from different TestCase</h3>
-<pre class="code python">
+    <h3>Group multiple tests from different TestCase</h3>
+    <pre class="code python">
 &gt;&gt;&gt; import unittest  
 &gt;&gt;&gt; class TestFoo(unittest.TestCase):
 ...     def test_foo(self):
@@ -299,11 +303,11 @@ test_bar (__main__.TestBar) ... ok
 Ran 2 tests in 0.001s
 
 OK
-</pre>
+</pre
+    >
 
-
-<h3>Skip some tests in the TestCase</h3>
-<pre class="code python">
+    <h3>Skip some tests in the TestCase</h3>
+    <pre class="code python">
 &gt;&gt;&gt; import unittest  
 &gt;&gt;&gt; RUN_FOO = False  
 &gt;&gt;&gt; DONT_RUN_BAR = False  
@@ -331,10 +335,11 @@ test_skipunless (__main__.TestSkip) ... skipped 'demo skipUnless'
 Ran 4 tests in 0.000s
 
 OK (skipped=3)
-</pre>
+</pre
+    >
 
-<h3>Make a cross-module variable into different Test files.</h3>
-<pre class="code python">
+    <h3>Make a cross-module variable into different Test files.</h3>
+    <pre class="code python">
 # ref: <a href="http://stackoverflow.com/questions/142545/python-how-to-make-a-cross-module-variable">stackoverflow</a>
 # test_foo.py
 import unittest
@@ -377,8 +382,8 @@ OK (skipped=1)
 
 </pre>
 
-<h3>Python unittest skip setup & teardown when the test is skipped</h3>
-<pre class="code python">
+    <h3>Python unittest skip setup & teardown when the test is skipped</h3>
+    <pre class="code python">
 &gt;&gt;&gt; import unittest
 &gt;&gt;&gt; class TestSkip(unittest.TestCase):
 ...     def setUp(self):
@@ -402,10 +407,11 @@ test_skip (__main__.TestSkip) ... skipped 'skip this test'
 Ran 2 tests in 0.000s
 
 OK (skipped=1)
-</pre>
+</pre
+    >
 
-<h3>Re-using old test code</h3>
-<pre class="code python">
+    <h3>Re-using old test code</h3>
+    <pre class="code python">
 &gt;&gt;&gt; import unittest
 &gt;&gt;&gt; def old_func_test():
 ...     assert "Hello" == "Hello"                                                                                                                                                                                                      
@@ -429,10 +435,11 @@ Ran 1 test in 0.000s
 
 OK
 &lt;unittest.runner.TextTestResult run=1 errors=0 failures=0&gt;
-</pre>
+</pre
+    >
 
-<h3>doctest - testing your document is right</h3>
-<pre class="code python">
+    <h3>doctest - testing your document is right</h3>
+    <pre class="code python">
 """
 This is an example of doctest
 
@@ -486,10 +493,11 @@ ok
 3 tests in 2 items.
 3 passed and 0 failed.
 Test passed.
-</pre>
+</pre
+    >
 
-<h3>Re-using doctest to unittest</h3>
-<pre class="code python">
+    <h3>Re-using doctest to unittest</h3>
+    <pre class="code python">
 import unittest
 import doctest
 
@@ -521,10 +529,11 @@ if __name__ == "__main__":
     suite = unittest.TestSuite()
     finder = doctest.DocTestFinder()
     unittest.TextTestRunner(verbosity=2).run(suite)
-</pre>
+</pre
+    >
 
-<h3>Mocking Test - Replace real object to fake object</h3>
-<pre class="code python">
+    <h3>Mocking Test - Replace real object to fake object</h3>
+    <pre class="code python">
 # without mock - test will always failed
 import unittest
 import os
@@ -573,14 +582,9 @@ bash&gt; python mock_test.py
 Ran 1 test in 0.000s
 
 OK
-</pre>
-
-
+</pre
+    >
+  </div>
 </div>
-</div>
 
-{% endblock %}
-
-{% block script %}
-{{ super() }}
-{% endblock %}
+{% endblock %} {% block script %} {{ super() }} {% endblock %}

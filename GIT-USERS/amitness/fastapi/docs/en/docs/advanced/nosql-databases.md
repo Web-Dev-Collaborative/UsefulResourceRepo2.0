@@ -6,14 +6,14 @@ Here we'll see an example using **<a href="https://www.couchbase.com/" class="ex
 
 You can adapt it to any other NoSQL database like:
 
-* **MongoDB**
-* **Cassandra**
-* **CouchDB**
-* **ArangoDB**
-* **ElasticSearch**, etc.
+- **MongoDB**
+- **Cassandra**
+- **CouchDB**
+- **ArangoDB**
+- **ElasticSearch**, etc.
 
 !!! tip
-    There is an official project generator with **FastAPI** and **Couchbase**, all based on **Docker**, including a frontend and more tools: <a href="https://github.com/tiangolo/full-stack-fastapi-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-couchbase</a>
+There is an official project generator with **FastAPI** and **Couchbase**, all based on **Docker**, including a frontend and more tools: <a href="https://github.com/tiangolo/full-stack-fastapi-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-fastapi-couchbase</a>
 
 ## Import Couchbase components
 
@@ -47,12 +47,12 @@ In the code, a `Bucket` represents the main entrypoint of communication with the
 
 This utility function will:
 
-* Connect to a **Couchbase** cluster (that might be a single machine).
-    * Set defaults for timeouts.
-* Authenticate in the cluster.
-* Get a `Bucket` instance.
-    * Set defaults for timeouts.
-* Return it.
+- Connect to a **Couchbase** cluster (that might be a single machine).
+  - Set defaults for timeouts.
+- Authenticate in the cluster.
+- Get a `Bucket` instance.
+  - Set defaults for timeouts.
+- Return it.
 
 ```Python hl_lines="12-21"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
@@ -70,7 +70,7 @@ First, let's create a `User` model:
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
-We will use this model in our *path operation function*, so, we don't include in it the `hashed_password`.
+We will use this model in our _path operation function_, so, we don't include in it the `hashed_password`.
 
 ### `UserInDB` model
 
@@ -85,7 +85,7 @@ We don't create it as a subclass of Pydantic's `BaseModel` but as a subclass of 
 ```
 
 !!! note
-    Notice that we have a `hashed_password` and a `type` field that will be stored in the database.
+Notice that we have a `hashed_password` and a `type` field that will be stored in the database.
 
     But it is not part of the general `User` model (the one we will return in the *path operation*).
 
@@ -93,12 +93,12 @@ We don't create it as a subclass of Pydantic's `BaseModel` but as a subclass of 
 
 Now create a function that will:
 
-* Take a username.
-* Generate a document ID from it.
-* Get the document with that ID.
-* Put the contents of the document in a `UserInDB` model.
+- Take a username.
+- Generate a document ID from it.
+- Get the document with that ID.
+- Put the contents of the document in a `UserInDB` model.
 
-By creating a function that is only dedicated to getting your user from a `username` (or any other parameter) independent of your *path operation function*, you can more easily re-use it in multiple parts and also add <abbr title="Automated test, written in code, that checks if another piece of code is working correctly.">unit tests</abbr> for it:
+By creating a function that is only dedicated to getting your user from a `username` (or any other parameter) independent of your _path operation function_, you can more easily re-use it in multiple parts and also add <abbr title="Automated test, written in code, that checks if another piece of code is working correctly.">unit tests</abbr> for it:
 
 ```Python hl_lines="36-42"
 {!../../../docs_src/nosql_databases/tutorial001.py!}
@@ -139,7 +139,7 @@ UserInDB(username="johndoe", hashed_password="some_hash")
 {!../../../docs_src/nosql_databases/tutorial001.py!}
 ```
 
-### Create the *path operation function*
+### Create the _path operation function_
 
 As our code is calling Couchbase and we are not using the <a href="https://docs.couchbase.com/python-sdk/2.5/async-programming.html#asyncio-python-3-5" class="external-link" target="_blank">experimental Python <code>await</code> support</a>, we should declare our function with normal `def` instead of `async def`.
 

@@ -3,17 +3,20 @@
 **********************/
 
 @include exports("cinnamon-settings") {
-    .cs-category-view {
-        &, .view {
-            &, &:backdrop {
-                background-color: transparent;
-            }
+  .cs-category-view {
+    &,
+    .view {
+      &,
+      &:backdrop {
+        background-color: transparent;
+      }
 
-            &:selected {
-                &:focus, & {
-                    @extend %selected_items;
-                }
-            }
+      &:selected {
+        &:focus,
+        & {
+          @extend %selected_items;
         }
+      }
     }
+  }
 }

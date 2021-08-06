@@ -52,9 +52,9 @@ a mobile or embedded device.
 
 ## Other Deployment Scenarios
 
-* [Distributed TensorFlow](../deploy/distributed.md) - Learn how to create a
-cluster of TensorFlow servers
-* [TensorFlow on Hadoop](../deploy/hadoop.md) - Learn how to run TensorFlow on
-Hadoop using HDFS
-* [TensorFlow on S3](../deploy/s3.md) - Learn how Tensorflow supports reading
-and writing data to S3
+- [Distributed TensorFlow](../deploy/distributed.md) - Learn how to create a
+  cluster of TensorFlow servers
+- [TensorFlow on Hadoop](../deploy/hadoop.md) - Learn how to run TensorFlow on
+  Hadoop using HDFS
+- [TensorFlow on S3](../deploy/s3.md) - Learn how Tensorflow supports reading
+  and writing data to S3

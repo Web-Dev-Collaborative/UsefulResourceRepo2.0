@@ -4,11 +4,10 @@ Use Plugin: [bootstrap-table-reorder-columns](https://github.com/wenzhixin/boots
 Dependence: [dragTable](https://github.com/akottr/dragtable/) v2.0.14 (must include the css file), </br>
 [jquery-ui](https://code.jquery.com/ui/) v1.11
 
-
 ## Usage
 
 ```html
-<link rel="stylesheet" href=".../dragtable.css">
+<link rel="stylesheet" href=".../dragtable.css" />
 <script src=".../jquery-ui.js"></script>
 <script src=".../jquery.dragtable.js"></script>
 <script src="extensions/reorder-columns/bootstrap-table-reorder-columns.js"></script>
@@ -18,15 +17,15 @@ Dependence: [dragTable](https://github.com/akottr/dragtable/) v2.0.14 (must incl
 
 ### reorderableColumns
 
-* type: Boolean
-* description: Set true to allow the reorder feature.
-* default: `false`
+- type: Boolean
+- description: Set true to allow the reorder feature.
+- default: `false`
 
 ### maxMovingRows
 
-* type: Integer
-* description: Moving only the header. Recommended for very large tables (cells > 1000)
-* default: `10`
+- type: Integer
+- description: Moving only the header. Recommended for very large tables (cells > 1000)
+- default: `10`
 
 ## Events
 

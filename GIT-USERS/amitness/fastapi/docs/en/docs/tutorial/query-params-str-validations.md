@@ -11,7 +11,7 @@ Let's take this application as example:
 The query parameter `q` is of type `Optional[str]`, that means that it's of type `str` but could also be `None`, and indeed, the default value is `None`, so FastAPI will know it's not required.
 
 !!! note
-    FastAPI will know that the value of `q` is not required because of the default value `= None`.
+FastAPI will know that the value of `q` is not required because of the default value `= None`.
 
     The `Optional` in `Optional[str]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
 
@@ -52,7 +52,7 @@ q: Optional[str] = None
 But it declares it explicitly as being a query parameter.
 
 !!! info
-    Have in mind that FastAPI cares about the part:
+Have in mind that FastAPI cares about the part:
 
     ```Python
     = None
@@ -74,7 +74,7 @@ Then, we can pass more parameters to `Query`. In this case, the `max_length` par
 q: str = Query(None, max_length=50)
 ```
 
-This will validate the data, show a clear error when the data is not valid, and document the parameter in the OpenAPI schema *path operation*.
+This will validate the data, show a clear error when the data is not valid, and document the parameter in the OpenAPI schema _path operation_.
 
 ## Add more validations
 
@@ -94,9 +94,9 @@ You can define a <abbr title="A regular expression, regex or regexp is a sequenc
 
 This specific regular expression checks that the received parameter value:
 
-* `^`: starts with the following characters, doesn't have characters before.
-* `fixedquery`: has the exact value `fixedquery`.
-* `$`: ends there, doesn't have any more characters after `fixedquery`.
+- `^`: starts with the following characters, doesn't have characters before.
+- `fixedquery`: has the exact value `fixedquery`.
+- `$`: ends there, doesn't have any more characters after `fixedquery`.
 
 If you feel lost with all these **"regular expression"** ideas, don't worry. They are a hard topic for many people. You can still do a lot of stuff without needing regular expressions yet.
 
@@ -113,7 +113,7 @@ Let's say that you want to declare the `q` query parameter to have a `min_length
 ```
 
 !!! note
-    Having a default value also makes the parameter optional.
+Having a default value also makes the parameter optional.
 
 ## Make it required
 
@@ -142,7 +142,7 @@ So, when you need to declare a value as required while using `Query`, you can us
 ```
 
 !!! info
-    If you hadn't seen that `...` before: it is a special single value, it is <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">part of Python and is called "Ellipsis"</a>.
+If you hadn't seen that `...` before: it is a special single value, it is <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">part of Python and is called "Ellipsis"</a>.
 
 This will let **FastAPI** know that this parameter is required.
 
@@ -162,7 +162,7 @@ Then, with a URL like:
 http://localhost:8000/items/?q=foo&q=bar
 ```
 
-you would receive the multiple `q` *query parameters'* values (`foo` and `bar`) in a Python `list` inside your *path operation function*, in the *function parameter* `q`.
+you would receive the multiple `q` _query parameters'_ values (`foo` and `bar`) in a Python `list` inside your _path operation function_, in the _function parameter_ `q`.
 
 So, the response to that URL would be:
 
@@ -176,7 +176,7 @@ So, the response to that URL would be:
 ```
 
 !!! tip
-    To declare a query parameter with a type of `list`, like in the example above, you need to explicitly use `Query`, otherwise it would be interpreted as a request body.
+To declare a query parameter with a type of `list`, like in the example above, you need to explicitly use `Query`, otherwise it would be interpreted as a request body.
 
 The interactive API docs will update accordingly, to allow multiple values:
 
@@ -216,7 +216,7 @@ You can also use `list` directly instead of `List[str]`:
 ```
 
 !!! note
-    Have in mind that in this case, FastAPI won't check the contents of the list.
+Have in mind that in this case, FastAPI won't check the contents of the list.
 
     For example, `List[int]` would check (and document) that the contents of the list are integers. But `list` alone wouldn't.
 
@@ -227,7 +227,7 @@ You can add more information about the parameter.
 That information will be included in the generated OpenAPI and used by the documentation user interfaces and external tools.
 
 !!! note
-    Have in mind that different tools might have different levels of OpenAPI support.
+Have in mind that different tools might have different levels of OpenAPI support.
 
     Some of them might not show all the extra information declared yet, although in most of the cases, the missing feature is already planned for development.
 
@@ -287,16 +287,16 @@ You can declare additional validations and metadata for your parameters.
 
 Generic validations and metadata:
 
-* `alias`
-* `title`
-* `description`
-* `deprecated`
+- `alias`
+- `title`
+- `description`
+- `deprecated`
 
 Validations specific for strings:
 
-* `min_length`
-* `max_length`
-* `regex`
+- `min_length`
+- `max_length`
+- `regex`
 
 In these examples you saw how to declare validations for `str` values.
 

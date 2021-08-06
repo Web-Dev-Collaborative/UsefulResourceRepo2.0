@@ -39,13 +39,13 @@ docsify расширяет синтаксис Markdown, чтобы сделат�
 Теперь вы можете сделать это
 
 ```md
-[link](/demo/ ':ignore')
+[link](/demo/ ":ignore")
 ```
 
 Вы получите html `<a href="/demo/">link</a>`. Не волнуйтесь, вы все равно сможете установить заголовок для ссылки.
 
 ```md
-[link](/demo/ ':ignore title')
+[link](/demo/ ":ignore title")
 
 <a href="/demo/" title="title">link</a>
 ```
@@ -53,32 +53,30 @@ docsify расширяет синтаксис Markdown, чтобы сделат�
 ## Установить целевой атрибут для ссылки
 
 ```md
-[link](/demo ':target=_blank')
-[link](/demo2 ':target=_self')
+[link](/demo ":target=_blank")
+[link](/demo2 ":target=_self")
 ```
 
 ## Отключить ссылку
 
 ```md
-[link](/demo ':disabled')
+[link](/demo ":disabled")
 ```
 
 ## Github список задач
 
 ```md
-* [ ] foo
-* bar
-* [x] baz
-* [] bam <~ not working
-  * [ ] bim
-  * [ ] lim
+- [ ] foo
+- bar
+- [x] baz
+- [] bam <~ not working
+  - [ ] bim
+  - [ ] lim
 ```
 
-* [ ] foo
-* bar
-* [x] baz
-* [] bam <~ not working
-  * [ ] bim
-  * [ ] lim
-
-
+- [ ] foo
+- bar
+- [x] baz
+- [] bam <~ not working
+  - [ ] bim
+  - [ ] lim

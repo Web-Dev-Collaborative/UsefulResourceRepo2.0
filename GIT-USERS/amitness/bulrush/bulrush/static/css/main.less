@@ -5,22 +5,21 @@
 
 @import "highlight";
 
-
-
 // Custom
 .is-success {
-    background-color: @primary !important;
-    color: #fff
+  background-color: @primary !important;
+  color: #fff;
 }
 
 .hero.is-success {
-    background-color: @primary;
-    color: #fff
+  background-color: @primary;
+  color: #fff;
 }
 
-a.navbar-item.is-active, .hero.is-success a.navbar-item:hover {
-    background-color: #43A047 !important;
-    color: #fff;
+a.navbar-item.is-active,
+.hero.is-success a.navbar-item:hover {
+  background-color: #43a047 !important;
+  color: #fff;
 }
 
 .article-title {
@@ -33,9 +32,11 @@ a.navbar-item.is-active, .hero.is-success a.navbar-item:hover {
   margin-right: auto;
 }
 
-
 article .section {
-  p, ul, ol, li {
+  p,
+  ul,
+  ol,
+  li {
     margin-bottom: 0.5em;
 
     &:last-child {
@@ -43,7 +44,9 @@ article .section {
     }
   }
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     color: @darker-grey;
     font-weight: 500;
     line-height: 1.125;
@@ -62,7 +65,8 @@ article .section {
     font-size: 1.125rem;
   }
 
-  blockquote, .highlight {
+  blockquote,
+  .highlight {
     background-color: @grey;
     color: @dark-grey;
     margin: 0.25em 0.25em 0.5em 0.25em !important;
@@ -86,7 +90,8 @@ article .section {
   }
 
   table {
-    td, th {
+    td,
+    th {
       border: 1px solid @grey;
       padding: 0.25em;
     }
@@ -173,8 +178,6 @@ footer.footer {
   }
 }
 
-
-
 .card.is-fullheight {
   height: 100%;
 }
@@ -189,18 +192,19 @@ footer.footer {
 }
 
 .card-content a:hover {
-  h3, p {
+  h3,
+  p {
     color: @darker-grey;
   }
 }
 
 // http://stackoverflow.com/a/10841767
-@media
-only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (-o-min-device-pixel-ratio: 3 / 2),
-only screen and (min--moz-device-pixel-ratio: 1.5),
-only screen and (min-device-pixel-ratio: 1.5) {
-  html, body {
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+  only screen and (-o-min-device-pixel-ratio: 3 / 2),
+  only screen and (min--moz-device-pixel-ratio: 1.5),
+  only screen and (min-device-pixel-ratio: 1.5) {
+  html,
+  body {
     width: 100%;
     overflow-x: hidden;
   }
@@ -222,7 +226,8 @@ only screen and (min-device-pixel-ratio: 1.5) {
   }
 }
 
-abbr[title], acronym[title] {
+abbr[title],
+acronym[title] {
   // override Chrome/Firefox UA stylesheet
   text-decoration: none;
 }

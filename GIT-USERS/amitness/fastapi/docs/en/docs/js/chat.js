@@ -1,3 +1,3 @@
 ((window.gitter = {}).chat = {}).options = {
-    room: 'tiangolo/fastapi'
+  room: "tiangolo/fastapi",
 };

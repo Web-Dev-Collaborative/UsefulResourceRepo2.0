@@ -6,7 +6,7 @@ This guide builds a TensorFlow package for a
 While the instructions might work for other Raspberry Pi variants, it is only
 tested and supported for this configuration.
 
-We recommend *cross-compiling* the TensorFlow Raspbian package. Cross-compilation
+We recommend _cross-compiling_ the TensorFlow Raspbian package. Cross-compilation
 is using a different platform to build the package than deploy to. Instead of
 using the Raspberry Pi's limited RAM and comparatively slow processor, it's
 easier to build TensorFlow on a more powerful host machine running Linux, macOS,
@@ -14,7 +14,6 @@ or Windows.
 
 Note: We already provide well-tested, pre-built [TensorFlow packages](./pip.md)
 for Raspbian systems.
-
 
 ## Setup for host
 
@@ -46,10 +45,9 @@ git checkout <em>branch_name</em>  # r1.9, r1.10, etc.
 Key Point: If you're having build problems on the latest development branch, try
 a release branch that is known to work.
 
-
 ## Build from source
 
-Cross-compile the TensorFlow source code to build a Python *pip* package with
+Cross-compile the TensorFlow source code to build a Python _pip_ package with
 ARMv7 [NEON instructions](https://developer.arm.com/technologies/neon){:.external}
 that works on Raspberry Pi 2 and 3 devices. The build script launches a Docker
 container for compilation. Choose between Python 3 and Python 2.7 for the target

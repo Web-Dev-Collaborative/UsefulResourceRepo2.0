@@ -114,8 +114,7 @@ module.exports = typeDefs;
 <br>
 Okay, let's slow things down a bit and talk a little more about what we're doing and why we're doing it. About the schema, according to Apollo Docs:
 
-> **--** _Every graph API is centered around its schema. You can think of a schema as a blueprint that describes all of your data's types and their relationships. A schema also defines what data we can fetch through queries and what data we can update through mutations. It is strongly typed, which unlocks powerful developer tooling._
-> <br>
+> **--** _Every graph API is centered around its schema. You can think of a schema as a blueprint that describes all of your data's types and their relationships. A schema also defines what data we can fetch through queries and what data we can update through mutations. It is strongly typed, which unlocks powerful developer tooling._ > <br>
 
 Oftentimes, the response you get when making a request can be unsatisfying; you just can't get what you want in the way that you want it. This is as much true of life in general as it is of web development.
 <br>

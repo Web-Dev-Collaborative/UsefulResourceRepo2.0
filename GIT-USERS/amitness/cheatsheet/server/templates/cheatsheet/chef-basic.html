@@ -1,17 +1,12 @@
-{% extends "layout.html" %}
-
-{% block jumbotron %}
+{% extends "layout.html" %} {% block jumbotron %}
 <div class="jumbotron">
-   <h1>Chef Basic Cheat Sheet</h1>
-   <p>Cheat sheet of Chef. Some basic concepts for a Chef beginner.</p>
+  <h1>Chef Basic Cheat Sheet</h1>
+  <p>Cheat sheet of Chef. Some basic concepts for a Chef beginner.</p>
 </div>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="row col-md-4 col-xs-12">
-
-<h3>Create a chef-repo</h3>
-<pre class="code bash">
+  <h3>Create a chef-repo</h3>
+  <pre class="code bash">
 # create a chef-repo
 $ chef generate repo ~/chef-repo
 
@@ -50,10 +45,11 @@ $ mv /path/to/admin.pem ~/.chef
 
 # check connect to chef server success
 $ knife ssl check
-</pre>
+</pre
+  >
 
-<h3>Create a Chef cookbook</h3>
-<pre class="code bash">
+  <h3>Create a Chef cookbook</h3>
+  <pre class="code bash">
 # create a chef cookbook
 $ cd ~/chef-repo
 $ chef generate \
@@ -90,10 +86,11 @@ ookbooks/
         └── default.rb
 
 14 directories, 14 files
-</pre>
+</pre
+  >
 
-<h3>Reference other cookbooks on 'supermarket'</h3>
-<pre class="code ruby">
+  <h3>Reference other cookbooks on 'supermarket'</h3>
+  <pre class="code ruby">
 # <a href="https://supermarket.chef.io/">chef supermarket</a>
 # chef cookbook latest version
 # $ knife cookbook site show [cookbook]
@@ -112,8 +109,8 @@ depends 'apt', '2.9.2'
 depends 'poise-python', '1.2.1'
 </pre>
 
-<h3>Create attributes files</h3>
-<pre class="code bash">
+  <h3>Create attributes files</h3>
+  <pre class="code bash">
 $ chef generate attribute \
 &gt; 'cookbooks/aws-flask' default
 $ tree cookbooks/aws-flask/attributes
@@ -121,14 +118,13 @@ cookbooks/aws-flask/attributes/
 └── default.rb
 
 0 directories, 1 file
-</pre>
-
+</pre
+  >
 </div>
 
 <div class="row col-md-4 col-xs-12">
-
-<h3>Configure a node (server)</h3>
-<pre class="code bash">
+  <h3>Configure a node (server)</h3>
+  <pre class="code bash">
 # configure a node
 $ knife cookbook upload --force \
 &gt;    'aws-flask'
@@ -147,10 +143,11 @@ $ knife bootstrap $ADDRESS \
 $ knife node list
 aws-flask-node
 aws-nginx-node
-</pre>
+</pre
+  >
 
-<h3>Setup a python environments</h3>
-<pre class="code ruby">
+  <h3>Setup a python environments</h3>
+  <pre class="code ruby">
 # edit attributes/default
 user = 'ubuntu'
 path = File.join('/home',user,'.pyvenv')
@@ -167,10 +164,11 @@ python_package 'paramiko'
 python_package 'sqlalchemy' do
   version '1.0.11'
 end
-</pre>
+</pre
+  >
 
-<h3>Install apt packages</h3>
-<pre class="code ruby">
+  <h3>Install apt packages</h3>
+  <pre class="code ruby">
 # ref: <a href="https://docs.chef.io/resource_package.html">chef resource package</a>
 # edit [cookbook]/recipe/default.rb
 # install apt package
@@ -181,8 +179,8 @@ package 'ruby2.0'
 package 'swig3.0'
 </pre>
 
-<h3>Create files</h3>
-<pre class="code ruby">
+  <h3>Create files</h3>
+  <pre class="code ruby">
 # edit [cookbook]/attribute/default.rb
 user = 'ubuntu'
 group = 'ubuntu'
@@ -198,10 +196,11 @@ file node['aws-flask']['s'] do
   owner node['aws-flask']['user']
   group node['aws-flask']['group']
 end
-</pre>
+</pre
+  >
 
-<h3>Execute bash commands</h3>
-<pre class="code ruby">
+  <h3>Execute bash commands</h3>
+  <pre class="code ruby">
 # edit [cookbook]/attributes/default.rb
 user = 'ubuntu'
 home = File.join('/home',user)
@@ -218,8 +217,8 @@ execute 'mkdir_flaks' do
   EOH
 end
 
-</pre>
-
+</pre
+  >
 </div>
 
 {% endblock %}

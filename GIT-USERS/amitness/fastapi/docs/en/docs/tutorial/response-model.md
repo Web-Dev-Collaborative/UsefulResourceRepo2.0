@@ -1,35 +1,35 @@
 # Response Model
 
-You can declare the model used for the response with the parameter `response_model` in any of the *path operations*:
+You can declare the model used for the response with the parameter `response_model` in any of the _path operations_:
 
-* `@app.get()`
-* `@app.post()`
-* `@app.put()`
-* `@app.delete()`
-* etc.
+- `@app.get()`
+- `@app.post()`
+- `@app.put()`
+- `@app.delete()`
+- etc.
 
 ```Python hl_lines="17"
 {!../../../docs_src/response_model/tutorial001.py!}
 ```
 
 !!! note
-    Notice that `response_model` is a parameter of the "decorator" method (`get`, `post`, etc). Not of your *path operation function*, like all the parameters and body.
+Notice that `response_model` is a parameter of the "decorator" method (`get`, `post`, etc). Not of your _path operation function_, like all the parameters and body.
 
 It receives the same type you would declare for a Pydantic model attribute, so, it can be a Pydantic model, but it can also be, e.g. a `list` of Pydantic models, like `List[Item]`.
 
 FastAPI will use this `response_model` to:
 
-* Convert the output data to its type declaration.
-* Validate the data.
-* Add a JSON Schema for the response, in the OpenAPI *path operation*.
-* Will be used by the automatic documentation systems.
+- Convert the output data to its type declaration.
+- Validate the data.
+- Add a JSON Schema for the response, in the OpenAPI _path operation_.
+- Will be used by the automatic documentation systems.
 
 But most importantly:
 
-* Will limit the output data to that of the model. We'll see how that's important below.
+- Will limit the output data to that of the model. We'll see how that's important below.
 
 !!! note "Technical Details"
-    The response model is declared in this parameter instead of as a function return type annotation, because the path function may not actually return that response model but rather return a `dict`, database object or some other model, and then use the `response_model` to perform the field limiting and serialization.
+The response model is declared in this parameter instead of as a function return type annotation, because the path function may not actually return that response model but rather return a `dict`, database object or some other model, and then use the `response_model` to perform the field limiting and serialization.
 
 ## Return the same input data
 
@@ -49,10 +49,10 @@ Now, whenever a browser is creating a user with a password, the API will return 
 
 In this case, it might not be a problem, because the user himself is sending the password.
 
-But if we use the same model for another *path operation*, we could be sending our user's passwords to every client.
+But if we use the same model for another _path operation_, we could be sending our user's passwords to every client.
 
 !!! danger
-    Never store the plain password of a user or send it in a response.
+Never store the plain password of a user or send it in a response.
 
 ## Add an output model
 
@@ -62,7 +62,7 @@ We can instead create an input model with the plaintext password and an output m
 {!../../../docs_src/response_model/tutorial003.py!}
 ```
 
-Here, even though our *path operation function* is returning the same input user that contains the password:
+Here, even though our _path operation function_ is returning the same input user that contains the password:
 
 ```Python hl_lines="24"
 {!../../../docs_src/response_model/tutorial003.py!}
@@ -94,9 +94,9 @@ Your response model could have default values, like:
 {!../../../docs_src/response_model/tutorial004.py!}
 ```
 
-* `description: Optional[str] = None` has a default of `None`.
-* `tax: float = 10.5` has a default of `10.5`.
-* `tags: List[str] = []` as a default of an empty list: `[]`.
+- `description: Optional[str] = None` has a default of `None`.
+- `tax: float = 10.5` has a default of `10.5`.
+- `tags: List[str] = []` as a default of an empty list: `[]`.
 
 but you might want to omit them from the result if they were not actually stored.
 
@@ -104,7 +104,7 @@ For example, if you have models with many optional attributes in a NoSQL databas
 
 ### Use the `response_model_exclude_unset` parameter
 
-You can set the *path operation decorator* parameter `response_model_exclude_unset=True`:
+You can set the _path operation decorator_ parameter `response_model_exclude_unset=True`:
 
 ```Python hl_lines="24"
 {!../../../docs_src/response_model/tutorial004.py!}
@@ -112,7 +112,7 @@ You can set the *path operation decorator* parameter `response_model_exclude_uns
 
 and those default values won't be included in the response, only the values actually set.
 
-So, if you send a request to that *path operation* for the item with ID `foo`, the response (not including default values) will be:
+So, if you send a request to that _path operation_ for the item with ID `foo`, the response (not including default values) will be:
 
 ```JSON
 {
@@ -122,10 +122,10 @@ So, if you send a request to that *path operation* for the item with ID `foo`, t
 ```
 
 !!! info
-    FastAPI uses Pydantic model's `.dict()` with <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">its `exclude_unset` parameter</a> to achieve this.
+FastAPI uses Pydantic model's `.dict()` with <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeldict" class="external-link" target="_blank">its `exclude_unset` parameter</a> to achieve this.
 
 !!! info
-    You can also use:
+You can also use:
 
     * `response_model_exclude_defaults=True`
     * `response_model_exclude_none=True`
@@ -166,20 +166,20 @@ FastAPI is smart enough (actually, Pydantic is smart enough) to realize that, ev
 So, they will be included in the JSON response.
 
 !!! tip
-    Notice that the default values can be anything, not only `None`.
+Notice that the default values can be anything, not only `None`.
 
     They can be a list (`[]`), a `float` of `10.5`, etc.
 
 ### `response_model_include` and `response_model_exclude`
 
-You can also use the *path operation decorator* parameters `response_model_include` and `response_model_exclude`.
+You can also use the _path operation decorator_ parameters `response_model_include` and `response_model_exclude`.
 
 They take a `set` of `str` with the name of the attributes to include (omitting the rest) or to exclude (including the rest).
 
 This can be used as a quick shortcut if you have only one Pydantic model and want to remove some data from the output.
 
 !!! tip
-    But it is still recommended to use the ideas above, using multiple classes, instead of these parameters.
+But it is still recommended to use the ideas above, using multiple classes, instead of these parameters.
 
     This is because the JSON Schema generated in your app's OpenAPI (and the docs) will still be the one for the complete model, even if you use `response_model_include` or `response_model_exclude` to omit some attributes.
 
@@ -190,7 +190,7 @@ This can be used as a quick shortcut if you have only one Pydantic model and wan
 ```
 
 !!! tip
-    The syntax `{"name", "description"}` creates a `set` with those two values.
+The syntax `{"name", "description"}` creates a `set` with those two values.
 
     It is equivalent to `set(["name", "description"])`.
 
@@ -204,6 +204,6 @@ If you forget to use a `set` and use a `list` or `tuple` instead, FastAPI will s
 
 ## Recap
 
-Use the *path operation decorator's* parameter `response_model` to define response models and especially to ensure private data is filtered out.
+Use the _path operation decorator's_ parameter `response_model` to define response models and especially to ensure private data is filtered out.
 
 Use `response_model_exclude_unset` to return only the values explicitly set.

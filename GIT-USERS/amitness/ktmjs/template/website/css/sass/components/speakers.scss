@@ -1,21 +1,22 @@
-@import 'base/typography';
-@import 'base/pallete';
+@import "base/typography";
+@import "base/pallete";
 
-.Speakers {}
+.Speakers {
+}
 
-.Speaker  {
+.Speaker {
   overflow: hidden;
 
   &__Name {
     width: auto;
     margin: 0 0 0 130px;
-    @include font('lato', 'bold', 18px, 22px);
+    @include font("lato", "bold", 18px, 22px);
   }
 
-  &__DesignationAndWorkplace  {
+  &__DesignationAndWorkplace {
     margin: 2px 0 0 130px;
-    @include font('lato', 'regular', 14px, 17px);
-    @include color('igray');
+    @include font("lato", "regular", 14px, 17px);
+    @include color("igray");
   }
 
   &__ProfilePicture {

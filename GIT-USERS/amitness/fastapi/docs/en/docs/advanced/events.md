@@ -5,7 +5,7 @@ You can define event handlers (functions) that need to be executed before the ap
 These functions can be declared with `async def` or normal `def`.
 
 !!! warning
-    Only event handlers for the main application will be executed, not for [Sub Applications - Mounts](./sub-applications.md){.internal-link target=_blank}.
+Only event handlers for the main application will be executed, not for [Sub Applications - Mounts](./sub-applications.md){.internal-link target=\_blank}.
 
 ## `startup` event
 
@@ -32,10 +32,10 @@ To add a function that should be run when the application is shutting down, decl
 Here, the `shutdown` event handler function will write a text line `"Application shutdown"` to a file `log.txt`.
 
 !!! info
-    In the `open()` function, the `mode="a"` means "append", so, the line will be added after whatever is on that file, without overwriting the previous contents.
+In the `open()` function, the `mode="a"` means "append", so, the line will be added after whatever is on that file, without overwriting the previous contents.
 
 !!! tip
-    Notice that in this case we are using a standard Python `open()` function that interacts with a file.
+Notice that in this case we are using a standard Python `open()` function that interacts with a file.
 
     So, it involves I/O (input/output), that requires "waiting" for things to be written to disk.
 
@@ -44,4 +44,4 @@ Here, the `shutdown` event handler function will write a text line `"Application
     So, we declare the event handler function with standard `def` instead of `async def`.
 
 !!! info
-    You can read more about these event handlers in <a href="https://www.starlette.io/events/" class="external-link" target="_blank">Starlette's  Events' docs</a>.
+You can read more about these event handlers in <a href="https://www.starlette.io/events/" class="external-link" target="_blank">Starlette's Events' docs</a>.

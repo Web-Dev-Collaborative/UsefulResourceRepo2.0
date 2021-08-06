@@ -80,8 +80,8 @@
       overflow: auto;
       outline: none;
 
-      &[contenteditable=true]:empty:not(:focus):before {
-        content:attr(data-placeholder);
+      &[contenteditable="true"]:empty:not(:focus):before {
+        content: attr(data-placeholder);
       }
       &[contenteditable="false"] {
         background-color: #e5e5e5;
@@ -141,7 +141,7 @@
       max-width: 200px;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap;    /* for FF */
+      white-space: nowrap; /* for FF */
       vertical-align: middle; /* for FF */
     }
   }
@@ -152,11 +152,12 @@
 
 /* Popover and Toolbar (Button container)
 ------------------------------------------*/
-.note-popover .popover .popover-content, .panel-heading.note-toolbar {
+.note-popover .popover .popover-content,
+.panel-heading.note-toolbar {
   margin: 0;
   padding: 0 0 5px 5px;
 
-  &>.btn-group {
+  & > .btn-group {
     margin-top: 5px;
     margin-left: 0;
     margin-right: 5px;
@@ -180,21 +181,29 @@
           z-index: 1;
           width: 5em;
           height: 5em;
-          background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASAgMAAAAroGbEAAAACVBMVEUAAIj4+Pjp6ekKlAqjAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfYAR0BKhmnaJzPAAAAG0lEQVQI12NgAAOtVatWMTCohoaGUY+EmIkEAEruEzK2J7tvAAAAAElFTkSuQmCC') repeat;
+          background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASAgMAAAAroGbEAAAACVBMVEUAAIj4+Pjp6ekKlAqjAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfYAR0BKhmnaJzPAAAAG0lEQVQI12NgAAOtVatWMTCohoaGUY+EmIkEAEruEzK2J7tvAAAAAElFTkSuQmCC")
+            repeat;
         }
         .note-dimension-picker-highlighted {
           position: absolute !important;
           z-index: 2;
           width: 1em;
           height: 1em;
-          background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASAgMAAAAroGbEAAAACVBMVEUAAIjd6vvD2f9LKLW+AAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfYAR0BKwNDEVT0AAAAG0lEQVQI12NgAAOtVatWMTCohoaGUY+EmIkEAEruEzK2J7tvAAAAAElFTkSuQmCC') repeat;
+          background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASAgMAAAAroGbEAAAACVBMVEUAAIjd6vvD2f9LKLW+AAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfYAR0BKwNDEVT0AAAAG0lEQVQI12NgAAOtVatWMTCohoaGUY+EmIkEAEruEzK2J7tvAAAAAElFTkSuQmCC")
+            repeat;
         }
       }
     }
   }
 
   .note-style {
-    h1, h2, h3, h4, h5, h6, blockquote {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    blockquote {
       margin: 0;
     }
   }
@@ -242,7 +251,7 @@
     .dropdown-menu {
       min-width: 216px;
       padding: 5px;
-      &>div:first-child {
+      & > div:first-child {
         margin-right: 5px;
       }
     }
@@ -257,8 +266,14 @@
     &.right {
       right: 0;
       left: auto;
-      &::before { right: 9px; left: auto !important;  }
-      &::after { right: 10px; left: auto !important;  }
+      &::before {
+        right: 9px;
+        left: auto !important;
+      }
+      &::after {
+        right: 10px;
+        left: auto !important;
+      }
     }
     /* dropdown-menu for selectbox */
     &.note-check {
@@ -270,7 +285,6 @@
         visibility: visible;
       }
     }
-
   }
 
   .note-fontsize-10 {
@@ -298,10 +312,11 @@
 /* Dialog
 ------------------------------------------*/
 .note-dialog {
-  &>div {
+  & > div {
     display: none; /* BS2's hide pacth. */
   }
-  .form-group { /* overwrite BS's form-horizontal minus margins */
+  .form-group {
+    /* overwrite BS's form-horizontal minus margins */
     margin-left: 0;
     margin-right: 0;
   }
@@ -397,13 +412,15 @@
     position: absolute;
     display: none;
     border: 1px solid black;
-    &>div { position: absolute; }
+    & > div {
+      position: absolute;
+    }
 
     .note-control-selection-bg {
       width: 100%;
       height: 100%;
       background-color: black;
-      .opacity(0.30)
+      .opacity(0.3);
     }
 
     .note-control-handle {

@@ -163,6 +163,7 @@ Terminal window to review and agree to the Xcode license agreements.
     raise RuntimeError("Broken toolchain: cannot link a simple C program")
 
 RuntimeError: Broken toolchain: cannot link a simple C program</pre>
+
   </td>
 </tr>
 <tr>

@@ -34,8 +34,8 @@ En primer lugar, necesita establecer `loadSidebar` en **true**. Los detalles est
 
 <script>
   window.$docsify = {
-    loadSidebar: true
-  }
+    loadSidebar: true,
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 ```
@@ -45,8 +45,8 @@ Crear el `_sidebar.md`:
 ```markdown
 <!-- docs/_sidebar.md -->
 
-* [Home](/es/)
-* [Guide](/es/guide.md)
+- [Home](/es/)
+- [Guide](/es/guide.md)
 ```
 
 Necesita crear un `.nojekyll` en `./docs` para evitar que GitHub Pages ignoren los archivos que comienzan con un guión bajo.
@@ -60,9 +60,9 @@ Puedes especificar un `alias` para evitar un repliegue innecesario.
   window.$docsify = {
     loadSidebar: true,
     alias: {
-      '/.*/_sidebar.md': '/_sidebar.md'
-    }
-  }
+      "/.*/_sidebar.md": "/_sidebar.md",
+    },
+  };
 </script>
 ```
 
@@ -78,8 +78,8 @@ Un sidebar personalizado también puede generar automáticamente una tabla de co
 <script>
   window.$docsify = {
     loadSidebar: true,
-    subMaxLevel: 2
-  }
+    subMaxLevel: 2,
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 ```

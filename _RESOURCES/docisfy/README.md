@@ -101,12 +101,12 @@ A curated list of awesome things related to <a href="//docsify.js.org">docsify</
 - [Nebra Helium Docs](https://helium.nebra.com) - The documentation of the Helium HNT Hotspot Miners from Nebra Ltd.
 - [Attacking Javaer](https://veal98.gitee.io/cs-wiki/#/) - Attacking Javaer computer science wiki, running hard on the road to the full stack.
 - [X-M-UI](https://monw3c.github.io/xmui/) - A vue project for X-M-UI.
-- [sa-token](http://sa-token.dev33.cn/) - A lightweight Java authority authentication framework. (一个轻量级java权限认证框架)
+- [sa-token](http://sa-token.dev33.cn/) - A lightweight Java authority authentication framework. (一个轻量级 java 权限认证框架)
 - [celery.node](https://celery-node.js.org) - Celery task queue client/worker for Node.js.
 - [asdf](https://asdf-vm.com/) - A version manager for multiple languages and clis.
 - [Corhyam's Wiki](http://corhyam.xyz/) - A personal wiki that deploys to the cloud rapidly, based on Serverless Framework.
 - [Apollo](https://ctripcorp.github.io/apollo) - A reliable configuration management system.
-- [Sureness](https://usthe.com/sureness) - A simple and efficient open-source security framework that focus on protection of REST API.   
+- [Sureness](https://usthe.com/sureness) - A simple and efficient open-source security framework that focus on protection of REST API.
 - [ArchLinuxTutorial](https://archlinuxstudio.github.io/ArchLinuxTutorial/) - Arch Linux Tutorial. (Arch Linux 安装使用教程)
 - [What's up Docker?](https://fmartinou.github.io/whats-up-docker/) - A tool that helps you keep your Docker containers up-to-date.
 - [Layotto](https://mosn.io/layotto/#/en/README) - Layotto (L8):To be the next layer of OSI layer 7.
@@ -171,7 +171,7 @@ A curated list of awesome things related to <a href="//docsify.js.org">docsify</
 - [docsify-wikilink](https://github.com/zpengg/docsify-wikilink) - A plugin that allows wiki internal link syntax by using double square brackets like `[[pagename|link text]]`.
 - [docsify-link-preview](https://github.com/puria/docsify-link-preview) - A plugin to render link previews.
 - [docsify-pseudocode](https://h-hg.github.io/docsify-pseudocode) - A plugin to render pseudocode in docsify. [@h-hg](https://github.com/h-hg/docsify-pseudocode)
-- [docsify-footer](https://alertbox.github.io/docsify-footer) - A markdown _footer.md plugin for docsify-enabled sites. [@alertbox](https://github.com/alertbox).
+- [docsify-footer](https://alertbox.github.io/docsify-footer) - A markdown \_footer.md plugin for docsify-enabled sites. [@alertbox](https://github.com/alertbox).
 - [docsify-code-inline](https://www.npmjs.com/package/@rakutentech/docsify-code-inline) - Enables syntax highlighting for inline code as well, not just code fences. Never again will inline code look dull. [@rakutentech](https://rakutentech.github.io/)
 - [docsify-beian](https://github.com/HerbertHe/docsify-beian) - A plugin to add Chinese Beian Information in docsify. [@HerbertHe](https://github.com/HerbertHe)
 - [docsify-progress](https://github.com/HerbertHe/docsify-progress) - A plugin to render reading progress in docsify. @HerbertHe.

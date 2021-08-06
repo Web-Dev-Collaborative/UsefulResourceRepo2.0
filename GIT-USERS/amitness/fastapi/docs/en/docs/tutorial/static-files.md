@@ -18,15 +18,15 @@ $ pip install aiofiles
 
 ## Use `StaticFiles`
 
-* Import `StaticFiles`.
-* "Mount" a `StaticFiles()` instance in a specific path.
+- Import `StaticFiles`.
+- "Mount" a `StaticFiles()` instance in a specific path.
 
 ```Python hl_lines="2  6"
 {!../../../docs_src/static_files/tutorial001.py!}
 ```
 
 !!! note "Technical Details"
-    You could also use `from starlette.staticfiles import StaticFiles`.
+You could also use `from starlette.staticfiles import StaticFiles`.
 
     **FastAPI** provides the same `starlette.staticfiles` as `fastapi.staticfiles` just as a convenience for you, the developer. But it actually comes directly from Starlette.
 

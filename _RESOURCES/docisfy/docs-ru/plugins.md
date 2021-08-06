@@ -7,42 +7,42 @@
 ```html
 <script>
   window.$docsify = {
-    search: 'auto', // по умолчанию
+    search: "auto", // по умолчанию
 
-    search : [
-      '/',            // => /README.md
-      '/guide',       // => /guide.md
-      '/get-started', // => /get-started.md
-      '/ru-ru/',      // => /ru-ru/README.md
-      '/zh-cn/',      // => /zh-cn/README.md
+    search: [
+      "/", // => /README.md
+      "/guide", // => /guide.md
+      "/get-started", // => /get-started.md
+      "/ru-ru/", // => /ru-ru/README.md
+      "/zh-cn/", // => /zh-cn/README.md
     ],
 
     // полные параметры конфигурации
     search: {
       maxAge: 86400000, // Срок действия, по умолчанию один день
       paths: [], // или 'auto'
-      placeholder: 'Введите что начать поиск',
+      placeholder: "Введите что начать поиск",
 
       // Локализация
       placeholder: {
-        '/ru-ru/': 'Поиск',
-        '/zh-cn/': '搜索',
-        '/': 'Type to search'
+        "/ru-ru/": "Поиск",
+        "/zh-cn/": "搜索",
+        "/": "Type to search",
       },
 
-      noData: 'No Results!',
+      noData: "No Results!",
 
       // Локализация
       noData: {
-        '/ru-ru/': 'Нет результатов',
-        '/zh-cn/': '找不到结果',
-        '/': 'No Results'
+        "/ru-ru/": "Нет результатов",
+        "/zh-cn/": "找不到结果",
+        "/": "No Results",
       },
 
       // Глубина по заголовкам, 1 - 6
-      depth: 2
-    }
-  }
+      depth: 2,
+    },
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
@@ -55,8 +55,8 @@
 ```html
 <script>
   window.$docsify = {
-    ga: 'UA-XXXXX-Y'
-  }
+    ga: "UA-XXXXX-Y",
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/ga.min.js"></script>
@@ -65,7 +65,10 @@
 Настройте `data-ga`.
 
 ```html
-<script src="//unpkg.com/docsify/lib/docsify.min.js" data-ga="UA-XXXXX-Y"></script>
+<script
+  src="//unpkg.com/docsify/lib/docsify.min.js"
+  data-ga="UA-XXXXX-Y"
+></script>
 <script src="//unpkg.com/docsify/lib/plugins/ga.min.js"></script>
 ```
 
@@ -96,7 +99,7 @@
 Исключить специальное изображение
 
 ```markdown
-![](image.png ':no-zoom')
+![](image.png ":no-zoom")
 ```
 
 ## Редактировать на github
@@ -106,7 +109,7 @@
 ## Демо code с мгновенным просмотром и интеграцией jsfiddle
 
 С помощью этого плагина код образца можно мгновенно отобразить на странице, чтобы читатели могли сразу его просмотреть.
-Когда читатели расширяют демонстрационный бокс, там отображаются исходный код и описание. если они нажмут кнопку  `Попробовать в Jsfiddle`,
+Когда читатели расширяют демонстрационный бокс, там отображаются исходный код и описание. если они нажмут кнопку `Попробовать в Jsfiddle`,
 `jsfiddle.net` будет открыт с кодом этого образца, который позволит читателям пересмотреть код и попробовать самостоятельно.
 
 [Vue](https://njleonzhang.github.io/docsify-demo-box-vue/) и [React](https://njleonzhang.github.io/docsify-demo-box-react/) поддерживаются.
@@ -128,8 +131,8 @@ Disqus комментарии. https://disqus.com/
 ```html
 <script>
   window.$docsify = {
-    disqus: 'shortname'
-  }
+    disqus: "shortname",
+  };
 </script>
 <script src="//unpkg.com/docsify/lib/plugins/disqus.min.js"></script>
 ```
@@ -139,20 +142,22 @@ Disqus комментарии. https://disqus.com/
 [Gitalk](https://github.com/gitalk/gitalk) представляет собой современный компонент комментариев, основанный на Github Issue и Preact.
 
 ```html
-<link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css" />
 
 <script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script>
 <script src="//unpkg.com/gitalk/dist/gitalk.min.js"></script>
 <script>
   const gitalk = new Gitalk({
-    clientID: 'Github Application Client ID',
-    clientSecret: 'Github Application Client Secret',
-    repo: 'Github repo',
-    owner: 'Github repo owner',
-    admin: ['Github repo collaborators, only these guys can initialize github issues'],
+    clientID: "Github Application Client ID",
+    clientSecret: "Github Application Client Secret",
+    repo: "Github repo",
+    owner: "Github repo owner",
+    admin: [
+      "Github repo collaborators, only these guys can initialize github issues",
+    ],
     // facebook-like distraction free mode
-    distractionFreeMode: false
-  })
+    distractionFreeMode: false,
+  });
 </script>
 ```
 
@@ -180,4 +185,3 @@ window.$docsify = {
   ]
 }
 ```
-

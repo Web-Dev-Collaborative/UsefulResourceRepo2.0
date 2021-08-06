@@ -11,33 +11,31 @@ In the [previous post, we looked at the basic concepts of neural networks](https
   Your browser does not support the video tag.
 </video>
 
-
 <!--more-->
-
 
 If you had been aboard the Titanic, would you have survived the sinking event? Let's build a model to predict one's odds of survival.
 
 This will be a neural network model building on what we discussed in the [previous post](), but will have a higher prediction accuracy because it utilizes hidden layers and activation functions.
 
 The dataset we'll use this time will be the [Titanic passenger list]() from Kaggle. It lists the names and other information of the passengers and shows whether each passenger survived the sinking event or not.
+
 <!--more-->
 
 The raw dataset looks like this:
 
 {::options parse_block_html="true" /}
+
 <div class="titanic-dataset">
 
-| PassengerId | Survived | Pclass | Name | Sex | Age | SibSp | Parch | Ticket | Fare | Cabin | Embarked|
-|--- | ---| --- | ---| ---| ---| ---| ---| ---| ---| ---| ---|
-|1	|0|	3|	Braund, Mr. Owen Harris|	male	|22.0	|1	|0	|A/5 21171	|7.2500	| NaN	|S|
-|2	|1|	1|	Cumings, Mrs. John Bradley (Florence Briggs Th...	| female	|38.0	|1	|0	|PC 17599	|71.2833	|C85	|C|
-|3	|1|	3|	Heikkinen, Miss. Laina	|female	|26.0	|0	|0	|STON/O2. 3101282	|7.9250	|NaN	|S|
+| PassengerId | Survived | Pclass | Name                                              | Sex    | Age  | SibSp | Parch | Ticket           | Fare    | Cabin | Embarked |
+| ----------- | -------- | ------ | ------------------------------------------------- | ------ | ---- | ----- | ----- | ---------------- | ------- | ----- | -------- |
+| 1           | 0        | 3      | Braund, Mr. Owen Harris                           | male   | 22.0 | 1     | 0     | A/5 21171        | 7.2500  | NaN   | S        |
+| 2           | 1        | 1      | Cumings, Mrs. John Bradley (Florence Briggs Th... | female | 38.0 | 1     | 0     | PC 17599         | 71.2833 | C85   | C        |
+| 3           | 1        | 3      | Heikkinen, Miss. Laina                            | female | 26.0 | 0     | 0     | STON/O2. 3101282 | 7.9250  | NaN   | S        |
 
 </div>
 
 We won't bother with most of the columns for now. We'll just use the sex and age columns as our features, and survival as our label that we'll try to predict.
-
-
 
 <div class="two_variables">
   <table>
@@ -77,7 +75,6 @@ Neural networks need their inputs to be numeric. So we had to change the sex col
 
 The simplest neural network we can use to train to make this prediction looks like this:
 
-
 <div class="img-div" markdown="0">
     <img src="/images/two-input-one-output-sigmoid-network.png" alt="neural netowrk with two inputs, one output, and sigmoid output activation"/>
     Calculating a prediction is done by plugging in a value for "age" and "sex". The calculation then flows from the left to the right.
@@ -87,11 +84,10 @@ The simplest neural network we can use to train to make this prediction looks li
 Note: we have slightly adjusted the way we represent the networks from the previous post. The bias node specifically is more commonly represented like this
 </div>
 
-
-
 Let's recap the elements that make up this network and how they work:
 
 {::options parse_block_html="true" /}
+
 <div class="row neuron-expo vertical-align">
 <div class="col-sm-4 small-column" >
 <img src="/images/input-neuron.png" alt="input neuron"/>
@@ -103,10 +99,8 @@ An input neuron is where we plug in an input value (e.g. the age of a person). I
 </div>
 </div>
 
-
-
-
 {::options parse_block_html="true" /}
+
 <div class="row neuron-expo vertical-align">
 <div class="col-sm-4 small-column" >
 <img src="/images/weight.png" alt="weighted neuron image"/>
@@ -116,12 +110,12 @@ An input neuron is where we plug in an input value (e.g. the age of a person). I
 If a connection has a weight, then the value is multiplied by that weight as it passes through it.
 
     connection_output = weight * connection_input
+
 </div>
 </div>
-
-
 
 {::options parse_block_html="true" /}
+
 <div class="row neuron-expo vertical-align">
 <div class="col-sm-4 small-column" markdown="0">
     <img src="/images/neuron.png" alt=" neuron image"/>
@@ -130,21 +124,18 @@ If a connection has a weight, then the value is multiplied by that weight as it 
 If a neuron has inputs, it sums their value and sends that sum along its outgoing connection(s).
 
     node_output = input_1 + input_2
+
 </div>
 </div>
-
-
-
-
-
 
 ### Sigmoid <a name="sigmoid" href="#sigmoid">#</a>
+
 {::options parse_block_html="true" /}
+
 <div class="row neuron-expo vertical-align">
 <div class="col-sm-4 small-column">
 
 <img src="/images/sigmoid-neuron.png" alt="sigmoid neuron"/>
-
 
 </div>
 <div class="col-sm-8 side-column">
@@ -152,7 +143,6 @@ If a neuron has inputs, it sums their value and sends that sum along its outgoin
 To turn the network's calculation into a probability value between 0 and 1, we have to pass the value from the output layer through a "sigmoid" formula. Sigmoid squashes the output value of a neuron to between 0 and 1 according to a specific curve.
 
 f(x)= <span id="sigmoid_function" style="font-size:200%"></span>
-
 
 <script>
 var sigmoid_el = $("#sigmoid_function");
@@ -163,26 +153,20 @@ console.log("printing")
 
 Where e is the mathematical constant approximately equal to 2.71828
 
-
-
     def sigmoid(x):
         return 1/(1 + math.exp(-x))
 
     output = sigmoid(value)
 
-
 </div>
 </div>
-
-
-
-
 
 ### Sigmoid Visualization <a name="sigmoid-visualization" href="#sigmoid-visualization">#</a>
+
 {::options parse_block_html="true" /}
+
 <div class="row neuron-expo vertical-align">
 <div class="col-sm-4 small-column" >
-
 
 <!-- ==== SIGMOID ACTIVATION GRAPH ==== -->
 <table>
@@ -224,15 +208,11 @@ Interact a little with sigmoid to see how it transforms various values
 <!-- ==== SIGMOID GRAPH ==== -->
 <div id="sigmoid-graph" style="width:100%"></div>
 
-
-
 </div>
 </div>
-
-
-
 
 {::options parse_block_html="true" /}
+
 <div class="row neuron-expo vertical-align">
 <div class="col-sm-4 small-column" >
 <img src="/images/two-input-one-output-sigmoid-network.png" alt="weighted neuron image"/>
@@ -252,12 +232,10 @@ To bring it all together, calculating a prediction with this shallow network loo
         prediction = sigmoid(layer_2_node)
         return prediction
 
-
 </div>
 </div>
 
-Now that we know the structure of our network, we can train it using  [gradient descent] running on the first 600 rows of the 891-row dataset. I will not be addressing the training process in this post because that's a separate concern at the moment. For now, I just want you to be comfortable with how a trained network calculates a prediction. Once you get this intuition down, we'll proceed to training in a future post.
-
+Now that we know the structure of our network, we can train it using [gradient descent] running on the first 600 rows of the 891-row dataset. I will not be addressing the training process in this post because that's a separate concern at the moment. For now, I just want you to be comfortable with how a trained network calculates a prediction. Once you get this intuition down, we'll proceed to training in a future post.
 
 The training process gives us the following values (with an accuracy of 73.20%):
 
@@ -267,11 +245,10 @@ The training process gives us the following values (with an accuracy of 73.20%):
 
 Intuitively, the weights indicate how much their associated property contribute to the prediction -- odds of survival improve the younger a person is (since a larger age multiplied by the negative weight value gives a bigger negative number). They improve more if the person is female.
 
-
 ### Prediction Calculation <a name="prediction-calculation" href="#prediction-calculation">#</a>
+
 The trained network now looks like this:
 (hover or click on values in the table to see their individual predictions)
-
 
 <div class="row vertical-align">
 <div id="neural-network-calculation-table" class="col-sm-3"></div>
@@ -279,11 +256,10 @@ The trained network now looks like this:
 </div>
 <div class="nn-tooltip" style="opacity: 0"></div>
 
-
 An accuracy of 73.20% isn't very impressive. This is a case that can benefit from adding a hidden layer. Hidden layers give the model more capacity to represent more sophisticated prediction functions that may do a better job ([Deep Learning ch.5 page 113](http://www.deeplearningbook.org/contents/ml.html)).
 
-
 {::options parse_block_html="true" /}
+
 <div class="row neuron-expo vertical-align">
 <div class="col-sm-4 small-column" >
 
@@ -294,7 +270,6 @@ An accuracy of 73.20% isn't very impressive. This is a case that can benefit fro
 
 It's often useful to apply certain math functions to the weighted outputs. These are called "activation functions" because historically they translated the output of the neuron into either 1 (On/active) or 0 (Off).
 
-
     def activation_function(x):
         # Do something to the value
         ...
@@ -303,12 +278,14 @@ It's often useful to apply certain math functions to the weighted outputs. These
     output = activation_function(weighted_sum)
 
 Activation functions are vital for hidden layers. Without them, deep networks would be no better than a shallow linear network. Read the "Commonly used activation functions" section from [Neural Networks Part 1: Setting up the Architecture](https://cs231n.github.io/neural-networks-1/) for a look at various activation functions.
-</div>
-</div>
 
+</div>
+</div>
 
 ### ReLU <a name="relu" href="#relu">#</a>
+
 {::options parse_block_html="true" /}
+
 <div class="row neuron-expo vertical-align">
 <div class="col-sm-4 small-column" >
 
@@ -330,19 +307,16 @@ f(x) = max(0, x)
 
 
     output = relu(value)
+
 </div>
 </div>
-
-
-
 
 ### ReLU Visualization <a name="relu-visualization" href="#relu-visualization">#</a>
 
-
 {::options parse_block_html="true" /}
+
 <div class="row neuron-expo vertical-align">
 <div class="col-sm-4 small-column" >
-
 
 <!-- ==== RELU ACTIVATION GRAPH ==== -->
 <table>
@@ -361,7 +335,6 @@ f(x) = max(0, x)
 
 </div>
 <div class="col-sm-8 side-column">
-
 
 Interact a little with relu to see how it transforms various values
 
@@ -385,28 +358,18 @@ max( 0,        <span id="relu-formula-input" class="mord mathit"><span class="re
 <!-- ==== RELU GRAPH ==== -->
 <div id="relu-graph" style="width:100%"></div>
 
-
-
 </div>
 </div>
-
-
 
 ## Closing
-This post has been parked for more than a year. I had attempted to visualize a deeper network after this point, but that never materialized. I hope you enjoyed it. Let me know on [@jalammar on Twitter](https://twitter.com/jalammar) if you have any feedback. 
 
-
-
+This post has been parked for more than a year. I had attempted to visualize a deeper network after this point, but that never materialized. I hope you enjoyed it. Let me know on [@jalammar on Twitter](https://twitter.com/jalammar) if you have any feedback.
 
 <script type="text/javascript" src="/js/nnVizUtils.js"></script>
 <script type="text/javascript" src="/js/nn_calc.js"></script>
 <script type="text/javascript" src="/js/sigmoid_graph.js"></script>
 <script type="text/javascript" src="/js/relu_graph.js"></script>
 <script type="text/javascript" src="/js/accuracy-graph.js"></script>
-
-
-
-
 
 <!--
 

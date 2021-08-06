@@ -7,19 +7,9 @@
     "eventie": "^1"
   },
   "homepage": "https://github.com/desandro/doc-ready",
-  "authors": [
-    "David DeSandro"
-  ],
-  "moduleType": [
-    "amd",
-    "globals",
-    "node"
-  ],
-  "keywords": [
-    "DOM",
-    "document",
-    "ready"
-  ],
+  "authors": ["David DeSandro"],
+  "moduleType": ["amd", "globals", "node"],
+  "keywords": ["DOM", "document", "ready"],
   "license": "MIT",
   "ignore": [
     "**/.*",

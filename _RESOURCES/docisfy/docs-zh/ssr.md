@@ -9,9 +9,9 @@
 文档依旧是部署在 GitHub Pages 上，Node 服务部署在 now.sh 里，渲染的内容是从 GitHub Pages 上同步过来的。所以静态部署文档的服务器和服务端渲染的 Node 服务器是分开的，也就是说你还是可以用之前的方式更新文档，并不需要每次都部署。
 
 ## 什么是 SSR?
+
 - 更好的 SEO
 - 更酷的感觉
-
 
 ## 快速开始
 
@@ -30,9 +30,7 @@ npm i now docsify-cli -D
     "start": "docsify start . -c ssr.config.js",
     "deploy": "now -p"
   },
-  "files": [
-    "docs"
-  ],
+  "files": ["docs"],
   "docsify": {
     "config": {
       "basePath": "https://docsify.js.org/",
@@ -70,29 +68,35 @@ now -p
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>docsify</title>
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css" title="vue">
-</head>
-<body>
-  <!--inject-app-->
-  <!--inject-config-->
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-bash.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-markdown.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-nginx.min.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>docsify</title>
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css"
+      title="vue"
+    />
+  </head>
+  <body>
+    <!--inject-app-->
+    <!--inject-config-->
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-bash.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-markdown.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-nginx.min.js"></script>
+  </body>
 </html>
 ```
 
 模板可以包含占位符，会自动将渲染后的 html 和配置内容注入到页面上。
 
- - `<!--inject-app-->`
- - `<!--inject-config-->`
-
+- `<!--inject-app-->`
+- `<!--inject-config-->`
 
 ## 配置
 
@@ -102,16 +106,13 @@ now -p
 
 ```js
 module.exports = {
-  template: './ssr.html',
+  template: "./ssr.html",
   maxAge: 60 * 60 * 1000, // lru-cache 设置
   config: {
-   // docsify 设置
-  }
-}
+    // docsify 设置
+  },
+};
 ```
-
-
-
 
 ## 更多玩法
 
@@ -120,21 +121,22 @@ module.exports = {
 `docsify start` 其实是依赖了 [`docsify-server-renderer`](https://npmarket.surge.sh/?name=docsify-server-renderer) 模块，如果你感兴趣，你完全可以用它自己实现一个 server，可以加入缓存等功能。
 
 ```js
-var Renderer = require('docsify-server-renderer')
-var readFileSync = require('fs').readFileSync
+var Renderer = require("docsify-server-renderer");
+var readFileSync = require("fs").readFileSync;
 
 // init
 var renderer = new Renderer({
-  template: readFileSync('./docs/index.template.html', 'utf-8'),
+  template: readFileSync("./docs/index.template.html", "utf-8"),
   config: {
-    name: 'docsify',
-    repo: 'docsifyjs/docsify'
-  }
-})
+    name: "docsify",
+    repo: "docsifyjs/docsify",
+  },
+});
 
-renderer.renderToString(url)
-  .then(html => {})
-  .catch(err => {})
+renderer
+  .renderToString(url)
+  .then((html) => {})
+  .catch((err) => {});
 ```
 
 当然文档文件和 server 也是可以部署在一起的，`basePath` 不是一个 URL 的话就会当做文件路径处理，也就是从服务器上加载资源。

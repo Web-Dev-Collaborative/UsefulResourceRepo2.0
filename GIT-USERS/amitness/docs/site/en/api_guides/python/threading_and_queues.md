@@ -6,7 +6,7 @@ however, we recommend using the `tf.data` module instead. (See
 [Datasets](../../guide/datasets.md) for details. In TensorFlow 1.2 and 1.3, the module was
 called `tf.contrib.data`.) The `tf.data` module offers an easier-to-use
 interface for constructing efficient input pipelines. Furthermore, we've stopped
-developing the old multi-threaded, queue-based input pipelines.  We've retained
+developing the old multi-threaded, queue-based input pipelines. We've retained
 the documentation in this file to help developers who are still maintaining
 older code.
 
@@ -14,7 +14,7 @@ Multithreaded queues are a powerful and widely used mechanism supporting
 asynchronous computation.
 
 Following the [dataflow programming model](graphs.md), TensorFlow's queues are
-implemented using nodes in the computation graph.  A queue is a stateful node,
+implemented using nodes in the computation graph. A queue is a stateful node,
 like a variable: other nodes can modify its content. In particular, nodes can
 enqueue new items in to the queue, or dequeue existing items from the
 queue. TensorFlow's queues provide a way to coordinate multiple steps of a
@@ -23,9 +23,9 @@ when it is empty, or enqueue to it when it is full. When that condition no
 longer holds, the queue will unblock the step and allow execution to proceed.
 
 TensorFlow implements several classes of queue. The principal difference between
-these classes is the order that items are removed from the queue.  To get a feel
+these classes is the order that items are removed from the queue. To get a feel
 for queues, let's consider a simple example. We will create a "first in, first
-out" queue (`tf.FIFOQueue`) and fill it with zeros.  Then we'll construct a
+out" queue (`tf.FIFOQueue`) and fill it with zeros. Then we'll construct a
 graph that takes an item off the queue, adds one to that item, and puts it back
 on the end of the queue. Slowly, the numbers on the queue increase.
 
@@ -39,7 +39,7 @@ recommend that you think of these operations as being like methods of the queue
 in an object-oriented sense. In fact, in the Python API, these operations are
 created by calling methods on a queue object (e.g. `q.enqueue(...)`).
 
-Note: Queue methods (such as `q.enqueue(...)`) *must* run on the same device
+Note: Queue methods (such as `q.enqueue(...)`) _must_ run on the same device
 as the queue. Incompatible device placement directives will be ignored when
 creating these operations.
 
@@ -55,8 +55,8 @@ in a graph.
 For example, a typical queue-based input pipeline uses a `RandomShuffleQueue` to
 prepare inputs for training a model as follows:
 
-* Multiple threads prepare training examples and enqueue them.
-* A training thread executes a training op that dequeues mini-batches from the
+- Multiple threads prepare training examples and enqueue them.
+- A training thread executes a training op that dequeues mini-batches from the
   queue
 
 We recommend using the `tf.data.Dataset.shuffle`
@@ -70,7 +70,7 @@ For demonstration purposes a simplified implementation is given below.
 This function takes a source tensor, a capacity, and a batch size as arguments
 and returns a tensor that dequeues a shuffled batch when executed.
 
-``` python
+```python
 def simple_shuffle_batch(source, capacity, batch_size=10):
   # Create a random shuffle queue.
   queue = tf.RandomShuffleQueue(capacity=capacity,
@@ -101,7 +101,7 @@ depend on each other, except indirectly through the internal state of the queue.
 
 The simplest possible use of this function might be something like this:
 
-``` python
+```python
 # create a dataset that counts from 0 to 99
 input = tf.constant(list(range(100)))
 input = tf.data.Dataset.from_tensor_slices(input)
@@ -133,8 +133,8 @@ TensorFlow provides tools for manually managing your threads and queues.
 
 As we have seen, the TensorFlow `Session` object is multithreaded and
 thread-safe, so multiple threads can
-easily use the same session and run ops in parallel.  However, it is not always
-easy to implement a Python program that drives threads as required.  All
+easily use the same session and run ops in parallel. However, it is not always
+easy to implement a Python program that drives threads as required. All
 threads must be able to stop together, exceptions must be caught and
 reported, and queues must be properly closed when stopping.
 
@@ -153,15 +153,15 @@ program and helps multiple threads stop together.
 
 Its key methods are:
 
-* `tf.train.Coordinator.should_stop`: returns `True` if the threads should stop.
-* `tf.train.Coordinator.request_stop`: requests that threads should stop.
-* `tf.train.Coordinator.join`: waits until the specified threads have stopped.
+- `tf.train.Coordinator.should_stop`: returns `True` if the threads should stop.
+- `tf.train.Coordinator.request_stop`: requests that threads should stop.
+- `tf.train.Coordinator.join`: waits until the specified threads have stopped.
 
 You first create a `Coordinator` object, and then create a number of threads
-that use the coordinator.  The threads typically run loops that stop when
+that use the coordinator. The threads typically run loops that stop when
 `should_stop()` returns `True`.
 
-Any thread can decide that the computation should stop.  It only has to call
+Any thread can decide that the computation should stop. It only has to call
 `request_stop()` and the other threads will stop as `should_stop()` will then
 return `True`.
 
@@ -190,20 +190,20 @@ coord.join(threads)
 ```
 
 Obviously, the coordinator can manage threads doing very different things.
-They don't have to be all the same as in the example above.  The coordinator
-also has support to capture and report exceptions.  See the `tf.train.Coordinator` documentation for more details.
+They don't have to be all the same as in the example above. The coordinator
+also has support to capture and report exceptions. See the `tf.train.Coordinator` documentation for more details.
 
 ### QueueRunner
 
 The `tf.train.QueueRunner` class creates a number of threads that repeatedly
-run an enqueue op.  These threads can use a coordinator to stop together.  In
-addition, a queue runner will run a *closer operation* that closes the queue if
+run an enqueue op. These threads can use a coordinator to stop together. In
+addition, a queue runner will run a _closer operation_ that closes the queue if
 an exception is reported to the coordinator.
 
 You can use a queue runner to implement the architecture described above.
 
-First build a graph that uses a TensorFlow queue (e.g. a `tf.RandomShuffleQueue`) for input examples.  Add ops that
-process examples and enqueue them in the queue.  Add training ops that start by
+First build a graph that uses a TensorFlow queue (e.g. a `tf.RandomShuffleQueue`) for input examples. Add ops that
+process examples and enqueue them in the queue. Add training ops that start by
 dequeueing from the queue.
 
 ```python
@@ -217,8 +217,8 @@ train_op = ...use 'inputs' to build the training part of the graph...
 ```
 
 In the Python training program, create a `QueueRunner` that will run a few
-threads to process and enqueue examples.  Create a `Coordinator` and ask the
-queue runner to start its threads with the coordinator.  Write a training loop
+threads to process and enqueue examples. Create a `Coordinator` and ask the
+queue runner to start its threads with the coordinator. Write a training loop
 that also uses the coordinator.
 
 ```python
@@ -244,7 +244,7 @@ coord.join(enqueue_threads)
 
 ### Handling exceptions
 
-Threads started by queue runners do more than just run the enqueue ops.  They
+Threads started by queue runners do more than just run the enqueue ops. They
 also catch and handle exceptions generated by queues, including the
 `tf.errors.OutOfRangeError` exception, which is used to report that a queue was
 closed.

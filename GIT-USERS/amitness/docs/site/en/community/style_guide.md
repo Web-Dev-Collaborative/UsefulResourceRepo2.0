@@ -12,12 +12,11 @@ Generally follow
 [PEP8 Python style guide](https://www.python.org/dev/peps/pep-0008/),
 except for using 2 spaces.
 
-
 ## Python 2 and 3 compatible
 
-* All code needs to be compatible with Python 2 and 3.
+- All code needs to be compatible with Python 2 and 3.
 
-* Next lines should be present in all Python files:
+- Next lines should be present in all Python files:
 
 ```
 from __future__ import absolute_import
@@ -25,14 +24,13 @@ from __future__ import division
 from __future__ import print_function
 ```
 
-* Use `six` to write compatible code (for example `six.moves.range`).
-
+- Use `six` to write compatible code (for example `six.moves.range`).
 
 ## Bazel BUILD rules
 
 TensorFlow uses Bazel build system and enforces next requirements:
 
-* Every BUILD file should contain next header:
+- Every BUILD file should contain next header:
 
 ```
 # Description:
@@ -47,58 +45,55 @@ licenses(["notice"])  # Apache 2.0
 exports_files(["LICENSE"])
 ```
 
-
-
-* For all Python BUILD targets (libraries and tests) add next line:
+- For all Python BUILD targets (libraries and tests) add next line:
 
 ```
 srcs_version = "PY2AND3",
 ```
 
-
 ## Tensor
 
-* Operations that deal with batches may assume that the first dimension of a Tensor is the batch dimension.
+- Operations that deal with batches may assume that the first dimension of a Tensor is the batch dimension.
 
-* In most models the *last dimension* is the number of channels.
+- In most models the _last dimension_ is the number of channels.
 
-* Dimensions excluding the first and last usually make up the "space" dimensions: Sequence-length or Image-size.
+- Dimensions excluding the first and last usually make up the "space" dimensions: Sequence-length or Image-size.
 
-* Prefer using a Tensor's overloaded operators rather than TensorFlow functions.
+- Prefer using a Tensor's overloaded operators rather than TensorFlow functions.
   For example, prefer `**`, `+`, `/`, `*`, `-`, `and/or` over
   `tf.pow`, `tf.add`, `tf.div`, `tf.mul`, `tf.subtract`, and `tf.logical*`
   unless a specific name for the operation is desired.
 
 ## Python operations
 
-A *Python operation* is a function that, given input tensors and parameters,
+A _Python operation_ is a function that, given input tensors and parameters,
 creates a part of the graph and returns output tensors.
 
-* The first arguments should be tensors, followed by basic python parameters.
- The last argument is `name` with a default value of `None`.
- If operation needs to save some `Tensor`s to Graph collections,
- put the arguments with names of the collections right before `name` argument.
+- The first arguments should be tensors, followed by basic python parameters.
+  The last argument is `name` with a default value of `None`.
+  If operation needs to save some `Tensor`s to Graph collections,
+  put the arguments with names of the collections right before `name` argument.
 
-* Tensor arguments should be either a single tensor or an iterable of tensors.
- E.g. a "Tensor or list of Tensors" is too broad. See `assert_proper_iterable`.
+- Tensor arguments should be either a single tensor or an iterable of tensors.
+  E.g. a "Tensor or list of Tensors" is too broad. See `assert_proper_iterable`.
 
-* Operations that take tensors as arguments should call `convert_to_tensor`
- to convert non-tensor inputs into tensors if they are using C++ operations.
- Note that the arguments are still described as a `Tensor` object
- of a specific dtype in the documentation.
+- Operations that take tensors as arguments should call `convert_to_tensor`
+  to convert non-tensor inputs into tensors if they are using C++ operations.
+  Note that the arguments are still described as a `Tensor` object
+  of a specific dtype in the documentation.
 
-* Each Python operation should have a `name_scope` like below. Pass as
- arguments `name`, a default name of the op, and a list of the input tensors.
+- Each Python operation should have a `name_scope` like below. Pass as
+  arguments `name`, a default name of the op, and a list of the input tensors.
 
-* Operations should contain an extensive Python comment with Args and Returns
- declarations that explain both the type and meaning of each value. Possible
- shapes, dtypes, or ranks should be specified in the description.
- [See documentation details](../community/documentation.md)
+- Operations should contain an extensive Python comment with Args and Returns
+  declarations that explain both the type and meaning of each value. Possible
+  shapes, dtypes, or ranks should be specified in the description.
+  [See documentation details](../community/documentation.md)
 
-* For increased usability include an example of usage with inputs / outputs
- of the op in Example section.
+- For increased usability include an example of usage with inputs / outputs
+  of the op in Example section.
 
-* Avoid making explicit use of `tf.Tensor.eval` or `tf.Session.run`. For
+- Avoid making explicit use of `tf.Tensor.eval` or `tf.Session.run`. For
   example, to write logic that depends on the Tensor value, use
   [TensorFlow control flow](https://www.tensorflow.org/api_guides/python/control_flow_ops).
   Alternatively, restrict the operation to only run when eager execution is
@@ -138,7 +133,6 @@ Usage:
 
     output = my_op(t1, t2, my_param=0.5, other_param=0.6,
                    output_collections=['MY_OPS'], name='add_t1t2')
-
 
 ## Layers
 

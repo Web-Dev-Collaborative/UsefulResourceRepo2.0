@@ -70,8 +70,7 @@ should trend downwards during training.
 
 After a hundred steps, you should see a line like this:
 
-`I0730 16:54:41.813438 55030 train.py:252] Saving to
-"/tmp/speech_commands_train/conv.ckpt-100"`
+`I0730 16:54:41.813438 55030 train.py:252] Saving to "/tmp/speech_commands_train/conv.ckpt-100"`
 
 This is saving out the current trained weights to a checkpoint file. If your
 training script gets interrupted, you can look for the last saved checkpoint and
@@ -136,8 +135,7 @@ cleaning up categories.
 
 After the confusion matrix, you should see a line like this:
 
-`I0730 16:57:38.073777 55030 train.py:245] Step 400: Validation accuracy = 26.3%
-(N=3093)`
+`I0730 16:57:38.073777 55030 train.py:245] Step 400: Validation accuracy = 26.3% (N=3093)`
 
 It's good practice to separate your data set into three categories. The largest
 (in this case roughly 80% of the data) is used for training the network, a
@@ -531,7 +529,6 @@ calculations to run at interactive speeds on devices with more limited
 resources. To support these use cases, there's a couple of alternatives
 available:
 
-
 **low_latency_conv**
 Based on the 'cnn-one-fstride4' topology described in the [Convolutional
 Neural Networks for Small-footprint Keyword Spotting
@@ -579,10 +576,10 @@ about the same time, and at the end reach an accuracy of around 85%.
 You can also further tune the topology fairly easily for computation and
 accuracy by changing these parameters in the SVDF layer:
 
-* rank - The rank of the approximation (higher typically better, but results in
-         more computation).
-* num_units - Similar to other layer types, specifies the number of nodes in
-              the layer (more nodes better quality, and more computation).
+- rank - The rank of the approximation (higher typically better, but results in
+  more computation).
+- num_units - Similar to other layer types, specifies the number of nodes in
+  the layer (more nodes better quality, and more computation).
 
 Regarding runtime, since the layer allows optimizations by caching some of the
 internal neural network activations, you need to make sure to use a consistent

@@ -1,22 +1,19 @@
-{% extends "layout.html" %}
-
-{% block head%} 
-   <link rel="stylesheet" href="{{ url_for('static', filename='gitgraph.js-1.1.1/build/gitgraph.css') }}">
-{% endblock %}
-
-{% block jumbotron %}
+{% extends "layout.html" %} {% block head%}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='gitgraph.js-1.1.1/build/gitgraph.css') }}"
+/>
+{% endblock %} {% block jumbotron %}
 <div class="jumbotron">
-   <h1>Git Cheat Sheet</h1>
-   <p>Cheat sheet of some BASIC Git commands</p>
+  <h1>Git Cheat Sheet</h1>
+  <p>Cheat sheet of some BASIC Git commands</p>
 </div>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <h3>Git basic</h3>
 <canvas id="gitGraph"></canvas>
 
 <div id="detail-init" class="gitgraph-detail">
-<pre class="code bash">
+  <pre class="code bash">
 $ mkdir project
 $ cd project
 $ echo "*.pyc" &gt; .gitignore
@@ -27,11 +24,12 @@ $ git commit -m 'git init'
 [master (root-commit) fe51069] First commit
  1 file changed, 1 insertion(+)
  create mode 100644 .gitignore
-</pre>
+</pre
+  >
 </div>
 
 <div id="detail-addpy" class="gitgraph-detail">
-<pre class="code bash">
+  <pre class="code bash">
 $ echo 'print "kerker"' &gt; test.py
 $ git add test.py 
 $ git status
@@ -44,11 +42,12 @@ $ git commit -m 'Add a commit'
 [master 9335732] Add test.py file
  1 file changed, 1 insertion(+)
  create mode 100644 test.py
-</pre>
+</pre
+  >
 </div>
 
 <div id="detail-branch" class="gitgraph-detail">
-<pre class="code bash">
+  <pre class="code bash">
 $ git co -b dev
 Switched to a new branch 'dev'
 $ git br
@@ -60,78 +59,77 @@ $ git commit -m 'Add README.md on dev branch'
 [dev ed78f20] Add README.md on dev branch
  1 file changed, 1 insertion(+)
  create mode 100644 README.md
-</pre>
+</pre
+  >
 </div>
 
 <div id="detail-checkout" class="gitgraph-detail">
-<pre class="code bash">
+  <pre class="code bash">
 $ git co master
 $ echo "print 'HELLO'" &gt;&gt; test.py
 $ git add .
 $ git commit -m 'modify test.py on master'
 [master a0f2388] modify test.py on master
  1 file changed, 1 insertion(+)
-</pre>
+</pre
+  >
 </div>
 
 <div id="detail-merge" class="gitgraph-detail">
-<pre class="code bash">
+  <pre class="code bash">
 $ git merge dev 
 Merge made by the 'recursive' strategy.
  README.md | 1 +
  1 file changed, 1 insertion(+)
  create mode 100644 README.md
-</pre>
+</pre
+  >
 </div>
 
-{% endblock %}
-
-{% block script %}
-{{ super() }}
+{% endblock %} {% block script %} {{ super() }}
 <script src="{{ url_for('static', filename='gitgraph.js-1.1.1/build/gitgraph.min.js') }}"></script>
 <script>
-var gitgraph = new GitGraph({author: ""});
-var master = gitgraph.branch("master");
+  var gitgraph = new GitGraph({ author: "" });
+  var master = gitgraph.branch("master");
 
-master.commit({
-  dotColor: "white",
-  dotSize: 10,
-  detailId: 'detail-init',
-  dotStrokeWidth: 10,
-  message: "git init",
-});
+  master.commit({
+    dotColor: "white",
+    dotSize: 10,
+    detailId: "detail-init",
+    dotStrokeWidth: 10,
+    message: "git init",
+  });
 
-master.commit({
-  dotColor: "white",
-  dotSize: 10,
-  detailId: 'detail-addpy',
-  dotStrokeWidth: 10,
-  message: "Add a commit",
-});
+  master.commit({
+    dotColor: "white",
+    dotSize: 10,
+    detailId: "detail-addpy",
+    dotStrokeWidth: 10,
+    message: "Add a commit",
+  });
 
-var devBranch = gitgraph.branch("dev");
-devBranch.commit({
-  dotColor: "white",
-  dotSize: 10,
-  detailId: 'detail-branch',
-  dotStrokeWidth: 10,
-  message: "Add README.md on dev branch",
-});
+  var devBranch = gitgraph.branch("dev");
+  devBranch.commit({
+    dotColor: "white",
+    dotSize: 10,
+    detailId: "detail-branch",
+    dotStrokeWidth: 10,
+    message: "Add README.md on dev branch",
+  });
 
-master.commit({
-  dotColor: "white",
-  dotSize: 10,
-  detailId: 'detail-checkout',
-  dotStrokeWidth: 10,
-  message: "modify test.py on master",
-});
+  master.commit({
+    dotColor: "white",
+    dotSize: 10,
+    detailId: "detail-checkout",
+    dotStrokeWidth: 10,
+    message: "modify test.py on master",
+  });
 
-devBranch.merge(master, {
-  dotColor: "white",
-  dotSize: 10,
-  detailId: 'detail-merge',
-  dotStrokeWidth: 10
-});
-
+  devBranch.merge(master, {
+    dotColor: "white",
+    dotSize: 10,
+    detailId: "detail-merge",
+    dotStrokeWidth: 10,
+  });
 </script>
 {% endblock %}

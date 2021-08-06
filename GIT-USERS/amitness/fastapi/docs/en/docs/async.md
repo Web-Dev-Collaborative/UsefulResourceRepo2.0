@@ -1,6 +1,6 @@
 # Concurrency and async / await
 
-Details about the `async def` syntax for *path operation functions* and some background about asynchronous code, concurrency, and parallelism.
+Details about the `async def` syntax for _path operation functions_ and some background about asynchronous code, concurrency, and parallelism.
 
 ## In a hurry?
 
@@ -12,7 +12,7 @@ If you are using third party libraries that tell you to call them with `await`, 
 results = await some_library()
 ```
 
-Then, declare your *path operation functions* with `async def` like:
+Then, declare your _path operation functions_ with `async def` like:
 
 ```Python hl_lines="2"
 @app.get('/')
@@ -22,11 +22,11 @@ async def read_results():
 ```
 
 !!! note
-    You can only use `await` inside of functions created with `async def`.
+You can only use `await` inside of functions created with `async def`.
 
 ---
 
-If you are using a third party library that communicates with something (a database, an API, the file system, etc) and doesn't have support for using `await`, (this is currently the case for most database libraries), then declare your *path operation functions* as normally, with just `def`, like:
+If you are using a third party library that communicates with something (a database, an API, the file system, etc) and doesn't have support for using `await`, (this is currently the case for most database libraries), then declare your _path operation functions_ as normally, with just `def`, like:
 
 ```Python hl_lines="2"
 @app.get('/')
@@ -45,7 +45,7 @@ If you just don't know, use normal `def`.
 
 ---
 
-**Note**: you can mix `def` and `async def` in your *path operation functions* as much as you need and define each one using the best option for you. FastAPI will do the right thing with them.
+**Note**: you can mix `def` and `async def` in your _path operation functions_ as much as you need and define each one using the best option for you. FastAPI will do the right thing with them.
 
 Anyway, in any of the cases above, FastAPI will still work asynchronously and be extremely fast.
 
@@ -57,13 +57,13 @@ Modern versions of Python have support for **"asynchronous code"** using somethi
 
 Let's see that phrase by parts in the sections below:
 
-* **Asynchronous Code**
-* **`async` and `await`**
-* **Coroutines**
+- **Asynchronous Code**
+- **`async` and `await`**
+- **Coroutines**
 
 ## Asynchronous Code
 
-Asynchronous code just means that the language 💬 has a way to tell the computer / program 🤖 that at some point in the code, it 🤖 will have to wait for *something else* to finish somewhere else. Let's say that *something else* is called "slow-file" 📝.
+Asynchronous code just means that the language 💬 has a way to tell the computer / program 🤖 that at some point in the code, it 🤖 will have to wait for _something else_ to finish somewhere else. Let's say that _something else_ is called "slow-file" 📝.
 
 So, during that time, the computer can go and do some other work, while "slow-file" 📝 finishes.
 
@@ -73,14 +73,14 @@ Next, it 🤖 takes the first task to finish (let's say, our "slow-file" 📝) a
 
 That "wait for something else" normally refers to <abbr title="Input and Output">I/O</abbr> operations that are relatively "slow" (compared to the speed of the processor and the RAM memory), like waiting for:
 
-* the data from the client to be sent through the network
-* the data sent by your program to be received by the client through the network
-* the contents of a file in the disk to be read by the system and given to your program
-* the contents your program gave to the system to be written to disk
-* a remote API operation
-* a database operation to finish
-* a database query to return the results
-* etc.
+- the data from the client to be sent through the network
+- the data sent by your program to be received by the client through the network
+- the contents of a file in the disk to be read by the system and given to your program
+- the contents your program gave to the system to be written to disk
+- a remote API operation
+- a database operation to finish
+- a database query to return the results
+- etc.
 
 As the execution time is consumed mostly by waiting for <abbr title="Input and Output">I/O</abbr> operations, they call them "I/O bound" operations.
 
@@ -96,7 +96,7 @@ This idea of **asynchronous** code described above is also sometimes called **"c
 
 **Concurrency** and **parallelism** both relate to "different things happening more or less at the same time".
 
-But the details between *concurrency* and *parallelism* are quite different.
+But the details between _concurrency_ and _parallelism_ are quite different.
 
 To see the difference, imagine the following story about burgers:
 
@@ -226,7 +226,7 @@ So, to balance that out, imagine the following short story:
 
 > You have to clean a big, dirty house.
 
-*Yep, that's the whole story*.
+_Yep, that's the whole story_.
 
 ---
 
@@ -248,10 +248,10 @@ Common examples of CPU bound operations are things that require complex math pro
 
 For example:
 
-* **Audio** or **image processing**.
-* **Computer vision**: an image is composed of millions of pixels, each pixel has 3 values / colors, processing that normally requires computing something on those pixels, all at the same time.
-* **Machine Learning**: it normally requires lots of "matrix" and "vector" multiplications. Think of a huge spreadsheet with numbers and multiplying all of them together at the same time.
-* **Deep Learning**: this is a sub-field of Machine Learning, so, the same applies. It's just that there is not a single spreadsheet of numbers to multiply, but a huge set of them, and in many cases, you use a special processor to build and / or use those models.
+- **Audio** or **image processing**.
+- **Computer vision**: an image is composed of millions of pixels, each pixel has 3 values / colors, processing that normally requires computing something on those pixels, all at the same time.
+- **Machine Learning**: it normally requires lots of "matrix" and "vector" multiplications. Think of a huge spreadsheet with numbers and multiplying all of them together at the same time.
+- **Deep Learning**: this is a sub-field of Machine Learning, so, the same applies. It's just that there is not a single spreadsheet of numbers to multiply, but a huge set of them, and in many cases, you use a special processor to build and / or use those models.
 
 ### Concurrency + Parallelism: Web + Machine Learning
 
@@ -261,7 +261,7 @@ But you can also exploit the benefits of parallelism and multiprocessing (having
 
 That, plus the simple fact that Python is the main language for **Data Science**, Machine Learning and especially Deep Learning, make FastAPI a very good match for Data Science / Machine Learning web APIs and applications (among many others).
 
-To see how to achieve this parallelism in production see the section about [Deployment](deployment.md){.internal-link target=_blank}.
+To see how to achieve this parallelism in production see the section about [Deployment](deployment.md){.internal-link target=\_blank}.
 
 ## `async` and `await`
 
@@ -303,7 +303,7 @@ burgers = get_burgers(2)
 
 ---
 
-So, if you are using a library that tells you that you can call it with `await`, you need to create the *path operation functions* that uses it with `async def`, like in:
+So, if you are using a library that tells you that you can call it with `await`, you need to create the _path operation functions_ that uses it with `async def`, like in:
 
 ```Python hl_lines="2-3"
 @app.get('/burgers')
@@ -320,7 +320,7 @@ But at the same time, functions defined with `async def` have to be "awaited". S
 
 So, about the egg and the chicken, how do you call the first `async` function?
 
-If you are working with **FastAPI** you don't have to worry about that, because that "first" function will be your *path operation function*, and FastAPI will know how to do the right thing.
+If you are working with **FastAPI** you don't have to worry about that, because that "first" function will be your _path operation function_, and FastAPI will know how to do the right thing.
 
 But if you want to use `async` / `await` without FastAPI, <a href="https://docs.python.org/3/library/asyncio-task.html#coroutine" class="external-link" target="_blank">check the official Python docs</a>.
 
@@ -357,7 +357,7 @@ All that is what powers FastAPI (through Starlette) and what makes it have such 
 ## Very Technical Details
 
 !!! warning
-    You can probably skip this.
+You can probably skip this.
 
     These are very technical details of how **FastAPI** works underneath.
 
@@ -365,11 +365,11 @@ All that is what powers FastAPI (through Starlette) and what makes it have such 
 
 ### Path operation functions
 
-When you declare a *path operation function* with normal `def` instead of `async def`, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server).
+When you declare a _path operation function_ with normal `def` instead of `async def`, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server).
 
-If you are coming from another async framework that does not work in the way described above and you are used to define trivial compute-only *path operation functions* with plain `def` for a tiny performance gain (about 100 nanoseconds), please note that in **FastAPI** the effect would be quite opposite. In these cases, it's better to use `async def` unless your *path operation functions* use code that performs blocking <abbr title="Input/Output: disk reading or writing, network communications.">I/O</abbr>.
+If you are coming from another async framework that does not work in the way described above and you are used to define trivial compute-only _path operation functions_ with plain `def` for a tiny performance gain (about 100 nanoseconds), please note that in **FastAPI** the effect would be quite opposite. In these cases, it's better to use `async def` unless your _path operation functions_ use code that performs blocking <abbr title="Input/Output: disk reading or writing, network communications.">I/O</abbr>.
 
-Still, in both situations, chances are that **FastAPI** will [still be faster](/#performance){.internal-link target=_blank} than (or at least comparable to) your previous framework.
+Still, in both situations, chances are that **FastAPI** will [still be faster](/#performance){.internal-link target=\_blank} than (or at least comparable to) your previous framework.
 
 ### Dependencies
 
@@ -383,7 +383,7 @@ You can have multiple dependencies and sub-dependencies requiring each other (as
 
 Any other utility function that you call directly can be created with normal `def` or `async def` and FastAPI won't affect the way you call it.
 
-This is in contrast to the functions that FastAPI calls for you: *path operation functions* and dependencies.
+This is in contrast to the functions that FastAPI calls for you: _path operation functions_ and dependencies.
 
 If your utility function is a normal function with `def`, it will be called directly (as you write it in your code), not in a threadpool, if the function is created with `async def` then you should `await` for that function when you call it in your code.
 
