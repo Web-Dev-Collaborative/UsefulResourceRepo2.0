@@ -9,14 +9,12 @@ ashishsushilpatel@gmail.com
 
 
 class Node(object):
-
     def __init__(self, value=None):
         self.value = value
         self.next = None
 
 
 class Queue(object):
-
     def __init__(self):
         self.head = None
         self.tail = None
@@ -47,7 +45,7 @@ class Queue(object):
 
     def display(self):
         if self.is_empty():
-            return("No item found")
+            return "No item found"
         else:
             queue_list = []
             current = self.head
@@ -57,7 +55,7 @@ class Queue(object):
             print(queue_list)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     queue_demo = Queue()
     print("Adding element in queue")
     queue_demo.enqueue(3)

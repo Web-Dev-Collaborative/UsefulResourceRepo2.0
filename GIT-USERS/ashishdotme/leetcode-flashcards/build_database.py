@@ -41,11 +41,13 @@ def build_database(repo_path):
         fpFront = filepath.open()
         fpBack = filepath.open()
         title = fpFront.readline().lstrip("#").strip()
-        back = re.findall(r'## Answer(.+?)$',fpFront.read(), re.DOTALL)
-        front = re.findall(r'## Question(.+?)## Answer',fpBack.read(), re.DOTALL)
+        back = re.findall(r"## Answer(.+?)$", fpFront.read(), re.DOTALL)
+        front = re.findall(r"## Question(.+?)## Answer", fpBack.read(), re.DOTALL)
         path = str(filepath.relative_to(root))
         slug = filepath.stem
-        url = "https://github.com/ashishdotme/leetcode-flashcards/blob/master/{}".format(path)
+        url = "https://github.com/ashishdotme/leetcode-flashcards/blob/master/{}".format(
+            path
+        )
         path_slug = path.replace("/", "_")
         record = {
             "path": path_slug,
@@ -54,7 +56,7 @@ def build_database(repo_path):
             "title": title,
             "url": url,
             "front": front[0].strip(),
-            "back": back[0].strip()
+            "back": back[0].strip(),
         }
         # record.update(all_times[path])
         with db.conn:

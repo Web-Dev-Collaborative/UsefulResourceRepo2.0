@@ -7,6 +7,7 @@ import os
 
 root = pathlib.Path(__file__).parent.resolve()
 
+
 def replace_chunk(content, marker, chunk, inline=False):
     r = re.compile(
         r"<!\-\- {} starts \-\->.*<!\-\- {} ends \-\->".format(marker, marker),
@@ -14,8 +15,7 @@ def replace_chunk(content, marker, chunk, inline=False):
     )
     if not inline:
         chunk = "\n{}\n".format(chunk)
-    chunk = "<!-- {} starts -->{}<!-- {} ends -->".format(
-        marker, chunk, marker)
+    chunk = "<!-- {} starts -->{}<!-- {} ends -->".format(marker, chunk, marker)
     return r.sub(chunk, content)
 
 
@@ -26,29 +26,33 @@ def replace_chunk_no_space(content, marker, chunk, inline=False):
     )
     if not inline:
         chunk = "\n{}\n".format(chunk)
-    chunk = "<!-- {} starts -->`{}`<!-- {} ends -->".format(
-        marker, chunk, marker)
+    chunk = "<!-- {} starts -->`{}`<!-- {} ends -->".format(marker, chunk, marker)
     return r.sub(chunk, content)
 
 
 def fetch_tils():
     sql = "select title, url, created_utc from til order by created_utc desc limit 5"
     return httpx.get(
-        "https://til.ashish.me/til.json",
-        params={"sql": sql, "_shape": "array", },
+        "https://til.ashish.me/til.json", params={"sql": sql, "_shape": "array"}
     ).json()
 
+
 def fetch_repos():
-    response = httpx.get("https://api.github.com/users/ashishdotme/repos?sort=created&per_page=10").json()
+    response = httpx.get(
+        "https://api.github.com/users/ashishdotme/repos?sort=created&per_page=10"
+    ).json()
     return response
+
 
 def fetch_movie():
     movie = httpx.get("https://api.ashish.me/movies").json()[0]["title"]
     return movie
 
+
 def fetch_tv():
     tv = httpx.get("https://api.ashish.me/shows").json()[0]["title"]
     return tv
+
 
 def fetch_blog_entries():
     entries = feedparser.parse("https://ashish.me/blog/feed.xml")["entries"]
@@ -91,7 +95,7 @@ if __name__ == "__main__":
             "- [{title}]({url}) - {published}".format(
                 title=repo["name"],
                 url=repo["svn_url"],
-                published=repo["created_at"].split("T")[0]
+                published=repo["created_at"].split("T")[0],
             )
             for repo in repos
         ]
@@ -100,8 +104,7 @@ if __name__ == "__main__":
 
     entries = fetch_blog_entries()[:5]
     entries_md = "\n".join(
-        ["- [{title}]({url}) - {published}".format(**entry)
-         for entry in entries]
+        ["- [{title}]({url}) - {published}".format(**entry) for entry in entries]
     )
     rewritten = replace_chunk(rewritten, "blog", entries_md)
 

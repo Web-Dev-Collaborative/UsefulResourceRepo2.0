@@ -7,8 +7,7 @@ import re
 COUNT_TEMPLATE = "<!-- count -->{}<!-- count -->"
 
 root = pathlib.Path(__file__).parent.resolve()
-index_re = re.compile(
-    r"<!\-\- index starts \-\->.*<!\-\- index ends \-\->", re.DOTALL)
+index_re = re.compile(r"<!\-\- index starts \-\->.*<!\-\- index ends \-\->", re.DOTALL)
 count_re = re.compile(r"<!\-\- count \-\->.*<!\-\- count \-\->", re.DOTALL)
 
 if __name__ == "__main__":
@@ -21,7 +20,7 @@ if __name__ == "__main__":
                 topic=row["topic"].capitalize(),
                 title=string.capwords(row["title"].replace("-", " ")),
                 date=row["updated"].split("T")[0],
-                url=row["url"]
+                url=row["url"],
             )
         )
     if index[-1] == "":

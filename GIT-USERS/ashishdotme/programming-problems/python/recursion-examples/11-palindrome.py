@@ -21,4 +21,6 @@ def is_palindrome(str):
         print(str[0])
         print(str[-1])
         return is_palindrome(str[1:])
+
+
 print(is_palindrome("Ashish"))

@@ -21,6 +21,7 @@ def prod(L):
   return product
 """
 
+
 def product_list(numbers):
     if numbers == []:
         return 1
@@ -29,4 +30,5 @@ def product_list(numbers):
     else:
         return numbers[0] * product_list(numbers[1:])
 
-print(product_list([3,2,2]))
+
+print(product_list([3, 2, 2]))

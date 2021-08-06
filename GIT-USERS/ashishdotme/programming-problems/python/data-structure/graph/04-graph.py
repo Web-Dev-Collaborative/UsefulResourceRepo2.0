@@ -78,25 +78,25 @@ class Graph:
         return edges
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     g = Graph(directed=True)
-    g.addVertex('a')
-    g.addVertex('b')
-    g.addVertex('c')
-    g.addVertex('d')
-    g.addVertex('e')
-    g.addVertex('f')
-    g.addEdge('a', 'b', 3)
-    g.addEdge('b', 'c', 2)
-    g.addEdge('c', 'd', 1)
-    g.addEdge('d', 'e', 5)
-    g.addEdge('d', 'a', 5)
-    g.addEdge('d', 'a', 2)
-    g.addEdge('e', 'f', 3)
-    g.addEdge('f', 'a', 6)
-    g.addEdge('f', 'b', 6)
-    g.addEdge('f', 'c', 6)
+    g.addVertex("a")
+    g.addVertex("b")
+    g.addVertex("c")
+    g.addVertex("d")
+    g.addVertex("e")
+    g.addVertex("f")
+    g.addEdge("a", "b", 3)
+    g.addEdge("b", "c", 2)
+    g.addEdge("c", "d", 1)
+    g.addEdge("d", "e", 5)
+    g.addEdge("d", "a", 5)
+    g.addEdge("d", "a", 2)
+    g.addEdge("e", "f", 3)
+    g.addEdge("f", "a", 6)
+    g.addEdge("f", "b", 6)
+    g.addEdge("f", "c", 6)
 
     for edgeSet in g.getEdges():
-        print('edges from', edgeSet[0][0] + ': ', end='')
+        print("edges from", edgeSet[0][0] + ": ", end="")
         print(edgeSet)

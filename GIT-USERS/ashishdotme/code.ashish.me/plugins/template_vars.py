@@ -10,7 +10,4 @@ def highlight(s):
 
 @hookimpl
 def extra_template_vars(request):
-    return {
-        "q": request.args.get("q", ""),
-        "highlight": highlight,
-    }
+    return {"q": request.args.get("q", ""), "highlight": highlight}

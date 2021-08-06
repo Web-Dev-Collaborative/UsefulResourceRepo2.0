@@ -15,7 +15,9 @@ root = pathlib.Path(__file__).parent.resolve()
 
 def created_changed_times(repo_path, ref="master"):
     created_changed_times = {}
-    for commit in RepositoryMining("https://github.com/ashishdotme/code.ashish.me/").traverse_commits():
+    for commit in RepositoryMining(
+        "https://github.com/ashishdotme/code.ashish.me/"
+    ).traverse_commits():
         dt = commit.committer_date
         for modified_file in commit.modifications:
             filepath = modified_file.new_path
@@ -43,7 +45,8 @@ def build_database(repo_path):
             body = "```js  \n" + fp.read().strip() + "\n```"
             path = str(filepath.relative_to(root))
             url = "https://github.com/ashishdotme/code.ashish.me/blob/master/{}".format(
-                path)
+                path
+            )
             slug = filepath.stem
             title = filepath.stem
             path_slug = path.replace("/", "_")
@@ -69,7 +72,9 @@ def build_database(repo_path):
                     headers = {}
                     if os.environ.get("GITHUB_TOKEN"):
                         headers = {
-                            "authorization": "Bearer {}".format(os.environ["GITHUB_TOKEN"])
+                            "authorization": "Bearer {}".format(
+                                os.environ["GITHUB_TOKEN"]
+                            )
                         }
                     response = httpx.post(
                         "https://api.github.com/markdown",

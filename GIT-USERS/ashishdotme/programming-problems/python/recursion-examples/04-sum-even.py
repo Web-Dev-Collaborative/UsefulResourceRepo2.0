@@ -19,13 +19,14 @@ def sum_even(n):
  return total
 """
 
+
 def sum_even(num):
     if num < 0:
         return 0
     elif num % 2 != 0:
-        return sum_even(num-1)
+        return sum_even(num - 1)
     else:
-        return num + sum_even(num-2)
+        return num + sum_even(num - 2)
+
 
 print(sum_even(5))
-

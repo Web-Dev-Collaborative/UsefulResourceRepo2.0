@@ -13,7 +13,7 @@ Write a function to calculate power of a number raised to other ( a^b ) using re
 
 
 def power_of_number(num, power):
-    if(power == 1):
+    if power == 1:
         return num
     else:
         return num * powerOfNumber(num, power - 1)

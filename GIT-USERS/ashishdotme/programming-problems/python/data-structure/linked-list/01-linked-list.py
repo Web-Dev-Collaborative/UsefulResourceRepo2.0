@@ -89,7 +89,7 @@ class LinkedList(object):
         return "Not found"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ll = LinkedList()
     print("Insert to the linked list")
     ll.insert(2)

@@ -18,6 +18,6 @@ Complete the stub code provided in your editor to print whether or not  is weird
 
 N = int(input().strip())
 if N % 2 != 0 or N > 5 and N <= 20:
-	print("Weird")
+    print("Weird")
 else:
-	print("Not Weird")
+    print("Not Weird")

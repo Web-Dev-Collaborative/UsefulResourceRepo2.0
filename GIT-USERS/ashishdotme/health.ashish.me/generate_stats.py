@@ -7,29 +7,25 @@ import sqlite3
 
 root = pathlib.Path(__file__).parent.resolve()
 
-index_re = re.compile(
-    r"<!\-\- index starts \-\->.*<!\-\- index ends \-\->", re.DOTALL)
+index_re = re.compile(r"<!\-\- index starts \-\->.*<!\-\- index ends \-\->", re.DOTALL)
 
 if __name__ == "__main__":
     index = ["<!-- index starts -->"]
     try:
-        sqliteConnection = sqlite3.connect('ashish.db')
+        sqliteConnection = sqlite3.connect("ashish.db")
         cursor = sqliteConnection.cursor()
         sqlite_select_query = """SELECT day, sum(stepcount) FROM steps GROUP BY day ORDER BY day desc LIMIT 30"""
         cursor.execute(sqlite_select_query)
         records = cursor.fetchall()
         for row in records:
             index.append(
-            "- **{value}** steps - *{date}*".format(
-                date=row[0],
-                value=row[1]
+                "- **{value}** steps - *{date}*".format(date=row[0], value=row[1])
             )
-        )
         cursor.close()
     except sqlite3.Error as error:
         print("Failed to read data from sqlite table", error)
     finally:
-        if (sqliteConnection):
+        if sqliteConnection:
             sqliteConnection.close()
             print("The SQLite connection is closed")
     if index[-1] == "":

@@ -5,22 +5,20 @@ import re
 
 root = pathlib.Path(__file__).parent.resolve()
 
-index_re = re.compile(
-    r"<!\-\- index starts \-\->.*<!\-\- index ends \-\->", re.DOTALL)
+index_re = re.compile(r"<!\-\- index starts \-\->.*<!\-\- index ends \-\->", re.DOTALL)
 
 if __name__ == "__main__":
     db = sqlite_utils.Database(root / "notes.db")
     by_topic = {}
     for row in db["notes"].rows_where(order_by="updated_utc desc"):
-        by_topic.setdefault(
-            row["topic"].capitalize().replace("-", " "), []).append(row)
+        by_topic.setdefault(row["topic"].capitalize().replace("-", " "), []).append(row)
     index = ["<!-- index starts -->"]
     for topic, rows in by_topic.items():
         index.append("## {}\n".format(topic))
         for row in rows:
             index.append(
                 "* [{title}]({url}) - *last updated at {date}*".format(
-                    date=row["updated"][:10] , **row
+                    date=row["updated"][:10], **row
                 )
             )
         index.append("")

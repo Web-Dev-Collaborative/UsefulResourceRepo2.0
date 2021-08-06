@@ -19,12 +19,14 @@ def sum_odd(n):
  return total
 """
 
+
 def sum_odd(num):
-	if num < 0:
-		return 0
-	elif num % 2 == 0:
-		return sum_odd(num-1)
-	else:
-		return num + sum_odd(num-2)
+    if num < 0:
+        return 0
+    elif num % 2 == 0:
+        return sum_odd(num - 1)
+    else:
+        return num + sum_odd(num - 2)
+
 
 print(sum_odd(5))

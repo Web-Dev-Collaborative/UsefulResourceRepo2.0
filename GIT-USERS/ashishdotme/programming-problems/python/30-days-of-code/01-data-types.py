@@ -8,12 +8,12 @@ ashishsushilpatel@gmail.com
 
 i = 4
 d = 4.0
-s = 'HackerRank '
+s = "HackerRank "
 
 # Declare second integer, double, and String variables.
 i2 = int(input())
 d2 = float(input())
-s2 = str(input()) 
+s2 = str(input())
 
 # Print the sum of both integer variables on a new line.
 print(i + i2)

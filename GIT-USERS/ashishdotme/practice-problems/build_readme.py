@@ -6,8 +6,7 @@ import re
 
 root = pathlib.Path(__file__).parent.resolve()
 
-index_re = re.compile(
-    r"<!\-\- index starts \-\->.*<!\-\- index ends \-\->", re.DOTALL)
+index_re = re.compile(r"<!\-\- index starts \-\->.*<!\-\- index ends \-\->", re.DOTALL)
 
 if __name__ == "__main__":
     db = sqlite_utils.Database(root / "problems.db")

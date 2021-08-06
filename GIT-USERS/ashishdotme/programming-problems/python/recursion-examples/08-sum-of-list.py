@@ -14,10 +14,10 @@ Its size are given as parameters e.g def elementSum(L,n) where n == len(L)
 
 
 def sum_list(num, length):
-		if length == 1:
-			return num[0]
-		else:
-			return num[0] + sum_list(num[1:], length-1)
+    if length == 1:
+        return num[0]
+    else:
+        return num[0] + sum_list(num[1:], length - 1)
 
 
 print(sum_list([5, 5, 5, 5, 6], 5))

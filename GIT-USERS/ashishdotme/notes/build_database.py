@@ -14,7 +14,9 @@ root = pathlib.Path(__file__).parent.resolve()
 
 def created_changed_times(repo_path, ref="master"):
     created_changed_times = {}
-    for commit in RepositoryMining("https://github.com/ashishdotme/notes/").traverse_commits():
+    for commit in RepositoryMining(
+        "https://github.com/ashishdotme/notes/"
+    ).traverse_commits():
         dt = commit.committer_date
         for modified_file in commit.modifications:
             filepath = modified_file.new_path
@@ -41,8 +43,7 @@ def build_database(repo_path):
         body = fp.read().strip()
         slug = filepath.stem
         path = str(filepath.relative_to(root))
-        url = "https://github.com/ashishdotme/notes/blob/master/{}".format(
-            path)
+        url = "https://github.com/ashishdotme/notes/blob/master/{}".format(path)
         path_slug = path.replace("/", "_")
         try:
             row = table.get(path_slug)

@@ -35,12 +35,17 @@ def build_database(repo_path):
     db = sqlite_utils.Database(repo_path / "courses.db")
     table = db.table("courses", pk="title")
     for directory in root.iterdir():
-        if directory.is_dir() and directory.name != ".git" and directory.name != ".github":
+        if (
+            directory.is_dir()
+            and directory.name != ".git"
+            and directory.name != ".github"
+        ):
             url = "https://github.com/ashishdotme/courses-demos/blob/master/{}".format(
-                directory.name)
+                directory.name
+            )
             record = {
                 "title": string.capwords(directory.name.replace("-", " ")),
-                "url": url
+                "url": url,
             }
             record.update(all_times[directory.name])
             table.insert(record)

@@ -4,7 +4,7 @@ def strDist(str, sub):
     if not str.startswith(sub):
         return strDist(str[1:], sub)
     if not str.endswith(sub):
-        return strDist(str[:len(str) - 1], sub)
+        return strDist(str[: len(str) - 1], sub)
     return len(str)
 
 

@@ -25,6 +25,7 @@ def twoSumFirst(nums, target):
             return [nums.index(num), nums.index(another)]
     return "Not found"
 
+
 # Time:  O(n)
 # Space: O(n)
 
