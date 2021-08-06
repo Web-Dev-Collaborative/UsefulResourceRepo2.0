@@ -10,6 +10,7 @@ from math import *
 import re
 from nodebox_linguistics_extended.parser.nltk_lite.probability import *
 
+
 class SentencesIndex(object):
     """Class implementing an index of a collection of sentences.
 
@@ -19,7 +20,7 @@ class SentencesIndex(object):
     keys and a list of (sentence number, word number) tuples as values. This
     class also generates a list of sentence lengths. 
     """
-    
+
     def __init__(self, sentences):
         """ Constructor. Takes the list of sentences to index.
 
@@ -38,7 +39,9 @@ class SentencesIndex(object):
             self.lengths.append(len(sentence))
             wordCount = 0
             for word in sentence:
-                self.index[word] = self.index.get(word, []) + [(sentenceCount, wordCount)]
+                self.index[word] = self.index.get(word, []) + [
+                    (sentenceCount, wordCount)
+                ]
                 wordCount += 1
             sentenceCount += 1
 
@@ -60,6 +63,7 @@ class SentencesIndex(object):
         @returns:   List of lengths of sentences.
         """
         return self.lengths
+
 
 class IndexConcordance(object):
     """ Class that generates concordances from a list of sentences.
@@ -85,12 +89,12 @@ class IndexConcordance(object):
     """
 
     # constants for different types of sort
-    
+
     SORT_WORD = 0
     SORT_POS = 1
     SORT_NUM = 2
     SORT_RIGHT_CONTEXT = 3
-    
+
     def __init__(self, sentences, index=None):
         """ Constructor.
 
@@ -102,17 +106,29 @@ class IndexConcordance(object):
         @param index:     SentencesIndex object to use as an index. If this is
                             not provided, one will be generated.
         """
-        
+
         self.sentences = sentences
         self.index = index
         # generate an index if one wasn't provided
         if self.index == None:
             self.index = SentencesIndex(self.sentences)
 
-    def formatted(self, leftRegexp=None, middleRegexp=".*", rightRegexp=None,
-            leftContextLength=3, rightContextLength=3, contextInSentences=False,
-            contextChars=50, maxKeyLength=0, showWord=True,
-            sort=0, showPOS=True, flipWordAndPOS=False, verbose=False):
+    def formatted(
+        self,
+        leftRegexp=None,
+        middleRegexp=".*",
+        rightRegexp=None,
+        leftContextLength=3,
+        rightContextLength=3,
+        contextInSentences=False,
+        contextChars=50,
+        maxKeyLength=0,
+        showWord=True,
+        sort=0,
+        showPOS=True,
+        flipWordAndPOS=False,
+        verbose=False,
+    ):
         """Generates and displays keyword-in-context formatted concordance data.
 
         This is a convenience method that combines raw() and display()'s
@@ -167,14 +183,37 @@ class IndexConcordance(object):
         @param verbose:       Displays some extra status information. Defaults
                                 to False.
         """
-            
-        self.format(self.raw(leftRegexp, middleRegexp, rightRegexp, leftContextLength,
-                rightContextLength, contextInSentences, sort, verbose), contextChars,
-                maxKeyLength, showWord, showPOS, flipWordAndPOS, verbose)
 
-    def raw(self, leftRegexp=None, middleRegexp=".*", rightRegexp=None,
-            leftContextLength=3, rightContextLength=3, contextInSentences=False,
-            sort=0, verbose=False):
+        self.format(
+            self.raw(
+                leftRegexp,
+                middleRegexp,
+                rightRegexp,
+                leftContextLength,
+                rightContextLength,
+                contextInSentences,
+                sort,
+                verbose,
+            ),
+            contextChars,
+            maxKeyLength,
+            showWord,
+            showPOS,
+            flipWordAndPOS,
+            verbose,
+        )
+
+    def raw(
+        self,
+        leftRegexp=None,
+        middleRegexp=".*",
+        rightRegexp=None,
+        leftContextLength=3,
+        rightContextLength=3,
+        contextInSentences=False,
+        sort=0,
+        verbose=False,
+    ):
         """ Generates and returns raw concordance data.
 
         Regular expressions supplied are evaluated over the appropriate part of
@@ -233,7 +272,7 @@ class IndexConcordance(object):
                 if verbose:
                     print(("/".join(item[0])))
                 wordLocs.append(item[1])
-                
+
         print("")
 
         items = []
@@ -252,7 +291,9 @@ class IndexConcordance(object):
                     leftLength = offset
                     # number of words to include in the left context is
                     # initially everything in the sentence after the target
-                    rightLength = self.index.getSentenceLengths()[sentenceNum] - offset - 1
+                    rightLength = (
+                        self.index.getSentenceLengths()[sentenceNum] - offset - 1
+                    )
 
                     # while the length of the left context is less than what we
                     # need, keep decreasing the left corpus index (ie adding
@@ -261,7 +302,7 @@ class IndexConcordance(object):
                         leftCorpusIndex -= 1
                         # if the new corpus index would fall off the end of the
                         # list, stop at 0
-                        if(leftCorpusIndex < 0):
+                        if leftCorpusIndex < 0:
                             leftCorpusIndex = 0
                             break
                         # adjust length and offset
@@ -274,7 +315,9 @@ class IndexConcordance(object):
                     while rightLength < rightContextLength:
                         rightCorpusIndex += 1
                         try:
-                            rightLength += self.index.getSentenceLengths()[rightCorpusIndex]
+                            rightLength += self.index.getSentenceLengths()[
+                                rightCorpusIndex
+                            ]
                         # if the new corpus index falls off the end of the list,
                         # stop at the end
                         except IndexError:
@@ -283,7 +326,7 @@ class IndexConcordance(object):
 
                     # grab all sentences from the left to right corpus indices,
                     # then flatten them into a single list of words
-                    sents = self.sentences[leftCorpusIndex:rightCorpusIndex+1]
+                    sents = self.sentences[leftCorpusIndex : rightCorpusIndex + 1]
                     words = []
                     for sentence in sents:
                         for word in sentence:
@@ -291,9 +334,9 @@ class IndexConcordance(object):
 
                     # select the appropriate sections of context from the list
                     # of words
-                    left = words[offset-leftContextLength:offset]
+                    left = words[offset - leftContextLength : offset]
                     target = words[offset]
-                    right = words[offset+1:offset+1+rightContextLength]
+                    right = words[offset + 1 : offset + 1 + rightContextLength]
                     items.append((left, target, right, sentenceNum))
         # if context lengths are specified in sentences:
         else:
@@ -310,11 +353,13 @@ class IndexConcordance(object):
                     leftLength = offset
                     # number of words to include in the left context is
                     # initially everything in the sentence after the target
-                    rightLength = self.index.getSentenceLengths()[sentenceNum] - offset - 1
+                    rightLength = (
+                        self.index.getSentenceLengths()[sentenceNum] - offset - 1
+                    )
                     # keep track of the number of sentences included in the
                     # left/right context
-                    leftSents = 0;
-                    rightSents = 0;
+                    leftSents = 0
+                    rightSents = 0
 
                     # while we don't have enough sentences in the left context,
                     # keep decreasing the left corpus index
@@ -322,7 +367,7 @@ class IndexConcordance(object):
                         leftCorpusIndex -= 1
                         # if the new corpus index would fall off the end of the
                         # list, stop at 0
-                        if(leftCorpusIndex < 0):
+                        if leftCorpusIndex < 0:
                             leftCorpusIndex = 0
                             break
                         leftLength += self.index.getSentenceLengths()[leftCorpusIndex]
@@ -334,7 +379,9 @@ class IndexConcordance(object):
                     while rightSents < rightContextLength:
                         rightCorpusIndex += 1
                         try:
-                            rightLength += self.index.getSentenceLengths()[rightCorpusIndex]
+                            rightLength += self.index.getSentenceLengths()[
+                                rightCorpusIndex
+                            ]
                             rightSents += 1
                         # if the new corpus index falls off the end of the list,
                         # stop at the end
@@ -344,7 +391,7 @@ class IndexConcordance(object):
 
                     # grab all sentences from the left to right corpus indices,
                     # then flatten them into a single list of words
-                    sents = self.sentences[leftCorpusIndex:rightCorpusIndex+1]
+                    sents = self.sentences[leftCorpusIndex : rightCorpusIndex + 1]
                     words = []
                     for sentence in sents:
                         for word in sentence:
@@ -354,7 +401,7 @@ class IndexConcordance(object):
                     # of words
                     left = words[0:offset]
                     target = words[offset]
-                    right = words[offset+1:]
+                    right = words[offset + 1 :]
                     items.append((left, target, right, sentenceNum))
 
         if verbose:
@@ -364,19 +411,19 @@ class IndexConcordance(object):
         if sort == self.SORT_WORD:
             if verbose:
                 print("Sorting by target word...")
-            items.sort(key=lambda i:i[1][0].lower())
+            items.sort(key=lambda i: i[1][0].lower())
         elif sort == self.SORT_POS:
             if verbose:
                 print("Sorting by target word POS tag...")
-            items.sort(key=lambda i:i[1][1].lower())
+            items.sort(key=lambda i: i[1][1].lower())
         elif sort == self.SORT_NUM:
             if verbose:
                 print("Sorting by sentence number...")
-            items.sort(key=lambda i:i[3])
+            items.sort(key=lambda i: i[3])
         elif sort == self.SORT_RIGHT_CONTEXT:
             if verbose:
                 print("Sorting by first word of right context...")
-            items.sort(key=lambda i:i[2][0][0])
+            items.sort(key=lambda i: i[2][0][0])
 
         # if any regular expressions have been given for the context, filter
         # the concordance using them
@@ -384,10 +431,10 @@ class IndexConcordance(object):
         filterBool = False
         if leftRegexp != None or rightRegexp != None:
             filterBool = True
-        if filterBool:    
+        if filterBool:
 
-            leftRe=None
-            rightRe=None
+            leftRe = None
+            rightRe = None
             if leftRegexp != None:
                 if verbose:
                     print("Filtering on left context...")
@@ -396,11 +443,11 @@ class IndexConcordance(object):
                 if verbose:
                     print("Filtering on right context...")
                 rightRe = re.compile(rightRegexp)
-            
+
             for item in items:
                 if self._matches(item, leftRe, rightRe):
                     filtered.append(item)
-    
+
         if filterBool:
             source = filtered
         else:
@@ -408,8 +455,16 @@ class IndexConcordance(object):
 
         return source
 
-    def format(self, source, contextChars=55, maxKeyLength=0, showWord=True,
-            showPOS=True, flipWordAndPOS=False, verbose=False):
+    def format(
+        self,
+        source,
+        contextChars=55,
+        maxKeyLength=0,
+        showWord=True,
+        showPOS=True,
+        flipWordAndPOS=False,
+        verbose=False,
+    ):
         """Formats raw concordance output produced by raw().
 
         Displays a concordance in keyword-in-context style format.
@@ -442,7 +497,7 @@ class IndexConcordance(object):
         lines = []
         maxMiddleLength = -1
 
-        # generate intermediate list of string tuples        
+        # generate intermediate list of string tuples
         for line in source:
             # flatten left context tokens into a single string, joining words
             # and their POS tag with a '/' (if both are shown).
@@ -456,7 +511,7 @@ class IndexConcordance(object):
                     left += item[1] + " "
                 elif flipWordAndPOS:
                     left += item[1] + "/" + item[0] + " "
-                else:      
+                else:
                     left += "/".join(item) + " "
 
             # flatten target word into a single string, joining the word and
@@ -467,14 +522,14 @@ class IndexConcordance(object):
                 middle = line[1][1]
             elif flipWordAndPOS:
                 middle = line[1][1] + "/" + line[1][0] + " "
-            else:      
+            else:
                 middle = "/".join(line[1])
-            
+
             if len(middle) > maxMiddleLength:
                 maxMiddleLength = len(middle)
 
             # flatten right context tokens into a single string, joining words
-            # and their POS tag with a '/' (if both are shown).        
+            # and their POS tag with a '/' (if both are shown).
             right = ""
             for item in line[2]:
                 if item[0] == "" and item[1] == "":
@@ -485,7 +540,7 @@ class IndexConcordance(object):
                     right += item[1] + " "
                 elif flipWordAndPOS:
                     right += item[1] + "/" + item[0] + " "
-                else:      
+                else:
                     right += "/".join(item) + " "
 
             num = line[3]
@@ -501,24 +556,24 @@ class IndexConcordance(object):
                 leftPaddingLength = 0
             if len(left) > contextChars and contextChars > -1:
                 left = left[-contextChars:]
-            left = " "*leftPaddingLength + left
+            left = " " * leftPaddingLength + left
             if contextChars > -1:
                 right = right[0:contextChars]
-            
+
             # add sentence numbers
-            left = str(num) + ": " + left[len(str(num))+2 : ]
+            left = str(num) + ": " + left[len(str(num)) + 2 :]
 
             # calculate amount of middle padding needed
             if maxKeyLength > 0:
                 maxMiddleLength = maxKeyLength
             lPad = int(ceil(max(maxMiddleLength - len(middle), 0) / 2.0))
             rPad = int(floor(max(maxMiddleLength - len(middle), 0) / 2.0))
-            middle = " "*lPad + middle + " "*rPad
-            
+            middle = " " * lPad + middle + " " * rPad
+
             print((left + "| " + middle + " | " + right + " "))
             count += 1
-        
-        if verbose:    
+
+        if verbose:
             print(("\n" + repr(count) + " lines"))
 
     def _matches(self, item, leftRe, rightRe):
@@ -534,19 +589,20 @@ class IndexConcordance(object):
             leftString += "/".join(token) + " "
         rightString = ""
         for token in right:
-            rightString += "/".join(token) + " "    
+            rightString += "/".join(token) + " "
 
-        # see if regexps match    
+        # see if regexps match
         ok = True
         if leftRe != None and leftRe.match(leftString) == None:
             ok = False
         if rightRe != None and rightRe.match(rightString) == None:
             ok = False
-                       
-        if ok:                
+
+        if ok:
             return True
         else:
             return False
+
 
 class Aggregator(object):
     """ Class for aggregating and summarising corpus concordance data.
@@ -594,7 +650,7 @@ class Aggregator(object):
     _OTHER_TEXT = "<OTHER>"
     # text for 'total' row in output tables
     _TOTAL_TEXT = "<TOTAL>"
-    
+
     def __init__(self, inputList=None):
         """ Constructor.
 
@@ -617,7 +673,7 @@ class Aggregator(object):
         @type name:     string
         @param name:    Name to associate with the set of data.
         """
-        self._outputSets.append((raw, name));
+        self._outputSets.append((raw, name))
 
     def remove(self, name):
         """ Removes all sets of raw concordance output with the given name.
@@ -629,9 +685,17 @@ class Aggregator(object):
             if item[1] == name:
                 self._outputSets.remove(item)
 
-    def formatted(self, useWord=True, usePOS=True, normalise=False,
-                  threshold=-1, showFirstX=-1, decimalPlaces=4,
-                  countOther=False, showTotal=False):
+    def formatted(
+        self,
+        useWord=True,
+        usePOS=True,
+        normalise=False,
+        threshold=-1,
+        showFirstX=-1,
+        decimalPlaces=4,
+        countOther=False,
+        showTotal=False,
+    ):
         """ Displays formatted concordance summary information.
 
         This is a convenience method that combines raw() and display()'s
@@ -674,10 +738,18 @@ class Aggregator(object):
             the entire FreqDist, not just of the samples displayed.) Defaults
             to False.
         """
-        
+
         output, maxKeyLength = self.raw(useWord, usePOS)
-        self.format(output, maxKeyLength, threshold, showFirstX,
-                decimalPlaces, normalise, countOther, showTotal)
+        self.format(
+            output,
+            maxKeyLength,
+            threshold,
+            showFirstX,
+            decimalPlaces,
+            normalise,
+            countOther,
+            showTotal,
+        )
 
     def raw(self, useWord=True, usePOS=True):
         """ Generates raw summary information.
@@ -750,9 +822,17 @@ class Aggregator(object):
         # return the output and maximum key length
         return output, maxKeyLength
 
-    def format(self, output, maxKeyLength=20, threshold=-1, showFirstX=-1,
-                decimalPlaces=4, normalise=False, countOther=False,
-                showTotal=False):
+    def format(
+        self,
+        output,
+        maxKeyLength=20,
+        threshold=-1,
+        showFirstX=-1,
+        decimalPlaces=4,
+        normalise=False,
+        countOther=False,
+        showTotal=False,
+    ):
         """ Displays concordance summary information.
 
         Formats and displays information produced by raw().
@@ -799,18 +879,18 @@ class Aggregator(object):
             other = 0
             total = 0
             print(name)
-            print(("-"*(maxKeyLength + 7)))
+            print(("-" * (maxKeyLength + 7)))
             # for each key:
             for key in dist.sorted_samples():
                 # keep track of how many samples shown, if using the showFirstX
                 # option
-                #if showFirstX > 0 and x >= showFirstX:
+                # if showFirstX > 0 and x >= showFirstX:
                 #   break
 
                 # get and format the sample's frequency
                 if normalise:
                     count = 1.0 * dist.count(key) / dist.N()
-                    countString = str(count)[0:decimalPlaces + 2]
+                    countString = str(count)[0 : decimalPlaces + 2]
                 else:
                     count = dist.count(key)
                     countString = str(count)
@@ -823,33 +903,46 @@ class Aggregator(object):
                 if count < threshold or (showFirstX > 0 and x >= showFirstX):
                     other += count
                 else:
-                    print((key + " "*(maxKeyLength - len(key) + 1) + countString))
+                    print((key + " " * (maxKeyLength - len(key) + 1) + countString))
                 x += 1
 
             if countOther:
                 if normalise:
                     count = 1.0 * other
-                    countString = str(count)[0:decimalPlaces + 2]
+                    countString = str(count)[0 : decimalPlaces + 2]
                 else:
                     count = other
                     countString = str(count)
-                print((self._OTHER_TEXT + " "*(maxKeyLength - len(self._OTHER_TEXT) + 1) + countString))
+                print(
+                    (
+                        self._OTHER_TEXT
+                        + " " * (maxKeyLength - len(self._OTHER_TEXT) + 1)
+                        + countString
+                    )
+                )
             if showTotal:
                 if normalise:
                     count = 1.0 * total
-                    countString = str(count)[0:decimalPlaces + 2]
+                    countString = str(count)[0 : decimalPlaces + 2]
                 else:
                     count = total
                     countString = str(count)
-                print((self._TOTAL_TEXT + " "*(maxKeyLength - len(self._TOTAL_TEXT) + 1) + countString))
+                print(
+                    (
+                        self._TOTAL_TEXT
+                        + " " * (maxKeyLength - len(self._TOTAL_TEXT) + 1)
+                        + countString
+                    )
+                )
             print("")
-            
+
+
 def demo():
     """
     Demonstrates how to use IndexConcordance and Aggregator.
     """
     print("Reading Brown Corpus into memory...")
-    corpus = list(brown.tagged(('a','j')))
+    corpus = list(brown.tagged(("a", "j")))
     print("Generating index...")
     ic = IndexConcordance(corpus)
     print("Showing all occurences of 'plasma' in the Brown Corpus...")
@@ -857,11 +950,26 @@ def demo():
 
     print("Investigating the collocates of 'deal' and derivatives...")
     agg = Aggregator()
-    agg.add(ic.raw(middleRegexp="^deal", leftContextLength=1, rightContextLength=0,
-    leftRegexp="^(\w|\s|/)*$"), "Brown Corpus 'deal' left collocates")
-    agg.add(ic.raw(middleRegexp="^deal", leftContextLength=0, rightContextLength=1,
-    rightRegexp="^(\w|\s|/)*$"), "Brown Corpus 'deal' right collocates")
+    agg.add(
+        ic.raw(
+            middleRegexp="^deal",
+            leftContextLength=1,
+            rightContextLength=0,
+            leftRegexp="^(\w|\s|/)*$",
+        ),
+        "Brown Corpus 'deal' left collocates",
+    )
+    agg.add(
+        ic.raw(
+            middleRegexp="^deal",
+            leftContextLength=0,
+            rightContextLength=1,
+            rightRegexp="^(\w|\s|/)*$",
+        ),
+        "Brown Corpus 'deal' right collocates",
+    )
     agg.formatted(showFirstX=5, usePOS=False)
 
-if __name__ == '__main__':
-    demo()    
+
+if __name__ == "__main__":
+    demo()

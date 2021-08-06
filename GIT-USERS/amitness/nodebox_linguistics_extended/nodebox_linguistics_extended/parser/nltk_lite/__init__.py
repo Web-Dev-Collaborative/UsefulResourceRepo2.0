@@ -49,10 +49,19 @@ __longdescr__ = """\
 The Natural Langauge Toolkit (NLTK-Lite) is a Python package for
 processing natural language text.  It was developed as a simpler,
 lightweight version of NLTK.  NLTK-Lite requires Python 2.4 or higher."""
-__keywords__ = ['NLP', 'CL', 'natural language processing',
-                'computational linguistics', 'parsing', 'tagging',
-                'tokenizing', 'syntax', 'linguistics', 'language',
-                'natural language']
+__keywords__ = [
+    "NLP",
+    "CL",
+    "natural language processing",
+    "computational linguistics",
+    "parsing",
+    "tagging",
+    "tokenizing",
+    "syntax",
+    "linguistics",
+    "language",
+    "natural language",
+]
 __url__ = "http://nltk.sf.net/"
 
 # Maintainer, contributors, etc.
@@ -60,5 +69,3 @@ __maintainer__ = "Steven Bird"
 __maintainer_email__ = "sb@csse.unimelb.edu.au"
 __author__ = __maintainer__
 __author_email__ = __maintainer_email__
-
-

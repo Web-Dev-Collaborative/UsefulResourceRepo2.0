@@ -73,6 +73,7 @@ import re
 # Nonterminal
 #################################################################
 
+
 class Nonterminal(object):
     """
     A non-terminal symbol for a context free grammar.  C{Nonterminal}
@@ -92,6 +93,7 @@ class Nonterminal(object):
     @ivar _symbol: The node value corresponding to this
         C{Nonterminal}.  This value must be immutable and hashable. 
     """
+
     def __init__(self, symbol):
         """
         Construct a new non-terminal from the given symbol.
@@ -120,8 +122,7 @@ class Nonterminal(object):
         @rtype: C{boolean}
         """
         try:
-            return ((self._symbol == other._symbol) \
-                    and isinstance(other, self.__class__))
+            return (self._symbol == other._symbol) and isinstance(other, self.__class__)
         except AttributeError:
             return False
 
@@ -133,11 +134,13 @@ class Nonterminal(object):
             symbol.
         @rtype: C{boolean}
         """
-        return not (self==other)
+        return not (self == other)
 
     def __cmp__(self, other):
-        if self == other: return 0
-        else: return -1
+        if self == other:
+            return 0
+        else:
+            return -1
 
     def __hash__(self):
         return self._hash
@@ -150,7 +153,7 @@ class Nonterminal(object):
         @rtype: C{string}
         """
         # [XX] not a good repr!  Token uses this now!!
-        return '<%s>' % (self._symbol,)
+        return "<%s>" % (self._symbol,)
 
     def __str__(self):
         """
@@ -159,7 +162,7 @@ class Nonterminal(object):
             symbol is C{M{s}} is C{M{s}}.
         @rtype: C{string}
         """
-        return '%s' % (self._symbol,)
+        return "%s" % (self._symbol,)
 
     def __div__(self, rhs):
         """
@@ -171,7 +174,8 @@ class Nonterminal(object):
             of the new nonterminal.
         @type rhs: L{Nonterminal}
         """
-        return Nonterminal('%s/%s' % (self._symbol, rhs._symbol))
+        return Nonterminal("%s/%s" % (self._symbol, rhs._symbol))
+
 
 def nonterminals(symbols):
     """
@@ -186,13 +190,17 @@ def nonterminals(symbols):
         in the same order as the symbols names.
     @rtype: C{list} of L{Nonterminal}
     """
-    if ',' in symbols: symbol_list = symbols.split(',')
-    else: symbol_list = symbols.split()
+    if "," in symbols:
+        symbol_list = symbols.split(",")
+    else:
+        symbol_list = symbols.split()
     return [Nonterminal(s.strip()) for s in symbol_list]
+
 
 #################################################################
 # Production and Grammar
 #################################################################
+
 
 class Production(object):
     """
@@ -227,7 +235,7 @@ class Production(object):
         @type rhs: sequence of (C{Nonterminal} and (terminal))
         """
         if isinstance(rhs, str):
-            raise TypeError('production right hand side should be a list, not a string')
+            raise TypeError("production right hand side should be a list, not a string")
         self._lhs = lhs
         self._rhs = tuple(rhs)
         self._hash = hash((self._lhs, self._rhs))
@@ -252,12 +260,12 @@ class Production(object):
             C{Production}.
         @rtype: C{string}
         """
-        str = '%s ->' % (self._lhs.symbol(),)
+        str = "%s ->" % (self._lhs.symbol(),)
         for elt in self._rhs:
             if isinstance(elt, Nonterminal):
-                str += ' %s' % (elt.symbol(),)
+                str += " %s" % (elt.symbol(),)
             else:
-                str += ' %r' % (elt,)
+                str += " %r" % (elt,)
         return str
 
     def __repr__(self):
@@ -266,22 +274,25 @@ class Production(object):
             C{Production}. 
         @rtype: C{string}
         """
-        return '%s' % self
+        return "%s" % self
 
     def __eq__(self, other):
         """
         @return: true if this C{Production} is equal to C{other}.
         @rtype: C{boolean}
         """
-        return (isinstance(other, self.__class__) and
-                self._lhs == other._lhs and
-                self._rhs == other._rhs)
-                 
+        return (
+            isinstance(other, self.__class__)
+            and self._lhs == other._lhs
+            and self._rhs == other._rhs
+        )
+
     def __ne__(self, other):
         return not (self == other)
 
     def __cmp__(self, other):
-        if not isinstance(other, self.__class__): return -1
+        if not isinstance(other, self.__class__):
+            return -1
         return cmp((self._lhs, self._rhs), (other._lhs, other._rhs))
 
     def __hash__(self):
@@ -301,6 +312,7 @@ class Grammar(object):
     If you need efficient key-based access to productions, you
     can use a subclass to implement it.
     """
+
     def __init__(self, start, productions):
         """
         Create a new context-free grammar, from the given start state
@@ -323,7 +335,7 @@ class Grammar(object):
             self._lhs_index[prod._lhs].append(prod)
             if prod._rhs:
                 self._rhs_index[prod._rhs[0]].append(prod)
-        
+
     def start(self):
         return self._start
 
@@ -332,23 +344,25 @@ class Grammar(object):
     # check nothing breaks when this is fixed...
     def productions(self, lhs=None, rhs=None):
         if lhs and lhs in self._lhs_index:
-                return self._lhs_index[lhs]
+            return self._lhs_index[lhs]
         elif rhs and rhs in self._rhs_index:
-                return self._rhs_index[rhs]
+            return self._rhs_index[rhs]
         else:
             return self._productions
 
     def __repr__(self):
-        return '<Grammar with %d productions>' % len(self._productions)
+        return "<Grammar with %d productions>" % len(self._productions)
 
     def __str__(self):
-        str = 'Grammar with %d productions' % len(self._productions)
-        str += ' (start state = %s)' % self._start
+        str = "Grammar with %d productions" % len(self._productions)
+        str += " (start state = %s)" % self._start
         for production in self._productions:
-            str += '\n    %s' % production
+            str += "\n    %s" % production
         return str
 
-_PARSE_RE = re.compile(r'''^(\w+)\s*           # lhs
+
+_PARSE_RE = re.compile(
+    r"""^(\w+)\s*           # lhs
                           (?:-+>|=+>)\s*       # arrow
                           (?:(                 # rhs:
                                "[^"]+"         # doubled-quoted terminal
@@ -357,9 +371,11 @@ _PARSE_RE = re.compile(r'''^(\w+)\s*           # lhs
                                \|              # disjunction
                              )
                              \s*)              # trailing space
-                             *$''',
-                       re.VERBOSE)
-_SPLIT_RE = re.compile(r'''(\w+|-+>|=+>|"[^"]+"|'[^']+'|\|)''')
+                             *$""",
+    re.VERBOSE,
+)
+_SPLIT_RE = re.compile(r"""(\w+|-+>|=+>|"[^"]+"|'[^']+'|\|)""")
+
 
 def parse_production(s):
     """
@@ -367,37 +383,42 @@ def parse_production(s):
     """
     # Use _PARSE_RE to check that it's valid.
     if not _PARSE_RE.match(s):
-        raise ValueError('Bad production string')
+        raise ValueError("Bad production string")
     # Use _SPLIT_RE to process it.
     pieces = _SPLIT_RE.split(s)
-    pieces = [p for i,p in enumerate(pieces) if i%2==1]
+    pieces = [p for i, p in enumerate(pieces) if i % 2 == 1]
     lhside = Nonterminal(pieces[0])
     rhsides = [[]]
     for piece in pieces[2:]:
-        if piece == '|':
-            rhsides.append([])                     # Vertical bar
+        if piece == "|":
+            rhsides.append([])  # Vertical bar
         elif piece[0] in ('"', "'"):
-            rhsides[-1].append(piece[1:-1])        # Terminal
+            rhsides[-1].append(piece[1:-1])  # Terminal
         else:
-            rhsides[-1].append(Nonterminal(piece)) # Nonterminal
+            rhsides[-1].append(Nonterminal(piece))  # Nonterminal
     return [Production(lhside, rhside) for rhside in rhsides]
+
 
 def parse_grammar(s):
     productions = []
-    for linenum, line in enumerate(s.split('\n')):
+    for linenum, line in enumerate(s.split("\n")):
         line = line.strip()
-        if line.startswith('#') or line=='': continue
-        try: productions += parse_production(line)
+        if line.startswith("#") or line == "":
+            continue
+        try:
+            productions += parse_production(line)
         except ValueError:
-            raise ValueError('Unable to parse line %s' % linenum)
+            raise ValueError("Unable to parse line %s" % linenum)
     if len(productions) == 0:
-        raise ValueError('No productions found!')
+        raise ValueError("No productions found!")
     start = productions[0].lhs()
     return Grammar(start, productions)
+
 
 #################################################################
 # Demonstration
 #################################################################
+
 
 def demo():
     """
@@ -407,18 +428,19 @@ def demo():
     from nodebox_linguistics_extended.parser.nltk_lite.parse import cfg
 
     # Create some nonterminals
-    S, NP, VP, PP = cfg.nonterminals('S, NP, VP, PP')
-    N, V, P, Det = cfg.nonterminals('N, V, P, Det')
-    VP_slash_NP = VP/NP
+    S, NP, VP, PP = cfg.nonterminals("S, NP, VP, PP")
+    N, V, P, Det = cfg.nonterminals("N, V, P, Det")
+    VP_slash_NP = VP / NP
 
-    print('Some nonterminals:', [S, NP, VP, PP, N, V, P, Det, VP/NP])
-    print('    S.symbol() =>', repr(S.symbol()))
+    print("Some nonterminals:", [S, NP, VP, PP, N, V, P, Det, VP / NP])
+    print("    S.symbol() =>", repr(S.symbol()))
     print()
 
     print(cfg.Production(S, [NP]))
 
     # Create some Grammar Productions
-    grammar = cfg.parse_grammar("""
+    grammar = cfg.parse_grammar(
+        """
     S -> NP VP
     PP -> P NP
     NP -> Det N
@@ -433,13 +455,16 @@ def demo():
     V -> 'sat'
     P -> 'on'
     P -> 'in'
-    """)
+    """
+    )
 
-    print('A Grammar:', repr(grammar))
-    print('    grammar.start()       =>', repr(grammar.start()))
-    print('    grammar.productions() =>', end=' ')
+    print("A Grammar:", repr(grammar))
+    print("    grammar.start()       =>", repr(grammar.start()))
+    print("    grammar.productions() =>", end=" ")
     # Use string.replace(...) is to line-wrap the output.
-    print(repr(grammar.productions()).replace(',', ',\n'+' '*25))
+    print(repr(grammar.productions()).replace(",", ",\n" + " " * 25))
     print()
 
-if __name__ == '__main__': demo()
+
+if __name__ == "__main__":
+    demo()

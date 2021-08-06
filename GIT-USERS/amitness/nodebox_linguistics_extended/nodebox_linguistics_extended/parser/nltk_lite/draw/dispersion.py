@@ -11,6 +11,7 @@ A utility for displaying lexical dispersion.
 
 from tkinter import Canvas
 
+
 def plot(text, words, rowheight=15, rowwidth=800):
     """
     Generate a lexical dispersion plot.
@@ -25,22 +26,24 @@ def plot(text, words, rowheight=15, rowwidth=800):
     @type rowwidth: C{int}
 
     """
-    canvas = Canvas(width=rowwidth, height=rowheight*len(words))
+    canvas = Canvas(width=rowwidth, height=rowheight * len(words))
     text = list(text)
-    scale = float(rowwidth)/len(text)
+    scale = float(rowwidth) / len(text)
     position = 0
     for word in text:
         for i in range(len(words)):
             x = position * scale
             if word == words[i]:
                 y = i * rowheight
-                canvas.create_line(x, y, x, y+rowheight-1)
+                canvas.create_line(x, y, x, y + rowheight - 1)
         position += 1
     canvas.pack()
     canvas.mainloop()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     from nodebox_linguistics_extended.parser.nltk_lite.corpora import gutenberg
     from nodebox_linguistics_extended.parser.nltk_lite.draw import dispersion
-    words = ['Elinor', 'Marianne', 'Edward', 'Willoughby']
-    dispersion.plot(gutenberg.raw('austen-sense'), words)
+
+    words = ["Elinor", "Marianne", "Edward", "Willoughby"]
+    dispersion.plot(gutenberg.raw("austen-sense"), words)

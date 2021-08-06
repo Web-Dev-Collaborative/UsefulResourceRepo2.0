@@ -175,16 +175,14 @@ The plugin allso adds the following methods to the plot object:
 
       // backwards-compat stuff, to be removed in future
       if (r.xaxis && r.yaxis)
-        plot
-          .getPlaceholder()
-          .trigger("selected", [
-            {
-              x1: r.xaxis.from,
-              y1: r.yaxis.from,
-              x2: r.xaxis.to,
-              y2: r.yaxis.to,
-            },
-          ]);
+        plot.getPlaceholder().trigger("selected", [
+          {
+            x1: r.xaxis.from,
+            y1: r.yaxis.from,
+            x2: r.xaxis.to,
+            y2: r.yaxis.to,
+          },
+        ]);
     }
 
     function clamp(min, value, max) {

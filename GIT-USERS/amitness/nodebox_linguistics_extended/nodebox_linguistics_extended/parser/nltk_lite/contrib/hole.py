@@ -29,6 +29,7 @@ displayed textually or graphically.
 # 4. the search space when plugging (search tree)
 #
 
+
 class HoleSemantics:
     """
     This class holds the broken-down components of a hole semantics, i.e. it
@@ -37,6 +38,7 @@ class HoleSemantics:
     then provides some operations on the semantics dealing with holes, labels
     and finding legal ways to plug holes with labels.
     """
+
     def __init__(self, usr):
         """
         Constructor.  `usr' is a tree of nodes that can take the forms:
@@ -52,10 +54,10 @@ class HoleSemantics:
             v is a variable
             phi is a formula fragment
         """
-        self.holes = set()      # set of variables which were asserted hole(x)
-        self.labels = set()     # set of variables which were asserted label(x)
-        self.fragments = {}     # mapping of label -> formula fragment
-        self.constraints = set() # set of Constraints
+        self.holes = set()  # set of variables which were asserted hole(x)
+        self.labels = set()  # set of variables which were asserted label(x)
+        self.fragments = {}  # mapping of label -> formula fragment
+        self.constraints = set()  # set of Constraints
         self._break_down(usr)
         self.top_most_labels = self._find_top_most_labels()
         self.top_hole = self._find_top_hole()
@@ -81,33 +83,33 @@ class HoleSemantics:
         semantics underspecified representation (USR).
         """
         assert isinstance(usr, Tree)
-        
+
         # (and X Y)
-        if usr.node == 'and':
+        if usr.node == "and":
             self._break_down(usr[0])
             self._break_down(usr[1])
 
         # (hole H) -- H is a hole
-        elif usr.node == 'hole':
+        elif usr.node == "hole":
             hole = usr[0]
             self.holes.add(hole)
             assert not self.is_label(hole)
 
         # (label L) -- L is a label
-        elif usr.node == 'label':
+        elif usr.node == "label":
             label = usr[0]
             self.labels.add(label)
             assert not self.is_hole(label)
 
         # (: L F)  -- a formula fragment F with label L
-        elif usr.node == ':':
+        elif usr.node == ":":
             label = usr[0]
             phi = usr[1]
             assert label not in self.fragments
             self.fragments[label] = phi
 
         # (leq L N) -- a constraint between the label L and node N
-        elif usr.node == 'leq':
+        elif usr.node == "leq":
             lhs = usr[0]
             rhs = usr[1]
             self.constraints.add(Constraint(lhs, rhs))
@@ -137,7 +139,7 @@ class HoleSemantics:
             for arg in f:
                 if self.is_hole(arg):
                     top_hole.discard(arg)
-        assert len(top_hole) == 1   # it must be unique
+        assert len(top_hole) == 1  # it must be unique
         return top_hole.pop()
 
     def pluggings(self):
@@ -146,8 +148,7 @@ class HoleSemantics:
         holes) of this semantics given the constraints.
         """
         record = []
-        self._plug_nodes([(self.top_hole, [])], self.top_most_labels, {},
-                         record)
+        self._plug_nodes([(self.top_hole, [])], self.top_most_labels, {}, record)
         return record
 
     def _plug_nodes(self, queue, potential_labels, plug_acc, record):
@@ -170,19 +171,18 @@ class HoleSemantics:
         (node, ancestors) = queue[0]
         if self.is_hole(node):
             # The node is a hole, try to plug it.
-            self._plug_hole(node, ancestors, queue[1:], potential_labels,
-                            plug_acc, record)
+            self._plug_hole(
+                node, ancestors, queue[1:], potential_labels, plug_acc, record
+            )
         else:
             assert self.is_label(node)
             # The node is a label.  Replace it in the queue by the holes and
             # labels in the formula fragment named by that label.
             phi = self.fragments[node]
             head = [(a, ancestors) for a in phi if self.is_node(a)]
-            self._plug_nodes(head + queue[1:], potential_labels,
-                             plug_acc, record)
+            self._plug_nodes(head + queue[1:], potential_labels, plug_acc, record)
 
-    def _plug_hole(self, hole, ancestors0, queue, potential_labels0,
-                   plug_acc0, record):
+    def _plug_hole(self, hole, ancestors0, queue, potential_labels0, plug_acc0, record):
         """
         Try all possible ways of plugging a single hole.
         See _plug_nodes for the meanings of the parameters.
@@ -221,8 +221,9 @@ class HoleSemantics:
                 # before filling level i+1.
                 # A depth-first search would work as well since the trees must
                 # be finite but the bookkeeping would be harder.
-                self._plug_nodes(queue + [(l, ancestors)], potential_labels,
-                                 plug_acc, record)
+                self._plug_nodes(
+                    queue + [(l, ancestors)], potential_labels, plug_acc, record
+                )
 
     def _violates_constraints(self, label, ancestors):
         """
@@ -279,20 +280,25 @@ class Constraint:
     This class represents a constraint of the form (L =< N),
     where L is a label and N is a node (a label or a hole).
     """
+
     def __init__(self, lhs, rhs):
         self.lhs = lhs
         self.rhs = rhs
+
     def __eq__(self, other):
         if self.__class__ == other.__class__:
             return self.lhs == other.lhs and self.rhs == other.rhs
         else:
             return False
+
     def __ne__(self, other):
         return not (self == other)
+
     def __hash__(self):
         return hash(repr(self))
+
     def __repr__(self):
-        return '(%s =< %s)' % (self.lhs, self.rhs)
+        return "(%s =< %s)" % (self.lhs, self.rhs)
 
 
 class FOLTree(Tree):
@@ -301,68 +307,90 @@ class FOLTree(Tree):
     operator names are printed in infix.  Nodes which have unrecognised names
     are assumed to be predicates.
     """
+
     def __str__(self):
-        if self.node == 'ALL':
+        if self.node == "ALL":
             var = self[0]
             st = self[1]
-            return '(ALL %s %s)' % (var, st)
-        elif self.node == 'SOME':
+            return "(ALL %s %s)" % (var, st)
+        elif self.node == "SOME":
             var = self[0]
             st = self[1]
-            return '(SOME %s %s)' % (var, st)
-        elif self.node == 'AND':
-            return '(%s /\ %s)' % (self[0], self[1])
-        elif self.node == 'IMP':
-            return '(%s -> %s)' % (self[0], self[1])
+            return "(SOME %s %s)" % (var, st)
+        elif self.node == "AND":
+            return "(%s /\ %s)" % (self[0], self[1])
+        elif self.node == "IMP":
+            return "(%s -> %s)" % (self[0], self[1])
         # add more operators here
         else:
             # otherwise treat it as a predicate with arguments
-            args = ', '.join([str(arg) for arg in self])
-            return '%s(%s)' % (self.node, args)
+            args = ", ".join([str(arg) for arg in self])
+            return "%s(%s)" % (self.node, args)
 
 
 def main():
     import sys
     from optparse import OptionParser, OptionGroup
+
     usage = """%%prog [options] [grammar_file]""" % globals()
 
     opts = OptionParser(usage=usage)
-    opts.add_option("-c", "--components",
-    action="store_true", dest="show_components", default=0,
-    help="show hole semantics components")
-    opts.add_option("-r", "--raw",
-    action="store_true", dest="show_raw", default=0,
-    help="show the raw hole semantics expression")
-    opts.add_option("-d", "--drawtrees",
-    action="store_true", dest="draw_trees", default=0,
-    help="show formula trees in a GUI window")
-    opts.add_option("-v", "--verbose",
-    action="count", dest="verbosity", default=0,
-    help="show more information during parse")
+    opts.add_option(
+        "-c",
+        "--components",
+        action="store_true",
+        dest="show_components",
+        default=0,
+        help="show hole semantics components",
+    )
+    opts.add_option(
+        "-r",
+        "--raw",
+        action="store_true",
+        dest="show_raw",
+        default=0,
+        help="show the raw hole semantics expression",
+    )
+    opts.add_option(
+        "-d",
+        "--drawtrees",
+        action="store_true",
+        dest="draw_trees",
+        default=0,
+        help="show formula trees in a GUI window",
+    )
+    opts.add_option(
+        "-v",
+        "--verbose",
+        action="count",
+        dest="verbosity",
+        default=0,
+        help="show more information during parse",
+    )
 
     (options, args) = opts.parse_args()
 
     if len(args) > 0:
         filename = args[0]
     else:
-        filename = 'hole.cfg'
+        filename = "hole.cfg"
 
-    print('Reading grammar file', filename)
+    print("Reading grammar file", filename)
     grammar = GrammarFile.read_file(filename)
     parser = grammar.earley_parser(trace=options.verbosity)
 
     # Prompt the user for a sentence.
-    print('Sentence: ', end=' ')
+    print("Sentence: ", end=" ")
     line = sys.stdin.readline()[:-1]
 
     # Parse the sentence.
     tokens = list(tokenize.whitespace(line))
     trees = parser.get_parse_list(tokens)
-    print('Got %d different parses' % len(trees))
+    print("Got %d different parses" % len(trees))
 
     for tree in trees:
         # Get the semantic feature from the top of the parse tree.
-        sem = tree[0].node['sem'].simplify()
+        sem = tree[0].node["sem"].simplify()
 
         # Skolemise away all quantifiers.  All variables become unique.
         sem = sem.skolemise()
@@ -379,20 +407,20 @@ def main():
         # Maybe print the raw semantic representation.
         if options.show_raw:
             print()
-            print('Raw expression')
+            print("Raw expression")
             print(usr)
 
         # Maybe show the details of the semantic representation.
         if options.show_components:
             print()
-            print('Holes:       ', hole_sem.holes)
-            print('Labels:      ', hole_sem.labels)
-            print('Constraints: ', hole_sem.constraints)
-            print('Top hole:    ', hole_sem.top_hole)
-            print('Top labels:  ', hole_sem.top_most_labels)
-            print('Fragments:')
-            for (l,f) in list(hole_sem.fragments.items()):
-                print('\t%s: %s' % (l, f))
+            print("Holes:       ", hole_sem.holes)
+            print("Labels:      ", hole_sem.labels)
+            print("Constraints: ", hole_sem.constraints)
+            print("Top hole:    ", hole_sem.top_hole)
+            print("Top labels:  ", hole_sem.top_most_labels)
+            print("Fragments:")
+            for (l, f) in list(hole_sem.fragments.items()):
+                print("\t%s: %s" % (l, f))
 
         # Find all the possible ways to plug the formulas together.
         pluggings = hole_sem.pluggings()
@@ -404,7 +432,7 @@ def main():
         n = 1
         for tree in trees:
             print()
-            print('%d. %s' % (n, tree))
+            print("%d. %s" % (n, tree))
             n += 1
 
         # Maybe draw the formulas as trees.
@@ -412,8 +440,8 @@ def main():
             draw_trees(*trees)
 
         print()
-        print('Done.')
+        print("Done.")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
-

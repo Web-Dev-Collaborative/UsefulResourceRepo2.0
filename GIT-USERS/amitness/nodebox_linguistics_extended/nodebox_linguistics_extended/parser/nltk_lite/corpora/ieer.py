@@ -25,40 +25,50 @@ from nodebox_linguistics_extended.parser.nltk_lite.corpora import get_basedir, e
 from nodebox_linguistics_extended.parser.nltk_lite.parse.tree import ieer_chunk
 import os
 
-items = ['APW_19980314', 'APW_19980424', 'APW_19980429',
-         'NYT_19980315', 'NYT_19980403', 'NYT_19980407']
+items = [
+    "APW_19980314",
+    "APW_19980424",
+    "APW_19980429",
+    "NYT_19980315",
+    "NYT_19980403",
+    "NYT_19980407",
+]
 
 item_name = {
-    'APW_19980314': 'Associated Press Weekly, 14 March 1998',
-    'APW_19980424': 'Associated Press Weekly, 24 April 1998',
-    'APW_19980429': 'Associated Press Weekly, 29 April 1998',
-    'NYT_19980315': 'New York Times, 15 March 1998',
-    'NYT_19980403': 'New York Times, 3 April 1998',
-    'NYT_19980407': 'New York Times, 7 April 1998',
-    }
+    "APW_19980314": "Associated Press Weekly, 14 March 1998",
+    "APW_19980424": "Associated Press Weekly, 24 April 1998",
+    "APW_19980429": "Associated Press Weekly, 29 April 1998",
+    "NYT_19980315": "New York Times, 15 March 1998",
+    "NYT_19980403": "New York Times, 3 April 1998",
+    "NYT_19980407": "New York Times, 7 April 1998",
+}
 
-def raw(files = items):
-    if type(files) is str: files = (files,)
+
+def raw(files=items):
+    if type(files) is str:
+        files = (files,)
 
     for file in files:
         path = os.path.join(get_basedir(), "ieer", file)
-        for doc in open(path).read().split('</DOC>'):
-            doc = doc.split('<DOC>')
+        for doc in open(path).read().split("</DOC>"):
+            doc = doc.split("<DOC>")
             if len(doc) == 2:
                 yield "<DOC>" + doc[1] + "</DOC>\n"
 
-def dictionary(files = items):
+
+def dictionary(files=items):
     for doc in raw(files):
         yield ieer_chunk(doc)
+
 
 def demo():
     from nodebox_linguistics_extended.parser.nltk_lite.corpora import ieer
     from itertools import islice
     from pprint import pprint
 
-#    pprint(extract(75, ieer.raw()))
+    #    pprint(extract(75, ieer.raw()))
     pprint(extract(75, ieer.dictionary()))
 
-if __name__ == '__main__':
-    demo()
 
+if __name__ == "__main__":
+    demo()

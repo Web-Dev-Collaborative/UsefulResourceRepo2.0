@@ -37733,5 +37733,5 @@ LOOKUP = {
     "űzte-hajtotta": "űz-hajt",
     "űzzön": "űz",
     "űzött": "űz",
-    "űzöttek": "űzött"
+    "űzöttek": "űzött",
 }

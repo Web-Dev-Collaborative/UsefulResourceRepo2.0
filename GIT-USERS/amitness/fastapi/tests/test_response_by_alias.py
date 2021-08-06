@@ -275,10 +275,7 @@ def test_read_model():
 def test_read_list():
     response = client.get("/list")
     assert response.status_code == 200, response.text
-    assert response.json() == [
-        {"name": "Foo"},
-        {"name": "Bar"},
-    ]
+    assert response.json() == [{"name": "Foo"}, {"name": "Bar"}]
 
 
 def test_read_dict_by_alias():
@@ -296,10 +293,7 @@ def test_read_model_by_alias():
 def test_read_list_by_alias():
     response = client.get("/by-alias/list")
     assert response.status_code == 200, response.text
-    assert response.json() == [
-        {"alias": "Foo"},
-        {"alias": "Bar"},
-    ]
+    assert response.json() == [{"alias": "Foo"}, {"alias": "Bar"}]
 
 
 def test_read_dict_no_alias():
@@ -317,7 +311,4 @@ def test_read_model_no_alias():
 def test_read_list_no_alias():
     response = client.get("/no-alias/list")
     assert response.status_code == 200, response.text
-    assert response.json() == [
-        {"name": "Foo"},
-        {"name": "Bar"},
-    ]
+    assert response.json() == [{"name": "Foo"}, {"name": "Bar"}]

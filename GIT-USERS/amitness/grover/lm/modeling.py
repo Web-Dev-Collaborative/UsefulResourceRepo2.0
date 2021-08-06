@@ -21,24 +21,33 @@ import six
 import tensorflow as tf
 
 from lm import optimization_adafactor
-from lm.utils import get_assignment_map_from_checkpoint, get_shape_list, get_attention_mask, gelu, layer_norm, dropout, \
-    construct_scalar_host_call
+from lm.utils import (
+    get_assignment_map_from_checkpoint,
+    get_shape_list,
+    get_attention_mask,
+    gelu,
+    layer_norm,
+    dropout,
+    construct_scalar_host_call,
+)
 
 
 class GroverConfig(object):
     """Configuration for `GroverModel`"""
 
-    def __init__(self,
-                 vocab_size,
-                 hidden_size=768,
-                 num_hidden_layers=12,
-                 num_attention_heads=12,
-                 intermediate_size=3072,
-                 hidden_act="gelu",
-                 hidden_dropout_prob=0.1,
-                 attention_probs_dropout_prob=0.1,
-                 max_position_embeddings=512,
-                 initializer_range=0.02):
+    def __init__(
+        self,
+        vocab_size,
+        hidden_size=768,
+        num_hidden_layers=12,
+        num_attention_heads=12,
+        intermediate_size=3072,
+        hidden_act="gelu",
+        hidden_dropout_prob=0.1,
+        attention_probs_dropout_prob=0.1,
+        max_position_embeddings=512,
+        initializer_range=0.02,
+    ):
         """Constructs NewsConfig.
 
         Args:
@@ -117,8 +126,15 @@ def create_initializer(initializer_range=0.02):
     return tf.truncated_normal_initializer(stddev=initializer_range)
 
 
-def _attention_projection_and_transpose(x_flat, batch_size, seq_length, num_attention_heads, size_per_head,
-                                        name, initializer_range=0.02):
+def _attention_projection_and_transpose(
+    x_flat,
+    batch_size,
+    seq_length,
+    num_attention_heads,
+    size_per_head,
+    name,
+    initializer_range=0.02,
+):
     """
     :param x_flat: [batch_size*seq_length, width]
     :return: A fixed up tensor of size [batch_size, num_attention_heads, seq_length, size_per_head]
@@ -132,26 +148,40 @@ def _attention_projection_and_transpose(x_flat, batch_size, seq_length, num_atte
     #     ))
 
     if dim != size_per_head * num_attention_heads:
-        raise ValueError("passed in a tensor of shape {} when size_per_head={} and num_attention_heads={}".format(
-            (batch_size_seq_length, dim), size_per_head, num_attention_heads
-        ))
+        raise ValueError(
+            "passed in a tensor of shape {} when size_per_head={} and num_attention_heads={}".format(
+                (batch_size_seq_length, dim), size_per_head, num_attention_heads
+            )
+        )
 
     projected = tf.layers.dense(
         x_flat,
         num_attention_heads * size_per_head,
         name=name,
-        kernel_initializer=create_initializer(initializer_range))
+        kernel_initializer=create_initializer(initializer_range),
+    )
 
     projected = tf.reshape(
-        projected, [batch_size, seq_length, num_attention_heads, size_per_head])
+        projected, [batch_size, seq_length, num_attention_heads, size_per_head]
+    )
     output_tensor = tf.transpose(projected, [0, 2, 1, 3])
     return output_tensor
 
 
-def attention_layer(x_flat, attention_mask, batch_size, seq_length, size_per_head=512, num_attention_heads=1, *,
-                    cache=None,
-                    initializer_range=0.02, hidden_dropout_prob=0.1,
-                    attention_probs_dropout_prob=0.1, do_cache=False):
+def attention_layer(
+    x_flat,
+    attention_mask,
+    batch_size,
+    seq_length,
+    size_per_head=512,
+    num_attention_heads=1,
+    *,
+    cache=None,
+    initializer_range=0.02,
+    hidden_dropout_prob=0.1,
+    attention_probs_dropout_prob=0.1,
+    do_cache=False
+):
     """
 
     :param x_flat: Tensor input, should be [batch_size*seq_length, dim]
@@ -174,9 +204,11 @@ def attention_layer(x_flat, attention_mask, batch_size, seq_length, size_per_hea
     #     ))
 
     if dim != size_per_head * num_attention_heads:
-        raise ValueError("passed in a tensor of shape {} when size_per_head={} and num_attention_heads={}".format(
-            (batch_size_seq_length, dim), size_per_head, num_attention_heads
-        ))
+        raise ValueError(
+            "passed in a tensor of shape {} when size_per_head={} and num_attention_heads={}".format(
+                (batch_size_seq_length, dim), size_per_head, num_attention_heads
+            )
+        )
 
     # if do_cache and past is not None:
     #     Shape will be (batch_size, 2, num_attention_heads, past_seq_length, dim)
@@ -186,19 +218,34 @@ def attention_layer(x_flat, attention_mask, batch_size, seq_length, size_per_hea
     #         raise ValueError(f"The shape of the cache is {past_shape} but we want {desired_shape}")
 
     # [ batch_size, num_attention_heads, seq_length, size_per_head]
-    query = _attention_projection_and_transpose(x_flat, batch_size=batch_size, seq_length=seq_length,
-                                                num_attention_heads=num_attention_heads, size_per_head=size_per_head,
-                                                name='query_layer',
-                                                initializer_range=initializer_range)
-    key = _attention_projection_and_transpose(x_flat, batch_size=batch_size, seq_length=seq_length,
-                                              num_attention_heads=num_attention_heads, size_per_head=size_per_head,
-                                              name='key_layer',
-                                              initializer_range=initializer_range)
+    query = _attention_projection_and_transpose(
+        x_flat,
+        batch_size=batch_size,
+        seq_length=seq_length,
+        num_attention_heads=num_attention_heads,
+        size_per_head=size_per_head,
+        name="query_layer",
+        initializer_range=initializer_range,
+    )
+    key = _attention_projection_and_transpose(
+        x_flat,
+        batch_size=batch_size,
+        seq_length=seq_length,
+        num_attention_heads=num_attention_heads,
+        size_per_head=size_per_head,
+        name="key_layer",
+        initializer_range=initializer_range,
+    )
 
-    value = _attention_projection_and_transpose(x_flat, batch_size=batch_size, seq_length=seq_length,
-                                                num_attention_heads=num_attention_heads, size_per_head=size_per_head,
-                                                name='value_layer',
-                                                initializer_range=initializer_range)
+    value = _attention_projection_and_transpose(
+        x_flat,
+        batch_size=batch_size,
+        seq_length=seq_length,
+        num_attention_heads=num_attention_heads,
+        size_per_head=size_per_head,
+        name="value_layer",
+        initializer_range=initializer_range,
+    )
 
     # Add to cache
     cached_keys_and_values = tf.stack([key, value], axis=1) if do_cache else None
@@ -213,8 +260,9 @@ def attention_layer(x_flat, attention_mask, batch_size, seq_length, size_per_hea
     #          [batch_size, num_attention_heads, size_per_head, seq_length+cached_length] ->
     #          [batch_size, num_attention_heads, seq_length, seq_length+cached_length]
     attention_scores = tf.matmul(query, key, transpose_b=True)
-    attention_scores = tf.multiply(attention_scores,
-                                   1.0 / math.sqrt(float(size_per_head)))
+    attention_scores = tf.multiply(
+        attention_scores, 1.0 / math.sqrt(float(size_per_head))
+    )
     attention_scores = mask_attention_for_ltr(attention_scores, attention_mask)
     attention_probs = tf.nn.softmax(attention_scores)
 
@@ -230,20 +278,24 @@ def attention_layer(x_flat, attention_mask, batch_size, seq_length, size_per_hea
 
     # `context_layer` = [batch_size, seq_length, num_attention_heads, size_per_head]
     context_layer = tf.transpose(context_layer, [0, 2, 1, 3])
-    context_layer = tf.reshape(context_layer, [batch_size * seq_length, num_attention_heads * size_per_head])
+    context_layer = tf.reshape(
+        context_layer, [batch_size * seq_length, num_attention_heads * size_per_head]
+    )
 
     context_layer_projected = tf.layers.dense(
         context_layer,
         num_attention_heads * size_per_head,
         kernel_initializer=create_initializer(initializer_range),
-        name='context_projection_layer'
+        name="context_projection_layer",
     )
     context_layer_projected = dropout(context_layer_projected, hidden_dropout_prob)
 
     return context_layer_projected, cached_keys_and_values
 
 
-def residual_mlp_layer(x_flat, intermediate_size, initializer_range=0.02, hidden_dropout_prob=0.1):
+def residual_mlp_layer(
+    x_flat, intermediate_size, initializer_range=0.02, hidden_dropout_prob=0.1
+):
     """
     :param x: The attention output. It should be [batch_size*seq_length, dim]
     :param intermediate_size: the hidden projection. By default this is the input_dim * 4.
@@ -253,34 +305,37 @@ def residual_mlp_layer(x_flat, intermediate_size, initializer_range=0.02, hidden
     :return:
     """
     batch_size_seq_length, hidden_size = get_shape_list(x_flat, expected_rank=2)
-    x_norm = layer_norm(x_flat, name='mlp_ln0')
+    x_norm = layer_norm(x_flat, name="mlp_ln0")
 
     intermediate_output = tf.layers.dense(
         x_norm,
         intermediate_size,
         activation=gelu,
         kernel_initializer=create_initializer(initializer_range),
-        name='intermediate',
+        name="intermediate",
     )
 
     output_for_residual = tf.layers.dense(
         intermediate_output,
         hidden_size,
-        name='output',
-        kernel_initializer=create_initializer(initializer_range))
+        name="output",
+        kernel_initializer=create_initializer(initializer_range),
+    )
     output_for_residual = dropout(output_for_residual, hidden_dropout_prob)
 
-    layer_output = layer_norm(x_flat + output_for_residual, name='mlp_ln1')
+    layer_output = layer_norm(x_flat + output_for_residual, name="mlp_ln1")
     return layer_output
 
 
-def embed(input_ids,
-          vocab_size,
-          embedding_size,
-          position_offset=0,
-          initializer_range=0.02,
-          max_position_embeddings=512,
-          use_one_hot_embeddings=True):
+def embed(
+    input_ids,
+    vocab_size,
+    embedding_size,
+    position_offset=0,
+    initializer_range=0.02,
+    max_position_embeddings=512,
+    use_one_hot_embeddings=True,
+):
     """reur and position embeddings
     :param input_ids: int Tensor of shape [batch_size, seq_length].
     :param vocab_size: number of words in vocab
@@ -294,7 +349,7 @@ def embed(input_ids,
     (batch_size, seq_length) = get_shape_list(input_ids, expected_rank=2)
 
     embedding_table = tf.get_variable(
-        name='word_embed',
+        name="word_embed",
         shape=[vocab_size, embedding_size],
         initializer=create_initializer(initializer_range),
     )
@@ -308,13 +363,15 @@ def embed(input_ids,
         else:
             output_flat = tf.nn.embedding_lookup(embedding_table, input_ids)
 
-        embedded_input = tf.reshape(output_flat, [batch_size, seq_length, embedding_size])
+        embedded_input = tf.reshape(
+            output_flat, [batch_size, seq_length, embedding_size]
+        )
 
     assert_op = tf.assert_less_equal(seq_length, max_position_embeddings)
 
     with tf.control_dependencies([assert_op]):
         full_position_embeddings = tf.get_variable(
-            name='pos_embed',
+            name="pos_embed",
             shape=[max_position_embeddings, embedding_size],
             initializer=create_initializer(initializer_range),
         )
@@ -328,10 +385,12 @@ def embed(input_ids,
         # sequence has positions [0, 1, 2, ... seq_length-1], so we can just
         # perform a slice.
         if position_offset == 0:
-            embedded_input += tf.slice(full_position_embeddings, [0, 0], [seq_length, -1])[None]
+            embedded_input += tf.slice(
+                full_position_embeddings, [0, 0], [seq_length, -1]
+            )[None]
         else:
             # Tensorflow is too stupid to allow slicing
-            flat_pos_ids = (tf.range(seq_length, dtype=tf.int32) + position_offset)
+            flat_pos_ids = tf.range(seq_length, dtype=tf.int32) + position_offset
             one_hot_pos_ids = tf.one_hot(flat_pos_ids, depth=max_position_embeddings)
 
             # [seq_length, full_position_embeddings], [full_position_embeddings, dim]
@@ -340,7 +399,7 @@ def embed(input_ids,
 
             # embedded_input += tf.slice(full_position_embeddings[position_offset:], [0, 0], [seq_length, -1])[None]
 
-    return layer_norm(embedded_input, name='embed_norm'), embedding_table
+    return layer_norm(embedded_input, name="embed_norm"), embedding_table
 
 
 def _top_p_sample(logits, ignore_ids=None, num_samples=1, p=0.9):
@@ -354,35 +413,52 @@ def _top_p_sample(logits, ignore_ids=None, num_samples=1, p=0.9):
 
     # TODO FIGURE OUT HOW TO DO THIS ON TPUS. IT'S HELLA SLOW RIGHT NOW, DUE TO ARGSORT I THINK
     """
-    with tf.variable_scope('top_p_sample'):
+    with tf.variable_scope("top_p_sample"):
         batch_size, vocab_size = get_shape_list(logits, expected_rank=2)
 
-        probs = tf.nn.softmax(logits if ignore_ids is None else logits - tf.cast(ignore_ids[None], tf.float32) * 1e10,
-                              axis=-1)
+        probs = tf.nn.softmax(
+            logits
+            if ignore_ids is None
+            else logits - tf.cast(ignore_ids[None], tf.float32) * 1e10,
+            axis=-1,
+        )
 
         if isinstance(p, float) and p > 0.999999:
             # Don't do top-p sampling in this case
             print("Top-p sampling DISABLED", flush=True)
             return {
-                'probs': probs,
-                'sample': tf.random.categorical(
-                    logits=logits if ignore_ids is None else logits - tf.cast(ignore_ids[None], tf.float32) * 1e10,
-                    num_samples=num_samples, dtype=tf.int32),
+                "probs": probs,
+                "sample": tf.random.categorical(
+                    logits=logits
+                    if ignore_ids is None
+                    else logits - tf.cast(ignore_ids[None], tf.float32) * 1e10,
+                    num_samples=num_samples,
+                    dtype=tf.int32,
+                ),
             }
 
         # [batch_size, vocab_perm]
-        indices = tf.argsort(probs, direction='DESCENDING')
-        cumulative_probabilities = tf.math.cumsum(tf.batch_gather(probs, indices), axis=-1, exclusive=False)
+        indices = tf.argsort(probs, direction="DESCENDING")
+        cumulative_probabilities = tf.math.cumsum(
+            tf.batch_gather(probs, indices), axis=-1, exclusive=False
+        )
 
         # find the top pth index to cut off. careful we don't want to cutoff everything!
         # result will be [batch_size, vocab_perm]
         p_expanded = p if isinstance(p, float) else p[:, None]
         exclude_mask = tf.logical_not(
-            tf.logical_or(cumulative_probabilities < p_expanded, tf.range(vocab_size)[None] < 1))
+            tf.logical_or(
+                cumulative_probabilities < p_expanded, tf.range(vocab_size)[None] < 1
+            )
+        )
 
         # OPTION A - sample in the sorted space, then unsort.
-        logits_to_use = tf.batch_gather(logits, indices) - tf.cast(exclude_mask, tf.float32) * 1e10
-        sample_perm = tf.random.categorical(logits=logits_to_use, num_samples=num_samples)
+        logits_to_use = (
+            tf.batch_gather(logits, indices) - tf.cast(exclude_mask, tf.float32) * 1e10
+        )
+        sample_perm = tf.random.categorical(
+            logits=logits_to_use, num_samples=num_samples
+        )
         sample = tf.batch_gather(indices, sample_perm)
 
         # OPTION B - unsort first - Indices need to go back to 0 -> N-1 -- then sample
@@ -391,10 +467,7 @@ def _top_p_sample(logits, ignore_ids=None, num_samples=1, p=0.9):
         # logits_to_use = logits - (1 - tf.cast(include_mask_unperm, tf.float32)) * 1e10
         # sample = tf.random.categorical(logits=logits_to_use, num_samples=num_samples, dtype=tf.int32)
 
-    return {
-        'probs': probs,
-        'sample': sample,
-    }
+    return {"probs": probs, "sample": sample}
 
 
 def _top_k_sample(logits, ignore_ids=None, num_samples=1, k=10):
@@ -408,13 +481,17 @@ def _top_k_sample(logits, ignore_ids=None, num_samples=1, k=10):
 
     # TODO FIGURE OUT HOW TO DO THIS ON TPUS. IT'S HELLA SLOW RIGHT NOW, DUE TO ARGSORT I THINK
     """
-    with tf.variable_scope('top_p_sample'):
+    with tf.variable_scope("top_p_sample"):
         batch_size, vocab_size = get_shape_list(logits, expected_rank=2)
 
-        probs = tf.nn.softmax(logits if ignore_ids is None else logits - tf.cast(ignore_ids[None], tf.float32) * 1e10,
-                              axis=-1)
+        probs = tf.nn.softmax(
+            logits
+            if ignore_ids is None
+            else logits - tf.cast(ignore_ids[None], tf.float32) * 1e10,
+            axis=-1,
+        )
         # [batch_size, vocab_perm]
-        indices = tf.argsort(probs, direction='DESCENDING')
+        indices = tf.argsort(probs, direction="DESCENDING")
 
         # find the top pth index to cut off. careful we don't want to cutoff everything!
         # result will be [batch_size, vocab_perm]
@@ -422,27 +499,30 @@ def _top_k_sample(logits, ignore_ids=None, num_samples=1, k=10):
         exclude_mask = tf.range(vocab_size)[None] >= k_expanded
 
         # OPTION A - sample in the sorted space, then unsort.
-        logits_to_use = tf.batch_gather(logits, indices) - tf.cast(exclude_mask, tf.float32) * 1e10
-        sample_perm = tf.random.categorical(logits=logits_to_use, num_samples=num_samples)
+        logits_to_use = (
+            tf.batch_gather(logits, indices) - tf.cast(exclude_mask, tf.float32) * 1e10
+        )
+        sample_perm = tf.random.categorical(
+            logits=logits_to_use, num_samples=num_samples
+        )
         sample = tf.batch_gather(indices, sample_perm)
 
-    return {
-        'probs': probs,
-        'sample': sample,
-    }
+    return {"probs": probs, "sample": sample}
 
 
 class GroverModel(object):
-    def __init__(self,
-                 config: GroverConfig,
-                 is_training,
-                 input_ids,
-                 cache=None,
-                 do_cache=False,
-                 pad_token_id=0,
-                 chop_off_last_token=True,
-                 scope=None,
-                 reuse=False):
+    def __init__(
+        self,
+        config: GroverConfig,
+        is_training,
+        input_ids,
+        cache=None,
+        do_cache=False,
+        pad_token_id=0,
+        chop_off_last_token=True,
+        scope=None,
+        reuse=False,
+    ):
         """
         :param config:
         :param is_training:
@@ -468,9 +548,17 @@ class GroverModel(object):
             self.input_ids = input_ids[:, :-1]
         else:
             self.input_ids = input_ids
-            self.target_ids = tf.concat((input_ids[:, 1:],
-                                         tf.constant(self.pad_token_id, dtype=self.input_ids.dtype,
-                                                     shape=[get_shape_list(self.input_ids, 2)[0], 1])), 1)
+            self.target_ids = tf.concat(
+                (
+                    input_ids[:, 1:],
+                    tf.constant(
+                        self.pad_token_id,
+                        dtype=self.input_ids.dtype,
+                        shape=[get_shape_list(self.input_ids, 2)[0], 1],
+                    ),
+                ),
+                1,
+            )
 
         self.batch_size, self.seq_length = get_shape_list(self.input_ids, 2)
 
@@ -479,7 +567,8 @@ class GroverModel(object):
             self.cache_length = 0
         else:
             batch_size_, num_layers_, two_, num_heads_, self.cache_length, features_ = get_shape_list(
-                cache, expected_rank=6)
+                cache, expected_rank=6
+            )
             assert batch_size_ == self.batch_size
             assert num_layers_ == config.num_hidden_layers
             assert two_ == 2
@@ -487,25 +576,34 @@ class GroverModel(object):
             assert features_ == (config.hidden_size // config.num_attention_heads)
             caches = tf.unstack(cache, axis=1)
 
-        with tf.variable_scope(scope, default_name='newslm', reuse=reuse):
+        with tf.variable_scope(scope, default_name="newslm", reuse=reuse):
             with tf.variable_scope("embeddings"):
-                embeddings, self.embedding_table = embed(self.input_ids, config.vocab_size,
-                                                         config.hidden_size,
-                                                         position_offset=self.cache_length,
-                                                         initializer_range=config.initializer_range,
-                                                         max_position_embeddings=config.max_position_embeddings,
-                                                         use_one_hot_embeddings=True)
+                embeddings, self.embedding_table = embed(
+                    self.input_ids,
+                    config.vocab_size,
+                    config.hidden_size,
+                    position_offset=self.cache_length,
+                    initializer_range=config.initializer_range,
+                    max_position_embeddings=config.max_position_embeddings,
+                    use_one_hot_embeddings=True,
+                )
 
-            mask = get_attention_mask(self.seq_length, self.seq_length + self.cache_length, dtype=embeddings.dtype)
+            mask = get_attention_mask(
+                self.seq_length,
+                self.seq_length + self.cache_length,
+                dtype=embeddings.dtype,
+            )
 
             # We keep the representation as a 2D tensor to avoid re-shaping it back and
             # forth from a 3D tensor to a 2D tensor. Re-shapes are normally free on
             # the GPU/CPU but may not be free on the TPU, so we want to minimize them to
             # help the optimizer.
-            hidden_state = tf.reshape(embeddings, [self.batch_size * self.seq_length, self.config.hidden_size])
+            hidden_state = tf.reshape(
+                embeddings, [self.batch_size * self.seq_length, self.config.hidden_size]
+            )
             new_kvs = []
             for layer_idx, layer_cache in enumerate(caches):
-                with tf.variable_scope('layer{:02d}'.format(layer_idx)):
+                with tf.variable_scope("layer{:02d}".format(layer_idx)):
                     # [batch_size * seq_length, hidden_size]
                     attention_output, new_kv = attention_layer(
                         hidden_state,
@@ -523,15 +621,19 @@ class GroverModel(object):
                     new_kvs.append(new_kv)
 
                     # [batch_size * seq_length, hidden_size]
-                    hidden_state = residual_mlp_layer(hidden_state + attention_output,
-                                                      intermediate_size=config.intermediate_size,
-                                                      hidden_dropout_prob=self.config.hidden_dropout_prob)
+                    hidden_state = residual_mlp_layer(
+                        hidden_state + attention_output,
+                        intermediate_size=config.intermediate_size,
+                        hidden_dropout_prob=self.config.hidden_dropout_prob,
+                    )
             self.hidden_state = hidden_state
 
         self.new_kvs = tf.stack(new_kvs, axis=1) if do_cache else None
 
         # Note that the hidden state is still flat (batch_size*hidden_size)
-        self.logits_flat = tf.matmul(self.hidden_state, self.embedding_table, transpose_b=True)
+        self.logits_flat = tf.matmul(
+            self.hidden_state, self.embedding_table, transpose_b=True
+        )
 
         # THE OUTPUT BIAS DOES NOT SPARK JOY
         # output_bias = tf.get_variable('output_bias', shape=[config.vocab_size], initializer=tf.zeros_initializer())
@@ -549,12 +651,15 @@ class GroverModel(object):
         target_ids_flat = tf.reshape(self.target_ids, [-1])
 
         # 1 if it's valid and 0 otherwise.
-        label_weights = tf.cast(tf.not_equal(target_ids_flat, self.pad_token_id), dtype=self.logits_flat.dtype)
+        label_weights = tf.cast(
+            tf.not_equal(target_ids_flat, self.pad_token_id),
+            dtype=self.logits_flat.dtype,
+        )
 
         # [batch_size * seq_length, vocab_size]
-        one_hot_labels = tf.one_hot(target_ids_flat,
-                                    depth=self.config.vocab_size,
-                                    dtype=self.logits_flat.dtype)
+        one_hot_labels = tf.one_hot(
+            target_ids_flat, depth=self.config.vocab_size, dtype=self.logits_flat.dtype
+        )
 
         # [batch_size * seq_length, vocab_size]
         logprobs_flat = tf.nn.log_softmax(self.logits_flat, axis=-1)
@@ -574,12 +679,24 @@ class GroverModel(object):
         :param clf_token:
         :return:
         """
-        pool_idx = tf.cast(tf.argmax(tf.cast(tf.equal(self.input_ids, clf_token), tf.float32), 1), tf.int32)
-        return tf.gather(self.hidden_state, tf.range(self.batch_size, dtype=tf.int32) * self.seq_length + pool_idx)
+        pool_idx = tf.cast(
+            tf.argmax(tf.cast(tf.equal(self.input_ids, clf_token), tf.float32), 1),
+            tf.int32,
+        )
+        return tf.gather(
+            self.hidden_state,
+            tf.range(self.batch_size, dtype=tf.int32) * self.seq_length + pool_idx,
+        )
 
 
-def model_fn_builder(config: GroverConfig, init_checkpoint, learning_rate,
-                     num_train_steps, num_warmup_steps, use_tpu):
+def model_fn_builder(
+    config: GroverConfig,
+    init_checkpoint,
+    learning_rate,
+    num_train_steps,
+    num_warmup_steps,
+    use_tpu,
+):
     """Returns `model_fn` closure for TPUEstimator."""
 
     def model_fn(features, labels, mode, params):  # pylint: disable=unused-argument
@@ -591,7 +708,7 @@ def model_fn_builder(config: GroverConfig, init_checkpoint, learning_rate,
 
         input_ids = features["input_ids"]
 
-        is_training = (mode == tf.estimator.ModeKeys.TRAIN)
+        is_training = mode == tf.estimator.ModeKeys.TRAIN
 
         model = GroverModel(
             config=config,
@@ -605,7 +722,8 @@ def model_fn_builder(config: GroverConfig, init_checkpoint, learning_rate,
 
         if is_training:
             train_op, train_metrics = optimization_adafactor.create_optimizer(
-                total_loss, learning_rate, num_train_steps, num_warmup_steps, use_tpu)
+                total_loss, learning_rate, num_train_steps, num_warmup_steps, use_tpu
+            )
             tvars = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES)
         else:
             train_op = None
@@ -615,9 +733,12 @@ def model_fn_builder(config: GroverConfig, init_checkpoint, learning_rate,
         initialized_variable_names = {}
         scaffold_fn = None
         if init_checkpoint:
-            (assignment_map, initialized_variable_names
-             ) = get_assignment_map_from_checkpoint(tvars, init_checkpoint)
+            (
+                assignment_map,
+                initialized_variable_names,
+            ) = get_assignment_map_from_checkpoint(tvars, init_checkpoint)
             if use_tpu:
+
                 def tpu_scaffold():
                     tf.train.init_from_checkpoint(init_checkpoint, assignment_map)
                     return tf.train.Scaffold()
@@ -631,8 +752,9 @@ def model_fn_builder(config: GroverConfig, init_checkpoint, learning_rate,
             init_string = ""
             if var.name in initialized_variable_names:
                 init_string = ", *INIT_FROM_CKPT*"
-            tf.logging.info("  name = %s, shape = %s%s", var.name, var.shape,
-                            init_string)
+            tf.logging.info(
+                "  name = %s, shape = %s%s", var.name, var.shape, init_string
+            )
 
         output_spec = None
         if mode == tf.estimator.ModeKeys.TRAIN:
@@ -641,38 +763,49 @@ def model_fn_builder(config: GroverConfig, init_checkpoint, learning_rate,
                     mode=mode,
                     loss=total_loss,
                     train_op=train_op,
-                    host_call=construct_scalar_host_call(metric_dict=train_metrics, model_dir=params['model_dir'],
-                                                         prefix='training/'),
-                    scaffold_fn=scaffold_fn)
+                    host_call=construct_scalar_host_call(
+                        metric_dict=train_metrics,
+                        model_dir=params["model_dir"],
+                        prefix="training/",
+                    ),
+                    scaffold_fn=scaffold_fn,
+                )
             else:
                 output_spec = tf.contrib.tpu.TPUEstimatorSpec(
                     mode=mode,
                     loss=total_loss,
                     train_op=train_op,
                     training_hooks=[
-                        tf.train.LoggingTensorHook({'loss': tf.metrics.mean(total_loss)[1]}, every_n_iter=100)],
-                    scaffold_fn=scaffold_fn)
+                        tf.train.LoggingTensorHook(
+                            {"loss": tf.metrics.mean(total_loss)[1]}, every_n_iter=100
+                        )
+                    ],
+                    scaffold_fn=scaffold_fn,
+                )
 
         elif mode == tf.estimator.ModeKeys.EVAL:
+
             def metric_fn(total_loss):
                 loss = tf.metrics.mean(values=total_loss)
-                return {
-                    "eval_loss": loss,
-                }
+                return {"eval_loss": loss}
 
-            eval_metrics = (metric_fn,
-                            [total_loss])
+            eval_metrics = (metric_fn, [total_loss])
             output_spec = tf.contrib.tpu.TPUEstimatorSpec(
                 mode=mode,
                 loss=total_loss,
                 eval_metrics=eval_metrics,
-                scaffold_fn=scaffold_fn)
+                scaffold_fn=scaffold_fn,
+            )
         else:
-            gt_logprobs = tf.squeeze(tf.batch_gather(model.log_probs, model.target_ids[:, :, None]), axis=2)
+            gt_logprobs = tf.squeeze(
+                tf.batch_gather(model.log_probs, model.target_ids[:, :, None]), axis=2
+            )
 
             # Need top-p required under topp sampling!
             better_than_gt = model.log_probs > gt_logprobs[:, :, None]
-            top_p_required = tf.reduce_sum(tf.cast(better_than_gt, tf.float32) * tf.exp(model.log_probs), axis=2)
+            top_p_required = tf.reduce_sum(
+                tf.cast(better_than_gt, tf.float32) * tf.exp(model.log_probs), axis=2
+            )
 
             # No top-p sampling for now, since this seems to be too slow on TPUs
             if use_tpu:
@@ -684,25 +817,38 @@ def model_fn_builder(config: GroverConfig, init_checkpoint, learning_rate,
                 # Argmax
                 # predictions = tf.math.argmax(model.log_probs, axis=-1, output_type=tf.int32)
                 predictions = tf.reshape(
-                    _top_p_sample(model.logits_flat, num_samples=1, p=0.99)['sample'],
+                    _top_p_sample(model.logits_flat, num_samples=1, p=0.99)["sample"],
                     get_shape_list(model.target_ids),
                 )
-            pred_logprobs = tf.squeeze(tf.batch_gather(model.log_probs, predictions[:, :, None]), axis=2)
+            pred_logprobs = tf.squeeze(
+                tf.batch_gather(model.log_probs, predictions[:, :, None]), axis=2
+            )
 
             output_spec = tf.contrib.tpu.TPUEstimatorSpec(
                 mode=mode,
-                predictions={'gt_logprobs': gt_logprobs,
-                             'top_p_required': top_p_required,
-                             'predictions': predictions,
-                             'pred_logprobs': pred_logprobs,
-                             'labels': input_ids},
-                scaffold_fn=scaffold_fn)
+                predictions={
+                    "gt_logprobs": gt_logprobs,
+                    "top_p_required": top_p_required,
+                    "predictions": predictions,
+                    "pred_logprobs": pred_logprobs,
+                    "labels": input_ids,
+                },
+                scaffold_fn=scaffold_fn,
+            )
         return output_spec
 
     return model_fn
 
 
-def sample_step(tokens, ignore_ids, news_config, batch_size=1, p_for_topp=0.95, cache=None, do_topk=False):
+def sample_step(
+    tokens,
+    ignore_ids,
+    news_config,
+    batch_size=1,
+    p_for_topp=0.95,
+    cache=None,
+    do_topk=False,
+):
     """
     Helper function that samples from grover for a single step
     :param tokens: [batch_size, n_ctx_b] tokens that we will predict from
@@ -723,45 +869,70 @@ def sample_step(tokens, ignore_ids, news_config, batch_size=1, p_for_topp=0.95, 
         is_training=False,
         input_ids=tokens,
         reuse=tf.AUTO_REUSE,
-        scope='newslm',
+        scope="newslm",
         chop_off_last_token=False,
         do_cache=True,
         cache=cache,
     )
 
     # Extract the FINAL SEQ LENGTH
-    batch_size_times_seq_length, vocab_size = get_shape_list(model.logits_flat, expected_rank=2)
+    batch_size_times_seq_length, vocab_size = get_shape_list(
+        model.logits_flat, expected_rank=2
+    )
     next_logits = tf.reshape(model.logits_flat, [batch_size, -1, vocab_size])[:, -1]
 
     if do_topk:
-        sample_info = _top_k_sample(next_logits, num_samples=1, k=tf.cast(p_for_topp, dtype=tf.int32))
+        sample_info = _top_k_sample(
+            next_logits, num_samples=1, k=tf.cast(p_for_topp, dtype=tf.int32)
+        )
     else:
-        sample_info = _top_p_sample(next_logits, ignore_ids=ignore_ids, num_samples=1, p=p_for_topp)
+        sample_info = _top_p_sample(
+            next_logits, ignore_ids=ignore_ids, num_samples=1, p=p_for_topp
+        )
 
-    new_tokens = tf.squeeze(sample_info['sample'], 1)
-    new_probs = tf.squeeze(tf.batch_gather(sample_info['probs'], sample_info['sample']), 1)
+    new_tokens = tf.squeeze(sample_info["sample"], 1)
+    new_probs = tf.squeeze(
+        tf.batch_gather(sample_info["probs"], sample_info["sample"]), 1
+    )
     return {
-        'new_tokens': new_tokens,
-        'new_probs': new_probs,
-        'new_cache': model.new_kvs,
+        "new_tokens": new_tokens,
+        "new_probs": new_probs,
+        "new_cache": model.new_kvs,
     }
 
 
-def initialize_from_context(initial_context, ignore_ids, news_config, p_for_topp=0.95, do_topk=False):
+def initialize_from_context(
+    initial_context, ignore_ids, news_config, p_for_topp=0.95, do_topk=False
+):
     """ same signature as sample_step"""
     batch_size, _ = get_shape_list(initial_context, expected_rank=2)
 
-    context_output = sample_step(tokens=initial_context, ignore_ids=ignore_ids, news_config=news_config,
-                                 batch_size=batch_size, p_for_topp=p_for_topp, cache=None, do_topk=do_topk)
+    context_output = sample_step(
+        tokens=initial_context,
+        ignore_ids=ignore_ids,
+        news_config=news_config,
+        batch_size=batch_size,
+        p_for_topp=p_for_topp,
+        cache=None,
+        do_topk=do_topk,
+    )
     return {
-        'tokens': tf.concat([initial_context, context_output['new_tokens'][:, None]], 1),
-        'cache': context_output['new_cache'],
-        'probs': context_output['new_probs'][:, None]
+        "tokens": tf.concat(
+            [initial_context, context_output["new_tokens"][:, None]], 1
+        ),
+        "cache": context_output["new_cache"],
+        "probs": context_output["new_probs"][:, None],
     }
 
 
-def sample(news_config: GroverConfig, initial_context, eos_token, ignore_ids=None, p_for_topp=0.95,
-           do_topk=False):
+def sample(
+    news_config: GroverConfig,
+    initial_context,
+    eos_token,
+    ignore_ids=None,
+    p_for_topp=0.95,
+    do_topk=False,
+):
     """
     V1 version of: sample outputs from a model, and do it all at once
     :param news_config: Configuration used to construct the model
@@ -773,27 +944,39 @@ def sample(news_config: GroverConfig, initial_context, eos_token, ignore_ids=Non
     batch_size, _ = get_shape_list(initial_context, expected_rank=2)
 
     if ignore_ids is None:
-        ignore_ids = tf.constant([x == 0 for x in range(news_config.vocab_size)], dtype=tf.bool)
+        ignore_ids = tf.constant(
+            [x == 0 for x in range(news_config.vocab_size)], dtype=tf.bool
+        )
 
-    with tf.name_scope('sample_sequence'):
+    with tf.name_scope("sample_sequence"):
         # Initial call to get cache
-        context_output = initialize_from_context(initial_context, ignore_ids=ignore_ids, news_config=news_config,
-                                                 p_for_topp=p_for_topp,
-                                                 do_topk=do_topk)
-        ctx = context_output['tokens']
-        cache = context_output['cache']
-        probs = context_output['probs']
+        context_output = initialize_from_context(
+            initial_context,
+            ignore_ids=ignore_ids,
+            news_config=news_config,
+            p_for_topp=p_for_topp,
+            do_topk=do_topk,
+        )
+        ctx = context_output["tokens"]
+        cache = context_output["cache"]
+        probs = context_output["probs"]
 
         def body(ctx, cache, probs):
             """ for whatever reason this didn't work when I ran it on more than one at once... ugh."""
-            next_outputs = sample_step(ctx[:, -1][:, None], ignore_ids=ignore_ids, news_config=news_config,
-                                       batch_size=batch_size, p_for_topp=p_for_topp, cache=cache,
-                                       do_topk=do_topk)
+            next_outputs = sample_step(
+                ctx[:, -1][:, None],
+                ignore_ids=ignore_ids,
+                news_config=news_config,
+                batch_size=batch_size,
+                p_for_topp=p_for_topp,
+                cache=cache,
+                do_topk=do_topk,
+            )
 
             # Update everything
-            new_cache = tf.concat([cache, next_outputs['new_cache']], axis=-2)
-            new_ids = tf.concat([ctx, next_outputs['new_tokens'][:, None]], axis=1)
-            new_probs = tf.concat([probs, next_outputs['new_probs'][:, None]], axis=1)
+            new_cache = tf.concat([cache, next_outputs["new_cache"]], axis=-2)
+            new_ids = tf.concat([ctx, next_outputs["new_tokens"][:, None]], axis=1)
+            new_probs = tf.concat([probs, next_outputs["new_probs"][:, None]], axis=1)
             return [new_ids, new_cache, new_probs]
 
         def cond(ctx, cache, probs):
@@ -801,23 +984,42 @@ def sample(news_config: GroverConfig, initial_context, eos_token, ignore_ids=Non
             return tf.math.logical_not(tf.reduce_all(tf.reduce_any(is_eos, axis=1)))
 
         tokens, cache, probs = tf.while_loop(
-            cond=cond, body=body, maximum_iterations=1025 - get_shape_list(ctx)[1],
+            cond=cond,
+            body=body,
+            maximum_iterations=1025 - get_shape_list(ctx)[1],
             loop_vars=[ctx, cache, probs],
-            shape_invariants=[tf.TensorShape([batch_size, None]),
-                              tf.TensorShape(
-                                  [batch_size, news_config.num_hidden_layers, 2,
-                                   news_config.num_attention_heads,
-                                   None, news_config.hidden_size // news_config.num_attention_heads]),
-                              tf.TensorShape([batch_size, None]),
-                              ],
+            shape_invariants=[
+                tf.TensorShape([batch_size, None]),
+                tf.TensorShape(
+                    [
+                        batch_size,
+                        news_config.num_hidden_layers,
+                        2,
+                        news_config.num_attention_heads,
+                        None,
+                        news_config.hidden_size // news_config.num_attention_heads,
+                    ]
+                ),
+                tf.TensorShape([batch_size, None]),
+            ],
             back_prop=False,
         )
     return tokens, probs
 
 
-def classification_model_fn_builder(config: GroverConfig, init_checkpoint, learning_rate,
-                                    num_train_steps, num_warmup_steps, use_tpu, num_labels, pool_token_id,
-                                    adafactor=False, adam_bfloat=False, lm_loss_coef=0.5):
+def classification_model_fn_builder(
+    config: GroverConfig,
+    init_checkpoint,
+    learning_rate,
+    num_train_steps,
+    num_warmup_steps,
+    use_tpu,
+    num_labels,
+    pool_token_id,
+    adafactor=False,
+    adam_bfloat=False,
+    lm_loss_coef=0.5,
+):
     """Returns `model_fn` closure for TPUEstimator. FOR CLASSIFICATION ONLY!"""
 
     def model_fn(features, labels, mode, params):  # pylint: disable=unused-argument
@@ -834,7 +1036,7 @@ def classification_model_fn_builder(config: GroverConfig, init_checkpoint, learn
         else:
             is_real_example = tf.ones(tf.shape(label_ids), dtype=tf.float32)
 
-        is_training = (mode == tf.estimator.ModeKeys.TRAIN)
+        is_training = mode == tf.estimator.ModeKeys.TRAIN
 
         # Create model with aux loss
         model = GroverModel(
@@ -845,7 +1047,7 @@ def classification_model_fn_builder(config: GroverConfig, init_checkpoint, learn
             chop_off_last_token=False,
         )
 
-        with tf.variable_scope('classification'):
+        with tf.variable_scope("classification"):
             hidden_state = model.pooled_output(pool_token_id)
             if is_training:
                 hidden_state = dropout(hidden_state, dropout_prob=0.1)
@@ -853,7 +1055,7 @@ def classification_model_fn_builder(config: GroverConfig, init_checkpoint, learn
                 hidden_state,
                 num_labels,
                 kernel_initializer=create_initializer(config.initializer_range),
-                name='logits'
+                name="logits",
             )
             log_probs = tf.nn.log_softmax(logits, axis=-1)
             one_hot_labels = tf.one_hot(label_ids, depth=num_labels, dtype=tf.float32)
@@ -864,14 +1066,20 @@ def classification_model_fn_builder(config: GroverConfig, init_checkpoint, learn
 
         if is_training:
             train_op, train_metrics = optimization_adafactor.create_optimizer(
-                total_loss, learning_rate, num_train_steps, num_warmup_steps, use_tpu)
+                total_loss, learning_rate, num_train_steps, num_warmup_steps, use_tpu
+            )
             # tvars = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES)
             tvars = tf.trainable_variables()
 
-            train_metrics['minibatch_cls_loss'] = class_loss
-            train_metrics['minibatch_acc'] = tf.reduce_mean(
-                tf.cast(tf.equal(tf.argmax(logits, axis=-1, output_type=tf.int32),
-                                 label_ids), tf.float32))
+            train_metrics["minibatch_cls_loss"] = class_loss
+            train_metrics["minibatch_acc"] = tf.reduce_mean(
+                tf.cast(
+                    tf.equal(
+                        tf.argmax(logits, axis=-1, output_type=tf.int32), label_ids
+                    ),
+                    tf.float32,
+                )
+            )
         else:
             train_op = None
             train_metrics = {}
@@ -880,9 +1088,12 @@ def classification_model_fn_builder(config: GroverConfig, init_checkpoint, learn
         initialized_variable_names = {}
         scaffold_fn = None
         if init_checkpoint:
-            (assignment_map, initialized_variable_names
-             ) = get_assignment_map_from_checkpoint(tvars, init_checkpoint)
+            (
+                assignment_map,
+                initialized_variable_names,
+            ) = get_assignment_map_from_checkpoint(tvars, init_checkpoint)
             if use_tpu:
+
                 def tpu_scaffold():
                     tf.train.init_from_checkpoint(init_checkpoint, assignment_map)
                     return tf.train.Scaffold()
@@ -896,8 +1107,9 @@ def classification_model_fn_builder(config: GroverConfig, init_checkpoint, learn
             init_string = ""
             if var.name in initialized_variable_names:
                 init_string = ", *INIT_FROM_CKPT*"
-            tf.logging.info("  name = %s, shape = %s%s", var.name, var.shape,
-                            init_string)
+            tf.logging.info(
+                "  name = %s, shape = %s%s", var.name, var.shape, init_string
+            )
 
         output_spec = None
         if mode == tf.estimator.ModeKeys.TRAIN:
@@ -906,42 +1118,52 @@ def classification_model_fn_builder(config: GroverConfig, init_checkpoint, learn
                     mode=mode,
                     loss=total_loss,
                     train_op=train_op,
-                    host_call=construct_scalar_host_call(metric_dict=train_metrics, model_dir=params['model_dir'],
-                                                         prefix='training/'),
-                    scaffold_fn=scaffold_fn)
+                    host_call=construct_scalar_host_call(
+                        metric_dict=train_metrics,
+                        model_dir=params["model_dir"],
+                        prefix="training/",
+                    ),
+                    scaffold_fn=scaffold_fn,
+                )
             else:
                 output_spec = tf.contrib.tpu.TPUEstimatorSpec(
                     mode=mode,
                     loss=total_loss,
                     train_op=train_op,
                     training_hooks=[
-                        tf.train.LoggingTensorHook({'loss': tf.metrics.mean(total_loss)[1]}, every_n_iter=100)],
-                    scaffold_fn=scaffold_fn)
+                        tf.train.LoggingTensorHook(
+                            {"loss": tf.metrics.mean(total_loss)[1]}, every_n_iter=100
+                        )
+                    ],
+                    scaffold_fn=scaffold_fn,
+                )
 
         elif mode == tf.estimator.ModeKeys.EVAL:
+
             def metric_fn(per_example_loss, label_ids, logits, is_real_example):
                 predictions = tf.argmax(logits, axis=-1, output_type=tf.int32)
                 accuracy = tf.metrics.accuracy(
-                    labels=label_ids, predictions=predictions, weights=is_real_example)
+                    labels=label_ids, predictions=predictions, weights=is_real_example
+                )
                 loss = tf.metrics.mean(values=per_example_loss, weights=is_real_example)
-                return {
-                    "eval_accuracy": accuracy,
-                    "eval_loss": loss,
-                }
+                return {"eval_accuracy": accuracy, "eval_loss": loss}
 
-            eval_metrics = (metric_fn,
-                            [per_example_loss, label_ids, logits, is_real_example])
+            eval_metrics = (
+                metric_fn,
+                [per_example_loss, label_ids, logits, is_real_example],
+            )
             output_spec = tf.contrib.tpu.TPUEstimatorSpec(
                 mode=mode,
                 loss=total_loss,
                 eval_metrics=eval_metrics,
-                scaffold_fn=scaffold_fn)
+                scaffold_fn=scaffold_fn,
+            )
         else:
             output_spec = tf.contrib.tpu.TPUEstimatorSpec(
                 mode=mode,
-                predictions={'logits': logits,
-                             'probs': tf.nn.softmax(logits, axis=-1)},
-                scaffold_fn=scaffold_fn)
+                predictions={"logits": logits, "probs": tf.nn.softmax(logits, axis=-1)},
+                scaffold_fn=scaffold_fn,
+            )
         return output_spec
 
     return model_fn

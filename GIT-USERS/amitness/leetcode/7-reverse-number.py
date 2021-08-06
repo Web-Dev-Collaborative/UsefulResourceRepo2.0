@@ -1,5 +1,6 @@
 # https://leetcode.com/problems/reverse-integer
 
+
 def reverse(x):
     """
     :type x: int
@@ -11,7 +12,8 @@ def reverse(x):
         x = -x
         negative = True
     while x:
-        sum  = sum * 10 + x%10
+        sum = sum * 10 + x % 10
         x /= 10
-    if sum > ((1<<31) - 1): return 0
+    if sum > ((1 << 31) - 1):
+        return 0
     return -sum if negative else sum

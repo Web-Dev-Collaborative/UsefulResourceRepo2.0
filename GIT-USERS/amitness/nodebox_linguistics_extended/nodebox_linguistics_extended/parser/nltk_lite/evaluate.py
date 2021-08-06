@@ -13,6 +13,7 @@ Utility functions for evaluating processing modules.
 
 import sets, math
 
+
 def accuracy(reference, test):
     """
     Given a list of reference values and a corresponding list of test
@@ -30,8 +31,9 @@ def accuracy(reference, test):
     """
     if len(reference) != len(test):
         raise ValueError("Lists must have the same length.")
-    num_correct = [1 for x,y in zip(reference, test) if x==y]
+    num_correct = [1 for x, y in zip(reference, test) if x == y]
     return float(len(num_correct)) / len(reference)
+
 
 def precision(reference, test):
     """
@@ -49,7 +51,8 @@ def precision(reference, test):
     if len(test) == 0:
         return None
     else:
-        return float(len(reference.intersection(test)))/len(test)
+        return float(len(reference.intersection(test))) / len(test)
+
 
 def recall(reference, test):
     """
@@ -67,7 +70,8 @@ def recall(reference, test):
     if len(reference) == 0:
         return None
     else:
-        return float(len(reference.intersection(test)))/len(reference)
+        return float(len(reference.intersection(test))) / len(reference)
+
 
 def f_measure(reference, test, alpha=0.5):
     """
@@ -96,7 +100,8 @@ def f_measure(reference, test, alpha=0.5):
         return None
     if p == 0 or r == 0:
         return 0
-    return 1.0/(alpha/p + (1-alpha)/r)
+    return 1.0 / (alpha / p + (1 - alpha) / r)
+
 
 def log_likelihood(reference, test):
     """
@@ -114,9 +119,9 @@ def log_likelihood(reference, test):
         raise ValueError("Lists must have the same length.")
 
     # Return the average value of dist.logprob(val).
-    total_likelihood = sum([dist.logprob(val)
-                            for (val, dist) in zip(reference, test)])
-    return total_likelihood/len(reference)
+    total_likelihood = sum([dist.logprob(val) for (val, dist) in zip(reference, test)])
+    return total_likelihood / len(reference)
+
 
 class ConfusionMatrix(object):
     """
@@ -135,6 +140,7 @@ class ConfusionMatrix(object):
     corresponds to correct values; and the off-diagonal entries
     correspond to incorrect values.
     """
+
     def __init__(self, reference, test):
         """
         Construct a new confusion matrix from a list of reference
@@ -149,18 +155,18 @@ class ConfusionMatrix(object):
             the same length.
         """
         if len(reference) != len(test):
-            raise ValueError('Lists must have the same length.')
-            
+            raise ValueError("Lists must have the same length.")
+
         # Get a list of all values.
-        values = list(dict([(val,1) for val in reference+test]).keys())
+        values = list(dict([(val, 1) for val in reference + test]).keys())
 
         # Construct a value->index dictionary
-        indices = dict([(val,i) for (i,val) in enumerate(values)])
+        indices = dict([(val, i) for (i, val) in enumerate(values)])
 
         # Make a confusion matrix table.
         confusion = [[0 for val in values] for val in values]
-        max_conf = 0 # Maximum confusion
-        for w,g in zip(reference, test):
+        max_conf = 0  # Maximum confusion
+        for w, g in zip(reference, test):
             confusion[indices[w]][indices[g]] += 1
             max_conf = max(max_conf, confusion[indices[w]][indices[g]])
 
@@ -183,18 +189,17 @@ class ConfusionMatrix(object):
         value C{lj} was given.
         @rtype: C{int}
         """
-        (li,lj) = xxx_todo_changeme
+        (li, lj) = xxx_todo_changeme
         i = self._indices[li]
         j = self._indices[lj]
         return self._confusion[i][j]
 
     def __repr__(self):
-        return '<ConfusionMatrix: %s/%s correct>' % (self._correct,
-                                                     self._total)
+        return "<ConfusionMatrix: %s/%s correct>" % (self._correct, self._total)
 
     def __str__(self):
         return self.pp()
-    
+
     def pp(self, show_percents=False, values_in_chart=True):
         """
         @return: A multi-line string representation of this confusion
@@ -210,81 +215,84 @@ class ConfusionMatrix(object):
 
         # Construct a format string for row values
         valuelen = max([len(str(val)) for val in values])
-        value_format = '%' + repr(valuelen) + 's |'
+        value_format = "%" + repr(valuelen) + "s |"
         # Construct a format string for matrix entries
         if show_percents:
             entrylen = 6
-            entry_format = '%5.1f%%'
+            entry_format = "%5.1f%%"
         else:
             entrylen = len(repr(self._max_conf))
-            entry_format = '%' + repr(entrylen) + 'd'
+            entry_format = "%" + repr(entrylen) + "d"
 
         # Write the column values.
         value_strings = [str(val) for val in values]
-        s = ''
+        s = ""
         for i in range(valuelen):
-            s += (' '*valuelen)+' |'
+            s += (" " * valuelen) + " |"
             for val in value_strings:
-                if i >= valuelen-len(val):
-                    s += val[i-valuelen+len(val)].rjust(entrylen+1)
+                if i >= valuelen - len(val):
+                    s += val[i - valuelen + len(val)].rjust(entrylen + 1)
                 else:
-                    s += ' '*(entrylen+1)
-            s += ' |\n'
+                    s += " " * (entrylen + 1)
+            s += " |\n"
 
         # Write a dividing line
-        s += '%s-+-%s+\n' % ('-'*valuelen, '-'*((entrylen+1)*len(values)))
+        s += "%s-+-%s+\n" % ("-" * valuelen, "-" * ((entrylen + 1) * len(values)))
 
         # Write the entries.
         for i in range(len(values)):
             s += value_format % values[i]
             for j in range(len(values)):
-                s += ' '
+                s += " "
                 if show_percents:
-                    s += entry_format % (100.0*confusion[i][j]/self._total)
+                    s += entry_format % (100.0 * confusion[i][j] / self._total)
                 else:
                     s += entry_format % confusion[i][j]
-            s += ' |\n'
-            
+            s += " |\n"
+
         # Write a dividing line
-        s += '%s-+-%s+\n' % ('-'*valuelen, '-'*((entrylen+1)*len(values)))
+        s += "%s-+-%s+\n" % ("-" * valuelen, "-" * ((entrylen + 1) * len(values)))
 
         # Write a key
-        s += '(row = reference; col = test)\n'
+        s += "(row = reference; col = test)\n"
         if not values_in_chart:
-            s += 'Value key:\n'
+            s += "Value key:\n"
             for i, value in enumerate(self._values):
-                s += '%6d: %s\n' % (i, value)
+                s += "%6d: %s\n" % (i, value)
 
         return s
-        
+
     def key(self):
         values = self._values
-        str = 'Value key:\n'
-        indexlen = len(repr(len(values)-1))
-        key_format = '  %'+repr(indexlen)+'d: %s\n'
+        str = "Value key:\n"
+        indexlen = len(repr(len(values) - 1))
+        key_format = "  %" + repr(indexlen) + "d: %s\n"
         for i in range(len(values)):
             str += key_format % (i, values[i])
 
         return str
 
-def demo():
-    print(('-'*75))
-    reference = 'DET NN VB DET JJ NN NN IN DET NN'.split()
-    test    = 'DET VB VB DET NN NN NN IN DET NN'.split()
-    print(('Reference =', reference))
-    print(('Test    =', test))
-    print('Confusion matrix:')
-    print((ConfusionMatrix(reference, test)))
-    print(('Accuracy:', accuracy(reference, test)))
 
-    print(('-'*75))
+def demo():
+    print(("-" * 75))
+    reference = "DET NN VB DET JJ NN NN IN DET NN".split()
+    test = "DET VB VB DET NN NN NN IN DET NN".split()
+    print(("Reference =", reference))
+    print(("Test    =", test))
+    print("Confusion matrix:")
+    print((ConfusionMatrix(reference, test)))
+    print(("Accuracy:", accuracy(reference, test)))
+
+    print(("-" * 75))
     reference_set = sets.Set(reference)
     test_set = sets.Set(test)
-    print(('Reference =', reference_set))
-    print(('Test =   ', test_set))
-    print(('Precision:', precision(reference_set, test_set)))
-    print(('   Recall:', recall(reference_set, test_set)))
-    print(('F-Measure:', f_measure(reference_set, test_set)))
-    print(('-'*75))
-if __name__ == '__main__':
+    print(("Reference =", reference_set))
+    print(("Test =   ", test_set))
+    print(("Precision:", precision(reference_set, test_set)))
+    print(("   Recall:", recall(reference_set, test_set)))
+    print(("F-Measure:", f_measure(reference_set, test_set)))
+    print(("-" * 75))
+
+
+if __name__ == "__main__":
     demo()

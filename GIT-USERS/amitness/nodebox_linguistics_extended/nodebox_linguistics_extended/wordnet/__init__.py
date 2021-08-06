@@ -9,8 +9,9 @@
 # http://osteele.com/projects/pywordnet/
 # http://wordnet.princeton.edu
 
-#This tells wordnet.py where to look the WordNet dictionary.
+# This tells wordnet.py where to look the WordNet dictionary.
 import os
+
 pywordnet_path = os.path.join(os.path.dirname(__file__), "wordnet2")
 os.environ["WNHOME"] = pywordnet_path
 
@@ -25,29 +26,36 @@ ADJECTIVES = wn.ADJ
 ADVERBS = wn.ADV
 
 ignore_accents = [
-    ("á|ä|â|å|à", "a"), 
-    ("é|ë|ê|è", "e"), 
-    ("í|ï|î|ì", "i"), 
-    ("ó|ö|ô|ø|ò", "o"), 
-    ("ú|ü|û|ù", "u"), 
-    ("ÿ|ý", "y"), 
-    ("š", "s"), 
-    ("ç", "ç"), 
-    ("ñ", "n")
+    ("á|ä|â|å|à", "a"),
+    ("é|ë|ê|è", "e"),
+    ("í|ï|î|ì", "i"),
+    ("ó|ö|ô|ø|ò", "o"),
+    ("ú|ü|û|ù", "u"),
+    ("ÿ|ý", "y"),
+    ("š", "s"),
+    ("ç", "ç"),
+    ("ñ", "n"),
 ]
+
+
 def _normalize(s):
-    
+
     """ Normalize common accented letters, WordNet does not take unicode.
     """
-    
-    if isinstance(s, int): return s
-    try: s = str(s)
+
+    if isinstance(s, int):
+        return s
+    try:
+        s = str(s)
     except:
-        try: s = s.encode("utf-8")
+        try:
+            s = s.encode("utf-8")
         except:
             pass
-    for a, b in ignore_accents: s = re.sub(a, b, s)
-    return s    
+    for a, b in ignore_accents:
+        s = re.sub(a, b, s)
+    return s
+
 
 def _synset(q, sense=0, pos=NOUNS):
 
@@ -65,9 +73,11 @@ def _synset(q, sense=0, pos=NOUNS):
 
     """
 
-    try: return pos[_normalize(q)][sense]
+    try:
+        return pos[_normalize(q)][sense]
     except:
         return None
+
 
 def _parse(data):
 
@@ -84,21 +94,24 @@ def _parse(data):
         data = [data]
     return [
         [word.strip(" ") for word in m.split(",")]
-            # Parse text between : and }
-            for m in re.findall("\:(.*?)\}", str(data))
+        # Parse text between : and }
+        for m in re.findall("\:(.*?)\}", str(data))
     ]
+
 
 def senses(q, pos=NOUNS):
 
     """Returns all senses for q.
     """
-    
-    try: return _parse(pos[_normalize(q)].getSenses())
+
+    try:
+        return _parse(pos[_normalize(q)].getSenses())
     except:
         return []
 
+
 def count_senses(q, pos=NOUNS):
-    
+
     """ Returns the number of senses/interpretations of q.
     
     Example:
@@ -106,8 +119,9 @@ def count_senses(q, pos=NOUNS):
         print noun.gloss(q, sense=i)
     
     """
-    
+
     return len(senses(q, pos))
+
 
 def gloss(q, sense=0, pos=NOUNS):
 
@@ -123,6 +137,7 @@ def gloss(q, sense=0, pos=NOUNS):
         return ""
     return s.synset.gloss
 
+
 def lexname(q, sense=0, pos=NOUNS):
 
     """Returns a type of q.
@@ -132,13 +147,14 @@ def lexname(q, sense=0, pos=NOUNS):
     """
 
     s = _synset(q, sense, pos)
-    if not s: 
-        return "" 
+    if not s:
+        return ""
     data = str(s.lexname)
-    data = data[data.index(".")+1:]
-    if data == "Tops": 
+    data = data[data.index(".") + 1 :]
+    if data == "Tops":
         return q
     return data
+
 
 def hyponym(q, sense=0, pos=NOUNS):
 
@@ -151,11 +167,12 @@ def hyponym(q, sense=0, pos=NOUNS):
      ["subway train"]].
 
     """
-    
+
     s = _synset(q, sense, pos)
-    if not s: 
+    if not s:
         return []
     return _parse(s.getPointers(wn.HYPONYM))
+
 
 def hyponyms(q, sense=0, pos=NOUNS):
 
@@ -163,9 +180,10 @@ def hyponyms(q, sense=0, pos=NOUNS):
     """
 
     s = _synset(q, sense, pos)
-    if not s: 
+    if not s:
         return []
     return _parse(flatten(wntools.tree(s, wn.HYPONYM)))
+
 
 def hypernym(q, sense=0, pos=NOUNS):
 
@@ -177,9 +195,10 @@ def hypernym(q, sense=0, pos=NOUNS):
     """
 
     s = _synset(q, sense, pos)
-    if not s: 
+    if not s:
         return []
     return _parse(s.getPointers(wn.HYPERNYM))
+
 
 def hypernyms(q, sense=0, pos=NOUNS):
 
@@ -187,9 +206,10 @@ def hypernyms(q, sense=0, pos=NOUNS):
     """
 
     s = _synset(q, sense, pos)
-    if not s: 
+    if not s:
         return []
     return _parse(flatten(wntools.tree(s, wn.HYPERNYM)))
+
 
 def antonym(q, sense=0, pos=NOUNS):
 
@@ -201,9 +221,10 @@ def antonym(q, sense=0, pos=NOUNS):
     """
 
     s = _synset(q, sense, pos)
-    if not s: 
+    if not s:
         return []
     return _parse(s.getPointers(wn.ANTONYM))
+
 
 def holonym(q, sense=0, pos=NOUNS):
 
@@ -215,9 +236,10 @@ def holonym(q, sense=0, pos=NOUNS):
     """
 
     s = _synset(q, sense, pos)
-    if not s: 
+    if not s:
         return []
     return _parse(s.getPointers(wn.PART_HOLONYM))
+
 
 def meronym(q, sense=0, pos=NOUNS):
 
@@ -229,9 +251,10 @@ def meronym(q, sense=0, pos=NOUNS):
     """
 
     s = _synset(q, sense, pos)
-    if not s: 
+    if not s:
         return []
-    return _parse(s.getPointers(wn.MEMBER_MERONYM)) 
+    return _parse(s.getPointers(wn.MEMBER_MERONYM))
+
 
 def meet(q1, q2, sense1=0, sense2=0, pos=NOUNS):
 
@@ -240,9 +263,12 @@ def meet(q1, q2, sense1=0, sense2=0, pos=NOUNS):
 
     s1 = _synset(q1, sense1, pos)
     s2 = _synset(q2, sense2, pos)
-    if not s1: return []
-    if not s2: return []
+    if not s1:
+        return []
+    if not s2:
+        return []
     return _parse(wntools.meet(s1, s2))
+
 
 def flatten(tree):
 
@@ -258,11 +284,13 @@ def flatten(tree):
         while isinstance(tree[i], (list, tuple)):
             if not tree[i]:
                 tree.pop(i)
-                if not len(tree): break
+                if not len(tree):
+                    break
             else:
-                tree[i:i+1] = list(tree[i])
+                tree[i : i + 1] = list(tree[i])
         i += 1
     return tree
+
 
 def absurd_gloss(q, sense=0, pos=NOUNS, up=3, down=2):
 
@@ -282,34 +310,54 @@ def absurd_gloss(q, sense=0, pos=NOUNS, up=3, down=2):
 
     def _up(path):
         p = hypernym(path, sense, pos)
-        if p: return p[0][0]
+        if p:
+            return p[0][0]
         return path
 
     def _down(path):
         p = hyponym(path, sense, pos)
-        if p: return choice(p)[0]
+        if p:
+            return choice(p)[0]
         return path
 
-    for i in range(up): q = _up(q)
-    for i in range(down): q = _down(q)
+    for i in range(up):
+        q = _up(q)
+    for i in range(down):
+        q = _down(q)
     return gloss(q)
+
 
 def is_noun(q):
     return _normalize(q) in NOUNS
-    
+
+
 def is_verb(q):
     return _normalize(q) in VERBS
-    
+
+
 def is_adjective(q):
     return _normalize(q) in ADJECTIVES
-    
+
+
 def is_adverb(q):
     return _normalize(q) in ADVERBS
 
-def all_nouns()      : return NOUNS
-def all_verbs()      : return VERBS
-def all_adjectives() : return ADJECTIVES
-def all_adverbs()    : return ADVERBS
+
+def all_nouns():
+    return NOUNS
+
+
+def all_verbs():
+    return VERBS
+
+
+def all_adjectives():
+    return ADJECTIVES
+
+
+def all_adverbs():
+    return ADVERBS
+
 
 def _meta_create_shortcuts():
 
@@ -328,33 +376,45 @@ def _meta_create_shortcuts():
     """
 
     def_prefixes = ["noun", "verb", "adjective", "adverb"]
-    defs = ["count_senses", "senses", "gloss", "lexname", 
-            "hyponym", "hyponyms", "hypernym", "hypernyms", 
-            "antonym", "meronym", "holonym", "meet", "absurd_gloss"]
+    defs = [
+        "count_senses",
+        "senses",
+        "gloss",
+        "lexname",
+        "hyponym",
+        "hyponyms",
+        "hypernym",
+        "hypernyms",
+        "antonym",
+        "meronym",
+        "holonym",
+        "meet",
+        "absurd_gloss",
+    ]
 
     for p in def_prefixes:
         for f in defs:
-            if f == "count_senses" \
-            or f == "senses": 
+            if f == "count_senses" or f == "senses":
                 params1 = "q"
                 params2 = "q"
-            elif f == "meet": 
+            elif f == "meet":
                 params1 = "q1, q2, sense1=0, sense2=0"
                 params2 = "q1, q2, sense1, sense2"
             else:
-                 params1 = "q, sense=0"
-                 params2 = "q, sense"    
-            code  = "global "+p+"_"+f+"\n"
-            code += "def "+p+"_"+f+"("+params1+"):\n"
-            code += "    return "+f+"("+params2+", pos="+p.upper()+"S)"
+                params1 = "q, sense=0"
+                params2 = "q, sense"
+            code = "global " + p + "_" + f + "\n"
+            code += "def " + p + "_" + f + "(" + params1 + "):\n"
+            code += "    return " + f + "(" + params2 + ", pos=" + p.upper() + "S)"
             eval(compile(code, "<string>", "exec"))
-            #print code
+            # print code
+
 
 _meta_create_shortcuts()
 
-#print len(all_adverbs())
-#print [str(x).rstrip("(n.)") for x in all_nouns()[:20]]
-#print noun_lexname("fear")
-#print noun_holonym("fish")
-#print adjective_gloss("weak")
-#print verb_antonym("sleep")
+# print len(all_adverbs())
+# print [str(x).rstrip("(n.)") for x in all_nouns()[:20]]
+# print noun_lexname("fear")
+# print noun_holonym("fish")
+# print adjective_gloss("weak")
+# print verb_antonym("sleep")

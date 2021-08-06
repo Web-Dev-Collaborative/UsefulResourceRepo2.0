@@ -8,24 +8,25 @@
 
 """
 Read tokens from the Wordlist Corpus.
-"""       
+"""
 
 from nodebox_linguistics_extended.parser.nltk_lite.corpora import get_basedir
 import os
 
-items = ['en']
+items = ["en"]
 
-item_name = {
-    'en': 'English Wordlist',
-    }
+item_name = {"en": "English Wordlist"}
 
-def raw(files = items):
-    if type(files) is str: files = (files,)
+
+def raw(files=items):
+    if type(files) is str:
+        files = (files,)
 
     for file in files:
         path = os.path.join(get_basedir(), "words", file)
         for word in open(path).readlines():
             yield word.strip()
+
 
 def demo():
     from nodebox_linguistics_extended.parser.nltk_lite.corpora import words
@@ -34,6 +35,6 @@ def demo():
 
     pprint(list(islice(words.raw(), 0, 20)))
 
-if __name__ == '__main__':
-    demo()
 
+if __name__ == "__main__":
+    demo()

@@ -7,8 +7,12 @@ import json
 from .Node import *
 
 BASE_DIR_NAME = os.path.dirname(__file__)
-DEFAULT_DSL_MAPPING_FILEPATH = "{}/styles/default-dsl-mapping.json".format(BASE_DIR_NAME)
-FACEBOOK_DSL_MAPPING_FILEPATH = "{}/styles/facebook_dsl_mapping.json".format(BASE_DIR_NAME)
+DEFAULT_DSL_MAPPING_FILEPATH = "{}/styles/default-dsl-mapping.json".format(
+    BASE_DIR_NAME
+)
+FACEBOOK_DSL_MAPPING_FILEPATH = "{}/styles/facebook_dsl_mapping.json".format(
+    BASE_DIR_NAME
+)
 AIRBNB_DSL_MAPPING_FILEPATH = "{}/styles/airbnb_dsl_mapping.json".format(BASE_DIR_NAME)
 
 
@@ -25,22 +29,22 @@ class Compiler:
         self.root = Node("body", None, self.content_holder)
 
     def get_stylesheet(self, style):
-        if style == 'default':
+        if style == "default":
             return DEFAULT_DSL_MAPPING_FILEPATH
-        elif style == 'facebook':
+        elif style == "facebook":
             return FACEBOOK_DSL_MAPPING_FILEPATH
-        elif style == 'airbnb':
+        elif style == "airbnb":
             return AIRBNB_DSL_MAPPING_FILEPATH
 
     def compile(self, generated_gui):
         dsl_file = generated_gui
 
-        #Parse fix
+        # Parse fix
         dsl_file = dsl_file[1:-1]
-        dsl_file = ' '.join(dsl_file)
-        dsl_file = dsl_file.replace('{', '{8').replace('}', '8}8')
-        dsl_file = dsl_file.replace(' ', '')
-        dsl_file = dsl_file.split('8')
+        dsl_file = " ".join(dsl_file)
+        dsl_file = dsl_file.replace("{", "{8").replace("}", "8}8")
+        dsl_file = dsl_file.replace(" ", "")
+        dsl_file = dsl_file.split("8")
         dsl_file = list(filter(None, dsl_file))
 
         current_parent = self.root
@@ -61,6 +65,7 @@ class Compiler:
                     current_parent.add_child(element)
 
         output_html = self.root.render(self.dsl_mapping)
-        if output_html is None: return "HTML Parsing Error"
+        if output_html is None:
+            return "HTML Parsing Error"
 
         return output_html

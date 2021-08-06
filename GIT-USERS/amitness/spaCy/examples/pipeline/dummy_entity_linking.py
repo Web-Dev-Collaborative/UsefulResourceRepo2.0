@@ -28,7 +28,11 @@ def create_kb(vocab):
     print()
     alias_0 = "Douglas"
     print("adding alias", alias_0)
-    kb.add_alias(alias=alias_0, entities=[entity_0, entity_1, entity_2], probabilities=[0.1, 0.6, 0.2])
+    kb.add_alias(
+        alias=alias_0,
+        entities=[entity_0, entity_1, entity_2],
+        probabilities=[0.1, 0.6, 0.2],
+    )
 
     alias_1 = "Douglas Adams"
     print("adding alias", alias_1)
@@ -41,7 +45,7 @@ def create_kb(vocab):
 
 
 def add_el(kb, nlp):
-    el_pipe = nlp.create_pipe(name='entity_linker', config={"kb": kb})
+    el_pipe = nlp.create_pipe(name="entity_linker", config={"kb": kb})
     nlp.add_pipe(el_pipe, last=True)
 
     for alias in ["Douglas Adams", "Douglas"]:
@@ -51,9 +55,11 @@ def add_el(kb, nlp):
         for c in candidates:
             print(" ", c.entity_, c.prior_prob)
 
-    text = "In The Hitchhiker's Guide to the Galaxy, written by Douglas Adams, " \
-           "Douglas reminds us to always bring our towel. " \
-           "The main character in Doug's novel is called Arthur Dent."
+    text = (
+        "In The Hitchhiker's Guide to the Galaxy, written by Douglas Adams, "
+        "Douglas reminds us to always bring our towel. "
+        "The main character in Doug's novel is called Arthur Dent."
+    )
     doc = nlp(text)
 
     print()
@@ -66,6 +72,6 @@ def add_el(kb, nlp):
 
 
 if __name__ == "__main__":
-    nlp = spacy.load('en_core_web_sm')
+    nlp = spacy.load("en_core_web_sm")
     my_kb = create_kb(nlp.vocab)
     add_el(my_kb, nlp)

@@ -50,6 +50,7 @@ class RecursiveDescent(AbstractParse):
 
     @see: C{nltk.cfg}
     """
+
     def __init__(self, grammar, trace=0):
         """
         Create a new C{RecursiveDescent}, that uses C{grammar}
@@ -157,7 +158,7 @@ class RecursiveDescent(AbstractParse):
         """
 
         tree_leaf = tree[frontier[0]]
-        if (len(rtext) > 0 and tree_leaf == rtext[0]):
+        if len(rtext) > 0 and tree_leaf == rtext[0]:
             # If it's a terminal that matches rtext[0], then substitute
             # in the token, and continue parsing.
             newtree = tree.copy(deep=True)
@@ -202,10 +203,12 @@ class RecursiveDescent(AbstractParse):
             all subtrees that have not yet been expanded, and all
             leaves that have not yet been matched.
         """
-        
-        if production is None: productions = self._grammar.productions()
-        else: productions = [production]
-        
+
+        if production is None:
+            productions = self._grammar.productions()
+        else:
+            productions = [production]
+
         parses = []
         for production in productions:
             lhs = production.lhs().symbol()
@@ -216,12 +219,14 @@ class RecursiveDescent(AbstractParse):
                 else:
                     newtree = tree.copy(deep=True)
                     newtree[frontier[0]] = subtree
-                new_frontier = [frontier[0]+(i,) for i in
-                                range(len(production.rhs()))]
+                new_frontier = [
+                    frontier[0] + (i,) for i in range(len(production.rhs()))
+                ]
                 if self._trace:
                     self._trace_expand(newtree, new_frontier, production)
-                parses += self._parse(remaining_text, newtree,
-                                      new_frontier + frontier[1:])
+                parses += self._parse(
+                    remaining_text, newtree, new_frontier + frontier[1:]
+                )
         return parses
 
     def _production_to_tree(self, production):
@@ -251,7 +256,7 @@ class RecursiveDescent(AbstractParse):
                 # This will be matched.
                 children.append(elt)
         return Tree(production.lhs().symbol(), children)
-    
+
     def trace(self, trace=2):
         """
         Set the level of tracing output that should be generated when
@@ -273,17 +278,19 @@ class RecursiveDescent(AbstractParse):
 
         @rtype: C{None}
         """
-        
-        if treeloc == (): print("*", end=' ')
+
+        if treeloc == ():
+            print("*", end=" ")
         if isinstance(tree, Tree):
-            if len(tree) == 0: print(repr(cfg.Nonterminal(tree.node)), end=' ')
+            if len(tree) == 0:
+                print(repr(cfg.Nonterminal(tree.node)), end=" ")
             for i in range(len(tree)):
                 if treeloc is not None and i == treeloc[0]:
                     self._trace_fringe(tree[i], treeloc[1:])
                 else:
                     self._trace_fringe(tree[i])
         else:
-            print(repr(tree), end=' ')
+            print(repr(tree), end=" ")
 
     def _trace_tree(self, tree, frontier, operation):
         """
@@ -293,34 +300,50 @@ class RecursiveDescent(AbstractParse):
             generated the current state.
         @rtype: C{None}
         """
-        if self._trace == 2: print('  %c [' % operation, end=' ')
-        else: print('    [', end=' ')
-        if len(frontier) > 0: self._trace_fringe(tree, frontier[0])
-        else: self._trace_fringe(tree)
-        print(']')
+        if self._trace == 2:
+            print("  %c [" % operation, end=" ")
+        else:
+            print("    [", end=" ")
+        if len(frontier) > 0:
+            self._trace_fringe(tree, frontier[0])
+        else:
+            self._trace_fringe(tree)
+        print("]")
 
     def _trace_start(self, tree, frontier, text):
-        print('Parsing %r' % ' '.join(text))
-        if self._trace > 2: print('Start:')
-        if self._trace > 1: self._trace_tree(tree, frontier, ' ')
-        
+        print("Parsing %r" % " ".join(text))
+        if self._trace > 2:
+            print("Start:")
+        if self._trace > 1:
+            self._trace_tree(tree, frontier, " ")
+
     def _trace_expand(self, tree, frontier, production):
-        if self._trace > 2: print('Expand: %s' % production)
-        if self._trace > 1: self._trace_tree(tree, frontier, 'E')
+        if self._trace > 2:
+            print("Expand: %s" % production)
+        if self._trace > 1:
+            self._trace_tree(tree, frontier, "E")
 
     def _trace_match(self, tree, frontier, tok):
-        if self._trace > 2: print('Match: %r' % tok)
-        if self._trace > 1: self._trace_tree(tree, frontier, 'M')
+        if self._trace > 2:
+            print("Match: %r" % tok)
+        if self._trace > 1:
+            self._trace_tree(tree, frontier, "M")
 
     def _trace_succeed(self, tree, frontier):
-        if self._trace > 2: print('GOOD PARSE:')
-        if self._trace == 1: print('Found a parse:\n%s' % tree)
-        if self._trace > 1: self._trace_tree(tree, frontier, '+')
+        if self._trace > 2:
+            print("GOOD PARSE:")
+        if self._trace == 1:
+            print("Found a parse:\n%s" % tree)
+        if self._trace > 1:
+            self._trace_tree(tree, frontier, "+")
 
     def _trace_backtrack(self, tree, frontier, toks=None):
         if self._trace > 2:
-            if toks: print('Backtrack: %r match failed' % toks[0])
-            else: print('Backtrack')
+            if toks:
+                print("Backtrack: %r match failed" % toks[0])
+            else:
+                print("Backtrack")
+
 
 ##//////////////////////////////////////////////////////
 ##  Stepping Recursive Descent Parser
@@ -349,6 +372,7 @@ class SteppingRecursiveDescent(RecursiveDescent):
         or not to match a token.
     @see: C{nltk.cfg}
     """
+
     def __init__(self, grammar, trace=0):
         self._grammar = grammar
         self._trace = trace
@@ -365,16 +389,17 @@ class SteppingRecursiveDescent(RecursiveDescent):
     # something nicer when we get the chance.
     def _freeze(self, tree):
         c = tree.copy()
-#        for pos in c.treepositions('leaves'):
-#            c[pos] = c[pos].freeze()
+        #        for pos in c.treepositions('leaves'):
+        #            c[pos] = c[pos].freeze()
         return ImmutableTree.convert(c)
-    
+
     def get_parse_list(self, tokens):
         self.initialize(tokens)
-        while self.step() is not None: pass
+        while self.step() is not None:
+            pass
 
         return self.parses()
-        
+
     def initialize(self, tokens):
         """
         Start parsing a given text.  This sets the parser's tree to
@@ -392,7 +417,7 @@ class SteppingRecursiveDescent(RecursiveDescent):
         self._parses = []
         if self._trace:
             self._trace_start(self._tree, self._frontier, self._rtext)
-    
+
     def remaining_text(self):
         """
         @return: The portion of the text that is not yet covered by the
@@ -436,12 +461,14 @@ class SteppingRecursiveDescent(RecursiveDescent):
         # Try matching (if we haven't already)
         if self.untried_match():
             token = self.match()
-            if token is not None: return token
+            if token is not None:
+                return token
 
         # Try expanding.
         production = self.expand()
-        if production is not None: return production
-            
+        if production is not None:
+            return production
+
         # Try backtracking
         if self.backtrack():
             self._trace_backtrack(self._tree, self._frontier)
@@ -475,7 +502,8 @@ class SteppingRecursiveDescent(RecursiveDescent):
         # If they didn't specify a production, check all untried ones.
         if production is None:
             productions = self.untried_expandable_productions()
-        else: productions = [production]
+        else:
+            productions = [production]
 
         parses = []
         for prod in productions:
@@ -499,7 +527,7 @@ class SteppingRecursiveDescent(RecursiveDescent):
             performed.  If no match was performed, return C{None}
         @rtype: C{String} or C{None}
         """
-        
+
         # Record that we've tried matching this token.
         tok = self._rtext[0]
         self._tried_m.setdefault(self._freeze(self._tree), []).append(tok)
@@ -527,7 +555,8 @@ class SteppingRecursiveDescent(RecursiveDescent):
         @return: true if an operation was successfully undone.
         @rtype: C{boolean}
         """
-        if len(self._history) == 0: return 0
+        if len(self._history) == 0:
+            return 0
         (self._rtext, self._tree, self._frontier) = self._history.pop()
         return 1
 
@@ -538,14 +567,17 @@ class SteppingRecursiveDescent(RecursiveDescent):
         @rtype: C{list} of C{Production}
         """
         # Make sure we *can* expand.
-        if len(self._frontier) == 0: return []
+        if len(self._frontier) == 0:
+            return []
         frontier_child = self._tree[self._frontier[0]]
-        if (len(self._frontier) == 0 or
-            not isinstance(frontier_child, Tree)):
+        if len(self._frontier) == 0 or not isinstance(frontier_child, Tree):
             return []
 
-        return [p for p in self._grammar.productions()
-                if p.lhs().symbol() == frontier_child.node]
+        return [
+            p
+            for p in self._grammar.productions()
+            if p.lhs().symbol() == frontier_child.node
+        ]
 
     def untried_expandable_productions(self):
         """
@@ -553,10 +585,9 @@ class SteppingRecursiveDescent(RecursiveDescent):
             expansions are available for the current parser state.
         @rtype: C{list} of C{Production}
         """
-        
+
         tried_expansions = self._tried_e.get(self._freeze(self._tree), [])
-        return [p for p in self.expandable_productions()
-                if p not in tried_expansions]
+        return [p for p in self.expandable_productions() if p not in tried_expansions]
 
     def untried_match(self):
         """
@@ -564,10 +595,11 @@ class SteppingRecursiveDescent(RecursiveDescent):
             that has not yet been matched.
         @rtype: C{boolean}
         """
-        
-        if len(self._rtext) == 0: return 0
+
+        if len(self._rtext) == 0:
+            return 0
         tried_matches = self._tried_m.get(self._freeze(self._tree), [])
-        return (self._rtext[0] not in tried_matches)
+        return self._rtext[0] not in tried_matches
 
     def currently_complete(self):
         """
@@ -575,7 +607,7 @@ class SteppingRecursiveDescent(RecursiveDescent):
             complete parse.
         @rtype: C{boolean}
         """
-        return (len(self._frontier) == 0 and len(self._rtext) == 0)
+        return len(self._frontier) == 0 and len(self._rtext) == 0
 
     def _parse(self, remaining_text, tree, frontier):
         """
@@ -592,16 +624,16 @@ class SteppingRecursiveDescent(RecursiveDescent):
         @return: C{[1]}
         @rtype: C{list} of C{int}
         """
-        self._history.append( (self._rtext, self._tree, self._frontier) )
+        self._history.append((self._rtext, self._tree, self._frontier))
         self._rtext = remaining_text
         self._tree = tree
         self._frontier = frontier
 
         # Is it a good parse?  If so, record it.
-        if (len(frontier) == 0 and len(remaining_text) == 0):
+        if len(frontier) == 0 and len(remaining_text) == 0:
             self._parses.append(tree)
             self._trace_succeed(self._tree, self._frontier)
-        
+
         return [1]
 
     def parses(self):
@@ -612,8 +644,7 @@ class SteppingRecursiveDescent(RecursiveDescent):
         """
         return self._parses
 
-
-# copied from nltk.parser
+    # copied from nltk.parser
 
     def set_grammar(self, grammar):
         """
@@ -623,10 +654,12 @@ class SteppingRecursiveDescent(RecursiveDescent):
         @type grammar: C{CFG}
         """
         self._grammar = grammar
-        
+
+
 ##//////////////////////////////////////////////////////
 ##  Demonstration Code
 ##//////////////////////////////////////////////////////
+
 
 def demo():
     """
@@ -636,30 +669,34 @@ def demo():
     from nodebox_linguistics_extended.parser.nltk_lite.parse import cfg
 
     # Define some nonterminals
-    S, VP, NP, PP = cfg.nonterminals('S, VP, NP, PP')
-    V, N, P, Name, Det = cfg.nonterminals('V, N, P, Name, Det')
+    S, VP, NP, PP = cfg.nonterminals("S, VP, NP, PP")
+    V, N, P, Name, Det = cfg.nonterminals("V, N, P, Name, Det")
 
     # Define a grammar.
     productions = (
         # Syntactic Productions
-        cfg.Production(S, [NP, 'saw', NP]),
+        cfg.Production(S, [NP, "saw", NP]),
         cfg.Production(S, [NP, VP]),
         cfg.Production(NP, [Det, N]),
         cfg.Production(VP, [V, NP, PP]),
         cfg.Production(NP, [Det, N, PP]),
         cfg.Production(PP, [P, NP]),
-
         # Lexical Productions
-        cfg.Production(NP, ['I']),   cfg.Production(Det, ['the']),
-        cfg.Production(Det, ['a']),  cfg.Production(N, ['man']),
-        cfg.Production(V, ['saw']),  cfg.Production(P, ['in']),
-        cfg.Production(P, ['with']), cfg.Production(N, ['park']),
-        cfg.Production(N, ['dog']),  cfg.Production(N, ['telescope'])
-        )
+        cfg.Production(NP, ["I"]),
+        cfg.Production(Det, ["the"]),
+        cfg.Production(Det, ["a"]),
+        cfg.Production(N, ["man"]),
+        cfg.Production(V, ["saw"]),
+        cfg.Production(P, ["in"]),
+        cfg.Production(P, ["with"]),
+        cfg.Production(N, ["park"]),
+        cfg.Production(N, ["dog"]),
+        cfg.Production(N, ["telescope"]),
+    )
     grammar = cfg.Grammar(S, productions)
 
     # Tokenize a sample sentence.
-    sent = list(tokenize.whitespace('I saw a man in the park'))
+    sent = list(tokenize.whitespace("I saw a man in the park"))
 
     # Define a list of parsers.
     parser = RecursiveDescent(grammar)
@@ -667,4 +704,6 @@ def demo():
     for p in parser.get_parse_list(sent):
         print(p)
 
-if __name__ == '__main__': demo()
+
+if __name__ == "__main__":
+    demo()

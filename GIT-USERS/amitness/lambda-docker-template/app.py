@@ -1,6 +1,7 @@
 import json
 import torch
 
+
 def handler(event, context):
     # Request body is always stringified
     data = json.loads(event["body"])

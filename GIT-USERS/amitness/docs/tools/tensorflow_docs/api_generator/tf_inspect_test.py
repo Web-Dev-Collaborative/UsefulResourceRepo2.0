@@ -27,307 +27,306 @@ from tensorflow_docs.api_generator import tf_inspect
 
 
 class TfInspectTest(absltest.TestCase):
+    def testGetArgSpecOnPartialPositionalArgumentOnly(self):
+        """Tests getargspec on partial function with only positional arguments."""
 
-  def testGetArgSpecOnPartialPositionalArgumentOnly(self):
-    """Tests getargspec on partial function with only positional arguments."""
+        def func(m, n):
+            return 2 * m + n
 
-    def func(m, n):
-      return 2 * m + n
+        partial_func = functools.partial(func, 7)
+        argspec = tf_inspect.ArgSpec(
+            args=["n"], varargs=None, keywords=None, defaults=None
+        )
 
-    partial_func = functools.partial(func, 7)
-    argspec = tf_inspect.ArgSpec(
-        args=['n'], varargs=None, keywords=None, defaults=None)
+        self.assertEqual(argspec, tf_inspect.getargspec(partial_func))
 
-    self.assertEqual(argspec, tf_inspect.getargspec(partial_func))
+    def testGetArgSpecOnPartialInvalidArgspec(self):
+        """Tests getargspec on partial function that doesn't have valid argspec."""
 
-  def testGetArgSpecOnPartialInvalidArgspec(self):
-    """Tests getargspec on partial function that doesn't have valid argspec."""
+        def func(m, n, l, k=4):
+            return 2 * m + l + n * k
 
-    def func(m, n, l, k=4):
-      return 2 * m + l + n * k
+        partial_func = functools.partial(func, n=7)
 
-    partial_func = functools.partial(func, n=7)
+        with self.assertRaisesRegexp(ValueError, "Function has keyword-only.*"):
+            tf_inspect.getargspec(partial_func)
 
-    with self.assertRaisesRegexp(ValueError, 'Function has keyword-only.*'):
-      tf_inspect.getargspec(partial_func)
+    def testGetArgSpecOnPartialValidArgspec(self):
+        """Tests getargspec on partial function with valid argspec."""
 
-  def testGetArgSpecOnPartialValidArgspec(self):
-    """Tests getargspec on partial function with valid argspec."""
+        def func(m, n, l, k=4):
+            return 2 * m + l + n * k
 
-    def func(m, n, l, k=4):
-      return 2 * m + l + n * k
+        partial_func = functools.partial(func, n=7, l=2)
+        argspec = tf_inspect.FullArgSpec(
+            args=["m"],
+            varargs=None,
+            varkw=None,
+            defaults=None,
+            kwonlyargs=["n", "l", "k"],
+            kwonlydefaults={"n": 7, "l": 2, "k": 4},
+            annotations={},
+        )
 
-    partial_func = functools.partial(func, n=7, l=2)
-    argspec = tf_inspect.FullArgSpec(
-        args=['m'],
-        varargs=None,
-        varkw=None,
-        defaults=None,
-        kwonlyargs=['n', 'l', 'k'],
-        kwonlydefaults={
-            'n': 7,
-            'l': 2,
-            'k': 4
-        },
-        annotations={})
+        self.assertEqual(argspec, tf_inspect.getfullargspec(partial_func))
+        with self.assertRaisesRegexp(ValueError, "Function has keyword-only.*"):
+            tf_inspect.getargspec(partial_func)
 
-    self.assertEqual(argspec, tf_inspect.getfullargspec(partial_func))
-    with self.assertRaisesRegexp(ValueError, 'Function has keyword-only.*'):
-      tf_inspect.getargspec(partial_func)
+    def testGetArgSpecOnPartialNoArgumentsLeft(self):
+        """Tests getargspec on partial function that prunes all arguments."""
 
-  def testGetArgSpecOnPartialNoArgumentsLeft(self):
-    """Tests getargspec on partial function that prunes all arguments."""
+        def func(m, n):
+            return 2 * m + n
 
-    def func(m, n):
-      return 2 * m + n
+        partial_func = functools.partial(func, 7, 10)
+        argspec = tf_inspect.ArgSpec(
+            args=[], varargs=None, keywords=None, defaults=None
+        )
 
-    partial_func = functools.partial(func, 7, 10)
-    argspec = tf_inspect.ArgSpec(
-        args=[], varargs=None, keywords=None, defaults=None)
+        self.assertEqual(argspec, tf_inspect.getargspec(partial_func))
 
-    self.assertEqual(argspec, tf_inspect.getargspec(partial_func))
+    def testGetArgSpecOnPartialKeywordArgument(self):
+        """Tests getargspec on partial function that prunes some arguments."""
 
-  def testGetArgSpecOnPartialKeywordArgument(self):
-    """Tests getargspec on partial function that prunes some arguments."""
+        def func(m, n):
+            return 2 * m + n
 
-    def func(m, n):
-      return 2 * m + n
+        partial_func = functools.partial(func, n=7)
+        argspec = tf_inspect.FullArgSpec(
+            args=["m"],
+            varargs=None,
+            varkw=None,
+            defaults=None,
+            kwonlyargs=["n"],
+            kwonlydefaults={"n": 7},
+            annotations={},
+        )
 
-    partial_func = functools.partial(func, n=7)
-    argspec = tf_inspect.FullArgSpec(
-        args=['m'],
-        varargs=None,
-        varkw=None,
-        defaults=None,
-        kwonlyargs=['n'],
-        kwonlydefaults={'n': 7},
-        annotations={})
+        self.assertEqual(argspec, tf_inspect.getfullargspec(partial_func))
 
-    self.assertEqual(argspec, tf_inspect.getfullargspec(partial_func))
+        with self.assertRaisesRegexp(ValueError, "Function has keyword-only.*"):
+            tf_inspect.getargspec(partial_func)
 
-    with self.assertRaisesRegexp(ValueError, 'Function has keyword-only.*'):
-      tf_inspect.getargspec(partial_func)
+    def testGetArgSpecOnPartialKeywordArgumentWithDefaultValue(self):
+        """Tests getargspec on partial function that prunes argument by keyword."""
 
-  def testGetArgSpecOnPartialKeywordArgumentWithDefaultValue(self):
-    """Tests getargspec on partial function that prunes argument by keyword."""
+        def func(m=1, n=2):
+            return 2 * m + n
 
-    def func(m=1, n=2):
-      return 2 * m + n
+        partial_func = functools.partial(func, n=7)
+        argspec = tf_inspect.FullArgSpec(
+            args=["m"],
+            varargs=None,
+            varkw=None,
+            defaults=(1,),
+            kwonlyargs=["n"],
+            kwonlydefaults={"n": 7},
+            annotations={},
+        )
 
-    partial_func = functools.partial(func, n=7)
-    argspec = tf_inspect.FullArgSpec(
-        args=['m'],
-        varargs=None,
-        varkw=None,
-        defaults=(1,),
-        kwonlyargs=['n'],
-        kwonlydefaults={'n': 7},
-        annotations={})
+        self.assertEqual(argspec, tf_inspect.getfullargspec(partial_func))
 
-    self.assertEqual(argspec, tf_inspect.getfullargspec(partial_func))
+        with self.assertRaisesRegexp(ValueError, "Function has keyword-only.*"):
+            tf_inspect.getargspec(partial_func)
 
-    with self.assertRaisesRegexp(ValueError, 'Function has keyword-only.*'):
-      tf_inspect.getargspec(partial_func)
+    def testGetArgSpecOnPartialWithVarargs(self):
+        """Tests getargspec on partial function with variable arguments."""
 
-  def testGetArgSpecOnPartialWithVarargs(self):
-    """Tests getargspec on partial function with variable arguments."""
+        def func(m, *arg):
+            return m + len(arg)
 
-    def func(m, *arg):
-      return m + len(arg)
+        partial_func = functools.partial(func, 7, 8)
+        argspec = tf_inspect.ArgSpec(
+            args=[], varargs="arg", keywords=None, defaults=None
+        )
 
-    partial_func = functools.partial(func, 7, 8)
-    argspec = tf_inspect.ArgSpec(
-        args=[], varargs='arg', keywords=None, defaults=None)
+        self.assertEqual(argspec, tf_inspect.getargspec(partial_func))
 
-    self.assertEqual(argspec, tf_inspect.getargspec(partial_func))
+    def testGetArgSpecOnPartialWithVarkwargs(self):
+        """Tests getargspec on partial function with variable keyword arguments."""
 
-  def testGetArgSpecOnPartialWithVarkwargs(self):
-    """Tests getargspec on partial function with variable keyword arguments."""
+        def func(m, n, **kwarg):
+            return m * n + len(kwarg)
 
-    def func(m, n, **kwarg):
-      return m * n + len(kwarg)
+        partial_func = functools.partial(func, 7)
+        argspec = tf_inspect.ArgSpec(
+            args=["n"], varargs=None, keywords="kwarg", defaults=None
+        )
 
-    partial_func = functools.partial(func, 7)
-    argspec = tf_inspect.ArgSpec(
-        args=['n'], varargs=None, keywords='kwarg', defaults=None)
+        self.assertEqual(argspec, tf_inspect.getargspec(partial_func))
 
-    self.assertEqual(argspec, tf_inspect.getargspec(partial_func))
+    def testGetArgSpecOnCallableObject(self):
+        class Callable(object):
+            def __call__(self, a, b=1, c="hello"):
+                pass
 
-  def testGetArgSpecOnCallableObject(self):
+        argspec = tf_inspect.ArgSpec(
+            args=["self", "a", "b", "c"],
+            varargs=None,
+            keywords=None,
+            defaults=(1, "hello"),
+        )
 
-    class Callable(object):
+        test_obj = Callable()
+        self.assertEqual(argspec, tf_inspect.getargspec(test_obj))
 
-      def __call__(self, a, b=1, c='hello'):
-        pass
+    def testGetArgSpecOnInitClass(self):
+        class InitClass(object):
+            def __init__(self, a, b=1, c="hello"):
+                pass
 
-    argspec = tf_inspect.ArgSpec(
-        args=['self', 'a', 'b', 'c'],
-        varargs=None,
-        keywords=None,
-        defaults=(1, 'hello'))
+        argspec = tf_inspect.ArgSpec(
+            args=["self", "a", "b", "c"],
+            varargs=None,
+            keywords=None,
+            defaults=(1, "hello"),
+        )
 
-    test_obj = Callable()
-    self.assertEqual(argspec, tf_inspect.getargspec(test_obj))
+        self.assertEqual(argspec, tf_inspect.getargspec(InitClass))
 
-  def testGetArgSpecOnInitClass(self):
+    def testGetArgSpecOnNewClass(self):
+        class NewClass(object):
+            def __new__(cls, a, b=1, c="hello"):
+                pass
 
-    class InitClass(object):
+        argspec = tf_inspect.ArgSpec(
+            args=["cls", "a", "b", "c"],
+            varargs=None,
+            keywords=None,
+            defaults=(1, "hello"),
+        )
 
-      def __init__(self, a, b=1, c='hello'):
-        pass
+        self.assertEqual(argspec, tf_inspect.getargspec(NewClass))
 
-    argspec = tf_inspect.ArgSpec(
-        args=['self', 'a', 'b', 'c'],
-        varargs=None,
-        keywords=None,
-        defaults=(1, 'hello'))
+    def testGetFullArgsSpecForPartial(self):
+        def func(a, b):
+            del a, b
 
-    self.assertEqual(argspec, tf_inspect.getargspec(InitClass))
+        partial_function = functools.partial(func, 1)
+        argspec = tf_inspect.FullArgSpec(
+            args=["b"],
+            varargs=None,
+            varkw=None,
+            defaults=None,
+            kwonlyargs=[],
+            kwonlydefaults=None,
+            annotations={},
+        )
 
-  def testGetArgSpecOnNewClass(self):
+        self.assertEqual(argspec, tf_inspect.getfullargspec(partial_function))
 
-    class NewClass(object):
+    def testGetFullArgSpecOnPartialNoArgumentsLeft(self):
+        """Tests getfullargspec on partial function that prunes all arguments."""
 
-      def __new__(cls, a, b=1, c='hello'):
-        pass
+        def func(m, n):
+            return 2 * m + n
 
-    argspec = tf_inspect.ArgSpec(
-        args=['cls', 'a', 'b', 'c'],
-        varargs=None,
-        keywords=None,
-        defaults=(1, 'hello'))
+        partial_func = functools.partial(func, 7, 10)
+        argspec = tf_inspect.FullArgSpec(
+            args=[],
+            varargs=None,
+            varkw=None,
+            defaults=None,
+            kwonlyargs=[],
+            kwonlydefaults=None,
+            annotations={},
+        )
 
-    self.assertEqual(argspec, tf_inspect.getargspec(NewClass))
+        self.assertEqual(argspec, tf_inspect.getfullargspec(partial_func))
 
-  def testGetFullArgsSpecForPartial(self):
+    def testGetFullArgSpecOnPartialWithVarargs(self):
+        """Tests getfullargspec on partial function with variable arguments."""
 
-    def func(a, b):
-      del a, b
+        def func(m, *arg):
+            return m + len(arg)
 
-    partial_function = functools.partial(func, 1)
-    argspec = tf_inspect.FullArgSpec(
-        args=['b'],
-        varargs=None,
-        varkw=None,
-        defaults=None,
-        kwonlyargs=[],
-        kwonlydefaults=None,
-        annotations={})
+        partial_func = functools.partial(func, 7, 8)
+        argspec = tf_inspect.FullArgSpec(
+            args=[],
+            varargs="arg",
+            varkw=None,
+            defaults=None,
+            kwonlyargs=[],
+            kwonlydefaults=None,
+            annotations={},
+        )
 
-    self.assertEqual(argspec, tf_inspect.getfullargspec(partial_function))
+        self.assertEqual(argspec, tf_inspect.getfullargspec(partial_func))
 
-  def testGetFullArgSpecOnPartialNoArgumentsLeft(self):
-    """Tests getfullargspec on partial function that prunes all arguments."""
-
-    def func(m, n):
-      return 2 * m + n
-
-    partial_func = functools.partial(func, 7, 10)
-    argspec = tf_inspect.FullArgSpec(
-        args=[],
-        varargs=None,
-        varkw=None,
-        defaults=None,
-        kwonlyargs=[],
-        kwonlydefaults=None,
-        annotations={})
-
-    self.assertEqual(argspec, tf_inspect.getfullargspec(partial_func))
-
-  def testGetFullArgSpecOnPartialWithVarargs(self):
-    """Tests getfullargspec on partial function with variable arguments."""
-
-    def func(m, *arg):
-      return m + len(arg)
-
-    partial_func = functools.partial(func, 7, 8)
-    argspec = tf_inspect.FullArgSpec(
-        args=[],
-        varargs='arg',
-        varkw=None,
-        defaults=None,
-        kwonlyargs=[],
-        kwonlydefaults=None,
-        annotations={})
-
-    self.assertEqual(argspec, tf_inspect.getfullargspec(partial_func))
-
-  def testGetFullArgSpecOnPartialWithVarkwargs(self):
-    """Tests getfullargspec.
+    def testGetFullArgSpecOnPartialWithVarkwargs(self):
+        """Tests getfullargspec.
 
     Tests on partial function with variable keyword arguments.
     """
 
-    def func(m, n, **kwarg):
-      return m * n + len(kwarg)
+        def func(m, n, **kwarg):
+            return m * n + len(kwarg)
 
-    partial_func = functools.partial(func, 7)
-    argspec = tf_inspect.FullArgSpec(
-        args=['n'],
-        varargs=None,
-        varkw='kwarg',
-        defaults=None,
-        kwonlyargs=[],
-        kwonlydefaults=None,
-        annotations={})
+        partial_func = functools.partial(func, 7)
+        argspec = tf_inspect.FullArgSpec(
+            args=["n"],
+            varargs=None,
+            varkw="kwarg",
+            defaults=None,
+            kwonlyargs=[],
+            kwonlydefaults=None,
+            annotations={},
+        )
 
-    self.assertEqual(argspec, tf_inspect.getfullargspec(partial_func))
+        self.assertEqual(argspec, tf_inspect.getfullargspec(partial_func))
 
-  def testGetFullArgSpecOnCallableObject(self):
+    def testGetFullArgSpecOnCallableObject(self):
+        class Callable(object):
+            def __call__(self, a, b=1, c="hello"):
+                pass
 
-    class Callable(object):
+        argspec = tf_inspect.FullArgSpec(
+            args=["self", "a", "b", "c"],
+            varargs=None,
+            varkw=None,
+            defaults=(1, "hello"),
+            kwonlyargs=[],
+            kwonlydefaults=None,
+            annotations={},
+        )
 
-      def __call__(self, a, b=1, c='hello'):
-        pass
+        test_obj = Callable()
+        self.assertEqual(argspec, tf_inspect.getfullargspec(test_obj))
 
-    argspec = tf_inspect.FullArgSpec(
-        args=['self', 'a', 'b', 'c'],
-        varargs=None,
-        varkw=None,
-        defaults=(1, 'hello'),
-        kwonlyargs=[],
-        kwonlydefaults=None,
-        annotations={})
+    def testGetFullArgSpecOnInitClass(self):
+        class InitClass(object):
+            def __init__(self, a, b=1, c="hello"):
+                pass
 
-    test_obj = Callable()
-    self.assertEqual(argspec, tf_inspect.getfullargspec(test_obj))
+        argspec = tf_inspect.FullArgSpec(
+            args=["self", "a", "b", "c"],
+            varargs=None,
+            varkw=None,
+            defaults=(1, "hello"),
+            kwonlyargs=[],
+            kwonlydefaults=None,
+            annotations={},
+        )
 
-  def testGetFullArgSpecOnInitClass(self):
+        self.assertEqual(argspec, tf_inspect.getfullargspec(InitClass))
 
-    class InitClass(object):
+    def testGetFullArgSpecOnNewClass(self):
+        class NewClass(object):
+            def __new__(cls, a, b=1, c="hello"):
+                pass
 
-      def __init__(self, a, b=1, c='hello'):
-        pass
+        argspec = tf_inspect.FullArgSpec(
+            args=["cls", "a", "b", "c"],
+            varargs=None,
+            varkw=None,
+            defaults=(1, "hello"),
+            kwonlyargs=[],
+            kwonlydefaults=None,
+            annotations={},
+        )
 
-    argspec = tf_inspect.FullArgSpec(
-        args=['self', 'a', 'b', 'c'],
-        varargs=None,
-        varkw=None,
-        defaults=(1, 'hello'),
-        kwonlyargs=[],
-        kwonlydefaults=None,
-        annotations={})
-
-    self.assertEqual(argspec, tf_inspect.getfullargspec(InitClass))
-
-  def testGetFullArgSpecOnNewClass(self):
-
-    class NewClass(object):
-
-      def __new__(cls, a, b=1, c='hello'):
-        pass
-
-    argspec = tf_inspect.FullArgSpec(
-        args=['cls', 'a', 'b', 'c'],
-        varargs=None,
-        varkw=None,
-        defaults=(1, 'hello'),
-        kwonlyargs=[],
-        kwonlydefaults=None,
-        annotations={})
-
-    self.assertEqual(argspec, tf_inspect.getfullargspec(NewClass))
+        self.assertEqual(argspec, tf_inspect.getfullargspec(NewClass))
 
 
-if __name__ == '__main__':
-  absltest.main()
+if __name__ == "__main__":
+    absltest.main()

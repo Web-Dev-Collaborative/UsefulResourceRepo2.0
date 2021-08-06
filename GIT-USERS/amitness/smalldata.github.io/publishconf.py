@@ -7,10 +7,11 @@ from __future__ import unicode_literals
 
 import os
 import sys
+
 sys.path.append(os.curdir)
 from pelicanconf import *
 
-SITEURL = 'https://smalldata.dev'
+SITEURL = "https://smalldata.dev"
 RELATIVE_URLS = False
 
 DELETE_OUTPUT_DIRECTORY = True

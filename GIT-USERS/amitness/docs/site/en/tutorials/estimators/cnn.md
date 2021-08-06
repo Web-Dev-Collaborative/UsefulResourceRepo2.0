@@ -302,8 +302,9 @@ the first convolutional layer, which has a shape of <code>[<em>batch_size</em>,
 
 > Note: As with <code>conv2d()</code>, <code>max_pooling2d()</code> will instead
 > accept a shape of <code>[<em>batch_size</em>, <em>channels</em>,
+>
 > > <em>image_height</em>, <em>image_width</em>]</code> when passed the argument
-> <code>data_format=channels_first</code>.
+> > <code>data_format=channels_first</code>.
 
 The `pool_size` argument specifies the size of the max pooling filter as
 <code>[<em>height</em>, <em>width</em>]</code> (here, `[2, 2]`). If both

@@ -40,16 +40,10 @@ nlp = en_core_web_md.load()
 
 - **Challenge 1: Loss of information**  
   If we calculate the cosine similarity of documents given below using averaged word vectors, the similarity is pretty high even if the second sentence has a single word `It` and doesn't have the same meaning as the first sentence.
-      ```python
-      >>> nlp('It is cool').similarity(nlp('It'))
-      0.8963861908844291
-      ```
+  `python >>> nlp('It is cool').similarity(nlp('It')) 0.8963861908844291 `
 - **Challenge 2: No Respect for Order**  
   In this example, we swap the order of words in a sentence resulting in a sentence with a different meaning. Yet, the similarity obtained from averaged word vectors is 100%.
-      ```python
-      >>> nlp('this is cool').similarity(nlp('is this cool'))
-      1.0
-      ```
+  `python >>> nlp('this is cool').similarity(nlp('is this cool')) 1.0 `
 
 We could fix some of these challenges with hacky manual feature engineering like skipping stop-words, weighting the words by their TF-IDF scores, adding n-grams to respect order when averaging, concatenating embeddings, stacking max pooling and averaged embeddings and so on.
 

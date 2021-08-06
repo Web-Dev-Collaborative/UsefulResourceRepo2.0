@@ -107,7 +107,10 @@ The following is a short tutorial on the available transformations.
 
 from nodebox_linguistics_extended.parser.nltk_lite.parse.tree import Tree
 
-def chomskyNormalForm(tree, factor = "right", horzMarkov = None, vertMarkov = 0, childChar = "|", parentChar = "^"):
+
+def chomskyNormalForm(
+    tree, factor="right", horzMarkov=None, vertMarkov=0, childChar="|", parentChar="^"
+):
     """
     This method can modify a tree in three ways:
       1. Convert a tree into its Chomsky Normal Form (CNF) equivalent -- Every subtree
@@ -135,58 +138,75 @@ def chomskyNormalForm(tree, factor = "right", horzMarkov = None, vertMarkov = 0,
 
     # assume all subtrees have homogeneous children
     # assume all terminals have no siblings
-    
+
     # A semi-hack to have elegant looking code below.  As a result,
     # any subtree with a branching factor greater than 999 will be incorrectly truncated.
-    if horzMarkov == None: horzMarkov = 999
-    
+    if horzMarkov == None:
+        horzMarkov = 999
+
     # Traverse the tree depth-first keeping a list of ancestor nodes to the root.
     # I chose not to use the tree.treepositions() method since it requires
     # two traversals of the tree (one to get the positions, one to iterate
     # over them) and node access time is proportional to the height of the node.
-    # This method is 7x faster which helps when parsing 40,000 sentences.  
+    # This method is 7x faster which helps when parsing 40,000 sentences.
 
     nodeList = [(tree, [tree.node])]
     while nodeList != []:
         node, parent = nodeList.pop()
-        if isinstance(node,Tree):
-  
+        if isinstance(node, Tree):
+
             # parent annotation
             parentString = ""
             originalNode = node.node
-            if vertMarkov != 0 and node != tree and isinstance(node[0],Tree):
+            if vertMarkov != 0 and node != tree and isinstance(node[0], Tree):
                 parentString = "%s<%s>" % (parentChar, "-".join(parent))
                 node.node += parentString
-                parent = [originalNode] + parent[:vertMarkov - 1]
-    
+                parent = [originalNode] + parent[: vertMarkov - 1]
+
             # add children to the agenda before we mess with them
             for child in node:
                 nodeList.append((child, parent))
-           
+
             # chomsky normal form factorization
             if len(node) > 2:
                 childNodes = [child.node for child in node]
                 nodeCopy = node.copy()
-                node[0:] = [] # delete the children
-      
+                node[0:] = []  # delete the children
+
                 curNode = node
                 numChildren = len(nodeCopy)
-                for i in range(1,numChildren - 1):
+                for i in range(1, numChildren - 1):
                     if factor == "right":
-                        newHead = "%s%s<%s>%s" % (originalNode, childChar, "-".join(childNodes[i:min([i+horzMarkov,numChildren])]),parentString) # create new head
+                        newHead = "%s%s<%s>%s" % (
+                            originalNode,
+                            childChar,
+                            "-".join(
+                                childNodes[i : min([i + horzMarkov, numChildren])]
+                            ),
+                            parentString,
+                        )  # create new head
                         newNode = Tree(newHead, [])
                         curNode[0:] = [nodeCopy.pop(0), newNode]
                     else:
-                        newHead = "%s%s<%s>%s" % (originalNode, childChar, "-".join(childNodes[max([numChildren-i-horzMarkov,0]):-i]),parentString)
+                        newHead = "%s%s<%s>%s" % (
+                            originalNode,
+                            childChar,
+                            "-".join(
+                                childNodes[max([numChildren - i - horzMarkov, 0]) : -i]
+                            ),
+                            parentString,
+                        )
                         newNode = Tree(newHead, [])
                         curNode[0:] = [newNode, nodeCopy.pop()]
-        
-                    curNode = newNode
-      
-                curNode[0:] = [child for child in nodeCopy]
-        
 
-def unChomskyNormalForm(tree, expandUnary = True, childChar = "|", parentChar = "^", unaryChar = "+"):
+                    curNode = newNode
+
+                curNode[0:] = [child for child in nodeCopy]
+
+
+def unChomskyNormalForm(
+    tree, expandUnary=True, childChar="|", parentChar="^", unaryChar="+"
+):
     """
     This method modifies the tree in three ways:
       1. Transforms a tree in Chomsky Normal Form back to its original structure (branching greater than two)
@@ -204,12 +224,12 @@ def unChomskyNormalForm(tree, expandUnary = True, childChar = "|", parentChar = 
     @param unaryChar: A string joining two non-terminals in a unary production (default = "+")
     @type  unaryChar: C{string}  
     """
-    
+
     # Traverse the tree-depth first keeping a pointer to the parent for modification purposes.
-    nodeList = [(tree,[])]
+    nodeList = [(tree, [])]
     while nodeList != []:
-        node,parent = nodeList.pop()
-        if isinstance(node,Tree):
+        node, parent = nodeList.pop()
+        if isinstance(node, Tree):
             # if the node contains the 'childChar' character it means that
             # it is an artificial node and can be removed, although we still need
             # to move its children to its parent
@@ -221,11 +241,11 @@ def unChomskyNormalForm(tree, expandUnary = True, childChar = "|", parentChar = 
                 # means the grammar was left factored.  We must insert the children
                 # at the beginning of the parent's children
                 if nodeIndex == 0:
-                    parent.insert(0,node[0])
-                    parent.insert(1,node[1])
+                    parent.insert(0, node[0])
+                    parent.insert(1, node[1])
                 else:
-                    parent.extend([node[0],node[1]])
-                
+                    parent.extend([node[0], node[1]])
+
                 # parent is now the current node so the children of parent will be added to the agenda
                 node = parent
             else:
@@ -233,20 +253,20 @@ def unChomskyNormalForm(tree, expandUnary = True, childChar = "|", parentChar = 
                 if parentIndex != -1:
                     # strip the node name of the parent annotation
                     node.node = node.node[:parentIndex]
-                  
+
                 # expand collapsed unary productions
                 if expandUnary == True:
                     unaryIndex = node.node.find(unaryChar)
                     if unaryIndex != -1:
-                        newNode = Tree(node.node[unaryIndex + 1:], [i for i in node])
+                        newNode = Tree(node.node[unaryIndex + 1 :], [i for i in node])
                         node.node = node.node[:unaryIndex]
                         node[0:] = [newNode]
-                      
+
             for child in node:
-                nodeList.append((child,node))
+                nodeList.append((child, node))
 
 
-def collapseUnary(tree, collapsePOS = False, collapseRoot = False, joinChar = "+"):
+def collapseUnary(tree, collapsePOS=False, collapseRoot=False, joinChar="+"):
     """
     Collapse subtrees with a single child (ie. unary productions)
     into a new non-terminal (Tree node) joined by 'joinChar'.
@@ -267,7 +287,7 @@ def collapseUnary(tree, collapsePOS = False, collapseRoot = False, joinChar = "+
     @param joinChar: A string used to connect collapsed node values (default = "+")
     @type  joinChar: C{string}
     """
-    
+
     if collapseRoot == False and isinstance(tree, Tree) and len(tree) == 1:
         nodeList = [tree[0]]
     else:
@@ -276,17 +296,21 @@ def collapseUnary(tree, collapsePOS = False, collapseRoot = False, joinChar = "+
     # depth-first traversal of tree
     while nodeList != []:
         node = nodeList.pop()
-        if isinstance(node,Tree):  
-            if len(node) == 1 and isinstance(node[0], Tree) and (collapsePOS == True or isinstance(node[0,0], Tree)):
+        if isinstance(node, Tree):
+            if (
+                len(node) == 1
+                and isinstance(node[0], Tree)
+                and (collapsePOS == True or isinstance(node[0, 0], Tree))
+            ):
                 node.node += joinChar + node[0].node
                 node[0:] = [child for child in node[0]]
-                # since we assigned the child's children to the current node, 
+                # since we assigned the child's children to the current node,
                 # evaluate the current node again
-                nodeList.append(node) 
+                nodeList.append(node)
             else:
                 for child in node:
-                    nodeList.append(child) 
-          
+                    nodeList.append(child)
+
 
 def toTreebank(tree):
     """
@@ -294,10 +318,11 @@ def toTreebank(tree):
     """
     return _toTreebank(tree).strip()
 
+
 def _toTreebank(tree):
     s = " (%s" % tree.node
     for child in tree:
-        if isinstance(child,Tree):
+        if isinstance(child, Tree):
             s += _toTreebank(child)
         else:
             s += " " + child
@@ -308,40 +333,43 @@ def _toTreebank(tree):
 # Demonstration
 #################################################################
 
+
 def demo():
     """
     A demonstration showing how each tree transform can be used.
-    """  
-      
+    """
+
     from nodebox_linguistics_extended.parser.nltk_lite.draw.tree import draw_trees
     from nodebox_linguistics_extended.parser.nltk_lite.parse import bracket_parse
     from nodebox_linguistics_extended.parser.nltk_lite.parse import treetransforms
     from copy import deepcopy
-    
+
     # original tree from WSJ bracketed text
     sentence = "(TOP (S (S (VP (VBN Turned) (ADVP (RB loose)) (PP (IN in) (NP (NP (NNP Shane) (NNP Longman) (POS 's)) (NN trading) (NN room))))) (, ,) (NP (DT the) (NN yuppie) (NNS dealers)) (VP (AUX do) (NP (NP (RB little)) (ADJP (RB right)))) (. .)))"
     tree = bracket_parse(sentence)
-    
+
     # collapse subtrees with only one child
     collapsedTree = deepcopy(tree)
     treetransforms.collapseUnary(collapsedTree)
-    
+
     # convert the tree to CNF
     cnfTree = deepcopy(collapsedTree)
     treetransforms.chomskyNormalForm(cnfTree)
-    
+
     # convert the tree to CNF with parent annotation (one level) and horizontal smoothing of order two
     parentTree = deepcopy(collapsedTree)
     treetransforms.chomskyNormalForm(parentTree, horzMarkov=2, vertMarkov=1)
-    
+
     # convert the tree back to its original form (used to make CYK results comparable)
     original = deepcopy(parentTree)
     treetransforms.unChomskyNormalForm(original)
-    
+
     # convert tree back to bracketed text
     sentence2 = treetransforms.toTreebank(original)
     print(("Sentences the same? ", sentence == sentence2))
-    
+
     draw_trees(tree, collapsedTree, cnfTree, parentTree, original)
 
-if __name__ == '__main__': demo()  
+
+if __name__ == "__main__":
+    demo()

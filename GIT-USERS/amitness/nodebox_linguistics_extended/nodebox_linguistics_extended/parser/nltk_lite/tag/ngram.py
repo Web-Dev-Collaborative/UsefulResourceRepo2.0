@@ -15,31 +15,39 @@ the L{TagI} interface.
 
 import types, re
 from collections import deque
-from nodebox_linguistics_extended.parser.nltk_lite.probability import FreqDist, ConditionalFreqDist
+from nodebox_linguistics_extended.parser.nltk_lite.probability import (
+    FreqDist,
+    ConditionalFreqDist,
+)
 from nodebox_linguistics_extended.parser.nltk_lite.tag import *
 
 ##############################################################
 # N-GRAM TAGGERS: these make use of history
 ##############################################################
 
+
 class Window(deque):
     def __init__(self, width):
         deque.__init__(self, (None,) * width)
         self._width = width
+
     def clear(self):
         deque.clear(self)
         self.extend((None,) * self._width)
+
     def append(self, item):
         self.rotate(-1)
         self[-1] = item
+
     def set(self, items):
         deque.clear(self)
         if len(items) >= self._width:
             # restrict to required width
-            self.extend(items[-self._width:])
+            self.extend(items[-self._width :])
         else:
             # pad to required width
             self.extend(items + (None,) * (self._width - 1 - len(items)))
+
 
 class Ngram(SequentialBackoff):
     """
@@ -54,6 +62,7 @@ class Ngram(SequentialBackoff):
     context.  If the C{tagger.Ngram} encounters a word in a context
     for which it has no data, it will assign it the tag C{None}.
     """
+
     def __init__(self, n, cutoff=1, backoff=None):
         """
         Construct an I{n}-gram stochastic tagger.  The tagger must be trained
@@ -67,11 +76,12 @@ class Ngram(SequentialBackoff):
             C{cutoff} examples of a given context in training,
             then it will return a tag of C{None} for that context.
         """
-        if n < 2: raise ValueError('n must be greater than 1')
+        if n < 2:
+            raise ValueError("n must be greater than 1")
         self._model = {}
         self._n = n
         self._cutoff = cutoff
-        self._history = Window(n-1)
+        self._history = Window(n - 1)
         self._backoff = backoff
 
     def train(self, tagged_corpus, verbose=False):
@@ -85,7 +95,7 @@ class Ngram(SequentialBackoff):
         """
 
         if self.size() != 0:
-            raise ValueError('Tagger is already trained')
+            raise ValueError("Tagger is already trained")
         token_count = hit_count = 0
         fd = ConditionalFreqDist()
         for sentence in tagged_corpus:
@@ -110,17 +120,16 @@ class Ngram(SequentialBackoff):
         # generate stats
         if verbose:
             size = len(self._model)
-            backoff = 100 - (hit_count * 100.0)/ token_count
+            backoff = 100 - (hit_count * 100.0) / token_count
             pruning = 100 - (size * 100.0) / len(fd.conditions())
-            print("[Trained %d-gram tagger:" % self._n, end=' ')
-            print("size=%d, backoff=%.2f%%, pruning=%.2f%%]" % (
-                size, backoff, pruning))
+            print("[Trained %d-gram tagger:" % self._n, end=" ")
+            print("size=%d, backoff=%.2f%%, pruning=%.2f%%]" % (size, backoff, pruning))
 
     def tag_one(self, token, history=None):
         if self.size() == 0:
-            raise ValueError('Tagger is not trained')
+            raise ValueError("Tagger is not trained")
         if history:
-            self._history.set(history) # NB this may truncate history
+            self._history.set(history)  # NB this may truncate history
         history = tuple(self._history)
         context = (history, token)
 
@@ -134,12 +143,17 @@ class Ngram(SequentialBackoff):
         return len(self._model)
 
     def __repr__(self):
-        return '<%d-gram Tagger: size=%d, cutoff=%d>' % (
-            self._n, self.size(), self._cutoff)
+        return "<%d-gram Tagger: size=%d, cutoff=%d>" % (
+            self._n,
+            self.size(),
+            self._cutoff,
+        )
+
 
 class Bigram(Ngram):
     def __init__(self, cutoff=1, backoff=None):
         Ngram.__init__(self, 2, cutoff, backoff)
+
 
 class Trigram(Ngram):
     def __init__(self, cutoff=1, backoff=None):
@@ -159,15 +173,18 @@ class Trigram(Ngram):
 #    def __repr__(self):
 #        return '<BackoffTagger: %s>' % self._taggers
 ###
-    
+
 ##//////////////////////////////////////////////////////
 ##  Demonstration
 ##//////////////////////////////////////////////////////
 
+
 def _demo_tagger(tagger, gold):
     from nodebox_linguistics_extended.parser.nltk_lite.tag import accuracy
+
     acc = accuracy(tagger, gold)
-    print('Accuracy = %4.1f%%' % (100.0 * acc))
+    print("Accuracy = %4.1f%%" % (100.0 * acc))
+
 
 def demo():
     """
@@ -179,20 +196,20 @@ def demo():
     from nodebox_linguistics_extended.parser.nltk_lite.corpora import brown
     import sys
 
-    print('Training taggers.')
+    print("Training taggers.")
 
     # Create a default tagger
-    t0 = Default('nn')
+    t0 = Default("nn")
 
-#    t1a = Affix(length=-3, minlength=5, backoff=t0)
-#    t1b = Unigram(cutoff=2, backoff=t1a)
+    #    t1a = Affix(length=-3, minlength=5, backoff=t0)
+    #    t1b = Unigram(cutoff=2, backoff=t1a)
     t1 = Unigram(cutoff=1, backoff=t0)
     t2 = Bigram(cutoff=1, backoff=t1)
     t3 = Trigram(backoff=t2)
 
-    t1.train(brown.tagged('a'), verbose=True)
-    t2.train(brown.tagged('a'), verbose=True)
-    t3.train(brown.tagged('a'), verbose=True)
+    t1.train(brown.tagged("a"), verbose=True)
+    t2.train(brown.tagged("a"), verbose=True)
+    t3.train(brown.tagged("a"), verbose=True)
 
     # Tokenize the testing files
     test_tokens = []
@@ -204,28 +221,28 @@ def demo():
     # None, then they will generate an output of None, and so all
     # words will get tagged a None.
 
-    print('='*75)
-    print('Running the taggers on test data...')
-    print('  Default (nn) tagger: ', end=' ')
+    print("=" * 75)
+    print("Running the taggers on test data...")
+    print("  Default (nn) tagger: ", end=" ")
     sys.stdout.flush()
-    _demo_tagger(t0, brown.tagged('b'))
+    _demo_tagger(t0, brown.tagged("b"))
 
-    print('  Unigram tagger:      ', end=' ')
+    print("  Unigram tagger:      ", end=" ")
     sys.stdout.flush()
-    _demo_tagger(t1, list(brown.tagged('b'))[:1000])
+    _demo_tagger(t1, list(brown.tagged("b"))[:1000])
 
-    print('  Bigram tagger:       ', end=' ')
+    print("  Bigram tagger:       ", end=" ")
     sys.stdout.flush()
-    _demo_tagger(t2, list(brown.tagged('b'))[:1000])
+    _demo_tagger(t2, list(brown.tagged("b"))[:1000])
 
-    print('  Trigram tagger:      ', end=' ')
+    print("  Trigram tagger:      ", end=" ")
     sys.stdout.flush()
-    _demo_tagger(t3, list(brown.tagged('b'))[:1000])
+    _demo_tagger(t3, list(brown.tagged("b"))[:1000])
+
 
 #        print '\nUsage statistics for the trigram tagger:\n'
 #        trigram.print_usage_stats()
 #        print '='*75
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     demo()
-

@@ -37,48 +37,52 @@ Conference.  [http://www.cis.upenn.edu/~adwait/papers/hlt94.ps]
 
 The PP Attachment Corpus is distributed with NLTK with the permission
 of the author.
-"""       
+"""
 
 from nodebox_linguistics_extended.parser.nltk_lite.corpora import get_basedir
 from nodebox_linguistics_extended.parser.nltk_lite import tokenize
 from nodebox_linguistics_extended.parser.nltk_lite.tag import string2tags, string2words
 import os
 
-items = ['training', 'devset', 'test']
+items = ["training", "devset", "test"]
 
 item_name = {
-    'training': 'training set',
-    'devset': 'development test set',
-    'test': 'test set'
-    }
+    "training": "training set",
+    "devset": "development test set",
+    "test": "test set",
+}
 
-def raw(files = items):
-    if type(files) is str: files = (files,)
+
+def raw(files=items):
+    if type(files) is str:
+        files = (files,)
 
     for file in files:
         path = os.path.join(get_basedir(), "ppattach", file)
         for line in open(path).readlines():
             yield tuple(line.split())
 
-def dictionary(files = items):
+
+def dictionary(files=items):
     for t in raw(files):
         yield {
-            'sent': t[0],
-            'verb': t[1],
-            'noun1': t[2],
-            'prep': t[3],
-            'noun2': t[4],
-            'attachment': t[5]
-            }
+            "sent": t[0],
+            "verb": t[1],
+            "noun1": t[2],
+            "prep": t[3],
+            "noun2": t[4],
+            "attachment": t[5],
+        }
+
 
 def demo():
     from nodebox_linguistics_extended.parser.nltk_lite.corpora import ppattach
     from itertools import islice
     from pprint import pprint
 
-    pprint(list(islice(ppattach.raw('training'), 0, 5)))
-    pprint(list(islice(ppattach.dictionary('training'), 0, 5)))
+    pprint(list(islice(ppattach.raw("training"), 0, 5)))
+    pprint(list(islice(ppattach.dictionary("training"), 0, 5)))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     demo()
-

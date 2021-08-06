@@ -4,8 +4,8 @@ from __future__ import absolute_import
 import string
 import random
 
-class SamplerUtils:
 
+class SamplerUtils:
     @staticmethod
     def get_random_text(length_text=10, space_number=1, with_upper_case=True):
         results = []
@@ -26,4 +26,4 @@ class SamplerUtils:
 
             current_spaces.append(space_pos)
 
-        return ''.join(results)
+        return "".join(results)

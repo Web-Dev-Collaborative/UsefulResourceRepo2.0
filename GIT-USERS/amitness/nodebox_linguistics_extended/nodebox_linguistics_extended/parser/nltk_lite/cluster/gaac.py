@@ -8,6 +8,7 @@
 
 from nodebox_linguistics_extended.parser.nltk_lite.cluster import *
 
+
 class GroupAverageAgglomerative(VectorSpace):
     """
     The GAAC clusterer starts with each of the N vectors as singleton
@@ -30,7 +31,8 @@ class GroupAverageAgglomerative(VectorSpace):
     def cluster(self, vectors, assign_clusters=False, trace=False):
         # stores the merge order
         self._dendogram = Dendogram(
-            [array(vector, numpy.float64) for vector in vectors])
+            [array(vector, numpy.float64) for vector in vectors]
+        )
         return VectorSpace.cluster(self, vectors, assign_clusters, trace)
 
     def cluster_vectorspace(self, vectors, trace=False):
@@ -47,15 +49,16 @@ class GroupAverageAgglomerative(VectorSpace):
             for i in range(len(clusters)):
                 for j in range(i + 1, len(clusters)):
                     sim = self._average_similarity(
-                                vector_sum[i], len(clusters[i]),
-                                vector_sum[j], len(clusters[j]))
+                        vector_sum[i], len(clusters[i]), vector_sum[j], len(clusters[j])
+                    )
                     if not best or sim > best[0]:
                         best = (sim, i, j)
 
             # merge them and replace in cluster list
             i, j = best[1:]
             sum = clusters[i] + clusters[j]
-            if trace: print('merging %d and %d' % (i, j))
+            if trace:
+                print("merging %d and %d" % (i, j))
 
             clusters[i] = sum
             del clusters[j]
@@ -109,7 +112,8 @@ class GroupAverageAgglomerative(VectorSpace):
         return (numpy.dot(sum, sum) - length) / (length * (length - 1))
 
     def __repr__(self):
-        return '<GroupAverageAgglomerative Clusterer n=%d>' % self._num_clusters
+        return "<GroupAverageAgglomerative Clusterer n=%d>" % self._num_clusters
+
 
 def demo():
     """
@@ -120,25 +124,25 @@ def demo():
 
     # use a set of tokens with 2D indices
     vectors = [array(f) for f in [[3, 3], [1, 2], [4, 2], [4, 0], [2, 3], [3, 1]]]
-    
+
     # test the GAAC clusterer with 4 clusters
     clusterer = cluster.GroupAverageAgglomerative(4)
     clusters = clusterer.cluster(vectors, True)
 
-    print('Clusterer:', clusterer)
-    print('Clustered:', vectors)
-    print('As:', clusters)
+    print("Clusterer:", clusterer)
+    print("Clustered:", vectors)
+    print("As:", clusters)
     print()
-    
+
     # show the dendogram
     clusterer.dendogram().show()
 
     # classify a new vector
     vector = array([3, 3])
-    print('classify(%s):' % vector, end=' ')
+    print("classify(%s):" % vector, end=" ")
     print(clusterer.classify(vector))
     print()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     demo()

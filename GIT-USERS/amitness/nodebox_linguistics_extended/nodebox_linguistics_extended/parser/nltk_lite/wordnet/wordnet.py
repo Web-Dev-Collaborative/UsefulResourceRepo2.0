@@ -36,7 +36,7 @@ clearly(adv.)
 [{noun: Canis, genus Canis}, {noun: pack}]
 """
 
-__author__  = "Oliver Steele <steele@osteele.com>"
+__author__ = "Oliver Steele <steele@osteele.com>"
 __version__ = "2.0.1"
 
 import string
@@ -49,13 +49,16 @@ from types import IntType, ListType, StringType, TupleType
 # Configuration variables
 #
 
-WNHOME = environ.get('WNHOME', {
-    'mac': ":",
-    'dos': "C:\\wn16",
-    'nt': "C:\\Program Files\\WordNet\\2.0"}
-                     .get(os.name, "/usr/local/wordnet2.0"))
+WNHOME = environ.get(
+    "WNHOME",
+    {"mac": ":", "dos": "C:\\wn16", "nt": "C:\\Program Files\\WordNet\\2.0"}.get(
+        os.name, "/usr/local/wordnet2.0"
+    ),
+)
 
-WNSEARCHDIR = environ.get('WNSEARCHDIR', os.path.join(WNHOME, {'mac': "Database"}.get(os.name, "dict")))
+WNSEARCHDIR = environ.get(
+    "WNSEARCHDIR", os.path.join(WNHOME, {"mac": "Database"}.get(os.name, "dict"))
+)
 
 ReadableRepresentations = 1
 """If true, repr(word), repr(sense), and repr(synset) return
@@ -67,47 +70,49 @@ usable from the command line."""
 
 _TraceLookups = 0
 
-_FILE_OPEN_MODE = os.name in ('dos', 'nt') and 'rb' or 'r'  # work around a Windows Python bug
+_FILE_OPEN_MODE = (
+    os.name in ("dos", "nt") and "rb" or "r"
+)  # work around a Windows Python bug
 
 
 #
 # Enumerated types
 #
 
-NOUN = 'noun'
-VERB = 'verb'
-ADJECTIVE = 'adjective'
-ADVERB = 'adverb'
+NOUN = "noun"
+VERB = "verb"
+ADJECTIVE = "adjective"
+ADVERB = "adverb"
 PartsOfSpeech = (NOUN, VERB, ADJECTIVE, ADVERB)
 
-ANTONYM = 'antonym'
-HYPERNYM = 'hypernym'
-HYPONYM = 'hyponym'
-ATTRIBUTE = 'attribute'
-ALSO_SEE = 'also see'
-ENTAILMENT = 'entailment'
-CAUSE = 'cause'
-VERB_GROUP = 'verb group'
-MEMBER_MERONYM = 'member meronym'
-SUBSTANCE_MERONYM = 'substance meronym'
-PART_MERONYM = 'part meronym'
-MEMBER_HOLONYM = 'member holonym'
-SUBSTANCE_HOLONYM = 'substance holonym'
-PART_HOLONYM = 'part holonym'
-SIMILAR = 'similar'
-PARTICIPLE_OF = 'participle of'
-PERTAINYM = 'pertainym'
+ANTONYM = "antonym"
+HYPERNYM = "hypernym"
+HYPONYM = "hyponym"
+ATTRIBUTE = "attribute"
+ALSO_SEE = "also see"
+ENTAILMENT = "entailment"
+CAUSE = "cause"
+VERB_GROUP = "verb group"
+MEMBER_MERONYM = "member meronym"
+SUBSTANCE_MERONYM = "substance meronym"
+PART_MERONYM = "part meronym"
+MEMBER_HOLONYM = "member holonym"
+SUBSTANCE_HOLONYM = "substance holonym"
+PART_HOLONYM = "part holonym"
+SIMILAR = "similar"
+PARTICIPLE_OF = "participle of"
+PERTAINYM = "pertainym"
 # New in wn 2.0:
-FRAMES = 'frames'
-CLASSIF_CATEGORY = 'domain category'
-CLASSIF_USAGE = 'domain usage'
-CLASSIF_REGIONAL = 'domain regional'
-CLASS_CATEGORY = 'class category'
-CLASS_USAGE = 'class usage'
-CLASS_REGIONAL = 'class regional'
+FRAMES = "frames"
+CLASSIF_CATEGORY = "domain category"
+CLASSIF_USAGE = "domain usage"
+CLASSIF_REGIONAL = "domain regional"
+CLASS_CATEGORY = "class category"
+CLASS_USAGE = "class usage"
+CLASS_REGIONAL = "class regional"
 # New in wn 2.1:
-INSTANCE_HYPERNYM = 'hypernym (instance)'
-INSTANCE_HYPONYM = 'hyponym (instance)'
+INSTANCE_HYPERNYM = "hypernym (instance)"
+INSTANCE_HYPONYM = "hyponym (instance)"
 
 POINTER_TYPES = (
     ANTONYM,
@@ -138,11 +143,11 @@ POINTER_TYPES = (
     # New in wn 2.1:
     INSTANCE_HYPERNYM,
     INSTANCE_HYPONYM,
-    )
+)
 
-ATTRIBUTIVE = 'attributive'
-PREDICATIVE = 'predicative'
-IMMEDIATE_POSTNOMINAL = 'immediate postnominal'
+ATTRIBUTIVE = "attributive"
+PREDICATIVE = "predicative"
+IMMEDIATE_POSTNOMINAL = "immediate postnominal"
 ADJECTIVE_POSITIONS = (ATTRIBUTIVE, PREDICATIVE, IMMEDIATE_POSTNOMINAL, None)
 
 VERB_FRAME_STRINGS = (
@@ -181,7 +186,8 @@ VERB_FRAME_STRINGS = (
     "Somebody %s INFINITIVE",
     "Somebody %s VERB-ing",
     "It %s that CLAUSE",
-    "Something %s INFINITIVE")
+    "Something %s INFINITIVE",
+)
 
 
 #
@@ -213,19 +219,19 @@ class Word:
     >>> N['dog'].taggedSenseCount
     1
     """
-    
+
     def __init__(self, line):
         """Initialize the word from a line of a WN POS file."""
         tokens = string.split(line)
-        ints = map(int, tokens[int(tokens[3]) + 4:])
-        self.form = string.replace(tokens[0], '_', ' ')
+        ints = map(int, tokens[int(tokens[3]) + 4 :])
+        self.form = string.replace(tokens[0], "_", " ")
         "Orthographic representation of the word."
         self.pos = _normalizePOS(tokens[1])
         "Part of speech.  One of NOUN, VERB, ADJECTIVE, ADVERB."
         self.taggedSenseCount = ints[1]
         "Number of senses that are tagged."
-        self._synsetOffsets = ints[2:ints[0]+2]
-    
+        self._synsetOffsets = ints[2 : ints[0] + 2]
+
     def getPointers(self, pointerType=None):
         """Pointers connect senses and synsets, not words.
         Try word[0].getPointers() instead."""
@@ -242,9 +248,11 @@ class Word:
         >>> N['dog'].getSenses()
         ('dog' in {noun: dog, domestic dog, Canis familiaris}, 'dog' in {noun: frump, dog}, 'dog' in {noun: dog}, 'dog' in {noun: cad, bounder, blackguard, dog, hound, heel}, 'dog' in {noun: frank, frankfurter, hotdog, hot dog, dog, wiener, wienerwurst, weenie}, 'dog' in {noun: pawl, detent, click, dog}, 'dog' in {noun: andiron, firedog, dog, dog-iron})
         """
-        if not hasattr(self, '_senses'):
+        if not hasattr(self, "_senses"):
+
             def getSense(offset, pos=self.pos, form=self.form):
                 return getSynset(pos, offset)[form]
+
             self._senses = tuple(map(getSense, self._synsetOffsets))
             del self._synsetOffsets
         return self._senses
@@ -252,12 +260,13 @@ class Word:
     # Deprecated.  Present for backwards compatability.
     def senses(self):
         import wordnet
-        #warningKey = 'SENSE_DEPRECATION_WARNING'
-        #if not wordnet.has_key(warningKey):
+
+        # warningKey = 'SENSE_DEPRECATION_WARNING'
+        # if not wordnet.has_key(warningKey):
         #    print 'Word.senses() has been deprecated.  Use Word.sense() instead.'
         #    wordnet[warningKey] = 1
         return self.getSense()
-    
+
     def isTagged(self):
         """Return 1 if any sense is tagged.
         
@@ -265,7 +274,7 @@ class Word:
         1
         """
         return self.taggedSenseCount > 0
-    
+
     def getAdjectivePositions(self):
         """Return a sequence of adjective positions that this word can
         appear in.  These are elements of ADJECTIVE_POSITIONS.
@@ -278,8 +287,8 @@ class Word:
             positions[sense.position] = 1
         return positions.keys()
 
-    adjectivePositions = getAdjectivePositions # backwards compatability
-    
+    adjectivePositions = getAdjectivePositions  # backwards compatability
+
     def __cmp__(self, other):
         """
         >>> N['cat'] < N['dog']
@@ -287,17 +296,17 @@ class Word:
         >>> N['dog'] < V['dog']
         1
         """
-        return _compareInstances(self, other, ('pos', 'form'))
-    
+        return _compareInstances(self, other, ("pos", "form"))
+
     def __str__(self):
         """Return a human-readable representation.
         
         >>> str(N['dog'])
         'dog(n.)'
         """
-        abbrs = {NOUN: 'n.', VERB: 'v.', ADJECTIVE: 'adj.', ADVERB: 'adv.'}
+        abbrs = {NOUN: "n.", VERB: "v.", ADJECTIVE: "adj.", ADVERB: "adv."}
         return self.form + "(" + abbrs[self.pos] + ")"
-    
+
     def __repr__(self):
         """If ReadableRepresentations is true, return a human-readable
         representation, e.g. 'dog(n.)'.
@@ -307,20 +316,20 @@ class Word:
         """
         if ReadableRepresentations:
             return str(self)
-        return "getWord" + '(self.form, self.pos)'
-    
+        return "getWord" + "(self.form, self.pos)"
+
     #
     # Sequence protocol (a Word's elements are its Senses)
     #
     def __nonzero__(self):
         return 1
-    
+
     def __len__(self):
         return len(self.getSenses())
-    
+
     def __getitem__(self, index):
         return self.getSenses()[index]
-    
+
     def __getslice__(self, i, j):
         return self.getSenses()[i:j]
 
@@ -357,7 +366,7 @@ class Synset:
           >>> V['think'][0].synset.verbFrames
           (5, 9)
     """
-    
+
     def __init__(self, pos, offset, line):
         "Initialize the synset from a line off a WN synset file."
         self.pos = pos
@@ -365,16 +374,29 @@ class Synset:
         self.offset = offset
         """integer offset into the part-of-speech file.  Together
         with pos, this can be used as a unique id."""
-        tokens = string.split(line[:string.index(line, '|')])
+        tokens = string.split(line[: string.index(line, "|")])
         self.ssType = tokens[2]
-        self.gloss = string.strip(line[string.index(line, '|') + 1:])
+        self.gloss = string.strip(line[string.index(line, "|") + 1 :])
         self.lexname = Lexname.lexnames[int(tokens[1])]
-        (self._senseTuples, remainder) = _partition(tokens[4:], 2, string.atoi(tokens[3], 16))
-        (self._pointerTuples, remainder) = _partition(remainder[1:], 4, int(remainder[0]))
+        (self._senseTuples, remainder) = _partition(
+            tokens[4:], 2, string.atoi(tokens[3], 16)
+        )
+        (self._pointerTuples, remainder) = _partition(
+            remainder[1:], 4, int(remainder[0])
+        )
         if pos == VERB:
             (vfTuples, remainder) = _partition(remainder[1:], 3, int(remainder[0]))
+
             def extractVerbFrames(index, vfTuples):
-                return tuple(map(lambda t:string.atoi(t[1]), filter(lambda t,i=index:string.atoi(t[2],16) in (0, i), vfTuples)))
+                return tuple(
+                    map(
+                        lambda t: string.atoi(t[1]),
+                        filter(
+                            lambda t, i=index: string.atoi(t[2], 16) in (0, i), vfTuples
+                        ),
+                    )
+                )
+
             senseVerbFrames = []
             for index in range(1, len(self._senseTuples) + 1):
                 senseVerbFrames.append(extractVerbFrames(index, vfTuples))
@@ -384,18 +406,22 @@ class Synset:
             VERB_FRAME_STRINGS. These list the verb frames that any
             Sense in this synset participates in.  (See also
             Sense.verbFrames.) Defined only for verbs."""
-    
+
     def getSenses(self):
         """Return a sequence of Senses.
         
         >>> N['dog'][0].getSenses()
         ('dog' in {noun: dog, domestic dog, Canis familiaris},)
         """
-        if not hasattr(self, '_senses'):
+        if not hasattr(self, "_senses"):
+
             def loadSense(senseTuple, verbFrames=None, synset=self):
                 return Sense(synset, senseTuple, verbFrames)
+
             if self.pos == VERB:
-                self._senses = tuple(map(loadSense, self._senseTuples, self._senseVerbFrames))
+                self._senses = tuple(
+                    map(loadSense, self._senseTuples, self._senseVerbFrames)
+                )
                 del self._senseVerbFrames
             else:
                 self._senses = tuple(map(loadSense, self._senseTuples))
@@ -416,19 +442,23 @@ class Synset:
         >>> N['dog'][0].getPointers(HYPERNYM)
         (hypernym -> {noun: canine, canid},)
         """
-        if not hasattr(self, '_pointers'):
+        if not hasattr(self, "_pointers"):
+
             def loadPointer(tuple, synset=self):
                 return Pointer(synset.offset, tuple)
+
             self._pointers = tuple(map(loadPointer, self._pointerTuples))
             del self._pointerTuples
         if pointerType == None:
             return self._pointers
         else:
             _requirePointerType(pointerType)
-            return filter(lambda pointer, type=pointerType: pointer.type == type, self._pointers)
+            return filter(
+                lambda pointer, type=pointerType: pointer.type == type, self._pointers
+            )
 
-    pointers = getPointers # backwards compatability
-    
+    pointers = getPointers  # backwards compatability
+
     def getPointerTargets(self, pointerType=None):
         """Return a sequence of Senses or Synsets.
         
@@ -443,8 +473,8 @@ class Synset:
         """
         return map(Pointer.target, self.getPointers(pointerType))
 
-    pointerTargets = getPointerTargets # backwards compatability
-    
+    pointerTargets = getPointerTargets  # backwards compatability
+
     def isTagged(self):
         """Return 1 if any sense is tagged.
         
@@ -454,15 +484,21 @@ class Synset:
         0
         """
         return len(filter(Sense.isTagged, self.getSenses())) > 0
-    
+
     def __str__(self):
         """Return a human-readable representation.
         
         >>> str(N['dog'][0].synset)
         '{noun: dog, domestic dog, Canis familiaris}'
         """
-        return "{" + self.pos + ": " + string.joinfields(map(lambda sense:sense.form, self.getSenses()), ", ") + "}"
-    
+        return (
+            "{"
+            + self.pos
+            + ": "
+            + string.joinfields(map(lambda sense: sense.form, self.getSenses()), ", ")
+            + "}"
+        )
+
     def __repr__(self):
         """If ReadableRepresentations is true, return a human-readable
         representation, e.g. 'dog(n.)'.
@@ -472,24 +508,24 @@ class Synset:
         """
         if ReadableRepresentations:
             return str(self)
-        return "getSynset" + '(self.pos, self.offset)'
-    
+        return "getSynset" + "(self.pos, self.offset)"
+
     def __cmp__(self, other):
-        return _compareInstances(self, other, ('pos', 'offset'))
-    
+        return _compareInstances(self, other, ("pos", "offset"))
+
     #
     # Sequence protocol (a Synset's elements are its senses).
     #
     def __nonzero__(self):
         return 1
-    
+
     def __len__(self):
         """
         >>> len(N['dog'][0].synset)
         3
         """
         return len(self.getSenses())
-    
+
     def __getitem__(self, idx):
         """
         >>> N['dog'][0].synset[0] == N['dog'][0]
@@ -505,10 +541,11 @@ class Synset:
         if isinstance(idx, Word):
             idx = idx.form
         if isinstance(idx, StringType):
-            idx = _index(idx, map(lambda sense:sense.form, senses)) or \
-              _index(idx, map(lambda sense:sense.form, senses), _equalsIgnoreCase)
+            idx = _index(idx, map(lambda sense: sense.form, senses)) or _index(
+                idx, map(lambda sense: sense.form, senses), _equalsIgnoreCase
+            )
         return senses[idx]
-    
+
     def __getslice__(self, i, j):
         return self.getSenses()[i:j]
 
@@ -539,7 +576,7 @@ class Sense:
           >>> decide[2].verbFrames
           (8, 26, 29)
     """
-    
+
     def __init__(sense, synset, senseTuple, verbFrames=None):
         "Initialize a sense from a synset's senseTuple."
         # synset is stored by key (pos, synset) rather than object
@@ -556,39 +593,39 @@ class Sense:
         Sense partipates in.  Defined only for verbs."""
         (form, idString) = senseTuple
         sense.position = None
-        if '(' in form:
-            index = string.index(form, '(')
-            key = form[index + 1:-1]
+        if "(" in form:
+            index = string.index(form, "(")
+            key = form[index + 1 : -1]
             form = form[:index]
-            if key == 'a':
+            if key == "a":
                 sense.position = ATTRIBUTIVE
-            elif key == 'p':
+            elif key == "p":
                 sense.position = PREDICATIVE
-            elif key == 'ip':
+            elif key == "ip":
                 sense.position = IMMEDIATE_POSTNOMINAL
             else:
-                raise("unknown attribute " + key)
-        sense.form = string.replace(form, '_', ' ')
+                raise ("unknown attribute " + key)
+        sense.form = string.replace(form, "_", " ")
         "orthographic representation of the Word this is a Sense of."
-    
+
     def __getattr__(self, name):
         # see the note at __init__ about why 'synset' is provided as a
         # 'virtual' slot
-        if name == 'synset':
+        if name == "synset":
             return getSynset(self.pos, self.synsetOffset)
-        elif name == 'lexname':
+        elif name == "lexname":
             return self.synset.lexname
         else:
             raise AttributeError(name)
-    
+
     def __str__(self):
         """Return a human-readable representation.
         
         >>> str(N['dog'])
         'dog(n.)'
         """
-        return 'self.form' + " in " + str(self.synset)
-    
+        return "self.form" + " in " + str(self.synset)
+
     def __repr__(self):
         """If ReadableRepresentations is true, return a human-readable
         representation, e.g. 'dog(n.)'.
@@ -599,7 +636,7 @@ class Sense:
         if ReadableRepresentations:
             return str(self)
         return "%s[%s]" % (self.synset, self.form)
-    
+
     def getPointers(self, pointerType=None):
         """Return a sequence of Pointers.
         
@@ -613,11 +650,13 @@ class Sense:
         (hypernym -> {noun: canine, canid},)
         """
         senseIndex = _index(self, self.synset.getSenses())
+
         def pointsFromThisSense(pointer, selfIndex=senseIndex):
             return pointer.sourceIndex == 0 or pointer.sourceIndex - 1 == selfIndex
+
         return filter(pointsFromThisSense, self.synset.getPointers(pointerType))
 
-    pointers = getPointers # backwards compatability
+    pointers = getPointers  # backwards compatability
 
     def getPointerTargets(self, pointerType=None):
         """Return a sequence of Senses or Synsets.
@@ -633,12 +672,12 @@ class Sense:
         """
         return map(Pointer.target, self.getPointers(pointerType))
 
-    pointerTargets = getPointerTargets # backwards compatability
-    
-    def getSenses(self):
-        return self,
+    pointerTargets = getPointerTargets  # backwards compatability
 
-    senses = getSenses # backwards compatability
+    def getSenses(self):
+        return (self,)
+
+    senses = getSenses  # backwards compatability
 
     def isTagged(self):
         """Return 1 if any sense is tagged.
@@ -650,16 +689,21 @@ class Sense:
         """
         word = self.word()
         return _index(self, word.getSenses()) < word.taggedSenseCount
-    
+
     def getWord(self):
         return getWord(self.form, self.pos)
 
-    word = getWord # backwards compatability
+    word = getWord  # backwards compatability
 
     def __cmp__(self, other):
         def senseIndex(sense, synset=self.synset):
-            return _index(sense, synset.getSenses(), testfn=lambda a,b: a.form == b.form)
-        return _compareInstances(self, other, ('synset',)) or cmp(senseIndex(self), senseIndex(other))
+            return _index(
+                sense, synset.getSenses(), testfn=lambda a, b: a.form == b.form
+            )
+
+        return _compareInstances(self, other, ("synset",)) or cmp(
+            senseIndex(self), senseIndex(other)
+        )
 
 
 class Pointer:
@@ -672,38 +716,38 @@ class Pointer:
       pos : string
           The part of speech -- one of NOUN, VERB, ADJECTIVE, ADVERB.
     """
-    
+
     _POINTER_TYPE_TABLE = {
-    '!': ANTONYM,
-        '@': HYPERNYM,
-        '~': HYPONYM,
-    '=': ATTRIBUTE,
-        '^': ALSO_SEE,
-        '*': ENTAILMENT,
-        '>': CAUSE,
-    '$': VERB_GROUP,
-    '#m': MEMBER_MERONYM,
-        '#s': SUBSTANCE_MERONYM,
-        '#p': PART_MERONYM,
-    '%m': MEMBER_HOLONYM,
-        '%s': SUBSTANCE_HOLONYM,
-        '%p': PART_HOLONYM,
-    '&': SIMILAR,
-        '<': PARTICIPLE_OF,
-        '\\': PERTAINYM,
+        "!": ANTONYM,
+        "@": HYPERNYM,
+        "~": HYPONYM,
+        "=": ATTRIBUTE,
+        "^": ALSO_SEE,
+        "*": ENTAILMENT,
+        ">": CAUSE,
+        "$": VERB_GROUP,
+        "#m": MEMBER_MERONYM,
+        "#s": SUBSTANCE_MERONYM,
+        "#p": PART_MERONYM,
+        "%m": MEMBER_HOLONYM,
+        "%s": SUBSTANCE_HOLONYM,
+        "%p": PART_HOLONYM,
+        "&": SIMILAR,
+        "<": PARTICIPLE_OF,
+        "\\": PERTAINYM,
         # New in wn 2.0:
-        '+': FRAMES,
-        ';c': CLASSIF_CATEGORY,
-        ';u': CLASSIF_USAGE,
-        ';r': CLASSIF_REGIONAL,
-        '-c': CLASS_CATEGORY,
-        '-u': CLASS_USAGE,
-        '-r': CLASS_REGIONAL,
-    # New in wn 2.1:
-        '@i': INSTANCE_HYPERNYM,
-        '~i': INSTANCE_HYPONYM,
-        }
-    
+        "+": FRAMES,
+        ";c": CLASSIF_CATEGORY,
+        ";u": CLASSIF_USAGE,
+        ";r": CLASSIF_REGIONAL,
+        "-c": CLASS_CATEGORY,
+        "-u": CLASS_USAGE,
+        "-r": CLASS_REGIONAL,
+        # New in wn 2.1:
+        "@i": INSTANCE_HYPERNYM,
+        "~i": INSTANCE_HYPONYM,
+    }
+
     def __init__(self, sourceOffset, pointerTuple):
         (type, offset, pos, indices) = pointerTuple
         self.type = Pointer._POINTER_TYPE_TABLE[type]
@@ -715,7 +759,7 @@ class Pointer:
         indices = string.atoi(indices, 16)
         self.sourceIndex = indices >> 8
         self.targetIndex = indices & 255
-    
+
     def getSource(self):
         synset = getSynset(self.pos, self.sourceOffset)
         if self.sourceIndex:
@@ -723,7 +767,7 @@ class Pointer:
         else:
             return synset
 
-    source = getSource # backwards compatability
+    source = getSource  # backwards compatability
 
     def getTarget(self):
         synset = getSynset(self.pos, self.targetOffset)
@@ -732,46 +776,57 @@ class Pointer:
         else:
             return synset
 
-    target = getTarget # backwards compatability
-    
+    target = getTarget  # backwards compatability
+
     def __str__(self):
         return self.type + " -> " + str(self.target())
-    
+
     def __repr__(self):
         if ReadableRepresentations:
             return str(self)
         return "<" + str(self) + ">"
-    
+
     def __cmp__(self, other):
-        diff = _compareInstances(self, other, ('pos', 'sourceOffset'))
+        diff = _compareInstances(self, other, ("pos", "sourceOffset"))
         if diff:
             return diff
         synset = self.source()
+
         def pointerIndex(sense, synset=synset):
-            return _index(sense, synset.getPointers(), testfn=lambda a,b: not _compareInstances(a, b, ('type', 'sourceIndex', 'targetIndex')))
+            return _index(
+                sense,
+                synset.getPointers(),
+                testfn=lambda a, b: not _compareInstances(
+                    a, b, ("type", "sourceIndex", "targetIndex")
+                ),
+            )
+
         return cmp(pointerIndex(self), pointerIndex(other))
 
 
 # Loading the lexnames
 # Klaus Ries <ries@cs.cmu.edu>
 
+
 class Lexname:
-   dict = {}
-   lexnames = []
-   
-   def __init__(self,name,category):
-       self.name = name
-       self.category = category
-       Lexname.dict[name] = self
-       Lexname.lexnames.append(self)
-   
-   def __str__(self):
-       return self.name
+    dict = {}
+    lexnames = []
+
+    def __init__(self, name, category):
+        self.name = name
+        self.category = category
+        Lexname.dict[name] = self
+        Lexname.lexnames.append(self)
+
+    def __str__(self):
+        return self.name
+
 
 def setupLexnames():
-    for l in open(WNSEARCHDIR+'/lexnames').readlines():
-        i,name,category = string.split(l)
-        Lexname(name,PartsOfSpeech[int(category)-1])
+    for l in open(WNSEARCHDIR + "/lexnames").readlines():
+        i, name, category = string.split(l)
+        Lexname(name, PartsOfSpeech[int(category) - 1])
+
 
 setupLexnames()
 
@@ -779,7 +834,7 @@ setupLexnames()
 # Dictionary
 #
 class Dictionary:
-    
+
     """A Dictionary contains all the Words in a given part of speech.
     This module defines four dictionaries, bound to N, V, ADJ, and ADV.
     
@@ -801,40 +856,44 @@ class Dictionary:
       pos : string
           The part of speech -- one of NOUN, VERB, ADJECTIVE, ADVERB.
     """
-    
+
     def __init__(self, pos, filenameroot):
         self.pos = pos
         """part of speech -- one of NOUN, VERB, ADJECTIVE, ADVERB"""
         self.indexFile = _IndexFile(pos, filenameroot)
         self.dataFile = open(_dataFilePathname(filenameroot), _FILE_OPEN_MODE)
-    
+
     def __repr__(self):
-        dictionaryVariables = {N: 'N', V: 'V', ADJ: 'ADJ', ADV: 'ADV'}
+        dictionaryVariables = {N: "N", V: "V", ADJ: "ADJ", ADV: "ADV"}
         if dictionaryVariables.get(self):
             return self.__module__ + "." + dictionaryVariables[self]
         return "<%s.%s instance for %s>" % (self.__module__, "Dictionary", self.pos)
-    
+
     def getWord(self, form, line=None):
-        key = string.replace(string.lower(form), ' ', '_')
+        key = string.replace(string.lower(form), " ", "_")
         pos = self.pos
+
         def loader(key=key, line=line, indexFile=self.indexFile):
             line = line or indexFile.get(key)
             return line and Word(line)
+
         word = _entityCache.get((pos, key), loader)
         if word:
             return word
         else:
             raise KeyError("%s is not in the %s database" % (form, pos))
-    
+
     def getSynset(self, offset):
         pos = self.pos
+
         def loader(pos=pos, offset=offset, dataFile=self.dataFile):
             return Synset(pos, offset, _lineAt(dataFile, offset))
+
         return _entityCache.get((pos, offset), loader)
-    
+
     def _buildIndexCacheFile(self):
         self.indexFile._buildIndexCacheFile()
-    
+
     #
     # Sequence protocol (a Dictionary's items are its Words)
     #
@@ -846,20 +905,20 @@ class Dictionary:
         'true'
         """
         return 1
-    
+
     def __len__(self):
         """Return the number of index entries.
         
         >>> len(ADJ)
         21435
         """
-        if not hasattr(self, 'length'):
+        if not hasattr(self, "length"):
             self.length = len(self.indexFile)
         return self.length
-    
+
     def __getslice__(self, a, b):
         results = []
-        if type(a) == type('') and type(b) == type(''):
+        if type(a) == type("") and type(b) == type(""):
             raise "unimplemented"
         elif type(a) == type(1) and type(b) == type(1):
             for i in range(a, b):
@@ -882,10 +941,12 @@ class Dictionary:
             return self.getWord(index)
         elif isinstance(index, IntType):
             line = self.indexFile[index]
-            return self.getWord(string.replace(line[:string.find(line, ' ')], '_', ' '), line)
+            return self.getWord(
+                string.replace(line[: string.find(line, " ")], "_", " "), line
+            )
         else:
             raise TypeError("%s is not a String or Int" % index)
-    
+
     #
     # Dictionary protocol
     #
@@ -903,12 +964,12 @@ class Dictionary:
             return self[key]
         except LookupError:
             return default
-    
+
     def keys(self):
         """Return a sorted list of strings that index words in this
         dictionary."""
         return self.indexFile.keys()
-    
+
     def has_key(self, form):
         """Return true iff the argument indexes a word in this dictionary.
         
@@ -918,11 +979,11 @@ class Dictionary:
         0
         """
         return self.indexFile.has_key(form)
-    
+
     #
     # Testing
     #
-    
+
     def _testKeys(self):
         """Verify that index lookup can find each word in the index file."""
         print("Testing: ", self)
@@ -930,12 +991,14 @@ class Dictionary:
         counter = 0
         while 1:
             line = file.readline()
-            if line == '': break
-            if line[0] != ' ':
-                key = string.replace(line[:string.find(line, ' ')], '_', ' ')
+            if line == "":
+                break
+            if line[0] != " ":
+                key = string.replace(line[: string.find(line, " ")], "_", " ")
             if (counter % 1000) == 0:
                 print("%s..." % (key,))
                 import sys
+
                 sys.stdout.flush()
             counter = counter + 1
             self[key]
@@ -946,37 +1009,38 @@ class Dictionary:
 class _IndexFile:
     """An _IndexFile is an implementation class that presents a
     Sequence and Dictionary interface to a sorted index file."""
-    
+
     def __init__(self, pos, filenameroot):
         self.pos = pos
         self.file = open(_indexFilePathname(filenameroot), _FILE_OPEN_MODE)
-        self.offsetLineCache = {}   # Table of (pathname, offset) -> (line, nextOffset)
+        self.offsetLineCache = {}  # Table of (pathname, offset) -> (line, nextOffset)
         self.rewind()
         self.shelfname = os.path.join(WNSEARCHDIR, pos + ".pyidx")
         try:
             import shelve
-            self.indexCache = shelve.open(self.shelfname, 'r')
+
+            self.indexCache = shelve.open(self.shelfname, "r")
         except:
             pass
-    
+
     def rewind(self):
         self.file.seek(0)
         while 1:
             offset = self.file.tell()
             line = self.file.readline()
-            if (line[0] != ' '):
+            if line[0] != " ":
                 break
         self.nextIndex = 0
         self.nextOffset = offset
-    
+
     #
     # Sequence protocol (an _IndexFile's items are its lines)
     #
     def __nonzero__(self):
         return 1
-    
+
     def __len__(self):
-        if hasattr(self, 'indexCache'):
+        if hasattr(self, "indexCache"):
             return len(self.indexCache)
         self.rewind()
         lines = 0
@@ -986,17 +1050,17 @@ class _IndexFile:
                 break
             lines = lines + 1
         return lines
-    
+
     def __nonzero__(self):
         return 1
-    
+
     def __getitem__(self, index):
         if isinstance(index, StringType):
-            if hasattr(self, 'indexCache'):
+            if hasattr(self, "indexCache"):
                 return self.indexCache[index]
             return binarySearchFile(self.file, index, self.offsetLineCache, 8)
         elif isinstance(index, IntType):
-            if hasattr(self, 'indexCache'):
+            if hasattr(self, "indexCache"):
                 return self.get(self.keys[index])
             if index < self.nextIndex:
                 self.rewind()
@@ -1010,21 +1074,21 @@ class _IndexFile:
             return line
         else:
             raise TypeError("%s is not a String or Int" % index)
-    
+
     #
     # Dictionary protocol
     #
     # (an _IndexFile's values are its lines, keyed by the first word)
     #
-    
+
     def get(self, key, default=None):
         try:
             return self[key]
         except LookupError:
             return default
-    
+
     def keys(self):
-        if hasattr(self, 'indexCache'):
+        if hasattr(self, "indexCache"):
             keys = self.indexCache.keys()
             keys.sort()
             return keys
@@ -1033,24 +1097,26 @@ class _IndexFile:
             self.rewind()
             while 1:
                 line = self.file.readline()
-                if not line: break
-                key = line.split(' ', 1)[0]
-                keys.append(key.replace('_', ' '))
+                if not line:
+                    break
+                key = line.split(" ", 1)[0]
+                keys.append(key.replace("_", " "))
             return keys
-    
+
     def has_key(self, key):
-        key = key.replace(' ', '_') # test case: V['haze over']
-        if hasattr(self, 'indexCache'):
+        key = key.replace(" ", "_")  # test case: V['haze over']
+        if hasattr(self, "indexCache"):
             return self.indexCache.has_key(key)
         return self.get(key) != None
-    
+
     #
     # Index file
     #
-    
+
     def _buildIndexCacheFile(self):
         import shelve
         import os
+
         print("Building %s:" % (self.shelfname,))
         tempname = self.shelfname + ".temp"
         try:
@@ -1059,38 +1125,46 @@ class _IndexFile:
             count = 0
             while 1:
                 offset, line = self.file.tell(), self.file.readline()
-                if not line: break
-                key = line[:string.find(line, ' ')]
+                if not line:
+                    break
+                key = line[: string.find(line, " ")]
                 if (count % 1000) == 0:
                     print("%s..." % (key,))
                     import sys
+
                     sys.stdout.flush()
                 indexCache[key] = line
                 count = count + 1
             indexCache.close()
             os.rename(tempname, self.shelfname)
         finally:
-            try: os.remove(tempname)
-            except: pass
+            try:
+                os.remove(tempname)
+            except:
+                pass
         print("done.")
-        self.indexCache = shelve.open(self.shelfname, 'r')
+        self.indexCache = shelve.open(self.shelfname, "r")
 
 
 #
 # Lookup functions
 #
 
-def getWord(form, pos='noun'):
+
+def getWord(form, pos="noun"):
     "Return a word with the given lexical form and pos."
     return _dictionaryFor(pos).getWord(form)
 
-def getSense(form, pos='noun', senseno=0):
+
+def getSense(form, pos="noun", senseno=0):
     "Lookup a sense by its sense number.  Used by repr(sense)."
     return getWord(form, pos)[senseno]
+
 
 def getSynset(pos, offset):
     "Lookup a synset by its offset.  Used by repr(synset)."
     return _dictionaryFor(pos).getSynset(offset)
+
 
 getword, getsense, getsynset = getWord, getSense, getSynset
 
@@ -1098,15 +1172,17 @@ getword, getsense, getsynset = getWord, getSense, getSynset
 # Private utilities
 #
 
+
 def _requirePointerType(pointerType):
     if pointerType not in POINTER_TYPES:
         raise TypeError("pointerType" + " is not a pointer type")
     return pointerType
 
+
 def _compareInstances(a, b, fields):
     """"Return -1, 0, or 1 according to a comparison first by type,
-    then by class, and finally by each of fields.""" # " <- for emacs
-    if not hasattr(b, '__class__'):
+    then by class, and finally by each of fields."""  # " <- for emacs
+    if not hasattr(b, "__class__"):
         return cmp(type(a), type(b))
     elif a.__class__ != b.__class__:
         return cmp(a.__class__, b.__class__)
@@ -1115,6 +1191,7 @@ def _compareInstances(a, b, fields):
     if diff:
         return diff
     return 0
+
 
 def _equalsIgnoreCase(a, b):
     """Return true iff a and b have the same lowercase representation.
@@ -1126,33 +1203,37 @@ def _equalsIgnoreCase(a, b):
     """
     return a == b or string.lower(a) == string.lower(b)
 
+
 #
 # File utilities
 #
 def _dataFilePathname(filenameroot):
-    if os.name in ('dos', 'nt'):
+    if os.name in ("dos", "nt"):
         path = os.path.join(WNSEARCHDIR, filenameroot + ".dat")
         if os.path.exists(path):
             return path
     return os.path.join(WNSEARCHDIR, "data." + filenameroot)
 
+
 def _indexFilePathname(filenameroot):
-    if os.name in ('dos', 'nt'):
+    if os.name in ("dos", "nt"):
         path = os.path.join(WNSEARCHDIR, filenameroot + ".idx")
         if os.path.exists(path):
             return path
     return os.path.join(WNSEARCHDIR, "index." + filenameroot)
 
+
 def binarySearchFile(file, key, cache={}, cacheDepth=-1):
     from stat import ST_SIZE
-    key = key + ' '
+
+    key = key + " "
     keylen = len(key)
     start, end = 0, os.stat(file.name)[ST_SIZE]
     currentDepth = 0
-    #count = 0
+    # count = 0
     while start < end:
-        #count = count + 1
-        #if count > 20:
+        # count = count + 1
+        # if count > 20:
         #    raise "infinite loop"
         lastState = start, end
     middle = (start + end) / 2
@@ -1165,13 +1246,13 @@ def binarySearchFile(file, key, cache={}, cacheDepth=-1):
         offset, line = file.tell(), file.readline()
         if currentDepth < cacheDepth:
             cache[middle] = (offset, line)
-        #print start, middle, end, offset, line,
+        # print start, middle, end, offset, line,
     if offset > end:
         assert end != middle - 1, "infinite loop"
         end = middle - 1
-    elif line[:keylen] == key:# and line[keylen + 1] == ' ':
+    elif line[:keylen] == key:  # and line[keylen + 1] == ' ':
         return line
-        #elif offset == end:
+        # elif offset == end:
         #    return None
     elif line > key:
         assert end != middle - 1, "infinite loop"
@@ -1186,6 +1267,7 @@ def binarySearchFile(file, key, cache={}, cacheDepth=-1):
         return None
     return None
 
+
 def _lineAt(file, offset):
     file.seek(offset)
     return file.readline()
@@ -1194,6 +1276,7 @@ def _lineAt(file, offset):
 #
 # Sequence Utility Functions
 #
+
 
 def _index(key, sequence, testfn=None, keyfn=None):
     """Return the index of key within sequence, using testfn for
@@ -1215,6 +1298,7 @@ def _index(key, sequence, testfn=None, keyfn=None):
     index = index + 1
     return None
 
+
 def _partition(sequence, size, count):
     """Partition sequence into count subsequences of size
     length, and a remainder.
@@ -1222,11 +1306,11 @@ def _partition(sequence, size, count):
     Return (partitions, remainder), where partitions is a sequence of
     count subsequences of cardinality count, and
     apply(append, partitions) + remainder == sequence."""
-    
+
     partitions = []
     for index in range(0, size * count, size):
-        partitions.append(sequence[index:index + size])
-    return (partitions, sequence[size * count:])
+        partitions.append(sequence[index : index + size])
+    return (partitions, sequence[size * count :])
 
 
 #
@@ -1243,6 +1327,7 @@ def _partition(sequence, size, count):
 #
 # The LRUCache approximates a weak dict in the case where temporal
 # locality is good.
+
 
 class _LRUCache:
     """ A cache of values such that least recently used element is
@@ -1268,17 +1353,17 @@ class _LRUCache:
       I haven't tried changing history to a List.  An earlier
       implementation of history as a List was slower than what's here,
       but the two implementations aren't directly comparable."""
-   
+
     def __init__(this, capacity):
         this.capacity = capacity
         this.clear()
-    
+
     def clear(this):
         this.values = {}
         this.history = {}
         this.oldestTimestamp = 0
         this.nextTimestamp = 1
-    
+
     def removeOldestEntry(this):
         while this.oldestTimestamp < this.nextTimestamp:
             if this.history.get(this.oldestTimestamp):
@@ -1287,15 +1372,15 @@ class _LRUCache:
                 del this.values[key]
                 return
             this.oldestTimestamp = this.oldestTimestamp + 1
-    
+
     def setCapacity(this, capacity):
         if capacity == 0:
             this.clear()
         else:
             this.capacity = capacity
             while len(this.values) > this.capacity:
-                this.removeOldestEntry()    
-    
+                this.removeOldestEntry()
+
     def get(this, key, loadfn=None):
         value = None
         if this.values:
@@ -1318,10 +1403,10 @@ class _LRUCache:
 class _NullCache:
     """A NullCache implements the Cache interface (the interface that
     LRUCache implements), but doesn't store any values."""
-    
+
     def clear():
         pass
-    
+
     def get(this, key, loadfn=None):
         return loadfn and loadfn()
 
@@ -1329,35 +1414,40 @@ class _NullCache:
 DEFAULT_CACHE_CAPACITY = 1000
 _entityCache = _LRUCache(DEFAULT_CACHE_CAPACITY)
 
+
 def disableCache():
     """Disable the entity cache."""
     _entityCache = _NullCache()
+
 
 def enableCache():
     """Enable the entity cache."""
     if not isinstance(_entityCache, LRUCache):
         _entityCache = _LRUCache(size)
 
+
 def clearCache():
     """Clear the entity cache."""
     _entityCache.clear()
+
 
 def setCacheCapacity(capacity=DEFAULT_CACHE_CAPACITY):
     """Set the capacity of the entity cache."""
     enableCache()
     _entityCache.setCapacity(capacity)
 
-setCacheSize = setCacheCapacity # for compatability with version 1.0
+
+setCacheSize = setCacheCapacity  # for compatability with version 1.0
 
 
 #
 # POS Dictionaries (must be initialized after file utilities)
 #
 
-N = Dictionary(NOUN, 'noun')
-V = Dictionary(VERB, 'verb')
-ADJ = Dictionary(ADJECTIVE, 'adj')
-ADV = Dictionary(ADVERB, 'adv')
+N = Dictionary(NOUN, "noun")
+V = Dictionary(VERB, "verb")
+ADJ = Dictionary(ADJECTIVE, "adj")
+ADV = Dictionary(ADVERB, "adv")
 Dictionaries = (N, V, ADJ, ADV)
 
 
@@ -1369,6 +1459,7 @@ Dictionaries = (N, V, ADJ, ADV)
 _POSNormalizationTable = {}
 _POStoDictionaryTable = {}
 
+
 def _initializePOSTables():
     global _POSNormalizationTable, _POStoDictionaryTable
     _POSNormalizationTable = {}
@@ -1377,7 +1468,8 @@ def _initializePOSTables():
         (NOUN, "noun n n."),
         (VERB, "verb v v."),
         (ADJECTIVE, "adjective adj adj. a s"),
-        (ADVERB, "adverb adv adv. r")):
+        (ADVERB, "adverb adv adv. r"),
+    ):
         tokens = string.split(abbreviations)
         for token in tokens:
             _POSNormalizationTable[token] = pos
@@ -1386,20 +1478,24 @@ def _initializePOSTables():
         _POSNormalizationTable[dict] = dict.pos
         _POStoDictionaryTable[dict.pos] = dict
 
+
 _initializePOSTables()
+
 
 def _normalizePOS(pos):
     norm = _POSNormalizationTable.get(pos)
     if norm:
         return norm
-    raise TypeError('pos' + " is not a part of speech type")
+    raise TypeError("pos" + " is not a part of speech type")
+
 
 def _dictionaryFor(pos):
     pos = _normalizePOS(pos)
     dict = _POStoDictionaryTable.get(pos)
     if dict == None:
-        raise RuntimeError("The " + 'pos' + " dictionary has not been created")
+        raise RuntimeError("The " + "pos" + " dictionary has not been created")
     return dict
+
 
 def buildIndexFiles():
     for dict in Dictionaries:
@@ -1410,13 +1506,16 @@ def buildIndexFiles():
 # Testing
 #
 
+
 def _testKeys():
-    #This is slow, so don't do it as part of the normal test procedure.
+    # This is slow, so don't do it as part of the normal test procedure.
     for dictionary in Dictionaries:
         dictionary._testKeys()
 
+
 def _test(reset=0):
     import doctest, wordnet
+
     if reset:
-        doctest.master = None # This keeps doctest from complaining after a reload.
+        doctest.master = None  # This keeps doctest from complaining after a reload.
     return doctest.testmod(wordnet)

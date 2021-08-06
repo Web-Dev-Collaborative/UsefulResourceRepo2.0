@@ -8,6 +8,7 @@
 
 from nodebox_linguistics_extended.parser.nltk_lite.cluster import *
 
+
 class KMeans(VectorSpace):
     """
     The K-means clusterer starts with k arbitrary chosen means then allocates
@@ -19,10 +20,17 @@ class KMeans(VectorSpace):
     commonly occuring output means are chosen.
     """
 
-    def __init__(self, num_means, distance, repeats=1,
-                       conv_test=1e-6, initial_means=None,
-                       normalise=False, svd_dimensions=None,
-                       rng=None):
+    def __init__(
+        self,
+        num_means,
+        distance,
+        repeats=1,
+        conv_test=1e-6,
+        initial_means=None,
+        normalise=False,
+        svd_dimensions=None,
+        rng=None,
+    ):
         """
         @param  num_means:  the number of means to use (may use fewer)
         @type   num_means:  int
@@ -52,16 +60,19 @@ class KMeans(VectorSpace):
         assert repeats >= 1
         assert not (initial_means and repeats > 1)
         self._repeats = repeats
-        if rng: self._rng = rng
-        else:   self._rng = random.Random()
+        if rng:
+            self._rng = rng
+        else:
+            self._rng = random.Random()
 
     def cluster_vectorspace(self, vectors, trace=False):
         if self._means and self._repeats > 1:
-            print('Warning: means will be discarded for subsequent trials')
+            print("Warning: means will be discarded for subsequent trials")
 
         meanss = []
         for trial in range(self._repeats):
-            if trace: print('k-means trial', trial)
+            if trace:
+                print("k-means trial", trial)
             if not self._means or trial > 1:
                 self._means = self._rng.sample(vectors, self._num_means)
             self._cluster_vectorspace(vectors, trace)
@@ -71,7 +82,7 @@ class KMeans(VectorSpace):
             # sort the means first (so that different cluster numbering won't
             # effect the distance comparison)
             for means in meanss:
-                means.sort(cmp = _vector_compare)
+                means.sort(cmp=_vector_compare)
 
             # find the set of means that's minimally different from the others
             min_difference = min_means = None
@@ -98,9 +109,10 @@ class KMeans(VectorSpace):
                     index = self.classify_vectorspace(vector)
                     clusters[index].append(vector)
 
-                if trace: print('iteration')
-                #for i in range(self._num_means):
-                    #print '  mean', i, 'allocated', len(clusters[i]), 'vectors'
+                if trace:
+                    print("iteration")
+                # for i in range(self._num_means):
+                # print '  mean', i, 'allocated', len(clusters[i]), 'vectors'
 
                 # recalculate cluster means by computing the centroid of each cluster
                 new_means = list(map(self._centroid, clusters))
@@ -139,7 +151,7 @@ class KMeans(VectorSpace):
     def _sum_distances(self, vectors1, vectors2):
         difference = 0.0
         for u, v in zip(vectors1, vectors2):
-            difference += self._distance(u, v) 
+            difference += self._distance(u, v)
         return difference
 
     def _centroid(self, cluster):
@@ -150,16 +162,21 @@ class KMeans(VectorSpace):
         return centroid / float(len(cluster))
 
     def __repr__(self):
-        return '<KMeans Clusterer means=%s repeats=%d>' % \
-                    (self._means, self._repeats)
+        return "<KMeans Clusterer means=%s repeats=%d>" % (self._means, self._repeats)
+
 
 def _vector_compare(x, y):
     xs, ys = sum(x), sum(y)
-    if xs < ys:     return -1
-    elif xs > ys:   return 1
-    else:           return 0
+    if xs < ys:
+        return -1
+    elif xs > ys:
+        return 1
+    else:
+        return 0
+
 
 #################################################################################
+
 
 def demo():
     # example from figure 14.9, page 517, Manning and Schutze
@@ -172,29 +189,29 @@ def demo():
     clusterer = cluster.KMeans(2, euclidean_distance, initial_means=means)
     clusters = clusterer.cluster(vectors, True, trace=True)
 
-    print('Clustered:', vectors)
-    print('As:', clusters)
-    print('Means:', clusterer.means())
+    print("Clustered:", vectors)
+    print("As:", clusters)
+    print("Means:", clusterer.means())
     print()
 
     vectors = [array(f) for f in [[3, 3], [1, 2], [4, 2], [4, 0], [2, 3], [3, 1]]]
-    
+
     # test k-means using the euclidean distance metric, 2 means and repeat
     # clustering 10 times with random seeds
 
     clusterer = cluster.KMeans(2, euclidean_distance, repeats=10)
     clusters = clusterer.cluster(vectors, True)
-    print('Clustered:', vectors)
-    print('As:', clusters)
-    print('Means:', clusterer.means())
+    print("Clustered:", vectors)
+    print("As:", clusters)
+    print("Means:", clusterer.means())
     print()
 
     # classify a new vector
     vector = array([3, 3])
-    print('classify(%s):' % vector, end=' ')
+    print("classify(%s):" % vector, end=" ")
     print(clusterer.classify(vector))
     print()
 
-if __name__ == '__main__':
-    demo()
 
+if __name__ == "__main__":
+    demo()

@@ -63,11 +63,14 @@ import yaml
 import unittest
 import sys
 
+
 class UnificationFailure(Exception):
     """
     An exception that is raised when two values cannot be unified.
     """
+
     pass
+
 
 def isMapping(obj):
     """
@@ -80,7 +83,8 @@ def isMapping(obj):
     @return: True iff the object can be treated as a feature structure
     @rtype: C{bool}
     """
-    return ('has_key' in dir(obj)) and ('_no_feature' not in dir(obj)) 
+    return ("has_key" in dir(obj)) and ("_no_feature" not in dir(obj))
+
 
 class _FORWARD(object):
     """
@@ -90,8 +94,10 @@ class _FORWARD(object):
     This class itself is used as the singleton value. It cannot be
     instantiated.
     """
+
     def __init__(self):
         raise TypeError("The _FORWARD class is not meant to be instantiated")
+
 
 class Variable(object):
     """
@@ -110,8 +116,9 @@ class Variable(object):
     have the same name but be associated with two different binding
     dictionaries: those variables are not equal.
     """
+
     _next_numbered_id = 1
-    
+
     def __init__(self, name=None, value=None):
         """
         Construct a new feature structure variable.
@@ -126,17 +133,18 @@ class Variable(object):
         """
         self._uid = Variable._next_numbered_id
         Variable._next_numbered_id += 1
-        if name is None: name = self._uid
+        if name is None:
+            name = self._uid
         self._name = str(name)
         self._value = value
-    
+
     def name(self):
         """
         @return: This variable's name.
         @rtype: C{string}
         """
         return self._name
-    
+
     def value(self):
         """
         If this varable is bound, find its value. If it is unbound or aliased
@@ -145,15 +153,18 @@ class Variable(object):
         @return: The value of this variable, if any.
         @rtype: C{object}
         """
-        if isinstance(self._value, Variable): return self._value.value()
-        else: return self._value
+        if isinstance(self._value, Variable):
+            return self._value.value()
+        else:
+            return self._value
+
     def copy(self):
         """
         @return: A copy of this variable.
         @rtype: C{Variable}
         """
         return Variable(self.name(), self.value())
-    
+
     def forwarded_self(self):
         """
         Variables are aliased to other variables by one variable _forwarding_
@@ -168,8 +179,9 @@ class Variable(object):
         """
         if isinstance(self._value, Variable):
             return self._value.forwarded_self()
-        else: return self
-    
+        else:
+            return self
+
     def bindValue(self, value, ourbindings, otherbindings):
         """
         Bind this variable to a value. C{ourbindings} are the bindings that
@@ -214,32 +226,47 @@ class Variable(object):
         other.bindValue(self.value(), ourbindings, otherbindings)
         self._value = other
         return other
-        
-    def __hash__(self): return hash(self._uid)
+
+    def __hash__(self):
+        return hash(self._uid)
+
     def __cmp__(self, other):
         """
         Variables are equal if they are the same object or forward to the
         same object. Variables with the same name may still be unequal.
         """
-        if not isinstance(other, Variable): return -1
-        if isinstance(self._value, Variable): return cmp(self._value, other)
-        else: return cmp(self._uid, other._uid)
+        if not isinstance(other, Variable):
+            return -1
+        if isinstance(self._value, Variable):
+            return cmp(self._value, other)
+        else:
+            return cmp(self._uid, other._uid)
+
     def __repr__(self):
-        if self._value is None: return '?%s' % self._name
-        else: return '?%s: %r' % (self._name, self._value)
+        if self._value is None:
+            return "?%s" % self._name
+        else:
+            return "?%s: %r" % (self._name, self._value)
+
 
 def variable_representer(dumper, var):
     "Output variables in YAML as ?name."
-    return dumper.represent_scalar('!var', '?%s' % var.name())
+    return dumper.represent_scalar("!var", "?%s" % var.name())
+
+
 yaml.add_representer(Variable, variable_representer)
+
 
 def variable_constructor(loader, node):
     "Recognize variables written as ?name in YAML."
     value = loader.construct_scalar(node)
     name = value[1:]
     return Variable(name)
-yaml.add_constructor('!var', variable_constructor)
-yaml.add_implicit_resolver('!var', re.compile(r'^\?\w+$'))
+
+
+yaml.add_constructor("!var", variable_constructor)
+yaml.add_implicit_resolver("!var", re.compile(r"^\?\w+$"))
+
 
 def _copy_and_bind(feature, bindings, memo=None):
     """
@@ -248,8 +275,10 @@ def _copy_and_bind(feature, bindings, memo=None):
     values, if these values are already known, and variables with unknown
     values are given placeholder bindings.
     """
-    if memo is None: memo = {}
-    if id(feature) in memo: return memo[id(feature)]
+    if memo is None:
+        memo = {}
+    if id(feature) in memo:
+        return memo[id(feature)]
     if isinstance(feature, Variable) and bindings is not None:
         if feature.name() not in bindings:
             bindings[feature.name()] = feature.copy()
@@ -260,10 +289,12 @@ def _copy_and_bind(feature, bindings, memo=None):
             result = feature.__class__()
             for (key, value) in list(feature.items()):
                 result[key] = _copy_and_bind(value, bindings, memo)
-        else: result = feature
+        else:
+            result = feature
     memo[id(feature)] = result
     memo[id(result)] = result
     return result
+
 
 def unify(feature1, feature2, bindings1=None, bindings2=None):
     """
@@ -553,9 +584,11 @@ def unify(feature1, feature2, bindings1=None, bindings2=None):
         bindings1 = {}
         bindings2 = {}
     else:
-        if bindings1 is None: bindings1 = {}
-        if bindings2 is None: bindings2 = bindings1
-    
+        if bindings1 is None:
+            bindings1 = {}
+        if bindings2 is None:
+            bindings2 = bindings1
+
     # Make copies of the two structures (since the unification algorithm is
     # destructive). Use the same memo, to preserve reentrance links between
     # them.
@@ -581,6 +614,7 @@ def unify(feature1, feature2, bindings1=None, bindings2=None):
 
     return unified
 
+
 def _destructively_unify(feature1, feature2, bindings1, bindings2, memo):
     """
     Attempt to unify C{self} and C{other} by modifying them
@@ -596,16 +630,20 @@ def _destructively_unify(feature1, feature2, bindings1, bindings2, memo):
     memo[id(feature1), id(feature2)] = unified
     return unified
 
+
 def _do_unify(feature1, feature2, bindings1, bindings2, memo):
     """
     Do the actual work of _destructively_unify when the result isn't memoized.
     """
 
     # Trivial cases.
-    if feature1 is None: return feature2
-    if feature2 is None: return feature1
-    if feature1 is feature2: return feature1
-    
+    if feature1 is None:
+        return feature2
+    if feature2 is None:
+        return feature1
+    if feature1 is feature2:
+        return feature1
+
     # Deal with variables by binding them to the other value.
     if isinstance(feature1, Variable):
         if isinstance(feature2, Variable):
@@ -618,33 +656,40 @@ def _do_unify(feature1, feature2, bindings1, bindings2, memo):
     if isinstance(feature2, Variable):
         feature2.bindValue(feature1, bindings2, bindings1)
         return feature2
-    
+
     # If it's not a mapping or variable, it's a base object, so we just
     # compare for equality.
     if not isMapping(feature1):
-        if feature1 == feature2: return feature1
-        else: 
+        if feature1 == feature2:
+            return feature1
+        else:
             raise UnificationFailure
-    if not isMapping(feature2): raise UnificationFailure
-    
+    if not isMapping(feature2):
+        raise UnificationFailure
+
     # At this point, we know they're both mappings.
     # Do the destructive part of unification.
 
-    while _FORWARD in feature2: feature2 = feature2[_FORWARD]
+    while _FORWARD in feature2:
+        feature2 = feature2[_FORWARD]
     feature2[_FORWARD] = feature1
     for (fname, val2) in list(feature2.items()):
-        if fname == _FORWARD: continue
+        if fname == _FORWARD:
+            continue
         val1 = feature1.get(fname)
         feature1[fname] = _destructively_unify(val1, val2, bindings1, bindings2, memo)
     return feature1
+
 
 def _apply_forwards(feature, visited):
     """
     Replace any feature structure that has a forward pointer with
     the target of its forward pointer (to preserve reentrance).
     """
-    if not isMapping(feature): return
-    if id(feature) in visited: return
+    if not isMapping(feature):
+        return
+    if id(feature) in visited:
+        return
     visited[id(feature)] = True
 
     for fname, fval in list(feature.items()):
@@ -653,6 +698,7 @@ def _apply_forwards(feature, visited):
                 fval = fval[_FORWARD]
                 feature[fname] = fval
             _apply_forwards(fval, visited)
+
 
 def _lookup_values(mapping, visited, remove=False):
     """
@@ -680,8 +726,10 @@ def _lookup_values(mapping, visited, remove=False):
             return var.value()
         else:
             return var.forwarded_self()
-    if not isMapping(mapping): return mapping
-    if id(mapping) in visited: return mapping
+    if not isMapping(mapping):
+        return mapping
+    if id(mapping) in visited:
+        return mapping
     visited[id(mapping)] = True
 
     for fname, fval in list(mapping.items()):
@@ -700,6 +748,7 @@ def _lookup_values(mapping, visited, remove=False):
                     mapping[fname] = newval
     return mapping
 
+
 def _apply_forwards_to_bindings(bindings):
     """
     Replace any feature structures that have been forwarded by their new
@@ -711,11 +760,13 @@ def _apply_forwards_to_bindings(bindings):
                 value = value[_FORWARD]
             bindings[key] = value
 
+
 def test():
     "Run unit tests on unification."
     import doctest
+
     doctest.testmod()
+
 
 if __name__ == "__main__":
     test()
-

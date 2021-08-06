@@ -10,7 +10,7 @@
 
 # I changed the import statements in NLTK from
 # "from nltk_lite." to "from nodebox_linguistics_extended.parser.nltk_lite." for them to work.
-# Additionally, two lines in ntlk_lite/probability.py 
+# Additionally, two lines in ntlk_lite/probability.py
 # were try/excepted (search source for "numpy").
 # They use imported tools from NumPy but are not needed here,
 # so NumPy (which is 7MB) is unnecessary.
@@ -20,8 +20,9 @@ import re
 
 ### PART OF SPEECH TAGGER ############################################################################
 
+
 class PartOfSpeechTagger:
-    
+
     """
     Original Copyright (C) Mark Watson.  All rights reserved.
     Python port by Jason Wiener (http://www.jasonwiener.com)
@@ -32,36 +33,39 @@ class PartOfSpeechTagger:
     PARTICULAR PURPOSE.
     
     """
-    
+
     lexHash = {}
-    
+
     def __init__(self):
 
-        if(len(self.lexHash) == 0):
+        if len(self.lexHash) == 0:
             import os
+
             path = os.path.join(os.path.dirname(__file__), "Brill_lexicon")
-            upkl = open(path, 'rb')
+            upkl = open(path, "rb")
             self.lexHash = pickle.load(upkl)
             upkl.close()
 
-    def tokenize(self,s):
+    def tokenize(self, s):
 
         v = []
-        reg = re.compile('(\S+)\s')
-        m = reg.findall(s+" ");
-        
+        reg = re.compile("(\S+)\s")
+        m = reg.findall(s + " ")
+
         for m2 in m:
             if len(m2) > 0:
                 if m2.startswith("("):
                     v.append(m2[0])
                     m2 = m2[1:]
-                if m2.endswith(";") \
-                or m2.endswith(",") \
-                or m2.endswith("?") \
-                or m2.endswith(")") \
-                or m2.endswith(":") \
-                or m2.endswith(".") \
-                or m2.endswith("!"):
+                if (
+                    m2.endswith(";")
+                    or m2.endswith(",")
+                    or m2.endswith("?")
+                    or m2.endswith(")")
+                    or m2.endswith(":")
+                    or m2.endswith(".")
+                    or m2.endswith("!")
+                ):
                     v.append(m2[0:-1])
                     v.append(m2[-1])
                 else:
@@ -69,25 +73,25 @@ class PartOfSpeechTagger:
 
         return v
 
-    def tag(self,words):
-        
+    def tag(self, words):
+
         ret = []
         for i in range(len(words)):
-            ret.append("NN") #the default entry
+            ret.append("NN")  # the default entry
             if words[i] in self.lexHash:
                 ret[i] = self.lexHash[words[i]]
             elif words[i].lower() in self.lexHash:
                 ret[i] = self.lexHash[words[i].lower()]
 
-        #apply transformational rules
+        # apply transformational rules
         for i in range(len(words)):
-            
-            #rule 1 : DT, {VBD | VBP} --> DT, NN
-            if i > 0 and ret[i-1] == "DT":
+
+            # rule 1 : DT, {VBD | VBP} --> DT, NN
+            if i > 0 and ret[i - 1] == "DT":
                 if ret[i] == "VBD" or ret[i] == "VBP" or ret[i] == "VB":
                     ret[i] = "NN"
 
-            #rule 2: convert a noun to a number (CD) if "." appears in the word
+            # rule 2: convert a noun to a number (CD) if "." appears in the word
             if ret[i].startswith("N"):
                 if words[i].find(".") > -1:
                     ret[i] = "CD"
@@ -119,10 +123,12 @@ class PartOfSpeechTagger:
 
         return ret
 
+
 pos_tagger = PartOfSpeechTagger()
 
+
 class TaggedSentence(list):
-    
+
     """ A list of (token, tag) tuples representing a POS tagged sentence.
     
     When printed or transformed with str(),
@@ -133,15 +139,16 @@ class TaggedSentence(list):
     the/DT cat/NN likes/VBZ fish/NN
     
     """
-    
+
     def __repr__(self):
-          
-        str = [token+"/"+tag for token, tag in self]
+
+        str = [token + "/" + tag for token, tag in self]
         str = " ".join(str)
         return str
 
+
 def sentence_tag(sentence):
-    
+
     """ Returns a tagged sentence.
     
     Part of speech tagging assigns a marker 
@@ -157,15 +164,16 @@ def sentence_tag(sentence):
     cats like fish <-> men like to fish
     
     """
-    
+
     tokens = pos_tagger.tokenize(sentence)
     tags = pos_tagger.tag(tokens)
-    
+
     tagged = TaggedSentence()
     for i in range(len(tokens)):
         tagged.append((tokens[i], tags[i]))
-        
+
     return tagged
+
 
 ### CHUNKING #########################################################################################
 
@@ -174,32 +182,38 @@ from .nltk_lite.parse import tree as nltk_tree
 
 # Simple regular expression rules for chunking.
 chunk_rules = [
-    ("NP", r"<DT|CD|JJ.*|PRP.*|NN.*>+", "noun phrases with determiner, adjectives, nouns"),
-    ("PP", r"<IN><NP>",                 "preposition (in, of, on) followed by noun phrase"),
-    ("VP", r"<RB.*|RP|VB.*|MD|TO>+",    "verb phrases"),
-    ("VA", r"<VP><NP|PP|S>",            "verbs and arguments/adjuncts"),
-    ("S", r"<NP|PP|PRP><VP|VA>",        "subject")
+    (
+        "NP",
+        r"<DT|CD|JJ.*|PRP.*|NN.*>+",
+        "noun phrases with determiner, adjectives, nouns",
+    ),
+    ("PP", r"<IN><NP>", "preposition (in, of, on) followed by noun phrase"),
+    ("VP", r"<RB.*|RP|VB.*|MD|TO>+", "verb phrases"),
+    ("VA", r"<VP><NP|PP|S>", "verbs and arguments/adjuncts"),
+    ("S", r"<NP|PP|PRP><VP|VA>", "subject"),
 ]
 
+
 def sentence_chunk(sentence):
-    
+
     """ Chunks a tagged sentence into syntactically correlated parts of words.
     """
-    
+
     tagged = sentence_tag(sentence)
     tagged = str(tagged)
-    
+
     leaves = nltk_tree.chunk(tagged).leaves()
     tree = nltk_tree.Tree("", leaves)
     for tag, rule, desc in chunk_rules:
-        r = nltk_chunk.ChunkRule(rule,"")
+        r = nltk_chunk.ChunkRule(rule, "")
         chunker = nltk_chunk.RegexpChunk([r], chunk_node=tag)
         tree = chunker.parse(tree)
-    
+
     return _traverse_chunktree(tree)
-    
+
+
 def _traverse_chunktree(tree):
-    
+
     """ Converts the output of sentence_chunk() to a Python list.
     
     sentence_chunk() generates an NLTK Tree object,
@@ -214,7 +228,7 @@ def _traverse_chunktree(tree):
        ['NP', ('school', 'NN')]]]]
     
     """
-    
+
     list = []
     for child in tree:
         if isinstance(child, nltk_tree.Tree):
@@ -222,11 +236,12 @@ def _traverse_chunktree(tree):
             list[-1].insert(0, child.node)
         elif isinstance(child, tuple):
             list.append(child)
-                
+
     return list
 
+
 def sentence_traverse(sentence, f):
-    
+
     """ Chunks sentence and feeds its parts to function f.
     
     The sentence is chunked and traversed recusively.
@@ -235,7 +250,7 @@ def sentence_traverse(sentence, f):
     in which case token and tag are strings.
         
     """
-    
+
     def _traverse(tree):
         for child in tree:
             if isinstance(child, str) and child in chunks:
@@ -244,34 +259,39 @@ def sentence_traverse(sentence, f):
                 f(None, child[0], child[1])
             elif isinstance(child, list):
                 _traverse(child)
-    
+
     chunks = [tag for tag, rule, desc in chunk_rules]
     sentence = sentence_chunk(sentence)
     _traverse(sentence)
+
 
 ### PATTERN MATCHING #################################################################################
 # A powerful mechanism for searching tagged text.
 # "Beautiful fresh flowers and plants are all around the lush garden."
 # "(JJ) (JJ) NN" --> Beautiful fresh flowers, plants, lush garden.
 # We can use it to compare stuff (NN is bigger than NN),
-# to aggregate commonsense data (red NN | NN VB red), etc. 
+# to aggregate commonsense data (red NN | NN VB red), etc.
+
 
 def combinations(items, n):
     """ Returns all possible combinations of length n of the given items.
     """
-    if n == 0: yield []
+    if n == 0:
+        yield []
     else:
         for i in range(len(items)):
-            for c in combinations(items, n-1):
+            for c in combinations(items, n - 1):
                 yield [items[i]] + c
+
 
 def is_optional(pattern):
     """ An optional pattern is enclosed in brackets.
     """
     if pattern.startswith("(") and pattern.endswith(")"):
         return True
-    return False 
-    
+    return False
+
+
 def variations(pattern):
     """ Returns all possible variations of a pattern containing optional pieces.
     """
@@ -289,10 +309,12 @@ def variations(pattern):
         # --> (JJ) (NN) NN, (JJ) NN, (NN) NN, NN.
         v = [pattern[i] for i in range(len(v)) if not v[i]]
         v = [p.strip("()") for p in v]
-        if v not in V: V.append(v)
+        if v not in V:
+            V.append(v)
     # Longest-first.
     V.sort(lambda a, b: len(b) - len(a))
     return V
+
 
 # 1) Pattern NN matches /NN as well as /NNS tokens.
 # 2) Pattern "new" matches token "new".
@@ -306,16 +328,22 @@ matching_rules = [
     lambda p, token, tag: p == "*",
     lambda p, token, tag: p.endswith("*") and token.startswith(p[:-1]),
     lambda p, token, tag: p.startswith("*") and token.endswith(p[1:]),
-    lambda p, token, tag: p.startswith("*") and p.endswith("*") and token.find(p[1:-1]) >= 0
+    lambda p, token, tag: p.startswith("*")
+    and p.endswith("*")
+    and token.find(p[1:-1]) >= 0,
 ]
+
+
 def is_match(pattern, token, tag):
     """ Returns True if one of the rules matches pattern to token/tag.
     """
     # Case-insensitive search:
     pattern, token, tag = pattern.lower(), token.lower(), tag.lower()
     for r in matching_rules:
-        if r(pattern, token, tag): return True
+        if r(pattern, token, tag):
+            return True
     return False
+
 
 def matches(sentence, pattern, chunked=True):
     """ Find sequences of tokens that match the pattern.
@@ -336,22 +364,27 @@ def matches(sentence, pattern, chunked=True):
             # In this case is_match() will return True for each token (count them).
             n = len(p)
             if n <= len(t[i:]):
-                b = sum( [is_match(p, token, tag) 
-                          for p, (token, tag) in zip(p, t[i:i+n])] )
-                if b == len(t[i:i+n]):
+                b = sum(
+                    [
+                        is_match(p, token, tag)
+                        for p, (token, tag) in zip(p, t[i : i + n])
+                    ]
+                )
+                if b == len(t[i : i + n]):
                     # Found the longest possible pattern,
                     # greedily skip to the next part of the sentence.
-                    m.append(t[i:i+n])
+                    m.append(t[i : i + n])
                     i += n
-                    break            
+                    break
         i += 1
-    
+
     if not chunked:
         for i in range(len(m)):
             m[i] = " ".join([token for token, tag in m[i]])
-    
+
     return m
-    
+
+
 sentence_find = matches
 
 ### PART OF SPEECH TAGS ##############################################################################
@@ -360,65 +393,67 @@ sentence_find = matches
 # used in tagging and chunking.
 # See http://nodebox_linguistics_extended.wikipedia.org/wiki/Brown_Corpus#Part-of-speech_tags_used.
 pos_tags = {
-    "np"   : ("noun phrase", "the pink panther"),
-    "vp"   : ("verb phrase", "die laughing madly"),
-    "va"   : ("verb phrase and arguments", "telling a lie"),
-    "s"    : ("subject phrase", "suzy [is telling [a lie]]"),
-    "ax"   : ("", ""),
-    "vb"   : ("verb, base form", "think"),
-    "vbz"  : ("verb, 3rd person singular present", "she thinks"),
-    "vbp"  : ("verb, non-3rd person singular present", "I think"),
-    "vbd"  : ("verb, past tense", "they talked"),
-    "vbn"  : ("verb, past participle", "a sunken ship"),
-    "vbg"  : ("verb, gerund or present participle", "programming is fun"),
-    "md"   : ("verb, modal auxillary", "may, should, wouldn't"),
-    "nn"   : ("noun, singular or mass", "tiger, chair, laughter"),
-    "nns"  : ("noun, plural", "tigers, chairs, insects"),
-    "nnp"  : ("noun, proper singular", "Germany, God, Alice"),
-    "nnps" : ("noun, proper plural", "we met two Christmases ago"),
-    "jj"   : ("adjective", "nice, easy, boring"),
-    "jjr"  : ("adjective, comparative", "nicer, easier, more boring"),
-    "jjs"  : ("adjective, superlative", "nicest, easiest, most boring"),
-    "rb"   : ("adverb", "extremely, loudly, hard"),
-    "wrb"  : ("adverb, wh-", "where, when"),
-    "rbr"  : ("adverb, comparative", "better"),
-    "rbs"  : ("adverb, superlative", "best"),
-    "rp"   : ("adverb, particle", "about, off, up"),
-    "prp"  : ("pronoun, personal", "me, you, it"),
-    "prp$" : ("pronoun, possessive", "my, your, our"),
-    "wp"   : ("pronoun, personal", "what, who, whom"),
-    "wp$"  : ("pronoun, possessive", "whose, whosever"),
-    "pdt"  : ("", ""),
-    "wdt"  : ("determiner", "which, whatever, whichever"),
-    "dt"   : ("determiner", "the, a, these"),
-    "ex"   : ("existential there", "there were six boys"),
-    "cc"   : ("conjunction, coordinating", "and, or, but"),
-    "in"   : ("conjunction, subordinating or preposition", "of, on, before, unless"),
-    "to"   : ("infinitival to", "what to do?"),
-    "cd"   : ("cardinal number", "fixe, three, 13%"),
-    "uh"   : ("interjection", "oh, oops, gosh"),
-    "fw"   : ("foreign word", "mais"),
-    "sym"  : ("", ""),
-    "."    : ("punctuation mark, sentence closer", ".;?*"),
-    ","    : ("punctuation mark, comma", ","),
-    ":"    : ("punctuation mark, colon", ":"),
-    "("    : ("contextual separator, left paren", "("),
-    ")"    : ("contextual separator, right paren", ")"),
-    "ls"   : ("", "")
+    "np": ("noun phrase", "the pink panther"),
+    "vp": ("verb phrase", "die laughing madly"),
+    "va": ("verb phrase and arguments", "telling a lie"),
+    "s": ("subject phrase", "suzy [is telling [a lie]]"),
+    "ax": ("", ""),
+    "vb": ("verb, base form", "think"),
+    "vbz": ("verb, 3rd person singular present", "she thinks"),
+    "vbp": ("verb, non-3rd person singular present", "I think"),
+    "vbd": ("verb, past tense", "they talked"),
+    "vbn": ("verb, past participle", "a sunken ship"),
+    "vbg": ("verb, gerund or present participle", "programming is fun"),
+    "md": ("verb, modal auxillary", "may, should, wouldn't"),
+    "nn": ("noun, singular or mass", "tiger, chair, laughter"),
+    "nns": ("noun, plural", "tigers, chairs, insects"),
+    "nnp": ("noun, proper singular", "Germany, God, Alice"),
+    "nnps": ("noun, proper plural", "we met two Christmases ago"),
+    "jj": ("adjective", "nice, easy, boring"),
+    "jjr": ("adjective, comparative", "nicer, easier, more boring"),
+    "jjs": ("adjective, superlative", "nicest, easiest, most boring"),
+    "rb": ("adverb", "extremely, loudly, hard"),
+    "wrb": ("adverb, wh-", "where, when"),
+    "rbr": ("adverb, comparative", "better"),
+    "rbs": ("adverb, superlative", "best"),
+    "rp": ("adverb, particle", "about, off, up"),
+    "prp": ("pronoun, personal", "me, you, it"),
+    "prp$": ("pronoun, possessive", "my, your, our"),
+    "wp": ("pronoun, personal", "what, who, whom"),
+    "wp$": ("pronoun, possessive", "whose, whosever"),
+    "pdt": ("", ""),
+    "wdt": ("determiner", "which, whatever, whichever"),
+    "dt": ("determiner", "the, a, these"),
+    "ex": ("existential there", "there were six boys"),
+    "cc": ("conjunction, coordinating", "and, or, but"),
+    "in": ("conjunction, subordinating or preposition", "of, on, before, unless"),
+    "to": ("infinitival to", "what to do?"),
+    "cd": ("cardinal number", "fixe, three, 13%"),
+    "uh": ("interjection", "oh, oops, gosh"),
+    "fw": ("foreign word", "mais"),
+    "sym": ("", ""),
+    ".": ("punctuation mark, sentence closer", ".;?*"),
+    ",": ("punctuation mark, comma", ","),
+    ":": ("punctuation mark, colon", ":"),
+    "(": ("contextual separator, left paren", "("),
+    ")": ("contextual separator, right paren", ")"),
+    "ls": ("", ""),
 }
+
 
 def tag_description(postag):
     return pos_tags[postag.lower()]
 
-#s = "that cat looks like a hamster"
-#s = "the sun is shining"
-#s = "that has been plaguing john"
-#s = "he is always trying to feed her with lies"
-#s = "we are going to school"
-#from pprint import pprint
-#pprint( sentence_chunk(s) )
 
-#def callback(chunk, token, tag):
+# s = "that cat looks like a hamster"
+# s = "the sun is shining"
+# s = "that has been plaguing john"
+# s = "he is always trying to feed her with lies"
+# s = "we are going to school"
+# from pprint import pprint
+# pprint( sentence_chunk(s) )
+
+# def callback(chunk, token, tag):
 #    if chunk != None : print tag_description(chunk)[0].upper()
 #    if chunk == None : print token, "("+tag_description(tag)[0]+")"
-#sentence_traverse(s, callback)
+# sentence_traverse(s, callback)

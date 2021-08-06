@@ -68,9 +68,7 @@ def get_openapi_security_definitions(flat_dependant: Dependant) -> Tuple[Dict, L
     operation_security = []
     for security_requirement in flat_dependant.security_requirements:
         security_definition = jsonable_encoder(
-            security_requirement.security_scheme.model,
-            by_alias=True,
-            exclude_none=True,
+            security_requirement.security_scheme.model, by_alias=True, exclude_none=True
         )
         security_name = security_requirement.security_scheme.scheme_name
         security_definitions[security_name] = security_definition
@@ -93,7 +91,9 @@ def get_openapi_operation_parameters(
             "in": field_info.in_.value,
             "required": param.required,
             "schema": field_schema(
-                param, model_name_map=model_name_map, ref_prefix=REF_PREFIX  # type: ignore
+                param,
+                model_name_map=model_name_map,
+                ref_prefix=REF_PREFIX,  # type: ignore
             )[0],
         }
         if field_info.description:

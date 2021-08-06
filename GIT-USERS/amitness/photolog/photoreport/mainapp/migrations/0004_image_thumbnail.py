@@ -8,14 +8,17 @@ import mainapp.validators
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('mainapp', '0003_inputfile_project'),
-    ]
+    dependencies = [("mainapp", "0003_inputfile_project")]
 
     operations = [
         migrations.AddField(
-            model_name='image',
-            name='thumbnail',
-            field=models.ImageField(blank=True, null=True, upload_to='thumb/%Y-%m-%d', validators=mainapp.validators.validate_image_extension),
-        ),
+            model_name="image",
+            name="thumbnail",
+            field=models.ImageField(
+                blank=True,
+                null=True,
+                upload_to="thumb/%Y-%m-%d",
+                validators=mainapp.validators.validate_image_extension,
+            ),
+        )
     ]

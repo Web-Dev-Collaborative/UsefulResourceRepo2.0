@@ -28,71 +28,84 @@ FLAGS = flags.FLAGS
 
 ## Required parameters
 flags.DEFINE_string(
-    "config_file", 'configs/base.json',
+    "config_file",
+    "configs/base.json",
     "The config json file corresponding to the pre-trained news model. "
-    "This specifies the model architecture.")
+    "This specifies the model architecture.",
+)
 
 flags.DEFINE_string(
-    "input_file", None,
-    "Input TF example files (can be a glob or comma separated).")
+    "input_file", None, "Input TF example files (can be a glob or comma separated)."
+)
 
 flags.DEFINE_string(
-    "output_dir", None,
-    "The output directory where the model checkpoints will be written.")
+    "output_dir",
+    None,
+    "The output directory where the model checkpoints will be written.",
+)
 
-flags.DEFINE_string(
-    "validation_name", 'preds.h5',
-    "Name to use")
+flags.DEFINE_string("validation_name", "preds.h5", "Name to use")
 
 ## Other parameters
 flags.DEFINE_string(
-    "init_checkpoint", None,
-    "Initial checkpoint (usually from a pre-trained model).")
+    "init_checkpoint", None, "Initial checkpoint (usually from a pre-trained model)."
+)
 
 flags.DEFINE_integer(
-    "max_seq_length", 1024,
+    "max_seq_length",
+    1024,
     "The maximum total input sequence length after WordPiece tokenization. "
     "Sequences longer than this will be truncated, and sequences shorter "
-    "than this will be padded. Must match data generation.")
+    "than this will be padded. Must match data generation.",
+)
 
-flags.DEFINE_integer("iterations_per_loop", 1000,
-                     "How many steps to make in each estimator call.")
+flags.DEFINE_integer(
+    "iterations_per_loop", 1000, "How many steps to make in each estimator call."
+)
 
 flags.DEFINE_integer("batch_size", 32, "Batch size used for eval")
 
 flags.DEFINE_bool("use_tpu", False, "Whether to use TPU or GPU/CPU.")
 
 flags.DEFINE_string(
-    "tpu_name", None,
+    "tpu_name",
+    None,
     "The Cloud TPU to use for training. This should be either the name "
     "used when creating the Cloud TPU, or a grpc://ip.address.of.tpu:8470 "
-    "url.")
+    "url.",
+)
 
 flags.DEFINE_string(
-    "tpu_zone", None,
+    "tpu_zone",
+    None,
     "[Optional] GCE zone where the Cloud TPU is located in. If not "
     "specified, we will attempt to automatically detect the GCE project from "
-    "metadata.")
+    "metadata.",
+)
 
 flags.DEFINE_string(
-    "gcp_project", None,
+    "gcp_project",
+    None,
     "[Optional] Project name for the Cloud TPU-enabled project. If not "
     "specified, we will attempt to automatically detect the GCE project from "
-    "metadata.")
+    "metadata.",
+)
 
 flags.DEFINE_string("master", None, "[Optional] TensorFlow master URL.")
 
 flags.DEFINE_integer(
-    "num_tpu_cores", 8,
-    "Only used if `use_tpu` is True. Total number of TPU cores to use.")
+    "num_tpu_cores",
+    8,
+    "Only used if `use_tpu` is True. Total number of TPU cores to use.",
+)
 
 
 # This is a handy little utility so that we can save the perplexities to TPU
-class gcloudwriter():
+class gcloudwriter:
     def __init__(self, gcloud_name):
-        assert gcloud_name.startswith('gs://')
+        assert gcloud_name.startswith("gs://")
         self.gcloud_name = gcloud_name
-        bucket_name, blob_name = gcloud_name.split('gs://')[1].split('/', 1)
+        bucket_name, blob_name = gcloud_name.split("gs://")[1].split("/", 1)
         bucket = storage.Client().get_bucket(bucket_name)
         self.blob = bucket.blob(blob_name)
 
@@ -143,7 +156,8 @@ def main(_):
     tpu_cluster_resolver = None
     if FLAGS.use_tpu and FLAGS.tpu_name:
         tpu_cluster_resolver = tf.contrib.cluster_resolver.TPUClusterResolver(
-            FLAGS.tpu_name, zone=FLAGS.tpu_zone, project=FLAGS.gcp_project)
+            FLAGS.tpu_name, zone=FLAGS.tpu_zone, project=FLAGS.gcp_project
+        )
 
     is_per_host = tf.contrib.tpu.InputPipelineConfig.PER_HOST_V2
     run_config = tf.contrib.tpu.RunConfig(
@@ -155,15 +169,18 @@ def main(_):
         tpu_config=tf.contrib.tpu.TPUConfig(
             iterations_per_loop=FLAGS.iterations_per_loop,
             num_shards=FLAGS.num_tpu_cores,
-            per_host_input_for_training=is_per_host))
+            per_host_input_for_training=is_per_host,
+        ),
+    )
 
-    model_fn = model_fn_builder(news_config,
-                                init_checkpoint=FLAGS.init_checkpoint,
-                                learning_rate=1e-4,
-                                num_train_steps=0,
-                                num_warmup_steps=0,
-                                use_tpu=FLAGS.use_tpu,
-                                )
+    model_fn = model_fn_builder(
+        news_config,
+        init_checkpoint=FLAGS.init_checkpoint,
+        learning_rate=1e-4,
+        num_train_steps=0,
+        num_warmup_steps=0,
+        use_tpu=FLAGS.use_tpu,
+    )
 
     # If TPU is not available, this will fall back to normal Estimator on CPU
     # or GPU.
@@ -174,7 +191,7 @@ def main(_):
         train_batch_size=FLAGS.batch_size,
         eval_batch_size=FLAGS.batch_size,
         predict_batch_size=FLAGS.batch_size,
-        params={'model_dir': FLAGS.output_dir}
+        params={"model_dir": FLAGS.output_dir},
     )
 
     eval_input_fn = input_fn_builder(
@@ -182,24 +199,33 @@ def main(_):
         seq_length=FLAGS.max_seq_length,
         evaluate_for_fixed_number_of_steps=False,
         num_cpu_threads=1,
-        is_training=False)
-    result = [x for x in estimator.predict(input_fn=eval_input_fn, yield_single_examples=True)]
+        is_training=False,
+    )
+    result = [
+        x for x in estimator.predict(input_fn=eval_input_fn, yield_single_examples=True)
+    ]
     cats = sorted(result[0].keys())
     result_stack = {cat: np.stack([x[cat] for x in result]) for cat in cats}
 
-    with gcloudwriter(os.path.join(FLAGS.output_dir, FLAGS.validation_name)) as tempfile_name:
-        with h5py.File(tempfile_name, 'w') as h5:
+    with gcloudwriter(
+        os.path.join(FLAGS.output_dir, FLAGS.validation_name)
+    ) as tempfile_name:
+        with h5py.File(tempfile_name, "w") as h5:
             for cat, data in result_stack.items():
-                dtype2use = np.float16 if cat.endswith(('logprobs', 'top_p_required')) else np.uint16
+                dtype2use = (
+                    np.float16
+                    if cat.endswith(("logprobs", "top_p_required"))
+                    else np.uint16
+                )
                 h5.create_dataset(cat, data=data.astype(dtype2use))
-            h5.create_dataset('model', data=FLAGS.config_file)
-            h5.create_dataset('ckpt', data=FLAGS.init_checkpoint)
-            h5.create_dataset('input_file', data=FLAGS.input_file)
+            h5.create_dataset("model", data=FLAGS.config_file)
+            h5.create_dataset("ckpt", data=FLAGS.init_checkpoint)
+            h5.create_dataset("input_file", data=FLAGS.input_file)
 
     # This gives the perplexity of the entire article. if you want to replicate the results of the paper you
     # might need to do something different to extract the ppl of just the body in particular.
     ppl_ex = []
-    for logprobs_i, ids_i in zip(result_stack['gt_logprobs'], result_stack['labels']):
+    for logprobs_i, ids_i in zip(result_stack["gt_logprobs"], result_stack["labels"]):
         # Omit the first token. Keep in mind input_ids is shifted by 1
         start_ind = ind_where(ids_i, target=50265, default_value=0)
         end_ind = ind_where(ids_i, target=50266, default_value=ids_i.shape[0] - 1)

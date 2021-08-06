@@ -8,14 +8,17 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('mainapp', '0002_auto_20160813_0245'),
-    ]
+    dependencies = [("mainapp", "0002_auto_20160813_0245")]
 
     operations = [
         migrations.AddField(
-            model_name='inputfile',
-            name='project',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='mainapp.Project'),
-        ),
+            model_name="inputfile",
+            name="project",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="mainapp.Project",
+            ),
+        )
     ]

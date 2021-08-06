@@ -33,35 +33,37 @@ m: fiction: science
 n: fiction: adventure
 p. fiction: romance
 r. humor
-"""       
+"""
 
 from nodebox_linguistics_extended.parser.nltk_lite.corpora import get_basedir
 from nodebox_linguistics_extended.parser.nltk_lite import tokenize
 from nodebox_linguistics_extended.parser.nltk_lite.tag import string2tags, string2words
 import os
 
-items = list('abcdefghjklmnpr')
+items = list("abcdefghjklmnpr")
 
 item_name = {
-    'a': 'press: reportage',
-    'b': 'press: editorial',
-    'c': 'press: reviews',
-    'd': 'religion',
-    'e': 'skill and hobbies',
-    'f': 'popular lore',
-    'g': 'belles-lettres',
-    'h': 'miscellaneous: government & house organs',
-    'j': 'learned',
-    'k': 'fiction: general',
-    'l': 'fiction: mystery',
-    'm': 'fiction: science',
-    'n': 'fiction: adventure',
-    'p': 'fiction: romance',
-    'r': 'humor'
-    }
+    "a": "press: reportage",
+    "b": "press: editorial",
+    "c": "press: reviews",
+    "d": "religion",
+    "e": "skill and hobbies",
+    "f": "popular lore",
+    "g": "belles-lettres",
+    "h": "miscellaneous: government & house organs",
+    "j": "learned",
+    "k": "fiction: general",
+    "l": "fiction: mystery",
+    "m": "fiction: science",
+    "n": "fiction: adventure",
+    "p": "fiction: romance",
+    "r": "humor",
+}
+
 
 def _read(files, conversion_function):
-    if type(files) is str: files = (files,)
+    if type(files) is str:
+        files = (files,)
 
     for file in files:
         path = os.path.join(get_basedir(), "brown", file)
@@ -69,21 +71,24 @@ def _read(files, conversion_function):
         for sent in tokenize.blankline(f):
             yield conversion_function(sent)
 
-def raw(files = items):
+
+def raw(files=items):
     return _read(files, string2words)
 
-def tagged(files = items):
+
+def tagged(files=items):
     return _read(files, string2tags)
+
 
 def demo():
     from nodebox_linguistics_extended.parser.nltk_lite.corpora import brown
     from itertools import islice
     from pprint import pprint
 
-    pprint(list(islice(brown.raw('a'), 0, 5)))
+    pprint(list(islice(brown.raw("a"), 0, 5)))
 
-    pprint(list(islice(brown.tagged('a'), 0, 5)))
+    pprint(list(islice(brown.tagged("a"), 0, 5)))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     demo()
-

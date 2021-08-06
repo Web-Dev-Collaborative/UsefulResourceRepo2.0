@@ -64,16 +64,28 @@ print((12, nodebox_linguistics_extended.number.quantify(800, "chicken")))
 # Quantifies a list of words:
 # several chickens, a pair of geese and a duck
 # Notice how goose is correctly pluralized and duck has the right article.
-print((13, nodebox_linguistics_extended.list.conjunction(["goose", "goose", "duck", "chicken", "chicken", "chicken"])))
+print(
+    (
+        13,
+        nodebox_linguistics_extended.list.conjunction(
+            ["goose", "goose", "duck", "chicken", "chicken", "chicken"]
+        ),
+    )
+)
 
 # Quantifies the types of things in the given list:
 # several integers
-print((14, nodebox_linguistics_extended.list.conjunction((1,2,3,4,5), generalize=True)))
-# You can also quantify a library: 
+print(
+    (
+        14,
+        nodebox_linguistics_extended.list.conjunction((1, 2, 3, 4, 5), generalize=True),
+    )
+)
+# You can also quantify a library:
 # nodebox_linguistics_extended.list.conjunction(en, generalize=True) ->
-# a number of modules, a number of functions, a number of strings, 
-# a pair of lists, a pair of dictionaries, an en verb, an en sentence, 
-# an en number, an en noun, an en list, an en content, an en adverb, 
+# a number of modules, a number of functions, a number of strings,
+# a pair of lists, a pair of dictionaries, an en verb, an en sentence,
+# an en number, an en noun, an en list, an en content, an en adverb,
 # an en adjective, a None type and a DrawingPrimitives Context
 
 # INDEFINITE ARTICLE ################################################################
@@ -167,7 +179,14 @@ print((32, nodebox_linguistics_extended.noun.absurd_gloss("typography")))
 # containing other lists of related words, for example:
 # [['tree'], ['tree', 'tree diagram'], ['Tree', 'Sir Herbert Beerbohm Tree']]
 # You can use the nodebox_linguistics_extended.list.flatten() command to flatten the list:
-print((33, nodebox_linguistics_extended.list.flatten(nodebox_linguistics_extended.noun.senses("tree"))))
+print(
+    (
+        33,
+        nodebox_linguistics_extended.list.flatten(
+            nodebox_linguistics_extended.noun.senses("tree")
+        ),
+    )
+)
 # -> ['tree', 'tree', 'tree diagram', 'Tree', 'Sir Herbert Beerbohm Tree']
 
 # If you want a list of all nouns/verbs/adjectives/adverbs there's the
@@ -214,7 +233,14 @@ print((42, nodebox_linguistics_extended.verb.tenses()))
 print((43, nodebox_linguistics_extended.verb.tense("was")))
 
 # Returns True if the given verb is in the given tense:
-print((44, nodebox_linguistics_extended.verb.is_tense("wasn't", "1st singular past", negated=True)))
+print(
+    (
+        44,
+        nodebox_linguistics_extended.verb.is_tense(
+            "wasn't", "1st singular past", negated=True
+        ),
+    )
+)
 print((45, nodebox_linguistics_extended.verb.is_present("does", person=1)))
 print((46, nodebox_linguistics_extended.verb.is_present_participle("doing")))
 print((47, nodebox_linguistics_extended.verb.is_past_participle("done")))
@@ -254,28 +280,101 @@ print((49, nodebox_linguistics_extended.sentence.tag_description("NN")))
 # SP is a subject structure: a noun phrase which is the executor of a verb phrase
 # or verb/argument structure.
 from pprint import pprint
-print((50)) 
-pprint( nodebox_linguistics_extended.sentence.chunk("he is always trying to feed her with lies") )
+
+print((50))
+pprint(
+    nodebox_linguistics_extended.sentence.chunk(
+        "he is always trying to feed her with lies"
+    )
+)
 
 # A handy traverse(sentence, cmd) command lets you feed a chunked sentence
 # to your own command chunk by chunk:
 print((51))
 s = "we are going to school"
+
+
 def callback(chunk, token, tag):
-    if chunk != None : print((nodebox_linguistics_extended.sentence.tag_description(chunk)[0].upper()))
-    if chunk == None : print((token, "("+nodebox_linguistics_extended.sentence.tag_description(tag)[0]+")"))
+    if chunk != None:
+        print((nodebox_linguistics_extended.sentence.tag_description(chunk)[0].upper()))
+    if chunk == None:
+        print(
+            (
+                token,
+                "("
+                + nodebox_linguistics_extended.sentence.tag_description(tag)[0]
+                + ")",
+            )
+        )
+
+
 print("")
 nodebox_linguistics_extended.sentence.traverse(s, callback)
 print("")
 
 # Find tag patterns in sentences.
-print((52, nodebox_linguistics_extended.sentence.find("The quick brown fox jumped over the lazy dog?", "(JJ) JJ NN")))
-print((53, nodebox_linguistics_extended.sentence.find("The hairy hamsters visited the cruel dentist.", "JJ NN", chunked=False)))
-print((54, nodebox_linguistics_extended.sentence.find("All sorts of strange and weird and mysterious things happened.", "JJ and JJ NN")))
-print((55, nodebox_linguistics_extended.sentence.find("All sorts of strange and weird and mysterious things happened.", "JJ and JJ (NN)")))
-print((56, nodebox_linguistics_extended.sentence.find("Hairy hamsters are animals, mammals, funny creatures, or just very cool things.", "(very) (JJ) NN", chunked=False)))
-print((57, nodebox_linguistics_extended.sentence.find("Wildcards are pretty wild.", "wild*", chunked=False)))
-print((58, nodebox_linguistics_extended.sentence.find("Hamsters, hairy hamsters, funny hairy hamsters!", "(JJ) (JJ) NN", chunked=False)))
+print(
+    (
+        52,
+        nodebox_linguistics_extended.sentence.find(
+            "The quick brown fox jumped over the lazy dog?", "(JJ) JJ NN"
+        ),
+    )
+)
+print(
+    (
+        53,
+        nodebox_linguistics_extended.sentence.find(
+            "The hairy hamsters visited the cruel dentist.", "JJ NN", chunked=False
+        ),
+    )
+)
+print(
+    (
+        54,
+        nodebox_linguistics_extended.sentence.find(
+            "All sorts of strange and weird and mysterious things happened.",
+            "JJ and JJ NN",
+        ),
+    )
+)
+print(
+    (
+        55,
+        nodebox_linguistics_extended.sentence.find(
+            "All sorts of strange and weird and mysterious things happened.",
+            "JJ and JJ (NN)",
+        ),
+    )
+)
+print(
+    (
+        56,
+        nodebox_linguistics_extended.sentence.find(
+            "Hairy hamsters are animals, mammals, funny creatures, or just very cool things.",
+            "(very) (JJ) NN",
+            chunked=False,
+        ),
+    )
+)
+print(
+    (
+        57,
+        nodebox_linguistics_extended.sentence.find(
+            "Wildcards are pretty wild.", "wild*", chunked=False
+        ),
+    )
+)
+print(
+    (
+        58,
+        nodebox_linguistics_extended.sentence.find(
+            "Hamsters, hairy hamsters, funny hairy hamsters!",
+            "(JJ) (JJ) NN",
+            chunked=False,
+        ),
+    )
+)
 
 # If you want you could feed this command with a list of your own
 # regular expression units to chunk, mine are pretty basic as I'm not a linguist.
@@ -302,7 +401,14 @@ or ideas. Art is a realized expression of an idea-it can take many different for
 and serve many different purposes.
 
 """
-print((60, nodebox_linguistics_extended.content.keywords(txt, top=10, nouns=True, singularize=True, filters=[])))
+print(
+    (
+        60,
+        nodebox_linguistics_extended.content.keywords(
+            txt, top=10, nouns=True, singularize=True, filters=[]
+        ),
+    )
+)
 # Guesses a list of words that frequently occur in the given text.
 # The return value is a list (length defined by top) of (count, word) tuples.
 # When nouns is True, returns only nouns. The command also ignores connectives,
@@ -312,14 +418,21 @@ print((60, nodebox_linguistics_extended.content.keywords(txt, top=10, nouns=True
 
 # Assuming you would want to summarise web content you can use nodebox_linguistics_extended.content.strip_tags()
 # to strip out HTML and keep only textual content:
-print((61, nodebox_linguistics_extended.content.strip_tags("<a href='http://nodebox.net'>NodeBox</a>")))
+print(
+    (
+        61,
+        nodebox_linguistics_extended.content.strip_tags(
+            "<a href='http://nodebox.net'>NodeBox</a>"
+        ),
+    )
+)
 
 # For example:
 # from urllib import urlopen
 # html = urlopen("http://news.bbc.co.uk/").read()
 # meta = ["news", "health", "uk", "version", "weather", "video", "sport", "return", "read", "help"]
 # print sentence_keywords(html, filters=meta)
-# -> [(6, 'funeral'), (5, 'beirut'), (3, 'war'), (3, 'service'), (3, 'radio'), (3, 'mull'), 
+# -> [(6, 'funeral'), (5, 'beirut'), (3, 'war'), (3, 'service'), (3, 'radio'), (3, 'mull'),
 #     (3, 'lebanon'), (3, 'islamist'), (3, 'function'), (3, 'female')]
 
 # SPELLING CORRECTION ###############################################################

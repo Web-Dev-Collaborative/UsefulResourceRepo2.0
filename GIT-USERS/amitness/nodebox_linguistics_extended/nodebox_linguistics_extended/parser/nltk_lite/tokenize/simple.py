@@ -12,10 +12,11 @@ Functions for tokenizing a text, based on a regular expression
 which matches tokens or gaps.
 """
 
-SPACE      = ' '
-NEWLINE    = '\n'
-BLANKLINE  = '\n\n'
-SHOEBOXSEP = r'^\\'
+SPACE = " "
+NEWLINE = "\n"
+BLANKLINE = "\n\n"
+SHOEBOXSEP = r"^\\"
+
 
 def space(s):
     """
@@ -27,6 +28,7 @@ def space(s):
     """
     return s.split(SPACE)
 
+
 def line(s):
     """
     Tokenize the text into lines.
@@ -36,6 +38,7 @@ def line(s):
     @return: An iterator over tokens
     """
     return s.split(NEWLINE)
+
 
 def blankline(s):
     """
@@ -47,6 +50,7 @@ def blankline(s):
     """
     return s.split(BLANKLINE)
 
+
 def shoebox(s):
     """
     Tokenize a Shoebox entry into its fields (separated by backslash markers).
@@ -57,9 +61,11 @@ def shoebox(s):
     """
     return s.split(SHOEBOXSEP)
 
+
 ##//////////////////////////////////////////////////////
 ##  Demonstration
 ##//////////////////////////////////////////////////////
+
 
 def demo():
     """
@@ -68,15 +74,16 @@ def demo():
     """
     # Define the test string.
     s = "Good muffins cost $3.88\nin New York.  Please buy me\ntwo of them.\n\nThanks."
-    print('Input text:')
+    print("Input text:")
     print((repr(s)))
     print()
-    print('Tokenize using individual space characters:')
+    print("Tokenize using individual space characters:")
     print((list(space(s))))
     print()
-    print('Tokenize by lines:')
+    print("Tokenize by lines:")
     print((list(line(s))))
     print()
-    
-if __name__ == '__main__':
+
+
+if __name__ == "__main__":
     demo()

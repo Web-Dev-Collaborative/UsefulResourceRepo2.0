@@ -20,7 +20,7 @@ Distributed with permission.
 The NLTK version of the Senseval 2 files uses well-formed XML.
 Each instance of the ambiguous words "hard", "interest", "line", and "serve"
 is tagged with a sense identifier, and supplied with context.
-"""       
+"""
 
 from nodebox_linguistics_extended.parser.nltk_lite.corpora import get_basedir
 from nodebox_linguistics_extended.parser.nltk_lite import tokenize
@@ -28,17 +28,17 @@ import os, re, xml.sax
 
 items = ["hard", "interest", "line", "serve"]
 
-class SensevalParser(xml.sax.ContentHandler):
 
+class SensevalParser(xml.sax.ContentHandler):
     def __init__(self, buffer_size=1024):
         xml.sax.ContentHandler.__init__(self)
-        self._lemma = ''
+        self._lemma = ""
         self._buffer_size = buffer_size
         self.reset()
 
     def parse(self, text):
-        if hasattr(text, '__iter__') and hasattr(text, 'next'):
-            text = ''.join(text)
+        if hasattr(text, "__iter__") and hasattr(text, "next"):
+            text = "".join(text)
         parser = xml.sax.make_parser()
         parser.setContentHandler(self)
         current = 0
@@ -55,28 +55,28 @@ class SensevalParser(xml.sax.ContentHandler):
         self._data += _to_ascii(ch)
 
     def startElement(self, tag, attr):
-        if tag == 'wf':
-            self._pos = _to_ascii(attr.getValueByQName('pos'))
-        elif tag == 'answer':
-            instance_id = _to_ascii(attr.getValueByQName('instance'))
-            self._senses.append(_to_ascii(attr.getValueByQName('senseid')))
+        if tag == "wf":
+            self._pos = _to_ascii(attr.getValueByQName("pos"))
+        elif tag == "answer":
+            instance_id = _to_ascii(attr.getValueByQName("instance"))
+            self._senses.append(_to_ascii(attr.getValueByQName("senseid")))
             self._iloc = instance_id
-            
-        elif tag == 'context':
-            self._data = ''
-        elif tag == 'lexelt':
-            self._lemma = _to_ascii(attr.getValueByQName('item'))
-        elif tag == 'head':
+
+        elif tag == "context":
+            self._data = ""
+        elif tag == "lexelt":
+            self._lemma = _to_ascii(attr.getValueByQName("item"))
+        elif tag == "head":
             self._head = self._wnum - 1
-        
+
     def endElement(self, tag):
-        if tag == 'wf':
+        if tag == "wf":
             text = self._data.strip()
             pos = self._pos
             self._tokens.append((text, pos))
             self._wnum += 1
-            self._data = ''
-        elif tag == 'context':
+            self._data = ""
+        elif tag == "context":
             self._instances.append((tuple(self._senses), self._head, self._tokens))
             self.reset(False)
 
@@ -89,46 +89,49 @@ class SensevalParser(xml.sax.ContentHandler):
         if state:
             self._senses = []
             self._head = None
-            self._data = ''
+            self._data = ""
             self._wnum = 1
             self._iloc = None
             self._tokens = []
             self._pos = None
 
+
 def _to_ascii(text):
-    return text.encode('Latin-1')
+    return text.encode("Latin-1")
 
 
-def raw(files = items):
+def raw(files=items):
     """
     @param files: One or more Senseval files to be processed
     @type files: L{string} or L{tuple(string)}
     @rtype: iterator over L{tuple}
-    """       
+    """
 
-    if type(files) is str: files = (files,)
+    if type(files) is str:
+        files = (files,)
     parser = SensevalParser()
     for file in files:
-        path = os.path.join(get_basedir(), "senseval", file+".pos")
+        path = os.path.join(get_basedir(), "senseval", file + ".pos")
         f = open(path).read()
         for entry in parser.parse(f):
             yield entry
+
 
 def demo():
     from nodebox_linguistics_extended.parser.nltk_lite.corpora import senseval
     from itertools import islice
 
     # Print one example of each sense
-    
+
     seen = set()
-    for (senses, position, context) in senseval.raw('line'):
+    for (senses, position, context) in senseval.raw("line"):
         if senses not in seen:
             senodebox_linguistics_extended.add(senses)
             print(("senses:", senses))
             print(("position:", position))
-            print(("context:", ' '.join(['%s/%s' % ttok for ttok in context])))
+            print(("context:", " ".join(["%s/%s" % ttok for ttok in context])))
             print()
-        
-if __name__ == '__main__':
-    demo()
 
+
+if __name__ == "__main__":
+    demo()

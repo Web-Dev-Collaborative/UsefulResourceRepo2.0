@@ -16,20 +16,20 @@ from nodebox_linguistics_extended.parser.nltk_lite.parse import cfg
 from nodebox_linguistics_extended.parser.nltk_lite.parse.featurechart import *
 
 
-
 class GrammarFile(object):
     def __init__(self):
         self.grammatical_productions = []
         self.lexical_productions = []
-        self.start = GrammarCategory(pos='Start').freeze()
-        
+        self.start = GrammarCategory(pos="Start").freeze()
+
     def grammar(self):
-        return cfg.Grammar(self.start, self.grammatical_productions +\
-        self.lexical_productions)
-        
+        return cfg.Grammar(
+            self.start, self.grammatical_productions + self.lexical_productions
+        )
+
     def earley_grammar(self):
         return cfg.Grammar(self.start, self.grammatical_productions)
-    
+
     def earley_lexicon(self):
         lexicon = {}
         for prod in self.lexical_productions:
@@ -37,21 +37,24 @@ class GrammarFile(object):
         return lexicon
 
     def earley_parser(self, trace=1):
-        return FeatureEarleyChartParse(self.earley_grammar(),
-                           self.earley_lexicon(), trace=trace)
+        return FeatureEarleyChartParse(
+            self.earley_grammar(), self.earley_lexicon(), trace=trace
+        )
 
     def apply_lines(self, lines):
         for line in lines:
             line = line.strip()
-            if not len(line): continue
-            if line[0] == '#': continue
-            if line[0] == '%':
+            if not len(line):
+                continue
+            if line[0] == "#":
+                continue
+            if line[0] == "%":
                 parts = line[1:].split()
                 directive = parts[0]
                 args = " ".join(parts[1:])
-                if directive == 'start':
+                if directive == "start":
                     self.start = GrammarCategory.parse(args).freeze()
-                elif directive == 'include':
+                elif directive == "include":
                     filename = args.strip('"')
                     self.apply_file(filename)
             else:
@@ -67,17 +70,19 @@ class GrammarFile(object):
         lines = f.readlines()
         self.apply_lines(lines)
         f.close()
-    
+
     def read_file(filename):
         result = GrammarFile()
         result.apply_file(filename)
         return result
+
     read_file = staticmethod(read_file)
+
 
 def demo():
     g = GrammarFile.read_file("test.cfg")
     print((g.grammar()))
 
-if __name__ == '__main__':
-    demo()
 
+if __name__ == "__main__":
+    demo()

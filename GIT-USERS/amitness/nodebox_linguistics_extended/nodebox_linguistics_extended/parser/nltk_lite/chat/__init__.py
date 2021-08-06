@@ -21,21 +21,22 @@ import re
 import random
 
 reflections = {
-  "am"     : "are",
-  "was"    : "were",
-  "i"      : "you",
-  "i'd"    : "you would",
-  "i've"   : "you have",
-  "i'll"   : "you will",
-  "my"     : "your",
-  "are"    : "am",
-  "you've" : "I have",
-  "you'll" : "I will",
-  "your"   : "my",
-  "yours"  : "mine",
-  "you"    : "me",
-  "me"     : "you"
+    "am": "are",
+    "was": "were",
+    "i": "you",
+    "i'd": "you would",
+    "i've": "you have",
+    "i'll": "you will",
+    "my": "your",
+    "are": "am",
+    "you've": "I have",
+    "you'll": "I will",
+    "your": "my",
+    "yours": "mine",
+    "you": "me",
+    "me": "you",
 }
+
 
 class Chat(object):
     def __init__(self, pairs, reflections={}):
@@ -54,7 +55,7 @@ class Chat(object):
         @rtype: C{None}
         """
 
-        self._pairs = [(re.compile(x, re.IGNORECASE),y) for (x,y) in pairs]
+        self._pairs = [(re.compile(x, re.IGNORECASE), y) for (x, y) in pairs]
         self._reflections = reflections
 
     # bug: only permits single word expressions to be mapped
@@ -72,17 +73,19 @@ class Chat(object):
         for word in string.split(string.lower(str)):
             if word in self._reflections:
                 word = self._reflections[word]
-            words += ' ' + word
+            words += " " + word
         return words
 
     def _wildcards(self, response, match):
-        pos = string.find(response,'%')
+        pos = string.find(response, "%")
         while pos >= 0:
-            num = string.atoi(response[pos+1:pos+2])
-            response = response[:pos] + \
-                self._substitute(match.group(num)) + \
-                response[pos+2:]
-            pos = string.find(response,'%')
+            num = string.atoi(response[pos + 1 : pos + 2])
+            response = (
+                response[:pos]
+                + self._substitute(match.group(num))
+                + response[pos + 2 :]
+            )
+            pos = string.find(response, "%")
         return response
 
     def respond(self, str):
@@ -100,23 +103,29 @@ class Chat(object):
 
             # did the pattern match?
             if match:
-                resp = random.choice(response)    # pick a random response
-                resp = self._wildcards(resp, match) # process wildcards
+                resp = random.choice(response)  # pick a random response
+                resp = self._wildcards(resp, match)  # process wildcards
 
                 # fix munged punctuation at the end
-                if resp[-2:] == '?.': resp = resp[:-2] + '.'
-                if resp[-2:] == '??': resp = resp[:-2] + '?'
+                if resp[-2:] == "?.":
+                    resp = resp[:-2] + "."
+                if resp[-2:] == "??":
+                    resp = resp[:-2] + "?"
                 return resp
 
+
 # Hold a conversation with a chatbot
+
 
 def converse(bot, quit="quit"):
     input = ""
     while input != quit:
         input = quit
-        try: input = eval(input(">"))
+        try:
+            input = eval(input(">"))
         except EOFError:
             print(input)
         if input:
-            while input[-1] in "!.": input = input[:-1]
+            while input[-1] in "!.":
+                input = input[:-1]
             print((bot.respond(input)))

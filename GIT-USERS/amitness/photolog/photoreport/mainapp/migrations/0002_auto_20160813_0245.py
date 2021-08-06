@@ -10,31 +10,66 @@ import re
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('mainapp', '0001_initial'),
-    ]
+    dependencies = [("mainapp", "0001_initial")]
 
     operations = [
         migrations.CreateModel(
-            name='Image',
+            name="Image",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(upload_to='images/%Y-%m-%d', validators=mainapp.validators.validate_image_extension)),
-                ('caption', models.TextField(blank=True, null=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "image",
+                    models.ImageField(
+                        upload_to="images/%Y-%m-%d",
+                        validators=mainapp.validators.validate_image_extension,
+                    ),
+                ),
+                ("caption", models.TextField(blank=True, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Project',
+            name="Project",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(blank=True, max_length=200, null=True)),
-                ('image_order', models.CharField(max_length=1000, validators=[django.core.validators.RegexValidator(re.compile('^\\d+(?:\\,\\d+)*\\Z', 32), code='invalid', message='Enter only digits separated by commas.')])),
-                ('images', models.ManyToManyField(to='mainapp.Image')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(blank=True, max_length=200, null=True)),
+                (
+                    "image_order",
+                    models.CharField(
+                        max_length=1000,
+                        validators=[
+                            django.core.validators.RegexValidator(
+                                re.compile("^\\d+(?:\\,\\d+)*\\Z", 32),
+                                code="invalid",
+                                message="Enter only digits separated by commas.",
+                            )
+                        ],
+                    ),
+                ),
+                ("images", models.ManyToManyField(to="mainapp.Image")),
             ],
         ),
         migrations.AlterField(
-            model_name='inputfile',
-            name='zip_file',
-            field=models.FileField(upload_to='zipinput/%Y-%m-%d', validators=[mainapp.validators.validate_file_extension]),
+            model_name="inputfile",
+            name="zip_file",
+            field=models.FileField(
+                upload_to="zipinput/%Y-%m-%d",
+                validators=[mainapp.validators.validate_file_extension],
+            ),
         ),
     ]

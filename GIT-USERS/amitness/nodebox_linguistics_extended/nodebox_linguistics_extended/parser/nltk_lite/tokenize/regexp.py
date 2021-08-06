@@ -14,12 +14,13 @@ which matches tokens or gaps.
 
 import re, sre_parse, sre_constants, sre_compile
 
-WHITESPACE = r'\s+'
-NEWLINE    = r'\n'
-BLANKLINE  = r'\s*\n\s*\n\s*'
-WORDPUNCT  = r'[a-zA-Z]+|[^a-zA-Z\s]+'
-SHOEBOXSEP = r'^\\'
-TREEBANK   = r'^\(.*?(?=^\(|\Z)'
+WHITESPACE = r"\s+"
+NEWLINE = r"\n"
+BLANKLINE = r"\s*\n\s*\n\s*"
+WORDPUNCT = r"[a-zA-Z]+|[^a-zA-Z\s]+"
+SHOEBOXSEP = r"^\\"
+TREEBANK = r"^\(.*?(?=^\(|\Z)"
+
 
 def _remove_group_identifiers(parsed_re):
     """
@@ -61,6 +62,7 @@ def _remove_group_identifiers(parsed_re):
         # Don't need to do anything to other types
         return parsed_re
 
+
 # Replace any grouping parentheses with non-grouping ones.  We
 # need to do this, because the list returned by re.sub will
 # contain an element corresponding to every set of grouping
@@ -70,6 +72,7 @@ def _remove_group_identifiers(parsed_re):
 # regexp contexts must be zero-width. There are also issues with
 # parenthesis appearing in bracketed contexts, hence we've
 # operated on the intermediate parse structure from sre_parse.
+
 
 def _compile(regexp):
 
@@ -87,56 +90,58 @@ def _compile(regexp):
 
     return sre_compile.compile(grouped, re.UNICODE | re.MULTILINE | re.DOTALL)
 
+
 def token_split(text, pattern, advanced=False):
-        """
+    """
         @return: An iterator that generates tokens and the gaps between them
         """
 
-        if advanced:
-            regexp = _compile(pattern)   # pattern contains ()
-        else:
-            regexp = re.compile(pattern, re.UNICODE | re.MULTILINE | re.DOTALL)
+    if advanced:
+        regexp = _compile(pattern)  # pattern contains ()
+    else:
+        regexp = re.compile(pattern, re.UNICODE | re.MULTILINE | re.DOTALL)
 
-        # If it's a single string, then convert it to a tuple
-        # (which we can iterate over, just like an iterator.)
-        if isinstance(text, str):
-            text = (text,)
+    # If it's a single string, then convert it to a tuple
+    # (which we can iterate over, just like an iterator.)
+    if isinstance(text, str):
+        text = (text,)
 
-        # Process each substring returned by the iterator, in turn.
-        # "leftover" is used to record any leftover material when we
-        # move on to a new substring.
-        leftover = ''
-        offset = 0
-        for substring in text:
-            position = 0  # The position within the substring
-            
-            # Skip any matching material in the substring:
-            match = regexp.match(substring)
+    # Process each substring returned by the iterator, in turn.
+    # "leftover" is used to record any leftover material when we
+    # move on to a new substring.
+    leftover = ""
+    offset = 0
+    for substring in text:
+        position = 0  # The position within the substring
+
+        # Skip any matching material in the substring:
+        match = regexp.match(substring)
+        if match:
+            yield leftover + substring[position : match.start()]
+            yield substring[match.start() : match.end()]
+            position = match.end()
+            leftover = ""
+
+        # Walk through the substring, looking for matches.
+        while position < len(substring):
+            match = regexp.search(substring, position)
             if match:
-                yield leftover+substring[position:match.start()]
-                yield substring[match.start():match.end()]
+                yield leftover + substring[position : match.start()]
+                yield substring[match.start() : match.end()]
                 position = match.end()
-                leftover = ''
+                leftover = ""
+            else:
+                leftover = substring[position:]
+                break
 
-            # Walk through the substring, looking for matches.
-            while position < len(substring):
-                match = regexp.search(substring, position)
-                if match:
-                    yield leftover+substring[position:match.start()]
-                    yield substring[match.start():match.end()]
-                    position = match.end()
-                    leftover = ''
-                else:
-                    leftover = substring[position:]
-                    break
+        # Update the offset
+        offset += position
 
-            # Update the offset
-            offset += position
+    # If the last string had leftover, then return it.
+    if leftover:
+        yield leftover
 
-        # If the last string had leftover, then return it.
-        if leftover:
-            yield leftover
-            
+
 def regexp(text, pattern, gaps=False, advanced=False):
     """
     Tokenize the text according to the regular expression pattern.
@@ -152,9 +157,10 @@ def regexp(text, pattern, gaps=False, advanced=False):
     @return: An iterator over tokens
     """
 
-    for (i,token) in enumerate(token_split(text, pattern, advanced)):
-        if ((i%2==0) == gaps and token != ''):
+    for (i, token) in enumerate(token_split(text, pattern, advanced)):
+        if (i % 2 == 0) == gaps and token != "":
             yield token
+
 
 def whitespace(s):
     """
@@ -166,6 +172,7 @@ def whitespace(s):
     """
     return regexp(s, pattern=WHITESPACE, gaps=True)
 
+
 def line(s):
     """
     Tokenize the text into lines.
@@ -176,6 +183,7 @@ def line(s):
     """
     return regexp(s, pattern=NEWLINE, gaps=True)
 
+
 def blankline(s):
     """
     Tokenize the text into paragraphs (separated by blank lines).
@@ -185,6 +193,7 @@ def blankline(s):
     @return: An iterator over tokens
     """
     return regexp(s, pattern=BLANKLINE, gaps=True)
+
 
 def wordpunct(s):
     """
@@ -198,6 +207,7 @@ def wordpunct(s):
     """
     return regexp(s, pattern=WORDPUNCT)
 
+
 def shoebox(s):
     """
     Tokenize a Shoebox entry into its fields (separated by backslash markers).
@@ -207,6 +217,7 @@ def shoebox(s):
     @return: An iterator over tokens
     """
     return regexp(s, pattern=SHOEBOXSEP, gaps=True)
+
 
 def treebank(s):
     """
@@ -218,22 +229,25 @@ def treebank(s):
     """
     return regexp(s, pattern=TREEBANK, advanced=True)
 
+
 ##//////////////////////////////////////////////////////
 ##  Demonstration
 ##//////////////////////////////////////////////////////
+
 
 def _display(tokens):
     """
     A helper function for L{demo} that displays a list of tokens.
     """
 
-    str = '    '+repr(list(tokens))+' '   # an indented string representation
-    str = re.sub(r"(.{,70})\s", r'\1\n     ', str).rstrip()   # wrap at 70 characters
+    str = "    " + repr(list(tokens)) + " "  # an indented string representation
+    str = re.sub(r"(.{,70})\s", r"\1\n     ", str).rstrip()  # wrap at 70 characters
 
     # Truncate after three lines:
-    str = re.sub(r'(.+\n.+\n.+)\s\S+\n[\s\S]+(?!$)', r'\1 ...]', str)
+    str = re.sub(r"(.+\n.+\n.+)\s\S+\n[\s\S]+(?!$)", r"\1 ...]", str)
 
     print(str)
+
 
 def demo():
     """
@@ -245,27 +259,28 @@ def demo():
 
     # Define the test string.
     s = "Good muffins cost $3.88\nin New York.  Please buy me\ntwo of them.\n\nThanks."
-    print('Input text:')
+    print("Input text:")
     print((repr(s)))
     print()
-    print('Tokenize using whitespace:')
+    print("Tokenize using whitespace:")
     _display(tokenize.whitespace(s))
     print()
-    print('Tokenize sequences of alphanumeric characters:')
-    _display(tokenize.regexp(s, pattern=r'\w+', gaps=False))
+    print("Tokenize sequences of alphanumeric characters:")
+    _display(tokenize.regexp(s, pattern=r"\w+", gaps=False))
     print()
-    print('Tokenize sequences of letters and sequences of nonletters:')
+    print("Tokenize sequences of letters and sequences of nonletters:")
     _display(tokenize.wordpunct(s))
     print()
-    print('Tokenize by lines:')
+    print("Tokenize by lines:")
     _display(tokenize.line(s))
     print()
-    print('Tokenize by blank lines:')
+    print("Tokenize by blank lines:")
     _display(tokenize.blankline(s))
     print()
-    print('A simple sentence tokenizer:')
-    _display(tokenize.regexp(s, pattern=r'\.(\s+|$)', gaps=True))
+    print("A simple sentence tokenizer:")
+    _display(tokenize.regexp(s, pattern=r"\.(\s+|$)", gaps=True))
     print()
-    
-if __name__ == '__main__':
+
+
+if __name__ == "__main__":
     demo()

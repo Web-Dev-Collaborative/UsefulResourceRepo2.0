@@ -5,8 +5,8 @@ from .SamplerUtils import *
 
 TEXT_PLACE_HOLDER = "[]"
 
-class Node:
 
+class Node:
     def __init__(self, key, parent_node, content_holder):
         self.key = key
         self.parent = parent_node
@@ -24,10 +24,17 @@ class Node:
         if key.find("btn") != -1:
             value = value.replace(TEXT_PLACE_HOLDER, SamplerUtils.get_random_text())
         elif key.find("title") != -1:
-            value = value.replace(TEXT_PLACE_HOLDER, SamplerUtils.get_random_text(length_text=5, space_number=0))
+            value = value.replace(
+                TEXT_PLACE_HOLDER,
+                SamplerUtils.get_random_text(length_text=5, space_number=0),
+            )
         elif key.find("text") != -1:
-            value = value.replace(TEXT_PLACE_HOLDER,
-                                  SamplerUtils.get_random_text(length_text=56, space_number=7, with_upper_case=False))
+            value = value.replace(
+                TEXT_PLACE_HOLDER,
+                SamplerUtils.get_random_text(
+                    length_text=56, space_number=7, with_upper_case=False
+                ),
+            )
         return value
 
     def render(self, mapping, rendering_function=None):

@@ -18,10 +18,18 @@ from ._verbs import VERBS
 from ._verbs_irreg import VERBS_IRREG
 
 
-LEMMA_INDEX = {'adj': ADJECTIVES, 'adv': ADVERBS, 'noun': NOUNS, 'verb': VERBS}
+LEMMA_INDEX = {"adj": ADJECTIVES, "adv": ADVERBS, "noun": NOUNS, "verb": VERBS}
 
-LEMMA_EXC = {'adj': ADJECTIVES_IRREG, 'adp': ADP_IRREG, 'aux': AUXILIARY_VERBS_IRREG,
-             'cconj': CCONJ_IRREG, 'det': DETS_IRREG, 'noun': NOUNS_IRREG, 'verb': VERBS_IRREG, 
-             'pron': PRONOUNS_IRREG, 'sconj': SCONJ_IRREG}
+LEMMA_EXC = {
+    "adj": ADJECTIVES_IRREG,
+    "adp": ADP_IRREG,
+    "aux": AUXILIARY_VERBS_IRREG,
+    "cconj": CCONJ_IRREG,
+    "det": DETS_IRREG,
+    "noun": NOUNS_IRREG,
+    "verb": VERBS_IRREG,
+    "pron": PRONOUNS_IRREG,
+    "sconj": SCONJ_IRREG,
+}
 
-LEMMA_RULES = {'adj': ADJECTIVE_RULES, 'noun': NOUN_RULES, 'verb': VERB_RULES}
+LEMMA_RULES = {"adj": ADJECTIVE_RULES, "noun": NOUN_RULES, "verb": VERB_RULES}

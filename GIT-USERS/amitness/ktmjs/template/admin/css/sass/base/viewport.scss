@@ -10,7 +10,7 @@ $media-register: (
     "only screen
                     and (min-width : 320px)
                     and (orientation : portrait)",
-   "large-phone-lp": "only screen
+  "large-phone-lp": "only screen
                      and (min-width : 480px)",
   "large-phone-l":
     "only screen
@@ -20,7 +20,7 @@ $media-register: (
     "only screen
                     and (min-width : 480px)
                     and (orientation : portrait)",
-   "tablet-lp": "only screen
+  "tablet-lp": "only screen
                and (min-width : 768px)",
   "tablet-l":
     "only screen
@@ -32,10 +32,10 @@ $media-register: (
               and (min-width : 768px)
               and (max-width : 1024px)
               and (orientation : portrait)",
-   "medium-device": "only screen
+  "medium-device": "only screen
                and (min-width : 992px)",
-   "large-screen": "only screen and (min-width: 1440px)",
-   "iphone-4":
+  "large-screen": "only screen and (min-width: 1440px)",
+  "iphone-4":
     "only screen
                 and (-webkit-min-device-pixel-ratio : 1.5)
                 and (min-device-pixel-ratio : 1.5)",

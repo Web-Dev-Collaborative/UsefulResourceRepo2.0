@@ -73,13 +73,14 @@ Now, taking the trained model that can compute relatedness score of sentences wi
 
 - The authors tested their model on a hold-out test set containing labels not present during training. They achieve 78%, 76% and 81% accuracy on the binary classification task with architecture 1, 2 and 3 respectively.
 - **UCI News Aggregator Dataset:**  
-  In this dataset, there are 420,000 sentences with 4 labels: technology, business, medicine and entertainment. They propose a heuristic called category tree where they expand each label with related words. The process is as follows:  
-   - Take the unseen labels and add a few words related to this concept. For example, related words for business can be 'finance' and 'revenue'.  
-   ![Category Tree of News Aggregator Dataset](/images/zero-shot-category-tree.png){: .align-center} - To predict the class(category) for a sentence, they predict the relatedness of the sentence to related words under that category and take their mean as the final relatedness.  
-   - The classes which had mean relatedness probability above a threshold are assumed as the predicted classes. This threshold is a hyperparameter and the paper uses 0.5 as the threshold.  
-   ![Threshold to asssume label and text are matched](/images/zero-shot-threshold.png){: .align-center}
+  In this dataset, there are 420,000 sentences with 4 labels: technology, business, medicine and entertainment. They propose a heuristic called category tree where they expand each label with related words. The process is as follows:
 
-      The authors tested this process on the entire dataset and achieved 61.73%, 63% and 64.21% accuracy. In comparison, the supervised methods achieve 94.75% accuracy. The result is still interesting because without even training on a single sample, it achieves better than random accuracy.
+  - Take the unseen labels and add a few words related to this concept. For example, related words for business can be 'finance' and 'revenue'.  
+    ![Category Tree of News Aggregator Dataset](/images/zero-shot-category-tree.png){: .align-center} - To predict the class(category) for a sentence, they predict the relatedness of the sentence to related words under that category and take their mean as the final relatedness.
+  - The classes which had mean relatedness probability above a threshold are assumed as the predicted classes. This threshold is a hyperparameter and the paper uses 0.5 as the threshold.  
+    ![Threshold to asssume label and text are matched](/images/zero-shot-threshold.png){: .align-center}
+
+    The authors tested this process on the entire dataset and achieved 61.73%, 63% and 64.21% accuracy. In comparison, the supervised methods achieve 94.75% accuracy. The result is still interesting because without even training on a single sample, it achieves better than random accuracy.
 
 - **Tweet Classification:**  
   This dataset has 1993 sentences with 6 labels: business, health, politics, sports, technology and entertainment. The authors tested their method over the whole dataset using a threshold of 0.5 and a category tree expansion with 3 related words and achieved 64.5% accuracy with Architecture 3. In comparison, a supervised method such as multinominal naive bayes trained on the whole dataset can get 78% accuracy.

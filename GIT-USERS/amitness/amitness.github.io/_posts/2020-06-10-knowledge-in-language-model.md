@@ -84,7 +84,7 @@ A language model has no prior knowledge of grammar rules and structure. But it h
   ```
 
 - We have two similar sentences given below. Sentence 2 has a grammatical mistake.
-  | sentence 1             | sentence 2                                                   |
+  | sentence 1 | sentence 2 |
   | ---------------------- | ------------------------------------------------------------ |
   | The cat sat on the mat | The cat <span style="color: #d32f2f;">sats</span> on the mat |
   We would want our language model to assign more probability to the correct sentence 1. Let's verify if this is the case with GPT-2.

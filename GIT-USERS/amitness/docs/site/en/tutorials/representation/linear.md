@@ -125,10 +125,10 @@ won't be able to learn that baseball fans from St. Louis especially like to
 wear red.
 
 You can get around this limitation by creating a new feature
-'favorite_sport_x_home_city'. The value of this feature for a given person is
+'favorite*sport_x_home_city'. The value of this feature for a given person is
 just the concatenation of the values of the two source features:
 'baseball_x_stlouis', for example. This sort of combination feature is called
-a _feature cross_.
+a \_feature cross*.
 
 The `crossed_column()` method makes it easy to set up feature crosses:
 

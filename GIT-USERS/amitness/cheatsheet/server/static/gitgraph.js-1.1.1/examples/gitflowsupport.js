@@ -104,13 +104,11 @@ release_100.commit({
 });
 develop.commit({ messageDisplay: false });
 release_100.commit(stablizationCommit);
-release_100
-  .merge(develop)
-  .merge(master, {
-    dotStrokeWidth: 10,
-    message: "Release v1.0.0 tagged",
-    tag: "v1.0.0",
-  });
+release_100.merge(develop).merge(master, {
+  dotStrokeWidth: 10,
+  message: "Release v1.0.0 tagged",
+  tag: "v1.0.0",
+});
 
 var support_10x = gitgraph.branch({
   parentBranch: master,
@@ -150,13 +148,11 @@ support_10x.commit({
   tag: "v1.0.2-rc",
   tagColor: "gray",
 });
-support_10x
-  .commit(bugfixCommit)
-  .commit({
-    dotStrokeWidth: 10,
-    message: "Release v1.0.2 tagged",
-    tag: "v1.0.2",
-  });
+support_10x.commit(bugfixCommit).commit({
+  dotStrokeWidth: 10,
+  message: "Release v1.0.2 tagged",
+  tag: "v1.0.2",
+});
 support_10x.merge(develop);
 develop.commit({ messageDisplay: false });
 
@@ -171,13 +167,11 @@ release_110.commit({
   tagColor: "gray",
 });
 release_110.commit(stablizationCommit);
-release_110
-  .merge(develop)
-  .merge(master, {
-    dotStrokeWidth: 10,
-    message: "Release v1.1.0 tagged",
-    tag: "v1.1.0",
-  });
+release_110.merge(develop).merge(master, {
+  dotStrokeWidth: 10,
+  message: "Release v1.1.0 tagged",
+  tag: "v1.1.0",
+});
 
 var support_11x = gitgraph.branch({
   parentBranch: master,
@@ -189,13 +183,11 @@ support_11x.commit({
   tag: "v1.1.1-rc",
   tagColor: "gray",
 });
-support_11x
-  .commit(bugfixCommit)
-  .commit({
-    dotStrokeWidth: 10,
-    message: "Release v1.1.1 tagged",
-    tag: "v1.1.1",
-  });
+support_11x.commit(bugfixCommit).commit({
+  dotStrokeWidth: 10,
+  message: "Release v1.1.1 tagged",
+  tag: "v1.1.1",
+});
 support_11x.merge(develop);
 develop.commit({ messageDisplay: false });
 
@@ -237,13 +229,11 @@ support_11x.commit({
   tag: "v1.1.3-rc",
   tagColor: "gray",
 });
-support_11x
-  .commit(bugfixCommit)
-  .commit({
-    dotStrokeWidth: 10,
-    message: "Release v1.1.3 tagged",
-    tag: "v1.1.3",
-  });
+support_11x.commit(bugfixCommit).commit({
+  dotStrokeWidth: 10,
+  message: "Release v1.1.3 tagged",
+  tag: "v1.1.3",
+});
 support_11x.merge(develop);
 develop.commit({ messageDisplay: false });
 
@@ -258,11 +248,9 @@ release_120.commit({
   tagColor: "gray",
 });
 release_120.commit(stablizationCommit);
-release_120
-  .merge(develop)
-  .merge(master, {
-    dotStrokeWidth: 10,
-    message: "Release v1.2.0 tagged",
-    tag: "v1.2.0",
-  });
+release_120.merge(develop).merge(master, {
+  dotStrokeWidth: 10,
+  message: "Release v1.2.0 tagged",
+  tag: "v1.2.0",
+});
 develop.commit({ messageDisplay: false });

@@ -6,6 +6,7 @@ import os
 import operator
 from nltk.translate.bleu_score import sentence_bleu, corpus_bleu
 
+
 class Evaluator:
     def __init__(self):
         pass
@@ -21,23 +22,30 @@ class Evaluator:
 
     @classmethod
     def get_corpus_bleu(cls, original_guis_filepath, predicted_guis_filepath):
-        actuals, predicted = Evaluator.load_guis_from_folder(original_guis_filepath, predicted_guis_filepath)
+        actuals, predicted = Evaluator.load_guis_from_folder(
+            original_guis_filepath, predicted_guis_filepath
+        )
         regular_bleu = corpus_bleu(actuals, predicted)
         return regular_bleu
 
     @classmethod
     def load_gui_doc(cls, gui_filepath):
-        file = open(gui_filepath, 'r')
+        file = open(gui_filepath, "r")
         gui = file.read()
         file.close()
-        gui = ' '.join(gui.split())
-        gui = gui.replace(',', ' ,')
+        gui = " ".join(gui.split())
+        gui = gui.replace(",", " ,")
         gui = gui.split()
 
         # Predicted images don't have color so we normalize all buttons to btn-orange or btn-active
-        btns_to_replace = ['btn-green', 'btn-red']
-        normalized_gui = ['btn-orange' if token in btns_to_replace else token for token in gui]
-        normalized_gui = ['btn-active' if token == 'btn-inactive' else token for token in normalized_gui]
+        btns_to_replace = ["btn-green", "btn-red"]
+        normalized_gui = [
+            "btn-orange" if token in btns_to_replace else token for token in gui
+        ]
+        normalized_gui = [
+            "btn-active" if token == "btn-inactive" else token
+            for token in normalized_gui
+        ]
         return normalized_gui
 
     @classmethod
@@ -45,7 +53,7 @@ class Evaluator:
         actuals, predicted = list(), list()
         all_files = os.listdir(predicted_guis_filepath)
         all_predicted_files = os.listdir(predicted_guis_filepath)
-        all_predicted_guis = [f for f in all_predicted_files if f.find('.gui') != -1]
+        all_predicted_guis = [f for f in all_predicted_files if f.find(".gui") != -1]
         all_predicted_guis.sort()
         guis = []
         for f in all_predicted_guis:

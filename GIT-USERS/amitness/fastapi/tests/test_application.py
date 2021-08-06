@@ -1084,7 +1084,7 @@ openapi_schema = {
                     "201": {
                         "description": "Successful Response",
                         "content": {"application/json": {"schema": {}}},
-                    },
+                    }
                 },
                 "summary": "Get Enum Status Code",
                 "operationId": "get_enum_status_code_enum_status_code_get",

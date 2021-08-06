@@ -43,51 +43,55 @@ Chen Keh-Jiann and Yu-Ming Hsieh (2004) Chinese Treebanks and Grammar
 Extraction, Proceedings of IJCNLP-04, pp560-565.
 """
 
-def parsed(files = 'parsed'):
+
+def parsed(files="parsed"):
     """
     @param files: One or more treebank files to be processed
     @type files: L{string} or L{tuple(string)}
     @rtype: iterator over L{tree}
-    """       
+    """
 
     # Just one file to process?  If so convert to a tuple so we can iterate
-    if type(files) is str: files = (files,)
+    if type(files) is str:
+        files = (files,)
 
     for file in files:
         path = os.path.join(get_basedir(), "sinica_treebank", file)
         for sent in open(path).readlines():
             yield tree.bracket_parse(sent)
 
-def raw(files = 'raw'):
+
+def raw(files="raw"):
     """
     @param files: One or more treebank files to be processed
     @type files: L{string} or L{tuple(string)}
     @rtype: iterator over L{list(string)}
-    """       
+    """
 
     # Just one file to process?  If so convert to a tuple so we can iterate
-    if type(files) is str: files = (files,)
+    if type(files) is str:
+        files = (files,)
 
     for file in files:
         path = os.path.join(get_basedir(), "sinica_treebank", file)
         for line in open(path).readlines():
             yield line.split()[1:]
 
+
 def demo():
     from nodebox_linguistics_extended.parser.nltk_lite.corpora import sinica_treebank
     from itertools import islice
 
-#    print "Parsed:"
-#    for tree in islice(sinica_treebank.parsed(), 3):
-#        print tree.pp()
-#    print
+    #    print "Parsed:"
+    #    for tree in islice(sinica_treebank.parsed(), 3):
+    #        print tree.pp()
+    #    print
 
     print("Raw:")
     for sent in islice(sinica_treebank.raw(), 3):
         print(sent)
     print()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     demo()
-
-

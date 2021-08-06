@@ -10,6 +10,7 @@ from .tree import *
 from nodebox_linguistics_extended.parser.nltk_lite import tokenize
 from nodebox_linguistics_extended.parser.nltk_lite.parse import AbstractParse, cfg
 from types import *
+
 #
 
 ##//////////////////////////////////////////////////////
@@ -56,6 +57,7 @@ class ShiftReduce(AbstractParse):
 
     @see: C{nltk.cfg}
     """
+
     def __init__(self, grammar, trace=0):
         """
         Create a new C{ShiftReduce}, that uses C{grammar} to
@@ -79,25 +81,27 @@ class ShiftReduce(AbstractParse):
         # initialize the stack.
         stack = []
         remaining_text = tokens
-        
+
         # Trace output.
         if self._trace:
-            print(('Parsing %r' % ' '.join(tokens)))
+            print(("Parsing %r" % " ".join(tokens)))
             self._trace_stack(stack, remaining_text)
 
         # iterate through the text, pushing the token onto
         # the stack, then reducing the stack.
         while len(remaining_text) > 0:
             self._shift(stack, remaining_text)
-            while self._reduce(stack, remaining_text): pass
+            while self._reduce(stack, remaining_text):
+                pass
 
         # Did we reduce everything?
-        if len(stack) != 1: return None
+        if len(stack) != 1:
+            return None
 
         # Did we end up with the right category?
         if stack[0].node != self._grammar.start().symbol():
             return None
-        
+
         # We parsed successfully!
         return stack[0]
 
@@ -116,7 +120,8 @@ class ShiftReduce(AbstractParse):
         """
         stack.append(remaining_text[0])
         remaining_text.remove(remaining_text[0])
-        if self._trace: self._trace_shift(stack, remaining_text)
+        if self._trace:
+            self._trace_shift(stack, remaining_text)
 
     def _match_rhs(self, rhs, rightmost_stack):
         """
@@ -135,15 +140,20 @@ class ShiftReduce(AbstractParse):
         @param rightmost_stack: The rightmost elements of the parser's
             stack.
         """
-        
-        if len(rightmost_stack) != len(rhs): return 0
+
+        if len(rightmost_stack) != len(rhs):
+            return 0
         for i in range(len(rightmost_stack)):
             if isinstance(rightmost_stack[i], Tree):
-                if not isinstance(rhs[i], cfg.Nonterminal): return 0
-                if rightmost_stack[i].node != rhs[i].symbol(): return 0
+                if not isinstance(rhs[i], cfg.Nonterminal):
+                    return 0
+                if rightmost_stack[i].node != rhs[i].symbol():
+                    return 0
             else:
-                if isinstance(rhs[i], cfg.Nonterminal): return 0
-                if rightmost_stack[i] != rhs[i]: return 0
+                if isinstance(rhs[i], cfg.Nonterminal):
+                    return 0
+                if rightmost_stack[i] != rhs[i]:
+                    return 0
         return 1
 
     def _reduce(self, stack, remaining_text, production=None):
@@ -167,13 +177,15 @@ class ShiftReduce(AbstractParse):
         @param remaining_text: The portion of the text that is not yet
             covered by C{stack}.
         """
-        if production is None: productions = self._grammar.productions()
-        else: productions = [production]
-        
+        if production is None:
+            productions = self._grammar.productions()
+        else:
+            productions = [production]
+
         # Try each production, in order.
         for production in productions:
             rhslen = len(production.rhs())
-                
+
             # check if the RHS of a production matches the top of the stack
             if self._match_rhs(production.rhs(), stack[-rhslen:]):
 
@@ -205,7 +217,7 @@ class ShiftReduce(AbstractParse):
         # 3: display which tokens & productions are shifed/reduced
         self._trace = trace
 
-    def _trace_stack(self, stack, remaining_text, marker=' '):
+    def _trace_stack(self, stack, remaining_text, marker=" "):
         """
         Print trace output displaying the given stack and text.
         
@@ -214,13 +226,13 @@ class ShiftReduce(AbstractParse):
             stack.  This is used with trace level 2 to print 'S'
             before shifted stacks and 'R' before reduced stacks.
         """
-        str = '  '+marker+' [ '
+        str = "  " + marker + " [ "
         for elt in stack:
             if isinstance(elt, Tree):
-                str += repr(cfg.Nonterminal(elt.node)) + ' '
+                str += repr(cfg.Nonterminal(elt.node)) + " "
             else:
-                str += repr(elt) + ' '
-        str += '* ' + ' '.join(remaining_text) + ']'
+                str += repr(elt) + " "
+        str += "* " + " ".join(remaining_text) + "]"
         print(str)
 
     def _trace_shift(self, stack, remaining_text):
@@ -229,9 +241,12 @@ class ShiftReduce(AbstractParse):
         
         @rtype: C{None}
         """
-        if self._trace > 2: print(('Shift %r:' % stack[-1]))
-        if self._trace == 2: self._trace_stack(stack, remaining_text, 'S')
-        elif self._trace > 0: self._trace_stack(stack, remaining_text)
+        if self._trace > 2:
+            print(("Shift %r:" % stack[-1]))
+        if self._trace == 2:
+            self._trace_stack(stack, remaining_text, "S")
+        elif self._trace > 0:
+            self._trace_stack(stack, remaining_text)
 
     def _trace_reduce(self, stack, production, remaining_text):
         """
@@ -241,10 +256,12 @@ class ShiftReduce(AbstractParse):
         @rtype: C{None}
         """
         if self._trace > 2:
-            rhs = ' '.join(production.rhs())
-            print(('Reduce %r <- %s' % (production.lhs(), rhs)))
-        if self._trace == 2: self._trace_stack(stack, remaining_text, 'R')
-        elif self._trace > 1: self._trace_stack(stack, remaining_text)
+            rhs = " ".join(production.rhs())
+            print(("Reduce %r <- %s" % (production.lhs(), rhs)))
+        if self._trace == 2:
+            self._trace_stack(stack, remaining_text, "R")
+        elif self._trace > 1:
+            self._trace_stack(stack, remaining_text)
 
     def _check_grammar(self):
         """
@@ -257,13 +274,14 @@ class ShiftReduce(AbstractParse):
         productions = self._grammar.productions()
 
         # Any production whose RHS is an extension of another production's RHS
-        # will never be used. 
+        # will never be used.
         for i in range(len(productions)):
-            for j in range(i+1, len(productions)):
+            for j in range(i + 1, len(productions)):
                 rhs1 = productions[i].rhs()
                 rhs2 = productions[j].rhs()
-                if rhs1[:len(rhs2)] == rhs2:
-                    print(('Warning: %r will never be used' % productions[i]))
+                if rhs1[: len(rhs2)] == rhs2:
+                    print(("Warning: %r will never be used" % productions[i]))
+
 
 ##//////////////////////////////////////////////////////
 ##  Stepping Shift/Reduce Parser
@@ -286,6 +304,7 @@ class SteppingShiftReduce(ShiftReduce):
         history is used to implement the C{undo} operation.
     @see: C{nltk.cfg}
     """
+
     def __init__(self, grammar, trace=0):
         self._grammar = grammar
         self._trace = trace
@@ -296,8 +315,9 @@ class SteppingShiftReduce(ShiftReduce):
 
     def get_parse_list(self, token):
         self.initialize(token)
-        while self.step(): pass
-        
+        while self.step():
+            pass
+
         return self.parses()
 
     def stack(self):
@@ -314,7 +334,7 @@ class SteppingShiftReduce(ShiftReduce):
         @rtype: C{list} of C{String}
         """
         return self._remaining_text
-        
+
     def initialize(self, token):
         """
         Start parsing a given text.  This sets the parser's stack to
@@ -348,11 +368,12 @@ class SteppingShiftReduce(ShiftReduce):
         @return: True if the shift operation was successful.
         @rtype: C{boolean}
         """
-        if len(self._remaining_text) == 0: return 0
-        self._history.append( (self._stack[:], self._remaining_text[:]) )
+        if len(self._remaining_text) == 0:
+            return 0
+        self._history.append((self._stack[:], self._remaining_text[:]))
         self._shift(self._stack, self._remaining_text)
         return 1
-        
+
     def reduce(self, production=None):
         """
         Use C{production} to combine the rightmost stack elements into
@@ -365,11 +386,11 @@ class SteppingShiftReduce(ShiftReduce):
         
         @rtype: C{Production} or C{None}
         """
-        self._history.append( (self._stack[:], self._remaining_text[:]) )
-        return_val = self._reduce(self._stack, self._remaining_text,
-                                  production)
+        self._history.append((self._stack[:], self._remaining_text[:]))
+        return_val = self._reduce(self._stack, self._remaining_text, production)
 
-        if not return_val: self._history.pop()
+        if not return_val:
+            self._history.pop()
         return return_val
 
     def undo(self):
@@ -383,7 +404,8 @@ class SteppingShiftReduce(ShiftReduce):
         @return: true if an operation was successfully undone.
         @rtype: C{boolean}
         """
-        if len(self._history) == 0: return 0
+        if len(self._history) == 0:
+            return 0
         (self._stack, self._remaining_text) = self._history.pop()
         return 1
 
@@ -406,13 +428,15 @@ class SteppingShiftReduce(ShiftReduce):
             parser so far.
         @rtype: C{list} of C{Tree}
         """
-        if len(self._remaining_text) != 0: return []
-        if len(self._stack) != 1: return []
+        if len(self._remaining_text) != 0:
+            return []
+        if len(self._stack) != 1:
+            return []
         if self._stack[0].node != self._grammar.start().symbol():
             return []
         return self._stack
 
-# copied from nltk.parser
+    # copied from nltk.parser
 
     def set_grammar(self, grammar):
         """
@@ -422,10 +446,12 @@ class SteppingShiftReduce(ShiftReduce):
         @type grammar: C{CFG}
         """
         self._grammar = grammar
-    
+
+
 ##//////////////////////////////////////////////////////
 ##  Demonstration Code
 ##//////////////////////////////////////////////////////
+
 
 def demo():
     """
@@ -435,34 +461,40 @@ def demo():
     from nodebox_linguistics_extended.parser.nltk_lite.parse import cfg
 
     # Define some nonterminals
-    S, VP, NP, PP = cfg.nonterminals('S, VP, NP, PP')
-    V, N, P, Name, Det = cfg.nonterminals('V, N, P, Name, Det')
+    S, VP, NP, PP = cfg.nonterminals("S, VP, NP, PP")
+    V, N, P, Name, Det = cfg.nonterminals("V, N, P, Name, Det")
 
     # Define a grammar.
     productions = (
         # Syntactic Productions
-        cfg.Production(S, [NP, 'saw', NP]),
+        cfg.Production(S, [NP, "saw", NP]),
         cfg.Production(S, [NP, VP]),
         cfg.Production(NP, [Det, N]),
         cfg.Production(VP, [V, NP, PP]),
         cfg.Production(NP, [Det, N, PP]),
         cfg.Production(PP, [P, NP]),
-
         # Lexical Productions
-        cfg.Production(NP, ['I']),   cfg.Production(Det, ['the']),
-        cfg.Production(Det, ['a']),  cfg.Production(N, ['man']),
-        cfg.Production(V, ['saw']),  cfg.Production(P, ['in']),
-        cfg.Production(P, ['with']), cfg.Production(N, ['park']),
-        cfg.Production(N, ['dog']),  cfg.Production(N, ['telescope'])
-        )
+        cfg.Production(NP, ["I"]),
+        cfg.Production(Det, ["the"]),
+        cfg.Production(Det, ["a"]),
+        cfg.Production(N, ["man"]),
+        cfg.Production(V, ["saw"]),
+        cfg.Production(P, ["in"]),
+        cfg.Production(P, ["with"]),
+        cfg.Production(N, ["park"]),
+        cfg.Production(N, ["dog"]),
+        cfg.Production(N, ["telescope"]),
+    )
     grammar = cfg.Grammar(S, productions)
 
     # Tokenize a sample sentence.
-    sent = list(tokenize.whitespace('I saw a man in the park'))
+    sent = list(tokenize.whitespace("I saw a man in the park"))
 
     parser = ShiftReduce(grammar)
     parser.trace()
     for p in parser.get_parse_list(sent):
         print(p)
 
-if __name__ == '__main__': demo()
+
+if __name__ == "__main__":
+    demo()

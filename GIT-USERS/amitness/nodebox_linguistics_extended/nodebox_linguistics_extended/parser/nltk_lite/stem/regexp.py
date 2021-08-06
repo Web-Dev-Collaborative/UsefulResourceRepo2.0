@@ -9,12 +9,14 @@
 
 from nodebox_linguistics_extended.parser.nltk_lite.stem import *
 
+
 class Regexp(StemI):
     """
     A stemmer that uses regular expressions to identify morphological
     affixes.  Any substrings that matches the regular expressions will
     be removed.
     """
+
     def __init__(self, regexp, min=0):
         """
         Create a new regexp stemmer.
@@ -26,7 +28,7 @@ class Regexp(StemI):
         @param min: The minimum length of string to stem
         """
 
-        if not hasattr(regexp, 'pattern'):
+        if not hasattr(regexp, "pattern"):
             regexp = re.compile(regexp)
         self._regexp = regexp
         self._min = min
@@ -35,26 +37,26 @@ class Regexp(StemI):
         if len(word) < self._min:
             return word
         else:
-            return self._regexp.sub('', word)
+            return self._regexp.sub("", word)
 
     def __repr__(self):
-        return '<Regexp Stemmer: %r>' % self._regexp.pattern
+        return "<Regexp Stemmer: %r>" % self._regexp.pattern
+
 
 def demo():
     from nodebox_linguistics_extended.parser.nltk_lite import tokenize, stem
 
     # Create a simple regular expression based stemmer
-    stemmer = stem.Regexp('ing$|s$|e$', min=4)
+    stemmer = stem.Regexp("ing$|s$|e$", min=4)
     text = "John was eating icecream"
     tokens = tokenize.whitespace(text)
 
     # Print the results.
     print(stemmer)
     for word in tokens:
-        print(('%20s => %s' % (word, stemmer.stem(word))))
+        print(("%20s => %s" % (word, stemmer.stem(word))))
     print()
-        
 
-if __name__ == '__main__': demo()
 
-    
+if __name__ == "__main__":
+    demo()

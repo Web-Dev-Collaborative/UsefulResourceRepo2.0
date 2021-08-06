@@ -29,7 +29,7 @@ openapi_schema = {
                         "schema": {"title": "User Id", "type": "integer"},
                         "name": "user_id",
                         "in": "path",
-                    },
+                    }
                 ],
                 "responses": {
                     "200": {

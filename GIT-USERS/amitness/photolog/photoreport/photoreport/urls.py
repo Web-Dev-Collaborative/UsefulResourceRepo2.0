@@ -20,26 +20,24 @@ from django.conf.urls.static import static
 
 from mainapp.views import (
     LandingInputFileCreateView,
-    PhotoPreview, ReportGenView,
-    TempFileResumeView
+    PhotoPreview,
+    ReportGenView,
+    TempFileResumeView,
 )
 from mainapp.api import ProjectImageOrderUpdate
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^$', LandingInputFileCreateView.as_view(), name='landing'),
-    url(r'^resume/$', TempFileResumeView.as_view(), name='tempfile'),
+    url(r"^admin/", admin.site.urls),
+    url(r"^$", LandingInputFileCreateView.as_view(), name="landing"),
+    url(r"^resume/$", TempFileResumeView.as_view(), name="tempfile"),
+    url(r"^preview/(?P<input_id>[-\w]+)/$", PhotoPreview.as_view(), name="preview"),
     url(
-        r'^preview/(?P<input_id>[-\w]+)/$',
-        PhotoPreview.as_view(), name='preview'
+        regex=r"^api/project/(?P<pk>[-\d]+)/$",
+        view=ProjectImageOrderUpdate.as_view(),
+        name="api",
     ),
     url(
-        regex=r'^api/project/(?P<pk>[-\d]+)/$',
-        view=ProjectImageOrderUpdate.as_view(), name='api'
-    ),
-    url(
-        regex=r'^success/(?P<pk>[-\d]+)/$',
-        view=ReportGenView.as_view(), name='success'
+        regex=r"^success/(?P<pk>[-\d]+)/$", view=ReportGenView.as_view(), name="success"
     ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

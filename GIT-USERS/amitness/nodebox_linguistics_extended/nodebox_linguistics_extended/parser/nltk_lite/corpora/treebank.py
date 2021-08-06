@@ -61,15 +61,17 @@ Parsed:
       (. .) ))
 """
 
-def parsed(files = 'parsed'):
+
+def parsed(files="parsed"):
     """
     @param files: One or more treebank files to be processed
     @type files: L{string} or L{tuple(string)}
     @rtype: iterator over L{tree}
-    """       
+    """
 
     # Just one file to process?  If so convert to a tuple so we can iterate
-    if type(files) is str: files = (files,)
+    if type(files) is str:
+        files = (files,)
 
     for file in files:
         path = os.path.join(get_basedir(), "treebank", file)
@@ -78,15 +80,16 @@ def parsed(files = 'parsed'):
             yield tree.bracket_parse(t)
 
 
-def chunked(files = 'chunked'):
+def chunked(files="chunked"):
     """
     @param files: One or more treebank files to be processed
     @type files: L{string} or L{tuple(string)}
     @rtype: iterator over L{tree}
-    """       
+    """
 
     # Just one file to process?  If so convert to a tuple so we can iterate
-    if type(files) is str: files = (files,)
+    if type(files) is str:
+        files = (files,)
 
     for file in files:
         path = os.path.join(get_basedir(), "treebank", file)
@@ -95,15 +98,16 @@ def chunked(files = 'chunked'):
             yield tree.chunk(t)
 
 
-def tagged(files = 'chunked'):
+def tagged(files="chunked"):
     """
     @param files: One or more treebank files to be processed
     @type files: L{string} or L{tuple(string)}
     @rtype: iterator over L{list(tuple)}
-    """       
+    """
 
     # Just one file to process?  If so convert to a tuple so we can iterate
-    if type(files) is str: files = (files,)
+    if type(files) is str:
+        files = (files,)
 
     for file in files:
         path = os.path.join(get_basedir(), "treebank", file)
@@ -111,19 +115,21 @@ def tagged(files = 'chunked'):
         for sent in tokenize.blankline(f):
             l = []
             for t in tokenize.whitespace(sent):
-                if (t != '[' and t != ']'):
+                if t != "[" and t != "]":
                     l.append(tag2tuple(t))
             yield l
 
-def raw(files = 'raw'):
+
+def raw(files="raw"):
     """
     @param files: One or more treebank files to be processed
     @type files: L{string} or L{tuple(string)}
     @rtype: iterator over L{list(string)}
-    """       
+    """
 
     # Just one file to process?  If so convert to a tuple so we can iterate
-    if type(files) is str: files = (files,)
+    if type(files) is str:
+        files = (files,)
 
     for file in files:
         path = os.path.join(get_basedir(), "treebank", file)
@@ -159,7 +165,6 @@ def demo():
         print(sent)
     print()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     demo()
-
-

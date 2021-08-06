@@ -1,5 +1,6 @@
 # https://leetcode.com/problems/two-sum/description/
 
+
 class Solution(object):
     def twoSum(self, nums, target):
         """
@@ -9,6 +10,6 @@ class Solution(object):
         """
         h = {}
         for i, elem in enumerate(nums):
-            if (target-elem) in h:
-                return [h[target-elem], i]
+            if (target - elem) in h:
+                return [h[target - elem], i]
             h[elem] = i

@@ -23,8 +23,8 @@ from tensorflow.python.lib.io import file_io
 
 
 def _save_np(absolute_fn, array):
-    if absolute_fn.startswith('gs://'):
-        with file_io.FileIO(absolute_fn, 'w') as f:
+    if absolute_fn.startswith("gs://"):
+        with file_io.FileIO(absolute_fn, "w") as f:
             np.save(f, array)
     else:
         np.save(absolute_fn, array)
@@ -56,8 +56,9 @@ def assert_rank(tensor, expected_rank, name=None):
         scope_name = tf.get_variable_scope().name
         raise ValueError(
             "For the tensor `%s` in scope `%s`, the actual rank "
-            "`%d` (shape = %s) is not equal to the expected rank `%s`" %
-            (name, scope_name, actual_rank, str(tensor.shape), str(expected_rank)))
+            "`%d` (shape = %s) is not equal to the expected rank `%s`"
+            % (name, scope_name, actual_rank, str(tensor.shape), str(expected_rank))
+        )
 
 
 def get_shape_list(tensor, expected_rank=None, name=None):
@@ -115,11 +116,11 @@ def gelu(input_tensor):
 
 def layer_norm(input_tensor, name=None, epsilon=1e-5):
     """Run layer normalization on the last dimension of the tensor."""
-    name2use = f'LayerNorm_{name}' if name is not None else name
-    with tf.variable_scope(name2use, default_name='LayerNorm'):
+    name2use = f"LayerNorm_{name}" if name is not None else name
+    with tf.variable_scope(name2use, default_name="LayerNorm"):
         dim = input_tensor.shape[-1].value
-        gamma = tf.get_variable('gamma', [dim], initializer=tf.constant_initializer(1))
-        beta = tf.get_variable('beta', [dim], initializer=tf.constant_initializer(0))
+        gamma = tf.get_variable("gamma", [dim], initializer=tf.constant_initializer(1))
+        beta = tf.get_variable("beta", [dim], initializer=tf.constant_initializer(0))
         mean = tf.reduce_mean(input_tensor, axis=-1, keepdims=True)
         std = tf.reduce_mean(tf.square(input_tensor - mean), axis=-1, keepdims=True)
         input_tensor = (input_tensor - mean) * tf.rsqrt(std + epsilon)
@@ -215,7 +216,8 @@ def construct_scalar_host_call(metric_dict, model_dir, prefix=""):
         """
         step = global_step[0]
         with tf.contrib.summary.create_file_writer(
-                logdir=model_dir, filename_suffix=".host_call").as_default():
+            logdir=model_dir, filename_suffix=".host_call"
+        ).as_default():
             with tf.contrib.summary.always_record_summaries():
                 for i, name in enumerate(metric_names):
                     tf.contrib.summary.scalar(prefix + name, args[i][0], step=step)
@@ -227,8 +229,7 @@ def construct_scalar_host_call(metric_dict, model_dir, prefix=""):
     # expects [batch_size, ...] Tensors, thus reshape to introduce a batch
     # dimension. These Tensors are implicitly concatenated to
     # [params['batch_size']].
-    global_step_tensor = tf.reshape(
-        tf.compat.v1.train.get_or_create_global_step(), [1])
+    global_step_tensor = tf.reshape(tf.compat.v1.train.get_or_create_global_step(), [1])
     other_tensors = [tf.reshape(metric_dict[key], [1]) for key in metric_names]
 
     return host_call_fn, [global_step_tensor] + other_tensors

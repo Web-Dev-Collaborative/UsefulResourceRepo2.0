@@ -30,7 +30,8 @@ def create_optimizer(loss, init_lr, num_train_steps, num_warmup_steps, use_tpu):
         num_train_steps,
         end_learning_rate=0.0,
         power=1.0,
-        cycle=False)
+        cycle=False,
+    )
 
     # Implements linear warmup. I.e., if global_step < num_warmup_steps, the
     # learning rate will be `global_step/num_warmup_steps * init_lr`.
@@ -46,7 +47,8 @@ def create_optimizer(loss, init_lr, num_train_steps, num_warmup_steps, use_tpu):
 
         is_warmup = tf.cast(global_steps_int < warmup_steps_int, tf.float32)
         learning_rate = (
-                (1.0 - is_warmup) * learning_rate + is_warmup * warmup_learning_rate)
+            1.0 - is_warmup
+        ) * learning_rate + is_warmup * warmup_learning_rate
 
     # It is recommended that you use this optimizer for fine tuning, since this
     # is how the model was trained (note that the Adam m/v variables are NOT
@@ -57,7 +59,8 @@ def create_optimizer(loss, init_lr, num_train_steps, num_warmup_steps, use_tpu):
         beta_1=0.9,
         beta_2=0.999,
         epsilon=1e-6,
-        exclude_from_weight_decay=["LayerNorm", "layer_norm", "bias"])
+        exclude_from_weight_decay=["LayerNorm", "layer_norm", "bias"],
+    )
 
     if use_tpu:
         optimizer = tf.contrib.tpu.CrossShardOptimizer(optimizer)
@@ -68,8 +71,7 @@ def create_optimizer(loss, init_lr, num_train_steps, num_warmup_steps, use_tpu):
     # You could do this, but instead we don't because a) it's slow and b) we already did the 'update clipping'
     # (grads, _) = tf.clip_by_global_norm(grads, clip_norm=1.0)
 
-    train_op = optimizer.apply_gradients(
-        zip(grads, tvars), global_step=global_step)
+    train_op = optimizer.apply_gradients(zip(grads, tvars), global_step=global_step)
 
     # Normally the global step update is done inside of `apply_gradients`.
     # However, `AdaFactorOptimizer` doesn't do this. But if you use
@@ -78,8 +80,8 @@ def create_optimizer(loss, init_lr, num_train_steps, num_warmup_steps, use_tpu):
     train_op = tf.group(train_op, [global_step.assign(new_global_step)])
 
     train_metrics = {
-        'learning_rate': learning_rate,
-        'minibatch_loss': loss,
+        "learning_rate": learning_rate,
+        "minibatch_loss": loss,
         # 'minibatch_ppl': tf.math.exp(loss),
     }
     return train_op, train_metrics
@@ -88,15 +90,17 @@ def create_optimizer(loss, init_lr, num_train_steps, num_warmup_steps, use_tpu):
 class AdaFactorOptimizer(tf.train.Optimizer):
     """here's the optimizer we'll use"""
 
-    def __init__(self,
-                 learning_rate,
-                 weight_decay_rate=0.0,
-                 beta_1=0.9,
-                 beta_2=0.999,
-                 epsilon=1e-6,
-                 exclude_from_weight_decay=None,
-                 clipping_rate=1.0,
-                 name="AdaFactorOptimizer"):
+    def __init__(
+        self,
+        learning_rate,
+        weight_decay_rate=0.0,
+        beta_1=0.9,
+        beta_2=0.999,
+        epsilon=1e-6,
+        exclude_from_weight_decay=None,
+        clipping_rate=1.0,
+        name="AdaFactorOptimizer",
+    ):
         """Constructs a AdaFactorOptimizer."""
         super(AdaFactorOptimizer, self).__init__(False, name)
 
@@ -162,21 +166,29 @@ class AdaFactorOptimizer(tf.train.Optimizer):
                     shape=[num_rows],
                     dtype=tf.float32,
                     trainable=False,
-                    initializer=tf.zeros_initializer())
+                    initializer=tf.zeros_initializer(),
+                )
                 vc = tf.get_variable(
                     name=param_name + "/adafactor_vc",
                     shape=[num_columns],
                     dtype=tf.float32,
                     trainable=False,
-                    initializer=tf.zeros_initializer())
+                    initializer=tf.zeros_initializer(),
+                )
 
-                next_vr = decay_rate * vr + (1 - decay_rate) * tf.reduce_mean(grad_squared, 1)
-                next_vc = decay_rate * vc + (1 - decay_rate) * tf.reduce_mean(grad_squared, 0)
+                next_vr = decay_rate * vr + (1 - decay_rate) * tf.reduce_mean(
+                    grad_squared, 1
+                )
+                next_vc = decay_rate * vc + (1 - decay_rate) * tf.reduce_mean(
+                    grad_squared, 0
+                )
 
                 long_term_mean = tf.reduce_mean(next_vr, -1, keepdims=True)
                 r_factor = tf.rsqrt(next_vr / long_term_mean + self.epsilon1)
                 c_factor = tf.rsqrt(next_vc + self.epsilon1)
-                update = grad * tf.expand_dims(r_factor, -1) * tf.expand_dims(c_factor, -2)
+                update = (
+                    grad * tf.expand_dims(r_factor, -1) * tf.expand_dims(c_factor, -2)
+                )
 
                 assignments.append(vr.assign(next_vr, use_locking=self.use_locking))
                 assignments.append(vc.assign(next_vc, use_locking=self.use_locking))
@@ -186,7 +198,8 @@ class AdaFactorOptimizer(tf.train.Optimizer):
                     shape=shape_list,
                     dtype=tf.float32,
                     trainable=False,
-                    initializer=tf.zeros_initializer())
+                    initializer=tf.zeros_initializer(),
+                )
                 next_v = decay_rate * v + (1 - decay_rate) * grad_squared
 
                 assignments.append(v.assign(next_v, use_locking=self.use_locking))

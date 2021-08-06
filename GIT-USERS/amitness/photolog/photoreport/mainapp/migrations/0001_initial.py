@@ -10,15 +10,28 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='InputFile',
+            name="InputFile",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('zip_file', models.FileField(upload_to='zipinput/%Y/%m/%d', validators=[mainapp.validators.validate_file_extension])),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "zip_file",
+                    models.FileField(
+                        upload_to="zipinput/%Y/%m/%d",
+                        validators=[mainapp.validators.validate_file_extension],
+                    ),
+                ),
             ],
-        ),
+        )
     ]

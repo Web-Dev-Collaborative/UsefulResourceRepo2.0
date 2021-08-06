@@ -14,17 +14,18 @@ from .validators import validate_file_extension, validate_image_extension
 
 class Image(models.Model):
     image = models.ImageField(
-        upload_to='images/%Y-%m-%d', validators=validate_image_extension
+        upload_to="images/%Y-%m-%d", validators=validate_image_extension
     )
     thumbnail = models.ImageField(
-        upload_to='thumb/%Y-%m-%d', validators=validate_image_extension,
-        null=True, blank=True
+        upload_to="thumb/%Y-%m-%d",
+        validators=validate_image_extension,
+        null=True,
+        blank=True,
     )
     caption = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return str(self.caption + ' ' + str(self.id))\
-            if self.caption else str(self.id)
+        return str(self.caption + " " + str(self.id)) if self.caption else str(self.id)
 
     def create_thumbnail(self):
         # original code for this method came from
@@ -41,9 +42,9 @@ class Image(models.Model):
 
         # django_type = self.image.file.content_type
 
-        django_type = 'image/png'
-        pillow_type = 'png'
-        file_extension = 'png'
+        django_type = "image/png"
+        pillow_type = "png"
+        file_extension = "png"
 
         # Open original photo which we want to thumbnail using PIL's Image
         image = PImage.open(BytesIO(self.image.read()))
@@ -63,14 +64,14 @@ class Image(models.Model):
         # ImageField
         suf = SimpleUploadedFile(
             os.path.split(self.image.name)[-1],
-            temp_handle.read(), content_type=django_type)
+            temp_handle.read(),
+            content_type=django_type,
+        )
         # Save SimpleUploadedFile into image field
         self.thumbnail.save(
-            '%s_thumbnail.%s' % (
-                os.path.splitext(suf.name)[0],
-                file_extension),
+            "%s_thumbnail.%s" % (os.path.splitext(suf.name)[0], file_extension),
             suf,
-            save=False
+            save=False,
         )
 
     def save(self, *args, **kwargs):
@@ -89,9 +90,7 @@ class Image(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True)
     images = models.ManyToManyField(Image)
-    image_order = models.TextField(
-        validators=[validate_comma_separated_integer_list]
-    )
+    image_order = models.TextField(validators=[validate_comma_separated_integer_list])
 
     def __str__(self):
         return str(self.name) if self.name else str(self.id)
@@ -102,7 +101,7 @@ class Project(models.Model):
         if not self.image_order:
             return list(images)
         try:
-            img_order = [int(i) for i in self.image_order.split(',')]
+            img_order = [int(i) for i in self.image_order.split(",")]
         except:
             return list(images)
         sorted_images = []
@@ -127,18 +126,16 @@ class InputFile(models.Model):
         media_path = settings.MEDIA_ROOT
         file_full_path = media_path + str(self.zip_file)
         # Read zipfile
-        archive = ZipFile(file_full_path, 'r')
+        archive = ZipFile(file_full_path, "r")
         # Create a new project
         project = Project()
         project.save()
 
         # Get list of files from zip
         photos = archive.namelist()
-        valid_extensions = [
-            '.png', '.jpg', '.JPG', '.gif', '.bmp', '.jpeg'
-        ]
+        valid_extensions = [".png", ".jpg", ".JPG", ".gif", ".bmp", ".jpeg"]
         for photo in photos:
-            if not '.' + photo.split('.')[-1] in valid_extensions:
+            if not "." + photo.split(".")[-1] in valid_extensions:
                 continue
             imgdata = archive.read(photo)
             fname = os.path.join("", photo)
