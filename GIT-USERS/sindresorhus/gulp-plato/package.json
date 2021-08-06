@@ -1,0 +1,43 @@
+{
+  "name": "gulp-plato",
+  "version": "1.0.2",
+  "description": "Generate complexity analysis reports",
+  "license": "MIT",
+  "repository": "sindresorhus/gulp-plato",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "gulpfriendly",
+    "plato",
+    "jshint",
+    "halstead",
+    "visualize",
+    "cyclomatic",
+    "complexity",
+    "report",
+    "analysis",
+    "analyze",
+    "report"
+  ],
+  "dependencies": {
+    "gulp-util": "^3.0.0",
+    "plato": "^1.1.0",
+    "through2": "^0.6.1"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "rimraf": "^2.2.5"
+  }
+}

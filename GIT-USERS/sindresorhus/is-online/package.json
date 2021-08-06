@@ -1,0 +1,66 @@
+{
+	"name": "is-online",
+	"version": "9.0.1",
+	"description": "Check if the internet connection is up",
+	"license": "MIT",
+	"repository": "sindresorhus/is-online",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"contributors": [
+		"silverwind <me@silverwind.io> (github.com/silverwind)"
+	],
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"test": "xo && ava test.js && tsd"
+	},
+	"files": [
+		"index.js",
+		"browser.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"browser",
+		"online",
+		"offline",
+		"is-online",
+		"network",
+		"connected",
+		"connectivity",
+		"internet",
+		"is",
+		"has",
+		"detect",
+		"hostname",
+		"hostnames",
+		"dns",
+		"socket",
+		"reachable",
+		"reachability",
+		"accessible",
+		"no",
+		"disconnected"
+	],
+	"dependencies": {
+		"got": "^11.8.0",
+		"p-any": "^3.0.0",
+		"p-timeout": "^3.2.0",
+		"public-ip": "^4.0.4"
+	},
+	"devDependencies": {
+		"ava": "^2.4.0",
+		"tsd": "^0.13.1",
+		"xo": "^0.34.1"
+	},
+	"browser": "browser.js",
+	"xo": {
+		"rules": {
+			"unicorn/prefer-optional-catch-binding": "off"
+		}
+	}
+}

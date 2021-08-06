@@ -1,0 +1,41 @@
+{
+	"name": "ipify",
+	"version": "5.0.0",
+	"description": "Get your public IP address",
+	"license": "MIT",
+	"repository": "sindresorhus/ipify",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"ip",
+		"ipv6",
+		"ipv4",
+		"address",
+		"public",
+		"external",
+		"own"
+	],
+	"dependencies": {
+		"got": "^11.8.0"
+	},
+	"devDependencies": {
+		"ava": "^2.4.0",
+		"is-ip": "^3.1.0",
+		"tsd": "^0.13.1",
+		"xo": "^0.35.0"
+	}
+}

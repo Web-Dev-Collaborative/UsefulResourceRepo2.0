@@ -1,0 +1,39 @@
+{
+	"name": "is-array-sorted",
+	"version": "2.0.0",
+	"description": "Check if an Array is sorted",
+	"license": "MIT",
+	"repository": "sindresorhus/is-array-sorted",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=8"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"array",
+		"sorted",
+		"sort",
+		"is",
+		"check",
+		"detect",
+		"list",
+		"sequence",
+		"compare",
+		"comparator"
+	],
+	"devDependencies": {
+		"ava": "^2.0.0",
+		"tsd": "^0.7.3",
+		"xo": "^0.24.0"
+	}
+}

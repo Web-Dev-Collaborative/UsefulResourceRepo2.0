@@ -1,0 +1,41 @@
+{
+	"name": "is-up",
+	"version": "4.0.0",
+	"description": "Check whether a website is up or down",
+	"license": "MIT",
+	"repository": "sindresorhus/is-up",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"up",
+		"down",
+		"website",
+		"webpage",
+		"ip",
+		"live",
+		"running",
+		"online",
+		"offline"
+	],
+	"dependencies": {
+		"got": "^10.5.5"
+	},
+	"devDependencies": {
+		"ava": "^1.0.0",
+		"unique-string": "^2.0.0",
+		"xo": "^0.25.4"
+	}
+}

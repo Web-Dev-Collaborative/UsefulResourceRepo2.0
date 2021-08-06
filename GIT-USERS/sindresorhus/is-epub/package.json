@@ -1,0 +1,40 @@
+{
+	"name": "is-epub",
+	"version": "2.0.0",
+	"description": "Check if a Buffer/Uint8Array is EPUB",
+	"license": "MIT",
+	"repository": "sindresorhus/is-epub",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": "./index.js",
+	"engines": {
+		"node": ">=12"
+	},
+	"scripts": {
+		"test": "ava && xo"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"epub",
+		"ebook",
+		"book",
+		"type",
+		"detect",
+		"check",
+		"is",
+		"binary",
+		"buffer",
+		"uint8array"
+	],
+	"devDependencies": {
+		"ava": "^3.15.0",
+		"read-chunk": "^2.1.0",
+		"xo": "^0.39.1"
+	}
+}

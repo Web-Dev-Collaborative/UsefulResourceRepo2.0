@@ -1,0 +1,45 @@
+{
+  "name": "icloud-tabs",
+  "version": "2.0.0",
+  "description": "Get the iCloud tabs for all synced devices (macOS)",
+  "license": "MIT",
+  "repository": "sindresorhus/icloud-tabs",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "os": [
+    "darwin"
+  ],
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "macos",
+    "osx",
+    "plist",
+    "icloud",
+    "tabs",
+    "safari",
+    "sync"
+  ],
+  "dependencies": {
+    "bplist-parser": "^0.1.0",
+    "pify": "^2.3.0",
+    "untildify": "^3.0.1"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "xo": "*"
+  },
+  "xo": {
+    "esnext": true
+  }
+}
