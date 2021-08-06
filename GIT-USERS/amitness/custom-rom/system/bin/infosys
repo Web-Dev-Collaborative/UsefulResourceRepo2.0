@@ -1,0 +1,39 @@
+#!/system/bin/sh
+
+clear
+echo "************************************************"
+echo "-                                              -"
+echo "-                 System Info                  -"
+echo "-                                              -"
+echo "************************************************"
+echo "";
+echo "Android Version: `getprop ro.build.id`"
+echo "";
+echo "ROM: `getprop ro.build.display.id`" 
+echo "";
+echo "Build: `getprop ro.build.version.release`" 
+echo "";
+echo "Kernel: `uname -r`" 
+echo "";
+free | awk '/Mem/{print "Free Memory : "$4/1024" MB";}'
+echo "";
+entro=`cat /proc/sys/kernel/random/entropy_avail`
+echo "";
+echo "Your Entropy Level Is $entro"
+sleep 3;
+if [ -e /cache/swap/swap.img ]; then
+echo "Swap cache detected..."
+sleep 1
+else
+echo "Swap cache not activated"
+fi
+sleep 1
+if [ -e /data/swap/swap.img ]; then
+echo "Swap data detected..."
+sleep 1
+else
+echo "Swap data not activated"
+fi
+sleep 1
+
+

@@ -1,0 +1,8 @@
+#!/sbin/sh
+#
+
+if [ ! -h /data/local/tmp/adreno_config.txt ]; then
+    ln -s /system/etc/adreno_config.txt /data/local/tmp/adreno_config.txt
+fi
+
+setprop debug.sf.hw 1

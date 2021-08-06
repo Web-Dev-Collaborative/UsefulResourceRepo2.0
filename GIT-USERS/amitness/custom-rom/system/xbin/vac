@@ -1,0 +1,23 @@
+#!/system/bin/sh
+mount -o remount,rw /data 2>/dev/null
+busybox mount -o remount,rw /data 2>/dev/null
+sleep 1
+TOTAL=`busybox find /*d* -iname "*.db" | wc -l`
+PROGRESS=0
+sync
+for i in `busybox find /*d* -iname "*.db"`; do
+	PROGRESS=$(($PROGRESS+1))
+	PERCENT=$(( $PROGRESS * 100 / $TOTAL ))
+	clear
+	echo " Processing $PROGRESS of $TOTAL"
+	echo ""
+	echo "  VACUUMING: $i" 
+	sqlite3 $i 'VACUUM;';
+	echo " REINDEXING: $i" 
+	sqlite3 $i 'REINDEX;';
+done
+sync
+sleep 1
+echo " Optimized $TOTAL Apps " 
+sleep 1
+exit 0

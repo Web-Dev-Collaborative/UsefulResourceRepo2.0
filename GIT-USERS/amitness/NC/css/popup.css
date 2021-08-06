@@ -1,0 +1,38 @@
+hr {
+  margin: 5px 0;
+}
+
+nav > img {
+  display: inline-grid;
+  height: 60px;
+  width: 60px;
+}
+
+.title {
+  display: inline-grid;
+}
+
+body{
+  min-width: 400px;
+  text-align: center;
+}
+
+.item {
+  background-color: #eaeaea;
+  cursor: pointer;
+  font-size:16px;
+  margin-top: 2px;
+  padding: 5px 0;
+  padding-left: 40px;
+  text-align: left;
+}
+
+.mark {
+  background: rgb(78, 78, 78);
+  border-radius: 5px;
+  color: rgb(224, 160, 49);
+}
+
+.man-show {
+  display: none;
+}

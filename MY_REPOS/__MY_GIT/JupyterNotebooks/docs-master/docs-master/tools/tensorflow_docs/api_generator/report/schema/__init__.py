@@ -15,4 +15,6 @@
 # ==============================================================================
 """Public API for api report proto."""
 
-from tensorflow_docs.api_generator.report.schema import api_report_generated_pb2 as api_report_pb2
+from tensorflow_docs.api_generator.report.schema import (
+    api_report_generated_pb2 as api_report_pb2,
+)

@@ -1,0 +1,32 @@
+; AdrenoBooster Script  --  VERSION 0.2 Beta
+
+; Increases performance 
+facenessCulling=off
+
+; Compresses textures. This makes textures take longer to load but faster to render.
+forceAutoTextureCompression=1
+
+; Change triJuice value for quality or performance. (Quality 0 - 1 - 2 - 3 Performance)
+triJuice=3
+
+; Increases general UI and 2D performance.
+2D.HwBlt=1
+
+; Saves battery power by reducing the GPU clock when idle
+clockGating=1
+
+; Increases performance on low CPU clocks (Disabled by default)
+;oxiliForceVsSingleThread=1
+;oxiliForceFsSingleThread=1
+;oxiliForceSingleSp=1
+
+; New settings for future releases (Currently in testing phase)
+enableOptimizedTextureUpdates=0
+enableOptimizedVboUpdates=0
+
+shadowGmemInAppBuffers=0
+
+MSAASmoothing=Normal
+MSAABufferAllocation=never
+forceMSAAMode=1
+MSAAMode=0

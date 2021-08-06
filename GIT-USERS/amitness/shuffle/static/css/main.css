@@ -1,0 +1,31 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+*, *:before, *:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+iframe {
+	border: 0px solid white;
+	background: #000000;
+	margin-top: 30pt;
+}
+
+.buttonContainer {
+	margin: 30pt;
+}
+
+.footer{
+	margin-top: 30pt;
+	color: grey;
+	text-align: center;
+}
+.footer a {
+	color: black;
+}
+
+body {
+	background: #000000;
+}

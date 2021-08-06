@@ -1,0 +1,78 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:300);
+
+.page .awardeeName {
+  margin: auto;
+    width: 50%;
+    border: 3px solid black;
+    padding: 10px;
+    text-align: center;
+
+}
+
+.gContainer{
+ position: relative;
+  width: 20%;
+ margin-right: auto; margin-left: auto; 
+
+
+}
+
+body {
+  color: #666;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+table {
+  margin-top: 100px;
+  margin-bottom: -100px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  transition: all 0.2s ease;
+  transform: translateX(-50%) translateY(-50%);
+  background: #fff;
+  padding: 20px;
+}
+
+.name {
+  font-size: 30px;
+  border-bottom: 2px solid #888;
+  margin-bottom: 20px;
+}
+
+.name:first-letter {
+  font-size: 150%;
+}
+
+.label {
+  width: 150px;
+  font-weight: bold;
+}
+
+.label, .phone, .mobile, .email {
+  display: inline-block;
+}
+
+.details-td {
+  border-right: 1px solid #eee;
+  white-space: nowrap;
+  
+  padding: 20px;
+  padding-right: 30px;
+}
+
+.description-td {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: justify;
+  margin-top: 15px;
+}
+
+.description {
+    outline: 0px solid transparent;
+    border: 0px solid transparent;
+}

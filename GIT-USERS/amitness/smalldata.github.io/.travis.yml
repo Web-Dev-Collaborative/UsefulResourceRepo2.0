@@ -1,0 +1,21 @@
+language: python
+python:
+    - '3.7'
+dist: xenial
+branches:
+    only:
+        - master
+install:
+    - 'pip install pelican bulrush webassets markdown ghp-import pelican-minify pelican-youtube'
+    - 'npm install -g less'
+script:
+    - 'git submodule update --remote'
+#    - 'cd bulrush && python setup.py install && cd -'
+    - 'make publish'
+    - 'make github'
+notifications:
+    email:
+        - philshem+travis@pm.me
+env:
+    global:
+        secure: MVq1L0a3+pMGEUsj/ZSSHdaVynGYo91LHVVlPuc2abkyKcm8bewgCiNqexF1eTYWWyEuCNu8z/H3sF0PQJrFwycV1hjbe3P1ftMKsUSqBou+otHLDV3Zl/aymTtxdcWJmuPopQni/GCNy+MYqMI4KlJ8OouXk9gu5rIVhwPeMgV6SgNCTVRSee/IC5fQ0KjiJM/+CIC9GRoXjGRmpik4J0O3Z7XCBNo7/Po5H+cFxjWNKpqtNgRt6rhKA8+XK2kEXEaXs+JSg7ONJQL4yK1TdZq40GMU9v/vmK0eu4cqNAC6k14V4y0GcFUDC+gDf2QY8iPxEKCEA8N2wZ+CEDcnS4x5KWJN9I+DK/6EVLt8bTUcSeS5HJE/bkjZYuKcSorAmp9Lo6HE8EctB6hTQ/W4IIKMkcE+IYoRmqcdlBAxXCUyD3JJiYCUR5vMeDcVUf1Y9OnnBFL7rlYpDAnCKal9eGwDEx6sCsnJkqwe+YL64CO0v0pb5H0pcY9N/eBgOFekweChY4DP0iKqzPJ8oJTnaPrT8vkZXV7/L9334mhAlT0j975fcamGrhHlC7m5V7HoohsBDAsIS0DK88HZxqVfIVt77atyUlQYTjGtjIKAwLd1dG7alSRarhGpG2CFzwkYi9V4SuZqMGI4r9Qms3lVj0rbT3hpRQcKdEI8YseOVuk=

@@ -1,0 +1,405 @@
+{% extends "base.html" %}
+{% load staticfiles i18n %}
+
+{% block title %}Preview{% endblock title %}
+
+{% block css %}
+<link href="{% static 'css/preview.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link href="{% static 'css/toastr.css' %}" rel="stylesheet">
+{% endblock css %}
+
+{% block content %}
+<header>
+<div class="container" style="padding-top: 50px; padding-bottom: 50px;">
+    <div class="row">
+        <form action="." method="POST">{% csrf_token %}
+
+    	<div class="col-md-4">
+            <ul id="sortable">
+            {% for image in images %}
+	       <li id="{{image.id}}" onclick="process_image('{{image.image.url}}', '{{image.id}}', 'false')" style="width:80px;height:50px;"><img class="rotate-0" src="{{image.thumbnail.url}}"></li>
+	     {% endfor %}
+	   </ul>
+        </div>
+
+    	<div class="col-md-6 col-md-offset-2" style="position: fixed; right: 0px;">
+            <h3 align="left"> Project Number </h3>
+            <input type="text" name="project" placeholder="Type Project Number here" class="form-control" style="width: 30%; color: black; " {% if project.name %} value="{{project.name}}" {% endif %}>
+            <button class="btn btn-info" style="margin-top: 20px; margin-bottom: 20px;" onclick="rotateLeft(event);">Rotate Left</button>
+            <button class="btn btn-info" style="margin-top: 20px; margin-bottom: 20px;" onclick="rotateRight(event);">Rotate Right</button>
+            <button class="btn btn-success" style="margin-top: 20px; margin-bottom: 20px;" onclick="$('form').submit();">Finalize / Save</button>
+            <button class="btn btn-warning show-hide-btn" style="margin-top: 20px; margin-bottom: 20px;" onclick="update_imgs(this, event)">Hide Uncaptioned Photos</button>
+		{% for image in images %}
+        		<div class="form-group">
+        			<input id="caption_{{image.id}}" type="text" class="form-control caption hidden" name="caption_{{image.id}}" style="color: black;" placeholder="Write caption for this image ..." {% if image.caption %} value="{{image.caption}}" {% endif %}>
+                    <input id="rotate_{{image.id}}" type="hidden" name="rotate_{{image.id}}" value="0">
+        		</div>
+    		{% endfor %}
+    		<div class="img-container">
+	    		<img id="main-img" src="{{first_img.image.url}}">
+    		</div>
+      </div>
+    		</form>
+
+    </div>
+</div>
+
+</header>
+{% endblock content %}
+
+{% block javascript %}
+
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="{% static 'js/csrftoken.js' %}"></script>
+  <script src="{% static 'js/toastr.min.js' %}"></script>
+  <script>
+$( document ).ready(function() {
+	process_image("{{first_img.image.url}}", "{{first_img.id}}", 'true');
+
+  // check if input fields are cpationed
+  $('input[id^="caption_"]').each(function () {
+    check_captioned(this);
+  });
+
+  // add listener when the user types inside the input fields
+  $('input[id^="caption_"]').keyup(function () {
+    check_captioned(this);
+  });
+
+  adjustImages();
+
+  select_first_element_after_load();
+
+  $("body").keydown(function(e) {
+    var $focused = $(':focus');
+    if ($focused.length == 0 || $focused.get(0).tagName.toLowerCase() != 'input') {
+      // prevent arrow functionality if focus is on input text
+      if(e.keyCode == 37) { // left
+        e.preventDefault();
+        select_prev_element();
+      } else if (e.keyCode == 39) { // right
+        e.preventDefault();
+        select_next_element();
+      }
+    }
+  });
+});
+
+  function update_imgs(btn, e) {
+    e.preventDefault();
+    var $btn = $(btn);
+    if ($btn.hasClass('hidding')) {
+      // show all photos
+      $btn.removeClass('hidding');
+      $('#sortable > li').show();
+      $btn.html('Hide Uncaptioned Photos');
+    } else {
+      // hide uncaptioned photos
+      $btn.addClass('hidding');
+      $('input[id^="caption_"]').each(function () {
+        var value = $(this).val().trim();
+        if (value.length == 0) {
+          var id = $(this).attr('id').replace('caption_', '');
+          $('li#' + id).hide();
+        }
+      })
+      $btn.html('Show Uncaptioned Photos');
+
+      // select the first photo if the current photo got hide
+      $currentImg = $('#sortable li img.selected').first();
+      if ($currentImg.length == 0 || !$currentImg.hasClass('captioned')) {
+        select_first_element();
+      }
+    }
+  }
+
+  function process_image(img_url, img_id, initial) {
+    $('#sortable li img').removeClass('selected');
+  	if (initial == 'true') {
+		  $("#sortable").sortable();
+      $("#sortable").disableSelection();
+  	} else {
+  		var itemIds = $( "#sortable" ).sortable('toArray');
+  		post_image_order(itemIds);
+  	}
+
+
+    $('#main-img').attr("src", img_url).load(function() {
+        // adjust image size/position after load
+        var prefix = "rotate-";
+        classes = $('#main-img')[0].className.split(" ").filter(function(c) {
+            return c.lastIndexOf(prefix, 0) !== 0;
+        });
+        $('#main-img')[0].className = classes.join(" ").trim();
+        var currentAngle = currentImageAngle();
+        $('#main-img').addClass('rotate-'+currentAngle);
+        $('#main-img').css({'width': '', 'height': ''});
+        adjustSize($('#main-img'));
+    });
+
+    $(".caption").removeClass("hidden");
+  	$(".caption").not("#caption_" + img_id).hide();
+  	$("#caption_" + img_id).show();
+    $('#sortable li#' + img_id).find('img').addClass('selected');
+  }
+
+  function post_image_order(image_order) {
+    var url = "/api/project/" + "{{project.id}}/";
+    var img_order_str = image_order.join(',');
+	  data = {image_order: img_order_str};
+     $.ajax({
+          url: url,
+          type: "PUT",
+          data: JSON.stringify(data),
+          dataType: 'json',
+          contentType: "application/json",
+          success: function(data) {
+          	console.log('success');
+          	console.log(data);
+          },
+          error: function(data){
+            toastr.error('There was an error processing the request. Please try again.');
+          }
+      });
+  }
+
+  function currentImageAngle() {
+    var hidding = $('.show-hide-btn').hasClass('hidding');
+    var $currentImg = $('#sortable li img.selected').first();
+    if ($currentImg.length > 0 && (!hidding || (hidding && $currentImg.hasClass('captioned')))) {
+        var currentAngle = $currentImg.get(0).className.match(/rotate-[\w-]*/);
+        if (currentAngle.length > 0){
+            currentAngle = currentAngle[0].replace('rotate-', '');
+            if (currentAngle == ''){
+                currentAngle = 0;
+            } else {
+                currentAngle = parseInt(currentAngle);
+            }
+        } else {
+            currentAngle = 0;
+        }
+    } else {
+        currentAngle = 0;
+    }
+    return currentAngle;
+  }
+
+  function rotateLeft(e){
+    e.preventDefault();
+    rotateImage('left');
+  }
+
+  function rotateRight(e){
+    e.preventDefault();
+    rotateImage('right');
+  }
+
+  function adjustSize($image) {
+    var $container;
+    $container = $image.parent();
+
+    var adjustPosition = false;
+    if ($image.attr('id') == 'main-img') {
+        adjustPosition = true;
+    }
+
+    var containerWidth = $container.innerWidth();
+    var containerHeight = $container.innerHeight();
+    var imageWidth = $image.outerWidth();
+    var imageHeight = $image.outerHeight();
+
+    var horizontal = true;
+    if ($image.hasClass('rotate-90') || $image.hasClass('rotate-270')){
+        horizontal = false;
+    }
+
+    var adjustoToHeight = false;
+    if (horizontal) {
+        if ((imageHeight/imageWidth) > (containerHeight/containerWidth)) {
+            adjustoToHeight = true;
+        }
+    } else {
+        // the image will be vertical, so we need to invert the  width/height values
+        if ((imageWidth/imageHeight) > (containerHeight/containerWidth)) {
+            adjustoToHeight = true;
+        }
+    }
+
+    var newImageWidth;
+    var newImageHeight;
+
+    if (adjustoToHeight) {
+        if (horizontal) {
+            newImageHeight = containerHeight;
+            newImageWidth = newImageHeight * (imageWidth/imageHeight);
+        } else {
+            newImageWidth = containerHeight;
+            newImageHeight = newImageWidth * (imageHeight/imageWidth);
+        }
+    } else {
+        if (horizontal) {
+            newImageWidth = containerWidth;
+            newImageHeight = newImageWidth * (imageHeight/imageWidth);
+        } else {
+            newImageHeight = containerWidth;
+            newImageWidth = newImageHeight * (imageWidth/imageHeight);
+        }
+    }
+    $image.css({'width': newImageWidth+'px', 'height': newImageHeight+'px'});
+
+    if (adjustPosition) {
+        var newImageLeft = 0;
+        var newImageTop = 0;
+        var imageWidthReference = newImageWidth;
+        if (!horizontal) {
+            imageWidthReference = newImageHeight;
+        }
+        if ($image.hasClass('rotate-270')) {
+            newImageTop = newImageWidth;
+            newImageLeft = (containerWidth - imageWidthReference) / 2;
+        } else if ($image.hasClass('rotate-180')) {
+            newImageLeft = (containerWidth - imageWidthReference) / 2;
+        } else if ($image.hasClass('rotate-90')) {
+            newImageLeft = (containerWidth + imageWidthReference) / 2;
+        } else if ($image.hasClass('rotate-0')) {
+            newImageLeft = (containerWidth - imageWidthReference) / 2;
+        }
+        $image.css({'left': newImageLeft+'px', 'top': newImageTop+'px'});
+    }
+  }
+
+  function rotateImage(direction) {
+    var hidding = $('.show-hide-btn').hasClass('hidding');
+    var $currentImg = $('#sortable li img.selected').first();
+    if ($currentImg.length > 0 && (!hidding || (hidding && $currentImg.hasClass('captioned')))) {
+        var currentAngle = currentImageAngle();
+        var newAngle;
+        if (direction == 'left') {
+            newAngle = currentAngle - 90;
+            if (newAngle == -90) {
+                newAngle = 270;
+            }
+        } else {
+            newAngle = currentAngle + 90;
+            if (newAngle == 360) {
+                newAngle = 0;
+            }
+        }
+
+        var imageId = $currentImg.parent().attr('id');
+        $('#rotate_' + imageId).val(newAngle);
+
+        var prefix = "rotate-";
+
+        // thumbnail
+        var classes = $currentImg[0].className.split(" ").filter(function(c) {
+            return c.lastIndexOf(prefix, 0) !== 0;
+        });
+        $currentImg[0].className = classes.join(" ").trim();
+        $currentImg.addClass('rotate-' + newAngle);
+        $currentImg.css({'width': '', 'height': ''});
+        adjustSize($currentImg);
+
+        // large image
+        classes = $('#main-img')[0].className.split(" ").filter(function(c) {
+            return c.lastIndexOf(prefix, 0) !== 0;
+        });
+        $('#main-img')[0].className = classes.join(" ").trim();
+        $('#main-img').addClass('rotate-'+newAngle);
+        $('#main-img').css({'width': '', 'height': ''});
+        adjustSize($('#main-img'));
+    }
+  }
+
+  function check_captioned(input) {
+    var value = $(input).val().trim();
+    var id = $(input).attr('id').replace('caption_', '');
+    var $img = $('li#' + id).find('img');
+    if (value.length > 0) {
+      $img.addClass('captioned');
+    } else {
+      $img.removeClass('captioned');
+    }
+  }
+
+  function adjustImages() {
+    $('#sortable li img').each(function () {
+      adjustSize($(this));
+    });
+  }
+
+  function select_first_element_after_load() {
+    $('#sortable li img').removeClass('selected');
+    var $img;
+    if ($('.show-hide-btn').hasClass('hidding')) {
+      $img = $('#sortable li img.captioned').first();
+    } else {
+      $img = $('#sortable li img').first();
+    }
+    if ($img.length > 0) {
+      $img.addClass('selected');
+      adjustSize($('#main-img'));
+    }
+  }
+
+  function select_first_element() {
+    var hidding = $('.show-hide-btn').hasClass('hidding');
+    var $firstImg;
+    if (hidding) {
+      $firstImg = $('#sortable li img.captioned').first();
+    } else {
+      $firstImg = $('#sortable li img').first();
+    }
+    if ($firstImg.length > 0) {
+      $firstImg.get(0).closest('li').click();
+    }
+  }
+
+  function select_next_element() {
+    var hidding = $('.show-hide-btn').hasClass('hidding');
+    $currentImg = $('#sortable li img.selected').first();
+    if ($currentImg.length == 0 || (hidding && !$currentImg.hasClass('captioned'))) {
+      // no selected images or selected image is hidden
+      select_first_element();
+    } else {
+      var $imgs;
+      if (hidding) {
+        $imgs = $('#sortable li img.captioned');
+      } else {
+        $imgs = $('#sortable li img');
+      }
+      var idx = $imgs.index($currentImg.get(0));
+      if (idx + 1 >= $imgs.length) {
+        $imgs[0].closest('li').click()
+      } else {
+        $imgs[idx+1].closest('li').click()
+      }
+    }
+  }
+
+  function select_prev_element() {
+    var hidding = $('.show-hide-btn').hasClass('hidding');
+    $currentImg = $('#sortable li img.selected').first();
+    if ($currentImg.length == 0 || (hidding && !$currentImg.hasClass('captioned'))) {
+      // no selected images or selected image is hidden
+      select_first_element();
+    } else {
+      var $imgs;
+      if (hidding) {
+        $imgs = $('#sortable li img.captioned');
+      } else {
+        $imgs = $('#sortable li img');
+      }
+      var idx = $imgs.index($currentImg.get(0));
+      if (idx == 0) {
+        $imgs[$imgs.length-1].closest('li').click()
+      } else {
+        $imgs[idx-1].closest('li').click()
+      }
+    }
+  }
+
+  </script>
+{% endblock javascript %}

@@ -1,0 +1,19 @@
+default: &default
+      adapter: postgresql
+      encoding: unicode
+      pool: 5
+      username: username
+      password: password
+      host:     <%= ENV['IP'] %>
+
+development:
+  <<: *default
+  database: ideator_development
+
+test:
+  <<: *default
+  database: ideator_test
+
+production:
+  <<: *default
+  database: ideator_production

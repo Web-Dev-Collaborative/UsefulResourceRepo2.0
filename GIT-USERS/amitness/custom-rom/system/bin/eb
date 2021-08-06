@@ -1,0 +1,5 @@
+#!/system/bin/sh
+#enable key Backlight
+chmod 0666 /sys/class/leds/button-backlight/brightness
+echo "255" > /sys/class/leds/button-backlight/brightness
+chmod 0444 /sys/class/leds/button-backlight/brightness

@@ -20,57 +20,47 @@ import sys
 from setuptools import find_packages
 from setuptools import setup
 
-project_name = 'tensorflow-docs'
-version = '0.0.0'
+project_name = "tensorflow-docs"
+version = "0.0.0"
 
 try:
-  version += subprocess.check_output(['git', 'rev-parse',
-                                      'HEAD']).decode('utf-8')
+    version += subprocess.check_output(["git", "rev-parse", "HEAD"]).decode("utf-8")
 except subprocess.CalledProcessError:
-  pass
+    pass
 
-DOCLINES = __doc__.split('\n')
+DOCLINES = __doc__.split("\n")
 
-REQUIRED_PKGS = [
-    'astor',
-    'absl-py',
-    'protobuf>=3.14',
-    'pyyaml',
-]
+REQUIRED_PKGS = ["astor", "absl-py", "protobuf>=3.14", "pyyaml"]
 
 # Dataclasses is in-built from py >=3.7. This version is a backport for py 3.6.
 if (sys.version_info.major, sys.version_info.minor) == (3, 6):
-  REQUIRED_PKGS.append('dataclasses')
+    REQUIRED_PKGS.append("dataclasses")
 
-VIS_REQURE = [
-    'numpy',
-    'PILLOW',
-    'webp',
-]
+VIS_REQURE = ["numpy", "PILLOW", "webp"]
 
 # https://setuptools.readthedocs.io/en/latest/setuptools.html#new-and-changed-setup-keywords
 setup(
     name=project_name,
     version=version,
     description=DOCLINES[0],
-    long_description='\n'.join(DOCLINES[2:]),
-    author='Google Inc.',
-    author_email='packages@tensorflow.org',
-    url='http://github.com/tensorflow/docs',
-    download_url='https://github.com/tensorflow/docs/tags',
-    license='Apache 2.0',
-    packages=find_packages('tools'),
-    package_dir={'': 'tools'},
+    long_description="\n".join(DOCLINES[2:]),
+    author="Google Inc.",
+    author_email="packages@tensorflow.org",
+    url="http://github.com/tensorflow/docs",
+    download_url="https://github.com/tensorflow/docs/tags",
+    license="Apache 2.0",
+    packages=find_packages("tools"),
+    package_dir={"": "tools"},
     scripts=[],
     install_requires=REQUIRED_PKGS,
-    extras_require={'vis': VIS_REQURE},
+    extras_require={"vis": VIS_REQURE},
     classifiers=[
-        'Development Status :: 4 - Beta',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: Apache Software License',
-        'Topic :: Scientific/Engineering :: Artificial Intelligence',
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: Apache Software License",
+        "Topic :: Scientific/Engineering :: Artificial Intelligence",
     ],
-    keywords='tensorflow api reference',
+    keywords="tensorflow api reference",
     # Include_package_data is required for setup.py to recognize the MAINFEST.in
     #   https://python-packaging.readthedocs.io/en/latest/non-code-files.html
     include_package_data=True,

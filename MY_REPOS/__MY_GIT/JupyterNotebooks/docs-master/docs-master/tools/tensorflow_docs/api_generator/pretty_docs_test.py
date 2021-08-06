@@ -24,13 +24,13 @@ from tensorflow_docs.api_generator import pretty_docs
 
 
 class ParserTest(absltest.TestCase):
+    def test_github_source_link_in_table(self):
+        url = "https://github.com/tensorflow/docs/blob/master/path/to/file"
+        location = parser._FileLocation(url=url)
+        table = pretty_docs._top_source_link(location)
 
-  def test_github_source_link_in_table(self):
-    url = "https://github.com/tensorflow/docs/blob/master/path/to/file"
-    location = parser._FileLocation(url=url)
-    table = pretty_docs._top_source_link(location)
-
-    expected = textwrap.dedent(f"""
+        expected = textwrap.dedent(
+            f"""
         <table class="tfo-notebook-buttons tfo-api nocontent" align="left">
         <td>
           <a target="_blank" href="{url}">
@@ -40,36 +40,41 @@ class ParserTest(absltest.TestCase):
         </td>
         </table>
 
-        """)
-    self.assertEqual(expected, table)
+        """
+        )
+        self.assertEqual(expected, table)
 
-  def test_other_source_link_after_table(self):
-    url = "somewhere/else"
-    location = parser._FileLocation(url=url)
-    table = pretty_docs._top_source_link(location)
+    def test_other_source_link_after_table(self):
+        url = "somewhere/else"
+        location = parser._FileLocation(url=url)
+        table = pretty_docs._top_source_link(location)
 
-    expected = textwrap.dedent(f"""
+        expected = textwrap.dedent(
+            f"""
        <table class="tfo-notebook-buttons tfo-api nocontent" align="left">
 
        </table>
 
        <a target="_blank" href="{url}">View source</a>
 
-       """)
-    self.assertEqual(expected, table)
+       """
+        )
+        self.assertEqual(expected, table)
 
-  def test_no_source_link(self):
-    location = parser._FileLocation()
-    table = pretty_docs._top_source_link(location)
+    def test_no_source_link(self):
+        location = parser._FileLocation()
+        table = pretty_docs._top_source_link(location)
 
-    expected = textwrap.dedent("""
+        expected = textwrap.dedent(
+            """
        <table class="tfo-notebook-buttons tfo-api nocontent" align="left">
 
        </table>
 
-       """)
-    self.assertEqual(expected, table)
+       """
+        )
+        self.assertEqual(expected, table)
 
 
 if __name__ == "__main__":
-  absltest.main()
+    absltest.main()

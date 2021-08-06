@@ -1,0 +1,4 @@
+#!/system/bin/sh
+cd /mnt/sdcard/DCIM/.thumbnails
+rm *.*
+rm .*

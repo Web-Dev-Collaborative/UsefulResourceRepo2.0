@@ -45,7 +45,7 @@ import webp
 
 
 class Webp(object):
-  """Builds a webp animation.
+    """Builds a webp animation.
 
   Attributes:
     frame_rate: The default frame rate for appended images.
@@ -56,8 +56,8 @@ class Webp(object):
       data.
   """
 
-  def __init__(self, shape=None, frame_rate=60.0, **options):
-    """A notebook-embedable webp animation.
+    def __init__(self, shape=None, frame_rate=60.0, **options):
+        """A notebook-embedable webp animation.
 
     Args:
       shape: Optional. The image_shape of the animation. Defaults to the shape
@@ -65,20 +65,20 @@ class Webp(object):
       frame_rate: The default frame rate for the animation.
       **options: Additional arguments passed to `WebPAnimEncoderOptions.new`.
     """
-    self.frame_rate = frame_rate
-    self._timestamp_ms = 0
-    self._empty = True
+        self.frame_rate = frame_rate
+        self._timestamp_ms = 0
+        self._empty = True
 
-    if options is None:
-      options = {}
+        if options is None:
+            options = {}
 
-    self._options = webp.WebPAnimEncoderOptions.new(**options)
-    self._encoder = None
-    self._shape = shape
-    self._result = None
+        self._options = webp.WebPAnimEncoderOptions.new(**options)
+        self._encoder = None
+        self._shape = shape
+        self._result = None
 
-  def append(self, img, dt_ms=None):
-    """Append an image to the animation.
+    def append(self, img, dt_ms=None):
+        """Append an image to the animation.
 
     Args:
       img: The image to add.
@@ -90,68 +90,71 @@ class Webp(object):
         * if the video has already been "assembled" (used).
         * if `img` does not match the shape of the animation.
     """
-    if self._result is not None:
-      raise ValueError(
-          "Can't append to an animation after it has been \"assembled\" (used)."
-      )
-    self._empty = False
+        if self._result is not None:
+            raise ValueError(
+                'Can\'t append to an animation after it has been "assembled" (used).'
+            )
+        self._empty = False
 
-    if not isinstance(img, PIL.Image.Image):
-      img = np.asarray(img)
-      img = PIL.Image.fromarray(img)
+        if not isinstance(img, PIL.Image.Image):
+            img = np.asarray(img)
+            img = PIL.Image.fromarray(img)
 
-    if self._shape is None:
-      self._shape = img.size
+        if self._shape is None:
+            self._shape = img.size
 
-    if self._encoder is None:
-      self._encoder = webp.WebPAnimEncoder.new(self.shape[0], self.shape[1],
-                                               self._options)
+        if self._encoder is None:
+            self._encoder = webp.WebPAnimEncoder.new(
+                self.shape[0], self.shape[1], self._options
+            )
 
-    if img.size != self.shape:
-      raise ValueError("Image shape does not match video shape")
+        if img.size != self.shape:
+            raise ValueError("Image shape does not match video shape")
 
-    img = webp.WebPPicture.from_pil(img)
+        img = webp.WebPPicture.from_pil(img)
 
-    self._encoder.encode_frame(img, int(self._timestamp_ms))
+        self._encoder.encode_frame(img, int(self._timestamp_ms))
 
-    if dt_ms is None:
-      self._timestamp_ms += 1000 * (1.0 / self.frame_rate)
-    else:
-      self._timestamp_ms += dt_ms
+        if dt_ms is None:
+            self._timestamp_ms += 1000 * (1.0 / self.frame_rate)
+        else:
+            self._timestamp_ms += dt_ms
 
-  def extend(self, imgs, dt_ms=None):
-    """Extend tha animation with an iterable if images.
+    def extend(self, imgs, dt_ms=None):
+        """Extend tha animation with an iterable if images.
 
     Args:
       imgs: An iterable of images, to pass to `.append`.
       dt_ms: Override the animation frame rate for these frames with a frame
         length in ms.
     """
-    for img in imgs:
-      self.append(img, dt_ms=dt_ms)
+        for img in imgs:
+            self.append(img, dt_ms=dt_ms)
 
-  @property
-  def result(self):
-    result = self._result
-    if result is None:
-      anim_data = self._encoder.assemble(int(self._timestamp_ms))
-      result = anim_data.buffer()
-      self._result = result
-    return result
+    @property
+    def result(self):
+        result = self._result
+        if result is None:
+            anim_data = self._encoder.assemble(int(self._timestamp_ms))
+            result = anim_data.buffer()
+            self._result = result
+        return result
 
-  @property
-  def shape(self):
-    """The shape of the animation. Read only once set."""
-    return self._shape
+    @property
+    def shape(self):
+        """The shape of the animation. Read only once set."""
+        return self._shape
 
-  def _repr_html_(self):
-    """Notebook display hook, embed the image in an <img> tag."""
-    if self._empty:
-      return "Empty Animation"
+    def _repr_html_(self):
+        """Notebook display hook, embed the image in an <img> tag."""
+        if self._empty:
+            return "Empty Animation"
 
-    return embed.embed_data("image/webp", self.result)._repr_html_()  # pylint: disable=protected-access,
+        return embed.embed_data(
+            "image/webp", self.result
+        )._repr_html_()  # pylint: disable=protected-access,
 
-  def save(self, filename):
-    """Write the webp data to a file."""
-    with open(filename, "wb") as f:
-      f.write(self.result)
+    def save(self, filename):
+        """Write the webp data to a file."""
+        with open(filename, "wb") as f:
+            f.write(self.result)

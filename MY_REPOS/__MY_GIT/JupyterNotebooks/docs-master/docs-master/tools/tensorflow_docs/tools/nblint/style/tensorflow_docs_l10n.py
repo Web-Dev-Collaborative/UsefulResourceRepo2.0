@@ -40,19 +40,20 @@ from tensorflow_docs.tools.nblint.style.tensorflow import split_doc_path
 
 @lint(
     message="Only edit translated files. Source files are here: https://github.com/tensorflow/docs",
-    scope=Options.Scope.FILE)
+    scope=Options.Scope.FILE,
+)
 def is_translation(args):
-  """Translations live in the site/<lang>/ directory of the docs-l10n repo."""
-  path_str = str(args["path"].resolve())
+    """Translations live in the site/<lang>/ directory of the docs-l10n repo."""
+    path_str = str(args["path"].resolve())
 
-  if "site/" not in path_str:
-    return False
-  elif "site/en/" in path_str:
-    return False
-  elif "site/en-snapshot/" in path_str:
-    return False
-  else:
-    return True
+    if "site/" not in path_str:
+        return False
+    elif "site/en/" in path_str:
+        return False
+    elif "site/en-snapshot/" in path_str:
+        return False
+    else:
+        return True
 
 
 # Catch tensorflow.org hostname usage in Chinese docs. Ignore false positives
@@ -60,15 +61,17 @@ def is_translation(args):
 # and subdomains like (blog|download|js).tensorflow.org.
 has_tf_hostname_re = re.compile(
     r"(?<!/a/)(?<!@)(?<!download\.)(?<!js\.)(www\.)(blog\.)?tensorflow\.org",
-    re.IGNORECASE)
+    re.IGNORECASE,
+)
 
 
 @lint(
     message="Replace 'www.tensorflow.org' URL with 'tensorflow.google.cn' in Chinese docs.",
     scope=Options.Scope.TEXT,
-    cond=Options.Cond.ALL)
+    cond=Options.Cond.ALL,
+)
 def china_hostname_url(args):
-  """Chinese docs should use tensorflow.google.cn as the URL hostname.
+    """Chinese docs should use tensorflow.google.cn as the URL hostname.
 
   Replace hostname 'www.tensorflow.org' with 'tensorflow.google.cn'.
 
@@ -78,18 +81,19 @@ def china_hostname_url(args):
   Returns:
     Boolean: True if lint test passes, False if not.
   """
-  docs_dir, _ = split_doc_path(args["path"])
+    docs_dir, _ = split_doc_path(args["path"])
 
-  # Only applicable for China docs.
-  if str(docs_dir) != "site/zh-cn" and str(docs_dir) != "site/zh-tw":
-    return True
+    # Only applicable for China docs.
+    if str(docs_dir) != "site/zh-cn" and str(docs_dir) != "site/zh-tw":
+        return True
 
-  if has_tf_hostname_re.search(args["cell_source"]):
-    fail(
-        fix=fix.regex_replace_all,
-        fix_args=[has_tf_hostname_re.pattern, "tensorflow.google.cn"])
-  else:
-    return True
+    if has_tf_hostname_re.search(args["cell_source"]):
+        fail(
+            fix=fix.regex_replace_all,
+            fix_args=[has_tf_hostname_re.pattern, "tensorflow.google.cn"],
+        )
+    else:
+        return True
 
 
 has_rtl_div_re = re.compile(r"<div\s*dir\s*=\s*[\"']rtl[\"'].*>", re.IGNORECASE)
@@ -97,11 +101,12 @@ has_copyright_re = re.compile(r"Copyright 20[1-9][0-9]")
 
 
 @lint(
-    message="RTL languages must wrap all text cell elements with: <div dir=\"rtl\">...</div>",
+    message='RTL languages must wrap all text cell elements with: <div dir="rtl">...</div>',
     scope=Options.Scope.TEXT,
-    cond=Options.Cond.ALL)
+    cond=Options.Cond.ALL,
+)
 def rtl_language_wrap(args):
-  """Check that RTL languages wrap text elemenst in a directional div.
+    """Check that RTL languages wrap text elemenst in a directional div.
 
   Required for languages like Arabic to render correctly in Colab. Some care
   must be taken or any Markdown syntax within the div will break.
@@ -112,22 +117,21 @@ def rtl_language_wrap(args):
   Returns:
     Boolean: True if lint test passes, False if not.
   """
-  docs_dir, _ = split_doc_path(args["path"])
+    docs_dir, _ = split_doc_path(args["path"])
 
-  # Only applicable for RTL languages.
-  if str(docs_dir) != "site/ar":
-    return True
+    # Only applicable for RTL languages.
+    if str(docs_dir) != "site/ar":
+        return True
 
-  cell_source = args["cell_source"]
+    cell_source = args["cell_source"]
 
-  # Ignore the text cells for copyright and buttons.
-  if (has_copyright_re.search(cell_source) or
-      is_button_cell_re.search(cell_source)):
-    return True
+    # Ignore the text cells for copyright and buttons.
+    if has_copyright_re.search(cell_source) or is_button_cell_re.search(cell_source):
+        return True
 
-  if has_rtl_div_re.search(cell_source):
-    return True
-  else:
-    fail(
-        "Wrap all text elements in `<div dir=\"rtl\">...</div>` for Colab. But check this doesn't break any Markdown syntax within."
-    )
+    if has_rtl_div_re.search(cell_source):
+        return True
+    else:
+        fail(
+            'Wrap all text elements in `<div dir="rtl">...</div>` for Colab. But check this doesn\'t break any Markdown syntax within.'
+        )

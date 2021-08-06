@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+
+  web:
+    command: wait-for-it postgres:5432 --strict --timeout=30 -- start-web
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/usr/src/app

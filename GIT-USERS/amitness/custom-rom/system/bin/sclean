@@ -1,0 +1,11 @@
+#!/system/bin/sh
+sleep 2
+for cachedir in /*/dalvik-*; do rm -r $cachedir/* 2>/dev/null; done
+busybox sync
+if [ -f "/proc/sys/kernel/sysrq" ]; then
+	echo 1 > /proc/sys/kernel/sysrq 2>/dev/null
+	echo b > /proc/sysrq-trigger 2>/dev/null
+fi
+reboot; busybox reboot
+sleep 1
+exit 0

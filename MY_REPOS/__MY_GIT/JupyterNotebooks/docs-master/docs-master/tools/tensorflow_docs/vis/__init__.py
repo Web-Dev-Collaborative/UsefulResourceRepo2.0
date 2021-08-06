@@ -18,4 +18,3 @@
 Use this module for plotting and visualization code that is too long to inline
 into a notebook.
 """
-

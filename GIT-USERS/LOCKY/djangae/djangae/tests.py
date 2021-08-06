@@ -26,14 +26,24 @@ from django.contrib.contenttypes.models import ContentType
 # DJANGAE
 from djangae.contrib import sleuth
 from django.db import IntegrityError as DjangoIntegrityError
-from djangae.db.backends.appengine.dbapi import CouldBeSupportedError, NotSupportedError, IntegrityError
+from djangae.db.backends.appengine.dbapi import (
+    CouldBeSupportedError,
+    NotSupportedError,
+    IntegrityError,
+)
 from djangae.db.constraints import UniqueMarker
 from djangae.indexing import add_special_index
 from djangae.db.utils import entity_matches_query
 from djangae.db.backends.appengine import caching
 from djangae.db.unique_utils import query_is_unique
 from djangae.db import transaction
-from djangae.fields import ComputedCharField, ShardedCounterField, SetField, ListField, GenericRelationField
+from djangae.fields import (
+    ComputedCharField,
+    ShardedCounterField,
+    SetField,
+    ListField,
+    GenericRelationField,
+)
 from djangae.models import CounterShard
 from djangae.db.backends.appengine.dnf import parse_dnf
 from .storage import BlobstoreFileUploadHandler
@@ -61,12 +71,10 @@ class UniqueModel(models.Model):
     unique_combo_one = models.IntegerField(blank=True, default=0)
     unique_combo_two = models.CharField(max_length=100, blank=True, default="")
 
-    unique_relation = models.ForeignKey('self', null=True, blank=True, unique=True)
+    unique_relation = models.ForeignKey("self", null=True, blank=True, unique=True)
 
     class Meta:
-        unique_together = [
-            ("unique_combo_one", "unique_combo_two")
-        ]
+        unique_together = [("unique_combo_one", "unique_combo_two")]
 
 
 class TestFruit(models.Model):
@@ -82,11 +90,11 @@ class Permission(models.Model):
         return u"{0} for {1}".format(self.perm, self.user)
 
     class Meta:
-        ordering = ('user__username', 'perm')
+        ordering = ("user__username", "perm")
 
 
 class SelfRelatedModel(models.Model):
-    related = models.ForeignKey('self', blank=True, null=True)
+    related = models.ForeignKey("self", blank=True, null=True)
 
 
 class MultiTableParent(models.Model):
@@ -133,28 +141,34 @@ class CachingTests(TestCase):
 
         instance = UniqueModel.objects.create(unique_field="test")
 
-        #There are 3 unique combinations (id, unique_field, unique_combo), we should've cached under all of them
+        # There are 3 unique combinations (id, unique_field, unique_combo), we should've cached under all of them
         self.assertEqual(3, len(caching.context.cache.keys()) - len(original_keys))
 
-        new_keys = list(set(caching.context.reverse_cache.keys()) - set(original_rc_keys))
+        new_keys = list(
+            set(caching.context.reverse_cache.keys()) - set(original_rc_keys)
+        )
         self.assertEqual(new_keys[0].id_or_name(), instance.pk)
 
     def test_pk_queries_hit_the_context_cache(self):
-        instance = UniqueModel.objects.create(unique_field="test") #Create an instance
+        instance = UniqueModel.objects.create(unique_field="test")  # Create an instance
 
-        #With the context cache enabled, make sure we don't hit the DB
+        # With the context cache enabled, make sure we don't hit the DB
         with sleuth.watch("google.appengine.api.datastore.Query.Run") as rpc_run:
-            with sleuth.watch("djangae.db.backends.appengine.caching.get_from_cache") as cache_hit:
+            with sleuth.watch(
+                "djangae.db.backends.appengine.caching.get_from_cache"
+            ) as cache_hit:
                 UniqueModel.objects.get(pk=instance.pk)
                 self.assertTrue(cache_hit.called)
                 self.assertFalse(rpc_run.called)
 
     def test_transactions_clear_the_context_cache(self):
-        UniqueModel.objects.create(unique_field="test") #Create an instance
+        UniqueModel.objects.create(unique_field="test")  # Create an instance
 
         with transaction.atomic():
             self.assertFalse(caching.context.cache)
-            UniqueModel.objects.create(unique_field="test2", unique_combo_one=1) #Create an instance
+            UniqueModel.objects.create(
+                unique_field="test2", unique_combo_one=1
+            )  # Create an instance
             self.assertTrue(caching.context.cache)
 
         self.assertFalse(caching.context.cache)
@@ -164,16 +178,24 @@ class CachingTests(TestCase):
 
         # With the context cache enabled, make sure we don't hit the DB
         with sleuth.watch("google.appengine.api.datastore.Query.Run") as rpc_wrapper:
-            with sleuth.watch("djangae.db.backends.appengine.caching.get_from_cache") as cache_hit:
+            with sleuth.watch(
+                "djangae.db.backends.appengine.caching.get_from_cache"
+            ) as cache_hit:
                 instance_from_cache = UniqueModel.objects.get(unique_field="test")
                 self.assertTrue(cache_hit.called)
                 self.assertFalse(rpc_wrapper.called)
 
         # Disable the context cache, make sure that we hit the database
         with caching.disable_context_cache():
-            with sleuth.watch("google.appengine.api.datastore.Query.Run") as rpc_wrapper:
-                with sleuth.watch("djangae.db.backends.appengine.caching.get_from_cache") as cache_hit:
-                    instance_from_database = UniqueModel.objects.get(unique_field="test")
+            with sleuth.watch(
+                "google.appengine.api.datastore.Query.Run"
+            ) as rpc_wrapper:
+                with sleuth.watch(
+                    "djangae.db.backends.appengine.caching.get_from_cache"
+                ) as cache_hit:
+                    instance_from_database = UniqueModel.objects.get(
+                        unique_field="test"
+                    )
                     self.assertTrue(cache_hit.called)
                     self.assertTrue(rpc_wrapper.called)
 
@@ -204,6 +226,7 @@ class NullDate(models.Model):
     datetime = models.DateTimeField(null=True, default=None)
     time = models.TimeField(null=True, default=None)
 
+
 class BackendTests(TestCase):
     def test_entity_matches_query(self):
         entity = datastore.Entity("test_model")
@@ -231,41 +254,60 @@ class BackendTests(TestCase):
 
         # If the entity has a list field, then if any of them match the
         # query then it's a match
-        entity["name"] = [ "Bob", "Fred", "Dave" ]
+        entity["name"] = ["Bob", "Fred", "Dave"]
         self.assertTrue(entity_matches_query(entity, query))  # ListField test
 
     def test_gae_conversion(self):
         # A PK IN query should result in a single get by key
 
-        with sleuth.switch("djangae.db.backends.appengine.commands.datastore.Get", lambda *args, **kwargs: []) as get_mock:
+        with sleuth.switch(
+            "djangae.db.backends.appengine.commands.datastore.Get",
+            lambda *args, **kwargs: [],
+        ) as get_mock:
             list(TestUser.objects.filter(pk__in=[1, 2, 3]))  # Force the query to run
             self.assertEqual(1, get_mock.call_count)
 
-        with sleuth.switch("djangae.db.backends.appengine.commands.datastore.Query.Run", lambda *args, **kwargs: []) as query_mock:
+        with sleuth.switch(
+            "djangae.db.backends.appengine.commands.datastore.Query.Run",
+            lambda *args, **kwargs: [],
+        ) as query_mock:
             list(TestUser.objects.filter(username="test"))
             self.assertEqual(1, query_mock.call_count)
 
-        with sleuth.switch("djangae.db.backends.appengine.commands.datastore.MultiQuery.Run", lambda *args, **kwargs: []) as query_mock:
+        with sleuth.switch(
+            "djangae.db.backends.appengine.commands.datastore.MultiQuery.Run",
+            lambda *args, **kwargs: [],
+        ) as query_mock:
             list(TestUser.objects.filter(username__in=["test", "cheese"]))
             self.assertEqual(1, query_mock.call_count)
 
-        with sleuth.switch("djangae.db.backends.appengine.commands.datastore.Get", lambda *args, **kwargs: []) as get_mock:
+        with sleuth.switch(
+            "djangae.db.backends.appengine.commands.datastore.Get",
+            lambda *args, **kwargs: [],
+        ) as get_mock:
             list(TestUser.objects.filter(pk=1))
             self.assertEqual(1, get_mock.call_count)
 
-        #FIXME: Issue #80
+        # FIXME: Issue #80
         with self.assertRaises(CouldBeSupportedError):
-            with sleuth.switch("djangae.db.backends.appengine.commands.datastore.MultiQuery.Run", lambda *args, **kwargs: []) as query_mock:
+            with sleuth.switch(
+                "djangae.db.backends.appengine.commands.datastore.MultiQuery.Run",
+                lambda *args, **kwargs: [],
+            ) as query_mock:
                 list(TestUser.objects.exclude(username__startswith="test"))
                 self.assertEqual(1, query_mock.call_count)
 
-        with sleuth.switch("djangae.db.backends.appengine.commands.datastore.Get", lambda *args, **kwargs: []) as get_mock:
-            list(TestUser.objects.filter(pk__in=[1, 2, 3, 4, 5, 6, 7, 8]).
-                filter(username__in=["test", "test2", "test3"]).filter(email__in=["test@example.com", "test2@example.com"]))
+        with sleuth.switch(
+            "djangae.db.backends.appengine.commands.datastore.Get",
+            lambda *args, **kwargs: [],
+        ) as get_mock:
+            list(
+                TestUser.objects.filter(pk__in=[1, 2, 3, 4, 5, 6, 7, 8])
+                .filter(username__in=["test", "test2", "test3"])
+                .filter(email__in=["test@example.com", "test2@example.com"])
+            )
 
             self.assertEqual(1, get_mock.call_count)
-
-
 
     def test_null_date_field(self):
         null_date = NullDate()
@@ -281,12 +323,12 @@ class BackendTests(TestCase):
         # string to a CharField. Djangae explicitly converts it to unicode.
         from django.template.defaultfilters import slugify
 
-        grue = slugify(u'grue')
+        grue = slugify(u"grue")
 
         self.assertIsInstance(grue, unicode)
         self.assertNotEqual(type(grue), unicode)
 
-        obj = TestFruit.objects.create(name=u'foo', color=grue)
+        obj = TestFruit.objects.create(name=u"foo", color=grue)
 
         self.assertEqual(type(obj.color), unicode)
 
@@ -297,40 +339,39 @@ class ModelFormsetTest(TestCase):
             class Meta:
                 model = TestUser
 
-        test_model = TestUser.objects.create(username='foo', field2='bar')
+        test_model = TestUser.objects.create(username="foo", field2="bar")
         TestModelFormSet = modelformset_factory(TestUser, form=TestModelForm, extra=0)
         TestModelFormSet(queryset=TestUser.objects.filter(pk=test_model.pk))
 
         data = {
-            'form-INITIAL_FORMS': 0,
-            'form-MAX_NUM_FORMS': 0,
-            'form-TOTAL_FORMS': 0,
-            'form-0-id': test_model.id,
-            'form-0-field1': 'foo_1',
-            'form-0-field2': 'bar_1',
+            "form-INITIAL_FORMS": 0,
+            "form-MAX_NUM_FORMS": 0,
+            "form-TOTAL_FORMS": 0,
+            "form-0-id": test_model.id,
+            "form-0-field1": "foo_1",
+            "form-0-field2": "bar_1",
         }
         factory = RequestFactory()
-        request = factory.post('/', data=data)
+        request = factory.post("/", data=data)
 
         TestModelFormSet(request.POST, request.FILES)
 
 
 class CacheTests(TestCase):
-
     def test_cache_set(self):
-        cache.set('test?', 'yes!')
-        self.assertEqual(cache.get('test?'), 'yes!')
+        cache.set("test?", "yes!")
+        self.assertEqual(cache.get("test?"), "yes!")
 
     def test_cache_timeout(self):
-        cache.set('test?', 'yes!', 1)
+        cache.set("test?", "yes!", 1)
         import time
+
         time.sleep(1)
-        self.assertEqual(cache.get('test?'), None)
+        self.assertEqual(cache.get("test?"), None)
 
 
 class TransactionTests(TestCase):
     def test_atomic_decorator(self):
-
         @transaction.atomic
         def txn():
             TestUser.objects.create(username="foo", field2="bar")
@@ -351,7 +392,6 @@ class TransactionTests(TestCase):
         self.assertEqual(0, TestUser.objects.count())
 
     def test_xg_argument(self):
-
         @transaction.atomic(xg=True)
         def txn(_username):
             TestUser.objects.create(username=_username, field2="bar")
@@ -379,7 +419,6 @@ class TransactionTests(TestCase):
             TestUser.objects.create(username=_username)
             txn2(_fruit)
 
-
         with self.assertRaises(ValueError):
             txn1("test", "banana")
 
@@ -394,41 +433,92 @@ class QueryNormalizationTests(TestCase):
     """
 
     def test_and_queries(self):
-        connection = connections['default']
+        connection = connections["default"]
 
         qs = TestUser.objects.filter(username="test").all()
 
-        self.assertEqual(('OR', [('LIT', ('username', '=', 'test'))]), parse_dnf(qs.query.where, connection=connection)[0])
+        self.assertEqual(
+            ("OR", [("LIT", ("username", "=", "test"))]),
+            parse_dnf(qs.query.where, connection=connection)[0],
+        )
 
         qs = TestUser.objects.filter(username="test", email="test@example.com")
 
-        expected = ('OR', [('AND', [('LIT', ('username', '=', 'test')), ('LIT', ('email', '=', 'test@example.com'))])])
+        expected = (
+            "OR",
+            [
+                (
+                    "AND",
+                    [
+                        ("LIT", ("username", "=", "test")),
+                        ("LIT", ("email", "=", "test@example.com")),
+                    ],
+                )
+            ],
+        )
 
         self.assertEqual(expected, parse_dnf(qs.query.where, connection=connection)[0])
         #
         qs = TestUser.objects.filter(username="test").exclude(email="test@example.com")
 
-        expected = ('OR', [
-            ('AND', [('LIT', ('username', '=', 'test')), ('LIT', ('email', '>', 'test@example.com'))]),
-            ('AND', [('LIT', ('username', '=', 'test')), ('LIT', ('email', '<', 'test@example.com'))])
-        ])
+        expected = (
+            "OR",
+            [
+                (
+                    "AND",
+                    [
+                        ("LIT", ("username", "=", "test")),
+                        ("LIT", ("email", ">", "test@example.com")),
+                    ],
+                ),
+                (
+                    "AND",
+                    [
+                        ("LIT", ("username", "=", "test")),
+                        ("LIT", ("email", "<", "test@example.com")),
+                    ],
+                ),
+            ],
+        )
 
         self.assertEqual(expected, parse_dnf(qs.query.where, connection=connection)[0])
 
-        qs = TestUser.objects.filter(username__lte="test").exclude(email="test@example.com")
-        expected = ('OR', [
-            ('AND', [("username", "<=", "test"), ("email", ">", "test@example.com")]),
-            ('AND', [("username", "<=", "test"), ("email", "<", "test@example.com")]),
-        ])
+        qs = TestUser.objects.filter(username__lte="test").exclude(
+            email="test@example.com"
+        )
+        expected = (
+            "OR",
+            [
+                (
+                    "AND",
+                    [("username", "<=", "test"), ("email", ">", "test@example.com")],
+                ),
+                (
+                    "AND",
+                    [("username", "<=", "test"), ("email", "<", "test@example.com")],
+                ),
+            ],
+        )
 
-        #FIXME: This will raise a BadFilterError on the datastore, we should instead raise NotSupportedError in that case
-        #with self.assertRaises(NotSupportedError):
+        # FIXME: This will raise a BadFilterError on the datastore, we should instead raise NotSupportedError in that case
+        # with self.assertRaises(NotSupportedError):
         #    parse_dnf(qs.query.where, connection=connection)
 
         instance = Relation(pk=1)
-        qs = instance.related_set.filter(headline__startswith='Fir')
+        qs = instance.related_set.filter(headline__startswith="Fir")
 
-        expected = ('OR', [('AND', [('LIT', ('relation_id', '=', 1)), ('LIT', ('_idx_startswith_headline', '=', u'Fir'))])])
+        expected = (
+            "OR",
+            [
+                (
+                    "AND",
+                    [
+                        ("LIT", ("relation_id", "=", 1)),
+                        ("LIT", ("_idx_startswith_headline", "=", u"Fir")),
+                    ],
+                )
+            ],
+        )
 
         norm = parse_dnf(qs.query.where, connection=connection)[0]
 
@@ -436,11 +526,11 @@ class QueryNormalizationTests(TestCase):
 
     def test_or_queries(self):
 
-        connection = connections['default']
+        connection = connections["default"]
 
-        qs = TestUser.objects.filter(
-            username="python").filter(
-            Q(username__in=["ruby", "jruby"]) | (Q(username="php") & ~Q(username="perl"))
+        qs = TestUser.objects.filter(username="python").filter(
+            Q(username__in=["ruby", "jruby"])
+            | (Q(username="php") & ~Q(username="perl"))
         )
 
         # After IN and != explosion, we have...
@@ -455,63 +545,148 @@ class QueryNormalizationTests(TestCase):
         # (OR: (AND: username='python', username = 'ruby'), (AND: username='python', username='jruby'), (AND: username='python', username='php', username < 'perl') \
         #      (AND: username='python', username='php', username > 'perl')
 
-        expected = ('OR', [
-            ('AND', [('LIT', ('username', '=', 'python')), ('LIT', ('username', '=', 'ruby'))]),
-            ('AND', [('LIT', ('username', '=', 'python')), ('LIT', ('username', '=', 'jruby'))]),
-            ('AND', [('LIT', ('username', '=', 'python')), ('LIT', ('username', '=', 'php')), ('LIT', ('username', '>', 'perl'))]),
-            ('AND', [('LIT', ('username', '=', 'python')), ('LIT', ('username', '=', 'php')), ('LIT', ('username', '<', 'perl'))])
-        ])
+        expected = (
+            "OR",
+            [
+                (
+                    "AND",
+                    [
+                        ("LIT", ("username", "=", "python")),
+                        ("LIT", ("username", "=", "ruby")),
+                    ],
+                ),
+                (
+                    "AND",
+                    [
+                        ("LIT", ("username", "=", "python")),
+                        ("LIT", ("username", "=", "jruby")),
+                    ],
+                ),
+                (
+                    "AND",
+                    [
+                        ("LIT", ("username", "=", "python")),
+                        ("LIT", ("username", "=", "php")),
+                        ("LIT", ("username", ">", "perl")),
+                    ],
+                ),
+                (
+                    "AND",
+                    [
+                        ("LIT", ("username", "=", "python")),
+                        ("LIT", ("username", "=", "php")),
+                        ("LIT", ("username", "<", "perl")),
+                    ],
+                ),
+            ],
+        )
 
         self.assertEqual(expected, parse_dnf(qs.query.where, connection=connection)[0])
         #
 
-        qs = TestUser.objects.filter(username="test") | TestUser.objects.filter(username="cheese")
+        qs = TestUser.objects.filter(username="test") | TestUser.objects.filter(
+            username="cheese"
+        )
 
-        expected = ('OR', [
-            ('LIT', ("username", "=", "test")),
-            ('LIT', ("username", "=", "cheese")),
-        ])
+        expected = (
+            "OR",
+            [("LIT", ("username", "=", "test")), ("LIT", ("username", "=", "cheese"))],
+        )
 
         self.assertEqual(expected, parse_dnf(qs.query.where, connection=connection)[0])
 
-        qs = TestUser.objects.using("default").filter(username__in=set()).values_list('email')
+        qs = (
+            TestUser.objects.using("default")
+            .filter(username__in=set())
+            .values_list("email")
+        )
 
         with self.assertRaises(EmptyResultSet):
             parse_dnf(qs.query.where, connection=connection)
 
-        qs = TestUser.objects.filter(username__startswith='Hello') |  TestUser.objects.filter(username__startswith='Goodbye')
-        expected = ('OR', [
-            ('LIT', ('_idx_startswith_username', '=', u'Hello')),
-            ('LIT', ('_idx_startswith_username', '=', u'Goodbye'))
-        ])
+        qs = TestUser.objects.filter(
+            username__startswith="Hello"
+        ) | TestUser.objects.filter(username__startswith="Goodbye")
+        expected = (
+            "OR",
+            [
+                ("LIT", ("_idx_startswith_username", "=", u"Hello")),
+                ("LIT", ("_idx_startswith_username", "=", u"Goodbye")),
+            ],
+        )
         self.assertEqual(expected, parse_dnf(qs.query.where, connection=connection)[0])
 
         qs = TestUser.objects.filter(pk__in=[1, 2, 3])
 
-        expected = ('OR', [
-            ('LIT', ("id", "=", datastore.Key.from_path(TestUser._meta.db_table, 1))),
-            ('LIT', ("id", "=", datastore.Key.from_path(TestUser._meta.db_table, 2))),
-            ('LIT', ("id", "=", datastore.Key.from_path(TestUser._meta.db_table, 3))),
-        ])
+        expected = (
+            "OR",
+            [
+                (
+                    "LIT",
+                    ("id", "=", datastore.Key.from_path(TestUser._meta.db_table, 1)),
+                ),
+                (
+                    "LIT",
+                    ("id", "=", datastore.Key.from_path(TestUser._meta.db_table, 2)),
+                ),
+                (
+                    "LIT",
+                    ("id", "=", datastore.Key.from_path(TestUser._meta.db_table, 3)),
+                ),
+            ],
+        )
 
         self.assertEqual(expected, parse_dnf(qs.query.where, connection=connection)[0])
 
         qs = TestUser.objects.filter(pk__in=[1, 2, 3]).filter(username="test")
 
-        expected = ('OR', [
-            ('AND', [
-                ('LIT', (u'id', '=', datastore.Key.from_path(TestUser._meta.db_table, 1))),
-                ('LIT', ('username', '=', 'test'))
-            ]),
-            ('AND', [
-                ('LIT', (u'id', '=', datastore.Key.from_path(TestUser._meta.db_table, 2))),
-                ('LIT', ('username', '=', 'test'))
-            ]),
-            ('AND', [
-                ('LIT', (u'id', '=', datastore.Key.from_path(TestUser._meta.db_table, 3))),
-                ('LIT', ('username', '=', 'test'))
-            ])
-        ])
+        expected = (
+            "OR",
+            [
+                (
+                    "AND",
+                    [
+                        (
+                            "LIT",
+                            (
+                                u"id",
+                                "=",
+                                datastore.Key.from_path(TestUser._meta.db_table, 1),
+                            ),
+                        ),
+                        ("LIT", ("username", "=", "test")),
+                    ],
+                ),
+                (
+                    "AND",
+                    [
+                        (
+                            "LIT",
+                            (
+                                u"id",
+                                "=",
+                                datastore.Key.from_path(TestUser._meta.db_table, 2),
+                            ),
+                        ),
+                        ("LIT", ("username", "=", "test")),
+                    ],
+                ),
+                (
+                    "AND",
+                    [
+                        (
+                            "LIT",
+                            (
+                                u"id",
+                                "=",
+                                datastore.Key.from_path(TestUser._meta.db_table, 3),
+                            ),
+                        ),
+                        ("LIT", ("username", "=", "test")),
+                    ],
+                ),
+            ],
+        )
         self.assertEqual(expected, parse_dnf(qs.query.where, connection=connection)[0])
 
 
@@ -541,27 +716,41 @@ class ConstraintTests(TestCase):
 
         instance = ModelWithUniques.objects.create(name="One")
 
-        self.assertEqual(1, datastore.Query(UniqueMarker.kind()).Count() - initial_count)
+        self.assertEqual(
+            1, datastore.Query(UniqueMarker.kind()).Count() - initial_count
+        )
 
         qry = datastore.Query(UniqueMarker.kind())
         qry.Order(("created", datastore.Query.DESCENDING))
 
         marker = [x for x in qry.Run()][0]
         # Make sure we assigned the instance
-        self.assertEqual(datastore.Key(marker["instance"]), datastore.Key.from_path(instance._meta.db_table, instance.pk))
+        self.assertEqual(
+            datastore.Key(marker["instance"]),
+            datastore.Key.from_path(instance._meta.db_table, instance.pk),
+        )
 
-        expected_marker = "{}|name:{}".format(ModelWithUniques._meta.db_table, md5("One").hexdigest())
+        expected_marker = "{}|name:{}".format(
+            ModelWithUniques._meta.db_table, md5("One").hexdigest()
+        )
         self.assertEqual(expected_marker, marker.key().id_or_name())
 
         instance.name = "Two"
         instance.save()
 
-        self.assertEqual(1, datastore.Query(UniqueMarker.kind()).Count() - initial_count)
+        self.assertEqual(
+            1, datastore.Query(UniqueMarker.kind()).Count() - initial_count
+        )
         marker = [x for x in qry.Run()][0]
         # Make sure we assigned the instance
-        self.assertEqual(datastore.Key(marker["instance"]), datastore.Key.from_path(instance._meta.db_table, instance.pk))
+        self.assertEqual(
+            datastore.Key(marker["instance"]),
+            datastore.Key.from_path(instance._meta.db_table, instance.pk),
+        )
 
-        expected_marker = "{}|name:{}".format(ModelWithUniques._meta.db_table, md5("Two").hexdigest())
+        expected_marker = "{}|name:{}".format(
+            ModelWithUniques._meta.db_table, md5("Two").hexdigest()
+        )
         self.assertEqual(expected_marker, marker.key().id_or_name())
 
     def test_conflicting_insert_throws_integrity_error(self):
@@ -583,16 +772,23 @@ class ConstraintTests(TestCase):
 
         instance = ModelWithUniques.objects.create(name="One")
 
-        self.assertEqual(1, datastore.Query(UniqueMarker.kind()).Count() - initial_count)
+        self.assertEqual(
+            1, datastore.Query(UniqueMarker.kind()).Count() - initial_count
+        )
 
         qry = datastore.Query(UniqueMarker.kind())
         qry.Order(("created", datastore.Query.DESCENDING))
 
-        marker = [ x for x in qry.Run()][0]
+        marker = [x for x in qry.Run()][0]
         # Make sure we assigned the instance
-        self.assertEqual(datastore.Key(marker["instance"]), datastore.Key.from_path(instance._meta.db_table, instance.pk))
+        self.assertEqual(
+            datastore.Key(marker["instance"]),
+            datastore.Key.from_path(instance._meta.db_table, instance.pk),
+        )
 
-        expected_marker = "{}|name:{}".format(ModelWithUniques._meta.db_table, md5("One").hexdigest())
+        expected_marker = "{}|name:{}".format(
+            ModelWithUniques._meta.db_table, md5("One").hexdigest()
+        )
         self.assertEqual(expected_marker, marker.key().id_or_name())
 
         instance.name = "Two"
@@ -603,7 +799,9 @@ class ConstraintTests(TestCase):
             original = to_patch.Put
 
             def func(*args, **kwargs):
-                kind = args[0][0].kind() if isinstance(args[0], list) else args[0].kind()
+                kind = (
+                    args[0][0].kind() if isinstance(args[0], list) else args[0].kind()
+                )
 
                 if kind == UniqueMarker.kind():
                     return original(*args, **kwargs)
@@ -617,23 +815,33 @@ class ConstraintTests(TestCase):
         finally:
             to_patch.Put = original
 
-        self.assertEqual(1, datastore.Query(UniqueMarker.kind()).Count() - initial_count)
+        self.assertEqual(
+            1, datastore.Query(UniqueMarker.kind()).Count() - initial_count
+        )
         marker = [x for x in qry.Run()][0]
         # Make sure we assigned the instance
-        self.assertEqual(datastore.Key(marker["instance"]), datastore.Key.from_path(instance._meta.db_table, instance.pk))
+        self.assertEqual(
+            datastore.Key(marker["instance"]),
+            datastore.Key.from_path(instance._meta.db_table, instance.pk),
+        )
 
-        expected_marker = "{}|name:{}".format(ModelWithUniques._meta.db_table, md5("One").hexdigest())
+        expected_marker = "{}|name:{}".format(
+            ModelWithUniques._meta.db_table, md5("One").hexdigest()
+        )
         self.assertEqual(expected_marker, marker.key().id_or_name())
 
     def test_error_on_insert_doesnt_create_markers(self):
         initial_count = datastore.Query(UniqueMarker.kind()).Count()
 
         from djangae.db.backends.appengine.commands import datastore as to_patch
+
         try:
             original = to_patch.Put
 
             def func(*args, **kwargs):
-                kind = args[0][0].kind() if isinstance(args[0], list) else args[0].kind()
+                kind = (
+                    args[0][0].kind() if isinstance(args[0], list) else args[0].kind()
+                )
 
                 if kind == UniqueMarker.kind():
                     return original(*args, **kwargs)
@@ -647,15 +855,21 @@ class ConstraintTests(TestCase):
         finally:
             to_patch.Put = original
 
-        self.assertEqual(0, datastore.Query(UniqueMarker.kind()).Count() - initial_count)
+        self.assertEqual(
+            0, datastore.Query(UniqueMarker.kind()).Count() - initial_count
+        )
 
     def test_delete_clears_markers(self):
         initial_count = datastore.Query(UniqueMarker.kind()).Count()
 
         instance = ModelWithUniques.objects.create(name="One")
-        self.assertEqual(1, datastore.Query(UniqueMarker.kind()).Count() - initial_count)
+        self.assertEqual(
+            1, datastore.Query(UniqueMarker.kind()).Count() - initial_count
+        )
         instance.delete()
-        self.assertEqual(0, datastore.Query(UniqueMarker.kind()).Count() - initial_count)
+        self.assertEqual(
+            0, datastore.Query(UniqueMarker.kind()).Count() - initial_count
+        )
 
     @override_settings(DJANGAE_DISABLE_CONSTRAINT_CHECKS=True)
     def test_constraints_disabled_doesnt_create_or_check_markers(self):
@@ -676,34 +890,71 @@ class ConstraintTests(TestCase):
         initial_count = datastore.Query(UniqueMarker.kind()).Count()
         ModelWithUniquesAndOverride.objects.create(name="One")
 
-        self.assertEqual(1, datastore.Query(UniqueMarker.kind()).Count() - initial_count)
+        self.assertEqual(
+            1, datastore.Query(UniqueMarker.kind()).Count() - initial_count
+        )
 
 
 class EdgeCaseTests(TestCase):
     def setUp(self):
         add_special_index(TestUser, "username", "iexact")
 
-        self.u1 = TestUser.objects.create(username="A", email="test@example.com", last_login=datetime.datetime.now().date())
-        self.u2 = TestUser.objects.create(username="B", email="test@example.com", last_login=datetime.datetime.now().date())
-        TestUser.objects.create(username="C", email="test2@example.com", last_login=datetime.datetime.now().date())
-        TestUser.objects.create(username="D", email="test3@example.com", last_login=datetime.datetime.now().date())
-        TestUser.objects.create(username="E", email="test3@example.com", last_login=datetime.datetime.now().date())
+        self.u1 = TestUser.objects.create(
+            username="A",
+            email="test@example.com",
+            last_login=datetime.datetime.now().date(),
+        )
+        self.u2 = TestUser.objects.create(
+            username="B",
+            email="test@example.com",
+            last_login=datetime.datetime.now().date(),
+        )
+        TestUser.objects.create(
+            username="C",
+            email="test2@example.com",
+            last_login=datetime.datetime.now().date(),
+        )
+        TestUser.objects.create(
+            username="D",
+            email="test3@example.com",
+            last_login=datetime.datetime.now().date(),
+        )
+        TestUser.objects.create(
+            username="E",
+            email="test3@example.com",
+            last_login=datetime.datetime.now().date(),
+        )
 
         self.apple = TestFruit.objects.create(name="apple", color="red")
         self.banana = TestFruit.objects.create(name="banana", color="yellow")
 
     def test_querying_by_date(self):
-        instance1 = ModelWithDates.objects.create(start=datetime.date(2014, 1, 1), end=datetime.date(2014, 1, 20))
-        instance2 = ModelWithDates.objects.create(start=datetime.date(2014, 2, 1), end=datetime.date(2014, 2, 20))
+        instance1 = ModelWithDates.objects.create(
+            start=datetime.date(2014, 1, 1), end=datetime.date(2014, 1, 20)
+        )
+        instance2 = ModelWithDates.objects.create(
+            start=datetime.date(2014, 2, 1), end=datetime.date(2014, 2, 20)
+        )
 
-        self.assertEqual(instance1, ModelWithDates.objects.get(start__lt=datetime.date(2014, 1, 2)))
-        self.assertEqual(2, ModelWithDates.objects.filter(start__lt=datetime.date(2015, 1, 1)).count())
+        self.assertEqual(
+            instance1, ModelWithDates.objects.get(start__lt=datetime.date(2014, 1, 2))
+        )
+        self.assertEqual(
+            2,
+            ModelWithDates.objects.filter(start__lt=datetime.date(2015, 1, 1)).count(),
+        )
 
-        self.assertEqual(instance2, ModelWithDates.objects.get(start__gt=datetime.date(2014, 1, 2)))
-        self.assertEqual(instance2, ModelWithDates.objects.get(start__gte=datetime.date(2014, 2, 1)))
+        self.assertEqual(
+            instance2, ModelWithDates.objects.get(start__gt=datetime.date(2014, 1, 2))
+        )
+        self.assertEqual(
+            instance2, ModelWithDates.objects.get(start__gte=datetime.date(2014, 2, 1))
+        )
 
     def test_double_starts_with(self):
-        qs = TestUser.objects.filter(username__startswith='Hello') |  TestUser.objects.filter(username__startswith='Goodbye')
+        qs = TestUser.objects.filter(
+            username__startswith="Hello"
+        ) | TestUser.objects.filter(username__startswith="Goodbye")
 
         self.assertEqual(0, qs.count())
 
@@ -721,11 +972,15 @@ class EdgeCaseTests(TestCase):
         TestUser.objects.create(username="Goodbye")
         TestUser.objects.create(username="Hello and Goodbye")
 
-        qs = TestUser.objects.filter(username__startswith='Hello') &  TestUser.objects.filter(username__startswith='Goodbye')
+        qs = TestUser.objects.filter(
+            username__startswith="Hello"
+        ) & TestUser.objects.filter(username__startswith="Goodbye")
         self.assertEqual(0, qs.count())
 
     def test_combinations_of_special_indexes(self):
-        qs = TestUser.objects.filter(username__iexact='Hello') | TestUser.objects.filter(username__contains='ood')
+        qs = TestUser.objects.filter(
+            username__iexact="Hello"
+        ) | TestUser.objects.filter(username__contains="ood")
 
         self.assertEqual(0, qs.count())
 
@@ -741,12 +996,18 @@ class EdgeCaseTests(TestCase):
     def test_multi_table_inheritance(self):
 
         parent = MultiTableParent.objects.create(parent_field="parent1")
-        child1 = MultiTableChildOne.objects.create(parent_field="child1", child_one_field="child1")
-        child2 = MultiTableChildTwo.objects.create(parent_field="child2", child_two_field="child2")
+        child1 = MultiTableChildOne.objects.create(
+            parent_field="child1", child_one_field="child1"
+        )
+        child2 = MultiTableChildTwo.objects.create(
+            parent_field="child2", child_two_field="child2"
+        )
 
         self.assertEqual(3, MultiTableParent.objects.count())
-        self.assertItemsEqual([parent.pk, child1.pk, child2.pk],
-            list(MultiTableParent.objects.values_list('pk', flat=True)))
+        self.assertItemsEqual(
+            [parent.pk, child1.pk, child2.pk],
+            list(MultiTableParent.objects.values_list("pk", flat=True)),
+        )
         self.assertEqual(1, MultiTableChildOne.objects.count())
         self.assertEqual(child1, MultiTableChildOne.objects.get())
 
@@ -757,7 +1018,9 @@ class EdgeCaseTests(TestCase):
         self.assertTrue(MultiTableParent.objects.filter(pk=child2.pk).exists())
 
     def test_anding_pks(self):
-        results = TestUser.objects.filter(id__exact=self.u1.pk).filter(id__exact=self.u2.pk)
+        results = TestUser.objects.filter(id__exact=self.u1.pk).filter(
+            id__exact=self.u2.pk
+        )
         self.assertEqual(list(results), [])
 
     def test_unusual_queries(self):
@@ -770,9 +1033,14 @@ class EdgeCaseTests(TestCase):
         self.assertEqual(2, len(results))
         self.assertItemsEqual(["apple", "banana"], [x.name for x in results])
 
-        results = TestFruit.objects.filter(name__in=["apple", "banana"]).values_list('pk', 'color')
+        results = TestFruit.objects.filter(name__in=["apple", "banana"]).values_list(
+            "pk", "color"
+        )
         self.assertEqual(2, len(results))
-        self.assertItemsEqual([(self.apple.pk, self.apple.color), (self.banana.pk, self.banana.color)], results)
+        self.assertItemsEqual(
+            [(self.apple.pk, self.apple.color), (self.banana.pk, self.banana.color)],
+            results,
+        )
 
         results = TestUser.objects.all()
         self.assertEqual(5, len(results))
@@ -792,38 +1060,46 @@ class EdgeCaseTests(TestCase):
         results = TestUser.objects.filter(username__lte="E")
         self.assertEqual(5, len(results))
 
-        #Double exclude on different properties not supported
+        # Double exclude on different properties not supported
         with self.assertRaises(DataError):
-            #FIXME: This should raise a NotSupportedError, but at the moment it's thrown too late in
-            #the process and so Django wraps it as a DataError
+            # FIXME: This should raise a NotSupportedError, but at the moment it's thrown too late in
+            # the process and so Django wraps it as a DataError
             list(TestUser.objects.exclude(username="E").exclude(email="A"))
 
         results = list(TestUser.objects.exclude(username="E").exclude(username="A"))
-        self.assertItemsEqual(["B", "C", "D"], [x.username for x in results ])
+        self.assertItemsEqual(["B", "C", "D"], [x.username for x in results])
 
         results = TestUser.objects.filter(username="A", email="test@example.com")
         self.assertEqual(1, len(results))
 
-        results = TestUser.objects.filter(username__in=["A", "B"]).filter(username__in=["A", "B"])
+        results = TestUser.objects.filter(username__in=["A", "B"]).filter(
+            username__in=["A", "B"]
+        )
         self.assertEqual(2, len(results))
         self.assertItemsEqual(["A", "B"], [x.username for x in results])
 
-        results = TestUser.objects.filter(username__in=["A", "B"]).filter(username__in=["A"])
+        results = TestUser.objects.filter(username__in=["A", "B"]).filter(
+            username__in=["A"]
+        )
         self.assertEqual(1, len(results))
         self.assertItemsEqual(["A"], [x.username for x in results])
 
-        results = TestUser.objects.filter(pk__in=[self.u1.pk, self.u2.pk]).filter(username__in=["A"])
+        results = TestUser.objects.filter(pk__in=[self.u1.pk, self.u2.pk]).filter(
+            username__in=["A"]
+        )
         self.assertEqual(1, len(results))
         self.assertItemsEqual(["A"], [x.username for x in results])
 
-        results = TestUser.objects.filter(username__in=["A"]).filter(pk__in=[self.u1.pk, self.u2.pk])
+        results = TestUser.objects.filter(username__in=["A"]).filter(
+            pk__in=[self.u1.pk, self.u2.pk]
+        )
         self.assertEqual(1, len(results))
         self.assertItemsEqual(["A"], [x.username for x in results])
 
         results = list(TestUser.objects.all().exclude(username__in=["A"]))
-        self.assertItemsEqual(["B", "C", "D", "E"], [x.username for x in results ])
+        self.assertItemsEqual(["B", "C", "D", "E"], [x.username for x in results])
 
-        results = list(TestFruit.objects.filter(name='apple', color__in=[]))
+        results = list(TestFruit.objects.filter(name="apple", color__in=[]))
         self.assertItemsEqual([], results)
 
     def test_or_queryset(self):
@@ -842,11 +1118,17 @@ class EdgeCaseTests(TestCase):
         self.assertItemsEqual([self.u1, self.u2], list(query))
 
     def test_extra_select(self):
-        results = TestUser.objects.filter(username='A').extra(select={'is_a': "username = 'A'"})
+        results = TestUser.objects.filter(username="A").extra(
+            select={"is_a": "username = 'A'"}
+        )
         self.assertEqual(1, len(results))
         self.assertItemsEqual([True], [x.is_a for x in results])
 
-        results = TestUser.objects.all().exclude(username='A').extra(select={'is_a': "username = 'A'"})
+        results = (
+            TestUser.objects.all()
+            .exclude(username="A")
+            .extra(select={"is_a": "username = 'A'"})
+        )
         self.assertEqual(4, len(results))
         self.assertEqual(not any([x.is_a for x in results]), True)
 
@@ -854,15 +1136,22 @@ class EdgeCaseTests(TestCase):
         # results = User.objects.all().extra(select={'truthy': 'TRUE'})
         # self.assertEqual(all([x.truthy for x in results]), True)
 
-        results = TestUser.objects.all().extra(select={'truthy': True})
+        results = TestUser.objects.all().extra(select={"truthy": True})
         self.assertEqual(all([x.truthy for x in results]), True)
 
     def test_counts(self):
         self.assertEqual(5, TestUser.objects.count())
         self.assertEqual(2, TestUser.objects.filter(email="test3@example.com").count())
         self.assertEqual(3, TestUser.objects.exclude(email="test3@example.com").count())
-        self.assertEqual(1, TestUser.objects.filter(username="A").exclude(email="test3@example.com").count())
-        self.assertEqual(3, TestUser.objects.exclude(username="E").exclude(username="A").count())
+        self.assertEqual(
+            1,
+            TestUser.objects.filter(username="A")
+            .exclude(email="test3@example.com")
+            .count(),
+        )
+        self.assertEqual(
+            3, TestUser.objects.exclude(username="E").exclude(username="A").count()
+        )
 
     def test_deletion(self):
         count = TestUser.objects.count()
@@ -871,7 +1160,9 @@ class EdgeCaseTests(TestCase):
         TestUser.objects.filter(username="A").delete()
         self.assertEqual(count - 1, TestUser.objects.count())
 
-        TestUser.objects.filter(username="B").exclude(username="B").delete() #Should do nothing
+        TestUser.objects.filter(username="B").exclude(
+            username="B"
+        ).delete()  # Should do nothing
         self.assertEqual(count - 1, TestUser.objects.count())
 
         TestUser.objects.all().delete()
@@ -879,14 +1170,21 @@ class EdgeCaseTests(TestCase):
         self.assertFalse(count)
 
     def test_insert_with_existing_key(self):
-        user = TestUser.objects.create(id=999, username="test1", last_login=datetime.datetime.now().date())
+        user = TestUser.objects.create(
+            id=999, username="test1", last_login=datetime.datetime.now().date()
+        )
         self.assertEqual(999, user.pk)
 
         with self.assertRaises(DjangoIntegrityError):
-            TestUser.objects.create(id=999, username="test2", last_login=datetime.datetime.now().date())
+            TestUser.objects.create(
+                id=999, username="test2", last_login=datetime.datetime.now().date()
+            )
 
     def test_included_pks(self):
-        ids = [ TestUser.objects.get(username="B").pk, TestUser.objects.get(username="A").pk ]
+        ids = [
+            TestUser.objects.get(username="B").pk,
+            TestUser.objects.get(username="A").pk,
+        ]
         results = TestUser.objects.filter(pk__in=ids).order_by("username")
 
         self.assertEqual(results[0], self.u1)
@@ -896,7 +1194,9 @@ class EdgeCaseTests(TestCase):
         """ select_related should be a no-op... for now """
         user = TestUser.objects.get(username="A")
         Permission.objects.create(user=user, perm="test_perm")
-        select_related = [ (p.perm, p.user.username) for p in user.permission_set.select_related() ]
+        select_related = [
+            (p.perm, p.user.username) for p in user.permission_set.select_related()
+        ]
         self.assertEqual(user.username, select_related[0][1])
 
     def test_cross_selects(self):
@@ -920,12 +1220,12 @@ class EdgeCaseTests(TestCase):
         try:
             original_init = Query.__init__
             Query.__init__ = replacement_init
-            list(TestUser.objects.all().values_list('pk', flat=True))
+            list(TestUser.objects.all().values_list("pk", flat=True))
         finally:
             Query.__init__ = original_init
 
-        self.assertTrue(replacement_init.called_kwargs.get('keys_only'))
-        self.assertEqual(5, len(TestUser.objects.all().values_list('pk')))
+        self.assertTrue(replacement_init.called_kwargs.get("keys_only"))
+        self.assertEqual(5, len(TestUser.objects.all().values_list("pk")))
 
     def test_iexact(self):
         user = TestUser.objects.get(username__iexact="a")
@@ -947,37 +1247,33 @@ class EdgeCaseTests(TestCase):
 
         last_a_login = TestUser.objects.get(username="A").last_login
 
-        dates = TestUser.objects.dates('last_login', 'year')
+        dates = TestUser.objects.dates("last_login", "year")
 
         self.assertItemsEqual(
-            [datetime.date(2013, 1, 1), datetime.date(last_a_login.year, 1, 1)],
-            dates
+            [datetime.date(2013, 1, 1), datetime.date(last_a_login.year, 1, 1)], dates
         )
 
-        dates = TestUser.objects.dates('last_login', 'month')
+        dates = TestUser.objects.dates("last_login", "month")
         self.assertItemsEqual(
-            [datetime.date(2013, 4, 1), datetime.date(last_a_login.year, last_a_login.month, 1)],
-            dates
+            [
+                datetime.date(2013, 4, 1),
+                datetime.date(last_a_login.year, last_a_login.month, 1),
+            ],
+            dates,
         )
 
-        dates = TestUser.objects.dates('last_login', 'day')
-        self.assertItemsEqual(
-            [datetime.date(2013, 4, 5), last_a_login],
-            dates
-        )
+        dates = TestUser.objects.dates("last_login", "day")
+        self.assertItemsEqual([datetime.date(2013, 4, 5), last_a_login], dates)
 
-        dates = TestUser.objects.dates('last_login', 'day', order='DESC')
-        self.assertItemsEqual(
-            [last_a_login, datetime.date(2013, 4, 5)],
-            dates
-        )
+        dates = TestUser.objects.dates("last_login", "day", order="DESC")
+        self.assertItemsEqual([last_a_login, datetime.date(2013, 4, 5)], dates)
 
     def test_in_query(self):
         """ Test that the __in filter works, and that it cannot be used with more than 30 values,
             unless it's used on the PK field.
         """
         # Check that a basic __in query works
-        results = list(TestUser.objects.filter(username__in=['A', 'B']))
+        results = list(TestUser.objects.filter(username__in=["A", "B"]))
         self.assertItemsEqual(results, [self.u1, self.u2])
         # Check that it also works on PKs
         results = list(TestUser.objects.filter(pk__in=[self.u1.pk, self.u2.pk]))
@@ -1000,67 +1296,95 @@ class BlobstoreFileUploadHandlerTest(TestCase):
     boundary = "===============7417945581544019063=="
 
     def setUp(self):
-        self.request = RequestFactory().get('/')
+        self.request = RequestFactory().get("/")
         self.request.META = {
-            'wsgi.input': self._create_wsgi_input(),
-            'content-type': 'message/external-body; blob-key="PLOF0qOie14jzHWJXEa9HA=="; access-type="X-AppEngine-BlobKey"'
+            "wsgi.input": self._create_wsgi_input(),
+            "content-type": 'message/external-body; blob-key="PLOF0qOie14jzHWJXEa9HA=="; access-type="X-AppEngine-BlobKey"',
         }
         self.uploader = BlobstoreFileUploadHandler(self.request)
 
     def _create_wsgi_input(self):
-        return StringIO('--===============7417945581544019063==\r\nContent-Type:'
-                        ' text/plain\r\nContent-Disposition: form-data;'
-                        ' name="field-nationality"\r\n\r\nAS\r\n'
-                        '--===============7417945581544019063==\r\nContent-Type:'
-                        ' message/external-body; blob-key="PLOF0qOie14jzHWJXEa9HA==";'
-                        ' access-type="X-AppEngine-BlobKey"\r\nContent-Disposition:'
-                        ' form-data; name="field-file";'
-                        ' filename="Scan.tiff"\r\n\r\nContent-Type: image/tiff'
-                        '\r\nContent-Length: 19837164\r\nContent-MD5:'
-                        ' YjI1M2Q5NjM5YzdlMzUxYjMyMjA0ZTIxZjAyNzdiM2Q=\r\ncontent-disposition:'
-                        ' form-data; name="field-file";'
-                        ' filename="Scan.tiff"\r\nX-AppEngine-Upload-Creation: 2014-03-07'
-                        ' 14:48:03.246607\r\n\r\n\r\n'
-                        '--===============7417945581544019063==\r\nContent-Type:'
-                        ' text/plain\r\nContent-Disposition: form-data;'
-                        ' name="field-number"\r\n\r\n6\r\n'
-                        '--===============7417945581544019063==\r\nContent-Type:'
-                        ' text/plain\r\nContent-Disposition: form-data;'
-                        ' name="field-salutation"\r\n\r\nmrs\r\n'
-                        '--===============7417945581544019063==--')
+        return StringIO(
+            "--===============7417945581544019063==\r\nContent-Type:"
+            " text/plain\r\nContent-Disposition: form-data;"
+            ' name="field-nationality"\r\n\r\nAS\r\n'
+            "--===============7417945581544019063==\r\nContent-Type:"
+            ' message/external-body; blob-key="PLOF0qOie14jzHWJXEa9HA==";'
+            ' access-type="X-AppEngine-BlobKey"\r\nContent-Disposition:'
+            ' form-data; name="field-file";'
+            ' filename="Scan.tiff"\r\n\r\nContent-Type: image/tiff'
+            "\r\nContent-Length: 19837164\r\nContent-MD5:"
+            " YjI1M2Q5NjM5YzdlMzUxYjMyMjA0ZTIxZjAyNzdiM2Q=\r\ncontent-disposition:"
+            ' form-data; name="field-file";'
+            ' filename="Scan.tiff"\r\nX-AppEngine-Upload-Creation: 2014-03-07'
+            " 14:48:03.246607\r\n\r\n\r\n"
+            "--===============7417945581544019063==\r\nContent-Type:"
+            " text/plain\r\nContent-Disposition: form-data;"
+            ' name="field-number"\r\n\r\n6\r\n'
+            "--===============7417945581544019063==\r\nContent-Type:"
+            " text/plain\r\nContent-Disposition: form-data;"
+            ' name="field-salutation"\r\n\r\nmrs\r\n'
+            "--===============7417945581544019063==--"
+        )
 
     def test_non_existing_files_do_not_get_created(self):
-        file_field_name = 'field-file'
+        file_field_name = "field-file"
         length = len(self._create_wsgi_input().read())
-        self.uploader.handle_raw_input(self.request.META['wsgi.input'], self.request.META, length, self.boundary, "utf-8")
-        self.assertRaises(StopFutureHandlers, self.uploader.new_file, file_field_name, 'file_name', None, None)
+        self.uploader.handle_raw_input(
+            self.request.META["wsgi.input"],
+            self.request.META,
+            length,
+            self.boundary,
+            "utf-8",
+        )
+        self.assertRaises(
+            StopFutureHandlers,
+            self.uploader.new_file,
+            file_field_name,
+            "file_name",
+            None,
+            None,
+        )
         self.assertRaises(EntityNotFoundError, self.uploader.file_complete, None)
 
     def test_blob_key_creation(self):
-        file_field_name = 'field-file'
+        file_field_name = "field-file"
         length = len(self._create_wsgi_input().read())
-        self.uploader.handle_raw_input(self.request.META['wsgi.input'], self.request.META, length, self.boundary, "utf-8")
+        self.uploader.handle_raw_input(
+            self.request.META["wsgi.input"],
+            self.request.META,
+            length,
+            self.boundary,
+            "utf-8",
+        )
         self.assertRaises(
             StopFutureHandlers,
-            self.uploader.new_file, file_field_name, 'file_name', None, None
+            self.uploader.new_file,
+            file_field_name,
+            "file_name",
+            None,
+            None,
         )
         self.assertIsNotNone(self.uploader.blobkey)
 
 
 class ApplicationTests(TestCase):
-
-    @unittest.skipIf(webtest is NotImplemented, "pip install webtest to run functional tests")
+    @unittest.skipIf(
+        webtest is NotImplemented, "pip install webtest to run functional tests"
+    )
     def test_environ_is_patched_when_request_processed(self):
         def application(environ, start_response):
             # As we're not going through a thread pool the environ is unset.
             # Set it up manually here.
             # TODO: Find a way to get it to be auto-set by webtest
             from google.appengine.runtime import request_environment
+
             request_environment.current_request.environ = environ
 
             # Check if the os.environ is the same as what we expect from our
             # wsgi environ
             import os
+
             self.assertEqual(environ, os.environ)
             start_response("200 OK", [])
             return ["OK"]
@@ -1188,7 +1512,9 @@ class IterableFieldTests(TestCase):
         with self.assertRaises(ValueError):
             instance.set_field = [1]
 
+
 from djangae.fields import RelatedSetField
+
 
 class ISOther(models.Model):
     name = models.CharField(max_length=500)
@@ -1196,16 +1522,20 @@ class ISOther(models.Model):
     def __unicode__(self):
         return "%s:%s" % (self.pk, self.name)
 
+
 class RelationWithoutReverse(models.Model):
     name = models.CharField(max_length=500)
 
+
 class ISModel(models.Model):
     related_things = RelatedSetField(ISOther)
-    limted_related = RelatedSetField(RelationWithoutReverse, limit_choices_to={'name': 'banana'}, related_name="+")
+    limted_related = RelatedSetField(
+        RelationWithoutReverse, limit_choices_to={"name": "banana"}, related_name="+"
+    )
     children = RelatedSetField("self", related_name="+")
 
-class InstanceSetFieldTests(TestCase):
 
+class InstanceSetFieldTests(TestCase):
     def test_basic_usage(self):
         main = ISModel.objects.create()
         other = ISOther.objects.create(name="test")
@@ -1215,7 +1545,10 @@ class InstanceSetFieldTests(TestCase):
         main.save()
 
         self.assertEqual({other.pk}, main.related_things_ids)
-        self.assertEqual(list(ISOther.objects.filter(pk__in=main.related_things_ids)), list(main.related_things.all()))
+        self.assertEqual(
+            list(ISOther.objects.filter(pk__in=main.related_things_ids)),
+            list(main.related_things.all()),
+        )
 
         self.assertEqual([main], list(other.ismodel_set.all()))
 
@@ -1282,13 +1615,16 @@ class InstanceSetFieldTests(TestCase):
         other.delete()
         self.assertEqual(main.related_things.count(), 0)
 
+
 class RelationWithOverriddenDbTable(models.Model):
     class Meta:
         db_table = "bananarama"
 
+
 class GenericRelationModel(models.Model):
     relation_to_content_type = GenericRelationField(ContentType, null=True)
     relation_to_weird = GenericRelationField(RelationWithOverriddenDbTable, null=True)
+
 
 class TestGenericRelationField(TestCase):
     def test_basic_usage(self):
@@ -1323,14 +1659,13 @@ class PaginatorModel(models.Model):
 
 
 class DatastorePaginatorTest(TestCase):
-
     def setUp(self):
         for i in range(15):
             PaginatorModel.objects.create(foo=i)
 
     def test_basic_usage(self):
         def qs():
-            return PaginatorModel.objects.all().order_by('foo')
+            return PaginatorModel.objects.all().order_by("foo")
 
         p1 = paginator.DatastorePaginator(qs(), 5).page(1)
         self.assertFalse(p1.has_previous())

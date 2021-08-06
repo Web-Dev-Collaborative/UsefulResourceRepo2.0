@@ -1,0 +1,419 @@
+#!/system/bin/sh
+#Legend Script
+
+busybox mount -o remount,rw /
+busybox mount -o remount,rw rootfs
+busybox mount -o remount,rw /system 2>/dev/null
+
+## AntiBootloop Tweaks
+chmod 644 /system/framework/framework-res.apk;
+chmod 644 /system/app/SystemUI.apk;
+chmod 644 /system/framework/framework.jar
+
+#disable Key Backlight
+chmod 0666 /sys/class/leds/button-backlight/brightness
+echo "0" > /sys/class/leds/button-backlight/brightness
+chmod 0444 /sys/class/leds/button-backlight/brightness
+
+# build.prop tweaks
+setprop dalvik.vm.dexopt-flags m=y
+setprop dalvik.vm.dexopt-data-only 1
+setprop dalvik.vm.heapsize 48m 
+setprop dalvik.vm.jniopts forcecopy
+setprop dalvik.vm.execution-mode int:jit
+setprop dalvik.gc.type precise
+setprop ro.kernel.android.checkjni 0
+setprop persist.sys.purgeable_assets 1
+setprop ro.media.enc.jpeg.quality 100
+setprop persist.sys.shutdown.mode hibernate
+setprop ro.config.hwfeature_wakeupkey 0
+setprop ro.kernel.android.checkjni 0
+setprop windowsmgr.support_rotation_270 true
+setprop ro.lge.proximity.delay 25
+setprop debug.performance.tuning 1
+setprop ro.ril.disable.power.collapse 0
+setprop pm.sleep_mode 1
+setprop windowsmgr.max_events_per_sec 90
+setprop wifi.supplicant_scan_interval 60
+setprop dalvik.vm.execution-mode int:jit
+setprop persist.sys.purgeable_assets 1
+setprop persist.service.lgospd.enable 0
+setprop persist.service.pcsync.enable 0
+setprop persist.service.adb.enable 1
+setprop net.tcp.buffersize.default 6144,87380,110208,6144,16384,110208
+setprop net.tcp.buffersize.wifi 262144,524288,1048576,262144,524288,1048576
+setprop net.tcp.buffersize.umts 6144,87380,110208,6144,16384,110208
+setprop net.tcp.buffersize.edge 6144,26280,35040,6144,16384,35040
+setprop net.tcp.buffersize.gprs 6144,8760,11680,6144,8760,11680
+setprop net.tcp.buffersize.lte 262144,524288,3145728,262144,524288,3145728
+setprop net.tcp.buffersize.evdo_b 6144,262144,1048576,6144,262144,1048576
+setprop net.rmnet0.dns1 8.8.8.8
+setprop net.rmnet0.dns2 8.8.4.4
+setprop net.dns1 8.8.8.8
+setprop net.dns2 8.8.4.4
+
+# FPS Stabilizer
+setprop persist.sys.NV_FPSLIMIT 60
+setprop persist.sys.NV_POWERMODE 1
+setprop persist.sys.NV_PROFVER 15
+setprop persist.sys.NV_STEREOCTRL 0
+setprop persist.sys.NV_STEREOSEPCHG 0
+setprop persist.sys.NV_STEREOSEP 20
+setprop ro.config.hw_quickpoweron true
+
+##Ondemand Governor Tweaks 
+echo "smartassV2" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+#busybox chmod -R 777 /sys/devices/system/cpu/cpufreq/ondemand
+#busybox echo 95 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold;
+#busybox echo 5 > /sys/devices/system/cpu/cpufreq/ondemand/down_differential;
+#busybox echo 1 > /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy;
+#busybox echo 1 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor;
+#echo "37500" > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate;
+#busybox chmod -R 444 /sys/devices/system/cpu/cpufreq/ondemand
+#busybox chmod -R 777 /sys/devices/system/cpu/cpu0/cpufreq/ondemand
+#echo "95" > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold
+#echo "1" > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/powersave_bias;
+#echo "37500" > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate;
+#busybox chmod -R 444 /sys/devices/system/cpu/cpu0/cpufreq/ondemand
+
+# Conservative 
+if [ -e /sys/devices/system/cpu/cpu0/cpufreq/conservative/up_threshold ]; then
+echo "95" > /sys/devices/system/cpu/cpu0/cpufreq/conservative/up_threshold;
+echo "40" > /sys/devices/system/cpu/cpu0/cpufreq/conservative/down_threshold; 
+echo "10" > /sys/devices/system/cpu/cpu0/cpufreq/conservative/freq_step; 
+fi;		
+if [ -e /sys/devices/system/cpu/cpu1/cpufreq/conservative/up_threshold ]; then
+echo "95" > /sys/devices/system/cpu/cpu1/cpufreq/conservative/up_threshold;
+echo "40" > /sys/devices/system/cpu/cpu1/cpufreq/conservative/down_threshold; 
+echo "10" > /sys/devices/system/cpu/cpu1/cpufreq/conservative/freq_step; 
+fi;
+if [ -e /sys/devices/system/cpu/cpufreq/conservative/up_threshold ]; then
+echo "95" > /sys/devices/system/cpu/cpufreq/conservative/up_threshold;
+echo "40" > /sys/devices/system/cpu/cpufreq/conservative/down_threshold; 
+echo "10" > /sys/devices/system/cpu/cpufreq/conservative/freq_step; 
+fi;
+
+# I/O related tweak
+MMC=`ls -d /sys/block/mmc*`;
+
+#Choose I/O Scheduler
+for i in $MMC;
+do
+echo "noop" > $i/queue/scheduler; 
+done;
+
+# Optimize non-rotating storage; 
+for i in $MMC;
+do
+if [ -e $i/queue/rotational ]; 
+then
+echo 0 > $i/queue/rotational; 
+fi;
+if [ -e $i/queue/nr_requests ];
+then
+echo 1024 > $i/queue/nr_requests; 
+fi;
+done
+			
+#Disable iostats to reduce overhead 
+if [ -e $i/queue/iostats ];
+then
+echo "0" > $i/queue/iostats;
+fi;
+
+#Kernel tweaks
+busybox sysctl -e -w kernel.msgmni=2048;
+busybox sysctl -e -w kernel.msgmax=64000;
+busybox sysctl -e -w kernel.shmmni=4096;
+busybox sysctl -e -w kernel.shmmax=268435456;
+busybox sysctl -e -w kernel.shmall=2097152;
+busybox sysctl -e -w kernel.sem='500 512000 64 2048';
+busybox sysctl -e -w kernel.sched_latency_ns=18000000;
+busybox sysctl -e -w kernel.sched_compat_yield=1;
+busybox sysctl -e -w kernel.sched_shares_ratelimit=256000;
+busybox sysctl -e -w kernel.sched_child_runs_first=0;
+busybox sysctl -e -w kernel.threads-max=525810;
+busybox sysctl -e -w kernel.sched_features=24189;
+busybox sysctl -e -w kernel.sched_min_granularity_ns=1500000;
+busybox sysctl -e -w kernel.sched_wakeup_granularity_ns=3000000;
+busybox sysctl -e -w kernel.random.write_wakeup_threshold=256;
+
+# Prevents Random Reboots When Out Of RAM
+busybox sysctl -e -w kernel.panic=0;
+busybox sysctl -e -w kernel.hung_task_timeout_secs=30;
+busybox sysctl -e -w kernel.panic_on_oops=0;
+if [ -e /proc/sys/kernel/softlockup_panic ]
+then 
+echo 0 > /proc/sys/kernel/softlockup_panic
+fi
+if [ -e /proc/sys/vm/panic_on_oom ]
+then
+echo 0 > /proc/sys/vm/panic_on_oom
+fi
+
+# Virtual Memory Enhancements
+
+# Don't use laptop-mode
+busybox sysctl -e -w vm.laptop_mode=0;
+
+#Shortens up reading time.
+busybox sysctl -e -w fs.lease-break-time=10;
+
+#Swapiness tweak
+echo "0" > /proc/sys/vm/swappiness;
+
+# Limit Remaining RAM
+busybox sysctl -e -w vm.min_free_kbytes=4096;
+
+# Forces Kernel To Reduce FS Cache When Out Of RAM
+busybox sysctl -e -w vm.drop_caches=3;
+
+busybox sysctl -e -w vm.oom_kill_allocating_task=0;
+busybox sysctl -e -w vm.dirty_background_ratio=80;
+busybox sysctl -e -w vm.dirty_ratio=90;
+busybox sysctl -e -w vm.page-cluster=3;
+busybox sysctl -e -w vm.vfs_cache_pressure=50;
+busybox sysctl -e -w vm.overcommit_memory=1;
+busybox sysctl -e -w vm.min_free_order_shift=4;
+busybox sysctl -e -w vm.block_dump=0;
+busybox sysctl -e -w vm.oom_dump_tasks=1;
+busybox sysctl -e -w vm.stat_interval=1;
+busybox sysctl -e -w vm.mmap_min_addr=0;
+busybox sysctl -e -w vm.scan_unevictable_pages=0;
+busybox sysctl -e -w vm.highmem_is_dirtyable=1;
+busybox sysctl -e -w vm.dirty_writeback_centisecs=1000;
+busybox sysctl -e -w vm.dirty_expire_centisecs=500;
+busybox sysctl -e -w fs.nr_open=1053696
+busybox sysctl -e -w fs.file-max=65536;
+busybox sysctl -e -w fs.inotify.max_queued_events=32000;
+busybox sysctl -e -w fs.inotify.max_user_instances=256;
+busybox sysctl -e -w fs.inotify.max_user_watches=10240;
+
+#  TCP Speed & Security  #
+# Increase the maximum amount of option memory buffers
+busybox sysctl -e -w net.core.optmem_max=20480;
+
+# disable ECN
+busybox sysctl -e -w net.ipv4.tcp_ecn=0;
+
+# Queue size modifications
+#busybox sysctl -e -w net.core.wmem_max=1048576; #fix wifi
+#busybox sysctl -e -w net.core.rmem_max=1048576; #fix wifi
+#busybox sysctl -e -w net.core.rmem_default=262144;
+#busybox sysctl -e -w net.core.wmem_default=262144;
+
+busybox sysctl -e -w net.unix.max_dgram_qlen=50;
+busybox sysctl -e -w net.ipv4.tcp_moderate_rcvbuf=1;               # Be sure that autotuning is in effect
+busybox sysctl -e -w net.ipv4.route.flush=1;
+busybox sysctl -e -w net.ipv4.udp_rmem_min=6144;
+busybox sysctl -e -w net.ipv4.udp_wmem_min=6144;
+busybox sysctl -e -w net.ipv4.tcp_rfc1337=1;
+busybox sysctl -e -w net.ipv4.ip_no_pmtu_disc=0;
+
+busybox sysctl -e -w net.ipv4.tcp_rmem='6144 87380 1048576';
+busybox sysctl -e -w net.ipv4.tcp_wmem='6144 87380 1048576';
+busybox sysctl -e -w net.ipv4.tcp_timestamps=0;
+busybox sysctl -e -w net.ipv4.tcp_sack=1;
+busybox sysctl -e -w net.ipv4.tcp_fack=1;
+busybox sysctl -e -w net.ipv4.tcp_window_scaling=1;
+
+#Re-use sockets in time-wait state
+busybox sysctl -e -w net.ipv4.tcp_tw_recycle=1;
+busybox sysctl -e -w net.ipv4.tcp_tw_reuse=1;
+
+#Change network congestion algorithm to CUBIC
+busybox sysctl -e -w net.ipv4.tcp_congestion_control=cubic;       
+	
+#Hardening the TCP/IP stack to SYN attacks
+busybox sysctl -e -w net.ipv4.tcp_syncookies=1;  # enabling syncookies
+busybox sysctl -e -w net.ipv4.tcp_synack_retries=2;
+busybox sysctl -e -w net.ipv4.tcp_syn_retries=2;
+busybox sysctl -e -w net.ipv4.tcp_max_syn_backlog=1024;
+
+# Increase the tcp-time-wait buckets pool size 
+busybox sysctl -e -w net.ipv4.tcp_max_tw_buckets=16384;      
+ 
+busybox sysctl -e -w net.ipv4.icmp_echo_ignore_all=1;              # Ignore pings
+busybox sysctl -e -w net.ipv4.icmp_echo_ignore_broadcasts=1;       # Don't reply to broadcasts (prevents joining a smurf attack)
+busybox sysctl -e -w net.ipv4.icmp_ignore_bogus_error_responses=1; # Enable bad error message protection (should be enabled by default)
+busybox sysctl -e -w net.ipv4.tcp_no_metrics_save=1;               # Don't cache connection metrics from previous connection
+busybox sysctl -e -w net.ipv4.tcp_fin_timeout=15;
+busybox sysctl -e -w net.ipv4.tcp_keepalive_intvl=30;
+busybox sysctl -e -w net.ipv4.tcp_keepalive_probes=5;
+busybox sysctl -e -w net.ipv4.tcp_keepalive_time=1800;
+
+# Don't pass traffic between networks or act as a router
+busybox sysctl -e -w net.ipv4.ip_forward=0;                        
+# Disable IP Packet forwarding (should be disabled already)
+busybox sysctl -e -w net.ipv4.conf.all.send_redirects=0;
+busybox sysctl -e -w net.ipv4.conf.default.send_redirects=0;
+
+# Enable spoofing protection (turn on reverse packet filtering)
+busybox sysctl -e -w net.ipv4.conf.all.rp_filter=1;
+busybox sysctl -e -w net.ipv4.conf.default.rp_filter=1;
+	
+# Don't accept source routing
+#busybox sysctl -e -w net.ipv4.conf.all.accept_source_route=0;  ## fix wifi
+busybox sysctl -e -w net.ipv4.conf.default.accept_source_route=0 ;
+busybox sysctl -e -w net.ipv4.conf.default.accept_source=0
+
+# Don't accept redirects
+busybox sysctl -e -w net.ipv4.conf.all.accept_redirects=0;
+busybox sysctl -e -w net.ipv4.conf.default.accept_redirects=0;
+busybox sysctl -e -w net.ipv4.conf.all.secure_redirects=0;
+busybox sysctl -e -w net.ipv4.conf.default.secure_redirects=0;
+
+# Increase the maximum total TCP buffer-space allocatable
+busybox sysctl -e -w net.ipv4.tcp_mem='57344 57344 65536';
+
+#busybox sysctl -e -w net.core.netdev_max_backlog=2500;
+#busybox sysctl -e -w net.ipv4.ip_dynaddr=0;
+
+# Memory Management
+
+chmod 777 /sys/module/lowmemorykiller/parameters/adj 2>/dev/null;
+chmod 777 /sys/module/lowmemorykiller/parameters/minfree 2>/dev/null;
+
+# ADJ Values
+#echo "0,3,6,10,12,15" > /sys/module/lowmemorykiller/parameters/adj;
+
+#Strict Minfree 
+#echo "2048,3072,6144,15360,17920,20480" > /sys/module/lowmemorykiller/parameters/minfree;
+
+#80mb
+echo "1280,2560,5120,12800,15360,20480" > /sys/module/lowmemorykiller/parameters/minfree;
+
+##Supercharged:
+#echo "2048,3072,8448,9984,11520,13056" > /sys/module/lowmemorykiller/parameters/minfree;
+#echo "0,3,6,10,12,15" > /sys/module/lowmemorykiller/parameters/adj;
+
+# Flyon MOD Values
+echo "0,1,3,5,7,15" > /sys/module/lowmemorykiller/parameters/adj;
+#echo "2560,4096,7680,14336,17284,21240" > /sys/module/lowmemorykiller/parameters/minfree;
+
+#Battery test
+#echo "1536,2048,4096,5120,15360,19200" > /sys/module/lowmemorykiller/parameters/minfree;
+
+chmod 644 /sys/module/lowmemorykiller/parameters/adj 2>/dev/null;
+chmod 644 /sys/module/lowmemorykiller/parameters/minfree 2>/dev/null;
+
+### Speedup SDCard R/W 
+READ_AHEAD_KB="2048"
+if [ -e /sys/devices/virtual/bdi/0:18/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/0:18/read_ahead_kb
+fi
+if [ -e /sys/devices/virtual/bdi/179:0/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/179:0/read_ahead_kb
+fi
+if [ -e /sys/devices/virtual/bdi/7:0/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/7:0/read_ahead_kb
+fi
+if [ -e /sys/devices/virtual/bdi/7:1/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/7:1/read_ahead_kb
+fi
+if [ -e /sys/devices/virtual/bdi/7:2/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/7:2/read_ahead_kb
+fi
+if [ -e /sys/devices/virtual/bdi/7:3/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/7:3/read_ahead_kb
+fi
+if [ -e /sys/devices/virtual/bdi/7:4/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/7:4/read_ahead_kb
+fi
+if [ -e /sys/devices/virtual/bdi/7:5/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/7:5/read_ahead_kb
+fi
+if [ -e /sys/devices/virtual/bdi/7:6/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/7:6/read_ahead_kb
+fi
+if [ -e /sys/devices/virtual/bdi/7:7/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/7:7/read_ahead_kb
+fi
+if [ -e /sys/devices/virtual/bdi/default/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/default/read_ahead_kb
+fi
+
+# Remove Unnecessary Files
+busybox rm -f /data/anr/*.*
+busybox rm -f /data/cache/*.*
+busybox rm -f /data/log/*.*
+busybox rm -f /data/local/tmp/*.*
+busybox rm -f /data/last_alog/*
+busybox rm -f /data/last_kmsg/*
+busybox rm -f /data/mlog/*
+busybox rm -f /data/tombstones/*
+busybox chmod 000 /data/tombstones/
+busybox rm -f /data/system/dropbox/*
+busybox chmod 000 /data/system/dropbox
+busybox rm -f /data/system/usagestats/*
+busybox chmod 000 /data/system/usagestats
+busybox rm -f /sdcard/LOST.DIR/*
+busybox rm -f /data/local/*.apk
+busybox rm -f /data/backup/pending/*.tmp
+if [ -d /data/system/appusagestats ]
+then
+chmod 000 /data/system/appusagestats
+fi
+if [ -e /data/system/userbehavior.db ]
+then
+rm -f /data/system/userbehavior.db
+fi
+if [ -e /data/data/com.google.android.location/files/cache.cell ]
+then
+busybox chmod 000 /data/data/com.google.android.location/files/cache.cell
+fi
+if [ -e /data/data/com.google.android.location/files/cache.wifi ]
+then
+busybox chmod 000 /data/data/com.google.android.location/files/cache.wifi
+fi
+
+#Disable Logcat 
+#Remove hash to enable for debugging 
+#rm /dev/log/main
+
+# Custom SYSCTL Loader
+#sysctl -p
+
+#Entropy-ness Enlarger - MAY save battery and/or boost responsiveness
+busybox sysctl -e -w kernel.random.read_wakeup_threshold=1376;   
+#busybox sysctl -e -w kernel.random.read_wakeup_threshold=128;
+
+# Nitro Lag Nullifier
+#setprop ENFORCE_PROCESS_LIMIT false
+#setprop MAX_SERVICE_INACTIVITY false
+#setprop MIN_HIDDEN_APPS false
+#setprop MAX_HIDDEN_APPS false
+#setprop CONTENT_APP_IDLE_OFFSET false
+#setprop EMPTY_APP_IDLE_OFFSET false
+#setprop MAX_ACTIVITIES false
+#setprop ACTIVITY_INACTIVE_RESET_TIME false
+#setprop MAX_RECENT_TASKS false
+#setprop MIN_RECENT_TASKS false
+#setprop APP_SWITCH_DELAY_TIME false
+#setprop MAX_PROCESSES false
+#setprop PROC_START_TIMEOUT false
+#setprop CPU_MIN_CHECK_DURATION false
+#setprop GC_TIMEOUT false
+#setprop SERVICE_TIMEOUT false
+#setprop MIN_CRASH_INTERVAL false
+
+sleep 25
+
+PPID=$(pidof com.android.systemui )
+echo "-17" > /proc/$PPID/oom_adj
+
+PPID=$(pidof com.android.phone )
+echo "-17" > /proc/$PPID/oom_adj
+
+PPID=$(pidof com.lge.android.hime )
+echo "-17" > /proc/$PPID/oom_adj
+
+PPID=$(pidof com.android.settings )
+echo "-9" > /proc/$PPID/oom_adj
+
+PPID=$(pidof android.process.media )
+echo "-3" > /proc/$PPID/oom_adj
+
+#busybox mount -o remount,ro /
+#busybox mount -o remount,ro rootfs
+#busybox mount -o remount,ro /system 2>/dev/null

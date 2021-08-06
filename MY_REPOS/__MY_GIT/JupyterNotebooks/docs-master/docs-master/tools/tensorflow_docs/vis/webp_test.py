@@ -26,17 +26,16 @@ from tensorflow_docs.vis import webp_animation
 
 
 class WebpTest(absltest.TestCase):
+    def test_smoke(self):
+        workdir = self.create_tempdir().full_path
 
-  def test_smoke(self):
-    workdir = self.create_tempdir().full_path
+        img = PIL.Image.fromarray(np.zeros([10, 12, 3], dtype=np.uint8))
+        anim = webp_animation.Webp()
 
-    img = PIL.Image.fromarray(np.zeros([10, 12, 3], dtype=np.uint8))
-    anim = webp_animation.Webp()
-
-    anim.append(img)
-    anim.extend([img])
-    anim.save(os.path.join(workdir, 'test.webp'))
+        anim.append(img)
+        anim.extend([img])
+        anim.save(os.path.join(workdir, "test.webp"))
 
 
-if __name__ == '__main__':
-  absltest.main()
+if __name__ == "__main__":
+    absltest.main()

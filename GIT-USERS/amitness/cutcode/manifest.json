@@ -1,0 +1,25 @@
+{
+	"name": "Cutcode",
+	"version": "0.1.0",
+	"description": "Double click to copy code from Stack Overflow or other custom sites",
+	"author": "Amit Chaudhary <studenton.com@gmail.com>",
+	"homepage_url": "https://github.com/studenton/cutcode",
+	"options_ui": {
+		"page": "settings/settings.html",
+		"chrome_style": true
+	},
+	"manifest_version": 2,
+	"permissions": [
+		"clipboardWrite",
+		"storage"
+	],
+	"content_scripts": [{
+		"matches": ["https://*/*", "http://*/*"],
+		"js": ["scripts/stackoverflow/inject.js"],
+		"run_at": "document_end"
+	}],
+	"icons": {
+		"144": "images/icon.png"
+	},
+	"offline_enabled": true
+}

@@ -17,16 +17,15 @@
 
 
 class ModuleClass2(object):
+    def __init__(self):
+        pass
 
-  def __init__(self):
-    pass
-
-  def __model_class1_method__(self):
-    pass
+    def __model_class1_method__(self):
+        pass
 
 
 class Hidden(object):
-  pass
+    pass
 
 
-__all__ = ['ModuleClass2']
+__all__ = ["ModuleClass2"]

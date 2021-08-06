@@ -1,0 +1,21 @@
+<table>
+  <tr>
+    <td colspan="3">
+      <div class="name"> {{ company.name }}
+       {% if company.is_verified %}
+       <img src="{{ url_for('static', filename='img/bluetick.png') }}" style="width:20px"></div>
+       {% endif %}
+    </td>
+  </tr>
+  <tr>
+    <td class="details-td">
+      <div class="label">Registration Number</div> : <div class="phone">{{ company.rnum }}</div>
+      <br><div class="label">District / Area</div> : <div class="mobile">{{ company.location }}</div>
+      <br><div class="label">Registration Date</div> : <div class="email">{{ company.registered }}</div>
+    </td>
+    <td class="description-td">
+      <div class="description" spellcheck="false"><div class="label">NSIC CODE:</div> {{ company.nsic_code }}</div>
+      <div class="description" spellcheck="false"><div class="label">Blacklisted:</div> {{ company.is_blacklisted }}</div>
+    </td>
+  </tr>
+</table>

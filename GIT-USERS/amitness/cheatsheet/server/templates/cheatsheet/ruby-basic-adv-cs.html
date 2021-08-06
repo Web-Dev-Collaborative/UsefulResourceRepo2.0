@@ -1,0 +1,489 @@
+{% extends "layout.html" %}
+
+{% block jumbotron %}
+<div class="jumbotron">
+   <h1>Ruby Cheat Sheet</h1>
+   <p>Cheat sheet of Ruby. Some basic concepts for a newbie Ruby programmer need to know.</p>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="row col-md-4 col-xs-12">
+
+<h3>p and puts</h3>
+<pre class="code ruby">
+# ref: <a href="http://stackoverflow.com/questions/1255324/p-vs-puts-in-ruby">stackoverflow</a>
+# p foo equal to puts foo.inspect
+&gt;&gt; puts :ker
+ker
+=&gt;nil
+&gt;&gt; p :ker
+:ker
+=&gt;:ker
+&gt;&gt; puts :ker.inspect
+:ker
+=&gt;nil
+</pre>
+
+<h3>&lt;&lt; Operator</h3>
+<pre class="code ruby">
+# &lt;&lt; as shift operator
+&gt;&gt; a = 0b01
+=&gt;1
+&gt;&gt; b = a &lt;&lt; 3
+=&gt;8
+&gt;&gt; a.to_s(2)
+=&gt;"1"
+&gt;&gt; b.to_s(2)
+=&gt;"1000"
+&gt;&gt;
+
+# as append operator (common using)
+# String, Array, IO
+&gt;&gt; s = "Hello"
+=&gt;"Hello"
+&gt;&gt; s &lt;&lt; " Ruby"
+=&gt;"Hello Ruby"
+&gt;&gt; a &lt;&lt; "Hello Ruby"
+=&gt;["Hello Ruby"]
+&gt;&gt; STDOUT &lt;&lt; "Hello Ruby"
+Hello Ruby=&gt;#&lt;IO:&lt;STDOUT&gt;&gt;
+</pre>
+
+<h3>BEGIN and END block</h3>
+<pre class="code ruby">
+# run BEGIN block before main
+BEGIN {
+  puts 'begin ruby script'
+}
+# run END block after main
+END {
+  puts 'end ruby script'
+}
+# main script
+puts 'ruby script main'
+
+# bash&gt; ruby ex.rb
+# begin ruby script
+# ruby script main
+# end ruby script
+</pre>
+
+<h3>lambda Function</h3>
+<pre class="code ruby">
+# ref: <a href="http://stackoverflow.com/questions/8476627/what-do-you-call-rubys-operator">stackoverflow</a>
+&gt;&gt; f = lambda {|x| puts x}
+=&gt;#&lt;Proc:0x007f8c2a0b@(irb):1 (lambda)&gt;
+&gt;&gt; f.call(5566)
+5566
+=&gt;nil
+
+# equal to
+&gt;&gt; f = -&gt;(x) {puts x}
+=&gt;#&lt;Proc:0x007f8c2a0c@(irb):3 (lambda)&gt;
+&gt;&gt; f.call(5566)
+5566
+=&gt;nil
+</pre>
+
+<h3>Proc VS. Lambda</h3>
+<pre class="code ruby">
+# ordinary block
+&gt;&gt; def exec
+..   yield
+.. end
+=&gt;nil
+&gt;&gt; exec {puts "5566"}
+5566
+=&gt;nil
+# proc: block-like behavior
+&gt;&gt; def execproc(&b)
+..   p b.class
+..   b.call
+.. end
+=&gt;nil
+&gt;&gt; execproc {puts 9527}
+Proc
+9527
+# method-like behavior
+=&gt;nil
+&gt;&gt; f = -&gt;{puts "lambda"}
+=&gt;#&lt;Proc:0x007fe6bf0@(irb):31 (lambda)&gt;
+&gt;&gt; execlambda f
+Proc
+lambda
+=&gt;nil
+</pre>
+
+<h3>Class - public, private and protected</h3>
+<pre class="code ruby">
+# ref: <a href="http://ruby-doc.org/core-2.2.3/Object.html#method-i-respond_to-3F">ruby document</a>
+&gt;&gt; class Spam
+..   private
+..   def priv_method
+..     puts "private method"
+..   end
+..   protected
+..   def pro_method
+..     puts "protected method"
+..   end
+..   public
+..   def pub_method
+..     puts "public method"
+..   end
+.. end
+=&gt;nil
+&gt;&gt; s = Spam.new
+=&gt;#&lt;Spam:0x007fa5e9944a58&gt;
+# check method exist
+&gt;&gt; s.private_methods\
+..  .include?:priv_method
+=&gt;true
+&gt;&gt; s.public_methods\
+..  .include?:pub_method
+=&gt;true
+&gt;&gt; s.protected_methods\
+..  .include? :pro_method
+=&gt;true
+&gt;&gt; s.respond_to? :pub_method
+=&gt;true
+&gt;&gt; s.respond_to? :priv_method
+=&gt;false
+&gt;&gt; s.respond_to? :pro_method
+=&gt;false
+&gt;&gt; s.respond_to? :pro_method, true
+=&gt;true
+</pre>
+
+<h3>Check Superclass or Module include</h3>
+<pre class="code ruby">
+&gt;&gt; module Mod; end
+=&gt;nil
+&gt;&gt; class A; end
+=&gt;nil
+&gt;&gt; class B &lt; A; end
+=&gt;nil
+&gt;&gt; class C &lt; A
+..   include Mod
+.. end
+=&gt;C
+&gt;&gt; b = B.new
+=&gt;#&lt;B:0x007f9b99a6fc48&gt;
+&gt;&gt; b.is_a? A
+=&gt;true
+&gt;&gt; c = C.new
+=&gt;#&lt;C:0x007f9b99a85e08&gt;
+&gt;&gt; c.is_a? A
+=&gt;true
+&gt;&gt; c.is_a? Mod
+=&gt;true
+</pre>
+</div>
+
+<div class="row col-md-4 col-xs-12">
+
+<h3>Ruby Module - Basic</h3>
+<pre class="code ruby">
+# ref: <a href="http://ruby-doc.org/core-2.2.0/Module.html">ruby document</a>
+# group method, class, constant
+&gt;&gt; module Spam
+..   SPAM_CONST = 9527
+..   def a
+..     puts "aaaaa"
+..   end
+..   def b
+..     puts "bbbbb"
+..   end
+..   def c
+..     puts "ccccc"
+..   end
+..   module_function :a, :b
+..   class SpamClass 
+..   end
+.. end
+=&gt;nil
+&gt;&gt; Spam::SPAM_CONST
+=&gt;9527
+&gt;&gt; Spam.a
+aaaaa
+=&gt;nil
+&gt;&gt; Spam.b
+bbbbb
+=&gt;nil
+&gt;&gt;s = Spam::SpamClass.new
+=&gt;#&lt;Spam::SpamClass:0x007fb4bb15a208&gt;
+</pre>
+
+<h3>Insert Module Methods to a "Object"</h3>
+<pre class="code ruby">
+# using object.extend
+# ref: <a href="http://ruby-doc.org/core-2.2.0/Object.html#method-i-extend">ruby document</a>
+&gt;&gt; module HelloMod
+..   def hello
+..     puts "Hello"
+..   end
+..   def world
+..     puts "World"
+..   end
+.. end
+=&gt;nil
+&gt;&gt; class Klass
+..   def hello
+..     puts "hello"
+..   end
+.. end
+=&gt;nil
+&gt;&gt; k = Klass.new
+=&gt;#&lt;Klass:0x007fb4bb1c1020&gt;
+&gt;&gt; k.hello
+hello
+=&gt;nil
+&gt;&gt; k.extend(HelloMod)
+=&gt;#&lt;Klass:0x007fb4bb1c1020&gt;
+&gt;&gt; k.hello
+Hello
+=&gt;nil
+&gt;&gt; k.world
+World
+=&gt;nil
+&gt;&gt; kk = Klass.new
+=&gt;#&lt;Klass:0x007fb4bb1dab38&gt;
+&gt;&gt; kk.hello
+hello
+=&gt;nil
+</pre>
+
+<h3>Ruby Module - Multiple Inheritance</h3>
+<pre class="code ruby">
+# Ruby not support multiple inheritance
+# Module providing a facility way
+&gt;&gt; module SpamMod
+..   def puts_spam
+..     puts "spam"
+..   end
+..   def p_spam
+..     p "_spam_"
+..   end
+.. end
+=&gt;nil
+&gt;&gt; class SpamClass
+.. include SpamMod
+..   def ker
+..     puts "kerker"
+..   end
+.. end
+=&gt;nil
+&gt;&gt; s = SpamClass.new
+=&gt;#&lt;SpamClass:0x007fb4bb193620&gt;
+&gt;&gt; s.puts_spam
+spam
+=&gt;nil
+&gt;&gt; s.p_spam
+"_spam_"
+=&gt;"_spam_"
+&gt;&gt; s.ker
+kerker
+=&gt;nil
+</pre>
+
+<h3>Decorator in Ruby</h3>
+<pre class="code ruby">
+# use block
+&gt;&gt; def fib x
+..   if x &gt;=1
+..     1
+..   else
+..     fib(x-1) + fib(x-2)
+..   end
+.. end
+=&gt;nil
+&gt;&gt; def wrapper *args
+..   "I am wrapper"
+..   s = Time.now
+..   yield *args
+..   e = Time.now
+..   puts e-s
+.. end
+=&gt;nil
+&gt;&gt; wrapper(30) do |*args|
+..   puts fib(*args)
+.. end
+1346269
+0.311544
+=&gt;nil
+</pre>
+
+<h3>Context Manager in Ruby</h3>
+<pre class="code ruby">
+# python context manager in ruby
+require 'socket'
+include Socket::Constants
+
+host = "0.0.0.0"
+port = 9527 
+
+def with port, host
+  begin
+    s = Socket.new(AF_INET,
+                  SOCK_STREAM, 0)
+    s.setsockopt(SOL_SOCKET, 
+                 SO_REUSEADDR, true)
+    addr = Socket.sockaddr_in(port, host)
+    s.bind(addr)
+    s.listen(10)
+    yield s
+  ensure
+    if not s.closed?
+      s.close
+    end
+  end
+end
+
+with port, host do |s|
+  loop do
+    conn, addr = s.accept
+    msg = conn.gets
+    conn.puts msg
+    conn.close
+  end
+end
+# bash&gt; nc localhost 9527
+# Hello Ruby
+# Hello Ruby
+</pre>
+
+</div>
+
+<div class="row col-md-4 col-xs-12">
+
+<h3>require, require_relative, load, autoload</h3>
+<pre class="code ruby">
+# test.rb
+class Foo
+  def self.puts
+    puts "hello world"
+  end
+end
+
+puts "HELLO"
+
+# require not support current directory
+# since ruby 1.9.2 (ref: <a href="https://www.ruby-lang.org/en/news/2010/08/18/ruby-1-9.2-released/">rdoc</a>)
+&gt;&gt; require './test.rb'
+HELLO
+=&gt;true
+# also equal
+&gt;&gt; require './test'
+HELLO
+=&gt;true
+&gt;&gt; f = Foo.new
+=&gt;#&lt;Foo:0x007f906b9e2598&gt;
+
+# load - need explicit path
+&gt;&gt; load './test.rb'
+HELLO
+=&gt;true
+
+# require_relative
+&gt;&gt; require_relative 'test'
+HELLO
+=&gt;true
+
+# autoload - load obj when need
+# not support in the future
+# ref: </a href="https://bugs.ruby-lang.org/issues/5653">ruby issue tracking</a>
+&gt;&gt; autoload :Foo, './test.rb'
+=&gt;nil
+&gt;&gt; Foo.new
+HELLO
+=&gt;#&lt;Foo:0x007fddf2829858&gt;
+</pre>
+
+<h3>require scope</h3>
+<pre class="code ruby">
+# foo.rb
+module Spam1
+  class Spam
+    def self.foo
+      # module Spam2 in bar.rb
+      puts Spam2::KERKER
+    end
+  end
+end
+
+# bar.rb
+module Spam2
+  KERKER="HELLO WORLD"
+end
+
+# ex.rb
+require_relative 'src1'
+require_relative 'src2'
+
+Spam1::Spam.foo
+
+# bash&gt; ex.rb
+# HELLO WORLD
+</pre>
+
+<h3>Basic File IO</h3>
+<pre class="code ruby">
+# basic read write
+&gt;&gt; f = File.open('test','w')
+=&gt;#&lt;File:test&gt;
+&gt;&gt; f.write('Hello World')
+=&gt;11
+&gt;&gt; f.close
+=&gt;nil
+&gt;&gt; f = File.open('test','r')
+=&gt;#&lt;File:test&gt;
+&gt;&gt; f.read
+=&gt;"Hello World"
+</pre>
+
+<h3>Check File object closed?</h3>
+<pre class="code ruby">
+&gt;&gt; f = File.open('test','r')
+=&gt;#&lt;File:test&gt;
+&gt;&gt; f.closed?
+=&gt;false
+&gt;&gt; f.close
+=&gt;nil
+&gt;&gt; f.closed?
+=&gt;true
+</pre>
+
+<h3>Auto Close File Object</h3>
+<pre class="code ruby">
+&gt;&gt; File.open('test','w') do |file|
+..   file.write "Hello World"
+.. end
+=&gt;11
+</pre>
+
+<h3>Check File Attributes</h3>
+<pre class="code ruby">
+# check file exist
+&gt;&gt; File.exist? '/etc/passwd'
+=&gt;true
+# check readable
+&gt;&gt; File.readable? '/etc/passwd'
+=&gt;true
+# check writable
+&gt;&gt; File.writable? '/etc/passwd'
+=&gt;false
+# check symbolic link
+&gt;&gt; File.symlink? '/etc/passwd'
+=&gt;false
+# check directory
+&gt;&gt; File.directory? '/usr'
+=&gt;true
+</pre>
+
+</div>
+{% endblock %}
+
+{% block script %}
+{{ super() }}
+
+{% endblock %}

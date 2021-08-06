@@ -1,0 +1,30 @@
+<div id ="overmap">
+      <div id="live-chat">
+        <header class="clearfix">
+          <a href="#" class="chat-close">-</a>
+          <h4>NearU</h4>
+        </header>
+        <div class="chat">
+          <div class="chat-history" id="chatHist">
+            <div class="chat-message clearfix">
+              <img src="{{ url_for('static', filename='img/nearu.png') }}" alt="" width="32" height="32">
+              <div class="chat-message-content clearfix">
+                <h5>NearU</h5>
+                <p>Hi. How can I help you?</p>
+              </div> <!-- end chat-message-content -->
+            </div> <!-- end chat-message -->
+            <hr>
+            
+          </div> <!-- end chat-history -->
+
+          <form action="#" method="post">
+            <fieldset>
+              <input type="text" placeholder="Type your message…" id="usermsg" autofocus name="usermsg" autocomplete="off">
+              <input name="submitmsg" type="submit" id="submitmsg" value="Send"/>
+              <!-- <input type="hidden"> -->
+            </fieldset>
+          </form>
+
+        </div> <!-- end chat -->
+      </div> <!-- end live-chat -->
+      </div>

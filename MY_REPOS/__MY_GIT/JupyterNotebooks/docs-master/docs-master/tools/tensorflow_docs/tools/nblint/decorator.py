@@ -44,20 +44,21 @@ from typing import Any, Callable, List, Optional
 
 
 class Options:
-  """Options to define the condition and scope of a @lint defined assertion."""
+    """Options to define the condition and scope of a @lint defined assertion."""
 
-  class Cond(enum.Enum):
-    """Determines if a test is considered a success by which cells it passes.
+    class Cond(enum.Enum):
+        """Determines if a test is considered a success by which cells it passes.
 
     Attributes:
       ALL: Success if all cells pass.
       ANY: Success if any cells pass (just one). [Default]
     """
-    ALL = enum.auto()
-    ANY = enum.auto()
 
-  class Scope(enum.Enum):
-    """Determines where a function test is executed.
+        ALL = enum.auto()
+        ANY = enum.auto()
+
+    class Scope(enum.Enum):
+        """Determines where a function test is executed.
 
     Attributes:
       CELLS: Code and text cells. [Default]
@@ -65,14 +66,15 @@ class Options:
       TEXT: Text cells only.
       FILE: Run assertion function once per file.
     """
-    CELLS = enum.auto()
-    CODE = enum.auto()
-    TEXT = enum.auto()
-    FILE = enum.auto()
+
+        CELLS = enum.auto()
+        CODE = enum.auto()
+        TEXT = enum.auto()
+        FILE = enum.auto()
 
 
 class Lint:
-  """Contains the function and properties defined by the @lint decorator.
+    """Contains the function and properties defined by the @lint decorator.
 
   Attributes:
     run: User-defined assertion callback that returns a Boolean.
@@ -83,18 +85,18 @@ class Lint:
     style: String name of style module that defines the Lint. (Added on load.)
   """
 
-  def __init__(self, fn, scope, cond, message=None, name=None):
-    self.run = fn
-    self.scope = scope
-    self.cond = cond
-    self.name = name if name else fn.__name__
-    self.message = message.strip() if message else ""
-    self.style = None  # Added on style load.
+    def __init__(self, fn, scope, cond, message=None, name=None):
+        self.run = fn
+        self.scope = scope
+        self.cond = cond
+        self.name = name if name else fn.__name__
+        self.message = message.strip() if message else ""
+        self.style = None  # Added on style load.
 
 
 # Define a decorator with optional arguments.
 def lint(fn=None, *, message=None, scope=None, cond=None):
-  """Function decorator for user-defined lint assertions.
+    """Function decorator for user-defined lint assertions.
 
   Args:
     fn: User-defined assertion callback that returns a Boolean. See `Linter.run`
@@ -110,23 +112,23 @@ def lint(fn=None, *, message=None, scope=None, cond=None):
   Returns:
     Function: A wrapper around the user-defined `fn` function.
   """
-  if fn is None:
-    return functools.partial(lint, message=message, scope=scope, cond=cond)
+    if fn is None:
+        return functools.partial(lint, message=message, scope=scope, cond=cond)
 
-  scope = scope if scope else Options.Scope.CELLS
-  cond = cond if cond else Options.Cond.ANY
+    scope = scope if scope else Options.Scope.CELLS
+    cond = cond if cond else Options.Cond.ANY
 
-  @functools.wraps(fn)
-  def wrapper(*args, **kwargs):
-    return fn(*args, **kwargs)
+    @functools.wraps(fn)
+    def wrapper(*args, **kwargs):
+        return fn(*args, **kwargs)
 
-  # Attach to function object to access when importing the style module.
-  setattr(wrapper, "_lint", Lint(fn, scope, cond, message))
-  return wrapper
+    # Attach to function object to access when importing the style module.
+    setattr(wrapper, "_lint", Lint(fn, scope, cond, message))
+    return wrapper
 
 
 class LintFailError(Exception):
-  """Exception raised for lint failure with optional message.
+    """Exception raised for lint failure with optional message.
 
     Attributes:
       message: String message to add to status log.
@@ -136,25 +138,29 @@ class LintFailError(Exception):
       fix_args: List of arguments passed to the `fix_fn` Callable.
   """
 
-  def __init__(self,
-               message: str = "Lint failure",
-               always_show: bool = False,
-               fix_fn: Optional[Callable[[], None]] = None,
-               fix_args: Optional[List[Any]] = None):
-    self.message: str = message
-    self.always_show: bool = always_show
-    self.fix_fn: Optional[Callable[[], None]] = fix_fn
-    if fix_args is None:
-      fix_args = []
-    self.fix_args: List[Any] = fix_args
-    super().__init__(self.message)
+    def __init__(
+        self,
+        message: str = "Lint failure",
+        always_show: bool = False,
+        fix_fn: Optional[Callable[[], None]] = None,
+        fix_args: Optional[List[Any]] = None,
+    ):
+        self.message: str = message
+        self.always_show: bool = always_show
+        self.fix_fn: Optional[Callable[[], None]] = fix_fn
+        if fix_args is None:
+            fix_args = []
+        self.fix_args: List[Any] = fix_args
+        super().__init__(self.message)
 
 
-def fail(message: Optional[str] = None,
-         always_show: bool = False,
-         fix: Optional[Callable[[], None]] = None,
-         fix_args: Optional[List[Any]] = None) -> None:
-  """Signal within a @lint function that the test fails.
+def fail(
+    message: Optional[str] = None,
+    always_show: bool = False,
+    fix: Optional[Callable[[], None]] = None,
+    fix_args: Optional[List[Any]] = None,
+) -> None:
+    """Signal within a @lint function that the test fails.
 
   While sufficient to simply return False from a failing @lint function, this
   function can add a message to the status log to provide the user additional
@@ -183,4 +189,4 @@ def fail(message: Optional[str] = None,
   Raises:
     LintFailError: Lint failure with optional message.
   """
-  raise LintFailError(message, always_show, fix, fix_args)
+    raise LintFailError(message, always_show, fix, fix_args)

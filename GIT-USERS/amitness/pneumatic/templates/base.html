@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Basic Metas -->
+	<meta charset="utf-8">
+	<title>{% block title %}{% endblock %}</title>
+	<meta name="description" content="{% block description %}{% endblock %}">
+	<meta name="author" content="{{ SITE_AUTHOR }}">
+	{% if GOOGLE_PLUS_URL %}
+	<link rel="author" href="{{ GOOGLE_PLUS_URL }}"/>
+	{% endif %}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% if GOOGLE_SITE_VERIFICATION %}
+	<meta name="google-site-verification" content="{{ GOOGLE_SITE_VERIFICATION }}" />
+	{% endif %}
+	{% block meta %}{% endblock %}
+
+	<!-- Stylesheets and Web Fonts -->
+	{% assets filters="scss, cssmin", output="style.min.css", "pneumatic.scss", "pygments.css", "icomoon.css" %}
+	<link href="/{{ ASSET_URL }}" rel="stylesheet">
+	{% endassets %}
+	{% if GOOGLE_FONTS %}
+	<link href="https://fonts.googleapis.com/css?family={{ GOOGLE_FONTS | join('%7C') | replace(' ', '+') }}" rel="stylesheet" type="text/css">
+	{% endif %}
+	{% if SOCIAL_ICONS %}
+	{% if FA_EMBED_CODE %}
+	<link rel="stylesheet" href="https://use.fontawesome.com/{{ FA_EMBED_CODE }}.css">
+	{% endif %}
+	{% endif %}
+
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" href="/{{ ICONS_PATH }}/apple-touch-icon.png">
+	{% for size in (57, 60, 72, 76, 114, 120, 144, 152, 180) %}
+	<link rel="apple-touch-icon" sizes="{{ size }}x{{ size }}" href="/{{ ICONS_PATH }}/apple-touch-icon-{{ size }}x{{ size }}.png">
+	{% endfor %}
+
+	{% for size in (16, 32, 96, 160, 196) %}
+	<link rel="icon" type="image/png" href="/{{ ICONS_PATH }}/favicon-{{ size }}x{{ size }}.png" sizes="{{ size }}x{{ size }}">
+	{% endfor %}
+
+	<meta name="theme-color" content="{{ THEME_COLOR }}">
+
+	<meta name="msapplication-TileColor" content="{{ THEME_COLOR }}">
+	<meta name="msapplication-TileImage" content="/{{ ICONS_PATH }}/mstile-144x144.png">
+	{% for name, size in (('square70x70', 'small'), ('square150x150', 'medium'), ('wide310x150', 'wide'), ('square310x310', 'large')) %}
+	<meta name="msapplication-{{ name }}logo" content="/{{ ICONS_PATH }}/mstile-{{ size }}.png">
+	{% endfor %}
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+	<style>
+		.katex { font-size: 1.4em !important; }
+	</style>
+
+
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({
+			google_ad_client: "ca-pub-7848839318244183",
+			enable_page_level_ads: true
+		});
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="/theme/js/html5shiv.min.js"></script>
+	<script src="/theme/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="container">
+		<aside>
+			<a href="/"><img id="avatar" alt="Site Avatar" src="/{{ ICONS_PATH }}/avatar.png"></a>
+			<div id="name"><a href="/">{{ SITENAME }}</a></div>
+			<div id="bio">{{ BIO_TEXT }}</div>
+
+			{% if SIDEBAR_LINKS %}
+			<div id="sidebar-links">
+				{{ SIDEBAR_LINKS | join("&nbsp;&nbsp;|&nbsp;&nbsp;") }}
+			</div>
+			{% endif %}
+
+			{% if SOCIAL_ICONS %}
+			<div id="social">
+				{% for link, title, icon in SOCIAL_ICONS %}
+				<a href="{{ link }}" title="{{ title }}" class="icon fa {{ icon }}" target="_blank"></a>
+				{% endfor %}
+			</div>
+			{% endif %}
+
+			<hr id="sidebar-divider">
+		</aside>
+
+		<article>
+			{% block content %}{% endblock %}
+			<hr>
+		</article>
+
+		<footer>
+			<p>{{ FOOTER_TEXT }}</p>
+		</footer>
+	</div>
+
+	{% if GOOGLE_ANALYTICS %}
+	<!-- Google Analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ANALYTICS }}"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', '{{ GOOGLE_ANALYTICS }}');
+	</script>
+	{% endif %}
+
+	{% if GAUGES_ID %}
+	<!-- Gauges -->
+	<script type="text/javascript">
+		var _gauges = _gauges || [];
+		(function() {
+			var t   = document.createElement('script');
+			t.type  = 'text/javascript';
+			t.async = true;
+			t.id    = 'gauges-tracker';
+			t.setAttribute('data-site-id', '{{ GAUGES_ID }}');
+			t.src = '//secure.gaug.es/track.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(t, s);
+		})();
+	</script>
+	{% endif %}
+</body>
+</html>

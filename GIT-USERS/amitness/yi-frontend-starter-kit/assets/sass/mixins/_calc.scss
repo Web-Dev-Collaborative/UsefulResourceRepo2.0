@@ -1,0 +1,12 @@
+/// //SCSS
+/// .calc{
+/// 	 @include calc(width,'100% - 20px');
+///	}
+/// //CSS
+/// .calc {
+///		width: calc(100% - 20px);
+///	}
+
+@mixin calc($prop, $val) {
+  #{$prop}: calc(#{$val});
+}

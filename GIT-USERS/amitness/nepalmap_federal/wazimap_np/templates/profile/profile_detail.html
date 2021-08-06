@@ -1,0 +1,12 @@
+{% extends 'profile/profile_detail.html' %}
+
+{% block profile_header_tail %}
+    <div class="column-full">
+        <p class="caption"><strong>Census data:</strong> 2011</p>
+    </div>
+{% endblock %}
+
+{% block profile_detail %}
+    <!-- TODO: do we keep the block? needs something here? -->
+    {% include 'profile/sections/demographics.html' %}
+{% endblock %}

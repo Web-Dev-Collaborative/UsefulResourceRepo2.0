@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+{% block title %}NearU{% endblock %}
+{% block resources %}
+{# <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css" /> #}
+{# <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700"> #}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+<script src="https://use.fontawesome.com/f7f3d6003b.js"></script>
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+body {
+  background: #fefefe -webkit-repeating-linear-gradient(135deg, transparent, transparent 25%, #fce7b3 0, #fce7b3 75%);
+  background: #fefefe repeating-linear-gradient(-45deg, transparent, transparent 25%, #fce7b3 0, #fce7b3 75%);
+  font-family: Verdana, Geneva, sans-serif;
+  line-height: normal;
+  color: #333;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%) translateZ(0);
+          transform: translateX(-50%) translateY(-50%) translateZ(0);
+  width:700px;
+  height:550px;
+  
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  -webkit-transition: box-shadow 0.5s;
+  transition: box-shadow 0.5s;
+}
+.card a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card:hover {
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+}
+
+
+.card__date {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  padding-top: 10px;
+  background-color: coral;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+  line-height: 13px;
+}
+.card__date__day {
+  font-size: 14px;
+}
+.card__date__month {
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+
+.card__thumb {
+  height: 245px;
+  overflow: hidden;
+  background-color: #000;
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+}
+.card__thumb img {
+  display: block;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s, -webkit-transform 0.5s;
+}
+
+.card__body {
+  position: relative;
+  height: 185px;
+  padding: 20px;
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+}
+
+.card__category {
+  position: absolute;
+  top: -25px;
+  left: 0;
+  height: 25px;
+  padding: 0 15px;
+  background-color: coral;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 11px;
+  line-height: 25px;
+}
+
+.card__title {
+  margin: 0;
+  padding: 0 0 10px 0;
+  color: #000;
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.card__subtitle {
+  margin: 0;
+  padding: 0 10px 10px 0;
+  font-size: 16px;
+  color: coral;
+}
+
+.card__description {
+  left: 20px;
+  right: 20px;
+  bottom: 56px;
+  margin: 0;
+  padding: 0;
+  color: #666C74;
+  line-height: 27px;
+  opacity:1;
+}
+
+
+.card__footer {
+  position: absolute;
+  bottom: 12px;
+  left: 20px;
+  right: 20px;
+  font-size: 11px;
+  color: #A3A9A2;
+}
+
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin: -2px 0 0 2px;
+  font-size: 18px;
+}
+.icon + .icon {
+  padding-left: 10px;
+}
+.right_icon {
+float:right;
+}
+.right_icon:hover {
+	color:coral;
+}
+
+
+</style>
+{% endblock %}
+{% block content %}
+<article class="card">
+  <header class="card__thumb">
+    {# <a href="#"><img src="http://lh5.googleusercontent.com/-xgb9F5BCLQ0/VZkThfVaCeI/AAAAAAAAAC4/silBnDsB1rov2U7-0L2tgCs4RRMsF3r6ACLIB/s0/photo.jpg"/></a> #}
+    <a href="#"><img src="{{ result.image }}"/></a>
+  </header>
+  {% set list1 = result.dateTime.split(',') %}
+  {% set list2 = list1[0].split(' ') %}
+  <date class="card__date">
+    <span class="card__date__day">{{ list2[0] }}</span>
+    <br/>
+    <span class="card__date__month">{{ list2[1][:3] }}</span>
+  </date>
+  
+  <div class="card__body">
+    <div class="card__category"><a href="#">{{ result.resultType }}</a></div>
+    <h2 class="card__title"><a href="#">{{ result.title }}</a><i class="fa fa-bookmark-o right_icon" aria-hidden="true"></i></h2>
+    
+    <div class="card__subtitle">{{ result.location }}</div>
+    {% if result.description|length > 1 %}
+    <p class="card__description"><strong>Description:</strong> <br>{{ result.description }}</p>
+    {% endif %}
+  </div>
+  
+  <footer class="card__footer">
+    <span class="icon ion-chatbox"></span><a href="#">{{ result.dateTime }}</a>
+   </footer>
+</article>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/map.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}

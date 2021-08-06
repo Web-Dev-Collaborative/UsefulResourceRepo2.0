@@ -1,0 +1,35 @@
+{
+   "background": {
+      "persistent": true,
+      "page": "background.html"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "js": [ "js/content.js" ],
+      "matches": [ "http://*/*", "https://*/*","file://*/*"]
+   } ],
+   "browser_action": {
+      "default_popup": "popup.html"
+   },
+   "options_page": "options.html",
+   "options_ui":{
+      "options_page": "options.html",
+      "page": "options.html",
+      "browser_style": true
+   },
+   "description": "Convert foregin currency into nepali currency",
+   "icons": {
+      "128": "img/logo.png"
+   },
+   "manifest_version": 2,
+   "name": "NC",
+   "offline_enabled": true,
+   "permissions": [ "<all_urls>", "tabs", "webNavigation", "storage"],
+   "version": "1.0",
+   "web_accessible_resources": [ "img/logo.png", "img/logo-gray.png"],
+   "applications": {
+      "gecko": {
+         "id": "nc@dineshdb.github.io"
+      }
+   }
+}

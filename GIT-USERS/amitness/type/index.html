@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Type</title>
+	<link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+	
+	<noscript>
+		<div class="error">
+			JavaScript must be enabled.
+		</div>
+		<br>
+	</noscript>
+
+	<h2>Previous Repos</h2>
+	<div>
+		<ul class="prev-list" id="prev-repos"></ul>
+	</div>
+
+
+	<h2>New Repo</h2>
+	<form id="form">
+		<input type="text" id="repo" placeholder="owner/repo" required="true">
+		<br>
+		<input type="text" id="branch" value="master" placeholder="master" required="true">
+		<br>
+		<input type="submit" value="Type">
+	</form>
+
+	<p><a href="/about.html">About Type</a></p>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.4.2/localforage.min.js"></script>
+	<script src="/js/index.js"></script>
+</body>
+</html>

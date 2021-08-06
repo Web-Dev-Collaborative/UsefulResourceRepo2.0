@@ -1,0 +1,95 @@
+#!/bin/bash
+
+set -e
+username="NULL"
+receiver="NULL"
+message="NULL"
+
+#remove old meetcookies
+if [ -f /tmp/meetcookies ]
+then
+	rm -f /tmp/meet*
+fi
+
+
+#help section
+function usage {
+	echo -e "Usage:
+	 ./meetsms -u username -r receiver's_number -m \"message\" \n
+	 OR
+	 ./meetsms -u username -r receiver's_number -f filename"
+
+}
+
+function send {
+	curl -c /tmp/meetcookies -s --request POST 'http://www.meet.net.np/meet/action/login' -d "username=$username" -d "password=$password" -d "loginPage=true" -d "loginbut=login" 
+	curl -b /tmp/meetcookies -s --request POST 'http://www.meet.net.np/meet/mod/sms/actions/send.php' -d "recipient=$receiver" -d "message=$message" -d "sendbutton=Send Now"  > /tmp/meetlog
+	curl -b /tmp/meetcookies -s --request GET 'http://www.meet.net.np/meet/sms/sms' > /tmp/meetnumber
+}
+
+while getopts ":u:r:m:f:h" OPT
+do
+	case $OPT in
+	u)
+		username=$OPTARG;;
+	r)
+		receiver=$OPTARG;;
+	m)
+		message=$OPTARG;
+		charnumber=`echo $message | wc -c`;
+		if [ "$charnumber" -gt 304 ]
+		then
+			echo "Maximum number of allowed character is 304. Your message contains $charnumber characters. Please shorten it."
+			exit
+		fi
+		;;
+	f)
+		filename=$OPTARG;
+		charnumber=`cat $filename | wc -c`;
+		if [ "$charnumber" -gt 304 ]
+		then
+			echo "Maximun number of allowed characters is 304. Your message contains $charnumber characters. Please shorten it."
+			exit
+		fi
+		message=$(cat $filename);;
+	h)
+		usage;
+		exit;;
+	\?)
+		echo "Invalid Option. -$OPTARG" >&2; 
+		usage
+		exit;;
+	:) 
+		echo "Missing option arguements for -$OPTARG" >&2;
+		exit;;
+	*) 
+		echo "Unimplemented option: -$OPTARG" >&2;
+		exit;;
+	esac
+done
+shift $((OPTIND-1)) 
+#Check if all parameters are fulfilled
+if [ "$username" == "NULL" ] || [ "$receiver" == "NULL" ] || [ "$message" == "NULL" ]
+then
+	echo "All three of -u, -r & -m or -f are required. Check syntax:"
+	usage
+	exit
+fi
+
+echo -n "Password for $username: "
+read -s password
+echo
+echo "Sending...."
+send
+
+grep -q -o SUCCESS /tmp/meetlog && { echo "SMS successfully sent. :)"; } || { echo -e "SMS sending failed. :( \nPossible reasons: \n\t1) Incorrect password, \n\t2) Free SMS Limit Reached, \n\t3) Network Problem, \n\t4) Incorrect Receiver's Mobile Number."; rm -rf /tmp/meet*; exit; }
+sent=`cat /tmp/meetnumber | grep Quota | awk '{print $4}' | grep -o -P '(?<=:).*(?=/)'`
+echo -e "Number of sms sent today: $sent \nNumer of sms left: $((10-$sent))"
+#Delete cookies and stuffs
+rm -rf /tmp/meet*
+
+
+
+
+
+

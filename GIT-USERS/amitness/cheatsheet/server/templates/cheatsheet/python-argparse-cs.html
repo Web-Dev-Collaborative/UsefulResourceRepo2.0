@@ -1,0 +1,424 @@
+{% extends "layout.html" %}
+
+{% block jumbotron %}
+<div class="jumbotron">
+   <h1>Python Cheat Sheet</h1>
+   <p>Cheat sheet of Python. Some argsparse concepts for Python programmer need to know.</p>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="row col-md-6 col-xs-12">
+<h3>argparse - basic usage</h3>
+<pre class="code python">
+# no arguments
+&gt;&gt;&gt; import argparse
+&gt;&gt;&gt; p = argparse.ArgumentParser()
+&gt;&gt;&gt; p.parse_args()
+Namespace()
+&gt;&gt;&gt; p.print_help()
+usage: [-h]
+
+optional arguments:
+  -h, --help  show this help message and exit
+
+# with arguments
+&gt;&gt;&gt; import argparse
+&gt;&gt;&gt; p = argparse.ArgumentParser()
+&gt;&gt;&gt; ret = p.add_argument('hello')
+&gt;&gt;&gt; ret = p.add_argument('world')
+&gt;&gt;&gt; ret = p.parse_args(['hello', 'world'])
+&gt;&gt;&gt; hasattr(ret, 'hello')
+True
+&gt;&gt;&gt; hasattr(ret, 'world')
+True
+&gt;&gt;&gt; p.print_help()
+usage: [-h] hello world
+
+positional arguments:
+  hello
+  world
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre>
+
+<h3>argparse - basic help and parse args</h3>
+<pre class="code python">
+# test.py
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    '-f', 
+    '--foo',
+    help="foo help test")
+# parse argument from term
+args = parser.parse_args()
+print args.foo
+
+# output:
+# 
+# bash&gt; python test.py -h
+# usage: test.py [-h] [-f FOO]
+#
+# optional arguments:
+#   -h, --help         show this help message and exit
+#   -f FOO, --foo FOO  foo help test
+# 
+# bash&gt; python test.py -f foo
+# foo 
+</pre>
+
+<h3>argparse - some basic arguments</h3>
+<pre class="code python">
+title
+description
+prog
+parser_class
+action
+dest
+help
+metavar
+formatter_class
+nargs
+version
+</pre>
+
+<h3>argparse - description</h3>
+<pre class="code python">
+# without description
+&gt;&gt;&gt; import argparse
+&gt;&gt;&gt; p = argparse.ArgumentParser()
+&gt;&gt;&gt; p = argparse.ArgumentParser(
+...   description="foo desc")
+&gt;&gt;&gt; p.print_help()
+usage: [-h]
+
+foo desc
+
+optional arguments:
+  -h, --help  show this help message and exit
+
+# with description
+&gt;&gt;&gt; import argparse
+&gt;&gt;&gt; p = argparse.ArgumentParser(
+...   description="===== foo desc =====")
+&gt;&gt;&gt; p.print_help()
+usage: [-h]
+
+===== foo desc =====
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre>
+
+<h3>argparse - metavar, help, prog, default</h3>
+<pre class="code python">
+# without title, metavar, help, prog
+import argparse
+p = argparse.ArgumentParser()
+p.add_argument('-p','--print')
+p.parse_args()
+
+# output
+# usage: test.py [-h] [-p PRINT]
+#
+# optional arguments:
+#   -h, --help            show this help message and exit
+#   -p PRINT, --print PRINT
+
+# with metavar, help, prog, default
+import argparse
+p = argparse.ArgumentParser(prog='PROG')
+p.add_argument(
+    '-p',
+    '--print_str', 
+    metavar="str",
+    default="hello world",
+    help="print str test")
+
+args = p.parse_args()
+print args.print_str
+
+# output:
+# 
+# bash&gt; python test.py -h
+# usage: PROG [-h] [-p str]
+#
+# optional arguments:
+#   -h, --help            show this help message and exit
+#   -p str, --print_str str
+#                         print str test
+#
+# bash&gt; python test.py
+# hello world
+# bash&gt; python 02_parser_test.py -p kerker
+# kerker
+</pre>
+
+<h3>argparse - action</h3>
+<pre class="code python">
+# store: default action
+&gt;&gt;&gt; import argparse
+&gt;&gt;&gt; p = argparse.ArgumentParser()
+&gt;&gt;&gt; _ = p.add_argument('--foo')
+&gt;&gt;&gt; p.parse_args(['--foo','ker'])
+Namespace(foo='ker')
+
+# store_true
+&gt;&gt;&gt; import argparse
+&gt;&gt;&gt; p = argparse.ArgumentParser()
+&gt;&gt;&gt; _ = p.add_argument('--foo', action="store_true")
+&gt;&gt;&gt; p.parse_args(['--foo'])
+Namespace(foo=True)
+&gt;&gt;&gt; p.parse_args([])
+Namespace(foo=False)
+
+# store_const
+&gt;&gt;&gt; import argparse
+&gt;&gt;&gt; p = argparse.ArgumentParser()
+&gt;&gt;&gt; _ = p.add_argument('--foo',
+...                    action='store_const',
+...                    const=5566)
+&gt;&gt;&gt; p.parse_args(['--foo'])
+Namespace(foo=5566)
+&gt;&gt;&gt; p.parse_args([])
+Namespace(foo=None)
+
+# append
+&gt;&gt;&gt; import argparse
+&gt;&gt;&gt; p = argparse.ArgumentParser()
+&gt;&gt;&gt; _ = p.add_argument('--foo', action='append')
+&gt;&gt;&gt; p.parse_args('--foo 5566 --foo 9527'.split())
+Namespace(foo=['5566', '9527'])
+
+# append_const
+&gt;&gt;&gt; import argparse
+&gt;&gt;&gt; p = argparse.ArgumentParser()
+&gt;&gt;&gt; _ = p.add_argument('--foo',
+...                    dest='ker',
+...                    action='append_const',
+...                    const='foooo')
+&gt;&gt;&gt; _ = p.add_argument('--bar',
+...                   dest='ker',
+...                   action='append_const',
+...                   const='baaar')
+&gt;&gt;&gt; p.parse_args('--foo --bar'.split())
+Namespace(ker=['foooo', 'baaar'])
+
+# custom action
+import argparse
+
+class FooAction(argparse.Action):
+    def __init__(self, option_strings, dest,
+                 nargs=None, **kwargs):
+        if nargs is not None:
+            raise ValueError("nargs not allowed")
+        super(FooAction, self).__init__(option_strings, 
+                                        dest, **kwargs)
+    def __call__(self, parser, namespace,
+                 values, option_string=None):
+        print '%r %r %r' % (namespace, values, option_string)
+        setattr(namespace, self.dest, values)
+
+p = argparse.ArgumentParser()
+p.add_argument('--foo',action=FooAction)
+args = p.parse_args()
+print args
+
+# output:
+#
+# bash&gt; python test.py --foo ker
+# Namespace(foo=None) 'ker' '--foo'
+# Namespace(foo='ker')
+</pre>
+
+</div>
+
+<div class="row col-md-6 col-xs-12">
+
+<h3>Sub-commeand - basic</h3>
+<pre class="code python">
+import argparse
+
+p = argparse.ArgumentParser()
+sp = p.add_subparsers(
+        title="sub-command",
+        description="sub command example")
+# parser a in sub-parser
+p_a = sp.add_parser('foo', help='sub foo')
+p_a.add_argument('--foo', help='print foo')
+# parser b in sub-parser
+p_b = sp.add_parser('bar', help='sub bar') 
+p_b.add_argument('--bar', help='print bar')
+
+args = p.parse_args()
+print args.foo
+
+# output:
+# 
+# bash&gt; python test.py -h
+# usage: 03_parser_test.py [-h] {foo,bar} ...
+#
+# optional arguments:
+#   -h, --help  show this help message and exit
+#
+# sub-command:
+#   sub command example
+#
+#   {foo,bar}
+#     foo       sub foo
+#     bar       sub bar
+# 
+# bash&gt; test.py foo -h
+# usage: test.py foo [-h] [--foo FOO] [--bar BAR]
+# 
+# optional arguments:
+#   -h, --help  show this help message and exit
+#   --foo FOO   print foo
+#
+# bash&gt; python test.py foo --foo "hello world"
+# hello world
+</pre>
+
+<h3>Get subparser command</h3>
+<pre class="code python">
+&gt;&gt;&gt; import argparse
+&gt;&gt;&gt; p = argparse.ArgumentParser()
+&gt;&gt;&gt; sp = p.add_subparsers(dest='subcmd')
+&gt;&gt;&gt; foo_p = sp.add_parser('foo')
+&gt;&gt;&gt; bar_p = sp.add_parser('bar')
+&gt;&gt;&gt; _ = foo_p.add_argument('--ker')
+&gt;&gt;&gt; args = p.parse_args(['foo', '--ker', 'hello world'])
+&gt;&gt;&gt; print args
+Namespace(ker='hello world', subcmd='foo')
+</pre>
+
+<h3>Group subparser</h3>
+<pre class="code python">
+import argparse
+
+desc = """
+First Group:
+  hello      subcommand hello in group1
+  world      subcommand world in group1
+
+Second Group:
+  foo        subcommand foo in group2
+  bar        subcommand bar in group2"""
+
+formater = argparse.RawDescriptionHelpFormatter
+p = argparse.ArgumentParser(
+        formatter_class=formater)
+sp = p.add_subparsers(
+        title="&lt;command&gt;",
+        description=desc)
+sp.add_parser("hello")
+sp.add_parser("world")
+sp.add_parser("foo")
+sp.add_parser("bar")
+
+args = p.parse_args()
+
+# output:
+#
+# bash&gt; test.py -h
+# usage: test.py [-h] {hello,world,foo,bar} ...
+#
+# optional arguments:
+#   -h, --help            show this help message and exit
+#
+# &lt;command&gt;:
+#  
+#   First Group:
+#     hello      subcommand hello in group1
+#     world      subcommand world in group1
+#  
+#   Second Group:
+#     foo        subcommand foo in group2
+#     bar        subcommand bar in group2
+#
+#   {hello,world,foo,bar}
+</pre>
+
+<h3>Group arguments</h3>
+<pre class="code python">
+import argparse
+
+p = argparse.ArgumentParser()
+# add group1 to argument parser
+group1 = p.add_argument_group(
+            'group1', 'group1 desciption')
+group1.add_argument('-f', '--foo', help="foo")
+group1.add_argument('-k', '--ker', help="ker")
+
+# add group2 to argument parser
+group2 = p.add_argument_group(
+            'group2', 'group2 desciption')
+group2.add_argument('-b', '--bar', help="bar")
+
+args = p.parse_args()
+
+# output:
+#
+# bash&gt; python test.py -h
+# usage: test.py [-h] [-f FOO] [-k KER] [-b BAR]
+#
+# optional arguments:
+#   -h, --help         show this help message and exit
+#
+# group1:
+#   group1 desciption
+#
+#   -f FOO, --foo FOO  foo
+#   -k KER, --ker KER  ker
+#
+# group2:
+#   group2 desciption
+#
+#   -b BAR, --bar BAR  bar
+</pre>
+
+<h3>Mutual exclusion - only one of the arguments was present</h3>
+<pre class="code python">
+import argparse
+
+p = argparse.ArgumentParser(prog="PROG")
+group = p.add_mutually_exclusive_group()
+
+# add arguments to group
+group.add_argument('-f', help="foo")
+group.add_argument('-b', help="bar")
+
+args = p.parse_args()
+print args.f
+print args.b
+
+# output:
+#
+# bash&gt; python test.py -h
+# usage: PROG [-h] [-f F | -b B]
+# 
+# optional arguments:
+#   -h, --help  show this help message and exit
+#   -f F        foo
+#   -b B        bar
+# bash&gt; python test.py -f foo
+# foo
+# None
+# bash&gt; python test.py -b bar
+# None
+# bar
+# bash&gt; python test.py -f foo -b bar
+# usage: PROG [-h] [-f F | -b B]
+# PROG: error: argument -b: not allowed with argument -f
+</pre>
+
+</div>
+
+
+{% endblock %}
+
+{% block script %}
+{{ super() }}
+{% endblock %}

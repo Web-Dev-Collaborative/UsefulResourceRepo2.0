@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}NearU{% endblock %}
+{% block resources %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+{% endblock %}
+{% block content %}
+{% include 'maps.html' %}
+{% include 'chatbox.html' %}
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/map.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<title>Sastodeal - Rotating Head</title>
+	<style media="screen">
+			.rotate-body-container {
+					width: 431px;
+					margin: 0 auto;
+					position: relative;
+			}
+			.rotate-container {
+				width: 431px;
+				height: 400px;
+				background: url("ethos-ii-from-anthropose.jpg") no-repeat;
+			}
+	</style>
+</head>
+<body>
+
+	<div class="rotate-body-container">
+			<div class="rotate-container" id="rotate-container"></div>
+	</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="./../src/rotating-heads.js"></script>
+<script type="text/javascript">
+$(function(){
+		$("#rotate-container").rotateHeads();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}Awardee Search{% endblock %}
+
+{% block resources %}
+<link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+{% include 'sections/searchbox.html' %}
+{% endblock %}

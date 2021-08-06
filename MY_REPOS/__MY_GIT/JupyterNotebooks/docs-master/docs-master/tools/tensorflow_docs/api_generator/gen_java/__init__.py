@@ -23,15 +23,19 @@ import subprocess
 # __file__ is the path to this file
 GEN_JAVA_DIR = pathlib.Path(__file__).resolve().parent
 
-TEMPLATES = GEN_JAVA_DIR / 'templates'
-DOCLAVA_FOR_TF = GEN_JAVA_DIR / 'run-javadoc-for-tf.sh'
+TEMPLATES = GEN_JAVA_DIR / "templates"
+DOCLAVA_FOR_TF = GEN_JAVA_DIR / "run-javadoc-for-tf.sh"
 
 
-def gen_java_docs(package: str, source_path: pathlib.Path,
-                  output_dir: pathlib.Path, site_path: pathlib.Path) -> None:
-  os.environ['PACKAGE'] = package
-  os.environ['SOURCE_PATH'] = str(source_path)
-  os.environ['OUTPUT_DIR'] = str(output_dir)
-  os.environ['SITE_PATH'] = str(pathlib.Path('/') / site_path)
-  os.environ['TEMPLATES'] = str(TEMPLATES)
-  subprocess.check_call(['bash', DOCLAVA_FOR_TF], cwd=GEN_JAVA_DIR)
+def gen_java_docs(
+    package: str,
+    source_path: pathlib.Path,
+    output_dir: pathlib.Path,
+    site_path: pathlib.Path,
+) -> None:
+    os.environ["PACKAGE"] = package
+    os.environ["SOURCE_PATH"] = str(source_path)
+    os.environ["OUTPUT_DIR"] = str(output_dir)
+    os.environ["SITE_PATH"] = str(pathlib.Path("/") / site_path)
+    os.environ["TEMPLATES"] = str(TEMPLATES)
+    subprocess.check_call(["bash", DOCLAVA_FOR_TF], cwd=GEN_JAVA_DIR)

@@ -1,0 +1,451 @@
+{% extends "layout.html" %}
+
+{% block jumbotron %}
+<div class="jumbotron">
+   <h1>Python Cheat Sheet</h1>
+   <p>Cheat sheet of Python. Some asyncio concepts for Python programmer need to know.</p>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="row col-md-4 col-xs-12">
+
+<h3>@asyncio.coroutine?</h3>
+<pre class="code python">
+import asyncio
+import inspect
+from functools import wraps
+
+Future = asyncio.futures.Future
+def coroutine(func):
+    """Simple prototype of coroutine"""
+    def coro(*a, **k):
+        res = func(*a, **k)
+        if isinstance(res, Future) or \
+           inspect.isgenerator(res):
+            res = yield from res
+        return res
+    return coro
+
+@coroutine
+def foo():
+    yield from asyncio.sleep(1)
+    print("Hello Foo")
+
+@asyncio.coroutine
+def bar():
+    print("Hello Bar")
+
+loop = asyncio.get_event_loop()
+tasks = [loop.create_task(foo()),
+         loop.create_task(bar())]
+loop.run_until_complete(
+     asyncio.wait(tasks))
+loop.close()
+
+# output:
+# Hello Bar
+# Hello Foo
+</pre>
+
+<h3>Task?</h3>
+<pre class="code python">
+# goal: supervise coroutine run state
+# ref: asyncio/tasks.py
+import asyncio
+Future = asyncio.futures.Future
+
+class Task(Future):
+    """Simple prototype of Task"""
+
+    def __init__(self, gen, *,loop):
+        super().__init__(loop=loop)
+        self._gen = gen
+        self._loop.call_soon(self._step)
+
+    def _step(self, val=None, exc=None):
+        try:
+            if exc:
+                f = self._gen.throw(exc)
+            else:
+                f = self._gen.send(val)
+        except StopIteration as e:
+            self.set_result(e.value)
+        except Exception as e:
+            self.set_exception(e)
+        else:
+            f.add_done_callback(
+                 self._wakeup)
+
+    def _wakeup(self, fut):
+        try:
+            res = fut.result()
+        except Exception as e:
+            self._step(None, e)
+        else:
+            self._step(res, None)
+
+@asyncio.coroutine
+def foo():
+    yield from asyncio.sleep(3)
+    print("Hello Foo")
+
+@asyncio.coroutine
+def bar():
+    yield from asyncio.sleep(1)
+    print("Hello Bar")
+
+loop = asyncio.get_event_loop()
+tasks = [Task(foo(), loop=loop),
+         loop.create_task(bar())]
+loop.run_until_complete(
+        asyncio.wait(tasks))
+loop.close()
+
+# output:
+# Hello Bar
+# hello Foo
+</pre>
+
+<h3>What event loop doing? (without polling)</h3>
+<pre class="code python">
+import asyncio
+from collections import deque
+
+def donecb(fut):
+    fut._loop.stop()
+
+class Loop:
+    """Simple event loop prototype"""
+
+    def __init__(self):
+        self._ready = deque()
+        self._stopping = False
+
+    def create_task(self, coro):
+        Task = asyncio.tasks.Task
+        task = Task(coro, loop=self)
+        return task
+
+    def run_until_complete(self, fut):
+        tasks = asyncio.tasks
+        # get task
+        fut = tasks.ensure_future(
+                    fut, loop=self)
+        # add task to ready queue
+        fut.add_done_callback(donecb)
+        # run tasks
+        self.run_forever()
+        # remove task from ready queue
+        fut.remove_done_callback(donecb)
+
+    def run_forever(self):
+        """Run tasks until stop"""
+        try:
+            while True:
+                self._run_once()
+                if self._stopping:
+                    break
+        finally:
+            self._stopping = False
+
+    def call_soon(self, cb, *args):
+        """Append task to ready queue"""
+        self._ready.append((cb, args))
+    def call_exception_handler(self, c):
+        pass
+
+    def _run_once(self):
+        """Run task at once"""
+        ntodo = len(self._ready)
+        for i in range(ntodo):
+            t, a = self._ready.popleft() 
+            t(*a)
+
+    def stop(self):
+        self._stopping = True
+        
+    def close(self):
+        self._ready.clear()
+
+    def get_debug(self):
+        return False
+
+@asyncio.coroutine
+def foo():
+    print("Foo")
+
+@asyncio.coroutine
+def bar():
+    print("Bar")
+
+
+loop = Loop()
+tasks = [loop.create_task(foo()),
+         loop.create_task(bar())]
+loop.run_until_complete(
+        asyncio.wait(tasks))
+loop.close()
+
+# output:
+# Foo 
+# Bar
+</pre>
+</div>
+
+<div class="row col-md-4 col-xs-12">
+<h3>socket with asyncio</h3>
+<pre class="code python">
+import asyncio
+import socket
+
+host = 'localhost'
+port = 9527
+loop = asyncio.get_event_loop()
+s = socket.socket(
+        socket.AF_INET, 
+        socket.SOCK_STREAM, 0)
+s.setsockopt(
+        socket.SOL_SOCKET,
+        socket.SO_REUSEADDR, 1)
+s.setblocking(False)
+s.bind((host, port))
+s.listen(10)
+
+async def handler(conn):
+    while True:
+        msg = await \
+            loop.sock_recv(conn, 1024)
+        if not msg:
+            break
+        await \
+            loop.sock_sendall(conn, msg)
+    conn.close()
+
+async def server():
+    while True:
+        conn, addr = await \
+                loop.sock_accept(s)
+        loop.create_task(handler(conn))
+
+loop.create_task(server())
+loop.run_forever()
+loop.close()
+
+#output:
+# bash&gt; python3 async_test.py
+# bash1&gt; nc localhost 9527
+# Hello
+# Hello
+# bash2&gt; nc localhost 9527
+# World
+# World
+</pre>
+
+<h3>Event Loop with Polling - Using selectors</h3>
+<pre class="code python">
+# ref: <a href="https://www.youtube.com/watch?v=lYe8W04ERnY">PyCon 2015 - David Beazley</a>
+import asyncio
+import socket
+import selectors
+from collections import deque
+
+@asyncio.coroutine
+def read_wait(s):
+    yield 'read_wait', s
+
+@asyncio.coroutine
+def write_wait(s):
+    yield 'write_wait', s
+
+class Loop:
+    """Simple loop prototype"""
+
+    def __init__(self):
+        self.ready = deque() 
+        self.selector = \
+            selectors.DefaultSelector()
+
+    @asyncio.coroutine
+    def sock_accept(self, s):
+        yield from read_wait(s)
+        return s.accept()
+
+    @asyncio.coroutine
+    def sock_recv(self, c, mb):
+        yield from read_wait(c)
+        return c.recv(mb)
+
+    @asyncio.coroutine
+    def sock_sendall(self, c, m):
+        while m: 
+            yield from write_wait(c)
+            nsent = c.send(m)
+            m = m[nsent:]
+
+    def create_task(self, coro):
+        self.ready.append(coro)
+
+    def run_forever(self):
+        while True:
+            self._run_once()
+    def _run_once(self):
+        sel = self.selector
+        ready = self.ready
+        while not self.ready:
+            e = sel.select()
+            for k, _ in e:
+                ready.append(k.data)
+                sel.unregister(k.fileobj)
+
+        while self.ready:
+            t = ready.popleft()
+            try:
+                op, *a = t.send(None)
+                self.cur_t = t
+                getattr(self, op)(*a)
+            except StopIteration:
+                pass
+
+    def read_wait(self, s):
+        self.selector.register(
+             s, selectors.EVENT_READ, 
+             self.cur_t)
+
+    def write_wait(self, s):
+        self.selector.register(
+             s, selectors.EVENT_WRITE, 
+             self.cur_t)
+
+loop = Loop()
+host = 'localhost'
+port = 9527
+
+s = socket.socket(
+        socket.AF_INET,
+        socket.SOCK_STREAM, 0)
+s.setsockopt(
+        socket.SOL_SOCKET,
+        socket.SO_REUSEADDR, 1)
+s.setblocking(False)
+s.bind((host, port))
+s.listen(10)
+
+@asyncio.coroutine
+def handler(c):
+    while True:
+        msg = yield from \
+            loop.sock_recv(c, 1024)
+        if not msg:
+            break
+        yield from \
+            loop.sock_sendall(c, msg)
+    c.close()
+
+@asyncio.coroutine
+def server():
+    while True:
+        c, addr = yield from \
+            loop.sock_accept(s)
+        loop.create_task(handler(c))
+
+loop.create_task(server())
+loop.run_forever()
+</pre>
+
+<h3>Inline callback</h3>
+<pre class="code python">
+&gt;&gt;&gt; import asyncio
+&gt;&gt;&gt; async def foo():
+...     await asyncio.sleep(1)
+...     return "foo done"
+... 
+&gt;&gt;&gt; async def bar():
+...     await asyncio.sleep(.5)
+...     return "bar done"
+... 
+&gt;&gt;&gt; async def ker():
+...     await asyncio.sleep(3)
+...     return "ker done"
+... 
+&gt;&gt;&gt; async def task():
+...     res = await foo()
+...     print(res)
+...     res = await bar()
+...     print(res)
+...     res = await ker()
+...     print(res)
+... 
+&gt;&gt;&gt; loop = asyncio.get_event_loop()
+&gt;&gt;&gt; loop.run_until_complete(task())
+foo done
+bar done
+ker done
+</pre>
+
+</div>
+
+<div class="row col-md-4 col-xs-12">
+
+<h3>Asynchronous Iterators</h3>
+<pre class="code python">
+# ref: <a href="https://www.python.org/dev/peps/pep-0492/">PEP-0492</a>
+# need Python &gt;= 3.5
+&gt;&gt;&gt; class AsyncIter:
+...     def __init__(self, it):
+...         self._it = iter(it)
+...     async def __aiter__(self):
+...         return self
+...     async def __anext__(self):
+...         await asyncio.sleep(1)
+...         try:
+...             val = next(self._it)
+...         except StopIteration:
+...             raise StopAsyncIteration
+...         return val
+...
+&gt;&gt;&gt; async def foo():
+...     it = [1,2,3]
+...     async for _ in AsyncIter(it):
+...         print(_)
+... 
+&gt;&gt;&gt; loop = asyncio.get_event_loop()
+&gt;&gt;&gt; loop.run_until_complete(foo())
+1
+2
+3
+</pre>
+
+<h3>Async Context Manager</h3>
+<pre class="code python">
+# ref: <a href="https://www.python.org/dev/peps/pep-0492/">PEP-0492</a>
+# need Python &gt;= 3.5
+&gt;&gt;&gt; class AsyncCtxMgr:
+...     async def __aenter__(self):
+...         await asyncio.sleep(3)
+...         print("__anter__")
+...         return self
+...     async def __aexit__(self, *exc):
+...         await asyncio.sleep(1)
+...         print("__aexit__")
+...
+&gt;&gt;&gt; async def hello():
+...     async with AsyncCtxMgr() as m:
+...         print("hello block")
+... 
+&gt;&gt;&gt; async def world():
+...     print("world block")
+...
+&gt;&gt;&gt; t = loop.create_task(world())
+&gt;&gt;&gt; loop.run_until_complete(hello())
+world block
+__anter__
+hello block
+__aexit__
+</pre>
+</div>
+{% endblock %}
+
+{% block script %}
+{{ super() }}
+{% endblock %}
