@@ -1,0 +1,45 @@
+{
+  "name": "grunt-minify-html",
+  "version": "3.0.0",
+  "description": "Minify HTML",
+  "license": "MIT",
+  "repository": "sindresorhus/grunt-minify-html",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && grunt && ava && del 'test/tmp/**'"
+  },
+  "files": [
+    "tasks"
+  ],
+  "keywords": [
+    "gruntplugin",
+    "html",
+    "minify",
+    "minifier",
+    "minimize",
+    "min",
+    "compress"
+  ],
+  "dependencies": {
+    "each-async": "^1.0.0",
+    "make-dir": "^1.0.0",
+    "minimize": "^2.1.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "del-cli": "^1.0.0",
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "xo": "*"
+  },
+  "peerDependencies": {
+    "grunt": ">=0.4.0"
+  }
+}

@@ -1,0 +1,61 @@
+{
+	"name": "gulp-jsvalidate",
+	"version": "5.0.0",
+	"description": "Validate JavaScript code and report possible syntax errors",
+	"license": "MIT",
+	"repository": "sindresorhus/gulp-jsvalidate",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"gulpplugin",
+		"js",
+		"javascript",
+		"syntax",
+		"errors",
+		"check",
+		"lint",
+		"parse",
+		"esprima",
+		"ast",
+		"source",
+		"code"
+	],
+	"dependencies": {
+		"esprima": "^4.0.0",
+		"plugin-error": "^1.0.1",
+		"through2": "^3.0.1"
+	},
+	"devDependencies": {
+		"ava": "^2.3.0",
+		"gulp": "^4.0.2",
+		"p-event": "^4.1.0",
+		"vinyl": "^2.1.0",
+		"xo": "^0.25.3"
+	},
+	"peerDependencies": {
+		"gulp": ">=4"
+	},
+	"peerDependenciesMeta": {
+		"gulp": {
+			"optional": true
+		}
+	},
+	"xo": {
+		"ignores": [
+			"fixture.js"
+		]
+	}
+}

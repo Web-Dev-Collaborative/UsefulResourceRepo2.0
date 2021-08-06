@@ -1,0 +1,44 @@
+{
+	"name": "grunt-php",
+	"version": "3.0.0",
+	"description": "Start a PHP server",
+	"license": "MIT",
+	"repository": "sindresorhus/grunt-php",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=8"
+	},
+	"scripts": {
+		"test": "xo && grunt"
+	},
+	"files": [
+		"tasks"
+	],
+	"keywords": [
+		"gruntplugin",
+		"php",
+		"server",
+		"webserver",
+		"web-server",
+		"http"
+	],
+	"dependencies": {
+		"php-server": "^0.2.0"
+	},
+	"devDependencies": {
+		"got": "^9.6.0",
+		"grunt": "^1.0.4",
+		"grunt-browser-sync": "^2.0.0",
+		"grunt-cli": "^1.2.0",
+		"grunt-contrib-watch": "^1.0.0",
+		"grunt-simple-mocha": "^0.4.0",
+		"xo": "^0.24.0"
+	},
+	"peerDependencies": {
+		"grunt": ">=1"
+	}
+}

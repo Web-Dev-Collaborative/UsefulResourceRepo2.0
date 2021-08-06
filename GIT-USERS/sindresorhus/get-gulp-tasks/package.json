@@ -1,0 +1,40 @@
+{
+  "name": "get-gulp-tasks",
+  "version": "4.0.0",
+  "description": "Get the gulp tasks from a gulp project",
+  "license": "MIT",
+  "repository": "sindresorhus/get-gulp-tasks",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "pretest": "cd fixture && npm install",
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "gulpfriendly",
+    "gulp",
+    "gulpfile",
+    "tasks",
+    "get",
+    "project"
+  ],
+  "dependencies": {
+    "execa": "^0.2.1"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "xo": "*"
+  },
+  "xo": {
+    "esnext": true
+  }
+}

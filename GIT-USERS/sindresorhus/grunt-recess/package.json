@@ -1,0 +1,45 @@
+{
+  "name": "grunt-recess",
+  "version": "1.0.1",
+  "description": "Lint and minify CSS and LESS",
+  "keywords": [
+    "gruntplugin",
+    "css",
+    "less",
+    "recess",
+    "lint",
+    "compile",
+    "preprocess"
+  ],
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "repository": "sindresorhus/grunt-recess",
+  "scripts": {
+    "test": "mocha test/**/*.spec.js"
+  },
+  "dependencies": {
+    "async": "^0.9.0",
+    "chalk": "^1.0.0",
+    "lodash": "^3.3.0",
+    "maxmin": "^1.0.0",
+    "recess": "^1.1.6"
+  },
+  "devDependencies": {
+    "chai": "^2.1.0",
+    "grunt": "^0.4.2",
+    "mocha": "*",
+    "rewire": "^2.1.0",
+    "sinon": "^1.10.3",
+    "sinon-chai": "^2.5.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "license": "MIT",
+  "files": [
+    "tasks"
+  ]
+}

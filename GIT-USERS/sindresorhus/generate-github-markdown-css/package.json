@@ -1,0 +1,49 @@
+{
+	"name": "generate-github-markdown-css",
+	"version": "4.0.0",
+	"description": "Generate the CSS for github-markdown-css",
+	"license": "MIT",
+	"repository": "sindresorhus/generate-github-markdown-css",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"bin": {
+		"github-markdown-css": "cli.js"
+	},
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js",
+		"cli.js",
+		"fixture.md"
+	],
+	"keywords": [
+		"cli-app",
+		"cli",
+		"github",
+		"markdown",
+		"md",
+		"css",
+		"style",
+		"stylesheet"
+	],
+	"dependencies": {
+		"cheerio": "^0.22.0",
+		"css": "^2.0.0",
+		"got": "^10.6.0",
+		"meow": "^6.0.1",
+		"pify": "^5.0.0",
+		"uncss": "^0.17.3"
+	},
+	"devDependencies": {
+		"ava": "^1.2.0",
+		"xo": "^0.26.1"
+	}
+}

@@ -1,0 +1,43 @@
+{
+  "name": "grunt-header",
+  "version": "1.1.0",
+  "description": "Add a header to files",
+  "license": "MIT",
+  "repository": "sindresorhus/grunt-header",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "xo && grunt && ava && grunt clean"
+  },
+  "files": [
+    "tasks"
+  ],
+  "keywords": [
+    "gruntplugin",
+    "header",
+    "head",
+    "prepend",
+    "text",
+    "banner",
+    "concat"
+  ],
+  "dependencies": {
+    "detect-newline": "^2.1.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "xo": "*"
+  },
+  "peerDependencies": {
+    "grunt": ">=0.4.0"
+  }
+}

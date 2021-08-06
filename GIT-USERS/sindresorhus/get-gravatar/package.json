@@ -1,0 +1,50 @@
+{
+	"name": "get-gravatar",
+	"version": "4.1.0",
+	"description": "Get a Gravatar image from an identifier, such as an email",
+	"license": "MIT",
+	"repository": "sindresorhus/get-gravatar",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=8"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"gravatar",
+		"avatar",
+		"profile",
+		"image",
+		"picture",
+		"photo",
+		"hash",
+		"email",
+		"get",
+		"request",
+		"download",
+		"fetch",
+		"file",
+		"buffer",
+		"identifier"
+	],
+	"dependencies": {
+		"got": "^9.6.0",
+		"gravatar-url": "^3.1.0"
+	},
+	"devDependencies": {
+		"@types/node": "^12.12.6",
+		"ava": "^2.4.0",
+		"file-type": "^12.4.0",
+		"tsd": "^0.10.0",
+		"xo": "^0.25.3"
+	}
+}

@@ -1,0 +1,47 @@
+{
+  "name": "grunt-myth",
+  "version": "2.0.0",
+  "description": "Postprocessor that polyfills CSS",
+  "license": "MIT",
+  "repository": "sindresorhus/grunt-myth",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "xo && grunt"
+  },
+  "files": [
+    "tasks"
+  ],
+  "keywords": [
+    "gruntplugin",
+    "myth",
+    "style",
+    "stylesheet",
+    "css",
+    "postprocess",
+    "postprocessor",
+    "rework",
+    "compile",
+    "polyfill"
+  ],
+  "dependencies": {
+    "each-async": "^1.0.0",
+    "myth": "^1.0.1"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-simple-mocha": "^0.4.0",
+    "xo": "*"
+  },
+  "peerDependencies": {
+    "grunt": ">=0.4.0"
+  }
+}

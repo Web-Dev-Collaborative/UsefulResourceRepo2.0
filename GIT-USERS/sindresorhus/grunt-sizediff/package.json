@@ -1,0 +1,41 @@
+{
+  "name": "grunt-sizediff",
+  "version": "1.2.0",
+  "description": "Diff file sizes between current git branch and a branch/commit",
+  "keywords": [
+    "gruntplugin",
+    "size",
+    "diff",
+    "difference",
+    "git",
+    "dvcs",
+    "compare"
+  ],
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "repository": "sindresorhus/grunt-sizediff",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "license": "MIT",
+  "files": [
+    "tasks"
+  ],
+  "dependencies": {
+    "async": "^1.5.2",
+    "chalk": "^1.0.0",
+    "gzip-js": "^0.3.2",
+    "lpad": "^2.0.1",
+    "pretty-bytes": "^3.0.1"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0"
+  },
+  "peerDependencies": {
+    "grunt": ">=0.4.0"
+  }
+}

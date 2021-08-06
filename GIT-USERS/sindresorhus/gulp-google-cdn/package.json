@@ -1,0 +1,48 @@
+{
+	"name": "gulp-google-cdn",
+	"version": "3.0.0",
+	"description": "Replaces script references with Google CDN ones",
+	"license": "MIT",
+	"repository": "sindresorhus/gulp-google-cdn",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=8"
+	},
+	"scripts": {
+		"test": "xo && mocha"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"gulpplugin",
+		"cdn",
+		"google",
+		"cdnjs",
+		"bower",
+		"html"
+	],
+	"dependencies": {
+		"google-cdn": "^1.0.0",
+		"plugin-error": "^1.0.1",
+		"through2": "^3.0.1"
+	},
+	"devDependencies": {
+		"bower": "^1.8.8",
+		"mocha": "^6.2.0",
+		"vinyl": "^2.1.0",
+		"xo": "^0.24.0"
+	},
+	"peerDependencies": {
+		"gulp": ">=4"
+	},
+	"peerDependenciesMeta": {
+		"gulp": {
+			"optional": true
+		}
+	}
+}

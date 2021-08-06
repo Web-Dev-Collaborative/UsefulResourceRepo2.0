@@ -1,0 +1,44 @@
+{
+  "name": "fullname-native",
+  "version": "2.0.0",
+  "description": "Get the fullname of the current user",
+  "license": "MIT",
+  "repository": "sindresorhus/fullname-native",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "gypfile": true,
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js",
+    "binding.gyp",
+    "binding.cc"
+  ],
+  "keywords": [
+    "binding",
+    "native",
+    "addon",
+    "name",
+    "fullname",
+    "realname",
+    "user",
+    "gecos",
+    "pwuid",
+    "uid"
+  ],
+  "dependencies": {
+    "bindings": "^1.2.1",
+    "nan": "^2.1.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "xo": "*"
+  }
+}
