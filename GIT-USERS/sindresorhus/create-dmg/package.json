@@ -1,0 +1,58 @@
+{
+	"name": "create-dmg",
+	"version": "5.3.0",
+	"description": "Create a good-looking DMG for your macOS app in seconds",
+	"license": "MIT",
+	"repository": "sindresorhus/create-dmg",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"bin": {
+		"create-dmg": "cli.js"
+	},
+	"engines": {
+		"node": ">=8"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"cli.js",
+		"compose-icon.js",
+		"assets",
+		"disk-icon.icns",
+		"seticon",
+		"sla.js",
+		"base.r"
+	],
+	"keywords": [
+		"cli-app",
+		"cli",
+		"create",
+		"dmg",
+		"disk",
+		"image",
+		"macos",
+		"mac",
+		"app",
+		"application",
+		"apple"
+	],
+	"dependencies": {
+		"appdmg": "^0.6.0",
+		"execa": "^1.0.0",
+		"gm": "^1.23.1",
+		"icns-lib": "^1.0.1",
+		"meow": "^5.0.0",
+		"ora": "^4.0.3",
+		"plist": "^3.0.1",
+		"tempy": "^0.3.0"
+	},
+	"devDependencies": {
+		"ava": "^2.4.0",
+		"xo": "^0.25.3"
+	}
+}

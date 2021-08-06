@@ -1,0 +1,42 @@
+{
+	"name": "first-chunk-stream",
+	"version": "4.0.0",
+	"description": "Buffer and transform the n first bytes of a stream",
+	"license": "MIT",
+	"repository": "sindresorhus/first-chunk-stream",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=8"
+	},
+	"scripts": {
+		"test": "xo && nyc ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"buffer",
+		"stream",
+		"streams",
+		"transform",
+		"first",
+		"chunk",
+		"size",
+		"min",
+		"minimum",
+		"bytes"
+	],
+	"devDependencies": {
+		"@types/node": "^12.0.8",
+		"ava": "^2.1.0",
+		"nyc": "^14.0.0",
+		"streamtest": "^1.2.1",
+		"tsd": "^0.7.3",
+		"xo": "^0.24.0"
+	}
+}

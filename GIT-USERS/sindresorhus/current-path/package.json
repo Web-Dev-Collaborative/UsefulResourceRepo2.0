@@ -1,0 +1,50 @@
+{
+  "name": "current-path",
+  "version": "2.0.0",
+  "description": "Get the path of the current directory in Finder (macOS) and Explorer (Windows)",
+  "license": "MIT",
+  "repository": "sindresorhus/current-path",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js",
+    "vendor"
+  ],
+  "keywords": [
+    "current",
+    "directory",
+    "folder",
+    "dir",
+    "active",
+    "directories",
+    "shell",
+    "script",
+    "path",
+    "finder",
+    "explorer",
+    "macos",
+    "osx",
+    "win",
+    "windows"
+  ],
+  "dependencies": {
+    "execa": "^0.4.0",
+    "run-applescript": "^3.0.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "xo": "*"
+  },
+  "xo": {
+    "esnext": true
+  }
+}

@@ -1,0 +1,43 @@
+{
+	"name": "esc-exit",
+	"version": "3.0.0",
+	"description": "Exit the process when the `esc` key is pressed",
+	"license": "MIT",
+	"repository": "sindresorhus/esc-exit",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": "./index.js",
+	"engines": {
+		"node": ">=12"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"esc",
+		"exit",
+		"process",
+		"key",
+		"press",
+		"stdin",
+		"readline",
+		"event",
+		"escape",
+		"cli",
+		"tool"
+	],
+	"devDependencies": {
+		"ava": "^3.15.0",
+		"delay": "^5.0.0",
+		"execa": "^5.0.0",
+		"xo": "^0.38.2"
+	}
+}

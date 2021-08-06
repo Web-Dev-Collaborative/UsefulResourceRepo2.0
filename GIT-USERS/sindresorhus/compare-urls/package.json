@@ -1,0 +1,39 @@
+{
+	"name": "compare-urls",
+	"version": "3.0.0",
+	"description": "Compare URLs by first normalizing them",
+	"license": "MIT",
+	"repository": "sindresorhus/compare-urls",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": "./index.js",
+	"engines": {
+		"node": ">=12.20"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"compare",
+		"equal",
+		"same",
+		"url",
+		"uri",
+		"normalize"
+	],
+	"dependencies": {
+		"normalize-url": "^6.0.1"
+	},
+	"devDependencies": {
+		"ava": "^3.15.0",
+		"xo": "^0.40.2"
+	}
+}

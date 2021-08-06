@@ -1,0 +1,54 @@
+{
+  "name": "empty-trash-cli",
+  "version": "1.0.1",
+  "description": "Empty the trash",
+  "license": "MIT",
+  "repository": "sindresorhus/empty-trash-cli",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "bin": {
+    "empty-trash": "cli.js"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "cli.js"
+  ],
+  "keywords": [
+    "cli-app",
+    "cli",
+    "trash",
+    "recycle",
+    "file",
+    "files",
+    "dir",
+    "directory",
+    "directories",
+    "empty",
+    "clear",
+    "macos",
+    "osx",
+    "windows",
+    "linux"
+  ],
+  "dependencies": {
+    "empty-trash": "^2.0.0",
+    "meow": "^3.4.2",
+    "update-notifier": "^1.0.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "execa": "^0.4.0",
+    "xo": "*"
+  },
+  "xo": {
+    "esnext": true
+  }
+}

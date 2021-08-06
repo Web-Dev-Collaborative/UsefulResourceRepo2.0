@@ -1,0 +1,43 @@
+{
+	"name": "devtools-detect",
+	"version": "3.0.1",
+	"description": "Detect if DevTools is open and its orientation",
+	"license": "MIT",
+	"repository": "sindresorhus/devtools-detect",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=8"
+	},
+	"scripts": {
+		"test": "xo && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"browser",
+		"detect",
+		"identify",
+		"check",
+		"dev",
+		"devtools",
+		"developer",
+		"orientation",
+		"placement",
+		"docked"
+	],
+	"devDependencies": {
+		"tsd": "^0.7.2",
+		"xo": "^0.24.0"
+	},
+	"xo": {
+		"envs": [
+			"browser"
+		]
+	}
+}

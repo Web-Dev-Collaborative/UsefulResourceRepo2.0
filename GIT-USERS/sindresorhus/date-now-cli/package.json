@@ -1,0 +1,47 @@
+{
+	"name": "date-now-cli",
+	"version": "1.1.0",
+	"description": "Prints the current date and time as a UNIX timestamp or custom format",
+	"license": "MIT",
+	"repository": "sindresorhus/date-now-cli",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"bin": {
+		"date-now": "cli.js"
+	},
+	"engines": {
+		"node": ">=8"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"cli.js"
+	],
+	"keywords": [
+		"cli-app",
+		"cli",
+		"unix",
+		"timestamp",
+		"time",
+		"date",
+		"format",
+		"formatter",
+		"formatting",
+		"date-fns",
+		"moment"
+	],
+	"dependencies": {
+		"date-fns": "^1.29.0",
+		"meow": "^5.0.0",
+		"terminal-link": "^1.1.0"
+	},
+	"devDependencies": {
+		"ava": "*",
+		"execa": "^0.10.0",
+		"xo": "*"
+	}
+}

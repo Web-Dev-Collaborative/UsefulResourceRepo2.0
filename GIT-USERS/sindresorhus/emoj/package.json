@@ -1,0 +1,68 @@
+{
+	"name": "emoj",
+	"version": "3.1.0",
+	"description": "Find relevant emoji from text on the command-line",
+	"license": "MIT",
+	"repository": "sindresorhus/emoj",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"bin": "cli.js",
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"cli.js",
+		"index.js",
+		"ui.js"
+	],
+	"keywords": [
+		"cli-app",
+		"cli",
+		"emoji",
+		"emojis",
+		"emoj",
+		"emoticon",
+		"search",
+		"find",
+		"matching",
+		"relevant",
+		"neural",
+		"networks"
+	],
+	"dependencies": {
+		"clipboardy": "^2.2.0",
+		"conf": "^7.1.1",
+		"emojilib": "^2.4.0",
+		"got": "^11.5.2",
+		"import-jsx": "^4.0.0",
+		"ink": "^3.0.3",
+		"ink-text-input": "^4.0.0",
+		"mem": "^6.0.1",
+		"meow": "^7.0.1",
+		"react": "^16.5.2",
+		"skin-tone": "^1.0.0"
+	},
+	"devDependencies": {
+		"ava": "^1.4.0",
+		"eslint-config-xo-react": "^0.23.0",
+		"eslint-plugin-react": "^7.20.5",
+		"eslint-plugin-react-hooks": "^4.0.8",
+		"xo": "^0.32.1"
+	},
+	"xo": {
+		"extends": [
+			"xo-react"
+		],
+		"rules": {
+			"react/prop-types": "off",
+			"react/state-in-constructor": "off"
+		}
+	}
+}
