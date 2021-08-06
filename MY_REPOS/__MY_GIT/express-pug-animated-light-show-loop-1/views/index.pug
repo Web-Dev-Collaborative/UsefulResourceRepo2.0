@@ -1,0 +1,35 @@
+
+- counter = 1;
+- size = 50;
+- range = 2;
+- unitSize = range * 2 + 1;
+- const cols = [];
+- const hexRange = ['00', '33', '66', '99', 'cc', 'ff'];
+  each r in hexRange
+    each g in hexRange
+      each b in hexRange
+        - cols.push(r + g + b)
+- const totalCols = cols.length
+- const colourOffset = Number(cols.length) / Number(unitSize)
+
+html
+  head
+    title Pug numbers grid animation
+    style
+      include ../public/styles.css
+  body(style=`--unit-size:${unitSize}; --total-cols:${totalCols}; --colour-offset:${colourOffset};`)
+    main.wrapper
+      - for(x=-1*range; x<=1*range; x++)
+        - for(y=-1*range; y<=1*range; y++)
+          div.star(style=`
+          --col-1:#${cols[counter]}; 
+          --col-2:#${cols[counter + unitSize*5]}; 
+          --col-3:#${cols[counter + unitSize*10]}; 
+          --col-4:#${cols[counter + unitSize*15]}; 
+          --col-5:#${cols[counter + unitSize*20]}; 
+          --x:${x*size}; 
+          --y:${y*size}; 
+          --del:${(unitSize * unitSize - counter)};`
+          )
+            div.dot
+            - counter++

@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Notes</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="file:///c:\Users\bryan\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.5.18\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css"
+    />
+
+    <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: #333;
+        background: none;
+        font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.4;
+
+        -moz-tab-size: 8;
+        -o-tab-size: 8;
+        tab-size: 8;
+
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+
+      /* Code blocks */
+      pre[class*="language-"] {
+        padding: 0.8em;
+        overflow: auto;
+        /* border: 1px solid #ddd; */
+        border-radius: 3px;
+        /* background: #fff; */
+        background: #f5f5f5;
+      }
+
+      /* Inline code */
+      :not(pre) > code[class*="language-"] {
+        padding: 0.1em;
+        border-radius: 0.3em;
+        white-space: normal;
+        background: #f5f5f5;
+      }
+
+      .token.comment,
+      .token.blockquote {
+        color: #969896;
+      }
+
+      .token.cdata {
+        color: #183691;
+      }
+
+      .token.doctype,
+      .token.punctuation,
+      .token.variable,
+      .token.macro.property {
+        color: #333;
+      }
+
+      .token.operator,
+      .token.important,
+      .token.keyword,
+      .token.rule,
+      .token.builtin {
+        color: #a71d5d;
+      }
+
+      .token.string,
+      .token.url,
+      .token.regex,
+      .token.attr-value {
+        color: #183691;
+      }
+
+      .token.property,
+      .token.number,
+      .token.boolean,
+      .token.entity,
+      .token.atrule,
+      .token.constant,
+      .token.symbol,
+      .token.command,
+      .token.code {
+        color: #0086b3;
+      }
+
+      .token.tag,
+      .token.selector,
+      .token.prolog {
+        color: #63a35c;
+      }
+
+      .token.function,
+      .token.namespace,
+      .token.pseudo-element,
+      .token.class,
+      .token.class-name,
+      .token.pseudo-class,
+      .token.id,
+      .token.url-reference .token.variable,
+      .token.attr-name {
+        color: #795da3;
+      }
+
+      .token.entity {
+        cursor: help;
+      }
+
+      .token.title,
+      .token.title .token.punctuation {
+        font-weight: bold;
+        color: #1d3e81;
+      }
+
+      .token.list {
+        color: #ed6a43;
+      }
+
+      .token.inserted {
+        background-color: #eaffea;
+        color: #55a532;
+      }
+
+      .token.deleted {
+        background-color: #ffecec;
+        color: #bd2c00;
+      }
+
+      .token.bold {
+        font-weight: bold;
+      }
+
+      .token.italic {
+        font-style: italic;
+      }
+
+      /* JSON */
+      .language-json .token.property {
+        color: #183691;
+      }
+
+      .language-markup .token.tag .token.punctuation {
+        color: #333;
+      }
+
+      /* CSS */
+      code.language-css,
+      .language-css .token.function {
+        color: #0086b3;
+      }
+
+      /* YAML */
+      .language-yaml .token.atrule {
+        color: #63a35c;
+      }
+
+      code.language-yaml {
+        color: #183691;
+      }
+
+      /* Ruby */
+      .language-ruby .token.function {
+        color: #333;
+      }
+
+      /* Markdown */
+      .language-markdown .token.url {
+        color: #795da3;
+      }
+
+      /* Makefile */
+      .language-makefile .token.symbol {
+        color: #795da3;
+      }
+
+      .language-makefile .token.variable {
+        color: #183691;
+      }
+
+      .language-makefile .token.builtin {
+        color: #0086b3;
+      }
+
+      /* Bash */
+      .language-bash .token.keyword {
+        color: #0086b3;
+      }
+
+      /* highlight */
+      pre[data-line] {
+        position: relative;
+        padding: 1em 0 1em 3em;
+      }
+      pre[data-line] .line-highlight-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: transparent;
+        display: block;
+        width: 100%;
+      }
+
+      pre[data-line] .line-highlight {
+        position: absolute;
+        left: 0;
+        right: 0;
+        padding: inherit 0;
+        margin-top: 1em;
+        background: hsla(24, 20%, 50%, 0.08);
+        background: linear-gradient(
+          to right,
+          hsla(24, 20%, 50%, 0.1) 70%,
+          hsla(24, 20%, 50%, 0)
+        );
+        pointer-events: none;
+        line-height: inherit;
+        white-space: pre;
+      }
+
+      pre[data-line] .line-highlight:before,
+      pre[data-line] .line-highlight[data-end]:after {
+        content: attr(data-start);
+        position: absolute;
+        top: 0.4em;
+        left: 0.6em;
+        min-width: 1em;
+        padding: 0 0.5em;
+        background-color: hsla(24, 20%, 50%, 0.4);
+        color: hsl(24, 20%, 95%);
+        font: bold 65%/1.5 sans-serif;
+        text-align: center;
+        vertical-align: 0.3em;
+        border-radius: 999px;
+        text-shadow: none;
+        box-shadow: 0 1px white;
+      }
+
+      pre[data-line] .line-highlight[data-end]:after {
+        content: attr(data-end);
+        top: auto;
+        bottom: 0.4em;
+      }
+      html body {
+        font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans,
+          sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #333;
+        background-color: #fff;
+        overflow: initial;
+        box-sizing: border-box;
+        word-wrap: break-word;
+      }
+      html body > :first-child {
+        margin-top: 0;
+      }
+      html body h1,
+      html body h2,
+      html body h3,
+      html body h4,
+      html body h5,
+      html body h6 {
+        line-height: 1.2;
+        margin-top: 1em;
+        margin-bottom: 16px;
+        color: #000;
+      }
+      html body h1 {
+        font-size: 2.25em;
+        font-weight: 300;
+        padding-bottom: 0.3em;
+      }
+      html body h2 {
+        font-size: 1.75em;
+        font-weight: 400;
+        padding-bottom: 0.3em;
+      }
+      html body h3 {
+        font-size: 1.5em;
+        font-weight: 500;
+      }
+      html body h4 {
+        font-size: 1.25em;
+        font-weight: 600;
+      }
+      html body h5 {
+        font-size: 1.1em;
+        font-weight: 600;
+      }
+      html body h6 {
+        font-size: 1em;
+        font-weight: 600;
+      }
+      html body h1,
+      html body h2,
+      html body h3,
+      html body h4,
+      html body h5 {
+        font-weight: 600;
+      }
+      html body h5 {
+        font-size: 1em;
+      }
+      html body h6 {
+        color: #5c5c5c;
+      }
+      html body strong {
+        color: #000;
+      }
+      html body del {
+        color: #5c5c5c;
+      }
+      html body a:not([href]) {
+        color: inherit;
+        text-decoration: none;
+      }
+      html body a {
+        color: #08c;
+        text-decoration: none;
+      }
+      html body a:hover {
+        color: #00a3f5;
+        text-decoration: none;
+      }
+      html body img {
+        max-width: 100%;
+      }
+      html body > p {
+        margin-top: 0;
+        margin-bottom: 16px;
+        word-wrap: break-word;
+      }
+      html body > ul,
+      html body > ol {
+        margin-bottom: 16px;
+      }
+      html body ul,
+      html body ol {
+        padding-left: 2em;
+      }
+      html body ul.no-list,
+      html body ol.no-list {
+        padding: 0;
+        list-style-type: none;
+      }
+      html body ul ul,
+      html body ul ol,
+      html body ol ol,
+      html body ol ul {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      html body li {
+        margin-bottom: 0;
+      }
+      html body li.task-list-item {
+        list-style: none;
+      }
+      html body li > p {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      html body .task-list-item-checkbox {
+        margin: 0 0.2em 0.25em -1.8em;
+        vertical-align: middle;
+      }
+      html body .task-list-item-checkbox:hover {
+        cursor: pointer;
+      }
+      html body blockquote {
+        margin: 16px 0;
+        font-size: inherit;
+        padding: 0 15px;
+        color: #5c5c5c;
+        background-color: #f0f0f0;
+        border-left: 4px solid #d6d6d6;
+      }
+      html body blockquote > :first-child {
+        margin-top: 0;
+      }
+      html body blockquote > :last-child {
+        margin-bottom: 0;
+      }
+      html body hr {
+        height: 4px;
+        margin: 32px 0;
+        background-color: #d6d6d6;
+        border: 0 none;
+      }
+      html body table {
+        margin: 10px 0 15px 0;
+        border-collapse: collapse;
+        border-spacing: 0;
+        display: block;
+        width: 100%;
+        overflow: auto;
+        word-break: normal;
+        word-break: keep-all;
+      }
+      html body table th {
+        font-weight: bold;
+        color: #000;
+      }
+      html body table td,
+      html body table th {
+        border: 1px solid #d6d6d6;
+        padding: 6px 13px;
+      }
+      html body dl {
+        padding: 0;
+      }
+      html body dl dt {
+        padding: 0;
+        margin-top: 16px;
+        font-size: 1em;
+        font-style: italic;
+        font-weight: bold;
+      }
+      html body dl dd {
+        padding: 0 16px;
+        margin-bottom: 16px;
+      }
+      html body code {
+        font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.85em !important;
+        color: #000;
+        background-color: #f0f0f0;
+        border-radius: 3px;
+        padding: 0.2em 0;
+      }
+      html body code::before,
+      html body code::after {
+        letter-spacing: -0.2em;
+        content: "\00a0";
+      }
+      html body pre > code {
+        padding: 0;
+        margin: 0;
+        font-size: 0.85em !important;
+        word-break: normal;
+        white-space: pre;
+        background: transparent;
+        border: 0;
+      }
+      html body .highlight {
+        margin-bottom: 16px;
+      }
+      html body .highlight pre,
+      html body pre {
+        padding: 1em;
+        overflow: auto;
+        font-size: 0.85em !important;
+        line-height: 1.45;
+        border: #d6d6d6;
+        border-radius: 3px;
+      }
+      html body .highlight pre {
+        margin-bottom: 0;
+        word-break: normal;
+      }
+      html body pre code,
+      html body pre tt {
+        display: inline;
+        max-width: initial;
+        padding: 0;
+        margin: 0;
+        overflow: initial;
+        line-height: inherit;
+        word-wrap: normal;
+        background-color: transparent;
+        border: 0;
+      }
+      html body pre code:before,
+      html body pre tt:before,
+      html body pre code:after,
+      html body pre tt:after {
+        content: normal;
+      }
+      html body p,
+      html body blockquote,
+      html body ul,
+      html body ol,
+      html body dl,
+      html body pre {
+        margin-top: 0;
+        margin-bottom: 16px;
+      }
+      html body kbd {
+        color: #000;
+        border: 1px solid #d6d6d6;
+        border-bottom: 2px solid #c7c7c7;
+        padding: 2px 4px;
+        background-color: #f0f0f0;
+        border-radius: 3px;
+      }
+      @media print {
+        html body {
+          background-color: #fff;
+        }
+        html body h1,
+        html body h2,
+        html body h3,
+        html body h4,
+        html body h5,
+        html body h6 {
+          color: #000;
+          page-break-after: avoid;
+        }
+        html body blockquote {
+          color: #5c5c5c;
+        }
+        html body pre {
+          page-break-inside: avoid;
+        }
+        html body table {
+          display: table;
+        }
+        html body img {
+          display: block;
+          max-width: 100%;
+          max-height: 100%;
+        }
+        html body pre,
+        html body code {
+          word-wrap: break-word;
+          white-space: pre;
+        }
+      }
+      .markdown-preview {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+      }
+      .markdown-preview .pagebreak,
+      .markdown-preview .newpage {
+        page-break-before: always;
+      }
+      .markdown-preview pre.line-numbers {
+        position: relative;
+        padding-left: 3.8em;
+        counter-reset: linenumber;
+      }
+      .markdown-preview pre.line-numbers > code {
+        position: relative;
+      }
+      .markdown-preview pre.line-numbers .line-numbers-rows {
+        position: absolute;
+        pointer-events: none;
+        top: 1em;
+        font-size: 100%;
+        left: 0;
+        width: 3em;
+        letter-spacing: -1px;
+        border-right: 1px solid #999;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      .markdown-preview pre.line-numbers .line-numbers-rows > span {
+        pointer-events: none;
+        display: block;
+        counter-increment: linenumber;
+      }
+      .markdown-preview pre.line-numbers .line-numbers-rows > span:before {
+        content: counter(linenumber);
+        color: #999;
+        display: block;
+        padding-right: 0.8em;
+        text-align: right;
+      }
+      .markdown-preview .mathjax-exps .MathJax_Display {
+        text-align: center !important;
+      }
+      .markdown-preview:not([for="preview"]) .code-chunk .btn-group {
+        display: none;
+      }
+      .markdown-preview:not([for="preview"]) .code-chunk .status {
+        display: none;
+      }
+      .markdown-preview:not([for="preview"]) .code-chunk .output-div {
+        margin-bottom: 16px;
+      }
+      .scrollbar-style::-webkit-scrollbar {
+        width: 8px;
+      }
+      .scrollbar-style::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: transparent;
+      }
+      .scrollbar-style::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: rgba(150, 150, 150, 0.66);
+        border: 4px solid rgba(150, 150, 150, 0.66);
+        background-clip: content-box;
+      }
+      html body[for="html-export"]:not([data-presentation-mode]) {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        overflow: auto;
+      }
+      html
+        body[for="html-export"]:not([data-presentation-mode])
+        .markdown-preview {
+        position: relative;
+        top: 0;
+      }
+      @media screen and (min-width: 914px) {
+        html
+          body[for="html-export"]:not([data-presentation-mode])
+          .markdown-preview {
+          padding: 2em calc(50% - 457px + 2em);
+        }
+      }
+      @media screen and (max-width: 914px) {
+        html
+          body[for="html-export"]:not([data-presentation-mode])
+          .markdown-preview {
+          padding: 2em;
+        }
+      }
+      @media screen and (max-width: 450px) {
+        html
+          body[for="html-export"]:not([data-presentation-mode])
+          .markdown-preview {
+          font-size: 14px !important;
+          padding: 1em;
+        }
+      }
+      @media print {
+        html
+          body[for="html-export"]:not([data-presentation-mode])
+          #sidebar-toc-btn {
+          display: none;
+        }
+      }
+      html
+        body[for="html-export"]:not([data-presentation-mode])
+        #sidebar-toc-btn {
+        position: fixed;
+        bottom: 8px;
+        left: 8px;
+        font-size: 28px;
+        cursor: pointer;
+        color: inherit;
+        z-index: 99;
+        width: 32px;
+        text-align: center;
+        opacity: 0.4;
+      }
+      html
+        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+        #sidebar-toc-btn {
+        opacity: 1;
+      }
+      html
+        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+        .md-sidebar-toc {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 100%;
+        padding: 32px 0 48px 0;
+        font-size: 14px;
+        box-shadow: 0 0 4px rgba(150, 150, 150, 0.33);
+        box-sizing: border-box;
+        overflow: auto;
+        background-color: inherit;
+      }
+      html
+        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+        .md-sidebar-toc::-webkit-scrollbar {
+        width: 8px;
+      }
+      html
+        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+        .md-sidebar-toc::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: transparent;
+      }
+      html
+        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+        .md-sidebar-toc::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: rgba(150, 150, 150, 0.66);
+        border: 4px solid rgba(150, 150, 150, 0.66);
+        background-clip: content-box;
+      }
+      html
+        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+        .md-sidebar-toc
+        a {
+        text-decoration: none;
+      }
+      html
+        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+        .md-sidebar-toc
+        ul {
+        padding: 0 1.6em;
+        margin-top: 0.8em;
+      }
+      html
+        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+        .md-sidebar-toc
+        li {
+        margin-bottom: 0.8em;
+      }
+      html
+        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+        .md-sidebar-toc
+        ul {
+        list-style-type: none;
+      }
+      html
+        body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+        .markdown-preview {
+        left: 300px;
+        width: calc(100% - 300px);
+        padding: 2em calc(50% - 457px - 150px);
+        margin: 0;
+        box-sizing: border-box;
+      }
+      @media screen and (max-width: 1274px) {
+        html
+          body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+          .markdown-preview {
+          padding: 2em;
+        }
+      }
+      @media screen and (max-width: 450px) {
+        html
+          body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc]
+          .markdown-preview {
+          width: 100%;
+        }
+      }
+      html
+        body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc])
+        .markdown-preview {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      html
+        body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc])
+        .md-sidebar-toc {
+        display: none;
+      }
+      /* Please visit the URL below for more information: */
+      /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+    </style>
+  </head>
+  <body for="html-export">
+    <div class="mume markdown-preview">
+      <h1 class="mume-header" id="notes"><strong>Notes</strong></h1>
+
+      <h2 class="mume-header" id="all-about-scope-in-javscript">
+        <strong>All About Scope in Javscript</strong>
+      </h2>
+
+      <p>
+        The <strong><code>scope</code></strong> of a program in JS is the set of
+        variables that are available for use within the program.
+      </p>
+      <p><strong>Advantages of utilizing scope</strong></p>
+      <ul>
+        <li>
+          <strong><code>Security</code></strong> : Adds security by ensuring
+          variables can only be access by pre-defined parts of our program.
+        </li>
+        <li>
+          <strong><code>Reduced Variable Name Collisions</code></strong> :
+          Restricts re-using variable names; helps prevent overwriting variable
+          names.
+        </li>
+      </ul>
+      <p><strong>Different Kinds of Scope</strong></p>
+      <ul>
+        <li>
+          <strong><code>Global Scope</code></strong>
+          <ul>
+            <li>The widest and outermost scope.</li>
+            <li>
+              Represented by the <strong><code>window</code></strong> obj in the
+              browser and the <strong><code>global</code></strong> obj in
+              Node.js.
+            </li>
+            <li>Try to avoid these as much as possible.</li>
+          </ul>
+        </li>
+        <li>
+          <strong><code>Local Scope</code></strong>
+          <ul>
+            <li>Scope within a function.</li>
+            <li>
+              Includes function arguments, variables declared within function,
+              also
+              <strong
+                >any variables already declared when the function was
+                defined</strong
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong><code>Block Scope</code></strong>
+          <ul>
+            <li>Contents within curly braces.</li>
+          </ul>
+        </li>
+      </ul>
+      <p><strong>Scope Chaining: Variables and Scope</strong></p>
+      <pre
+        data-role="codeBlock"
+        data-info="js"
+        class="language-javascript"
+      ><span class="token keyword">let</span> name <span class="token operator">=</span> <span class="token string">&quot;Fiona&quot;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// we aren&apos;t passing in or defining and variables</span>
+<span class="token keyword">function</span> <span class="token function">hungryHippo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>name <span class="token operator">+</span> <span class="token string">&quot; is hungry!&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">hungryHippo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// =&gt; &quot;Fiona is hungry&quot;</span>
+</pre>
+      <ul>
+        <li>
+          A key scoping rule is that an inner scope <strong>does</strong> have
+          access to variables in the outer scope.
+        </li>
+        <li>
+          <strong><code>Scope Chaining</code></strong> : When a variable is not
+          found within the immediate scope, JS will keep searching outwards
+          until it matches the one we are referencing.
+        </li>
+        <li>
+          Important to note while inner scopes can search outwards, outer scopes
+          cannot reference inner variables!
+        </li>
+      </ul>
+      <p><strong>Lexical Scope</strong></p>
+      <ul>
+        <li>
+          <strong><code>Lexing Time</code></strong> : When you run a piece of JS
+          code that is parsed before it is run.
+        </li>
+      </ul>
+      <ul>
+        <li>JS language does not have dynamic scope.</li>
+      </ul>
+      <hr />
+      <h2 class="mume-header" id="different-variables-in-javascript">
+        <strong>Different Variables in Javascript</strong>
+      </h2>
+
+      <ul>
+        <li>
+          <em
+            >A variable always evaluates to the value it contains no matter how
+            you declare it.</em
+          >
+        </li>
+      </ul>
+      <p><strong>The different ways to declare variables</strong></p>
+      <ul>
+        <li>
+          <strong><code>let</code></strong> : can be re-assigned; block-scoped.
+        </li>
+        <li>
+          <strong><code>const</code></strong> : no re-assignment; block scoped.
+        </li>
+        <li>
+          <strong><code>var</code></strong> : May or may not be re-assigned;
+          scoped to a function.
+        </li>
+      </ul>
+      <p><strong>Hoisting and Scoping with Variables</strong></p>
+      <p>
+        <strong><code>Hoisting</code></strong> is a JavaScript mechanism where
+        variables and function declarations are moved to the top of their scope
+        before code execution.
+      </p>
+      <p><strong>Function-Scoped Variables</strong></p>
+      <ul>
+        <li>
+          As we learned, var creates function-scoped variables, this means our
+          declared var keyword variable will be confined to the scope of our
+          current function.
+        </li>
+      </ul>
+      <p><strong>Hoisting with function-scoped variables</strong></p>
+      <pre
+        data-role="codeBlock"
+        data-info="js"
+        class="language-javascript"
+      ><span class="token keyword">function</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// var hoistedVar;</span>
+  <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>hoistedVar<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// =&gt;  undefined</span>
+  <span class="token keyword">var</span> hoistedVar <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+      <ul>
+        <li>
+          Even though we initially declared &amp; initizalized our variable
+          underneath the console.log var variables are &quot;hoisted&quot; to
+          the top, but only in declaration.
+        </li>
+      </ul>
+      <p><strong>Block-Scoped Variables</strong></p>
+      <p>Things that create block-scopes:</p>
+      <ul>
+        <li>If Statements</li>
+        <li>While Loops</li>
+        <li>Switch Statements</li>
+        <li>For Loops</li>
+      </ul>
+      <p><strong>Properties of Constants</strong></p>
+      <ul>
+        <li>They are block-scoped like let.</li>
+        <li>
+          JS will enforce constants by raising an error if you try to change
+          them.
+        </li>
+        <li>
+          Constants that are assigned to Reference Types are
+          <strong>mutable</strong>
+        </li>
+      </ul>
+      <p><strong>Hoisting with block-scoped variables</strong></p>
+      <ul>
+        <li>
+          Unlike vars in function scopes, let and const in their block scopes do
+          not get their declarations hoisted.
+        </li>
+        <li>
+          Instead they are not initalized until their definitions are evaluated
+          - instead of undefined we will get an error.
+        </li>
+        <li>
+          <strong><code>Temporal Dead Zone</code></strong> : The time before a
+          let or const variable is declared.
+        </li>
+      </ul>
+      <p><strong>Function Scope vs Block Scope</strong></p>
+      <ul>
+        <li>
+          The downside of the flexibility of var is that it can easily overwrite
+          previously declared variables.
+        </li>
+        <li>
+          The block-scope limitations of let and const were introduced to easily
+          avoid accidentally overwriting variable values.
+        </li>
+      </ul>
+      <p><strong>Global Variables</strong></p>
+      <ul>
+        <li>
+          Any variables declared without a declaration term will be considered
+          <strong><code>global scope</code></strong
+          >.
+        </li>
+        <li>
+          Every time a variable is declared on the global scope, the change of
+          collision increases.
+        </li>
+        <li>
+          Use the proper declarations to manage your code: Avoid being a sloppy
+          programmer!
+        </li>
+      </ul>
+      <hr />
+      <h2 class="mume-header" id="closures"><strong>Closures</strong></h2>
+
+      <p><strong>Calculating Closures</strong></p>
+      <ul>
+        <li>
+          <strong>Closure</strong> : The combination of a function and the
+          lexical environment within which that function is declared.
+        </li>
+        <li>
+          <strong>Use</strong> : A closure is when an inner function uses, or
+          changes, variables in an outer function.
+        </li>
+        <li>
+          Very important for creativity, flexibility, and security of your code.
+        </li>
+        <li>
+          <strong><code>Lexical Environment</code></strong> : Consists of any
+          variables available within the scope in which a closure was declared
+          (local inner, outer, and global).
+        </li>
+      </ul>
+      <p>
+        <strong>Closures and Scope</strong><br />
+        Basic Closure Rules:
+      </p>
+      <ul>
+        <li>
+          Closures have access to all variables in it&apos;s lexical
+          environment.
+        </li>
+        <li>
+          A closure will keep reference to all the variables when it was defined
+          <strong>even if the outer function has returned</strong>.
+        </li>
+      </ul>
+      <p><strong>Applications of Closures</strong></p>
+      <ul>
+        <li>
+          <p><strong>Private State</strong></p>
+          <ul>
+            <li>
+              JS does not have a way of declaring a function as exclusively
+              private, however we can use closures to make a private state.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p><strong>Passing Arguments Implicitly</strong></p>
+          <ul>
+            <li>
+              We can use closures to pass down arguments to helper functions.
+            </li>
+          </ul>
+          <pre
+            data-role="codeBlock"
+            data-info="js"
+            class="language-javascript"
+          ><span class="token keyword">function</span> <span class="token function">isPalindrome</span><span class="token punctuation">(</span><span class="token parameter">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">function</span> <span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword control-flow">return</span> string<span class="token punctuation">.</span><span class="token method function property-access">split</span><span class="token punctuation">(</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">join</span><span class="token punctuation">(</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword control-flow">return</span> string <span class="token operator">===</span> <span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+        </li>
+      </ul>
+      <hr />
+      <h2 class="mume-header" id="context-in-javascript">
+        <strong>Context in Javascript</strong>
+      </h2>
+
+      <ul>
+        <li>
+          <strong><code>Scope</code></strong> : Refers to the visibility and
+          availability of variables.
+        </li>
+        <li>
+          <strong><code>Context</code></strong> : Refers to the value of the
+          <strong><code>this</code></strong> keyword when code is executed.
+        </li>
+      </ul>
+      <p>
+        <strong>What about <code>this</code> ?</strong>
+      </p>
+      <ul>
+        <li>
+          <strong><code>This</code></strong> : Keyword that exists in every
+          function and evaluates to the object that is currently invoking that
+          function.
+        </li>
+        <li>
+          <strong>Method-Style Invocation</strong> : syntax goes like
+          <code>object.method(arg)</code>. (i.e. array.push, str.toUpperCase()
+        </li>
+        <li>
+          <strong><code>Context</code></strong> refers to the value of this
+          within a function and <strong><code>this</code></strong> refers to
+          where a function is invoked.
+        </li>
+      </ul>
+      <p><strong>Issues with Scope and Context</strong></p>
+      <ul>
+        <li>
+          If <code>this</code> is called using normal function style invocation,
+          our output will be the contents of the global object.
+        </li>
+      </ul>
+      <p><strong>When Methods have an Unexpected Context</strong></p>
+      <pre
+        data-role="codeBlock"
+        data-info="js"
+        class="language-javascript"
+      ><span class="token keyword">let</span> dog <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">&quot;Bowser&quot;</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">changeName</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span> <span class="token operator">=</span> <span class="token string">&quot;Layla&quot;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> change <span class="token operator">=</span> dog<span class="token punctuation">.</span><span class="token property-access">changeName</span><span class="token punctuation">;</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token function">change</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// undefined</span>
+
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>dog<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// { name: &apos;Bowser&apos;, changeName: [Function: changeName] }</span>
+
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Object [global] {etc, etc, etc,  name: &apos;Layla&apos;}</span>
+</pre>
+      <ul>
+        <li>
+          <p>
+            In the above example we get undefined when we assign our this
+            function to a variable bc there is no obj to reference except the
+            global one!
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong><code>global.setTimeout()</code></strong> : popular method
+            of setting a function to run on a timer.
+          </p>
+          <ul>
+            <li>
+              <p>
+                Accepts a callback and a number of milliseconds to wait before
+                invoking the callback.
+              </p>
+              <pre class="language-text">
+```js
+let hello = function () {
+  console.log(&quot;hello!&quot;);
+};
+
+// global. is a method of the global object!
+global.setTimeout(hello, 5000); // waits 5 seconds then prints &quot;hello!&quot;
+```
+</pre
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <p><strong>Strictly Protecting the Global Object</strong></p>
+      <p>
+        We can run JS in strict mode by tagging <code>use strict</code> at the
+        top of our program.
+      </p>
+      <ul>
+        <li>
+          If we try to invoke this on our global function in strict mode we will
+          no longer be able to access it and instead just get undefined.
+        </li>
+      </ul>
+      <p><strong>Changing Context using Bind</strong></p>
+      <p>
+        &quot;The simplest use of <strong><code>bind()</code></strong> is to
+        make a function that, no matter how it is called, is called with a
+        particular this value&quot;.
+      </p>
+      <pre
+        data-role="codeBlock"
+        data-info="js"
+        class="language-javascript"
+      ><span class="token keyword">let</span> cat <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">purr</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">&quot;meow&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">purrMore</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token method function property-access">purr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> sayMeow <span class="token operator">=</span> cat<span class="token punctuation">.</span><span class="token property-access">purrMore</span><span class="token punctuation">;</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token function">sayMeow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// TypeError</span>
+
+<span class="token keyword">let</span> boundCat <span class="token operator">=</span> sayMeow<span class="token punctuation">.</span><span class="token method function property-access">bind</span><span class="token punctuation">(</span>cat<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">boundCat</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// prints &quot;meow&quot;</span>
+</pre>
+      <p><strong>Binding with Arguments</strong></p>
+      <ul>
+        <li>
+          <p>We can also use bind() to bind arguments to a function.</p>
+          <pre
+            data-role="codeBlock"
+            data-info="js"
+            class="language-javascript"
+          ><span class="token keyword">let</span> aboundFunc <span class="token operator">=</span> func<span class="token punctuation">.</span><span class="token method function property-access">bind</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> arg1<span class="token punctuation">,</span> arg2<span class="token punctuation">,</span> etc<span class="token spread operator">...</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+          <pre
+            data-role="codeBlock"
+            data-info="js"
+            class="language-javascript"
+          ><span class="token keyword">const</span> <span class="token function-variable function">sum</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword control-flow">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> add3 <span class="token operator">=</span> sum<span class="token punctuation">.</span><span class="token method function property-access">bind</span><span class="token punctuation">(</span><span class="token keyword null nil">null</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token function">add3</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 13</span>
+</pre>
+          <pre
+            data-role="codeBlock"
+            data-info="js"
+            class="language-javascript"
+          ><span class="token keyword">const</span> <span class="token function-variable function">multiply</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword control-flow">return</span> a <span class="token operator">*</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> double <span class="token operator">=</span> multiply<span class="token punctuation">.</span><span class="token method function property-access">bind</span><span class="token punctuation">(</span><span class="token keyword null nil">null</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> triple <span class="token operator">=</span> multiply<span class="token punctuation">.</span><span class="token method function property-access">bind</span><span class="token punctuation">(</span><span class="token keyword null nil">null</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token function">double</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 6</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token function">triple</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 9</span>
+</pre>
+        </li>
+      </ul>
+      <hr />
+      <h2 class="mume-header" id="arrow-functions-aka-fat-arrows">
+        <strong>Arrow Functions aka Fat Arrows</strong>
+      </h2>
+
+      <ul>
+        <li>
+          <strong><code>=&gt;</code></strong> : A more concise way of declaring
+          a function and also considers the behavior of <code>this</code> and
+          context.
+        </li>
+      </ul>
+      <p><strong>Arrow Functions Solving Problems</strong></p>
+      <pre
+        data-role="codeBlock"
+        data-info="js"
+        class="language-javascript"
+      ><span class="token keyword">let</span> <span class="token function-variable function">average</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">num1<span class="token punctuation">,</span> num2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> avg <span class="token operator">=</span> <span class="token punctuation">(</span>num1 <span class="token operator">+</span> num2<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+  <span class="token keyword control-flow">return</span> avg<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">averageArrow</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">num1<span class="token punctuation">,</span> num2</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> avg <span class="token operator">=</span> <span class="token punctuation">(</span>num1 <span class="token operator">+</span> num2<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+  <span class="token keyword control-flow">return</span> avg<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+      <p>As you can see the arrow function is shorter and easier to read.</p>
+      <p><strong>Anatomy of an Arrow Function</strong></p>
+      <ul>
+        <li>
+          If there is only a single parameter there is no need to add
+          parenthesis before the arrow function.
+        </li>
+        <li>
+          However if there are zero parameters then you must add an empty set of
+          parentheses.
+        </li>
+      </ul>
+      <p><strong>Single Expression Arrow Functions</strong></p>
+      <ul>
+        <li>
+          Arrow functions, <em>unlike</em> normal functions, carry over context,
+          binding <code>this</code> lexically.
+        </li>
+        <li>
+          Value of <code>this</code> inside an arrow function is not dependent
+          on how it is invoked.
+        </li>
+        <li>
+          Because arrow functions already have a <em>bound context</em>, you
+          can&apos;t reassign <code>this</code>.
+        </li>
+      </ul>
+      <hr />
+    </div>
+    <div class="md-sidebar-toc">
+      <ul>
+        <li>
+          <a href="#notes"><strong>Notes</strong></a>
+          <ul>
+            <li>
+              <a href="#all-about-scope-in-javscript"
+                ><strong>All About Scope in Javscript</strong></a
+              >
+            </li>
+            <li>
+              <a href="#different-variables-in-javascript"
+                ><strong>Different Variables in Javascript</strong></a
+              >
+            </li>
+            <li>
+              <a href="#closures"><strong>Closures</strong></a>
+            </li>
+            <li>
+              <a href="#context-in-javascript"
+                ><strong>Context in Javascript</strong></a
+              >
+            </li>
+            <li>
+              <a href="#arrow-functions-aka-fat-arrows"
+                ><strong>Arrow Functions aka Fat Arrows</strong></a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <a id="sidebar-toc-btn">&#x2261;</a>
+
+    <script>
+      var sidebarTOCBtn = document.getElementById("sidebar-toc-btn");
+      sidebarTOCBtn.addEventListener("click", function (event) {
+        event.stopPropagation();
+        if (document.body.hasAttribute("html-show-sidebar-toc")) {
+          document.body.removeAttribute("html-show-sidebar-toc");
+        } else {
+          document.body.setAttribute("html-show-sidebar-toc", true);
+        }
+      });
+    </script>
+  </body>
+</html>
