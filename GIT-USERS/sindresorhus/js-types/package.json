@@ -1,0 +1,41 @@
+{
+	"name": "js-types",
+	"version": "2.1.0",
+	"description": "List of JavaScript types",
+	"license": "MIT",
+	"repository": "sindresorhus/js-types",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=6"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts",
+		"js-types.json",
+		"js-types.json.d.ts"
+	],
+	"keywords": [
+		"js",
+		"javascript",
+		"ecmascript",
+		"builtin",
+		"types",
+		"type",
+		"data",
+		"list",
+		"array",
+		"json"
+	],
+	"devDependencies": {
+		"ava": "^1.4.1",
+		"tsd": "^0.7.2",
+		"xo": "^0.24.0"
+	}
+}

@@ -1,0 +1,40 @@
+{
+	"name": "alfred-lock",
+	"version": "2.0.0",
+	"description": "Alfred workflow to lock your Mac",
+	"license": "MIT",
+	"repository": "sindresorhus/alfred-lock",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=8"
+	},
+	"scripts": {
+		"postinstall": "alfy-init",
+		"preuninstall": "alfy-cleanup"
+	},
+	"files": [
+		"icon.png",
+		"info.plist",
+		"lock"
+	],
+	"keywords": [
+		"alfred",
+		"workflow",
+		"alfy",
+		"macos",
+		"mac",
+		"lock",
+		"system",
+		"screen",
+		"os",
+		"login",
+		"password"
+	],
+	"dependencies": {
+		"alfy": "^0.8.0"
+	}
+}

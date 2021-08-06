@@ -1,0 +1,38 @@
+{
+	"name": "kap-gifski",
+	"version": "1.0.1",
+	"description": "Export to high-quality GIFs using Gifski",
+	"license": "MIT",
+	"repository": "sindresorhus/kap-gifski",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"kap-plugin",
+		"gifski",
+		"gif",
+		"export",
+		"high-quality",
+		"quality"
+	],
+	"dependencies": {
+		"app-exists": "^1.0.0"
+	},
+	"devDependencies": {
+		"ava": "^2.2.0",
+		"kap-plugin-test": "^0.5.0",
+		"xo": "^0.30.0"
+	},
+	"kap": {
+		"kapVersion": ">=3.0.0",
+		"macosVersion": ">=10.14.4"
+	}
+}
