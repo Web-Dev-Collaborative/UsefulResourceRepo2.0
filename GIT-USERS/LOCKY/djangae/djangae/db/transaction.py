@@ -4,7 +4,7 @@ from google.appengine.api.datastore import (
     _PushConnection,
     _PopConnection,
     _SetConnection,
-    IsInTransaction
+    IsInTransaction,
 )
 
 from google.appengine.datastore.datastore_rpc import TransactionOptions
@@ -25,8 +25,8 @@ class AtomicDecorator(object):
 
     def _begin(self):
         options = CreateTransactionOptions(
-            xg = True if self.xg else False,
-            propagation = TransactionOptions.INDEPENDENT if self.independent else None
+            xg=True if self.xg else False,
+            propagation=TransactionOptions.INDEPENDENT if self.independent else None,
         )
 
         if IsInTransaction() and not self.independent:

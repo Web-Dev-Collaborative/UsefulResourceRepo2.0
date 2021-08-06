@@ -48,9 +48,16 @@ def acquire_identifiers(identifiers, entity_key):
         if marker:
             # If the marker instance is None, and the marker is older then 5 seconds then we wipe it out
             # and assume that it's stale.
-            if not marker.instance and (datetime.datetime.utcnow() - marker.created).seconds > 5:
+            if (
+                not marker.instance
+                and (datetime.datetime.utcnow() - marker.created).seconds > 5
+            ):
                 marker.delete()
-            elif marker.instance and Key(marker.instance) != entity_key and key_exists(Key(marker.instance)):
+            elif (
+                marker.instance
+                and Key(marker.instance) != entity_key
+                and key_exists(Key(marker.instance))
+            ):
                 raise IntegrityError("Unable to acquire marker for %s" % identifier)
             else:
                 # The marker is ours anyway
@@ -58,8 +65,10 @@ def acquire_identifiers(identifiers, entity_key):
 
         marker = UniqueMarker(
             key=identifier_key,
-            instance=str(entity_key) if entity_key.id_or_name() else None,  # May be None if unsaved
-            created=datetime.datetime.utcnow()
+            instance=str(entity_key)
+            if entity_key.id_or_name()
+            else None,  # May be None if unsaved
+            created=datetime.datetime.utcnow(),
         )
         marker.put()
         return marker
@@ -92,7 +101,6 @@ def get_markers_for_update(model, old_entity, new_entity):
 
 
 def update_instance_on_markers(entity, markers):
-
     @db.transactional(propagation=TransactionOptions.INDEPENDENT)
     def update(marker, instance):
         marker = UniqueMarker.get(marker.key())
@@ -139,7 +147,6 @@ def release_markers(markers):
 
 
 def release_identifiers(identifiers):
-
     @db.non_transactional
     def delete():
         keys = [Key.from_path(UniqueMarker.kind(), x) for x in identifiers]

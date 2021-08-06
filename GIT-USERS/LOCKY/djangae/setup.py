@@ -2,22 +2,19 @@ import os
 from setuptools import setup, find_packages
 
 
-NAME = 'djangae'
+NAME = "djangae"
 PACKAGES = find_packages()
-DESCRIPTION = 'Django integration with Google App Engine'
+DESCRIPTION = "Django integration with Google App Engine"
 URL = "https://github.com/potatolondon/djangae"
-LONG_DESCRIPTION = open(os.path.join(os.path.dirname(__file__), 'README.md')).read()
-AUTHOR = 'Potato London Ltd.'
+LONG_DESCRIPTION = open(os.path.join(os.path.dirname(__file__), "README.md")).read()
+AUTHOR = "Potato London Ltd."
 
-EXTRAS = {
-    "test": ["webtest"],
-}
+EXTRAS = {"test": ["webtest"]}
 
 setup(
     name=NAME,
-    version='0.8.0',
+    version="0.8.0",
     packages=PACKAGES,
-
     # metadata for upload to PyPI
     author=AUTHOR,
     description=DESCRIPTION,
@@ -25,15 +22,14 @@ setup(
     keywords=["django", "Google App Engine", "GAE"],
     url=URL,
     classifiers=[
-        'Development Status :: 3 - Alpha',
-        'Framework :: Django',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python',
+        "Development Status :: 3 - Alpha",
+        "Framework :: Django",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
     ],
-
     # dependencies
     extras_require=EXTRAS,
-    tests_require=EXTRAS['test'],
+    tests_require=EXTRAS["test"],
 )

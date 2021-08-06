@@ -15,10 +15,12 @@ class CacheClass(memcached.CacheClass):
     cache class allows for non-expiring cache writes on certain backends,
     notably memcached.
     """
+
     def _get_memcache_timeout(self, timeout=None):
         if timeout == 0:
             return 0  # 2591999
         return super(CacheClass, self)._get_memcache_timeout(timeout)
+
 
 if django.VERSION[:2] > (1, 2):
 
@@ -26,6 +28,7 @@ if django.VERSION[:2] > (1, 2):
         """
         Infinitely Caching version of django's MemcachedCache backend.
         """
+
         def _get_memcache_timeout(self, timeout=None):
             if timeout == 0:
                 return 0  # 2591999
@@ -40,6 +43,7 @@ if django.VERSION[:2] > (1, 2):
         memcached allows before treating the timeout as a timestamp is just
         under 30 days.
         """
+
         def _get_memcache_timeout(self, timeout=None):
             # pylibmc doesn't like our definition of 0
             if timeout == 0:

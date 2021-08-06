@@ -5,7 +5,6 @@
 
 
 class Subject(object):
-
     def __init__(self):
         self._observers = []
 
@@ -27,8 +26,7 @@ class Subject(object):
 
 # Example usage
 class Data(Subject):
-
-    def __init__(self, name=''):
+    def __init__(self, name=""):
         Subject.__init__(self)
         self.name = name
         self._data = 0
@@ -44,23 +42,19 @@ class Data(Subject):
 
 
 class HexViewer:
-
     def update(self, subject):
-        print('HexViewer: Subject %s has data 0x%x' %
-              (subject.name, subject.data))
+        print("HexViewer: Subject %s has data 0x%x" % (subject.name, subject.data))
 
 
 class DecimalViewer:
-
     def update(self, subject):
-        print('DecimalViewer: Subject %s has data %d' %
-              (subject.name, subject.data))
+        print("DecimalViewer: Subject %s has data %d" % (subject.name, subject.data))
 
 
 # Example usage...
 def main():
-    data1 = Data('Data 1')
-    data2 = Data('Data 2')
+    data1 = Data("Data 1")
+    data2 = Data("Data 2")
     view1 = DecimalViewer()
     view2 = HexViewer()
     data1.attach(view1)
@@ -85,7 +79,7 @@ def main():
     data2.data = 15
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
 
 ### OUTPUT ###

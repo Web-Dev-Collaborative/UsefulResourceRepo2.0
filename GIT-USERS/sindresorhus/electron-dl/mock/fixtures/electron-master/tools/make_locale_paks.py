@@ -11,25 +11,25 @@ import os
 
 
 def main():
-  target_dir = sys.argv[1]
-  locale_dir = os.path.join(target_dir, 'locales')
-  safe_mkdir(locale_dir)
-  for pak in sys.argv[2:]:
-    touch(os.path.join(locale_dir, pak + '.pak'))
+    target_dir = sys.argv[1]
+    locale_dir = os.path.join(target_dir, "locales")
+    safe_mkdir(locale_dir)
+    for pak in sys.argv[2:]:
+        touch(os.path.join(locale_dir, pak + ".pak"))
 
 
 def touch(filename):
-  with open(filename, 'w+'):
-    pass
+    with open(filename, "w+"):
+        pass
 
 
 def safe_mkdir(path):
-  try:
-    os.makedirs(path)
-  except OSError as e:
-    if e.errno != errno.EEXIST:
-      raise
+    try:
+        os.makedirs(path)
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            raise
 
 
-if __name__ == '__main__':
-  sys.exit(main())
+if __name__ == "__main__":
+    sys.exit(main())

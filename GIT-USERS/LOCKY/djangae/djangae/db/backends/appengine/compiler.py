@@ -1,18 +1,24 @@
-#LIBRARIES
+# LIBRARIES
 from django.db.models.sql import compiler
+
 # Following two ImportError blocks are for < 1.6 compatibility
 try:
     from django.db.models.sql.compiler import SQLDateCompiler as DateCompiler
 except ImportError:
+
     class DateCompiler(object):
         pass
+
+
 try:
     from django.db.models.sql.compiler import SQLDateTimeCompiler as DateTimeCompiler
 except ImportError:
+
     class DateTimeCompiler(object):
         pass
 
-#DJANGAE
+
+# DJANGAE
 from .commands import InsertCommand, SelectCommand, UpdateCommand, DeleteCommand
 
 
@@ -20,10 +26,7 @@ class SQLCompiler(compiler.SQLCompiler):
     def as_sql(self):
         self.pre_sql_setup()
         self.refcounts_before = self.query.alias_refcount.copy()
-        select = SelectCommand(
-            self.connection,
-            self.query
-        )
+        select = SelectCommand(self.connection, self.query)
         return (select, [])
 
 
@@ -34,7 +37,18 @@ class SQLInsertCompiler(compiler.SQLInsertCompiler, SQLCompiler):
 
     def as_sql(self):
         self.pre_sql_setup()
-        return [ (InsertCommand(self.connection, self.query.model, self.query.objs, self.query.fields, self.query.raw), []) ]
+        return [
+            (
+                InsertCommand(
+                    self.connection,
+                    self.query.model,
+                    self.query.objs,
+                    self.query.fields,
+                    self.query.raw,
+                ),
+                [],
+            )
+        ]
 
 
 class SQLDeleteCompiler(compiler.SQLDeleteCompiler, SQLCompiler):
@@ -43,7 +57,6 @@ class SQLDeleteCompiler(compiler.SQLDeleteCompiler, SQLCompiler):
 
 
 class SQLUpdateCompiler(compiler.SQLUpdateCompiler, SQLCompiler):
-
     def __init__(self, *args, **kwargs):
         super(SQLUpdateCompiler, self).__init__(*args, **kwargs)
 

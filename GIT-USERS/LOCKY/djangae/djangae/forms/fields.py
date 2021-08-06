@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.admin.templatetags.admin_static import static
 from djangae.utils import memoized
 
+
 class TrueOrNullFormField(forms.Field):
     def clean(self, value):
         if value:
@@ -21,29 +22,29 @@ class ListWidget(forms.TextInput):
 
     def render(self, name, value, attrs=None):
         if isinstance(value, (list, tuple)):
-            value = u', '.join([unicode(v) for v in value])
+            value = u", ".join([unicode(v) for v in value])
         return super(ListWidget, self).render(name, value, attrs)
 
     def value_from_datadict(self, data, files, name):
         """ Given a dictionary of data and this widget's name, returns the value
             of this widget. Returns None if it's not provided.
         """
-        value = data.get(name, '')
-        return [v.strip() for v in value.split(',') if len(v.strip()) > 0]
+        value = data.get(name, "")
+        return [v.strip() for v in value.split(",") if len(v.strip()) > 0]
 
 
 class ListFormField(forms.Field):
     """ A form field for being able to display a ListField. """
 
     widget = ListWidget
-    delimiter = ','
+    delimiter = ","
 
     def clean(self, value):
         if value:
             if isinstance(value, (list, tuple)):
                 self._check_values_against_delimiter(value)
                 return value
-            return [v.strip() for v in value.split(',') if len(v.strip()) > 0]
+            return [v.strip() for v in value.split(",") if len(v.strip()) > 0]
         return None
 
     def _check_values_against_delimiter(self, values):
@@ -52,15 +53,17 @@ class ListFormField(forms.Field):
             assert delimiter not in value
 
 
-#Basic obfuscation, just so that the db_table doesn't
-#appear in forms. (Not the end of the world if it does, but it's nice to
+# Basic obfuscation, just so that the db_table doesn't
+# appear in forms. (Not the end of the world if it does, but it's nice to
 # hide these things). We don't encrypt for performance reasons.
-#http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
+# http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
 
-_VC_KEY = "1K94KG8L" #Fixed key, don't change this!!
+_VC_KEY = "1K94KG8L"  # Fixed key, don't change this!!
+
 
 def model_path(obj):
     return obj._meta.db_table
+
 
 def vc_encode(string):
     enc = []
@@ -69,6 +72,7 @@ def vc_encode(string):
         enc_c = chr((ord(string[i]) + ord(key_c)) % 256)
         enc.append(enc_c)
     return base64.urlsafe_b64encode("".join(enc))
+
 
 def vc_decode(enc):
     dec = []
@@ -79,10 +83,12 @@ def vc_decode(enc):
         dec.append(dec_c)
     return "".join(dec)
 
+
 def encode_pk(pk, obj_cls):
     assert pk is not None
 
     return vc_encode("{0}|{1}".format(obj_cls._meta.db_table, pk))
+
 
 def decode_pk(encoded):
     result = vc_decode(encoded)
@@ -93,10 +99,7 @@ def decode_pk(encoded):
 
 class GenericRelationWidget(forms.MultiWidget):
     def __init__(self, widgets=None, *args, **kwargs):
-        widgets = (
-            forms.Select(),
-            GenericFKInput(),
-        )
+        widgets = (forms.Select(), GenericFKInput())
         super(GenericRelationWidget, self).__init__(widgets=widgets, *args, **kwargs)
 
     def decompress(self, value):
@@ -114,11 +117,14 @@ class GenericFKInput(forms.TextInput):
     def render(self, name, value, attrs):
         urls = {}
         for m in admin.site._registry:
-            urls[model_path(m)] = reverse('admin:%s_%s_changelist' % (m._meta.app_label, m._meta.module_name))
+            urls[model_path(m)] = reverse(
+                "admin:%s_%s_changelist" % (m._meta.app_label, m._meta.module_name)
+            )
         urls = json.dumps(urls)
-        safe_name = name.replace('-', '_')
+        safe_name = name.replace("-", "_")
         extra = []
-        extra.append(u'''<script type="text/javascript">var urls = %s; function popup_%s(trigger) {
+        extra.append(
+            u"""<script type="text/javascript">var urls = %s; function popup_%s(trigger) {
             var name = trigger.id.replace(/^lookup_/, '');
             name = id_to_windowname(name);
             var chosen_model = django.jQuery(trigger).siblings('select').val();
@@ -129,11 +135,20 @@ class GenericFKInput(forms.TextInput):
             }
             return false;
             }
-        </script>\n''' % (urls, safe_name))
-        extra.append(u'<a href="" class="related-lookup" id="lookup_id_%s" onclick="return popup_%s(this);"> ' % (name, safe_name))
-        extra.append(u'<img src="%s" width="16" height="16" alt="%s" /></a>' % (static('admin/img/selector-search.gif'), 'Lookup'))
+        </script>\n"""
+            % (urls, safe_name)
+        )
+        extra.append(
+            u'<a href="" class="related-lookup" id="lookup_id_%s" onclick="return popup_%s(this);"> '
+            % (name, safe_name)
+        )
+        extra.append(
+            u'<img src="%s" width="16" height="16" alt="%s" /></a>'
+            % (static("admin/img/selector-search.gif"), "Lookup")
+        )
         output = [super(GenericFKInput, self).render(name, value, attrs)] + extra
-        return mark_safe(u''.join(output))
+        return mark_safe(u"".join(output))
+
 
 @memoized
 def model_from_db_table(db_table):
@@ -143,27 +158,30 @@ def model_from_db_table(db_table):
                 return model
     raise ValueError("Couldn't find model class for %s" % db_table)
 
+
 _CHOICES = None
+
 
 @memoized
 def get_all_model_choices():
     global _CHOICES
     if _CHOICES is None:
-        _CHOICES = [
-            ('', 'None')] + [(model_path(m), m.__name__)
-            for m in models.get_models()
+        _CHOICES = [("", "None")] + [
+            (model_path(m), m.__name__) for m in models.get_models()
         ]
     return _CHOICES
 
+
 class GenericRelationFormfield(forms.MultiValueField):
     def __init__(self, fields=None, widget=None, choices=None, *args, **kwargs):
-        fields = (
-            forms.ChoiceField(),
-            forms.CharField(max_length=30)
-        )
+        fields = (forms.ChoiceField(), forms.CharField(max_length=30))
 
-        super(GenericRelationFormfield, self).__init__(fields=fields, widget=GenericRelationWidget(), *args, **kwargs)
-        self.widget.widgets[0].choices = self.fields[0].choices = choices or get_all_model_choices()
+        super(GenericRelationFormfield, self).__init__(
+            fields=fields, widget=GenericRelationWidget(), *args, **kwargs
+        )
+        self.widget.widgets[0].choices = self.fields[0].choices = (
+            choices or get_all_model_choices()
+        )
 
     @classmethod
     def to_python(cls, value, model_ref=None, pk=None):
@@ -179,13 +197,13 @@ class GenericRelationFormfield(forms.MultiValueField):
         try:
             pk = int(pk)
         except (ValueError, TypeError):
-            raise forms.ValidationError('Invalid instance key.')
+            raise forms.ValidationError("Invalid instance key.")
 
         model = cls.load_model(model_ref)
         try:
             return model.objects.get(pk=pk)
         except model.DoesNotExist:
-            raise forms.ValidationError('Invalid instance key.')
+            raise forms.ValidationError("Invalid instance key.")
 
     @classmethod
     def load_model(cls, model_ref):

@@ -2,12 +2,18 @@
 # -*- coding: utf-8 -*-
 from django import forms
 
-from paypal.pro.fields import CreditCardField, CreditCardExpiryField, CreditCardCVV2Field, CountryField
+from paypal.pro.fields import (
+    CreditCardField,
+    CreditCardExpiryField,
+    CreditCardCVV2Field,
+    CountryField,
+)
 from paypal.pro.exceptions import PayPalFailure
 
 
 class PaymentForm(forms.Form):
     """Form used to process direct payments."""
+
     firstname = forms.CharField(255, label="First Name")
     lastname = forms.CharField(255, label="Last Name")
     street = forms.CharField(255, label="Street Address")
@@ -26,14 +32,14 @@ class PaymentForm(forms.Form):
 
         wpp = PayPalWPP(request)
         params = self.cleaned_data
-        params['creditcardtype'] = self.fields['acct'].card_type
-        params['expdate'] = self.cleaned_data['expdate'].strftime("%m%Y")
-        params['ipaddress'] = request.META.get("REMOTE_ADDR", "")
+        params["creditcardtype"] = self.fields["acct"].card_type
+        params["expdate"] = self.cleaned_data["expdate"].strftime("%m%Y")
+        params["ipaddress"] = request.META.get("REMOTE_ADDR", "")
         params.update(item)
 
         try:
             # Create single payment:
-            if 'billingperiod' not in params:
+            if "billingperiod" not in params:
                 nvp_obj = wpp.doDirectPayment(params)
             # Create recurring payment:
             else:
@@ -45,5 +51,6 @@ class PaymentForm(forms.Form):
 
 class ConfirmForm(forms.Form):
     """Hidden form used by ExpressPay flow to keep track of payer information."""
+
     token = forms.CharField(max_length=255, widget=forms.HiddenInput())
     PayerID = forms.CharField(max_length=255, widget=forms.HiddenInput())

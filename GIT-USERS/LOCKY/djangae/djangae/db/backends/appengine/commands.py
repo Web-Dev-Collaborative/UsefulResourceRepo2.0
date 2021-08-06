@@ -1,11 +1,11 @@
-#STANDARD LIB
+# STANDARD LIB
 from datetime import datetime, date
 import logging
 import copy
 from functools import partial
 from itertools import chain, groupby
 
-#LIBRARIES
+# LIBRARIES
 from django.core.cache import cache
 from django.db.backends.mysql.compiler import SQLCompiler
 from django.db import IntegrityError
@@ -19,7 +19,7 @@ from google.appengine.api import datastore, datastore_errors
 from google.appengine.api.datastore import Query
 from google.appengine.ext import db
 
-#DJANGAE
+# DJANGAE
 from djangae.db.backends.appengine.dbapi import CouldBeSupportedError, NotSupportedError
 from djangae.db.utils import (
     get_datastore_key,
@@ -29,9 +29,13 @@ from djangae.db.utils import (
     MockInstance,
     get_top_concrete_parent,
     get_concrete_parents,
-    has_concrete_parents
+    has_concrete_parents,
 )
-from djangae.indexing import special_indexes_for_column, REQUIRES_SPECIAL_INDEXES, add_special_index
+from djangae.indexing import (
+    special_indexes_for_column,
+    REQUIRES_SPECIAL_INDEXES,
+    add_special_index,
+)
 from djangae.utils import on_production, in_testing
 from djangae.db import constraints, utils
 from djangae.db.backends.appengine import caching
@@ -44,37 +48,30 @@ DATE_TRANSFORMS = {
     "day": transforms.day_transform,
     "hour": transforms.hour_transform,
     "minute": transforms.minute_transform,
-    "second": transforms.second_transform
+    "second": transforms.second_transform,
 }
 
 DJANGAE_LOG = logging.getLogger("djangae")
 
 OPERATORS_MAP = {
-    'exact': '=',
-    'gt': '>',
-    'gte': '>=',
-    'lt': '<',
-    'lte': '<=',
-
+    "exact": "=",
+    "gt": ">",
+    "gte": ">=",
+    "lt": "<",
+    "lte": "<=",
     # The following operators are supported with special code below.
-    'isnull': None,
-    'in': None,
-    'range': None,
+    "isnull": None,
+    "in": None,
+    "range": None,
 }
 
-REVERSE_OP_MAP = {
-    '=':'exact',
-    '>':'gt',
-    '>=':'gte',
-    '<':'lt',
-    '<=':'lte',
-}
+REVERSE_OP_MAP = {"=": "exact", ">": "gt", ">=": "gte", "<": "lt", "<=": "lte"}
 
-INEQUALITY_OPERATORS = frozenset(['>', '<', '<=', '>='])
+INEQUALITY_OPERATORS = frozenset([">", "<", "<=", ">="])
 
 
 def get_field_from_column(model, column):
-    #FIXME: memoize this
+    # FIXME: memoize this
     for field in model._meta.fields:
         if field.column == column:
             return field
@@ -107,17 +104,17 @@ def ensure_datetime(value):
 
 
 FILTER_CMP_FUNCTION_MAP = {
-    'exact': lambda a, b: a == b,
-    'iexact': lambda a, b: a.lower() == b.lower(),
-    'gt': lambda a, b: a > b,
-    'lt': lambda a, b: a < b,
-    'gte': lambda a, b: a >= b,
-    'lte': lambda a, b: a <= b,
-    'isnull': lambda a, b: (b and (a is None)) or (a is not None),
-    'in': lambda a, b: a in b,
-    'startswith': lambda a, b: a.startswith(b),
-    'range': lambda a, b: b[0] < a < b[1], #I'm assuming that b is a tuple
-    'year': lambda a, b: field_conv_year_only(a) == b,
+    "exact": lambda a, b: a == b,
+    "iexact": lambda a, b: a.lower() == b.lower(),
+    "gt": lambda a, b: a > b,
+    "lt": lambda a, b: a < b,
+    "gte": lambda a, b: a >= b,
+    "lte": lambda a, b: a <= b,
+    "isnull": lambda a, b: (b and (a is None)) or (a is not None),
+    "in": lambda a, b: a in b,
+    "startswith": lambda a, b: a.startswith(b),
+    "range": lambda a, b: b[0] < a < b[1],  # I'm assuming that b is a tuple
+    "year": lambda a, b: field_conv_year_only(a) == b,
 }
 
 
@@ -132,6 +129,7 @@ def log_once(logging_call, text, args):
     logging_call(text % args)
     log_once.logged.add(identifier)
 
+
 log_once.logged = set()
 
 
@@ -143,16 +141,23 @@ def parse_constraint(child, connection, negated=False):
     alias, column, db_type = packed
 
     if constraint.field.db_type(connection) in ("bytes", "text"):
-        raise NotSupportedError("Text and Blob fields are not indexed by the datastore, so you can't filter on them")
+        raise NotSupportedError(
+            "Text and Blob fields are not indexed by the datastore, so you can't filter on them"
+        )
 
     if op not in REQUIRES_SPECIAL_INDEXES:
         # Don't convert if this op requires special indexes, it will be handled there
-        value = [ connection.ops.prep_lookup_value(constraint.field.model, x, constraint.field, constraint=constraint) for x in value]
+        value = [
+            connection.ops.prep_lookup_value(
+                constraint.field.model, x, constraint.field, constraint=constraint
+            )
+            for x in value
+        ]
 
         # Don't ask me why, but constraint.process on isnull wipes out the value (it returns an empty list)
         # so we have to special case this to use the annotation value instead
         if op == "isnull":
-            value = [ annotation ]
+            value = [annotation]
 
             if constraint.field.primary_key and value[0]:
                 raise EmptyResultSet()
@@ -161,16 +166,22 @@ def parse_constraint(child, connection, negated=False):
             value = value[0]
     else:
         if negated:
-            raise CouldBeSupportedError("Special indexing does not currently supported negated queries. See #80")
+            raise CouldBeSupportedError(
+                "Special indexing does not currently supported negated queries. See #80"
+            )
 
         if not was_list:
             value = value[0]
 
-        add_special_index(constraint.field.model, column, op)  # Add the index if we can (e.g. on dev_appserver)
+        add_special_index(
+            constraint.field.model, column, op
+        )  # Add the index if we can (e.g. on dev_appserver)
 
         if op not in special_indexes_for_column(constraint.field.model, column):
-            raise RuntimeError("There is a missing index in your djangaeidx.yaml - \n\n{0}:\n\t{1}: [{2}]".format(
-                constraint.field.model, column, op)
+            raise RuntimeError(
+                "There is a missing index in your djangaeidx.yaml - \n\n{0}:\n\t{1}: [{2}]".format(
+                    constraint.field.model, column, op
+                )
             )
 
         indexer = REQUIRES_SPECIAL_INDEXES[op]
@@ -215,15 +226,20 @@ def _convert_entity_based_on_query_options(entity, opts):
 def _get_key(query):
     return query["__key__ ="]
 
+
 class QueryByKeys(object):
     def __init__(self, queries, ordering):
         self.queries = queries
-        self.queries_by_key = { a: list(b) for a, b in groupby(queries, lambda x: _get_key(x)) }
+        self.queries_by_key = {
+            a: list(b) for a, b in groupby(queries, lambda x: _get_key(x))
+        }
         self.ordering = ordering
         self._Query__kind = queries[0]._Query__kind
 
     def Run(self, limit=None, offset=None):
-        assert not self.queries[0]._Query__ancestor_pb #FIXME: We don't handle this yet
+        assert not self.queries[
+            0
+        ]._Query__ancestor_pb  # FIXME: We don't handle this yet
 
         # FIXME: What if the query options differ?
         opts = self.queries[0]._Query__query_options
@@ -238,11 +254,20 @@ class QueryByKeys(object):
 
         # If there was nothing in the cache, or we had more than one key, then use Get()
         if results is None:
-            results = sorted((x for x in datastore.Get(self.queries_by_key.keys()) if x is not None), cmp=partial(utils.django_ordering_comparison, self.ordering))
+            results = sorted(
+                (x for x in datastore.Get(self.queries_by_key.keys()) if x is not None),
+                cmp=partial(utils.django_ordering_comparison, self.ordering),
+            )
 
         results = [
             _convert_entity_based_on_query_options(x, opts)
-            for x in results if any([ utils.entity_matches_query(x, qry) for qry in self.queries_by_key[x.key()]])
+            for x in results
+            if any(
+                [
+                    utils.entity_matches_query(x, qry)
+                    for qry in self.queries_by_key[x.key()]
+                ]
+            )
         ]
 
         if offset:
@@ -254,7 +279,7 @@ class QueryByKeys(object):
         return iter(results)
 
     def Count(self, limit, offset):
-        return len([ x for x in self.Run(limit, offset) ])
+        return len([x for x in self.Run(limit, offset)])
 
 
 class NoOpQuery(object):
@@ -270,6 +295,7 @@ class UniqueQuery(object):
         This mimics a normal query but hits the cache if possible. It must
         be passed the set of unique fields that form a unique constraint
     """
+
     def __init__(self, unique_identifier, gae_query, model):
         self._identifier = unique_identifier
         self._gae_query = gae_query
@@ -282,18 +308,19 @@ class UniqueQuery(object):
 
         ret = caching.get_from_cache(self._identifier)
         if ret is None:
-            ret = [ x for x in self._gae_query.Run(limit=limit, offset=offset) ]
+            ret = [x for x in self._gae_query.Run(limit=limit, offset=offset)]
             if len(ret) == 1:
                 caching.add_entity_to_context_cache(self._model, ret[0])
             return iter(ret)
 
-        return iter([ ret ])
+        return iter([ret])
 
     def Count(self, limit, offset):
         ret = caching.get_from_cache(self._identifier)
         if ret is None:
             return self._gae_query.Count(limit=limit, offset=offset)
         return 1
+
 
 def _convert_ordering(query):
     if not query.default_ordering:
@@ -304,12 +331,13 @@ def _convert_ordering(query):
     if result:
         # We factor out cross-table orderings (rather than raising NotSupportedError) otherwise we'll break
         # the admin which uses them. We log a warning when this happens though
-        ordering = [ x for x in result if not (isinstance(x, basestring) and "__" in x) ]
+        ordering = [x for x in result if not (isinstance(x, basestring) and "__" in x)]
         if len(ordering) < len(result):
             diff = set(result) - set(ordering)
             log_once(
                 DJANGAE_LOG.warning if not on_production() else DJANGAE_LOG.debug,
-                "The following orderings were ignored as cross-table orderings are not supported on the datastore: %s", diff
+                "The following orderings were ignored as cross-table orderings are not supported on the datastore: %s",
+                diff,
             )
         result = ordering
 
@@ -317,6 +345,7 @@ def _convert_ordering(query):
         raise NotSupportedError("Random ordering is not supported on the datastore")
 
     return result
+
 
 class SelectCommand(object):
     def __init__(self, connection, query, keys_only=False):
@@ -346,8 +375,12 @@ class SelectCommand(object):
         # for all (concrete) inherited models and then only include columns if they appear in that list
         deferred_columns = {}
         query.deferred_to_data(deferred_columns, query.deferred_to_columns_cb)
-        inherited_db_tables = [x._meta.db_table for x in get_concrete_parents(self.model)]
-        only_load = list(chain(*[list(deferred_columns.get(x, [])) for x in inherited_db_tables]))
+        inherited_db_tables = [
+            x._meta.db_table for x in get_concrete_parents(self.model)
+        ]
+        only_load = list(
+            chain(*[list(deferred_columns.get(x, [])) for x in inherited_db_tables])
+        )
 
         if query.select:
             for x in query.select:
@@ -365,9 +398,15 @@ class SelectCommand(object):
                         # in our transform function. The transform is applied when the results are read back so that only distinct values are returned.
                         # this is very hacky...
                         if lookup_type in DATE_TRANSFORMS:
-                            self.distinct_field_convertor = lambda value: DATE_TRANSFORMS[lookup_type](self.connection, value)
+                            self.distinct_field_convertor = lambda value: DATE_TRANSFORMS[
+                                lookup_type
+                            ](
+                                self.connection, value
+                            )
                         else:
-                            raise CouldBeSupportedError("Unhandled lookup_type %s" % lookup_type)
+                            raise CouldBeSupportedError(
+                                "Unhandled lookup_type %s" % lookup_type
+                            )
                     else:
                         column = x.field.column
                 else:
@@ -378,7 +417,11 @@ class SelectCommand(object):
 
                 self.queried_fields.append(column)
         else:
-            self.queried_fields = [x.column for x in opts.fields if (not only_load) or (x.column in only_load)]
+            self.queried_fields = [
+                x.column
+                for x in opts.fields
+                if (not only_load) or (x.column in only_load)
+            ]
 
         self.keys_only = keys_only or self.queried_fields == [opts.pk.column]
 
@@ -395,7 +438,7 @@ class SelectCommand(object):
         try_projection = (self.keys_only is False) and bool(self.queried_fields)
 
         if not self.queried_fields:
-            self.queried_fields = [ x.column for x in opts.fields ]
+            self.queried_fields = [x.column for x in opts.fields]
 
         self.excluded_pks = set()
 
@@ -411,7 +454,7 @@ class SelectCommand(object):
             for field in self.queried_fields:
                 # We don't include the primary key in projection queries...
                 if field == self.pk_col:
-                    order_fields = set([ x.strip("-") for x in self.ordering])
+                    order_fields = set([x.strip("-") for x in self.ordering])
 
                     if self.pk_col in order_fields or "pk" in order_fields:
                         # If we were ordering on __key__ we can't do a projection at all
@@ -423,8 +466,12 @@ class SelectCommand(object):
                 # projection query
                 f = get_field_from_column(self.model, field)
                 if not f:
-                    raise CouldBeSupportedError("Attemping a cross-table select or dates query, or something?!")
-                assert f  # If this happens, we have a cross-table select going on! #FIXME
+                    raise CouldBeSupportedError(
+                        "Attemping a cross-table select or dates query, or something?!"
+                    )
+                assert (
+                    f
+                )  # If this happens, we have a cross-table select going on! #FIXME
                 db_type = f.db_type(connection)
 
                 if db_type in ("bytes", "text", "list", "set"):
@@ -441,11 +488,15 @@ class SelectCommand(object):
             # Empty where means return nothing!
             raise EmptyResultSet()
         else:
-            where_tables = list(set([x[0] for x in query.where.get_cols() if x[0] ]))
-            if where_tables and where_tables != [ query.model._meta.db_table ]:
-                raise NotSupportedError("Cross-join WHERE constraints aren't supported: %s" % query.where.get_cols())
+            where_tables = list(set([x[0] for x in query.where.get_cols() if x[0]]))
+            if where_tables and where_tables != [query.model._meta.db_table]:
+                raise NotSupportedError(
+                    "Cross-join WHERE constraints aren't supported: %s"
+                    % query.where.get_cols()
+                )
 
             from dnf import parse_dnf
+
             self.where, columns = parse_dnf(query.where, self.connection)
 
         # DISABLE PROJECTION IF WE ARE FILTERING ON ONE OF THE PROJECTION_FIELDS
@@ -476,9 +527,7 @@ class SelectCommand(object):
 
     def __repr__(self):
         return "<SelectCommand - SELECT {} FROM {} WHERE {}>".format(
-            ", ".join(self.queried_fields or []),
-            self.db_table,
-            self.where
+            ", ".join(self.queried_fields or []), self.db_table, self.where
         )
 
     def _set_db_table(self):
@@ -497,46 +546,49 @@ class SelectCommand(object):
         """
         # Check for joins, we ignore select related tables as they aren't actually used (the connector marks select
         # related as unsupported in its features)
-        tables = [ k for k, v in query.alias_refcount.items() if v ]
-        inherited_tables = set([x._meta.db_table for x in query.model._meta.parents ])
-        select_related_tables = set([y[0][0] for y in query.related_select_cols ])
+        tables = [k for k, v in query.alias_refcount.items() if v]
+        inherited_tables = set([x._meta.db_table for x in query.model._meta.parents])
+        select_related_tables = set([y[0][0] for y in query.related_select_cols])
         tables = set(tables) - inherited_tables - select_related_tables
 
         if len(tables) > 1:
-            raise NotSupportedError("""
+            raise NotSupportedError(
+                """
                 The appengine database connector does not support JOINs. The requested join map follows\n
                 %s
-            """ % query.join_map)
+            """
+                % query.join_map
+            )
 
         if query.aggregates:
-            if query.aggregates.keys() == [ None ]:
+            if query.aggregates.keys() == [None]:
                 agg_col = query.aggregates[None].col
                 opts = self.model._meta
                 if agg_col != "*" and agg_col != (opts.db_table, opts.pk.column):
-                    raise NotSupportedError("Counting anything other than '*' or the primary key is not supported")
+                    raise NotSupportedError(
+                        "Counting anything other than '*' or the primary key is not supported"
+                    )
             else:
                 raise NotSupportedError("Unsupported aggregate query")
 
     def _build_gae_query(self):
         """ Build and return the Datstore Query object. """
-        query_kwargs = {
-            "kind": str(self.db_table)
-        }
+        query_kwargs = {"kind": str(self.db_table)}
 
         if self.distinct:
             if self.projection:
                 query_kwargs["distinct"] = True
             else:
-                logging.warning("Ignoring distinct on a query where a projection wasn't possible")
+                logging.warning(
+                    "Ignoring distinct on a query where a projection wasn't possible"
+                )
 
         if self.keys_only:
             query_kwargs["keys_only"] = self.keys_only
         elif self.projection:
             query_kwargs["projection"] = self.projection
 
-        query = Query(
-            **query_kwargs
-        )
+        query = Query(**query_kwargs)
 
         if has_concrete_parents(self.model) and not self.model._meta.proxy:
             query["class ="] = self.model._meta.db_table
@@ -544,18 +596,30 @@ class SelectCommand(object):
         ordering = []
         for order in self.ordering:
             if isinstance(order, (long, int)):
-                direction = datastore.Query.ASCENDING if order == 1 else datastore.Query.DESCENDING
+                direction = (
+                    datastore.Query.ASCENDING
+                    if order == 1
+                    else datastore.Query.DESCENDING
+                )
                 order = self.queried_fields[0]
             else:
-                direction = datastore.Query.DESCENDING if order.startswith("-") else datastore.Query.ASCENDING
+                direction = (
+                    datastore.Query.DESCENDING
+                    if order.startswith("-")
+                    else datastore.Query.ASCENDING
+                )
                 order = order.lstrip("-")
 
             if order == self.model._meta.pk.column or order == "pk":
                 order = "__key__"
 
-            #Flip the ordering if someone called reverse() on the queryset
+            # Flip the ordering if someone called reverse() on the queryset
             if not self.original_query.standard_ordering:
-                direction = datastore.Query.DESCENDING if direction == datastore.Query.ASCENDING else datastore.Query.ASCENDING
+                direction = (
+                    datastore.Query.DESCENDING
+                    if direction == datastore.Query.ASCENDING
+                    else datastore.Query.ASCENDING
+                )
 
             ordering.append((order, direction))
 
@@ -563,11 +627,11 @@ class SelectCommand(object):
             for child in and_branch[-1]:
                 column, op, value = child[1]
 
-            # for column, op, value in and_branch[-1]:
+                # for column, op, value in and_branch[-1]:
                 if column == self.pk_col:
                     column = "__key__"
 
-                    #FIXME: This EmptyResultSet check should happen during normalization so that Django doesn't count it as a query
+                    # FIXME: This EmptyResultSet check should happen during normalization so that Django doesn't count it as a query
                     if op == "=" and "__key__ =" in query:
                         # We've already done an exact lookup on a key, this query can't return anything!
                         raise EmptyResultSet()
@@ -578,7 +642,7 @@ class SelectCommand(object):
                 key = "%s %s" % (column, op)
                 try:
                     if key in query:
-                        query[key] = [ query[key], value ]
+                        query[key] = [query[key], value]
                     else:
                         query[key] = value
                 except datastore_errors.BadFilterError as e:
@@ -592,7 +656,9 @@ class SelectCommand(object):
             for and_branch in self.where[1]:
                 # Duplicate the query for all the "OR"s
                 queries.append(Query(**query_kwargs))
-                queries[-1].update(query)  # Make sure we copy across filters (e.g. class =)
+                queries[-1].update(
+                    query
+                )  # Make sure we copy across filters (e.g. class =)
                 try:
                     if and_branch[0] == "LIT":
                         and_branch = ("AND", [and_branch])
@@ -606,16 +672,22 @@ class SelectCommand(object):
                     else:
                         queries.pop()
 
-
-            included_pks = [ qry["__key__ ="] for qry in queries if "__key__ =" in qry ]
-            if len(included_pks) == len(queries): # If all queries have a key, we can perform a Get
-                return QueryByKeys(queries, ordering) # Just use whatever query to determine the matches
+            included_pks = [qry["__key__ ="] for qry in queries if "__key__ =" in qry]
+            if len(included_pks) == len(
+                queries
+            ):  # If all queries have a key, we can perform a Get
+                return QueryByKeys(
+                    queries, ordering
+                )  # Just use whatever query to determine the matches
             else:
                 if len(queries) > 1:
                     # Disable keys only queries for MultiQuery
                     new_queries = []
                     for query in queries:
-                        qry = Query(query._Query__kind, projection=query._Query__query_options.projection)
+                        qry = Query(
+                            query._Query__kind,
+                            projection=query._Query__query_options.projection,
+                        )
                         qry.update(query)
                         new_queries.append(qry)
 
@@ -632,7 +704,9 @@ class SelectCommand(object):
         if unique_identifier:
             return UniqueQuery(unique_identifier, query, self.model)
 
-        DJANGAE_LOG.debug("Select query: {0}, {1}".format(self.model.__name__, self.where))
+        DJANGAE_LOG.debug(
+            "Select query: {0}, {1}".format(self.model.__name__, self.where)
+        )
 
         return query
 
@@ -642,7 +716,9 @@ class SelectCommand(object):
         self.results = self._run_query(
             aggregate_type=self.aggregate_type,
             start=self.limits[0],
-            limit=None if self.limits[1] is None else (self.limits[1] - (self.limits[0] or 0))
+            limit=None
+            if self.limits[1] is None
+            else (self.limits[1] - (self.limits[0] or 0)),
         )
 
         self.query_done = True
@@ -667,7 +743,9 @@ class SelectCommand(object):
                 if length == 3:
                     op = REVERSE_OP_MAP.get(tokens[1])
                     if not op:
-                        raise RuntimeError("Unsupported extra_select operation {0}".format(tokens[1]))
+                        raise RuntimeError(
+                            "Unsupported extra_select operation {0}".format(tokens[1])
+                        )
                     fun = FILTER_CMP_FUNCTION_MAP[op]
 
                     def lazy_eval(results, attr, fun, token_a, token_b):
@@ -683,7 +761,7 @@ class SelectCommand(object):
                             lhs_type = type(lhs)
                             rhs = lhs_type(token_b)
                             if isinstance(rhs, basestring):
-                                rhs = rhs.strip("'").strip('"') # Strip quotes
+                                rhs = rhs.strip("'").strip('"')  # Strip quotes
                             result[attr] = fun(lhs, rhs)
                             yield result
 
@@ -727,7 +805,7 @@ class SelectCommand(object):
             elif x.key() in self.excluded_pks:
                 continue
 
-            if self.distinct_on_field: #values for distinct queries
+            if self.distinct_on_field:  # values for distinct queries
                 value = x[self.distinct_on_field]
                 value = self.distinct_field_convertor(value)
 
@@ -742,6 +820,7 @@ class SelectCommand(object):
                     x[self.distinct_on_field] = value
             return x
 
+
 class FlushCommand(object):
     """
         sql_flush returns the SQL statements to flush the database,
@@ -750,6 +829,7 @@ class FlushCommand(object):
         We instead return a list of FlushCommands which are called by
         our cursor.execute
     """
+
     def __init__(self, table):
         self.table = table
 
@@ -762,16 +842,23 @@ class FlushCommand(object):
         cache.clear()
 
         from .caching import clear_context_cache
+
         clear_context_cache()
+
 
 @db.non_transactional
 def reserve_id(kind, id_or_name):
     if isinstance(id_or_name, (int, long)):
         try:
-            db.allocate_id_range(datastore.Key.from_path(kind, 1), id_or_name, id_or_name)
+            db.allocate_id_range(
+                datastore.Key.from_path(kind, 1), id_or_name, id_or_name
+            )
         except:
             # We don't re-raise because it's not terminal, but if this happens we need to know why
-            logging.exception("An error occurred when notifying app engine that an ID has been used. Please report.")
+            logging.exception(
+                "An error occurred when notifying app engine that an ID has been used. Please report."
+            )
+
 
 class InsertCommand(object):
     def __init__(self, connection, model, objs, fields, raw):
@@ -784,10 +871,18 @@ class InsertCommand(object):
             if self.has_pk:
                 # We must convert the PK value here, even though this normally happens in django_instance_to_entity otherwise
                 # custom PK fields don't work properly
-                value = model._meta.pk.get_db_prep_save(model._meta.pk.pre_save(obj, True), connection)
-                self.included_keys.append(get_datastore_key(model, value) if value else None)
+                value = model._meta.pk.get_db_prep_save(
+                    model._meta.pk.pre_save(obj, True), connection
+                )
+                self.included_keys.append(
+                    get_datastore_key(model, value) if value else None
+                )
                 if not self.model._meta.pk.blank and self.included_keys[-1] is None:
-                    raise IntegrityError("You must specify a primary key value for {} instances".format(model))
+                    raise IntegrityError(
+                        "You must specify a primary key value for {} instances".format(
+                            model
+                        )
+                    )
             else:
                 # We zip() self.entities and self.included_keys in execute(), so they should be the same legnth
                 self.included_keys.append(None)
@@ -804,6 +899,7 @@ class InsertCommand(object):
             # cost any entity groups
 
             for key, ent in zip(self.included_keys, self.entities):
+
                 @db.transactional
                 def txn():
                     if key is not None:
@@ -811,8 +907,12 @@ class InsertCommand(object):
                             raise IntegrityError("Tried to INSERT with existing key")
 
                     id_or_name = key.id_or_name()
-                    if isinstance(id_or_name, basestring) and id_or_name.startswith("__"):
-                        raise NotSupportedError("Datastore ids cannot start with __. Id was %s" % id_or_name)
+                    if isinstance(id_or_name, basestring) and id_or_name.startswith(
+                        "__"
+                    ):
+                        raise NotSupportedError(
+                            "Datastore ids cannot start with __. Id was %s" % id_or_name
+                        )
 
                     if not constraints.constraint_checks_enabled(self.model):
                         # Fast path, just insert
@@ -845,7 +945,7 @@ class InsertCommand(object):
             else:
                 markers = []
                 try:
-                    #FIXME: We should rearrange this so that each entity is handled individually like above. We'll
+                    # FIXME: We should rearrange this so that each entity is handled individually like above. We'll
                     # lose insert performance, but gain consistency on errors which is more important
                     markers = constraints.acquire_bulk(self.model, self.entities)
 
@@ -880,7 +980,9 @@ class DeleteCommand(object):
             qry["__key__ ="] = key
             return qry
 
-        queries = [spawn_query(self.select.db_table, x.key()) for x in self.select.results]
+        queries = [
+            spawn_query(self.select.db_table, x.key()) for x in self.select.results
+        ]
         if not queries:
             return
 
@@ -912,24 +1014,29 @@ class UpdateCommand(object):
             reserve_id(key.kind(), key.id_or_name())
             result = datastore.Entity(key.kind(), id=key.id_or_name())
 
-
         original = copy.deepcopy(result)
 
-        instance_kwargs = {field.attname:value for field, param, value in self.values}
+        instance_kwargs = {field.attname: value for field, param, value in self.values}
         instance = MockInstance(**instance_kwargs)
         for field, param, value in self.values:
-            result[field.column] = get_prepared_db_value(self.connection, instance, field, raw=True)
+            result[field.column] = get_prepared_db_value(
+                self.connection, instance, field, raw=True
+            )
             # Add special indexed fields
             for index in special_indexes_for_column(self.model, field.column):
                 indexer = REQUIRES_SPECIAL_INDEXES[index]
-                result[indexer.indexed_column_name(field.column)] = indexer.prep_value_for_database(value)
+                result[
+                    indexer.indexed_column_name(field.column)
+                ] = indexer.prep_value_for_database(value)
 
         if not constraints.constraint_checks_enabled(self.model):
             # The fast path, no constraint checking
             datastore.Put(result)
             caching.add_entity_to_context_cache(self.model, result)
         else:
-            to_acquire, to_release = constraints.get_markers_for_update(self.model, original, result)
+            to_acquire, to_release = constraints.get_markers_for_update(
+                self.model, original, result
+            )
 
             # Acquire first, because if that fails then we don't want to alter what's already there
             constraints.acquire_identifiers(to_acquire, result.key())

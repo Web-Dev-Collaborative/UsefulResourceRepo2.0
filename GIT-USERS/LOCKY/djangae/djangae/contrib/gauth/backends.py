@@ -25,18 +25,20 @@ class AppEngineUserAPI(ModelBackend):
         """
         if user_obj.is_anonymous() or obj is not None:
             return set()
-        if not hasattr(user_obj, '_group_perm_cache'):
+        if not hasattr(user_obj, "_group_perm_cache"):
             if user_obj.is_superuser:
                 perms = (perm for perm, name in get_permission_choices())
             else:
-                perms = chain.from_iterable((group.permissions for group in user_obj.groups.all()))
+                perms = chain.from_iterable(
+                    (group.permissions for group in user_obj.groups.all())
+                )
             user_obj._group_perm_cache = set(perms)
         return user_obj._group_perm_cache
 
     def get_all_permissions(self, user_obj, obj=None):
         if user_obj.is_anonymous() or obj is not None:
             return set()
-        if not hasattr(user_obj, '_perm_cache'):
+        if not hasattr(user_obj, "_perm_cache"):
             user_obj._perm_cache = set(user_obj.user_permissions)
             user_obj._perm_cache.update(self.get_group_permissions(user_obj))
         return user_obj._perm_cache
@@ -60,7 +62,7 @@ class AppEngineUserAPI(ModelBackend):
             # Django expects a TypeError if this backend cannot handle the given credentials
             raise TypeError()
 
-        google_user = credentials.get('google_user', None)
+        google_user = credentials.get("google_user", None)
 
         if google_user:
             user_id = google_user.user_id()
@@ -69,12 +71,14 @@ class AppEngineUserAPI(ModelBackend):
                 user = User.objects.get(username=user_id)
 
             except User.DoesNotExist:
-                if getattr(settings, 'ALLOW_USER_PRE_CREATION', False):
+                if getattr(settings, "ALLOW_USER_PRE_CREATION", False):
                     # Check to see if a User object for this email address has been pre-created.
                     try:
                         # Convert the pre-created User object so that the user can now login via
                         # Google Accounts, and ONLY via Google Accounts.
-                        user = User.objects.get(email=BaseUserManager.normalize_email(email), username=None)
+                        user = User.objects.get(
+                            email=BaseUserManager.normalize_email(email), username=None
+                        )
                         user.username = user_id
                         user.last_login = timezone.now()
                         user.save()

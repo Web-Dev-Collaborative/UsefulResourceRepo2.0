@@ -5,10 +5,17 @@ from six.moves.urllib.parse import urlencode
 
 from paypal.standard.models import ST_PP_CANCELLED
 from paypal.standard.ipn.models import PayPalIPN
-from paypal.standard.ipn.signals import (payment_was_successful,
-                                         payment_was_flagged, payment_was_refunded, payment_was_reversed,
-                                         recurring_skipped, recurring_failed,
-                                         recurring_create, recurring_payment, recurring_cancel)
+from paypal.standard.ipn.signals import (
+    payment_was_successful,
+    payment_was_flagged,
+    payment_was_refunded,
+    payment_was_reversed,
+    recurring_skipped,
+    recurring_failed,
+    recurring_create,
+    recurring_payment,
+    recurring_cancel,
+)
 
 
 # Parameters are all bytestrings, so we can construct a bytestring
@@ -51,7 +58,7 @@ IPN_POST_PARAMS = {
 
 
 class IPNTestBase(TestCase):
-    urls = 'paypal.standard.ipn.tests.test_urls'
+    urls = "paypal.standard.ipn.tests.test_urls"
 
     def setUp(self):
         self.old_debug = settings.DEBUG
@@ -97,7 +104,9 @@ class IPNTestBase(TestCase):
         # We build params into a bytestring ourselves, to avoid some encoding
         # processing that is done by the test client.
         post_data = urlencode(params)
-        return self.client.post("/ipn/", post_data, content_type='application/x-www-form-urlencoded')
+        return self.client.post(
+            "/ipn/", post_data, content_type="application/x-www-form-urlencoded"
+        )
 
     def assertGotSignal(self, signal, flagged, params=IPN_POST_PARAMS):
         # Check the signal was sent. These get lost if they don't reference self.
@@ -132,7 +141,6 @@ class IPNTestBase(TestCase):
 
 
 class IPNTest(IPNTestBase):
-
     def setUp(self):
         # Monkey patch over PayPalIPN to make it get a VERFIED response.
         self.old_postback = PayPalIPN._postback
@@ -151,28 +159,21 @@ class IPNTest(IPNTestBase):
         self.assertGotSignal(payment_was_flagged, True)
 
     def test_refunded_ipn(self):
-        update = {
-            "payment_status": "Refunded"
-        }
+        update = {"payment_status": "Refunded"}
         params = IPN_POST_PARAMS.copy()
         params.update(update)
 
         self.assertGotSignal(payment_was_refunded, False, params)
 
     def test_with_na_date(self):
-        update = {
-            "payment_status": "Refunded",
-            "time_created": "N/A"
-        }
+        update = {"payment_status": "Refunded", "time_created": "N/A"}
         params = IPN_POST_PARAMS.copy()
         params.update(update)
 
         self.assertGotSignal(payment_was_refunded, False, params)
 
     def test_reversed_ipn(self):
-        update = {
-            "payment_status": "Reversed"
-        }
+        update = {"payment_status": "Reversed"}
         params = IPN_POST_PARAMS.copy()
         params.update(update)
 
@@ -201,7 +202,7 @@ class IPNTest(IPNTestBase):
         self.paypal_post(IPN_POST_PARAMS)
         self.paypal_post(IPN_POST_PARAMS)
         self.assertEqual(len(PayPalIPN.objects.all()), 2)
-        ipn_obj = PayPalIPN.objects.order_by('-created_at', '-pk')[0]
+        ipn_obj = PayPalIPN.objects.order_by("-created_at", "-pk")[0]
         self.assertEqual(ipn_obj.flag, True)
         self.assertEqual(ipn_obj.flag_info, "Duplicate txn_id. (51403485VH153354B)")
 
@@ -209,7 +210,7 @@ class IPNTest(IPNTestBase):
         update = {
             "recurring_payment_id": "BN5JZ2V7MLEV4",
             "txn_type": "recurring_payment_skipped",
-            "txn_id": ""
+            "txn_id": "",
         }
         params = IPN_POST_PARAMS.copy()
         params.update(update)
@@ -220,7 +221,7 @@ class IPNTest(IPNTestBase):
         update = {
             "recurring_payment_id": "BN5JZ2V7MLEV4",
             "txn_type": "recurring_payment_failed",
-            "txn_id": ""
+            "txn_id": "",
         }
         params = IPN_POST_PARAMS.copy()
         params.update(update)
@@ -231,7 +232,7 @@ class IPNTest(IPNTestBase):
         update = {
             "recurring_payment_id": "BN5JZ2V7MLEV4",
             "txn_type": "recurring_payment_profile_created",
-            "txn_id": ""
+            "txn_id": "",
         }
         params = IPN_POST_PARAMS.copy()
         params.update(update)
@@ -242,7 +243,7 @@ class IPNTest(IPNTestBase):
         update = {
             "recurring_payment_id": "BN5JZ2V7MLEV4",
             "txn_type": "recurring_payment_profile_cancel",
-            "txn_id": ""
+            "txn_id": "",
         }
         params = IPN_POST_PARAMS.copy()
         params.update(update)
@@ -283,6 +284,7 @@ class IPNPostbackTest(IPNTestBase):
     """
     Tests an actual postback to PayPal server.
     """
+
     def test_postback(self):
         # Incorrect signature means we will always get failure
-        self.assertFlagged({}, u'Invalid postback. (INVALID)')
+        self.assertFlagged({}, u"Invalid postback. (INVALID)")

@@ -19,12 +19,14 @@ def init_testbed():
     stub_kwargs = {
         "init_datastore_v3_stub": {
             "use_sqlite": True,
-            "auto_id_policy": testbed.AUTO_ID_POLICY_SCATTERED if use_scattered else testbed.AUTO_ID_POLICY_SEQUENTIAL,
-            "consistency_policy": datastore_stub_util.PseudoRandomHRConsistencyPolicy(probability=1)
+            "auto_id_policy": testbed.AUTO_ID_POLICY_SCATTERED
+            if use_scattered
+            else testbed.AUTO_ID_POLICY_SEQUENTIAL,
+            "consistency_policy": datastore_stub_util.PseudoRandomHRConsistencyPolicy(
+                probability=1
+            ),
         },
-        "init_taskqueue_stub": {
-            "root_path": find_project_root()
-        }
+        "init_taskqueue_stub": {"root_path": find_project_root()},
     }
     bed = testbed.Testbed()
     bed.activate()
@@ -55,6 +57,7 @@ class SkipUnsupportedTestResult(TextTestResult):
         else:
             super(SkipUnsupportedTestResult, self).addError(test, err)
 
+
 class DjangaeTestSuiteRunner(DjangoTestSuiteRunner):
     def build_suite(self, *args, **kwargs):
         suite = super(DjangaeTestSuiteRunner, self).build_suite(*args, **kwargs)
@@ -70,5 +73,5 @@ class SkipUnsupportedRunner(DjangaeTestSuiteRunner):
         return unittest.TextTestRunner(
             verbosity=self.verbosity,
             failfast=self.failfast,
-            resultclass=SkipUnsupportedTestResult
+            resultclass=SkipUnsupportedTestResult,
         ).run(suite)

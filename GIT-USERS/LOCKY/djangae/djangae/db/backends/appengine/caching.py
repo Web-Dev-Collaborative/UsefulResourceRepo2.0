@@ -36,13 +36,17 @@ def remove_entity_from_context_cache_by_key(key):
 
 def cache_entity(model, entity):
     identifiers = unique_identifiers_from_entity(model, entity)
-    logger.debug("Caching entity with key %s and identifiers %s", entity.key(), identifiers)
+    logger.debug(
+        "Caching entity with key %s and identifiers %s", entity.key(), identifiers
+    )
     cache.set_many({x: entity for x in identifiers})
 
 
 def uncache_entity(model, entity):
     identifiers = unique_identifiers_from_entity(model, entity)
-    logger.debug("Uncaching entity with key %s and identifiers %s", entity.key(), identifiers)
+    logger.debug(
+        "Uncaching entity with key %s and identifiers %s", entity.key(), identifiers
+    )
     for identifier in identifiers:
         cache.delete(identifier)
 
@@ -83,6 +87,7 @@ class DisableContextCache(object):
     """
         A context manager that forcibly disables getting objects from the context cache
     """
+
     def __enter__(self):
         global context
         context.cache_disabled = True
@@ -91,5 +96,6 @@ class DisableContextCache(object):
         global context
         if hasattr(context, "cache_disabled"):
             delattr(context, "cache_disabled")
+
 
 disable_context_cache = DisableContextCache

@@ -8,10 +8,10 @@ __version__ strings to VERSION tuples and vice versa.
 import re
 
 
-__all__ = ['join_version', 'split_version']
+__all__ = ["join_version", "split_version"]
 
 
-_version_re = re.compile(r'^(\d+)\.(\d+)\.(\d+)(\..*)?$', re.VERBOSE)
+_version_re = re.compile(r"^(\d+)\.(\d+)\.(\d+)(\..*)?$", re.VERBOSE)
 
 
 def join_version(version_tuple):

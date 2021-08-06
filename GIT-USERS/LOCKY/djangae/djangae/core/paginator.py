@@ -12,10 +12,11 @@ class DatastorePaginator(object):
     Does not implement the full Paginator API.
     """
 
-    NOT_SUPPORTED_MSG = "Property '{}' is not supported when paginating datastore-models"
+    NOT_SUPPORTED_MSG = (
+        "Property '{}' is not supported when paginating datastore-models"
+    )
 
-    def __init__(self, object_list, per_page, orphans=0,
-                 allow_empty_first_page=True):
+    def __init__(self, object_list, per_page, orphans=0, allow_empty_first_page=True):
         self.fetched_objects = object_list
         self.object_list = []
         self.per_page = int(per_page)
@@ -28,9 +29,9 @@ class DatastorePaginator(object):
         try:
             number = int(number)
         except (TypeError, ValueError):
-            raise PageNotAnInteger('That page number is not an integer')
+            raise PageNotAnInteger("That page number is not an integer")
         if number < 1:
-            raise EmptyPage('That page number is less than 1')
+            raise EmptyPage("That page number is less than 1")
         return number
 
     def page(self, number):
@@ -40,8 +41,8 @@ class DatastorePaginator(object):
         number = self.validate_number(number)
         bottom = (number - 1) * self.per_page
         top = bottom + self.per_page
-        self.fetched_objects = self.fetched_objects[bottom:top + 1]
-        self.object_list = self.fetched_objects[:self.per_page]
+        self.fetched_objects = self.fetched_objects[bottom : top + 1]
+        self.object_list = self.fetched_objects[: self.per_page]
 
         return DatastorePage(self.fetched_objects, self.object_list, number, self)
 
@@ -49,14 +50,16 @@ class DatastorePaginator(object):
         """
         Returns the total number of objects, across all pages.
         """
-        raise NotImplementedError(self.NOT_SUPPORTED_MSG.format('count'))
+        raise NotImplementedError(self.NOT_SUPPORTED_MSG.format("count"))
+
     count = property(_get_count)
 
     def _get_num_pages(self):
         """
         Returns the total number of pages.
         """
-        raise NotImplementedError(self.NOT_SUPPORTED_MSG.format('num_pages'))
+        raise NotImplementedError(self.NOT_SUPPORTED_MSG.format("num_pages"))
+
     num_pages = property(_get_num_pages)
 
     def _get_page_range(self):
@@ -64,12 +67,12 @@ class DatastorePaginator(object):
         Returns a 1-based range of pages for iterating through within
         a template for loop.
         """
-        raise NotImplementedError(self.NOT_SUPPORTED_MSG.format('page_range'))
+        raise NotImplementedError(self.NOT_SUPPORTED_MSG.format("page_range"))
+
     page_range = property(_get_page_range)
 
 
 class DatastorePage(collections.Sequence):
-
     def __init__(self, fetched_objects, object_list, number, paginator):
         self.fetched_objects = fetched_objects
         self.object_list = object_list
@@ -79,7 +82,7 @@ class DatastorePage(collections.Sequence):
     def __repr__(self):
         bottom = (self.number - 1) * self.paginator.per_page
         top = len(self.object_list)
-        return '<Objects %s to %s>'.format(bottom, top)
+        return "<Objects %s to %s>".format(bottom, top)
 
     def __len__(self):
         return len(self.object_list)

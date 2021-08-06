@@ -12,6 +12,7 @@ def Memento(obj, deep=False):
     def Restore():
         obj.__dict__.clear()
         obj.__dict__.update(state)
+
     return Restore
 
 
@@ -20,6 +21,7 @@ class Transaction:
     """A transaction guard. This is really just
       syntactic suggar arount a memento closure.
       """
+
     deep = False
 
     def __init__(self, *targets):
@@ -51,27 +53,27 @@ class transactional(object):
             except:
                 state()
                 raise
+
         return transaction
 
 
 class NumObj(object):
-
     def __init__(self, value):
         self.value = value
 
     def __repr__(self):
-        return '<%s: %r>' % (self.__class__.__name__, self.value)
+        return "<%s: %r>" % (self.__class__.__name__, self.value)
 
     def Increment(self):
         self.value += 1
 
     @transactional
     def DoStuff(self):
-        self.value = '1111'  # <- invalid value
-        self.Increment()     # <- will fail and rollback
+        self.value = "1111"  # <- invalid value
+        self.Increment()  # <- will fail and rollback
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     n = NumObj(-1)
     print(n)
     t = Transaction(n)
@@ -80,23 +82,24 @@ if __name__ == '__main__':
             n.Increment()
             print(n)
         t.Commit()
-        print('-- commited')
+        print("-- commited")
         for i in range(3):
             n.Increment()
             print(n)
-        n.value += 'x'  # will fail
+        n.value += "x"  # will fail
         print(n)
     except:
         t.Rollback()
-        print('-- rolled back')
+        print("-- rolled back")
     print(n)
-    print('-- now doing stuff ...')
+    print("-- now doing stuff ...")
     try:
         n.DoStuff()
     except:
-        print('-> doing stuff failed!')
+        print("-> doing stuff failed!")
         import sys
         import traceback
+
         traceback.print_exc(file=sys.stdout)
         pass
     print(n)

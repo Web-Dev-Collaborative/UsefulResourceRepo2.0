@@ -8,7 +8,6 @@ Author: https://github.com/HanWenfang
 
 
 class Provider:
-
     def __init__(self):
         self.msg_queue = []
         self.subscribers = {}
@@ -35,7 +34,6 @@ class Provider:
 
 
 class Publisher:
-
     def __init__(self, msg_center):
         self.provider = msg_center
 
@@ -44,7 +42,6 @@ class Publisher:
 
 
 class Subscriber:
-
     def __init__(self, name, msg_center):
         self.name = name
         self.provider = msg_center

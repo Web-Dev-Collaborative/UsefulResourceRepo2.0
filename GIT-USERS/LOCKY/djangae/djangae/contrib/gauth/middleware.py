@@ -1,4 +1,10 @@
-from django.contrib.auth import authenticate, login, logout, get_user, BACKEND_SESSION_KEY
+from django.contrib.auth import (
+    authenticate,
+    login,
+    logout,
+    get_user,
+    BACKEND_SESSION_KEY,
+)
 from django.contrib.auth.middleware import AuthenticationMiddleware as DjangoMiddleware
 from django.contrib.auth.models import BaseUserManager
 from google.appengine.api import users
@@ -25,9 +31,11 @@ class AuthenticationMiddleware(DjangoMiddleware):
         backend_str = request.session.get(BACKEND_SESSION_KEY)
 
         # Now make sure we update is_superuser and is_staff appropriately
-        if backend_str == 'djangae.contrib.gauth.backends.AppEngineUserAPI':
+        if backend_str == "djangae.contrib.gauth.backends.AppEngineUserAPI":
             is_superuser = users.is_current_user_admin()
-            google_email = BaseUserManager.normalize_email(users.get_current_user().email())
+            google_email = BaseUserManager.normalize_email(
+                users.get_current_user().email()
+            )
             resave = False
 
             if is_superuser != django_user.is_superuser:

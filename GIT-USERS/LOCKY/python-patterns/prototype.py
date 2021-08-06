@@ -5,7 +5,6 @@ import copy
 
 
 class Prototype:
-
     def __init__(self):
         self._objects = {}
 
@@ -32,18 +31,19 @@ class A:
         self.garbage = [38, 11, 19]
 
     def __str__(self):
-        return '{} {} {} {}'.format(self.x, self.y, self.z, self.garbage)
+        return "{} {} {} {}".format(self.x, self.y, self.z, self.garbage)
 
 
 def main():
     a = A()
     prototype = Prototype()
-    prototype.register_object('objecta', a)
-    b = prototype.clone('objecta')
-    c = prototype.clone('objecta', x=1, y=2, garbage=[88, 1])
+    prototype.register_object("objecta", a)
+    b = prototype.clone("objecta")
+    c = prototype.clone("objecta", x=1, y=2, garbage=[88, 1])
     print([str(i) for i in (a, b, c)])
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
 
 ### OUTPUT ###

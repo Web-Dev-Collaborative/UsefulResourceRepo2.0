@@ -1,11 +1,11 @@
-#STANDARD LIB
+# STANDARD LIB
 from datetime import datetime
 from decimal import Decimal
 from itertools import chain
 
 import warnings
 
-#LIBRARIES
+# LIBRARIES
 from django.conf import settings
 from django.db.backends.util import format_number
 from django.db import IntegrityError
@@ -13,7 +13,7 @@ from django.utils import timezone
 from google.appengine.api import datastore
 from google.appengine.api.datastore import Key, Query
 
-#DJANGAE
+# DJANGAE
 from djangae.indexing import special_indexes_for_column, REQUIRES_SPECIAL_INDEXES
 from djangae.db.backends.appengine.dbapi import CouldBeSupportedError
 
@@ -26,7 +26,9 @@ def make_timezone_naive(value):
         if settings.USE_TZ:
             value = value.astimezone(timezone.utc).replace(tzinfo=None)
         else:
-            raise ValueError("Djangae backend does not support timezone-aware datetimes when USE_TZ is False.")
+            raise ValueError(
+                "Djangae backend does not support timezone-aware datetimes when USE_TZ is False."
+            )
     return value
 
 
@@ -45,20 +47,20 @@ def decimal_to_string(value, max_digits=16, decimal_places=0):
 
     # Handle sign separately.
     if value.is_signed():
-        sign = u'-'
+        sign = u"-"
         value = abs(value)
     else:
-        sign = u''
+        sign = u""
 
     # Let Django quantize and cast to a string.
     value = format_number(value, max_digits, decimal_places)
 
     # Pad with zeroes to a constant width.
-    n = value.find('.')
+    n = value.find(".")
     if n < 0:
         n = len(value)
     if n < max_digits - decimal_places:
-        value = u'0' * (max_digits - decimal_places - n) + value
+        value = u"0" * (max_digits - decimal_places - n) + value
     return sign + value
 
 
@@ -76,15 +78,16 @@ def get_datastore_kind(model):
 
 
 def get_prepared_db_value(connection, instance, field, raw=False):
-    value = getattr(instance, field.attname) if raw else field.pre_save(instance, instance._state.adding)
+    value = (
+        getattr(instance, field.attname)
+        if raw
+        else field.pre_save(instance, instance._state.adding)
+    )
 
     if hasattr(value, "prepare_database_save"):
         value = value.prepare_database_save(field)
     else:
-        value = field.get_db_prep_save(
-            value,
-            connection=connection
-        )
+        value = field.get_db_prep_save(value, connection=connection)
 
     value = connection.ops.value_for_db(value, field)
 
@@ -92,7 +95,11 @@ def get_prepared_db_value(connection, instance, field, raw=False):
 
 
 def get_concrete_parents(model):
-    ret = [x for x in model.mro() if hasattr(x, "_meta") and not x._meta.abstract and not x._meta.proxy]
+    ret = [
+        x
+        for x in model.mro()
+        if hasattr(x, "_meta") and not x._meta.abstract and not x._meta.proxy
+    ]
     return ret
 
 
@@ -113,8 +120,9 @@ def django_instance_to_entity(connection, model, fields, raw, instance):
         value = get_prepared_db_value(connection, _instance, _field, raw)
 
         if (not _field.null and not _field.primary_key) and value is None:
-            raise IntegrityError("You can't set %s (a non-nullable "
-                                     "field) to None!" % _field.name)
+            raise IntegrityError(
+                "You can't set %s (a non-nullable " "field) to None!" % _field.name
+            )
 
         is_primary_key = False
         if _field.primary_key and _field.model == inheritance_root:
@@ -125,7 +133,7 @@ def django_instance_to_entity(connection, model, fields, raw, instance):
     concrete_classes = get_concrete_parents(model)
     classes = None
     if len(concrete_classes) > 1:
-        classes = [ x._meta.db_table for x in concrete_classes ]
+        classes = [x._meta.db_table for x in concrete_classes]
 
         for klass in concrete_classes[1:]:  # Ignore the current model
             for field in klass._meta.fields:
@@ -144,7 +152,9 @@ def django_instance_to_entity(connection, model, fields, raw, instance):
         # Add special indexed fields
         for index in special_indexes_for_column(model, field.column):
             indexer = REQUIRES_SPECIAL_INDEXES[index]
-            field_values[indexer.indexed_column_name(field.column)] = indexer.prep_value_for_database(value)
+            field_values[
+                indexer.indexed_column_name(field.column)
+            ] = indexer.prep_value_for_database(value)
 
     kwargs = {}
     if primary_key:
@@ -152,9 +162,11 @@ def django_instance_to_entity(connection, model, fields, raw, instance):
             kwargs["id"] = primary_key
         elif isinstance(primary_key, basestring):
             if len(primary_key) >= 500:
-                warnings.warn("Truncating primary key that is over 500 characters. "
-                              "THIS IS AN ERROR IN YOUR PROGRAM.",
-                              RuntimeWarning)
+                warnings.warn(
+                    "Truncating primary key that is over 500 characters. "
+                    "THIS IS AN ERROR IN YOUR PROGRAM.",
+                    RuntimeWarning,
+                )
                 primary_key = primary_key[:500]
 
             kwargs["name"] = primary_key
@@ -186,7 +198,7 @@ class MockInstance(object):
     """
 
     def __init__(self, **kwargs):
-        is_adding = kwargs.pop('_is_adding', False)
+        is_adding = kwargs.pop("_is_adding", False)
 
         class State:
             adding = is_adding
@@ -235,25 +247,29 @@ def entity_matches_query(entity, query):
         "<": lambda x, y: x < y,
         ">": lambda x, y: x > y,
         "<=": lambda x, y: x <= y,
-        ">=": lambda x, y: x >= y
+        ">=": lambda x, y: x >= y,
     }
 
     queries = [query]
     if isinstance(query, datastore.MultiQuery):
-        raise CouldBeSupportedError("We just need to separate the multiquery "
-                                    "into 'queries' then everything should work")
+        raise CouldBeSupportedError(
+            "We just need to separate the multiquery "
+            "into 'queries' then everything should work"
+        )
 
     for query in queries:
         comparisons = chain(
-            [("kind", "=", "_Query__kind") ],
-            [tuple(x.split(" ") + [ x ]) for x in query.keys()]
+            [("kind", "=", "_Query__kind")],
+            [tuple(x.split(" ") + [x]) for x in query.keys()],
         )
 
         for ent_attr, op, query_attr in comparisons:
             if ent_attr == "__key__":
                 continue
 
-            op = OPERATORS[op]  # We want this to throw if there's some op we don't know about
+            op = OPERATORS[
+                op
+            ]  # We want this to throw if there's some op we don't know about
 
             if ent_attr == "kind":
                 ent_attr = entity.kind()
@@ -271,14 +287,17 @@ def entity_matches_query(entity, query):
                 # The query value can be a list of ANDed values
                 query_attrs = query_attr
 
-            query_attrs = [ getattr(query, x) if x == "_Query__kind" else query.get(x) for x in query_attrs ]
+            query_attrs = [
+                getattr(query, x) if x == "_Query__kind" else query.get(x)
+                for x in query_attrs
+            ]
 
             if not isinstance(ent_attr, (list, tuple)):
-                ent_attr = [ ent_attr ]
+                ent_attr = [ent_attr]
 
             matches = False
             for query_attr in query_attrs:  # [22, 23]
-                #If any of the values don't match then this query doesn't match
+                # If any of the values don't match then this query doesn't match
                 if not any([op(attr, query_attr) for attr in ent_attr]):
                     matches = False
                     break

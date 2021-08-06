@@ -14,19 +14,20 @@ def count_to(count):
     for pos, number in zip(range(count), numbers):
         yield number
 
+
 # Test the generator
 count_to_two = lambda: count_to(2)
 count_to_five = lambda: count_to(5)
 
-print('Counting to two...')
+print("Counting to two...")
 for number in count_to_two():
-    print(number, end=' ')
+    print(number, end=" ")
 
 print()
 
-print('Counting to five...')
+print("Counting to five...")
 for number in count_to_five():
-    print(number, end=' ')
+    print(number, end=" ")
 
 print()
 

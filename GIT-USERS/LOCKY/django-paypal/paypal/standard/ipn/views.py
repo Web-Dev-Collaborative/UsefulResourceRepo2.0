@@ -18,7 +18,7 @@ def ipn(request, item_check_callable=None):
     PayPal IPN Simulator:
     https://developer.paypal.com/cgi-bin/devscr?cmd=_ipn-link-session
     """
-    #TODO: Clean up code so that we don't need to set None here and have a lot
+    # TODO: Clean up code so that we don't need to set None here and have a lot
     #      of if checks just to determine if flag is set.
     flag = None
     ipn_obj = None
@@ -28,7 +28,7 @@ def ipn(request, item_check_callable=None):
     # Assuming the tolerate parsing of QueryDict and an ASCII-like encoding,
     # such as windows-1252, latin1 or UTF8, the following will work:
 
-    encoding = request.POST.get('charset', None)
+    encoding = request.POST.get("charset", None)
 
     if encoding is None:
         flag = "Invalid form - no charset passed, can't decode"
@@ -41,16 +41,21 @@ def ipn(request, item_check_callable=None):
             flag = "Invalid form - invalid charset"
 
     if data is not None:
-        date_fields = ('time_created', 'payment_date', 'next_payment_date',
-                       'subscr_date', 'subscr_effective')
+        date_fields = (
+            "time_created",
+            "payment_date",
+            "next_payment_date",
+            "subscr_date",
+            "subscr_effective",
+        )
         for date_field in date_fields:
-            if data.get(date_field) == 'N/A':
+            if data.get(date_field) == "N/A":
                 del data[date_field]
 
         form = PayPalIPNForm(data)
         if form.is_valid():
             try:
-                #When commit = False, object is returned without saving to DB.
+                # When commit = False, object is returned without saving to DB.
                 ipn_obj = form.save(commit=False)
             except Exception as e:
                 flag = "Exception while processing. (%s)" % e
@@ -60,16 +65,16 @@ def ipn(request, item_check_callable=None):
     if ipn_obj is None:
         ipn_obj = PayPalIPN()
 
-    #Set query params and sender's IP address
+    # Set query params and sender's IP address
     ipn_obj.initialize(request)
 
     if flag is not None:
-        #We save errors in the flag field
+        # We save errors in the flag field
         ipn_obj.set_flag(flag)
     else:
         # Secrets should only be used over SSL.
-        if request.is_secure() and 'secret' in request.GET:
-            ipn_obj.verify_secret(form, request.GET['secret'])
+        if request.is_secure() and "secret" in request.GET:
+            ipn_obj.verify_secret(form, request.GET["secret"])
         else:
             ipn_obj.verify(item_check_callable)
 

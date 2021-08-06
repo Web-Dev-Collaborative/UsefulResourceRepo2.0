@@ -3,10 +3,8 @@ from django.db import router, models
 from django.db.models.fields.related import RelatedField
 from django.utils.functional import cached_property
 
-from djangae.forms.fields import (
-    encode_pk,
-    GenericRelationFormfield
-)
+from djangae.forms.fields import encode_pk, GenericRelationFormfield
+
 
 class RelatedSetRel(object):
     def __init__(self, to, related_name=None, limit_choices_to=None):
@@ -23,7 +21,7 @@ class RelatedSetRel(object):
 
     def is_hidden(self):
         "Should the related object be hidden?"
-        return self.related_name and self.related_name[-1] == '+'
+        return self.related_name and self.related_name[-1] == "+"
 
     def set_field_name(self):
         self.field_name = self.field_name or self.to._meta.pk.name
@@ -36,8 +34,8 @@ class RelatedSetRel(object):
         """
         return self.to._meta.pk
 
-def create_related_set_manager(superclass, rel):
 
+def create_related_set_manager(superclass, rel):
     class RelatedSetManager(superclass):
         def __init__(self, model, field, instance, reverse):
             super(RelatedSetManager, self).__init__()
@@ -46,20 +44,33 @@ def create_related_set_manager(superclass, rel):
             self.field = field
 
             if reverse:
-                self.core_filters = { '%s__exact' % self.field.column: instance.pk }
+                self.core_filters = {"%s__exact" % self.field.column: instance.pk}
             else:
-                self.core_filters= {'pk__in': field.value_from_object(instance) }
+                self.core_filters = {"pk__in": field.value_from_object(instance)}
 
         def get_queryset(self):
-            db = self._db or router.db_for_read(self.instance.__class__, instance=self.instance)
-            return super(RelatedSetManager, self).get_queryset().using(db)._next_is_sticky().filter(**self.core_filters)
+            db = self._db or router.db_for_read(
+                self.instance.__class__, instance=self.instance
+            )
+            return (
+                super(RelatedSetManager, self)
+                .get_queryset()
+                .using(db)
+                ._next_is_sticky()
+                .filter(**self.core_filters)
+            )
 
         def add(self, value):
             if not isinstance(value, self.model):
-                raise TypeError("'%s' instance expected, got %r" % (self.model._meta.object_name, value))
+                raise TypeError(
+                    "'%s' instance expected, got %r"
+                    % (self.model._meta.object_name, value)
+                )
 
             if not value.pk:
-                raise ValueError("Model instances must be saved before they can be added to a related set")
+                raise ValueError(
+                    "Model instances must be saved before they can be added to a related set"
+                )
 
             self.field.value_from_object(self.instance).add(value.pk)
 
@@ -69,8 +80,8 @@ def create_related_set_manager(superclass, rel):
         def clear(self):
             setattr(self.instance, self.field.attname, set())
 
-
     return RelatedSetManager
+
 
 class RelatedSetObjectsDescriptor(object):
     # This class provides the functionality that makes the related-object
@@ -80,15 +91,14 @@ class RelatedSetObjectsDescriptor(object):
     # In the example "publication.article_set", the article_set attribute is a
     # ManyRelatedObjectsDescriptor instance.
     def __init__(self, related):
-        self.related = related   # RelatedObject instance
+        self.related = related  # RelatedObject instance
 
     @cached_property
     def related_manager_cls(self):
         # Dynamically create a class that subclasses the related
         # model's default manager.
         return create_related_set_manager(
-            self.related.model._default_manager.__class__,
-            self.related.field.rel
+            self.related.model._default_manager.__class__, self.related.field.rel
         )
 
     def __get__(self, instance, instance_type=None):
@@ -99,16 +109,14 @@ class RelatedSetObjectsDescriptor(object):
         rel_field = self.related.field
 
         manager = self.related_manager_cls(
-            model=rel_model,
-            field=rel_field,
-            instance=instance,
-            reverse=True
+            model=rel_model, field=rel_field, instance=instance, reverse=True
         )
 
         return manager
 
     def __set__(self, obj, value):
         raise AttributeError("You can't set the reverse relation directly")
+
 
 class ReverseRelatedSetObjectsDescriptor(object):
     # This class provides the functionality that makes the related-object
@@ -125,8 +133,7 @@ class ReverseRelatedSetObjectsDescriptor(object):
         # Dynamically create a class that subclasses the related model's
         # default manager.
         return create_related_set_manager(
-            self.field.rel.to._default_manager.__class__,
-            self.field.rel.to
+            self.field.rel.to._default_manager.__class__, self.field.rel.to
         )
 
     def __get__(self, instance, instance_type=None):
@@ -134,10 +141,7 @@ class ReverseRelatedSetObjectsDescriptor(object):
             return self
 
         manager = self.related_manager_cls(
-            model=self.field.rel.to,
-            field=self.field,
-            instance=instance,
-            reverse=False
+            model=self.field.rel.to, field=self.field, instance=instance, reverse=False
         )
 
         return manager
@@ -145,19 +149,18 @@ class ReverseRelatedSetObjectsDescriptor(object):
     def __set__(self, obj, value):
         obj.__dict__[self.field.attname] = self.field.to_python([x.pk for x in value])
 
+
 class RelatedSetField(RelatedField):
     requires_unique_target = False
     generate_reverse_relation = True
     empty_strings_allowed = False
 
     def db_type(self, connection):
-        return 'set'
+        return "set"
 
     def __init__(self, model, limit_choices_to=None, related_name=None, **kwargs):
         kwargs["rel"] = RelatedSetRel(
-            model,
-            related_name=related_name,
-            limit_choices_to=limit_choices_to
+            model, related_name=related_name, limit_choices_to=limit_choices_to
         )
 
         kwargs["default"] = set
@@ -166,7 +169,7 @@ class RelatedSetField(RelatedField):
         super(RelatedSetField, self).__init__(**kwargs)
 
     def get_attname(self):
-        return '%s_ids' % self.name
+        return "%s_ids" % self.name
 
     def contribute_to_class(self, cls, name):
         # To support multiple relations to self, it's useful to have a non-None
@@ -175,7 +178,7 @@ class RelatedSetField(RelatedField):
         # specify *what* on my non-reversible relation?!"), so we set it up
         # automatically. The funky name reduces the chance of an accidental
         # clash.
-        if (self.rel.to == "self" or self.rel.to == cls._meta.object_name):
+        if self.rel.to == "self" or self.rel.to == cls._meta.object_name:
             self.rel.related_name = "%s_rel_+" % name
 
         super(RelatedSetField, self).contribute_to_class(cls, name)
@@ -183,12 +186,13 @@ class RelatedSetField(RelatedField):
         # Add the descriptor for the m2m relation
         setattr(cls, self.name, ReverseRelatedSetObjectsDescriptor(self))
 
-
     def contribute_to_related_class(self, cls, related):
         # Internal M2Ms (i.e., those with a related name ending with '+')
         # and swapped models don't get a related descriptor.
         if not self.rel.is_hidden() and not related.model._meta.swapped:
-            setattr(cls, related.get_accessor_name(), RelatedSetObjectsDescriptor(related))
+            setattr(
+                cls, related.get_accessor_name(), RelatedSetObjectsDescriptor(related)
+            )
 
     def to_python(self, value):
         if value is None:
@@ -207,7 +211,7 @@ class RelatedSetField(RelatedField):
         return ret
 
     def get_db_prep_lookup(self, *args, **kwargs):
-        ret =  super(RelatedSetField, self).get_db_prep_lookup(*args, **kwargs)
+        ret = super(RelatedSetField, self).get_db_prep_lookup(*args, **kwargs)
 
         if not ret:
             return None
@@ -227,19 +231,21 @@ class RelatedSetField(RelatedField):
         setattr(instance, self.attname, set([x.pk for x in data]))
 
     def formfield(self, **kwargs):
-        db = kwargs.pop('using', None)
+        db = kwargs.pop("using", None)
         defaults = {
-            'form_class': forms.ModelMultipleChoiceField,
-            'queryset': self.rel.to._default_manager.using(db).complex_filter(self.rel.limit_choices_to)
+            "form_class": forms.ModelMultipleChoiceField,
+            "queryset": self.rel.to._default_manager.using(db).complex_filter(
+                self.rel.limit_choices_to
+            ),
         }
         defaults.update(kwargs)
         # If initial is passed in, it's a list of related objects, but the
         # MultipleChoiceField takes a list of IDs.
-        if defaults.get('initial') is not None:
-            initial = defaults['initial']
+        if defaults.get("initial") is not None:
+            initial = defaults["initial"]
             if callable(initial):
                 initial = initial()
-            defaults['initial'] = [i._get_pk_val() for i in initial]
+            defaults["initial"] = [i._get_pk_val() for i in initial]
         return super(RelatedSetField, self).formfield(**defaults)
 
 
@@ -285,7 +291,6 @@ class GRReverseCreator(property):
         obj.__dict__[self.attname] = value
 
 
-
 class GenericRelationField(models.Field):
     """ Similar to django.contrib.contenttypes.generic.GenericForeignKey, but
         doesn't require all of the contenttypes cruft.
@@ -293,20 +298,17 @@ class GenericRelationField(models.Field):
         Empty NULL values are specifically encoded so they can also be unique, this is different
         from Django's FK behaviour.
     """
+
     description = "Generic one-way relation field"
     form_class = GenericRelationFormfield
 
     def __init__(self, *args, **kwargs):
         self.vc_encoded = True
 
-        kwargs.update(
-            max_length=255,
-            blank=True,
-            null=True
-        )
+        kwargs.update(max_length=255, blank=True, null=True)
 
-        if 'db_index' not in kwargs:
-            kwargs['db_index'] = True
+        if "db_index" not in kwargs:
+            kwargs["db_index"] = True
 
         super(GenericRelationField, self).__init__(*args, **kwargs)
 
@@ -335,9 +337,7 @@ class GenericRelationField(models.Field):
         return self.form_class.to_python(value)
 
     def formfield(self, **kwargs):
-        defaults = {
-            'form_class': self.form_class,
-        }
+        defaults = {"form_class": self.form_class}
         defaults.update(kwargs)
         return super(GenericRelationField, self).formfield(**defaults)
 

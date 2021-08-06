@@ -10,6 +10,7 @@ from .related import *
 from .computed import *
 from .json import *
 
+
 class TrueOrNullField(models.NullBooleanField):
     """A Field only storing `Null` or `True` values.
 
@@ -21,31 +22,28 @@ class TrueOrNullField(models.NullBooleanField):
     unexpected (like a string) and saving, will silently convert that
     value to either True or None.
     """
+
     __metaclass__ = models.SubfieldBase
 
-    default_error_messages = {
-        'invalid': _("'%s' value must be either True or None."),
-    }
+    default_error_messages = {"invalid": _("'%s' value must be either True or None.")}
     description = _("Boolean (Either True or None)")
 
     def to_python(self, value):
-        if value in (None, 'None', False):
+        if value in (None, "None", False):
             return None
-        if value in (True, 't', 'True', '1'):
+        if value in (True, "t", "True", "1"):
             return True
-        msg = self.error_messages['invalid'] % str(value)
+        msg = self.error_messages["invalid"] % str(value)
         raise ValidationError(msg)
 
     def get_prep_value(self, value):
         """Only ever save None's or True's in the db. """
-        if value in (None, False, '', 0):
+        if value in (None, False, "", 0):
             return None
         return True
 
     def formfield(self, **kwargs):
-        defaults = {
-            'form_class': TrueOrNullFormField
-        }
+        defaults = {"form_class": TrueOrNullFormField}
         defaults.update(kwargs)
         return super(TrueOrNullField, self).formfield(**defaults)
 
@@ -74,7 +72,9 @@ class ShardedCounter(list):
                     break
 
     def value(self):
-        shards = CounterShard.objects.filter(pk__in=self).values_list('count', flat=True)
+        shards = CounterShard.objects.filter(pk__in=self).values_list(
+            "count", flat=True
+        )
         return sum(shards)
 
 
@@ -83,7 +83,9 @@ class ShardedCounterField(ListField):
 
     def __init__(self, shard_count=30, *args, **kwargs):
         self.shard_count = shard_count
-        super(ShardedCounterField, self).__init__(models.PositiveIntegerField, *args, **kwargs)
+        super(ShardedCounterField, self).__init__(
+            models.PositiveIntegerField, *args, **kwargs
+        )
 
     def pre_save(self, model_instance, add):
         value = super(ShardedCounterField, self).pre_save(model_instance, add)

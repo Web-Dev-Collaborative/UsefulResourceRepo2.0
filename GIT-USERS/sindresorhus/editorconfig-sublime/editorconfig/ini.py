@@ -49,7 +49,8 @@ class EditorConfigParser(object):
 
         \]                                  # Closing square brace
 
-        """, re.VERBOSE
+        """,
+        re.VERBOSE,
     )
     # Regular expression for parsing option name/values.
     # Allow any amount of whitespaces, followed by separator
@@ -73,7 +74,8 @@ class EditorConfigParser(object):
         )
         $
 
-        """, re.VERBOSE
+        """,
+        re.VERBOSE,
     )
 
     def __init__(self, filename):
@@ -83,21 +85,21 @@ class EditorConfigParser(object):
 
     def matches_filename(self, config_filename, glob):
         """Return True if section glob matches filename"""
-        config_dirname = normpath(dirname(config_filename)).replace(sep, '/')
+        config_dirname = normpath(dirname(config_filename)).replace(sep, "/")
         glob = glob.replace("\\#", "#")
         glob = glob.replace("\\;", ";")
-        if '/' in glob:
-            if glob.find('/') == 0:
+        if "/" in glob:
+            if glob.find("/") == 0:
                 glob = glob[1:]
             glob = posixpath.join(config_dirname, glob)
         else:
-            glob = posixpath.join('**/', glob)
+            glob = posixpath.join("**/", glob)
         return fnmatch(self.filename, glob)
 
     def read(self, filename):
         """Read and parse single EditorConfig file"""
         try:
-            fp = open(filename, encoding='utf-8')
+            fp = open(filename, encoding="utf-8")
         except IOError:
             return
         self._read(fp, filename)
@@ -117,23 +119,23 @@ class EditorConfigParser(object):
         matching_section = False
         optname = None
         lineno = 0
-        e = None                                  # None, or an exception
+        e = None  # None, or an exception
         while True:
             line = fp.readline()
             if not line:
                 break
-            if lineno == 0 and line.startswith(u('\ufeff')):
+            if lineno == 0 and line.startswith(u("\ufeff")):
                 line = line[1:]  # Strip UTF-8 BOM
             lineno = lineno + 1
             # comment or blank line?
-            if line.strip() == '' or line[0] in '#;':
+            if line.strip() == "" or line[0] in "#;":
                 continue
             # a section header or option header?
             else:
                 # is it a section header?
                 mo = self.SECTCRE.match(line)
                 if mo:
-                    sectname = mo.group('header')
+                    sectname = mo.group("header")
                     in_section = True
                     matching_section = self.matches_filename(fpname, sectname)
                     # So sections can't start with a continuation line
@@ -142,20 +144,20 @@ class EditorConfigParser(object):
                 else:
                     mo = self.OPTCRE.match(line)
                     if mo:
-                        optname, vi, optval = mo.group('option', 'vi', 'value')
-                        if ';' in optval or '#' in optval:
+                        optname, vi, optval = mo.group("option", "vi", "value")
+                        if ";" in optval or "#" in optval:
                             # ';' and '#' are comment delimiters only if
                             # preceded by a spacing character
-                            m = re.search('(.*?) [;#]', optval)
+                            m = re.search("(.*?) [;#]", optval)
                             if m:
                                 optval = m.group(1)
                         optval = optval.strip()
                         # allow empty values
                         if optval == '""':
-                            optval = ''
+                            optval = ""
                         optname = self.optionxform(optname.rstrip())
-                        if not in_section and optname == 'root':
-                            self.root_file = (optval.lower() == 'true')
+                        if not in_section and optname == "root":
+                            self.root_file = optval.lower() == "true"
                         if matching_section:
                             self.options[optname] = optval
                     else:

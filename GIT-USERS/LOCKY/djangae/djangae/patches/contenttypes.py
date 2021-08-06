@@ -5,7 +5,14 @@ from itertools import chain
 
 from django.contrib.contenttypes.models import ContentType
 from django.db import DEFAULT_DB_ALIAS, router, connections
-from django.db.models import get_model, get_models, UnavailableApp, signals, Manager, get_apps
+from django.db.models import (
+    get_model,
+    get_models,
+    UnavailableApp,
+    signals,
+    Manager,
+    get_apps,
+)
 from django.utils.encoding import smart_text
 from django.utils import six
 from django.utils.six.moves import input
@@ -24,7 +31,7 @@ class SimulatedContentTypeManager(Manager):
         crc = CRC64()
         crc.append(app_label)
         crc.append(model)
-        return crc.fini() - (2 ** 63) #GAE integers are signed so we shift down
+        return crc.fini() - (2 ** 63)  # GAE integers are signed so we shift down
 
     def _get_opts(self, model, for_concrete_model):
         if for_concrete_model:
@@ -43,7 +50,9 @@ class SimulatedContentTypeManager(Manager):
         if conn.use_debug_cursor:
             for model in models or []:
                 if model not in self._store.queried_models:
-                    conn.queries.append("select * from {}".format(ContentType._meta.db_table))
+                    conn.queries.append(
+                        "select * from {}".format(ContentType._meta.db_table)
+                    )
                     break
 
         self._store.queried_models |= set(models or [])
@@ -58,7 +67,10 @@ class SimulatedContentTypeManager(Manager):
         self._update_queries(models)
 
         if not hasattr(self._store, "content_types"):
-            all_models = [ (x._meta.app_label, x._meta.model_name, x) for x in chain(*[ get_models(y) for y in get_apps() ]) ]
+            all_models = [
+                (x._meta.app_label, x._meta.model_name, x)
+                for x in chain(*[get_models(y) for y in get_apps()])
+            ]
 
             self._update_queries([(x[0], x[1]) for x in all_models])
 
@@ -70,7 +82,7 @@ class SimulatedContentTypeManager(Manager):
                     "id": content_type_id,
                     "app_label": app_label,
                     "model": model_name,
-                    "name": smart_text(model._meta.verbose_name_raw)
+                    "name": smart_text(model._meta.verbose_name_raw),
                 }
 
             self._store.content_types = content_types
@@ -88,7 +100,13 @@ class SimulatedContentTypeManager(Manager):
         for_concrete_model = kwargs.get("for_concrete_models", True)
 
         self._update_queries(
-            [ (self._get_opts(x, for_concrete_model).app_label, self._get_opts(x, for_concrete_model).model_name) for x in models ]
+            [
+                (
+                    self._get_opts(x, for_concrete_model).app_label,
+                    self._get_opts(x, for_concrete_model).model_name,
+                )
+                for x in models
+            ]
         )
         ret = {}
         for model in models:
@@ -148,7 +166,9 @@ class SimulatedContentTypeManager(Manager):
         try:
             return self.get(**kwargs)
         except ContentType.DoesNotExist:
-            logging.warning("Created simulated content type, this will not persist and will remain thread-local")
+            logging.warning(
+                "Created simulated content type, this will not persist and will remain thread-local"
+            )
             new_id = self._get_id(kwargs["app_label"], kwargs["model"])
             kwargs["id"] = new_id
             if "pk" in kwargs:
@@ -161,7 +181,9 @@ class SimulatedContentTypeManager(Manager):
             del kwargs["defaults"]
             return self.get(**kwargs)
         except ContentType.DoesNotExist:
-            raise NotImplementedError("You can't manually create simulated content types")
+            raise NotImplementedError(
+                "You can't manually create simulated content types"
+            )
 
     def filter(self, **kwargs):
         raise NotImplementedError()
@@ -174,7 +196,9 @@ class SimulatedContentTypeManager(Manager):
         return result
 
 
-def update_contenttypes(app, created_models, verbosity=2, db=DEFAULT_DB_ALIAS, **kwargs):
+def update_contenttypes(
+    app, created_models, verbosity=2, db=DEFAULT_DB_ALIAS, **kwargs
+):
     """
         Django's default update_contenttypes relies on many inconsistent queries which causes problems
         with syncdb. This monkeypatch replaces it with a version that does look ups on unique constraints
@@ -184,7 +208,7 @@ def update_contenttypes(app, created_models, verbosity=2, db=DEFAULT_DB_ALIAS, *
         print("Running Djangae version of update_contenttypes on {}".format(app))
 
     try:
-        get_model('contenttypes', 'ContentType')
+        get_model("contenttypes", "ContentType")
     except UnavailableApp:
         return
 
@@ -197,10 +221,7 @@ def update_contenttypes(app, created_models, verbosity=2, db=DEFAULT_DB_ALIAS, *
         return
     # They all have the same app_label, get the first one.
     app_label = app_models[0]._meta.app_label
-    app_models = dict(
-        (model._meta.model_name, model)
-        for model in app_models
-    )
+    app_models = dict((model._meta.model_name, model) for model in app_models)
 
     created_or_existing_pks = []
     created_or_existing_by_unique = {}
@@ -210,9 +231,7 @@ def update_contenttypes(app, created_models, verbosity=2, db=DEFAULT_DB_ALIAS, *
         ct, created = ContentType.objects.get_or_create(
             app_label=app_label,
             model=model_name,
-            defaults = {
-                "name": smart_text(model._meta.verbose_name_raw)
-            }
+            defaults={"name": smart_text(model._meta.verbose_name_raw)},
         )
 
         if verbosity >= 2 and created:
@@ -223,7 +242,11 @@ def update_contenttypes(app, created_models, verbosity=2, db=DEFAULT_DB_ALIAS, *
 
     # Now lets see if we should remove any
 
-    to_remove = [x for x in ContentType.objects.filter(app_label=app_label) if x.pk not in created_or_existing_pks]
+    to_remove = [
+        x
+        for x in ContentType.objects.filter(app_label=app_label)
+        if x.pk not in created_or_existing_pks
+    ]
 
     # Now it's possible that our get_or_create failed because of consistency issues and we create a duplicate.
     # Then the original appears in the to_remove and we remove the original. This is bad. So here we go through the
@@ -237,17 +260,21 @@ def update_contenttypes(app, created_models, verbosity=2, db=DEFAULT_DB_ALIAS, *
             created_or_existing_by_unique[unique] = ct.pk
             ct.save()  # Recache this one in the context cache
 
-    to_remove = [ x for x in to_remove if (x.app_label, x.model) not in created_or_existing_by_unique ]
+    to_remove = [
+        x
+        for x in to_remove
+        if (x.app_label, x.model) not in created_or_existing_by_unique
+    ]
 
     # Now, anything left should actually be a stale thing. It's still possible we missed some but they'll get picked up
     # next time. Confirm that the content type is stale before deletion.
     if to_remove:
-        if kwargs.get('interactive', False):
-            content_type_display = '\n'.join([
-                '    %s | %s' % (x.app_label, x.model)
-                for x in to_remove
-            ])
-            ok_to_delete = input("""The following content types are stale and need to be deleted:
+        if kwargs.get("interactive", False):
+            content_type_display = "\n".join(
+                ["    %s | %s" % (x.app_label, x.model) for x in to_remove]
+            )
+            ok_to_delete = input(
+                """The following content types are stale and need to be deleted:
 
 %s
 
@@ -255,14 +282,19 @@ Any objects related to these content types by a foreign key will also
 be deleted. Are you sure you want to delete these content types?
 If you're unsure, answer 'no'.
 
-    Type 'yes' to continue, or 'no' to cancel: """ % content_type_display)
+    Type 'yes' to continue, or 'no' to cancel: """
+                % content_type_display
+            )
         else:
             ok_to_delete = False
 
-        if ok_to_delete == 'yes':
+        if ok_to_delete == "yes":
             for ct in to_remove:
                 if verbosity >= 2:
-                    print("Deleting stale content type '%s | %s'" % (ct.app_label, ct.model))
+                    print(
+                        "Deleting stale content type '%s | %s'"
+                        % (ct.app_label, ct.model)
+                    )
                 ct.delete()
         else:
             if verbosity >= 2:
@@ -271,9 +303,11 @@ If you're unsure, answer 'no'.
 
 def patch():
     from django.contrib.contenttypes.management import update_contenttypes as original
+
     signals.post_syncdb.disconnect(original)
 
     from django.conf import settings
+
     if getattr(settings, "DJANGAE_SIMULATE_CONTENTTYPES", False):
         from django.contrib.contenttypes import models
 

@@ -18,9 +18,11 @@ def without_security_middleware(func):
     # use in tests where you are patching one of the things which is patched in the middleware,
     # thus allowing you to avoid the afore-described issue.
     middleware = list(settings.MIDDLEWARE_CLASSES[:])
-    middleware.remove('djangae.contrib.security.middleware.AppEngineSecurityMiddleware')
+    middleware.remove("djangae.contrib.security.middleware.AppEngineSecurityMiddleware")
+
     @wraps(func)
     def _wrapped(*args, **kwargs):
         with override_settings(MIDDLEWARE_CLASSES=middleware):
             return func(*args, **kwargs)
+
     return _wrapped

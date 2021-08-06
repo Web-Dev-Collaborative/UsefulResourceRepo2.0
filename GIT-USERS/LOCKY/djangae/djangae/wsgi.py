@@ -6,7 +6,6 @@ from djangae.utils import on_production
 
 
 class DjangaeApplication(object):
-
     def fix_subprocess_module(self):
         """
             Making the subprocess module work on the dev_appserver is hard work
@@ -23,17 +22,15 @@ class DjangaeApplication(object):
                 "Mediagenerator/assetpipe users should find "
                 "alternatives which run in a separate process."
             ),
-            DeprecationWarning
+            DeprecationWarning,
         )
 
         import sys
         from google.appengine import dist27
         from google.appengine.tools.devappserver2.python import sandbox
 
-        if 'fcntl' not in sandbox._WHITE_LIST_C_MODULES:
-            sandbox._WHITE_LIST_C_MODULES.extend([
-                'fcntl'
-            ])
+        if "fcntl" not in sandbox._WHITE_LIST_C_MODULES:
+            sandbox._WHITE_LIST_C_MODULES.extend(["fcntl"])
 
         if "subprocess" in dist27.MODULE_OVERRIDES:
             dist27.MODULE_OVERRIDES.remove("subprocess")
@@ -43,7 +40,7 @@ class DjangaeApplication(object):
 
             for finder in sys.meta_path:
                 if isinstance(finder, sandbox.ModuleOverrideImportHook):
-                    del finder.policies['os']
+                    del finder.policies["os"]
 
             if "os" in sys.modules:
                 del sys.modules["os"]
@@ -79,12 +76,10 @@ class DjangaeApplication(object):
 
         from google.appengine.tools.devappserver2.python import sandbox
 
-        if '_sqlite3' not in sandbox._WHITE_LIST_C_MODULES:
-            sandbox._WHITE_LIST_C_MODULES.extend([
-                '_sqlite3'
-            ])
+        if "_sqlite3" not in sandbox._WHITE_LIST_C_MODULES:
+            sandbox._WHITE_LIST_C_MODULES.extend(["_sqlite3"])
 
-        #Fix up the subprocess module
+        # Fix up the subprocess module
         self.fix_subprocess_module()
 
     def __init__(self, application):
@@ -93,7 +88,9 @@ class DjangaeApplication(object):
 
         for app in settings.INSTALLED_APPS[::-1]:
             if app.startswith("django."):
-                raise ImproperlyConfigured("You must place 'djangae' after 'django' apps in installed apps")
+                raise ImproperlyConfigured(
+                    "You must place 'djangae' after 'django' apps in installed apps"
+                )
             elif app == "djangae":
                 break
 

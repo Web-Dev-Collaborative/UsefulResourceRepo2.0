@@ -1,9 +1,9 @@
-#STANDARD LIB
+# STANDARD LIB
 import datetime
 import decimal
 import warnings
 
-#LIBRARIES
+# LIBRARIES
 from django.conf import settings
 from django.db import DatabaseError
 from django.db.backends import (
@@ -12,15 +12,16 @@ from django.db.backends import (
     BaseDatabaseIntrospection,
     BaseDatabaseWrapper,
     BaseDatabaseFeatures,
-    BaseDatabaseValidation
+    BaseDatabaseValidation,
 )
 
 try:
     from django.db.backends.schema import BaseDatabaseSchemaEditor
 except ImportError:
-    #Django < 1.7 doesn't have BaseDatabaseSchemaEditor
+    # Django < 1.7 doesn't have BaseDatabaseSchemaEditor
     class BaseDatabaseSchemaEditor(object):
         pass
+
 
 from django.db.backends.creation import BaseDatabaseCreation
 from django.utils import timezone
@@ -29,13 +30,9 @@ from google.appengine.ext.db import metadata
 from google.appengine.ext import testbed
 from google.appengine.api.datastore import Key
 
-#DJANGAE
+# DJANGAE
 from djangae.utils import find_project_root
-from djangae.db.utils import (
-    decimal_to_string,
-    make_timezone_naive,
-    get_datastore_key,
-)
+from djangae.db.utils import decimal_to_string, make_timezone_naive, get_datastore_key
 from djangae.db.backends.appengine import caching
 from djangae.indexing import load_special_indexes
 from .commands import (
@@ -44,7 +41,7 @@ from .commands import (
     FlushCommand,
     UpdateCommand,
     DeleteCommand,
-    get_field_from_column
+    get_field_from_column,
 )
 
 from djangae.db.backends.appengine import dbapi as Database
@@ -52,6 +49,7 @@ from djangae.db.backends.appengine import dbapi as Database
 
 class Connection(object):
     """ Dummy connection class """
+
     def __init__(self, wrapper, params):
         self.creation = wrapper.creation
         self.ops = wrapper.ops
@@ -70,6 +68,7 @@ class Connection(object):
 
 class Cursor(object):
     """ Dummy cursor class """
+
     def __init__(self, connection):
         self.connection = connection
         self.start_cursor = None
@@ -93,7 +92,10 @@ class Cursor(object):
             self.connection.queries.append(sql)
             self.returned_ids = sql.execute()
         else:
-            raise Database.CouldBeSupportedError("Can't execute traditional SQL: '%s' (although perhaps we could make GQL work)", sql)
+            raise Database.CouldBeSupportedError(
+                "Can't execute traditional SQL: '%s' (although perhaps we could make GQL work)",
+                sql,
+            )
 
     def next(self):
         row = self.fetchone()
@@ -105,10 +107,10 @@ class Cursor(object):
         try:
             if isinstance(self.last_select_command.results, (int, long)):
                 # Handle aggregate (e.g. count)
-                return (self.last_select_command.results, )
+                return (self.last_select_command.results,)
             else:
                 entity = self.last_select_command.next_result()
-        except StopIteration:  #FIXME: does this ever get raised?  Where from?
+        except StopIteration:  # FIXME: does this ever get raised?  Where from?
             entity = None
 
         if entity is None:
@@ -169,7 +171,7 @@ class DatabaseOperations(BaseDatabaseOperations):
         value = super(DatabaseOperations, self).convert_values(value, field)
 
         db_type = field.db_type(self.connection)
-        if db_type == 'string' and isinstance(value, str):
+        if db_type == "string" and isinstance(value, str):
             value = value.decode("utf-8")
         elif db_type == "datetime":
             value = self.connection.ops.value_from_db_datetime(value)
@@ -179,10 +181,10 @@ class DatabaseOperations(BaseDatabaseOperations):
             value = self.connection.ops.value_from_db_time(value)
         elif db_type == "decimal":
             value = self.connection.ops.value_from_db_decimal(value)
-        elif db_type == 'list':
+        elif db_type == "list":
             if not value:
-                value = [] # Convert None back to an empty list
-        elif db_type == 'set':
+                value = []  # Convert None back to an empty list
+        elif db_type == "set":
             if not value:
                 value = set()
             else:
@@ -194,21 +196,23 @@ class DatabaseOperations(BaseDatabaseOperations):
 
         creation = self.connection.creation
         if creation.testbed:
-            creation._destroy_test_db(':memory:', verbosity=1)
-            creation._create_test_db(':memory:', autoclobber=True)
+            creation._destroy_test_db(":memory:", verbosity=1)
+            creation._create_test_db(":memory:", autoclobber=True)
             caching.clear_all_caches()
             return []
         else:
-            return [ FlushCommand(table) for table in tables ]
+            return [FlushCommand(table) for table in tables]
 
     def prep_lookup_key(self, model, value, field):
         if isinstance(value, basestring):
             value = value[:500]
             left = value[500:]
             if left:
-                warnings.warn("Truncating primary key that is over 500 characters. "
-                              "THIS IS AN ERROR IN YOUR PROGRAM.",
-                              RuntimeWarning)
+                warnings.warn(
+                    "Truncating primary key that is over 500 characters. "
+                    "THIS IS AN ERROR IN YOUR PROGRAM.",
+                    RuntimeWarning,
+                )
             value = get_datastore_key(model, value)
         else:
             value = get_datastore_key(model, value)
@@ -225,21 +229,23 @@ class DatabaseOperations(BaseDatabaseOperations):
         return self.value_to_db_time(value)
 
     def prep_lookup_value(self, model, value, field, constraint=None):
-        if field.primary_key and (constraint is None or constraint.col == model._meta.pk.column):
+        if field.primary_key and (
+            constraint is None or constraint.col == model._meta.pk.column
+        ):
             return self.prep_lookup_key(model, value, field)
 
         db_type = field.db_type(self.connection)
 
-        if db_type == 'decimal':
+        if db_type == "decimal":
             return self.prep_lookup_decimal(model, value, field)
 
-        elif db_type == 'date':
+        elif db_type == "date":
             return self.prep_lookup_date(model, value, field)
-        elif db_type == 'time':
+        elif db_type == "time":
             return self.prep_lookup_time(model, value, field)
-        elif db_type in ('list', 'set'):
+        elif db_type in ("list", "set"):
             if hasattr(value, "__len__") and not value:
-                value = None #Convert empty lists to None
+                value = None  # Convert empty lists to None
             elif hasattr(value, "__iter__"):
                 # Convert sets to lists
                 value = list(value)
@@ -252,10 +258,10 @@ class DatabaseOperations(BaseDatabaseOperations):
 
         db_type = field.db_type(self.connection)
 
-        if db_type == 'string' or db_type == 'text':
+        if db_type == "string" or db_type == "text":
             if isinstance(value, str):
                 try:
-                    value = value.decode('utf-8')
+                    value = value.decode("utf-8")
                 except UnicodeDecodeError:
                     # This must be a Django databaseerror, because the exception happens too
                     # early before Django's exception wrapping can take effect (e.g. it happens on SQL
@@ -265,22 +271,24 @@ class DatabaseOperations(BaseDatabaseOperations):
             # The SDK raises BadValueError for unicode sub-classes like SafeText.
             value = unicode(value)
 
-            if db_type == 'text':
+            if db_type == "text":
                 value = Text(value)
-        elif db_type == 'bytes':
+        elif db_type == "bytes":
             # Store BlobField, DictField and EmbeddedModelField values as Blobs.
             value = Blob(value)
-        elif db_type == 'date':
+        elif db_type == "date":
             value = self.value_to_db_date(value)
-        elif db_type == 'datetime':
+        elif db_type == "datetime":
             value = self.value_to_db_datetime(value)
-        elif db_type == 'time':
+        elif db_type == "time":
             value = self.value_to_db_time(value)
-        elif db_type == 'decimal':
-            value = self.value_to_db_decimal(value, field.max_digits, field.decimal_places)
-        elif db_type in ('list', 'set'):
+        elif db_type == "decimal":
+            value = self.value_to_db_decimal(
+                value, field.max_digits, field.decimal_places
+            )
+        elif db_type in ("list", "set"):
             if hasattr(value, "__len__") and not value:
-                value = None #Convert empty lists to None
+                value = None  # Convert empty lists to None
             elif hasattr(value, "__iter__"):
                 # Convert sets to lists
                 value = list(value)
@@ -356,34 +364,34 @@ class DatabaseClient(BaseDatabaseClient):
 
 class DatabaseCreation(BaseDatabaseCreation):
     data_types = {
-        'AutoField':                  'key',
-        'RelatedAutoField':           'key',
-        'ForeignKey':                 'key',
-        'OneToOneField':              'key',
-        'ManyToManyField':            'key',
-        'BigIntegerField':            'long',
-        'BooleanField':               'bool',
-        'CharField':                  'string',
-        'CommaSeparatedIntegerField': 'string',
-        'DateField':                  'date',
-        'DateTimeField':              'datetime',
-        'DecimalField':               'decimal',
-        'EmailField':                 'string',
-        'FileField':                  'string',
-        'FilePathField':              'string',
-        'FloatField':                 'float',
-        'ImageField':                 'string',
-        'IntegerField':               'integer',
-        'IPAddressField':             'string',
-        'NullBooleanField':           'bool',
-        'PositiveIntegerField':       'integer',
-        'PositiveSmallIntegerField':  'integer',
-        'SlugField':                  'string',
-        'SmallIntegerField':          'integer',
-        'TimeField':                  'time',
-        'URLField':                   'string',
-        'TextField':                  'text',
-        'XMLField':                   'text',
+        "AutoField": "key",
+        "RelatedAutoField": "key",
+        "ForeignKey": "key",
+        "OneToOneField": "key",
+        "ManyToManyField": "key",
+        "BigIntegerField": "long",
+        "BooleanField": "bool",
+        "CharField": "string",
+        "CommaSeparatedIntegerField": "string",
+        "DateField": "date",
+        "DateTimeField": "datetime",
+        "DecimalField": "decimal",
+        "EmailField": "string",
+        "FileField": "string",
+        "FilePathField": "string",
+        "FloatField": "float",
+        "ImageField": "string",
+        "IntegerField": "integer",
+        "IPAddressField": "string",
+        "NullBooleanField": "bool",
+        "PositiveIntegerField": "integer",
+        "PositiveSmallIntegerField": "integer",
+        "SlugField": "string",
+        "SmallIntegerField": "integer",
+        "TimeField": "time",
+        "URLField": "string",
+        "TextField": "text",
+        "XMLField": "text",
     }
 
     def __init__(self, *args, **kwargs):
@@ -400,7 +408,7 @@ class DatabaseCreation(BaseDatabaseCreation):
         return []
 
     def _create_test_db(self, verbosity, autoclobber):
-        return ':memory:'
+        return ":memory:"
 
     def _destroy_test_db(self, name, verbosity):
         pass
@@ -422,7 +430,7 @@ class DatabaseSchemaEditor(BaseDatabaseSchemaEditor):
 
 class DatabaseFeatures(BaseDatabaseFeatures):
     empty_fetchmany_value = []
-    supports_transactions = False  #FIXME: Make this True!
+    supports_transactions = False  # FIXME: Make this True!
     can_return_id_from_insert = True
     supports_select_related = False
     autocommits_when_autocommit_is_off = True
@@ -431,11 +439,11 @@ class DatabaseFeatures(BaseDatabaseFeatures):
 
 class DatabaseWrapper(BaseDatabaseWrapper):
     operators = {
-        'exact': '= %s',
-        'gt': '> %s',
-        'gte': '>= %s',
-        'lt': '< %s',
-        'lte': '<= %s'
+        "exact": "= %s",
+        "gt": "> %s",
+        "gte": ">= %s",
+        "lt": "< %s",
+        "lte": "<= %s",
     }
 
     Database = Database

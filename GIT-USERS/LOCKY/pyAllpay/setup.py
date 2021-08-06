@@ -4,9 +4,9 @@ try:
 except:
     from distutils.core import setup
 
-__version__ = '0.0.12.dev0'
-__author__ = 'Calvin Jeng'
-__email__ = 'lock4567@gmail.com'
+__version__ = "0.0.12.dev0"
+__author__ = "Calvin Jeng"
+__email__ = "lock4567@gmail.com"
 
 long_description = """
 This is allPay(歐付寶) SDK implemented in Python. not All functions are implemented now.
@@ -24,25 +24,25 @@ Check out github repo: https://github.com/lockys/allPay.py
 
 
 setup(
-    name='pyallpay',
+    name="pyallpay",
     version=__version__,
     author=__author__,
     author_email=__email__,
-    packages=['pyallpay', ],
-    url='https://github.com/lockys/allpay.py',
-    license='LICENSE',
-    description='allPay API in python',
+    packages=["pyallpay"],
+    url="https://github.com/lockys/allpay.py",
+    license="LICENSE",
+    description="allPay API in python",
     long_description=long_description,
     classifiers=[
-          'Development Status :: 4 - Beta',
-          'Environment :: Web Environment',
-          'Intended Audience :: Developers',
-          'License :: OSI Approved :: MIT License',
-          'Operating System :: MacOS :: MacOS X',
-          'Operating System :: Microsoft :: Windows',
-          'Programming Language :: Python',
-          'Topic :: Utilities',
-          'Topic :: Software Development :: Libraries :: Python Modules',
-          ],
+        "Development Status :: 4 - Beta",
+        "Environment :: Web Environment",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: MacOS :: MacOS X",
+        "Operating System :: Microsoft :: Windows",
+        "Programming Language :: Python",
+        "Topic :: Utilities",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+    ],
     zip_safe=False,
 )

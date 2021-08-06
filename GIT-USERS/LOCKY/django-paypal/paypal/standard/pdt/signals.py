@@ -14,12 +14,12 @@ pdt_failed = Signal()
 
 # # Sent when a subscription was cancelled.
 # subscription_cancel = Signal()
-# 
+#
 # # Sent when a subscription expires.
 # subscription_eot = Signal()
-# 
+#
 # # Sent when a subscription was modified.
 # subscription_modify = Signal()
-# 
+#
 # # Sent when a subscription ends.
 # subscription_signup = Signal()

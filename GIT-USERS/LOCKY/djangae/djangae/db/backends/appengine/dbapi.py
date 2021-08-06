@@ -1,13 +1,17 @@
 """ Fake DB API 2.0 for App engine """
 
+
 class DatabaseError(StandardError):
     pass
+
 
 class IntegrityError(DatabaseError):
     pass
 
+
 class NotSupportedError(DatabaseError):
     pass
+
 
 class CouldBeSupportedError(DatabaseError):
     pass

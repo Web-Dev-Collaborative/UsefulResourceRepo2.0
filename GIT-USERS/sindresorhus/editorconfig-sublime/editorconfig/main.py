@@ -24,10 +24,12 @@ def usage(command, error=False):
     else:
         out = sys.stdout
     out.write("%s [OPTIONS] FILENAME\n" % command)
-    out.write('-f                 '
-              'Specify conf filename other than ".editorconfig".\n')
-    out.write("-b                 "
-              "Specify version (used by devs to test compatibility).\n")
+    out.write(
+        "-f                 " 'Specify conf filename other than ".editorconfig".\n'
+    )
+    out.write(
+        "-b                 " "Specify version (used by devs to test compatibility).\n"
+    )
     out.write("-h OR --help       Print this help message.\n")
     out.write("-v OR --version    Display version information.\n")
 
@@ -35,26 +37,27 @@ def usage(command, error=False):
 def main():
     command_name = sys.argv[0]
     try:
-        opts, args = getopt.getopt(list(map(force_unicode, sys.argv[1:])),
-                                   "vhb:f:", ["version", "help"])
+        opts, args = getopt.getopt(
+            list(map(force_unicode, sys.argv[1:])), "vhb:f:", ["version", "help"]
+        )
     except getopt.GetoptError as e:
         print(str(e))
         usage(command_name, error=True)
         sys.exit(2)
 
     version_tuple = VERSION
-    conf_filename = '.editorconfig'
+    conf_filename = ".editorconfig"
 
     for option, arg in opts:
-        if option in ('-h', '--help'):
+        if option in ("-h", "--help"):
             usage(command_name)
             sys.exit()
-        if option in ('-v', '--version'):
+        if option in ("-v", "--version"):
             version()
             sys.exit()
-        if option == '-f':
+        if option == "-f":
             conf_filename = arg
-        if option == '-b':
+        if option == "-b":
             version_tuple = split_version(arg)
             if version_tuple is None:
                 sys.exit("Invalid version number: %s" % arg)

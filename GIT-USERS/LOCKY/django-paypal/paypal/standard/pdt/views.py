@@ -28,7 +28,7 @@ def process_pdt(request, item_check_callable=None):
     """
 
     pdt_obj = None
-    txn_id = request.GET.get('tx')
+    txn_id = request.GET.get("tx")
     failed = False
     if txn_id is not None:
         # If an existing transaction with the id tx exists: use it
@@ -60,7 +60,6 @@ def process_pdt(request, item_check_callable=None):
                 # The PDT object gets saved during verify
                 pdt_obj.verify(item_check_callable)
     else:
-        pass # we ignore any PDT requests that don't have a transaction id
+        pass  # we ignore any PDT requests that don't have a transaction id
 
     return (pdt_obj, failed)
-

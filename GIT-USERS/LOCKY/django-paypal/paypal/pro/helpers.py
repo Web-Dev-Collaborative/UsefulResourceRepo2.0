@@ -61,7 +61,7 @@ class PayPalWPP(object):
     def __init__(self, request, params=BASE_PARAMS):
         """Required - USER / PWD / SIGNATURE / VERSION"""
         self.request = request
-        if getattr(settings, 'PAYPAL_TEST', True):
+        if getattr(settings, "PAYPAL_TEST", True):
             self.endpoint = SANDBOX_ENDPOINT
         else:
             self.endpoint = ENDPOINT
@@ -71,20 +71,21 @@ class PayPalWPP(object):
     def doDirectPayment(self, params):
         """Call PayPal DoDirectPayment method."""
         defaults = {"method": "DoDirectPayment", "paymentaction": "Sale"}
-        required = ["creditcardtype",
-                    "acct",
-                    "expdate",
-                    "cvv2",
-                    "ipaddress",
-                    "firstname",
-                    "lastname",
-                    "street",
-                    "city",
-                    "state",
-                    "countrycode",
-                    "zip",
-                    "amt",
-                    ]
+        required = [
+            "creditcardtype",
+            "acct",
+            "expdate",
+            "cvv2",
+            "ipaddress",
+            "firstname",
+            "lastname",
+            "street",
+            "city",
+            "state",
+            "countrycode",
+            "zip",
+            "amt",
+        ]
         nvp_obj = self._fetch(params, required, defaults)
         if nvp_obj.flag:
             raise PayPalFailure(nvp_obj.flag_info)
@@ -198,12 +199,15 @@ class PayPalWPP(object):
 
         # TODO: This fail silently check should be using the error code, but its not easy to access
         if not nvp_obj.flag or (
-            fail_silently and nvp_obj.flag_info == 'Invalid profile status for cancel action; profile should be active or suspended'):
-            if params['action'] == 'Cancel':
+            fail_silently
+            and nvp_obj.flag_info
+            == "Invalid profile status for cancel action; profile should be active or suspended"
+        ):
+            if params["action"] == "Cancel":
                 recurring_cancel.send(sender=nvp_obj)
-            elif params['action'] == 'Suspend':
+            elif params["action"] == "Suspend":
                 recurring_suspend.send(sender=nvp_obj)
-            elif params['action'] == 'Reactivate':
+            elif params["action"] == "Reactivate":
                 recurring_reactivate.send(sender=nvp_obj)
         else:
             raise PayPalFailure(nvp_obj.flag_info)
@@ -214,15 +218,15 @@ class PayPalWPP(object):
 
     def _is_recurring(self, params):
         """Returns True if the item passed is a recurring transaction."""
-        return 'billingfrequency' in params
+        return "billingfrequency" in params
 
     def _recurring_setExpressCheckout_adapter(self, params):
         """
         The recurring payment interface to SEC is different than the recurring payment
         interface to ECP. This adapts a normal call to look like a SEC call.
         """
-        params['l_billingtype0'] = "RecurringPayments"
-        params['l_billingagreementdescription0'] = params['desc']
+        params["l_billingtype0"] = "RecurringPayments"
+        params["l_billingagreementdescription0"] = params["desc"]
 
         REMOVE = ["billingfrequency", "billingperiod", "profilestartdate", "desc"]
         for k in params.keys():
@@ -239,9 +243,9 @@ class PayPalWPP(object):
         response = self._request(pp_string)
         response_params = self._parse_response(response)
 
-        if getattr(settings, 'PAYPAL_DEBUG', settings.DEBUG):
-            log.debug('PayPal Request:\n%s\n', pprint.pformat(defaults))
-            log.debug('PayPal Response:\n%s\n', pprint.pformat(response_params))
+        if getattr(settings, "PAYPAL_DEBUG", settings.DEBUG):
+            log.debug("PayPal Request:\n%s\n", pprint.pformat(defaults))
+            log.debug("PayPal Response:\n%s\n", pprint.pformat(response_params))
 
         # Gather all NVP parameters to pass to a new instance.
         nvp_params = {}
@@ -250,8 +254,8 @@ class PayPalWPP(object):
                 nvp_params[str(k)] = v
 
         # PayPal timestamp has to be formatted.
-        if 'timestamp' in nvp_params:
-            nvp_params['timestamp'] = paypaltime2datetime(nvp_params['timestamp'])
+        if "timestamp" in nvp_params:
+            nvp_params["timestamp"] = paypaltime2datetime(nvp_params["timestamp"])
 
         nvp_obj = PayPalNVP(**nvp_params)
         nvp_obj.init(self.request, params, response_params)
@@ -272,9 +276,9 @@ class PayPalWPP(object):
                 raise PayPalError("Missing required param: %s" % r)
 
         # Upper case all the parameters for PayPal.
-        return (dict((k.upper(), v) for k, v in params.items()))
+        return dict((k.upper(), v) for k, v in params.items())
 
     def _parse_response(self, response):
         """Turn the PayPal response into a dict"""
-        q = QueryDict(response, encoding='UTF-8').dict()
-        return {k.lower(): v for k,v in q.items()}
+        q = QueryDict(response, encoding="UTF-8").dict()
+        return {k.lower(): v for k, v in q.items()}

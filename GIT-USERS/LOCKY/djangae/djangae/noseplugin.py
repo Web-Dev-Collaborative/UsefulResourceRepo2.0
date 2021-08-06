@@ -4,6 +4,7 @@ from djangae.test_runner import init_testbed
 
 class DjangaePlugin(Plugin):
     enabled = True
+
     def configure(self, options, conf):
         pass
 

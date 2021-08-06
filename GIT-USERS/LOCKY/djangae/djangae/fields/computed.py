@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class ComputedFieldMixin(object):
     def __init__(self, func, *args, **kwargs):
         self.computer = func

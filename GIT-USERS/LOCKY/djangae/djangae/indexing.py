@@ -9,6 +9,7 @@ _last_loaded_time = None
 
 def _get_index_file():
     from djangae.utils import find_project_root
+
     index_file = os.path.join(find_project_root(), "djangaeidx.yaml")
 
     return index_file
@@ -74,16 +75,19 @@ def add_special_index(model_class, field_name, index_type):
     if special_index_exists(model_class, field_name, index_type):
         return
 
-    if on_production() or (in_testing() and not getattr(settings, "GENERATE_SPECIAL_INDEXES_DURING_TESTING", False)):
+    if on_production() or (
+        in_testing()
+        and not getattr(settings, "GENERATE_SPECIAL_INDEXES_DURING_TESTING", False)
+    ):
         raise RuntimeError(
             "There is a missing index in your djangaeidx.yaml - \n\n{0}:\n\t{1}: [{2}]".format(
                 _get_table_from_model(model_class), field_name, index_type
             )
         )
 
-    _special_indexes.setdefault(
-        _get_table_from_model(model_class), {}
-    ).setdefault(field_name, []).append(str(index_type))
+    _special_indexes.setdefault(_get_table_from_model(model_class), {}).setdefault(
+        field_name, []
+    ).append(str(index_type))
 
     write_special_indexes()
 
@@ -93,10 +97,17 @@ class Indexer(object):
         """Return True if the value is indexable, False otherwise"""
         raise NotImplementedError()
 
-    def prep_value_for_database(self, value): raise NotImplementedError()
-    def prep_value_for_query(self, value): raise NotImplementedError()
-    def indexed_column_name(self, field_column): raise NotImplementedError()
-    def prep_query_operator(self, op): return "exact"
+    def prep_value_for_database(self, value):
+        raise NotImplementedError()
+
+    def prep_value_for_query(self, value):
+        raise NotImplementedError()
+
+    def indexed_column_name(self, field_column):
+        raise NotImplementedError()
+
+    def prep_query_operator(self, op):
+        return "exact"
 
     def unescape(self, value):
         value = value.replace("\\_", "_")
@@ -213,9 +224,19 @@ class ContainsIndexer(Indexer):
         result = []
         if value:
             length = len(value)
-            result = list(set([value[i:j + 1] for i in xrange(length) for j in xrange(i, length)]))
+            result = list(
+                set(
+                    [
+                        value[i : j + 1]
+                        for i in xrange(length)
+                        for j in xrange(i, length)
+                    ]
+                )
+            )
             if len(result) > 500:
-                raise ValueError("Can't index for contains query, this value has too many permuatations")
+                raise ValueError(
+                    "Can't index for contains query, this value has too many permuatations"
+                )
 
         return result
 
@@ -231,7 +252,10 @@ class ContainsIndexer(Indexer):
 
 class IContainsIndexer(ContainsIndexer):
     def prep_value_for_database(self, value):
-        return [x.lower() for x in super(IContainsIndexer, self).prep_value_for_database(value)]
+        return [
+            x.lower()
+            for x in super(IContainsIndexer, self).prep_value_for_database(value)
+        ]
 
     def indexed_column_name(self, field_column):
         return "_idx_icontains_{0}".format(field_column)
@@ -245,6 +269,7 @@ class EndsWithIndexer(Indexer):
         of the last characters in a list field. Then we can just do an exact lookup on
         the value. Which isn't as nice, but is more flexible.
     """
+
     def validate_can_be_indexed(self, value):
         return isinstance(value, basestring) and len(value) < 500
 
@@ -268,6 +293,7 @@ class IEndsWithIndexer(EndsWithIndexer):
     """
         Same as above, just all lower cased
     """
+
     def prep_value_for_database(self, value):
         return super(IEndsWithIndexer, self).prep_value_for_database(value.lower())
 
@@ -283,6 +309,7 @@ class StartsWithIndexer(Indexer):
         Although we can do a startswith natively, doing it this way allows us to
         use more queries (E.g. we save an exclude)
     """
+
     def validate_can_be_indexed(self, value):
         return isinstance(value, basestring) and len(value) < 500
 
@@ -313,6 +340,7 @@ class IStartsWithIndexer(StartsWithIndexer):
     """
         Same as above, just all lower cased
     """
+
     def prep_value_for_database(self, value):
         return super(IStartsWithIndexer, self).prep_value_for_database(value.lower())
 
@@ -327,12 +355,12 @@ REQUIRES_SPECIAL_INDEXES = {
     "iexact": IExactIndexer(),
     "contains": ContainsIndexer(),
     "icontains": IContainsIndexer(),
-    "day" : DayIndexer(),
-    "month" : MonthIndexer(),
+    "day": DayIndexer(),
+    "month": MonthIndexer(),
     "year": YearIndexer(),
     "week_day": WeekDayIndexer(),
     "endswith": EndsWithIndexer(),
     "iendswith": IEndsWithIndexer(),
     "startswith": StartsWithIndexer(),
-    "istartswith": IStartsWithIndexer()
+    "istartswith": IStartsWithIndexer(),
 }

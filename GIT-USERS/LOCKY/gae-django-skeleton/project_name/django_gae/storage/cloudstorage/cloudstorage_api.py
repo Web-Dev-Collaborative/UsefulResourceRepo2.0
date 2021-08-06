@@ -3,16 +3,10 @@
 """File Interface for Google Cloud Storage."""
 
 
-
 from __future__ import with_statement
 
 
-
-__all__ = ['delete',
-           'listbucket',
-           'open',
-           'stat',
-          ]
+__all__ = ["delete", "listbucket", "open", "stat"]
 
 import logging
 import StringIO
@@ -24,15 +18,16 @@ from . import errors
 from . import storage_api
 
 
-
-def open(filename,
-         mode='r',
-         content_type=None,
-         options=None,
-         read_buffer_size=storage_api.ReadBuffer.DEFAULT_BUFFER_SIZE,
-         retry_params=None,
-         _account_id=None):
-  """Opens a Google Cloud Storage file and returns it as a File-like object.
+def open(
+    filename,
+    mode="r",
+    content_type=None,
+    options=None,
+    read_buffer_size=storage_api.ReadBuffer.DEFAULT_BUFFER_SIZE,
+    retry_params=None,
+    _account_id=None,
+):
+    """Opens a Google Cloud Storage file and returns it as a File-like object.
 
   Args:
     filename: A Google Cloud Storage filename of form '/bucket/filename'.
@@ -65,26 +60,25 @@ def open(filename,
     ValueError: invalid open mode or if content_type or options are specified
       in reading mode.
   """
-  common.validate_file_path(filename)
-  api = _get_storage_api(retry_params=retry_params, account_id=_account_id)
-  filename = api_utils._quote_filename(filename)
+    common.validate_file_path(filename)
+    api = _get_storage_api(retry_params=retry_params, account_id=_account_id)
+    filename = api_utils._quote_filename(filename)
 
-  if mode == 'w':
-    common.validate_options(options)
-    return storage_api.StreamingBuffer(api, filename, content_type, options)
-  elif mode == 'r':
-    if content_type or options:
-      raise ValueError('Options and content_type can only be specified '
-                       'for writing mode.')
-    return storage_api.ReadBuffer(api,
-                                  filename,
-                                  buffer_size=read_buffer_size)
-  else:
-    raise ValueError('Invalid mode %s.' % mode)
+    if mode == "w":
+        common.validate_options(options)
+        return storage_api.StreamingBuffer(api, filename, content_type, options)
+    elif mode == "r":
+        if content_type or options:
+            raise ValueError(
+                "Options and content_type can only be specified " "for writing mode."
+            )
+        return storage_api.ReadBuffer(api, filename, buffer_size=read_buffer_size)
+    else:
+        raise ValueError("Invalid mode %s." % mode)
 
 
 def delete(filename, retry_params=None, _account_id=None):
-  """Delete a Google Cloud Storage file.
+    """Delete a Google Cloud Storage file.
 
   Args:
     filename: A Google Cloud Storage filename of form '/bucket/filename'.
@@ -95,15 +89,15 @@ def delete(filename, retry_params=None, _account_id=None):
   Raises:
     errors.NotFoundError: if the file doesn't exist prior to deletion.
   """
-  api = _get_storage_api(retry_params=retry_params, account_id=_account_id)
-  common.validate_file_path(filename)
-  filename = api_utils._quote_filename(filename)
-  status, resp_headers, _ = api.delete_object(filename)
-  errors.check_status(status, [204], filename, resp_headers=resp_headers)
+    api = _get_storage_api(retry_params=retry_params, account_id=_account_id)
+    common.validate_file_path(filename)
+    filename = api_utils._quote_filename(filename)
+    status, resp_headers, _ = api.delete_object(filename)
+    errors.check_status(status, [204], filename, resp_headers=resp_headers)
 
 
 def stat(filename, retry_params=None, _account_id=None):
-  """Get GCSFileStat of a Google Cloud storage file.
+    """Get GCSFileStat of a Google Cloud storage file.
 
   Args:
     filename: A Google Cloud Storage filename of form '/bucket/filename'.
@@ -118,23 +112,24 @@ def stat(filename, retry_params=None, _account_id=None):
     errors.AuthorizationError: if authorization failed.
     errors.NotFoundError: if an object that's expected to exist doesn't.
   """
-  common.validate_file_path(filename)
-  api = _get_storage_api(retry_params=retry_params, account_id=_account_id)
-  status, headers, _ = api.head_object(api_utils._quote_filename(filename))
-  errors.check_status(status, [200], filename, resp_headers=headers)
-  file_stat = common.GCSFileStat(
-      filename=filename,
-      st_size=headers.get('content-length'),
-      st_ctime=common.http_time_to_posix(headers.get('last-modified')),
-      etag=headers.get('etag'),
-      content_type=headers.get('content-type'),
-      metadata=common.get_metadata(headers))
+    common.validate_file_path(filename)
+    api = _get_storage_api(retry_params=retry_params, account_id=_account_id)
+    status, headers, _ = api.head_object(api_utils._quote_filename(filename))
+    errors.check_status(status, [200], filename, resp_headers=headers)
+    file_stat = common.GCSFileStat(
+        filename=filename,
+        st_size=headers.get("content-length"),
+        st_ctime=common.http_time_to_posix(headers.get("last-modified")),
+        etag=headers.get("etag"),
+        content_type=headers.get("content-type"),
+        metadata=common.get_metadata(headers),
+    )
 
-  return file_stat
+    return file_stat
 
 
 def _copy2(src, dst, retry_params=None):
-  """Copy the file content and metadata from src to dst.
+    """Copy the file content and metadata from src to dst.
 
   Internal use only!
 
@@ -148,21 +143,29 @@ def _copy2(src, dst, retry_params=None):
     errors.AuthorizationError: if authorization failed.
     errors.NotFoundError: if an object that's expected to exist doesn't.
   """
-  common.validate_file_path(src)
-  common.validate_file_path(dst)
-  if src == dst:
-    return
+    common.validate_file_path(src)
+    common.validate_file_path(dst)
+    if src == dst:
+        return
 
-  api = _get_storage_api(retry_params=retry_params)
-  headers = {'x-goog-copy-source': src, 'Content-Length': '0'}
-  status, resp_headers, _ = api.put_object(
-      api_utils._quote_filename(dst), headers=headers)
-  errors.check_status(status, [200], src, headers, resp_headers)
+    api = _get_storage_api(retry_params=retry_params)
+    headers = {"x-goog-copy-source": src, "Content-Length": "0"}
+    status, resp_headers, _ = api.put_object(
+        api_utils._quote_filename(dst), headers=headers
+    )
+    errors.check_status(status, [200], src, headers, resp_headers)
 
 
-def listbucket(path_prefix, marker=None, prefix=None, max_keys=None,
-               delimiter=None, retry_params=None, _account_id=None):
-  """Returns a GCSFileStat iterator over a bucket.
+def listbucket(
+    path_prefix,
+    marker=None,
+    prefix=None,
+    max_keys=None,
+    delimiter=None,
+    retry_params=None,
+    _account_id=None,
+):
+    """Returns a GCSFileStat iterator over a bucket.
 
   Optional arguments can limit the result to a subset of files under bucket.
 
@@ -224,116 +227,124 @@ def listbucket(path_prefix, marker=None, prefix=None, max_keys=None,
 
     The last name yielded can be used as next call's marker.
   """
-  if prefix:
-    common.validate_bucket_path(path_prefix)
-    bucket = path_prefix
-  else:
-    bucket, prefix = common._process_path_prefix(path_prefix)
+    if prefix:
+        common.validate_bucket_path(path_prefix)
+        bucket = path_prefix
+    else:
+        bucket, prefix = common._process_path_prefix(path_prefix)
 
-  if marker and marker.startswith(bucket):
-    marker = marker[len(bucket) + 1:]
+    if marker and marker.startswith(bucket):
+        marker = marker[len(bucket) + 1 :]
 
-  api = _get_storage_api(retry_params=retry_params, account_id=_account_id)
-  options = {}
-  if marker:
-    options['marker'] = marker
-  if max_keys:
-    options['max-keys'] = max_keys
-  if prefix:
-    options['prefix'] = prefix
-  if delimiter:
-    options['delimiter'] = delimiter
+    api = _get_storage_api(retry_params=retry_params, account_id=_account_id)
+    options = {}
+    if marker:
+        options["marker"] = marker
+    if max_keys:
+        options["max-keys"] = max_keys
+    if prefix:
+        options["prefix"] = prefix
+    if delimiter:
+        options["delimiter"] = delimiter
 
-  return _Bucket(api, bucket, options)
+    return _Bucket(api, bucket, options)
 
 
 class _Bucket(object):
-  """A wrapper for a GCS bucket as the return value of listbucket."""
+    """A wrapper for a GCS bucket as the return value of listbucket."""
 
-  def __init__(self, api, path, options):
-    """Initialize.
+    def __init__(self, api, path, options):
+        """Initialize.
 
     Args:
       api: storage_api instance.
       path: bucket path of form '/bucket'.
       options: a dict of listbucket options. Please see listbucket doc.
     """
-    self._init(api, path, options)
+        self._init(api, path, options)
 
-  def _init(self, api, path, options):
-    self._api = api
-    self._path = path
-    self._options = options.copy()
-    self._get_bucket_fut = self._api.get_bucket_async(
-        self._path + '?' + urllib.urlencode(self._options))
-    self._last_yield = None
-    self._new_max_keys = self._options.get('max-keys')
+    def _init(self, api, path, options):
+        self._api = api
+        self._path = path
+        self._options = options.copy()
+        self._get_bucket_fut = self._api.get_bucket_async(
+            self._path + "?" + urllib.urlencode(self._options)
+        )
+        self._last_yield = None
+        self._new_max_keys = self._options.get("max-keys")
 
-  def __getstate__(self):
-    options = self._options
-    if self._last_yield:
-      options['marker'] = self._last_yield.filename[len(self._path) + 1:]
-    if self._new_max_keys is not None:
-      options['max-keys'] = self._new_max_keys
-    return {'api': self._api,
-            'path': self._path,
-            'options': options}
+    def __getstate__(self):
+        options = self._options
+        if self._last_yield:
+            options["marker"] = self._last_yield.filename[len(self._path) + 1 :]
+        if self._new_max_keys is not None:
+            options["max-keys"] = self._new_max_keys
+        return {"api": self._api, "path": self._path, "options": options}
 
-  def __setstate__(self, state):
-    self._init(state['api'], state['path'], state['options'])
+    def __setstate__(self, state):
+        self._init(state["api"], state["path"], state["options"])
 
-  def __iter__(self):
-    """Iter over the bucket.
+    def __iter__(self):
+        """Iter over the bucket.
 
     Yields:
       GCSFileStat: a GCSFileStat for an object in the bucket.
         They are ordered by GCSFileStat.filename.
     """
-    total = 0
-    max_keys = self._options.get('max-keys')
+        total = 0
+        max_keys = self._options.get("max-keys")
 
-    while self._get_bucket_fut:
-      status, resp_headers, content = self._get_bucket_fut.get_result()
-      errors.check_status(status, [200], self._path, resp_headers=resp_headers,
-                          extras=self._options)
+        while self._get_bucket_fut:
+            status, resp_headers, content = self._get_bucket_fut.get_result()
+            errors.check_status(
+                status,
+                [200],
+                self._path,
+                resp_headers=resp_headers,
+                extras=self._options,
+            )
 
-      if self._should_get_another_batch(content):
-        self._get_bucket_fut = self._api.get_bucket_async(
-            self._path + '?' + urllib.urlencode(self._options))
-      else:
-        self._get_bucket_fut = None
+            if self._should_get_another_batch(content):
+                self._get_bucket_fut = self._api.get_bucket_async(
+                    self._path + "?" + urllib.urlencode(self._options)
+                )
+            else:
+                self._get_bucket_fut = None
 
-      root = ET.fromstring(content)
-      dirs = self._next_dir_gen(root)
-      files = self._next_file_gen(root)
-      next_file = files.next()
-      next_dir = dirs.next()
+            root = ET.fromstring(content)
+            dirs = self._next_dir_gen(root)
+            files = self._next_file_gen(root)
+            next_file = files.next()
+            next_dir = dirs.next()
 
-      while ((max_keys is None or total < max_keys) and
-             not (next_file is None and next_dir is None)):
-        total += 1
-        if next_file is None:
-          self._last_yield = next_dir
-          next_dir = dirs.next()
-        elif next_dir is None:
-          self._last_yield = next_file
-          next_file = files.next()
-        elif next_dir < next_file:
-          self._last_yield = next_dir
-          next_dir = dirs.next()
-        elif next_file < next_dir:
-          self._last_yield = next_file
-          next_file = files.next()
-        else:
-          logging.error(
-              'Should never reach. next file is %r. next dir is %r.',
-              next_file, next_dir)
-        if self._new_max_keys:
-          self._new_max_keys -= 1
-        yield self._last_yield
+            while (max_keys is None or total < max_keys) and not (
+                next_file is None and next_dir is None
+            ):
+                total += 1
+                if next_file is None:
+                    self._last_yield = next_dir
+                    next_dir = dirs.next()
+                elif next_dir is None:
+                    self._last_yield = next_file
+                    next_file = files.next()
+                elif next_dir < next_file:
+                    self._last_yield = next_dir
+                    next_dir = dirs.next()
+                elif next_file < next_dir:
+                    self._last_yield = next_file
+                    next_file = files.next()
+                else:
+                    logging.error(
+                        "Should never reach. next file is %r. next dir is %r.",
+                        next_file,
+                        next_dir,
+                    )
+                if self._new_max_keys:
+                    self._new_max_keys -= 1
+                yield self._last_yield
 
-  def _next_file_gen(self, root):
-    """Generator for next file element in the document.
+    def _next_file_gen(self, root):
+        """Generator for next file element in the document.
 
     Args:
       root: root element of the XML tree.
@@ -341,24 +352,23 @@ class _Bucket(object):
     Yields:
       GCSFileStat for the next file.
     """
-    for e in root.getiterator(common._T_CONTENTS):
-      st_ctime, size, etag, key = None, None, None, None
-      for child in e.getiterator('*'):
-        if child.tag == common._T_LAST_MODIFIED:
-          st_ctime = common.dt_str_to_posix(child.text)
-        elif child.tag == common._T_ETAG:
-          etag = child.text
-        elif child.tag == common._T_SIZE:
-          size = child.text
-        elif child.tag == common._T_KEY:
-          key = child.text
-      yield common.GCSFileStat(self._path + '/' + key,
-                               size, etag, st_ctime)
-      e.clear()
-    yield None
+        for e in root.getiterator(common._T_CONTENTS):
+            st_ctime, size, etag, key = None, None, None, None
+            for child in e.getiterator("*"):
+                if child.tag == common._T_LAST_MODIFIED:
+                    st_ctime = common.dt_str_to_posix(child.text)
+                elif child.tag == common._T_ETAG:
+                    etag = child.text
+                elif child.tag == common._T_SIZE:
+                    size = child.text
+                elif child.tag == common._T_KEY:
+                    key = child.text
+            yield common.GCSFileStat(self._path + "/" + key, size, etag, st_ctime)
+            e.clear()
+        yield None
 
-  def _next_dir_gen(self, root):
-    """Generator for next directory element in the document.
+    def _next_dir_gen(self, root):
+        """Generator for next directory element in the document.
 
     Args:
       root: root element in the XML tree.
@@ -366,15 +376,19 @@ class _Bucket(object):
     Yields:
       GCSFileStat for the next directory.
     """
-    for e in root.getiterator(common._T_COMMON_PREFIXES):
-      yield common.GCSFileStat(
-          self._path + '/' + e.find(common._T_PREFIX).text,
-          st_size=None, etag=None, st_ctime=None, is_dir=True)
-      e.clear()
-    yield None
+        for e in root.getiterator(common._T_COMMON_PREFIXES):
+            yield common.GCSFileStat(
+                self._path + "/" + e.find(common._T_PREFIX).text,
+                st_size=None,
+                etag=None,
+                st_ctime=None,
+                is_dir=True,
+            )
+            e.clear()
+        yield None
 
-  def _should_get_another_batch(self, content):
-    """Whether to issue another GET bucket call.
+    def _should_get_another_batch(self, content):
+        """Whether to issue another GET bucket call.
 
     Args:
       content: response XML.
@@ -383,25 +397,27 @@ class _Bucket(object):
       True if should, also update self._options for the next request.
       False otherwise.
     """
-    if ('max-keys' in self._options and
-        self._options['max-keys'] <= common._MAX_GET_BUCKET_RESULT):
-      return False
+        if (
+            "max-keys" in self._options
+            and self._options["max-keys"] <= common._MAX_GET_BUCKET_RESULT
+        ):
+            return False
 
-    elements = self._find_elements(
-        content, set([common._T_IS_TRUNCATED,
-                      common._T_NEXT_MARKER]))
-    if elements.get(common._T_IS_TRUNCATED, 'false').lower() != 'true':
-      return False
+        elements = self._find_elements(
+            content, set([common._T_IS_TRUNCATED, common._T_NEXT_MARKER])
+        )
+        if elements.get(common._T_IS_TRUNCATED, "false").lower() != "true":
+            return False
 
-    next_marker = elements.get(common._T_NEXT_MARKER)
-    if next_marker is None:
-      self._options.pop('marker', None)
-      return False
-    self._options['marker'] = next_marker
-    return True
+        next_marker = elements.get(common._T_NEXT_MARKER)
+        if next_marker is None:
+            self._options.pop("marker", None)
+            return False
+        self._options["marker"] = next_marker
+        return True
 
-  def _find_elements(self, result, elements):
-    """Find interesting elements from XML.
+    def _find_elements(self, result, elements):
+        """Find interesting elements from XML.
 
     This function tries to only look for specified elements
     without parsing the entire XML. The specified elements is better
@@ -414,19 +430,19 @@ class _Bucket(object):
     Returns:
       A dict from element tag to element value.
     """
-    element_mapping = {}
-    result = StringIO.StringIO(result)
-    for _, e in ET.iterparse(result, events=('end',)):
-      if not elements:
-        break
-      if e.tag in elements:
-        element_mapping[e.tag] = e.text
-        elements.remove(e.tag)
-    return element_mapping
+        element_mapping = {}
+        result = StringIO.StringIO(result)
+        for _, e in ET.iterparse(result, events=("end",)):
+            if not elements:
+                break
+            if e.tag in elements:
+                element_mapping[e.tag] = e.text
+                elements.remove(e.tag)
+        return element_mapping
 
 
 def _get_storage_api(retry_params, account_id=None):
-  """Returns storage_api instance for API methods.
+    """Returns storage_api instance for API methods.
 
   Args:
     retry_params: An instance of api_utils.RetryParams.
@@ -439,12 +455,13 @@ def _get_storage_api(retry_params, account_id=None):
     to the real GCS.
   """
 
-
-  api = storage_api._StorageApi(storage_api._StorageApi.full_control_scope,
-                                service_account_id=account_id,
-                                retry_params=retry_params)
-  if common.local_run() and not common.get_access_token():
-    api.api_url = common.local_api_url()
-  if common.get_access_token():
-    api.token = common.get_access_token()
-  return api
+    api = storage_api._StorageApi(
+        storage_api._StorageApi.full_control_scope,
+        service_account_id=account_id,
+        retry_params=retry_params,
+    )
+    if common.local_run() and not common.get_access_token():
+        api.api_url = common.local_api_url()
+    if common.get_access_token():
+        api.token = common.get_access_token()
+    return api

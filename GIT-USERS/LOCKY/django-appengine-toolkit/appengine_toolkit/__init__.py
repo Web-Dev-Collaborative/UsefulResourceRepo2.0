@@ -1,4 +1,4 @@
-__version__ = '0.2.1'
+__version__ = "0.2.1"
 
 import os
 
@@ -7,15 +7,15 @@ try:
 except ImportError:
     import urllib.parse as urlparse
 
-DEFAULT_ENV = 'DATABASE_URL'
+DEFAULT_ENV = "DATABASE_URL"
 
 # Register database schemes in URLs.
-urlparse.uses_netloc.append('mysql')
-urlparse.uses_netloc.append('rdbms')
+urlparse.uses_netloc.append("mysql")
+urlparse.uses_netloc.append("rdbms")
 
 SCHEMES = {
-    'mysql': 'django.db.backends.mysql',
-    'rdbms': 'google.appengine.ext.django.backends.rdbms',
+    "mysql": "django.db.backends.mysql",
+    "rdbms": "google.appengine.ext.django.backends.rdbms",
 }
 
 
@@ -23,7 +23,7 @@ def on_appengine():
     """
     Determine if program is running on App Engine servers
     """
-    return os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine')
+    return os.getenv("SERVER_SOFTWARE", "").startswith("Google App Engine")
 
 
 def config(env=DEFAULT_ENV, default=None):
@@ -54,29 +54,31 @@ def parse(url):
 
     # Remove query strings.
     path = url.path[1:]
-    path = path.split('?', 2)[0]
+    path = path.split("?", 2)[0]
 
     try:
         port = url.port
         hostname = url.hostname
     except ValueError:
         port = None
-        if url.scheme == 'rdbms':
+        if url.scheme == "rdbms":
             # local appengine stub requires INSTANCE parameter
-            config['INSTANCE'] = url.netloc.split('@')[-1]
+            config["INSTANCE"] = url.netloc.split("@")[-1]
             hostname = None
         else:
-            hostname = "/cloudsql/{}".format(url.netloc.split('@')[-1])
+            hostname = "/cloudsql/{}".format(url.netloc.split("@")[-1])
 
-    config.update({
-        'NAME': path,
-        'USER': url.username,
-        'PASSWORD': url.password,
-        'HOST': hostname,
-        'PORT': port,
-    })
+    config.update(
+        {
+            "NAME": path,
+            "USER": url.username,
+            "PASSWORD": url.password,
+            "HOST": hostname,
+            "PORT": port,
+        }
+    )
 
     if url.scheme in SCHEMES:
-        config['ENGINE'] = SCHEMES[url.scheme]
+        config["ENGINE"] = SCHEMES[url.scheme]
 
     return config

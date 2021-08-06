@@ -14,18 +14,14 @@ from __future__ import unicode_literals
 
 from django.conf import settings
 
-USER_SETTINGS = getattr(settings, 'APPENGINE_TOOLKIT', None)
+USER_SETTINGS = getattr(settings, "APPENGINE_TOOLKIT", None)
 
-DEFAULTS = {
-    'APP_YAML': None,
-    'DEPENDENCIES_ROOT': 'libs',
-    'BUCKET_NAME': None,
-}
+DEFAULTS = {"APP_YAML": None, "DEPENDENCIES_ROOT": "libs", "BUCKET_NAME": None}
 
 # List of settings that cannot be empty
 MANDATORY = (
     # absolute path to application file
-    'APP_YAML',
+    "APP_YAML",
 )
 
 
@@ -61,4 +57,6 @@ class AppengineToolkitSettings(object):
             raise AttributeError("Appengine Toolkit setting: '%s' is mandatory" % attr)
 
 
-appengine_toolkit_settings = AppengineToolkitSettings(USER_SETTINGS, DEFAULTS, MANDATORY)
+appengine_toolkit_settings = AppengineToolkitSettings(
+    USER_SETTINGS, DEFAULTS, MANDATORY
+)

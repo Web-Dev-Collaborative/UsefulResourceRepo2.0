@@ -8,27 +8,31 @@ import getpass
 
 import djangae.utils as utils
 
-_SCRIPT_NAME = 'dev_appserver.py'
+_SCRIPT_NAME = "dev_appserver.py"
 
 _API_SERVER = None
 
+
 def _find_sdk_from_python_path():
     import google.appengine
+
     return os.path.abspath(os.path.dirname(google.__path__[0]))
 
 
 def _find_sdk_from_path():
     # Assumes `script_name` is on your PATH - SDK installers set this up
-    which = 'where' if sys.platform == "win32" else 'which'
+    which = "where" if sys.platform == "win32" else "which"
     path = subprocess.check_output([which, _SCRIPT_NAME]).strip()
     sdk_dir = os.path.dirname(os.path.realpath(path))
 
-    if os.path.exists(os.path.join(sdk_dir, 'bootstrapping')):
+    if os.path.exists(os.path.join(sdk_dir, "bootstrapping")):
         # Cloud SDK
-        sdk_dir = os.path.abspath(os.path.join(sdk_dir, '..', 'platform', 'google_appengine'))
+        sdk_dir = os.path.abspath(
+            os.path.join(sdk_dir, "..", "platform", "google_appengine")
+        )
         if not os.path.exists(sdk_dir):
             raise RuntimeError(
-                'The Cloud SDK is on the path, but the app engine SDK dir could not be found'
+                "The Cloud SDK is on the path, but the app engine SDK dir could not be found"
             )
         else:
             return sdk_dir
@@ -40,7 +44,8 @@ def _find_sdk_from_path():
 def _create_dispatcher(configuration, options):
     from google.appengine.tools.devappserver2 import dispatcher
     from google.appengine.tools.devappserver2.devappserver2 import (
-        DevelopmentServer, _LOG_LEVEL_TO_RUNTIME_CONSTANT
+        DevelopmentServer,
+        _LOG_LEVEL_TO_RUNTIME_CONSTANT,
     )
 
     if hasattr(_create_dispatcher, "singleton"):
@@ -57,31 +62,43 @@ def _create_dispatcher(configuration, options):
         DevelopmentServer._create_java_config(options),
         DevelopmentServer._create_cloud_sql_config(options),
         DevelopmentServer._create_vm_config(options),
-        DevelopmentServer._create_module_to_setting(options.max_module_instances,
-                                       configuration, '--max_module_instances'),
+        DevelopmentServer._create_module_to_setting(
+            options.max_module_instances, configuration, "--max_module_instances"
+        ),
         options.use_mtime_file_watcher,
         options.automatic_restart,
         options.allow_skipped_files,
-        DevelopmentServer._create_module_to_setting(options.threadsafe_override,
-                                       configuration, '--threadsafe_override')
+        DevelopmentServer._create_module_to_setting(
+            options.threadsafe_override, configuration, "--threadsafe_override"
+        ),
     )
 
     return _create_dispatcher.singleton
 
+
 @contextlib.contextmanager
-def _local(devappserver2=None, configuration=None, options=None, wsgi_request_info=None, **kwargs):
+def _local(
+    devappserver2=None,
+    configuration=None,
+    options=None,
+    wsgi_request_info=None,
+    **kwargs
+):
     global _API_SERVER
 
     original_environ = os.environ.copy()
 
     devappserver2._setup_environ(configuration.app_id)
-    storage_path = devappserver2._get_storage_path(options.storage_path, configuration.app_id)
+    storage_path = devappserver2._get_storage_path(
+        options.storage_path, configuration.app_id
+    )
 
     dispatcher = _create_dispatcher(configuration, options)
     request_data = wsgi_request_info.WSGIRequestInfo(dispatcher)
 
     _API_SERVER = devappserver2.DevelopmentServer._create_api_server(
-        request_data, storage_path, options, configuration)
+        request_data, storage_path, options, configuration
+    )
 
     try:
         yield
@@ -91,29 +108,28 @@ def _local(devappserver2=None, configuration=None, options=None, wsgi_request_in
 
 @contextlib.contextmanager
 def _remote(configuration=None, remote_api_stub=None, apiproxy_stub_map=None, **kwargs):
-
     def auth_func():
-        return raw_input('Google Account Login: '), getpass.getpass('Password: ')
+        return raw_input("Google Account Login: "), getpass.getpass("Password: ")
 
     original_apiproxy = apiproxy_stub_map.apiproxy
 
-    if configuration.app_id.startswith('dev~'):
+    if configuration.app_id.startswith("dev~"):
         app_id = configuration.app_id[4:]
     else:
         app_id = configuration.app_id
 
     remote_api_stub.ConfigureRemoteApi(
         None,
-        '/_ah/remote_api',
+        "/_ah/remote_api",
         auth_func,
-        servername='{0}.appspot.com'.format(app_id),
+        servername="{0}.appspot.com".format(app_id),
         secure=True,
     )
 
-    ps1 = getattr(sys, 'ps1', None)
+    ps1 = getattr(sys, "ps1", None)
     red = "\033[0;31m"
     native = "\033[m"
-    sys.ps1 = red + '(remote) ' + app_id + native + ' >>> '
+    sys.ps1 = red + "(remote) " + app_id + native + " >>> "
 
     try:
         yield
@@ -126,16 +142,14 @@ def _remote(configuration=None, remote_api_stub=None, apiproxy_stub_map=None, **
 def _test(**kwargs):
     yield
 
-LOCAL = 'local'
-REMOTE = 'remote'
-TEST = 'test'
-SANDBOXES = {
-    LOCAL: _local,
-    REMOTE: _remote,
-    TEST: _test,
-}
+
+LOCAL = "local"
+REMOTE = "remote"
+TEST = "test"
+SANDBOXES = {LOCAL: _local, REMOTE: _remote, TEST: _test}
 
 _OPTIONS = None
+
 
 @contextlib.contextmanager
 def activate(sandbox_name, add_sdk_to_path=False, **overrides):
@@ -182,13 +196,17 @@ def activate(sandbox_name, add_sdk_to_path=False, **overrides):
         try:
             import wrapper_util
         except ImportError:
-            raise RuntimeError("Couldn't find a recent enough Google App Engine SDK, make sure you are using at least 1.9.6")
+            raise RuntimeError(
+                "Couldn't find a recent enough Google App Engine SDK, make sure you are using at least 1.9.6"
+            )
 
     original_path = sys.path[:]
 
     sdk_path = _find_sdk_from_python_path()
     _PATHS = wrapper_util.Paths(sdk_path)
-    sys.path = (_PATHS.script_paths(_SCRIPT_NAME) + _PATHS.scrub_path(_SCRIPT_NAME, sys.path))
+    sys.path = _PATHS.script_paths(_SCRIPT_NAME) + _PATHS.scrub_path(
+        _SCRIPT_NAME, sys.path
+    )
 
     # Initialize as though `dev_appserver.py` is about to run our app, using all the
     # configuration provided in app.yaml.
@@ -208,7 +226,9 @@ def activate(sandbox_name, add_sdk_to_path=False, **overrides):
 
         setattr(options, option, overrides[option])
 
-    configuration = application_configuration.ApplicationConfiguration(options.config_paths)
+    configuration = application_configuration.ApplicationConfiguration(
+        options.config_paths
+    )
 
     # Take dev_appserver paths off sys.path - GAE apps cannot access these
     sys.path = original_path[:]
@@ -220,7 +240,7 @@ def activate(sandbox_name, add_sdk_to_path=False, **overrides):
 
     try:
         global _OPTIONS
-        _OPTIONS = options # Store the options globally so they can be accessed later
+        _OPTIONS = options  # Store the options globally so they can be accessed later
         kwargs = dict(
             devappserver2=devappserver2,
             configuration=configuration,

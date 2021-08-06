@@ -15,6 +15,7 @@
 #  with sleuth.switch("some.path.to.thing", lambda x: pass) as mock:
 #
 
+
 def _dot_lookup(thing, comp, import_path):
     try:
         return getattr(thing, comp)
@@ -24,7 +25,7 @@ def _dot_lookup(thing, comp, import_path):
 
 
 def _evaluate_path(target):
-    components = target.split('.')
+    components = target.split(".")
     import_path = components.pop(0)
     thing = __import__(import_path)
 
@@ -35,9 +36,7 @@ def _evaluate_path(target):
 
 
 def _patch(path, replacement):
-    thing = _evaluate_path(
-        ".".join(path.split(".")[:-1])
-    )
+    thing = _evaluate_path(".".join(path.split(".")[:-1]))
     setattr(thing, path.split(".")[-1], replacement)
 
 
@@ -47,6 +46,7 @@ class Watch(object):
         the function for the lifetime of the context and records all the calls made to it so that
         you can test that everything is as you expect it to be
     """
+
     def __init__(self, func_path):
         self._original_func = _evaluate_path(func_path)
         self._func_path = func_path
@@ -57,9 +57,7 @@ class Watch(object):
         def wrapper(_func):
             def wrapped(*args, **kwargs):
                 wrapped.call_count += 1
-                wrapped.calls.append(
-                    (args, kwargs)
-                )
+                wrapped.calls.append((args, kwargs))
                 wrapped.called = True
                 return _func(*args, **kwargs)
 
@@ -79,6 +77,7 @@ class Watch(object):
     def __exit__(self, *args, **kwargs):
         _patch(self._func_path, self._original_func)
 
+
 watch = Watch
 
 
@@ -88,6 +87,7 @@ class Switch(object):
         wrapped using the above Watch context manager so that you can also assert that your replacement is
         called as you expect.
     """
+
     def __init__(self, func_path, replacement):
         self._original_func = _evaluate_path(func_path)
         self._func_path = func_path
@@ -102,5 +102,6 @@ class Switch(object):
     def __exit__(self, *args, **kwargs):
         self._watch.__exit__(*args, **kwargs)
         _patch(self._func_path, self._original_func)
+
 
 switch = Switch

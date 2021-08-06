@@ -23,21 +23,13 @@ def day_transform(connection, value):
 
 def hour_transform(connection, value):
     value = connection.ops.value_from_db_datetime(value)
-    return date_to_epoch(
-        datetime(
-            value.year, value.month, value.day,
-            value.hour, 1, 1
-        )
-    )
+    return date_to_epoch(datetime(value.year, value.month, value.day, value.hour, 1, 1))
 
 
 def minute_transform(connection, value):
     value = connection.ops.value_from_db_datetime(value)
     return date_to_epoch(
-        datetime(
-            value.year, value.month, value.day,
-            value.hour, value.minute, 1
-        )
+        datetime(value.year, value.month, value.day, value.hour, value.minute, 1)
     )
 
 
@@ -45,7 +37,6 @@ def second_transform(connection, value):
     value = connection.ops.value_from_db_datetime(value)
     return date_to_epoch(
         datetime(
-            value.year, value.month, value.day,
-            value.hour, value.minute, value.second
+            value.year, value.month, value.day, value.hour, value.minute, value.second
         )
     )

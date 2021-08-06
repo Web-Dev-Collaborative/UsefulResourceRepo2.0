@@ -11,6 +11,7 @@ import sys
 
 xrange = xrange if sys.version_info < (3,) else range
 
+
 def fastLongestPalindromes(seq):
     """
     行为跟 naiveLongestPalindromes(如下) 相同, 但是时间复杂度 O(n).
@@ -32,7 +33,7 @@ def fastLongestPalindromes(seq):
             continue
 
         # 当前的回文串是能获取的最大回文串, 所以加入 l.
-        l.append((palLen, seq[(i - palLen):i]))
+        l.append((palLen, seq[(i - palLen) : i]))
 
         # 现在为了更进一步, 我们寻找一个跟当前回文串共享右边缘的更小的回文串.
         # 如果我们找到一个, 我们尽量扩展它并且看它能把我们带到哪. 同时,
@@ -65,7 +66,7 @@ def fastLongestPalindromes(seq):
             # 否则, 我们仅拷贝值到右边. 我们不得不绑定 l[i]
             # 因为左边的回文串可以扩展超过上一个回文串的左边缘,
             # 而他们地对称部分不能扩展超过右边缘.
-            l.append((min(d, l[j][0]), seq[(i - palLen):i]))
+            l.append((min(d, l[j][0]), seq[(i - palLen) : i]))
         else:
             # 下面的代码在两种情况下执行: for 循环没有执行(palLen == 0)
             # 或者内部循环没有找到一个回文串跟上一个回文串共享左边界.
@@ -77,7 +78,7 @@ def fastLongestPalindromes(seq):
     # 剩余的值.
 
     # 明显地, 我们寻找地上一个回文串不再增加.
-    l.append((palLen, seq[(i - palLen):i]))
+    l.append((palLen, seq[(i - palLen) : i]))
 
     # 从第二到最后一个索引开始递增向后遍历直到我们使 l 的大小增加到 2 *
     # seqLen + 1. 我们能从循环不变量中推断我们有足够的元素.
@@ -88,9 +89,10 @@ def fastLongestPalindromes(seq):
         # d 使用了跟上面内部循环一样地公式(计算到上一个回文串左边缘地距离).
         d = i - e - 1
         # 我们将 l[i] 跟 min 绑定是出于跟上面地内部循环同样地原因.
-        l.append((min(d, l[i][0]), seq[(i - palLen):i]))
+        l.append((min(d, l[i][0]), seq[(i - palLen) : i]))
 
     return l
+
 
 def naiveLongestPalindromes(seq):
     """
@@ -129,31 +131,36 @@ def naiveLongestPalindromes(seq):
 
 # implement manacher algorithm
 def pre_process(seq):
-  res = ['#{}'.format(elem) for elem in seq]
-  res.append('#$')
-  res.insert(0,'^')
-  return ''.join(res)
+    res = ["#{}".format(elem) for elem in seq]
+    res.append("#$")
+    res.insert(0, "^")
+    return "".join(res)
+
 
 def manacher(seq):
-  T = pre_process(seq)
-  P = [0]*len(T)
-  c,r = 0,0
-  for i in range(1,len(T)):
-    i_mirror = 2*c - i
-    if r > i:
-      P[i] = min(r-i, P[i_mirror])
-    else:
-      P[i] = 0
-    while i+1+P[i] < len(T)-1 and i-1-P[i] >=0 and T[ i+1+P[i] ] == T[ i-1-P[i] ]:
-      P[i] += 1
-    if i + P[i] > r:
-      c = i
-      r = i+P[i]
-  return max(P)
+    T = pre_process(seq)
+    P = [0] * len(T)
+    c, r = 0, 0
+    for i in range(1, len(T)):
+        i_mirror = 2 * c - i
+        if r > i:
+            P[i] = min(r - i, P[i_mirror])
+        else:
+            P[i] = 0
+        while (
+            i + 1 + P[i] < len(T) - 1
+            and i - 1 - P[i] >= 0
+            and T[i + 1 + P[i]] == T[i - 1 - P[i]]
+        ):
+            P[i] += 1
+        if i + P[i] > r:
+            c = i
+            r = i + P[i]
+    return max(P)
 
 
-if __name__ == '__main__':
-    s = 'madam'
+if __name__ == "__main__":
+    s = "madam"
     print(manacher(s))
     print(max(fastLongestPalindromes(s), key=lambda x: x[0])[1])
     print(max(naiveLongestPalindromes(s), key=lambda x: x[0])[1])

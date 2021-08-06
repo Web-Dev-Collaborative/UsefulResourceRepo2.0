@@ -22,13 +22,16 @@ try:
     IDENTITY_TOKEN = settings.PAYPAL_IDENTITY_TOKEN
 except:
     raise PayPalSettingsError(
-        "You must set PAYPAL_IDENTITY_TOKEN in settings.py. Get this token by enabling PDT in your PayPal account.")
+        "You must set PAYPAL_IDENTITY_TOKEN in settings.py. Get this token by enabling PDT in your PayPal account."
+    )
 
 
 class PayPalPDT(PayPalStandardBase):
     format = u"<PDT: %s %s>"
 
-    amt = models.DecimalField(max_digits=64, decimal_places=2, default=0, blank=True, null=True)
+    amt = models.DecimalField(
+        max_digits=64, decimal_places=2, default=0, blank=True, null=True
+    )
     cm = models.CharField(max_length=255, blank=True)
     sig = models.CharField(max_length=255, blank=True)
     tx = models.CharField(max_length=255, blank=True)
@@ -51,7 +54,7 @@ class PayPalPDT(PayPalStandardBase):
 
     def get_endpoint(self):
         """Use the sandbox when in DEBUG mode as we don't have a test_ipn variable in pdt."""
-        if getattr(settings, 'PAYPAL_DEBUG', settings.DEBUG):
+        if getattr(settings, "PAYPAL_DEBUG", settings.DEBUG):
             return SANDBOX_POSTBACK_ENDPOINT
         else:
             return POSTBACK_ENDPOINT
@@ -62,7 +65,7 @@ class PayPalPDT(PayPalStandardBase):
 
         # TODO: this needs testing and probably fixing under Python 3
         result = False
-        response_list = self.response.split('\n')
+        response_list = self.response.split("\n")
         response_dict = {}
         for i, line in enumerate(response_list):
             unquoted_line = unquote_plus(line).strip()
@@ -75,16 +78,23 @@ class PayPalPDT(PayPalStandardBase):
                     self.set_flag(line)
                     break
                 try:
-                    if not unquoted_line.startswith(' -'):
-                        k, v = unquoted_line.split('=')
+                    if not unquoted_line.startswith(" -"):
+                        k, v = unquoted_line.split("=")
                         response_dict[k.strip()] = v.strip()
                 except ValueError:
                     pass
 
-        qd = QueryDict('', mutable=True)
+        qd = QueryDict("", mutable=True)
         qd.update(response_dict)
-        qd.update(dict(ipaddress=self.ipaddress, st=self.st, flag_info=self.flag_info, flag=self.flag,
-                       flag_code=self.flag_code))
+        qd.update(
+            dict(
+                ipaddress=self.ipaddress,
+                st=self.st,
+                flag_info=self.flag_info,
+                flag=self.flag,
+                flag_code=self.flag_code,
+            )
+        )
         pdt_form = PayPalPDTForm(qd, instance=self)
         pdt_form.save(commit=False)
 

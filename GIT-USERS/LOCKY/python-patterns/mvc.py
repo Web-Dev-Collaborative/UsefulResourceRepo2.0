@@ -5,32 +5,35 @@
 class Model(object):
 
     products = {
-        'milk': {'price': 1.50, 'quantity': 10},
-        'eggs': {'price': 0.20, 'quantity': 100},
-        'cheese': {'price': 2.00, 'quantity': 10}
+        "milk": {"price": 1.50, "quantity": 10},
+        "eggs": {"price": 0.20, "quantity": 100},
+        "cheese": {"price": 2.00, "quantity": 10},
     }
 
 
 class View(object):
-
     def product_list(self, product_list):
-        print('PRODUCT LIST:')
+        print("PRODUCT LIST:")
         for product in product_list:
             print(product)
-        print('')
+        print("")
 
     def product_information(self, product, product_info):
-        print('PRODUCT INFORMATION:')
-        print('Name: %s, Price: %.2f, Quantity: %d\n' %
-              (product.title(), product_info.get('price', 0),
-               product_info.get('quantity', 0)))
+        print("PRODUCT INFORMATION:")
+        print(
+            "Name: %s, Price: %.2f, Quantity: %d\n"
+            % (
+                product.title(),
+                product_info.get("price", 0),
+                product_info.get("quantity", 0),
+            )
+        )
 
     def product_not_found(self, product):
         print('That product "%s" does not exist in the records' % product)
 
 
 class Controller(object):
-
     def __init__(self):
         self.model = Model()
         self.view = View()
@@ -47,14 +50,14 @@ class Controller(object):
             self.view.product_not_found(product)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     controller = Controller()
     controller.get_product_list()
-    controller.get_product_information('cheese')
-    controller.get_product_information('eggs')
-    controller.get_product_information('milk')
-    controller.get_product_information('arepas')
+    controller.get_product_information("cheese")
+    controller.get_product_information("eggs")
+    controller.get_product_information("milk")
+    controller.get_product_information("arepas")
 
 ### OUTPUT ###
 # PRODUCT LIST:

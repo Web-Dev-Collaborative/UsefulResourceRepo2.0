@@ -8,14 +8,18 @@ from django.conf import settings
 from django.core.cache import cache
 
 CACHE_GAE_IMAGE_FIELD = getattr(settings, "CACHE_GAE_IMAGE_FIELD", True)
-CACHE_GAE_IMAGE_FIELD_PREFIX = getattr(settings, "CACHE_GAE_IMAGE_FIELD_PREFIX", "gae_image_url_")
+CACHE_GAE_IMAGE_FIELD_PREFIX = getattr(
+    settings, "CACHE_GAE_IMAGE_FIELD_PREFIX", "gae_image_url_"
+)
 
 
 def _gae_image_url(picture_str):
     """
     Returns dynamic image resizing url using GAE Images API
     """
-    blob_key = blobstore.create_gs_key('/gs%s/%s' % (settings.GOOGLE_CLOUD_STORAGE_BUCKET, picture_str))
+    blob_key = blobstore.create_gs_key(
+        "/gs%s/%s" % (settings.GOOGLE_CLOUD_STORAGE_BUCKET, picture_str)
+    )
     return images.get_serving_url(blob_key)
 
 
@@ -24,7 +28,7 @@ def gae_image_url(image=None):
     Returns dynamic image resizing url using GAE Images API
     Cache url if asked to in the settings.
     """
-    url = ''
+    url = ""
 
     if image:
         picture_str = str(image)
@@ -38,6 +42,6 @@ def gae_image_url(image=None):
         if url:
             return url
 
-        url =  _gae_image_url(picture_str)
+        url = _gae_image_url(picture_str)
         cache.set(key, url, 86400)
     return url

@@ -21,8 +21,8 @@ def normalize(val):
     """ Normalize a string so that it can be used as an attribute
     to a Python object """
 
-    if val.find('-') != -1:
-        val = val.replace('-', '_')
+    if val.find("-") != -1:
+        val = val.replace("-", "_")
 
     return val
 
@@ -30,8 +30,8 @@ def normalize(val):
 def denormalize(val):
     """ De-normalize a string """
 
-    if val.find('_') != -1:
-        val = val.replace('_', '-')
+    if val.find("_") != -1:
+        val = val.replace("_", "-")
 
     return val
 
@@ -53,7 +53,7 @@ class SpecialDict(dict):
             if name in self:
                 return self.get(name)
             else:
-                raise AttributeError('no attribute named %s' % name)
+                raise AttributeError("no attribute named %s" % name)
 
     def __setattr__(self, name, value):
 
@@ -78,12 +78,12 @@ class CompositeDict(SpecialDict):
 
     ID = 0
 
-    def __init__(self, name=''):
+    def __init__(self, name=""):
 
         if name:
             self._name = name
         else:
-            self._name = ''.join(('id#', str(self.__class__.ID)))
+            self._name = "".join(("id#", str(self.__class__.ID)))
             self.__class__.ID += 1
 
         self._children = []
@@ -112,7 +112,7 @@ class CompositeDict(SpecialDict):
                     if attr:
                         return attr
 
-                    raise AttributeError('no attribute named %s' % name)
+                    raise AttributeError("no attribute named %s" % name)
 
     def isRoot(self):
         """ Return whether I am a root component or not """
@@ -212,7 +212,7 @@ class CompositeDict(SpecialDict):
     def getPropertyDict(self):
         """ Return the property dictionary """
 
-        d = self.getChild('__properties')
+        d = self.getChild("__properties")
         if d:
             return d.getDict()
         else:
@@ -271,7 +271,7 @@ class CompositeDict(SpecialDict):
         new or existing """
 
         if type(name) != str:
-            raise ValueError('Argument should be a string!')
+            raise ValueError("Argument should be a string!")
 
         child = self.getChild(name)
         if child:
@@ -317,16 +317,16 @@ class CompositeDict(SpecialDict):
 
 
 if __name__ == "__main__":
-    window = CompositeDict('Window')
-    frame = window.addChild('Frame')
-    tfield = frame.addChild('Text Field')
-    tfield.setAttribute('size', '20')
+    window = CompositeDict("Window")
+    frame = window.addChild("Frame")
+    tfield = frame.addChild("Text Field")
+    tfield.setAttribute("size", "20")
 
-    btn = frame.addChild('Button1')
-    btn.setAttribute('label', 'Submit')
+    btn = frame.addChild("Button1")
+    btn.setAttribute("label", "Submit")
 
-    btn = frame.addChild('Button2')
-    btn.setAttribute('label', 'Browse')
+    btn = frame.addChild("Button2")
+    btn.setAttribute("label", "Browse")
 
     # print(window)
     # print(window.Frame)

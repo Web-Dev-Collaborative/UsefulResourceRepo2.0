@@ -15,12 +15,12 @@ def warmup(request):
         Engine. Just add this view to your main urls.py.
     """
     for app in settings.INSTALLED_APPS:
-        for name in ('urls', 'views', 'models'):
+        for name in ("urls", "views", "models"):
             try:
-                import_module('%s.%s' % (app, name))
+                import_module("%s.%s" % (app, name))
             except ImportError:
                 pass
-    content_type = 'text/plain; charset=%s' % settings.DEFAULT_CHARSET
+    content_type = "text/plain; charset=%s" % settings.DEFAULT_CHARSET
     return HttpResponse("Warmup done.", content_type=content_type)
 
 
@@ -29,23 +29,30 @@ def deferred(request):
     from google.appengine.ext.deferred.deferred import (
         run,
         SingularTaskFailure,
-        PermanentTaskFailure
+        PermanentTaskFailure,
     )
 
     response = HttpResponse()
 
-    if 'HTTP_X_APPENGINE_TASKEXECUTIONCOUNT' in request.META:
-        logging.debug("[DEFERRED] Retry %s of deferred task", request.META['HTTP_X_APPENGINE_TASKEXECUTIONCOUNT'])
+    if "HTTP_X_APPENGINE_TASKEXECUTIONCOUNT" in request.META:
+        logging.debug(
+            "[DEFERRED] Retry %s of deferred task",
+            request.META["HTTP_X_APPENGINE_TASKEXECUTIONCOUNT"],
+        )
 
-    if 'HTTP_X_APPENGINE_TASKNAME' not in request.META:
-        logging.critical('Detected an attempted XSRF attack. The header "X-AppEngine-Taskname" was not set.')
+    if "HTTP_X_APPENGINE_TASKNAME" not in request.META:
+        logging.critical(
+            'Detected an attempted XSRF attack. The header "X-AppEngine-Taskname" was not set.'
+        )
         response.status_code = 403
         return response
 
     in_prod = on_production()
 
     if in_prod and os.environ.get("REMOTE_ADDR") != "0.1.0.2":
-        logging.critical('Detected an attempted XSRF attack. This request did not originate from Task Queue.')
+        logging.critical(
+            "Detected an attempted XSRF attack. This request did not originate from Task Queue."
+        )
         response.status_code = 403
         return response
 

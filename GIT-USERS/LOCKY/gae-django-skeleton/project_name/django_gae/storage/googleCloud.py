@@ -6,12 +6,10 @@ from django.core.files.storage import Storage
 from google.appengine.api.blobstore import create_gs_key
 import cloudstorage as gcs
 
-__author__ = 'ckopanos@redmob.gr'
+__author__ = "ckopanos@redmob.gr"
 
 
 class GoogleCloudStorage(Storage):
-
-
     def __init__(self, location=None, base_url=None):
         if location is None:
             location = settings.GOOGLE_CLOUD_STORAGE_BUCKET
@@ -20,19 +18,27 @@ class GoogleCloudStorage(Storage):
             base_url = settings.GOOGLE_CLOUD_STORAGE_URL
         self.base_url = base_url
 
-    def _open(self, name, mode='rb'):
-        filename = self.location+"/"+name
-        gcs_file = gcs.open(filename,mode='r')
+    def _open(self, name, mode="rb"):
+        filename = self.location + "/" + name
+        gcs_file = gcs.open(filename, mode="r")
         file = ContentFile(gcs_file.read())
         gcs_file.close()
         return file
 
     def _save(self, name, content):
-        filename = self.location+"/"+name
+        filename = self.location + "/" + name
         filename = os.path.normpath(filename)
         type, encoding = mimetypes.guess_type(name)
-        #files are stored with public-read permissions. Check out the google acl options if you need to alter this.
-        gss_file = gcs.open(filename, mode='w', content_type=type, options={'x-goog-acl': 'public-read', 'cache-control': settings.GOOGLE_CLOUD_STORAGE_DEFAULT_CACHE_CONTROL,})
+        # files are stored with public-read permissions. Check out the google acl options if you need to alter this.
+        gss_file = gcs.open(
+            filename,
+            mode="w",
+            content_type=type,
+            options={
+                "x-goog-acl": "public-read",
+                "cache-control": settings.GOOGLE_CLOUD_STORAGE_DEFAULT_CACHE_CONTROL,
+            },
+        )
         content.open()
         gss_file.write(content.read())
         content.close()
@@ -40,7 +46,7 @@ class GoogleCloudStorage(Storage):
         return name
 
     def delete(self, name):
-        filename = self.location+"/"+name
+        filename = self.location + "/" + name
         try:
             gcs.delete(filename)
         except gcs.NotFoundError:
@@ -55,19 +61,19 @@ class GoogleCloudStorage(Storage):
 
     def listdir(self, path=None):
         directories, files = [], []
-        bucketContents = gcs.listbucket(self.location,prefix=path)
+        bucketContents = gcs.listbucket(self.location, prefix=path)
         for entry in bucketContents:
             filePath = entry.filename
             head, tail = os.path.split(filePath)
-            subPath = os.path.join(self.location,path)
-            head = head.replace(subPath,'',1)
+            subPath = os.path.join(self.location, path)
+            head = head.replace(subPath, "", 1)
             if head == "":
                 head = None
             if not head and tail:
                 files.append(tail)
             if head:
                 if not head.startswith("/"):
-                    head = "/"+head
+                    head = "/" + head
                 dir = head.split("/")[1]
                 if not dir in directories:
                     directories.append(dir)
@@ -90,12 +96,11 @@ class GoogleCloudStorage(Storage):
     def url(self, name):
         if settings.DEBUG:
             # we need this in order to display images, links to files, etc from the local appengine server
-            filename = "/gs"+self.location+"/"+name
+            filename = "/gs" + self.location + "/" + name
             key = create_gs_key(filename)
-            return "http://localhost:8000/blobstore/blob/"+key+"?display=inline"
-        return self.base_url+"/"+name
+            return "http://localhost:8000/blobstore/blob/" + key + "?display=inline"
+        return self.base_url + "/" + name
 
-
-    def statFile(self,name):
-        filename = self.location+"/"+name
+    def statFile(self, name):
+        filename = self.location + "/" + name
         return gcs.stat(filename)
