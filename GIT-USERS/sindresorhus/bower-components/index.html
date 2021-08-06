@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="Discover Bower components. Bower is a package manager for the web.">
+		<meta name="author" content="Sindre Sorhus">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta property="og:title" content="Bower components">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="sindresorhus.com/bower-components">
+		<meta property="og:image" content="http://bower.io/img/bower-logo.png">
+		<title>Bower components</title>
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700">
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css">
+		<link rel="stylesheet" href="css/main.css">
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<a href="https://github.com/sindresorhus/bower-components"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+		<div class="wrapper">
+			<div class="container">
+				<header class="header row">
+					<div class="span9">
+						<h1>Bower components</h1>
+						<h2>Discover <a href="http://bower.io">Bower</a> components</h2>
+						<p style="margin-left:4px">Make sure to include <a href="https://docs.google.com/document/d/1APq7oA9tNao1UYWyOm8dKqlRP2blVkROYLZ2fLIjtWc/edit#heading=h.gexwkmadfy56">keywords</a> in your bower.json as the search will make use of those.</p>
+					</div>
+				</header>
+				<hr>
+				<section class="main">
+					<div id="loading">
+						<p>Loading components...</p>
+					</div>
+					<div class="row components1"></div>
+					<div id="components" class="row components3"></div>
+					<div class="row components2"></div>
+				</section>
+			</div>
+			<div class="push"></div>
+		</div>
+		<footer class="credit">
+			<div class="container">
+				<p class="about">Bower is a package manager for the web.<br>Components are self-contained packages of different kinds of assets, but most often JavaScript.</p>
+				<div class="profile" itemscope itemtype="http://schema.org/Person">
+					<div class="name" itemprop="name"><span>Sindre</span> <span>Sorhus</span></div>
+					<a href="http://sindresorhus.com">
+						<img src="http://gravatar.com/avatar/d36a92237c75c5337c17b60d90686bf9.png?s=300" width="150" height="150" alt="Sindre Sorhus" itemprop="image">
+					</a>
+				</div>
+				<a href="https://twitter.com/sindresorhus" class="twitter-follow-button" data-show-count="false">Follow @sindresorhus</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			</div>
+		</footer>
+	</body>
+	<script type="text/template" id="components-small-template">
+		<div class="span6">
+			<h4><%- title %></h4>
+			<dl class="dl-horizontal">
+				<% _.each(components, function (el) { %>
+					<dt><a title="<%- el.description %>" href="<%- el.website %>" target="_blank"><%- el.name %></a></dt>
+					<dd title="<%- el.description %>"><p class="component-desc"><%= el.description ? _.escape(el.description) : '&nbsp;' %></p></dd>
+				<% }); %>
+			</dl>
+		</div>
+	</script>​
+	<script type="text/template" id="components-template">
+		<table class="table span12">
+			<caption>
+				<input style="display:none" class="search input-medium search-query" type="search" placeholder="Search in <%= components.length %> components..." autofocus>
+			</caption>
+			<thead>
+				<tr>
+					<th class="sort" data-sort="name">Name</th>
+					<th class="sort" data-sort="description">Description</th>
+					<th class="sort" data-sort="owner">Owner</th>
+					<th class="sort desc" data-sort="created">Created</th>
+					<th class="sort desc" data-sort="updated">Updated</th>
+					<th class="sort desc" data-sort="forks">Forks</th>
+					<th class="sort desc" data-sort="stars">Stars</th>
+				</tr>
+			</thead>
+			<tbody class="list">
+				<% _.each(components, function (el) { %>
+					<tr>
+						<td class="name"><a title="<%- el.description %>" href="<%- el.website %>" target="_blank"><%- el.name %></a></td>
+						<td class="description" title="<%- el.description %>"><p><%- el.description %></p></td>
+						<td class="owner"><%- el.owner %></td>
+						<td class="created"><time datetime="<%- el.created %>"><%- el.created %></time></td>
+						<td class="updated"><time datetime="<%- el.updated %>"><%- el.updated %></time></td>
+						<td class="forks"><%- el.forks %></td>
+						<td class="stars"><%- el.stars %></td>
+						<td class="keywords hidden"><%- _.isArray(el.keywords) ? el.keywords.join(' ') : '' %></td>
+					</tr>
+				<% }); %>
+			</tbody>
+		</table>
+		<div class="clearfix"></div>
+		<div class="row pagination pagination-large pagination-centered">
+			<ul class="paging"></ul>
+		</div>
+		<div class="message hide row" id="search-notfound">No matching components found. Take a deep breath and try something else.</div>
+	</script>​
+	<script src="featured-list.js"></script>
+	<script src="dist/main.js"></script>
+	<script>var _gaq=[['_setAccount','UA-25562592-3'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</html>

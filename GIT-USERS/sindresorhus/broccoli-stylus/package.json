@@ -1,0 +1,46 @@
+{
+  "name": "broccoli-stylus",
+  "version": "6.0.0",
+  "description": "Compile Stylus",
+  "license": "MIT",
+  "repository": "sindresorhus/broccoli-stylus",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "xo && broccoli build temp && mocha"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "broccoli-plugin",
+    "stylus",
+    "css",
+    "preprocessor",
+    "compile"
+  ],
+  "dependencies": {
+    "broccoli-filter": "^1.2.0",
+    "rsvp": "^3.0.4",
+    "stylus": "^0.54.2"
+  },
+  "devDependencies": {
+    "broccoli": "^0.16.2",
+    "broccoli-cli": "^1.0.0",
+    "mocha": "*",
+    "rimraf": "^2.2.6",
+    "xo": "*"
+  },
+  "xo": {
+    "envs": [
+      "node",
+      "mocha"
+    ]
+  }
+}

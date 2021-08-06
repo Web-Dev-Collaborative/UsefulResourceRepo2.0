@@ -1,0 +1,38 @@
+{
+  "name": "bower-components",
+  "version": "0.0.0",
+  "description": "Site to discover Bower components",
+  "keywords": [
+    "bower",
+    "components",
+    "packages",
+    "manager"
+  ],
+  "homepage": "https://github.com/sindresorhus/bower-components",
+  "bugs": "https://github.com/sindresorhus/bower-components/issues",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sindresorhus/bower-components.git"
+  },
+  "devDependencies": {
+    "bower": "~1.2.6",
+    "grunt": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-watch": "~0.5.3"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ]
+}

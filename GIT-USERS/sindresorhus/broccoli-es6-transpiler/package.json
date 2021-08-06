@@ -1,0 +1,46 @@
+{
+  "name": "broccoli-es6-transpiler",
+  "version": "2.0.0",
+  "description": "Transpile ES2015 to ES5",
+  "license": "MIT",
+  "repository": "sindresorhus/broccoli-es6-transpiler",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "broccoli build temp && mocha"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "broccoli-plugin",
+    "es2015",
+    "transform",
+    "transformation",
+    "transpile",
+    "transpiler",
+    "convert",
+    "rewrite",
+    "syntax",
+    "codegen",
+    "desugaring",
+    "compiler"
+  ],
+  "dependencies": {
+    "broccoli-filter": "^1.2.2",
+    "chalk": "^1.0.0",
+    "es6-transpiler": "^0.7.16"
+  },
+  "devDependencies": {
+    "broccoli": "^0.16.8",
+    "broccoli-cli": "^1.0.0",
+    "mocha": "*",
+    "rimraf": "^2.2.6"
+  }
+}
