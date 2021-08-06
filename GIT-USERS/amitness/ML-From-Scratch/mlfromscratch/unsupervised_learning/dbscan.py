@@ -3,7 +3,7 @@ import numpy as np
 from mlfromscratch.utils import Plot, euclidean_distance, normalize
 
 
-class DBSCAN():
+class DBSCAN:
     """A density based clustering method that expands clusters from 
     samples that have more neighbors within a radius specified by eps
     than the value min_samples.
@@ -15,6 +15,7 @@ class DBSCAN():
     min_samples: int
         The number of neighbors required for the sample to be a core point. 
     """
+
     def __init__(self, eps=1, min_samples=5):
         self.eps = eps
         self.min_samples = min_samples
@@ -46,7 +47,8 @@ class DBSCAN():
                 if len(self.neighbors[neighbor_i]) >= self.min_samples:
                     # Expand the cluster from the neighbor
                     expanded_cluster = self._expand_cluster(
-                        neighbor_i, self.neighbors[neighbor_i])
+                        neighbor_i, self.neighbors[neighbor_i]
+                    )
                     # Add expanded cluster to this cluster
                     cluster = cluster + expanded_cluster
                 else:
@@ -83,8 +85,7 @@ class DBSCAN():
                 self.visited_samples.append(sample_i)
                 # Sample has more neighbors than self.min_samples => expand
                 # cluster from sample
-                new_cluster = self._expand_cluster(
-                    sample_i, self.neighbors[sample_i])
+                new_cluster = self._expand_cluster(sample_i, self.neighbors[sample_i])
                 # Add cluster to list of clusters
                 self.clusters.append(new_cluster)
 

@@ -150,6 +150,7 @@ b * 1 => 11
 # 2
 # 128 + 32 + 8 + 2
 
+
 def to_decimal(num_string, base):
     # set a starting value
     value = 0
@@ -161,13 +162,13 @@ def to_decimal(num_string, base):
 
     # iterate over the list
     for i in range(len(digit_string)):
-        multiplyer = (base ** i)
+        multiplyer = base ** i
         current_value_at_index = int(digit_string[i], base)
 
         value += current_value_at_index * multiplyer
 
     return value
 
+
 print(to_decimal("7b", 16))  # => 123
 print(to_decimal("010111010110101", 2))  # => 123
-

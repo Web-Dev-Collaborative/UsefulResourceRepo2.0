@@ -1,5 +1,6 @@
 from doubly_linked_list import DoublyLinkedList
 
+
 class LRUCache:
     """
     Our LRUCache class keeps track of the max number of nodes it
@@ -8,13 +9,12 @@ class LRUCache:
     order, as well as a storage dict that provides fast access
     to every node stored in the cache.
     """
+
     def __init__(self, limit=10):
         self.limit = limit
         self.size = 0
         self.order = DoublyLinkedList()
         self.storage = dict()
-
-
 
     """
     Retrieves the value associated with the given key. Also
@@ -23,15 +23,18 @@ class LRUCache:
     Returns the value associated with the key or None if the
     key-value pair doesn't exist in the cache.
     """
+
     def get(self, key):
         # if the key exists in the storage
         if key in self.storage:
             # extract the node from storage at the key
-            node = self.storage[key] # => memory address of a ref to the actual node in the DLL
+            node = self.storage[
+                key
+            ]  # => memory address of a ref to the actual node in the DLL
             # move the node to end of order
             self.order.move_to_end(node)
             # return the value of the value of the node
-            return node.value[1] # => (n, 4)[1] => 4
+            return node.value[1]  # => (n, 4)[1] => 4
         # otherwise
         else:
             # return None
@@ -47,6 +50,7 @@ class LRUCache:
     want to overwrite the old value associated with the key with
     the newly-specified value.
     """
+
     def set(self, key, value):
         # if the key exists in the storage (1)
         if key in self.storage:
@@ -59,16 +63,16 @@ class LRUCache:
             self.order.move_to_end(node)
             # return from the set method
             return
-        
+
         # if the size is the same as the limit (2)
         if self.size == self.limit:
             # delete the storage at the heads value key
-            del self.storage[self.order.head.value[0]] #  del dict1[name]
+            del self.storage[self.order.head.value[0]]  #  del dict1[name]
             # call remove from head on the order
             self.order.remove_from_head()
             # decrement size
             self.size -= 1
-        
+
         # if both cases are false (does not run if (1) is true
         # call add to tail on the order passing in the key value pair
         self.order.add_to_tail((key, value))

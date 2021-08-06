@@ -7,8 +7,8 @@ PRN = 0b01000111
 MUL = 0b10100010
 
 
-
 import sys
+
 
 class CPU:
     """Main CPU class."""
@@ -22,7 +22,7 @@ class CPU:
 
     def ram_write(self, mdr, mar):
         self.ram[mar] = mdr
-    
+
     def ram_read(self, mar):
         return self.ram[mar]
 
@@ -36,16 +36,16 @@ class CPU:
             with open(filename) as f:
                 for line in f:
                     # split before comment
-                    comment_split = line.split('#')
+                    comment_split = line.split("#")
 
                     # convert to a number splitting and stripping
                     num = comment_split[0].strip()
 
-                    if num == '':
+                    if num == "":
                         continue  # ignore blank lines
-                    
+
                     val = int(num, 2)
-                    
+
                     # store val in memory at the given address
                     self.ram[address] = val
 
@@ -68,7 +68,6 @@ class CPU:
         # for instruction in program:
         #     self.ram[address] = instruction
         #     address += 1
-
 
     def alu(self, op, reg_a, reg_b):
         """ALU operations."""
@@ -94,17 +93,21 @@ class CPU:
         from run() if you need help debugging.
         """
 
-        print(f"TRACE: %02X | %02X %02X %02X |" % (
-            self.pc,
-            #self.fl,
-            #self.ie,
-            self.ram_read(self.pc),
-            self.ram_read(self.pc + 1),
-            self.ram_read(self.pc + 2)
-        ), end='')
+        print(
+            f"TRACE: %02X | %02X %02X %02X |"
+            % (
+                self.pc,
+                # self.fl,
+                # self.ie,
+                self.ram_read(self.pc),
+                self.ram_read(self.pc + 1),
+                self.ram_read(self.pc + 2),
+            ),
+            end="",
+        )
 
         for i in range(8):
-            print(" %02X" % self.reg[i], end='')
+            print(" %02X" % self.reg[i], end="")
 
         print()
 
@@ -112,7 +115,7 @@ class CPU:
         """Run the CPU."""
         while not self.halted:
             ir = self.ram[self.pc]
-            instruction_length = ((ir >> 6) & 0b11) + 1 # (bitshifted instruction)
+            instruction_length = ((ir >> 6) & 0b11) + 1  # (bitshifted instruction)
             operand_a = self.ram_read(self.pc + 1)
             operand_b = self.ram_read(self.pc + 2)
             # set the instruction length here (extract)
@@ -120,7 +123,7 @@ class CPU:
             # halt
             if ir == HLT:
                 self.halted = True
-            
+
             # LDI
             elif ir == LDI:
                 self.reg[operand_a] = operand_b
@@ -131,8 +134,5 @@ class CPU:
 
             elif ir == MUL:
                 self.alu("MUL", operand_a, operand_b)
-            
+
             self.pc += instruction_length
-
-
-

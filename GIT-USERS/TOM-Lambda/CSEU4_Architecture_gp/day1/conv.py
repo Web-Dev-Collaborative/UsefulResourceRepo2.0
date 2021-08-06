@@ -107,6 +107,7 @@ string1 = "10101010"
 # 2
 # 128 + 32 + 8 + 2
 
+
 def to_decimal(num_string, base):
     # convert our string to a list
     digit_string = list(num_string)
@@ -127,9 +128,10 @@ def to_decimal(num_string, base):
     # return the value
     return value
 
+
 print(to_decimal(string1, 2))
 
-# 
+#
 # hex   0    0
 # bin   0000 0000
 # F === 1111

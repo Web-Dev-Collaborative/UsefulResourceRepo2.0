@@ -3,14 +3,27 @@ import math
 import numpy as np
 
 # Import helper functions
-from mlfromscratch.utils import train_test_split, to_categorical, normalize, accuracy_score
-from mlfromscratch.deep_learning.activation_functions import Sigmoid, ReLU, SoftPlus, LeakyReLU, TanH, ELU
+from mlfromscratch.utils import (
+    train_test_split,
+    to_categorical,
+    normalize,
+    accuracy_score,
+)
+from mlfromscratch.deep_learning.activation_functions import (
+    Sigmoid,
+    ReLU,
+    SoftPlus,
+    LeakyReLU,
+    TanH,
+    ELU,
+)
 from mlfromscratch.deep_learning.loss_functions import CrossEntropy, SquareLoss
 from mlfromscratch.utils import Plot
 from mlfromscratch.utils.misc import bar_widgets
 import progressbar
 
-class Perceptron():
+
+class Perceptron:
     """The Perceptron. One layer neural network classifier.
 
     Parameters:
@@ -26,7 +39,14 @@ class Perceptron():
     learning_rate: float
         The step length that will be used when updating the weights.
     """
-    def __init__(self, n_iterations=20000, activation_function=Sigmoid, loss=SquareLoss, learning_rate=0.01):
+
+    def __init__(
+        self,
+        n_iterations=20000,
+        activation_function=Sigmoid,
+        loss=SquareLoss,
+        learning_rate=0.01,
+    ):
         self.n_iterations = n_iterations
         self.learning_rate = learning_rate
         self.loss = loss()
@@ -47,13 +67,15 @@ class Perceptron():
             linear_output = X.dot(self.W) + self.w0
             y_pred = self.activation_func(linear_output)
             # Calculate the loss gradient w.r.t the input of the activation function
-            error_gradient = self.loss.gradient(y, y_pred) * self.activation_func.gradient(linear_output)
+            error_gradient = self.loss.gradient(
+                y, y_pred
+            ) * self.activation_func.gradient(linear_output)
             # Calculate the gradient of the loss with respect to each weight
             grad_wrt_w = X.T.dot(error_gradient)
             grad_wrt_w0 = np.sum(error_gradient, axis=0, keepdims=True)
             # Update weights
-            self.W  -= self.learning_rate * grad_wrt_w
-            self.w0 -= self.learning_rate  * grad_wrt_w0
+            self.W -= self.learning_rate * grad_wrt_w
+            self.w0 -= self.learning_rate * grad_wrt_w0
 
     # Use the trained model to predict labels of X
     def predict(self, X):

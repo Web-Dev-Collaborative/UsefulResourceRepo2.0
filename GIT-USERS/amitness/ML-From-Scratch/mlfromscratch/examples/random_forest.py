@@ -4,6 +4,7 @@ from sklearn import datasets
 from mlfromscratch.utils import train_test_split, accuracy_score, Plot
 from mlfromscratch.supervised_learning import RandomForest
 
+
 def main():
     data = datasets.load_digits()
     X = data.data
@@ -17,9 +18,15 @@ def main():
 
     accuracy = accuracy_score(y_test, y_pred)
 
-    print ("Accuracy:", accuracy)
+    print("Accuracy:", accuracy)
 
-    Plot().plot_in_2d(X_test, y_pred, title="Random Forest", accuracy=accuracy, legend_labels=data.target_names)
+    Plot().plot_in_2d(
+        X_test,
+        y_pred,
+        title="Random Forest",
+        accuracy=accuracy,
+        legend_labels=data.target_names,
+    )
 
 
 if __name__ == "__main__":

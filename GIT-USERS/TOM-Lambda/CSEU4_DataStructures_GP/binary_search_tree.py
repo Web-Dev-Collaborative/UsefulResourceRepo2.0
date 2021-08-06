@@ -1,6 +1,7 @@
 from dll_queue import Queue
 from dll_stack import Stack
 
+
 class BinarySearchTree:
     def __init__(self, value):
         self.value = value
@@ -39,9 +40,9 @@ class BinarySearchTree:
             # return True
             return True
 
-        # if target less than value 
+        # if target less than value
         if target < self.value:
-            # check left child recursively      
+            # check left child recursively
             # if no left child
             if not self.left:
                 # return false
@@ -67,11 +68,11 @@ class BinarySearchTree:
         # if tree empty return false
         if not self:
             return None
-        
+
         # Rodrigos iterative approach
         # while self.right:
         #     self = self.right
-        
+
         # return self.value
 
         # recursive approach
@@ -79,7 +80,7 @@ class BinarySearchTree:
         if not self.right:
             # return the value
             return self.value
-        
+
         # recursive case
         # call get max on the right child
         return self.right.get_max()
@@ -87,7 +88,7 @@ class BinarySearchTree:
         # TODO: iterative approach
         # # init a max val variable
         # max_val = self.value
-        
+
         # # take ref to current node
         # current = self
 
@@ -97,15 +98,12 @@ class BinarySearchTree:
         #     if current.value > max_val:
         #         # set max val to current val
         #         max_val = current.value
-            
+
         #     # move to the next right node
         #     current = current.right
-            
 
         # # return max val
         # return max_val
-
-
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
@@ -129,13 +127,13 @@ class BinarySearchTree:
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
         # if our node does not exist
-            # just return
-        
+        # just return
+
         # left case
         # call in order print on left node
-        
+
         # now print the nodes value
-        
+
         # right case
         # call in order print on the right node
         pass
@@ -148,12 +146,12 @@ class BinarySearchTree:
         # enqueue the starting node
 
         # while the queue contains data
-            # dequeue current node
-            # print the current value
-            # check if left child exists
-                # enqueue left child
-            # check if a right child exists
-                # enqueue right child
+        # dequeue current node
+        # print the current value
+        # check if left child exists
+        # enqueue left child
+        # check if a right child exists
+        # enqueue right child
         pass
 
     # Print the value of every node, starting with the given node,
@@ -164,12 +162,12 @@ class BinarySearchTree:
         # push the starting node
 
         # while the stack contains data
-            # pop current node
-            # print the current value
-            # check if left child exists
-                # push left child
-            # check if a right child exists
-                # push right child
+        # pop current node
+        # print the current value
+        # check if left child exists
+        # push left child
+        # check if a right child exists
+        # push right child
         pass
 
     # STRETCH Goals -------------------------

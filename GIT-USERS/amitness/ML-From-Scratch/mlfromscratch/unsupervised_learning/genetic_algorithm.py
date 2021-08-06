@@ -2,7 +2,8 @@ from __future__ import print_function, division
 import string
 import numpy as np
 
-class GeneticAlgorithm():
+
+class GeneticAlgorithm:
     """An implementation of a Genetic Algorithm which will try to produce the user
     specified target string.
 
@@ -16,6 +17,7 @@ class GeneticAlgorithm():
         The rate (or probability) of which the alleles (chars in this case) should be
         randomly changed.
     """
+
     def __init__(self, target_string, population_size, mutation_rate):
         self.target = target_string
         self.population_size = population_size
@@ -80,25 +82,26 @@ class GeneticAlgorithm():
 
             # Set the probability that the individual should be selected as a parent
             # proportionate to the individual's fitness.
-            parent_probabilities = [fitness / sum(population_fitness) for fitness in population_fitness]
+            parent_probabilities = [
+                fitness / sum(population_fitness) for fitness in population_fitness
+            ]
 
             # Determine the next generation
             new_population = []
             for i in np.arange(0, self.population_size, 2):
                 # Select two parents randomly according to probabilities
-                parent1, parent2 = np.random.choice(self.population, size=2, p=parent_probabilities, replace=False)
+                parent1, parent2 = np.random.choice(
+                    self.population, size=2, p=parent_probabilities, replace=False
+                )
                 # Perform crossover to produce offspring
                 child1, child2 = self._crossover(parent1, parent2)
                 # Save mutated offspring for next generation
                 new_population += [self._mutate(child1), self._mutate(child2)]
 
-            print ("[%d Closest Candidate: '%s', Fitness: %.2f]" % (epoch, fittest_individual, highest_fitness))
+            print(
+                "[%d Closest Candidate: '%s', Fitness: %.2f]"
+                % (epoch, fittest_individual, highest_fitness)
+            )
             self.population = new_population
 
-        print ("[%d Answer: '%s']" % (epoch, fittest_individual))
-
-
-
-
-
-
+        print("[%d Answer: '%s']" % (epoch, fittest_individual))

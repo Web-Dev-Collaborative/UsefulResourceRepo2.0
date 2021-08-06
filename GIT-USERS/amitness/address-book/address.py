@@ -1,7 +1,7 @@
 import pickle
 import os
 
-UI = '''
+UI = """
 1. Add new contact
 2. View contacts
 3. Search contact
@@ -9,11 +9,10 @@ UI = '''
 5. Delete contact
 6. Reset all
 7. Exit
-'''
+"""
 
 
 class Person(object):
-
     def __init__(self, name=None, address=None, phone=None):
         self.name = name
         self.address = address
@@ -24,16 +23,15 @@ class Person(object):
 
 
 class Application(object):
-
     def __init__(self, database):
         self.database = database
         self.persons = {}
         if not os.path.exists(self.database):
-            file_pointer = open(self.database, 'wb')
+            file_pointer = open(self.database, "wb")
             pickle.dump({}, file_pointer)
             file_pointer.close()
         else:
-            with open(self.database, 'rb') as person_list:
+            with open(self.database, "rb") as person_list:
                 self.persons = pickle.load(person_list)
 
     def add(self):
@@ -45,7 +43,7 @@ class Application(object):
 
     def viewall(self):
         if self.persons:
-            print("{} {:>15} {:>15}".format('Name', 'address', 'Phone'))
+            print("{} {:>15} {:>15}".format("Name", "address", "Phone"))
             for person in self.persons.values():
                 print(person)
         else:
@@ -86,7 +84,7 @@ class Application(object):
         self.persons = {}
 
     def __del__(self):
-        with open(self.database, 'wb') as db:
+        with open(self.database, "wb") as db:
             pickle.dump(self.persons, db)
 
     def __str__(self):
@@ -94,27 +92,28 @@ class Application(object):
 
 
 def main():
-    app = Application('contacts.data')
-    choice = ''
-    while choice != '7':
+    app = Application("contacts.data")
+    choice = ""
+    while choice != "7":
         print(app)
-        choice = input('Choose: ')
-        if choice == '1':
+        choice = input("Choose: ")
+        if choice == "1":
             app.add()
-        elif choice == '2':
+        elif choice == "2":
             app.viewall()
-        elif choice == '3':
+        elif choice == "3":
             app.search()
-        elif choice == '4':
+        elif choice == "4":
             app.update()
-        elif choice == '5':
+        elif choice == "5":
             app.delete()
-        elif choice == '6':
+        elif choice == "6":
             app.reset()
-        elif choice == '7':
+        elif choice == "7":
             print("Exiting.")
         else:
             print("Invalid choice.")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 from __future__ import print_function
-__author__ = 'a_medelyan'
+
+__author__ = "a_medelyan"
 import rake
 
 # EXAMPLE: Extracting single words from a French text
@@ -12,7 +13,7 @@ stoppath = "FrenchStoplist.txt"
 rake_object = rake.Rake(stoppath, 5, 1, 4)
 
 # 2. run on RAKE on a given text
-sample_file = open("data/docs/french/frwikinews-test-1000.txt", 'r')
+sample_file = open("data/docs/french/frwikinews-test-1000.txt", "r")
 text = sample_file.read()
 keywords = rake_object.run(text)
 

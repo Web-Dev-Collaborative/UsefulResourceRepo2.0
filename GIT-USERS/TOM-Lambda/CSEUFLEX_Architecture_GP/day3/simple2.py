@@ -1,4 +1,5 @@
 import sys
+
 # lets build up our simulator some more
 # now we will add the concept of registers
 # and an add opcode, using external files for program code
@@ -14,18 +15,16 @@ PUSH = 7
 POP = 8
 
 
-
 # lets make a model of memory to hold our program
 memory = [0] * 256
 
-register = [0] * 8 # self.reg[poodle]
+register = [0] * 8  # self.reg[poodle]
 
 # TODO: Stack Pointer (R7) as per specs
-# index of the registers list 
+# index of the registers list
 SP = 7
 # to use to store where the top of the stack is
-register[SP] = 244 # F4
-
+register[SP] = 244  # F4
 
 
 # lets load a program in to memory
@@ -35,11 +34,11 @@ def load_memory(filename):
         with open(filename) as f:
             for line in f:
                 # split the comment out
-                comment_split = line.split('#')
+                comment_split = line.split("#")
 
                 num = comment_split[0].strip()
 
-                if num == '':
+                if num == "":
                     continue
 
                 i_num = int(num, 2)
@@ -80,7 +79,7 @@ while running:
     if command == HALT:
         # EXECUTE
         running = False
-    
+
     elif command == PRINT_TOM:
         # EXECUTE
         print("Tom")
@@ -121,22 +120,19 @@ while running:
 
         op_size = 2
 
-
     #  pop
     elif command == POP:
         # setup
-        index_of_the_register = memory[pc + 1] # the register => 3
-        val = memory[register[SP]] # memory[F3] => 89 => val = 89
+        index_of_the_register = memory[pc + 1]  # the register => 3
+        val = memory[register[SP]]  # memory[F3] => 89 => val = 89
 
         # do the pop
-        register[index_of_the_register] = val # register[3] = 89
+        register[index_of_the_register] = val  # register[3] = 89
 
         register[SP] += 1
 
         op_size = 2
 
-
-    
     else:
         print(f"Invalid Instruction: {command}")
         running = False

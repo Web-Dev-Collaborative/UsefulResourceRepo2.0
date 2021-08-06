@@ -1,4 +1,5 @@
 import sys
+
 HALT = 1
 PRINT_BOB = 2
 PRINT_NUM = 3
@@ -14,12 +15,13 @@ def alu(op, opa, opb):
     if op == "ADD":
         reg[opa] += reg[opb]
 
+
 ram = [0] * 256
 
 sp = 7
 
 reg = [0] * 8
-reg[sp] = 0xf4
+reg[sp] = 0xF4
 
 # our program
 ram[0] = PRINT_BOB
@@ -44,12 +46,13 @@ ram[18] = PRINT_REG
 ram[19] = 0
 ram[20] = HALT
 
+
 def load(filename):
     with open(filename) as filedata:
         addr = 0
         for line in filedata:
-            
-            data = line.split('#')[0].strip()
+
+            data = line.split("#")[0].strip()
             if data == "":
                 continue
 
@@ -57,11 +60,12 @@ def load(filename):
             ram[addr] = num
             # self.ram_write(addr, num)
             addr += 1
-        
+
+
 # if len(sys.argv) != 2:
 #     print(f"Usage: simple.py <filename>")
 #     sys.exit(1)
-    
+
 # load(sys.argv[1])
 
 pc = 0
@@ -95,7 +99,7 @@ while running:
         # grab the index to the reg
         reg_index = ram[pc + 1]
 
-        #get the value from the reg
+        # get the value from the reg
         value = reg[reg_index]
         ram[reg[sp]] = value
         pc += 2
@@ -110,5 +114,3 @@ while running:
         reg[reg_index] = value
 
         pc += 2
-
-

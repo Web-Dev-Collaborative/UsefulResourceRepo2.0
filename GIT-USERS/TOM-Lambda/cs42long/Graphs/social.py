@@ -2,22 +2,24 @@ import random
 import time
 
 # Create a data structure for the traversal
-class Queue():
+class Queue:
     def __init__(self):
         self.storage = []
-    
+
     def enqueue(self, value):
         self.storage.append(value)
-    
+
     def dequeue(self):
         return self.storage.pop(0)
 
     def size(self):
         return len(self.storage)
 
+
 class User:
     def __init__(self, name):
         self.name = name
+
 
 class SocialGraph:
     def __init__(self):
@@ -32,7 +34,10 @@ class SocialGraph:
         if user_id == friend_id:
             # print("WARNING: You cannot be friends with yourself")
             return False
-        elif friend_id in self.friendships[user_id] or user_id in self.friendships[friend_id]:
+        elif (
+            friend_id in self.friendships[user_id]
+            or user_id in self.friendships[friend_id]
+        ):
             # print("WARNING: Friendship already exists")
             return False
         else:
@@ -48,7 +53,7 @@ class SocialGraph:
         self.users[self.last_id] = User(name)
         self.friendships[self.last_id] = set()
 
-    def populate_graph(self, num_users, avg_friendships): # O(n^2)
+    def populate_graph(self, num_users, avg_friendships):  # O(n^2)
         """
         Takes a number of users and an average number of friendships
         as arguments
@@ -93,8 +98,7 @@ class SocialGraph:
             friend_id = friendship[1]
             self.add_friendship(user_id, friend_id)
 
-
-    def populate_graph_l(self, num_users, avg_friendships): # O(n)
+    def populate_graph_l(self, num_users, avg_friendships):  # O(n)
         """
         Takes a number of users and an average number of friendships
         as arguments
@@ -113,12 +117,11 @@ class SocialGraph:
             self.add_user(f"User {i+1}")
 
         # set a target friendships to (num_users * avg_friendships)
-        target_friendships = (num_users * avg_friendships)
+        target_friendships = num_users * avg_friendships
         # create a counter for the total number of friendships created and set it to zero
         total_friendships = 0
         # create a collisions counter and set it to zero
         collisions = 0
-
 
         # iterate while the total friendships are less than target friendships
         while total_friendships < target_friendships:
@@ -134,7 +137,7 @@ class SocialGraph:
             else:
                 # increment our collisions
                 collisions += 1
-        
+
         print("COLLISIONS: ", collisions)
 
     # fill in some logic for a traversal
@@ -173,7 +176,7 @@ class SocialGraph:
         return visited
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     num_users = 2000
     avg_friendships = 1900
 
@@ -192,8 +195,6 @@ if __name__ == '__main__':
     print(f"Quadratic Runtime: {end_time - start_time} seconds")
     # connections = sg.get_all_social_paths(1)
     # print(connections)
-
-
 
     # sg.populate_graph(10, 2)
     # print(sg.friendships)

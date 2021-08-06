@@ -1,4 +1,5 @@
 from util import Stack, Queue
+
 # lets code a bft
 """
     Remember to follow our problem solving framework
@@ -9,12 +10,13 @@ from util import Stack, Queue
 
 # code up a Graph class implementing with an adjacency list
 
+
 class Graph:
     """ Represent a Graph as dictionary of vertices map the labels to edges."""
 
     # constructor
     def __init__(self):
-        self.vertices = {} # adjacency list (dictionary)
+        self.vertices = {}  # adjacency list (dictionary)
         # self.vertices = [[],[],[]] # adjacency matrix (2d list or array)
 
     # add vertex
@@ -54,7 +56,7 @@ class Graph:
             if v not in visited:
                 # mark as visited and print for debugging
                 visited.add(v)
-                print(v) # for debugging
+                print(v)  # for debugging
                 # iterate over the child vertices of the current vertex
                 for next_vertex in self.vertices[v]:
                     # enqueue the next vertex
@@ -76,7 +78,7 @@ class Graph:
             if v not in visited:
                 # mark as visited and print for debugging
                 visited.add(v)
-                print(v) # for debugging
+                print(v)  # for debugging
                 # iterate over the child vertices of the current vertex
                 for next_vertex in self.vertices[v]:
                     # push the next vertex
@@ -87,18 +89,17 @@ class Graph:
         if visited is None:
             # create a new set for visited
             visited = set()
-            
-        
+
         # add a starting vertex to the visited set
         visited.add(start_vert)
-        
+
         # print the start vertex
         print(start_vert)
-        
+
         # loop over every child vertex in vertices set at the start vertex
         for child_vert in self.vertices[start_vert]:
             # if child vertex is not in visited
-            if child_vert not in visited:            
+            if child_vert not in visited:
                 # do a recursive call to dft_recursive
                 # using the child vertex and the current visited set as arguments
                 self.dft_recursive(child_vert, visited)
@@ -158,15 +159,15 @@ class Graph:
         q.enqueue([starting_vertex_id])
         # created an empty visited set
         visited = set()
-        
+
         # while the queue is not empty
         while q.size() > 0:
             # dequeue to the path
             path = q.dequeue()
-            
+
             # set a vert to the last item in the path
             vert = path[-1]
-           
+
             # if vert is not in visited
             if vert not in visited:
                 # if vert is equal to target value
@@ -193,15 +194,15 @@ class Graph:
         s.push([starting_vertex_id])
         # created an empty visited set
         visited = set()
-        
+
         # while the stack is not empty
         while s.size() > 0:
             # pop to the path
             path = s.pop()
-            
+
             # set a vert to the last item in the path
             vert = path[-1]
-           
+
             # if vert is not in visited
             if vert not in visited:
                 # if vert is equal to target value

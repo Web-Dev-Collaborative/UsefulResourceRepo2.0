@@ -4,7 +4,7 @@ from mlfromscratch.utils import normalize, euclidean_distance, Plot
 from mlfromscratch.unsupervised_learning import PCA
 
 
-class PAM():
+class PAM:
     """A simple clustering method that forms k clusters by first assigning
     samples to the closest medoids, and then swapping medoids with non-medoid
     samples if the total distance (cost) between the cluster members and their medoid
@@ -16,6 +16,7 @@ class PAM():
     k: int
         The number of clusters the algorithm will form.
     """
+
     def __init__(self, k=2):
         self.k = k
 
@@ -102,17 +103,16 @@ class PAM():
                     # Assign samples to new medoids
                     new_clusters = self._create_clusters(X, new_medoids)
                     # Calculate the cost with the new set of medoids
-                    new_cost = self._calculate_cost(
-                        X, new_clusters, new_medoids)
+                    new_cost = self._calculate_cost(X, new_clusters, new_medoids)
                     # If the swap gives us a lower cost we save the medoids and cost
                     if new_cost < lowest_cost:
                         lowest_cost = new_cost
                         best_medoids = new_medoids
             # If there was a swap that resultet in a lower cost we save the
-            # resulting medoids from the best swap and the new cost 
+            # resulting medoids from the best swap and the new cost
             if lowest_cost < cost:
                 cost = lowest_cost
-                medoids = best_medoids 
+                medoids = best_medoids
             # Else finished
             else:
                 break
@@ -120,4 +120,3 @@ class PAM():
         final_clusters = self._create_clusters(X, medoids)
         # Return the samples cluster indices as labels
         return self._get_cluster_labels(final_clusters, X)
-

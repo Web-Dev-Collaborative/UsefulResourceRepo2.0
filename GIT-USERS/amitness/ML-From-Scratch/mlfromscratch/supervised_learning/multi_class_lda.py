@@ -4,7 +4,7 @@ import numpy as np
 from mlfromscratch.utils import calculate_covariance_matrix, normalize, standardize
 
 
-class MultiClassLDA():
+class MultiClassLDA:
     """Enables dimensionality reduction for multiple
     class distributions. It transforms the features space into a space where
     the between class scatter is maximized and the within class scatter is
@@ -16,6 +16,7 @@ class MultiClassLDA():
         If 'svd' we use the pseudo-inverse to calculate the inverse of matrices
         when doing the transformation.
     """
+
     def __init__(self, solver="svd"):
         self.solver = solver
 
@@ -62,7 +63,6 @@ class MultiClassLDA():
 
         return X_transformed
 
-
     def plot_in_2d(self, X, y, title=None):
         """ Plot the dataset X and the corresponding labels y in 2D using the LDA
         transformation."""
@@ -70,5 +70,6 @@ class MultiClassLDA():
         x1 = X_transformed[:, 0]
         x2 = X_transformed[:, 1]
         plt.scatter(x1, x2, c=y)
-        if title: plt.title(title)
+        if title:
+            plt.title(title)
         plt.show()

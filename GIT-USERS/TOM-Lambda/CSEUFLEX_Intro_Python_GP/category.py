@@ -1,5 +1,4 @@
 class Category:
-
     def __init__(self, name, products):
         self.name = name
         self.products = products
@@ -10,5 +9,5 @@ class Category:
             output = "No products available in this category"
         for p in self.products:
             output += "    " + str(p) + "\n"
-        
+
         return output

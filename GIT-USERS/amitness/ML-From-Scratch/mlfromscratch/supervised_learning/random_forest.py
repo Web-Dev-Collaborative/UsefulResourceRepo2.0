@@ -4,7 +4,12 @@ import math
 import progressbar
 
 # Import helper functions
-from mlfromscratch.utils import divide_on_feature, train_test_split, get_random_subsets, normalize
+from mlfromscratch.utils import (
+    divide_on_feature,
+    train_test_split,
+    get_random_subsets,
+    normalize,
+)
 from mlfromscratch.utils import accuracy_score, calculate_entropy
 from mlfromscratch.unsupervised_learning import PCA
 from mlfromscratch.supervised_learning import ClassificationTree
@@ -12,7 +17,7 @@ from mlfromscratch.utils.misc import bar_widgets
 from mlfromscratch.utils import Plot
 
 
-class RandomForest():
+class RandomForest:
     """Random Forest classifier. Uses a collection of classification trees that
     trains on random subsets of the data using a random subsets of the features.
 
@@ -30,13 +35,20 @@ class RandomForest():
     max_depth: int
         The maximum depth of a tree.
     """
-    def __init__(self, n_estimators=100, max_features=None, min_samples_split=2,
-                 min_gain=0, max_depth=float("inf")):
-        self.n_estimators = n_estimators    # Number of trees
-        self.max_features = max_features    # Maxmimum number of features per tree
+
+    def __init__(
+        self,
+        n_estimators=100,
+        max_features=None,
+        min_samples_split=2,
+        min_gain=0,
+        max_depth=float("inf"),
+    ):
+        self.n_estimators = n_estimators  # Number of trees
+        self.max_features = max_features  # Maxmimum number of features per tree
         self.min_samples_split = min_samples_split
-        self.min_gain = min_gain            # Minimum information gain req. to continue
-        self.max_depth = max_depth          # Maximum depth for tree
+        self.min_gain = min_gain  # Minimum information gain req. to continue
+        self.max_depth = max_depth  # Maximum depth for tree
         self.progressbar = progressbar.ProgressBar(widgets=bar_widgets)
 
         # Initialize decision trees
@@ -46,7 +58,9 @@ class RandomForest():
                 ClassificationTree(
                     min_samples_split=self.min_samples_split,
                     min_impurity=min_gain,
-                    max_depth=self.max_depth))
+                    max_depth=self.max_depth,
+                )
+            )
 
     def fit(self, X, y):
         n_features = np.shape(X)[1]
@@ -61,7 +75,9 @@ class RandomForest():
         for i in self.progressbar(range(self.n_estimators)):
             X_subset, y_subset = subsets[i]
             # Feature bagging (select random subsets of the features)
-            idx = np.random.choice(range(n_features), size=self.max_features, replace=True)
+            idx = np.random.choice(
+                range(n_features), size=self.max_features, replace=True
+            )
             # Save the indices of the features for prediction
             self.trees[i].feature_indices = idx
             # Choose the features corresponding to the indices
@@ -78,10 +94,10 @@ class RandomForest():
             # Make a prediction based on those features
             prediction = tree.predict(X[:, idx])
             y_preds[:, i] = prediction
-            
+
         y_pred = []
         # For each sample
         for sample_predictions in y_preds:
             # Select the most common class prediction
-            y_pred.append(np.bincount(sample_predictions.astype('int')).argmax())
+            y_pred.append(np.bincount(sample_predictions.astype("int")).argmax())
         return y_pred

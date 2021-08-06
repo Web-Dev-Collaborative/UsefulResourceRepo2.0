@@ -2,9 +2,11 @@ import random
 from util import Queue
 import time
 
+
 class User:
     def __init__(self, name):
         self.name = name
+
 
 class SocialGraph:
     def __init__(self):
@@ -17,9 +19,12 @@ class SocialGraph:
         Creates a bi-directional friendship
         """
         if user_id == friend_id:
-            return False #print("WARNING: You cannot be friends with yourself")
-        elif friend_id in self.friendships[user_id] or user_id in self.friendships[friend_id]:
-            return False # print("WARNING: Friendship already exists")
+            return False  # print("WARNING: You cannot be friends with yourself")
+        elif (
+            friend_id in self.friendships[user_id]
+            or user_id in self.friendships[friend_id]
+        ):
+            return False  # print("WARNING: Friendship already exists")
         else:
             self.friendships[user_id].add(friend_id)
             self.friendships[friend_id].add(user_id)
@@ -32,7 +37,7 @@ class SocialGraph:
         self.last_id += 1  # automatically increment the ID to assign the new user
         self.users[self.last_id] = User(name)
         self.friendships[self.last_id] = set()
-    
+
     def populate_graph(self, num_users, avg_friendships):
         """
         Takes a number of users and an average number of friendships
@@ -64,7 +69,7 @@ class SocialGraph:
             for friend_id in range(user_id + 1, self.last_id + 1):
                 # append a user id and friend id tuple to the possible friendships
                 possible_friendships.append((user_id, friend_id))
-        
+
         # shuffle friendships random import
         random.shuffle(possible_friendships)
 
@@ -92,7 +97,7 @@ class SocialGraph:
             self.add_user(f"User {i + 1}")
 
         # set the target friendships to num users * avg friendships
-        target_friendships = (num_users * avg_friendships)
+        target_friendships = num_users * avg_friendships
         # set total friendships to zero
         total_friendships = 0
         # set collisions to zero
@@ -113,10 +118,8 @@ class SocialGraph:
                 # increment collisions
                 collisions += 1
 
-    # print the collisions
-        print(f"COLLISIONS {collisions}") 
-
-
+        # print the collisions
+        print(f"COLLISIONS {collisions}")
 
     # O(n^2)
     def get_all_social_paths(self, user_id):
@@ -134,19 +137,19 @@ class SocialGraph:
         # add a path with the starting vertex to the queue (add user_id inside a list to the queue)
         q.enqueue([user_id])
         # while the queue is not empty
-        while q.size() > 0: #  O(n)
+        while q.size() > 0:  #  O(n)
             # dequeue to the path
-            path = q.dequeue()   
+            path = q.dequeue()
             # set a vert to the last item in the path
             vert = path[-1]
             # if vert is not in visited
             if vert not in visited:
-                # when we reach an unvisited user, append the path to the visited dictionary at the key of vert  
-                visited[vert] = path  
+                # when we reach an unvisited user, append the path to the visited dictionary at the key of vert
+                visited[vert] = path
                 # loop over next vert in vertices at the index of vert
-                for neighbor in self.friendships[vert]: # O(n)
+                for neighbor in self.friendships[vert]:  # O(n)
                     # set a new path equal to a new list of the path (copy)
-                    new_path = list(path) # or path.copy()
+                    new_path = list(path)  # or path.copy()
                     # append neighbor to new path
                     new_path.append(neighbor)
                     # enqueue the new path
@@ -155,7 +158,7 @@ class SocialGraph:
         return visited
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sg = SocialGraph()
     start_time = 0
     end_time = 0

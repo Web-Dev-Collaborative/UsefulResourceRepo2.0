@@ -1,5 +1,6 @@
 from doubly_linked_list import DoublyLinkedList
 
+
 class Queue:
     def __init__(self):
         self.size = 0
@@ -17,7 +18,6 @@ class Queue:
             return self.storage.remove_from_head()
         else:
             return None
-
 
     def len(self):
         return self.size

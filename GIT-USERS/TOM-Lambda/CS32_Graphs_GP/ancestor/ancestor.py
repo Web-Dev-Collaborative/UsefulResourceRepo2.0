@@ -1,24 +1,30 @@
-class Queue():
+class Queue:
     def __init__(self):
         self.queue = []
+
     def enqueue(self, value):
         self.queue.append(value)
+
     def dequeue(self):
         if self.size() > 0:
             return self.queue.pop(0)
         else:
             return None
+
     def size(self):
         return len(self.queue)
 
 
 class Graph:
     """Represent a graph as a dictionary of vertices mapping labels to edges."""
+
     def __init__(self):
         self.vertices = {}
+
     def add_vertex(self, vertex_id):
         if vertex_id not in self.vertices:
             self.vertices[vertex_id] = set()
+
     def add_edge(self, v1, v2):
         if v1 in self.vertices and v2 in self.vertices:
             self.vertices[v1].add(v2)
@@ -42,7 +48,9 @@ def earliest_ancestor(ancestors, starting_node):
     while q.size() > 0:
         path = q.dequeue()
         v = path[-1]
-        if (len(path) >= max_path_length and v < earliest_ancestor) or (len(path) > max_path_length):
+        if (len(path) >= max_path_length and v < earliest_ancestor) or (
+            len(path) > max_path_length
+        ):
             earliest_ancestor = v
             max_path_length = len(path)
             for neighbor in graph.vertices[v]:
@@ -51,4 +59,3 @@ def earliest_ancestor(ancestors, starting_node):
                 q.enqueue(path_copy)
 
     return earliest_ancestor
-

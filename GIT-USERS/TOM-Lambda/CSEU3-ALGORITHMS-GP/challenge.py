@@ -1,5 +1,5 @@
-
 # Challenge What is the runtime complexity of this function
+
 
 def power_r(a, b):
     # Error checking
@@ -17,7 +17,7 @@ def power_r(a, b):
     if b == 0:
         return 1
     # positive case if b is greater than zero
-    elif b > 0:   
+    elif b > 0:
         # Recursive case
         # Call the function on b - 1
         return a * power_r(a, b - 1)

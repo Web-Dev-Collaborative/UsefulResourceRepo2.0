@@ -20,13 +20,13 @@ def backtrack_to_unexplored_room(player, moves_queue):
     visited = set()
     # enqueue the current room path
     q.enqueue([player.current_room.id])
-    #while the queue is not empty
+    # while the queue is not empty
     while q.size() > 0:
         # dequeue the current path
         path = q.dequeue()
         # get the last room in the path
         last_room = path[-1]
-        #if the last room has not been visited
+        # if the last room has not been visited
         if last_room not in visited:
             # add the last room to visited set
             visited.add(last_room)
@@ -44,9 +44,10 @@ def backtrack_to_unexplored_room(player, moves_queue):
                     path_copy.append(graph[last_room][exit])
                     # enqueue the duplicated path
                     q.enqueue(path_copy)
-    
+
     # if nothing was in the path then return an empty list
     return []
+
 
 def enqueue_moves(player, moves_queue):
     # add all the moves to the moves queue
@@ -61,7 +62,7 @@ def enqueue_moves(player, moves_queue):
         if current_room_exits[direction] == "?":
             # if so append the direction to unexplored exits
             unexplored_exits.append(direction)
-    
+
     # if the unexplored exits are empty
     if len(unexplored_exits) == 0:
         # create a path to enexplored by backtracking
@@ -85,11 +86,14 @@ def enqueue_moves(player, moves_queue):
     # otherwise
     else:
         # enqueue the unexplored exits with random sample to the moves queue to move in a random direction
-        moves_queue.enqueue(unexplored_exits[random.randint(0, len(unexplored_exits) - 1)])  
+        moves_queue.enqueue(
+            unexplored_exits[random.randint(0, len(unexplored_exits) - 1)]
+        )
+
 
 world = World()
 # Loads the map into a dictionary
-room_graph=literal_eval(open(map_file, "r").read())
+room_graph = literal_eval(open(map_file, "r").read())
 world.load_graph(room_graph)
 player = Player(world.starting_room)
 inverse_directions = {"n": "s", "s": "n", "e": "w", "w": "e"}
@@ -120,7 +124,7 @@ while moves_queue.size() > 0:
 
     # move the player on the next move
     player.travel(next_move)
-    
+
     # add the next move to the total moves
     total_moves.append(next_move)
 
@@ -137,7 +141,7 @@ while moves_queue.size() > 0:
         # add "?" to the exits of the end room in the graph
         for exit in player.current_room.get_exits():
             graph[end_room][exit] = "?"
-    
+
     # set up the inverse directions for the end room exits (this is an other edge)
     graph[end_room][inverse_directions[next_move]] = start_room
 

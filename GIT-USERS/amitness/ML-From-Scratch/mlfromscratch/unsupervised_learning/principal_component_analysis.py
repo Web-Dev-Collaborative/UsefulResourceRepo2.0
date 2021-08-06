@@ -3,12 +3,13 @@ import numpy as np
 from mlfromscratch.utils import calculate_covariance_matrix
 
 
-class PCA():
+class PCA:
     """A method for doing dimensionality reduction by transforming the feature
     space to a lower dimensionality, removing correlation between features and
     maximizing the variance along each feature axis. This class is also used throughout
     the project to plot data.
     """
+
     def transform(self, X, n_components):
         """ Fit the dataset to the number of principal components specified in the
         constructor and return the transformed dataset """

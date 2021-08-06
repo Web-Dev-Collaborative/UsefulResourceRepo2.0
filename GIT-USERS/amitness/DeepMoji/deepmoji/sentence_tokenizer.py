@@ -1,7 +1,7 @@
-'''
+"""
 Provides functionality for converting a given list of tokens (words) into
 numbers, according to the given vocabulary.
-'''
+"""
 from __future__ import print_function, division
 
 import numbers
@@ -13,22 +13,31 @@ from sklearn.model_selection import train_test_split
 from copy import deepcopy
 
 
-class SentenceTokenizer():
+class SentenceTokenizer:
     """ Create numpy array of tokens corresponding to input sentences.
         The vocabulary can include Unicode tokens.
     """
 
-    def __init__(self, vocabulary, fixed_length, custom_wordgen=None,
-                 ignore_sentences_with_only_custom=False, masking_value=0,
-                 unknown_value=1):
+    def __init__(
+        self,
+        vocabulary,
+        fixed_length,
+        custom_wordgen=None,
+        ignore_sentences_with_only_custom=False,
+        masking_value=0,
+        unknown_value=1,
+    ):
         """ Needs a dictionary as input for the vocabulary.
         """
 
-        if len(vocabulary) > np.iinfo('uint16').max:
-            raise ValueError('Dictionary is too big ({} tokens) for the numpy '
-                             'datatypes used (max limit={}). Reduce vocabulary'
-                             ' or adjust code accordingly!'
-                             .format(len(vocabulary), np.iinfo('uint16').max))
+        if len(vocabulary) > np.iinfo("uint16").max:
+            raise ValueError(
+                "Dictionary is too big ({} tokens) for the numpy "
+                "datatypes used (max limit={}). Reduce vocabulary"
+                " or adjust code accordingly!".format(
+                    len(vocabulary), np.iinfo("uint16").max
+                )
+            )
 
         # Shouldn't be able to modify the given vocabulary
         self.vocabulary = deepcopy(vocabulary)
@@ -45,10 +54,13 @@ class SentenceTokenizer():
             self.wordgen = custom_wordgen
             self.uses_custom_wordgen = True
         else:
-            self.wordgen = WordGenerator(None, allow_unicode_text=True,
-                                         ignore_emojis=False,
-                                         remove_variation_selectors=True,
-                                         break_replacement=True)
+            self.wordgen = WordGenerator(
+                None,
+                allow_unicode_text=True,
+                ignore_emojis=False,
+                remove_variation_selectors=True,
+                break_replacement=True,
+            )
             self.uses_custom_wordgen = False
 
     def tokenize_sentences(self, sentences, reset_stats=True, max_sentences=None):
@@ -70,18 +82,21 @@ class SentenceTokenizer():
             ValueError: When maximum length is not set and cannot be inferred.
         """
 
-        if max_sentences is None and not hasattr(sentences, '__len__'):
-            raise ValueError('Either you must provide an array with a length'
-                             'attribute (e.g. a list) or specify the maximum '
-                             'length yourself using `max_sentences`!')
-        n_sentences = (max_sentences if max_sentences is not None
-                       else len(sentences))
+        if max_sentences is None and not hasattr(sentences, "__len__"):
+            raise ValueError(
+                "Either you must provide an array with a length"
+                "attribute (e.g. a list) or specify the maximum "
+                "length yourself using `max_sentences`!"
+            )
+        n_sentences = max_sentences if max_sentences is not None else len(sentences)
 
         if self.masking_value == 0:
-            tokens = np.zeros((n_sentences, self.fixed_length), dtype='uint16')
+            tokens = np.zeros((n_sentences, self.fixed_length), dtype="uint16")
         else:
-            tokens = (np.ones((n_sentences, self.fixed_length), dtype='uint16') *
-                      self.masking_value)
+            tokens = (
+                np.ones((n_sentences, self.fixed_length), dtype="uint16")
+                * self.masking_value
+            )
 
         if reset_stats:
             self.wordgen.reset_stats()
@@ -97,14 +112,14 @@ class SentenceTokenizer():
         for s_words, s_info in self.wordgen:
             s_tokens = self.find_tokens(s_words)
 
-            if (self.ignore_sentences_with_only_custom and
-                np.all([True if t < len(SPECIAL_TOKENS)
-                        else False for t in s_tokens])):
+            if self.ignore_sentences_with_only_custom and np.all(
+                [True if t < len(SPECIAL_TOKENS) else False for t in s_tokens]
+            ):
                 n_ignored_unknowns += 1
                 continue
             if len(s_tokens) > self.fixed_length:
-                s_tokens = s_tokens[:self.fixed_length]
-            tokens[next_insert, :len(s_tokens)] = s_tokens
+                s_tokens = s_tokens[: self.fixed_length]
+            tokens[next_insert, : len(s_tokens)] = s_tokens
             infos.append(s_info)
             next_insert += 1
 
@@ -129,10 +144,14 @@ class SentenceTokenizer():
                 tokens.append(self.unknown_value)
         return tokens
 
-    def split_train_val_test(self, sentences, info_dicts,
-                             split_parameter=[0.7, 0.1, 0.2], 
-                             extend_with=0,
-                             random_state=None):
+    def split_train_val_test(
+        self,
+        sentences,
+        info_dicts,
+        split_parameter=[0.7, 0.1, 0.2],
+        extend_with=0,
+        random_state=None,
+    ):
         """ Splits given sentences into three different datasets: training,
             validation and testing.
 
@@ -159,14 +178,20 @@ class SentenceTokenizer():
         """
 
         # If passed three lists, use those directly
-        if isinstance(split_parameter, list) and \
-                all(isinstance(x, list) for x in split_parameter) and \
-                len(split_parameter) == 3:
+        if (
+            isinstance(split_parameter, list)
+            and all(isinstance(x, list) for x in split_parameter)
+            and len(split_parameter) == 3
+        ):
 
             # Helper function to verify provided indices are numbers in range
             def verify_indices(inds):
-                return list(filter(lambda i: isinstance(i, numbers.Number) and
-                                   i < len(sentences), inds))
+                return list(
+                    filter(
+                        lambda i: isinstance(i, numbers.Number) and i < len(sentences),
+                        inds,
+                    )
+                )
 
             ind_train = verify_indices(split_parameter[0])
             ind_val = verify_indices(split_parameter[1])
@@ -174,8 +199,12 @@ class SentenceTokenizer():
         else:
             # Split sentences and dicts
             ind = list(range(len(sentences)))
-            ind_train, ind_test = train_test_split(ind, test_size=split_parameter[2], random_state=random_state)
-            ind_train, ind_val = train_test_split(ind_train, test_size=split_parameter[1], random_state=random_state)
+            ind_train, ind_test = train_test_split(
+                ind, test_size=split_parameter[2], random_state=random_state
+            )
+            ind_train, ind_val = train_test_split(
+                ind_train, test_size=split_parameter[1], random_state=random_state
+            )
 
         # Map indices to data
         train = np.array([sentences[x] for x in ind_train])
@@ -215,7 +244,7 @@ class SentenceTokenizer():
         ind_to_word = {ind: word for word, ind in self.vocabulary.iteritems()}
 
         sentence_as_list = [ind_to_word[x] for x in sentence_idx]
-        cleaned_list = [x for x in sentence_as_list if x != 'CUSTOM_MASK']
+        cleaned_list = [x for x in sentence_as_list if x != "CUSTOM_MASK"]
         return " ".join(cleaned_list)
 
 

@@ -15,6 +15,7 @@ class Node:
         # set this node's next_node reference to the passed in node
         self.next_node = new_next
 
+
 class LinkedList:
     def __init__(self):
         # reference to the head of the list
@@ -60,13 +61,13 @@ class LinkedList:
     def remove_tail(self):
         if not self.head:
             return None
-        
+
         if self.head is self.tail:
             value = self.head.get_value()
             self.head = None
             self.tail = None
             return value
-        
+
         current = self.head
 
         while current.get_next() is not self.tail:
@@ -88,10 +89,10 @@ class LinkedList:
         #     return False
         #   return search(node.get_next())
         # return search(self.head)
-    
+
         # get a reference to the node we're currently at; update this as we traverse the list
         current = self.head
-        # check to see if we're at a valid node 
+        # check to see if we're at a valid node
         while current:
             # return True if the current value we're looking at matches our target value
             if current.get_value() == value:

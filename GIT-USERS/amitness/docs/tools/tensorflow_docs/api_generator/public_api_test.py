@@ -23,78 +23,67 @@ from tensorflow_docs.api_generator import public_api
 
 
 class PublicApiTest(absltest.TestCase):
+    class TestVisitor(object):
+        def __init__(self):
+            self.symbols = set()
+            self.last_parent = None
+            self.last_children = None
 
-  class TestVisitor(object):
+        def __call__(self, path, parent, children):
+            self.symbols.add(path)
+            self.last_parent = parent
+            self.last_children = list(children)  # Make a copy to preserve state.
 
-    def __init__(self):
-      self.symbols = set()
-      self.last_parent = None
-      self.last_children = None
+    def test_call_forward(self):
+        visitor = self.TestVisitor()
+        children = [("name1", "thing1"), ("name2", "thing2")]
 
-    def __call__(self, path, parent, children):
-      self.symbols.add(path)
-      self.last_parent = parent
-      self.last_children = list(children)  # Make a copy to preserve state.
+        api_visitor = public_api.PublicAPIVisitor(visitor, base_dir="/")
+        api_visitor(("tf", "test"), "dummy", children)
 
-  def test_call_forward(self):
-    visitor = self.TestVisitor()
-    children = [('name1', 'thing1'), ('name2', 'thing2')]
+        self.assertEqual(set([("tf", "test")]), visitor.symbols)
+        self.assertEqual("dummy", visitor.last_parent)
+        self.assertEqual(
+            [("name1", "thing1"), ("name2", "thing2")], visitor.last_children
+        )
 
-    api_visitor = public_api.PublicAPIVisitor(visitor, base_dir='/')
-    api_visitor((
-        'tf',
-        'test',
-    ), 'dummy', children)
+    def test_private_child_removal(self):
+        visitor = self.TestVisitor()
+        children = [("name1", "thing1"), ("_name2", "thing2")]
+        api_visitor = public_api.PublicAPIVisitor(visitor, base_dir="/")
+        api_visitor(("tf", "test"), "dummy", children)
 
-    self.assertEqual(set([(
-        'tf',
-        'test',
-    )]), visitor.symbols)
-    self.assertEqual('dummy', visitor.last_parent)
-    self.assertEqual([('name1', 'thing1'), ('name2', 'thing2')],
-                     visitor.last_children)
+        # Make sure the private symbols are removed before the visitor is called.
+        self.assertEqual([("name1", "thing1")], visitor.last_children)
+        self.assertEqual([("name1", "thing1")], children)
 
-  def test_private_child_removal(self):
-    visitor = self.TestVisitor()
-    children = [('name1', 'thing1'), ('_name2', 'thing2')]
-    api_visitor = public_api.PublicAPIVisitor(visitor, base_dir='/')
-    api_visitor((
-        'tf',
-        'test',
-    ), 'dummy', children)
+    def test_no_descent_child_removal(self):
+        visitor = self.TestVisitor()
+        children = [("name1", "thing1"), ("name2", "thing2")]
 
-    # Make sure the private symbols are removed before the visitor is called.
-    self.assertEqual([('name1', 'thing1')], visitor.last_children)
-    self.assertEqual([('name1', 'thing1')], children)
+        api_visitor = public_api.PublicAPIVisitor(
+            visitor, base_dir="/", do_not_descend_map={"tf.test": ["mock"]}
+        )
 
-  def test_no_descent_child_removal(self):
-    visitor = self.TestVisitor()
-    children = [('name1', 'thing1'), ('name2', 'thing2')]
+        api_visitor(("tf", "test", "mock"), "dummy", children)
 
-    api_visitor = public_api.PublicAPIVisitor(
-        visitor, base_dir='/', do_not_descend_map={'tf.test': ['mock']})
+        # Make sure not-to-be-descended-into symbols's children are removed.
+        self.assertEqual([], visitor.last_children)
+        self.assertEqual([], children)
 
-    api_visitor(('tf', 'test', 'mock'), 'dummy', children)
+    def test_private_map_child_removal(self):
+        visitor = self.TestVisitor()
+        children = [("name1", "thing1"), ("mock", "thing2")]
 
-    # Make sure not-to-be-descended-into symbols's children are removed.
-    self.assertEqual([], visitor.last_children)
-    self.assertEqual([], children)
+        api_visitor = public_api.PublicAPIVisitor(
+            visitor, base_dir="/", private_map={"tf.test": ["mock"]}
+        )
 
-  def test_private_map_child_removal(self):
-    visitor = self.TestVisitor()
-    children = [('name1', 'thing1'), ('mock', 'thing2')]
-
-    api_visitor = public_api.PublicAPIVisitor(
-        visitor, base_dir='/', private_map={'tf.test': ['mock']})
-
-    api_visitor((
-        'tf',
-        'test',
-    ), 'dummy', children)
-    # Make sure private aliases are removed.
-    self.assertEqual([('name1', 'thing1')], visitor.last_children)
-    self.assertEqual([('name1', 'thing1')], children)
+        api_visitor(("tf", "test"), "dummy", children)
+        # Make sure private aliases are removed.
+        self.assertEqual([("name1", "thing1")], visitor.last_children)
+        self.assertEqual([("name1", "thing1")], children)
 
 
-if __name__ == '__main__':
-  absltest.main()
+if __name__ == "__main__":
+    absltest.main()

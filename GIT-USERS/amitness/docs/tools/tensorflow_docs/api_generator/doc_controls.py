@@ -22,7 +22,7 @@ _DO_NOT_DOC = "_tf_docs_do_not_document"
 
 
 def do_not_generate_docs(obj):
-  """A decorator: Do not generate docs for this object.
+    """A decorator: Do not generate docs for this object.
 
   For example the following classes:
 
@@ -95,15 +95,15 @@ def do_not_generate_docs(obj):
   Returns:
     obj
   """
-  setattr(obj, _DO_NOT_DOC, None)
-  return obj
+    setattr(obj, _DO_NOT_DOC, None)
+    return obj
 
 
 _DO_NOT_DOC_INHERITABLE = "_tf_docs_do_not_doc_inheritable"
 
 
 def do_not_doc_inheritable(obj):
-  """A decorator: Do not generate docs for this method.
+    """A decorator: Do not generate docs for this method.
 
   This version of the decorator is "inherited" by subclasses. No docs will be
   generated for the decorated method in any subclass. Even if the sub-class
@@ -158,15 +158,15 @@ def do_not_doc_inheritable(obj):
   Returns:
     obj
   """
-  setattr(obj, _DO_NOT_DOC_INHERITABLE, None)
-  return obj
+    setattr(obj, _DO_NOT_DOC_INHERITABLE, None)
+    return obj
 
 
 _FOR_SUBCLASS_IMPLEMENTERS = "_tf_docs_tools_for_subclass_implementers"
 
 
 def for_subclass_implementers(obj):
-  """A decorator: Only generate docs for this method in the defining class.
+    """A decorator: Only generate docs for this method in the defining class.
 
   Also group this method's docs with and `@abstractmethod` in the class's docs.
 
@@ -236,12 +236,12 @@ def for_subclass_implementers(obj):
   Returns:
     obj
   """
-  setattr(obj, _FOR_SUBCLASS_IMPLEMENTERS, None)
-  return obj
+    setattr(obj, _FOR_SUBCLASS_IMPLEMENTERS, None)
+    return obj
 
 
 def should_skip(obj):
-  """Returns true if docs generation should be skipped for this object.
+    """Returns true if docs generation should be skipped for this object.
 
   checks for the `do_not_generate_docs` or `do_not_doc_inheritable` decorators.
 
@@ -251,22 +251,22 @@ def should_skip(obj):
   Returns:
     True if the object should be skipped
   """
-  if isinstance(obj, type):
-    # For classes, only skip if the attribute is set on _this_ class.
-    if _DO_NOT_DOC in obj.__dict__:
-      return True
-    else:
-      return False
+    if isinstance(obj, type):
+        # For classes, only skip if the attribute is set on _this_ class.
+        if _DO_NOT_DOC in obj.__dict__:
+            return True
+        else:
+            return False
 
-  # Unwrap fget if the object is a property
-  if isinstance(obj, property):
-    obj = obj.fget
+    # Unwrap fget if the object is a property
+    if isinstance(obj, property):
+        obj = obj.fget
 
-  return hasattr(obj, _DO_NOT_DOC) or hasattr(obj, _DO_NOT_DOC_INHERITABLE)
+    return hasattr(obj, _DO_NOT_DOC) or hasattr(obj, _DO_NOT_DOC_INHERITABLE)
 
 
 def should_skip_class_attr(cls, name):
-  """Returns true if docs should be skipped for this class attribute.
+    """Returns true if docs should be skipped for this class attribute.
 
   Args:
     cls: The class the attribute belongs to.
@@ -275,56 +275,56 @@ def should_skip_class_attr(cls, name):
   Returns:
     True if the attribute should be skipped.
   """
-  # Get the object with standard lookup, from the nearest
-  # defining parent.
-  try:
-    obj = getattr(cls, name)
-  except AttributeError:
-    # Avoid error caused by enum metaclasses in python3
-    if name in ("name", "value"):
-      return True
-    raise
+    # Get the object with standard lookup, from the nearest
+    # defining parent.
+    try:
+        obj = getattr(cls, name)
+    except AttributeError:
+        # Avoid error caused by enum metaclasses in python3
+        if name in ("name", "value"):
+            return True
+        raise
 
-  # Unwrap fget if the object is a property
-  if isinstance(obj, property):
-    obj = obj.fget
-
-  # Skip if the object is decorated with `do_not_generate_docs` or
-  # `do_not_doc_inheritable`
-  if should_skip(obj):
-    return True
-
-  # Use __dict__ lookup to get the version defined in *this* class.
-  obj = cls.__dict__.get(name, None)
-  if isinstance(obj, property):
-    obj = obj.fget
-  if obj is not None:
-    # If not none, the object is defined in *this* class.
-    # Do not skip if decorated with `for_subclass_implementers`.
-    if hasattr(obj, _FOR_SUBCLASS_IMPLEMENTERS):
-      return False
-
-  # for each parent class
-  for parent in getattr(cls, "__mro__", [])[1:]:
-    # if the class should be skipped, don't doc this object.
-    if should_skip(parent):
-      return True
-
-    obj = getattr(parent, name, None)
-
-    if obj is None:
-      continue
-
+    # Unwrap fget if the object is a property
     if isinstance(obj, property):
-      obj = obj.fget
+        obj = obj.fget
 
-    # Skip if the parent's definition is decorated with `do_not_doc_inheritable`
-    # or `for_subclass_implementers`
-    if hasattr(obj, _DO_NOT_DOC_INHERITABLE):
-      return True
+    # Skip if the object is decorated with `do_not_generate_docs` or
+    # `do_not_doc_inheritable`
+    if should_skip(obj):
+        return True
 
-    if hasattr(obj, _FOR_SUBCLASS_IMPLEMENTERS):
-      return True
+    # Use __dict__ lookup to get the version defined in *this* class.
+    obj = cls.__dict__.get(name, None)
+    if isinstance(obj, property):
+        obj = obj.fget
+    if obj is not None:
+        # If not none, the object is defined in *this* class.
+        # Do not skip if decorated with `for_subclass_implementers`.
+        if hasattr(obj, _FOR_SUBCLASS_IMPLEMENTERS):
+            return False
 
-  # No blockng decorators --> don't skip
-  return False
+    # for each parent class
+    for parent in getattr(cls, "__mro__", [])[1:]:
+        # if the class should be skipped, don't doc this object.
+        if should_skip(parent):
+            return True
+
+        obj = getattr(parent, name, None)
+
+        if obj is None:
+            continue
+
+        if isinstance(obj, property):
+            obj = obj.fget
+
+        # Skip if the parent's definition is decorated with `do_not_doc_inheritable`
+        # or `for_subclass_implementers`
+        if hasattr(obj, _DO_NOT_DOC_INHERITABLE):
+            return True
+
+        if hasattr(obj, _FOR_SUBCLASS_IMPLEMENTERS):
+            return True
+
+    # No blockng decorators --> don't skip
+    return False

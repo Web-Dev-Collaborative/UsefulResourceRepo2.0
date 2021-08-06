@@ -1,5 +1,6 @@
 # Let's build a data driven machine!
 import sys
+
 # opcodes
 PRINT_TOM = 1
 HALT = 2
@@ -29,7 +30,7 @@ memory = [
     3,
     PRINT_REG,
     2,
-    HALT
+    HALT,
 ]
 
 # registers
@@ -51,7 +52,7 @@ while running:
     # FETCH
     cmd = memory[pc]
 
-    #DECODE
+    # DECODE
     if cmd == PRINT_TOM:
         # EXECUTE
         print("Tom")
@@ -91,6 +92,5 @@ while running:
         # EXECUTE
         print("Unknown Instruction!")
         sys.exit(1)
-    
-    
+
     pc += inc_size

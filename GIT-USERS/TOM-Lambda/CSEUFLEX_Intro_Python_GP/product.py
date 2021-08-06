@@ -1,5 +1,6 @@
 # lets make a super class
 
+
 class Product:
     def __init__(self, name, price):
         self.name = name

@@ -16,7 +16,7 @@ class BinarySearchTreeTests(unittest.TestCase):
         self.bst.insert(6)
         self.assertEqual(self.bst.left.right.value, 3)
         self.assertEqual(self.bst.right.left.value, 6)
-        
+
     def test_handle_dupe_insert(self):
         self.bst2 = BinarySearchTree(1)
         self.bst2.insert(1)
@@ -107,5 +107,6 @@ class BinarySearchTreeTests(unittest.TestCase):
 
     #     sys.stdout = stdout_  # Restore stdout
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

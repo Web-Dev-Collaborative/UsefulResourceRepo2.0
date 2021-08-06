@@ -20,7 +20,7 @@ class Company(db.Model):
         self.logo = logo
 
     def __repr__(self):
-        return '<Company %r>' % self.name
+        return "<Company %r>" % self.name
 
 
 class Events(db.Model):
@@ -42,7 +42,7 @@ class Events(db.Model):
         self.banner = banner
 
     def __repr__(self):
-        return '<Event %r>' % self.title
+        return "<Event %r>" % self.title
 
 
 class Reviews(db.Model):
@@ -50,7 +50,7 @@ class Reviews(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     comment = db.Column(db.Text)
     rating = db.Column(db.Float)
-    eventID = db.Column(db.Integer, db.ForeignKey('Events.id'))
+    eventID = db.Column(db.Integer, db.ForeignKey("Events.id"))
 
     def __init__(self, comment, rating, eventID):
         self.comment = comment

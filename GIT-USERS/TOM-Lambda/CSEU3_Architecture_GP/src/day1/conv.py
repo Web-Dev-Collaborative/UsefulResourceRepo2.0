@@ -74,7 +74,7 @@ def to_decimal(num_string, base):
         print(f"+({int(digit_list[i])} * {base ** i})")
         # increment value by (digit at index) * (base ^ index)
         value += int(digit_list[i]) * (base ** i)
-    
+
     # return value
     return value
 

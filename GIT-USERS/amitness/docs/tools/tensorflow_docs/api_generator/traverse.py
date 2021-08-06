@@ -21,53 +21,55 @@ from __future__ import print_function
 import inspect
 import sys
 
-__all__ = ['traverse']
+__all__ = ["traverse"]
 
 
 def _traverse_internal(root, visit, stack, path):
-  """Internal helper for traverse."""
-  new_stack = stack + [root]
+    """Internal helper for traverse."""
+    new_stack = stack + [root]
 
-  # Only traverse modules and classes
-  if not inspect.isclass(root) and not inspect.ismodule(root):
-    return
+    # Only traverse modules and classes
+    if not inspect.isclass(root) and not inspect.ismodule(root):
+        return
 
-  try:
-    if inspect.ismodule(root) and hasattr(root, '__all__'):
-      children = [(name, getattr(root, name))
-                  for name in root.__all__
-                  if hasattr(root, name)]
-    else:
-      children = inspect.getmembers(root)
-  except ImportError:
-    # On some Python installations, some modules do not support enumerating
-    # members (six in particular), leading to import errors.
-    children = []
+    try:
+        if inspect.ismodule(root) and hasattr(root, "__all__"):
+            children = [
+                (name, getattr(root, name))
+                for name in root.__all__
+                if hasattr(root, name)
+            ]
+        else:
+            children = inspect.getmembers(root)
+    except ImportError:
+        # On some Python installations, some modules do not support enumerating
+        # members (six in particular), leading to import errors.
+        children = []
 
-  # filter out 'builtin' modules
-  filtered_children = []
-  for name, child in children:
-    # Do not descend into built-in modules
-    if inspect.ismodule(child) and child.__name__ in sys.builtin_module_names:
-      continue
+    # filter out 'builtin' modules
+    filtered_children = []
+    for name, child in children:
+        # Do not descend into built-in modules
+        if inspect.ismodule(child) and child.__name__ in sys.builtin_module_names:
+            continue
 
-    if any(child is item for item in new_stack):  # `in`, but using `is`
-      continue
+        if any(child is item for item in new_stack):  # `in`, but using `is`
+            continue
 
-    filtered_children.append((name, child))
+        filtered_children.append((name, child))
 
-  children = filtered_children
+    children = filtered_children
 
-  visit(path, root, children)
+    visit(path, root, children)
 
-  for name, child in children:
-    # Break cycles
-    child_path = path + (name,)
-    _traverse_internal(child, visit, new_stack, child_path)
+    for name, child in children:
+        # Break cycles
+        child_path = path + (name,)
+        _traverse_internal(child, visit, new_stack, child_path)
 
 
 def traverse(root, visit, root_name):
-  """Recursively enumerate all members of `root`.
+    """Recursively enumerate all members of `root`.
 
   Similar to the Python library function `os.path.walk`.
 
@@ -101,4 +103,4 @@ def traverse(root, visit, root_name):
       called for each object found in the traversal.
     root_name: The short-name of the root module.
   """
-  _traverse_internal(root, visit, [], (root_name,))
+    _traverse_internal(root, visit, [], (root_name,))

@@ -42,7 +42,7 @@ memory = [
     PRINT_NUM,
     120,
     PRINT_VLAD,
-    HALT
+    HALT,
 ]
 # keep track of running?
 running = True
@@ -78,7 +78,7 @@ while running:
         print(num_at_reg)
         op_size = 2
     elif cmd == SAVE:
-        num_to_save = memory[pc + 1] # 300
+        num_to_save = memory[pc + 1]  # 300
         reg_index = memory[pc + 2]
 
         registers[reg_index] = num_to_save
@@ -97,6 +97,5 @@ while running:
         registers[reg_index_a] -= registers[reg_index_b]
 
         op_size = 3
-
 
     pc += op_size

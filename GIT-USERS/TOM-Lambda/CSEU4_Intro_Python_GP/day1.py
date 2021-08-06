@@ -36,7 +36,7 @@ print(lst2)
 for e in lst2:
     print(e)
 
-for i in range(len(lst2)): # range(9, 10)
+for i in range(len(lst2)):  # range(9, 10)
     print(lst2[i])
 
 print("i am not in the loop")
@@ -70,20 +70,19 @@ evens = [num for num in numbers if num % 2 == 0]
 print(evens)
 
 # create a new list containing only the names that start with 's' make sure they are capitalized (regardless of their original case)
-names = ['Patrick', 'Melquisedeque', 'Bob', 'steve', 'Sam', 'frank', 'shawn', "slido"]
-new_names = [name.capitalize() for name in names if name[0].lower() == 's']
+names = ["Patrick", "Melquisedeque", "Bob", "steve", "Sam", "frank", "shawn", "slido"]
+new_names = [name.capitalize() for name in names if name[0].lower() == "s"]
 
 print(new_names)
 
 # Dictionaries
 
 # Create a new dictionary
-d = {} # empty
-d2 = {"name": "Tom", "age": 40} # key value pairs
+d = {}  # empty
+d2 = {"name": "Tom", "age": 40}  # key value pairs
 # access an element via its key
 print(f'Name: {d2["name"]} \nAge: {d2["age"]}')
 
 # iterate over dict
 for k in d2:
     print(f"{k.capitalize()}: {d2[k]}")
-

@@ -5,22 +5,21 @@ from datetime import datetime
 import keyboard
 
 
-
 LDI = 0b10000010
-LD   = 0b10000011
+LD = 0b10000011
 PRN = 0b01000111
-PRA  = 0b01001000
+PRA = 0b01001000
 HLT = 0b00000001
-POP  = 0b01000110
+POP = 0b01000110
 PUSH = 0b01000101
-ADD  = 0b10100000
-SUB  = 0b10100001
+ADD = 0b10100000
+SUB = 0b10100001
 CALL = 0b01010000
 RET = 0b00010001
 ADDI = 0b10101111
 
-MUL  = 0b10100010
-DIV  = 0b10100011
+MUL = 0b10100010
+DIV = 0b10100011
 MOD = 0b10100100
 INC = 0b01100101
 DEC = 0b01100110
@@ -32,16 +31,16 @@ SHL = 0b10101100
 SHR = 0b10101101
 CMP = 0b10100111
 
-ST   = 0b10000100
+ST = 0b10000100
 IRET = 0b00010011
 
-JEQ  = 0b01010101
-JLE  = 0b01011001
-JLT  = 0b01011000
-JMP  = 0b01010100
-JGT  = 0b01010111
-JGE  = 0b01011010
-JNE  = 0b01010110
+JEQ = 0b01010101
+JLE = 0b01011001
+JLT = 0b01011000
+JMP = 0b01010100
+JGT = 0b01010111
+JGE = 0b01011010
+JNE = 0b01010110
 
 
 # Reserved general-purpose register numbers:
@@ -58,8 +57,9 @@ FL_EQ = 0b001
 
 # IS flags
 
-IS_TIMER    = 0b00000001
+IS_TIMER = 0b00000001
 IS_KEYBOARD = 0b00000010
+
 
 class CPU:
     """Main CPU class."""
@@ -72,12 +72,11 @@ class CPU:
 
         self.reg = [0] * 8
         self.ram = [0] * 256
-        self.reg[7] = 0xf4
+        self.reg[7] = 0xF4
 
         self.last_timer_tick = None
         self.sets_pc = False
         self.running = False
-    
 
     # Helper Methods
     def ram_read(self, mar):
@@ -89,15 +88,14 @@ class CPU:
     def push_val(self, val):
         self.reg[SP] -= 1
         self.ram_write(self.reg[7], val)
-        
+
     def pop_val(self):
         val = self.ram[self.reg[7]]
         self.reg[SP] += 1
 
         return val
-    
-    # keyboard 
 
+    # keyboard
 
     def load(self, filename):
         """Load a program into memory."""
@@ -112,7 +110,7 @@ class CPU:
                 # strip the whitespace on element zero (the instruction)
                 num = comment_split[0].strip()
 
-                if num == '':  # ignore blanks
+                if num == "":  # ignore blanks
                     continue
 
                 # turn the number string in to an integer
@@ -121,7 +119,6 @@ class CPU:
 
                 self.ram_write(address, val)
                 address += 1
-
 
     def alu(self, op, reg_a, reg_b):
         """ALU operations."""
@@ -143,7 +140,7 @@ class CPU:
         elif op == "DEC":
             self.reg[reg_a] -= 1
         elif op == "AND":
-            self.reg[reg_a]  &= self.reg[reg_b]
+            self.reg[reg_a] &= self.reg[reg_b]
         elif op == "NOT":
             self.reg[reg_a] != self.reg[reg_a]
         elif op == "OR":
@@ -163,7 +160,6 @@ class CPU:
             else:
                 self.fl |= FL_EQ
 
-            
         else:
             raise Exception("Unsupported ALU operation")
 
@@ -183,9 +179,7 @@ class CPU:
     def check_for_keyboard_int(self):
         if keyboard.is_pressed("a"):
             self.reg[IS] |= IS_KEYBOARD
-            self.ram[0xf4] = 'a'
-
-
+            self.ram[0xF4] = "a"
 
     def handle_ints(self):
         if not self.ie:  # see if interrupts enabled
@@ -197,7 +191,7 @@ class CPU:
         for i in range(8):
             # See if the interrupt triggered
             if masked_ints & (1 << i):
-                self.ie = 0   # disable interrupts
+                self.ie = 0  # disable interrupts
                 self.reg[IS] &= ~(1 << i)  # clear bit for this interrupt
 
                 # Save all the work on the stack
@@ -207,9 +201,9 @@ class CPU:
                     self.push_val(self.reg[r])
 
                 # Look up the address vector and jump to it
-                self.pc = self.ram_read(0xf8 + i)
+                self.pc = self.ram_read(0xF8 + i)
 
-                break # no more processing
+                break  # no more processing
 
     def trace(self):
         """
@@ -217,17 +211,21 @@ class CPU:
         from run() if you need help debugging.
         """
 
-        print(f"TRACE: %02X | %02X %02X %02X |" % (
-            self.pc,
-            #self.fl,
-            #self.ie,
-            self.ram_read(self.pc),
-            self.ram_read(self.pc + 1),
-            self.ram_read(self.pc + 2)
-        ), end='')
+        print(
+            f"TRACE: %02X | %02X %02X %02X |"
+            % (
+                self.pc,
+                # self.fl,
+                # self.ie,
+                self.ram_read(self.pc),
+                self.ram_read(self.pc + 1),
+                self.ram_read(self.pc + 2),
+            ),
+            end="",
+        )
 
         for i in range(8):
-            print(" %02X" % self.reg[i], end='')
+            print(" %02X" % self.reg[i], end="")
 
         print()
 
@@ -253,13 +251,12 @@ class CPU:
             # decode instruction size
             opcode_size = (ir >> 6) + 1
 
-            
             # decode
             if ir == HLT:
                 # execute
                 self.running = False
                 sys.exit(0)
-            
+
             # decode
             elif ir == LDI:
                 # execute
@@ -308,7 +305,7 @@ class CPU:
 
             elif ir == DEC:
                 self.alu("DEC", opa, opb)
-            
+
             elif ir == INC:
                 self.alu("INC", opa, opb)
 
@@ -317,7 +314,7 @@ class CPU:
 
             elif ir == SHR:
                 self.alu("SHR", opa, opb)
-            
+
             elif ir == CMP:
                 self.alu("CMP", opa, opb)
 
@@ -329,7 +326,6 @@ class CPU:
                     self.pc = self.reg[opa]
                 else:
                     self.sets_pc = False
-
 
             elif ir == JNE:
                 if not self.fl & FL_EQ:
@@ -384,14 +380,12 @@ class CPU:
                 # return state from stack
                 for i in range(6, -1, -1):
                     self.reg[i] = self.pop_val()
-                
+
                 self.lf = self.pop_val()
                 self.pc = self.pop_val()
 
                 # enable interrupts
                 self.ie = 1
-
-                
 
             # decode
             elif ir == PRN:
@@ -401,8 +395,7 @@ class CPU:
                 print(self.reg[reg_index])
 
             elif ir == PRA:
-                print(chr(self.reg[opa]), end='')
-           
+                print(chr(self.reg[opa]), end="")
 
             # decode
             else:
@@ -414,8 +407,9 @@ class CPU:
             else:
                 pass
 
+
 if __name__ == "__main__":
-    
+
     """Main."""
 
     import sys

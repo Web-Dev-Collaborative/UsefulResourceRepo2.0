@@ -9,9 +9,10 @@ from mlfromscratch.unsupervised_learning import RBM
 
 logging.basicConfig(level=logging.DEBUG)
 
+
 def main():
 
-    mnist = fetch_mldata('MNIST original')
+    mnist = fetch_mldata("MNIST original")
 
     X = mnist.data / 255.0
     y = mnist.target
@@ -27,11 +28,13 @@ def main():
     rbm.fit(X)
 
     # Training error plot
-    training, = plt.plot(range(len(rbm.training_errors)), rbm.training_errors, label="Training Error")
+    training, = plt.plot(
+        range(len(rbm.training_errors)), rbm.training_errors, label="Training Error"
+    )
     plt.legend(handles=[training])
     plt.title("Error Plot")
-    plt.ylabel('Error')
-    plt.xlabel('Iterations')
+    plt.ylabel("Error")
+    plt.xlabel("Iterations")
     plt.show()
 
     # Get the images that were reconstructed during training
@@ -43,8 +46,8 @@ def main():
     cnt = 0
     for i in range(5):
         for j in range(5):
-            axs[i,j].imshow(gen_imgs[0][cnt].reshape((28, 28)), cmap='gray')
-            axs[i,j].axis('off')
+            axs[i, j].imshow(gen_imgs[0][cnt].reshape((28, 28)), cmap="gray")
+            axs[i, j].axis("off")
             cnt += 1
     fig.savefig("rbm_first.png")
     plt.close()
@@ -55,8 +58,8 @@ def main():
     cnt = 0
     for i in range(5):
         for j in range(5):
-            axs[i,j].imshow(gen_imgs[-1][cnt].reshape((28, 28)), cmap='gray')
-            axs[i,j].axis('off')
+            axs[i, j].imshow(gen_imgs[-1][cnt].reshape((28, 28)), cmap="gray")
+            axs[i, j].axis("off")
             cnt += 1
     fig.savefig("rbm_last.png")
     plt.close()

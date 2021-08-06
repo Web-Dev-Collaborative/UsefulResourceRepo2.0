@@ -1,5 +1,6 @@
 # Let's build a data driven machine!
 import sys
+
 # What do we need to have our machine working?
 """
 - Some sort of memory
@@ -27,6 +28,7 @@ PRN = 0b01000111
 
 # some sort of memory (lets refactor this to load in opcodes from a file)
 
+
 def load_memory(filename):
     # TODO do some logic here
     try:
@@ -36,7 +38,7 @@ def load_memory(filename):
                 comment_split = line.split("#")
                 n = comment_split[0].strip()
 
-                if n == '':
+                if n == "":
                     continue
 
                 val = int(n, 2)
@@ -64,7 +66,7 @@ pc = 0
 registers = [0] * 10
 
 # TODO: Stack Pointer (R7) as per specs
-# index of the registers list 
+# index of the registers list
 # SP
 SP = 7
 
@@ -106,7 +108,7 @@ while running:
         print(num_at_reg)
         op_size = 2
     elif cmd == SAVE:
-        num_to_save = memory[pc + 1] # 300
+        num_to_save = memory[pc + 1]  # 300
         reg_index = memory[pc + 2]
 
         registers[reg_index] = num_to_save
@@ -125,7 +127,7 @@ while running:
         registers[reg_index_a] -= registers[reg_index_b]
 
         op_size = 3
-    
+
     # PUSH
     elif cmd == PUSH:
         # setup
@@ -157,6 +159,5 @@ while running:
     else:
         print(f"Invalid Instruction: {cmd}")
         running = False
-
 
     pc += op_size

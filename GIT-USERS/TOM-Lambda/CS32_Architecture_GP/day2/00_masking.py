@@ -41,7 +41,7 @@
 # add_to_pc = operand_size + 1
 
 # memory = [
-#     LDI, 
+#     LDI,
 #     12,
 #     2,
 #     PRINT_VLAD <==== PC

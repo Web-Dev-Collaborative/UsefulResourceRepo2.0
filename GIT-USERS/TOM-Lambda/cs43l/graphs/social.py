@@ -1,41 +1,45 @@
 import random
 import time
 
+
 class Stack:
     def __init__(self):
         self.storage = []
-    
+
     def push(self, value):
         self.storage.append(value)
-    
+
     def pop(self):
         if self.size() > 0:
             return self.storage.pop()
         else:
             return None
-    
+
     def size(self):
         return len(self.storage)
+
 
 class Queue:
     def __init__(self):
         self.storage = []
-    
+
     def enqueue(self, value):
         self.storage.append(value)
-    
+
     def dequeue(self):
         if self.size() > 0:
             return self.storage.pop(0)
         else:
             return None
-    
+
     def size(self):
         return len(self.storage)
+
 
 class User:
     def __init__(self, name):
         self.name = name
+
 
 class SocialGraph:
     def __init__(self):
@@ -50,7 +54,10 @@ class SocialGraph:
         if user_id == friend_id:
             # print("WARNING: You cannot be friends with yourself")
             return False
-        elif friend_id in self.friendships[user_id] or user_id in self.friendships[friend_id]:
+        elif (
+            friend_id in self.friendships[user_id]
+            or user_id in self.friendships[friend_id]
+        ):
             # print("WARNING: Friendship already exists")
             return False
         else:
@@ -66,7 +73,7 @@ class SocialGraph:
         self.users[self.last_id] = User(name)
         self.friendships[self.last_id] = set()
 
-    def populate_graph(self, num_users, avg_friendships): # Quadratic O(n^2)
+    def populate_graph(self, num_users, avg_friendships):  # Quadratic O(n^2)
         """
         Takes a number of users and an average number of friendships
         as arguments
@@ -99,7 +106,7 @@ class SocialGraph:
             friendship = possible_friendships[i]
             self.add_friendship(friendship[0], friendship[1])
 
-    def populate_graph_linear(self, num_users, avg_friendships): # Linear O(n)
+    def populate_graph_linear(self, num_users, avg_friendships):  # Linear O(n)
         # Reset graph
         self.last_id = 0
         self.users = {}
@@ -108,7 +115,7 @@ class SocialGraph:
         for i in range(0, num_users):
             self.add_user(f"User {i}")
 
-        target_friendships = (num_users * avg_friendships)
+        target_friendships = num_users * avg_friendships
         total_friendships = 0
         collisions = 0
 
@@ -119,10 +126,8 @@ class SocialGraph:
                 total_friendships += 2
             else:
                 collisions += 1
-        
+
         print(f"Collisions: {collisions}")
-
-
 
     def get_all_social_paths(self, user_id):
         """
@@ -138,7 +143,7 @@ class SocialGraph:
         # Create an empty Visited dictionary
         visited = {}  # Note that this is a dictionary, not a set
         # Add A PATH TO the starting vertex to the queue
-        q.enqueue( [user_id] )
+        q.enqueue([user_id])
         # While the queue is not empty...
         while q.size() > 0:
             # Dequeue the first PATH
@@ -171,7 +176,7 @@ class SocialGraph:
         # Create an empty Visited dictionary
         visited = {}  # Note that this is a dictionary, not a set
         # Add A PATH TO the starting vertex to the queue
-        q.push( [user_id] )
+        q.push([user_id])
         # While the queue is not empty...
         while q.size() > 0:
             # Dequeue the first PATH
@@ -191,7 +196,7 @@ class SocialGraph:
         return visited
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # sg = SocialGraph()
     # sg.populate_graph(10, 2)
     # print(sg.friendships)
@@ -204,9 +209,9 @@ if __name__ == '__main__':
     sg.populate_graph_linear(num_users, avg_friendships)
     # print(sg.friendships)
     end_time = time.time()
-    print (f"Linear runtime: {end_time - start_time} seconds")
+    print(f"Linear runtime: {end_time - start_time} seconds")
     sg = SocialGraph()
     start_time = time.time()
     sg.populate_graph(num_users, avg_friendships)
     end_time = time.time()
-    print (f"Quadratic runtime: {end_time - start_time} seconds")
+    print(f"Quadratic runtime: {end_time - start_time} seconds")

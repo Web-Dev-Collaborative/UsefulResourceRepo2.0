@@ -5,14 +5,14 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('adventure', '0001_initial'),
-    ]
+    dependencies = [("adventure", "0001_initial")]
 
     operations = [
         migrations.AddField(
-            model_name='room',
-            name='img_url',
-            field=models.CharField(default='http://https://i.stack.imgur.com/y9DpT.jpg', max_length=500),
-        ),
+            model_name="room",
+            name="img_url",
+            field=models.CharField(
+                default="http://https://i.stack.imgur.com/y9DpT.jpg", max_length=500
+            ),
+        )
     ]

@@ -5,10 +5,11 @@ import matplotlib.colors as colors
 import numpy as np
 from mlfromscratch.unsupervised_learning import PCA
 
+
 def main():
 
     # Demo of how to reduce the dimensionality of the data to two dimension
-    # and plot the results. 
+    # and plot the results.
 
     # Load the dataset
     data = datasets.load_digits()
@@ -21,7 +22,7 @@ def main():
     x1 = X_trans[:, 0]
     x2 = X_trans[:, 1]
 
-    cmap = plt.get_cmap('viridis')
+    cmap = plt.get_cmap("viridis")
     colors = [cmap(i) for i in np.linspace(0, 1, len(np.unique(y)))]
 
     class_distr = []
@@ -38,8 +39,8 @@ def main():
     # Axis labels
     plt.suptitle("PCA Dimensionality Reduction")
     plt.title("Digit Dataset")
-    plt.xlabel('Principal Component 1')
-    plt.ylabel('Principal Component 2')
+    plt.xlabel("Principal Component 1")
+    plt.ylabel("Principal Component 2")
     plt.show()
 
 

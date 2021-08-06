@@ -4,18 +4,17 @@ from bulrush import generate_license
 
 
 class LicenseNameGeneratorTest(TestCase):
-
     @property
     def url(self):
-        return '#'
+        return "#"
 
     def _create_license(self):
-        return generate_license('')
+        return generate_license("")
 
     def test_format(self):
         html = self._create_license()
         self.assertIn('<ul class="menu-list">', html)
-        self.assertIn('<li>', html)
+        self.assertIn("<li>", html)
         self.assertIn('<span class="icon is-small">', html)
 
     def test_icon(self):
@@ -27,15 +26,15 @@ class LicenseNameGeneratorTest(TestCase):
         self.assertIn('<a rel="license" href="{}">'.format(self.url), html)
 
     def test_name(self):
-        name = 'License Name'
+        name = "License Name"
         html = generate_license(name)
-        self.assertIn('<span>{}</span>'.format(name), html)
+        self.assertIn("<span>{}</span>".format(name), html)
 
 
 class CreativeCommonsTest(LicenseNameGeneratorTest):
 
-    CC_NAME = 'CC-BY-SA-4.0'
-    CC_URL = 'http://creativecommons.org/licenses/by-sa/4.0/'
+    CC_NAME = "CC-BY-SA-4.0"
+    CC_URL = "http://creativecommons.org/licenses/by-sa/4.0/"
 
     @property
     def url(self):
@@ -46,7 +45,7 @@ class CreativeCommonsTest(LicenseNameGeneratorTest):
 
     def test_name(self):
         html = self._create_license()
-        self.assertIn('<span>CC BY-SA 4.0</span>', html)
+        self.assertIn("<span>CC BY-SA 4.0</span>", html)
 
     def test_icon(self):
         html = self._create_license()
@@ -54,31 +53,30 @@ class CreativeCommonsTest(LicenseNameGeneratorTest):
 
 
 class LicenseDictGeneratorTest(TestCase):
-
     def test_format(self):
-        html = generate_license(dict(name='', url=''))
+        html = generate_license(dict(name="", url=""))
         self.assertIn('<ul class="menu-list">', html)
-        self.assertIn('<li>', html)
+        self.assertIn("<li>", html)
         self.assertIn('<span class="icon is-small">', html)
 
     def test_name(self):
-        name = 'My Cool License'
-        html = generate_license(dict(name=name, url=''))
-        self.assertIn('<span>{}</span>'.format(name), html)
+        name = "My Cool License"
+        html = generate_license(dict(name=name, url=""))
+        self.assertIn("<span>{}</span>".format(name), html)
 
     def test_url(self):
-        url = 'http://example.org'
-        html = generate_license(dict(name='', url=url))
+        url = "http://example.org"
+        html = generate_license(dict(name="", url=url))
         self.assertIn('<a rel="license" href="{}">'.format(url), html)
 
     def test_default_icon(self):
-        html = generate_license(dict(name='', url=''))
+        html = generate_license(dict(name="", url=""))
         self.assertIn('<i class="fa fa-file-text-o fa-fw">', html)
 
     def test_custom_icon(self):
-        html = generate_license(dict(name='', url='', icon='lock'))
+        html = generate_license(dict(name="", url="", icon="lock"))
         self.assertIn('<i class="fa fa-lock fa-fw">', html)
 
     def test_invalid_spec(self):
         html = generate_license({})
-        self.assertEqual('', html)
+        self.assertEqual("", html)

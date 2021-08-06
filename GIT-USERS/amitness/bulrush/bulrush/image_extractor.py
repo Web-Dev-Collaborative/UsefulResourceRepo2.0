@@ -9,11 +9,11 @@ class ImageExtractor(HTMLParser):
         self.images = []
 
     def handle_starttag(self, tag, attrs):
-        if tag == 'img':
+        if tag == "img":
             self._extract_source_attr(attrs)
 
     def _extract_source_attr(self, attrs):
-        self.images.append(next(val for attr, val in attrs if attr == 'src'))
+        self.images.append(next(val for attr, val in attrs if attr == "src"))
 
 
 def extract_images(article_content):

@@ -4,18 +4,19 @@ from company import Company
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route("/")
 def main():
-    return render_template('index.html')
+    return render_template("index.html")
 
 
-@app.route('/search', methods=['POST'])
+@app.route("/search", methods=["POST"])
 def search():
-    name = request.form['name']
+    name = request.form["name"]
     if name:
-        return render_template('company.html', company=Company(name))
+        return render_template("company.html", company=Company(name))
     else:
         return "Company not found."
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app.run()

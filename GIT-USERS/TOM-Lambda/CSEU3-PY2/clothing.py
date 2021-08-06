@@ -1,5 +1,6 @@
 from product import Product
 
+
 class Clothing(Product):
     def __init__(self, name, price, colour, size):
         super().__init__(name, price)
@@ -8,7 +9,8 @@ class Clothing(Product):
         self.size = size
 
     def __str__(self):
-        return f'{super().__str__()} Comes in {self.colour}, {str(self.size)}'
+        return f"{super().__str__()} Comes in {self.colour}, {str(self.size)}"
+
 
 # p = Product(...) ==> p -> 34321
 # c = Clothing(...) ==> c -> 12345 super() -> 56343

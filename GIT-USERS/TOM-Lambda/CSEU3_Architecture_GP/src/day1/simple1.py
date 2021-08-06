@@ -10,15 +10,7 @@ PRINT_REG = 5
 
 # lets make a model of memory to hold our program
 
-memory = [
-    SAVE,
-    65,
-    2,
-    PRINT_REG,
-    2,
-    HALT,
-    PRINT_BOB
-]
+memory = [SAVE, 65, 2, PRINT_REG, 2, HALT, PRINT_BOB]
 
 register = [0] * 8
 
@@ -38,7 +30,7 @@ while running:
     if cmd == HALT:
         # EXECUTE
         running = False
-    
+
     elif cmd == PRINT_BOB:
         # EXECUTE
         print("Bob")
@@ -60,7 +52,6 @@ while running:
         print(register[reg])
         inc_size = 2
 
-    
     else:
         print("Invalid Instruction")
         running = False

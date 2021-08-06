@@ -6,33 +6,36 @@ For example:
 each 1 island == Node / Vertex
 each direction of N, S, E, W == Edge / Connection
 """
-islands = [[0, 1, 0, 1, 0],
-           [1, 1, 0, 1, 1],
-           [0, 0, 1, 0, 0],
-           [1, 0, 1, 0, 0],
-           [1, 1, 0, 0, 0]]
+islands = [
+    [0, 1, 0, 1, 0],
+    [1, 1, 0, 1, 1],
+    [0, 0, 1, 0, 0],
+    [1, 0, 1, 0, 0],
+    [1, 1, 0, 0, 0],
+]
 
 
-class Stack():
+class Stack:
     def __init__(self):
         self.storage = []
-    
+
     def push(self, value):
         self.storage.append(value)
-    
+
     def pop(self):
         return self.storage.pop()
 
     def size(self):
         return len(self.storage)
 
-class Queue():
+
+class Queue:
     def __init__(self):
         self.storage = []
-    
+
     def enqueue(self, value):
         self.storage.append(value)
-    
+
     def dequeue(self):
         return self.storage.pop(0)
 
@@ -42,7 +45,8 @@ class Queue():
 
 # helper functions
 
-def  get_neighbors(row, col, islands):
+
+def get_neighbors(row, col, islands):
     # create an empty neighbors list
     neighbors = []
     # check north.
@@ -61,12 +65,13 @@ def  get_neighbors(row, col, islands):
     # return the neighbors to the caller
     return neighbors
 
+
 def dft(row, col, islands, visited):
     # create a intermediate data structure
     s = Stack()
 
     # put the starting node on to our intermediate data structure.
-    s.push( (row, col) )
+    s.push((row, col))
 
     # while our intermediate data structure is not empty
     while s.size() > 0:
@@ -84,7 +89,7 @@ def dft(row, col, islands, visited):
             # add each of the nodes neighbors to our intermediate data structure
             for neighbor in get_neighbors(row, col, islands):
                 s.push(neighbor)
-    
+
     # return visited to the caller
     return visited
 
@@ -94,7 +99,7 @@ def bft(row, col, islands, visited):
     q = Queue()
 
     # put the starting node on to our intermediate data structure.
-    q.enqueue( (row, col) )
+    q.enqueue((row, col))
 
     # while our intermediate data structure is not empty
     while q.size() > 0:
@@ -112,11 +117,9 @@ def bft(row, col, islands, visited):
             # add each of the nodes neighbors to our intermediate data structure
             for neighbor in get_neighbors(row, col, islands):
                 q.enqueue(neighbor)
-    
+
     # return visited to the caller
     return visited
-
-
 
 
 def island_counter(islands):
@@ -143,23 +146,25 @@ def island_counter(islands):
                 # otherwise just mark the element as visited
                 else:
                     visited[row][col] = True
-    
+
     # return the counter to the caller
     return counter
 
-print(island_counter(islands)) # returns 4
 
-islands = [[1, 0, 0, 1, 1, 0, 1, 1, 0, 1],
-           [0, 0, 1, 1, 0, 1, 0, 0, 0, 0],
-           [0, 1, 1, 1, 0, 0, 0, 1, 0, 1],
-           [0, 0, 1, 0, 0, 1, 0, 0, 1, 1],
-           [0, 0, 1, 1, 0, 1, 0, 1, 1, 0],
-           [0, 1, 0, 1, 1, 1, 0, 1, 0, 0],
-           [0, 0, 1, 0, 0, 1, 1, 0, 0, 0],
-           [1, 0, 1, 1, 0, 0, 0, 1, 1, 0],
-           [0, 1, 1, 0, 0, 0, 1, 1, 0, 0],
-           [0, 0, 1, 1, 0, 1, 0, 0, 1, 0]]
+print(island_counter(islands))  # returns 4
 
+islands = [
+    [1, 0, 0, 1, 1, 0, 1, 1, 0, 1],
+    [0, 0, 1, 1, 0, 1, 0, 0, 0, 0],
+    [0, 1, 1, 1, 0, 0, 0, 1, 0, 1],
+    [0, 0, 1, 0, 0, 1, 0, 0, 1, 1],
+    [0, 0, 1, 1, 0, 1, 0, 1, 1, 0],
+    [0, 1, 0, 1, 1, 1, 0, 1, 0, 0],
+    [0, 0, 1, 0, 0, 1, 1, 0, 0, 0],
+    [1, 0, 1, 1, 0, 0, 0, 1, 1, 0],
+    [0, 1, 1, 0, 0, 0, 1, 1, 0, 0],
+    [0, 0, 1, 1, 0, 1, 0, 0, 1, 0],
+]
 
 
 print(island_counter(islands))  # 13

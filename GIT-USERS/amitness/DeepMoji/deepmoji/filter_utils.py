@@ -1,4 +1,3 @@
-
 from __future__ import print_function, division
 import sys
 import numpy as np
@@ -13,27 +12,29 @@ AtMentionRegex = re.compile(RE_MENTION)
 urlRegex = re.compile(RE_URL)
 
 # from http://bit.ly/2rdjgjE (UTF-8 encodings and Unicode chars)
-VARIATION_SELECTORS = [u'\ufe00',
-                       u'\ufe01',
-                       u'\ufe02',
-                       u'\ufe03',
-                       u'\ufe04',
-                       u'\ufe05',
-                       u'\ufe06',
-                       u'\ufe07',
-                       u'\ufe08',
-                       u'\ufe09',
-                       u'\ufe0a',
-                       u'\ufe0b',
-                       u'\ufe0c',
-                       u'\ufe0d',
-                       u'\ufe0e',
-                       u'\ufe0f']
+VARIATION_SELECTORS = [
+    u"\ufe00",
+    u"\ufe01",
+    u"\ufe02",
+    u"\ufe03",
+    u"\ufe04",
+    u"\ufe05",
+    u"\ufe06",
+    u"\ufe07",
+    u"\ufe08",
+    u"\ufe09",
+    u"\ufe0a",
+    u"\ufe0b",
+    u"\ufe0c",
+    u"\ufe0d",
+    u"\ufe0e",
+    u"\ufe0f",
+]
 
 # from https://stackoverflow.com/questions/92438/stripping-non-printable-characters-from-a-string-in-python
 ALL_CHARS = (chr(i) for i in range(sys.maxunicode))
-CONTROL_CHARS = ''.join(map(chr, list(range(0, 32)) + list(range(127, 160))))
-CONTROL_CHAR_REGEX = re.compile('[%s]' % re.escape(CONTROL_CHARS))
+CONTROL_CHARS = "".join(map(chr, list(range(0, 32)) + list(range(127, 160))))
+CONTROL_CHAR_REGEX = re.compile("[%s]" % re.escape(CONTROL_CHARS))
 
 
 def is_special_token(word):
@@ -45,7 +46,14 @@ def is_special_token(word):
     return equal
 
 
-def mostly_english(words, english, pct_eng_short=0.5, pct_eng_long=0.6, ignore_special_tokens=True, min_length=2):
+def mostly_english(
+    words,
+    english,
+    pct_eng_short=0.5,
+    pct_eng_long=0.6,
+    ignore_special_tokens=True,
+    min_length=2,
+):
     """ Ensure text meets threshold for containing English words """
 
     n_words = 0
@@ -100,7 +108,7 @@ def punct_word(word, punctuation=string.punctuation):
 
 
 def load_non_english_user_set():
-    non_english_user_set = set(np.load('uids.npz')['data'])
+    non_english_user_set = set(np.load("uids.npz")["data"])
     return non_english_user_set
 
 
@@ -117,7 +125,7 @@ def separate_emojis_and_text(text):
             emoji_chars.append(c)
         else:
             non_emoji_chars.append(c)
-    return ''.join(emoji_chars), ''.join(non_emoji_chars)
+    return "".join(emoji_chars), "".join(non_emoji_chars)
 
 
 def extract_emojis(text, wanted_emojis):
@@ -130,7 +138,7 @@ def remove_variation_selectors(text):
         For instance, remove skin color from emojis.
     """
     for var in VARIATION_SELECTORS:
-        text = text.replace(var, u'')
+        text = text.replace(var, u"")
     return text
 
 
@@ -150,7 +158,7 @@ def shorten_word(word):
 
     # find groups of 3+ consecutive letters
     letter_groups = [list(g) for k, g in groupby(word)]
-    triple_or_more = [''.join(g) for g in letter_groups if len(g) >= 3]
+    triple_or_more = ["".join(g) for g in letter_groups if len(g) >= 3]
     if len(triple_or_more) == 0:
         return word
 
@@ -183,19 +191,19 @@ def process_word(word):
 
 
 def remove_control_chars(text):
-    return CONTROL_CHAR_REGEX.sub('', text)
+    return CONTROL_CHAR_REGEX.sub("", text)
 
 
 def convert_nonbreaking_space(text):
     # ugly hack handling non-breaking space no matter how badly it's been encoded in the input
-    for r in [u'\\\\xc2', u'\\xc2', u'\xc2', u'\\\\xa0', u'\\xa0', u'\xa0']:
-        text = text.replace(r, u' ')
+    for r in [u"\\\\xc2", u"\\xc2", u"\xc2", u"\\\\xa0", u"\\xa0", u"\xa0"]:
+        text = text.replace(r, u" ")
     return text
 
 
 def convert_linebreaks(text):
     # ugly hack handling non-breaking space no matter how badly it's been encoded in the input
     # space around to ensure proper tokenization
-    for r in [u'\\\\n', u'\\n', u'\n', u'\\\\r', u'\\r', u'\r', '<br>']:
-        text = text.replace(r, u' ' + SPECIAL_TOKENS[5] + u' ')
+    for r in [u"\\\\n", u"\\n", u"\n", u"\\\\r", u"\\r", u"\r", "<br>"]:
+        text = text.replace(r, u" " + SPECIAL_TOKENS[5] + u" ")
     return text

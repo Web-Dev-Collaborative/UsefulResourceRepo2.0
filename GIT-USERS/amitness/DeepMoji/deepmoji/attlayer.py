@@ -3,6 +3,7 @@ from __future__ import absolute_import, division
 
 import sys
 from os.path import dirname
+
 sys.path.append(dirname(dirname(__file__)))
 from keras import initializers
 from keras.engine import InputSpec, Layer
@@ -16,15 +17,13 @@ class AttentionWeightedAverage(Layer):
     """
 
     def __init__(self, return_attention=False, **kwargs):
-        self.init = initializers.get('uniform')
+        self.init = initializers.get("uniform")
         self.supports_masking = True
         self.return_attention = return_attention
-        super(AttentionWeightedAverage, self).__init__(** kwargs)
-        
+        super(AttentionWeightedAverage, self).__init__(**kwargs)
+
     def get_config(self):
-        config = {
-            'return_attention': self.return_attention,
-        }
+        config = {"return_attention": self.return_attention}
         base_config = super(AttentionWeightedAverage, self).get_config()
         return dict(list(base_config.items()) + list(config.items()))
 
@@ -32,9 +31,11 @@ class AttentionWeightedAverage(Layer):
         self.input_spec = [InputSpec(ndim=3)]
         assert len(input_shape) == 3
 
-        self.W = self.add_weight(shape=(input_shape[2], 1),
-                                 name='{}_W'.format(self.name),
-                                 initializer=self.init)
+        self.W = self.add_weight(
+            shape=(input_shape[2], 1),
+            name="{}_W".format(self.name),
+            initializer=self.init,
+        )
         self.trainable_weights = [self.W]
         super(AttentionWeightedAverage, self).build(input_shape)
 

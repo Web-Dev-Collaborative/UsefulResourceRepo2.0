@@ -8,7 +8,8 @@ from mlfromscratch.deep_learning.activation_functions import Sigmoid
 
 sigmoid = Sigmoid()
 
-class RBM():
+
+class RBM:
     """Bernoulli Restricted Boltzmann Machine (RBM)
 
     Parameters:
@@ -26,7 +27,10 @@ class RBM():
         A Practical Guide to Training Restricted Boltzmann Machines 
         URL: https://www.cs.toronto.edu/~hinton/absps/guideTR.pdf
     """
-    def __init__(self, n_hidden=128, learning_rate=0.1, batch_size=10, n_iterations=100):
+
+    def __init__(
+        self, n_hidden=128, learning_rate=0.1, batch_size=10, n_iterations=100
+    ):
         self.n_iterations = n_iterations
         self.batch_size = batch_size
         self.lr = learning_rate
@@ -36,11 +40,11 @@ class RBM():
     def _initialize_weights(self, X):
         n_visible = X.shape[1]
         self.W = np.random.normal(scale=0.1, size=(n_visible, self.n_hidden))
-        self.v0 = np.zeros(n_visible)       # Bias visible
-        self.h0 = np.zeros(self.n_hidden)   # Bias hidden
+        self.v0 = np.zeros(n_visible)  # Bias visible
+        self.h0 = np.zeros(self.n_hidden)  # Bias hidden
 
     def fit(self, X, y=None):
-        '''Contrastive Divergence training procedure'''
+        """Contrastive Divergence training procedure"""
 
         self._initialize_weights(X)
 
@@ -60,8 +64,10 @@ class RBM():
                 negative_hidden = sigmoid(negative_visible.dot(self.W) + self.h0)
                 negative_associations = negative_visible.T.dot(negative_hidden)
 
-                self.W  += self.lr * (positive_associations - negative_associations)
-                self.h0 += self.lr * (positive_hidden.sum(axis=0) - negative_hidden.sum(axis=0))
+                self.W += self.lr * (positive_associations - negative_associations)
+                self.h0 += self.lr * (
+                    positive_hidden.sum(axis=0) - negative_hidden.sum(axis=0)
+                )
                 self.v0 += self.lr * (batch.sum(axis=0) - negative_visible.sum(axis=0))
 
                 batch_errors.append(np.mean((batch - negative_visible) ** 2))
@@ -79,4 +85,3 @@ class RBM():
         hidden_states = self._sample(positive_hidden)
         negative_visible = sigmoid(hidden_states.dot(self.W.T) + self.v0)
         return negative_visible
-

@@ -15,11 +15,11 @@ for i in range(0, n):
     ll.remove_head()
 end = time()
 
-print(f'Linked List remove from head runtime: {end - start} seconds')
+print(f"Linked List remove from head runtime: {end - start} seconds")
 
 start = time()
 for i in range(0, n):
     l.pop(0)
 end = time()
 
-print(f'List pop from front runtime: {end - start} seconds')
+print(f"List pop from front runtime: {end - start} seconds")

@@ -1,4 +1,6 @@
 from category import Category
+
+
 class Store:
     def __init__(self, name, categories):
         self.name = name
@@ -14,7 +16,11 @@ class Store:
         output += "  " + str(cat_index) + ". Exit"
         return output
 
-s = Store("Bobs Store", [Category("Books"), Category("Weapons"), Category("Food"), Category("Bob")])
+
+s = Store(
+    "Bobs Store",
+    [Category("Books"), Category("Weapons"), Category("Food"), Category("Bob")],
+)
 
 print(s)
 

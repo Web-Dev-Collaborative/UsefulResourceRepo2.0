@@ -4,8 +4,10 @@ import math
 from mlfromscratch.utils import train_test_split, normalize
 from mlfromscratch.utils import Plot, accuracy_score
 
-class NaiveBayes():
+
+class NaiveBayes:
     """The Gaussian Naive Bayes classifier. """
+
     def fit(self, X, y):
         self.X, self.y = X, y
         self.classes = np.unique(y)
@@ -22,7 +24,7 @@ class NaiveBayes():
 
     def _calculate_likelihood(self, mean, var, x):
         """ Gaussian likelihood of the data x given mean and var """
-        eps = 1e-4 # Added in denominator to prevent division by zero
+        eps = 1e-4  # Added in denominator to prevent division by zero
         coeff = 1.0 / math.sqrt(2.0 * math.pi * var + eps)
         exponent = math.exp(-(math.pow(x - mean, 2) / (2 * var + eps)))
         return coeff * exponent
@@ -58,7 +60,9 @@ class NaiveBayes():
             # Posterior is product of prior and likelihoods (ignoring scaling factor)
             for feature_value, params in zip(sample, self.parameters[i]):
                 # Likelihood of feature value given distribution of feature values given y
-                likelihood = self._calculate_likelihood(params["mean"], params["var"], feature_value)
+                likelihood = self._calculate_likelihood(
+                    params["mean"], params["var"], feature_value
+                )
                 posterior *= likelihood
             posteriors.append(posterior)
         # Return the class with the largest posterior probability
