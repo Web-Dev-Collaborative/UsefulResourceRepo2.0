@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pusher Test</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://js.pusher.com/2.2/pusher.min.js"></script>
+  <script>
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+      }
+    };
+
+    var pusher = new Pusher('020b0f5d10c56938e83b', {
+      encrypted: true
+    });
+    var channel = pusher.subscribe('test_channel');
+    channel.bind('my_event', function(data) {
+      document.getElementsByClassName('msg-box')[0].innerHTML = data.message;
+    });
+
+  </script>
+  <style media="screen">
+    .msg-box{
+      border: 1px solid gray;
+      width: 100px;
+      margin: 0 auto;
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="msg-box">text-box</div>
+</body>
+<html>

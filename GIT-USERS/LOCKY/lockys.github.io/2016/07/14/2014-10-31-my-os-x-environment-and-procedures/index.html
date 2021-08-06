@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="zh-TW"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="notes for my own :)"><title>我的 OS X 程式環境重建 | lockys</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">我的 OS X 程式環境重建</h1><a id="logo" href="/.">lockys</a><p class="description">notes for my own :)</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 所有文章</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">我的 OS X 程式環境重建</h1><div class="post-meta">Jul 14, 2016<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p>我用的是2012年的 Macbook Air with OS X Yosemite，最近用 Appcleaner 想說清理一些根本不會用到的程式，結果一清，不知原因(可能這並不是一個很好的刪除程式方式…)地導致某些程式無法正常開啟… 嘗試 Google 解法，但不得其解，好吧，只好索性選擇 clean install 系統好了，反正使用了一段時間也多了一些垃圾… 但麻煩的點就在於，開發程式的環境要重新安裝! 好吧，就當作重新複習一次架設環境吧!<br><a id="more"></a></p>
+<h2 id="一、程式開發環境重建"><a href="#一、程式開發環境重建" class="headerlink" title="一、程式開發環境重建"></a>一、程式開發環境重建</h2><p>首先，再重灌之前，我已經先備份了 ~/.bash_profile，因為裡面儲存了一些重要的設定<br>所以重灌後，直接在 ~/ 底下建立 .bash_profile 就好了。</p>
+<p>之後我整理出自己的程式開發需求：</p>
+<p>###Django 為網站開發的 Framework，Google Apache Engine 為 Hosting Service.</p>
+<blockquote>
+<p>這裏是假設已經有一個可跑的 Django 專案，但原則上做完以下事情，也可以以 Django 架站了。</p>
+</blockquote>
+<p>我現在用 Pycharm 作為主要的 IDE，<del>Sublime Text</del> Atom 為輔，而 Terminal 使用 iTerm2 並安裝 zsh 來取代內建的終端機。<br><del>Python &amp; easy_install(用以安裝 pip) (已內建)</del><br>首先安裝 pip - Python 的 Packages 管理程式。<br>使用 Homebrew 安裝 Python 就會自帶 pip<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 安裝 Homebrew</div><div class="line">$ ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</div><div class="line"># 安裝 python</div><div class="line">$ brew install python</div><div class="line">$ which python</div><div class="line">/usr/local/bin/python</div></pre></td></tr></table></figure></p>
+<p>/usr/local/bin/python alias<br>/usr/local/Cellar/python/2.7.10/Frameworks/Python.framework/Versions/2.7/bin/python<br>這就是 Homebrew 所管理的 Python bin 檔(Homebrew 有自己的安裝路徑(/usr/local/Cellar)，方便管理 brew install 的程式)。而原生的 Python 是 /usr/bin/python (2.7.6版)  </p>
+<p>###virtualenv &amp; virtualenvwrapper<br>接著要安裝 <a href="http://virtualenv.readthedocs.org/en/latest/virtualenv.html" target="_blank" rel="external">virtualenv</a> &amp; <a href="http://virtualenvwrapper.readthedocs.org/en/latest/install.html" target="_blank" rel="external">virtualenvwrapper</a><br>因為每個專案開發所需的環境可能不盡相同，virtualenvwrapper 幫助我們管理這些開發環境。</p>
+<pre><code>$ pip install virtualenv
+$ pip install virtualenvwrapper
+</code></pre><p>安裝 virtualenvwrapper 之後別忘了更改 ~./bash_profile，參考<a href="http://virtualenvwrapper.readthedocs.org/en/latest/install.html#shell-startup-file" target="_blank" rel="external">這裏</a>或以下三行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Add to ~/.bash_profile and mkdir $HOME/.virtualenvs</div><div class="line">export WORKON_HOME=$HOME/.virtualenvs</div><div class="line">export PROJECT_HOME=$HOME/Devel</div><div class="line">source /usr/local/bin/virtualenvwrapper.sh</div></pre></td></tr></table></figure></p>
+<p>更改完 ~/.bash_profile 後必須重新開 Termial 或者下以下指令才會生效!<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ source ~/.bash_profile</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>詳細的 virtualenvwrapper 使用方法參考它的<a href="http://virtualenvwrapper.readthedocs.org/en/latest/" target="_blank" rel="external">文件</a></p>
+</blockquote>
+<h4 id="基本-virtualenvwrapper-使用"><a href="#基本-virtualenvwrapper-使用" class="headerlink" title="基本 virtualenvwrapper 使用"></a>基本 virtualenvwrapper 使用</h4><p>建立 virtualenv<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mkvirtualenv &lt;virtualenv-name&gt;</div></pre></td></tr></table></figure></p>
+<p>刪除 virtualenvs<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rmvirtualenv &lt;virtualenv-name&gt;</div></pre></td></tr></table></figure></p>
+<p>離開現在的 virtualenvs<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ deactivate</div></pre></td></tr></table></figure></p>
+<p>接著若您創立了一個虛擬環境，就可用以下指令進入該虛擬環境，然後再安裝 Django</p>
+<pre><code>$ workon &lt;virtualenv-name&gt;
+(virtualenv-name)$ pip instal django == 1.5 # install Django 1.5 for example.
+</code></pre><p>此時開啟 Pycharm 並開啟我的 Django 專案資料夾，並設定要用哪一個 Python intepreter<br>(你可能會有很多個在你電腦裡，這裡我選擇的是我產生的虛擬環境下的 Python)<br>這時 Pycharm 會提醒你有哪些尚未安裝的 Python Packages，但是你的 Project 有用到的，只要點 install，Pycharm就會幫忙你安裝好這些 Packages，這真是ㄧ個非常方便又懶人的功能… 或者你也不需要靠這功能，可以用以下指令將你有使用的 Packages 輸出成一個 requirement.txt 檔(裡面會是你 dependencies 的 list.)</p>
+<pre><code>$ pip freeze &gt; requirements.txt
+</code></pre><p>再下指令即可一次安裝完所有 Packages，就不需要一個一個 install packages 了。</p>
+<pre><code>$ pip install -r requirements.txt
+</code></pre><p>做到這邊，基本上已經建置好當初好所有 Django Project 所需要的 dependencies.<br>所以下以下指令應該便能夠啟動簡單的 Server，來 run 我們的網站。</p>
+<pre><code>(virtualenv-name)$ python manage.py runserver
+</code></pre><p>接著因為我使用 Google Apache Engine 來 Hosting Django 的專案所以必須安裝下面兩支程式。</p>
+<ol>
+<li><a href="https://cloud.google.com/sdk/" target="_blank" rel="external"><strong>Google Cloud SDK</strong></a></li>
+<li><a href="https://cloud.google.com/appengine/downloads" target="_blank" rel="external"><strong>Google AppEngineLauncher</strong></a>  </li>
+</ol>
+<blockquote>
+<p>安裝完 Google AppEngineLauncher 後，記得開啟該程式，他會問你是否 symlinks，記得要。</p>
+</blockquote>
+<p>接著必須產生 Google 的 oauth 2.0 credential，才可在本地的 Terminal 上傳專案與管理 Cloud SQL 的資料庫 instance。</p>
+<p><strong>＃如何產生 Google 的 oauth 2.0 之 credential file?</strong><br>可以使用以下指令來產生。</p>
+<pre><code>$ gcloud config set account &lt;google-mail&gt;
+$ gcloud auth login # Get credentials for the tools in the Google Cloud SDK via a web flow.
+</code></pre><p>或直接在 Terminal 下 syncdb 指令，但你必須先在 <strong>my-django-project/setting.py</strong> 裡面設定好與 Google Cloud SQL 內的資料庫 instance 做連結的程式碼，下面兩種方式。</p>
+<p>###1.使用 django-appengine-toolkit packages 作輔助</p>
+<p>setting.py 內的資料庫設定</p>
+<pre><code>import appengine_toolkit
+import os
+APPENGINE_TOOLKIT = {
+  &apos;APP_YAML&apos;: os.path.join(BASE_DIR, &apos;app.yaml&apos;),
+}
+DATABASES = {&apos;default&apos;:appengine_toolkit.config(),}
+</code></pre><p>app.yaml 也要別忘了要設定</p>
+<pre><code>env_variables:
+    DJANGO_SETTINGS_MODULE: &apos;&lt;project_name&gt;.settings&apos;
+    DATABASE_URL: &apos;mysql://root@&lt;app_id_of_gae&gt;:&lt;database_instance&gt;/&lt;database_name&gt;&apos;
+</code></pre><p>###2.直接設定不透過 django-appengine-toolkit 與 Cloud SQL 做連結</p>
+<pre><code>DATABASES = {
+  &apos;default&apos;: {
+    &apos;ENGINE&apos;: &apos;google.appengine.ext.django.backends.rdbms&apos;,
+    &apos;INSTANCE&apos;: &apos;&lt;project-id&gt;:&lt;database-instance&gt;&apos;,
+    &apos;NAME&apos;: &apos;&lt;your-database-name&gt;&apos;,
+    &apos;USER&apos;: &apos;root&apos;,
+  }
+}
+</code></pre><p>設定完與 Cloud SQL 的 instnace 連結後，下以下指令</p>
+<pre><code>$ python manage.py syncdb # 此時會跳出網頁要你登入你的 Google 帳號
+</code></pre><p>即可於 ~/ 底下產生 .googlesql_oauth2.dat 檔，便可使用以下指令 deploy 你的專案</p>
+<blockquote>
+<p>若已經存在 .googlesql_oauth2.dat，但是產生 InternalError: (0, u’End user Google Account not authorized.’) 的錯誤，可以刪除原有的 .googlesql_oauth2.dat，再重新下 syncdb 指令產生一次</p>
+</blockquote>
+<pre><code>$ appcfg --oauth2 update . // 上傳專案至 GAE
+</code></pre><p><strong># 如何與 Cloud SQL 做連結，直接透過 Termial access cloud sql 內的資料庫？</strong><br>需做 ~/.bash_profile 的設定</p>
+<pre><code>export GAE=&quot;/usr/local/google_appengine&quot;
+export PYTHONPATH=&quot;$PYTHONPATH:$GAE:$GAE/lib/dango-1.5&quot;
+export PATH=${PATH}:$GAE/lib/django-1.5/django/bin/
+export DATABASE_URL=&apos;rdbms://root@&lt;app_id_of_gae&gt;:&lt;database_instance&gt;/&lt;database_name&gt;&apos;
+</code></pre><p>透過以下指令進入 cloud sql 的 mysql&gt;</p>
+<pre><code>$ mysql --host=instance-IP --user=user-name --password
+</code></pre><p><strong>#如何升級 OS X 預設所帶的 GCC？</strong><br>使用 Macport…</p>
+<h3 id="讓-Terminal-與-vim-不再那麼色彩單調"><a href="#讓-Terminal-與-vim-不再那麼色彩單調" class="headerlink" title="讓 Terminal 與 vim 不再那麼色彩單調"></a>讓 Terminal 與 vim 不再那麼色彩單調</h3><p>更改 ~/.vimrc 讓你看程式不再黑黑一片。</p>
+<pre><code>filetype plugin indent on
+syntax on
+</code></pre><p>更改 ~/.bash_profile 讓 ls 指令可用顏色區分出不同檔案</p>
+<pre><code># Adding color to the shell.
+export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+alias ls=&apos;ls -G&apos;
+</code></pre><h2 id="二、一些用到的實用小工具"><a href="#二、一些用到的實用小工具" class="headerlink" title="二、一些用到的實用小工具"></a>二、一些用到的實用小工具</h2><pre><code> 1. Source Tree - 一目瞭然地看自己 project 版本管理狀況。
+ 2. iTerm2 - 取代原本 OS X 的終端機。
+ 3. PDF Reader X - 好用的 PDF 檔案瀏覽程式，支援分頁。
+ 4. MPlayerX - OS X 上的播放軟體
+ 5. BetterTouchTool
+ 6. cDock
+ 7. CleanMyDrive
+ 8. XtraFinder
+ 9. DesktopUtility
+10. Battery Health
+11. The Unarchiver
+12. smcFanControl
+13. Alfred
+14. Dash
+</code></pre></div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://lockys.github.io/2016/07/14/2014-10-31-my-os-x-environment-and-procedures/" data-id="ciqls870x000861l7q84q4wfe" class="article-share-link">分享至</a><div class="tags"></div><div class="post-nav"><a href="/2016/07/14/2014-10-29-eclipse-set-displays-the-row-number-and-style-editor/" class="pre">Eclipse 的設定 - 顯示行數與更改 Editor 樣式</a><a href="/2016/07/14/2015-03-04-django-model/" class="next">Create django model</a></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://lockys.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分類</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/gae/">gae</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/sublime-text/">sublime text</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/07/14/2015-06-05-Django-static-files/">The priority of static files when the "static finder" traverses the /static/ folder.</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/14/2014-10-18-deploy-your-project-to-heroku/">Deploy Your Project to Heroku.</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/14/2014-10-29-eclipse-set-displays-the-row-number-and-style-editor/">Eclipse 的設定 - 顯示行數與更改 Editor 樣式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/14/2014-10-31-my-os-x-environment-and-procedures/">我的 OS X 程式環境重建</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/14/2015-03-04-django-model/">Create django model</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/14/2015-03-04-south-record/">South migration flow record.</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/14/2014-09-09-eclipse-works-with-tomcat-v6/">Eclipse works with Tomcat v6.</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/14/2014-11-08-note-javascript-hasownproperty-to-understand/">#Note, Javascript hasOwnProperty 理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/14/2014-11-15-like-safari-firefox-on-os-x-previous-animation/">讓 OS X 上的 Firefox 像 Safari 一樣有上一頁動畫 </a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/14/2013-08-30-institute-pushed-to-validate-data-collection/">2013年研究所推甄資料收集</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友站連結</i></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">lockys.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

@@ -1,0 +1,132 @@
+body{
+    background: #eee;
+  }
+  
+  ul{
+    list-style: none;
+    margin: 0;
+    padding: 0px;
+  }
+  
+  li{
+    height: 50px;
+  }
+  
+  .line-container{
+    background:white;
+    display: table;
+    margin: 0 auto;
+    padding: 45px 28px;
+    width: 297px;
+    font-size: 11px;
+  }
+  
+  li .msg-box-right, li .msg-box-left{
+    border-radius: 30px;
+    padding: 10px;
+    z-index: 9;
+  }
+  
+  .msg-box-left{
+    background: rgb(228,232,235);
+  }
+  
+  .msg-box-right{
+    background: rgb(190,241,140);
+  }
+  
+  .place-right{
+    float:right;
+  }
+  .place-left{
+    float:left;
+  }
+  
+  .clear-fix{
+    clear: both;
+  }
+  
+  .right-msg-container, .left-msg-container{
+    position: relative;
+  }
+  
+  .right-msg-container:before{
+    content: "";
+      position: absolute;
+      width: 30px;
+      height: 40px;
+      background-color: white;
+      bottom: 0px;
+      top: -43px;
+      right: -26px;
+      z-index: 8;
+      border-bottom-right-radius: 43px;
+  }
+  
+  .right-msg-container:after{
+    content: "";
+      position: absolute;
+      width: 17px;
+      height: 40px;
+       background-color:#bef18c;
+      bottom: 0px;
+      top: -35px;
+      right: -13px;
+    z-index: 7;
+      border-bottom-right-radius: 20px;
+  }
+  
+  .left-msg-container:before{
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 40px;
+      background-color: white;
+      bottom: 0px;
+      top: -43px;
+      left: -25px;
+      z-index: 8;
+      border-bottom-left-radius: 43px;
+  }
+  
+  .left-msg-container:after{
+      content: "";
+      position: absolute;
+      width: 17px;
+      height: 40px;
+       background-color: rgb(228,232,235);
+      bottom: 0px;
+      top: -35px;
+      left: -12px;
+      z-index: 7;
+      border-bottom-left-radius: 20px;
+  }
+  
+  .msg-box-left, .msg-box-right{
+    position: relative;
+  }
+  
+  .msg-box-left:after{
+    content: attr(data-timestamp);
+    position: absolute;
+    color: rgb(173, 176, 183);
+    right: -50px;
+  }
+  
+  .msg-box-right:before{
+    content: attr(data-readed);
+    position: absolute;
+    color: rgb(173, 176, 183);
+    top: 3px;
+    left: -30px;
+  }
+  
+  .msg-box-right:after{
+    content: attr(data-timestamp);
+    position: absolute;
+    color: rgb(173, 176, 183);
+    top: 17px;
+    left: -49px;
+    font-size: 12px;
+  }
+  

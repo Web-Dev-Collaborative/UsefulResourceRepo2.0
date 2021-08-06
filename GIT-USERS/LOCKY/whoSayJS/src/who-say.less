@@ -1,0 +1,62 @@
+/*
+    whoSay.js v 1.0.0
+    Author: Hao-Wei Jeng
+    Copyright (c) 2015 Hao-Wei Jeng, Released under the MIT license.
+*/
+.quote-bubble {
+
+  div {
+  	width: 480px;
+  	min-height: 170px;
+  	position: relative;
+  	margin: 10px auto !important;
+  	background: #FFFFFF;
+  	text-align: left;
+  	-webkit-border-radius: 10px;
+  	-moz-border-radius: 10px;
+		-o-border-radius: 10px;
+  	border-radius: 10px;
+  	font-size: 95%;
+  	font-weight: lighter;
+  	padding: 10px !important;
+  	color: #444;
+  	display: block;
+  }
+}
+
+.quote-author {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+
+.usr-quotes-icon-list, .quote-bubble {
+	margin: 10px 0 0 0 !important;
+	padding: 0 !important;
+
+  li {
+  	list-style: none;
+  	display: inline-block;
+  }
+}
+
+.usr-quotes-icon-list {
+	text-align: center;
+
+  img {
+  	-webkit-border-radius: 100px;
+  	-moz-border-radius: 100px;
+		-o-border-radius: 100px;
+  	border-radius: 100px;
+  	width: 80px;
+  	margin: 0 5px;
+  	border: 5px solid lightblue;
+  	opacity: 0.2;
+  	transition: all 0.7s ease-in-out;
+  	cursor: pointer;
+  }
+
+  .active img {
+  	opacity: 1;
+  }
+}
