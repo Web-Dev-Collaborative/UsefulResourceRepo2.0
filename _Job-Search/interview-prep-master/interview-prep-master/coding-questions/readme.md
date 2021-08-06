@@ -1,6 +1,6 @@
 Many tech companies will ask you to code something.
 
-If the position you’re applying to involves writing code and the interviewer(s) do not ask you to code something *or* do not look at any of your previous work, consider that a big red flag.
+If the position you’re applying to involves writing code and the interviewer(s) do not ask you to code something _or_ do not look at any of your previous work, consider that a big red flag.
 
 Most companies will ask you to code something in real-time while observing you. Some may have you tackle the problem individually, while others may have you pair program with someone on the team. Some interviews are in-person, some are over the phone. For phone interviews, you may share an editor with the interviewer.
 
@@ -8,12 +8,12 @@ Some companies will give you a “take home” coding problem. You’ll have a l
 
 No matter the type of coding interview, they typically want to see
 
--   clean code
--   robust code
--   use of patterns where justified
--   tests
--   your thought process
--   communication skills
+- clean code
+- robust code
+- use of patterns where justified
+- tests
+- your thought process
+- communication skills
 
 In coding interviews, you usually don’t need the best solution. They want to see how you approach the problem. It’s crucial that you **communicate** while working on the problem.
 

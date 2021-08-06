@@ -1,8 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import { push } from 'react-router-redux';
-import { login } from '../actions/auth';
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router";
+import { push } from "react-router-redux";
+import { login } from "../actions/auth";
 
 class Login extends React.Component {
   constructor(props) {
@@ -18,47 +18,49 @@ class Login extends React.Component {
       const state = {};
       state[field] = e.target.value;
       this.setState(state);
-    }
+    };
   }
 
   handleLogin(e) {
     const { email, password } = this.state;
     e.preventDefault();
-    this.props.dispatch(login(email, password)).then(
-      this.handleLoginSuccess,
-      this.handleLoginError
-    );
+    this.props
+      .dispatch(login(email, password))
+      .then(this.handleLoginSuccess, this.handleLoginError);
   }
 
   handleLoginSuccess() {
-    this.props.dispatch(push('/'));
+    this.props.dispatch(push("/"));
   }
 
   handleLoginError(error) {
-    console.log('error %o', error);
-    this.setState({error: error.description || error.toString()});
+    console.log("error %o", error);
+    this.setState({ error: error.description || error.toString() });
   }
 
   render() {
     const { error } = this.state;
 
-    return <div>
-      <h2>Login</h2>
-      <form onSubmit={this.handleLogin}>
-        {error && <h3>Error Login in: {error}</h3>}
-        <p>
-          <label>Email: </label>
-          <input type="email" onChange={this.handleChange('email')}/>
-        </p>
-        <p>
-          <label>Password: </label>
-          <input type="password" onChange={this.handleChange('password')}/>
-        </p>
-        <p>
-          <button>Login</button> <Link to='/amnesia'>Forgot your password?</Link>
-        </p>
-      </form>
-    </div>;
+    return (
+      <div>
+        <h2>Login</h2>
+        <form onSubmit={this.handleLogin}>
+          {error && <h3>Error Login in: {error}</h3>}
+          <p>
+            <label>Email: </label>
+            <input type="email" onChange={this.handleChange("email")} />
+          </p>
+          <p>
+            <label>Password: </label>
+            <input type="password" onChange={this.handleChange("password")} />
+          </p>
+          <p>
+            <button>Login</button>{" "}
+            <Link to="/amnesia">Forgot your password?</Link>
+          </p>
+        </form>
+      </div>
+    );
   }
 }
 

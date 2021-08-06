@@ -6,13 +6,13 @@ If you're having problems with your build, you can also use these tools to test 
 
 ## Available images
 
-Netlify maintains multiple build images for testing new development as well as supporting legacy builds. Each image uses a different version of Ubuntu Linux, with a slightly different list of included language and software versions. 
+Netlify maintains multiple build images for testing new development as well as supporting legacy builds. Each image uses a different version of Ubuntu Linux, with a slightly different list of included language and software versions.
 
 The following images are currently available:
 
 - `trusty` - Legacy build image for older sites; running Ubuntu 14.04 and [this software](https://github.com/netlify/build-image/blob/trusty/included_software.md)
 - `xenial` - Build image for all existing sites; running Ubuntu 16.04 and [this software](https://github.com/netlify/build-image/blob/xenial/included_software.md)
-- `focal`  - Default build image for all new sites; Running Ubuntu 20.04 and [this software](https://github.com/netlify/build-image/blob/focal/included_software.md)
+- `focal` - Default build image for all new sites; Running Ubuntu 20.04 and [this software](https://github.com/netlify/build-image/blob/focal/included_software.md)
 
 Each image name above corresponds to a branch in this repository.
 

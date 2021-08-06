@@ -1,10 +1,10 @@
-export const auth = function(state = null, action) {
+export const auth = function (state = null, action) {
   switch (action.type) {
-    case 'LOGIN_SUCCESS':
+    case "LOGIN_SUCCESS":
       return action.payload;
-    case 'LOGOUT_SUCCESS':
+    case "LOGOUT_SUCCESS":
       return null;
     default:
       return state;
   }
-}
+};

@@ -1,8 +1,6 @@
-Questions to Ask a Potential Tech Employer [![build status](https://gitlab.com/doctorj/interview-questions/badges/master/build.svg)](https://gitlab.com/doctorj/interview-questions/commits/master)
-===================================================================================================================================================================================================
+# Questions to Ask a Potential Tech Employer [![build status](https://gitlab.com/doctorj/interview-questions/badges/master/build.svg)](https://gitlab.com/doctorj/interview-questions/commits/master)
 
-“…Do you have any questions for me?”
-------------------------------------
+## “…Do you have any questions for me?”
 
 We’ve all gotten to that point at the end of an interview when it comes your turn to ask the questions. We’ve all probably blanked in the stress of the moment, fumbled a question about the free snacks, and ended up in a job we regretted because we didn’t know what to ask. Here’s help.
 
@@ -18,8 +16,7 @@ The list is in [YAML](https://en.wikipedia.org/wiki/YAML) format so it’s human
 
 Contributions welcome – add your question to the bottom and submit a PR, or just make a new issue with your question. Evidence- or consensus-based questions with a link to references are preferred, but it is recognized that hiring is still a squishy subject. Standard questions like salary and benefits are not included (but of course you should still ask them!).
 
-How to use
-----------
+## How to use
 
 Before an interview, go through the questions, pick out the ones you want to ask, and order them by importance to you. I like to print them out, without the answers, with space under each question to write in as many answers as there will be interviewers. `validate.py` will convert your YAML to JSON, see `filter.sh` for basic filter and sort, and `render.py` to get basic HTML.
 
@@ -29,24 +26,22 @@ Most questions should be asked to every interviewer (of the appropriate type), s
 
 Interviewers are often curious about someone so curious; they may ask why you asked a particular question, or what answer you were looking for; feel free to share and send them here.
 
-After the interview
--------------------
+## After the interview
 
 After the interviews, if you feel you didn’t get enough complete answers out of your interviewers, don’t be afraid to come back for more. You can say something like, “I’m really interested in the company and position, and I think we both want to make sure it’s a great match. I’d like to come back and spend a little more time getting to know each other.” Many companies worry about making the interview process too long and fret about not having enough information about candidates; showing you’re interested and willing to invest more time can by itself give you an advantage. A great time to visit is after they’ve made an offer but before you accept. Getting to know the people may be more important than any questions you could ask. Another good source of information is to track down former employees and ask them why they left.
 
 You may choose to review the answers and assign a score to each question, weight it by how important the question is to you, and compute a score for the company. Or you could compute a score for several dimensions and graph it on a radar chart to summarize the company’s strengths and weaknesses. Feel free to share what you come up with.
 
-Contributing
-------------
+## Contributing
 
 ### Question Guidelines
 
--   Prefer evidence- or consensus-based questions; provide a reference link.
--   Prefer behavioral questions (“Tell me about the last time that…”) to hypothetical (“Imagine that…”).
--   Avoid questions to which you’re obviously looking for a certain answer. Instead of “Is it easy to order new software or hardware?” try “What’s the process for ordering new software or hardware?”
--   See if you can replace a yes/no question with one whose answer you would definitely know if the yes/no was really true. So instead of “Do you use source control?” ask “What do you use for source control?” It’s fine to start with the yes/no version and immediately follow up with the detailed version.
--   For questions whose answers might reflect negatively on the company or interviewer, try to make it as easy or likely to give a negative answer as a positive one. Ask yourself if anyone would really be likely to give a negative answer. Suggest a glass-half-full way to give the negative answer. Instead of “Do you learn from your co-workers?” ask “Do you learn more from you co-workers or on your own?”
--   Standard questions like salary and benefits are not included.
+- Prefer evidence- or consensus-based questions; provide a reference link.
+- Prefer behavioral questions (“Tell me about the last time that…”) to hypothetical (“Imagine that…”).
+- Avoid questions to which you’re obviously looking for a certain answer. Instead of “Is it easy to order new software or hardware?” try “What’s the process for ordering new software or hardware?”
+- See if you can replace a yes/no question with one whose answer you would definitely know if the yes/no was really true. So instead of “Do you use source control?” ask “What do you use for source control?” It’s fine to start with the yes/no version and immediately follow up with the detailed version.
+- For questions whose answers might reflect negatively on the company or interviewer, try to make it as easy or likely to give a negative answer as a positive one. Ask yourself if anyone would really be likely to give a negative answer. Suggest a glass-half-full way to give the negative answer. Instead of “Do you learn from your co-workers?” ask “Do you learn more from you co-workers or on your own?”
+- Standard questions like salary and benefits are not included.
 
 Edit the appropriate `.yml` file; copy an existing `q`, paste it at the bottom, and edit. Submit a pull request and it will automatically be validated.
 
@@ -58,23 +53,22 @@ If it validates, it outputs a JSON list of question objects; if not, it should g
 
 Tools for filtering and ordering questions, converting to various formats, pretty-printing, etc. would be very welcome. Question files for specific industries, roles, stacks, etc. are also welcome.
 
-Question Format
----------------
+## Question Format
 
 Questions are key-value pairs; all are optional except the question. Most values are strings or lists of strings.
 
--   `q`: The question.
--   `a`: An answer, if appropriate. Keep it brief but explain why a particular answer is important when looking for a job.
--   `followup`: Question(s) to ask after the main `q`; generally contingent on the answer. String or list.
--   `tags`: The topic(s) of the question. List of strings. Valid values are in the top-level document `tag` key: `[process, culture, people, tech, management, hiring, issues]`.
--   `pri`: Integer priority used to order questions so you can ask the important ones first. 1 (highest) to 3 (lowest). Defaults to lowest.
--   `ref`: Reference the source of the question or desired answer. URL or list of URLs.
--   `who`: Type of person to ask the question to, so you can tailor the questions to the interviewer. List of strings. Valid values are in the top-level document `who` key: `[engineer, manager, exec, hr, other]`. Missing means appropriate for anyone.
--   `where`: Type of company for which the question is appropriate. Valid values are in the top-level document `where` key: `[startup, bigco]`. Missing means appropriate for most companies.
+- `q`: The question.
+- `a`: An answer, if appropriate. Keep it brief but explain why a particular answer is important when looking for a job.
+- `followup`: Question(s) to ask after the main `q`; generally contingent on the answer. String or list.
+- `tags`: The topic(s) of the question. List of strings. Valid values are in the top-level document `tag` key: `[process, culture, people, tech, management, hiring, issues]`.
+- `pri`: Integer priority used to order questions so you can ask the important ones first. 1 (highest) to 3 (lowest). Defaults to lowest.
+- `ref`: Reference the source of the question or desired answer. URL or list of URLs.
+- `who`: Type of person to ask the question to, so you can tailor the questions to the interviewer. List of strings. Valid values are in the top-level document `who` key: `[engineer, manager, exec, hr, other]`. Missing means appropriate for anyone.
+- `where`: Type of company for which the question is appropriate. Valid values are in the top-level document `where` key: `[startup, bigco]`. Missing means appropriate for most companies.
 
 There is a [JSON Schema](https://gitlab.com/doctorj/interview-questions/blob/master/schema.json) against which questions are validated.
 
-------------------------------------------------------------------------
+---
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/80x15.png)](http://creativecommons.org/licenses/by-sa/4.0/)  
 <span dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" data-property="dct:title" rel="dct:type">Questions to ask a potential tech employer</span> is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
