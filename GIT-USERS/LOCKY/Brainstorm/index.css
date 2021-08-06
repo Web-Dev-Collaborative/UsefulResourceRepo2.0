@@ -1,0 +1,99 @@
+body{
+		padding: 0;
+		background-image: url('http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/grey.png');
+		font-size:14px;
+		color:#666;
+		font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+	}
+	.image-container {
+		position: relative;
+		padding: 5px 5px 50px;
+		background-color: #1e1e1e;
+		width: 200px;
+		height: 220px;
+		margin-right: 20px;
+		margin-bottom: 20px;
+	}
+	.place-left {
+		float: left !important;
+		margin-right: 10px;
+	}
+	.bg-color-blue {
+		background-color: #2d89ef !important;
+	}
+	.light{
+		background-color: #ccc !important;
+	}
+	.black{
+		background-color: #ccc !important;
+	}
+	.questionImg{
+		width: 100%;
+		height: auto;
+		border: 0;
+
+	}
+
+	div{
+		font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+		font-weight: 300;
+		font-size: 11pt;
+		letter-spacing: 0.02em;
+		line-height: 14pt;
+	}
+	.overlay{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 50px;
+		font-size: 8pt;
+		color: #fff;
+		line-height: 14px;
+		padding: 0 5px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.page{
+		margin: 0 auto;
+		width: 660px;
+		overflow: auto;
+
+	}
+	footer, header{
+		margin: 40px auto;
+		width: 660px;
+		text-align: center;
+		text-indent: 2px;
+
+	}
+	hr{
+		margin: 10px;
+		border: 0;
+		height: 1px;
+		background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.35), rgba(0,0,0,0));
+		background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+		background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+		background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+	}
+	
+	h1 {
+		font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+		font-weight: 200;
+		font-size: 42pt;
+		letter-spacing: 0.00em;
+		line-height: 20pt;
+	}
+	a{
+		text-decoration: none;		
+		color:#666;
+		border: 0;
+
+	}	
+	a:hover{
+		text-decoration: underline;		
+
+	}
+	.page, footer{
+		display: none;
+	}

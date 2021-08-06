@@ -1,0 +1,319 @@
+*{
+	margin:0;
+	padding:0;
+}
+
+body{
+	font-size:14px;
+	color:#666;
+	font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+	background-image: url('http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/grey.png');
+
+}
+
+hr{
+	margin: 10px;
+	border: 0;
+	height: 1px;
+	background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.35), rgba(0,0,0,0));
+	background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+	background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+	background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+}
+
+img{
+	border: 1px solid lightgray;
+	border-radius: 3px;
+	margin: 2px;
+	height: 200px;
+	display: inline-block;
+}
+
+h3{
+	margin-bottom: 5px;
+	margin-top: 10px;
+	color: black;
+	font-weight: bolder;
+
+}
+#wrapper{
+	width:720px; 
+	margin: 10px auto;
+	clear:both;
+}
+
+#wrapperOfAddComment{
+	width:960px; 
+	margin: 10px auto;
+	clear:both;
+}
+
+#wrapper #addCommentContainer{
+	width:720px;
+}
+
+#addCommentContainer{
+	/* Syling the comments and the comment form container */
+	padding:12px;
+	width:960px;
+	height:700px;
+	background-color:#edeff4;
+	border:1px solid #e1e1e8;
+	border-left:0px solid #e1e1e8;
+	color:black;
+	margin:0 auto;
+	display: inline-block;
+	border-radius: 5px;
+	/* CSS3 rounded corners and drop shadows */
+}
+
+
+#error, #result{
+	padding:12px;
+	width:400px;
+	margin: 35px auto;
+	background-color:#edeff4;
+	border:1px solid #e1e1e8;
+	color:#888;
+}
+#question{
+	float: left;
+	padding:12px;
+	width:220px;
+	height:700px;
+	background-color:#edeff4;
+	border:1px solid #e1e1e8;
+	color:black;
+	margin:0;
+	overflow-y: scroll;
+	/* CSS3 rounded corners and drop shadows */
+}
+
+.question_start{
+	padding:12px;
+	width:720px;
+	height:700px;
+	background-color:#edeff4;
+	border:1px solid #e1e1e8;
+	border-radius: 4px;
+	color:black;
+	margin:0 auto;
+	overflow-y: scroll;
+	/* CSS3 rounded corners and drop shadows */
+}
+
+.style8::-webkit-scrollbar-track
+{
+	
+	background-color: #F5F5F5;
+}
+
+.style8::-webkit-scrollbar
+{
+	width: 8px;
+	background-color: #F5F5F5;
+}
+
+.style8::-webkit-scrollbar-thumb
+{
+	background-color: lightgray;
+}
+
+#addCommentContainer p{
+	font-size:18px;
+	line-height:1.5;
+	overflow-x:hidden;
+}
+
+#addCommentContainer input[type=text],
+#addCommentContainer textarea{
+	/* Styling the inputs */
+	/*display:block;*/
+	border:1px solid #ccc;
+	margin:5px 0 5px;
+	padding:3px;
+	font-size:12px;
+	color:#555;
+	font-family:Arial, Helvetica, sans-serif;
+	outline: 0;
+	resize: none; 
+}
+
+textarea .field{
+	height: 30px;
+}
+.inputs{
+	width: 520px;
+}
+.ideas{
+	overflow: auto;
+	height:203px;
+	overflow-x:hidden;
+	word-wrap: break-word;
+	border: 1px solid lightgray;
+	background-color: white;
+
+}
+.ideas:hover{
+	border: 1px solid gray;
+}
+
+.ideaCon{
+	width: 450px;
+	margin-left: 30px;
+}
+
+#add{
+	cursor: pointer;
+}
+#add:hover{
+	text-decoration: underline;
+}
+
+#addCommentContainer textarea:disabled,#addCommentContainer  input[type=text]:disabled{
+	background-color: #eaeaea;
+}
+#addCommentContainer textarea:focus,#addCommentContainer  input[type=text]:focus {
+	border-color: #000;
+}
+
+#addCommentContainer textarea{
+	width:700px;
+}
+
+label{
+	font-size:10px;
+	font-weight: bold;
+}
+
+label span.error{
+	color:red;
+	position:relative;
+	right:-10px;
+}
+footer{
+	margin: 40px auto;
+	width: 720px;
+	text-align: center;
+	text-indent: 2px;
+	padding: 0 0 10px 0;
+
+}
+
+.submit{
+	/* The submit button */
+	font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+	font-weight: 400;
+	font-size: 9pt;
+	font-smooth: always;
+	min-width: 100px;
+	min-height: 10px;
+	background-color: rgb(231, 217, 217);
+	border: 1px transparent solid;
+	color: #353535;
+	margin: 3px 0 0 0;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	padding: 5px;
+}
+
+.submit:hover{
+	background-color: lightgray;
+}
+
+#exitBtn{
+	float: center;
+	width: 180px;
+}
+
+/* The styles below are only necessary for the styling of the demo page: */
+h1{
+	color:#7E94A2;
+	font-size:30px;
+	margin:50px 0 20px;
+}
+
+h2{
+	font-size:18px;
+	text-align: center;
+	font-weight: bold;
+}
+
+h1,h2{
+	font-family:"Myriad Pro",Arial,Helvetica,sans-serif;
+	font-weight:normal;
+	text-shadow:0 1px 1px #FFFFFF;
+}
+
+a, a:visited {
+	color: black;
+	text-decoration:none;
+	outline:none;
+}
+
+.footer a:hover{
+	color: gray;
+	text-decoration: underline;
+}
+
+a img{
+	border:none;
+}
+
+.nextLink{
+	float: center;
+	margin-top: 5px;
+}
+
+.footer{
+	margin: 0 auto;
+	padding: 0 0 10px 0;
+	width: 720px;
+	text-align: center;
+}
+.text-center{
+	text-align: center;
+}
+.conlumn{
+	float: left;
+	height: 240px;
+}
+.credits{
+	margin: 50px auto;
+	padding: 5px;
+	height: 200px;
+	width: 300px;
+	border: 1px solid lightgray;
+	background: white;
+	text-align: center;
+}
+
+.countdown{
+	color: gray;
+	padding: 1px;
+	background: white;
+	border:1px solid lightgray;
+}
+
+.demo-div{
+	width:670px; 
+	height:570px; 
+	padding: 10px;
+	/*border-radius: 3px;*/
+	/*border: 1px solid lightgray;*/
+	/*background: white;*/
+}
+
+.main-div{
+	width:670px; 
+	height:580px; 
+	padding: 10px;
+	/*border-radius: 3px;*/
+	/*border: 1px solid lightgray;*/
+	/*background: white;*/
+}
+.timestamp{
+	display: none;
+}

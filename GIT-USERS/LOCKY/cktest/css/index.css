@@ -1,0 +1,109 @@
+body{
+	font-family: 'Open Sans', sans-serif;
+}
+
+footer{
+	background-attachment: fixed;
+	background-color: #ecf0f1;
+	padding:100px 0;
+	text-align: center;
+}
+
+.content-hidden{
+	display: none;
+}
+
+.container{	
+	margin: 0 auto;
+	width:1090px;
+}
+
+.loginContainer{
+	margin: 0 auto;
+	width:500px;
+	padding-top: 50px;
+	padding-bottom: 65px;
+}
+
+#loginslide{
+	background-image: url('/cktest/images/greyzz.png');
+	
+}
+
+#navbar{
+	border-bottom: 1px lightgray solid;
+	background-color: #ecf0f1;
+ 	overflow: hidden;
+ 	opacity: 0.9;
+ 	position: fixed;
+ 	top:0px;
+ 	width: 100%;
+ 	z-index: 999;
+}
+
+#navbar ul{
+	float: right;
+	list-style: none;
+}
+
+#navbar ul li{
+	float: left;
+	padding: 10px 0px 10px 10px;
+}
+
+#navbar ul a{
+	color: gray;
+	text-decoration: none;
+}
+
+#navbar a {
+	color: black;
+	text-decoration: none;
+}
+
+#navbar #logo{
+	float: left;
+	font-size: 2em;
+	padding-top:15px; 
+}
+
+#navbar .active a{
+	cursor:pointer;
+	color: #c0392b;
+	font-weight:bold;
+}
+
+.slide{
+	background-attachment: fixed;
+	padding:100px 0;
+}
+
+.slide h1{
+	margin-top: 0px;
+}
+
+#slide1{
+	padding-top: 140px;
+	background-color: #bdc3c7;
+}
+
+
+#slide2{
+	background-image:url('../images/footprints.png');
+	background-color:#f68f67;
+	color:#ffffff;
+}
+
+.segment{
+	color:gray;
+}
+
+#scrollToTop{
+	position: fixed;
+	right: 50px;
+	bottom: 25px;
+	font-size: 40px;
+	cursor: pointer;
+}
+
+

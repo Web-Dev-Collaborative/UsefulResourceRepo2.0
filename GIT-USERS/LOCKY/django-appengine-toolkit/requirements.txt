@@ -1,0 +1,2 @@
+django<1.6 # this is due to AppEngine
+-e svn+http://appengine-gcs-client.googlecode.com/svn/trunk/python/src#egg=GoogleAppEngineCloudStorageClient

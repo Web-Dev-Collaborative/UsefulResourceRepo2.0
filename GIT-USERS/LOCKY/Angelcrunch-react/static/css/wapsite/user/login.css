@@ -1,0 +1,90 @@
+﻿/*/
+/*
+/* Rank: 3
+/* Standard：Google
+/*
+/*/
+
+/*@media only screen and (min-width:420px) {
+  .details {
+    width:400px;
+    margin:0 auto;
+  }
+}*/
+
+.angelcrunch-brand {
+  width:87.2%;
+  height:auto;
+  min-height:82px;
+  margin:0 auto;
+  margin-top:38px;
+  margin-bottom:70px;
+}
+
+.angelcrunch-brand img {
+  width:100%;
+}
+
+.banner-footer {
+  margin-top:216px;
+}
+
+
+/*********************
+        Layer
+ *********************/
+
+.new-page .section-list section {
+  height:92px;
+}
+
+.new-page .section-list section h3 {
+  height:100%;
+  line-height:76px;
+}
+
+.new-page .section-list section h3 i.vector-icons {
+  font-size:24px;
+  margin:0 8px 0 8px;
+}
+
+.white-style .form-module {
+  display:inline-block;
+  width:100%;
+  margin-top:34px;
+  margin-bottom:30px;
+}
+
+
+.new-page .statement .success-desc {
+  display:inline-block;
+  width:100%;
+  height:168px;
+  text-align:center;
+  background:#F5F5F5;
+}
+
+.new-page .success-desc h1 {
+  font-size: 26px;
+  margin-top:56px;
+  line-height: 38px;
+}
+
+.new-page .statement .control-module {
+  margin-top:36px;
+}
+
+.new-page .statement .btn {
+  padding-top:2px;
+  font-size:16px;
+}
+
+.find-pwd {
+  color:#2170CD;
+  padding:14px 8px;
+}
+
+.find-pwd i {
+  padding:2px 4px;
+  cursor:pointer;
+}

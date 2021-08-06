@@ -1,0 +1,29 @@
+{
+  "name": "dcard",
+  "version": "0.0.2",
+  "description": "Get today's card of Dcard today!",
+  "dependencies": {
+    "dcard-card": "^0.0.2",
+    "jquery": "^2.1.4",
+    "menubar": "^2.3.0",
+    "nconf": "^0.8.2",
+    "node-notifier": "^4.3.1",
+    "node-schedule": "^0.5.0",
+    "request": "^2.65.0"
+  },
+  "devDependencies": {
+    "electron-packager": "^5.1.0",
+    "electron-prebuilt": "^0.34.2",
+    "grunt": "^0.4.5",
+    "grunt-electron-installer": "^1.0.10"
+  },
+  "main": "main.js",
+  "scripts": {
+    "build": "electron-packager . dcard --platform=darwin --arch=x64 --version=0.34.2 --overwrite --icon=Icon.icns",
+    "build-win": "electron-packager . dcard --platform=win32 --arch=x64 --version=0.34.2 --overwrite --icon=Icon.ico --version-string.ProductName=dcard-bar",
+    "build-win-32": "electron-packager . dcard --platform=win32 --arch=ia32 --version=0.34.2 --overwrite --icon=Icon.ico --version-string.ProductName=dcard-bar",
+    "start": "electron ."
+  },
+  "author": "Calvin Jeng <locky4567@gmail.com> (https://github.com/lockys)",
+  "license": "MIT"
+}

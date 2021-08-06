@@ -1,0 +1,761 @@
+[
+  {
+    "name": "Blipshift",
+    "url": "https://github.com/GaidamakUA/blipshift",
+    "description": "Simple top-down moving platforms game (Godot 3.1)."
+  },
+  {
+    "name": "BlockPop",
+    "url": "https://github.com/vnen/blockpop",
+    "description": "A simple Breakout clone (Godot 2.1)."
+  },
+  {
+    "name": "Bombs",
+    "url": "https://github.com/randyyaj/Bombs",
+    "description": "Simple mobile game. You need to touch bombs to defuse them (Godot 2.1)."
+  },
+  {
+    "name": "Breakable",
+    "url": "https://github.com/didier-v/breakable",
+    "description": "A breakout-like game (Godot 3.0)."
+  },
+  {
+    "name": "Captain Holetooth",
+    "url": "https://github.com/Hirnbix/captain-holetooth",
+    "description": "Explorative platformer in a detailed world. Geared towards younger players (Godot 2.1)."
+  },
+  {
+    "name": "Circle Jump",
+    "url": "https://github.com/kidscancode/circle_jump",
+    "description": "Mobile arcade game, addicting and enjoyable. How-to-made tutorial is available, so you can recreate it yourself and learn Godot (Godot 3.1)."
+  },
+  {
+    "name": "Dolphin Island 2",
+    "url": "https://github.com/janmarcano/Dolphin-Island-2",
+    "description": "Platformer game made for the A Game By It's Cover 2015 Game Jam (Godot 2.1)."
+  },
+  {
+    "name": "DynaDungeons",
+    "url": "https://github.com/akien-mga/dynadungeons",
+    "description": "Bomberman clone in a fantasy universe (Godot 2.1)."
+  },
+  {
+    "name": "Haldric",
+    "url": "https://github.com/wesnoth/haldric",
+    "description": "Official work-in-progress reimplementation of Battle for Wesnoth (Godot 3.1)."
+  },
+  {
+    "name": "Kraken-Rampage",
+    "url": "https://github.com/randyyaj/Kraken-Rampage",
+    "description": "Ludum Dare 33 entry made in 48 hours (Godot 2.1)."
+  },
+  {
+    "name": "Librerama",
+    "url": "https://codeberg.org/Yeldham/librerama",
+    "description": "A free/libre fast-paced arcade collection of mini-games (Godot 3.2)."
+  },
+  {
+    "name": "Memory Game",
+    "url": "https://github.com/Tzoop/MemoryGame",
+    "description": "Simple Memory game (Godot 3.0)."
+  },
+  {
+    "name": "Minehunter",
+    "url": "https://github.com/genete/Minehunter",
+    "description": "A Minesweeper clone (Godot 2.1)."
+  },
+  {
+    "name": "Minilens",
+    "url": "http://kobuge-games.github.io/minilens/",
+    "description": "Free puzzle platform game (Godot 2.1)."
+  },
+  {
+    "name": "Mountain of Hope",
+    "url": "https://github.com/w84death/mountain-of-hope",
+    "description": "Game made on Theater Game Jam (PGA 2015) (Godot 2.1)."
+  },
+  {
+    "name": "Ninja-Training",
+    "url": "https://github.com/KOBUGE-Games/Ninja-Training",
+    "description": "Small running game done as 1 hour challenge (Godot 2.1)."
+  },
+  {
+    "name": "No hope",
+    "url": "https://github.com/sergicollado/no_hope_LD33",
+    "description": "Ludum Dare 33 entry made in 48 hours (Godot 2.1)."
+  },
+  {
+    "name": "Planet Rider",
+    "url": "https://github.com/FEDE0D/Planet-Rider",
+    "description": "2D physics parkour game in an alien environment (Godot 2.1)."
+  },
+  {
+    "name": "Platshoot",
+    "url": "https://github.com/Calinou/platshoot",
+    "description": "A 2D shooter game (Godot 2.1)."
+  },
+  {
+    "name": "Ringed",
+    "url": "https://github.com/KOBUGE-Incubator/ringed",
+    "description": "Top-down shooter with extensive usage of light effects (Godot 2.1)."
+  },
+  {
+    "name": "SealedBite",
+    "url": "https://github.com/securas/SealedBite",
+    "description": "2D platformer game, winner of the GitHub Game Off 2019 jam (Godot 3.1)."
+  },
+  {
+    "name": "spindle of serendipity",
+    "url": "https://zacryol.itch.io/spindle-of-serendipity",
+    "description": "Word guessing game with customizable entries (Godot 3.2)."
+  },
+  {
+    "name": "SuperStarfighter",
+    "url": "https://github.com/notapixelstudio/superstarfighter",
+    "description": "Fast-paced local party game with starships that battle in a top-down arena (Godot 3.1)."
+  },
+  {
+    "name": "Tanks of Freedom",
+    "url": "https://github.com/w84death/Tanks-of-Freedom",
+    "description": "Free turn-based isometric strategy game (Godot 2.1)."
+  },
+  {
+    "name": "Three Hungry Mice",
+    "url": "https://github.com/delstuff/threeHungryMice",
+    "description": "Breakout game with mice made for the Godot Engine Jam of March 2016 (Godot 2.1)."
+  },
+  {
+    "name": "TuxBuilder",
+    "url": "https://github.com/Alzter/TuxBuilder",
+    "description": "Work-in-progress reimplementation of SuperTux (Godot 3.1)."
+  },
+  {
+    "name": "Unknown Horizons",
+    "url": "https://github.com/unknown-horizons/godot-port",
+    "description": "Official work-in-progress reimplementation of Unknown Horizons (Godot 3.1)."
+  },
+  {
+    "name": "Broken Seals",
+    "url": "https://github.com/Relintai/broken_seals",
+    "description": "A work-in-progress third person action RPG with multiplayer support (Godot 3.2 - needs custom engine modules)."
+  },
+  {
+    "name": "Cheese Hunter",
+    "url": "https://github.com/khairul169/cheese-hunter",
+    "description": "A game for Godot Engine Jam of March 2016 (Godot 2.1)."
+  },
+  {
+    "name": "Meteorite",
+    "url": "https://github.com/Bauxitedev/meteorite",
+    "description": "A lowres metroidvania FPS, inspired by Metroid Prime, made for LOWREZJAM 2018 (Godot 3.0)."
+  },
+  {
+    "name": "Rapid Rescue",
+    "url": "https://github.com/Azza292/RapidRescue",
+    "description": "Rapid Rescue is a local multiplayer strategy game inspired by Labyrinth (Godot 3.1)."
+  },
+  {
+    "name": "Super Tux Party",
+    "url": "https://anti.itch.io/super-tux-party",
+    "description": "A free/libre and open-source party game that is meant to replicate the feel of games such as Mario Party (Godot 3.2)."
+  },
+  {
+    "name": "Thrive",
+    "url": "https://github.com/Revolutionary-Games/Thrive/",
+    "description": "A free, open-source game about the evolution of life."
+  },
+  {
+    "name": "Godello",
+    "url": "https://github.com/alfredbaudisch/Godello",
+    "description": "A Trello-like kanban board application made with Godot. A proof of concept for complex non-game applications with Godot, as well real-time online interactions between multiple users. Includes backend code (Godot 3.2)."
+  },
+  {
+    "name": "Material Maker",
+    "url": "https://github.com/RodZill4/material-maker",
+    "description": "Create PBR materials procedurally (similar to Substance Designer) (Godot 3.2)."
+  },
+  {
+    "name": "Pixelorama",
+    "url": "https://github.com/Orama-Interactive/Pixelorama",
+    "description": "2D pixel art editor (Godot 3.2)."
+  },
+  {
+    "name": "First Person Starter",
+    "url": "https://github.com/Whimfoome/godot-FirstPersonStarter",
+    "description": "Template with First Person Controller, easily adjustable from the Inspector (Godot 3.2)."
+  },
+  {
+    "name": "Godot-GameTemplate",
+    "url": "https://github.com/nezvers/Godot-GameTemplate",
+    "description": "Template with all necessary stuff taken care of. Designed for pixel art games (Godot 3.1)."
+  },
+  {
+    "name": "Multiplayer First Person Shooter",
+    "url": "https://github.com/blockspacer/Godot-3.2-Multiplayer-FPS",
+    "description": "Multiplayer first person shooter example project (Godot 3.2)."
+  },
+  {
+    "name": "Multiplayer Third Person Shooter",
+    "url": "https://github.com/jasonswearingen/TPS-MP",
+    "description": "Multiplayer third person shooter example project (Godot 3.2)."
+  },
+  {
+    "name": "FPS Test",
+    "url": "https://github.com/Calinou/fps-test",
+    "description": "A singleplayer FPS test. Physics work, but there are no enemies and no proper shooting (Godot 2.1)."
+  },
+  {
+    "name": "Open Source A-RPG Demo",
+    "url": "https://github.com/GDQuest/godot-make-pro-2d-games",
+    "description": "RPG demo (Godot 3.0)."
+  },
+  {
+    "name": "OpenRPG",
+    "url": "https://github.com/GDquest/godot-open-rpg",
+    "description": "JRPG-style game demo and template (Godot 3.1)."
+  },
+  {
+    "name": "Pathfinding 2d",
+    "url": "https://github.com/FEDE0D/godot-pathfinding2d-demo",
+    "description": "A demo project demonstrating pathfinding using a tilemap (Godot 2.1)."
+  },
+  {
+    "name": "Realistic Water Shader",
+    "url": "https://github.com/godot-extended-libraries/godot-realistic-water",
+    "description": "Realistic 3D water shader with foam and caustics (Godot 3.1)."
+  },
+  {
+    "name": "The Tower",
+    "url": "https://github.com/Relintai/the_tower",
+    "description": "A voxel-based parkour game to show the capabilities of the Voxelman module (Godot 3.2)."
+  },
+  {
+    "name": "UDP Snapshot interpolation",
+    "url": "https://github.com/empyreanx/godot-snapshot-interpolation-demo",
+    "description": "Lets you connect to a server and view networked physics (Godot 2.1)."
+  },
+  {
+    "name": "UDP State synchronization",
+    "url": "https://github.com/empyreanx/godot-state-sync-demo",
+    "description": "A more efficient networking demo than the snapshot interpolation one (Godot 2.1)."
+  },
+  {
+    "name": "Voxel Game",
+    "url": "https://github.com/toger5/Godot-Voxel-Game-MineCraftClone",
+    "description": "Minecraft-like voxel terrain demo (Godot 2.1)."
+  },
+  {
+    "name": "voxelgame",
+    "url": "https://github.com/Zylann/voxelgame",
+    "description": "Minecraft-like voxel terrain demo, utilising the godot_voxel module (Godot 3.1)."
+  },
+  {
+    "name": "Official Getting Started Guide (Godot 2.1, 3.0, 3.1)",
+    "url": "https://docs.godotengine.org/en/latest/getting_started/step_by_step/index.html"
+  },
+  {
+    "name": "Getting Started with Godot by devga.me",
+    "url": "https://devga.me/tutorials/godot2d/",
+    "description": "A step-by-step introduction (Godot 3.1)."
+  },
+  {
+    "name": "Godot Multiplayer Tutorials",
+    "url": "https://gitlab.com/menip/godot-multiplayer-tutorials",
+    "description": "Tutorials for creating a client-server multiplayer game. Includes a tutorial for hosting a server on Google Compute Platform (Godot 3.1)."
+  },
+  {
+    "name": "Godot Recipes",
+    "url": "http://kidscancode.org/godot_recipes/",
+    "description": "A collection of text tutorials for from beginner to advanced. (Godot 3.x)"
+  },
+  {
+    "name": "Bastiaan Olij's channel",
+    "url": "https://www.youtube.com/channel/UCrbLJYzJjDf2p-vJC011lYw",
+    "description": "Tutorials about 3D, shaders, VR and GDNative (Godot 3.x)."
+  },
+  {
+    "name": "Bitwes's channel",
+    "url": "https://www.youtube.com/channel/UCkGO6guRt_5fOh3oDHbfg9w",
+    "description": "TDD game development and GUT framework tutorials."
+  },
+  {
+    "name": "BornCG's Creating a Simple 3D Game",
+    "url": "https://www.youtube.com/watch?v=VeCrE-ge8xM&list=PLda3VoSoc_TSBBOBYwcmlamF1UrjVtccZ",
+    "description": "Tutorial series about creating a 3D game (Godot 3.1)."
+  },
+  {
+    "name": "Code with Tom",
+    "url": "https://www.youtube.com/codewithtom",
+    "description": "Learn to code by making games (Godot 3.1)."
+  },
+  {
+    "name": "From GM:S to Godot (Godot 3.0)",
+    "url": "https://www.youtube.com/watch?v=HLjguIl4_OU&list=PLQsiR7DILTcxma-doUnpoALIX001NvcP_"
+  },
+  {
+    "name": "GDquest",
+    "url": "https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ",
+    "description": "Tutorials about 2D and 3D game development (Godot 2.1, 3.x)."
+  },
+  {
+    "name": "Game Development Center",
+    "url": "https://www.youtube.com/c/GameDevelopmentCenter",
+    "description": "Tutorials about 2D and networked multiplayer game development (Godot 3.2)."
+  },
+  {
+    "name": "HeartBeast",
+    "url": "https://www.youtube.com/user/uheartbeast",
+    "description": "A Godot developer's diary and tutorials (Godot 3.x)."
+  },
+  {
+    "name": "KidsCanCode",
+    "url": "https://www.youtube.com/channel/UCNaPQ5uLX5iIEHUCLmfAgKg",
+    "description": "Tutorials about 2D and 3D game development (Godot 2.1, 3.x)."
+  },
+  {
+    "name": "Making programs with Godot (Godot 3.1)",
+    "url": "https://www.youtube.com/watch?v=nk0YQGb08IA&list=PLQsiR7DILTczMLsN8qmMym7pYfJXynzK0"
+  },
+  {
+    "name": "Miziziziz's channel",
+    "url": "https://www.youtube.com/user/Miziziziz",
+    "description": "Tutorials about 3D effects and replicating concepts from well-known games (Godot 3.0)."
+  },
+  {
+    "name": "Entity Spell System",
+    "url": "https://github.com/Relintai/entity_spell_system",
+    "description": "An entity and spell system for complex (optionally multiplayer) RPGs (Godot 3.2, 4.0)."
+  },
+  {
+    "name": "FMOD Integration",
+    "url": "https://github.com/alexfonseka/godot-fmod-integration",
+    "description": "Module to integrate the FMOD audio engine in Godot."
+  },
+  {
+    "name": "godot-anl",
+    "url": "https://github.com/Xrayez/godot-anl",
+    "description": "A wrapper for Accidental Noise Library with a visual noise editing support."
+  },
+  {
+    "name": "godot-apple-id",
+    "url": "https://github.com/Wild-Pluto/godot-apple-id",
+    "description": "Module for sign in with Apple in Godot (Godot 3.2)."
+  },
+  {
+    "name": "godot-python",
+    "url": "https://github.com/touilleMan/godot-python",
+    "description": "Python support for Godot 3."
+  },
+  {
+    "name": "godot-enet-better",
+    "url": "https://github.com/Faless/godot-enet-better",
+    "description": "A better ENet module for high-performance multiplayer games with Godot."
+  },
+  {
+    "name": "godot-voxel",
+    "url": "https://github.com/Zylann/godot_voxel",
+    "description": "Module for creating volumetric worlds in Godot Engine."
+  },
+  {
+    "name": "Gdnet for Godot 3",
+    "url": "https://github.com/PerduGames/gdnet3",
+    "description": "An ENet wrapper for Godot 3."
+  },
+  {
+    "name": "GodotSteam",
+    "url": "https://github.com/Gramps/GodotSteam",
+    "description": "Steam API library binding for Godot. Supports Windows, macOS and Linux (Godot 3.1)."
+  },
+  {
+    "name": "Head tracking using OpenCV",
+    "url": "https://github.com/antarktikali/godot-opencv-gpu-perspective"
+  },
+  {
+    "name": "Open Adaptive Music Library",
+    "url": "https://github.com/oamldev/oamlGodotModule"
+  },
+  {
+    "name": "NativeDialogs",
+    "url": "https://github.com/GodotExplorer/NativeDialogs",
+    "description": "Using native dialogs in Godot."
+  },
+  {
+    "name": "PortAudio",
+    "url": "https://github.com/sebastian-heinz/portaudio",
+    "description": "Wrapper methods and Godot-friendly types to use PortAudio (Godot 3.2)."
+  },
+  {
+    "name": "RawPacker",
+    "url": "https://github.com/empyreanx/rawpacker",
+    "description": "Simple binary packing/unpacking for RawArray."
+  },
+  {
+    "name": "spine",
+    "url": "https://github.com/GodotExplorer/spine",
+    "description": "Spine animation support module."
+  },
+  {
+    "name": "Texture Packer",
+    "url": "https://github.com/Relintai/texture_packer",
+    "description": "Tools to layer, pack, and merge textures at runtime (Godot 3.2, 4.0)."
+  },
+  {
+    "name": "Voxelman",
+    "url": "https://github.com/Relintai/voxelman",
+    "description": "A voxel engine with more focus on editor integration, gameplay-related features, and extendability (Godot 3.2, 4.0)."
+  },
+  {
+    "name": "WaterSplash 2D node",
+    "url": "https://github.com/laverneth/water"
+  },
+  {
+    "name": "Auto Tile Layer",
+    "url": "https://github.com/leezh/autotile",
+    "description": "Allows automatic 2D tiling using RPG Maker's Autotile format (Godot 2.1)."
+  },
+  {
+    "name": "Camera2D Screen Shake",
+    "url": "https://godotengine.org/qa/438/camera2d-screen-shake-extension",
+    "description": "Screen shake effect for Camera2D."
+  },
+  {
+    "name": "Cartographer",
+    "url": "https://github.com/awkwardpolygons/cartographer",
+    "description": "Heightmap-based 3D terrain editor (Godot 3.2)."
+  },
+  {
+    "name": "CRT Shader",
+    "url": "https://github.com/henriquelalves/SimpleGodotCRTShader",
+    "description": "Godot shader that simulates CRT displays (Godot 2.1, 3.1)."
+  },
+  {
+    "name": "Easing Script",
+    "url": "https://github.com/impmja/godot-easing",
+    "description": "A port of the Robert Penner's equations for easing."
+  },
+  {
+    "name": "Escoria",
+    "url": "https://github.com/godotengine/escoria",
+    "description": "Point & click adventure game framework (Godot 2.1, 3.1)."
+  },
+  {
+    "name": "FMOD GDNative",
+    "url": "https://github.com/utopia-rise/fmod-gdnative",
+    "description": "Plugin to use the FMOD audio engine in GDScript (Godot 3.1)"
+  },
+  {
+    "name": "GDGIFExporter",
+    "url": "https://github.com/jegor377/godot-gdgifexporter",
+    "description": "GIF exporter made entirely in GDScript (Godot 3.2)."
+  },
+  {
+    "name": "gdstats",
+    "url": "https://github.com/droxpopuli/gdstats",
+    "description": "A library of pseudorandom number generators for common statistical distributions (Godot 3.0)."
+  },
+  {
+    "name": "gdutils",
+    "url": "https://github.com/GodotExplorer/gdutils",
+    "description": "Utilities for Godot written in GDScript."
+  },
+  {
+    "name": "GitHub integration",
+    "url": "https://github.com/fenix-hub/godot-engine.github-integration",
+    "description": "Interact with GitHub without opening your browser (Godot 3.1)."
+  },
+  {
+    "name": "godotccd",
+    "url": "https://github.com/TheSHEEEP/godotccd",
+    "description": "Fast 3D collision checks in Godot using libccd (Godot 3.2, 3.1)."
+  },
+  {
+    "name": "godotdetour",
+    "url": "https://github.com/TheSHEEEP/godotdetour",
+    "description": "A GDNative implementation of the detour/detourcrowd library (Godot 3.2)."
+  },
+  {
+    "name": "GodotPhoenixChannels",
+    "url": "https://github.com/alfredbaudisch/GodotPhoenixChannels",
+    "description": "A GDScript and Godot Engine implementation for the Channels API of the Phoenix Framework (Godot 3.1)."
+  },
+  {
+    "name": "Godot Game Tools",
+    "url": "https://github.com/vini-guerrero/Godot_Game_Tools",
+    "description": "Blender plugin to ease importing assets into Godot."
+  },
+  {
+    "name": "Godot Mixing Desk",
+    "url": "https://github.com/kyzfrintin/Godot-Mixing-Desk",
+    "description": "Make procedural sound and adaptive/procedural music with a few nodes and a couple lines of code (Godot 3.1)."
+  },
+  {
+    "name": "Godot NExt",
+    "url": "https://github.com/godot-extended-libraries/godot-next",
+    "description": "A set of basic node extensions (Godot 3.2)."
+  },
+  {
+    "name": "GodotNotificationCenter",
+    "url": "https://github.com/didier-v/GodotNotificationCenter",
+    "description": "A notification center (Godot 3.1)."
+  },
+  {
+    "name": "GodotRx",
+    "url": "https://github.com/semickolon/GodotRx",
+    "description": "Reactive extensions for Godot C# (Godot 3.2 Mono)."
+  },
+  {
+    "name": "GodotTIE",
+    "url": "https://github.com/henriquelalves/GodotTIE",
+    "description": "Text Interface Engine to control text output (like in a RPG dialogue) (Godot 2.x, 3.x)."
+  },
+  {
+    "name": "Godot-Trail-System",
+    "url": "https://github.com/OBKF/Godot-Trail-System",
+    "description": "Advanced 2D/3D trail system (Godot 3.2)."
+  },
+  {
+    "name": "Grass Plugin",
+    "url": "https://github.com/marcosbitetti/grass_plugin_4_godot",
+    "description": "A plugin to handle huge amounts of grass, foliages and other vegetations (Godot 2.1)."
+  },
+  {
+    "name": "gterm",
+    "url": "https://github.com/TeddyDD/gterm",
+    "description": "GUI control that draws something similar to *nix terminal emulators (Godot 2.1)."
+  },
+  {
+    "name": "GUT",
+    "url": "https://github.com/bitwes/Gut",
+    "description": "Utility for writing unit tests in GDScript (Godot 3.x)."
+  },
+  {
+    "name": "InGrid",
+    "url": "https://github.com/Larpon/ingrid",
+    "description": "Infinite scrolling grid (Godot 3.x)."
+  },
+  {
+    "name": "Level of Detail (LOD)",
+    "url": "https://github.com/Calinou/godot-lod",
+    "description": "Level of detail add-on for meshes, lights and particles. Can improve performance in large scenes (Godot 3.2)."
+  },
+  {
+    "name": "MDFramework",
+    "url": "https://github.com/DoubleDeez/MDFramework",
+    "description": "A C# multiplayer framework with additional tools (Godot 3.2 Mono)."
+  },
+  {
+    "name": "NI mate Motion Capture",
+    "url": "https://github.com/hoontee/godot-ni-mate-motion-capture",
+    "description": "Animate Skeletons with a Microsoft Kinect sensor (Godot 3.2)."
+  },
+  {
+    "name": "Polygon Merge",
+    "url": "https://github.com/ScyDev/Godot-Scripts",
+    "description": "Merge polygons."
+  },
+  {
+    "name": "Qodot",
+    "url": "https://github.com/Shfty/qodot-plugin",
+    "description": "Quake .map file support for Godot. Lets you use TrenchBroom for level design. (Godot 3.2)."
+  },
+  {
+    "name": "Simplex 2D/3D",
+    "url": "https://github.com/OvermindDL1/Godot-Helpers",
+    "description": "Simplex deterministic noise functions."
+  },
+  {
+    "name": "Scrolling Background",
+    "url": "https://github.com/dploeger/godot-scrollingbackground",
+    "description": "A scrolling background node (Godot 2.1)."
+  },
+  {
+    "name": "SMRT-Godot",
+    "url": "https://github.com/brunosxs/SMRT-Godot",
+    "description": "A dialog system and editor fairly customizable, a nice fit for story-driven games (Godot 3.0)."
+  },
+  {
+    "name": "SUTjoystick",
+    "url": "https://gitlab.com/shine-upon-thee/joystick",
+    "description": "Easy gamepad support for GNU/Linux and Windows (Godot 2.1)."
+  },
+  {
+    "name": "Tiled importer",
+    "url": "https://github.com/vnen/godot-tiled-importer",
+    "description": "Import maps from Tiled (Godot 3.1)."
+  },
+  {
+    "name": "Tileset Builder",
+    "url": "https://gist.github.com/Calinou/27e979ab0a35500c3381",
+    "description": "Build tilesets."
+  },
+  {
+    "name": "TileSet Builder",
+    "url": "https://github.com/HeavenMercy/TileSet-Builder-Godot-Plugin",
+    "description": "Quickly build tilesets with style (Godot 3.2)."
+  },
+  {
+    "name": "UI Design Tool",
+    "url": "https://github.com/imjp94/UIDesignTool",
+    "description": "Intuitive design workflow for UIs in the editor (Godot 3.2)."
+  },
+  {
+    "name": "Volumetrics",
+    "url": "https://github.com/SIsilicon/Godot-Volumetrics-Plugin",
+    "description": "Voxel-based volumetric lighting and fog plugin (Godot 3.2)."
+  },
+  {
+    "name": "VPainter",
+    "url": "https://github.com/tomankirilov/VPainter",
+    "description": "3D vertex painting plugin (Godot 3.2)."
+  },
+  {
+    "name": "Yume Visual Novel Editor",
+    "url": "https://github.com/yumedev40/Yume-Visual-Novel-Editor",
+    "description": "An integrated editor for creating visual novel games (Godot 3.2)."
+  },
+  {
+    "name": "Atom",
+    "url": "https://atom.io/packages/lang-gdscript",
+    "description": "Syntax highlighting."
+  },
+  {
+    "name": "Emacs",
+    "url": "https://github.com/godotengine/emacs-gdscript-mode",
+    "description": "Syntax highlighting, code folding, indentation and autocompletion."
+  },
+  {
+    "name": "Geany",
+    "url": "https://github.com/haimat/GDScript-Geany",
+    "description": "Syntax highlighting."
+  },
+  {
+    "name": "Gedit",
+    "url": "https://github.com/haimat/GDScript-gedit",
+    "description": "Syntax highlighting."
+  },
+  {
+    "name": "IntelliJ IDEA",
+    "url": "https://github.com/exigow/intellij-gdscript",
+    "description": "Syntax highlighting and autocompletion."
+  },
+  {
+    "name": "JetBrains Rider (C#)",
+    "url": "https://github.com/JetBrains/godot-support",
+    "description": "Syntax highlighting, autocompletion and run configurations."
+  },
+  {
+    "name": "Kakoune",
+    "url": "https://github.com/Skytrias/gdscript-kak",
+    "description": "Syntax highlighting."
+  },
+  {
+    "name": "Sublime Text",
+    "url": "https://github.com/beefsack/GDScript-sublime",
+    "description": "Syntax highlighting."
+  },
+  {
+    "name": "Vim",
+    "url": "https://github.com/habamax/vim-godot",
+    "description": "Syntax highlighting, autocompletion and linting using the LSP server provided by the Godot editor. Also supports the Godot shader language."
+  },
+  {
+    "name": "Visual Studio Code",
+    "url": "https://marketplace.visualstudio.com/items?itemName=geequlim.godot-tools",
+    "description": "Comes with a wealth of features to make your programming experience as comfortable as possible."
+  },
+  {
+    "name": "godot-tools Visual Studio Code Extension",
+    "url": "https://marketplace.visualstudio.com/items?itemName=geequlim.godot-tools",
+    "description": "A complete set of tools to code games with Godot Engine in Visual Studio Code."
+  },
+  {
+    "name": "C# Tools for Godot Visual Studio Code Extension",
+    "url": "https://marketplace.visualstudio.com/items?itemName=neikeq.godot-csharp-vscode",
+    "description": "Debugger and utilities for working with Godot C# projects in VSCode."
+  },
+  {
+    "name": "GUT Visual Studio Code Extension",
+    "url": "https://github.com/bitwes/gut-extension",
+    "description": "Run GUT framework unit/integration tests directly from the Visual Studio Code Editors."
+  },
+  {
+    "name": "gdformat Visual Studio Code Extension",
+    "url": "https://marketplace.visualstudio.com/items?itemName=Razoric.gdscript-toolkit-formatter",
+    "description": "Formatter for GDScript in Visual Studio Code (Godot 3.x)."
+  },
+  {
+    "name": "base16-godot",
+    "url": "https://github.com/Calinou/base16-godot",
+    "description": "All base16 themes."
+  },
+  {
+    "name": "Godot syntax themes",
+    "url": "https://github.com/godotengine/godot-syntax-themes",
+    "description": "13 syntax themes including Ayu Mirage, Darcula, Gruvbox Dark, Monokai, One Dark, Solarized, and more."
+  },
+  {
+    "name": "Syntax themes by Geequlim",
+    "url": "https://github.com/Geequlim/godot-themes/tree/master/syntax",
+    "description": "Chester, Google Code Light and Monokai."
+  },
+  {
+    "name": "Calinou's builds",
+    "url": "https://hugo.pro/projects/godot-builds/",
+    "description": "Mainly master branch, other branches can be found here."
+  },
+  {
+    "name": "iFire's builds",
+    "url": "https://ifiregames.itch.io/stern-flowers-chibifire-com-godot-engine",
+    "description": "Distributed via Itch.io (automatic updates with app), master branch only."
+  },
+  {
+    "name": "build-godot and build-godot-mono",
+    "url": "https://github.com/aaronfranke/Linux-tools/blob/master/all-distros/build-godot",
+    "description": "Scripts that build and run Godot, attempting to install dependencies if needed."
+  },
+  {
+    "name": "codetranslator",
+    "url": "https://github.com/HaSa1002/codetranslator",
+    "description": "Translates GDScript to C# (WIP)."
+  },
+  {
+    "name": "gdscript-pp",
+    "url": "https://github.com/nonunknown/gdscript-pp",
+    "description": "Translates GDScript to GDNative C++ (WIP)."
+  },
+  {
+    "name": "gd-com npm package",
+    "url": "https://www.npmjs.com/package/@gd-com/utils",
+    "description": "Communicate with Godot clients using Node.js."
+  },
+  {
+    "name": "godot-ci",
+    "url": "https://github.com/aBARICHELLO/godot-ci",
+    "description": "Docker image to export Godot games through CI. Includes GitLab CI script example."
+  },
+  {
+    "name": "godot.sh",
+    "url": "https://github.com/adolson/godot-stuff/blob/master/godot.sh",
+    "description": "Script that automatically downloads and launches latest version of Godot, or compiles and launches the Git master branch."
+  },
+  {
+    "name": "godot-gdscript-toolkit",
+    "url": "https://github.com/Scony/godot-gdscript-toolkit",
+    "description": "Independent set of command line tools for working with GDScript - parser, linter and formatter (Godot 3.x)."
+  },
+  {
+    "name": "godot-wrapper",
+    "url": "https://github.com/nsrosenqvist/godot-wrapper",
+    "description": "Script that helps Debian and Ubuntu users install and use Godot."
+  },
+  {
+    "name": "replicate-file.sh",
+    "url": "https://github.com/adolson/godot-stuff/blob/master/replicate-file.sh",
+    "description": "Script to update copies of a file with one master file."
+  },
+  {
+    "name": "strip-to-frames.pl",
+    "url": "https://github.com/adolson/godot-stuff/blob/master/strip-to-frames.pl",
+    "description": "Perl script to split a grid spritesheet image into numbered individual frame files."
+  }
+]
