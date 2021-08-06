@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+	</head>
+	<body>
+		<form action="/your-url/" method="post">
+			<label for="your_name">Your name: </label>
+			<input id="your_name" type="text" name="your_name" maxlength="100">
+
+			<!-- the g-recaptcha div-->
+			<div class="g-recaptcha" data-sitekey="<Your site key Here>"></div>
+
+
+			<input type="submit" value="Submit" />
+		</form>
+	</body>
+</html>

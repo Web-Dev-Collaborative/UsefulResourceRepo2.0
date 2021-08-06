@@ -1,0 +1,27 @@
+<html>
+<head>
+	<title>classical inheritance</title>
+	<script type="text/javascript" src="extend.js"></script>
+	<script type="text/javascript" src="extend_example.js"></script>
+
+
+	<script type="text/javascript">
+		var reader = new Person('John Smith');
+		console.log(reader.getName());
+
+		// Author
+		// 
+		
+		var author = [];
+		author[0] = new Author('John', ['Javascript books'])
+		author[1] = new Author('Ross', ['Javascript books'])
+
+		console.log(author[1].getName());
+		console.log(author[1].getBooks());
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

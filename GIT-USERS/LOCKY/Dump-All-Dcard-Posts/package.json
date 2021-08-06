@@ -1,0 +1,19 @@
+{
+  "name": "Periodically-get-posts",
+  "version": "0.0.1",
+  "description": "Get dcard posts periodically",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Calvin Jeng <locky4567@gmail.com> (https://github.com/lockys)",
+  "license": "MIT",
+  "dependencies": {
+    "dcard": "^1.0.3",
+    "get-urls": "^5.0.0",
+    "jsonfile": "^2.2.1",
+    "minimist": "^1.1.1",
+    "request": "^2.58.0",
+    "s3": "^4.4.0"
+  }
+}

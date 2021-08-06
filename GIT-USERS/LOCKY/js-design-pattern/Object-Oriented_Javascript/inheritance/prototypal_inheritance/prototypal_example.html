@@ -1,0 +1,27 @@
+<html>
+<head>
+	<title>prototypal inheritance</title>
+	<script type="text/javascript" src="clone.js"></script>
+	<script type="text/javascript">
+		var Person = {
+			name: 'default name',
+			getName: function() {
+				return this.name;
+			}
+		}
+
+		var reader = clone(Person);
+		console.log(reader.getName());
+		reader.name = "John";
+		console.log(reader.getName());
+
+
+		//Author
+		
+		
+	</script>
+</head>
+<body>
+
+</body>
+</html>

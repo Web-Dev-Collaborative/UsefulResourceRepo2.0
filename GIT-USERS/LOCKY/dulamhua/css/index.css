@@ -1,0 +1,221 @@
+*{
+	font-family: 標楷體;
+}
+body{
+}
+
+#agree_img{
+	float: right;
+	margin: 3px 0 0 0;
+	-moz-transform-origin:right bottom;
+	-moz-transform:rotate(3deg);
+	-webkit-transform-origin:right bottom;
+	-webkit-transform:rotate(3deg);
+	-o-transform-origin:right bottom;
+	-o-transform:rotate(3deg);
+	-ms-transform-origin:right bottom;
+	-ms-transform:rotate(3deg);
+	transform-origin:right bottom;
+	transform:rotate(3deg);
+}
+
+.applyWindow{
+	cursor: pointer;
+}
+
+.apply_infor{
+	/*font-family: 標楷體;*/
+	margin: 0 auto;
+}
+
+#apply_form{
+	text-align: center;
+}
+
+#apply_btn, #send_btn{
+	/*font-family: 標楷體;*/
+}
+
+
+.badge {
+  padding: 1px 9px 2px;
+  font-size: 12.025px;
+  font-weight: bold;
+  white-space: nowrap;
+  color: white;
+  background-color: white;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+  position: absolute;
+  top: -6px;
+  left: 110px;
+}
+
+.comment_container{
+	width: 750px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.content_hidden{
+	display: none;
+}
+
+.footer{
+	text-align: center;
+	background-color: #ecf0f1;
+	padding: 160px;
+
+}
+
+.footer h3{
+	font: 2em/100% "Oswald", 標楷體;
+	margin: 0 auto;
+	color: black;
+	padding: 5px;
+}
+
+.intro_1_home{
+	text-align: center;
+	background-image: url("../img/chatting.jpg");
+	padding: 60px 0 20px 0px;
+	background-size: cover;
+	background-position: 0 70%;
+	height: 100%;
+	border-bottom: 5px #ecf0f1 solid;
+}
+.intro_1_home h2{
+	/*font: 2em/100% "Oswald", 標楷體;*/
+	padding: 50px;
+	margin: 10% auto 15px auto;
+	color: #ecf0f1;
+	line-height: 40px;
+	background: black;
+	opacity: 0.75;
+	width: 55%;
+	border-radius: 5px;
+
+}
+
+.intro_1{
+	text-align: center;
+	background-image: url("../img/giftly.png");
+	padding: 60px 0 20px 0px;
+}
+.intro_1 h2{
+	/*font: 2em/100% "Oswald", 標楷體;*/
+	padding: 0;
+	margin: 0 auto 15px auto;
+	color: gray;
+	line-height: 40px;
+}
+
+.intro_1 button{
+	/*font-family: 標楷體;*/
+	opacity: 1;
+	color:darker;
+}
+
+.intro_2{
+	margin: 0 auto;
+	background-color: #fff;
+	padding: 15px;
+	text-transform: uppercase;
+	background: url(../img/watercolor_1.jpg);
+	background-size: cover;
+	outline: 1px solid transparent;
+	text-align: center;
+}
+
+.intro_2 h1 {
+	font: 18em/100% "Oswald", 標楷體;
+	margin: 0 auto;
+	padding: 0px;
+	color: #fff;
+	-webkit-mask-image: url(../img/splatter-mask_1.png); 
+	mask-image: url(../img/splatter-mask_1.png); 
+}
+
+
+.intro_3{
+	text-align: center;
+	background-image: url(../img/flower.jpg);
+}
+
+.intro_3 h2{
+	/*font: 2em/100% "Oswald", 標楷體;*/
+	padding: 15px;
+	margin: 0 auto;
+	color: draker;
+	background-color: lightgray;
+	opacity: 0.8;
+}
+
+.intro_top{
+	padding: 45px 0 0 0;
+}
+
+.intro_about{
+	background-image: url(../img/crossword.png);
+}
+
+.intro_about h3{
+	margin: 0 auto;
+	padding: 15px;
+	color: black;
+	width: 900px;
+	text-indent: 5px;
+	line-height: 30px;
+}
+
+.intro_about h3:first-letter {
+	font-size : 200%;
+	font-weight : bold;
+
+}
+
+.intro_form{
+	background-image: url("../img/giftly.png");
+	padding: 40px 0 10px 0px;
+}
+
+.list_contact{
+	margin: 0 auto;
+	width: 1260px;
+}
+
+#nav_bar{
+	width: 610px;
+	margin: 0 auto;
+	/*font-family: 標楷體;*/
+}
+
+#nav_bar a{
+	color: white;
+}
+
+.nav_bar_con{
+	position: fixed;
+	opacity: 0.9;
+	z-index: 5999;
+}
+
+.signup_innerdiv{
+	height: 670px;
+}
+
+#scrollToTop{
+	position: fixed;
+	right: 50px;
+	bottom: 25px;
+	font-size: 40px;
+	cursor: pointer;
+	opacity: 0.6;
+}
+
+#scrollToTop:hover{
+	opacity: 1;
+}
+
+

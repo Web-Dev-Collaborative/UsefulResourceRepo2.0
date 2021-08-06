@@ -1,0 +1,17 @@
+<html>
+<head>
+	<title>form Validate</title>
+	
+	<script type="text/javascript" src="formValidate.js"></script>
+	<script type="text/javascript" src="input.js"></script>
+	<script type="text/javascript">
+		var contactForm = new CompositeForm('contact-form', 'POST', '/');
+		contactForm.add(new InputField('first-name', 'First Name'));
+		contactForm.add(new InputField('last-name', 'Last Name'));
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

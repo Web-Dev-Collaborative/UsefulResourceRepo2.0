@@ -1,0 +1,46 @@
+{
+  "name": "hack",
+  "version": "0.8.1",
+  "description": "Dead simple CSS framework.",
+  "main": "dist/hack.css",
+  "scripts": {
+    "test": "npm run build",
+    "build": "gulp build",
+    "dev": "gulp",
+    "gh": "npm run build && gh-pages -d demo",
+    "toc": "markdown-toc -i README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egoist/hack.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "hack",
+    "css",
+    "ui",
+    "web",
+    "bootstrap"
+  ],
+  "author": "EGOIST <0x142857@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/egoist/hack/issues"
+  },
+  "homepage": "https://github.com/egoist/hack#readme",
+  "devDependencies": {
+    "color-preset": "^0.1.1",
+    "cssnano": "^3.7.3",
+    "gulp": "^3.9.1",
+    "gulp-jade": "^1.1.0",
+    "gulp-postcss": "^6.1.1",
+    "gulp-serve": "^1.4.0",
+    "jstransformer-marked": "^1.0.1",
+    "postcss-cssnext": "^2.7.0",
+    "postcss-import": "^8.1.2",
+    "postcss-mixins": "^5.0.0",
+    "postcss-simple-vars": "^3.0.0"
+  }
+}
