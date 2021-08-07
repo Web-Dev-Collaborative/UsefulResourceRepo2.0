@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Determine if o is an array-like object.
 // Strings and functions have numeric length properties, but are
 // excluded by the typeof test. In client-side JavaScript, DOM text

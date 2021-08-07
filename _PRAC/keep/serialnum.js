@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // This object generates strictly increasing serial numbers
 const serialnum = {
   // This data property holds the next serial number.

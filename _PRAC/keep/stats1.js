@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 let data = [1, 1, 3, 5, 5]; // This is our array of numbers
 
 // The mean is the sum of the elements divided by the number of elements

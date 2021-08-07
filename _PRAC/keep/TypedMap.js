@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 class TypedMap extends Map {
   constructor(keyType, valueType, entries) {
     // If entries are specified, check their types

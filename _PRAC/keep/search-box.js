@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 /**
  * This class defines a custom HTML <search-box> element that displays an
  * <input> text input field plus two icons or emoji. By default, it displays a

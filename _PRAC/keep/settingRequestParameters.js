@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 async function search(term) {
   let url = new URL("/api/search");
   url.searchParams.set("q", term);

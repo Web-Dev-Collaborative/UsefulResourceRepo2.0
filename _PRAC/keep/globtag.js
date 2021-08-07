@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 function glob(strings, ...values) {
   // Assemble the strings and values into a single string
   let s = strings[0];

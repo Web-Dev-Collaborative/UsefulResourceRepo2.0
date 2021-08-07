@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // This object has accessor properties that return random numbers.
 // The expression "random.octet", for example, yields a random number
 // between 0 and 255 each time it is evaluated.

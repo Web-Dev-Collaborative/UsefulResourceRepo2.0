@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 const fs = require("fs"); // Require the filesystem module
 
 // Read a config file, parse its contents as JSON, and pass the

@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 function readOnlyProxy(o) {
   function readonly() {
     throw new TypeError("Readonly");

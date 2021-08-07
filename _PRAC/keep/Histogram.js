@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 /**
  * A Set-like class that keeps track of how many times a value has
  * been added. Call add() and remove() like you would for a Set, and

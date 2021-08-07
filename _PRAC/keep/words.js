@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 function words(s) {
   var r = /\s+|$/g; // Match one or more spaces or end
   r.lastIndex = s.match(/[^ ]/).index; // Start matching at first nonspace

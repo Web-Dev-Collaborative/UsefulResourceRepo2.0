@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Store the name/value pair as a cookie, encoding the value with
 // encodeURIComponent() in order to escape semicolons, commas, and spaces.
 // If daysToLive is a number, set the max-age attribute so that the cookie

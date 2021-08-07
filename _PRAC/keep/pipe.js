@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 function pipe(readable, writable, callback) {
   // First, set up error handling
   function handleError(err) {

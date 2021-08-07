@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Given an array of iterables, yield their elements in interleaved order.
 function* zip(...iterables) {
   // Get an iterator for each iterable

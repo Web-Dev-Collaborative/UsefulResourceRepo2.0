@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // This is how we could define a stats module
 const stats = (function () {
   // Utility functions private to the module

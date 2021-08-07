@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Return the document's cookies as a Map object.
 // Assume that cookie values are encoded with encodeURIComponent().
 function getCookies() {

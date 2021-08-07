@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // This utility function asynchronously obtains the database object (creating
 // and initializing the DB if necessary) and passes it to the callback.
 function withDB(callback) {

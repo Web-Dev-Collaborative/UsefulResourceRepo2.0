@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // We define some simple functions here
 function add(x, y) {
   return x + y;

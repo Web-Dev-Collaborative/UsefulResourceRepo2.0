@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Return the largest prime smaller than n, using the sieve of Eratosthenes
 function sieve(n) {
   let a = new Uint8Array(n + 1); // a[x] will be 1 if x is composite

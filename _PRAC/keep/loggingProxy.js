@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 /*
  * Return a Proxy object that wraps o, delegating all operations to
  * that object after logging each operation. objname is a string that

@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Replace the method named m of the object o with a version that logs
 // messages before and after invoking the original method.
 function trace(o, m) {

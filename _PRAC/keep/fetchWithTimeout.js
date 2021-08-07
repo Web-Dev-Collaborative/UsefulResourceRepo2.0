@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // This function is like fetch(), but it adds support for a timeout
 // property in the options object and aborts the fetch if it is not complete
 // within the number of milliseconds specified by that property.

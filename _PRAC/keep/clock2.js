@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 function clock(interval, max = Infinity) {
   // A Promise-ified version of setTimeout that we can use await with.
   // Note that this takes an absolute time instead of an interval.

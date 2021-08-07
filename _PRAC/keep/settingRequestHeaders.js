@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 let authHeaders = new Headers();
 // Don't use Basic auth unless it is over an HTTPS connection.
 authHeaders.set("Authorization", `Basic ${btoa(`${username}:${password}`)}`);

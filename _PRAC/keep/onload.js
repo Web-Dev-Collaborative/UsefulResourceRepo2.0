@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Set the onload property of the Window object to a function.
 // The function is the event handler: it is invoked when the document loads.
 window.onload = function () {

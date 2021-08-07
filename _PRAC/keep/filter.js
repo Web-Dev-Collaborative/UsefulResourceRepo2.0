@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Return an iterable object that filters the specified iterable,
 // iterating only those elements for which the predicate returns true
 function filter(iterable, predicate) {

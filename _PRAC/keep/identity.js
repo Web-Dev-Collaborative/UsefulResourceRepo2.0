@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // We use a Proxy to create an object that appears to have every
 // possible property, with the value of each property equal to its name
 let identity = new Proxy(

@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // The arguments to this function are passed on the left
 function partialLeft(f, ...outerArgs) {
   return function (...innerArgs) {

@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 fetch("/api/users/current") // Make an HTTP (or HTTPS) GET request.
   .then((response) => {
     // When we get a response, first check it

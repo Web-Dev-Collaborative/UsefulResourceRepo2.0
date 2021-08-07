@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Smear the pixels of the rectangle to the right, producing a
 // sort of motion blur as if objects are moving from right to left.
 // n must be 2 or larger. Larger values produce bigger smears.

@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Read lines of text from the source stream, and write any lines
 // that match the specified pattern to the destination stream.
 async function grep(source, destination, pattern, encoding = "utf8") {

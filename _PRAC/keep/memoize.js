@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Return a memoized version of f.
 // It only works if arguments to f all have distinct string representations.
 function memoize(f) {

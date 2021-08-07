@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // This function takes an array of input values and a "promiseMaker" function.
 // For any input value x in the array, promiseMaker(x) should return a Promise
 // that will fulfill to an output value. This function returns a Promise

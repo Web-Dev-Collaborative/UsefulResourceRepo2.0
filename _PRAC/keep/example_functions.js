@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Print the name and value of each property of o.  Return undefined.
 function printprops(o) {
   for (let p in o) {

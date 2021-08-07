@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 function wait(duration) {
   // Create and return a new Promise
   return new Promise((resolve, reject) => {

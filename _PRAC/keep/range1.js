@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // This is a factory function that returns a new range object.
 function range(from, to) {
   // Use Object.create() to create an object that inherits from the

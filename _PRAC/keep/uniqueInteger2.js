@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 let uniqueInteger = (function () {
   // Define and invoke
   let counter = 0; // Private state of function below

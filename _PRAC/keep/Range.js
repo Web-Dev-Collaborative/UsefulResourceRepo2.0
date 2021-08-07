@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 /*
  * A Range object represents a range of numbers {x: from <= x <= to}
  * Range defines a has() method for testing whether a given number is a member

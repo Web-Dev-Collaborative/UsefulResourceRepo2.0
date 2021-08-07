@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 customElements.define(
   "inline-circle",
   class InlineCircle extends HTMLElement {

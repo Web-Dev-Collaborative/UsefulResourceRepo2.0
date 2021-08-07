@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Define a regular polygon with n sides, centered at (x,y) with radius r.
 // The vertices are equally spaced along the circumference of a circle.
 // Put the first vertex straight up or at the specified angle.

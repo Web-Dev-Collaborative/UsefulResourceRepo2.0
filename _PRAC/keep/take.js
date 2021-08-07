@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Yield the first n elements of the specified iterable object
 function* take(n, iterable) {
   let it = iterable[Symbol.iterator](); // Get iterator for iterable object

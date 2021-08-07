@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // This is a simple worker that receives a message from its parent thread,
 // performs the computation described by that message and then posts the
 // result of that computation back to the parent thread.

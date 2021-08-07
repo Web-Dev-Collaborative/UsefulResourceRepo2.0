@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 function html(strings, ...values) {
   // Convert each value to a string and escape special HTML characters
   let escaped = values.map((v) =>

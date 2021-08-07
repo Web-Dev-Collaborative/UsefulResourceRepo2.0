@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 function fetchSequentially(urls) {
   // We'll store the URL bodies here as we fetch them
   const bodies = [];

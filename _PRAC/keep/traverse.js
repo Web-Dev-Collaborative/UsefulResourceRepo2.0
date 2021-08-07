@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Recursively traverse the Document or Element e, invoking the function
 // f on e and on each of its descendants
 function traverse(e, f) {

@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Initialize the counter property of the function object.
 // Function declarations are hoisted so we really can
 // do this assignment before the function declaration.

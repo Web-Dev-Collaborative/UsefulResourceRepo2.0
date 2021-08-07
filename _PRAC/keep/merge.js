@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Like Object.assign() but doesn't override existing properties
 // (and also doesn't handle Symbol properties)
 function merge(target, ...sources) {

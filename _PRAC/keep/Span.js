@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // This is the constructor function for our subclass
 function Span(start, span) {
   if (span >= 0) {

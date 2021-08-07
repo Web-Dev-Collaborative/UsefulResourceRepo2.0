@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Return an iterable object that iterates the result of applying f()
 // to each value from the source iterable
 function map(iterable, f) {

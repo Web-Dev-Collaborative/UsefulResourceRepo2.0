@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 let deg = Math.PI / 180; // For converting degrees to radians
 
 // Draw a level-n Koch snowflake fractal on the canvas context c,

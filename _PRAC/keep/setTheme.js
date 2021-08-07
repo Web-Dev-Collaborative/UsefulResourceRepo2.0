@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 function setTheme(name) {
   // Create a new <link rel="stylesheet"> element to load the named stylesheet
   let link = document.createElement("link");

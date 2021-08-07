@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 (function updateClock() {
   // Update the SVG clock graphic to show current time
   let now = new Date(); // Current time

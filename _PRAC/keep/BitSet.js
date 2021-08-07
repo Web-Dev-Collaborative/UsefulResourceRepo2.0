@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 const BitSet = (function() { // Set BitSet to the return value of this function
     // Private implementation details here
     function isValid(set, n) { ... }

@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 /*
  * This class represents a subrectangle of a canvas or image. We use Tiles to
  * divide a canvas into regions that can be processed independently by Workers.

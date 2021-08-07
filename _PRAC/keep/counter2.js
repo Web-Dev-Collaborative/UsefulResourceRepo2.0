@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 function counter(n) {
   // Function argument n is the private variable
   return {

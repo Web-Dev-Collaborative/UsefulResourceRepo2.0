@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 /*
  * Define a new Object.assignDescriptors() function that works like
  * Object.assign() except that it copies property descriptors from

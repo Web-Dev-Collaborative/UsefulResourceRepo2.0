@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Return the plain-text content of element e, recursing into child elements.
 // This method works like the textContent property
 function textContent(e) {

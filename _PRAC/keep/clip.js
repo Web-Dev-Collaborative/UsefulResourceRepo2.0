@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Define some drawing attributes
 c.font = "bold 60pt sans-serif"; // Big font
 c.lineWidth = 2; // Narrow lines

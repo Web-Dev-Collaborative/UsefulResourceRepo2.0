@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // This is a simple static HTTP server that serves files from a specified
 // directory. It also implements a special /test/mirror endpoint that
 // echoes the incoming request, which can be useful when debugging clients.

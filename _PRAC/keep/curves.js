@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // A utility function to convert angles from degrees to radians
 function rads(x) {
   return (Math.PI * x) / 180;

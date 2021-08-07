@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Compute factorials and cache results as properties of the function itself.
 function factorial(n) {
   if (Number.isInteger(n) && n > 0) {

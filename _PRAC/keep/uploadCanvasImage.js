@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // The canvas.toBlob() function is callback-based.
 // This is a Promise-based wrapper for it.
 async function getCanvasBlob(canvas) {

@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // Return a new function that computes f(g(...)).
 // The returned function h passes all of its arguments to g, then passes
 // the return value of g to f, then returns the return value of f.

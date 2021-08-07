@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // This is a constructor function that initializes new Range objects.
 // Note that it does not create or return the object. It just initializes this.
 function Range(from, to) {

@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // A trivial Array subclass that adds getters for the first and last elements.
 class EZArray extends Array {
   get first() {

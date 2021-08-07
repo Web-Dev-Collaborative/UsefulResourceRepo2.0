@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------
 // This function takes a function and returns a wrapped version
 function timed(f) {
   return function (...args) {
