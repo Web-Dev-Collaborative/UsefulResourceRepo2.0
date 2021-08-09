@@ -74,6 +74,10 @@ git add ./MY_REPOS/fast-fourier-transform-/
 git commit -m "update"
 git push 
 
+   git add      _BACKUPS/index-bottom.html
+ git add        _BACKUPS/index-template.html
+    git add     iframes.html
+    git add     path-fixer.js
 
 
 git add ./MY_REPOS/form-builder-vanilla-js/
