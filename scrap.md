@@ -14,7 +14,22 @@ find . \( -name "*SECURITY.txt" -o -name "*RELEASE.txt" -o  -name "*CHANGELOG.tx
 Clone Orginization:
 
 #!/bin/bash
-for i in $(curl "https://api.github.com/orgs/freeCodeCamp/repos" | grep -oP '"clone_url":\s*"\K[^"]+'); do
+for i in $(curl "https://api.github.com/orgs/Web-Dev-Collaborative/repos" | grep -oP '"clone_url":\s*"\K[^"]+'); do
+  echo git clone "$i"
+done
+
+#!/bin/bash
+for i in $(curl "https://api.github.com/orgs/Archive-42/repos" | grep -oP '"clone_url":\s*"\K[^"]+'); do
+  echo git clone "$i"
+done
+
+#!/bin/bash
+for i in $(curl "https://api.github.com/orgs/Web-Audio-Tools /repos" | grep -oP '"clone_url":\s*"\K[^"]+'); do
+  echo git clone "$i"
+done
+
+#!/bin/bash
+for i in $(curl "https://api.github.com/orgs/side-projects-42/repos" | grep -oP '"clone_url":\s*"\K[^"]+'); do
   echo git clone "$i"
 done
 
