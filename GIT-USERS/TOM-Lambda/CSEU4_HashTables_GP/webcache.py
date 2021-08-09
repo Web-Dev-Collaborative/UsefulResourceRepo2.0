@@ -20,6 +20,10 @@
 # what imports will we need
 # https://docs.python.org/3/library/urllib.request.html#module-urllib.request
 import urllib.request
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # https://docs.python.org/3/library/datetime.html
 import datetime
 
@@ -30,11 +34,19 @@ class CacheEntry:
     - url
     - data
     """
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def __init__(self, url, data):
         self.url = url
         self.data = data
         self.timestamp = datetime.datetime.now().timestamp()
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # a cache
 cache = {}
 
@@ -75,4 +87,8 @@ while True:
         cache[url] = CacheEntry(url, data)
 
         # close the connection
+<<<<<<< HEAD
         res.close()
+=======
+        res.close()
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

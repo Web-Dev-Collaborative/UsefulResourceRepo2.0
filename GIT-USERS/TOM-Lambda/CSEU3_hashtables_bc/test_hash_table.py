@@ -4,7 +4,10 @@ from hash_table import HashTable
 
 
 class TestHashTable(unittest.TestCase):
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def test_hash_table_insertion_and_retrieval(self):
         ht = HashTable(8)
 
@@ -193,5 +196,10 @@ class TestHashTable(unittest.TestCase):
         self.assertTrue(return_value == "val-9")
 
 
+<<<<<<< HEAD
 if __name__ == '__main__':
     unittest.main()
+=======
+if __name__ == "__main__":
+    unittest.main()
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

@@ -7,6 +7,10 @@ class User:
     def __init__(self, name):
         self.name = name
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class SocialGraph:
     def __init__(self):
         self.last_id = 0
@@ -20,7 +24,14 @@ class SocialGraph:
         if user_id == friend_id:
             # print("WARNING: You cannot be friends with yourself")
             return False
+<<<<<<< HEAD
         elif friend_id in self.friendships[user_id] or user_id in self.friendships[friend_id]:
+=======
+        elif (
+            friend_id in self.friendships[user_id]
+            or user_id in self.friendships[friend_id]
+        ):
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
             # print("WARNING: Friendship already exists")
             return False
         else:
@@ -47,7 +58,11 @@ class SocialGraph:
             self.add_user(f"User {i}")
         # !!!! IMPLEMENT ME
 
+<<<<<<< HEAD
         target_friendships = (num_users * avg_friendships)
+=======
+        target_friendships = num_users * avg_friendships
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         total_friendships = 0
         collisions = 0
 
@@ -59,9 +74,14 @@ class SocialGraph:
                 total_friendships += 2
             else:
                 collisions += 1
+<<<<<<< HEAD
         
         print(f"Collisions: {collisions}")
 
+=======
+
+        print(f"Collisions: {collisions}")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
     def populate_graph(self, num_users, avg_friendships):
         """
@@ -81,7 +101,10 @@ class SocialGraph:
         for i in range(0, num_users):
             self.add_user(f"User {i}")
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # Create friendships
         # generate all possible friendship combinations
         possible_friendships = []
@@ -104,8 +127,11 @@ class SocialGraph:
             friend_id = friendship[1]
             self.add_friendship(user_id, friend_id)
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def get_all_social_paths(self, user_id):
         """
         Takes a user's user_id as an argument
@@ -132,7 +158,10 @@ class SocialGraph:
         return visited
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # if __name__ == '__main__':
 #     sg = SocialGraph()
 #     sg.populate_graph(10, 2)
@@ -152,7 +181,11 @@ class SocialGraph:
 #     print(f"Avg length of social path: {total_social_paths / len(connections)}")
 
 # Random Sampling
+<<<<<<< HEAD
 if __name__ == '__main__':
+=======
+if __name__ == "__main__":
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     sg = SocialGraph()
     # start_time = time.time()
     num_users = 2000
@@ -161,9 +194,17 @@ if __name__ == '__main__':
     sg.populate_graph_linear(num_users, avg_friendships)
     # print(sg.friendships)
     end_time = time.time()
+<<<<<<< HEAD
     print (f"Linear runtime: {end_time - start_time} seconds")
+=======
+    print(f"Linear runtime: {end_time - start_time} seconds")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     sg = SocialGraph()
     start_time = time.time()
     sg.populate_graph(num_users, avg_friendships)
     end_time = time.time()
+<<<<<<< HEAD
     print (f"Quadratic runtime: {end_time - start_time} seconds")
+=======
+    print(f"Quadratic runtime: {end_time - start_time} seconds")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

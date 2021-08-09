@@ -1,6 +1,12 @@
 # insertion sort
 
+<<<<<<< HEAD
 my_book = {'title': 'Food for thought', 'author': 'jon jones', 'genre': 'food'}
+=======
+my_book = {"title": "Food for thought", "author": "jon jones", "genre": "food"}
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class Book:
     def __init__(self, title, author, genre):
         self.title = title
@@ -8,6 +14,7 @@ class Book:
         self.genre = genre
 
     def __str__(self):
+<<<<<<< HEAD
         return f'{self.genre}: {self.title} by {self.author}'
 
 b1 = Book('Food for thought', 'jon jones', 'food')
@@ -15,6 +22,16 @@ b2 = Book('My life in reality', 'don davis', 'life')
 b3 = Book('Apples, how you like them?', 'stan simpson', 'food')
 b4 = Book('Just Do It', 'shia le boeuf', 'inspirational')
 b5 = Book('What is this code anyway', 'tom jones', 'programming')
+=======
+        return f"{self.genre}: {self.title} by {self.author}"
+
+
+b1 = Book("Food for thought", "jon jones", "food")
+b2 = Book("My life in reality", "don davis", "life")
+b3 = Book("Apples, how you like them?", "stan simpson", "food")
+b4 = Book("Just Do It", "shia le boeuf", "inspirational")
+b5 = Book("What is this code anyway", "tom jones", "programming")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 books = [b1, b2, b3, b4, b5]
 
@@ -27,7 +44,11 @@ def in_sort(books):
         temp = books[i]
         j = i
         pass
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # iterate over books looking for title
         while j > 0 and temp.title < books[j - 1].title:
             # shift left until correct tile is found
@@ -40,6 +61,10 @@ def in_sort(books):
     # return books
     return books
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # for b in books:
 #     print(b)
 
@@ -64,6 +89,10 @@ def in_sort(books):
 """
 # a more generic insertion sort
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def in_sort2(lst):
     # loop over n - 1 elements
     for i in range(1, len(lst)):
@@ -84,7 +113,11 @@ def in_sort2(lst):
 
 
 my_nums = [23, 34, 60, 1, 4, 5, 2]
+<<<<<<< HEAD
 my_names = ['Dave', 'Steve', 'Bob']
+=======
+my_names = ["Dave", "Steve", "Bob"]
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 print(my_nums)
 
@@ -96,4 +129,8 @@ print(my_names)
 
 in_sort2(my_names)
 
+<<<<<<< HEAD
 print(my_names)
+=======
+print(my_names)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

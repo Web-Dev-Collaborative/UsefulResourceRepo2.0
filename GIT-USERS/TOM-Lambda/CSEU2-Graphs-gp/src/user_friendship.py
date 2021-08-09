@@ -1,8 +1,17 @@
 from random import random
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class User:
     def __init__(self, name):
         self.name = name
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class SocialGraph:
     def __init__(self):
         self.lastID = 0
@@ -15,7 +24,13 @@ class SocialGraph:
         """
         if userID == friendID:
             print("WARNING: You cannot be friends with yourself")
+<<<<<<< HEAD
         elif friendID in self.friendships[userID] or userID in self.friendships[friendID]:
+=======
+        elif (
+            friendID in self.friendships[userID] or userID in self.friendships[friendID]
+        ):
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
             print("WARNING: Friendship already exists")
         else:
             self.friendships[userID].add(friendID)
@@ -54,7 +69,11 @@ class SocialGraph:
         # make a list of possible friendships
         possibleFreindships = []
         # avoid duplicates ensuring that the first number is smaller than the second
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # loop over userID in users
         for userID in self.users:
             # loop over friend id in a range from user id + 1 to the lastID +1
@@ -63,7 +82,11 @@ class SocialGraph:
                 possibleFreindships.append((userID, friendID))
         # shuffle the possible friendships using the random.suffle method
         random.shuffle(possibleFreindships)
+<<<<<<< HEAD
         # create afriendships of the first x ammount of pairs in the list   
+=======
+        # create afriendships of the first x ammount of pairs in the list
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # X determined by the formula: numusers * avgFriendships // 2
         # we need to divide by to as each createFriendship adds 2 friendships
         # loop over a range to numUsers * avgFriendships // 2
@@ -73,8 +96,11 @@ class SocialGraph:
             # addfriendship of friendship[0] and friendship[1]
             self.addFriendship(friendship[0], friendship[1])
 
+<<<<<<< HEAD
  
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def getAllSocialPaths(self, userID):
         """
         Takes a user's userID as an argument
@@ -87,9 +113,17 @@ class SocialGraph:
         return visited
 
 
+<<<<<<< HEAD
 if __name__ == '__main__':
+=======
+if __name__ == "__main__":
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     sg = SocialGraph()
     sg.populateGraph(10, 2)
     print(sg.friendships)
     connections = sg.getAllSocialPaths(1)
+<<<<<<< HEAD
     print(connections)
+=======
+    print(connections)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

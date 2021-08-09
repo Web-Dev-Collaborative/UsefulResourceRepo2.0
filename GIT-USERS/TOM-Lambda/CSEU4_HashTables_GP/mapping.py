@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def my_hash(s):
     # turn the string in to some numbers
     nums = s.encode()
@@ -9,7 +12,12 @@ def my_hash(s):
 
     return sum
 
+<<<<<<< HEAD
 hash_table = [None] * 8 # lets start with size 8 as our clamping size
+=======
+
+hash_table = [None] * 8  # lets start with size 8 as our clamping size
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # take the hash and turn it in to an index clamped to the size of a list
 
@@ -52,4 +60,8 @@ h = my_hash("Hello")
 i = h % len(hash_table)
 v = hash_table[i]
 print(v)
+<<<<<<< HEAD
 # print(hash_table)
+=======
+# print(hash_table)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

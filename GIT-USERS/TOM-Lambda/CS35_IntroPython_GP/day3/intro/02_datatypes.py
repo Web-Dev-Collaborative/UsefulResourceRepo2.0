@@ -16,4 +16,8 @@ print(x + int(y))
 
 
 # Write a print statement that combines x + y into the string value 57
+<<<<<<< HEAD
 print(str(x) + y)
+=======
+print(str(x) + y)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

@@ -15,6 +15,10 @@ class Node:
         # set this node's next_node reference to the passed in node
         self.next_node = new_next
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class LinkedList:
     def __init__(self):
         # reference to the head of the list
@@ -60,13 +64,21 @@ class LinkedList:
     def remove_tail(self):
         if not self.head:
             return None
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         if self.head is self.tail:
             value = self.head.get_value()
             self.head = None
             self.tail = None
             return value
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         current = self.head
 
         while current.get_next() is not self.tail:
@@ -88,10 +100,17 @@ class LinkedList:
         #     return False
         #   return search(node.get_next())
         # return search(self.head)
+<<<<<<< HEAD
     
         # get a reference to the node we're currently at; update this as we traverse the list
         current = self.head
         # check to see if we're at a valid node 
+=======
+
+        # get a reference to the node we're currently at; update this as we traverse the list
+        current = self.head
+        # check to see if we're at a valid node
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         while current:
             # return True if the current value we're looking at matches our target value
             if current.get_value() == value:
@@ -116,4 +135,8 @@ class LinkedList:
                 max_value = current.get_value()
             # update the current node to the next node in the list
             current = current.get_next()
+<<<<<<< HEAD
         return max_value
+=======
+        return max_value
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

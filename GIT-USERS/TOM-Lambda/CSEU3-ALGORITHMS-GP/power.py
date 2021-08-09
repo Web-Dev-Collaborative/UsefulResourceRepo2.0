@@ -20,6 +20,10 @@ Given a value (a) and an exponent (b), compute the value of a^b
         - Forth Pass?
 """
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def power(a, b):
     # store a result
     result = 1
@@ -30,11 +34,20 @@ def power(a, b):
         result *= a
         # decrement the exponent (b)
         b -= 1
+<<<<<<< HEAD
     
     # return the result to the caller
     return result
 
 print(power(4, 2)) # => 16
+=======
+
+    # return the result to the caller
+    return result
+
+
+print(power(4, 2))  # => 16
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 
 def power_r(a, b):
@@ -53,7 +66,11 @@ def power_r(a, b):
     if b == 0:
         return 1
     # positive case if b is greater than zero
+<<<<<<< HEAD
     elif b > 0:   
+=======
+    elif b > 0:
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # Recursive case
         # Call the function on b - 1
         return a * power_r(a, b - 1)
@@ -64,6 +81,15 @@ def power_r(a, b):
         # or return 1 divided by function with -b
         # return 1 / power_r(a, -b)
 
+<<<<<<< HEAD
 print(power_r(4, 2)) # => 16
 print(power_r(8, -1)) # => 0.125
 print(power_r(2, "supercalafragialisticexpialodocious")) # => Exponent (b) must be and integer
+=======
+
+print(power_r(4, 2))  # => 16
+print(power_r(8, -1))  # => 0.125
+print(
+    power_r(2, "supercalafragialisticexpialodocious")
+)  # => Exponent (b) must be and integer
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

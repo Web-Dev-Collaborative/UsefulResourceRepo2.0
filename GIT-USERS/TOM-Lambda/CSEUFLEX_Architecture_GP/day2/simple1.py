@@ -1,4 +1,8 @@
 import sys
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # lets build up our simulator some more
 # now we will add the concept of registers
 # and an add opcode, using external files for program code
@@ -29,16 +33,28 @@ def load_memory(filename):
         with open(filename) as f:
             for line in f:
                 # split before comment
+<<<<<<< HEAD
                 comment_split = line.split('#')
+=======
+                comment_split = line.split("#")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
                 # convert to a number splitting and stripping
                 num = comment_split[0].strip()
 
+<<<<<<< HEAD
                 if num == '':
                     continue  # ignore blank lines
                 
                 val = int(num, 2)
                 
+=======
+                if num == "":
+                    continue  # ignore blank lines
+
+                val = int(num, 2)
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
                 # store val in memory at the given address
                 memory[address] = val
 
@@ -77,7 +93,11 @@ while running:
     if command == HALT:
         # EXECUTE
         running = False
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     elif command == PRINT_TOM:
         # EXECUTE
         print("Tom")
@@ -126,7 +146,11 @@ while running:
         reg_b = memory[pc + 2]
         register[reg_a] /= register[reg_b]
         op_size = 3
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # handle IDIV opcode
     elif command == IDIV:
         reg_a = memory[pc + 1]
@@ -134,10 +158,17 @@ while running:
         register[reg_a] //= register[reg_b]
         op_size = 3
 
+<<<<<<< HEAD
     
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     else:
         print(f"Invalid Instruction: {command}")
         running = False
 
     # how will we move forward in memory to grab the next command?
+<<<<<<< HEAD
     pc += op_size
+=======
+    pc += op_size
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

@@ -100,5 +100,11 @@ class BinarySearchTreeTests(unittest.TestCase):
 
         sys.stdout = stdout_  # Restore stdout
 
+<<<<<<< HEAD
 if __name__ == '__main__':
     unittest.main()
+=======
+
+if __name__ == "__main__":
+    unittest.main()
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

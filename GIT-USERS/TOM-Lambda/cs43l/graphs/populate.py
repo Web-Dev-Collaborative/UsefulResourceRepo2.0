@@ -20,4 +20,8 @@ def populate_graph(self, num_users, avg_friendships):
     # Need to divide by 2 since each add_friendship() creates 2 friendships
     for i in range(num_users * avg_friendships // 2):
         friendship = possible_friendships[i]
+<<<<<<< HEAD
         self.add_friendship(friendship[0], friendship[1])
+=======
+        self.add_friendship(friendship[0], friendship[1])
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

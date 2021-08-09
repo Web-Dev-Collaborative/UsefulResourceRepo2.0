@@ -17,26 +17,48 @@ automatically.
 
 import math
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def dist(a, b):
     """Compute the distance between two x,y points."""
     x0, y0 = a  # Destructuring assignment
     x1, y1 = b
+<<<<<<< HEAD
     
     return math.sqrt((x1 - x0)**2 + (y1 - y0)**2)
 
 a = (2, 7)   # <-- x,y coordinates stored in tuples
+=======
+
+    return math.sqrt((x1 - x0) ** 2 + (y1 - y0) ** 2)
+
+
+a = (2, 7)  # <-- x,y coordinates stored in tuples
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 b = (-14, 72)
 
 # Prints "Distance is 66.94"
 print("Distance is: {:.2f}".format(dist(a, b)))
 
 
+<<<<<<< HEAD
 
 # Write a function `print_tuple` that prints all the values in a tuple
 
 def print_tuple(t):
   for i in t:
     print(i)
+=======
+# Write a function `print_tuple` that prints all the values in a tuple
+
+
+def print_tuple(t):
+    for i in t:
+        print(i)
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 t = (1, 2, 5, 7, 99)
 print_tuple(t)  # Prints 1 2 5 7 99, one per line

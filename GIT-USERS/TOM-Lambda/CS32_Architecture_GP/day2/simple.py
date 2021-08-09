@@ -1,5 +1,9 @@
 # Let's build a data driven machine!
 import sys
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # What do we need to have our machine working?
 """
 - Some sort of memory
@@ -24,6 +28,10 @@ PRN = 0b01000111
 
 # some sort of memory (lets refactor this to load in opcodes from a file)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def load_memory(filename):
     # TODO do some logic here
     try:
@@ -33,7 +41,11 @@ def load_memory(filename):
                 comment_split = line.split("#")
                 n = comment_split[0].strip()
 
+<<<<<<< HEAD
                 if n == '':
+=======
+                if n == "":
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
                     continue
 
                 val = int(n, 2)
@@ -116,7 +128,11 @@ while running:
         print(num_at_reg)
         op_size = 2
     elif cmd == SAVE:
+<<<<<<< HEAD
         num_to_save = memory[pc + 1] # 300
+=======
+        num_to_save = memory[pc + 1]  # 300
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         reg_index = memory[pc + 2]
 
         registers[reg_index] = num_to_save
@@ -136,5 +152,9 @@ while running:
 
         op_size = 3
 
+<<<<<<< HEAD
 
     pc += op_size
+=======
+    pc += op_size
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

@@ -1,5 +1,9 @@
 from Category import Category
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class Store:
     def __init__(self, name, catagories):
         self.name = name
@@ -15,8 +19,20 @@ class Store:
         return output
 
 
+<<<<<<< HEAD
 
 s = Store("Steves Shop", [Category("Tools"), Category("Clothes"), Category("Groceries"), Category("another category!")])
+=======
+s = Store(
+    "Steves Shop",
+    [
+        Category("Tools"),
+        Category("Clothes"),
+        Category("Groceries"),
+        Category("another category!"),
+    ],
+)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 selection = 0
 while selection != len(s.categories) + 1:
     print(s)

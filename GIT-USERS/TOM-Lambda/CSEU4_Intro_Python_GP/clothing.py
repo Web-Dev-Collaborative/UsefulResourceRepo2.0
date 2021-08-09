@@ -1,5 +1,9 @@
 from product import Product
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class Clothing(Product):
     def __init__(self, name, price, colour, size):
         super().__init__(name, price)
@@ -16,7 +20,11 @@ class Clothing(Product):
 # # Procedural / imperative
 # verb(noun)
 
+<<<<<<< HEAD
 # Functional 
+=======
+# Functional
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # (input) synth1 -> synth2 -> synth3 -> synthn -> (end result)
 
 # a = 12
@@ -26,4 +34,8 @@ class Clothing(Product):
 # def f2(something):
 #     return something * 2
 
+<<<<<<< HEAD
 # b = f1(a) + f2(a) - f1(a)
+=======
+# b = f1(a) + f2(a) - f1(a)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

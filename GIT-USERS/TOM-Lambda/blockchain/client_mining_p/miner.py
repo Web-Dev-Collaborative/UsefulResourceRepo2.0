@@ -4,10 +4,17 @@ import requests
 import sys
 
 
+<<<<<<< HEAD
 # TODO: Implement functionality to search for a proof 
 
 
 if __name__ == '__main__':
+=======
+# TODO: Implement functionality to search for a proof
+
+
+if __name__ == "__main__":
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # What node are we interacting with?
     if len(sys.argv) > 1:
         node = sys.argv[1]

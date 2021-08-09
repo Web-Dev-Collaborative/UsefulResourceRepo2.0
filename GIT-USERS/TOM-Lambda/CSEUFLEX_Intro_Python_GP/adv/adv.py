@@ -6,6 +6,7 @@ from items import Treasure, LightSource
 # Declare all the rooms
 
 room = {
+<<<<<<< HEAD
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
 
@@ -21,11 +22,36 @@ to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! The only exit is to the south."""),
+=======
+    "outside": Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
+    "foyer": Room(
+        "Foyer",
+        """Dim light filters in from the south. Dusty
+passages run north and east.""",
+    ),
+    "overlook": Room(
+        "Grand Overlook",
+        """A steep cliff appears before you, falling
+into the darkness. Ahead to the north, a light flickers in
+the distance, but there is no way across the chasm.""",
+    ),
+    "narrow": Room(
+        "Narrow Passage",
+        """The narrow passage bends here from west
+to north. The smell of gold permeates the air.""",
+    ),
+    "treasure": Room(
+        "Treasure Chamber",
+        """You've found the long-lost treasure
+chamber! The only exit is to the south.""",
+    ),
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 }
 
 
 # Link rooms together
 
+<<<<<<< HEAD
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -37,10 +63,24 @@ room['treasure'].s_to = room['narrow']
 
 room['outside'].is_light = True
 room['foyer'].is_light = True
+=======
+room["outside"].n_to = room["foyer"]
+room["foyer"].s_to = room["outside"]
+room["foyer"].n_to = room["overlook"]
+room["foyer"].e_to = room["narrow"]
+room["overlook"].s_to = room["foyer"]
+room["narrow"].w_to = room["foyer"]
+room["narrow"].n_to = room["treasure"]
+room["treasure"].s_to = room["narrow"]
+
+room["outside"].is_light = True
+room["foyer"].is_light = True
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # Add some items
 
 t = Treasure("coins", "Shiny coins", 100)
+<<<<<<< HEAD
 room['overlook'].contents.append(t)
 
 t = Treasure("silver", "Tarnished silver", 200)
@@ -48,6 +88,16 @@ room['treasure'].contents.append(t)
 
 l = LightSource("lamp", "Brass lamp")
 room['foyer'].contents.append(l)
+=======
+room["overlook"].contents.append(t)
+
+t = Treasure("silver", "Tarnished silver", 200)
+room["treasure"].contents.append(t)
+
+l = LightSource("lamp", "Brass lamp")
+room["foyer"].contents.append(l)
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 def tryDirection(d, curRoom):
     """
@@ -55,7 +105,11 @@ def tryDirection(d, curRoom):
     Returns the room the player has moved to (or the same room if the player
     didn't move).
     """
+<<<<<<< HEAD
     attrib = d + '_to'
+=======
+    attrib = d + "_to"
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
     # See if the room has the destination attribute
     if hasattr(curRoom, attrib):
@@ -67,6 +121,10 @@ def tryDirection(d, curRoom):
 
     return curRoom
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def find_item(name, curRoom):
     """
     Search the current room to see if we can locate the treasure in question.
@@ -77,13 +135,21 @@ def find_item(name, curRoom):
 
     return None
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
 
+<<<<<<< HEAD
 player = Player(room['outside'])
+=======
+player = Player(room["outside"])
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # Write a loop that:
 #
@@ -101,8 +167,16 @@ done = False
 while not done:
     # Make a list of all the items the player has (or are in the room) that are
     # light sources:
+<<<<<<< HEAD
     light_sources = [item for item in player.contents + player.curRoom.contents
                      if isinstance(item, LightSource) and item.lightsource]
+=======
+    light_sources = [
+        item
+        for item in player.contents + player.curRoom.contents
+        if isinstance(item, LightSource) and item.lightsource
+    ]
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
     is_light = player.curRoom.is_light or len(light_sources) > 0
 
@@ -147,11 +221,19 @@ while not done:
         elif s[0] in ["n", "s", "w", "e"]:
             player.curRoom = tryDirection(s[0], player.curRoom)
         else:
+<<<<<<< HEAD
             print("Unknown command {}".format(' '.join(s)))
     
     # Transitive verbs
     elif len(s) == 2:
         if s[0] == 'get' or s[0] == 'take':
+=======
+            print("Unknown command {}".format(" ".join(s)))
+
+    # Transitive verbs
+    elif len(s) == 2:
+        if s[0] == "get" or s[0] == "take":
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
             if is_light:
                 item = find_item(s[1], player.curRoom)
                 if item == None:
@@ -167,7 +249,11 @@ while not done:
             else:
                 print("Good luck finding that in the dark.")
 
+<<<<<<< HEAD
         elif s[0] == 'drop':
+=======
+        elif s[0] == "drop":
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
             item = find_item(s[1], player)
             if item == None:
                 print("You're not carrying that.")
@@ -177,4 +263,8 @@ while not done:
                 player.curRoom.contents.append(item)
                 print(f"{item}: dropped.")
         else:
+<<<<<<< HEAD
             print("Unknown command {}".format(' '.join(s)))
+=======
+            print("Unknown command {}".format(" ".join(s)))
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

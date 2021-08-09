@@ -20,13 +20,21 @@ def backtrack_to_unexplored_room(player, moves_queue):
     visited = set()
     # enqueue the current room path
     q.enqueue([player.current_room.id])
+<<<<<<< HEAD
     #while the queue is not empty
+=======
+    # while the queue is not empty
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     while q.size() > 0:
         # dequeue the current path
         path = q.dequeue()
         # get the last room in the path
         last_room = path[-1]
+<<<<<<< HEAD
         #if the last room has not been visited
+=======
+        # if the last room has not been visited
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         if last_room not in visited:
             # add the last room to visited set
             visited.add(last_room)
@@ -44,10 +52,18 @@ def backtrack_to_unexplored_room(player, moves_queue):
                     path_copy.append(graph[last_room][exit])
                     # enqueue the duplicated path
                     q.enqueue(path_copy)
+<<<<<<< HEAD
     
     # if nothing was in the path then return an empty list
     return []
 
+=======
+
+    # if nothing was in the path then return an empty list
+    return []
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def enqueue_moves(player, moves_queue):
     # add all the moves to the moves queue
     # set up some current rooms exits
@@ -61,7 +77,11 @@ def enqueue_moves(player, moves_queue):
         if current_room_exits[direction] == "?":
             # if so append the direction to unexplored exits
             unexplored_exits.append(direction)
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # if the unexplored exits are empty
     if len(unexplored_exits) == 0:
         # create a path to enexplored by backtracking
@@ -85,11 +105,22 @@ def enqueue_moves(player, moves_queue):
     # otherwise
     else:
         # enqueue the unexplored exits with random sample to the moves queue to move in a random direction
+<<<<<<< HEAD
         moves_queue.enqueue(unexplored_exits[random.randint(0, len(unexplored_exits) - 1)])  
 
 world = World()
 # Loads the map into a dictionary
 room_graph=literal_eval(open(map_file, "r").read())
+=======
+        moves_queue.enqueue(
+            unexplored_exits[random.randint(0, len(unexplored_exits) - 1)]
+        )
+
+
+world = World()
+# Loads the map into a dictionary
+room_graph = literal_eval(open(map_file, "r").read())
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 world.load_graph(room_graph)
 player = Player(world.starting_room)
 inverse_directions = {"n": "s", "s": "n", "e": "w", "w": "e"}
@@ -120,7 +151,11 @@ while moves_queue.size() > 0:
 
     # move the player on the next move
     player.travel(next_move)
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # add the next move to the total moves
     total_moves.append(next_move)
 
@@ -137,7 +172,11 @@ while moves_queue.size() > 0:
         # add "?" to the exits of the end room in the graph
         for exit in player.current_room.get_exits():
             graph[end_room][exit] = "?"
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # set up the inverse directions for the end room exits (this is an other edge)
     graph[end_room][inverse_directions[next_move]] = start_room
 
@@ -147,4 +186,8 @@ while moves_queue.size() > 0:
 
 print(graph)
 print(total_moves)
+<<<<<<< HEAD
 print(len(total_moves))
+=======
+print(len(total_moves))
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

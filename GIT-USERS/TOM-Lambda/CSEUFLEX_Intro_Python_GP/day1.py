@@ -22,8 +22,11 @@
 # print("something on a new line")
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # collections
 
 # create an empty list? Array
@@ -47,7 +50,10 @@ lst1.append(24)
 # print(lst2)
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # range(9, 10)
 # for i in range(0, 5):
 #     print(lst2[i])
@@ -83,16 +89,23 @@ numbers = [1, 2, 3, 4]
 # print(evens)
 # create a new list containing only the names that start with 's' make sure they are capitalized (regardless of their original case)
 names = ["Sarah", "jorge", "sam", "frank", "bob", "sandy"]
+<<<<<<< HEAD
 s_names = [name.capitalize() for name in names if name[0].lower() == 's']
+=======
+s_names = [name.capitalize() for name in names if name[0].lower() == "s"]
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # print(s_names)
 
 
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # Dictionaries
 
 # Create a new dictionary
@@ -101,6 +114,7 @@ s_names = [name.capitalize() for name in names if name[0].lower() == 's']
 d = {}
 d2 = dict()
 # key value pairs
+<<<<<<< HEAD
 student = {
     "name": "Amin",
     "cohort": "cseuflex",
@@ -110,3 +124,9 @@ student = {
 student["friends"] = ["bob", "dave", "steve"]
 print(student["friends"])
 
+=======
+student = {"name": "Amin", "cohort": "cseuflex", "current_sprint": "Intro to Python"}
+# access an element via its key
+student["friends"] = ["bob", "dave", "steve"]
+print(student["friends"])
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

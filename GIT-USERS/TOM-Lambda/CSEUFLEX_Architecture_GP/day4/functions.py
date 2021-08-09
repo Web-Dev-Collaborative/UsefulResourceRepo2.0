@@ -9,9 +9,17 @@ y = 4
 
 
 # halt
+<<<<<<< HEAD
 def add(a, b): # ADD 0, 1
     # ADD R0 R1
     return a + b # RET
+=======
+def add(a, b):  # ADD 0, 1
+    # ADD R0 R1
+    return a + b  # RET
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # CALL reg
 # store our variables on the stack
 r0 = add(x, y)
@@ -46,4 +54,8 @@ EAX <= return values are stored here , EBX, ECX
 STACK
 -----
 
+<<<<<<< HEAD
 """
+=======
+"""
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

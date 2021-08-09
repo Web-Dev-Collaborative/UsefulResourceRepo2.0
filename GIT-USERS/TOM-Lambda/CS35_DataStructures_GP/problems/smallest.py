@@ -11,7 +11,10 @@ def smallest_missing(arr, left, right):
         # if so return left
         return left
 
+<<<<<<< HEAD
     
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # work out where we want to split the array (mid_point)
     mid_point = left + (right - left) // 2
 
@@ -37,6 +40,7 @@ print(smallest([1, 2, 3, 4, 6, 9, 11, 15]))
 print(smallest([0, 1, 2, 3, 4, 5, 6]))
 """
 
+<<<<<<< HEAD
 if __name__ == '__main__':
     A = [0, 1, 2, 6, 9, 11, 15]
 
@@ -51,3 +55,23 @@ if __name__ == '__main__':
     print(f"The smallest Missing Element is {smallest_missing(A, 0, len(A) - 1)}")  # => 7
 
 
+=======
+if __name__ == "__main__":
+    A = [0, 1, 2, 6, 9, 11, 15]
+
+    print(
+        f"The smallest Missing Element is {smallest_missing(A, 0, len(A) - 1)}"
+    )  # => 3
+
+    A = [1, 2, 3, 4, 6, 9, 11, 15]
+
+    print(
+        f"The smallest Missing Element is {smallest_missing(A, 0, len(A) - 1)}"
+    )  # => 0
+
+    A = [0, 1, 2, 3, 4, 5, 6]
+
+    print(
+        f"The smallest Missing Element is {smallest_missing(A, 0, len(A) - 1)}"
+    )  # => 7
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

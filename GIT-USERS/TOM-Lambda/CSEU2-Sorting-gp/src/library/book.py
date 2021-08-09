@@ -1,5 +1,9 @@
 class Book:
     """Simple Book class"""
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     title = "title"
     author = "last, first"
     genre = "fiction"
@@ -13,4 +17,8 @@ class Book:
         return str(self.genre) + ": " + str(self.title) + " by " + str(self.author)
 
     def __repr__(self):
+<<<<<<< HEAD
         return str(self.genre) + ": " + str(self.title) + " by " + str(self.author)
+=======
+        return str(self.genre) + ": " + str(self.title) + " by " + str(self.author)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

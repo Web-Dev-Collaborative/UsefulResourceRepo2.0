@@ -11,9 +11,15 @@ memory = []
 try:
     with open(sys.argv[1]) as f:
         for line in f:
+<<<<<<< HEAD
             comment_split = line.split('#')
             num = comment_split[0]
             if num == '':
+=======
+            comment_split = line.split("#")
+            num = comment_split[0]
+            if num == "":
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
                 continue
             x = int(num, 2)
             print(f"{x:08b}")
@@ -23,4 +29,8 @@ try:
 
 except FileNotFoundError:
     print(f"{sys.argv[0]}: {sys.argv[1]} not found!")
+<<<<<<< HEAD
     sys.exit(2)
+=======
+    sys.exit(2)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

@@ -8,6 +8,11 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -39,7 +44,10 @@ class BSTNode:
                 # call insert on the root's right node
                 self.right.insert(value)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
@@ -49,7 +57,11 @@ class BSTNode:
         if self.value == target:
             # return True
             return True
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # left case
         # check if the target is less than the root's value
         if target < self.value:
@@ -73,7 +85,10 @@ class BSTNode:
                 # return call contains on the right child
                 return self.right.contains(target)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # Return the maximum value found in the tree
     def get_max(self):
         # base case
@@ -85,7 +100,11 @@ class BSTNode:
         while self.right:
             # move to the right
             self = self.right
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # once there are no more children to traverse we can return the value
         return self.value
 
@@ -100,7 +119,11 @@ class BSTNode:
         while self.left:
             # move to the left
             self = self.left
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # once there are no more children to traverse we can return the value
         return self.value
 
@@ -119,13 +142,19 @@ class BSTNode:
             # call for each on the right child
             self.right.for_each(fn)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # Part 2 -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self):
+<<<<<<< HEAD
         
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
         pass
 
@@ -144,12 +173,17 @@ class BSTNode:
      check right
      enqueue the right
     """
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def bft_print(self):
         # instantiate a queue
 
         # enqueue our starting node (self)
 
         # while the queue is not empty
+<<<<<<< HEAD
             # dequeue the current node
             # print the nodes value
 
@@ -162,6 +196,20 @@ class BSTNode:
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
+=======
+        # dequeue the current node
+        # print the nodes value
+
+        # check if left child exists
+        # enqueue left child
+
+        # check if right child exists
+        # enqueue right child
+        pass
+
+        # Print the value of every node, starting with the given node,
+        # in an iterative depth first traversal
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         """
      stack
      grab starting node and put it in a stack
@@ -175,12 +223,17 @@ class BSTNode:
      check right
      push the right
     """
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def dft_print(self):
         # instantiate a stack
 
         # push our starting node (self)
 
         # while the stack is not empty
+<<<<<<< HEAD
             # pop the current node
             # print the nodes value
 
@@ -189,6 +242,16 @@ class BSTNode:
 
             # check if right child exists
                 # push right child
+=======
+        # pop the current node
+        # print the nodes value
+
+        # check if left child exists
+        # push left child
+
+        # check if right child exists
+        # push right child
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         pass
 
     # Stretch Goals -------------------------
@@ -202,6 +265,10 @@ class BSTNode:
     def post_order_dft(self):
         pass
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 """
 This code is necessary for testing the `print` methods
 """
@@ -224,4 +291,8 @@ bst.pre_order_dft()
 print("in order")
 # bst.in_order_dft()
 print("post order")
+<<<<<<< HEAD
 bst.post_order_dft()  
+=======
+bst.post_order_dft()
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

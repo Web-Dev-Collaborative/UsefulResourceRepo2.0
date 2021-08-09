@@ -38,7 +38,11 @@ class DoublyLinkedListTests(unittest.TestCase):
         self.assertEqual(len(self.dll), 1)
         self.assertEqual(self.dll.remove_from_head(), 2)
         self.assertEqual(len(self.dll), 0)
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         self.dll.add_to_head(55)
         self.assertEqual(len(self.dll), 1)
         self.assertEqual(self.dll.remove_from_head(), 55)
@@ -151,5 +155,10 @@ class DoublyLinkedListTests(unittest.TestCase):
         self.assertEqual(self.dll.get_max(), 101)
 
 
+<<<<<<< HEAD
 if __name__ == '__main__':
     unittest.main()
+=======
+if __name__ == "__main__":
+    unittest.main()
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

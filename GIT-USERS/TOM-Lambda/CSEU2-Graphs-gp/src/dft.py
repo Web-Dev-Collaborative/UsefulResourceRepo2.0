@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 
 from util import Stack, Queue
+=======
+from util import Stack, Queue
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # lets code a dft
 """
     Remember to follow our problem solving framework
@@ -13,6 +18,10 @@ from util import Stack, Queue
 
 # code up a Graph class implementing with an adjacency list
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class Graph:
     """ Represent a Graph as dictionary of vertices map the labels to edges."""
 
@@ -77,5 +86,8 @@ class Graph:
                 # then add all of it's neighbors to the top of the stack
                 for next_vertex in self.vertices[v]:
                     s.push(next_vertex)
+<<<<<<< HEAD
 
     
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

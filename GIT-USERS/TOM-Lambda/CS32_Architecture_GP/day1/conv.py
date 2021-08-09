@@ -144,6 +144,10 @@ b * 1 => 11
 
 # Lets convert diferent bases to decimal
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def to_decimal(num_string, base):
     # turn num string in to a list
     num_list = list(num_string)
@@ -159,5 +163,11 @@ def to_decimal(num_string, base):
     # return the value
     return value
 
+<<<<<<< HEAD
 print(to_decimal("7b", 16))  # => 123
 print(to_decimal("010111010110101", 2))  # => 4
+=======
+
+print(to_decimal("7b", 16))  # => 123
+print(to_decimal("010111010110101", 2))  # => 4
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

@@ -41,5 +41,10 @@ class QueueTests(unittest.TestCase):
         self.assertIsNone(self.q.dequeue())
         self.assertEqual(self.q.len(), 0)
 
+<<<<<<< HEAD
 if __name__ == '__main__':
+=======
+
+if __name__ == "__main__":
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     unittest.main()

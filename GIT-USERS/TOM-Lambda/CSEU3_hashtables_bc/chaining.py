@@ -1,5 +1,9 @@
 import random
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def longest_ll_chain(keys, buckets, loop=10, useSHA=False):
     # create a dictionary to hold the counts
     key_counts = {}
@@ -13,7 +17,11 @@ def longest_ll_chain(keys, buckets, loop=10, useSHA=False):
         random_key = str(random.random())
         hash_index = hash(random_key) % buckets
         key_counts[hash_index] += 1
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # set the largest chain to zero
     largest_n = 0
 
@@ -23,8 +31,15 @@ def longest_ll_chain(keys, buckets, loop=10, useSHA=False):
         if key_counts[key] > largest_n:
             # then swap the chain numbers
             largest_n = key_counts[key]
+<<<<<<< HEAD
     
     print(f"Longest LL Chain for {keys} keys in {buckets} buckets (Load Factor: {keys / buckets:.2f}: {largest_n}")
+=======
+
+    print(
+        f"Longest LL Chain for {keys} keys in {buckets} buckets (Load Factor: {keys / buckets:.2f}: {largest_n}"
+    )
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 
 # test code

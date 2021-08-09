@@ -6,11 +6,19 @@ HALT = 1
 PRINT_TOM = 2
 # memory
 memory = [
+<<<<<<< HEAD
     PRINT_TOM, # [0000 0010]
     PRINT_TOM, # [0000 0010]
     PRINT_TOM, # [0000 0010]
     HALT,      # [0000 0001] 
     PRINT_TOM  # [0000 0010]
+=======
+    PRINT_TOM,  # [0000 0010]
+    PRINT_TOM,  # [0000 0010]
+    PRINT_TOM,  # [0000 0010]
+    HALT,  # [0000 0001]
+    PRINT_TOM,  # [0000 0010]
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 ]
 
 # flags

@@ -17,6 +17,10 @@
 3. Implement
 """
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def first_pass_anagrams(words):
     import random
     import operator
@@ -39,14 +43,22 @@ def first_pass_anagrams(words):
 
             if index >= 0 and index < 26:
                 signature += chars[index]
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
             # group words with the same value
             if signature not in anagrams:
                 anagrams[signature] = []
 
             anagrams[signature].append(word)
             signature = 0
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # get max entry in dictionary
     max_anagrams = max(anagrams.items(), key=operator.itemgetter(1))[0]
 
@@ -62,9 +74,18 @@ def secons_pass_anagrams(words):
         # convert the list to a string
         signature = "".join(sorted(word.lower()))
         if signature not in anagrams:
+<<<<<<< HEAD
             anagrams[signature] = []     
         anagrams[signature].append(word)
         # Update the largest set as we create them
         if longest == None or len(anagrams[signature]) > len(anagrams[longest]):
             longest = signature  
     print(anagrams[longest])
+=======
+            anagrams[signature] = []
+        anagrams[signature].append(word)
+        # Update the largest set as we create them
+        if longest == None or len(anagrams[signature]) > len(anagrams[longest]):
+            longest = signature
+    print(anagrams[longest])
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

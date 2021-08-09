@@ -3,7 +3,11 @@ class Graph:
 
     # constructor
     def __init__(self):
+<<<<<<< HEAD
         self.vertices = {} # adjacency list (dictionary)
+=======
+        self.vertices = {}  # adjacency list (dictionary)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # self.vertices = [[],[],[]] # adjacency matrix (2d list or array)
 
     # add vertex
@@ -25,4 +29,8 @@ class Graph:
 
     # get neighbors
     def get_neighbors(self, vertex_id):
+<<<<<<< HEAD
         return self.vertices[vertex_id]
+=======
+        return self.vertices[vertex_id]
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

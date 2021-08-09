@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 animals = ['Duck', 'Jackal', 'Hippo', 'Aardvark', 'Cat', 'Flamingo', 'Iguana', 'Giraffe', 'Elephant', 'Bear']
 
 
@@ -5,6 +6,26 @@ animals = ['Duck', 'Jackal', 'Hippo', 'Aardvark', 'Cat', 'Flamingo', 'Iguana', '
 def print_animals(animal_list): # O(n)
     for i in range(len(animal_list)): # O(n)
         print(animal_list[i]) # O(1)
+=======
+animals = [
+    "Duck",
+    "Jackal",
+    "Hippo",
+    "Aardvark",
+    "Cat",
+    "Flamingo",
+    "Iguana",
+    "Giraffe",
+    "Elephant",
+    "Bear",
+]
+
+
+# Linear time
+def print_animals(animal_list):  # O(n)
+    for i in range(len(animal_list)):  # O(n)
+        print(animal_list[i])  # O(1)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 
 """
@@ -19,6 +40,7 @@ Getting the time complexity of an iterative solution
 """
 
 # lets figure out the time complexity of this code
+<<<<<<< HEAD
 def print_animals_a(animal_list): # O(n) Linear
     for i in range(len(animals)): # O(n)
         print(animal_list[i]) # O(1) * n (1 * n)
@@ -27,11 +49,25 @@ def print_animals_a(animal_list): # O(n) Linear
         for _ in range(100000): # O(100000) (100000 * n)
             my_number += 1  # O(1) (1 * 100000) O(100000)
             
+=======
+def print_animals_a(animal_list):  # O(n) Linear
+    for i in range(len(animals)):  # O(n)
+        print(animal_list[i])  # O(1) * n (1 * n)
+        my_number = 0  # O(1) (1 * n)
+        # O(2 * n)
+        for _ in range(100000):  # O(100000) (100000 * n)
+            my_number += 1  # O(1) (1 * 100000) O(100000)
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # O(100003 * n) => O(n)
     # O(100000 * 1) => O(1)
 
     # O(n)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # Polynomial Time
 """
 Key Points
@@ -42,17 +78,27 @@ Key Points
 """
 
 # Print a list of all possible animal pairs
+<<<<<<< HEAD
 def print_animal_pairs(): # O(n ^ 2)
     for animal_1 in animals: # O(n)
         for animal_2 in animals: # O(n)
             print(f"{animal_1} - {animal_2}") # O(1)
             
+=======
+def print_animal_pairs():  # O(n ^ 2)
+    for animal_1 in animals:  # O(n)
+        for animal_2 in animals:  # O(n)
+            print(f"{animal_1} - {animal_2}")  # O(1)
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # Print a list of all possible animal triples
 def print_animal_triples():
     for animal_1 in animals:
         for animal_2 in animals:
             for animal_3 in animals:
                 print(f"{animal_1} - {animal_2} - {animal_3}")
+<<<<<<< HEAD
                 
 
 # Print a list of all possible animal triples
@@ -66,6 +112,20 @@ def print_animal_triples_a():
                 for animal_3 in animals:
                     print(f"{animal_1} - {animal_2} - {animal_3}")
                     
+=======
+
+
+# Print a list of all possible animal triples
+def print_animal_triples_a():
+    # O(n)
+    for animal in animals:
+        print(animal)
+    # O(n^3)
+    for animal_1 in animals:
+        for animal_2 in animals:
+            for animal_3 in animals:
+                print(f"{animal_1} - {animal_2} - {animal_3}")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 
 # Exponential Time
@@ -91,6 +151,10 @@ def get_animal_combos(l):
             animal_combos.append(combo + [l[0]])
         return animal_combos
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # counter = 0
 # def get_animal_combos(l):
 #     global counter
@@ -100,7 +164,11 @@ def get_animal_combos(l):
 #     else:
 #         animal_combos = []
 #         previous_combos = get_animal_combos( l[1:] )
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 #         for combo in previous_combos:
 #             animal_combos.append( combo )
 #             animal_combos.append( combo + [l[0]] )
@@ -129,10 +197,19 @@ def get_all_arrangements(l):
         return [l]
     else:
         arrangements = []
+<<<<<<< HEAD
         previous_arrangements = get_all_arrangements( l[1:] )
         for previous_arrangement in previous_arrangements:
             for i in range(len(previous_arrangement) + 1):
                 arrangements.append( previous_arrangement[i:] + [l[0]] + previous_arrangement[:i] )
+=======
+        previous_arrangements = get_all_arrangements(l[1:])
+        for previous_arrangement in previous_arrangements:
+            for i in range(len(previous_arrangement) + 1):
+                arrangements.append(
+                    previous_arrangement[i:] + [l[0]] + previous_arrangement[:i]
+                )
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         return arrangements
 
 
@@ -149,5 +226,9 @@ Key Points
 # (remove them from the array)
 def free_animals(animals):
     while len(animals) > 0:
+<<<<<<< HEAD
         animals = animals[0:len(animals) // 2]
         
+=======
+        animals = animals[0 : len(animals) // 2]
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

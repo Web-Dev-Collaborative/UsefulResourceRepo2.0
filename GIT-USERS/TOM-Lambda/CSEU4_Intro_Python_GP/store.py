@@ -1,4 +1,9 @@
 from category import Category
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class Store:
     def __init__(self, name, categories):
         self.name = name
@@ -14,7 +19,15 @@ class Store:
         output += "  " + str(cat_index) + ". Exit"
         return output
 
+<<<<<<< HEAD
 s = Store("Bobs Store", [Category("Books"), Category("Weapons"), Category("Food"), Category("Bob")])
+=======
+
+s = Store(
+    "Bobs Store",
+    [Category("Books"), Category("Weapons"), Category("Food"), Category("Bob")],
+)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 print(s)
 
@@ -36,4 +49,8 @@ while selection != len(s.categories) + 1:
         else:
             print("please choose a valid number")
     except ValueError:
+<<<<<<< HEAD
         print("Please input a number")
+=======
+        print("Please input a number")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

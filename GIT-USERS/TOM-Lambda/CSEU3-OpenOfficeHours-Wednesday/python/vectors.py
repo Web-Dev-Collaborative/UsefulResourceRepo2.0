@@ -29,6 +29,7 @@ class Vector2f:
 
     def __str__(self):
         return f"X: {self.x}, Y: {self.y}"
+<<<<<<< HEAD
     
     def __repr__(self):
         return f"Vector2f({self.x}, {self.y})"
@@ -38,6 +39,21 @@ class Vector3f:
 class Vector4f:
     pass
 
+=======
+
+    def __repr__(self):
+        return f"Vector2f({self.x}, {self.y})"
+
+
+class Vector3f:
+    pass
+
+
+class Vector4f:
+    pass
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class Stats:
     def __init__(self, health, attack, defence, stamina, strength, mana, speed):
         self.health = health
@@ -48,6 +64,10 @@ class Stats:
         self.mana = mana
         self.speed = speed
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 barbarian_stats = Stats(100, 70, 200, 20, 100, 1, 3)
 
 
@@ -56,6 +76,10 @@ class Enitity:
         self.id = id
         self.position = position
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class Mob(Entity):
     def __init__(self, position, stats):
         super().__init__(id, position)
@@ -65,10 +89,18 @@ class Mob(Entity):
         self.position.x += x
         self.position.y += y
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class Player(Mob):
     def __init__(self, position, stats):
         super().__init__(position, stats)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 v1 = Vector2f(12.0, 10.0)
 v2 = Vector2f(10.2, 3.9)
 

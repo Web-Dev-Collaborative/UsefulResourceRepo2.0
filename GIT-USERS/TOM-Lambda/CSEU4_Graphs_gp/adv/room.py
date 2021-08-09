@@ -11,10 +11,20 @@ class Room:
         self.w_to = None
         self.x = x
         self.y = y
+<<<<<<< HEAD
     def __str__(self):
         return f"\n-------------------\n\n{self.name}\n\n   {self.description}\n\n{self.get_exits_string()}\n"
     def print_room_description(self, player):
         print(str(self))
+=======
+
+    def __str__(self):
+        return f"\n-------------------\n\n{self.name}\n\n   {self.description}\n\n{self.get_exits_string()}\n"
+
+    def print_room_description(self, player):
+        print(str(self))
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def get_exits(self):
         exits = []
         if self.n_to is not None:
@@ -26,8 +36,15 @@ class Room:
         if self.e_to is not None:
             exits.append("e")
         return exits
+<<<<<<< HEAD
     def get_exits_string(self):
         return f"Exits: [{', '.join(self.get_exits())}]"
+=======
+
+    def get_exits_string(self):
+        return f"Exits: [{', '.join(self.get_exits())}]"
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def connect_rooms(self, direction, connecting_room):
         if direction == "n":
             self.n_to = connecting_room
@@ -44,6 +61,10 @@ class Room:
         else:
             print("INVALID ROOM CONNECTION")
             return None
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def get_room_in_direction(self, direction):
         if direction == "n":
             return self.n_to
@@ -55,5 +76,11 @@ class Room:
             return self.w_to
         else:
             return None
+<<<<<<< HEAD
     def get_coords(self):
         return [self.x, self.y]
+=======
+
+    def get_coords(self):
+        return [self.x, self.y]
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

@@ -1,4 +1,8 @@
 import sys
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # lets build up our simulator some more
 # now we will add the concept of registers
 # and an add opcode, using external files for program code
@@ -13,7 +17,11 @@ ADD = 6
 PUSH = 7
 POP = 8
 CALL = 9
+<<<<<<< HEAD
 RET  = 10
+=======
+RET = 10
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 
 # lets make a model of memory to hold our program
@@ -22,10 +30,16 @@ memory = [0] * 256
 register = [0] * 8
 
 # TODO: Stack Pointer (R7) as per specs
+<<<<<<< HEAD
 SP = 7 # index of the registers list 
 # to use to store where the top of the stack is
 register[SP] = 0xf4
 
+=======
+SP = 7  # index of the registers list
+# to use to store where the top of the stack is
+register[SP] = 0xF4
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 
 # lets load a program in to memory
@@ -35,11 +49,19 @@ def load_memory(filename):
         with open(filename) as f:
             for line in f:
                 # split the comment out
+<<<<<<< HEAD
                 comment_split = line.split('#')
 
                 num = comment_split[0].strip()
 
                 if num == '':
+=======
+                comment_split = line.split("#")
+
+                num = comment_split[0].strip()
+
+                if num == "":
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
                     continue
 
                 i_num = int(num, 2)
@@ -80,7 +102,11 @@ while running:
     if command == HALT:
         # EXECUTE
         running = False
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     elif command == PRINT_VLAD:
         # EXECUTE
         print("Vlad")
@@ -145,17 +171,28 @@ while running:
         # remember to set op_size to zero
         op_size = 0
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     elif command == RET:
         # Pop return address from stack and store in pc
         pc = memory[register[SP]]
         register[SP] += 1
         # remember to set op_size to zero
         op_size = 0
+<<<<<<< HEAD
          
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     else:
         print(f"Invalid Instruction: {command}")
         running = False
 
     # how will we move forward in memory to grab the next command?
+<<<<<<< HEAD
     pc += op_size
+=======
+    pc += op_size
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

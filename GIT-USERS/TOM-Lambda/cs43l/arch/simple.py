@@ -1,4 +1,8 @@
 import sys
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 HALT = 1
 PRINT_BOB = 2
 PRINT_NUM = 3
@@ -17,12 +21,20 @@ def alu(op, opa, opb):
     if op == "ADD":
         reg[opa] += reg[opb]
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 ram = [0] * 256
 
 sp = 7
 
 reg = [0] * 8
+<<<<<<< HEAD
 reg[sp] = 0xf4
+=======
+reg[sp] = 0xF4
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # our program
 ram[0] = PRINT_BOB
@@ -66,8 +78,13 @@ def load(filename):
     with open(filename) as filedata:
         addr = 0
         for line in filedata:
+<<<<<<< HEAD
             
             data = line.split('#')[0].strip()
+=======
+
+            data = line.split("#")[0].strip()
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
             if data == "":
                 continue
 
@@ -75,11 +92,20 @@ def load(filename):
             ram[addr] = num
             # self.ram_write(addr, num)
             addr += 1
+<<<<<<< HEAD
         
 # if len(sys.argv) != 2:
 #     print(f"Usage: simple.py <filename>")
 #     sys.exit(1)
     
+=======
+
+
+# if len(sys.argv) != 2:
+#     print(f"Usage: simple.py <filename>")
+#     sys.exit(1)
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # load(sys.argv[1])
 
 pc = 0
@@ -90,7 +116,10 @@ while running:
     inst = ram[pc]
     opera = ram[pc + 1]
     operb = ram[pc + 2]
+<<<<<<< HEAD
     
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
     if inst == HALT:
         print("Halting CPU")
@@ -116,7 +145,11 @@ while running:
         # grab the index to the reg
         reg_index = ram[pc + 1]
 
+<<<<<<< HEAD
         #get the value from the reg
+=======
+        # get the value from the reg
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         value = reg[reg_index]
         ram[reg[sp]] = value
         pc += 2
@@ -144,7 +177,10 @@ while running:
         reg[sp] -= 1
         ram[reg[sp]] = return_addr
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # set pc to addr that is called
         reg_index = ram[pc + 1]
         pc = reg[reg_index]

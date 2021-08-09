@@ -11,6 +11,7 @@ PRINT_REG = 5
 ADD = 6
 # memory
 memory = [
+<<<<<<< HEAD
     PRINT_TOM, # [0000 0010]
     SAVE, # save the value 65 to register 2
     65,
@@ -19,11 +20,25 @@ memory = [
     20,
     3,
     ADD, # Add the content of reg 2 and reg 3 together
+=======
+    PRINT_TOM,  # [0000 0010]
+    SAVE,  # save the value 65 to register 2
+    65,
+    2,
+    SAVE,  # save the value 20 to register 3
+    20,
+    3,
+    ADD,  # Add the content of reg 2 and reg 3 together
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     2,
     3,
     PRINT_REG,
     2,
+<<<<<<< HEAD
     HALT      # [0000 0001] 
+=======
+    HALT,  # [0000 0001]
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 ]
 
 # flags
@@ -32,7 +47,11 @@ memory = [
 pc = 0
 
 # registers
+<<<<<<< HEAD
 register = [0] * 8 # list of 8 registers
+=======
+register = [0] * 8  # list of 8 registers
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # state (running)
 running = True
@@ -48,7 +67,11 @@ while running:
         # EXECUTE
         instruction_size = 1
         print("Tom")
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # DECODE
     elif command == HALT:
         # EXECUTE
@@ -61,7 +84,11 @@ while running:
         instruction_size = 2
         num = memory[pc + 1]
         print(num)
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # DECODE
     elif command == SAVE:
         # EXECUTE
@@ -69,7 +96,11 @@ while running:
         num = memory[pc + 1]
         reg = memory[pc + 2]
         register[reg] = num
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # DECODE
     elif command == ADD:
         # EXECUTE
@@ -91,4 +122,8 @@ while running:
         print(f"Unknown Instruction {command}")
         sys.exit(1)
 
+<<<<<<< HEAD
     pc += instruction_size
+=======
+    pc += instruction_size
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

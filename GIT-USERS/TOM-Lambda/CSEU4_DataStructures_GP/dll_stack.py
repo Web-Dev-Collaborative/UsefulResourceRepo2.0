@@ -18,4 +18,8 @@ class Stack:
             return None
 
     def len(self):
+<<<<<<< HEAD
         return len(self.storage)
+=======
+        return len(self.storage)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

@@ -20,10 +20,19 @@ from rest_framework import routers
 from rest_framework.authtoken import views
 
 router = routers.DefaultRouter()
+<<<<<<< HEAD
 router.register(r'notes', PersonalNoteViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     re_path(r'^api-token-auth/', views.obtain_auth_token)
+=======
+router.register(r"notes", PersonalNoteViewSet)
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("api/", include(router.urls)),
+    re_path(r"^api-token-auth/", views.obtain_auth_token),
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 ]

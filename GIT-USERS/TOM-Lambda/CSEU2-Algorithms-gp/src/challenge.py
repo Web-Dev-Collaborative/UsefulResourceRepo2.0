@@ -9,19 +9,34 @@ Formally:
 5. From all of the Big-Os that are added, drop all but the biggest, dominating one.
 """
 import math
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # 1
 def baz(n):
     s = 0
 
+<<<<<<< HEAD
     for i in range(n): #  O(n)
         for j in range(int(math.sqrt(n))): # O(sqrt(n)) n * sqrt n
             s += i * j # O(1)
     
     return s # O(1)
+=======
+    for i in range(n):  #  O(n)
+        for j in range(int(math.sqrt(n))):  # O(sqrt(n)) n * sqrt n
+            s += i * j  # O(1)
+
+    return s  # O(1)
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # O(n sqrt(n))
 
 # 2
 def frotz(n):
+<<<<<<< HEAD
     s = 0 # O(1)
 
     for i in range(n): # O(n)
@@ -29,10 +44,22 @@ def frotz(n):
             s += i * j # O(1)
 
     return s # O(1)
+=======
+    s = 0  # O(1)
+
+    for i in range(n):  # O(n)
+        for j in range(2 * n):  # O(2n) => O(n) => O(n^2)
+            s += i * j  # O(1)
+
+    return s  # O(1)
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # O(2 n^2) => O(n^2)
 
 # 3
 def bar(x):
+<<<<<<< HEAD
     sum = 0 # O(1)
     for i in range(0, 1463): # O(1436) =>  O(1)
         i += sum # O(1)
@@ -40,3 +67,14 @@ def bar(x):
             for _ in range(x, x + 15): # O(15) => O(1)
                 sum += 1 # O(1) * O(x) * O(1) => O(1 * X * 1) => O(x)
 # O(n) linear 
+=======
+    sum = 0  # O(1)
+    for i in range(0, 1463):  # O(1436) =>  O(1)
+        i += sum  # O(1)
+        for _ in range(0, x):  # O(x)
+            for _ in range(x, x + 15):  # O(15) => O(1)
+                sum += 1  # O(1) * O(x) * O(1) => O(1 * X * 1) => O(x)
+
+
+# O(n) linear
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

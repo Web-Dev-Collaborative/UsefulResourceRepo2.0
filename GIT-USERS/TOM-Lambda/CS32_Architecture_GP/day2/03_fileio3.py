@@ -13,11 +13,19 @@ try:
             comment_split = line.split("#")
             n = comment_split[0].strip()
 
+<<<<<<< HEAD
             if n == '':
+=======
+            if n == "":
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
                 continue
 
             x = int(n, 2)
             print(f"{x:08b}: {x:d}")
 
 except:
+<<<<<<< HEAD
     print("can not find it!")
+=======
+    print("can not find it!")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

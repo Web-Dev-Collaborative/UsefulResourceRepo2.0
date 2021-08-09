@@ -2,6 +2,7 @@ import random
 import time
 
 # Create a data structure for the traversal
+<<<<<<< HEAD
 class Queue():
     def __init__(self):
         self.storage = []
@@ -9,16 +10,33 @@ class Queue():
     def enqueue(self, value):
         self.storage.append(value)
     
+=======
+class Queue:
+    def __init__(self):
+        self.storage = []
+
+    def enqueue(self, value):
+        self.storage.append(value)
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def dequeue(self):
         return self.storage.pop(0)
 
     def size(self):
         return len(self.storage)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class User:
     def __init__(self, name):
         self.name = name
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class SocialGraph:
     def __init__(self):
         self.last_id = 0
@@ -32,7 +50,14 @@ class SocialGraph:
         if user_id == friend_id:
             # print("WARNING: You cannot be friends with yourself")
             return False
+<<<<<<< HEAD
         elif friend_id in self.friendships[user_id] or user_id in self.friendships[friend_id]:
+=======
+        elif (
+            friend_id in self.friendships[user_id]
+            or user_id in self.friendships[friend_id]
+        ):
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
             # print("WARNING: Friendship already exists")
             return False
         else:
@@ -48,7 +73,11 @@ class SocialGraph:
         self.users[self.last_id] = User(name)
         self.friendships[self.last_id] = set()
 
+<<<<<<< HEAD
     def populate_graph(self, num_users, avg_friendships): # O(n^2)
+=======
+    def populate_graph(self, num_users, avg_friendships):  # O(n^2)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         """
         Takes a number of users and an average number of friendships
         as arguments
@@ -93,8 +122,12 @@ class SocialGraph:
             friend_id = friendship[1]
             self.add_friendship(user_id, friend_id)
 
+<<<<<<< HEAD
 
     def populate_graph_l(self, num_users, avg_friendships): # O(n)
+=======
+    def populate_graph_l(self, num_users, avg_friendships):  # O(n)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         """
         Takes a number of users and an average number of friendships
         as arguments
@@ -113,13 +146,20 @@ class SocialGraph:
             self.add_user(f"User {i+1}")
 
         # set a target friendships to (num_users * avg_friendships)
+<<<<<<< HEAD
         target_friendships = (num_users * avg_friendships)
+=======
+        target_friendships = num_users * avg_friendships
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # create a counter for the total number of friendships created and set it to zero
         total_friendships = 0
         # create a collisions counter and set it to zero
         collisions = 0
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # iterate while the total friendships are less than target friendships
         while total_friendships < target_friendships:
             # randomly pick a user as the user_id.
@@ -134,7 +174,11 @@ class SocialGraph:
             else:
                 # increment our collisions
                 collisions += 1
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         print("COLLISIONS: ", collisions)
 
     # fill in some logic for a traversal
@@ -173,7 +217,11 @@ class SocialGraph:
         return visited
 
 
+<<<<<<< HEAD
 if __name__ == '__main__':
+=======
+if __name__ == "__main__":
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     num_users = 2000
     avg_friendships = 1900
 
@@ -193,9 +241,16 @@ if __name__ == '__main__':
     # connections = sg.get_all_social_paths(1)
     # print(connections)
 
+<<<<<<< HEAD
 
 
     # sg.populate_graph(10, 2)
     # print(sg.friendships)
     # connections = sg.get_all_social_paths(1)
     # print(connections)
+=======
+    # sg.populate_graph(10, 2)
+    # print(sg.friendships)
+    # connections = sg.get_all_social_paths(1)
+    # print(connections)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

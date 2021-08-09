@@ -1,9 +1,17 @@
 # Passing by value Vs passing by Ref
 import time
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # define a doubling function that passes args by value
 def mult2(x):
     return x * 2
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # define a doubling function that passes args by reference
 def mult2_list(l):
     for i in range(len(l)):
@@ -23,11 +31,18 @@ def mult2_list(l):
 #     print(num)
 
 
+<<<<<<< HEAD
 
 #===========================================================
 
 # Return the "centered" average of an array of ints, which we'll say is the mean average of the values, 
 # except ignoring the largest and smallest values in the array. 
+=======
+# ===========================================================
+
+# Return the "centered" average of an array of ints, which we'll say is the mean average of the values,
+# except ignoring the largest and smallest values in the array.
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # centered_average([1, 2, 3, 4, 100]) → 3 (1 100)... (2 + 3 + 4) => 9 ==> 9 / 3 => 3
 # centered_average([1, 1, 5, 5, 10, 8, 7]) → 5 (1 + 5 + 5 + 8 + 7) // 5
@@ -43,6 +58,10 @@ def mult2_list(l):
 # maybe use min / max?
 # maybe use builtins?
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def centered_avg1(ints):
     # gather smallest and largest values for later
     # grab smallest in to a var using the min function
@@ -62,13 +81,23 @@ def centered_avg1(ints):
     # set our sum to our sum minus smallest and largest
     sum = sum - smallest - largest
 
+<<<<<<< HEAD
     # get the mean of the remaining items by way of this algorithm 
+=======
+    # get the mean of the remaining items by way of this algorithm
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # end_result = sum of all numbers excluding the smallest and largest floor divided by the length of the list minus 2
     end_result = sum // (len(ints) - 2)
     # and return our end_result
     return end_result
 
+<<<<<<< HEAD
 import statistics
+=======
+
+import statistics
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # def centered_avg2(ints):
 #     # sort our ints
 #     ints.sort()
@@ -79,6 +108,10 @@ import statistics
 #     # return our mean
 #     return our_mean
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def centered_avg2(ints):
     ints.sort()
     return statistics.mean(ints[1:-1])
@@ -112,4 +145,7 @@ print(end - start)
 # b = a // 4
 
 # print(b)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

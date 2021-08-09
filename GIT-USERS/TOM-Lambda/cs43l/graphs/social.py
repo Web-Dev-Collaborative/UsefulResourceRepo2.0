@@ -1,6 +1,7 @@
 import random
 import time
 
+<<<<<<< HEAD
 class Stack:
     def __init__(self):
         self.storage = []
@@ -8,11 +9,22 @@ class Stack:
     def push(self, value):
         self.storage.append(value)
     
+=======
+
+class Stack:
+    def __init__(self):
+        self.storage = []
+
+    def push(self, value):
+        self.storage.append(value)
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def pop(self):
         if self.size() > 0:
             return self.storage.pop()
         else:
             return None
+<<<<<<< HEAD
     
     def size(self):
         return len(self.storage)
@@ -24,19 +36,45 @@ class Queue:
     def enqueue(self, value):
         self.storage.append(value)
     
+=======
+
+    def size(self):
+        return len(self.storage)
+
+
+class Queue:
+    def __init__(self):
+        self.storage = []
+
+    def enqueue(self, value):
+        self.storage.append(value)
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def dequeue(self):
         if self.size() > 0:
             return self.storage.pop(0)
         else:
             return None
+<<<<<<< HEAD
     
     def size(self):
         return len(self.storage)
 
+=======
+
+    def size(self):
+        return len(self.storage)
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class User:
     def __init__(self, name):
         self.name = name
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class SocialGraph:
     def __init__(self):
         self.last_id = 0
@@ -50,7 +88,14 @@ class SocialGraph:
         if user_id == friend_id:
             # print("WARNING: You cannot be friends with yourself")
             return False
+<<<<<<< HEAD
         elif friend_id in self.friendships[user_id] or user_id in self.friendships[friend_id]:
+=======
+        elif (
+            friend_id in self.friendships[user_id]
+            or user_id in self.friendships[friend_id]
+        ):
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
             # print("WARNING: Friendship already exists")
             return False
         else:
@@ -66,7 +111,11 @@ class SocialGraph:
         self.users[self.last_id] = User(name)
         self.friendships[self.last_id] = set()
 
+<<<<<<< HEAD
     def populate_graph(self, num_users, avg_friendships): # Quadratic O(n^2)
+=======
+    def populate_graph(self, num_users, avg_friendships):  # Quadratic O(n^2)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         """
         Takes a number of users and an average number of friendships
         as arguments
@@ -99,7 +148,11 @@ class SocialGraph:
             friendship = possible_friendships[i]
             self.add_friendship(friendship[0], friendship[1])
 
+<<<<<<< HEAD
     def populate_graph_linear(self, num_users, avg_friendships): # Linear O(n)
+=======
+    def populate_graph_linear(self, num_users, avg_friendships):  # Linear O(n)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # Reset graph
         self.last_id = 0
         self.users = {}
@@ -108,7 +161,11 @@ class SocialGraph:
         for i in range(0, num_users):
             self.add_user(f"User {i}")
 
+<<<<<<< HEAD
         target_friendships = (num_users * avg_friendships)
+=======
+        target_friendships = num_users * avg_friendships
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         total_friendships = 0
         collisions = 0
 
@@ -119,10 +176,15 @@ class SocialGraph:
                 total_friendships += 2
             else:
                 collisions += 1
+<<<<<<< HEAD
         
         print(f"Collisions: {collisions}")
 
 
+=======
+
+        print(f"Collisions: {collisions}")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
     def get_all_social_paths(self, user_id):
         """
@@ -138,7 +200,11 @@ class SocialGraph:
         # Create an empty Visited dictionary
         visited = {}  # Note that this is a dictionary, not a set
         # Add A PATH TO the starting vertex to the queue
+<<<<<<< HEAD
         q.enqueue( [user_id] )
+=======
+        q.enqueue([user_id])
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # While the queue is not empty...
         while q.size() > 0:
             # Dequeue the first PATH
@@ -171,7 +237,11 @@ class SocialGraph:
         # Create an empty Visited dictionary
         visited = {}  # Note that this is a dictionary, not a set
         # Add A PATH TO the starting vertex to the queue
+<<<<<<< HEAD
         q.push( [user_id] )
+=======
+        q.push([user_id])
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # While the queue is not empty...
         while q.size() > 0:
             # Dequeue the first PATH
@@ -191,7 +261,11 @@ class SocialGraph:
         return visited
 
 
+<<<<<<< HEAD
 if __name__ == '__main__':
+=======
+if __name__ == "__main__":
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # sg = SocialGraph()
     # sg.populate_graph(10, 2)
     # print(sg.friendships)
@@ -204,9 +278,17 @@ if __name__ == '__main__':
     sg.populate_graph_linear(num_users, avg_friendships)
     # print(sg.friendships)
     end_time = time.time()
+<<<<<<< HEAD
     print (f"Linear runtime: {end_time - start_time} seconds")
+=======
+    print(f"Linear runtime: {end_time - start_time} seconds")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     sg = SocialGraph()
     start_time = time.time()
     sg.populate_graph(num_users, avg_friendships)
     end_time = time.time()
+<<<<<<< HEAD
     print (f"Quadratic runtime: {end_time - start_time} seconds")
+=======
+    print(f"Quadratic runtime: {end_time - start_time} seconds")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

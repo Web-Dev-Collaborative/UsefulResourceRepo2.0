@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 from doubly_linked_list import DoublyLinkedList 
 
 class TextBuffer:
  
+=======
+from doubly_linked_list import DoublyLinkedList
+
+
+class TextBuffer:
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def __init__(self, init=None):
         # create a storage contents for the buffer
         self.contents = DoublyLinkedList()
@@ -29,7 +36,11 @@ class TextBuffer:
         # loop over each char in the string and add it to tail
         for char in string_to_add:
             self.contents.add_to_tail(char)
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def prepend(self, string_to_add):
         # reverse incomming string to maintain order
         # loop over each char in string add it to head
@@ -54,6 +65,10 @@ class TextBuffer:
     The tail of the concatenated buffer will be the tail of the other buffer 
     The head of the concatenated buffer will be the head of this buffer 
     """
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def join(self, other_buffer):
         # set selfs tails next to be the head of other buffer
         self.contents.tail.next = other_buffer.contents.head
@@ -66,7 +81,12 @@ class TextBuffer:
         new_buffer = TextBuffer(string_to_join)
         self.join(new_buffer)
 
+<<<<<<< HEAD
 if __name__ == '__main__':
+=======
+
+if __name__ == "__main__":
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     text = TextBuffer("Super")
     print(text)
 
@@ -85,4 +105,8 @@ if __name__ == '__main__':
     print(text)
 
     text.delete_front(4)
+<<<<<<< HEAD
     print(text)
+=======
+    print(text)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

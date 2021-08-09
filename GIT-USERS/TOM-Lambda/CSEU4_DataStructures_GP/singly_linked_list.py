@@ -17,12 +17,19 @@ class Node:
         self.next_node = new_node
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class LinkedList:
     def __init__(self):
         # ref to head of list
         self.head = None
+<<<<<<< HEAD
         #ref to tail of list
+=======
+        # ref to tail of list
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         self.tail = None
 
     def add_to_tail(self, value):
@@ -57,7 +64,11 @@ class LinkedList:
 
             # return the value of the current heads next
             return head.get_value()
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # otherwise we have more than one element in our list
         # store the value
         value = self.head.get_value()
@@ -66,7 +77,10 @@ class LinkedList:
         # return the stored value
         return value
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def contains(self, value):
         # if there is no head we have an empty list
         if not self.head:
@@ -86,4 +100,8 @@ class LinkedList:
             current_node = current_node.get_next()
 
         # return False
+<<<<<<< HEAD
         return False
+=======
+        return False
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

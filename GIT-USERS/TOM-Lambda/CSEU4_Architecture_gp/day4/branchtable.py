@@ -1,4 +1,8 @@
 import sys
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # lets build up our simulator some more
 # now we will add the concept of registers
 # and an add opcode
@@ -13,8 +17,13 @@ ADD = 6
 PUSH = 7
 POP = 8
 PRINT_DAVE = 90
+<<<<<<< HEAD
 CALL = 9 # New for day 4
 RET = 10 # New for day 4
+=======
+CALL = 9  # New for day 4
+RET = 10  # New for day 4
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # class OpCode:
 #     def __init__(self, code, size, op1=None, op2=None):
@@ -25,51 +34,101 @@ RET = 10 # New for day 4
 # think of some operations that we might want to perform such as print something, load  or store something etc
 # maybe some way to stop execution and some arithmetic operations
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def op_halt(op1, op2):
     print("Halted!")
     sys.exit(-1)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def op_print_tom(op1, op2):
     print("tom")
     return 1
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def op_print_dave(op1, op2):
     print("dave")
     return 1
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def op_print_num(op1, op2):
     print("PRINT_NUM")
     return 2
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def op_save(op1, op2):
     print("SAVE")
     return 3
 
+<<<<<<< HEAD
 def op_print_reg(op1,op2):
     print("PRINT_REG")
     return 2
 
+=======
+
+def op_print_reg(op1, op2):
+    print("PRINT_REG")
+    return 2
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def op_add(op1, op2):
     print("ADD")
     return 3
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def op_push(op1, op2):
     print("PUSH")
     return 2
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def op_pop(op1, op2):
     print("POP")
     return 2
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def op_call(op1, op2):
     print("CALL")
     return 3
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def op_ret(op1, op2):
     print("RET")
     return 3
 
+<<<<<<< HEAD
 # TODO: demo the idea of a branch table 
+=======
+
+# TODO: demo the idea of a branch table
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 ## branch table
 bt = {
     HALT: op_halt,
@@ -82,7 +141,11 @@ bt = {
     PUSH: op_push,
     POP: op_pop,
     CALL: op_call,
+<<<<<<< HEAD
     RET: op_ret
+=======
+    RET: op_ret,
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 }
 
 # lets load a program in to memory
@@ -95,10 +158,17 @@ def load_memory(filename):
                 comment_split = line.split("#")
 
                 # extract our number
+<<<<<<< HEAD
                 num = comment_split[0].strip() # trim whitespace
 
                 if num == '':
                     continue # ignore blank lines
+=======
+                num = comment_split[0].strip()  # trim whitespace
+
+                if num == "":
+                    continue  # ignore blank lines
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
                 # convert our binary string to a number
                 val = int(num, 2)
@@ -147,7 +217,11 @@ load_memory(sys.argv[1])
 #     if cmd == HALT:
 #         # EXECUTE
 #         running = False
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 #     elif cmd == PRINT_TOM:
 #         # EXECUTE
 #         print("Tom")
@@ -188,7 +262,11 @@ load_memory(sys.argv[1])
 #         #PUSH
 #         register[sp] -= 1
 #         memory[register[sp]] = val
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 #         inc_size = 2
 #         op_pc = False
 
@@ -203,7 +281,11 @@ load_memory(sys.argv[1])
 
 #         inc_size = 2
 #         op_pc = False
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 #     elif cmd == CALL:
 #         # setup
 #         reg = memory[pc + 1]

@@ -16,6 +16,7 @@ class BinarySearchTree:
     def insert(self, value):
         # LEFT CASE
         # check if the new nodes value is less than our current ones value
+<<<<<<< HEAD
             # if the is no left child, 
                 # place a new node here
             # otherwise
@@ -26,6 +27,18 @@ class BinarySearchTree:
                 # place a new one
             # otherwise
                 # repeat process right
+=======
+        # if the is no left child,
+        # place a new node here
+        # otherwise
+        # repeat process for left
+        # RIGHT CASE
+        # check if the new nodes value is greater than or equal to the current parent value
+        # if there is no right child here,
+        # place a new one
+        # otherwise
+        # repeat process right
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         pass
 
     # Return True if the tree contains the value
@@ -40,6 +53,7 @@ class BinarySearchTree:
 
     # Return the maximum value found in the tree
     def get_max(self):
+<<<<<<< HEAD
         # BASE CASE 
         # if empty tree
             # return none
@@ -47,16 +61,32 @@ class BinarySearchTree:
         # RECURSIVE
         # if the the is no right value
             # return the root value
+=======
+        # BASE CASE
+        # if empty tree
+        # return none
+
+        # RECURSIVE
+        # if the the is no right value
+        # return the root value
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # return the get max of the the right node
 
         # ITTERATIVE
         # set a max value variable to keep track of max value
         # get a ref to current node
         # check if we are at a valid tree node
+<<<<<<< HEAD
             # if our current value is greater than the max value
                 # update the max value
             # move on to the next right node in the tree
             # setting the current node to the current nodes right
+=======
+        # if our current value is greater than the max value
+        # update the max value
+        # move on to the next right node in the tree
+        # setting the current node to the current nodes right
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # return our max value
         pass
 

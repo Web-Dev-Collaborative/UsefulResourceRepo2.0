@@ -10,4 +10,8 @@ try:
             print(line)
 except FileNotFoundError:
     print(f"{sys.argv[0]}: {sys.argv[1]} not found")
+<<<<<<< HEAD
     sys.exit(2)
+=======
+    sys.exit(2)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

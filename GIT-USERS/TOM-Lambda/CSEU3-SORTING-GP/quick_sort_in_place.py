@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 
 # Divide a problem in to subproblems (of the same type)
 # Solve the subproblems
 # Combine the results of the subproblems 
 # to get the solution to the original problem
 
+=======
+# Divide a problem in to subproblems (of the same type)
+# Solve the subproblems
+# Combine the results of the subproblems
+# to get the solution to the original problem
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def quick_sort(data, low, high):
     # check base case
     # if low is greater than or equal to high
@@ -43,5 +52,10 @@ def quick_sort(data, low, high):
 lst = [8, 5, 6, 4, 3, 7, 9, 2, 1]
 print(lst)
 quick_sort(lst, 0, 9)
+<<<<<<< HEAD
 print('--------------------------')
 print(lst)
+=======
+print("--------------------------")
+print(lst)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

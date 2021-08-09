@@ -2,6 +2,10 @@
 
 # entity
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class Entity:
     def __init__(self, id, x, y):
         self.id = id
@@ -36,10 +40,18 @@ m = Mob(1, 10, 20, 2)
 
 # adventure
 
+<<<<<<< HEAD
 class Room:
     def __init__(self, name, description):
         self.name = name # has_a name (String)
         self.description = description # has_a description (String)
+=======
+
+class Room:
+    def __init__(self, name, description):
+        self.name = name  # has_a name (String)
+        self.description = description  # has_a description (String)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         self.contents = []  # make a space to put items of some sort has_a ?
 
 
@@ -53,6 +65,10 @@ class Weapon(Item):
     def __init__(self):  # what properties would we use here?
         pass
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # Treasure is_a Item
 class Treasure(Item):
     def __init__(self):  # what properties could you have in this init function?
@@ -64,6 +80,7 @@ class Player:
     def __init__(self, starting_room):
         self.current_room = starting_room
         self.inventory = []  # has_a relationship (Items?)
+<<<<<<< HEAD
         self.gold = 0 # has_a number
 
     def move(self, direction):
@@ -71,6 +88,15 @@ class Player:
             # return the current room at the direction to
         # otherwise
             # Tell the player they can not go that way
+=======
+        self.gold = 0  # has_a number
+
+    def move(self, direction):
+        # check if the current room has direction_to
+        # return the current room at the direction to
+        # otherwise
+        # Tell the player they can not go that way
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         pass
 
     def pick_up(self):  # what could we pass in to this function?
@@ -82,6 +108,7 @@ class Player:
         # TODO: how would you drop an item?
         # think again of instances and how to delete an object...
         pass
+<<<<<<< HEAD
 
 
 
@@ -89,3 +116,5 @@ class Player:
 
 
         
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

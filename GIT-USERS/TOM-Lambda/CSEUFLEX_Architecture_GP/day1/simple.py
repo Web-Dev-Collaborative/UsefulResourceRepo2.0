@@ -1,5 +1,9 @@
 # Let's build a data driven machine!
 import sys
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # opcodes
 PRINT_TOM = 1
 HALT = 2
@@ -29,7 +33,11 @@ memory = [
     3,
     PRINT_REG,
     2,
+<<<<<<< HEAD
     HALT
+=======
+    HALT,
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 ]
 
 # registers
@@ -51,7 +59,11 @@ while running:
     # FETCH
     cmd = memory[pc]
 
+<<<<<<< HEAD
     #DECODE
+=======
+    # DECODE
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     if cmd == PRINT_TOM:
         # EXECUTE
         print("Tom")
@@ -91,6 +103,11 @@ while running:
         # EXECUTE
         print("Unknown Instruction!")
         sys.exit(1)
+<<<<<<< HEAD
     
     
     pc += inc_size
+=======
+
+    pc += inc_size
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

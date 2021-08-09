@@ -42,7 +42,11 @@ class BinarySearchTree:
         # check if the value matches the target
         if self.value == target:
             # return true
+<<<<<<< HEAD
             return True  
+=======
+            return True
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # LEFT CASE if target less than value
         if target < self.value:
             # check if the left child exists if not
@@ -73,7 +77,11 @@ class BinarySearchTree:
             return None
 
         # recursive case
+<<<<<<< HEAD
         # if there is no right value 
+=======
+        # if there is no right value
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         if not self.right:
             # return the root node value
             return self.value
@@ -82,7 +90,10 @@ class BinarySearchTree:
             # return get max of the right hand child
             return self.right.get_max()
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
     def for_each(self, cb):
@@ -118,7 +129,11 @@ class BinarySearchTree:
                 stack.push(current_node.right)
             # invoke callback on the value of the current node
             cb(current_node.value)
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def bft_for_each_i(self, cb):
         # create an empty stack
         q = Queue()
@@ -141,7 +156,10 @@ class BinarySearchTree:
             # invoke callback on the value of the current node
             cb(current_node.value)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # DAY 2 Project -----------------------
 
     # Print all the values in order from low to high
@@ -156,6 +174,7 @@ class BinarySearchTree:
         # add the starting node to the queue
 
         # iterate over the queue
+<<<<<<< HEAD
             # set the current_node to the first item in the q
             # then print the current value
             # if the current node has a left child
@@ -163,6 +182,15 @@ class BinarySearchTree:
             # if the current node has a right child
                 # call enqueue on the current right
             
+=======
+        # set the current_node to the first item in the q
+        # then print the current value
+        # if the current node has a left child
+        # call enqueue on the current left
+        # if the current node has a right child
+        # call enqueue on the current right
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         pass
 
     # Print the value of every node, starting with the given node,
@@ -172,12 +200,21 @@ class BinarySearchTree:
         # add the starting node to the stack
 
         # iterate over the stack
+<<<<<<< HEAD
             # set the current_node to the first item in the stack
             # then print the current value
             # if the current node has a left child
                 # call push on the current left
             # if the current node has a right child
                 # call push on the current right
+=======
+        # set the current_node to the first item in the stack
+        # then print the current value
+        # if the current node has a left child
+        # call push on the current left
+        # if the current node has a right child
+        # call push on the current right
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         pass
 
     # STRETCH Goals -------------------------
@@ -189,4 +226,8 @@ class BinarySearchTree:
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
+<<<<<<< HEAD
         pass
+=======
+        pass
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

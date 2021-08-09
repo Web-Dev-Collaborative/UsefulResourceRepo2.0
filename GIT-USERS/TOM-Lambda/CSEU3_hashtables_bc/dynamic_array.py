@@ -49,4 +49,8 @@ class DynamicArray:
             # copy over the element
             new_storage[i] = self.storage[i]
         # set the storage to the new storage (add ref)
+<<<<<<< HEAD
         self.storage = new_storage
+=======
+        self.storage = new_storage
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

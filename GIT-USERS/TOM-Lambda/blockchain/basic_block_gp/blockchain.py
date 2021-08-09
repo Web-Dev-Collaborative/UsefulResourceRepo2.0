@@ -24,11 +24,19 @@ class Blockchain(object):
         """
 
         block = {
+<<<<<<< HEAD
             'index': len(self.chain) + 1,
             'timestamp': time(),
             'transactions': self.current_transactions,
             'proof': proof,
             'previous_hash': previous_hash or self.hash(self.chain[-1]),
+=======
+            "index": len(self.chain) + 1,
+            "timestamp": time(),
+            "transactions": self.current_transactions,
+            "proof": proof,
+            "previous_hash": previous_hash or self.hash(self.chain[-1]),
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         }
 
         # Reset the current list of transactions
@@ -47,6 +55,7 @@ class Blockchain(object):
         :return: <int> The index of the BLock that will hold this transaction
         """
 
+<<<<<<< HEAD
         self.current_transactions.append({
             'sender': sender,
             'recipient': recipient,
@@ -54,6 +63,13 @@ class Blockchain(object):
         })
 
         return self.last_block['index'] + 1
+=======
+        self.current_transactions.append(
+            {"sender": sender, "recipient": recipient, "amount": amount}
+        )
+
+        return self.last_block["index"] + 1
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
     @staticmethod
     def hash(block):
@@ -118,17 +134,30 @@ class Blockchain(object):
 
         while current_index < len(chain):
             block = chain[current_index]
+<<<<<<< HEAD
             print(f'{last_block}')
             print(f'{block}')
             print("\n-------------------\n")
             # Check that the hash of the block is correct
             # Return false if hash isn't correct
             if block['previous_hash'] != self.hash(last_block):
+=======
+            print(f"{last_block}")
+            print(f"{block}")
+            print("\n-------------------\n")
+            # Check that the hash of the block is correct
+            # Return false if hash isn't correct
+            if block["previous_hash"] != self.hash(last_block):
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
                 return False
 
             # Check that the Proof of Work is correct
             # Return false if proof isn't correct
+<<<<<<< HEAD
             if not self.valid_proof(last_block['proof'], block['proof']):
+=======
+            if not self.valid_proof(last_block["proof"], block["proof"]):
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
                 return False
 
             last_block = block
@@ -141,28 +170,45 @@ class Blockchain(object):
 app = Flask(__name__)
 
 # Generate a globally unique address for this node
+<<<<<<< HEAD
 node_identifier = str(uuid4()).replace('-', '')
+=======
+node_identifier = str(uuid4()).replace("-", "")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # Instantiate the Blockchain
 blockchain = Blockchain()
 
 
+<<<<<<< HEAD
 @app.route('/mine', methods=['GET'])
 def mine():
     # We run the proof of work algorithm to get the next proof...
     last_block = blockchain.last_block
     last_proof = last_block['proof']
+=======
+@app.route("/mine", methods=["GET"])
+def mine():
+    # We run the proof of work algorithm to get the next proof...
+    last_block = blockchain.last_block
+    last_proof = last_block["proof"]
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     proof = blockchain.proof_of_work(last_proof)
 
     # We must receive a reward for finding the proof.
     # The sender is "0" to signify that this node has mine a new coin
     # The recipient is the current node, it did the mining!
     # The amount is 1 coin as a reward for mining the next block
+<<<<<<< HEAD
     blockchain.new_transaction( sender="0", recipient=node_identifier, amount=1)
+=======
+    blockchain.new_transaction(sender="0", recipient=node_identifier, amount=1)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # Forge the new Block by adding it to the chain
     previous_hash = blockchain.hash(last_block)
     block = blockchain.new_block(proof, previous_hash)
 
+<<<<<<< HEAD
 
     # Send a response with the new block
     response = {
@@ -171,15 +217,29 @@ def mine():
         'transactions': block['transactions'],
         'proof': block['proof'],
         'previous_hash': block['previous_hash'],
+=======
+    # Send a response with the new block
+    response = {
+        "message": "New Block Forged",
+        "index": block["index"],
+        "transactions": block["transactions"],
+        "proof": block["proof"],
+        "previous_hash": block["previous_hash"],
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     }
     return jsonify(response), 200
 
 
+<<<<<<< HEAD
 @app.route('/transactions/new', methods=['POST'])
+=======
+@app.route("/transactions/new", methods=["POST"])
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def new_transaction():
     values = request.get_json()
 
     # Check that the required fields are in the POST'ed data
+<<<<<<< HEAD
     required = ['sender', 'recipient', 'amount']
     if not all(k in values for k in required):
         return 'Missing Values', 400
@@ -199,9 +259,32 @@ def full_chain():
         'chain': blockchain.chain,
         'length': len(blockchain.chain)
     }
+=======
+    required = ["sender", "recipient", "amount"]
+    if not all(k in values for k in required):
+        return "Missing Values", 400
+
+    # Create a new Transaction
+    index = blockchain.new_transaction(
+        values["sender"], values["recipient"], values["amount"]
+    )
+
+    response = {"message": f"Transaction will be added to Block {index}"}
+    return jsonify(response), 201
+
+
+@app.route("/chain", methods=["GET"])
+def full_chain():
+    response = {"chain": blockchain.chain, "length": len(blockchain.chain)}
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     return jsonify(response), 200
 
 
 # Run the program on port 5000
+<<<<<<< HEAD
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+=======
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

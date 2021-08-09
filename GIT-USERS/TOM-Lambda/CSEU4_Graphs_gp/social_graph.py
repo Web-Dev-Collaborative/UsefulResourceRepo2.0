@@ -2,10 +2,18 @@ import random
 from queue import Queue
 import time
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class User:
     def __init__(self, name):
         self.name = name
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class SocialGraph:
     def __init__(self):
         self.last_id = 0
@@ -19,7 +27,14 @@ class SocialGraph:
         if user_id == friend_id:
             # print("WARNING: You cannot be friends with yourself")
             return False
+<<<<<<< HEAD
         elif friend_id in self.friendships[user_id] or user_id in self.friendships[friend_id]:
+=======
+        elif (
+            friend_id in self.friendships[user_id]
+            or user_id in self.friendships[friend_id]
+        ):
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
             # print("WARNING: Friendship already exists")
             return False
         else:
@@ -89,7 +104,11 @@ class SocialGraph:
         # Add users
         for i in range(0, num_users):
             self.add_user(f"User {i + 1}")
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         target_friendships = num_users * avg_friendships
         total_friendships = 0
         collisions = 0
@@ -126,13 +145,21 @@ class SocialGraph:
                 visited[v] = path
 
                 for neighbor in self.friendships[v]:
+<<<<<<< HEAD
                     path_copy = list(path) # path.copy()
+=======
+                    path_copy = list(path)  # path.copy()
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
                     path_copy.append(neighbor)
                     q.enqueue(path_copy)
         return visited
 
 
+<<<<<<< HEAD
 if __name__ == '__main__':
+=======
+if __name__ == "__main__":
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
     num_users = 2000
     avg_friendships = 5
@@ -151,5 +178,10 @@ if __name__ == '__main__':
     # total_sp = 0
     # for user_id in connections:
     #     total_sp += len(connections[user_id])
+<<<<<<< HEAD
     
     # print(f"Avg len of social path: {total_sp // len(connections)}")
+=======
+
+    # print(f"Avg len of social path: {total_sp // len(connections)}")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

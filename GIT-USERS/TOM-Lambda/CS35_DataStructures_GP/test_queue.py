@@ -1,6 +1,10 @@
 import unittest
 from queue import Queue
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class QueueTests(unittest.TestCase):
     def setUp(self):
         self.q = Queue()
@@ -41,5 +45,10 @@ class QueueTests(unittest.TestCase):
         self.assertEqual(len(self.q), 0)
 
 
+<<<<<<< HEAD
 if __name__ == '__main__':
     unittest.main()
+=======
+if __name__ == "__main__":
+    unittest.main()
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

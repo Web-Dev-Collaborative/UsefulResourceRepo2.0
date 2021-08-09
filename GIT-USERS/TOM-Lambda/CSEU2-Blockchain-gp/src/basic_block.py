@@ -25,11 +25,19 @@ class Blockchain(object):
         """
 
         block = {
+<<<<<<< HEAD
             'index': len(self.chain) + 1,
             'timestamp': time(),
             'transactions': self.current_transactions,
             'proof': proof,
             'previous_hash': previous_hash or self.hash(self.chain[-1]),
+=======
+            "index": len(self.chain) + 1,
+            "timestamp": time(),
+            "transactions": self.current_transactions,
+            "proof": proof,
+            "previous_hash": previous_hash or self.hash(self.chain[-1]),
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         }
 
         # Reset the current list of transactions
@@ -48,7 +56,11 @@ class Blockchain(object):
         :return: <int> The index of the BLock that will hold this transaction
         """
         pass
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     @staticmethod
     def hash(block):
         """
@@ -57,7 +69,11 @@ class Blockchain(object):
         "return": <str>
         """
 
+<<<<<<< HEAD
         # Two line version:  
+=======
+        # Two line version:
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # block_string = json.dumps(block, sort_keys=True).encode()
         # return hashlib.sha256(block_string).hexdigest()
 
@@ -115,7 +131,11 @@ class Blockchain(object):
         correct number of leading zeroes.
         :return: True if the resulting hash is a valid proof, False otherwise
         """
+<<<<<<< HEAD
         guess = f'{block_string}{proof}'.encode()
+=======
+        guess = f"{block_string}{proof}".encode()
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         guess_hash = hashlib.sha256(guess).hexdigest()
         return guess_hash[:3] == "000"
 
@@ -124,13 +144,21 @@ class Blockchain(object):
 app = Flask(__name__)
 
 # Generate a globally unique address for this node
+<<<<<<< HEAD
 node_identifier = str(uuid4()).replace('-', '')
+=======
+node_identifier = str(uuid4()).replace("-", "")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # Instantiate the Blockchain
 blockchain = Blockchain()
 
 
+<<<<<<< HEAD
 @app.route('/mine', methods=['GET'])
+=======
+@app.route("/mine", methods=["GET"])
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def mine():
     # We run the proof of work algorithm to get the next proof...
     proof = blockchain.proof_of_work()
@@ -140,25 +168,44 @@ def mine():
     block = blockchain.new_block(proof, previous_hash)
 
     response = {
+<<<<<<< HEAD
         'message': "New Block Forged",
         'index': block['index'],
         'transactions': block['transactions'],
         'proof': block['proof'],
         'previous_hash': block['previous_hash'],
+=======
+        "message": "New Block Forged",
+        "index": block["index"],
+        "transactions": block["transactions"],
+        "proof": block["proof"],
+        "previous_hash": block["previous_hash"],
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     }
     return jsonify(response), 200
 
 
+<<<<<<< HEAD
 @app.route('/chain', methods=['GET'])
 def full_chain():
     response = {
         'length': len(blockchain.chain),
         'chain': blockchain.chain,
     }
+=======
+@app.route("/chain", methods=["GET"])
+def full_chain():
+    response = {"length": len(blockchain.chain), "chain": blockchain.chain}
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     return jsonify(response), 200
 
 
 # Run the program on port 5000
+<<<<<<< HEAD
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
 
+=======
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

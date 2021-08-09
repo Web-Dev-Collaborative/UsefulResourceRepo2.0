@@ -21,19 +21,38 @@ each island is a vertex
 each connection of north, south, east or west (edge)
 """
 
+<<<<<<< HEAD
 class Stack():
     def __init__(self):
         self.stack = []
     def push(self, value):
         self.stack.append(value)
+=======
+
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, value):
+        self.stack.append(value)
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def pop(self):
         if self.size() > 0:
             return self.stack.pop()
         else:
             return None
+<<<<<<< HEAD
     def size(self):
         return len(self.stack)
 
+=======
+
+    def size(self):
+        return len(self.stack)
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def dft(row, col, matrix, visited):
     s = Stack()
 
@@ -50,12 +69,17 @@ def dft(row, col, matrix, visited):
                 s.push(neighbor)
     return visited
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def get_neighbors(col, row, matrix):
     neighbors = []
 
     # check north
     if row > 0 and matrix[row - 1][col] == 1:
         neighbors.append((row - 1, col))
+<<<<<<< HEAD
     
     # check south
     if row < len(matrix) - 1 and matrix[row + 1][col] == 1:
@@ -71,13 +95,35 @@ def get_neighbors(col, row, matrix):
     
     return neighbors
 
+=======
+
+    # check south
+    if row < len(matrix) - 1 and matrix[row + 1][col] == 1:
+        neighbors.append((row + 1, col))
+
+    # check east
+    if col < len(matrix[0]) - 1 and matrix[row][col + 1] == 1:
+        neighbors.append((row, col + 1))
+
+    # check west
+    if col > 0 and matrix[row][col - 1] == 1:
+        neighbors.append((row, col - 1))
+
+    return neighbors
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def island_counter(matrix):
     # create a visited matrix
     counter_of_islands = 0
     visited = []
     for _ in range(len(matrix)):
         visited.append([False] * len(matrix[0]))
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # walk through each of the cels in the matrix
     for col in range(len(matrix[0])):
         for row in range(len(matrix)):
@@ -94,6 +140,7 @@ def island_counter(matrix):
     return counter_of_islands
 
 
+<<<<<<< HEAD
 
 
 if __name__ == "__main__":
@@ -118,3 +165,30 @@ if __name__ == "__main__":
 
     print(island_counter(islands))  # 13
 
+=======
+if __name__ == "__main__":
+    islands = [
+        [0, 1, 0, 1, 0],
+        [1, 1, 0, 1, 1],
+        [0, 0, 1, 0, 0],
+        [1, 0, 1, 0, 0],
+        [1, 1, 0, 0, 0],
+    ]
+
+    print(island_counter(islands))  # 4
+
+    islands = [
+        [1, 0, 0, 1, 1, 0, 1, 1, 0, 1],
+        [0, 0, 1, 1, 0, 1, 0, 0, 0, 0],
+        [0, 1, 1, 1, 0, 0, 0, 1, 0, 1],
+        [0, 0, 1, 0, 0, 1, 0, 0, 1, 1],
+        [0, 0, 1, 1, 0, 1, 0, 1, 1, 0],
+        [0, 1, 0, 1, 1, 1, 0, 1, 0, 0],
+        [0, 0, 1, 0, 0, 1, 1, 0, 0, 0],
+        [1, 0, 1, 1, 0, 0, 0, 1, 1, 0],
+        [0, 1, 1, 0, 0, 0, 1, 1, 0, 0],
+        [0, 0, 1, 1, 0, 1, 0, 0, 1, 0],
+    ]
+
+    print(island_counter(islands))  # 13
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

@@ -19,6 +19,10 @@ print(my_random)
 
 searching_for = 7
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def linear_search(arr, target):
     for i in range(len(arr)):
         if arr[i] == target:
@@ -26,6 +30,10 @@ def linear_search(arr, target):
 
     return False
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # print(linear_search(my_random, searching_for))
 
 
@@ -38,9 +46,16 @@ Key Points
 - Key words: sorted, ordered
 """
 
+<<<<<<< HEAD
 def find_value_binary(arr, value):
     first = 0
     last = (len(arr) - 1)
+=======
+
+def find_value_binary(arr, value):
+    first = 0
+    last = len(arr) - 1
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
     found = False
 
@@ -61,6 +76,10 @@ def find_value_binary(arr, value):
 
     return found
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # Sort the array of numbers
 my_random.sort()
 # print(find_value_binary(my_random, searching_for))
@@ -114,4 +133,8 @@ print("Binary _after_ sort")
 start = time.time()
 print(find_value_binary(my_random, searching_for))
 end = time.time()
+<<<<<<< HEAD
 print(f"Runtime: {end - start}")
+=======
+print(f"Runtime: {end - start}")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

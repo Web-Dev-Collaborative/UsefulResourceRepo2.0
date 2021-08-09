@@ -6,6 +6,7 @@ import django.utils.timezone
 
 class Migration(migrations.Migration):
 
+<<<<<<< HEAD
     dependencies = [
         ('notes', '0001_initial'),
     ]
@@ -20,6 +21,22 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='note',
             name='last_modified',
+=======
+    dependencies = [("notes", "0001_initial")]
+
+    operations = [
+        migrations.AddField(
+            model_name="note",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
+            preserve_default=False,
+        ),
+        migrations.AddField(
+            model_name="note",
+            name="last_modified",
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
             field=models.DateTimeField(auto_now=True),
         ),
     ]

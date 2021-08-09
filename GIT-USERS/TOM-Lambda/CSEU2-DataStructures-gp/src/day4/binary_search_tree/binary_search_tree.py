@@ -17,7 +17,11 @@ class BinarySearchTree:
         # LEFT CASE
         # check if the new nodes value is less than our current ones value
         if value < self.value:
+<<<<<<< HEAD
             # if the is no left child, 
+=======
+            # if the is no left child,
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
             if not self.left:
                 # place a new node here
                 self.left = BinarySearchTree(value)
@@ -28,7 +32,11 @@ class BinarySearchTree:
         # RIGHT CASE
         # check if the new nodes value is greater than or equal to the current parent value
         elif value >= self.value:
+<<<<<<< HEAD
             # if there is no right child here, 
+=======
+            # if there is no right child here,
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
             if not self.right:
                 # place a new one
                 self.right = BinarySearchTree(value)
@@ -61,12 +69,20 @@ class BinarySearchTree:
 
     # Return the maximum value found in the tree
     def get_max(self):
+<<<<<<< HEAD
         # BASE CASE 
+=======
+        # BASE CASE
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # if empty tree
         if not self:
             # return none
             return None
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # RECURSIVE
         # # if the the is no right value
         # if not self.right:
@@ -159,12 +175,21 @@ class BinarySearchTree:
         q = Queue()
         # enqueue the starting node on to the queue
         # loop while the queue has data
+<<<<<<< HEAD
             # dequeue the current it em off the queue
             # print the current value
             # if the current node has a left child
                 # enqueue the left child on to the queue
             # if the current node has a right child
                 # enqueue right child on to the queue          
+=======
+        # dequeue the current it em off the queue
+        # print the current value
+        # if the current node has a left child
+        # enqueue the left child on to the queue
+        # if the current node has a right child
+        # enqueue right child on to the queue
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         pass
 
     # Print the value of every node, starting with the given node,
@@ -174,12 +199,21 @@ class BinarySearchTree:
         s = Stack()
         # push the starting node on to the stack
         # loop while the stack has data
+<<<<<<< HEAD
             # pop the current it em off the stack
             # print the current value
             # if the current node has a left child
                 # push the left child on to the stack
             # if the current node has a right child
                 # push right child on to the stack          
+=======
+        # pop the current it em off the stack
+        # print the current value
+        # if the current node has a left child
+        # push the left child on to the stack
+        # if the current node has a right child
+        # push right child on to the stack
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         pass
 
     # STRETCH Goals -------------------------

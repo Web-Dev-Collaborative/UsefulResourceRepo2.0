@@ -1,6 +1,10 @@
 import unittest
 from dll_queue import Queue
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class QueueTests(unittest.TestCase):
     def setUp(self):
         self.q = Queue()
@@ -22,7 +26,11 @@ class QueueTests(unittest.TestCase):
         self.q.enqueue(16)
         self.q.enqueue(18)
         self.assertEqual(self.q.len(), 9)
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def test_empty_dequeue(self):
         self.assertIsNone(self.q.dequeue())
         self.assertEqual(self.q.len(), 0)
@@ -40,5 +48,11 @@ class QueueTests(unittest.TestCase):
         self.assertIsNone(self.q.dequeue())
         self.assertEqual(self.q.len(), 0)
 
+<<<<<<< HEAD
 if __name__ == '__main__':
     unittest.main() 
+=======
+
+if __name__ == "__main__":
+    unittest.main()
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

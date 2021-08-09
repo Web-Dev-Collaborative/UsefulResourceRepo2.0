@@ -11,6 +11,10 @@
 
 """
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class Node:
     def __init__(self, value):
         self.value = value
@@ -37,7 +41,10 @@ class Node:
                 # increment middle
                 middle = middle.next
 
+<<<<<<< HEAD
         
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # print the value of the middle
         print(f"Middle Value is {middle.value}")
 

@@ -1,9 +1,19 @@
 from book import Book
+<<<<<<< HEAD
 # Divide a problem in to subproblems (of the same type)
 # Solve the subproblems
 # Combine the results of the subproblems 
 # to get the solution to the original problem
 
+=======
+
+# Divide a problem in to subproblems (of the same type)
+# Solve the subproblems
+# Combine the results of the subproblems
+# to get the solution to the original problem
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def quick_sort(data, low, high):
     # check base case
     # if low is greater than or equal to high
@@ -39,11 +49,20 @@ def quick_sort(data, low, high):
     # return the data
     return data
 
+<<<<<<< HEAD
 b1 = Book('Food for thought', 'jon jones', 'food')
 b2 = Book('My life in reality', 'don davis', 'life')
 b3 = Book('Apples, how you like them?', 'stan simpson', 'food')
 b4 = Book('Just Do It', 'shia le boeuf', 'inspirational')
 b5 = Book('What is this code anyway', 'tom jones', 'programming')
+=======
+
+b1 = Book("Food for thought", "jon jones", "food")
+b2 = Book("My life in reality", "don davis", "life")
+b3 = Book("Apples, how you like them?", "stan simpson", "food")
+b4 = Book("Just Do It", "shia le boeuf", "inspirational")
+b5 = Book("What is this code anyway", "tom jones", "programming")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 books = [b1, b2, b3, b4, b5]
 
@@ -53,6 +72,10 @@ for b in books:
 quick_sort(books, 0, 5)
 
 
+<<<<<<< HEAD
 print('----------------------------------------------------------')
+=======
+print("----------------------------------------------------------")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 for b in books:
     print(b)

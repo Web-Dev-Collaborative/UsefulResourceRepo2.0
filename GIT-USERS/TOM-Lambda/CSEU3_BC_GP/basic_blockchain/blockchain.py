@@ -33,7 +33,11 @@ class Blockchain(object):
             "timestamp": time(),
             "transactions": self.current_transactions,
             "proof": proof,
+<<<<<<< HEAD
             "previous_hash": previous_hash or self.hash(self.chain[-1])
+=======
+            "previous_hash": previous_hash or self.hash(self.chain[-1]),
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         }
 
         # Reset the current list of transactions
@@ -63,13 +67,19 @@ class Blockchain(object):
         # This can be hard to read, but .hexdigest() converts the
         # hash to a string of hexadecimal characters, which is
         # easier to work with and understand
+<<<<<<< HEAD
         
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
         # Return the hashed block string in hexadecimal format
         return hashlib.sha256(block_string).hexdigest()
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     @property
     def last_block(self):
         return self.chain[-1]
@@ -86,7 +96,11 @@ class Blockchain(object):
         proof = 0
         # loop while the return from a call to valid proof is False
         while self.valid_proof(block_string, proof) is False:
+<<<<<<< HEAD
             proof += 1        
+=======
+            proof += 1
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # return proof
         return proof
 
@@ -110,18 +124,29 @@ class Blockchain(object):
         return guess_hash[:3] == "000"
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # Instantiate our Node
 app = Flask(__name__)
 
 # Generate a globally unique address for this node
+<<<<<<< HEAD
 node_identifier = str(uuid4()).replace('-', '')
+=======
+node_identifier = str(uuid4()).replace("-", "")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # Instantiate the Blockchain
 blockchain = Blockchain()
 
 
+<<<<<<< HEAD
 @app.route('/mine', methods=['GET'])
+=======
+@app.route("/mine", methods=["GET"])
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def mine():
     # Run the proof of work algorithm to get the next proof
     proof = blockchain.proof_of_work()
@@ -130,20 +155,35 @@ def mine():
     previous_hash = blockchain.hash(blockchain.last_block)
     block = blockchain.new_block(proof, previous_hash)
 
+<<<<<<< HEAD
     response = { "block": block }
+=======
+    response = {"block": block}
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
     return jsonify(response), 200
 
 
+<<<<<<< HEAD
 @app.route('/chain', methods=['GET'])
 def full_chain():
     response = {
         "length": len(blockchain.chain),
         "chain": blockchain.chain
     }
+=======
+@app.route("/chain", methods=["GET"])
+def full_chain():
+    response = {"length": len(blockchain.chain), "chain": blockchain.chain}
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     return jsonify(response), 200
 
 
 # Run the program on port 5000
+<<<<<<< HEAD
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+=======
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

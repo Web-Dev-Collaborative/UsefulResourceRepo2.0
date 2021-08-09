@@ -1,8 +1,13 @@
 my_string = "DA"
 my_string2 = "BOB"
 
+<<<<<<< HEAD
 class SomeClass:
 
+=======
+
+class SomeClass:
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def __init__(self, size):
         self.storage = [None] * size
 
@@ -21,16 +26,27 @@ class SomeClass:
         # sum up a total
         total = 0
 
+<<<<<<< HEAD
         sb = s.encode() # encode the string in to a bunch of utf-8 bytes
+=======
+        sb = s.encode()  # encode the string in to a bunch of utf-8 bytes
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # loop over the bytes of the string
         for b in sb:
             # print byte
             total += b
 
+<<<<<<< HEAD
             total &= 0xffffffff # constrain our number to a size of 32bits / 4 bytes
         
         return total
     
+=======
+            total &= 0xFFFFFFFF  # constrain our number to a size of 32bits / 4 bytes
+
+        return total
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def put(self, key, val):
         h = self.my_hash(key)
 
@@ -53,16 +69,26 @@ def my_hash(s):
     # sum up a total
     total = 0
 
+<<<<<<< HEAD
     sb = s.encode() # encode the string in to a bunch of utf-8 bytes
+=======
+    sb = s.encode()  # encode the string in to a bunch of utf-8 bytes
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # loop over the bytes of the string
     for b in sb:
         # print byte
         total += b
 
+<<<<<<< HEAD
         total &= 0xffffffff  # constrain our number to a size of 32bits / 4 bytes
     
     return total
 
+=======
+        total &= 0xFFFFFFFF  # constrain our number to a size of 32bits / 4 bytes
+
+    return total
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 
 # print(my_hash(my_string))  # => 133
@@ -71,7 +97,11 @@ def my_hash(s):
 # print(my_hash(my_string2))  # => 211
 # print(my_hash(my_string2))  # => 211
 
+<<<<<<< HEAD
 hash_table = [None] * 8 # 0, 1, 2, 3, 4, 5, 6, 7
+=======
+hash_table = [None] * 8  # 0, 1, 2, 3, 4, 5, 6, 7
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # put
 """
@@ -80,12 +110,20 @@ hash_table = [None] * 8 # 0, 1, 2, 3, 4, 5, 6, 7
 3: Store the value at the index
 """
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def put(ht, key, val):
     h = my_hash(key)
 
     i = h % len(ht)
     ht[i] = val
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 put(hash_table, "DA", "DA Value")
 
 # h = my_hash("DA")
@@ -104,7 +142,10 @@ put(hash_table, "DA", "DA Value")
 put(hash_table, "BOB", "BOB Value")
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 print(hash_table)
 
 # h = my_hash("BOB")
@@ -123,6 +164,11 @@ print(hash_table)
 2: Mod the hash value with the data structure size (arr) to get the index -> i
 3: Return the value at the index
 """
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def get(ht, key):
     h = my_hash(key)
 
@@ -139,6 +185,10 @@ def delete(ht, key):
 
     ht[i] = None
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # get the valuye at the bob key -> Bob Value 2
 # h = my_hash("BOB")
 
@@ -184,4 +234,7 @@ print(v)
 #     print("Collision!!!!!")
 
 # print(hash_table)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

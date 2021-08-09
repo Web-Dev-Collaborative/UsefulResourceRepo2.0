@@ -1,16 +1,23 @@
 # Why are recursive sorting algorithms useful?
 
 
+<<<<<<< HEAD
 
 # Divide a problem in to subproblems (of the same type)
 # Solve the subproblems
 # Combine the results of the subproblems 
+=======
+# Divide a problem in to subproblems (of the same type)
+# Solve the subproblems
+# Combine the results of the subproblems
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # to get the solution to the original problem
 
 # Quicksort
 
 # Divide and conquer sorting algorithm
 
+<<<<<<< HEAD
     # start with a pivot point
      # (first or last element)
      # (middle, mean, median, or even a 
@@ -18,6 +25,15 @@
     # move all elements smaller than the pivot point to the left hand side of the pivot. 
      # move all larger elements to the right of the pivot
     # (recursive case) recursively Quick Sort LHS and RHS until (base case) a side only contains a single element
+=======
+# start with a pivot point
+# (first or last element)
+# (middle, mean, median, or even a
+# random element can get better performance)
+# move all elements smaller than the pivot point to the left hand side of the pivot.
+# move all larger elements to the right of the pivot
+# (recursive case) recursively Quick Sort LHS and RHS until (base case) a side only contains a single element
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 
 # partition data
@@ -31,18 +47,33 @@ def partition(data):
             left.append(v)
         else:
             right.append(v)
+<<<<<<< HEAD
     
     return left, pivot, right
 
+=======
+
+    return left, pivot, right
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def quick_sort(data):
     # base case
     if data == []:
         return data
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     left, pivot, right = partition(data)
 
     return quick_sort(left) + [pivot] + quick_sort(right)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def quick_sort_A(data, low, high):
     if low >= high:
         return data
@@ -73,6 +104,10 @@ def quick_sort_A(data, low, high):
 
         return data
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def quick_sort_B(data):
     stack = []
     left = []
@@ -100,7 +135,11 @@ def quick_sort_B(data):
                 elif current[0] > pivot:
                     # move to right
                     right.append(current.pop(0))
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
             # quick sort LHS, RHS
             if len(right) > 0:
                 stack.insert(0, right)
@@ -108,10 +147,16 @@ def quick_sort_B(data):
             if len(left) > 0:
                 stack.insert(0, left)
             print("*" + str(len(current)))
+<<<<<<< HEAD
             
     return data
 
                 
+=======
+
+    return data
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # l = [20, 30, 10, 5, 70, 100, 8, 1, 12, 4, 6, 2]
 
@@ -123,6 +168,10 @@ def quick_sort_B(data):
 
 from time import time
 import random
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 l = [random.randint(0, 1000) for i in range(0, 100)]
 
 input_sizes = [i * 100 for i in range(1, 50)]
@@ -146,4 +195,8 @@ for elem in input_sizes:
 
 print("TIMES")
 for t in times:
+<<<<<<< HEAD
     print(t)
+=======
+    print(t)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

@@ -27,4 +27,8 @@ print(len(x))
 
 # Print all the values in x multiplied by 1000
 for e in x:
+<<<<<<< HEAD
   print(e * 1000)
+=======
+    print(e * 1000)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

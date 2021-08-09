@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 # Return the "centered" average of an array of ints, which we'll say is the mean average of the values, 
 # except ignoring the largest and smallest values in the array. 
+=======
+# Return the "centered" average of an array of ints, which we'll say is the mean average of the values,
+# except ignoring the largest and smallest values in the array.
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # what do we do if smallest or largest is duplicated
 # - we only consider 1 of smallest and 1 of largest to be valid
@@ -32,7 +37,11 @@ def centered_avg1(ints):
     # sum up everything except the smallest and largest values
     sum = 0
     # iterate over the data
+<<<<<<< HEAD
     for num in ints: 
+=======
+    for num in ints:
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # sum up the values
         sum += num
 
@@ -42,14 +51,24 @@ def centered_avg1(ints):
     # apply the algorithm of sum / (length of the data set minus 2) and return it
     return sum // (len(ints) - 2)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # 2 O(n)
 def centered_avg2(ints):
     # sort the ints
     ints.sort()
     # use builtin mean function on a slice of the ints
+<<<<<<< HEAD
     return statistics.mean(ints[1:-1]) # [1, 2, 3, 4, 100] num1 inclusive : num2 exclusive
 
 
+=======
+    return statistics.mean(
+        ints[1:-1]
+    )  # [1, 2, 3, 4, 100] num1 inclusive : num2 exclusive
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 
 # after testing
@@ -77,4 +96,8 @@ for i in range(1000):
     centered_avg2(numbers)
 end = time.time()
 
+<<<<<<< HEAD
 print(end - start)
+=======
+print(end - start)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

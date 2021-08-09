@@ -1,4 +1,7 @@
+<<<<<<< HEAD
   
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 records = [
     ("Alice", "Engineering"),
     ("Bob", "Sales"),
@@ -6,12 +9,23 @@ records = [
     ("Dave", "Engineering"),
     ("Erin", "Engineering"),
     ("Frank", "Engineering"),
+<<<<<<< HEAD
     ("Grace", "Marketing")
 ]
 
 def build_index(rec):
     pass
 
+=======
+    ("Grace", "Marketing"),
+]
+
+
+def build_index(rec):
+    pass
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # # Test Code
 # idx = build_index(records)
 
@@ -20,4 +34,8 @@ def build_index(rec):
 #     print(i)
 
 # # print everyone in Engineering:
+<<<<<<< HEAD
 # print(idx["Engineering"])
+=======
+# print(idx["Engineering"])
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

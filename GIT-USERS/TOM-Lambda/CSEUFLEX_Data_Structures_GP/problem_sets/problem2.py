@@ -6,7 +6,11 @@ class Node:
 
     def add(self, value):
         self.next = Node(value)
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def find_middle(self):
         middle = self
         end = self
@@ -16,7 +20,10 @@ class Node:
             if end:
                 end = end.next
                 middle = middle.next
+<<<<<<< HEAD
             
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
         print(f"Middle: {middle.value}")
 
@@ -52,10 +59,13 @@ cur = cur.next
 root.find_middle()
 
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # # tests
 
 root = Node(3)
@@ -67,4 +77,8 @@ cur = cur.next
 cur.add(6)
 cur = cur.next
 
+<<<<<<< HEAD
 root.find_middle()
+=======
+root.find_middle()
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

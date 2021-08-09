@@ -13,7 +13,11 @@ player = Player(foyer)
 while running:
     cmd = input(">>> ")
     # split the cmd in to commands
+<<<<<<< HEAD
     commands = [1] # split the cmd up here?
+=======
+    commands = [1]  # split the cmd up here?
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # if commands length is 1
     if len(commands) == 1:
         if cmd in ["n", "s", "e", "w"]:
@@ -27,4 +31,8 @@ while running:
         pass
         # get
 
+<<<<<<< HEAD
         # drop
+=======
+        # drop
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

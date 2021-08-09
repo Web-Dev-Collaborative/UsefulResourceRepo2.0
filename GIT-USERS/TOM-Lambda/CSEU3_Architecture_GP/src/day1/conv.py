@@ -74,9 +74,17 @@ def to_decimal(num_string, base):
         print(f"+({int(digit_list[i])} * {base ** i})")
         # increment value by (digit at index) * (base ^ index)
         value += int(digit_list[i]) * (base ** i)
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # return value
     return value
 
 
+<<<<<<< HEAD
 print(to_decimal(string1, 2))
+=======
+print(to_decimal(string1, 2))
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

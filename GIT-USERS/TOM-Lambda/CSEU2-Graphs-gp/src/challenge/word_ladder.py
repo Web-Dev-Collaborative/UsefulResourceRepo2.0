@@ -1,7 +1,11 @@
 from util import Queue, Stack
 
 # reading in the file of words
+<<<<<<< HEAD
 f = open('words.txt', 'r')
+=======
+f = open("words.txt", "r")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 words = f.read().split("\n")
 f.close()
 
@@ -9,9 +13,42 @@ f.close()
 
 word_set = set()
 for word in words:
+<<<<<<< HEAD
       word_set.add(word.lower())
 
 letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+=======
+    word_set.add(word.lower())
+
+letters = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+]
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # Utility function (Helper Function)
 """
@@ -20,6 +57,11 @@ letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','
     using a helper function to get the neighbors 
     and to work on the letters
 """
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def get_neighbors(word):
     # make an empty list for neighbors
     neighbors = []
@@ -35,7 +77,11 @@ def get_neighbors(word):
             temp_word[i] = letter
             # join the temporary word together
             new_word = "".join(temp_word)
+<<<<<<< HEAD
             # check if the new word is not the initial word 
+=======
+            # check if the new word is not the initial word
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
             # and the new word is in the word set
             if new_word != word and new_word in word_set:
                 # append the new word to the neighbors list
@@ -43,7 +89,12 @@ def get_neighbors(word):
     # return the neighbors list
     return neighbors
 
+<<<<<<< HEAD
 # implement the function 
+=======
+
+# implement the function
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # along with any helper functions you need
 def find_word_ladder(beginWord, endWord):
     # create a queue
@@ -76,7 +127,13 @@ def find_word_ladder(beginWord, endWord):
                 q.enqueue(new_path)
 
 
+<<<<<<< HEAD
 
 if __name__ == '__main__':
     print(find_word_ladder("sail", "boat"))
     # expected output ['sail', 'bail', 'boil', 'boll', 'bolt', 'boat']
+=======
+if __name__ == "__main__":
+    print(find_word_ladder("sail", "boat"))
+    # expected output ['sail', 'bail', 'boil', 'boll', 'bolt', 'boat']
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

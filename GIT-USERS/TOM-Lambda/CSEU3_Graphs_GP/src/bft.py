@@ -1,4 +1,8 @@
 from util import Stack, Queue
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # lets code a bft
 """
     Remember to follow our problem solving framework
@@ -9,12 +13,20 @@ from util import Stack, Queue
 
 # code up a Graph class implementing with an adjacency list
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class Graph:
     """ Represent a Graph as dictionary of vertices map the labels to edges."""
 
     # constructor
     def __init__(self):
+<<<<<<< HEAD
         self.vertices = {} # adjacency list (dictionary)
+=======
+        self.vertices = {}  # adjacency list (dictionary)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # self.vertices = [[],[],[]] # adjacency matrix (2d list or array)
 
     # add vertex
@@ -54,8 +66,16 @@ class Graph:
             if v not in visited:
                 # mark as visited and print for debugging
                 visited.add(v)
+<<<<<<< HEAD
                 print(v) # for debugging
                 # iterate over the child vertices of the current vertex
                 for next_vertex in self.vertices[v]:
                     # enqueue the next vertex
                     q.enqueue(next_vertex)
+=======
+                print(v)  # for debugging
+                # iterate over the child vertices of the current vertex
+                for next_vertex in self.vertices[v]:
+                    # enqueue the next vertex
+                    q.enqueue(next_vertex)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

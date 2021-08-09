@@ -12,12 +12,20 @@ for more info regarding list comprehensions.
 
 y = [i for i in range(1, 6)]
 
+<<<<<<< HEAD
 print (y)
+=======
+print(y)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # Write a list comprehension to produce the cubes of the numbers 0-9:
 # [0, 1, 8, 27, 64, 125, 216, 343, 512, 729]
 
+<<<<<<< HEAD
 y = [i**3 for i in range(10)]
+=======
+y = [i ** 3 for i in range(10)]
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 print(y)
 
@@ -33,9 +41,17 @@ print(y)
 # Use a list comprehension to create a list containing only the _even_ elements
 # the user entered into list x.
 
+<<<<<<< HEAD
 x = input("Enter comma-separated numbers: ").split(',')
+=======
+x = input("Enter comma-separated numbers: ").split(",")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # What do you need between the square brackets to make it work?
 y = [i for i in x if int(i) % 2 == 0]
 
+<<<<<<< HEAD
 print(y)
+=======
+print(y)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

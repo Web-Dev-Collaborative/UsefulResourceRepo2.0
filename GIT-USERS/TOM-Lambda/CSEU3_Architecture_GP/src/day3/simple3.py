@@ -1,4 +1,8 @@
 import sys
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # lets build up our simulator some more
 # now we will add the concept of registers
 # and an add opcode
@@ -26,10 +30,17 @@ def load_memory(filename):
                 comment_split = line.split("#")
 
                 # extract our number
+<<<<<<< HEAD
                 num = comment_split[0].strip() # trim whitespace
 
                 if num == '':
                     continue # ignore blank lines
+=======
+                num = comment_split[0].strip()  # trim whitespace
+
+                if num == "":
+                    continue  # ignore blank lines
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
                 # convert our binary string to a number
                 val = int(num, 2)
@@ -79,7 +90,11 @@ while running:
     if cmd == HALT:
         # EXECUTE
         running = False
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     elif cmd == PRINT_TOM:
         # EXECUTE
         print("Tom")
@@ -114,10 +129,17 @@ while running:
         reg = memory[pc + 1]
         val = register[reg]
 
+<<<<<<< HEAD
         #PUSH
         register[sp] -= 1
         memory[register[sp]] = val
         
+=======
+        # PUSH
+        register[sp] -= 1
+        memory[register[sp]] = val
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         inc_size = 2
 
     # TODO: Handle POP
@@ -131,10 +153,18 @@ while running:
         register[sp] += 1
 
         inc_size = 2
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     else:
         print(f"Invalid Instruction: {cmd}")
         running = False
 
     # how will we move forward in memory to grab the next command?
+<<<<<<< HEAD
     pc += inc_size
+=======
+    pc += inc_size
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

@@ -1,8 +1,16 @@
 from queue import Queue
 from stack import Stack
+<<<<<<< HEAD
 # lets do a graph adjacency list
 class Graph:
     """Represent a graph as a dictionary of vertices mapping labels to edges."""
+=======
+
+# lets do a graph adjacency list
+class Graph:
+    """Represent a graph as a dictionary of vertices mapping labels to edges."""
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def __init__(self):
         self.vertices = {}
 
@@ -57,7 +65,11 @@ class Graph:
                 # add all of it's neighbors to the stack
                 for next_vertex in self.get_neighbors(v):
                     s.push(next_vertex)
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def bfs(self, starting_vertex_id, target_vertex_id):
         # create an empty queue and enqueue the path to the starting vertex id
         q = Queue()
@@ -116,4 +128,8 @@ class Graph:
                     new_path.append(next_vertex)
                     s.push(new_path)
         # return none
+<<<<<<< HEAD
         return None
+=======
+        return None
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

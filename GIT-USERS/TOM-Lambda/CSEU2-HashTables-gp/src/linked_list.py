@@ -4,12 +4,21 @@ class Node:
     def __init__(self, value=None, next_node=None):
         self.value = value
         self.next = next_node
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # linked list class
 class LinkedList:
     # constructor
     def __init__(self):
         self.head = None
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # add to head
     def add_to_head(self, value):
         # create a new node with value
@@ -92,7 +101,10 @@ class LinkedList:
         print(linked_list_string)
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # test code
 ll = LinkedList()
 ll.print()
@@ -101,4 +113,8 @@ ll.add_to_head(2)
 ll.add_to_head(3)
 ll.print()
 ll.remove(2)
+<<<<<<< HEAD
 ll.print()
+=======
+ll.print()
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

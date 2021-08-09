@@ -9,11 +9,16 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+<<<<<<< HEAD
         ('notes', '0002_auto_20210330_1736'),
+=======
+        ("notes", "0002_auto_20210330_1736"),
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     ]
 
     operations = [
         migrations.CreateModel(
+<<<<<<< HEAD
             name='PersonalNote',
             fields=[
                 ('note_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='notes.note')),
@@ -21,4 +26,29 @@ class Migration(migrations.Migration):
             ],
             bases=('notes.note',),
         ),
+=======
+            name="PersonalNote",
+            fields=[
+                (
+                    "note_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="notes.note",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+            ],
+            bases=("notes.note",),
+        )
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     ]

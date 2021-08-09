@@ -8,6 +8,7 @@ class Migration(migrations.Migration):
 
     initial = True
 
+<<<<<<< HEAD
     dependencies = [
     ]
 
@@ -20,4 +21,25 @@ class Migration(migrations.Migration):
                 ('content', models.TextField(blank=True)),
             ],
         ),
+=======
+    dependencies = []
+
+    operations = [
+        migrations.CreateModel(
+            name="Note",
+            fields=[
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("title", models.CharField(max_length=200)),
+                ("content", models.TextField(blank=True)),
+            ],
+        )
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     ]

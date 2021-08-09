@@ -15,20 +15,34 @@
 
 3. Implement
 """
+<<<<<<< HEAD
 wordz = ['dave', 'steve', 'apple', 'bob', 'joe', 'azzzzzzz']
+=======
+wordz = ["dave", "steve", "apple", "bob", "joe", "azzzzzzz"]
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 import random
 import operator
 
+<<<<<<< HEAD
 def first_pass_anagrams(words): 
+=======
+
+def first_pass_anagrams(words):
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     import random
     import operator
 
     # generate random values for each char a-z
     chars = [0] * 26
     for i in range(26):
+<<<<<<< HEAD
         chars[i] = random.randint(0,1000000)
     
+=======
+        chars[i] = random.randint(0, 1000000)
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # create new dictionary
     anagrams = {}
     signature = 0
@@ -37,7 +51,11 @@ def first_pass_anagrams(words):
     for word in words:
         word = word.lower()
         for char in word:
+<<<<<<< HEAD
             index = ord(char)-97
+=======
+            index = ord(char) - 97
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
             if index >= 0 and index < 26:
                 signature += chars[index]
         # groups words with same value
@@ -50,6 +68,10 @@ def first_pass_anagrams(words):
     maxAnagrams = max(anagrams.items(), key=operator.itemgetter(1))[0]
     return maxAnagrams
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # def anagrams(words):
 #     # generate random values for each character a-z
 #     # set a list of char values initialized to zero (26 list slots)
@@ -82,7 +104,11 @@ def first_pass_anagrams(words):
 #                 # add the value of the char at index to the signature
 #                 signature += chars[index]
 
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 #             # group words with the same value
 #             # check if the signature is not in anagrams:
 #             if signature not in anagrams:
@@ -98,28 +124,46 @@ def first_pass_anagrams(words):
 
 #     max_anagrams = max(anagrams.items(), key=operator.itemgetter(1))[1]
 
+<<<<<<< HEAD
     
 #     return max_anagrams
 
+=======
+
+#     return max_anagrams
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def second_anagrams(words):
     # create a dictionary
     anagrams = {}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # generate all sets of anagrams
     # iterate over word in words
     for word in words:
         # convert list to a string
         # and set that to the signature
         signature = "".join(sorted(word.lower()))
+<<<<<<< HEAD
         #check if the signature is not in anagrams
+=======
+        # check if the signature is not in anagrams
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         if signature not in anagrams:
             # create an empty list to hold anagrams at the signature
             anagrams[signature] = []
 
         # append the word to the anagrams at signature
         anagrams[signature].append(word)
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # find the largest set of anagrams
     # set a max length to zero
     max_length = 0
@@ -133,21 +177,35 @@ def second_anagrams(words):
             max_length = len(anagrams[signature])
             # set max anagrams to the anagrams at the signature
             max_anagrams = anagrams[signature]
+<<<<<<< HEAD
     
     # return maxAnagrams
     return max_anagrams
  
+=======
+
+    # return maxAnagrams
+    return max_anagrams
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # allWords = []
 # with open('./words.txt') as wordsFile:
 #   allWords = wordsFile.read().split(',')
 
 # read in the words from a file
+<<<<<<< HEAD
 f = open('words.txt', 'r')
 words = f.read().split('\n')
+=======
+f = open("words.txt", "r")
+words = f.read().split("\n")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 f.close()
 
 # test the algorithms
 import time
+<<<<<<< HEAD
 start = time.time()
 print(first_pass_anagrams(words))
 end = time. time()
@@ -157,3 +215,15 @@ start = time.time()
 print(second_anagrams(words))
 end = time. time()
 print(f'2st pass solution time: {end - start} seconds\n')
+=======
+
+start = time.time()
+print(first_pass_anagrams(words))
+end = time.time()
+print(f"1st pass solution time: {end - start} seconds\n")
+
+start = time.time()
+print(second_anagrams(words))
+end = time.time()
+print(f"2st pass solution time: {end - start} seconds\n")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

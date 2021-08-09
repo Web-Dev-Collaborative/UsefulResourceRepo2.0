@@ -1,4 +1,9 @@
 from doubly_linked_list import DoublyLinkedList
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class TextBuffer:
     def __init__(self):
         self.storage = DoublyLinkedList()
@@ -17,7 +22,11 @@ class TextBuffer:
     def append(self, string_to_add):
         for char in string_to_add:
             self.storage.add_to_tail(char)
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # Add char to the front of the text buffer
     def prepend(self, string_to_add):
         for char in reversed(string_to_add):
@@ -46,9 +55,12 @@ class TextBuffer:
         self.storage.tail = other_buffer.storage.tail
 
 
+<<<<<<< HEAD
 
     
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 t = TextBuffer()
 t.append("ook")
 t.prepend("B")
@@ -65,4 +77,8 @@ t2 = TextBuffer()
 t2.append(" Hello")
 print(t)
 t.join(t2)
+<<<<<<< HEAD
 print(t)
+=======
+print(t)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

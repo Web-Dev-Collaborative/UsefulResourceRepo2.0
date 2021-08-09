@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 d = {
     "foo": 12,
     "bar": 17,
     "qux": 2
 }
+=======
+d = {"foo": 12, "bar": 17, "qux": 2}
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # cast our dict to a list of pairs
 items = list(d.items())

@@ -1,6 +1,10 @@
 import unittest
 from stack import Stack
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class StackTests(unittest.TestCase):
     def setUp(self):
         self.stack = Stack()
@@ -41,5 +45,10 @@ class StackTests(unittest.TestCase):
         self.assertEqual(len(self.stack), 0)
 
 
+<<<<<<< HEAD
 if __name__ == '__main__':
     unittest.main()
+=======
+if __name__ == "__main__":
+    unittest.main()
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

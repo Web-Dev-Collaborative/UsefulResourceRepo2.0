@@ -1,8 +1,16 @@
 from queue import Queue
 from stack import Stack
+<<<<<<< HEAD
 # lets do a graph adjacency list
 class Graph:
     """Represent a graph as a dictionary of vertices mapping labels to edges."""
+=======
+
+# lets do a graph adjacency list
+class Graph:
+    """Represent a graph as a dictionary of vertices mapping labels to edges."""
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def __init__(self):
         self.vertices = {}
 
@@ -65,14 +73,21 @@ class Graph:
                 # add all of it's neighbors to the top of the stack
                 for next_vertex in self.get_neighbors(v):
                     s.push(next_vertex)
+<<<<<<< HEAD
     
 
     def dft_recursive(self, starting_vertex, visited=None):
             """
+=======
+
+    def dft_recursive(self, starting_vertex, visited=None):
+        """
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
             Print each vertex in depth-first order
             beginning from starting_vertex.
             This should be done using recursion.
             """
+<<<<<<< HEAD
             if visited is None:
                 visited = set()
             visited.add(starting_vertex)
@@ -81,6 +96,16 @@ class Graph:
             for v in self.get_neighbors(starting_vertex):
                 if v not in visited:
                     self.dft_recursive(v, visited)
+=======
+        if visited is None:
+            visited = set()
+        visited.add(starting_vertex)
+        print(starting_vertex)
+
+        for v in self.get_neighbors(starting_vertex):
+            if v not in visited:
+                self.dft_recursive(v, visited)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
     def bfs(self, starting_vertex_id, target_vertex_id):
         # create an empty queue and enqueue PATH To the Starting Vertex ID
@@ -114,7 +139,10 @@ class Graph:
                     # enqueue out new path
                     q.enqueue(path_copy)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # return none
         return None
 
@@ -150,13 +178,19 @@ class Graph:
                     # push out new path
                     s.push(path_copy)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         # return none
         return None
 
 
+<<<<<<< HEAD
     
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # if __name__ == '__main__':
 #     graph = Graph()  # Instantiate your graph
 #     # https://github.com/LambdaSchool/Graphs/blob/master/objectives/breadth-first-search/img/bfs-visit-order.png
@@ -223,4 +257,8 @@ class Graph:
 #         [1, 2, 4, 7, 6]
 #     '''
 #     print(graph.dfs(1, 6))
+<<<<<<< HEAD
 #     print(graph.dfs_recursive(1, 6))
+=======
+#     print(graph.dfs_recursive(1, 6))
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

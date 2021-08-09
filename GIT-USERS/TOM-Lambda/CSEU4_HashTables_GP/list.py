@@ -4,7 +4,12 @@ class Node:
         self.next = None
 
     def __repr__(self):
+<<<<<<< HEAD
         return f'Node({repr(self.value)})'
+=======
+        return f"Node({repr(self.value)})"
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 class LinkedList:
     def __init__(self):
@@ -20,10 +25,17 @@ class LinkedList:
         s = ""
 
         while cur != None:
+<<<<<<< HEAD
             s += f'({cur.value})'
 
             if cur.next is not None:
                 s += '-->'
+=======
+            s += f"({cur.value})"
+
+            if cur.next is not None:
+                s += "-->"
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
             cur = cur.next
 
@@ -56,7 +68,11 @@ class LinkedList:
 
         while cur is not None:
             if cur.value == value:  # Found it!
+<<<<<<< HEAD
                 prev.next = cur.next   # Cut it out
+=======
+                prev.next = cur.next  # Cut it out
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
                 return cur  # Return deleted node
             else:
                 prev = cur
@@ -79,6 +95,10 @@ class LinkedList:
             # Overwrite old value
             node.value = value
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 if __name__ == "__main__":
     l = LinkedList()
     print(l)
@@ -99,4 +119,8 @@ if __name__ == "__main__":
     l.insert_or_overwrite_value(4)
     print(l)
     l.insert_or_overwrite_value(4)
+<<<<<<< HEAD
     print(l)
+=======
+    print(l)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

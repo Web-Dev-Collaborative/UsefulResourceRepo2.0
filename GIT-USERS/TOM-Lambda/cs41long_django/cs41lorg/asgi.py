@@ -11,6 +11,10 @@ import os
 
 from django.core.asgi import get_asgi_application
 
+<<<<<<< HEAD
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cs41lorg.settings')
+=======
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cs41lorg.settings")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 application = get_asgi_application()

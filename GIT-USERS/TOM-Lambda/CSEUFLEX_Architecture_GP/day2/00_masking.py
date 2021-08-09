@@ -49,4 +49,8 @@
 #     # do the add thing
 #     pass
 
+<<<<<<< HEAD
 # cpu.pc += add_to_pc
+=======
+# cpu.pc += add_to_pc
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

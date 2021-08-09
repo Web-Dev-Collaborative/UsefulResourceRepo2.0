@@ -2,6 +2,10 @@
 
 import sys
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class CPU:
     """Main CPU class."""
 
@@ -18,19 +22,31 @@ class CPU:
 
         program = [
             # From print8.ls8
+<<<<<<< HEAD
             0b10000010, # LDI R0,8
             0b00000000,
             0b00001000,
             0b01000111, # PRN R0
             0b00000000,
             0b00000001, # HLT
+=======
+            0b10000010,  # LDI R0,8
+            0b00000000,
+            0b00001000,
+            0b01000111,  # PRN R0
+            0b00000000,
+            0b00000001,  # HLT
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         ]
 
         for instruction in program:
             self.ram[address] = instruction
             address += 1
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def alu(self, op, reg_a, reg_b):
         """ALU operations."""
 
@@ -38,7 +54,11 @@ class CPU:
             self.reg[reg_a] += self.reg[reg_b]
         elif op == "SUB":
             self.reg[reg_a] -= self.reg[reg_b]
+<<<<<<< HEAD
         #elif op == "SUB": etc
+=======
+        # elif op == "SUB": etc
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         else:
             raise Exception("Unsupported ALU operation")
 
@@ -48,6 +68,7 @@ class CPU:
         from run() if you need help debugging.
         """
 
+<<<<<<< HEAD
         print(f"TRACE: %02X | %02X %02X %02X |" % (
             self.pc,
             #self.fl,
@@ -59,9 +80,30 @@ class CPU:
 
         for i in range(8):
             print(" %02X" % self.reg[i], end='')
+=======
+        print(
+            f"TRACE: %02X | %02X %02X %02X |"
+            % (
+                self.pc,
+                # self.fl,
+                # self.ie,
+                self.ram_read(self.pc),
+                self.ram_read(self.pc + 1),
+                self.ram_read(self.pc + 2),
+            ),
+            end="",
+        )
+
+        for i in range(8):
+            print(" %02X" % self.reg[i], end="")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
         print()
 
     def run(self):
         """Run the CPU."""
+<<<<<<< HEAD
         pass
+=======
+        pass
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

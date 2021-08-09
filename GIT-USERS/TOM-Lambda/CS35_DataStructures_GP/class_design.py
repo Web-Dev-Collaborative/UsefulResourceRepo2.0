@@ -18,6 +18,10 @@
 
 # write out a basic structure
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class Vec2:
     def __init__(self, x, y):
         self.x = x
@@ -33,6 +37,10 @@ class Vec2:
         self.x += fred.x
         self.y += fred.y
         return Vec2(self.x, self.y)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # try not to make nonsensical argument / field names
     def __add__(self, mouse_spartan_fresco_jinx):
         ret = Vec2(0, 0)
@@ -81,14 +89,20 @@ print(v2)
 v3 = v1 + v2
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 3 - 5
 print(v3)
 print(v1)
 print(v2)
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # 2.
 # Linked Lists to trees
 
@@ -117,6 +131,10 @@ SLL
 
 """
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class BTNode:
     def __init__(self, value, left=None, right=None):
         self.value = value
@@ -137,7 +155,10 @@ class BTNode:
             self.__add_left__(value)
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 bt1 = BTNode(10)
 # bt2 = BTNode(20)
 # bt34 = BTNode(8)
@@ -148,4 +169,8 @@ bt1 = BTNode(10)
 # bt34.left = bt7
 
 bt1.add_left(8)
+<<<<<<< HEAD
 bt1.add_right(20)
+=======
+bt1.add_right(20)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

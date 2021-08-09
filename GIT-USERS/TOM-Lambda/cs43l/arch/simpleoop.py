@@ -8,6 +8,10 @@ SUB = 7
 LDI = 0b10000010
 HLT = 0b00000001
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class Simple:
     def __init__(self):
 
@@ -25,7 +29,11 @@ class Simple:
 
     def ram_read(self, mar):
         return self.ram[mar]
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def ram_write(self, mar, mdr):
         self.ram[mar] = mdr
 

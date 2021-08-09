@@ -150,6 +150,10 @@ b * 1 => 11
 # 2
 # 128 + 32 + 8 + 2
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def to_decimal(num_string, base):
     # set a starting value
     value = 0
@@ -161,13 +165,23 @@ def to_decimal(num_string, base):
 
     # iterate over the list
     for i in range(len(digit_string)):
+<<<<<<< HEAD
         multiplyer = (base ** i)
+=======
+        multiplyer = base ** i
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         current_value_at_index = int(digit_string[i], base)
 
         value += current_value_at_index * multiplyer
 
     return value
 
+<<<<<<< HEAD
 print(to_decimal("7b", 16))  # => 123
 print(to_decimal("010111010110101", 2))  # => 123
 
+=======
+
+print(to_decimal("7b", 16))  # => 123
+print(to_decimal("010111010110101", 2))  # => 123
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

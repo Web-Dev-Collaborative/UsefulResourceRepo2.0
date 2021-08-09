@@ -42,7 +42,11 @@ memory = [
     PRINT_NUM,
     120,
     PRINT_VLAD,
+<<<<<<< HEAD
     HALT
+=======
+    HALT,
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 ]
 # keep track of running?
 running = True
@@ -78,7 +82,11 @@ while running:
         print(num_at_reg)
         op_size = 2
     elif cmd == SAVE:
+<<<<<<< HEAD
         num_to_save = memory[pc + 1] # 300
+=======
+        num_to_save = memory[pc + 1]  # 300
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         reg_index = memory[pc + 2]
 
         registers[reg_index] = num_to_save
@@ -98,5 +106,9 @@ while running:
 
         op_size = 3
 
+<<<<<<< HEAD
 
     pc += op_size
+=======
+    pc += op_size
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

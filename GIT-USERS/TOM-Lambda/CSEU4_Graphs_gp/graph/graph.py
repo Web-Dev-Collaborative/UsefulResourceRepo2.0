@@ -2,16 +2,28 @@
 Simple graph implementation
 """
 
+<<<<<<< HEAD
 class Queue():
     def __init__(self):
         self.queue = []
     def enqueue(self, value):
         self.queue.append(value)
+=======
+
+class Queue:
+    def __init__(self):
+        self.queue = []
+
+    def enqueue(self, value):
+        self.queue.append(value)
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def dequeue(self):
         if self.size() > 0:
             return self.queue.pop(0)
         else:
             return None
+<<<<<<< HEAD
     def size(self):
         return len(self.queue)
 
@@ -20,19 +32,43 @@ class Stack():
         self.stack = []
     def push(self, value):
         self.stack.append(value)
+=======
+
+    def size(self):
+        return len(self.queue)
+
+
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, value):
+        self.stack.append(value)
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def pop(self):
         if self.size() > 0:
             return self.stack.pop()
         else:
             return None
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def size(self):
         return len(self.stack)
 
 
+<<<<<<< HEAD
 
 
 class Graph:
     """Represent a graph as a dictionary of vertices mapping labels to edges."""
+=======
+class Graph:
+    """Represent a graph as a dictionary of vertices mapping labels to edges."""
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def __init__(self):
         self.vertices = {}
 
@@ -170,7 +206,11 @@ class Graph:
         return None
 
 
+<<<<<<< HEAD
 if __name__ == '__main__':
+=======
+if __name__ == "__main__":
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     graph = Graph()  # Instantiate your graph
     # https://github.com/LambdaSchool/Graphs/blob/master/objectives/breadth-first-search/img/bfs-visit-order.png
     graph.add_vertex(1)
@@ -191,6 +231,7 @@ if __name__ == '__main__':
     graph.add_edge(2, 3)
     graph.add_edge(4, 6)
 
+<<<<<<< HEAD
     '''
     Should print:
         {1: {2}, 2: {3, 4}, 3: {5}, 4: {6, 7}, 5: {3}, 6: {3}, 7: {1, 6}}
@@ -198,6 +239,15 @@ if __name__ == '__main__':
     print(graph.vertices)
 
     '''
+=======
+    """
+    Should print:
+        {1: {2}, 2: {3, 4}, 3: {5}, 4: {6, 7}, 5: {3}, 6: {3}, 7: {1, 6}}
+    """
+    print(graph.vertices)
+
+    """
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     Valid BFT paths:
         1, 2, 3, 4, 5, 6, 7
         1, 2, 3, 4, 5, 7, 6
@@ -211,15 +261,23 @@ if __name__ == '__main__':
         1, 2, 4, 3, 6, 5, 7
         1, 2, 4, 3, 7, 6, 5
         1, 2, 4, 3, 7, 5, 6
+<<<<<<< HEAD
     '''
     graph.bft(1)
 
     '''
+=======
+    """
+    graph.bft(1)
+
+    """
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     Valid DFT paths:
         1, 2, 3, 5, 4, 6, 7
         1, 2, 3, 5, 4, 7, 6
         1, 2, 4, 7, 6, 3, 5
         1, 2, 4, 6, 3, 5, 7
+<<<<<<< HEAD
     '''
     graph.dft(1)
     graph.dft_recursive(1)
@@ -237,3 +295,22 @@ if __name__ == '__main__':
     '''
     print(graph.dfs(1, 6))
     print(graph.dfs_recursive(1, 6))
+=======
+    """
+    graph.dft(1)
+    graph.dft_recursive(1)
+
+    """
+    Valid BFS path:
+        [1, 2, 4, 6]
+    """
+    print(graph.bfs(1, 6))
+
+    """
+    Valid DFS paths:
+        [1, 2, 4, 6]
+        [1, 2, 4, 7, 6]
+    """
+    print(graph.dfs(1, 6))
+    print(graph.dfs_recursive(1, 6))
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

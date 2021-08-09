@@ -10,6 +10,7 @@ PRINT_REG = 5
 
 # lets make a model of memory to hold our program
 
+<<<<<<< HEAD
 memory = [
     SAVE,
     65,
@@ -19,6 +20,9 @@ memory = [
     HALT,
     PRINT_BOB
 ]
+=======
+memory = [SAVE, 65, 2, PRINT_REG, 2, HALT, PRINT_BOB]
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 register = [0] * 8
 
@@ -38,7 +42,11 @@ while running:
     if cmd == HALT:
         # EXECUTE
         running = False
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     elif cmd == PRINT_BOB:
         # EXECUTE
         print("Bob")
@@ -60,10 +68,17 @@ while running:
         print(register[reg])
         inc_size = 2
 
+<<<<<<< HEAD
     
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     else:
         print("Invalid Instruction")
         running = False
 
     # how will we move forward in memory to grab the next command?
+<<<<<<< HEAD
     pc += inc_size
+=======
+    pc += inc_size
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

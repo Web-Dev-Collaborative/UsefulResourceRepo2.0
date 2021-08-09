@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 def quick_sort_A( books, low, high ):
+=======
+def quick_sort_A(books, low, high):
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     # base case
     if low >= high:
         return books
@@ -11,20 +15,31 @@ def quick_sort_A( books, low, high ):
             if books[i].genre < books[pivot_index].genre:
                 # double swap to move smaller elements to correct index
                 # move current element to the right of pivot
+<<<<<<< HEAD
                 temp = books[pivot_index+1]
                 books[pivot_index+1] = books[i]
+=======
+                temp = books[pivot_index + 1]
+                books[pivot_index + 1] = books[i]
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
                 books[i] = temp
 
                 # swap pivot with element on its right
                 temp = books[pivot_index]
+<<<<<<< HEAD
                 books[pivot_index] = books[pivot_index+1]
                 books[pivot_index+1] = temp
+=======
+                books[pivot_index] = books[pivot_index + 1]
+                books[pivot_index + 1] = temp
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
                 pivot_index += 1
 
         # conquer
         # Quick Sort everything left of the pivot
         books = quick_sort_A(books, low, pivot_index)
         # Quick Sort everything right of the pivot
+<<<<<<< HEAD
         books = quick_sort_A(books, pivot_index+1, high)
   
         return books
@@ -34,6 +49,17 @@ def quick_sort_A( books, low, high ):
 # exceed Python's maximum recursion depth with 
 # in-place Quick Sort
 def quick_sort_b( books ):
+=======
+        books = quick_sort_A(books, pivot_index + 1, high)
+
+        return books
+
+
+# NOT done in place because for large inputs, we
+# exceed Python's maximum recursion depth with
+# in-place Quick Sort
+def quick_sort_b(books):
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     stack = []
     left = []
     right = []
@@ -54,7 +80,11 @@ def quick_sort_b( books ):
             while len(current) > 0:
                 # if next element smaller than pivot, add to left arr
                 if current[0].genre < pivot.genre:
+<<<<<<< HEAD
                     # move to LHS 
+=======
+                    # move to LHS
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
                     left.append(current.pop(0))
                 # else if next element larger than pivot, add to right arr
                 elif current[0].genre > pivot.genre:
@@ -67,7 +97,13 @@ def quick_sort_b( books ):
             stack.insert(0, pivot)
             if len(left) > 0:
                 stack.insert(0, left)
+<<<<<<< HEAD
             print("*"+str(len(current)))
 
     return books
 
+=======
+            print("*" + str(len(current)))
+
+    return books
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

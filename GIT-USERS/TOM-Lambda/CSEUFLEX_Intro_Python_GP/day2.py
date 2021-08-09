@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # Passing by value Vs passing by Ref
 import time
 import statistics
@@ -9,7 +12,11 @@ import statistics
 # the first one was A and the second was B
 # A = 3.45
 # B = 4.675
+<<<<<<< HEAD
 print("%.2f   A   %.3f" %(3.45454545, 4.67564))
+=======
+print("%.2f   A   %.3f" % (3.45454545, 4.67564))
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 x = 5
 y = 7
@@ -20,17 +27,30 @@ b = "7"
 print(str(x).__add__(y))
 
 
+<<<<<<< HEAD
 
 
 # define a doubling function that passes args by value
 # 2352352 # 
+=======
+# define a doubling function that passes args by value
+# 2352352 #
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # a = 3
 # b =>>>>  @23423542 # [1, 2, 3]
 # b = 23423542
 
+<<<<<<< HEAD
 def mult2(x):
     return x * 2
 
+=======
+
+def mult2(x):
+    return x * 2
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # define a doubling function that passes args by reference
 def mult2_list(l):
     for i in range(len(l)):
@@ -50,6 +70,7 @@ def mult2_list(l):
 #     print(num)
 
 
+<<<<<<< HEAD
 
 
 
@@ -68,6 +89,19 @@ def centered_avg1(ints):
 def centered_avg2(ints):
     pass
 
+=======
+# Centered Average functions
+
+
+def centered_avg1(ints):
+    pass
+
+
+def centered_avg2(ints):
+    pass
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # tests
 
 
@@ -95,4 +129,8 @@ print(end - start)
 
 # b = a // 4
 
+<<<<<<< HEAD
 # print(b)
+=======
+# print(b)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

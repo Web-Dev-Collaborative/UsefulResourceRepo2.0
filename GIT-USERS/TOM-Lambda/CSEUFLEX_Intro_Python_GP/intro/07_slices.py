@@ -34,4 +34,8 @@ print(a[:-1])
 s = "Hello, world!"
 
 # Output just the 8th-12th characters: "world"
+<<<<<<< HEAD
 print(s[7:12])
+=======
+print(s[7:12])
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

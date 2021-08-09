@@ -12,10 +12,17 @@ try:
             comment_split = line.split("#")
 
             # extract our number
+<<<<<<< HEAD
             num = comment_split[0].strip() # trim whitespace
 
             if num == '':
                 continue # ignore blank lines
+=======
+            num = comment_split[0].strip()  # trim whitespace
+
+            if num == "":
+                continue  # ignore blank lines
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
             # convert our binary string to a number
             x = int(num, 2)
@@ -25,4 +32,8 @@ try:
 
 except FileNotFoundError:
     print(f"{sys.argv[0]}: {sys.argv[1]} not found")
+<<<<<<< HEAD
     sys.exit(2)
+=======
+    sys.exit(2)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

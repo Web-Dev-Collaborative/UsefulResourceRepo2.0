@@ -6,6 +6,10 @@ class LRUCache:
     order, as well as a storage dict that provides fast access
     to every node stored in the cache.
     """
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def __init__(self, limit=10):
         pass
 
@@ -16,6 +20,10 @@ class LRUCache:
     Returns the value associated with the key or None if the
     key-value pair doesn't exist in the cache.
     """
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def get(self, key):
         pass
 
@@ -29,5 +37,11 @@ class LRUCache:
     want to overwrite the old value associated with the key with
     the newly-specified value.
     """
+<<<<<<< HEAD
     def set(self, key, value):
         pass
+=======
+
+    def set(self, key, value):
+        pass
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

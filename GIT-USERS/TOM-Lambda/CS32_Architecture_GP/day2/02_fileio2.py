@@ -11,4 +11,8 @@ try:
             print(line)
 
 except:
+<<<<<<< HEAD
     print("can not find it!")
+=======
+    print("can not find it!")
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

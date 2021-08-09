@@ -1,6 +1,10 @@
 from book import Book
 from time import time
 import random
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 l = [random.randint(0, 1000) for i in range(0, 100)]
 
 input_sizes = [i * 100 for i in range(1, 50)]
@@ -8,8 +12,11 @@ input_sizes = [i * 100 for i in range(1, 50)]
 times = []
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 def insertion_sort(books):
     # loop through len - 1 elements
     for i in range(1, len(books)):
@@ -22,6 +29,10 @@ def insertion_sort(books):
         books[j] = temp
     return books
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 b1 = Book("f", "f", "f")
 b2 = Book("e", "e", "e")
 b3 = Book("d", "d", "d")
@@ -49,4 +60,8 @@ for elem in input_sizes:
 
 print("TIMES")
 for t in times:
+<<<<<<< HEAD
     print(t)
+=======
+    print(t)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

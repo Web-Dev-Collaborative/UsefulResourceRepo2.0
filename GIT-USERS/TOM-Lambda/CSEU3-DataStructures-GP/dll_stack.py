@@ -1,5 +1,9 @@
 from doubly_linked_list import DoublyLinkedList
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 class Stack:
     def __init__(self):
         self.size = 0
@@ -19,4 +23,8 @@ class Stack:
             return None
 
     def len(self):
+<<<<<<< HEAD
         return self.size
+=======
+        return self.size
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

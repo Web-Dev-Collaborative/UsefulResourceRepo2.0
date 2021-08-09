@@ -15,9 +15,16 @@ class Node:
             if end:
                 end = end.next
                 middle = middle.next
+<<<<<<< HEAD
         
         print(f"Middle Value: {middle.value}")
 
+=======
+
+        print(f"Middle Value: {middle.value}")
+
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 root = Node([1, 2, 4, 3, 23])
 cur = root
 cur.add({"name": "Tom"})
@@ -36,6 +43,9 @@ cur.add(34)
 cur = cur.next
 
 root.find_middle()
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

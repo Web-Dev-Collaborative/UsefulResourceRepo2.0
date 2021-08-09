@@ -1,4 +1,8 @@
 import sys
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 # lets build up our simulator some more
 # now we will add the concept of registers
 # and an add opcode
@@ -12,8 +16,13 @@ PRINT_REG = 5
 ADD = 6
 PUSH = 7
 POP = 8
+<<<<<<< HEAD
 CALL = 9 # New for day 4
 RET = 10 # New for day 4
+=======
+CALL = 9  # New for day 4
+RET = 10  # New for day 4
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
 # think of some operations that we might want to perform such as print something, load  or store something etc
 # maybe some way to stop execution and some arithmetic operations
@@ -57,7 +66,11 @@ RET = 10 # New for day 4
 #     print("RET")
 #     return 3
 
+<<<<<<< HEAD
 # TODO: demo the idea of a branch table 
+=======
+# TODO: demo the idea of a branch table
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 ## branch table
 # bt = {
 #     HALT: op_halt,
@@ -82,10 +95,17 @@ def load_memory(filename):
                 comment_split = line.split("#")
 
                 # extract our number
+<<<<<<< HEAD
                 num = comment_split[0].strip() # trim whitespace
 
                 if num == '':
                     continue # ignore blank lines
+=======
+                num = comment_split[0].strip()  # trim whitespace
+
+                if num == "":
+                    continue  # ignore blank lines
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
                 # convert our binary string to a number
                 val = int(num, 2)
@@ -135,7 +155,11 @@ while running:
     if cmd == HALT:
         # EXECUTE
         running = False
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     elif cmd == PRINT_TOM:
         # EXECUTE
         print("Tom")
@@ -173,10 +197,17 @@ while running:
         reg = memory[pc + 1]
         val = register[reg]
 
+<<<<<<< HEAD
         #PUSH
         register[sp] -= 1
         memory[register[sp]] = val
         
+=======
+        # PUSH
+        register[sp] -= 1
+        memory[register[sp]] = val
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         inc_size = 2
         op_pc = False
 
@@ -191,14 +222,23 @@ while running:
 
         inc_size = 2
         op_pc = False
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     elif cmd == CALL:
         # setup
         reg = memory[pc + 1]
 
         # CALL
+<<<<<<< HEAD
         register[sp] -= 1 # decrement sp
         memory[register[sp]] = pc + 2 # push pc + 2 on to the stack
+=======
+        register[sp] -= 1  # decrement sp
+        memory[register[sp]] = pc + 2  # push pc + 2 on to the stack
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
 
         # set pc to subroutine
         pc = register[reg]
@@ -230,4 +270,7 @@ while running:
 #         pc += bt[ir](op1, op2)
 #     else:
 #         raise Exception(f"Invalid instruction {hex(ir)} at address {hex(pc)}")
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

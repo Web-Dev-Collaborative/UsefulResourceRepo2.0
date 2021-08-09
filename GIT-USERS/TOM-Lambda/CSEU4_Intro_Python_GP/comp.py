@@ -14,4 +14,8 @@ dub = [num * 2 for num in lst if num % 2 == 0]
 # num = 2
 
 print(lst)
+<<<<<<< HEAD
 print(doubles_if_even)
+=======
+print(doubles_if_even)
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea

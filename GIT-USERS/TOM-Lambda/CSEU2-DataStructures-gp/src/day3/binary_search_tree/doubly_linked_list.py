@@ -11,6 +11,10 @@ class ListNode:
     """Wrap the given value in a ListNode and insert it
     after this node. Note that this node could already
     have a next node it is point to."""
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def insert_after(self, value):
         current_next = self.next
         self.next = ListNode(value, self, current_next)
@@ -20,6 +24,10 @@ class ListNode:
     """Wrap the given value in a ListNode and insert it
     before this node. Note that this node could already
     have a previous node it is point to."""
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def insert_before(self, value):
         current_prev = self.prev
         self.prev = ListNode(value, current_prev, self)
@@ -28,6 +36,10 @@ class ListNode:
 
     """Rearranges this ListNode's previous and next pointers
     accordingly, effectively deleting this ListNode."""
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def delete(self):
         if self.prev:
             self.prev.next = self.next
@@ -51,6 +63,10 @@ class DoublyLinkedList:
     """Wraps the given value in a ListNode and inserts it 
     as the new head of the list. Don't forget to handle 
     the old head node's previous pointer accordingly."""
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def add_to_head(self, value):
         # make a new node
         new_node = ListNode(value, None, None)
@@ -74,6 +90,10 @@ class DoublyLinkedList:
     """Removes the List's current head node, making the
     current head's next node the new head of the List.
     Returns the value of the removed Node."""
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def remove_from_head(self):
         # set the return value to the value of the head
         value = self.head.value
@@ -85,6 +105,10 @@ class DoublyLinkedList:
     """Wraps the given value in a ListNode and inserts it 
     as the new tail of the list. Don't forget to handle 
     the old tail node's next pointer accordingly."""
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def add_to_tail(self, value):
         # make a new node
         new_node = ListNode(value, None, None)
@@ -108,6 +132,10 @@ class DoublyLinkedList:
     """Removes the List's current tail node, making the 
     current tail's previous node the new tail of the List.
     Returns the value of the removed Node."""
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def remove_from_tail(self):
         # set the return value to the tail value
         value = self.tail.value
@@ -118,6 +146,10 @@ class DoublyLinkedList:
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new head node of the List."""
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def move_to_front(self, node):
         # if node is head then return
         if node is self.head:
@@ -140,8 +172,14 @@ class DoublyLinkedList:
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List."""
+<<<<<<< HEAD
     def move_to_end(self, node):
                 # if node is tail then return
+=======
+
+    def move_to_end(self, node):
+        # if node is tail then return
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
         if node is self.tail:
             return
         # set value to nodes value
@@ -162,6 +200,10 @@ class DoublyLinkedList:
 
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def delete(self, node):
         # decrement the length
         self.length -= 1
@@ -189,8 +231,14 @@ class DoublyLinkedList:
         else:
             # delete node
             node.delete()
+<<<<<<< HEAD
         
     """Returns the highest value currently in the list"""
+=======
+
+    """Returns the highest value currently in the list"""
+
+>>>>>>> 23fb4d348bb9c7b7b370cb2afcd785793e3816ea
     def get_max(self):
         # if no head the return None
         if not self.head:
